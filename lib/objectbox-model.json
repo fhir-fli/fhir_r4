@@ -1,0 +1,5087 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "1:859998357377386175",
+      "lastPropertyId": "12:4431310516507334362",
+      "name": "Address",
+      "properties": [
+        {
+          "id": "1:5394718144227536947",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5717719170767670218",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "1:7700999414151027410",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:2949295429293123263",
+          "name": "use",
+          "type": 9
+        },
+        {
+          "id": "4:8562130889863459058",
+          "name": "type",
+          "type": 9
+        },
+        {
+          "id": "5:7592724011794645050",
+          "name": "text",
+          "type": 9
+        },
+        {
+          "id": "6:2289058132022742525",
+          "name": "line",
+          "type": 30
+        },
+        {
+          "id": "7:168942654057096541",
+          "name": "city",
+          "type": 9
+        },
+        {
+          "id": "8:2784737030851221158",
+          "name": "district",
+          "type": 9
+        },
+        {
+          "id": "9:7299940413044870493",
+          "name": "state",
+          "type": 9
+        },
+        {
+          "id": "10:4091740906964622739",
+          "name": "postalCode",
+          "type": 9
+        },
+        {
+          "id": "11:3537971288403676629",
+          "name": "country",
+          "type": 9
+        },
+        {
+          "id": "12:4431310516507334362",
+          "name": "periodId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "2:6643728656543391700",
+          "relationTarget": "Period"
+        }
+      ],
+      "relations": [
+        {
+          "id": "1:7593352098260571960",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "2:137761991492611029",
+      "lastPropertyId": "7:3975231044942449512",
+      "name": "Age",
+      "properties": [
+        {
+          "id": "1:2800677322998459027",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8725431783700697409",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "3:3699060417643381470",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:1590906317272255034",
+          "name": "value",
+          "type": 8
+        },
+        {
+          "id": "4:6114386408546108789",
+          "name": "comparator",
+          "type": 9
+        },
+        {
+          "id": "5:8105456187399377935",
+          "name": "unit",
+          "type": 9
+        },
+        {
+          "id": "6:745883312236515361",
+          "name": "system",
+          "type": 9
+        },
+        {
+          "id": "7:3975231044942449512",
+          "name": "code",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "2:1975193067252695442",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "3:5431556367902580579",
+      "lastPropertyId": "6:1782826315039778905",
+      "name": "Annotation",
+      "properties": [
+        {
+          "id": "1:5967796777360508962",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1882606449731119060",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "4:3728429224785622863",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:8376484027990762270",
+          "name": "authorReferenceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "5:974453008661095969",
+          "relationTarget": "Reference"
+        },
+        {
+          "id": "4:7028950124689277030",
+          "name": "authorString",
+          "type": 9
+        },
+        {
+          "id": "5:5392677355476868670",
+          "name": "time",
+          "type": 9
+        },
+        {
+          "id": "6:1782826315039778905",
+          "name": "text",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "3:3466262498283861499",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "4:502513322599364627",
+      "lastPropertyId": "10:1618334011446902150",
+      "name": "Attachment",
+      "properties": [
+        {
+          "id": "1:3809769040696752117",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8787953165133226842",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "6:2232813710055620268",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:1919198864000607596",
+          "name": "contentType",
+          "type": 9
+        },
+        {
+          "id": "4:2912467794083894350",
+          "name": "language",
+          "type": 9
+        },
+        {
+          "id": "5:7342704357256478878",
+          "name": "data",
+          "type": 9
+        },
+        {
+          "id": "6:6757155117974572618",
+          "name": "url",
+          "type": 9
+        },
+        {
+          "id": "7:4297938770393190964",
+          "name": "size",
+          "type": 6
+        },
+        {
+          "id": "8:1805098096559661789",
+          "name": "hash",
+          "type": 9
+        },
+        {
+          "id": "9:2621354653532894697",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "10:1618334011446902150",
+          "name": "creation",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "4:8923640148731168126",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "5:4072455885617490063",
+      "lastPropertyId": "3:1636744629416251844",
+      "name": "CodeableConcept",
+      "properties": [
+        {
+          "id": "1:3928998636915796334",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:4342557177957994731",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "7:4880238943899650747",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:1636744629416251844",
+          "name": "text",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "5:3288581468735413312",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "6:1850456831541168504",
+          "name": "coding",
+          "targetId": "7:8873997066131547011"
+        }
+      ]
+    },
+    {
+      "id": "6:3951641162007793511",
+      "lastPropertyId": "4:8202702454482765840",
+      "name": "CodeableReference",
+      "properties": [
+        {
+          "id": "1:4594866029663978183",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6252319825634848745",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "8:7810576469908692357",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:800653024493435335",
+          "name": "conceptId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "9:1149062116839419798",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "4:8202702454482765840",
+          "name": "referenceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "10:3048235262470197482",
+          "relationTarget": "Reference"
+        }
+      ],
+      "relations": [
+        {
+          "id": "7:2104075931275556718",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "7:8873997066131547011",
+      "lastPropertyId": "7:413044041085839474",
+      "name": "Coding",
+      "properties": [
+        {
+          "id": "1:7201498583686957262",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8111917250297880293",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "11:7225157592102425336",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:2776152502722103176",
+          "name": "system",
+          "type": 9
+        },
+        {
+          "id": "4:8082469157648744511",
+          "name": "version",
+          "type": 9
+        },
+        {
+          "id": "5:2266682692010921050",
+          "name": "code",
+          "type": 9
+        },
+        {
+          "id": "6:5973855582900858261",
+          "name": "display",
+          "type": 9
+        },
+        {
+          "id": "7:413044041085839474",
+          "name": "userSelected",
+          "type": 1
+        }
+      ],
+      "relations": [
+        {
+          "id": "8:376040402050253784",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "8:9136124542494256544",
+      "lastPropertyId": "3:3430834541352276486",
+      "name": "ContactDetail",
+      "properties": [
+        {
+          "id": "1:6871228155571560006",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6272756432910039818",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "12:1566019783934747148",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:3430834541352276486",
+          "name": "name",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "9:9139024149166595715",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "10:9062322146675767880",
+          "name": "telecom",
+          "targetId": "9:6564554583744113680"
+        }
+      ]
+    },
+    {
+      "id": "9:6564554583744113680",
+      "lastPropertyId": "7:7631860810735740806",
+      "name": "ContactPoint",
+      "properties": [
+        {
+          "id": "1:4716570403469295716",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1459586365198934941",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "13:543320608154427907",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:2494399582491048822",
+          "name": "system",
+          "type": 9
+        },
+        {
+          "id": "4:30269187166448085",
+          "name": "value",
+          "type": 9
+        },
+        {
+          "id": "5:2563091422080579073",
+          "name": "use",
+          "type": 9
+        },
+        {
+          "id": "6:8959346506216340454",
+          "name": "rank",
+          "type": 6
+        },
+        {
+          "id": "7:7631860810735740806",
+          "name": "periodId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "14:7524703224650213382",
+          "relationTarget": "Period"
+        }
+      ],
+      "relations": [
+        {
+          "id": "11:5011707775417104301",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "10:781843811865331208",
+      "lastPropertyId": "4:9218256265131110138",
+      "name": "Contributor",
+      "properties": [
+        {
+          "id": "1:2490495037197754626",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6073721033842608391",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "15:7959945124922226936",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:6883422067065486165",
+          "name": "type",
+          "type": 9
+        },
+        {
+          "id": "4:9218256265131110138",
+          "name": "name",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "12:1760013018815251850",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "13:8222765214912942408",
+          "name": "contact",
+          "targetId": "8:9136124542494256544"
+        }
+      ]
+    },
+    {
+      "id": "11:7869783525769755619",
+      "lastPropertyId": "7:8831819949594691681",
+      "name": "Count",
+      "properties": [
+        {
+          "id": "1:7858858338213758063",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5267515487299669608",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "16:344300768622316012",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:2208318749328765939",
+          "name": "value",
+          "type": 8
+        },
+        {
+          "id": "4:7982774285467947191",
+          "name": "comparator",
+          "type": 9
+        },
+        {
+          "id": "5:9049575795939699284",
+          "name": "unit",
+          "type": 9
+        },
+        {
+          "id": "6:4430107562112530968",
+          "name": "system",
+          "type": 9
+        },
+        {
+          "id": "7:8831819949594691681",
+          "name": "code",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "14:5601832741785324642",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "12:6152872577759475762",
+      "lastPropertyId": "8:9794885704852092",
+      "name": "DataRequirement",
+      "properties": [
+        {
+          "id": "1:7484095412417578625",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1980280971847254108",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "17:5149063796705051296",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:1436332081747245323",
+          "name": "type",
+          "type": 9
+        },
+        {
+          "id": "4:4177696548662709024",
+          "name": "profile",
+          "type": 30
+        },
+        {
+          "id": "5:1057493662480409581",
+          "name": "subjectCodeableConceptId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "18:804770357062695780",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "6:727935314244827990",
+          "name": "subjectReferenceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "19:701185736371682269",
+          "relationTarget": "Reference"
+        },
+        {
+          "id": "7:4880003523007918289",
+          "name": "mustSupport",
+          "type": 30
+        },
+        {
+          "id": "8:9794885704852092",
+          "name": "limit",
+          "type": 6
+        }
+      ],
+      "relations": [
+        {
+          "id": "15:3916943874397457398",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "16:5156282280245803117",
+          "name": "codeFilter",
+          "targetId": "13:3334555296630189349"
+        },
+        {
+          "id": "17:7539415823490542872",
+          "name": "dateFilter",
+          "targetId": "14:5631551812707487585"
+        },
+        {
+          "id": "18:1210481926870110363",
+          "name": "sort",
+          "targetId": "15:1838878092732901713"
+        }
+      ]
+    },
+    {
+      "id": "13:3334555296630189349",
+      "lastPropertyId": "5:377527425828331035",
+      "name": "DataRequirementCodeFilter",
+      "properties": [
+        {
+          "id": "1:426869451612341529",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:9073298109211285570",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "20:8571546201918142719",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:6553217275088114446",
+          "name": "path",
+          "type": 9
+        },
+        {
+          "id": "4:7860152159733426312",
+          "name": "searchParam",
+          "type": 9
+        },
+        {
+          "id": "5:377527425828331035",
+          "name": "valueSet",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "19:821924830353277446",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "20:6107982616266570614",
+          "name": "code",
+          "targetId": "7:8873997066131547011"
+        }
+      ]
+    },
+    {
+      "id": "14:5631551812707487585",
+      "lastPropertyId": "7:7958653849544222733",
+      "name": "DataRequirementDateFilter",
+      "properties": [
+        {
+          "id": "1:183693541747075087",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3165644356503556250",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "21:8108615371713255269",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:812071991283383521",
+          "name": "path",
+          "type": 9
+        },
+        {
+          "id": "4:7074223661511670087",
+          "name": "searchParam",
+          "type": 9
+        },
+        {
+          "id": "5:3979626496735910592",
+          "name": "valueDateTime",
+          "type": 9
+        },
+        {
+          "id": "6:8216537745612994717",
+          "name": "valuePeriodId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "22:6071154609735651796",
+          "relationTarget": "Period"
+        },
+        {
+          "id": "7:7958653849544222733",
+          "name": "valueDurationId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "23:1523668199849593254",
+          "relationTarget": "FhirDuration"
+        }
+      ],
+      "relations": [
+        {
+          "id": "21:8789099580352988427",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "15:1838878092732901713",
+      "lastPropertyId": "4:1875614380893458014",
+      "name": "DataRequirementSort",
+      "properties": [
+        {
+          "id": "1:7616494406819235155",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8749096052891141020",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "24:2960783170655687953",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:8159797496539537811",
+          "name": "path",
+          "type": 9
+        },
+        {
+          "id": "4:1875614380893458014",
+          "name": "direction",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "22:178593369215815921",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "16:4351744056991469385",
+      "lastPropertyId": "7:1532471276693260438",
+      "name": "Distance",
+      "properties": [
+        {
+          "id": "1:7535479296989668668",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3749866795799464096",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "25:1127180963099982544",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:4509653683781612966",
+          "name": "value",
+          "type": 8
+        },
+        {
+          "id": "4:1357358969805854133",
+          "name": "comparator",
+          "type": 9
+        },
+        {
+          "id": "5:5515201765419482256",
+          "name": "unit",
+          "type": 9
+        },
+        {
+          "id": "6:4286815412313403753",
+          "name": "system",
+          "type": 9
+        },
+        {
+          "id": "7:1532471276693260438",
+          "name": "code",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "23:8743402632813657603",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "17:4457698513834405937",
+      "lastPropertyId": "14:8692430219709788204",
+      "name": "Dosage",
+      "properties": [
+        {
+          "id": "1:7197114049591272758",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:2069515705808096152",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "26:5103827696616794138",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:6964663142906601648",
+          "name": "sequence",
+          "type": 6
+        },
+        {
+          "id": "4:5114753213359355305",
+          "name": "text",
+          "type": 9
+        },
+        {
+          "id": "5:5233700174302626314",
+          "name": "patientInstruction",
+          "type": 9
+        },
+        {
+          "id": "6:5669221305199400382",
+          "name": "timingId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "27:9018752385630801553",
+          "relationTarget": "Timing"
+        },
+        {
+          "id": "7:4722236923360178658",
+          "name": "asNeededBoolean",
+          "type": 1
+        },
+        {
+          "id": "8:5432963497610639112",
+          "name": "asNeededCodeableConceptId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "28:408432012883978472",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "9:2067058342506145260",
+          "name": "siteId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "29:4127027744484594653",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "10:7388248533818027069",
+          "name": "routeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "30:4743868676742714579",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "11:4412796112137833124",
+          "name": "methodId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "31:5741342733913692452",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "12:258028397625193460",
+          "name": "maxDosePerPeriodId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "32:7668272385115970011",
+          "relationTarget": "Ratio"
+        },
+        {
+          "id": "13:7359305669015731457",
+          "name": "maxDosePerAdministrationId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "33:9044054984896262390",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "14:8692430219709788204",
+          "name": "maxDosePerLifetimeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "34:4699767208947499907",
+          "relationTarget": "Quantity"
+        }
+      ],
+      "relations": [
+        {
+          "id": "24:5661611636097124469",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "25:2622671956837697754",
+          "name": "modifierExtension",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "26:6122422252689807230",
+          "name": "additionalInstruction",
+          "targetId": "5:4072455885617490063"
+        },
+        {
+          "id": "27:5635927303305217738",
+          "name": "doseAndRate",
+          "targetId": "18:9048160058167041097"
+        }
+      ]
+    },
+    {
+      "id": "18:9048160058167041097",
+      "lastPropertyId": "8:4702695538744445940",
+      "name": "DosageDoseAndRate",
+      "properties": [
+        {
+          "id": "1:6977397761859114250",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7933022409387363769",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "35:235412751592889363",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:1717081468631041488",
+          "name": "typeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "36:3016256201321037595",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "4:3484078665491653186",
+          "name": "doseRangeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "37:742349995299482259",
+          "relationTarget": "Range"
+        },
+        {
+          "id": "5:7223241902096144737",
+          "name": "doseQuantityId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "38:1693688926257401948",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "6:2872290054101476865",
+          "name": "rateRatioId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "39:336507671320726704",
+          "relationTarget": "Ratio"
+        },
+        {
+          "id": "7:3861469872172066427",
+          "name": "rateRangeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "40:253602478820526790",
+          "relationTarget": "Range"
+        },
+        {
+          "id": "8:4702695538744445940",
+          "name": "rateQuantityId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "41:1929825987951888934",
+          "relationTarget": "Quantity"
+        }
+      ],
+      "relations": [
+        {
+          "id": "28:928209278822394973",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "19:8913476507845935922",
+      "lastPropertyId": "197:1927566768721719793",
+      "name": "ElementDefinition",
+      "properties": [
+        {
+          "id": "1:1767453884345617442",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1813683791298560307",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "42:7087845589028688",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:3902464514081896318",
+          "name": "path",
+          "type": 9
+        },
+        {
+          "id": "4:5593782168054836888",
+          "name": "representation",
+          "type": 30
+        },
+        {
+          "id": "5:6473965477335691729",
+          "name": "sliceName",
+          "type": 9
+        },
+        {
+          "id": "6:2888127038761660292",
+          "name": "sliceIsConstraining",
+          "type": 1
+        },
+        {
+          "id": "7:7523511780830252326",
+          "name": "label",
+          "type": 9
+        },
+        {
+          "id": "8:8050559249652848519",
+          "name": "slicingId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "43:2081200987309411697",
+          "relationTarget": "ElementDefinitionSlicing"
+        },
+        {
+          "id": "9:6731682023823128338",
+          "name": "short",
+          "type": 9
+        },
+        {
+          "id": "10:5929825303273907806",
+          "name": "definition",
+          "type": 9
+        },
+        {
+          "id": "11:832300156973670707",
+          "name": "comment",
+          "type": 9
+        },
+        {
+          "id": "12:2832770514612479734",
+          "name": "requirements",
+          "type": 9
+        },
+        {
+          "id": "13:2767260984682648437",
+          "name": "alias",
+          "type": 30
+        },
+        {
+          "id": "14:1764678528012659054",
+          "name": "min",
+          "type": 6
+        },
+        {
+          "id": "15:8778676220325517013",
+          "name": "max",
+          "type": 9
+        },
+        {
+          "id": "16:3283371811227692481",
+          "name": "baseId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "44:6460885090880213593",
+          "relationTarget": "ElementDefinitionBase"
+        },
+        {
+          "id": "17:2062295017511426839",
+          "name": "contentReference",
+          "type": 9
+        },
+        {
+          "id": "18:901538268241598808",
+          "name": "defaultValueBase64Binary",
+          "type": 9
+        },
+        {
+          "id": "19:7018147748761911172",
+          "name": "defaultValueBoolean",
+          "type": 1
+        },
+        {
+          "id": "20:9091053993460715044",
+          "name": "defaultValueCanonical",
+          "type": 9
+        },
+        {
+          "id": "21:8918188702288161902",
+          "name": "defaultValueCode",
+          "type": 9
+        },
+        {
+          "id": "22:2307349451108548671",
+          "name": "defaultValueDate",
+          "type": 9
+        },
+        {
+          "id": "23:1820665119575369641",
+          "name": "defaultValueDateTime",
+          "type": 9
+        },
+        {
+          "id": "24:6795477933644870840",
+          "name": "defaultValueDecimal",
+          "type": 8
+        },
+        {
+          "id": "25:1685557542131754194",
+          "name": "defaultValueId",
+          "type": 9
+        },
+        {
+          "id": "26:7204937721415748036",
+          "name": "defaultValueInstant",
+          "type": 9
+        },
+        {
+          "id": "27:2272439359535155235",
+          "name": "defaultValueInteger",
+          "type": 6
+        },
+        {
+          "id": "28:8129601978283540453",
+          "name": "defaultValueMarkdown",
+          "type": 9
+        },
+        {
+          "id": "29:5549671706825935486",
+          "name": "defaultValueOid",
+          "type": 9
+        },
+        {
+          "id": "30:4035120251797412269",
+          "name": "defaultValuePositiveInt",
+          "type": 6
+        },
+        {
+          "id": "31:5901655232765141631",
+          "name": "defaultValueString",
+          "type": 9
+        },
+        {
+          "id": "32:3391973716499233598",
+          "name": "defaultValueTime",
+          "type": 9
+        },
+        {
+          "id": "33:5795004578004783810",
+          "name": "defaultValueUnsignedInt",
+          "type": 6
+        },
+        {
+          "id": "34:1873815719166745361",
+          "name": "defaultValueUri",
+          "type": 9
+        },
+        {
+          "id": "35:961698470207459716",
+          "name": "defaultValueUrl",
+          "type": 9
+        },
+        {
+          "id": "36:3820307775682071318",
+          "name": "defaultValueUuid",
+          "type": 9
+        },
+        {
+          "id": "37:3478823280003115650",
+          "name": "defaultValueAddressId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "45:4994647290934566672",
+          "relationTarget": "Address"
+        },
+        {
+          "id": "38:4917698380734715022",
+          "name": "defaultValueAgeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "46:7987889965830189755",
+          "relationTarget": "Age"
+        },
+        {
+          "id": "39:6550037328333175546",
+          "name": "defaultValueAnnotationId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "47:571288221513414586",
+          "relationTarget": "Annotation"
+        },
+        {
+          "id": "40:7690971746913226525",
+          "name": "defaultValueAttachmentId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "48:1107940126277658328",
+          "relationTarget": "Attachment"
+        },
+        {
+          "id": "41:2409359809369368574",
+          "name": "defaultValueCodeableConceptId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "49:6681003338234692158",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "42:8927305346459453386",
+          "name": "defaultValueCodeableReferenceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "50:1185620568733616307",
+          "relationTarget": "CodeableReference"
+        },
+        {
+          "id": "43:4102294085307260654",
+          "name": "defaultValueCodingId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "51:2304716378303121880",
+          "relationTarget": "Coding"
+        },
+        {
+          "id": "44:3625742321295376495",
+          "name": "defaultValueContactPointId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "52:1360887838454311817",
+          "relationTarget": "ContactPoint"
+        },
+        {
+          "id": "45:1119461542900759862",
+          "name": "defaultValueCountId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "53:9126610155047982011",
+          "relationTarget": "Count"
+        },
+        {
+          "id": "46:4981400721479062448",
+          "name": "defaultValueDistanceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "54:671164676775543310",
+          "relationTarget": "Distance"
+        },
+        {
+          "id": "47:5010101945118254980",
+          "name": "defaultValueDurationId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "55:4910106748622408583",
+          "relationTarget": "FhirDuration"
+        },
+        {
+          "id": "48:4843755170241463498",
+          "name": "defaultValueHumanNameId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "56:2615506882900451966",
+          "relationTarget": "HumanName"
+        },
+        {
+          "id": "49:2376860987751148841",
+          "name": "defaultValueIdentifierId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "57:7586037340840133250",
+          "relationTarget": "Identifier"
+        },
+        {
+          "id": "50:3319689681276215715",
+          "name": "defaultValueMoneyId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "58:1475802939458905728",
+          "relationTarget": "Money"
+        },
+        {
+          "id": "51:2498695885210609809",
+          "name": "defaultValuePeriodId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "59:4903292075148760717",
+          "relationTarget": "Period"
+        },
+        {
+          "id": "52:3033394055354671657",
+          "name": "defaultValueQuantityId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "60:5933977134332453812",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "53:5911454691016326713",
+          "name": "defaultValueRangeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "61:8253060042970859601",
+          "relationTarget": "Range"
+        },
+        {
+          "id": "54:7221031630818904323",
+          "name": "defaultValueRatioId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "62:1057552237995161470",
+          "relationTarget": "Ratio"
+        },
+        {
+          "id": "55:4704516211097749462",
+          "name": "defaultValueRatioRangeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "63:8033554728957744867",
+          "relationTarget": "RatioRange"
+        },
+        {
+          "id": "56:5197438856402719647",
+          "name": "defaultValueReferenceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "64:4365684985677730854",
+          "relationTarget": "Reference"
+        },
+        {
+          "id": "57:8612703052287638643",
+          "name": "defaultValueSampledDataId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "65:2654497831045608831",
+          "relationTarget": "SampledData"
+        },
+        {
+          "id": "58:572537362507532641",
+          "name": "defaultValueSignatureId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "66:4727397269459020262",
+          "relationTarget": "Signature"
+        },
+        {
+          "id": "59:8281371499723456127",
+          "name": "defaultValueTimingId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "67:3653545537136664361",
+          "relationTarget": "Timing"
+        },
+        {
+          "id": "60:3087127094844490475",
+          "name": "defaultValueContactDetailId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "68:1754682824421578007",
+          "relationTarget": "ContactDetail"
+        },
+        {
+          "id": "61:4084747195862658423",
+          "name": "defaultValueContributorId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "69:4389691751694953853",
+          "relationTarget": "Contributor"
+        },
+        {
+          "id": "62:8642031169498459215",
+          "name": "defaultValueDataRequirementId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "70:4067564293814811725",
+          "relationTarget": "DataRequirement"
+        },
+        {
+          "id": "63:7754070402876681568",
+          "name": "defaultValueExpressionId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "71:3403942645752653157",
+          "relationTarget": "FhirExpression"
+        },
+        {
+          "id": "64:3287604283107211507",
+          "name": "defaultValueParameterDefinitionId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "72:3040239570312895013",
+          "relationTarget": "ParameterDefinition"
+        },
+        {
+          "id": "65:7764291535185765426",
+          "name": "defaultValueRelatedArtifactId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "73:8944868987882303683",
+          "relationTarget": "RelatedArtifact"
+        },
+        {
+          "id": "66:1064699545939970558",
+          "name": "defaultValueTriggerDefinitionId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "74:3479084234668153238",
+          "relationTarget": "TriggerDefinition"
+        },
+        {
+          "id": "67:4208680714335953868",
+          "name": "defaultValueUsageContextId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "75:2948789600353104480",
+          "relationTarget": "UsageContext"
+        },
+        {
+          "id": "68:8270814404332237079",
+          "name": "defaultValueDosageId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "76:4010665632789784052",
+          "relationTarget": "Dosage"
+        },
+        {
+          "id": "69:133296437740294568",
+          "name": "meaningWhenMissing",
+          "type": 9
+        },
+        {
+          "id": "70:2706030873920315112",
+          "name": "orderMeaning",
+          "type": 9
+        },
+        {
+          "id": "71:1998161345955287243",
+          "name": "fixedBase64Binary",
+          "type": 9
+        },
+        {
+          "id": "72:4145379735082241554",
+          "name": "fixedBoolean",
+          "type": 1
+        },
+        {
+          "id": "73:954370666044318785",
+          "name": "fixedCanonical",
+          "type": 9
+        },
+        {
+          "id": "74:7527867313882610954",
+          "name": "fixedCode",
+          "type": 9
+        },
+        {
+          "id": "75:3325059861977278665",
+          "name": "fixedDate",
+          "type": 9
+        },
+        {
+          "id": "76:3135454699746574921",
+          "name": "fixedDateTime",
+          "type": 9
+        },
+        {
+          "id": "77:675973703319405370",
+          "name": "fixedDecimal",
+          "type": 8
+        },
+        {
+          "id": "78:4152495177994821235",
+          "name": "fixedId",
+          "type": 9
+        },
+        {
+          "id": "79:5585064671835278121",
+          "name": "fixedInstant",
+          "type": 9
+        },
+        {
+          "id": "80:5912752833331144480",
+          "name": "fixedInteger",
+          "type": 6
+        },
+        {
+          "id": "81:8487158663172271996",
+          "name": "fixedMarkdown",
+          "type": 9
+        },
+        {
+          "id": "82:1959515938964690619",
+          "name": "fixedOid",
+          "type": 9
+        },
+        {
+          "id": "83:6814948304588252859",
+          "name": "fixedPositiveInt",
+          "type": 6
+        },
+        {
+          "id": "84:7437358402156363583",
+          "name": "fixedString",
+          "type": 9
+        },
+        {
+          "id": "85:8332085514318707254",
+          "name": "fixedTime",
+          "type": 9
+        },
+        {
+          "id": "86:1816670031114986479",
+          "name": "fixedUnsignedInt",
+          "type": 6
+        },
+        {
+          "id": "87:6595614470982968038",
+          "name": "fixedUri",
+          "type": 9
+        },
+        {
+          "id": "88:6907981278757675219",
+          "name": "fixedUrl",
+          "type": 9
+        },
+        {
+          "id": "89:3842374775454041186",
+          "name": "fixedUuid",
+          "type": 9
+        },
+        {
+          "id": "90:2841089798732450094",
+          "name": "fixedAddressId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "77:2982435024763054045",
+          "relationTarget": "Address"
+        },
+        {
+          "id": "91:6749713685598464871",
+          "name": "fixedAgeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "78:7813738198508620807",
+          "relationTarget": "Age"
+        },
+        {
+          "id": "92:3542167100240655294",
+          "name": "fixedAnnotationId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "79:2817259622110474355",
+          "relationTarget": "Annotation"
+        },
+        {
+          "id": "93:7360529785916995869",
+          "name": "fixedAttachmentId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "80:2417919594048527389",
+          "relationTarget": "Attachment"
+        },
+        {
+          "id": "94:6912784506988717132",
+          "name": "fixedCodeableConceptId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "81:2031258728531971121",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "95:3487436787606365134",
+          "name": "fixedCodeableReferenceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "82:5632067638404138833",
+          "relationTarget": "CodeableReference"
+        },
+        {
+          "id": "96:5832971031778375477",
+          "name": "fixedCodingId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "83:7084634352829374126",
+          "relationTarget": "Coding"
+        },
+        {
+          "id": "97:3114002330506534769",
+          "name": "fixedContactPointId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "84:2668796389550925823",
+          "relationTarget": "ContactPoint"
+        },
+        {
+          "id": "98:3900301549840340091",
+          "name": "fixedCountId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "85:2842773435974300756",
+          "relationTarget": "Count"
+        },
+        {
+          "id": "99:7223216278423199449",
+          "name": "fixedDistanceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "86:6274209465254223414",
+          "relationTarget": "Distance"
+        },
+        {
+          "id": "100:5497202441092386042",
+          "name": "fixedDurationId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "87:7704825717609291327",
+          "relationTarget": "FhirDuration"
+        },
+        {
+          "id": "101:2478103569191658391",
+          "name": "fixedHumanNameId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "88:8135675048689272537",
+          "relationTarget": "HumanName"
+        },
+        {
+          "id": "102:2699630753342792635",
+          "name": "fixedIdentifierId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "89:531536213621635645",
+          "relationTarget": "Identifier"
+        },
+        {
+          "id": "103:3331055701217776323",
+          "name": "fixedMoneyId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "90:5765659019186501656",
+          "relationTarget": "Money"
+        },
+        {
+          "id": "104:3125355433069118677",
+          "name": "fixedPeriodId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "91:323744630624375019",
+          "relationTarget": "Period"
+        },
+        {
+          "id": "105:3057228985137841008",
+          "name": "fixedQuantityId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "92:790956533748141644",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "106:2722327482527536614",
+          "name": "fixedRangeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "93:577715337918701096",
+          "relationTarget": "Range"
+        },
+        {
+          "id": "107:1100445536920012773",
+          "name": "fixedRatioId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "94:3871510545837112319",
+          "relationTarget": "Ratio"
+        },
+        {
+          "id": "108:6904276237633406469",
+          "name": "fixedRatioRangeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "95:3758981998920216400",
+          "relationTarget": "RatioRange"
+        },
+        {
+          "id": "109:7515474323556367000",
+          "name": "fixedReferenceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "96:3549145836610343690",
+          "relationTarget": "Reference"
+        },
+        {
+          "id": "110:5434050285895529896",
+          "name": "fixedSampledDataId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "97:4262248328353096475",
+          "relationTarget": "SampledData"
+        },
+        {
+          "id": "111:9222313433751828890",
+          "name": "fixedSignatureId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "98:7500476638336853777",
+          "relationTarget": "Signature"
+        },
+        {
+          "id": "112:5068656519617761819",
+          "name": "fixedTimingId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "99:5200583267161921724",
+          "relationTarget": "Timing"
+        },
+        {
+          "id": "113:3241273891120926408",
+          "name": "fixedContactDetailId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "100:5773891104388533565",
+          "relationTarget": "ContactDetail"
+        },
+        {
+          "id": "114:6092332670223585063",
+          "name": "fixedContributorId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "101:3301420022921819521",
+          "relationTarget": "Contributor"
+        },
+        {
+          "id": "115:7007631346243845213",
+          "name": "fixedDataRequirementId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "102:575927707294852125",
+          "relationTarget": "DataRequirement"
+        },
+        {
+          "id": "116:2547232491613583658",
+          "name": "fixedExpressionId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "103:7045269298739470567",
+          "relationTarget": "FhirExpression"
+        },
+        {
+          "id": "117:3723598551585340572",
+          "name": "fixedParameterDefinitionId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "104:4089529135892704704",
+          "relationTarget": "ParameterDefinition"
+        },
+        {
+          "id": "118:104316266625964477",
+          "name": "fixedRelatedArtifactId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "105:932321169679649758",
+          "relationTarget": "RelatedArtifact"
+        },
+        {
+          "id": "119:7388771393019617939",
+          "name": "fixedTriggerDefinitionId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "106:5038392831613078321",
+          "relationTarget": "TriggerDefinition"
+        },
+        {
+          "id": "120:812803190333721494",
+          "name": "fixedUsageContextId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "107:7572004463763772673",
+          "relationTarget": "UsageContext"
+        },
+        {
+          "id": "121:5183916523381577317",
+          "name": "fixedDosageId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "108:248880892884625378",
+          "relationTarget": "Dosage"
+        },
+        {
+          "id": "122:7580949262062015661",
+          "name": "patternBase64Binary",
+          "type": 9
+        },
+        {
+          "id": "123:4986035408605655638",
+          "name": "patternBoolean",
+          "type": 1
+        },
+        {
+          "id": "124:6222947322846513425",
+          "name": "patternCanonical",
+          "type": 9
+        },
+        {
+          "id": "125:4307605510414376068",
+          "name": "patternCode",
+          "type": 9
+        },
+        {
+          "id": "126:6050558035242473833",
+          "name": "patternDate",
+          "type": 9
+        },
+        {
+          "id": "127:6193972385121013091",
+          "name": "patternDateTime",
+          "type": 9
+        },
+        {
+          "id": "128:1958381141998781441",
+          "name": "patternDecimal",
+          "type": 8
+        },
+        {
+          "id": "129:2715944450218424527",
+          "name": "patternId",
+          "type": 9
+        },
+        {
+          "id": "130:8440004752429923283",
+          "name": "patternInstant",
+          "type": 9
+        },
+        {
+          "id": "131:3072430517425190863",
+          "name": "patternInteger",
+          "type": 6
+        },
+        {
+          "id": "132:6395700474776581678",
+          "name": "patternMarkdown",
+          "type": 9
+        },
+        {
+          "id": "133:7853764326502018765",
+          "name": "patternOid",
+          "type": 9
+        },
+        {
+          "id": "134:103964159557712236",
+          "name": "patternPositiveInt",
+          "type": 6
+        },
+        {
+          "id": "135:451735511459899672",
+          "name": "patternString",
+          "type": 9
+        },
+        {
+          "id": "136:1658464071053994741",
+          "name": "patternTime",
+          "type": 9
+        },
+        {
+          "id": "137:814258823379602388",
+          "name": "patternUnsignedInt",
+          "type": 6
+        },
+        {
+          "id": "138:4534715548980463659",
+          "name": "patternUri",
+          "type": 9
+        },
+        {
+          "id": "139:3970502119890075615",
+          "name": "patternUrl",
+          "type": 9
+        },
+        {
+          "id": "140:7959913420389795481",
+          "name": "patternUuid",
+          "type": 9
+        },
+        {
+          "id": "141:5328751467964089226",
+          "name": "patternAddressId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "109:999189709948206624",
+          "relationTarget": "Address"
+        },
+        {
+          "id": "142:8718207539245146384",
+          "name": "patternAgeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "110:2034087538972776757",
+          "relationTarget": "Age"
+        },
+        {
+          "id": "143:755030566459342931",
+          "name": "patternAnnotationId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "111:2873737271249504307",
+          "relationTarget": "Annotation"
+        },
+        {
+          "id": "144:3615708354242467424",
+          "name": "patternAttachmentId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "112:2573271546935637380",
+          "relationTarget": "Attachment"
+        },
+        {
+          "id": "145:3754747360806106416",
+          "name": "patternCodeableConceptId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "113:2958224551114991705",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "146:3609296071402546057",
+          "name": "patternCodeableReferenceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "114:650277353455865922",
+          "relationTarget": "CodeableReference"
+        },
+        {
+          "id": "147:2350980595162444739",
+          "name": "patternCodingId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "115:3982325005091796497",
+          "relationTarget": "Coding"
+        },
+        {
+          "id": "148:7955846672974379410",
+          "name": "patternContactPointId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "116:3223857159289643488",
+          "relationTarget": "ContactPoint"
+        },
+        {
+          "id": "149:4899919574901749452",
+          "name": "patternCountId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "117:8918364094985050914",
+          "relationTarget": "Count"
+        },
+        {
+          "id": "150:1643426647919427401",
+          "name": "patternDistanceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "118:4292112364550545783",
+          "relationTarget": "Distance"
+        },
+        {
+          "id": "151:8907179114528756631",
+          "name": "patternDurationId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "119:7869915487042659402",
+          "relationTarget": "FhirDuration"
+        },
+        {
+          "id": "152:516884039266986779",
+          "name": "patternHumanNameId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "120:22934363358873164",
+          "relationTarget": "HumanName"
+        },
+        {
+          "id": "153:6088355042019930409",
+          "name": "patternIdentifierId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "121:3898499624081903157",
+          "relationTarget": "Identifier"
+        },
+        {
+          "id": "154:8652948252825174006",
+          "name": "patternMoneyId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "122:4427407750839961343",
+          "relationTarget": "Money"
+        },
+        {
+          "id": "155:1900426122690002480",
+          "name": "patternPeriodId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "123:1923632386592856403",
+          "relationTarget": "Period"
+        },
+        {
+          "id": "156:8916461248245293210",
+          "name": "patternQuantityId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "124:2696031415299881774",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "157:7680396844683149588",
+          "name": "patternRangeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "125:5825542848403909234",
+          "relationTarget": "Range"
+        },
+        {
+          "id": "158:5408115476691463300",
+          "name": "patternRatioId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "126:4095751331308102261",
+          "relationTarget": "Ratio"
+        },
+        {
+          "id": "159:2808781582145300310",
+          "name": "patternRatioRangeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "127:8581887909055280415",
+          "relationTarget": "RatioRange"
+        },
+        {
+          "id": "160:5266312580365788409",
+          "name": "patternReferenceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "128:26863603661728958",
+          "relationTarget": "Reference"
+        },
+        {
+          "id": "161:2400344854513419492",
+          "name": "patternSampledDataId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "129:5002733420048177869",
+          "relationTarget": "SampledData"
+        },
+        {
+          "id": "162:1010173390570968406",
+          "name": "patternSignatureId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "130:124680554158257205",
+          "relationTarget": "Signature"
+        },
+        {
+          "id": "163:9189791562665897303",
+          "name": "patternTimingId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "131:2381653065527371766",
+          "relationTarget": "Timing"
+        },
+        {
+          "id": "164:8087794755473414443",
+          "name": "patternContactDetailId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "132:5215730330638786136",
+          "relationTarget": "ContactDetail"
+        },
+        {
+          "id": "165:3529632567004558702",
+          "name": "patternContributorId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "133:243111187773248560",
+          "relationTarget": "Contributor"
+        },
+        {
+          "id": "166:4230623101899049542",
+          "name": "patternDataRequirementId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "134:1254123307279318437",
+          "relationTarget": "DataRequirement"
+        },
+        {
+          "id": "167:9199208426487639491",
+          "name": "patternExpressionId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "135:4776772741813452541",
+          "relationTarget": "FhirExpression"
+        },
+        {
+          "id": "168:3960849438841276716",
+          "name": "patternParameterDefinitionId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "136:2440743218867562949",
+          "relationTarget": "ParameterDefinition"
+        },
+        {
+          "id": "169:1319523644932189251",
+          "name": "patternRelatedArtifactId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "137:4044959556406139231",
+          "relationTarget": "RelatedArtifact"
+        },
+        {
+          "id": "170:699580554235711849",
+          "name": "patternTriggerDefinitionId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "138:2941043077636995456",
+          "relationTarget": "TriggerDefinition"
+        },
+        {
+          "id": "171:6256040713829947749",
+          "name": "patternUsageContextId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "139:990906660756329012",
+          "relationTarget": "UsageContext"
+        },
+        {
+          "id": "172:4396406314764628350",
+          "name": "patternDosageId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "140:846767358636789180",
+          "relationTarget": "Dosage"
+        },
+        {
+          "id": "173:3008692448657067943",
+          "name": "minValueDate",
+          "type": 9
+        },
+        {
+          "id": "174:8368655267204293614",
+          "name": "minValueDateTime",
+          "type": 9
+        },
+        {
+          "id": "175:3446182820337532809",
+          "name": "minValueInstant",
+          "type": 9
+        },
+        {
+          "id": "176:322917318781002930",
+          "name": "minValueTime",
+          "type": 9
+        },
+        {
+          "id": "177:2694195297591683522",
+          "name": "minValueDecimal",
+          "type": 8
+        },
+        {
+          "id": "178:1073656608716655110",
+          "name": "minValueInteger",
+          "type": 6
+        },
+        {
+          "id": "179:8283577291752268040",
+          "name": "minValuePositiveInt",
+          "type": 6
+        },
+        {
+          "id": "180:6147298360237486736",
+          "name": "minValueUnsignedInt",
+          "type": 6
+        },
+        {
+          "id": "181:3719446838554762090",
+          "name": "minValueQuantityId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "141:5370808906854585137",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "182:7658058919806147251",
+          "name": "maxValueDate",
+          "type": 9
+        },
+        {
+          "id": "183:7221883929551409327",
+          "name": "maxValueDateTime",
+          "type": 9
+        },
+        {
+          "id": "184:522471051205771664",
+          "name": "maxValueInstant",
+          "type": 9
+        },
+        {
+          "id": "185:7717788666119655759",
+          "name": "maxValueTime",
+          "type": 9
+        },
+        {
+          "id": "186:7892969380468588257",
+          "name": "maxValueDecimal",
+          "type": 8
+        },
+        {
+          "id": "187:9212259512324004792",
+          "name": "maxValueInteger",
+          "type": 6
+        },
+        {
+          "id": "188:2562893053022584299",
+          "name": "maxValuePositiveInt",
+          "type": 6
+        },
+        {
+          "id": "189:7983654830988417850",
+          "name": "maxValueUnsignedInt",
+          "type": 6
+        },
+        {
+          "id": "190:7796513319524072667",
+          "name": "maxValueQuantityId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "142:5816505152089143055",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "191:4753018294855923317",
+          "name": "maxLength",
+          "type": 6
+        },
+        {
+          "id": "192:2655653037479800065",
+          "name": "condition",
+          "type": 30
+        },
+        {
+          "id": "193:7280227504238831944",
+          "name": "mustSupport",
+          "type": 1
+        },
+        {
+          "id": "194:4741270505079864627",
+          "name": "isModifier",
+          "type": 1
+        },
+        {
+          "id": "195:4350350672348937310",
+          "name": "isModifierReason",
+          "type": 9
+        },
+        {
+          "id": "196:7751087261160604573",
+          "name": "isSummary",
+          "type": 1
+        },
+        {
+          "id": "197:1927566768721719793",
+          "name": "bindingId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "143:8157078747688145698",
+          "relationTarget": "ElementDefinitionBinding"
+        }
+      ],
+      "relations": [
+        {
+          "id": "29:1453052733457384952",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "30:8008397278996898298",
+          "name": "modifierExtension",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "31:2725728565443214419",
+          "name": "code",
+          "targetId": "7:8873997066131547011"
+        },
+        {
+          "id": "32:8823085446638954400",
+          "name": "type",
+          "targetId": "27:4312397847470320632"
+        },
+        {
+          "id": "33:6718451187790432466",
+          "name": "example",
+          "targetId": "24:1386639418284003900"
+        },
+        {
+          "id": "34:3572186796424453792",
+          "name": "constraint",
+          "targetId": "22:7063923319947308986"
+        },
+        {
+          "id": "35:8251137079209604200",
+          "name": "mapping",
+          "targetId": "25:2085966617386934018"
+        }
+      ]
+    },
+    {
+      "id": "20:2320268197505263333",
+      "lastPropertyId": "5:3278516029428367117",
+      "name": "ElementDefinitionBase",
+      "properties": [
+        {
+          "id": "1:5407455201763694640",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1593966125052832756",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "144:7108974785654132831",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:6776132825625511838",
+          "name": "path",
+          "type": 9
+        },
+        {
+          "id": "4:439928492044321916",
+          "name": "min",
+          "type": 6
+        },
+        {
+          "id": "5:3278516029428367117",
+          "name": "max",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "36:2225785071504248397",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "21:6848826541086676705",
+      "lastPropertyId": "5:2586958156863982967",
+      "name": "ElementDefinitionBinding",
+      "properties": [
+        {
+          "id": "1:1002887622007680718",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:599698740399680843",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "145:7938159593885091866",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:4002634822894755999",
+          "name": "strength",
+          "type": 9
+        },
+        {
+          "id": "4:3620105229614434318",
+          "name": "description",
+          "type": 9
+        },
+        {
+          "id": "5:2586958156863982967",
+          "name": "valueSet",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "37:587371036041266757",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "22:7063923319947308986",
+      "lastPropertyId": "9:5608424254047763994",
+      "name": "ElementDefinitionConstraint",
+      "properties": [
+        {
+          "id": "1:4685065456805169163",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8200216865717262431",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "146:6008331037807827244",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:5596483128625757579",
+          "name": "key",
+          "type": 9
+        },
+        {
+          "id": "4:2372918297217819169",
+          "name": "requirements",
+          "type": 9
+        },
+        {
+          "id": "5:983901550550761153",
+          "name": "severity",
+          "type": 9
+        },
+        {
+          "id": "6:7727934708904686886",
+          "name": "human",
+          "type": 9
+        },
+        {
+          "id": "7:1490250044410171844",
+          "name": "expression",
+          "type": 9
+        },
+        {
+          "id": "8:4559544156217993192",
+          "name": "xpath",
+          "type": 9
+        },
+        {
+          "id": "9:5608424254047763994",
+          "name": "source",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "38:4670091183011373018",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "23:3824913290066637577",
+      "lastPropertyId": "4:3850597720492832388",
+      "name": "ElementDefinitionDiscriminator",
+      "properties": [
+        {
+          "id": "1:5244129053858738894",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:328582317364152730",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "147:1673813433077746828",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:6379458147598171555",
+          "name": "type",
+          "type": 9
+        },
+        {
+          "id": "4:3850597720492832388",
+          "name": "path",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "39:2018628989330958989",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "24:1386639418284003900",
+      "lastPropertyId": "54:4421206570039604042",
+      "name": "ElementDefinitionExample",
+      "properties": [
+        {
+          "id": "1:3006895278315925501",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8246654684640577460",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "148:3454675395394762690",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:546535346722749375",
+          "name": "label",
+          "type": 9
+        },
+        {
+          "id": "4:1519982651916070575",
+          "name": "valueBase64Binary",
+          "type": 9
+        },
+        {
+          "id": "5:7220852365874050389",
+          "name": "valueBoolean",
+          "type": 1
+        },
+        {
+          "id": "6:97693280360062005",
+          "name": "valueCanonical",
+          "type": 9
+        },
+        {
+          "id": "7:8375547315152979959",
+          "name": "valueCode",
+          "type": 9
+        },
+        {
+          "id": "8:1168597900380722754",
+          "name": "valueDate",
+          "type": 9
+        },
+        {
+          "id": "9:2635211161022558215",
+          "name": "valueDateTime",
+          "type": 9
+        },
+        {
+          "id": "10:5862353359234843300",
+          "name": "valueDecimal",
+          "type": 8
+        },
+        {
+          "id": "11:3684756404012394618",
+          "name": "valueId",
+          "type": 9
+        },
+        {
+          "id": "12:374408798136023109",
+          "name": "valueInstant",
+          "type": 9
+        },
+        {
+          "id": "13:3803477437692823394",
+          "name": "valueInteger",
+          "type": 6
+        },
+        {
+          "id": "14:2714815306906489370",
+          "name": "valueMarkdown",
+          "type": 9
+        },
+        {
+          "id": "15:8197424598983931479",
+          "name": "valueOid",
+          "type": 9
+        },
+        {
+          "id": "16:4370259964308770028",
+          "name": "valuePositiveInt",
+          "type": 6
+        },
+        {
+          "id": "17:5243568556358901534",
+          "name": "valueString",
+          "type": 9
+        },
+        {
+          "id": "18:2152462506632426005",
+          "name": "valueTime",
+          "type": 9
+        },
+        {
+          "id": "19:986436502683644898",
+          "name": "valueUnsignedInt",
+          "type": 6
+        },
+        {
+          "id": "20:1458922990485157169",
+          "name": "valueUri",
+          "type": 9
+        },
+        {
+          "id": "21:3472981832895505232",
+          "name": "valueUrl",
+          "type": 9
+        },
+        {
+          "id": "22:7038209093699458053",
+          "name": "valueUuid",
+          "type": 9
+        },
+        {
+          "id": "23:8690836685882544300",
+          "name": "valueAddressId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "149:9078200008805581700",
+          "relationTarget": "Address"
+        },
+        {
+          "id": "24:2702589657714943702",
+          "name": "valueAgeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "150:1684051792508414484",
+          "relationTarget": "Age"
+        },
+        {
+          "id": "25:4584394059618857983",
+          "name": "valueAnnotationId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "151:8376763929793968960",
+          "relationTarget": "Annotation"
+        },
+        {
+          "id": "26:8759321267324507458",
+          "name": "valueAttachmentId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "152:6337544354033168098",
+          "relationTarget": "Attachment"
+        },
+        {
+          "id": "27:5905059815706094061",
+          "name": "valueCodeableConceptId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "153:6848810352523982917",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "28:1539352501444288339",
+          "name": "valueCodeableReferenceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "154:3498565216050783834",
+          "relationTarget": "CodeableReference"
+        },
+        {
+          "id": "29:8631038270579008347",
+          "name": "valueCodingId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "155:7888997477131589179",
+          "relationTarget": "Coding"
+        },
+        {
+          "id": "30:4507508704703856560",
+          "name": "valueContactPointId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "156:4788644579973991893",
+          "relationTarget": "ContactPoint"
+        },
+        {
+          "id": "31:7034394787051442327",
+          "name": "valueCountId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "157:987786473720644914",
+          "relationTarget": "Count"
+        },
+        {
+          "id": "32:4160834786810691036",
+          "name": "valueDistanceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "158:6646733869154832036",
+          "relationTarget": "Distance"
+        },
+        {
+          "id": "33:4349960948402434102",
+          "name": "valueDurationId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "159:7608606492325318171",
+          "relationTarget": "FhirDuration"
+        },
+        {
+          "id": "34:3835755607090901552",
+          "name": "valueHumanNameId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "160:219869399905402356",
+          "relationTarget": "HumanName"
+        },
+        {
+          "id": "35:6905542564917668361",
+          "name": "valueIdentifierId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "161:5729473195085723529",
+          "relationTarget": "Identifier"
+        },
+        {
+          "id": "36:4817492234944322401",
+          "name": "valueMoneyId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "162:1919037308427463585",
+          "relationTarget": "Money"
+        },
+        {
+          "id": "37:5985971731636343690",
+          "name": "valuePeriodId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "163:3852160146989738756",
+          "relationTarget": "Period"
+        },
+        {
+          "id": "38:754555199052501035",
+          "name": "valueQuantityId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "164:1947328825510346514",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "39:4033483653217860620",
+          "name": "valueRangeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "165:3259491476231349967",
+          "relationTarget": "Range"
+        },
+        {
+          "id": "40:6107253235014235892",
+          "name": "valueRatioId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "166:1484490046784882998",
+          "relationTarget": "Ratio"
+        },
+        {
+          "id": "41:7333179132373751970",
+          "name": "valueRatioRangeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "167:2621922214585803820",
+          "relationTarget": "RatioRange"
+        },
+        {
+          "id": "42:3692625633896134910",
+          "name": "valueReferenceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "168:4366914764533804366",
+          "relationTarget": "Reference"
+        },
+        {
+          "id": "43:4509508652016950285",
+          "name": "valueSampledDataId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "169:8499270817246367492",
+          "relationTarget": "SampledData"
+        },
+        {
+          "id": "44:4306660337648977478",
+          "name": "valueSignatureId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "170:4111486607080188880",
+          "relationTarget": "Signature"
+        },
+        {
+          "id": "45:1990179671157546908",
+          "name": "valueTimingId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "171:1784502119838043902",
+          "relationTarget": "Timing"
+        },
+        {
+          "id": "46:1657468304802012705",
+          "name": "valueContactDetailId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "172:8505571727105928719",
+          "relationTarget": "ContactDetail"
+        },
+        {
+          "id": "47:3880614840521631905",
+          "name": "valueContributorId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "173:6499072614053670972",
+          "relationTarget": "Contributor"
+        },
+        {
+          "id": "48:293204595954293101",
+          "name": "valueDataRequirementId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "174:1471953447480823004",
+          "relationTarget": "DataRequirement"
+        },
+        {
+          "id": "49:8098346488652411877",
+          "name": "valueExpressionId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "175:710887849309238451",
+          "relationTarget": "FhirExpression"
+        },
+        {
+          "id": "50:2280720794137659646",
+          "name": "valueParameterDefinitionId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "176:7838049778648492208",
+          "relationTarget": "ParameterDefinition"
+        },
+        {
+          "id": "51:3683728341582293417",
+          "name": "valueRelatedArtifactId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "177:1148091536177689087",
+          "relationTarget": "RelatedArtifact"
+        },
+        {
+          "id": "52:8871731968689532379",
+          "name": "valueTriggerDefinitionId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "178:5285986258555103839",
+          "relationTarget": "TriggerDefinition"
+        },
+        {
+          "id": "53:2060493086327111325",
+          "name": "valueUsageContextId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "179:9193807835290178523",
+          "relationTarget": "UsageContext"
+        },
+        {
+          "id": "54:4421206570039604042",
+          "name": "valueDosageId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "180:5405677237688861495",
+          "relationTarget": "Dosage"
+        }
+      ],
+      "relations": [
+        {
+          "id": "40:4701127968206305797",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "25:2085966617386934018",
+      "lastPropertyId": "6:3550938888273275002",
+      "name": "ElementDefinitionMapping",
+      "properties": [
+        {
+          "id": "1:7948365018294549751",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7314354419916667393",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "181:3343030014761114578",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:877451301566372871",
+          "name": "identity",
+          "type": 9
+        },
+        {
+          "id": "4:25764251711483625",
+          "name": "language",
+          "type": 9
+        },
+        {
+          "id": "5:6596554544542295599",
+          "name": "map",
+          "type": 9
+        },
+        {
+          "id": "6:3550938888273275002",
+          "name": "comment",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "41:9208166107015237971",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "26:7656783099422489728",
+      "lastPropertyId": "5:5122884734341396463",
+      "name": "ElementDefinitionSlicing",
+      "properties": [
+        {
+          "id": "1:5431358640076264559",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:9000208054447257336",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "182:4723110838934713755",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:8626058402256607415",
+          "name": "description",
+          "type": 9
+        },
+        {
+          "id": "4:8846139492264288191",
+          "name": "ordered",
+          "type": 1
+        },
+        {
+          "id": "5:5122884734341396463",
+          "name": "rules",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "42:2020538066854467179",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "43:928214293580683055",
+          "name": "discriminator",
+          "targetId": "23:3824913290066637577"
+        }
+      ]
+    },
+    {
+      "id": "27:4312397847470320632",
+      "lastPropertyId": "7:7953459119933740230",
+      "name": "ElementDefinitionType",
+      "properties": [
+        {
+          "id": "1:7209177787973475428",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7325396641200638802",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "183:4927516157278340737",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:1300673831441499493",
+          "name": "code",
+          "type": 9
+        },
+        {
+          "id": "4:77997588458849755",
+          "name": "profile",
+          "type": 30
+        },
+        {
+          "id": "5:4426154032490167660",
+          "name": "targetProfile",
+          "type": 30
+        },
+        {
+          "id": "6:8696045857282522195",
+          "name": "aggregation",
+          "type": 30
+        },
+        {
+          "id": "7:7953459119933740230",
+          "name": "versioning",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "44:108913142060664374",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "28:2730488837740519723",
+      "lastPropertyId": "7:891596275503485356",
+      "name": "FhirDuration",
+      "properties": [
+        {
+          "id": "1:6563026246947029943",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5126255527357952641",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "184:7251850469446701511",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:8175257263855675452",
+          "name": "value",
+          "type": 8
+        },
+        {
+          "id": "4:5856143939938257165",
+          "name": "comparator",
+          "type": 9
+        },
+        {
+          "id": "5:7662798906764844980",
+          "name": "unit",
+          "type": 9
+        },
+        {
+          "id": "6:6784261156355995477",
+          "name": "system",
+          "type": 9
+        },
+        {
+          "id": "7:891596275503485356",
+          "name": "code",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "45:778665181701021132",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "29:3497703774868246267",
+      "lastPropertyId": "7:6809796294088063055",
+      "name": "FhirExpression",
+      "properties": [
+        {
+          "id": "1:5295803628739727467",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:918633946175410376",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "185:8665892972568322842",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:1745745485777012055",
+          "name": "description",
+          "type": 9
+        },
+        {
+          "id": "4:1536634749716645464",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "5:4917878123547710479",
+          "name": "language",
+          "type": 9
+        },
+        {
+          "id": "6:3544996867544471430",
+          "name": "expression",
+          "type": 9
+        },
+        {
+          "id": "7:6809796294088063055",
+          "name": "reference",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "46:5374728728550899742",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "30:831337593010685896",
+      "lastPropertyId": "54:6435264808285853827",
+      "name": "FhirExtension",
+      "properties": [
+        {
+          "id": "1:2327520228520179726",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6916078297256128584",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "186:3574113523818714930",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:6853263132122104455",
+          "name": "urlId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "187:1086949443361672839",
+          "relationTarget": "String"
+        },
+        {
+          "id": "4:271408320321740497",
+          "name": "valueBase64Binary",
+          "type": 9
+        },
+        {
+          "id": "5:2554039731535963763",
+          "name": "valueBoolean",
+          "type": 1
+        },
+        {
+          "id": "6:4697621039605264337",
+          "name": "valueCanonical",
+          "type": 9
+        },
+        {
+          "id": "7:8601411529827140379",
+          "name": "valueCode",
+          "type": 9
+        },
+        {
+          "id": "8:6900078436442431000",
+          "name": "valueDate",
+          "type": 9
+        },
+        {
+          "id": "9:9144663118395919278",
+          "name": "valueDateTime",
+          "type": 9
+        },
+        {
+          "id": "10:6133551015915366262",
+          "name": "valueDecimal",
+          "type": 8
+        },
+        {
+          "id": "11:8483951243492839470",
+          "name": "valueId",
+          "type": 9
+        },
+        {
+          "id": "12:671876026223748327",
+          "name": "valueInstant",
+          "type": 9
+        },
+        {
+          "id": "13:3735902845586448097",
+          "name": "valueInteger",
+          "type": 6
+        },
+        {
+          "id": "14:258561510364831747",
+          "name": "valueMarkdown",
+          "type": 9
+        },
+        {
+          "id": "15:6263489358460456303",
+          "name": "valueOid",
+          "type": 9
+        },
+        {
+          "id": "16:1185547407768586673",
+          "name": "valuePositiveInt",
+          "type": 6
+        },
+        {
+          "id": "17:6801211136741191217",
+          "name": "valueString",
+          "type": 9
+        },
+        {
+          "id": "18:6737686944249583872",
+          "name": "valueTime",
+          "type": 9
+        },
+        {
+          "id": "19:1813030604214422268",
+          "name": "valueUnsignedInt",
+          "type": 6
+        },
+        {
+          "id": "20:6318059016999105290",
+          "name": "valueUri",
+          "type": 9
+        },
+        {
+          "id": "21:4256336128252812304",
+          "name": "valueUrl",
+          "type": 9
+        },
+        {
+          "id": "22:4518438447354132118",
+          "name": "valueUuid",
+          "type": 9
+        },
+        {
+          "id": "23:5925144473310077757",
+          "name": "valueAddressId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "188:2692418329188481805",
+          "relationTarget": "Address"
+        },
+        {
+          "id": "24:140054625040080786",
+          "name": "valueAgeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "189:4551553597134060536",
+          "relationTarget": "Age"
+        },
+        {
+          "id": "25:2902068262903914177",
+          "name": "valueAnnotationId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "190:4231313368019980865",
+          "relationTarget": "Annotation"
+        },
+        {
+          "id": "26:3842429504629912251",
+          "name": "valueAttachmentId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "191:7566298285540076178",
+          "relationTarget": "Attachment"
+        },
+        {
+          "id": "27:1504908546540637560",
+          "name": "valueCodeableConceptId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "192:7001263298622430317",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "28:2375981237555358729",
+          "name": "valueCodeableReferenceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "193:1442818516471859543",
+          "relationTarget": "CodeableReference"
+        },
+        {
+          "id": "29:4619137721994281909",
+          "name": "valueCodingId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "194:1295910694052819620",
+          "relationTarget": "Coding"
+        },
+        {
+          "id": "30:7369710331634003359",
+          "name": "valueContactPointId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "195:7358523472093437382",
+          "relationTarget": "ContactPoint"
+        },
+        {
+          "id": "31:1604942927643328161",
+          "name": "valueCountId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "196:3943803491996695254",
+          "relationTarget": "Count"
+        },
+        {
+          "id": "32:1347512082487961331",
+          "name": "valueDistanceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "197:5980908567823540947",
+          "relationTarget": "Distance"
+        },
+        {
+          "id": "33:122120290175975042",
+          "name": "valueDurationId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "198:6155265673962943234",
+          "relationTarget": "FhirDuration"
+        },
+        {
+          "id": "34:3545554651396271149",
+          "name": "valueHumanNameId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "199:4123157641761765609",
+          "relationTarget": "HumanName"
+        },
+        {
+          "id": "35:6007634205401003644",
+          "name": "valueIdentifierId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "200:196487548817167588",
+          "relationTarget": "Identifier"
+        },
+        {
+          "id": "36:7461637955699405514",
+          "name": "valueMoneyId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "201:7621696103545870051",
+          "relationTarget": "Money"
+        },
+        {
+          "id": "37:3519740543232473300",
+          "name": "valuePeriodId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "202:3248890565988092777",
+          "relationTarget": "Period"
+        },
+        {
+          "id": "38:1361342449101887653",
+          "name": "valueQuantityId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "203:1200613807812505771",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "39:5648887278508812468",
+          "name": "valueRangeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "204:7833900643271402939",
+          "relationTarget": "Range"
+        },
+        {
+          "id": "40:5793718738373842270",
+          "name": "valueRatioId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "205:1530622472477405095",
+          "relationTarget": "Ratio"
+        },
+        {
+          "id": "41:2665491847945171017",
+          "name": "valueRatioRangeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "206:4902418581519297103",
+          "relationTarget": "RatioRange"
+        },
+        {
+          "id": "42:5983475239356766638",
+          "name": "valueReferenceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "207:2054402465431492431",
+          "relationTarget": "Reference"
+        },
+        {
+          "id": "43:5942879150208572953",
+          "name": "valueSampledDataId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "208:6866135204941965199",
+          "relationTarget": "SampledData"
+        },
+        {
+          "id": "44:2529800798604093528",
+          "name": "valueSignatureId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "209:8537209085432836489",
+          "relationTarget": "Signature"
+        },
+        {
+          "id": "45:8986065167420493526",
+          "name": "valueTimingId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "210:7056193034600541637",
+          "relationTarget": "Timing"
+        },
+        {
+          "id": "46:1580475360647475361",
+          "name": "valueContactDetailId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "211:4046701372713122250",
+          "relationTarget": "ContactDetail"
+        },
+        {
+          "id": "47:9083035835162248578",
+          "name": "valueContributorId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "212:3149914617730972055",
+          "relationTarget": "Contributor"
+        },
+        {
+          "id": "48:2545411115887349053",
+          "name": "valueDataRequirementId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "213:2645337528092640103",
+          "relationTarget": "DataRequirement"
+        },
+        {
+          "id": "49:1470205978116605103",
+          "name": "valueExpressionId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "214:8919748234622636596",
+          "relationTarget": "FhirExpression"
+        },
+        {
+          "id": "50:224809167049325536",
+          "name": "valueParameterDefinitionId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "215:4081276922161081736",
+          "relationTarget": "ParameterDefinition"
+        },
+        {
+          "id": "51:7588168188044685397",
+          "name": "valueRelatedArtifactId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "216:7636545345305378866",
+          "relationTarget": "RelatedArtifact"
+        },
+        {
+          "id": "52:7379366075804430980",
+          "name": "valueTriggerDefinitionId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "217:1093795993002008589",
+          "relationTarget": "TriggerDefinition"
+        },
+        {
+          "id": "53:4606957714352762391",
+          "name": "valueUsageContextId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "218:5314205863434219923",
+          "relationTarget": "UsageContext"
+        },
+        {
+          "id": "54:6435264808285853827",
+          "name": "valueDosageId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "219:2617941382951632840",
+          "relationTarget": "Dosage"
+        }
+      ],
+      "relations": [
+        {
+          "id": "47:901933457727935492",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "31:2450822710459825391",
+      "lastPropertyId": "6:867041437785549616",
+      "name": "FhirMeta",
+      "properties": [
+        {
+          "id": "1:5978264154070033735",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3855488840479378964",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "220:8233466733117732640",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:4061086896233631156",
+          "name": "versionId",
+          "type": 9
+        },
+        {
+          "id": "4:6916796866848573754",
+          "name": "lastUpdated",
+          "type": 9
+        },
+        {
+          "id": "5:1484216443207376315",
+          "name": "source",
+          "type": 9
+        },
+        {
+          "id": "6:867041437785549616",
+          "name": "profile",
+          "type": 30
+        }
+      ],
+      "relations": [
+        {
+          "id": "48:2987210260869339790",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "49:5170095741600583170",
+          "name": "security",
+          "targetId": "7:8873997066131547011"
+        },
+        {
+          "id": "50:1796025709922315276",
+          "name": "tag",
+          "targetId": "7:8873997066131547011"
+        }
+      ]
+    },
+    {
+      "id": "32:845734375098130878",
+      "lastPropertyId": "9:4125314229060945796",
+      "name": "HumanName",
+      "properties": [
+        {
+          "id": "1:3368406295867990826",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3110807090515770216",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "221:4793239970552507165",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:1151662332637140852",
+          "name": "use",
+          "type": 9
+        },
+        {
+          "id": "4:4412107062921502856",
+          "name": "text",
+          "type": 9
+        },
+        {
+          "id": "5:133999378616702044",
+          "name": "family",
+          "type": 9
+        },
+        {
+          "id": "6:8336627015980420117",
+          "name": "given",
+          "type": 30
+        },
+        {
+          "id": "7:6667489451318716551",
+          "name": "prefix",
+          "type": 30
+        },
+        {
+          "id": "8:1597262108452126036",
+          "name": "suffix",
+          "type": 30
+        },
+        {
+          "id": "9:4125314229060945796",
+          "name": "periodId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "222:5466470104313709399",
+          "relationTarget": "Period"
+        }
+      ],
+      "relations": [
+        {
+          "id": "51:6281623299292825350",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "33:6534467377721421384",
+      "lastPropertyId": "8:6142108774171919986",
+      "name": "Identifier",
+      "properties": [
+        {
+          "id": "1:2799154163549198020",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:2123643006447660142",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "223:9128011198997928373",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:4496352757450921895",
+          "name": "use",
+          "type": 9
+        },
+        {
+          "id": "4:3708945993334172833",
+          "name": "typeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "224:8493089642089116217",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "5:6183082840467380601",
+          "name": "system",
+          "type": 9
+        },
+        {
+          "id": "6:3957584551630658266",
+          "name": "value",
+          "type": 9
+        },
+        {
+          "id": "7:9085917270493446054",
+          "name": "periodId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "225:6436409040892264681",
+          "relationTarget": "Period"
+        },
+        {
+          "id": "8:6142108774171919986",
+          "name": "assignerId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "226:7358219595398280286",
+          "relationTarget": "Reference"
+        }
+      ],
+      "relations": [
+        {
+          "id": "52:49969622882249640",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "34:2668448087298487506",
+      "lastPropertyId": "7:5214404535165477027",
+      "name": "MarketingStatus",
+      "properties": [
+        {
+          "id": "1:7352258134966649728",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6927966617784310256",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "227:8648641789432238699",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:4124069209505562875",
+          "name": "countryId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "228:7306672973955746793",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "4:918126593970876296",
+          "name": "jurisdictionId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "229:2673670518594646171",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "5:3730826375810291618",
+          "name": "statusId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "230:6623610407776739821",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "6:7184635965370044512",
+          "name": "dateRangeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "231:1399250938136607053",
+          "relationTarget": "Period"
+        },
+        {
+          "id": "7:5214404535165477027",
+          "name": "restoreDate",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "53:2785006517603228762",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "54:678667554732412306",
+          "name": "modifierExtension",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "35:620563914738326162",
+      "lastPropertyId": "4:3252417564377259094",
+      "name": "Money",
+      "properties": [
+        {
+          "id": "1:8378469244276749243",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:4423002700998991102",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "232:8715713743812901809",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:3319949580545452578",
+          "name": "value",
+          "type": 8
+        },
+        {
+          "id": "4:3252417564377259094",
+          "name": "currency",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "55:5368441623870937618",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "36:4962194494067487817",
+      "lastPropertyId": "4:1999635305223496707",
+      "name": "Narrative",
+      "properties": [
+        {
+          "id": "1:5015778642252904551",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3980673859540651057",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "233:3919190854332771366",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:8935925098430532962",
+          "name": "status",
+          "type": 9
+        },
+        {
+          "id": "4:1999635305223496707",
+          "name": "div",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "56:7523207715797787884",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "37:478783003106925142",
+      "lastPropertyId": "9:4157704040848187022",
+      "name": "ParameterDefinition",
+      "properties": [
+        {
+          "id": "1:3355440135359242642",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3770766718621055667",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "234:2259295560795344134",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:6412760205594824373",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "4:8750041768369785542",
+          "name": "use",
+          "type": 9
+        },
+        {
+          "id": "5:8048188852882667728",
+          "name": "min",
+          "type": 6
+        },
+        {
+          "id": "6:2502959428410293895",
+          "name": "max",
+          "type": 9
+        },
+        {
+          "id": "7:7417346592842525484",
+          "name": "documentation",
+          "type": 9
+        },
+        {
+          "id": "8:2122014559363574558",
+          "name": "type",
+          "type": 9
+        },
+        {
+          "id": "9:4157704040848187022",
+          "name": "profile",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "57:3709863242248067216",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "38:8048335178183178860",
+      "lastPropertyId": "4:7755662922379975196",
+      "name": "Period",
+      "properties": [
+        {
+          "id": "1:4332358073413791533",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:5881532201283669493",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "235:344078139641118074",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:4485551563149925358",
+          "name": "start",
+          "type": 9
+        },
+        {
+          "id": "4:7755662922379975196",
+          "name": "end",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "58:1250440300697268060",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "39:9132863922527164313",
+      "lastPropertyId": "7:8126268490331380598",
+      "name": "Population",
+      "properties": [
+        {
+          "id": "1:7714860520732462287",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3739220873508844686",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "236:883989110056597557",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:3719418903280797478",
+          "name": "ageRangeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "237:8569996566976943565",
+          "relationTarget": "Range"
+        },
+        {
+          "id": "4:6025056621296760567",
+          "name": "ageCodeableConceptId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "238:7329200389701795762",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "5:66851727227570527",
+          "name": "genderId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "239:6157327741704414741",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "6:4412682596888113892",
+          "name": "raceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "240:4803761279184161156",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "7:8126268490331380598",
+          "name": "physiologicalConditionId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "241:7788357079034912142",
+          "relationTarget": "CodeableConcept"
+        }
+      ],
+      "relations": [
+        {
+          "id": "59:6603003511893386885",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "60:4348425852881826923",
+          "name": "modifierExtension",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "40:2877034135281604646",
+      "lastPropertyId": "12:2951068242657959677",
+      "name": "ProdCharacteristic",
+      "properties": [
+        {
+          "id": "1:8036494638922737362",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1035089197968851130",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "242:1624374543982981565",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:1949191657203768331",
+          "name": "heightId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "243:3525632923788990183",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "4:4593774582330904027",
+          "name": "widthId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "244:2991092992639198572",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "5:1550617930274582445",
+          "name": "depthId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "245:8106092143880308632",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "6:1502530972855527311",
+          "name": "weightId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "246:1663985633486466954",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "7:330286552118770451",
+          "name": "nominalVolumeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "247:7565563953564026248",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "8:2462982521051239860",
+          "name": "externalDiameterId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "248:8874974851903031597",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "9:3625672796200346108",
+          "name": "shape",
+          "type": 9
+        },
+        {
+          "id": "10:6919354423522580098",
+          "name": "color",
+          "type": 30
+        },
+        {
+          "id": "11:2073312277004260153",
+          "name": "imprint",
+          "type": 30
+        },
+        {
+          "id": "12:2951068242657959677",
+          "name": "scoringId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "249:3445435655096924167",
+          "relationTarget": "CodeableConcept"
+        }
+      ],
+      "relations": [
+        {
+          "id": "61:2340992178078907419",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "62:8245144204854539335",
+          "name": "modifierExtension",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "63:6293245084093540252",
+          "name": "image",
+          "targetId": "4:502513322599364627"
+        }
+      ]
+    },
+    {
+      "id": "41:4828709974409073251",
+      "lastPropertyId": "5:5841974970647219821",
+      "name": "ProductShelfLife",
+      "properties": [
+        {
+          "id": "1:4621875896575981283",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3997513230177494715",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "250:6340610480855975224",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:4476844633190275976",
+          "name": "identifierId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "251:7808280709853740163",
+          "relationTarget": "Identifier"
+        },
+        {
+          "id": "4:4532050969988909280",
+          "name": "typeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "252:8926148507698236508",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "5:5841974970647219821",
+          "name": "periodId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "253:4831727863480766321",
+          "relationTarget": "Quantity"
+        }
+      ],
+      "relations": [
+        {
+          "id": "64:7220790915741276090",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "65:3391160544015853776",
+          "name": "modifierExtension",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "66:5269276416280510455",
+          "name": "specialPrecautionsForStorage",
+          "targetId": "5:4072455885617490063"
+        }
+      ]
+    },
+    {
+      "id": "42:2604519101871956610",
+      "lastPropertyId": "7:499787770195558614",
+      "name": "Quantity",
+      "properties": [
+        {
+          "id": "1:712909050102863822",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6545354984086814968",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "254:9181005293786820739",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:5432733563382961916",
+          "name": "value",
+          "type": 8
+        },
+        {
+          "id": "4:4637550552033059272",
+          "name": "comparator",
+          "type": 9
+        },
+        {
+          "id": "5:5669689842486076229",
+          "name": "unit",
+          "type": 9
+        },
+        {
+          "id": "6:2970066280083168944",
+          "name": "system",
+          "type": 9
+        },
+        {
+          "id": "7:499787770195558614",
+          "name": "code",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "67:4435470442218587923",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "43:1334332791320207787",
+      "lastPropertyId": "4:2515789296919079800",
+      "name": "Range",
+      "properties": [
+        {
+          "id": "1:5451402542148627564",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3972759631017999051",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "255:7698492932207131536",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:3407196122565053671",
+          "name": "lowId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "256:5277352888608419459",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "4:2515789296919079800",
+          "name": "highId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "257:1064365041103851019",
+          "relationTarget": "Quantity"
+        }
+      ],
+      "relations": [
+        {
+          "id": "68:6960877176719650072",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "44:1896659027321244553",
+      "lastPropertyId": "4:2035042305325213111",
+      "name": "Ratio",
+      "properties": [
+        {
+          "id": "1:7450736347298069861",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8201503786722715661",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "258:8295160653892934455",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:935106412512292132",
+          "name": "numeratorId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "259:1046252116798629823",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "4:2035042305325213111",
+          "name": "denominatorId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "260:9075183214954540002",
+          "relationTarget": "Quantity"
+        }
+      ],
+      "relations": [
+        {
+          "id": "69:3150374772479257408",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "45:7355520244897582312",
+      "lastPropertyId": "5:4754733979943874859",
+      "name": "RatioRange",
+      "properties": [
+        {
+          "id": "1:312340351236534163",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:2987400207212445042",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "261:5282969785028360250",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:6891108740659679671",
+          "name": "lowNumeratorId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "262:808826707528306513",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "4:3767962716924783477",
+          "name": "highNumeratorId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "263:4322692742784500019",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "5:4754733979943874859",
+          "name": "denominatorId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "264:738762302101058719",
+          "relationTarget": "Quantity"
+        }
+      ],
+      "relations": [
+        {
+          "id": "70:4057063809178642229",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "46:20110472005709644",
+      "lastPropertyId": "6:3268844386070555244",
+      "name": "Reference",
+      "properties": [
+        {
+          "id": "1:6337140746427407753",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:2470108956380573797",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "265:3071775483816696382",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:6422609751352040740",
+          "name": "reference",
+          "type": 9
+        },
+        {
+          "id": "4:2901787292470852160",
+          "name": "type",
+          "type": 9
+        },
+        {
+          "id": "5:5768236581419111526",
+          "name": "identifierId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "266:4638208405422935758",
+          "relationTarget": "Identifier"
+        },
+        {
+          "id": "6:3268844386070555244",
+          "name": "display",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "71:9149546885652532395",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "47:3262615659663071918",
+      "lastPropertyId": "9:631879407323755356",
+      "name": "RelatedArtifact",
+      "properties": [
+        {
+          "id": "1:5974356079488957944",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:2532343415472487584",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "267:6784990059745984416",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:3767744409033873303",
+          "name": "type",
+          "type": 9
+        },
+        {
+          "id": "4:4825574598894707877",
+          "name": "label",
+          "type": 9
+        },
+        {
+          "id": "5:7363838776777570061",
+          "name": "display",
+          "type": 9
+        },
+        {
+          "id": "6:7060733884113193944",
+          "name": "citation",
+          "type": 9
+        },
+        {
+          "id": "7:7101008146837451231",
+          "name": "url",
+          "type": 9
+        },
+        {
+          "id": "8:6588198646729691917",
+          "name": "documentId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "268:942721508996631027",
+          "relationTarget": "Attachment"
+        },
+        {
+          "id": "9:631879407323755356",
+          "name": "resource",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "72:4864221600797500946",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "48:7270464273751729587",
+      "lastPropertyId": "1:5327604703088146336",
+      "name": "Resource",
+      "properties": [
+        {
+          "id": "1:5327604703088146336",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "49:4960814625571724751",
+      "lastPropertyId": "9:6213969044300359218",
+      "name": "SampledData",
+      "properties": [
+        {
+          "id": "1:3945123493474945629",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:306367086790525898",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "269:8645288106784555725",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:622342172575753536",
+          "name": "originId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "270:540368491779164269",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "4:2268883936356533798",
+          "name": "period",
+          "type": 8
+        },
+        {
+          "id": "5:5439400127041940717",
+          "name": "factor",
+          "type": 8
+        },
+        {
+          "id": "6:8535735149863363202",
+          "name": "lowerLimit",
+          "type": 8
+        },
+        {
+          "id": "7:2616649832127408792",
+          "name": "upperLimit",
+          "type": 8
+        },
+        {
+          "id": "8:1674568270129422717",
+          "name": "dimensions",
+          "type": 6
+        },
+        {
+          "id": "9:6213969044300359218",
+          "name": "data",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "73:3226355880309761087",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "50:9044250704912835555",
+      "lastPropertyId": "8:2624799236574515862",
+      "name": "Signature",
+      "properties": [
+        {
+          "id": "1:1283779907071959704",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:4652854566545916239",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "271:2857367443988407355",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:5418148771962796504",
+          "name": "when",
+          "type": 9
+        },
+        {
+          "id": "4:7665588441160533010",
+          "name": "whoId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "272:8802643877175622898",
+          "relationTarget": "Reference"
+        },
+        {
+          "id": "5:4568548541412710297",
+          "name": "onBehalfOfId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "273:4089545929728676355",
+          "relationTarget": "Reference"
+        },
+        {
+          "id": "6:6702002768844394484",
+          "name": "targetFormat",
+          "type": 9
+        },
+        {
+          "id": "7:3985876317926385874",
+          "name": "sigFormat",
+          "type": 9
+        },
+        {
+          "id": "8:2624799236574515862",
+          "name": "data",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "74:1040834704552736771",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "75:6247684938061901125",
+          "name": "type",
+          "targetId": "7:8873997066131547011"
+        }
+      ]
+    },
+    {
+      "id": "51:1889055434949969072",
+      "lastPropertyId": "5:4124843456789373564",
+      "name": "Timing",
+      "properties": [
+        {
+          "id": "1:3692772985172180436",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:323885973429289944",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "274:2696580960629798048",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:4666977517950948207",
+          "name": "event",
+          "type": 30
+        },
+        {
+          "id": "4:1018485209914956182",
+          "name": "repeatId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "275:4826893758228159293",
+          "relationTarget": "TimingRepeat"
+        },
+        {
+          "id": "5:4124843456789373564",
+          "name": "codeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "276:1129912583903069798",
+          "relationTarget": "CodeableConcept"
+        }
+      ],
+      "relations": [
+        {
+          "id": "76:2336544046989044775",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "77:7803074491128442980",
+          "name": "modifierExtension",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "52:8062231888325123571",
+      "lastPropertyId": "19:9189694574933810368",
+      "name": "TimingRepeat",
+      "properties": [
+        {
+          "id": "1:3615094891838296007",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:6905651130344814715",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "277:2499806729467120878",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:2947474697131348163",
+          "name": "boundsDurationId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "278:9133970157731881861",
+          "relationTarget": "FhirDuration"
+        },
+        {
+          "id": "4:7200791898080823171",
+          "name": "boundsRangeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "279:1494185399026063606",
+          "relationTarget": "Range"
+        },
+        {
+          "id": "5:1733384584828405562",
+          "name": "boundsPeriodId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "280:5843193749415289526",
+          "relationTarget": "Period"
+        },
+        {
+          "id": "6:5881277356861990937",
+          "name": "count",
+          "type": 6
+        },
+        {
+          "id": "7:309943514731878977",
+          "name": "countMax",
+          "type": 6
+        },
+        {
+          "id": "8:721726017782188459",
+          "name": "duration",
+          "type": 8
+        },
+        {
+          "id": "9:3970960121767674980",
+          "name": "durationMax",
+          "type": 8
+        },
+        {
+          "id": "10:2904453058631422340",
+          "name": "durationUnit",
+          "type": 9
+        },
+        {
+          "id": "11:5100141495323915652",
+          "name": "frequency",
+          "type": 6
+        },
+        {
+          "id": "12:873908375424285804",
+          "name": "frequencyMax",
+          "type": 6
+        },
+        {
+          "id": "13:5981529522900388246",
+          "name": "period",
+          "type": 8
+        },
+        {
+          "id": "14:6352204053937666094",
+          "name": "periodMax",
+          "type": 8
+        },
+        {
+          "id": "15:5367108716320831615",
+          "name": "periodUnit",
+          "type": 9
+        },
+        {
+          "id": "16:337655414789822870",
+          "name": "dayOfWeek",
+          "type": 30
+        },
+        {
+          "id": "17:6893896008355520986",
+          "name": "timeOfDay",
+          "type": 30
+        },
+        {
+          "id": "18:2330375541351164371",
+          "name": "when",
+          "type": 30
+        },
+        {
+          "id": "19:9189694574933810368",
+          "name": "offset",
+          "type": 6
+        }
+      ],
+      "relations": [
+        {
+          "id": "78:7380985287178645000",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    },
+    {
+      "id": "53:6659666082348239871",
+      "lastPropertyId": "9:3527941440044139132",
+      "name": "TriggerDefinition",
+      "properties": [
+        {
+          "id": "1:8046981926435180431",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3253632935858724683",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "281:3185008848860795337",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:8105812910119880879",
+          "name": "type",
+          "type": 9
+        },
+        {
+          "id": "4:7886313302176776254",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "5:7019762598353458635",
+          "name": "timingTimingId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "282:980567860353498315",
+          "relationTarget": "Timing"
+        },
+        {
+          "id": "6:5407622454977454325",
+          "name": "timingReferenceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "283:653237951255310003",
+          "relationTarget": "Reference"
+        },
+        {
+          "id": "7:1242264770121893274",
+          "name": "timingDate",
+          "type": 9
+        },
+        {
+          "id": "8:8790085699775915744",
+          "name": "timingDateTime",
+          "type": 9
+        },
+        {
+          "id": "9:3527941440044139132",
+          "name": "conditionId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "284:6950655194786746156",
+          "relationTarget": "FhirExpression"
+        }
+      ],
+      "relations": [
+        {
+          "id": "79:3781544822858130813",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        },
+        {
+          "id": "80:6115910667281429195",
+          "name": "data",
+          "targetId": "12:6152872577759475762"
+        }
+      ]
+    },
+    {
+      "id": "54:1574355790810787029",
+      "lastPropertyId": "7:3251891719351220054",
+      "name": "UsageContext",
+      "properties": [
+        {
+          "id": "1:4561990319906296888",
+          "name": "dbId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:7011139959756330562",
+          "name": "idId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "285:4033146763770612054",
+          "relationTarget": "String"
+        },
+        {
+          "id": "3:6373802278441851312",
+          "name": "codeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "286:156382019350554250",
+          "relationTarget": "Coding"
+        },
+        {
+          "id": "4:1666053078637247405",
+          "name": "valueCodeableConceptId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "287:3718074308290917287",
+          "relationTarget": "CodeableConcept"
+        },
+        {
+          "id": "5:2292489374201834502",
+          "name": "valueQuantityId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "288:3313174934595030628",
+          "relationTarget": "Quantity"
+        },
+        {
+          "id": "6:4829796613380500157",
+          "name": "valueRangeId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "289:773207130891406459",
+          "relationTarget": "Range"
+        },
+        {
+          "id": "7:3251891719351220054",
+          "name": "valueReferenceId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "290:277377534335659996",
+          "relationTarget": "Reference"
+        }
+      ],
+      "relations": [
+        {
+          "id": "81:5574041040844767216",
+          "name": "extension_",
+          "targetId": "30:831337593010685896"
+        }
+      ]
+    }
+  ],
+  "lastEntityId": "54:1574355790810787029",
+  "lastIndexId": "290:277377534335659996",
+  "lastRelationId": "81:5574041040844767216",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [],
+  "retiredRelationUids": [],
+  "version": 1
+}

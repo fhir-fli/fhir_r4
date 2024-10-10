@@ -23,12 +23,10 @@ final Set<String> _valueSets = <String>{};
 
 Future<void> main() async {
   await extract();
+  prepareObjectBox();
   _codesAndVS.addAll(codesAndValueSets(valueSetPath, examplesPath));
   _nameMap.addAll(populateNameMap(fhirSchemaPath));
-
-  // Generate resource and data classes from StructureDefinitions
   _classesFromStructureDefinitions();
-
   exportFiles();
   writeEnums(_valueSets, _codesAndVS, _nameMap);
   generateResourceUtils();

@@ -6,104 +6,144 @@ import 'consts.dart';
 import 'fhir_generate_extension.dart';
 import 'writable_class.dart';
 
+void prepareObjectBox() {
+  final Directory objectBoxDir = Directory('$fhirDirectory/object_box');
+  if (!objectBoxDir.existsSync()) {
+    objectBoxDir.createSync();
+  } else {
+    objectBoxDir.deleteSync(recursive: true);
+    objectBoxDir.createSync();
+  }
+  File('$fhirDirectory/object_box/object_box.dart')
+      .writeAsStringSync("export 'resource.dart';\n");
+
+  File('$fhirDirectory/object_box/resource.dart').writeAsStringSync("""
+import 'package:objectbox/objectbox.dart';
+
+@Entity()
+abstract class Resource {
+  @Id()
+  int? dbId;
+}""");
+}
+
 void generateObjectBoxClasses(Map<String, WritableClass> classes) {
+  final Set<String> exportFile = <String>{};
+
   classes.forEach((String className, WritableClass writableClass) {
     final StringBuffer buffer = StringBuffer();
+    final String officialClassName = writableClass.className.fhirToDartTypes;
+    final String extended =
+        officialClassName.isResource ? 'extends Resource' : '';
 
     // Write class header
-    buffer.writeln("import 'package:objectbox/objectbox.dart';");
-    buffer.writeln("import 'dart:convert';");
-    buffer.writeln('class $className {');
+    buffer.writeln('@Entity()');
+    buffer.writeln('class $officialClassName $extended {');
 
-    // Write fields
+    buffer.writeln('\n  $officialClassName({');
+
+    // Loop through the fields and add them to the constructor
     for (final Field field in writableClass.fields) {
-      final String dartType =
-          field.isEnum ? 'String' : primitiveTypeMap[field.type] ?? field.type;
-
-      buffer
-          .writeln('  $dartType${field.isRequired ? '' : '?'} ${field.name};');
+      if (field.isRequired) {
+        buffer.writeln('    required this.${field.name.fhirFieldToDartName},');
+      } else {
+        buffer.writeln('    this.${field.name.fhirFieldToDartName},');
+      }
     }
 
-    // Write constructor
-    buffer.writeln('\n  $className({');
-    for (final Field field in writableClass.fields) {
-      buffer.writeln(
-          '    ${field.isRequired ? 'required ' : ''}this.${field.name},');
-    }
-    buffer.writeln('  });');
+    buffer.writeln('  });\n');
 
-    // Write toJson method
-    buffer.writeln('\n  Map<String, dynamic> toJson() => {');
-    for (final Field field in writableClass.fields) {
-      buffer.writeln('    "${field.name}": ${field.name},');
-    }
-    buffer.writeln('  };');
+    buffer.writeln('  @Id() int? dbId;');
 
-    // Write fromJson factory
-    buffer.writeln(
-        '\n  factory $className.fromJson(Map<String, dynamic> json) {');
-    buffer.writeln('    return $className(');
+    // Loop through the fields and add them as class variables
     for (final Field field in writableClass.fields) {
-      buffer.writeln('      ${field.name}: json["${field.name}"],');
+      final String objectBoxType =
+          field.isEnum ? 'String' : field.type.fhirToObjectBoxTypes;
+
+      // Handle complex types (ToOne or ToMany relations)
+      if (!field.type.isPrimitiveType && !field.isEnum) {
+        if (field.isList) {
+          buffer.writeln(
+              '  ToMany<$objectBoxType>${field.isRequired ? '' : '?'} ${field.name.fhirFieldToDartName} = ToMany<$objectBoxType>();');
+        } else {
+          buffer.writeln(
+              '  ToOne<$objectBoxType>${field.isRequired ? '' : '?'} ${field.name.fhirFieldToDartName} = ToOne<$objectBoxType>();');
+        }
+      } else {
+        // Handle primitive types or enums
+        final String fieldType =
+            field.isList ? 'List<$objectBoxType>' : objectBoxType;
+        buffer.writeln(
+            '  $fieldType${field.isRequired ? '' : '?'} ${field.name.fhirFieldToDartName};');
+      }
     }
-    buffer.writeln('    );');
-    buffer.writeln('  }');
 
     // Close class
     buffer.writeln('}');
 
-    // Write to file in objectbox directory
-    _writeToFile(buffer, className, 'objectbox');
+    // Write to a separate file per class
+    final String fileName = _writeToFile(buffer, className, 'object_box');
+    if (fileName.isNotEmpty) {
+      exportFile.add("export '$fileName';\n");
+    }
   });
+
+  // Write to object_box.dart for exports
+  final List<String> exportList = exportFile.toList();
+  exportList.sort();
+  final File objectBoxFile = File('$fhirDirectory/object_box/object_box.dart');
+
+  String fileString = objectBoxFile.readAsStringSync();
+  fileString += exportList.join();
+
+  objectBoxFile.writeAsStringSync(fileString);
 }
 
-const Map<String, String> primitiveTypeMap = <String, String>{
-  'base64Binary': 'String',
-  'boolean': 'bool',
-  'canonical': 'String',
-  'code': 'String',
-  'dateTime': 'String',
-  'date': 'String',
-  'decimal': 'num',
-  'id': 'String',
-  'instant': 'String',
-  'integer': 'int',
-  'integer64': 'String',
-  'markdown': 'String',
-  'oid': 'String',
-  'positiveInt': 'int',
-  'string': 'String',
-  'time': 'String',
-  'unsignedInt': 'int',
-  'uri': 'String',
-  'url': 'String',
-  'uuid': 'String',
-  'xhtml': 'String',
-};
-
-void _writeToFile(StringBuffer buffer, String className, String targetDirectory,
+String _writeToFile(
+    StringBuffer buffer, String className, String targetDirectory,
     {Map<String, String>? nameMap}) {
   final String? writeFileName = nameMap != null
       ? className.fileNameFromClassName(nameMap)
-      : className
-          .toLowerCase(); // Fallback to simple lowercase name if no nameMap is provided
+      : className.toLowerCase();
 
-  // Early exit if no valid file name is found
   if (writeFileName == null) {
     print(
         'Warning: Skipping file generation for class $className, invalid file name.');
-    return;
+    return '';
   }
 
-  // Prepare the file path based on the target directory
-  final String filePath =
-      '$fhirDirectory/$targetDirectory/${writeFileName.properFileName}.dart';
+  final String baseFilePath = writeFileName.properFileName.split('.').first;
+
+  if (baseFilePath.isResource) {
+    return '';
+  }
+
+  final String filePath = '$fhirDirectory/$targetDirectory/$baseFilePath.dart';
+
+  final File fileToWrite = File(filePath);
+
+  String fileContent = '';
+
+  if (!fileToWrite.existsSync()) {
+    try {
+      fileToWrite.createSync();
+      fileContent = "import 'package:objectbox/objectbox.dart';\n";
+      fileContent += "import 'object_box.dart';\n";
+    } catch (e) {
+      print('Error: Failed to create file for class $className. Error: $e');
+      return '';
+    }
+  } else {
+    fileContent = fileToWrite.readAsStringSync();
+  }
+
+  fileContent += buffer.toString();
 
   try {
-    // Write the buffer content to the specified file path
-    File(filePath).writeAsStringSync(buffer.toString());
+    File(filePath).writeAsStringSync(fileContent);
     print('Successfully wrote to: $filePath');
   } catch (e) {
     print('Error: Failed to write file for class $className. Error: $e');
   }
+  return '$baseFilePath.dart';
 }

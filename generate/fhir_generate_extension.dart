@@ -67,6 +67,41 @@ extension FhirGenerate on String {
       }[toLowerCase()] ??
       this;
 
+  String get fhirToObjectBoxTypes =>
+      const <String, String>{
+        'string': 'String',
+        'base64binary': 'String',
+        'boolean': 'bool',
+        'canonical': 'String',
+        'code': 'String',
+        'date': 'String',
+        'decimal': 'double',
+        'datetime': 'String',
+        'uri': 'String',
+        'url': 'String',
+        'id': 'String',
+        'instant': 'String',
+        'integer': 'int',
+        'integer64': 'String',
+        'markdown': 'String',
+        'oid': 'String',
+        'positiveint': 'int',
+        'time': 'String',
+        'unsignedint': 'int',
+        'uuid': 'String',
+        'duration': 'FhirDuration',
+        'xhtml': 'String',
+        'meta': 'FhirMeta',
+        'expression': 'FhirExpression',
+        'list': 'FhirList',
+        'extension': 'FhirExtension',
+        'resourceList': 'Resource',
+        'group': 'FhirGroup',
+        'endpoint': 'FhirEndpoint',
+        'http://hl7.org/fhirpath/system.string': 'String',
+      }[toLowerCase()] ??
+      this;
+
   bool get isPrimitiveType => <String>[
         'base64binary',
         'fhirbase64binary',

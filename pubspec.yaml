@@ -25,8 +25,6 @@ dependencies:
   objectbox: ^1.7.0
   petitparser: ^6.0.2
   rxdart: ^0.28.0
-  source_gen: ^1.5.0
-  sqlite3: ^2.4.6
   ucum: ^0.5.0
   universal_io: ^2.2.2
   uuid: ^4.5.0
