@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -26,9 +25,6 @@ class Reference extends DataType {
 
   @override
   String get fhirType => 'Reference';
-
-  @Id()
-  int dbId = 0;
 
   /// [reference] /// A reference to a location at which the other resource is found. The
   /// reference may be a relative reference, in which case it is relative to the

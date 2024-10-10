@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -41,9 +40,6 @@ class Person extends DomainResource {
 
   @override
   String get fhirType => 'Person';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifier for a person within a particular scope.
   final List<Identifier>? identifier;
@@ -357,9 +353,6 @@ class PersonLink extends BackboneElement {
 
   @override
   String get fhirType => 'PersonLink';
-
-  @Id()
-  int dbId = 0;
 
   /// [target] /// The resource to which this actual person is associated.
   final Reference target;

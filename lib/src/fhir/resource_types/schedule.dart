@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -38,9 +37,6 @@ class Schedule extends DomainResource {
 
   @override
   String get fhirType => 'Schedule';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// External Ids for this item.
   final List<Identifier>? identifier;

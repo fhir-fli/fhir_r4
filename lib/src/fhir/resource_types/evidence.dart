@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -67,9 +66,6 @@ class Evidence extends DomainResource {
 
   @override
   String get fhirType => 'Evidence';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this evidence when it is
   /// referenced in a specification, model, design or an instance; also called
@@ -682,9 +678,6 @@ class EvidenceVariableDefinition extends BackboneElement {
   @override
   String get fhirType => 'EvidenceVariableDefinition';
 
-  @Id()
-  int dbId = 0;
-
   /// [description] /// A text description or summary of the variable.
   final FhirMarkdown? description;
   final Element? descriptionElement;
@@ -873,9 +866,6 @@ class EvidenceStatistic extends BackboneElement {
 
   @override
   String get fhirType => 'EvidenceStatistic';
-
-  @Id()
-  int dbId = 0;
 
   /// [description] /// A description of the content value of the statistic.
   final FhirString? description;
@@ -1144,9 +1134,6 @@ class EvidenceSampleSize extends BackboneElement {
   @override
   String get fhirType => 'EvidenceSampleSize';
 
-  @Id()
-  int dbId = 0;
-
   /// [description] /// Human-readable summary of population sample size.
   final FhirString? description;
   final Element? descriptionElement;
@@ -1354,9 +1341,6 @@ class EvidenceAttributeEstimate extends BackboneElement {
   @override
   String get fhirType => 'EvidenceAttributeEstimate';
 
-  @Id()
-  int dbId = 0;
-
   /// [description] /// Human-readable summary of the estimate.
   final FhirString? description;
   final Element? descriptionElement;
@@ -1562,9 +1546,6 @@ class EvidenceModelCharacteristic extends BackboneElement {
   @override
   String get fhirType => 'EvidenceModelCharacteristic';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// Description of a component of the method to generate the statistic.
   final CodeableConcept code;
 
@@ -1718,9 +1699,6 @@ class Evidencevariable extends BackboneElement {
 
   @override
   String get fhirType => 'Evidencevariable';
-
-  @Id()
-  int dbId = 0;
 
   /// [variableDefinition] /// Description of the variable.
   final Reference variableDefinition;
@@ -1899,9 +1877,6 @@ class EvidenceCertainty extends BackboneElement {
 
   @override
   String get fhirType => 'EvidenceCertainty';
-
-  @Id()
-  int dbId = 0;
 
   /// [description] /// Textual description of certainty.
   final FhirString? description;

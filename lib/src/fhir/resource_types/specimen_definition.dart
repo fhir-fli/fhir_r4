@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -34,9 +33,6 @@ class SpecimenDefinition extends DomainResource {
 
   @override
   String get fhirType => 'SpecimenDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A business identifier associated with the kind of specimen.
   final Identifier? identifier;
@@ -296,9 +292,6 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   @override
   String get fhirType => 'SpecimenDefinitionTypeTested';
 
-  @Id()
-  int dbId = 0;
-
   /// [isDerived] /// Primary of secondary specimen.
   final FhirBoolean? isDerived;
   final Element? isDerivedElement;
@@ -531,9 +524,6 @@ class SpecimenDefinitionContainer extends BackboneElement {
 
   @override
   String get fhirType => 'SpecimenDefinitionContainer';
-
-  @Id()
-  int dbId = 0;
 
   /// [material] /// The type of material of the container.
   final CodeableConcept? material;
@@ -774,9 +764,6 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   @override
   String get fhirType => 'SpecimenDefinitionAdditive';
 
-  @Id()
-  int dbId = 0;
-
   /// [additiveCodeableConcept] /// Substance introduced in the kind of container to preserve, maintain or
   /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
   final CodeableConcept? additiveCodeableConcept;
@@ -907,9 +894,6 @@ class SpecimenDefinitionHandling extends BackboneElement {
 
   @override
   String get fhirType => 'SpecimenDefinitionHandling';
-
-  @Id()
-  int dbId = 0;
 
   /// [temperatureQualifier] /// It qualifies the interval of temperature, which characterizes an occurrence
   /// of handling. Conditions that are not related to temperature may be handled

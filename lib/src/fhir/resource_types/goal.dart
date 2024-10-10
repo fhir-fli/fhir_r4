@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -51,9 +50,6 @@ class Goal extends DomainResource {
 
   @override
   String get fhirType => 'Goal';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this goal by the performer or other
   /// systems which remain constant as the resource is updated and propagates
@@ -469,9 +465,6 @@ class GoalTarget extends BackboneElement {
 
   @override
   String get fhirType => 'GoalTarget';
-
-  @Id()
-  int dbId = 0;
 
   /// [measure] /// The parameter whose value is being tracked, e.g. body weight, blood
   /// pressure, or hemoglobin A1c level.

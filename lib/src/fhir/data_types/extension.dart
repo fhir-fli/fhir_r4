@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -90,9 +89,6 @@ class FhirExtension extends DataType {
 
   @override
   String get fhirType => 'FhirExtension';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// Source of the definition for the extension code - a logical name or a URL.
   final FhirString url;

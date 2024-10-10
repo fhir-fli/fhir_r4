@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -49,9 +48,6 @@ class RiskAssessment extends DomainResource {
 
   @override
   String get fhirType => 'RiskAssessment';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifier assigned to the risk assessment.
   final List<Identifier>? identifier;
@@ -463,9 +459,6 @@ class RiskAssessmentPrediction extends BackboneElement {
 
   @override
   String get fhirType => 'RiskAssessmentPrediction';
-
-  @Id()
-  int dbId = 0;
 
   /// [outcome] /// One of the potential outcomes for the patient (e.g. remission, death, a
   /// particular condition).

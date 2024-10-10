@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -30,9 +29,6 @@ class Binary extends Resource {
 
   @override
   String get fhirType => 'Binary';
-
-  @Id()
-  int dbId = 0;
 
   /// [contentType] /// MimeType of the binary content represented as a standard MimeType (BCP 13).
   final FhirCode contentType;

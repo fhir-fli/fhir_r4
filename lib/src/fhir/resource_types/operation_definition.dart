@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -75,9 +74,6 @@ class OperationDefinition extends DomainResource {
 
   @override
   String get fhirType => 'OperationDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this operation definition when it
   /// is referenced in a specification, model, design or an instance; also called
@@ -759,9 +755,6 @@ class OperationDefinitionParameter extends BackboneElement {
   @override
   String get fhirType => 'OperationDefinitionParameter';
 
-  @Id()
-  int dbId = 0;
-
   /// [name] /// The name of used to identify the parameter.
   final FhirCode name;
   final Element? nameElement;
@@ -1064,9 +1057,6 @@ class OperationDefinitionBinding extends BackboneElement {
   @override
   String get fhirType => 'OperationDefinitionBinding';
 
-  @Id()
-  int dbId = 0;
-
   /// [strength] /// Indicates the degree of conformance expectations associated with this
   /// binding - that is, the degree to which the provided value set must be
   /// adhered to in the instances.
@@ -1201,9 +1191,6 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
 
   @override
   String get fhirType => 'OperationDefinitionReferencedFrom';
-
-  @Id()
-  int dbId = 0;
 
   /// [source] /// The name of the parameter or dot-separated path of parameter names pointing
   /// to the resource parameter that is expected to contain a reference to this
@@ -1349,9 +1336,6 @@ class OperationDefinitionOverload extends BackboneElement {
 
   @override
   String get fhirType => 'OperationDefinitionOverload';
-
-  @Id()
-  int dbId = 0;
 
   /// [parameterName] /// Name of parameter to include in overload.
   final List<FhirString>? parameterName;

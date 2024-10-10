@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -44,9 +43,6 @@ class RelatedPerson extends DomainResource {
 
   @override
   String get fhirType => 'RelatedPerson';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifier for a person within a particular scope.
   final List<Identifier>? identifier;
@@ -392,9 +388,6 @@ class RelatedPersonCommunication extends BackboneElement {
 
   @override
   String get fhirType => 'RelatedPersonCommunication';
-
-  @Id()
-  int dbId = 0;
 
   /// [language] /// The ISO-639-1 alpha 2 code in lower case for the language, optionally
   /// followed by a hyphen and the ISO-3166-1 alpha 2 code for the region in

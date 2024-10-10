@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -22,9 +21,6 @@ class ContactDetail extends DataType {
 
   @override
   String get fhirType => 'ContactDetail';
-
-  @Id()
-  int dbId = 0;
 
   /// [name] /// The name of an individual to contact.
   final FhirString? name;

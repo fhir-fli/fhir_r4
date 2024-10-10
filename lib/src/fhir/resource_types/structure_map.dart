@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -58,9 +57,6 @@ class StructureMap extends DomainResource {
 
   @override
   String get fhirType => 'StructureMap';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this structure map when it is
   /// referenced in a specification, model, design or an instance; also called
@@ -575,9 +571,6 @@ class StructureMapStructure extends BackboneElement {
   @override
   String get fhirType => 'StructureMapStructure';
 
-  @Id()
-  int dbId = 0;
-
   /// [url] /// The canonical reference to the structure.
   final FhirCanonical url;
   final Element? urlElement;
@@ -753,9 +746,6 @@ class StructureMapGroup extends BackboneElement {
 
   @override
   String get fhirType => 'StructureMapGroup';
-
-  @Id()
-  int dbId = 0;
 
   /// [name] /// A unique name for the group for the convenience of human readers.
   final FhirId name;
@@ -957,9 +947,6 @@ class StructureMapInput extends BackboneElement {
   @override
   String get fhirType => 'StructureMapInput';
 
-  @Id()
-  int dbId = 0;
-
   /// [name] /// Name for this instance of data.
   final FhirId name;
   final Element? nameElement;
@@ -1132,9 +1119,6 @@ class StructureMapRule extends BackboneElement {
 
   @override
   String get fhirType => 'StructureMapRule';
-
-  @Id()
-  int dbId = 0;
 
   /// [name] /// Name of the rule for internal references.
   final FhirId name;
@@ -1415,9 +1399,6 @@ class StructureMapSource extends BackboneElement {
 
   @override
   String get fhirType => 'StructureMapSource';
-
-  @Id()
-  int dbId = 0;
 
   /// [context] /// Type or variable this rule applies to.
   final FhirId context;
@@ -2525,9 +2506,6 @@ class StructureMapTarget extends BackboneElement {
   @override
   String get fhirType => 'StructureMapTarget';
 
-  @Id()
-  int dbId = 0;
-
   /// [context] /// Type or variable this rule applies to.
   final FhirId? context;
   final Element? contextElement;
@@ -2788,9 +2766,6 @@ class StructureMapParameter extends BackboneElement {
   @override
   String get fhirType => 'StructureMapParameter';
 
-  @Id()
-  int dbId = 0;
-
   /// [valueId] /// Parameter value - variable or literal.
   final FhirId? valueId;
   final Element? valueIdElement;
@@ -2991,9 +2966,6 @@ class StructureMapDependent extends BackboneElement {
 
   @override
   String get fhirType => 'StructureMapDependent';
-
-  @Id()
-  int dbId = 0;
 
   /// [name] /// Name of a rule or group to apply.
   final FhirId name;

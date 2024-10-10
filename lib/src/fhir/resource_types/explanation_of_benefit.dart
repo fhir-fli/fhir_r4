@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -79,9 +78,6 @@ class ExplanationOfBenefit extends DomainResource {
 
   @override
   String get fhirType => 'ExplanationOfBenefit';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this explanation of benefit.
   final List<Identifier>? identifier;
@@ -855,9 +851,6 @@ class ExplanationOfBenefitRelated extends BackboneElement {
   @override
   String get fhirType => 'ExplanationOfBenefitRelated';
 
-  @Id()
-  int dbId = 0;
-
   /// [claim] /// Reference to a related claim.
   final Reference? claim;
 
@@ -994,9 +987,6 @@ class ExplanationOfBenefitPayee extends BackboneElement {
   @override
   String get fhirType => 'ExplanationOfBenefitPayee';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// Type of Party to be reimbursed: Subscriber, provider, other.
   final CodeableConcept? type;
 
@@ -1124,9 +1114,6 @@ class ExplanationOfBenefitCareTeam extends BackboneElement {
 
   @override
   String get fhirType => 'ExplanationOfBenefitCareTeam';
-
-  @Id()
-  int dbId = 0;
 
   /// [sequence] /// A number to uniquely identify care team entries.
   final FhirPositiveInt sequence;
@@ -1309,9 +1296,6 @@ class ExplanationOfBenefitSupportingInfo extends BackboneElement {
 
   @override
   String get fhirType => 'ExplanationOfBenefitSupportingInfo';
-
-  @Id()
-  int dbId = 0;
 
   /// [sequence] /// A number to uniquely identify supporting information entries.
   final FhirPositiveInt sequence;
@@ -1579,9 +1563,6 @@ class ExplanationOfBenefitDiagnosis extends BackboneElement {
   @override
   String get fhirType => 'ExplanationOfBenefitDiagnosis';
 
-  @Id()
-  int dbId = 0;
-
   /// [sequence] /// A number to uniquely identify diagnosis entries.
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
@@ -1772,9 +1753,6 @@ class ExplanationOfBenefitProcedure extends BackboneElement {
 
   @override
   String get fhirType => 'ExplanationOfBenefitProcedure';
-
-  @Id()
-  int dbId = 0;
 
   /// [sequence] /// A number to uniquely identify procedure entries.
   final FhirPositiveInt sequence;
@@ -1970,9 +1948,6 @@ class ExplanationOfBenefitInsurance extends BackboneElement {
   @override
   String get fhirType => 'ExplanationOfBenefitInsurance';
 
-  @Id()
-  int dbId = 0;
-
   /// [focal] /// A flag to indicate that this Coverage is to be used for adjudication of
   /// this claim when set to true.
   final FhirBoolean focal;
@@ -2131,9 +2106,6 @@ class ExplanationOfBenefitAccident extends BackboneElement {
 
   @override
   String get fhirType => 'ExplanationOfBenefitAccident';
-
-  @Id()
-  int dbId = 0;
 
   /// [date] /// Date of an accident event related to the products and services contained in
   /// the claim.
@@ -2322,9 +2294,6 @@ class ExplanationOfBenefitItem extends BackboneElement {
 
   @override
   String get fhirType => 'ExplanationOfBenefitItem';
-
-  @Id()
-  int dbId = 0;
 
   /// [sequence] /// A number to uniquely identify item entries.
   final FhirPositiveInt sequence;
@@ -2879,9 +2848,6 @@ class ExplanationOfBenefitAdjudication extends BackboneElement {
   @override
   String get fhirType => 'ExplanationOfBenefitAdjudication';
 
-  @Id()
-  int dbId = 0;
-
   /// [category] /// A code to indicate the information type of this adjudication record.
   /// Information types may include: the value submitted, maximum values or
   /// percentages allowed or payable under the plan, amounts that the patient is
@@ -3051,9 +3017,6 @@ class ExplanationOfBenefitDetail extends BackboneElement {
 
   @override
   String get fhirType => 'ExplanationOfBenefitDetail';
-
-  @Id()
-  int dbId = 0;
 
   /// [sequence] /// A claim detail line. Either a simple (a product or service) or a 'group' of
   /// sub-details which are simple items.
@@ -3384,9 +3347,6 @@ class ExplanationOfBenefitSubDetail extends BackboneElement {
   @override
   String get fhirType => 'ExplanationOfBenefitSubDetail';
 
-  @Id()
-  int dbId = 0;
-
   /// [sequence] /// A claim detail line. Either a simple (a product or service) or a 'group' of
   /// sub-details which are simple items.
   final FhirPositiveInt sequence;
@@ -3710,9 +3670,6 @@ class ExplanationOfBenefitAddItem extends BackboneElement {
 
   @override
   String get fhirType => 'ExplanationOfBenefitAddItem';
-
-  @Id()
-  int dbId = 0;
 
   /// [itemSequence] /// Claim items which this service line is intended to replace.
   final List<FhirPositiveInt>? itemSequence;
@@ -4183,9 +4140,6 @@ class ExplanationOfBenefitDetail1 extends BackboneElement {
   @override
   String get fhirType => 'ExplanationOfBenefitDetail1';
 
-  @Id()
-  int dbId = 0;
-
   /// [productOrService] /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or other
   /// billing code for the item.
@@ -4440,9 +4394,6 @@ class ExplanationOfBenefitSubDetail1 extends BackboneElement {
   @override
   String get fhirType => 'ExplanationOfBenefitSubDetail1';
 
-  @Id()
-  int dbId = 0;
-
   /// [productOrService] /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or other
   /// billing code for the item.
@@ -4673,9 +4624,6 @@ class ExplanationOfBenefitTotal extends BackboneElement {
   @override
   String get fhirType => 'ExplanationOfBenefitTotal';
 
-  @Id()
-  int dbId = 0;
-
   /// [category] /// A code to indicate the information type of this adjudication record.
   /// Information types may include: the value submitted, maximum values or
   /// percentages allowed or payable under the plan, amounts that the patient is
@@ -4799,9 +4747,6 @@ class ExplanationOfBenefitPayment extends BackboneElement {
 
   @override
   String get fhirType => 'ExplanationOfBenefitPayment';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// Whether this represents partial or complete payment of the benefits
   /// payable.
@@ -4986,9 +4931,6 @@ class ExplanationOfBenefitProcessNote extends BackboneElement {
   @override
   String get fhirType => 'ExplanationOfBenefitProcessNote';
 
-  @Id()
-  int dbId = 0;
-
   /// [number] /// A number to uniquely identify a note entry.
   final FhirPositiveInt? number;
   final Element? numberElement;
@@ -5162,9 +5104,6 @@ class ExplanationOfBenefitBenefitBalance extends BackboneElement {
 
   @override
   String get fhirType => 'ExplanationOfBenefitBenefitBalance';
-
-  @Id()
-  int dbId = 0;
 
   /// [category] /// Code to identify the general type of benefits under which products and
   /// services are provided.
@@ -5394,9 +5333,6 @@ class ExplanationOfBenefitFinancial extends BackboneElement {
 
   @override
   String get fhirType => 'ExplanationOfBenefitFinancial';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// Classification of benefit being provided.
   final CodeableConcept type;

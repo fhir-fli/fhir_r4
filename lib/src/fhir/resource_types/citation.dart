@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -73,9 +72,6 @@ class Citation extends DomainResource {
 
   @override
   String get fhirType => 'Citation';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this citation when it is
   /// referenced in a specification, model, design or an instance; also called
@@ -748,9 +744,6 @@ class CitationSummary extends BackboneElement {
   @override
   String get fhirType => 'CitationSummary';
 
-  @Id()
-  int dbId = 0;
-
   /// [style] /// Format for display of the citation.
   final CodeableConcept? style;
 
@@ -877,9 +870,6 @@ class CitationClassification extends BackboneElement {
 
   @override
   String get fhirType => 'CitationClassification';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// The kind of classifier (e.g. publication type, keyword).
   final CodeableConcept? type;
@@ -1008,9 +998,6 @@ class CitationStatusDate extends BackboneElement {
 
   @override
   String get fhirType => 'CitationStatusDate';
-
-  @Id()
-  int dbId = 0;
 
   /// [activity] /// Classification of the status.
   final CodeableConcept activity;
@@ -1150,9 +1137,6 @@ class CitationRelatesTo extends BackboneElement {
 
   @override
   String get fhirType => 'CitationRelatesTo';
-
-  @Id()
-  int dbId = 0;
 
   /// [relationshipType] /// How the Citation resource relates to the target artifact.
   final CodeableConcept relationshipType;
@@ -1346,9 +1330,6 @@ class CitationCitedArtifact extends BackboneElement {
 
   @override
   String get fhirType => 'CitationCitedArtifact';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A formal identifier that is used to identify this citation when it is
   /// represented in other formats, or referenced in a specification, model,
@@ -1680,9 +1661,6 @@ class CitationVersion extends BackboneElement {
   @override
   String get fhirType => 'CitationVersion';
 
-  @Id()
-  int dbId = 0;
-
   /// [value] /// The version number or other version identifier.
   final FhirString value;
   final Element? valueElement;
@@ -1811,9 +1789,6 @@ class CitationStatusDate1 extends BackboneElement {
 
   @override
   String get fhirType => 'CitationStatusDate1';
-
-  @Id()
-  int dbId = 0;
 
   /// [activity] /// Classification of the status.
   final CodeableConcept activity;
@@ -1950,9 +1925,6 @@ class CitationTitle extends BackboneElement {
 
   @override
   String get fhirType => 'CitationTitle';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// Used to express the reason or specific aspect for the title.
   final List<CodeableConcept>? type;
@@ -2099,9 +2071,6 @@ class CitationAbstract extends BackboneElement {
 
   @override
   String get fhirType => 'CitationAbstract';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// Used to express the reason or specific aspect for the abstract.
   final CodeableConcept? type;
@@ -2263,9 +2232,6 @@ class CitationPart extends BackboneElement {
   @override
   String get fhirType => 'CitationPart';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// The kind of component.
   final CodeableConcept? type;
 
@@ -2410,9 +2376,6 @@ class CitationRelatesTo1 extends BackboneElement {
 
   @override
   String get fhirType => 'CitationRelatesTo1';
-
-  @Id()
-  int dbId = 0;
 
   /// [relationshipType] /// How the cited artifact relates to the target artifact.
   final CodeableConcept relationshipType;
@@ -2610,9 +2573,6 @@ class CitationPublicationForm extends BackboneElement {
 
   @override
   String get fhirType => 'CitationPublicationForm';
-
-  @Id()
-  int dbId = 0;
 
   /// [publishedIn] /// The collection the cited article or artifact is published in.
   final CitationPublishedIn? publishedIn;
@@ -2921,9 +2881,6 @@ class CitationPublishedIn extends BackboneElement {
   @override
   String get fhirType => 'CitationPublishedIn';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// Kind of container (e.g. Periodical, database, or book).
   final CodeableConcept? type;
 
@@ -3105,9 +3062,6 @@ class CitationPeriodicRelease extends BackboneElement {
   @override
   String get fhirType => 'CitationPeriodicRelease';
 
-  @Id()
-  int dbId = 0;
-
   /// [citedMedium] /// Describes the form of the medium cited. Common codes are "Internet" or
   /// "Print".
   final CodeableConcept? citedMedium;
@@ -3279,9 +3233,6 @@ class CitationDateOfPublication extends BackboneElement {
 
   @override
   String get fhirType => 'CitationDateOfPublication';
-
-  @Id()
-  int dbId = 0;
 
   /// [date] /// Date on which the issue of the journal was published.
   final FhirDate? date;
@@ -3494,9 +3445,6 @@ class CitationWebLocation extends BackboneElement {
   @override
   String get fhirType => 'CitationWebLocation';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// Code the reason for different URLs, e.g. abstract and full-text.
   final CodeableConcept? type;
 
@@ -3626,9 +3574,6 @@ class CitationClassification1 extends BackboneElement {
 
   @override
   String get fhirType => 'CitationClassification1';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// The kind of classifier (e.g. publication type, keyword).
   final CodeableConcept? type;
@@ -3772,9 +3717,6 @@ class CitationWhoClassified extends BackboneElement {
 
   @override
   String get fhirType => 'CitationWhoClassified';
-
-  @Id()
-  int dbId = 0;
 
   /// [person] /// Person who created the classification.
   final Reference? person;
@@ -3955,9 +3897,6 @@ class CitationContributorship extends BackboneElement {
   @override
   String get fhirType => 'CitationContributorship';
 
-  @Id()
-  int dbId = 0;
-
   /// [complete] /// Indicates if the list includes all authors and/or contributors.
   final FhirBoolean? complete;
   final Element? completeElement;
@@ -4122,9 +4061,6 @@ class CitationEntry extends BackboneElement {
 
   @override
   String get fhirType => 'CitationEntry';
-
-  @Id()
-  int dbId = 0;
 
   /// [name] /// A name associated with the individual.
   final HumanName? name;
@@ -4430,9 +4366,6 @@ class CitationAffiliationInfo extends BackboneElement {
   @override
   String get fhirType => 'CitationAffiliationInfo';
 
-  @Id()
-  int dbId = 0;
-
   /// [affiliation] /// Display for the organization.
   final FhirString? affiliation;
   final Element? affiliationElement;
@@ -4587,9 +4520,6 @@ class CitationContributionInstance extends BackboneElement {
   @override
   String get fhirType => 'CitationContributionInstance';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// The specific contribution.
   final CodeableConcept type;
 
@@ -4718,9 +4648,6 @@ class CitationSummary1 extends BackboneElement {
 
   @override
   String get fhirType => 'CitationSummary1';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// Used most commonly to express an author list or a contributorship
   /// statement.

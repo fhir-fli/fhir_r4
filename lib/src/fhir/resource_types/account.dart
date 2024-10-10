@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -43,9 +42,6 @@ class Account extends DomainResource {
 
   @override
   String get fhirType => 'Account';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Unique identifier used to reference the account. Might or might not be
   /// intended for human use (e.g. credit card number).
@@ -369,9 +365,6 @@ class AccountCoverage extends BackboneElement {
   @override
   String get fhirType => 'AccountCoverage';
 
-  @Id()
-  int dbId = 0;
-
   /// [coverage] /// The party(s) that contribute to payment (or part of) of the charges applied
   /// to this account (including self-pay).
   ///
@@ -506,9 +499,6 @@ class AccountGuarantor extends BackboneElement {
 
   @override
   String get fhirType => 'AccountGuarantor';
-
-  @Id()
-  int dbId = 0;
 
   /// [party] /// The entity who is responsible.
   final Reference party;

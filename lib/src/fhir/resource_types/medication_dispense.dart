@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -60,9 +59,6 @@ class MedicationDispense extends DomainResource {
 
   @override
   String get fhirType => 'MedicationDispense';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifiers associated with this Medication Dispense that are defined by
   /// business processes and/or used to refer to it when a direct URL reference
@@ -612,9 +608,6 @@ class MedicationDispensePerformer extends BackboneElement {
   @override
   String get fhirType => 'MedicationDispensePerformer';
 
-  @Id()
-  int dbId = 0;
-
   /// [function_] /// Distinguishes the type of performer in the dispense. For example, date
   /// enterer, packager, final checker.
   final CodeableConcept? function_;
@@ -741,9 +734,6 @@ class MedicationDispenseSubstitution extends BackboneElement {
 
   @override
   String get fhirType => 'MedicationDispenseSubstitution';
-
-  @Id()
-  int dbId = 0;
 
   /// [wasSubstituted] /// True if the dispenser dispensed a different drug or product from what was
   /// prescribed.

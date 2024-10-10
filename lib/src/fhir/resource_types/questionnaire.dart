@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -67,9 +66,6 @@ class Questionnaire extends DomainResource {
 
   @override
   String get fhirType => 'Questionnaire';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this questionnaire when it is
   /// referenced in a specification, model, design or an instance; also called
@@ -694,9 +690,6 @@ class QuestionnaireItem extends BackboneElement {
   @override
   String get fhirType => 'QuestionnaireItem';
 
-  @Id()
-  int dbId = 0;
-
   /// [linkId] /// An identifier that is unique within the Questionnaire allowing linkage to
   /// the equivalent item in a QuestionnaireResponse resource.
   final FhirString linkId;
@@ -1133,9 +1126,6 @@ class QuestionnaireEnableWhen extends BackboneElement {
   @override
   String get fhirType => 'QuestionnaireEnableWhen';
 
-  @Id()
-  int dbId = 0;
-
   /// [question] /// The linkId for the question whose answer (or lack of answer) governs
   /// whether this item is enabled.
   final FhirString question;
@@ -1460,9 +1450,6 @@ class QuestionnaireAnswerOption extends BackboneElement {
   @override
   String get fhirType => 'QuestionnaireAnswerOption';
 
-  @Id()
-  int dbId = 0;
-
   /// [valueInteger] /// A potential answer that's allowed as the answer to this question.
   final FhirInteger? valueInteger;
   final Element? valueIntegerElement;
@@ -1705,9 +1692,6 @@ class QuestionnaireInitial extends BackboneElement {
 
   @override
   String get fhirType => 'QuestionnaireInitial';
-
-  @Id()
-  int dbId = 0;
 
   /// [valueBoolean] /// The actual value to for an initial answer.
   final FhirBoolean? valueBoolean;

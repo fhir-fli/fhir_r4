@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -45,9 +44,6 @@ class TestReport extends DomainResource {
 
   @override
   String get fhirType => 'TestReport';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifier for the TestScript assigned for external purposes outside the
   /// context of FHIR.
@@ -392,9 +388,6 @@ class TestReportParticipant extends BackboneElement {
   @override
   String get fhirType => 'TestReportParticipant';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// The type of participant.
   final TestReportParticipantType type;
   final Element? typeElement;
@@ -543,9 +536,6 @@ class TestReportSetup extends BackboneElement {
   @override
   String get fhirType => 'TestReportSetup';
 
-  @Id()
-  int dbId = 0;
-
   /// [action] /// Action would contain either an operation or an assertion.
   final List<TestReportAction> action;
   @override
@@ -656,9 +646,6 @@ class TestReportAction extends BackboneElement {
 
   @override
   String get fhirType => 'TestReportAction';
-
-  @Id()
-  int dbId = 0;
 
   /// [operation] /// The operation performed.
   final TestReportOperation? operation;
@@ -786,9 +773,6 @@ class TestReportOperation extends BackboneElement {
 
   @override
   String get fhirType => 'TestReportOperation';
-
-  @Id()
-  int dbId = 0;
 
   /// [result] /// The result of this operation.
   final TestReportActionResult result;
@@ -945,9 +929,6 @@ class TestReportAssert extends BackboneElement {
   @override
   String get fhirType => 'TestReportAssert';
 
-  @Id()
-  int dbId = 0;
-
   /// [result] /// The result of this assertion.
   final TestReportActionResult result;
   final Element? resultElement;
@@ -1103,9 +1084,6 @@ class TestReportTest extends BackboneElement {
   @override
   String get fhirType => 'TestReportTest';
 
-  @Id()
-  int dbId = 0;
-
   /// [name] /// The name of this test used for tracking/logging purposes by test engines.
   final FhirString? name;
   final Element? nameElement;
@@ -1256,9 +1234,6 @@ class TestReportAction1 extends BackboneElement {
   @override
   String get fhirType => 'TestReportAction1';
 
-  @Id()
-  int dbId = 0;
-
   /// [operation] /// An operation would involve a REST request to a server.
   final TestReportOperation? operation;
 
@@ -1382,9 +1357,6 @@ class TestReportTeardown extends BackboneElement {
   @override
   String get fhirType => 'TestReportTeardown';
 
-  @Id()
-  int dbId = 0;
-
   /// [action] /// The teardown action will only contain an operation.
   final List<TestReportAction> action;
   @override
@@ -1494,9 +1466,6 @@ class TestReportAction2 extends BackboneElement {
 
   @override
   String get fhirType => 'TestReportAction2';
-
-  @Id()
-  int dbId = 0;
 
   /// [operation] /// An operation would involve a REST request to a server.
   final TestReportOperation operation;

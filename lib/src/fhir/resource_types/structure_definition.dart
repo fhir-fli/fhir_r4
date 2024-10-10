@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -72,9 +71,6 @@ class StructureDefinition extends DomainResource {
 
   @override
   String get fhirType => 'StructureDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this structure definition when it
   /// is referenced in a specification, model, design or an instance; also called
@@ -723,9 +719,6 @@ class StructureDefinitionMapping extends BackboneElement {
   @override
   String get fhirType => 'StructureDefinitionMapping';
 
-  @Id()
-  int dbId = 0;
-
   /// [identity] /// An Internal id that is used to identify this mapping set when specific
   /// mappings are made.
   final FhirId identity;
@@ -905,9 +898,6 @@ class StructureDefinitionContext extends BackboneElement {
   @override
   String get fhirType => 'StructureDefinitionContext';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// Defines how to interpret the expression that defines what the context of
   /// the extension is.
   final ExtensionContextType type;
@@ -1069,9 +1059,6 @@ class StructureDefinitionSnapshot extends BackboneElement {
   @override
   String get fhirType => 'StructureDefinitionSnapshot';
 
-  @Id()
-  int dbId = 0;
-
   /// [element] /// Captures constraints on each element within the resource.
   final List<ElementDefinition> element;
   @override
@@ -1182,9 +1169,6 @@ class StructureDefinitionDifferential extends BackboneElement {
 
   @override
   String get fhirType => 'StructureDefinitionDifferential';
-
-  @Id()
-  int dbId = 0;
 
   /// [element] /// Captures constraints on each element within the resource.
   final List<ElementDefinition> element;

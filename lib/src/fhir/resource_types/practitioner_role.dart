@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -44,9 +43,6 @@ class PractitionerRole extends DomainResource {
 
   @override
   String get fhirType => 'PractitionerRole';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business Identifiers that are specific to a role/location.
   final List<Identifier>? identifier;
@@ -436,9 +432,6 @@ class PractitionerRoleAvailableTime extends BackboneElement {
   @override
   String get fhirType => 'PractitionerRoleAvailableTime';
 
-  @Id()
-  int dbId = 0;
-
   /// [daysOfWeek] /// Indicates which days of the week are available between the start and end
   /// Times.
   final List<DaysOfWeek>? daysOfWeek;
@@ -629,9 +622,6 @@ class PractitionerRoleNotAvailable extends BackboneElement {
 
   @override
   String get fhirType => 'PractitionerRoleNotAvailable';
-
-  @Id()
-  int dbId = 0;
 
   /// [description] /// The reason that can be presented to the user as to why this time is not
   /// available.

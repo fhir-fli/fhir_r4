@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -29,9 +28,6 @@ class Coding extends DataType {
 
   @override
   String get fhirType => 'Coding';
-
-  @Id()
-  int dbId = 0;
 
   /// [system] /// The identification of the code system that defines the meaning of the
   /// symbol in the code.

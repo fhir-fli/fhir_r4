@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -65,9 +64,6 @@ class EvidenceVariable extends DomainResource {
 
   @override
   String get fhirType => 'EvidenceVariable';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this evidence variable when it is
   /// referenced in a specification, model, design or an instance; also called
@@ -691,9 +687,6 @@ class EvidenceVariableCharacteristic extends BackboneElement {
   @override
   String get fhirType => 'EvidenceVariableCharacteristic';
 
-  @Id()
-  int dbId = 0;
-
   /// [description] /// A short, natural language description of the characteristic that could be
   /// used to communicate the criteria to an end-user.
   final FhirString? description;
@@ -963,9 +956,6 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
   @override
   String get fhirType => 'EvidenceVariableTimeFromStart';
 
-  @Id()
-  int dbId = 0;
-
   /// [description] /// A short, natural language description.
   final FhirString? description;
   final Element? descriptionElement;
@@ -1126,9 +1116,6 @@ class EvidenceVariableCategory extends BackboneElement {
 
   @override
   String get fhirType => 'EvidenceVariableCategory';
-
-  @Id()
-  int dbId = 0;
 
   /// [name] /// A human-readable title or representation of the grouping.
   final FhirString? name;

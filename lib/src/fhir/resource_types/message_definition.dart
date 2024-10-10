@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -72,9 +71,6 @@ class MessageDefinition extends DomainResource {
 
   @override
   String get fhirType => 'MessageDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// The business identifier that is used to reference the MessageDefinition and
   /// *is* expected to be consistent from server to server.
@@ -738,9 +734,6 @@ class MessageDefinitionFocus extends BackboneElement {
   @override
   String get fhirType => 'MessageDefinitionFocus';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// The kind of resource that must be the focus for this message.
   final FhirCode code;
   final Element? codeElement;
@@ -918,9 +911,6 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
 
   @override
   String get fhirType => 'MessageDefinitionAllowedResponse';
-
-  @Id()
-  int dbId = 0;
 
   /// [message] /// A reference to the message definition that must be adhered to by this
   /// supported response.

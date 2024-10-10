@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -22,9 +21,6 @@ class CodeableReference extends DataType {
 
   @override
   String get fhirType => 'CodeableReference';
-
-  @Id()
-  int dbId = 0;
 
   /// [concept] /// A reference to a concept - e.g. the information is identified by its
   /// general class to the degree of precision found in the terminology.

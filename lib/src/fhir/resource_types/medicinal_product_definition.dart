@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -64,9 +63,6 @@ class MedicinalProductDefinition extends DomainResource {
 
   @override
   String get fhirType => 'MedicinalProductDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifier for this product. Could be an MPID. When in development
   /// or being regulated, products are typically referenced by official
@@ -709,9 +705,6 @@ class MedicinalProductDefinitionContact extends BackboneElement {
   @override
   String get fhirType => 'MedicinalProductDefinitionContact';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// Allows the contact to be classified, for example QPPV, Pharmacovigilance
   /// Enquiry Information.
   final CodeableConcept? type;
@@ -835,9 +828,6 @@ class MedicinalProductDefinitionName extends BackboneElement {
 
   @override
   String get fhirType => 'MedicinalProductDefinitionName';
-
-  @Id()
-  int dbId = 0;
 
   /// [productName] /// The full product name.
   final FhirString productName;
@@ -1003,9 +993,6 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
   @override
   String get fhirType => 'MedicinalProductDefinitionNamePart';
 
-  @Id()
-  int dbId = 0;
-
   /// [part_] /// A fragment of a product name.
   final FhirString part_;
   final Element? partElement;
@@ -1131,9 +1118,6 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
 
   @override
   String get fhirType => 'MedicinalProductDefinitionCountryLanguage';
-
-  @Id()
-  int dbId = 0;
 
   /// [country] /// Country code for where this name applies.
   final CodeableConcept country;
@@ -1269,9 +1253,6 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
   @override
   String get fhirType => 'MedicinalProductDefinitionCrossReference';
 
-  @Id()
-  int dbId = 0;
-
   /// [product] /// Reference to another product, e.g. for linking authorised to
   /// investigational product.
   final CodeableReference product;
@@ -1400,9 +1381,6 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
 
   @override
   String get fhirType => 'MedicinalProductDefinitionOperation';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// The type of manufacturing operation e.g. manufacturing itself,
   /// re-packaging. For the authorization of this, a RegulatedAuthorization would
@@ -1567,9 +1545,6 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
 
   @override
   String get fhirType => 'MedicinalProductDefinitionCharacteristic';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// A code expressing the type of characteristic.
   final CodeableConcept type;

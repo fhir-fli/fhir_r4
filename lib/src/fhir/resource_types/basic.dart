@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -35,9 +34,6 @@ class Basic extends DomainResource {
 
   @override
   String get fhirType => 'Basic';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifier assigned to the resource for business purposes, outside the
   /// context of FHIR.

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -47,9 +46,6 @@ class VerificationResult extends DomainResource {
 
   @override
   String get fhirType => 'VerificationResult';
-
-  @Id()
-  int dbId = 0;
 
   /// [target] /// A resource that was validated.
   final List<Reference>? target;
@@ -443,9 +439,6 @@ class VerificationResultPrimarySource extends BackboneElement {
   @override
   String get fhirType => 'VerificationResultPrimarySource';
 
-  @Id()
-  int dbId = 0;
-
   /// [who] /// Reference to the primary source.
   final Reference? who;
 
@@ -663,9 +656,6 @@ class VerificationResultAttestation extends BackboneElement {
 
   @override
   String get fhirType => 'VerificationResultAttestation';
-
-  @Id()
-  int dbId = 0;
 
   /// [who] /// The individual or organization attesting to information.
   final Reference? who;
@@ -896,9 +886,6 @@ class VerificationResultValidator extends BackboneElement {
 
   @override
   String get fhirType => 'VerificationResultValidator';
-
-  @Id()
-  int dbId = 0;
 
   /// [organization] /// Reference to the organization validating information.
   final Reference organization;

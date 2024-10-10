@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -66,9 +65,6 @@ class Task extends DomainResource {
 
   @override
   String get fhirType => 'Task';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// The business identifier for this task.
   final List<Identifier>? identifier;
@@ -690,9 +686,6 @@ class TaskRestriction extends BackboneElement {
   @override
   String get fhirType => 'TaskRestriction';
 
-  @Id()
-  int dbId = 0;
-
   /// [repetitions] /// Indicates the number of times the requested action should occur.
   final FhirPositiveInt? repetitions;
   final Element? repetitionsElement;
@@ -907,9 +900,6 @@ class TaskInput extends BackboneElement {
 
   @override
   String get fhirType => 'TaskInput';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// A code or description indicating how the input is intended to be used as
   /// part of the task execution.
@@ -1820,9 +1810,6 @@ class TaskOutput extends BackboneElement {
 
   @override
   String get fhirType => 'TaskOutput';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// The name of the Output parameter.
   final CodeableConcept type;

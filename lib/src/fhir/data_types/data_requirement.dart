@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -33,9 +32,6 @@ class DataRequirement extends DataType {
 
   @override
   String get fhirType => 'DataRequirement';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// The type of the required data, specified as the type name of a resource.
   /// For profiles, this value is set to the type of the base resource of the
@@ -309,9 +305,6 @@ class DataRequirementCodeFilter extends Element {
   @override
   String get fhirType => 'DataRequirementCodeFilter';
 
-  @Id()
-  int dbId = 0;
-
   /// [path] /// The code-valued attribute of the filter. The specified path SHALL be a
   /// FHIRPath resolveable on the specified type of the DataRequirement, and
   /// SHALL consist only of identifiers, constant indexers, and .resolve(). The
@@ -493,9 +486,6 @@ class DataRequirementDateFilter extends Element {
 
   @override
   String get fhirType => 'DataRequirementDateFilter';
-
-  @Id()
-  int dbId = 0;
 
   /// [path] /// The date-valued attribute of the filter. The specified path SHALL be a
   /// FHIRPath resolveable on the specified type of the DataRequirement, and
@@ -688,9 +678,6 @@ class DataRequirementSort extends Element {
 
   @override
   String get fhirType => 'DataRequirementSort';
-
-  @Id()
-  int dbId = 0;
 
   /// [path] /// The attribute of the sort. The specified path must be resolvable from the
   /// type of the required data. The path is allowed to contain qualifiers (.) to

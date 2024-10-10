@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -44,9 +43,6 @@ class Consent extends DomainResource {
 
   @override
   String get fhirType => 'Consent';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Unique identifier for this copy of the Consent Statement.
   final List<Identifier>? identifier;
@@ -400,9 +396,6 @@ class ConsentPolicy extends BackboneElement {
   @override
   String get fhirType => 'ConsentPolicy';
 
-  @Id()
-  int dbId = 0;
-
   /// [authority] /// Entity or Organization having regulatory jurisdiction or accountability for
   /// enforcing policies pertaining to Consent Directives.
   final FhirUri? authority;
@@ -558,9 +551,6 @@ class ConsentVerification extends BackboneElement {
 
   @override
   String get fhirType => 'ConsentVerification';
-
-  @Id()
-  int dbId = 0;
 
   /// [verified] /// Has the instruction been verified.
   final FhirBoolean verified;
@@ -721,9 +711,6 @@ class ConsentProvision extends BackboneElement {
 
   @override
   String get fhirType => 'ConsentProvision';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// Action to take - permit or deny - when the rule conditions are met. Not
   /// permitted in root rule, required in all nested rules.
@@ -990,9 +977,6 @@ class ConsentActor extends BackboneElement {
   @override
   String get fhirType => 'ConsentActor';
 
-  @Id()
-  int dbId = 0;
-
   /// [role] /// How the individual is involved in the resources content that is described
   /// in the exception.
   final CodeableConcept role;
@@ -1110,9 +1094,6 @@ class ConsentData extends BackboneElement {
 
   @override
   String get fhirType => 'ConsentData';
-
-  @Id()
-  int dbId = 0;
 
   /// [meaning] /// How the resource reference is interpreted when testing consent
   /// restrictions.

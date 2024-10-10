@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -43,9 +42,6 @@ class PaymentNotice extends DomainResource {
 
   @override
   String get fhirType => 'PaymentNotice';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this payment notice.
   final List<Identifier>? identifier;

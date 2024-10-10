@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -29,9 +28,6 @@ class ContactPoint extends DataType {
 
   @override
   String get fhirType => 'ContactPoint';
-
-  @Id()
-  int dbId = 0;
 
   /// [system] /// Telecommunications form for contact point - what communications system is
   /// required to make use of the contact.

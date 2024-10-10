@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -63,9 +62,6 @@ class ImplementationGuide extends DomainResource {
 
   @override
   String get fhirType => 'ImplementationGuide';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this implementation guide when it
   /// is referenced in a specification, model, design or an instance; also called
@@ -607,9 +603,6 @@ class ImplementationGuideDependsOn extends BackboneElement {
   @override
   String get fhirType => 'ImplementationGuideDependsOn';
 
-  @Id()
-  int dbId = 0;
-
   /// [uri] /// A canonical reference to the Implementation guide for the dependency.
   final FhirCanonical uri;
   final Element? uriElement;
@@ -768,9 +761,6 @@ class ImplementationGuideGlobal extends BackboneElement {
   @override
   String get fhirType => 'ImplementationGuideGlobal';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// The type of resource that all instances must conform to.
   final FhirCode type;
   final Element? typeElement;
@@ -906,9 +896,6 @@ class ImplementationGuideDefinition extends BackboneElement {
 
   @override
   String get fhirType => 'ImplementationGuideDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [grouping] /// A logical group of resources. Logical groups can be used when building
   /// pages.
@@ -1093,9 +1080,6 @@ class ImplementationGuideGrouping extends BackboneElement {
   @override
   String get fhirType => 'ImplementationGuideGrouping';
 
-  @Id()
-  int dbId = 0;
-
   /// [name] /// The human-readable title to display for the package of resources when
   /// rendering the implementation guide.
   final FhirString name;
@@ -1246,9 +1230,6 @@ class ImplementationGuideResource extends BackboneElement {
 
   @override
   String get fhirType => 'ImplementationGuideResource';
-
-  @Id()
-  int dbId = 0;
 
   /// [reference] /// Where this resource is found.
   final Reference reference;
@@ -1496,9 +1477,6 @@ class ImplementationGuidePage extends BackboneElement {
   @override
   String get fhirType => 'ImplementationGuidePage';
 
-  @Id()
-  int dbId = 0;
-
   /// [nameUrl] /// The source address for the page.
   final FhirUrl? nameUrl;
   final Element? nameUrlElement;
@@ -1677,9 +1655,6 @@ class ImplementationGuideParameter extends BackboneElement {
   @override
   String get fhirType => 'ImplementationGuideParameter';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// apply | path-resource | path-pages | path-tx-cache | expansion-parameter |
   /// rule-broken-links | generate-xml | generate-json | generate-turtle |
   /// html-template.
@@ -1814,9 +1789,6 @@ class ImplementationGuideTemplate extends BackboneElement {
 
   @override
   String get fhirType => 'ImplementationGuideTemplate';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// Type of template specified.
   final FhirCode code;
@@ -1974,9 +1946,6 @@ class ImplementationGuideManifest extends BackboneElement {
 
   @override
   String get fhirType => 'ImplementationGuideManifest';
-
-  @Id()
-  int dbId = 0;
 
   /// [rendering] /// A pointer to official web page, PDF or other rendering of the
   /// implementation guide.
@@ -2190,9 +2159,6 @@ class ImplementationGuideResource1 extends BackboneElement {
   @override
   String get fhirType => 'ImplementationGuideResource1';
 
-  @Id()
-  int dbId = 0;
-
   /// [reference] /// Where this resource is found.
   final Reference reference;
 
@@ -2369,9 +2335,6 @@ class ImplementationGuidePage1 extends BackboneElement {
 
   @override
   String get fhirType => 'ImplementationGuidePage1';
-
-  @Id()
-  int dbId = 0;
 
   /// [name] /// Relative path to the page.
   final FhirString name;

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -74,9 +73,6 @@ class MedicationRequest extends DomainResource {
 
   @override
   String get fhirType => 'MedicationRequest';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifiers associated with this medication request that are defined by
   /// business processes and/or used to refer to it when a direct URL reference
@@ -796,9 +792,6 @@ class MedicationRequestDispenseRequest extends BackboneElement {
   @override
   String get fhirType => 'MedicationRequestDispenseRequest';
 
-  @Id()
-  int dbId = 0;
-
   /// [initialFill] /// Indicates the quantity or duration for the first dispense of the
   /// medication.
   final MedicationRequestInitialFill? initialFill;
@@ -1004,9 +997,6 @@ class MedicationRequestInitialFill extends BackboneElement {
   @override
   String get fhirType => 'MedicationRequestInitialFill';
 
-  @Id()
-  int dbId = 0;
-
   /// [quantity] /// The amount or quantity to provide as part of the first dispense.
   final Quantity? quantity;
 
@@ -1133,9 +1123,6 @@ class MedicationRequestSubstitution extends BackboneElement {
 
   @override
   String get fhirType => 'MedicationRequestSubstitution';
-
-  @Id()
-  int dbId = 0;
 
   /// [allowedBoolean] /// True if the prescriber allows a different drug to be dispensed from what
   /// was prescribed.

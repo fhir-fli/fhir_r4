@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -55,9 +54,6 @@ class AllergyIntolerance extends DomainResource {
 
   @override
   String get fhirType => 'AllergyIntolerance';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this AllergyIntolerance by the performer
   /// or other systems which remain constant as the resource is updated and
@@ -550,9 +546,6 @@ class AllergyIntoleranceReaction extends BackboneElement {
 
   @override
   String get fhirType => 'AllergyIntoleranceReaction';
-
-  @Id()
-  int dbId = 0;
 
   /// [substance] /// Identification of the specific substance (or pharmaceutical product)
   /// considered to be responsible for the Adverse Reaction event. Note: the

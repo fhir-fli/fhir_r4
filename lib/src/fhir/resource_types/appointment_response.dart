@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -40,9 +39,6 @@ class AppointmentResponse extends DomainResource {
 
   @override
   String get fhirType => 'AppointmentResponse';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// This records identifiers associated with this appointment response concern
   /// that are defined by business processes and/ or used to refer to it when a

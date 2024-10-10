@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -50,9 +49,6 @@ class SupplyRequest extends DomainResource {
 
   @override
   String get fhirType => 'SupplyRequest';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this SupplyRequest by the author and/or
   /// other systems. These identifiers remain constant as the resource is updated
@@ -473,9 +469,6 @@ class SupplyRequestParameter extends BackboneElement {
 
   @override
   String get fhirType => 'SupplyRequestParameter';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// A code or string that identifies the device detail being asserted.
   final CodeableConcept? code;

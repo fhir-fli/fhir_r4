@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -63,9 +62,6 @@ class DeviceRequest extends DomainResource {
 
   @override
   String get fhirType => 'DeviceRequest';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifiers assigned to this order by the orderer or by the receiver.
   final List<Identifier>? identifier;
@@ -659,9 +655,6 @@ class DeviceRequestParameter extends BackboneElement {
 
   @override
   String get fhirType => 'DeviceRequestParameter';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// A code or string that identifies the device detail being asserted.
   final CodeableConcept? code;

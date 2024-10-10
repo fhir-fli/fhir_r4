@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -51,9 +50,6 @@ class CoverageEligibilityResponse extends DomainResource {
 
   @override
   String get fhirType => 'CoverageEligibilityResponse';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this coverage eligiblity request.
   final List<Identifier>? identifier;
@@ -453,9 +449,6 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
   @override
   String get fhirType => 'CoverageEligibilityResponseInsurance';
 
-  @Id()
-  int dbId = 0;
-
   /// [coverage] /// Reference to the insurance card level information contained in the Coverage
   /// resource. The coverage issuing insurer will use these details to locate the
   /// patient's actual coverage within the insurer's information system.
@@ -634,9 +627,6 @@ class CoverageEligibilityResponseItem extends BackboneElement {
 
   @override
   String get fhirType => 'CoverageEligibilityResponseItem';
-
-  @Id()
-  int dbId = 0;
 
   /// [category] /// Code to identify the general type of benefits under which products and
   /// services are provided.
@@ -977,9 +967,6 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
   @override
   String get fhirType => 'CoverageEligibilityResponseBenefit';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// Classification of benefit being provided.
   final CodeableConcept type;
 
@@ -1192,9 +1179,6 @@ class CoverageEligibilityResponseError extends BackboneElement {
 
   @override
   String get fhirType => 'CoverageEligibilityResponseError';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// An error code,from a specified code system, which details why the
   /// eligibility check could not be performed.

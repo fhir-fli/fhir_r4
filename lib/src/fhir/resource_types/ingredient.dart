@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -37,9 +36,6 @@ class Ingredient extends DomainResource {
 
   @override
   String get fhirType => 'Ingredient';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// The identifier(s) of this Ingredient that are assigned by business
   /// processes and/or used to refer to it when a direct URL reference to the
@@ -323,9 +319,6 @@ class IngredientManufacturer extends BackboneElement {
   @override
   String get fhirType => 'IngredientManufacturer';
 
-  @Id()
-  int dbId = 0;
-
   /// [role] /// The way in which this manufacturer is associated with the ingredient. For
   /// example whether it is a possible one (others allowed), or an exclusive
   /// authorized one for this ingredient. Note that this is not the manufacturing
@@ -453,9 +446,6 @@ class IngredientSubstance extends BackboneElement {
 
   @override
   String get fhirType => 'IngredientSubstance';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// A code or full resource that represents the ingredient's substance.
   final CodeableReference code;
@@ -594,9 +584,6 @@ class IngredientStrength extends BackboneElement {
 
   @override
   String get fhirType => 'IngredientStrength';
-
-  @Id()
-  int dbId = 0;
 
   /// [presentationRatio] /// The quantity of substance in the unit of presentation, or in the volume (or
   /// mass) of the single pharmaceutical product or manufactured item. Unit of
@@ -869,9 +856,6 @@ class IngredientReferenceStrength extends BackboneElement {
 
   @override
   String get fhirType => 'IngredientReferenceStrength';
-
-  @Id()
-  int dbId = 0;
 
   /// [substance] /// Relevant reference substance.
   final CodeableReference? substance;

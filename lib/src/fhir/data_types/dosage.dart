@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -39,9 +38,6 @@ class Dosage extends BackboneType {
 
   @override
   String get fhirType => 'Dosage';
-
-  @Id()
-  int dbId = 0;
 
   /// [sequence] /// Indicates the order in which the dosage instructions should be applied or
   /// interpreted.
@@ -360,9 +356,6 @@ class DosageDoseAndRate extends Element {
 
   @override
   String get fhirType => 'DosageDoseAndRate';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// The kind of dose or rate specified, for example, ordered or calculated.
   final CodeableConcept? type;

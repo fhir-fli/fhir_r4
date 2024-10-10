@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -59,9 +58,6 @@ class CarePlan extends DomainResource {
 
   @override
   String get fhirType => 'CarePlan';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this care plan by the performer or other
   /// systems which remain constant as the resource is updated and propagates
@@ -609,9 +605,6 @@ class CarePlanActivity extends BackboneElement {
   @override
   String get fhirType => 'CarePlanActivity';
 
-  @Id()
-  int dbId = 0;
-
   /// [outcomeCodeableConcept] /// Identifies the outcome at the point when the status of the activity is
   /// assessed. For example, the outcome of an education activity could be
   /// patient understands (or not).
@@ -815,9 +808,6 @@ class CarePlanDetail extends BackboneElement {
 
   @override
   String get fhirType => 'CarePlanDetail';
-
-  @Id()
-  int dbId = 0;
 
   /// [kind] /// A description of the kind of resource the in-line definition of a care plan
   /// activity is representing. The CarePlan.activity.detail is an in-line

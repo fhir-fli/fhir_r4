@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -43,9 +42,6 @@ class Organization extends DomainResource {
 
   @override
   String get fhirType => 'Organization';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifier for the organization that is used to identify the organization
   /// across multiple disparate systems.
@@ -372,9 +368,6 @@ class OrganizationContact extends BackboneElement {
 
   @override
   String get fhirType => 'OrganizationContact';
-
-  @Id()
-  int dbId = 0;
 
   /// [purpose] /// Indicates a purpose for which the contact can be reached.
   final CodeableConcept? purpose;

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -26,9 +25,6 @@ class Parameters extends Resource {
 
   @override
   String get fhirType => 'Parameters';
-
-  @Id()
-  int dbId = 0;
 
   /// [parameter] /// A parameter passed to or received from the operation.
   final List<ParametersParameter>? parameter;
@@ -229,9 +225,6 @@ class ParametersParameter extends BackboneElement {
 
   @override
   String get fhirType => 'ParametersParameter';
-
-  @Id()
-  int dbId = 0;
 
   /// [name] /// The name of the parameter (reference to the operation definition).
   final FhirString name;

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -72,9 +71,6 @@ class MedicationStatement extends DomainResource {
 
   @override
   String get fhirType => 'MedicationStatement';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifiers associated with this Medication Statement that are defined by
   /// business processes and/or used to refer to it when a direct URL reference

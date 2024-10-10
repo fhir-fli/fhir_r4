@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -63,9 +62,6 @@ class TestScript extends DomainResource {
 
   @override
   String get fhirType => 'TestScript';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this test script when it is
   /// referenced in a specification, model, design or an instance; also called
@@ -647,9 +643,6 @@ class TestScriptOrigin extends BackboneElement {
   @override
   String get fhirType => 'TestScriptOrigin';
 
-  @Id()
-  int dbId = 0;
-
   /// [index] /// Abstract name given to an origin server in this test script. The name is
   /// provided as a number starting at 1.
   final FhirInteger index;
@@ -776,9 +769,6 @@ class TestScriptDestination extends BackboneElement {
   @override
   String get fhirType => 'TestScriptDestination';
 
-  @Id()
-  int dbId = 0;
-
   /// [index] /// Abstract name given to a destination server in this test script. The name
   /// is provided as a number starting at 1.
   final FhirInteger index;
@@ -903,9 +893,6 @@ class TestScriptMetadata extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptMetadata';
-
-  @Id()
-  int dbId = 0;
 
   /// [link] /// A link to the FHIR specification that this test is covering.
   final List<TestScriptLink>? link;
@@ -1036,9 +1023,6 @@ class TestScriptLink extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptLink';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// URL to a particular requirement or feature within the FHIR specification.
   final FhirUri url;
@@ -1188,9 +1172,6 @@ class TestScriptCapability extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptCapability';
-
-  @Id()
-  int dbId = 0;
 
   /// [required_] /// Whether or not the test execution will require the given capabilities of
   /// the server in order for this test script to execute.
@@ -1441,9 +1422,6 @@ class TestScriptFixture extends BackboneElement {
   @override
   String get fhirType => 'TestScriptFixture';
 
-  @Id()
-  int dbId = 0;
-
   /// [autocreate] /// Whether or not to implicitly create the fixture during setup. If true, the
   /// fixture is automatically created on each server being tested during setup,
   /// therefore no create operation is required for this fixture in the
@@ -1608,9 +1586,6 @@ class TestScriptVariable extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptVariable';
-
-  @Id()
-  int dbId = 0;
 
   /// [name] /// Descriptive name for this variable.
   final FhirString name;
@@ -1869,9 +1844,6 @@ class TestScriptSetup extends BackboneElement {
   @override
   String get fhirType => 'TestScriptSetup';
 
-  @Id()
-  int dbId = 0;
-
   /// [action] /// Action would contain either an operation or an assertion.
   final List<TestScriptAction> action;
   @override
@@ -1982,9 +1954,6 @@ class TestScriptAction extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptAction';
-
-  @Id()
-  int dbId = 0;
 
   /// [operation] /// The operation to perform.
   final TestScriptOperation? operation;
@@ -2139,9 +2108,6 @@ class TestScriptOperation extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptOperation';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// Server interaction or operation type.
   final Coding? type;
@@ -2560,9 +2526,6 @@ class TestScriptRequestHeader extends BackboneElement {
   @override
   String get fhirType => 'TestScriptRequestHeader';
 
-  @Id()
-  int dbId = 0;
-
   /// [field] /// The HTTP header field e.g. "Accept".
   final FhirString field;
   final Element? fieldElement;
@@ -2737,9 +2700,6 @@ class TestScriptAssert extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptAssert';
-
-  @Id()
-  int dbId = 0;
 
   /// [label] /// The label would be used for tracking/logging purposes by test engines.
   final FhirString? label;
@@ -3284,9 +3244,6 @@ class TestScriptTest extends BackboneElement {
   @override
   String get fhirType => 'TestScriptTest';
 
-  @Id()
-  int dbId = 0;
-
   /// [name] /// The name of this test used for tracking/logging purposes by test engines.
   final FhirString? name;
   final Element? nameElement;
@@ -3437,9 +3394,6 @@ class TestScriptAction1 extends BackboneElement {
   @override
   String get fhirType => 'TestScriptAction1';
 
-  @Id()
-  int dbId = 0;
-
   /// [operation] /// An operation would involve a REST request to a server.
   final TestScriptOperation? operation;
 
@@ -3564,9 +3518,6 @@ class TestScriptTeardown extends BackboneElement {
   @override
   String get fhirType => 'TestScriptTeardown';
 
-  @Id()
-  int dbId = 0;
-
   /// [action] /// The teardown action will only contain an operation.
   final List<TestScriptAction> action;
   @override
@@ -3676,9 +3627,6 @@ class TestScriptAction2 extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptAction2';
-
-  @Id()
-  int dbId = 0;
 
   /// [operation] /// An operation would involve a REST request to a server.
   final TestScriptOperation operation;

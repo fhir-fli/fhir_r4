@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -51,9 +50,6 @@ class DocumentReference extends DomainResource {
 
   @override
   String get fhirType => 'DocumentReference';
-
-  @Id()
-  int dbId = 0;
 
   /// [masterIdentifier] /// Document identifier as assigned by the source of the document. This
   /// identifier is specific to this version of the document. This unique
@@ -458,9 +454,6 @@ class DocumentReferenceRelatesTo extends BackboneElement {
   @override
   String get fhirType => 'DocumentReferenceRelatesTo';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// The type of relationship that this document has with anther document.
   final DocumentRelationshipType code;
   final Element? codeElement;
@@ -581,9 +574,6 @@ class DocumentReferenceContent extends BackboneElement {
 
   @override
   String get fhirType => 'DocumentReferenceContent';
-
-  @Id()
-  int dbId = 0;
 
   /// [attachment] /// The document or URL of the document along with critical metadata to prove
   /// content has integrity.
@@ -710,9 +700,6 @@ class DocumentReferenceContext extends BackboneElement {
 
   @override
   String get fhirType => 'DocumentReferenceContext';
-
-  @Id()
-  int dbId = 0;
 
   /// [encounter] /// Describes the clinical encounter or type of care that the document content
   /// is associated with.

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -74,9 +73,6 @@ class CodeSystem extends DomainResource {
 
   @override
   String get fhirType => 'CodeSystem';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this code system when it is
   /// referenced in a specification, model, design or an instance; also called
@@ -747,9 +743,6 @@ class CodeSystemFilter extends BackboneElement {
   @override
   String get fhirType => 'CodeSystemFilter';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// The code that identifies this filter when it is used as a filter in
   /// [ValueSet](valueset.html#).compose.include.filter.
   final FhirCode code;
@@ -929,9 +922,6 @@ class CodeSystemProperty extends BackboneElement {
 
   @override
   String get fhirType => 'CodeSystemProperty';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// A code that is used to identify the property. The code is used internally
   /// (in CodeSystem.concept.property.code) and also externally, such as in
@@ -1114,9 +1104,6 @@ class CodeSystemConcept extends BackboneElement {
 
   @override
   String get fhirType => 'CodeSystemConcept';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// A code - a text symbol - that uniquely identifies the concept within the
   /// code system.
@@ -1331,9 +1318,6 @@ class CodeSystemDesignation extends BackboneElement {
   @override
   String get fhirType => 'CodeSystemDesignation';
 
-  @Id()
-  int dbId = 0;
-
   /// [language] /// The language this designation is defined for.
   final CommonLanguages? language;
   final Element? languageElement;
@@ -1490,9 +1474,6 @@ class CodeSystemProperty1 extends BackboneElement {
 
   @override
   String get fhirType => 'CodeSystemProperty1';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// A code that is a reference to CodeSystem.property.code.
   final FhirCode code;

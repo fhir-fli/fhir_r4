@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -41,9 +40,6 @@ class OrganizationAffiliation extends DomainResource {
 
   @override
   String get fhirType => 'OrganizationAffiliation';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifiers that are specific to this role.
   final List<Identifier>? identifier;

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -22,9 +21,6 @@ class Ratio extends DataType {
 
   @override
   String get fhirType => 'Ratio';
-
-  @Id()
-  int dbId = 0;
 
   /// [numerator] /// The value of the numerator.
   final Quantity? numerator;

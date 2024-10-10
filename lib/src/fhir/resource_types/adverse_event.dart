@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -54,9 +53,6 @@ class AdverseEvent extends DomainResource {
 
   @override
   String get fhirType => 'AdverseEvent';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this adverse event by the performer or
   /// other systems which remain constant as the resource is updated and
@@ -508,9 +504,6 @@ class AdverseEventSuspectEntity extends BackboneElement {
   @override
   String get fhirType => 'AdverseEventSuspectEntity';
 
-  @Id()
-  int dbId = 0;
-
   /// [instance] /// Identifies the actual instance of what caused the adverse event. May be a
   /// substance, medication, medication administration, medication statement or a
   /// device.
@@ -638,9 +631,6 @@ class AdverseEventCausality extends BackboneElement {
 
   @override
   String get fhirType => 'AdverseEventCausality';
-
-  @Id()
-  int dbId = 0;
 
   /// [assessment] /// Assessment of if the entity caused the event.
   final CodeableConcept? assessment;

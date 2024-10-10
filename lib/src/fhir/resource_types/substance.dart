@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -36,9 +35,6 @@ class Substance extends DomainResource {
 
   @override
   String get fhirType => 'Substance';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Unique identifier for the substance.
   final List<Identifier>? identifier;
@@ -309,9 +305,6 @@ class SubstanceInstance extends BackboneElement {
   @override
   String get fhirType => 'SubstanceInstance';
 
-  @Id()
-  int dbId = 0;
-
   /// [identifier] /// Identifier associated with the package/container (usually a label affixed
   /// directly).
   final Identifier? identifier;
@@ -455,9 +448,6 @@ class SubstanceIngredient extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceIngredient';
-
-  @Id()
-  int dbId = 0;
 
   /// [quantity] /// The amount of the ingredient in the substance - a concentration ratio.
   final Ratio? quantity;

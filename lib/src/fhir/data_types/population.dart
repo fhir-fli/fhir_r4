@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -25,9 +24,6 @@ class Population extends BackboneType {
 
   @override
   String get fhirType => 'Population';
-
-  @Id()
-  int dbId = 0;
 
   /// [ageRange] /// The age of the specific population.
   final Range? ageRange;

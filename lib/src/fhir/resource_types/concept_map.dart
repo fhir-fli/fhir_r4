@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -64,9 +63,6 @@ class ConceptMap extends DomainResource {
 
   @override
   String get fhirType => 'ConceptMap';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this concept map when it is
   /// referenced in a specification, model, design or an instance; also called
@@ -629,9 +625,6 @@ class ConceptMapGroup extends BackboneElement {
   @override
   String get fhirType => 'ConceptMapGroup';
 
-  @Id()
-  int dbId = 0;
-
   /// [source] /// An absolute URI that identifies the source system where the concepts to be
   /// mapped are defined.
   final FhirUri? source;
@@ -842,9 +835,6 @@ class ConceptMapElement extends BackboneElement {
   @override
   String get fhirType => 'ConceptMapElement';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// Identity (code or path) or the element/item being mapped.
   final FhirCode? code;
   final Element? codeElement;
@@ -1005,9 +995,6 @@ class ConceptMapTarget extends BackboneElement {
 
   @override
   String get fhirType => 'ConceptMapTarget';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// Identity (code or path) or the element/item that the map refers to.
   final FhirCode? code;
@@ -1227,9 +1214,6 @@ class ConceptMapDependsOn extends BackboneElement {
   @override
   String get fhirType => 'ConceptMapDependsOn';
 
-  @Id()
-  int dbId = 0;
-
   /// [property] /// A reference to an element that holds a coded value that corresponds to a
   /// code system property. The idea is that the information model carries an
   /// element somewhere that is labeled to correspond with a code system
@@ -1414,9 +1398,6 @@ class ConceptMapUnmapped extends BackboneElement {
 
   @override
   String get fhirType => 'ConceptMapUnmapped';
-
-  @Id()
-  int dbId = 0;
 
   /// [mode] /// Defines which action to take if there is no match for the source concept in
   /// the target system designated for the group. One of 3 actions are possible:

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -29,9 +28,6 @@ class Identifier extends DataType {
 
   @override
   String get fhirType => 'Identifier';
-
-  @Id()
-  int dbId = 0;
 
   /// [use] /// The purpose of this identifier.
   final IdentifierUse? use;

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -23,9 +22,6 @@ class CodeableConcept extends DataType {
 
   @override
   String get fhirType => 'CodeableConcept';
-
-  @Id()
-  int dbId = 0;
 
   /// [coding] /// A reference to a code defined by a terminology system.
   final List<Coding>? coding;

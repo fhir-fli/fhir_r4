@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -48,9 +47,6 @@ class PaymentReconciliation extends DomainResource {
 
   @override
   String get fhirType => 'PaymentReconciliation';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this payment reconciliation.
   final List<Identifier>? identifier;
@@ -428,9 +424,6 @@ class PaymentReconciliationDetail extends BackboneElement {
   @override
   String get fhirType => 'PaymentReconciliationDetail';
 
-  @Id()
-  int dbId = 0;
-
   /// [identifier] /// Unique identifier for the current payment item for the referenced payable.
   final Identifier? identifier;
 
@@ -647,9 +640,6 @@ class PaymentReconciliationProcessNote extends BackboneElement {
 
   @override
   String get fhirType => 'PaymentReconciliationProcessNote';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// The business purpose of the note text.
   final NoteType? type;

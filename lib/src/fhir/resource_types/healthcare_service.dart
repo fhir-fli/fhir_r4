@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -57,9 +56,6 @@ class HealthcareService extends DomainResource {
 
   @override
   String get fhirType => 'HealthcareService';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// External identifiers for this item.
   final List<Identifier>? identifier;
@@ -635,9 +631,6 @@ class HealthcareServiceEligibility extends BackboneElement {
   @override
   String get fhirType => 'HealthcareServiceEligibility';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// Coded value for the eligibility.
   final CodeableConcept? code;
 
@@ -774,9 +767,6 @@ class HealthcareServiceAvailableTime extends BackboneElement {
 
   @override
   String get fhirType => 'HealthcareServiceAvailableTime';
-
-  @Id()
-  int dbId = 0;
 
   /// [daysOfWeek] /// Indicates which days of the week are available between the start and end
   /// Times.
@@ -969,9 +959,6 @@ class HealthcareServiceNotAvailable extends BackboneElement {
 
   @override
   String get fhirType => 'HealthcareServiceNotAvailable';
-
-  @Id()
-  int dbId = 0;
 
   /// [description] /// The reason that can be presented to the user as to why this time is not
   /// available.

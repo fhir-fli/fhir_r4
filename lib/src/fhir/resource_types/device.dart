@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -65,9 +64,6 @@ class Device extends DomainResource {
 
   @override
   String get fhirType => 'Device';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Unique instance identifiers assigned to a device by manufacturers other
   /// organizations or owners.
@@ -672,9 +668,6 @@ class DeviceUdiCarrier extends BackboneElement {
   @override
   String get fhirType => 'DeviceUdiCarrier';
 
-  @Id()
-  int dbId = 0;
-
   /// [deviceIdentifier] /// The device identifier (DI) is a mandatory, fixed portion of a UDI that
   /// identifies the labeler and the specific version or model of a device.
   final FhirString? deviceIdentifier;
@@ -915,9 +908,6 @@ class DeviceDeviceName extends BackboneElement {
   @override
   String get fhirType => 'DeviceDeviceName';
 
-  @Id()
-  int dbId = 0;
-
   /// [name] /// The name that identifies the device.
   final FhirString name;
   final Element? nameElement;
@@ -1051,9 +1041,6 @@ class DeviceSpecialization extends BackboneElement {
   @override
   String get fhirType => 'DeviceSpecialization';
 
-  @Id()
-  int dbId = 0;
-
   /// [systemType] /// The standard that is used to operate and communicate.
   final CodeableConcept systemType;
 
@@ -1182,9 +1169,6 @@ class DeviceVersion extends BackboneElement {
 
   @override
   String get fhirType => 'DeviceVersion';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// The type of the device version, e.g. manufacturer, approved, internal.
   final CodeableConcept? type;
@@ -1325,9 +1309,6 @@ class DeviceProperty extends BackboneElement {
 
   @override
   String get fhirType => 'DeviceProperty';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// Code that specifies the property DeviceDefinitionPropetyCode (Extensible).
   final CodeableConcept type;

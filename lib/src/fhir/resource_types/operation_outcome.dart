@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -29,9 +28,6 @@ class OperationOutcome extends DomainResource {
 
   @override
   String get fhirType => 'OperationOutcome';
-
-  @Id()
-  int dbId = 0;
 
   /// [issue] /// An error, warning, or information message that results from a system
   /// action.
@@ -212,9 +208,6 @@ class OperationOutcomeIssue extends BackboneElement {
 
   @override
   String get fhirType => 'OperationOutcomeIssue';
-
-  @Id()
-  int dbId = 0;
 
   /// [severity] /// Indicates whether the issue indicates a variation from successful
   /// processing.

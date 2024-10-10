@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -66,9 +65,6 @@ class Procedure extends DomainResource {
 
   @override
   String get fhirType => 'Procedure';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this procedure by the performer or other
   /// systems which remain constant as the resource is updated and is propagated
@@ -739,9 +735,6 @@ class ProcedurePerformer extends BackboneElement {
   @override
   String get fhirType => 'ProcedurePerformer';
 
-  @Id()
-  int dbId = 0;
-
   /// [function_] /// Distinguishes the type of involvement of the performer in the procedure.
   /// For example, surgeon, anaesthetist, endoscopist.
   final CodeableConcept? function_;
@@ -873,9 +866,6 @@ class ProcedureFocalDevice extends BackboneElement {
 
   @override
   String get fhirType => 'ProcedureFocalDevice';
-
-  @Id()
-  int dbId = 0;
 
   /// [action] /// The kind of change that happened to the device during the procedure.
   final CodeableConcept? action;

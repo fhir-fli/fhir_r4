@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -50,9 +49,6 @@ class CoverageEligibilityRequest extends DomainResource {
 
   @override
   String get fhirType => 'CoverageEligibilityRequest';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this coverage eligiblity request.
   final List<Identifier>? identifier;
@@ -433,9 +429,6 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
   @override
   String get fhirType => 'CoverageEligibilityRequestSupportingInfo';
 
-  @Id()
-  int dbId = 0;
-
   /// [sequence] /// A number to uniquely identify supporting information entries.
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
@@ -589,9 +582,6 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
 
   @override
   String get fhirType => 'CoverageEligibilityRequestInsurance';
-
-  @Id()
-  int dbId = 0;
 
   /// [focal] /// A flag to indicate that this Coverage is to be used for evaluation of this
   /// request when set to true.
@@ -755,9 +745,6 @@ class CoverageEligibilityRequestItem extends BackboneElement {
 
   @override
   String get fhirType => 'CoverageEligibilityRequestItem';
-
-  @Id()
-  int dbId = 0;
 
   /// [supportingInfoSequence] /// Exceptions, special conditions and supporting information applicable for
   /// this service or product line.
@@ -1011,9 +998,6 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
 
   @override
   String get fhirType => 'CoverageEligibilityRequestDiagnosis';
-
-  @Id()
-  int dbId = 0;
 
   /// [diagnosisCodeableConcept] /// The nature of illness or problem in a coded form or as a reference to an
   /// external defined Condition.

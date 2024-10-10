@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -54,9 +53,6 @@ class Composition extends DomainResource {
 
   @override
   String get fhirType => 'Composition';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A version-independent identifier for the Composition. This identifier stays
   /// constant as the composition is changed over time.
@@ -438,9 +434,6 @@ class CompositionAttester extends BackboneElement {
   @override
   String get fhirType => 'CompositionAttester';
 
-  @Id()
-  int dbId = 0;
-
   /// [mode] /// The type of attestation the authenticator offers.
   final CompositionAttestationMode mode;
   final Element? modeElement;
@@ -586,9 +579,6 @@ class CompositionRelatesTo extends BackboneElement {
   @override
   String get fhirType => 'CompositionRelatesTo';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// The type of relationship that this composition has with anther composition
   /// or document.
   final DocumentRelationshipType code;
@@ -727,9 +717,6 @@ class CompositionEvent extends BackboneElement {
 
   @override
   String get fhirType => 'CompositionEvent';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// This list of codes represents the main clinical acts, such as a colonoscopy
   /// or an appendectomy, being documented. In some cases, the event is inherent
@@ -888,9 +875,6 @@ class CompositionSection extends BackboneElement {
 
   @override
   String get fhirType => 'CompositionSection';
-
-  @Id()
-  int dbId = 0;
 
   /// [title] /// The label for this particular section. This will be part of the rendered
   /// content for the document, and is often used to build a table of contents.

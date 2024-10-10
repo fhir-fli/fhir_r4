@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -41,9 +40,6 @@ class DeviceMetric extends DomainResource {
 
   @override
   String get fhirType => 'DeviceMetric';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Unique instance identifiers assigned to a device by the device or gateway
   /// software, manufacturers, other organizations or owners. For example: handle
@@ -362,9 +358,6 @@ class DeviceMetricCalibration extends BackboneElement {
 
   @override
   String get fhirType => 'DeviceMetricCalibration';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// Describes the type of the calibration method.
   final DeviceMetricCalibrationType? type;

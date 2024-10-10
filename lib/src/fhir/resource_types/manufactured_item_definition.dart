@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -36,9 +35,6 @@ class ManufacturedItemDefinition extends DomainResource {
 
   @override
   String get fhirType => 'ManufacturedItemDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Unique identifier.
   final List<Identifier>? identifier;
@@ -303,9 +299,6 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
 
   @override
   String get fhirType => 'ManufacturedItemDefinitionProperty';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// A code expressing the type of characteristic.
   final CodeableConcept type;

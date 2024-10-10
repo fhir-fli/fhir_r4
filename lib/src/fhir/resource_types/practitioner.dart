@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -41,9 +40,6 @@ class Practitioner extends DomainResource {
 
   @override
   String get fhirType => 'Practitioner';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// An identifier that applies to this person in this role.
   final List<Identifier>? identifier;
@@ -376,9 +372,6 @@ class PractitionerQualification extends BackboneElement {
 
   @override
   String get fhirType => 'PractitionerQualification';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// An identifier that applies to this person's qualification in this role.
   final List<Identifier>? identifier;

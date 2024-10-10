@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -68,9 +67,6 @@ class ChargeItemDefinition extends DomainResource {
 
   @override
   String get fhirType => 'ChargeItemDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this charge item definition when
   /// it is referenced in a specification, model, design or an instance; also
@@ -696,9 +692,6 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
   @override
   String get fhirType => 'ChargeItemDefinitionApplicability';
 
-  @Id()
-  int dbId = 0;
-
   /// [description] /// A brief, natural language description of the condition that effectively
   /// communicates the intended semantics.
   final FhirString? description;
@@ -869,9 +862,6 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
   @override
   String get fhirType => 'ChargeItemDefinitionPropertyGroup';
 
-  @Id()
-  int dbId = 0;
-
   /// [applicability] /// Expressions that describe applicability criteria for the priceComponent.
   final List<ChargeItemDefinitionApplicability>? applicability;
 
@@ -1021,9 +1011,6 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
 
   @override
   String get fhirType => 'ChargeItemDefinitionPriceComponent';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// This code identifies the type of the component.
   final InvoicePriceComponentType type;

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -35,9 +34,6 @@ class Attachment extends DataType {
 
   @override
   String get fhirType => 'Attachment';
-
-  @Id()
-  int dbId = 0;
 
   /// [contentType] /// Identifies the type of the data in the attachment and allows a method to be
   /// chosen to interpret or render the data. Includes mime type parameters such

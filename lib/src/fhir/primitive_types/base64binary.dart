@@ -62,6 +62,11 @@ class FhirBase64Binary extends PrimitiveType<String> {
       : throw const FormatException('Invalid Yaml format for FhirBase64Binary');
 
   @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  @override
   String toJson() => value;
 
   @override

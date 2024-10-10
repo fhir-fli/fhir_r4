@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -43,9 +42,6 @@ class QuestionnaireResponse extends DomainResource {
 
   @override
   String get fhirType => 'QuestionnaireResponse';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A business identifier assigned to a particular completed (or partially
   /// completed) questionnaire.
@@ -378,9 +374,6 @@ class QuestionnaireResponseItem extends BackboneElement {
   @override
   String get fhirType => 'QuestionnaireResponseItem';
 
-  @Id()
-  int dbId = 0;
-
   /// [linkId] /// The item from the Questionnaire that corresponds to this item in the
   /// QuestionnaireResponse resource.
   final FhirString linkId;
@@ -589,9 +582,6 @@ class QuestionnaireResponseAnswer extends BackboneElement {
 
   @override
   String get fhirType => 'QuestionnaireResponseAnswer';
-
-  @Id()
-  int dbId = 0;
 
   /// [valueBoolean] /// The answer (or one of the answers) provided by the respondent to the
   /// question.

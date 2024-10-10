@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -50,9 +49,6 @@ class Provenance extends DomainResource {
 
   @override
   String get fhirType => 'Provenance';
-
-  @Id()
-  int dbId = 0;
 
   /// [target] /// The Reference(s) that were generated or updated by the activity described
   /// in this resource. A provenance can point to more than one target if
@@ -384,9 +380,6 @@ class ProvenanceAgent extends BackboneElement {
   @override
   String get fhirType => 'ProvenanceAgent';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// The participation the agent had with respect to the activity.
   final CodeableConcept? type;
 
@@ -533,9 +526,6 @@ class ProvenanceEntity extends BackboneElement {
 
   @override
   String get fhirType => 'ProvenanceEntity';
-
-  @Id()
-  int dbId = 0;
 
   /// [role] /// How the entity was used during the activity.
   final ProvenanceEntityRole role;

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -49,9 +48,6 @@ class SubstanceDefinition extends DomainResource {
 
   @override
   String get fhirType => 'SubstanceDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifier by which this substance is known.
   final List<Identifier>? identifier;
@@ -518,9 +514,6 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   @override
   String get fhirType => 'SubstanceDefinitionMoiety';
 
-  @Id()
-  int dbId = 0;
-
   /// [role] /// Role that the moiety is playing.
   final CodeableConcept? role;
 
@@ -759,9 +752,6 @@ class SubstanceDefinitionProperty extends BackboneElement {
   @override
   String get fhirType => 'SubstanceDefinitionProperty';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// A code expressing the type of property.
   final CodeableConcept type;
 
@@ -945,9 +935,6 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
   @override
   String get fhirType => 'SubstanceDefinitionMolecularWeight';
 
-  @Id()
-  int dbId = 0;
-
   /// [method] /// The method by which the molecular weight was determined.
   final CodeableConcept? method;
 
@@ -1090,9 +1077,6 @@ class SubstanceDefinitionStructure extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceDefinitionStructure';
-
-  @Id()
-  int dbId = 0;
 
   /// [stereochemistry] /// Stereochemistry type.
   final CodeableConcept? stereochemistry;
@@ -1329,9 +1313,6 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
   @override
   String get fhirType => 'SubstanceDefinitionRepresentation';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// The kind of structural representation (e.g. full, partial).
   final CodeableConcept? type;
 
@@ -1495,9 +1476,6 @@ class SubstanceDefinitionCode extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceDefinitionCode';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// The specific code.
   final CodeableConcept? code;
@@ -1681,9 +1659,6 @@ class SubstanceDefinitionName extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceDefinitionName';
-
-  @Id()
-  int dbId = 0;
 
   /// [name] /// The actual name.
   final FhirString name;
@@ -1956,9 +1931,6 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   @override
   String get fhirType => 'SubstanceDefinitionOfficial';
 
-  @Id()
-  int dbId = 0;
-
   /// [authority] /// Which authority uses this official name.
   final CodeableConcept? authority;
 
@@ -2109,9 +2081,6 @@ class SubstanceDefinitionRelationship extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceDefinitionRelationship';
-
-  @Id()
-  int dbId = 0;
 
   /// [substanceDefinitionReference] /// A pointer to another substance, as a resource or just a representational
   /// code.
@@ -2364,9 +2333,6 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceDefinitionSourceMaterial';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// A classification that provides the origin of the raw material. Example: cat
   /// hair would be an Animal source type.

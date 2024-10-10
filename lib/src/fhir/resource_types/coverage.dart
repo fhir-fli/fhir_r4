@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -51,9 +50,6 @@ class Coverage extends DomainResource {
 
   @override
   String get fhirType => 'Coverage';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this coverage.
   final List<Identifier>? identifier;
@@ -480,9 +476,6 @@ class CoverageClass extends BackboneElement {
   @override
   String get fhirType => 'CoverageClass';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// The type of classification for which an insurer-specific class label or
   /// number and optional name is provided, for example may be used to identify a
   /// class of coverage or employer group, Policy, Plan.
@@ -629,9 +622,6 @@ class CoverageCostToBeneficiary extends BackboneElement {
 
   @override
   String get fhirType => 'CoverageCostToBeneficiary';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// The category of patient centric costs associated with treatment.
   final CodeableConcept? type;
@@ -782,9 +772,6 @@ class CoverageException extends BackboneElement {
 
   @override
   String get fhirType => 'CoverageException';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// The code for the specific exception.
   final CodeableConcept type;

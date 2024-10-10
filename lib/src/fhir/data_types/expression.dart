@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -31,9 +30,6 @@ class FhirExpression extends DataType {
 
   @override
   String get fhirType => 'FhirExpression';
-
-  @Id()
-  int dbId = 0;
 
   /// [description] /// A brief, natural language description of the condition that effectively
   /// communicates the intended semantics.

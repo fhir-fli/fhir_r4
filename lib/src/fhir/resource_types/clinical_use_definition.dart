@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -41,9 +40,6 @@ class ClinicalUseDefinition extends DomainResource {
 
   @override
   String get fhirType => 'ClinicalUseDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifier for this issue.
   final List<Identifier>? identifier;
@@ -356,9 +352,6 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
   @override
   String get fhirType => 'ClinicalUseDefinitionContraindication';
 
-  @Id()
-  int dbId = 0;
-
   /// [diseaseSymptomProcedure] /// The situation that is being documented as contraindicating against this
   /// item.
   final CodeableReference? diseaseSymptomProcedure;
@@ -538,9 +531,6 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
   @override
   String get fhirType => 'ClinicalUseDefinitionOtherTherapy';
 
-  @Id()
-  int dbId = 0;
-
   /// [relationshipType] /// The type of relationship between the medicinal product indication or
   /// contraindication and another therapy.
   final CodeableConcept relationshipType;
@@ -667,9 +657,6 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalUseDefinitionIndication';
-
-  @Id()
-  int dbId = 0;
 
   /// [diseaseSymptomProcedure] /// The situation that is being documented as an indicaton for this item.
   final CodeableReference? diseaseSymptomProcedure;
@@ -902,9 +889,6 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
   @override
   String get fhirType => 'ClinicalUseDefinitionInteraction';
 
-  @Id()
-  int dbId = 0;
-
   /// [interactant] /// The specific medication, food, substance or laboratory test that interacts.
   final List<ClinicalUseDefinitionInteractant>? interactant;
 
@@ -1073,9 +1057,6 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
   @override
   String get fhirType => 'ClinicalUseDefinitionInteractant';
 
-  @Id()
-  int dbId = 0;
-
   /// [itemReference] /// The specific medication, food or laboratory test that interacts.
   final Reference? itemReference;
 
@@ -1201,9 +1182,6 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalUseDefinitionUndesirableEffect';
-
-  @Id()
-  int dbId = 0;
 
   /// [symptomConditionEffect] /// The situation in which the undesirable effect may manifest.
   final CodeableReference? symptomConditionEffect;
@@ -1348,9 +1326,6 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalUseDefinitionWarning';
-
-  @Id()
-  int dbId = 0;
 
   /// [description] /// A textual definition of this warning, with formatting.
   final FhirMarkdown? description;

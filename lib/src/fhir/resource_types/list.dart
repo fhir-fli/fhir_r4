@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -44,9 +43,6 @@ class FhirList extends DomainResource {
 
   @override
   String get fhirType => 'FhirList';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifier for the List assigned for business purposes outside the context
   /// of FHIR.
@@ -388,9 +384,6 @@ class ListEntry extends BackboneElement {
 
   @override
   String get fhirType => 'ListEntry';
-
-  @Id()
-  int dbId = 0;
 
   /// [flag] /// The flag allows the system constructing the list to indicate the role and
   /// significance of the item in the list.

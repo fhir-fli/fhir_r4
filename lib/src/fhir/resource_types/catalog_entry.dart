@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -45,9 +44,6 @@ class CatalogEntry extends DomainResource {
 
   @override
   String get fhirType => 'CatalogEntry';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Used in supporting different identifiers for the same product, e.g.
   /// manufacturer code and retailer code.
@@ -414,9 +410,6 @@ class CatalogEntryRelatedEntry extends BackboneElement {
 
   @override
   String get fhirType => 'CatalogEntryRelatedEntry';
-
-  @Id()
-  int dbId = 0;
 
   /// [relationtype] /// The type of relation to the related item: child, parent, packageContent,
   /// containerPackage, usedIn, uses, requires, etc.

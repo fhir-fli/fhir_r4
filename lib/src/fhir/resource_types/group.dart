@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -45,9 +44,6 @@ class FhirGroup extends DomainResource {
 
   @override
   String get fhirType => 'FhirGroup';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A unique business identifier for this group.
   final List<Identifier>? identifier;
@@ -376,9 +372,6 @@ class GroupCharacteristic extends BackboneElement {
   @override
   String get fhirType => 'GroupCharacteristic';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// A code that identifies the kind of trait being asserted.
   final CodeableConcept code;
 
@@ -586,9 +579,6 @@ class GroupMember extends BackboneElement {
 
   @override
   String get fhirType => 'GroupMember';
-
-  @Id()
-  int dbId = 0;
 
   /// [entity] /// A reference to the entity that is a member of the group. Must be consistent
   /// with Group.type. If the entity is another group, then the type must be the

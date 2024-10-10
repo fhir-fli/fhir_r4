@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -52,9 +51,6 @@ class ImmunizationEvaluation extends DomainResource {
 
   @override
   String get fhirType => 'ImmunizationEvaluation';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this immunization evaluation record.
   final List<Identifier>? identifier;

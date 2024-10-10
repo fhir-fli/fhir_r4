@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -74,9 +73,6 @@ class Observation extends DomainResource {
 
   @override
   String get fhirType => 'Observation';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this observation.
   final List<Identifier>? identifier;
@@ -833,9 +829,6 @@ class ObservationReferenceRange extends BackboneElement {
   @override
   String get fhirType => 'ObservationReferenceRange';
 
-  @Id()
-  int dbId = 0;
-
   /// [low] /// The value of the low bound of the reference range. The low bound of the
   /// reference range endpoint is inclusive of the value (e.g. reference range is
   /// >=5 - <=9). If the low bound is omitted, it is assumed to be meaningless
@@ -1049,9 +1042,6 @@ class ObservationComponent extends BackboneElement {
 
   @override
   String get fhirType => 'ObservationComponent';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// Describes what was observed. Sometimes this is called the observation
   /// "code".

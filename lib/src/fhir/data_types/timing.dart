@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -28,9 +27,6 @@ class Timing extends BackboneType {
 
   @override
   String get fhirType => 'Timing';
-
-  @Id()
-  int dbId = 0;
 
   /// [event] /// Identifies specific times when the event occurs.
   final List<FhirDateTime>? event;
@@ -213,9 +209,6 @@ class TimingRepeat extends Element {
 
   @override
   String get fhirType => 'TimingRepeat';
-
-  @Id()
-  int dbId = 0;
 
   /// [boundsDuration] /// Either a duration for the length of the timing schedule, a range of
   /// possible length, or outer bounds for start and/or end limits of the timing

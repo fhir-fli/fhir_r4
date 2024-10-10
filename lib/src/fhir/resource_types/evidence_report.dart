@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -52,9 +51,6 @@ class EvidenceReport extends DomainResource {
 
   @override
   String get fhirType => 'EvidenceReport';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this EvidenceReport when it is
   /// referenced in a specification, model, design or an instance; also called
@@ -522,9 +518,6 @@ class EvidenceReportSubject extends BackboneElement {
   @override
   String get fhirType => 'EvidenceReportSubject';
 
-  @Id()
-  int dbId = 0;
-
   /// [characteristic] /// Characteristic.
   final List<EvidenceReportCharacteristic>? characteristic;
 
@@ -663,9 +656,6 @@ class EvidenceReportCharacteristic extends BackboneElement {
 
   @override
   String get fhirType => 'EvidenceReportCharacteristic';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// Characteristic code.
   final CodeableConcept code;
@@ -873,9 +863,6 @@ class EvidenceReportRelatesTo extends BackboneElement {
   @override
   String get fhirType => 'EvidenceReportRelatesTo';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// The type of relationship that this composition has with anther composition
   /// or document.
   final ReportRelationshipType code;
@@ -1024,9 +1011,6 @@ class EvidenceReportSection extends BackboneElement {
 
   @override
   String get fhirType => 'EvidenceReportSection';
-
-  @Id()
-  int dbId = 0;
 
   /// [title] /// The label for this particular section. This will be part of the rendered
   /// content for the document, and is often used to build a table of contents.

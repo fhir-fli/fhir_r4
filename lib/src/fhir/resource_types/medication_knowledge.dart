@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -52,9 +51,6 @@ class MedicationKnowledge extends DomainResource {
 
   @override
   String get fhirType => 'MedicationKnowledge';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// A code that specifies this medication, or a textual description if no code
   /// is available. Usage note: This could be a standard medication code such as
@@ -599,9 +595,6 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
   @override
   String get fhirType => 'MedicationKnowledgeRelatedMedicationKnowledge';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// The category of the associated medication knowledge reference.
   final CodeableConcept type;
 
@@ -724,9 +717,6 @@ class MedicationKnowledgeMonograph extends BackboneElement {
 
   @override
   String get fhirType => 'MedicationKnowledgeMonograph';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// The category of documentation about the medication. (e.g. professional
   /// monograph, patient education monograph).
@@ -853,9 +843,6 @@ class MedicationKnowledgeIngredient extends BackboneElement {
 
   @override
   String get fhirType => 'MedicationKnowledgeIngredient';
-
-  @Id()
-  int dbId = 0;
 
   /// [itemCodeableConcept] /// The actual ingredient - either a substance (simple ingredient) or another
   /// medication.
@@ -1018,9 +1005,6 @@ class MedicationKnowledgeCost extends BackboneElement {
   @override
   String get fhirType => 'MedicationKnowledgeCost';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// The category of the cost information. For example, manufacturers' cost,
   /// patient cost, claim reimbursement cost, actual acquisition cost.
   final CodeableConcept type;
@@ -1156,9 +1140,6 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
   @override
   String get fhirType => 'MedicationKnowledgeMonitoringProgram';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// Type of program under which the medication is monitored.
   final CodeableConcept? type;
 
@@ -1291,9 +1272,6 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
 
   @override
   String get fhirType => 'MedicationKnowledgeAdministrationGuidelines';
-
-  @Id()
-  int dbId = 0;
 
   /// [dosage] /// Dosage for the medication for the specific guidelines.
   final List<MedicationKnowledgeDosage>? dosage;
@@ -1460,9 +1438,6 @@ class MedicationKnowledgeDosage extends BackboneElement {
   @override
   String get fhirType => 'MedicationKnowledgeDosage';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// The type of dosage (for example, prophylaxis, maintenance, therapeutic,
   /// etc.).
   final CodeableConcept type;
@@ -1583,9 +1558,6 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
 
   @override
   String get fhirType => 'MedicationKnowledgePatientCharacteristics';
-
-  @Id()
-  int dbId = 0;
 
   /// [characteristicCodeableConcept] /// Specific characteristic that is relevant to the administration guideline
   /// (e.g. height, weight, gender).
@@ -1747,9 +1719,6 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
   @override
   String get fhirType => 'MedicationKnowledgeMedicineClassification';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// The type of category for the medication (for example, therapeutic
   /// classification, therapeutic sub-classification).
   final CodeableConcept type;
@@ -1879,9 +1848,6 @@ class MedicationKnowledgePackaging extends BackboneElement {
   @override
   String get fhirType => 'MedicationKnowledgePackaging';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// A code that defines the specific type of packaging that the medication can
   /// be found in (e.g. blister sleeve, tube, bottle).
   final CodeableConcept? type;
@@ -2010,9 +1976,6 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
 
   @override
   String get fhirType => 'MedicationKnowledgeDrugCharacteristic';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// A code specifying which characteristic of the medicine is being described
   /// (for example, colour, shape, imprint).
@@ -2194,9 +2157,6 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
   @override
   String get fhirType => 'MedicationKnowledgeRegulatory';
 
-  @Id()
-  int dbId = 0;
-
   /// [regulatoryAuthority] /// The authority that is specifying the regulations.
   final Reference regulatoryAuthority;
 
@@ -2355,9 +2315,6 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
   @override
   String get fhirType => 'MedicationKnowledgeSubstitution';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// Specifies the type of substitution allowed.
   final CodeableConcept type;
 
@@ -2482,9 +2439,6 @@ class MedicationKnowledgeSchedule extends BackboneElement {
   @override
   String get fhirType => 'MedicationKnowledgeSchedule';
 
-  @Id()
-  int dbId = 0;
-
   /// [schedule] /// Specifies the specific drug schedule.
   final CodeableConcept schedule;
   @override
@@ -2593,9 +2547,6 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
 
   @override
   String get fhirType => 'MedicationKnowledgeMaxDispense';
-
-  @Id()
-  int dbId = 0;
 
   /// [quantity] /// The maximum number of units of the medication that can be dispensed.
   final Quantity quantity;
@@ -2717,9 +2668,6 @@ class MedicationKnowledgeKinetics extends BackboneElement {
 
   @override
   String get fhirType => 'MedicationKnowledgeKinetics';
-
-  @Id()
-  int dbId = 0;
 
   /// [areaUnderCurve] /// The drug concentration measured at certain discrete points in time.
   final List<Quantity>? areaUnderCurve;

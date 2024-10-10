@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -61,9 +60,6 @@ class ClaimResponse extends DomainResource {
 
   @override
   String get fhirType => 'ClaimResponse';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this claim response.
   final List<Identifier>? identifier;
@@ -602,9 +598,6 @@ class ClaimResponseItem extends BackboneElement {
   @override
   String get fhirType => 'ClaimResponseItem';
 
-  @Id()
-  int dbId = 0;
-
   /// [itemSequence] /// A number to uniquely reference the claim item entries.
   final FhirPositiveInt itemSequence;
   final Element? itemSequenceElement;
@@ -785,9 +778,6 @@ class ClaimResponseAdjudication extends BackboneElement {
   @override
   String get fhirType => 'ClaimResponseAdjudication';
 
-  @Id()
-  int dbId = 0;
-
   /// [category] /// A code to indicate the information type of this adjudication record.
   /// Information types may include the value submitted, maximum values or
   /// percentages allowed or payable under the plan, amounts that: the patient is
@@ -946,9 +936,6 @@ class ClaimResponseDetail extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimResponseDetail';
-
-  @Id()
-  int dbId = 0;
 
   /// [detailSequence] /// A number to uniquely reference the claim detail entry.
   final FhirPositiveInt detailSequence;
@@ -1126,9 +1113,6 @@ class ClaimResponseSubDetail extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimResponseSubDetail';
-
-  @Id()
-  int dbId = 0;
 
   /// [subDetailSequence] /// A number to uniquely reference the claim sub-detail entry.
   final FhirPositiveInt subDetailSequence;
@@ -1317,9 +1301,6 @@ class ClaimResponseAddItem extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimResponseAddItem';
-
-  @Id()
-  int dbId = 0;
 
   /// [itemSequence] /// Claim items which this service line is intended to replace.
   final List<FhirPositiveInt>? itemSequence;
@@ -1783,9 +1764,6 @@ class ClaimResponseDetail1 extends BackboneElement {
   @override
   String get fhirType => 'ClaimResponseDetail1';
 
-  @Id()
-  int dbId = 0;
-
   /// [productOrService] /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or other
   /// billing code for the item.
@@ -2034,9 +2012,6 @@ class ClaimResponseSubDetail1 extends BackboneElement {
   @override
   String get fhirType => 'ClaimResponseSubDetail1';
 
-  @Id()
-  int dbId = 0;
-
   /// [productOrService] /// When the value is a group code then this item collects a set of related
   /// claim details, otherwise this contains the product, service, drug or other
   /// billing code for the item.
@@ -2261,9 +2236,6 @@ class ClaimResponseTotal extends BackboneElement {
   @override
   String get fhirType => 'ClaimResponseTotal';
 
-  @Id()
-  int dbId = 0;
-
   /// [category] /// A code to indicate the information type of this adjudication record.
   /// Information types may include: the value submitted, maximum values or
   /// percentages allowed or payable under the plan, amounts that the patient is
@@ -2387,9 +2359,6 @@ class ClaimResponsePayment extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimResponsePayment';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// Whether this represents partial or complete payment of the benefits
   /// payable.
@@ -2566,9 +2535,6 @@ class ClaimResponseProcessNote extends BackboneElement {
   @override
   String get fhirType => 'ClaimResponseProcessNote';
 
-  @Id()
-  int dbId = 0;
-
   /// [number] /// A number to uniquely identify a note entry.
   final FhirPositiveInt? number;
   final Element? numberElement;
@@ -2737,9 +2703,6 @@ class ClaimResponseInsurance extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimResponseInsurance';
-
-  @Id()
-  int dbId = 0;
 
   /// [sequence] /// A number to uniquely identify insurance entries and provide a sequence of
   /// coverages to convey coordination of benefit order.
@@ -2923,9 +2886,6 @@ class ClaimResponseError extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimResponseError';
-
-  @Id()
-  int dbId = 0;
 
   /// [itemSequence] /// The sequence number of the line item submitted which contains the error.
   /// This value is omitted when the error occurs outside of the item structure.

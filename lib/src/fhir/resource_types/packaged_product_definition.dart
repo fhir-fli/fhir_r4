@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -45,9 +44,6 @@ class PackagedProductDefinition extends DomainResource {
 
   @override
   String get fhirType => 'PackagedProductDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A unique identifier for this package as whole. Unique instance identifiers
   /// assigned to a package by manufacturers, regulators, drug catalogue
@@ -460,9 +456,6 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   @override
   String get fhirType => 'PackagedProductDefinitionLegalStatusOfSupply';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// The actual status of supply. Conveys in what situation this package type
   /// may be supplied for use.
   final CodeableConcept? code;
@@ -602,9 +595,6 @@ class PackagedProductDefinitionPackage extends BackboneElement {
 
   @override
   String get fhirType => 'PackagedProductDefinitionPackage';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// An identifier that is specific to this particular part of the packaging.
   /// Including possibly Data Carrier Identifier (a GS1 barcode).
@@ -879,9 +869,6 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   @override
   String get fhirType => 'PackagedProductDefinitionShelfLifeStorage';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// This describes the shelf life, taking into account various scenarios such
   /// as shelf life of the packaged Medicinal Product itself, shelf life after
   /// transformation where necessary and shelf life after the first opening of a
@@ -1066,9 +1053,6 @@ class PackagedProductDefinitionProperty extends BackboneElement {
   @override
   String get fhirType => 'PackagedProductDefinitionProperty';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// A code expressing the type of characteristic.
   final CodeableConcept type;
 
@@ -1251,9 +1235,6 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
 
   @override
   String get fhirType => 'PackagedProductDefinitionContainedItem';
-
-  @Id()
-  int dbId = 0;
 
   /// [item] /// The actual item(s) of medication, as manufactured, or a device (typically,
   /// but not necessarily, a co-packaged one), or other medically related item

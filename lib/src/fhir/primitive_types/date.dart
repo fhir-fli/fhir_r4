@@ -40,6 +40,19 @@ class FhirDate extends FhirDateTimeBase {
               inValue, precision ?? FhirDateTimePrecision.yyyy_MM_dd, element)
           as FhirDate;
 
+  static FhirDate? tryParse(dynamic value) {
+    try {
+      if (value is DateTime) {
+        return FhirDate.fromDateTime(value);
+      } else if (value is String) {
+        return FhirDate.fromString(value);
+      }
+    } catch (e) {
+      return null;
+    }
+    return null;
+  }
+
   factory FhirDate.fromJson(dynamic json,
       {FhirDateTimePrecision? precision, Element? element}) {
     if (json is String) {

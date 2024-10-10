@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -68,9 +67,6 @@ class TerminologyCapabilities extends DomainResource {
 
   @override
   String get fhirType => 'TerminologyCapabilities';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this terminology capabilities when
   /// it is referenced in a specification, model, design or an instance; also
@@ -666,9 +662,6 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
   @override
   String get fhirType => 'TerminologyCapabilitiesSoftware';
 
-  @Id()
-  int dbId = 0;
-
   /// [name] /// Name the software is known by.
   final FhirString name;
   final Element? nameElement;
@@ -808,9 +801,6 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
 
   @override
   String get fhirType => 'TerminologyCapabilitiesImplementation';
-
-  @Id()
-  int dbId = 0;
 
   /// [description] /// Information about the specific installation that this terminology
   /// capability statement relates to.
@@ -953,9 +943,6 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
 
   @override
   String get fhirType => 'TerminologyCapabilitiesCodeSystem';
-
-  @Id()
-  int dbId = 0;
 
   /// [uri] /// URI for the Code System.
   final FhirCanonical? uri;
@@ -1122,9 +1109,6 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
 
   @override
   String get fhirType => 'TerminologyCapabilitiesVersion';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// For version-less code systems, there should be a single version with no
   /// identifier.
@@ -1357,9 +1341,6 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
   @override
   String get fhirType => 'TerminologyCapabilitiesFilter';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// Code of the property supported.
   final FhirCode code;
   final Element? codeElement;
@@ -1504,9 +1485,6 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
 
   @override
   String get fhirType => 'TerminologyCapabilitiesExpansion';
-
-  @Id()
-  int dbId = 0;
 
   /// [hierarchical] /// Whether the server can return nested value sets.
   final FhirBoolean? hierarchical;
@@ -1707,9 +1685,6 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
   @override
   String get fhirType => 'TerminologyCapabilitiesParameter';
 
-  @Id()
-  int dbId = 0;
-
   /// [name] /// Expansion Parameter name.
   final FhirCode name;
   final Element? nameElement;
@@ -1848,9 +1823,6 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
   @override
   String get fhirType => 'TerminologyCapabilitiesValidateCode';
 
-  @Id()
-  int dbId = 0;
-
   /// [translations] /// Whether translations are validated.
   final FhirBoolean translations;
   final Element? translationsElement;
@@ -1970,9 +1942,6 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
   @override
   String get fhirType => 'TerminologyCapabilitiesTranslation';
 
-  @Id()
-  int dbId = 0;
-
   /// [needsMap] /// Whether the client must identify the map.
   final FhirBoolean needsMap;
   final Element? needsMapElement;
@@ -2090,9 +2059,6 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
 
   @override
   String get fhirType => 'TerminologyCapabilitiesClosure';
-
-  @Id()
-  int dbId = 0;
 
   /// [translation] /// If cross-system closure is supported.
   final FhirBoolean? translation;

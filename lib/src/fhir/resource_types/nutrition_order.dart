@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -51,9 +50,6 @@ class NutritionOrder extends DomainResource {
 
   @override
   String get fhirType => 'NutritionOrder';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifiers assigned to this order by the order sender or by the order
   /// receiver.
@@ -519,9 +515,6 @@ class NutritionOrderOralDiet extends BackboneElement {
   @override
   String get fhirType => 'NutritionOrderOralDiet';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// The kind of diet or dietary restriction such as fiber restricted diet or
   /// diabetic diet.
   final List<CodeableConcept>? type;
@@ -728,9 +721,6 @@ class NutritionOrderNutrient extends BackboneElement {
   @override
   String get fhirType => 'NutritionOrderNutrient';
 
-  @Id()
-  int dbId = 0;
-
   /// [modifier] /// The nutrient that is being modified such as carbohydrate or sodium.
   final CodeableConcept? modifier;
 
@@ -853,9 +843,6 @@ class NutritionOrderTexture extends BackboneElement {
 
   @override
   String get fhirType => 'NutritionOrderTexture';
-
-  @Id()
-  int dbId = 0;
 
   /// [modifier] /// Any texture modifications (for solid foods) that should be made, e.g. easy
   /// to chew, chopped, ground, and pureed.
@@ -986,9 +973,6 @@ class NutritionOrderSupplement extends BackboneElement {
 
   @override
   String get fhirType => 'NutritionOrderSupplement';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// The kind of nutritional supplement product required such as a high protein
   /// or pediatric clear liquid supplement.
@@ -1180,9 +1164,6 @@ class NutritionOrderEnteralFormula extends BackboneElement {
 
   @override
   String get fhirType => 'NutritionOrderEnteralFormula';
-
-  @Id()
-  int dbId = 0;
 
   /// [baseFormulaType] /// The type of enteral or infant formula such as an adult standard formula
   /// with fiber or a soy-based infant formula.
@@ -1425,9 +1406,6 @@ class NutritionOrderAdministration extends BackboneElement {
 
   @override
   String get fhirType => 'NutritionOrderAdministration';
-
-  @Id()
-  int dbId = 0;
 
   /// [schedule] /// The time period and frequency at which the enteral formula should be
   /// delivered to the patient.

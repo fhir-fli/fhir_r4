@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -28,9 +27,6 @@ class MarketingStatus extends BackboneType {
 
   @override
   String get fhirType => 'MarketingStatus';
-
-  @Id()
-  int dbId = 0;
 
   /// [country] /// The country in which the marketing authorisation has been granted shall be
   /// specified It should be specified using the ISO 3166 ‑ 1 alpha-2 code

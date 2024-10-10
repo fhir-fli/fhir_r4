@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -43,9 +42,6 @@ class CareTeam extends DomainResource {
 
   @override
   String get fhirType => 'CareTeam';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this care team by the performer or other
   /// systems which remain constant as the resource is updated and propagates
@@ -403,9 +399,6 @@ class CareTeamParticipant extends BackboneElement {
 
   @override
   String get fhirType => 'CareTeamParticipant';
-
-  @Id()
-  int dbId = 0;
 
   /// [role] /// Indicates specific responsibility of an individual within the care team,
   /// such as "Primary care physician", "Trained social worker counselor",

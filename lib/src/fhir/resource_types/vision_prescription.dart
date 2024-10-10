@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -39,9 +38,6 @@ class VisionPrescription extends DomainResource {
 
   @override
   String get fhirType => 'VisionPrescription';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this vision prescription.
   final List<Identifier>? identifier;
@@ -325,9 +321,6 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
 
   @override
   String get fhirType => 'VisionPrescriptionLensSpecification';
-
-  @Id()
-  int dbId = 0;
 
   /// [product] /// Identifies the type of vision correction product which is required for the
   /// patient.
@@ -664,9 +657,6 @@ class VisionPrescriptionPrism extends BackboneElement {
 
   @override
   String get fhirType => 'VisionPrescriptionPrism';
-
-  @Id()
-  int dbId = 0;
 
   /// [amount] /// Amount of prism to compensate for eye alignment in fractional units.
   final FhirDecimal amount;

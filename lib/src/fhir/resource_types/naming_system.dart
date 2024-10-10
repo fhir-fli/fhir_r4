@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -50,9 +49,6 @@ class NamingSystem extends DomainResource {
 
   @override
   String get fhirType => 'NamingSystem';
-
-  @Id()
-  int dbId = 0;
 
   /// [name] /// A natural language name identifying the naming system. This name should be
   /// usable as an identifier for the module by machine processing applications
@@ -443,9 +439,6 @@ class NamingSystemUniqueId extends BackboneElement {
 
   @override
   String get fhirType => 'NamingSystemUniqueId';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// Identifies the unique identifier scheme used for this particular
   /// identifier.

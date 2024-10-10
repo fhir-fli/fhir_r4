@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -72,9 +71,6 @@ class CapabilityStatement extends DomainResource {
 
   @override
   String get fhirType => 'CapabilityStatement';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this capability statement when it
   /// is referenced in a specification, model, design or an instance; also called
@@ -742,9 +738,6 @@ class CapabilityStatementSoftware extends BackboneElement {
   @override
   String get fhirType => 'CapabilityStatementSoftware';
 
-  @Id()
-  int dbId = 0;
-
   /// [name] /// Name the software is known by.
   final FhirString name;
   final Element? nameElement;
@@ -906,9 +899,6 @@ class CapabilityStatementImplementation extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementImplementation';
-
-  @Id()
-  int dbId = 0;
 
   /// [description] /// Information about the specific installation that this capability statement
   /// relates to.
@@ -1099,9 +1089,6 @@ class CapabilityStatementRest extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementRest';
-
-  @Id()
-  int dbId = 0;
 
   /// [mode] /// Identifies whether this portion of the statement is describing the ability
   /// to initiate or receive restful operations.
@@ -1358,9 +1345,6 @@ class CapabilityStatementSecurity extends BackboneElement {
   @override
   String get fhirType => 'CapabilityStatementSecurity';
 
-  @Id()
-  int dbId = 0;
-
   /// [cors] /// Server adds CORS headers when responding to requests - this enables
   /// Javascript applications to use the server.
   final FhirBoolean? cors;
@@ -1544,9 +1528,6 @@ class CapabilityStatementResource extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementResource';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// A type of resource exposed via the restful interface.
   final FhirCode type;
@@ -2027,9 +2008,6 @@ class CapabilityStatementInteraction extends BackboneElement {
   @override
   String get fhirType => 'CapabilityStatementInteraction';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// Coded identifier of the operation, supported by the system resource.
   final TypeRestfulInteraction code;
   final Element? codeElement;
@@ -2173,9 +2151,6 @@ class CapabilityStatementSearchParam extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementSearchParam';
-
-  @Id()
-  int dbId = 0;
 
   /// [name] /// The name of the search parameter used in the interface.
   final FhirString name;
@@ -2361,9 +2336,6 @@ class CapabilityStatementOperation extends BackboneElement {
   @override
   String get fhirType => 'CapabilityStatementOperation';
 
-  @Id()
-  int dbId = 0;
-
   /// [name] /// The name of the operation or query. For an operation, this is the name
   /// prefixed with $ and used in the URL. For a query, this is the name used in
   /// the _query parameter when the query is called.
@@ -2529,9 +2501,6 @@ class CapabilityStatementInteraction1 extends BackboneElement {
   @override
   String get fhirType => 'CapabilityStatementInteraction1';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// A coded identifier of the operation, supported by the system.
   final SystemRestfulInteraction code;
   final Element? codeElement;
@@ -2671,9 +2640,6 @@ class CapabilityStatementMessaging extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementMessaging';
-
-  @Id()
-  int dbId = 0;
 
   /// [endpoint] /// An endpoint (network accessible address) to which messages and/or replies
   /// are to be sent.
@@ -2857,9 +2823,6 @@ class CapabilityStatementEndpoint extends BackboneElement {
   @override
   String get fhirType => 'CapabilityStatementEndpoint';
 
-  @Id()
-  int dbId = 0;
-
   /// [protocol] /// A list of the messaging transport protocol(s) identifiers, supported by
   /// this endpoint.
   final Coding protocol;
@@ -2987,9 +2950,6 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementSupportedMessage';
-
-  @Id()
-  int dbId = 0;
 
   /// [mode] /// The mode of this event declaration - whether application is sender or
   /// receiver.
@@ -3127,9 +3087,6 @@ class CapabilityStatementDocument extends BackboneElement {
 
   @override
   String get fhirType => 'CapabilityStatementDocument';
-
-  @Id()
-  int dbId = 0;
 
   /// [mode] /// Mode of this document declaration - whether an application is a producer or
   /// consumer.

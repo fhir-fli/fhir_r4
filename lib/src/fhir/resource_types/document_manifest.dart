@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -44,9 +43,6 @@ class DocumentManifest extends DomainResource {
 
   @override
   String get fhirType => 'DocumentManifest';
-
-  @Id()
-  int dbId = 0;
 
   /// [masterIdentifier] /// A single identifier that uniquely identifies this manifest. Principally
   /// used to refer to the manifest in non-FHIR contexts.
@@ -396,9 +392,6 @@ class DocumentManifestRelated extends BackboneElement {
 
   @override
   String get fhirType => 'DocumentManifestRelated';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Related identifier to this DocumentManifest. For example, Order numbers,
   /// accession numbers, XDW workflow numbers.

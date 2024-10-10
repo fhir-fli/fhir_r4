@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -54,9 +53,6 @@ class ExampleScenario extends DomainResource {
 
   @override
   String get fhirType => 'ExampleScenario';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this example scenario when it is
   /// referenced in a specification, model, design or an instance; also called
@@ -558,9 +554,6 @@ class ExampleScenarioActor extends BackboneElement {
   @override
   String get fhirType => 'ExampleScenarioActor';
 
-  @Id()
-  int dbId = 0;
-
   /// [actorId] /// ID or acronym of actor.
   final FhirString actorId;
   final Element? actorIdElement;
@@ -735,9 +728,6 @@ class ExampleScenarioInstance extends BackboneElement {
 
   @override
   String get fhirType => 'ExampleScenarioInstance';
-
-  @Id()
-  int dbId = 0;
 
   /// [resourceId] /// The id of the resource for referencing.
   final FhirString resourceId;
@@ -945,9 +935,6 @@ class ExampleScenarioVersion extends BackboneElement {
   @override
   String get fhirType => 'ExampleScenarioVersion';
 
-  @Id()
-  int dbId = 0;
-
   /// [versionId] /// The identifier of a specific version of a resource.
   final FhirString versionId;
   final Element? versionIdElement;
@@ -1082,9 +1069,6 @@ class ExampleScenarioContainedInstance extends BackboneElement {
 
   @override
   String get fhirType => 'ExampleScenarioContainedInstance';
-
-  @Id()
-  int dbId = 0;
 
   /// [resourceId] /// Each resource contained in the instance.
   final FhirString resourceId;
@@ -1229,9 +1213,6 @@ class ExampleScenarioProcess extends BackboneElement {
 
   @override
   String get fhirType => 'ExampleScenarioProcess';
-
-  @Id()
-  int dbId = 0;
 
   /// [title] /// The diagram title of the group of operations.
   final FhirString title;
@@ -1428,9 +1409,6 @@ class ExampleScenarioStep extends BackboneElement {
   @override
   String get fhirType => 'ExampleScenarioStep';
 
-  @Id()
-  int dbId = 0;
-
   /// [process] /// Nested process.
   final List<ExampleScenarioProcess>? process;
 
@@ -1610,9 +1588,6 @@ class ExampleScenarioOperation extends BackboneElement {
 
   @override
   String get fhirType => 'ExampleScenarioOperation';
-
-  @Id()
-  int dbId = 0;
 
   /// [number] /// The sequential number of the interaction, e.g. 1.2.5.
   final FhirString number;
@@ -1895,9 +1870,6 @@ class ExampleScenarioAlternative extends BackboneElement {
 
   @override
   String get fhirType => 'ExampleScenarioAlternative';
-
-  @Id()
-  int dbId = 0;
 
   /// [title] /// The label to display for the alternative that gives a sense of the
   /// circumstance in which the alternative should be invoked.

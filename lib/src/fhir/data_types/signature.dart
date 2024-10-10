@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -34,9 +33,6 @@ class Signature extends DataType {
 
   @override
   String get fhirType => 'Signature';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// An indication of the reason that the entity signed this document. This may
   /// be explicitly included as part of the signature information and can be used

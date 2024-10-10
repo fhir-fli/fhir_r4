@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -53,9 +52,6 @@ class Encounter extends DomainResource {
 
   @override
   String get fhirType => 'Encounter';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifier(s) by which this encounter is known.
   final List<Identifier>? identifier;
@@ -557,9 +553,6 @@ class EncounterStatusHistory extends BackboneElement {
   @override
   String get fhirType => 'EncounterStatusHistory';
 
-  @Id()
-  int dbId = 0;
-
   /// [status] /// planned | arrived | triaged | in-progress | onleave | finished | cancelled
   /// +.
   final EncounterStatus status;
@@ -687,9 +680,6 @@ class EncounterClassHistory extends BackboneElement {
   @override
   String get fhirType => 'EncounterClassHistory';
 
-  @Id()
-  int dbId = 0;
-
   /// [class_] /// inpatient | outpatient | ambulatory | emergency +.
   final Coding class_;
 
@@ -804,9 +794,6 @@ class EncounterParticipant extends BackboneElement {
 
   @override
   String get fhirType => 'EncounterParticipant';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// Role of participant in encounter.
   final List<CodeableConcept>? type;
@@ -948,9 +935,6 @@ class EncounterDiagnosis extends BackboneElement {
 
   @override
   String get fhirType => 'EncounterDiagnosis';
-
-  @Id()
-  int dbId = 0;
 
   /// [condition] /// Reason the encounter takes place, as specified using information from
   /// another resource. For admissions, this is the admission diagnosis. The
@@ -1099,9 +1083,6 @@ class EncounterHospitalization extends BackboneElement {
 
   @override
   String get fhirType => 'EncounterHospitalization';
-
-  @Id()
-  int dbId = 0;
 
   /// [preAdmissionIdentifier] /// Pre-admission identifier.
   final Identifier? preAdmissionIdentifier;
@@ -1325,9 +1306,6 @@ class EncounterLocation extends BackboneElement {
 
   @override
   String get fhirType => 'EncounterLocation';
-
-  @Id()
-  int dbId = 0;
 
   /// [location] /// The location where the encounter takes place.
   final Reference location;

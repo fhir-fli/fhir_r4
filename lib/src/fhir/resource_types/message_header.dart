@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -45,9 +44,6 @@ class MessageHeader extends DomainResource {
 
   @override
   String get fhirType => 'MessageHeader';
-
-  @Id()
-  int dbId = 0;
 
   /// [eventCoding] /// Code that identifies the event this message represents and connects it with
   /// its definition. Events defined as part of the FHIR specification have the
@@ -382,9 +378,6 @@ class MessageHeaderDestination extends BackboneElement {
   @override
   String get fhirType => 'MessageHeaderDestination';
 
-  @Id()
-  int dbId = 0;
-
   /// [name] /// Human-readable name for the target system.
   final FhirString? name;
   final Element? nameElement;
@@ -549,9 +542,6 @@ class MessageHeaderSource extends BackboneElement {
 
   @override
   String get fhirType => 'MessageHeaderSource';
-
-  @Id()
-  int dbId = 0;
 
   /// [name] /// Human-readable name for the source system.
   final FhirString? name;
@@ -742,9 +732,6 @@ class MessageHeaderResponse extends BackboneElement {
 
   @override
   String get fhirType => 'MessageHeaderResponse';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// The MessageHeader.id of the message to which this message is a response.
   final FhirId identifier;

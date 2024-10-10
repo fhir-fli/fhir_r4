@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -32,9 +31,6 @@ class Linkage extends DomainResource {
 
   @override
   String get fhirType => 'Linkage';
-
-  @Id()
-  int dbId = 0;
 
   /// [active] /// Indicates whether the asserted set of linkages are considered to be "in
   /// effect".
@@ -241,9 +237,6 @@ class LinkageItem extends BackboneElement {
 
   @override
   String get fhirType => 'LinkageItem';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// Distinguishes which item is "source of truth" (if any) and which items are
   /// no longer considered to be current representations.

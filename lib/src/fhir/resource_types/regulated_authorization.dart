@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -46,9 +45,6 @@ class RegulatedAuthorization extends DomainResource {
 
   @override
   String get fhirType => 'RegulatedAuthorization';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifier for the authorization, typically assigned by the
   /// authorizing body.
@@ -425,9 +421,6 @@ class RegulatedAuthorizationCase extends BackboneElement {
 
   @override
   String get fhirType => 'RegulatedAuthorizationCase';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifier by which this case can be referenced.
   final Identifier? identifier;

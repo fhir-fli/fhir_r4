@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -24,9 +23,6 @@ class Narrative extends DataType {
 
   @override
   String get fhirType => 'Narrative';
-
-  @Id()
-  int dbId = 0;
 
   /// [status] /// The status of the narrative - whether it's entirely generated (from just
   /// the defined data or the extensions too), or whether a human authored it and

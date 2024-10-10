@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -60,9 +59,6 @@ class ClinicalImpression extends DomainResource {
 
   @override
   String get fhirType => 'ClinicalImpression';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this clinical impression by the performer
   /// or other systems which remain constant as the resource is updated and
@@ -559,9 +555,6 @@ class ClinicalImpressionInvestigation extends BackboneElement {
   @override
   String get fhirType => 'ClinicalImpressionInvestigation';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// A name/code for the group ("set") of investigations. Typically, this will
   /// be something like "signs", "symptoms", "clinical", "diagnostic", but the
   /// list is not constrained, and others such groups such as
@@ -689,9 +682,6 @@ class ClinicalImpressionFinding extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalImpressionFinding';
-
-  @Id()
-  int dbId = 0;
 
   /// [itemCodeableConcept] /// Specific text or code for finding or diagnosis, which may include ruled-out
   /// or resolved conditions.

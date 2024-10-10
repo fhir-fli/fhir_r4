@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -38,9 +37,6 @@ class Medication extends DomainResource {
 
   @override
   String get fhirType => 'Medication';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifier for this medication.
   final List<Identifier>? identifier;
@@ -315,9 +311,6 @@ class MedicationIngredient extends BackboneElement {
   @override
   String get fhirType => 'MedicationIngredient';
 
-  @Id()
-  int dbId = 0;
-
   /// [itemCodeableConcept] /// The actual ingredient - either a substance (simple ingredient) or another
   /// medication of a medication.
   final CodeableConcept? itemCodeableConcept;
@@ -478,9 +471,6 @@ class MedicationBatch extends BackboneElement {
 
   @override
   String get fhirType => 'MedicationBatch';
-
-  @Id()
-  int dbId = 0;
 
   /// [lotNumber] /// The assigned lot number of a batch of the specified product.
   final FhirString? lotNumber;

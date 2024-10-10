@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -83,9 +82,6 @@ class ResearchDefinition extends DomainResource {
 
   @override
   String get fhirType => 'ResearchDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this research definition when it
   /// is referenced in a specification, model, design or an instance; also called

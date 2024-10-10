@@ -9,7 +9,7 @@ StringBuffer generateClassBuffer(
 
   buffer.writeln("import 'dart:convert';");
   // buffer.writeln("import 'package:json_annotation/json_annotation.dart';");
-  buffer.writeln("import 'package:objectbox/objectbox.dart';");
+  // buffer.writeln("import 'package:objectbox/objectbox.dart';");
   buffer.writeln("import 'package:yaml/yaml.dart';");
   buffer.writeln("\nimport '../../../$fhirVersion.dart';\n");
 
@@ -35,7 +35,7 @@ void _writeClassHeader(StringBuffer buffer, WritableClass writableClass,
   // buffer.writeln('@JsonCodable()');
   // buffer.writeln('@Data()');
   // buffer.writeln('@JsonSerializable()');
-  buffer.writeln('@Entity()');
+  // buffer.writeln('@Entity()');
 
   final String extendsClause = writableClass.extendsClause;
   buffer.writeln('class ${writableName.fhirToDartTypes} $extendsClause {');
@@ -46,9 +46,9 @@ void _writeClassHeader(StringBuffer buffer, WritableClass writableClass,
 
 void _writeFields(StringBuffer buffer, WritableClass writableClass,
     StringBuffer fhirFieldMapBuffer) {
-  buffer.writeln('  @Id()');
+  // buffer.writeln('  @Id()');
   // buffer.writeln('@JsonKey(ignore: true)');
-  buffer.writeln('  int dbId = 0;');
+  // buffer.writeln('  int dbId = 0;');
 
   for (final Field field in writableClass.fields) {
     // Add field details to fhirFieldMapBuffer

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -30,8 +29,6 @@ class FhirDuration extends Quantity {
   @override
   String get fhirType => 'FhirDuration';
 
-  @Id()
-  int dbId = 0;
   @override
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> json = <String, dynamic>{};

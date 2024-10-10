@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -53,9 +52,6 @@ class Patient extends DomainResource {
 
   @override
   String get fhirType => 'Patient';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// An identifier for this patient.
   final List<Identifier>? identifier;
@@ -535,9 +531,6 @@ class PatientContact extends BackboneElement {
   @override
   String get fhirType => 'PatientContact';
 
-  @Id()
-  int dbId = 0;
-
   /// [relationship] /// The nature of the relationship between the patient and the contact person.
   final List<CodeableConcept>? relationship;
 
@@ -736,9 +729,6 @@ class PatientCommunication extends BackboneElement {
   @override
   String get fhirType => 'PatientCommunication';
 
-  @Id()
-  int dbId = 0;
-
   /// [language] /// The ISO-639-1 alpha 2 code in lower case for the language, optionally
   /// followed by a hyphen and the ISO-3166-1 alpha 2 code for the region in
   /// upper case; e.g. "en" for English, or "en-US" for American English versus
@@ -871,9 +861,6 @@ class PatientLink extends BackboneElement {
 
   @override
   String get fhirType => 'PatientLink';
-
-  @Id()
-  int dbId = 0;
 
   /// [other] /// The other patient resource that the link refers to.
   final Reference other;

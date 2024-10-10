@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -81,9 +80,6 @@ class PlanDefinition extends DomainResource {
 
   @override
   String get fhirType => 'PlanDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this plan definition when it is
   /// referenced in a specification, model, design or an instance; also called
@@ -885,9 +881,6 @@ class PlanDefinitionGoal extends BackboneElement {
   @override
   String get fhirType => 'PlanDefinitionGoal';
 
-  @Id()
-  int dbId = 0;
-
   /// [category] /// Indicates a category the goal falls within.
   final CodeableConcept? category;
 
@@ -1083,9 +1076,6 @@ class PlanDefinitionTarget extends BackboneElement {
 
   @override
   String get fhirType => 'PlanDefinitionTarget';
-
-  @Id()
-  int dbId = 0;
 
   /// [measure] /// The parameter whose value is to be tracked, e.g. body weight, blood
   /// pressure, or hemoglobin A1c level.
@@ -1316,9 +1306,6 @@ class PlanDefinitionAction extends BackboneElement {
 
   @override
   String get fhirType => 'PlanDefinitionAction';
-
-  @Id()
-  int dbId = 0;
 
   /// [prefix] /// A user-visible prefix for the action.
   final FhirString? prefix;
@@ -2046,9 +2033,6 @@ class PlanDefinitionCondition extends BackboneElement {
   @override
   String get fhirType => 'PlanDefinitionCondition';
 
-  @Id()
-  int dbId = 0;
-
   /// [kind] /// The kind of condition.
   final ActionConditionKind kind;
   final Element? kindElement;
@@ -2178,9 +2162,6 @@ class PlanDefinitionRelatedAction extends BackboneElement {
 
   @override
   String get fhirType => 'PlanDefinitionRelatedAction';
-
-  @Id()
-  int dbId = 0;
 
   /// [actionId] /// The element id of the related action.
   final FhirId actionId;
@@ -2337,9 +2318,6 @@ class PlanDefinitionParticipant extends BackboneElement {
   @override
   String get fhirType => 'PlanDefinitionParticipant';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// The type of participant in the action.
   final ActionParticipantType type;
   final Element? typeElement;
@@ -2468,9 +2446,6 @@ class PlanDefinitionDynamicValue extends BackboneElement {
 
   @override
   String get fhirType => 'PlanDefinitionDynamicValue';
-
-  @Id()
-  int dbId = 0;
 
   /// [path] /// The path to the element to be customized. This is the path on the resource
   /// that will hold the result of the calculation defined by the expression. The

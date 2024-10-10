@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -59,9 +58,6 @@ class Media extends DomainResource {
 
   @override
   String get fhirType => 'Media';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifiers associated with the image - these may include identifiers for
   /// the image itself, identifiers for the context of its collection (e.g.

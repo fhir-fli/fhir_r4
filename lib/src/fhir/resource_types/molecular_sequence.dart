@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -47,9 +46,6 @@ class MolecularSequence extends DomainResource {
 
   @override
   String get fhirType => 'MolecularSequence';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A unique identifier for this particular sequence instance. This is a
   /// FHIR-defined id.
@@ -472,9 +468,6 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   @override
   String get fhirType => 'MolecularSequenceReferenceSeq';
 
-  @Id()
-  int dbId = 0;
-
   /// [chromosome] /// Structural unit composed of a nucleic acid molecule which controls its own
   /// replication through the interaction of specific proteins at one or more
   /// origins of replication
@@ -754,9 +747,6 @@ class MolecularSequenceVariant extends BackboneElement {
   @override
   String get fhirType => 'MolecularSequenceVariant';
 
-  @Id()
-  int dbId = 0;
-
   /// [start] /// Start position of the variant on the reference sequence. If the coordinate
   /// system is either 0-based or 1-based, then start position is inclusive.
   final FhirInteger? start;
@@ -1005,9 +995,6 @@ class MolecularSequenceQuality extends BackboneElement {
 
   @override
   String get fhirType => 'MolecularSequenceQuality';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// INDEL / SNP / Undefined variant.
   final QualityType type;
@@ -1392,9 +1379,6 @@ class MolecularSequenceRoc extends BackboneElement {
   @override
   String get fhirType => 'MolecularSequenceRoc';
 
-  @Id()
-  int dbId = 0;
-
   /// [score] /// Invidual data point representing the GQ (genotype quality) score threshold.
   final List<FhirInteger>? score;
   final List<Element>? scoreElement;
@@ -1698,9 +1682,6 @@ class MolecularSequenceRepository extends BackboneElement {
   @override
   String get fhirType => 'MolecularSequenceRepository';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// Click and see / RESTful API / Need login to see / RESTful API with
   /// authentication / Other ways to see resource.
   final RepositoryType type;
@@ -1922,9 +1903,6 @@ class MolecularSequenceStructureVariant extends BackboneElement {
   @override
   String get fhirType => 'MolecularSequenceStructureVariant';
 
-  @Id()
-  int dbId = 0;
-
   /// [variantType] /// Information about chromosome structure variation DNA change type.
   final CodeableConcept? variantType;
 
@@ -2103,9 +2081,6 @@ class MolecularSequenceOuter extends BackboneElement {
   @override
   String get fhirType => 'MolecularSequenceOuter';
 
-  @Id()
-  int dbId = 0;
-
   /// [start] /// Structural variant outer start. If the coordinate system is either 0-based
   /// or 1-based, then start position is inclusive.
   final FhirInteger? start;
@@ -2246,9 +2221,6 @@ class MolecularSequenceInner extends BackboneElement {
 
   @override
   String get fhirType => 'MolecularSequenceInner';
-
-  @Id()
-  int dbId = 0;
 
   /// [start] /// Structural variant inner start. If the coordinate system is either 0-based
   /// or 1-based, then start position is inclusive.

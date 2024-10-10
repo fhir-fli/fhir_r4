@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -43,9 +42,6 @@ class EpisodeOfCare extends DomainResource {
 
   @override
   String get fhirType => 'EpisodeOfCare';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// The EpisodeOfCare may be known by different identifiers for different
   /// contexts of use, such as when an external agency is tracking the Episode
@@ -377,9 +373,6 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
   @override
   String get fhirType => 'EpisodeOfCareStatusHistory';
 
-  @Id()
-  int dbId = 0;
-
   /// [status] /// planned | waitlist | active | onhold | finished | cancelled.
   final EpisodeOfCareStatus status;
   final Element? statusElement;
@@ -501,9 +494,6 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
 
   @override
   String get fhirType => 'EpisodeOfCareDiagnosis';
-
-  @Id()
-  int dbId = 0;
 
   /// [condition] /// A list of conditions/problems/diagnoses that this episode of care is
   /// intended to be providing care for.

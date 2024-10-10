@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -23,9 +22,6 @@ class Period extends DataType {
 
   @override
   String get fhirType => 'Period';
-
-  @Id()
-  int dbId = 0;
 
   /// [start] /// The start of the period. The boundary is inclusive.
   final FhirDateTime? start;

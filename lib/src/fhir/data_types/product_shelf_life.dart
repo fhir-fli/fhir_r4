@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -25,9 +24,6 @@ class ProductShelfLife extends BackboneType {
 
   @override
   String get fhirType => 'ProductShelfLife';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Unique identifier for the packaged Medicinal Product.
   final Identifier? identifier;

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -36,9 +35,6 @@ class ParameterDefinition extends DataType {
 
   @override
   String get fhirType => 'ParameterDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [name] /// The name of the parameter used to allow access to the value of the
   /// parameter in evaluation contexts.

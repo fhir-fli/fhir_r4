@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -23,9 +22,6 @@ class Money extends DataType {
 
   @override
   String get fhirType => 'Money';
-
-  @Id()
-  int dbId = 0;
 
   /// [value] /// Numerical value (with implicit precision).
   final FhirDecimal? value;

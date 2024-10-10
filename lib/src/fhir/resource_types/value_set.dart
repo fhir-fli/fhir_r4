@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -60,9 +59,6 @@ class ValueSet extends DomainResource {
 
   @override
   String get fhirType => 'ValueSet';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this value set when it is
   /// referenced in a specification, model, design or an instance; also called
@@ -573,9 +569,6 @@ class ValueSetCompose extends BackboneElement {
   @override
   String get fhirType => 'ValueSetCompose';
 
-  @Id()
-  int dbId = 0;
-
   /// [lockedDate] /// The Locked Date is the effective date that is used to determine the version
   /// of all referenced Code Systems and Value Set Definitions included in the
   /// compose that are not already tied to a specific version.
@@ -755,9 +748,6 @@ class ValueSetInclude extends BackboneElement {
 
   @override
   String get fhirType => 'ValueSetInclude';
-
-  @Id()
-  int dbId = 0;
 
   /// [system] /// An absolute URI which is the code system from which the selected codes come
   /// from.
@@ -964,9 +954,6 @@ class ValueSetConcept extends BackboneElement {
   @override
   String get fhirType => 'ValueSetConcept';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// Specifies a code for the concept to be included or excluded.
   final FhirCode code;
   final Element? codeElement;
@@ -1127,9 +1114,6 @@ class ValueSetDesignation extends BackboneElement {
   @override
   String get fhirType => 'ValueSetDesignation';
 
-  @Id()
-  int dbId = 0;
-
   /// [language] /// The language this designation is defined for.
   final CommonLanguages? language;
   final Element? languageElement;
@@ -1279,9 +1263,6 @@ class ValueSetFilter extends BackboneElement {
 
   @override
   String get fhirType => 'ValueSetFilter';
-
-  @Id()
-  int dbId = 0;
 
   /// [property] /// A code that identifies a property or a filter defined in the code system.
   final FhirCode property;
@@ -1442,9 +1423,6 @@ class ValueSetExpansion extends BackboneElement {
 
   @override
   String get fhirType => 'ValueSetExpansion';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// An identifier that uniquely identifies this expansion of the valueset,
   /// based on a unique combination of the provided parameters, the system
@@ -1675,9 +1653,6 @@ class ValueSetParameter extends BackboneElement {
 
   @override
   String get fhirType => 'ValueSetParameter';
-
-  @Id()
-  int dbId = 0;
 
   /// [name] /// Name of the input parameter to the $expand operation; may be a
   /// server-assigned name for additional default or other server-supplied
@@ -1947,9 +1922,6 @@ class ValueSetContains extends BackboneElement {
 
   @override
   String get fhirType => 'ValueSetContains';
-
-  @Id()
-  int dbId = 0;
 
   /// [system] /// An absolute URI which is the code system in which the code for this item in
   /// the expansion is defined.

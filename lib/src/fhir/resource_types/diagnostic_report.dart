@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -54,9 +53,6 @@ class DiagnosticReport extends DomainResource {
 
   @override
   String get fhirType => 'DiagnosticReport';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifiers assigned to this report by the performer or other systems.
   final List<Identifier>? identifier;
@@ -520,9 +516,6 @@ class DiagnosticReportMedia extends BackboneElement {
 
   @override
   String get fhirType => 'DiagnosticReportMedia';
-
-  @Id()
-  int dbId = 0;
 
   /// [comment] /// A comment about the image. Typically, this is used to provide an
   /// explanation for why the image is included, or to draw the viewer's

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -44,9 +43,6 @@ class MeasureReport extends DomainResource {
 
   @override
   String get fhirType => 'MeasureReport';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A formal identifier that is used to identify this MeasureReport when it is
   /// represented in other formats or referenced in a specification, model,
@@ -368,9 +364,6 @@ class MeasureReportGroup extends BackboneElement {
   @override
   String get fhirType => 'MeasureReportGroup';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// The meaning of the population group as defined in the measure definition.
   final CodeableConcept? code;
 
@@ -532,9 +525,6 @@ class MeasureReportPopulation extends BackboneElement {
   @override
   String get fhirType => 'MeasureReportPopulation';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// The type of the population.
   final CodeableConcept? code;
 
@@ -677,9 +667,6 @@ class MeasureReportStratifier extends BackboneElement {
   @override
   String get fhirType => 'MeasureReportStratifier';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// The meaning of this stratifier, as defined in the measure definition.
   final List<CodeableConcept>? code;
 
@@ -816,9 +803,6 @@ class MeasureReportStratum extends BackboneElement {
 
   @override
   String get fhirType => 'MeasureReportStratum';
-
-  @Id()
-  int dbId = 0;
 
   /// [value] /// The value for this stratum, expressed as a CodeableConcept. When defining
   /// stratifiers on complex values, the value must be rendered such that the
@@ -979,9 +963,6 @@ class MeasureReportComponent extends BackboneElement {
   @override
   String get fhirType => 'MeasureReportComponent';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// The code for the stratum component value.
   final CodeableConcept code;
 
@@ -1098,9 +1079,6 @@ class MeasureReportPopulation1 extends BackboneElement {
 
   @override
   String get fhirType => 'MeasureReportPopulation1';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// The type of the population.
   final CodeableConcept? code;

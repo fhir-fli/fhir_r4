@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -37,9 +36,6 @@ class EnrollmentRequest extends DomainResource {
 
   @override
   String get fhirType => 'EnrollmentRequest';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// The Response business identifier.
   final List<Identifier>? identifier;

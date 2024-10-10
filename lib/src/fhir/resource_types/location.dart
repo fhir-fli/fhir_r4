@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -52,9 +51,6 @@ class Location extends DomainResource {
 
   @override
   String get fhirType => 'Location';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Unique code or number identifying the location to its users.
   final List<Identifier>? identifier;
@@ -496,9 +492,6 @@ class LocationPosition extends BackboneElement {
   @override
   String get fhirType => 'LocationPosition';
 
-  @Id()
-  int dbId = 0;
-
   /// [longitude] /// Longitude. The value domain and the interpretation are the same as for the
   /// text of the longitude element in KML (see notes below).
   final FhirDecimal longitude;
@@ -659,9 +652,6 @@ class LocationHoursOfOperation extends BackboneElement {
 
   @override
   String get fhirType => 'LocationHoursOfOperation';
-
-  @Id()
-  int dbId = 0;
 
   /// [daysOfWeek] /// Indicates which days of the week are available between the start and end
   /// Times.

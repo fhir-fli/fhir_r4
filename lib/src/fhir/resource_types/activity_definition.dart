@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -107,9 +106,6 @@ class ActivityDefinition extends DomainResource {
 
   @override
   String get fhirType => 'ActivityDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this activity definition when it
   /// is referenced in a specification, model, design or an instance; also called
@@ -1242,9 +1238,6 @@ class ActivityDefinitionParticipant extends BackboneElement {
   @override
   String get fhirType => 'ActivityDefinitionParticipant';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// The type of participant in the action.
   final ActionParticipantType type;
   final Element? typeElement;
@@ -1373,9 +1366,6 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
 
   @override
   String get fhirType => 'ActivityDefinitionDynamicValue';
-
-  @Id()
-  int dbId = 0;
 
   /// [path] /// The path to the element to be customized. This is the path on the resource
   /// that will hold the result of the calculation defined by the expression. The

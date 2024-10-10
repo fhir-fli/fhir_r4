@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -39,9 +38,6 @@ class BodyStructure extends DomainResource {
 
   @override
   String get fhirType => 'BodyStructure';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifier for this instance of the anatomical structure.
   final List<Identifier>? identifier;

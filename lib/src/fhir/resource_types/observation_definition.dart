@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -44,9 +43,6 @@ class ObservationDefinition extends DomainResource {
 
   @override
   String get fhirType => 'ObservationDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [category] /// A code that classifies the general type of observation.
   final List<CodeableConcept>? category;
@@ -418,9 +414,6 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   @override
   String get fhirType => 'ObservationDefinitionQuantitativeDetails';
 
-  @Id()
-  int dbId = 0;
-
   /// [customaryUnit] /// Customary unit used to report quantitative results of observations
   /// conforming to this ObservationDefinition.
   final CodeableConcept? customaryUnit;
@@ -603,9 +596,6 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
 
   @override
   String get fhirType => 'ObservationDefinitionQualifiedInterval';
-
-  @Id()
-  int dbId = 0;
 
   /// [category] /// The category of interval of values for continuous or ordinal observations
   /// conforming to this ObservationDefinition.

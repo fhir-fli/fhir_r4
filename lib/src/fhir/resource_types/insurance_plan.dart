@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -44,9 +43,6 @@ class InsurancePlan extends DomainResource {
 
   @override
   String get fhirType => 'InsurancePlan';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this health insurance product which remain
   /// constant as the resource is updated and propagates from server to server.
@@ -430,9 +426,6 @@ class InsurancePlanContact extends BackboneElement {
   @override
   String get fhirType => 'InsurancePlanContact';
 
-  @Id()
-  int dbId = 0;
-
   /// [purpose] /// Indicates a purpose for which the contact can be reached.
   final CodeableConcept? purpose;
 
@@ -583,9 +576,6 @@ class InsurancePlanCoverage extends BackboneElement {
   @override
   String get fhirType => 'InsurancePlanCoverage';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// Type of coverage (Medical; Dental; Mental Health; Substance Abuse; Vision;
   /// Drug; Short Term; Long Term Care; Hospice; Home Health).
   final CodeableConcept type;
@@ -721,9 +711,6 @@ class InsurancePlanBenefit extends BackboneElement {
 
   @override
   String get fhirType => 'InsurancePlanBenefit';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// Type of benefit (primary care; speciality care; inpatient; outpatient).
   final CodeableConcept type;
@@ -867,9 +854,6 @@ class InsurancePlanLimit extends BackboneElement {
   @override
   String get fhirType => 'InsurancePlanLimit';
 
-  @Id()
-  int dbId = 0;
-
   /// [value] /// The maximum amount of a service item a plan will pay for a covered benefit.
   /// For examples. wellness visits, or eyeglasses.
   final Quantity? value;
@@ -996,9 +980,6 @@ class InsurancePlanPlan extends BackboneElement {
 
   @override
   String get fhirType => 'InsurancePlanPlan';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this health insurance plan which remain
   /// constant as the resource is updated and propagates from server to server.
@@ -1193,9 +1174,6 @@ class InsurancePlanGeneralCost extends BackboneElement {
   @override
   String get fhirType => 'InsurancePlanGeneralCost';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// Type of cost.
   final CodeableConcept? type;
 
@@ -1357,9 +1335,6 @@ class InsurancePlanSpecificCost extends BackboneElement {
   @override
   String get fhirType => 'InsurancePlanSpecificCost';
 
-  @Id()
-  int dbId = 0;
-
   /// [category] /// General category of benefit (Medical; Dental; Vision; Drug; Mental Health;
   /// Substance Abuse; Hospice, Home Health).
   final CodeableConcept category;
@@ -1485,9 +1460,6 @@ class InsurancePlanBenefit1 extends BackboneElement {
   @override
   String get fhirType => 'InsurancePlanBenefit1';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// Type of specific benefit (preventative; primary care office visit;
   /// speciality office visit; hospitalization; emergency room; urgent care).
   final CodeableConcept type;
@@ -1612,9 +1584,6 @@ class InsurancePlanCost extends BackboneElement {
 
   @override
   String get fhirType => 'InsurancePlanCost';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// Type of cost (copay; individual cap; family cap; coinsurance; deductible).
   final CodeableConcept type;

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -63,9 +62,6 @@ class SubscriptionTopic extends DomainResource {
 
   @override
   String get fhirType => 'SubscriptionTopic';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this subscription topic when it is
   /// referenced in a specification, model, design or an instance; also called
@@ -665,9 +661,6 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
   @override
   String get fhirType => 'SubscriptionTopicResourceTrigger';
 
-  @Id()
-  int dbId = 0;
-
   /// [description] /// The human readable description of this resource trigger for the
   /// SubscriptionTopic - for example, "An Encounter enters the 'in-progress'
   /// state".
@@ -882,9 +875,6 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
   @override
   String get fhirType => 'SubscriptionTopicQueryCriteria';
 
-  @Id()
-  int dbId = 0;
-
   /// [previous] /// The FHIR query based rules are applied to the previous resource state
   /// (e.g., state before an update).
   final FhirString? previous;
@@ -1090,9 +1080,6 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
   @override
   String get fhirType => 'SubscriptionTopicEventTrigger';
 
-  @Id()
-  int dbId = 0;
-
   /// [description] /// The human readable description of an event to trigger a notification for
   /// the SubscriptionTopic - for example, "Patient Admission, as defined in
   /// HL7v2 via message ADT^A01". Multiple values are considered OR joined (e.g.,
@@ -1252,9 +1239,6 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
 
   @override
   String get fhirType => 'SubscriptionTopicCanFilterBy';
-
-  @Id()
-  int dbId = 0;
 
   /// [description] /// Description of how this filtering parameter is intended to be used.
   final FhirMarkdown? description;
@@ -1471,9 +1455,6 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
 
   @override
   String get fhirType => 'SubscriptionTopicNotificationShape';
-
-  @Id()
-  int dbId = 0;
 
   /// [resource] /// URL of the Resource that is the type used in this shape. This is the
   /// "focus" of the topic (or one of them if there are more than one) and the

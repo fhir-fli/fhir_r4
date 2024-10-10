@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -56,9 +55,6 @@ class ImagingStudy extends DomainResource {
 
   @override
   String get fhirType => 'ImagingStudy';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifiers for the ImagingStudy such as DICOM Study Instance UID, and
   /// Accession Number.
@@ -550,9 +546,6 @@ class ImagingStudySeries extends BackboneElement {
   @override
   String get fhirType => 'ImagingStudySeries';
 
-  @Id()
-  int dbId = 0;
-
   /// [uid] /// The DICOM Series Instance UID for the series.
   final FhirId uid;
   final Element? uidElement;
@@ -855,9 +848,6 @@ class ImagingStudyPerformer extends BackboneElement {
   @override
   String get fhirType => 'ImagingStudyPerformer';
 
-  @Id()
-  int dbId = 0;
-
   /// [function_] /// Distinguishes the type of involvement of the performer in the series.
   final CodeableConcept? function_;
 
@@ -981,9 +971,6 @@ class ImagingStudyInstance extends BackboneElement {
 
   @override
   String get fhirType => 'ImagingStudyInstance';
-
-  @Id()
-  int dbId = 0;
 
   /// [uid] /// The DICOM SOP Instance UID for this image or other DICOM content.
   final FhirId uid;

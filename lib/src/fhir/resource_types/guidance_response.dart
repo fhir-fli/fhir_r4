@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -50,9 +49,6 @@ class GuidanceResponse extends DomainResource {
 
   @override
   String get fhirType => 'GuidanceResponse';
-
-  @Id()
-  int dbId = 0;
 
   /// [requestIdentifier] /// The identifier of the request associated with this response. If an
   /// identifier was given as part of the request, it will be reproduced here to

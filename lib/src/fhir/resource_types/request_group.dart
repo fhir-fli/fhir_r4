@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -52,9 +51,6 @@ class RequestGroup extends DomainResource {
 
   @override
   String get fhirType => 'RequestGroup';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Allows a service to provide a unique, business identifier for the request.
   final List<Identifier>? identifier;
@@ -537,9 +533,6 @@ class RequestGroupAction extends BackboneElement {
 
   @override
   String get fhirType => 'RequestGroupAction';
-
-  @Id()
-  int dbId = 0;
 
   /// [prefix] /// A user-visible prefix for the action.
   final FhirString? prefix;
@@ -1031,9 +1024,6 @@ class RequestGroupCondition extends BackboneElement {
   @override
   String get fhirType => 'RequestGroupCondition';
 
-  @Id()
-  int dbId = 0;
-
   /// [kind] /// The kind of condition.
   final ActionConditionKind kind;
   final Element? kindElement;
@@ -1163,9 +1153,6 @@ class RequestGroupRelatedAction extends BackboneElement {
 
   @override
   String get fhirType => 'RequestGroupRelatedAction';
-
-  @Id()
-  int dbId = 0;
 
   /// [actionId] /// The element id of the action this is related to.
   final FhirId actionId;

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -315,9 +314,6 @@ class ElementDefinition extends BackboneType {
 
   @override
   String get fhirType => 'ElementDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [path] /// The path identifies the element and is expressed as a "."-separated list of
   /// ancestor elements, beginning with the name of the resource or extension.
@@ -4835,9 +4831,6 @@ class ElementDefinitionSlicing extends Element {
   @override
   String get fhirType => 'ElementDefinitionSlicing';
 
-  @Id()
-  int dbId = 0;
-
   /// [discriminator] /// Designates which child elements are used to discriminate between the slices
   /// when processing an instance. If one or more discriminators are provided,
   /// the value of the child elements in the instance data SHALL completely
@@ -5009,9 +5002,6 @@ class ElementDefinitionDiscriminator extends Element {
   @override
   String get fhirType => 'ElementDefinitionDiscriminator';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// How the element value is interpreted when discrimination is evaluated.
   final DiscriminatorType type;
   final Element? typeElement;
@@ -5140,9 +5130,6 @@ class ElementDefinitionBase extends Element {
 
   @override
   String get fhirType => 'ElementDefinitionBase';
-
-  @Id()
-  int dbId = 0;
 
   /// [path] /// The Path that identifies the base element - this matches the
   /// ElementDefinition.path for that element. Across FHIR, there is only one
@@ -5290,9 +5277,6 @@ class ElementDefinitionType extends Element {
 
   @override
   String get fhirType => 'ElementDefinitionType';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// URL of Data type or Resource that is a(or the) type used for this element.
   /// References are URLs that are relative to
@@ -5582,9 +5566,6 @@ class ElementDefinitionExample extends Element {
 
   @override
   String get fhirType => 'ElementDefinitionExample';
-
-  @Id()
-  int dbId = 0;
 
   /// [label] /// Describes the purpose of this example amoung the set of examples.
   final FhirString label;
@@ -6499,9 +6480,6 @@ class ElementDefinitionConstraint extends Element {
   @override
   String get fhirType => 'ElementDefinitionConstraint';
 
-  @Id()
-  int dbId = 0;
-
   /// [key] /// Allows identification of which elements have their cardinalities impacted
   /// by the constraint. Will not be referenced for constraints that do not
   /// affect cardinality.
@@ -6723,9 +6701,6 @@ class ElementDefinitionBinding extends Element {
   @override
   String get fhirType => 'ElementDefinitionBinding';
 
-  @Id()
-  int dbId = 0;
-
   /// [strength] /// Indicates the degree of conformance expectations associated with this
   /// binding - that is, the degree to which the provided value set must be
   /// adhered to in the instances.
@@ -6874,9 +6849,6 @@ class ElementDefinitionMapping extends Element {
 
   @override
   String get fhirType => 'ElementDefinitionMapping';
-
-  @Id()
-  int dbId = 0;
 
   /// [identity] /// An internal reference to the definition of a mapping.
   final FhirId identity;

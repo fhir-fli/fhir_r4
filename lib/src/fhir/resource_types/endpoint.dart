@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -45,9 +44,6 @@ class FhirEndpoint extends DomainResource {
 
   @override
   String get fhirType => 'FhirEndpoint';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifier for the organization that is used to identify the endpoint
   /// across multiple disparate systems.

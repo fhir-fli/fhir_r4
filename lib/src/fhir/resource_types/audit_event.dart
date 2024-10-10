@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -44,9 +43,6 @@ class AuditEvent extends DomainResource {
 
   @override
   String get fhirType => 'AuditEvent';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// Identifier for a family of the event. For example, a menu item, program,
   /// rule, policy, function code, application name or URL. It identifies the
@@ -374,9 +370,6 @@ class AuditEventAgent extends BackboneElement {
   @override
   String get fhirType => 'AuditEventAgent';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// Specification of the participation type the user plays when performing the
   /// event.
   final CodeableConcept? type;
@@ -655,9 +648,6 @@ class AuditEventNetwork extends BackboneElement {
   @override
   String get fhirType => 'AuditEventNetwork';
 
-  @Id()
-  int dbId = 0;
-
   /// [address] /// An identifier for the network access point of the user device for the audit
   /// event.
   final FhirString? address;
@@ -797,9 +787,6 @@ class AuditEventSource extends BackboneElement {
 
   @override
   String get fhirType => 'AuditEventSource';
-
-  @Id()
-  int dbId = 0;
 
   /// [site] /// Logical source location within the healthcare enterprise network. For
   /// example, a hospital or other provider location within a multi-entity
@@ -951,9 +938,6 @@ class AuditEventEntity extends BackboneElement {
 
   @override
   String get fhirType => 'AuditEventEntity';
-
-  @Id()
-  int dbId = 0;
 
   /// [what] /// Identifies a specific instance of the entity. The reference should be
   /// version specific.
@@ -1191,9 +1175,6 @@ class AuditEventDetail extends BackboneElement {
 
   @override
   String get fhirType => 'AuditEventDetail';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// The type of extra detail provided in the value.
   final FhirString type;

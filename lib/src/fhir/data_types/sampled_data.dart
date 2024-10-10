@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -33,9 +32,6 @@ class SampledData extends DataType {
 
   @override
   String get fhirType => 'SampledData';
-
-  @Id()
-  int dbId = 0;
 
   /// [origin] /// The base quantity that a measured value of zero represents. In addition,
   /// this provides the units of the entire measurement series.

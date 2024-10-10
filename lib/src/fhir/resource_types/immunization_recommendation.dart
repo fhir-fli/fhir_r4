@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -34,9 +33,6 @@ class ImmunizationRecommendation extends DomainResource {
 
   @override
   String get fhirType => 'ImmunizationRecommendation';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this particular recommendation record.
   final List<Identifier>? identifier;
@@ -276,9 +272,6 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
 
   @override
   String get fhirType => 'ImmunizationRecommendationRecommendation';
-
-  @Id()
-  int dbId = 0;
 
   /// [vaccineCode] /// Vaccine(s) or vaccine group that pertain to the recommendation.
   final List<CodeableConcept>? vaccineCode;
@@ -643,9 +636,6 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
 
   @override
   String get fhirType => 'ImmunizationRecommendationDateCriterion';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// Date classification of recommendation. For example, earliest date to give,
   /// latest date to give, etc.

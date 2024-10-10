@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -60,9 +59,6 @@ class Appointment extends DomainResource {
 
   @override
   String get fhirType => 'Appointment';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// This records identifiers associated with this appointment concern that are
   /// defined by business processes and/or used to refer to it when a direct URL
@@ -624,9 +620,6 @@ class AppointmentParticipant extends BackboneElement {
 
   @override
   String get fhirType => 'AppointmentParticipant';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// Role of participant in the appointment.
   final List<CodeableConcept>? type;

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -58,9 +57,6 @@ class Condition extends DomainResource {
 
   @override
   String get fhirType => 'Condition';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this condition by the performer or other
   /// systems which remain constant as the resource is updated and propagates
@@ -596,9 +592,6 @@ class ConditionStage extends BackboneElement {
   @override
   String get fhirType => 'ConditionStage';
 
-  @Id()
-  int dbId = 0;
-
   /// [summary] /// A simple summary of the stage such as "Stage 3". The determination of the
   /// stage is disease-specific.
   final CodeableConcept? summary;
@@ -739,9 +732,6 @@ class ConditionEvidence extends BackboneElement {
 
   @override
   String get fhirType => 'ConditionEvidence';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// A manifestation or symptom that led to the recording of this condition.
   final List<CodeableConcept>? code;

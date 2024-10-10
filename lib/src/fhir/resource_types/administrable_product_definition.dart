@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -40,9 +39,6 @@ class AdministrableProductDefinition extends DomainResource {
 
   @override
   String get fhirType => 'AdministrableProductDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// An identifier for the administrable product.
   final List<Identifier>? identifier;
@@ -388,9 +384,6 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
   @override
   String get fhirType => 'AdministrableProductDefinitionProperty';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// A code expressing the type of characteristic.
   final CodeableConcept type;
 
@@ -594,9 +587,6 @@ class AdministrableProductDefinitionRouteOfAdministration
   @override
   String get fhirType => 'AdministrableProductDefinitionRouteOfAdministration';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// Coded expression for the route.
   final CodeableConcept code;
 
@@ -788,9 +778,6 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
   @override
   String get fhirType => 'AdministrableProductDefinitionTargetSpecies';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// Coded expression for the species.
   final CodeableConcept code;
 
@@ -924,9 +911,6 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
 
   @override
   String get fhirType => 'AdministrableProductDefinitionWithdrawalPeriod';
-
-  @Id()
-  int dbId = 0;
 
   /// [tissue] /// Coded expression for the type of tissue for which the withdrawal period
   /// applies, e.g. meat, milk.

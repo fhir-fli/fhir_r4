@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -82,9 +81,6 @@ class ResearchElementDefinition extends DomainResource {
 
   @override
   String get fhirType => 'ResearchElementDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this research element definition
   /// when it is referenced in a specification, model, design or an instance;
@@ -914,9 +910,6 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
 
   @override
   String get fhirType => 'ResearchElementDefinitionCharacteristic';
-
-  @Id()
-  int dbId = 0;
 
   /// [definitionCodeableConcept] /// Define members of the research element using Codes (such as condition,
   /// medication, or observation), Expressions ( using an expression language

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -59,9 +58,6 @@ class Claim extends DomainResource {
 
   @override
   String get fhirType => 'Claim';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this claim.
   final List<Identifier>? identifier;
@@ -563,9 +559,6 @@ class ClaimRelated extends BackboneElement {
   @override
   String get fhirType => 'ClaimRelated';
 
-  @Id()
-  int dbId = 0;
-
   /// [claim] /// Reference to a related claim.
   final Reference? claim;
 
@@ -702,9 +695,6 @@ class ClaimPayee extends BackboneElement {
   @override
   String get fhirType => 'ClaimPayee';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// Type of Party to be reimbursed: subscriber, provider, other.
   final CodeableConcept type;
 
@@ -828,9 +818,6 @@ class ClaimCareTeam extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimCareTeam';
-
-  @Id()
-  int dbId = 0;
 
   /// [sequence] /// A number to uniquely identify care team entries.
   final FhirPositiveInt sequence;
@@ -1013,9 +1000,6 @@ class ClaimSupportingInfo extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimSupportingInfo';
-
-  @Id()
-  int dbId = 0;
 
   /// [sequence] /// A number to uniquely identify supporting information entries.
   final FhirPositiveInt sequence;
@@ -1281,9 +1265,6 @@ class ClaimDiagnosis extends BackboneElement {
   @override
   String get fhirType => 'ClaimDiagnosis';
 
-  @Id()
-  int dbId = 0;
-
   /// [sequence] /// A number to uniquely identify diagnosis entries.
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
@@ -1474,9 +1455,6 @@ class ClaimProcedure extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimProcedure';
-
-  @Id()
-  int dbId = 0;
 
   /// [sequence] /// A number to uniquely identify procedure entries.
   final FhirPositiveInt sequence;
@@ -1677,9 +1655,6 @@ class ClaimInsurance extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimInsurance';
-
-  @Id()
-  int dbId = 0;
 
   /// [sequence] /// A number to uniquely identify insurance entries and provide a sequence of
   /// coverages to convey coordination of benefit order.
@@ -1904,9 +1879,6 @@ class ClaimAccident extends BackboneElement {
   @override
   String get fhirType => 'ClaimAccident';
 
-  @Id()
-  int dbId = 0;
-
   /// [date] /// Date of an accident event related to the products and services contained in
   /// the claim.
   final FhirDate date;
@@ -2089,9 +2061,6 @@ class ClaimItem extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimItem';
-
-  @Id()
-  int dbId = 0;
 
   /// [sequence] /// A number to uniquely identify item entries.
   final FhirPositiveInt sequence;
@@ -2605,9 +2574,6 @@ class ClaimDetail extends BackboneElement {
   @override
   String get fhirType => 'ClaimDetail';
 
-  @Id()
-  int dbId = 0;
-
   /// [sequence] /// A number to uniquely identify item entries.
   final FhirPositiveInt sequence;
   final Element? sequenceElement;
@@ -2886,9 +2852,6 @@ class ClaimSubDetail extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimSubDetail';
-
-  @Id()
-  int dbId = 0;
 
   /// [sequence] /// A number to uniquely identify item entries.
   final FhirPositiveInt sequence;

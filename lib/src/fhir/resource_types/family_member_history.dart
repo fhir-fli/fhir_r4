@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -66,9 +65,6 @@ class FamilyMemberHistory extends DomainResource {
 
   @override
   String get fhirType => 'FamilyMemberHistory';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this family member history by the
   /// performer or other systems which remain constant as the resource is updated
@@ -677,9 +673,6 @@ class FamilyMemberHistoryCondition extends BackboneElement {
 
   @override
   String get fhirType => 'FamilyMemberHistoryCondition';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// The actual condition specified. Could be a coded condition (like MI or
   /// Diabetes) or a less specific string like 'cancer' depending on how much is

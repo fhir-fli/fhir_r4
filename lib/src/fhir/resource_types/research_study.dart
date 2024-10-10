@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -59,9 +58,6 @@ class ResearchStudy extends DomainResource {
 
   @override
   String get fhirType => 'ResearchStudy';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifiers assigned to this research study by the sponsor or other
   /// systems.
@@ -596,9 +592,6 @@ class ResearchStudyArm extends BackboneElement {
   @override
   String get fhirType => 'ResearchStudyArm';
 
-  @Id()
-  int dbId = 0;
-
   /// [name] /// Unique, human-readable label for this arm of the study.
   final FhirString name;
   final Element? nameElement;
@@ -749,9 +742,6 @@ class ResearchStudyObjective extends BackboneElement {
 
   @override
   String get fhirType => 'ResearchStudyObjective';
-
-  @Id()
-  int dbId = 0;
 
   /// [name] /// Unique, human-readable label for this objective of the study.
   final FhirString? name;

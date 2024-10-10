@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -57,9 +56,6 @@ class CommunicationRequest extends DomainResource {
 
   @override
   String get fhirType => 'CommunicationRequest';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this communication request by the
   /// performer or other systems which remain constant as the resource is updated
@@ -570,9 +566,6 @@ class CommunicationRequestPayload extends BackboneElement {
 
   @override
   String get fhirType => 'CommunicationRequestPayload';
-
-  @Id()
-  int dbId = 0;
 
   /// [contentString] /// The communicated content (or for multi-part communications, one portion of
   /// the communication).

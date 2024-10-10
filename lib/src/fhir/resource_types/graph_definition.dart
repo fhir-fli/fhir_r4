@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -55,9 +54,6 @@ class GraphDefinition extends DomainResource {
 
   @override
   String get fhirType => 'GraphDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this graph definition when it is
   /// referenced in a specification, model, design or an instance; also called
@@ -516,9 +512,6 @@ class GraphDefinitionLink extends BackboneElement {
   @override
   String get fhirType => 'GraphDefinitionLink';
 
-  @Id()
-  int dbId = 0;
-
   /// [path] /// A FHIR expression that identifies one of FHIR References to other
   /// resources.
   final FhirString? path;
@@ -736,9 +729,6 @@ class GraphDefinitionTarget extends BackboneElement {
   @override
   String get fhirType => 'GraphDefinitionTarget';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// Type of resource this link refers to.
   final FhirCode type;
   final Element? typeElement;
@@ -933,9 +923,6 @@ class GraphDefinitionCompartment extends BackboneElement {
 
   @override
   String get fhirType => 'GraphDefinitionCompartment';
-
-  @Id()
-  int dbId = 0;
 
   /// [use] /// Defines how the compartment rule is used - whether it it is used to test
   /// whether resources are subject to the rule, or whether it is a rule that

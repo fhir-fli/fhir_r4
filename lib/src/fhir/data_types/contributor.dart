@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -25,9 +24,6 @@ class Contributor extends DataType {
 
   @override
   String get fhirType => 'Contributor';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// The type of contributor.
   final ContributorType type;

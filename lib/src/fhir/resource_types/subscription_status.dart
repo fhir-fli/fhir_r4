@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -39,9 +38,6 @@ class SubscriptionStatus extends DomainResource {
 
   @override
   String get fhirType => 'SubscriptionStatus';
-
-  @Id()
-  int dbId = 0;
 
   /// [status] /// The status of the subscription, which marks the server state for managing
   /// the subscription.
@@ -327,9 +323,6 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
 
   @override
   String get fhirType => 'SubscriptionStatusNotificationEvent';
-
-  @Id()
-  int dbId = 0;
 
   /// [eventNumber] /// The sequential number of this event in this subscription context. Note that
   /// this value is a 64-bit integer value, encoded as a string.

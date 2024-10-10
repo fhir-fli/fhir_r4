@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -21,9 +20,6 @@ class Range extends DataType {
 
   @override
   String get fhirType => 'Range';
-
-  @Id()
-  int dbId = 0;
 
   /// [low] /// The low limit. The boundary is inclusive.
   final Quantity? low;

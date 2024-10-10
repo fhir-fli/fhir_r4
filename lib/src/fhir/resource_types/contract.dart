@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -70,9 +69,6 @@ class Contract extends DomainResource {
 
   @override
   String get fhirType => 'Contract';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Unique identifier for this Contract or a derivative that references a
   /// Source Contract.
@@ -791,9 +787,6 @@ class ContractContentDefinition extends BackboneElement {
   @override
   String get fhirType => 'ContractContentDefinition';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// Precusory content structure and use, i.e., a boilerplate, template,
   /// application for a contract such as an insurance policy or benefits under a
   /// program, e.g., workers compensation.
@@ -1002,9 +995,6 @@ class ContractTerm extends BackboneElement {
 
   @override
   String get fhirType => 'ContractTerm';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Unique identifier for this particular Contract Provision.
   final Identifier? identifier;
@@ -1287,9 +1277,6 @@ class ContractSecurityLabel extends BackboneElement {
   @override
   String get fhirType => 'ContractSecurityLabel';
 
-  @Id()
-  int dbId = 0;
-
   /// [number] /// Number used to link this term or term element to the applicable Security
   /// Label.
   final List<FhirUnsignedInt>? number;
@@ -1468,9 +1455,6 @@ class ContractOffer extends BackboneElement {
 
   @override
   String get fhirType => 'ContractOffer';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Unique identifier for this particular Contract Provision.
   final List<Identifier>? identifier;
@@ -1744,9 +1728,6 @@ class ContractParty extends BackboneElement {
   @override
   String get fhirType => 'ContractParty';
 
-  @Id()
-  int dbId = 0;
-
   /// [reference] /// Participant in the offer.
   final List<Reference> reference;
 
@@ -1882,9 +1863,6 @@ class ContractAnswer extends BackboneElement {
 
   @override
   String get fhirType => 'ContractAnswer';
-
-  @Id()
-  int dbId = 0;
 
   /// [valueBoolean] /// Response to an offer clause or question text, which enables selection of
   /// values to be agreed to, e.g., the period of participation, the date of
@@ -2241,9 +2219,6 @@ class ContractAsset extends BackboneElement {
 
   @override
   String get fhirType => 'ContractAsset';
-
-  @Id()
-  int dbId = 0;
 
   /// [scope] /// Differentiates the kind of the asset .
   final CodeableConcept? scope;
@@ -2603,9 +2578,6 @@ class ContractContext extends BackboneElement {
   @override
   String get fhirType => 'ContractContext';
 
-  @Id()
-  int dbId = 0;
-
   /// [reference] /// Asset context reference may include the creator, custodian, or owning
   /// Person or Organization (e.g., bank, repository), location held, e.g.,
   /// building, jurisdiction.
@@ -2772,9 +2744,6 @@ class ContractValuedItem extends BackboneElement {
 
   @override
   String get fhirType => 'ContractValuedItem';
-
-  @Id()
-  int dbId = 0;
 
   /// [entityCodeableConcept] /// Specific type of Contract Valued Item that may be priced.
   final CodeableConcept? entityCodeableConcept;
@@ -3161,9 +3130,6 @@ class ContractAction extends BackboneElement {
 
   @override
   String get fhirType => 'ContractAction';
-
-  @Id()
-  int dbId = 0;
 
   /// [doNotPerform] /// True if the term prohibits the action.
   final FhirBoolean? doNotPerform;
@@ -3678,9 +3644,6 @@ class ContractSubject extends BackboneElement {
   @override
   String get fhirType => 'ContractSubject';
 
-  @Id()
-  int dbId = 0;
-
   /// [reference] /// The entity the action is performed or not performed on or for.
   final List<Reference> reference;
 
@@ -3806,9 +3769,6 @@ class ContractSigner extends BackboneElement {
 
   @override
   String get fhirType => 'ContractSigner';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// Role of this Contract signer, e.g. notary, grantee.
   final Coding type;
@@ -3941,9 +3901,6 @@ class ContractFriendly extends BackboneElement {
   @override
   String get fhirType => 'ContractFriendly';
 
-  @Id()
-  int dbId = 0;
-
   /// [contentAttachment] /// Human readable rendering of this Contract in a format and representation
   /// intended to enhance comprehension and ensure understandability.
   final Attachment? contentAttachment;
@@ -4070,9 +4027,6 @@ class ContractLegal extends BackboneElement {
 
   @override
   String get fhirType => 'ContractLegal';
-
-  @Id()
-  int dbId = 0;
 
   /// [contentAttachment] /// Contract legal text in human renderable form.
   final Attachment? contentAttachment;
@@ -4228,9 +4182,6 @@ class ContractRule extends BackboneElement {
 
   @override
   String get fhirType => 'ContractRule';
-
-  @Id()
-  int dbId = 0;
 
   /// [contentAttachment] /// Computable Contract conveyed using a policy rule language (e.g. XACML,
   /// DKAL, SecPal).

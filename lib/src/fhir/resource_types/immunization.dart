@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -65,9 +64,6 @@ class Immunization extends DomainResource {
 
   @override
   String get fhirType => 'Immunization';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A unique identifier assigned to this immunization record.
   final List<Identifier>? identifier;
@@ -671,9 +667,6 @@ class ImmunizationPerformer extends BackboneElement {
   @override
   String get fhirType => 'ImmunizationPerformer';
 
-  @Id()
-  int dbId = 0;
-
   /// [function_] /// Describes the type of performance (e.g. ordering provider, administering
   /// provider, etc.).
   final CodeableConcept? function_;
@@ -799,9 +792,6 @@ class ImmunizationEducation extends BackboneElement {
 
   @override
   String get fhirType => 'ImmunizationEducation';
-
-  @Id()
-  int dbId = 0;
 
   /// [documentType] /// Identifier of the material presented to the patient.
   final FhirString? documentType;
@@ -990,9 +980,6 @@ class ImmunizationReaction extends BackboneElement {
   @override
   String get fhirType => 'ImmunizationReaction';
 
-  @Id()
-  int dbId = 0;
-
   /// [date] /// Date of reaction to the immunization.
   final FhirDateTime? date;
   final Element? dateElement;
@@ -1152,9 +1139,6 @@ class ImmunizationProtocolApplied extends BackboneElement {
 
   @override
   String get fhirType => 'ImmunizationProtocolApplied';
-
-  @Id()
-  int dbId = 0;
 
   /// [series] /// One possible path to achieve presumed immunity against a disease - within
   /// the context of an authority.

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -32,9 +31,6 @@ class HumanName extends DataType {
 
   @override
   String get fhirType => 'HumanName';
-
-  @Id()
-  int dbId = 0;
 
   /// [use] /// Identifies the purpose for this name.
   final NameUse? use;

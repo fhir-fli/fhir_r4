@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -72,9 +71,6 @@ class EventDefinition extends DomainResource {
 
   @override
   String get fhirType => 'EventDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this event definition when it is
   /// referenced in a specification, model, design or an instance; also called

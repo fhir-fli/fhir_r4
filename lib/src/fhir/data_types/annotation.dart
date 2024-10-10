@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -27,9 +26,6 @@ class Annotation extends DataType {
 
   @override
   String get fhirType => 'Annotation';
-
-  @Id()
-  int dbId = 0;
 
   /// [authorReference] /// The individual responsible for making the annotation.
   final Reference? authorReference;

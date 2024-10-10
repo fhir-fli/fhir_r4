@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -56,9 +55,6 @@ class DeviceDefinition extends DomainResource {
 
   @override
   String get fhirType => 'DeviceDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Unique instance identifiers assigned to a device by the software,
   /// manufacturers, other organizations or owners. For example: handle ID.
@@ -605,9 +601,6 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
   @override
   String get fhirType => 'DeviceDefinitionUdiDeviceIdentifier';
 
-  @Id()
-  int dbId = 0;
-
   /// [deviceIdentifier] /// The identifier that is to be associated with every Device that references
   /// this DeviceDefintiion for the issuer and jurisdication porvided in the
   /// DeviceDefinition.udiDeviceIdentifier.
@@ -763,9 +756,6 @@ class DeviceDefinitionDeviceName extends BackboneElement {
   @override
   String get fhirType => 'DeviceDefinitionDeviceName';
 
-  @Id()
-  int dbId = 0;
-
   /// [name] /// The name of the device.
   final FhirString name;
   final Element? nameElement;
@@ -899,9 +889,6 @@ class DeviceDefinitionSpecialization extends BackboneElement {
 
   @override
   String get fhirType => 'DeviceDefinitionSpecialization';
-
-  @Id()
-  int dbId = 0;
 
   /// [systemType] /// The standard that is used to operate and communicate.
   final FhirString systemType;
@@ -1039,9 +1026,6 @@ class DeviceDefinitionCapability extends BackboneElement {
   @override
   String get fhirType => 'DeviceDefinitionCapability';
 
-  @Id()
-  int dbId = 0;
-
   /// [type] /// Type of capability.
   final CodeableConcept type;
 
@@ -1165,9 +1149,6 @@ class DeviceDefinitionProperty extends BackboneElement {
 
   @override
   String get fhirType => 'DeviceDefinitionProperty';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// Code that specifies the property DeviceDefinitionPropetyCode (Extensible).
   final CodeableConcept type;
@@ -1308,9 +1289,6 @@ class DeviceDefinitionMaterial extends BackboneElement {
 
   @override
   String get fhirType => 'DeviceDefinitionMaterial';
-
-  @Id()
-  int dbId = 0;
 
   /// [substance] /// The substance.
   final CodeableConcept substance;

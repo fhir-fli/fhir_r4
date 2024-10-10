@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -42,9 +41,6 @@ class SupplyDelivery extends DomainResource {
 
   @override
   String get fhirType => 'SupplyDelivery';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifier for the supply delivery event that is used to identify it across
   /// multiple disparate systems.
@@ -388,9 +384,6 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
 
   @override
   String get fhirType => 'SupplyDeliverySuppliedItem';
-
-  @Id()
-  int dbId = 0;
 
   /// [quantity] /// The amount of supply that has been dispensed. Includes unit of measure.
   final Quantity? quantity;

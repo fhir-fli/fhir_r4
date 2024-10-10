@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -33,9 +32,6 @@ class Bundle extends Resource {
 
   @override
   String get fhirType => 'Bundle';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// A persistent identifier for the bundle that won't change as a bundle is
   /// copied from server to server.
@@ -262,9 +258,6 @@ class BundleLink extends BackboneElement {
   @override
   String get fhirType => 'BundleLink';
 
-  @Id()
-  int dbId = 0;
-
   /// [relation] /// A name which details the functional use for this link - see
   /// [http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1](http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1).
   final FhirString relation;
@@ -403,9 +396,6 @@ class BundleEntry extends BackboneElement {
 
   @override
   String get fhirType => 'BundleEntry';
-
-  @Id()
-  int dbId = 0;
 
   /// [link] /// A series of links that provide context to this entry.
   final List<BundleLink>? link;
@@ -600,9 +590,6 @@ class BundleSearch extends BackboneElement {
   @override
   String get fhirType => 'BundleSearch';
 
-  @Id()
-  int dbId = 0;
-
   /// [mode] /// Why this entry is in the result set - whether it's included as a match or
   /// because of an _include requirement, or to convey information or warning
   /// information about the search process.
@@ -750,9 +737,6 @@ class BundleRequest extends BackboneElement {
 
   @override
   String get fhirType => 'BundleRequest';
-
-  @Id()
-  int dbId = 0;
 
   /// [method] /// In a transaction or batch, this is the HTTP action to be executed for this
   /// entry. In a history bundle, this indicates the HTTP action that occurred.
@@ -980,9 +964,6 @@ class BundleResponse extends BackboneElement {
 
   @override
   String get fhirType => 'BundleResponse';
-
-  @Id()
-  int dbId = 0;
 
   /// [status] /// The status code returned by processing this entry. The status SHALL start
   /// with a 3 digit HTTP code (e.g. 404) and may contain the standard HTTP

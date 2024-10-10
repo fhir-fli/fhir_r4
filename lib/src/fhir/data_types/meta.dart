@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -31,9 +30,6 @@ class FhirMeta extends DataType {
 
   @override
   String get fhirType => 'FhirMeta';
-
-  @Id()
-  int dbId = 0;
 
   /// [versionId] /// The version specific identifier, as it appears in the version portion of
   /// the URL. This value changes when the resource is created, updated, or

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -68,9 +67,6 @@ class ChargeItem extends DomainResource {
 
   @override
   String get fhirType => 'ChargeItem';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifiers assigned to this event performer or other systems.
   final List<Identifier>? identifier;
@@ -672,9 +668,6 @@ class ChargeItemPerformer extends BackboneElement {
 
   @override
   String get fhirType => 'ChargeItemPerformer';
-
-  @Id()
-  int dbId = 0;
 
   /// [function_] /// Describes the type of performance or participation(e.g. primary surgeon,
   /// anesthesiologiest, etc.).

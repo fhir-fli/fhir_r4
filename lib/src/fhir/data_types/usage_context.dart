@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -27,9 +26,6 @@ class UsageContext extends DataType {
 
   @override
   String get fhirType => 'UsageContext';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// A code that identifies the type of context being specified by this usage
   /// context.

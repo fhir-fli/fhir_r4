@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -42,9 +41,6 @@ class Specimen extends DomainResource {
 
   @override
   String get fhirType => 'Specimen';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Id for specimen.
   final List<Identifier>? identifier;
@@ -408,9 +404,6 @@ class SpecimenCollection extends BackboneElement {
   @override
   String get fhirType => 'SpecimenCollection';
 
-  @Id()
-  int dbId = 0;
-
   /// [collector] /// Person who collected the specimen.
   final Reference? collector;
 
@@ -638,9 +631,6 @@ class SpecimenProcessing extends BackboneElement {
   @override
   String get fhirType => 'SpecimenProcessing';
 
-  @Id()
-  int dbId = 0;
-
   /// [description] /// Textual description of procedure.
   final FhirString? description;
   final Element? descriptionElement;
@@ -828,9 +818,6 @@ class SpecimenContainer extends BackboneElement {
 
   @override
   String get fhirType => 'SpecimenContainer';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Id for container. There may be multiple; a manufacturer's bar code, lab
   /// assigned identifier, etc. The container ID may differ from the specimen id

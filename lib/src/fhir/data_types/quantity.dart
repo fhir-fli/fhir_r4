@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -31,9 +30,6 @@ class Quantity extends DataType {
 
   @override
   String get fhirType => 'Quantity';
-
-  @Id()
-  int dbId = 0;
 
   /// [value] /// The value of the measured amount. The value includes an implicit precision
   /// in the presentation of the value.

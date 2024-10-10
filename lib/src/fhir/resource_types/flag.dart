@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -37,9 +36,6 @@ class Flag extends DomainResource {
 
   @override
   String get fhirType => 'Flag';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifiers assigned to this flag by the performer or other
   /// systems which remain constant as the resource is updated and propagates

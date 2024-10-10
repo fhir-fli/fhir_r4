@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -32,9 +31,6 @@ class TriggerDefinition extends DataType {
 
   @override
   String get fhirType => 'TriggerDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// The type of triggering event.
   final TriggerType type;

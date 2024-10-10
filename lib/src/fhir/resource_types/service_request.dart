@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -76,9 +75,6 @@ class ServiceRequest extends DomainResource {
 
   @override
   String get fhirType => 'ServiceRequest';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifiers assigned to this order instance by the orderer and/or the
   /// receiver and/or order fulfiller.

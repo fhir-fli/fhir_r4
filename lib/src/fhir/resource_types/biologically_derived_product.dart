@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -43,9 +42,6 @@ class BiologicallyDerivedProduct extends DomainResource {
 
   @override
   String get fhirType => 'BiologicallyDerivedProduct';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// This records identifiers associated with this biologically derived product
   /// instance that are defined by business processes and/or used to refer to it
@@ -386,9 +382,6 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
   @override
   String get fhirType => 'BiologicallyDerivedProductCollection';
 
-  @Id()
-  int dbId = 0;
-
   /// [collector] /// Healthcare professional who is performing the collection.
   final Reference? collector;
 
@@ -552,9 +545,6 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
 
   @override
   String get fhirType => 'BiologicallyDerivedProductProcessing';
-
-  @Id()
-  int dbId = 0;
 
   /// [description] /// Description of of processing.
   final FhirString? description;
@@ -736,9 +726,6 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
   @override
   String get fhirType => 'BiologicallyDerivedProductManipulation';
 
-  @Id()
-  int dbId = 0;
-
   /// [description] /// Description of manipulation.
   final FhirString? description;
   final Element? descriptionElement;
@@ -896,9 +883,6 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
 
   @override
   String get fhirType => 'BiologicallyDerivedProductStorage';
-
-  @Id()
-  int dbId = 0;
 
   /// [description] /// Description of storage.
   final FhirString? description;

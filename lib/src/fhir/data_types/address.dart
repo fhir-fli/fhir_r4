@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -42,9 +41,6 @@ class Address extends DataType {
 
   @override
   String get fhirType => 'Address';
-
-  @Id()
-  int dbId = 0;
 
   /// [use] /// The purpose of this address.
   final AddressUse? use;

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -36,9 +35,6 @@ class ProdCharacteristic extends BackboneType {
 
   @override
   String get fhirType => 'ProdCharacteristic';
-
-  @Id()
-  int dbId = 0;
 
   /// [height] /// Where applicable, the height can be specified using a numerical value and
   /// its unit of measurement The unit of measurement shall be specified in

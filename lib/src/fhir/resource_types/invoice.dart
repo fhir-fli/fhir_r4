@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -48,9 +47,6 @@ class Invoice extends DomainResource {
 
   @override
   String get fhirType => 'Invoice';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Identifier of this Invoice, often used for reference in correspondence
   /// about this invoice or for tracking of payments.
@@ -446,9 +442,6 @@ class InvoiceParticipant extends BackboneElement {
   @override
   String get fhirType => 'InvoiceParticipant';
 
-  @Id()
-  int dbId = 0;
-
   /// [role] /// Describes the type of involvement (e.g. transcriptionist, creator etc.). If
   /// the invoice has been created automatically, the Participant may be a
   /// billing engine or another kind of device.
@@ -574,9 +567,6 @@ class InvoiceLineItem extends BackboneElement {
 
   @override
   String get fhirType => 'InvoiceLineItem';
-
-  @Id()
-  int dbId = 0;
 
   /// [sequence] /// Sequence in which the items appear on the invoice.
   final FhirPositiveInt? sequence;
@@ -758,9 +748,6 @@ class InvoicePriceComponent extends BackboneElement {
 
   @override
   String get fhirType => 'InvoicePriceComponent';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// This code identifies the type of the component.
   final InvoicePriceComponentType type;

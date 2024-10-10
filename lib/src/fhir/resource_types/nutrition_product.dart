@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -38,9 +37,6 @@ class NutritionProduct extends DomainResource {
 
   @override
   String get fhirType => 'NutritionProduct';
-
-  @Id()
-  int dbId = 0;
 
   /// [status] /// The current state of the product.
   final NutritionProductStatus status;
@@ -352,9 +348,6 @@ class NutritionProductNutrient extends BackboneElement {
   @override
   String get fhirType => 'NutritionProductNutrient';
 
-  @Id()
-  int dbId = 0;
-
   /// [item] /// The (relevant) nutrients in the product.
   final CodeableReference? item;
 
@@ -480,9 +473,6 @@ class NutritionProductIngredient extends BackboneElement {
 
   @override
   String get fhirType => 'NutritionProductIngredient';
-
-  @Id()
-  int dbId = 0;
 
   /// [item] /// The ingredient contained in the product.
   final CodeableReference item;
@@ -612,9 +602,6 @@ class NutritionProductProductCharacteristic extends BackboneElement {
 
   @override
   String get fhirType => 'NutritionProductProductCharacteristic';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// A code specifying which characteristic of the product is being described
   /// (for example, colour, shape).
@@ -827,9 +814,6 @@ class NutritionProductInstance extends BackboneElement {
 
   @override
   String get fhirType => 'NutritionProductInstance';
-
-  @Id()
-  int dbId = 0;
 
   /// [quantity] /// The amount of items or instances that the resource considers, for instance
   /// when referring to 2 identical units together.

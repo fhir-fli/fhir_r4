@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -92,9 +91,6 @@ class Measure extends DomainResource {
 
   @override
   String get fhirType => 'Measure';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this measure when it is referenced
   /// in a specification, model, design or an instance; also called its canonical
@@ -1057,9 +1053,6 @@ class MeasureGroup extends BackboneElement {
   @override
   String get fhirType => 'MeasureGroup';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// Indicates a meaning for the group. This can be as simple as a unique
   /// identifier, or it can establish meaning in a broader context by drawing
   /// from a terminology, allowing groups to be correlated across measures.
@@ -1229,9 +1222,6 @@ class MeasurePopulation extends BackboneElement {
   @override
   String get fhirType => 'MeasurePopulation';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// The type of population criteria.
   final CodeableConcept? code;
 
@@ -1376,9 +1366,6 @@ class MeasureStratifier extends BackboneElement {
 
   @override
   String get fhirType => 'MeasureStratifier';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// Indicates a meaning for the stratifier. This can be as simple as a unique
   /// identifier, or it can establish meaning in a broader context by drawing
@@ -1547,9 +1534,6 @@ class MeasureComponent extends BackboneElement {
   @override
   String get fhirType => 'MeasureComponent';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// Indicates a meaning for the stratifier component. This can be as simple as
   /// a unique identifier, or it can establish meaning in a broader context by
   /// drawing from a terminology, allowing stratifiers to be correlated across
@@ -1698,9 +1682,6 @@ class MeasureSupplementalData extends BackboneElement {
 
   @override
   String get fhirType => 'MeasureSupplementalData';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// Indicates a meaning for the supplemental data. This can be as simple as a
   /// unique identifier, or it can establish meaning in a broader context by

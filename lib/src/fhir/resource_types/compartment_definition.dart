@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -53,9 +52,6 @@ class CompartmentDefinition extends DomainResource {
 
   @override
   String get fhirType => 'CompartmentDefinition';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this compartment definition when
   /// it is referenced in a specification, model, design or an instance; also
@@ -484,9 +480,6 @@ class CompartmentDefinitionResource extends BackboneElement {
 
   @override
   String get fhirType => 'CompartmentDefinitionResource';
-
-  @Id()
-  int dbId = 0;
 
   /// [code] /// The name of a resource supported by the server.
   final FhirCode code;

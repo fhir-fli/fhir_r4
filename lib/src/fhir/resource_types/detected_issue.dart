@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -48,9 +47,6 @@ class DetectedIssue extends DomainResource {
 
   @override
   String get fhirType => 'DetectedIssue';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// Business identifier associated with the detected issue record.
   final List<Identifier>? identifier;
@@ -417,9 +413,6 @@ class DetectedIssueEvidence extends BackboneElement {
   @override
   String get fhirType => 'DetectedIssueEvidence';
 
-  @Id()
-  int dbId = 0;
-
   /// [code] /// A manifestation that led to the recording of this detected issue.
   final List<CodeableConcept>? code;
 
@@ -555,9 +548,6 @@ class DetectedIssueMitigation extends BackboneElement {
 
   @override
   String get fhirType => 'DetectedIssueMitigation';
-
-  @Id()
-  int dbId = 0;
 
   /// [action] /// Describes the action that was taken or the observation that was made that
   /// reduces/eliminates the risk associated with the identified issue.

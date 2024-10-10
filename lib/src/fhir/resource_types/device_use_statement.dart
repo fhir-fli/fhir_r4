@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -46,9 +45,6 @@ class DeviceUseStatement extends DomainResource {
 
   @override
   String get fhirType => 'DeviceUseStatement';
-
-  @Id()
-  int dbId = 0;
 
   /// [identifier] /// An external identifier for this statement such as an IRI.
   final List<Identifier>? identifier;

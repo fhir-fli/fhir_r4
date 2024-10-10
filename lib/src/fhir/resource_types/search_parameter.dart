@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -76,9 +75,6 @@ class SearchParameter extends DomainResource {
 
   @override
   String get fhirType => 'SearchParameter';
-
-  @Id()
-  int dbId = 0;
 
   /// [url] /// An absolute URI that is used to identify this search parameter when it is
   /// referenced in a specification, model, design or an instance; also called
@@ -767,9 +763,6 @@ class SearchParameterComponent extends BackboneElement {
 
   @override
   String get fhirType => 'SearchParameterComponent';
-
-  @Id()
-  int dbId = 0;
 
   /// [definition] /// The definition of the search parameter that describes this part.
   final FhirCanonical definition;

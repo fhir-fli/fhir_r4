@@ -40,6 +40,19 @@ class FhirInstant extends FhirDateTimeBase {
       FhirDateTimeBase.constructor<FhirInstant>(inValue.toIso8601String(),
           precision ?? FhirDateTimePrecision.instant, element) as FhirInstant;
 
+  static FhirInstant? tryParse(dynamic value) {
+    try {
+      if (value is DateTime) {
+        return FhirInstant.fromDateTime(value);
+      } else if (value is String) {
+        return FhirInstant.fromString(value);
+      }
+    } catch (e) {
+      return null;
+    }
+    return null;
+  }
+
   factory FhirInstant.fromJson(dynamic json,
       {FhirDateTimePrecision? precision, Element? element}) {
     if (json is String) {

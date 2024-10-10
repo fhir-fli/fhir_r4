@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
@@ -43,9 +42,6 @@ class Subscription extends DomainResource {
 
   @override
   String get fhirType => 'Subscription';
-
-  @Id()
-  int dbId = 0;
 
   /// [status] /// The status of the subscription, which marks the server state for managing
   /// the subscription.
@@ -320,9 +316,6 @@ class SubscriptionChannel extends BackboneElement {
 
   @override
   String get fhirType => 'SubscriptionChannel';
-
-  @Id()
-  int dbId = 0;
 
   /// [type] /// The type of channel to send notifications on.
   final SubscriptionChannelType type;
