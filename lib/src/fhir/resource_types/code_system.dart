@@ -990,7 +990,6 @@ class CodeSystemProperty extends BackboneElement {
   }
 
   factory CodeSystemProperty.fromJson(Map<String, dynamic> json) {
-    print('CodeSystemProperty.fromJson: $json');
     return CodeSystemProperty(
       id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null

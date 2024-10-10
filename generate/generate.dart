@@ -49,6 +49,26 @@ void _moveTests() {
         file.copySync(file.path.replaceAll('/examples', '/quarantined'));
         file.deleteSync();
       }
+    } else if (file.path.toLowerCase().contains('codesystem')) {
+      final String fileString = file.readAsStringSync();
+      final Map<String, dynamic> fileMap =
+          jsonDecode(fileString) as Map<String, dynamic>;
+      final List<dynamic>? concepts = fileMap['concept'] as List<dynamic>?;
+      bool move = false;
+      for (final dynamic concept in concepts ?? <dynamic>[]) {
+        final List<dynamic>? properties =
+            (concept as Map<String, dynamic>)['property'] as List<dynamic>?;
+        for (final dynamic property in properties ?? <dynamic>[]) {
+          if ((property as Map<String, dynamic>)['type'] == null) {
+            move = true;
+          }
+        }
+      }
+
+      if (move) {
+        file.copySync(file.path.replaceAll('/examples', '/quarantined'));
+        file.deleteSync();
+      }
     }
   }
 }
