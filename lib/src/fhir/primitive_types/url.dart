@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -7,109 +8,122 @@ extension FhirUrlExtension on String {
 }
 
 extension FhirUrlUriExtension on Uri {
-  FhirUrl get toFhirUrl => FhirUrl(this);
+  FhirUrl get toFhirUrl => FhirUrl.fromUri(this);
 }
 
+@Entity()
 class FhirUrl extends PrimitiveType<Uri> {
-  FhirUrl._(this._valueString, this._valueUri, this._isValid,
-      [Element? element])
-      : super(element: element);
+  @override
+  final Uri value;
 
-  factory FhirUrl(dynamic inValue, [Element? element]) {
-    if (inValue is Uri) {
-      return FhirUrl._(inValue.toString(), inValue, true, element);
-    } else if (inValue is String) {
-      final Uri? tempUri = Uri.tryParse(inValue);
-      return FhirUrl._(inValue, tempUri, tempUri != null, element);
+  // Constructor accepts valid Uri or String input
+  FhirUrl(String input, [Element? element])
+      : value = _validateUrl(input),
+        super(element: element);
+
+  FhirUrl.fromUri(Uri input, [Element? element])
+      : value = input,
+        super(element: element);
+
+  static FhirUrl? tryParse(dynamic input) {
+    if (input is String) {
+      try {
+        return FhirUrl(input);
+      } catch (e) {
+        return null;
+      }
+    } else {
+      return null;
     }
-    return FhirUrl._(inValue.toString(), null, false, element);
   }
 
-  factory FhirUrl.fromJson(dynamic json) => FhirUrl(json);
+  // Validate the input and return a Uri object
+  static Uri _validateUrl(String input) {
+    final Uri? tempUri = Uri.tryParse(input);
+    if (tempUri != null) {
+      return tempUri;
+    }
+    throw FormatException(
+        'FhirUrl cannot be constructed from invalid String: $input');
+  }
 
-  factory FhirUrl.fromYaml(dynamic yaml) => yaml is String
-      ? FhirUrl.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : yaml is YamlMap
-          ? FhirUrl.fromJson(jsonDecode(jsonEncode(yaml)))
-          : throw YamlFormatException<FhirUrl>(
-              'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+  // fromJson only accepts a String and validates it
+  factory FhirUrl.fromJson(dynamic json) {
+    if (json is String) {
+      return FhirUrl(json);
+    } else {
+      throw const FormatException('Invalid input for FhirBase64Binary');
+    }
+  }
+
+  factory FhirUrl.fromYaml(String yaml) =>
+      FhirUrl.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))) as String);
+
+  @override
+  @Id()
+  int dbId = 0;
+
   @override
   String get fhirType => 'url';
 
-  final String _valueString;
-  final Uri? _valueUri;
-  final bool _isValid;
-
   @override
-  bool get isValid => _isValid;
+  String toJson() => value.toString();
   @override
-  Uri? get value => _valueUri;
-
+  String toYaml() => value.toString();
   @override
-  String toString() => _valueString;
-  @override
-  String toJson() => _valueString;
-  @override
-  String toYaml() => _valueString;
+  String toString() => value.toString();
   @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
   bool equals(Object other) =>
       identical(this, other) ||
-      (other is FhirUrl && other.value == _valueUri) ||
-      (other is String && other == _valueString);
+      (other is FhirUrl && other.value == value) ||
+      (other is Uri && other == value) ||
+      (other is String && Uri.tryParse(other) == value);
 
   @override
-  FhirUrl clone() => FhirUrl._(
-        _valueString,
-        _valueUri,
-        _isValid,
-        element?.clone() as Element?,
-      );
+  FhirUrl clone() => FhirUrl.fromUri(value, element?.clone() as Element?);
 
   /// Path-related methods
-  List<String>? get pathSegments => _valueUri?.pathSegments;
+  List<String> get pathSegments => value.pathSegments;
 
-  String toFilePath({bool? windows}) {
-    if (_valueUri != null) {
-      return _valueUri.toFilePath(windows: windows);
-    }
-    throw UnsupportedError('No Uri to extract file path from.');
-  }
+  String toFilePath({bool? windows}) => value.toFilePath(windows: windows);
 
   /// Authority-related methods
-  String? get host => _valueUri?.host;
-  String? get userInfo => _valueUri?.userInfo;
-  int? get port => _valueUri?.port;
+  String get host => value.host;
+  String get userInfo => value.userInfo;
+  int? get port => value.port;
+  String get authority => value.authority;
 
   /// Query-related methods
-  String? get query => _valueUri?.query;
+  String get query => value.query;
 
-  Map<String, String> splitQueryStringAll(String query,
+  Map<String, List<String>> splitQueryStringAll(String query,
       {Encoding encoding = utf8}) {
-    return Uri.splitQueryString(query, encoding: encoding);
+    return Uri.splitQueryString(query, encoding: encoding).map(
+        (String key, String value) => MapEntry<String, List<String>>(
+            key, value.isEmpty ? <String>[] : <String>[value]));
   }
 
-  /// Encoding/decoding
-  static String uriEncode(
-      List<int> urlTable, String text, Encoding encoding, bool spaceToPlus) {
-    return Uri.encodeComponent(text);
+  /// Encoding/decoding (using public Uri methods)
+  static String encodeQueryComponent(String text, {Encoding encoding = utf8}) {
+    return Uri.encodeQueryComponent(text, encoding: encoding);
   }
 
-  static String uriDecode(
-      String text, int start, int end, Encoding encoding, bool plusToSpace) {
-    final String decoded = Uri.decodeComponent(text.substring(start, end));
-    return plusToSpace ? decoded.replaceAll('+', ' ') : decoded;
+  static String decodeQueryComponent(String text, {Encoding encoding = utf8}) {
+    return Uri.decodeQueryComponent(text, encoding: encoding);
   }
 
   @override
   FhirUrl setElement(String name, dynamic elementValue) {
-    return FhirUrl(value, element?.setProperty(name, elementValue));
+    return FhirUrl.fromUri(value, element?.setProperty(name, elementValue));
   }
 
   @override
   FhirUrl copyWith({
+    Uri? newValue,
+    Element? element,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -118,10 +132,8 @@ class FhirUrl extends PrimitiveType<Uri> {
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
   }) {
-    return FhirUrl._(
-      _valueString,
-      _valueUri,
-      _isValid,
+    return FhirUrl.fromUri(
+      newValue ?? value,
       element?.copyWith(
         userData: userData,
         formatCommentsPre: formatCommentsPre,

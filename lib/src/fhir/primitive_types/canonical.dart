@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -7,110 +8,123 @@ extension FhirCanonicalExtension on String {
 }
 
 extension FhirCanonicalUriExtension on Uri {
-  FhirCanonical get toFhirCanonical => FhirCanonical(this);
+  FhirCanonical get toFhirCanonical => FhirCanonical.fromUri(this);
 }
 
+@Entity()
 class FhirCanonical extends PrimitiveType<Uri> {
-  FhirCanonical._(this._valueString, this._valueCanonical, this._isValid,
-      [Element? element])
-      : super(element: element);
+  @override
+  final Uri value;
 
-  factory FhirCanonical(dynamic inValue, [Element? element]) {
-    if (inValue is Uri) {
-      return FhirCanonical._(inValue.toString(), inValue, true, element);
-    } else if (inValue is String) {
-      final Uri? tempUri = Uri.tryParse(inValue);
-      return FhirCanonical._(inValue, tempUri, tempUri != null, element);
+  // Constructor enforces valid input
+  FhirCanonical(String input, [Element? element])
+      : value = _validateCanonical(input),
+        super(element: element);
+
+  FhirCanonical.fromUri(Uri input, [Element? element])
+      : value = input,
+        super(element: element);
+
+  static FhirCanonical? tryParse(dynamic input) {
+    if (input is String) {
+      try {
+        return FhirCanonical(input);
+      } catch (e) {
+        return null;
+      }
+    } else {
+      return null;
     }
-    throw CannotBeConstructed<FhirCanonical>(
-        'Canonical cannot be constructed from $inValue.');
   }
 
-  factory FhirCanonical.fromJson(dynamic json) => FhirCanonical(json);
+  // Validate the input and return a Uri object
+  static Uri _validateCanonical(String input) {
+    final Uri? uri = Uri.tryParse(input);
+    if (uri != null) {
+      return uri;
+    }
+    throw FormatException('Invalid Canonical String: $input');
+  }
 
-  factory FhirCanonical.fromYaml(dynamic yaml) => yaml is String
-      ? FhirCanonical.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : yaml is YamlMap
-          ? FhirCanonical.fromJson(jsonDecode(jsonEncode(yaml)))
-          : throw YamlFormatException<FhirCanonical>(
-              'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+  // fromJson only accepts a String and validates it
+  factory FhirCanonical.fromJson(dynamic json) {
+    if (json is String) {
+      return FhirCanonical(json);
+    } else {
+      throw const FormatException('Invalid input for FhirBase64Binary');
+    }
+  }
+
+  factory FhirCanonical.fromYaml(String yaml) =>
+      FhirCanonical.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))) as String);
+
+  @override
+  @Id()
+  int dbId = 0;
 
   @override
   String get fhirType => 'canonical';
-  final String _valueString;
-  final Uri? _valueCanonical;
-  final bool _isValid;
 
   @override
-  bool get isValid => _isValid;
+  String toJson() => value.toString();
   @override
-  Uri? get value => _valueCanonical;
-
+  String toYaml() => value.toString();
   @override
-  String toString() => _valueString;
-  @override
-  String toJson() => _valueString;
-  @override
-  String toYaml() => _valueString;
+  String toString() => value.toString();
   @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
   bool equals(Object other) =>
       identical(this, other) ||
-      (other is FhirCanonical && other.value == _valueCanonical) ||
-      (other is String && other == _valueString);
+      (other is FhirCanonical && other.value == value) ||
+      (other is Uri && other == value) ||
+      (other is String && Uri.tryParse(other) == value);
 
   @override
-  FhirCanonical clone() => FhirCanonical._(
-        _valueString,
-        _valueCanonical,
-        _isValid,
-        element?.clone() as Element?,
-      );
+  FhirCanonical clone() =>
+      FhirCanonical.fromUri(value, element?.clone() as Element?);
 
   /// Path-related methods
-  List<String>? get pathSegments => _valueCanonical?.pathSegments;
+  List<String> get pathSegments => value.pathSegments;
 
-  String toFilePath({bool? windows}) {
-    if (_valueCanonical != null) {
-      return _valueCanonical.toFilePath(windows: windows);
-    }
-    throw UnsupportedError('No Uri to extract file path from.');
-  }
+  String toFilePath({bool? windows}) => value.toFilePath(windows: windows);
 
   /// Authority-related methods
-  String? get host => _valueCanonical?.host;
-  String? get userInfo => _valueCanonical?.userInfo;
-  int? get port => _valueCanonical?.port;
+  String get host => value.host;
+  String get userInfo => value.userInfo;
+  int? get port => value.port;
+  String get authority => value.authority;
 
   /// Query-related methods
-  String? get query => _valueCanonical?.query;
+  String get query => value.query;
 
-  Map<String, String> splitQueryStringAll(String query,
+  Map<String, List<String>> splitQueryStringAll(String query,
       {Encoding encoding = utf8}) {
-    return Uri.splitQueryString(query, encoding: encoding);
+    return Uri.splitQueryString(query, encoding: encoding).map(
+        (String key, String value) => MapEntry<String, List<String>>(
+            key, value.isEmpty ? <String>[] : <String>[value]));
   }
 
   /// Encoding/decoding
-  static String uriEncode(List<int> canonicalTable, String text,
-      Encoding encoding, bool spaceToPlus) {
-    return Uri.encodeComponent(text);
+  static String encodeQueryComponent(String text, {Encoding encoding = utf8}) {
+    return Uri.encodeQueryComponent(text, encoding: encoding);
   }
 
-  static String uriDecode(
-      String text, int start, int end, Encoding encoding, bool plusToSpace) {
-    final String decoded = Uri.decodeComponent(text.substring(start, end));
-    return plusToSpace ? decoded.replaceAll('+', ' ') : decoded;
+  static String decodeQueryComponent(String text, {Encoding encoding = utf8}) {
+    return Uri.decodeQueryComponent(text, encoding: encoding);
   }
 
   @override
   FhirCanonical setElement(String name, dynamic elementValue) {
-    return FhirCanonical(value, element?.setProperty(name, elementValue));
+    return FhirCanonical.fromUri(
+        value, element?.setProperty(name, elementValue));
   }
 
   @override
   FhirCanonical copyWith({
+    Uri? newValue,
+    Element? element,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -119,10 +133,8 @@ class FhirCanonical extends PrimitiveType<Uri> {
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
   }) {
-    return FhirCanonical._(
-      _valueString,
-      _valueCanonical,
-      _isValid,
+    return FhirCanonical.fromUri(
+      newValue ?? value,
       element?.copyWith(
         userData: userData,
         formatCommentsPre: formatCommentsPre,

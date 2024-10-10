@@ -3,25 +3,22 @@ import '../../../fhir_r4.dart';
 
 abstract class FhirNumber extends PrimitiveType<num>
     implements Comparable<FhirNumber> {
-  FhirNumber(this.valueString, this.valueNumber, this.isValid, {super.element});
+  FhirNumber(this.valueNumber, {super.element});
 
   @override
   String get fhirType => 'number';
 
-  final String valueString;
-  final num? valueNumber;
-  @override
-  final bool isValid;
+  final num valueNumber;
 
   @override
-  num? get value => valueNumber;
+  num get value => valueNumber;
 
   @override
-  String toString() => valueString;
+  String toString() => valueNumber.toString();
   @override
-  num? toJson() => valueNumber;
+  num toJson() => valueNumber;
   @override
-  num? toYaml() => valueNumber;
+  num toYaml() => valueNumber;
   @override
   String toJsonString() => jsonEncode(toJson());
 
@@ -34,30 +31,27 @@ abstract class FhirNumber extends PrimitiveType<num>
   // Comparison operations
   @override
   int compareTo(FhirNumber other) {
-    if (valueNumber == null || other.valueNumber == null) {
-      throw InvalidTypes<FhirNumber>('Cannot compare null values');
-    }
-    return valueNumber!.compareTo(other.valueNumber!);
+    return valueNumber.compareTo(other.valueNumber);
   }
 
   bool operator >(Object other) {
-    if (valueNumber == null || (other is! FhirNumber && other is! num)) {
-      throw InvalidTypes<FhirNumber>('Comparison with invalid or null values');
+    if (other is FhirNumber) {
+      return valueNumber > other.valueNumber;
+    } else if (other is num) {
+      return valueNumber > other;
     }
-    return other is FhirNumber
-        ? valueNumber! > other.valueNumber!
-        : valueNumber! > (other as num);
+    throw InvalidTypes<FhirNumber>('Comparison with invalid types');
   }
 
   bool operator >=(Object other) => this == other || this > other;
 
   bool operator <(Object other) {
-    if (valueNumber == null || (other is! FhirNumber && other is! num)) {
-      throw InvalidTypes<FhirNumber>('Comparison with invalid or null values');
+    if (other is FhirNumber) {
+      return valueNumber < other.valueNumber;
+    } else if (other is num) {
+      return valueNumber < other;
     }
-    return other is FhirNumber
-        ? valueNumber! < other.valueNumber!
-        : valueNumber! < (other as num);
+    throw InvalidTypes<FhirNumber>('Comparison with invalid types');
   }
 
   bool operator <=(Object other) => this == other || this < other;
@@ -65,68 +59,68 @@ abstract class FhirNumber extends PrimitiveType<num>
   // Arithmetic operations
   FhirNumber operator +(Object other) {
     final num otherValue =
-        other is FhirNumber ? other.valueNumber! : other as num;
-    return FhirNumber.fromNum(valueNumber! + otherValue);
+        other is FhirNumber ? other.valueNumber : other as num;
+    return FhirNumber.fromNum(valueNumber + otherValue);
   }
 
   FhirNumber operator -(Object other) {
     final num otherValue =
-        other is FhirNumber ? other.valueNumber! : other as num;
-    return FhirNumber.fromNum(valueNumber! - otherValue);
+        other is FhirNumber ? other.valueNumber : other as num;
+    return FhirNumber.fromNum(valueNumber - otherValue);
   }
 
   FhirNumber operator *(Object other) {
     final num otherValue =
-        other is FhirNumber ? other.valueNumber! : other as num;
-    return FhirNumber.fromNum(valueNumber! * otherValue);
+        other is FhirNumber ? other.valueNumber : other as num;
+    return FhirNumber.fromNum(valueNumber * otherValue);
   }
 
   FhirNumber operator /(Object other) {
     final num otherValue =
-        other is FhirNumber ? other.valueNumber! : other as num;
-    return FhirNumber.fromNum(valueNumber! / otherValue);
+        other is FhirNumber ? other.valueNumber : other as num;
+    return FhirNumber.fromNum(valueNumber / otherValue);
   }
 
   FhirNumber operator %(Object other) {
     final num otherValue =
-        other is FhirNumber ? other.valueNumber! : other as num;
-    return FhirNumber.fromNum(valueNumber! % otherValue);
+        other is FhirNumber ? other.valueNumber : other as num;
+    return FhirNumber.fromNum(valueNumber % otherValue);
   }
 
   FhirNumber operator ~/(Object other) {
     final num otherValue =
-        other is FhirNumber ? other.valueNumber! : other as num;
-    return FhirNumber.fromNum(valueNumber! ~/ otherValue);
+        other is FhirNumber ? other.valueNumber : other as num;
+    return FhirNumber.fromNum(valueNumber ~/ otherValue);
   }
 
   FhirNumber operator -() {
-    return FhirNumber.fromNum(-valueNumber!);
+    return FhirNumber.fromNum(-valueNumber);
   }
 
   // Numeric methods
-  num abs() => valueNumber!.abs();
-  num get sign => valueNumber!.sign;
+  num abs() => valueNumber.abs();
+  num get sign => valueNumber.sign;
 
   num clamp(num lowerLimit, num upperLimit) {
-    return valueNumber!.clamp(lowerLimit, upperLimit);
+    return valueNumber.clamp(lowerLimit, upperLimit);
   }
 
-  int round() => valueNumber!.round();
-  int floor() => valueNumber!.floor();
-  int ceil() => valueNumber!.ceil();
-  int truncate() => valueNumber!.truncate();
+  int round() => valueNumber.round();
+  int floor() => valueNumber.floor();
+  int ceil() => valueNumber.ceil();
+  int truncate() => valueNumber.truncate();
 
-  double roundToDouble() => valueNumber!.roundToDouble();
-  double floorToDouble() => valueNumber!.floorToDouble();
-  double ceilToDouble() => valueNumber!.ceilToDouble();
-  double truncateToDouble() => valueNumber!.truncateToDouble();
+  double roundToDouble() => valueNumber.roundToDouble();
+  double floorToDouble() => valueNumber.floorToDouble();
+  double ceilToDouble() => valueNumber.ceilToDouble();
+  double truncateToDouble() => valueNumber.truncateToDouble();
 
   String toStringAsFixed(int fractionDigits) =>
-      valueNumber!.toStringAsFixed(fractionDigits);
+      valueNumber.toStringAsFixed(fractionDigits);
   String toStringAsExponential([int? fractionDigits]) =>
-      valueNumber!.toStringAsExponential(fractionDigits);
+      valueNumber.toStringAsExponential(fractionDigits);
   String toStringAsPrecision(int precision) =>
-      valueNumber!.toStringAsPrecision(precision);
+      valueNumber.toStringAsPrecision(precision);
 
   // Factory constructors for creating FhirNumber from a num
   factory FhirNumber.fromNum(num value) {

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -7,101 +8,114 @@ extension FhirUriExtension on String {
 }
 
 extension FhirUriUriExtension on Uri {
-  FhirUri get toFhirUri => FhirUri(this);
+  FhirUri get toFhirUri => FhirUri.fromUri(this);
 }
 
+@Entity()
 class FhirUri extends PrimitiveType<Uri> {
-  FhirUri._(this._valueString, this._valueUri, this._isValid,
-      [Element? element])
-      : super(element: element);
+  @override
+  final Uri value; // Store the validated Uri value
 
-  factory FhirUri(dynamic inValue, [Element? element]) {
-    if (inValue is Uri) {
-      return FhirUri._(inValue.toString(), inValue, true, element);
-    } else if (inValue is String) {
-      final Uri? tempUri = Uri.tryParse(inValue);
-      return FhirUri._(inValue, tempUri, tempUri != null, element);
+  // Constructor only accepts valid Uri or String input
+  FhirUri(String input, [Element? element])
+      : value = _validateUri(input),
+        super(element: element);
+
+  FhirUri.fromUri(Uri input, [Element? element])
+      : value = input,
+        super(element: element);
+
+  static FhirUri? tryParse(dynamic input) {
+    if (input is String) {
+      try {
+        return FhirUri(input);
+      } catch (e) {
+        return null;
+      }
+    } else {
+      return null;
     }
-    throw CannotBeConstructed<FhirUri>(
-        'FhirUri cannot be constructed from $inValue.');
   }
 
-  factory FhirUri.fromJson(dynamic json) => FhirUri(json);
+  // Validate the input and return a Uri object
+  static Uri _validateUri(String input) {
+    final Uri? tempUri = Uri.tryParse(input);
+    if (tempUri != null) {
+      return tempUri;
+    }
+    throw FormatException(
+        'FhirUri cannot be constructed from invalid String: $input');
+  }
 
-  factory FhirUri.fromYaml(dynamic yaml) => yaml is String
-      ? FhirUri.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : yaml is YamlMap
-          ? FhirUri.fromJson(jsonDecode(jsonEncode(yaml)))
-          : throw YamlFormatException<FhirUri>(
-              'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+  // fromJson only accepts a String and validates it
+  factory FhirUri.fromJson(dynamic json) {
+    if (json is String) {
+      return FhirUri(json);
+    } else {
+      throw const FormatException('Invalid input for FhirBase64Binary');
+    }
+  }
+
+  factory FhirUri.fromYaml(String yaml) =>
+      FhirUri.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))) as String);
+
+  @override
+  @Id()
+  int dbId = 0;
 
   @override
   String get fhirType => 'uri';
 
-  final String _valueString;
-  final Uri? _valueUri;
-  final bool _isValid;
-
+  // Convert the stored Uri back to a string for output formats
   @override
-  bool get isValid => _isValid;
+  String toJson() => value.toString();
   @override
-  Uri? get value => _valueUri;
-
+  String toYaml() => value.toString();
   @override
-  String toString() => _valueString;
-  @override
-  String toJson() => _valueString;
-  @override
-  String toYaml() => _valueString;
+  String toString() => value.toString();
   @override
   String toJsonString() => jsonEncode(toJson());
 
+  // Equality check, can compare against another FhirUri, Uri, or String
   @override
   bool equals(Object other) =>
       identical(this, other) ||
-      (other is FhirUri && other.value == _valueUri) ||
-      (other is Uri && other == _valueUri) ||
-      (other is String && other == _valueString);
+      (other is FhirUri && other.value == value) ||
+      (other is Uri && other == value) ||
+      (other is String && Uri.tryParse(other) == value);
 
+  // Clone the object
   @override
-  FhirUri clone() => FhirUri._(
-        _valueString,
-        _valueUri,
-        _isValid,
-        element?.clone() as Element?,
-      );
+  FhirUri clone() => FhirUri.fromUri(value, element?.clone() as Element?);
 
   /// Mirroring common Uri methods
 
   // Path-related methods
-  List<String>? get pathSegments => _valueUri?.pathSegments;
+  List<String> get pathSegments => value.pathSegments;
 
   String toFilePath({bool? windows}) {
-    if (_valueUri != null) {
-      return _valueUri.toFilePath(windows: windows);
-    }
-    throw UnsupportedError('No Uri to extract file path from.');
+    return value.toFilePath(windows: windows);
   }
 
   // Authority-related methods
-  String? get host => _valueUri?.host;
-  String? get userInfo => _valueUri?.userInfo;
-  int? get port => _valueUri?.port;
+  String get host => value.host;
+  String get userInfo => value.userInfo;
+  int? get port => value.port;
 
-  String get authority => _valueUri?.authority ?? '';
+  String get authority => value.authority;
 
   // Query-related methods
-  String? get query => _valueUri?.query;
+  String get query => value.query;
 
+  // Splitting query string into key-value pairs
   Map<String, List<String>> splitQueryStringAll(String query,
       {Encoding encoding = utf8}) {
-    // Use a public alternative to `_splitQueryStringAll` (e.g., manual parsing)
     return Uri.splitQueryString(query, encoding: encoding).map(
         (String key, String value) => MapEntry<String, List<String>>(
             key, value.isEmpty ? <String>[] : <String>[value]));
   }
 
-  // Encoding/decoding (using public Uri methods)
+  // Encoding and decoding methods
   static String encodeQueryComponent(String text, {Encoding encoding = utf8}) {
     return Uri.encodeQueryComponent(text, encoding: encoding);
   }
@@ -112,11 +126,13 @@ class FhirUri extends PrimitiveType<Uri> {
 
   @override
   FhirUri setElement(String name, dynamic elementValue) {
-    return FhirUri(value, element?.setProperty(name, elementValue));
+    return FhirUri.fromUri(value, element?.setProperty(name, elementValue));
   }
 
   @override
   FhirUri copyWith({
+    Uri? newValue,
+    Element? element,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -125,10 +141,8 @@ class FhirUri extends PrimitiveType<Uri> {
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
   }) {
-    return FhirUri._(
-      _valueString,
-      _valueUri,
-      _isValid,
+    return FhirUri.fromUri(
+      newValue ?? value,
       element?.copyWith(
         userData: userData,
         formatCommentsPre: formatCommentsPre,

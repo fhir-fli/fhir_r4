@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -6,24 +7,17 @@ extension FhirTimeExtension on String {
   FhirTime get toFhirTime => FhirTime(this);
 }
 
+@Entity()
 class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
-  final String _valueString;
-  final String? _valueTime;
-  final bool _isValid;
+  @override
+  final String value; // Single field to store the validated time string
 
-  FhirTime._(this._valueString, this._valueTime, this._isValid,
-      {super.element});
+  // Constructor to validate and store the time string
+  FhirTime(String input, [Element? element])
+      : value = _validateTime(input),
+        super(element: element);
 
-  factory FhirTime(dynamic inValue, [Element? element]) {
-    if (inValue is String &&
-        RegExp(r'^([01][0-9]|2[0-3])(:([0-5][0-9])(:([0-5][0-9]|60)(\.[0-9]+)?)?)?$')
-            .hasMatch(inValue)) {
-      return FhirTime._(inValue, inValue, true, element: element);
-    } else {
-      return FhirTime._(inValue.toString(), null, false, element: element);
-    }
-  }
-
+  // Factory method for constructing time from units
   factory FhirTime.fromUnits({
     int? hour,
     int? minute,
@@ -43,61 +37,62 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
     return FhirTime(timeString);
   }
 
-  factory FhirTime.fromJson(dynamic json) => FhirTime(json);
-
-  factory FhirTime.fromYaml(dynamic yaml) {
-    if (yaml is String) {
-      return FhirTime.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))));
-    } else if (yaml is YamlMap) {
-      return FhirTime.fromJson(jsonDecode(jsonEncode(yaml)));
+  static FhirTime? tryParse(dynamic input) {
+    if (input is String) {
+      try {
+        return FhirTime(input);
+      } catch (e) {
+        return null;
+      }
     } else {
-      throw YamlFormatException<FhirTime>(
-        'FormatException: "$yaml" is not a valid Yaml string or YamlMap.',
-      );
+      return null;
     }
   }
+
+  // Validation function using regex
+  static String _validateTime(String input) {
+    final RegExp timeRegex = RegExp(
+        r'^([01][0-9]|2[0-3])(:([0-5][0-9])(:([0-5][0-9]|60)(\.[0-9]+)?)?)?$');
+    if (timeRegex.hasMatch(input)) {
+      return input;
+    } else {
+      throw FormatException('Invalid time format: $input');
+    }
+  }
+
+  // Factory methods for JSON and YAML
+  factory FhirTime.fromJson(dynamic json) {
+    if (json is String) {
+      return FhirTime(json);
+    } else {
+      throw const FormatException('Invalid input for FhirTime');
+    }
+  }
+
+  factory FhirTime.fromYaml(String yaml) =>
+      FhirTime.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))) as String);
+
+  @override
+  @Id()
+  int dbId = 0;
 
   @override
   String get fhirType => 'time';
 
-  @override
-  bool get isValid => _isValid;
+  // Time component getters (hour, minute, second, millisecond)
+  int? get hour => int.tryParse(value.split(':')[0]);
 
-  @override
-  String? get value => _valueTime;
+  int? get minute =>
+      (value.split(':').length > 1) ? int.tryParse(value.split(':')[1]) : null;
 
-  int? get hour => _valueTime?.split(':')[0] == null
-      ? null
-      : int.tryParse(_valueTime!.split(':')[0]);
+  int? get second => (value.split(':').length > 2)
+      ? int.tryParse(value.split(':')[2].split('.')[0])
+      : null;
 
-  int? get minute => (_valueTime?.split(':').length ?? 0) <= 1 ||
-          _valueTime?.split(':')[1] == null
-      ? null
-      : int.tryParse(_valueTime!.split(':')[1]);
+  int? get millisecond =>
+      (value.split('.').length > 1) ? int.tryParse(value.split('.')[1]) : null;
 
-  int? get second => (_valueTime?.split(':').length ?? 0) <= 2 ||
-          _valueTime?.split(':')[2] == null
-      ? null
-      : int.tryParse(_valueTime!.split(':')[2].split('.')[0]);
-
-  int? get millisecond => (_valueTime?.split(':').length ?? 0) <= 2 ||
-          _valueTime?.split(':')[2] == null ||
-          _valueTime!.split(':')[2].split('.').length <= 1
-      ? null
-      : int.tryParse(_valueTime.split(':')[2].split('.')[1]);
-
-  @override
-  String toString() => _valueString;
-
-  @override
-  String toJson() => _valueString;
-
-  @override
-  String toYaml() => _valueString;
-
-  @override
-  String toJsonString() => jsonEncode(toJson());
-
+  // Arithmetic methods: Plus and Subtract
   FhirTime plus({
     int hours = 0,
     int minutes = 0,
@@ -126,30 +121,26 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
     int? seconds,
     int? milliseconds,
   }) {
-    int? newMilliseconds =
-        milliseconds == null ? millisecond : (millisecond ?? 0) - milliseconds;
-    int? newSeconds = seconds == null ? second : (second ?? 0) - seconds;
-    int? newMinutes = minutes == null ? minute : (minute ?? 0) - minutes;
-    int? newHours = hours == null ? hour : (hour ?? 0) - hours;
+    int? newMilliseconds = (millisecond ?? 0) - (milliseconds ?? 0);
+    int? newSeconds = (second ?? 0) - (seconds ?? 0);
+    int? newMinutes = (minute ?? 0) - (minutes ?? 0);
+    int? newHours = (hour ?? 0) - (hours ?? 0);
 
-    while ((newMilliseconds ?? 1) < 0) {
+    while ((newMilliseconds ?? 0) < 0) {
       newMilliseconds = (newMilliseconds ?? 0) + 1000;
       newSeconds = (newSeconds ?? 0) - 1;
     }
 
-    while ((newSeconds ?? 1) < 0) {
+    while ((newSeconds ?? 0) < 0) {
       newSeconds = (newSeconds ?? 0) + 60;
       newMinutes = (newMinutes ?? 0) - 1;
     }
 
-    while ((newMinutes ?? 1) < 0) {
+    while ((newMinutes ?? 0) < 0) {
       newMinutes = (newMinutes ?? 0) + 60;
       newHours = (newHours ?? 0) - 1;
     }
 
-    while ((newHours ?? 1) < 0) {
-      newHours = (newHours ?? 0) + 24;
-    }
     newHours = (newHours ?? 0) % 24;
 
     return FhirTime.fromUnits(
@@ -160,59 +151,40 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
     );
   }
 
-  bool? _compare(Comparator comparator, Object o) {
-    final FhirTime? rhs = o is FhirTime
-        ? o
-        : o is String
-            ? FhirTime(o)
+  // Comparisons (>, >=, <, <=) using helper method
+  bool? _compare(Comparator comparator, Object other) {
+    final FhirTime? rhs = other is FhirTime
+        ? other
+        : other is String
+            ? FhirTime(other)
             : null;
 
-    if (rhs == null || !rhs.isValid || !isValid) {
-      throw InvalidTypes<FhirTime>('Invalid comparison between values.');
-    }
+    if (rhs == null) return false;
 
-    final List<String> lhsTime = _valueString.split(':');
-    final List<String> rhsTime = rhs._valueString.split(':');
+    final List<String> lhsParts = value.split(':');
+    final List<String> rhsParts = rhs.value.split(':');
 
-    for (int i = 0; i < lhsTime.length; i++) {
-      final int lhsPart = int.parse(lhsTime[i]);
-      final int rhsPart = int.parse(rhsTime[i]);
+    for (int i = 0; i < lhsParts.length; i++) {
+      final int lhs = int.parse(lhsParts[i]);
+      final int rhsValue = int.parse(rhsParts[i]);
+
       switch (comparator) {
         case Comparator.eq:
-          if (lhsPart != rhsPart) {
-            return false;
-          }
+          if (lhs != rhsValue) return false;
         case Comparator.gt:
-          if (lhsPart > rhsPart) {
-            return true;
-          }
-          if (lhsPart < rhsPart) {
-            return false;
-          }
+          if (lhs > rhsValue) return true;
+          if (lhs < rhsValue) return false;
         case Comparator.lt:
-          if (lhsPart < rhsPart) {
-            return true;
-          }
-          if (lhsPart > rhsPart) {
-            return false;
-          }
+          if (lhs < rhsValue) return true;
+          if (lhs > rhsValue) return false;
         case Comparator.gte:
-          if (lhsPart > rhsPart) {
-            return true;
-          }
-          if (lhsPart < rhsPart) {
-            return false;
-          }
+          if (lhs >= rhsValue) return true;
+          return false;
         case Comparator.lte:
-          if (lhsPart < rhsPart) {
-            return true;
-          }
-          if (lhsPart > rhsPart) {
-            return false;
-          }
+          if (lhs <= rhsValue) return true;
+          return false;
       }
     }
-
     return comparator == Comparator.eq;
   }
 
@@ -234,8 +206,19 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
           ? -1
           : 0;
 
+  // Serialization methods
   @override
-  FhirTime clone() => FhirTime.fromJson(toJson());
+  String toString() => value;
+  @override
+  String toJson() => value;
+  @override
+  String toYaml() => value;
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  // Clone and copyWith methods
+  @override
+  FhirTime clone() => FhirTime(value, element?.clone() as Element?);
 
   @override
   FhirTime setElement(String name, dynamic elementValue) {
@@ -244,6 +227,8 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
 
   @override
   FhirTime copyWith({
+    String? newValue,
+    Element? element,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -252,11 +237,9 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
   }) {
-    return FhirTime._(
-      _valueString,
-      _valueTime,
-      _isValid,
-      element: element?.copyWith(
+    return FhirTime(
+      newValue ?? value,
+      element?.copyWith(
         userData: userData,
         formatCommentsPre: formatCommentsPre,
         formatCommentsPost: formatCommentsPost,

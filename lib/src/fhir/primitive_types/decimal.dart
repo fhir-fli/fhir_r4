@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -7,58 +7,85 @@ extension FhirDecimalExtension on num {
   FhirDecimal get toFhirDecimal => FhirDecimal(this);
 }
 
+@Entity()
 class FhirDecimal extends FhirNumber {
-  FhirDecimal._(super.valueString, super.valueNumber, super.isValid, this.isInt,
-      {super.element});
+  @override
+  final double value;
+  final bool isInt;
 
-  factory FhirDecimal(dynamic inValue, {Element? element}) {
-    if (inValue is FhirDecimal) {
-      return inValue;
-    } else if (inValue is FhirInteger) {
-      return FhirDecimal._(
-        inValue.toString(),
-        inValue.value?.toDouble(),
-        inValue.isValid,
-        inValue.isValid,
-        element: element,
-      );
-    } else if (inValue is num) {
-      return FhirDecimal._(
-        inValue.toString(),
-        inValue.toDouble(),
-        true,
-        int.tryParse(inValue.toString()) != null,
-        element: element,
-      );
-    }
-    throw CannotBeConstructed<FhirDecimal>(
-        'Decimal cannot be constructed from $inValue (${inValue.runtimeType})');
+  // Constructor enforces valid input
+  FhirDecimal(num input, {super.element})
+      : value = input.toDouble(),
+        isInt = input is int,
+        super(input.toDouble());
+
+  // Handle construction from other valid types like FhirInteger
+  factory FhirDecimal.fromFhirInteger(FhirInteger integer, [Element? element]) {
+    return FhirDecimal(integer.value, element: element);
   }
 
-  factory FhirDecimal.fromJson(dynamic json) => FhirDecimal(json);
+  static FhirDecimal? tryParse(dynamic input) {
+    if (input is num) {
+      try {
+        return FhirDecimal(input);
+      } catch (e) {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
 
-  factory FhirDecimal.fromYaml(dynamic yaml) => yaml is String
-      ? FhirDecimal.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : yaml is YamlMap
-          ? FhirDecimal.fromJson(jsonDecode(jsonEncode(yaml)))
-          : throw YamlFormatException<FhirDecimal>(
-              'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+  // fromJson accepts dynamic input and validates
+  factory FhirDecimal.fromJson(dynamic json, {Element? element}) {
+    if (json is num) {
+      return FhirDecimal(json, element: element);
+    } else {
+      throw FormatException('Invalid input for FhirDecimal: $json');
+    }
+  }
+
+  // fromYaml accepts dynamic input and validates
+  factory FhirDecimal.fromYaml(dynamic yaml, {Element? element}) {
+    if (yaml is String) {
+      return FhirDecimal.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))),
+          element: element);
+    } else if (yaml is YamlMap) {
+      return FhirDecimal.fromJson(jsonDecode(jsonEncode(yaml)),
+          element: element);
+    } else {
+      throw const FormatException('Invalid Yaml format for FhirDecimal');
+    }
+  }
+
+  @override
+  @Id()
+  int dbId = 0;
 
   @override
   String get fhirType => 'decimal';
-  final bool isInt;
-  @override
-  double? get value => valueNumber as double?;
 
   @override
-  num? toJson() => isInt ? valueNumber?.toInt() : valueNumber;
+  num toJson() => isInt ? value.toInt() : value;
 
   @override
-  num? toYaml() => isInt ? valueNumber?.toInt() : valueNumber;
+  num toYaml() => toJson();
 
   @override
-  FhirDecimal clone() => FhirDecimal._(valueString, valueNumber, isValid, isInt,
-      element: element?.clone() as Element?);
+  String toString() => value.toString();
+
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  bool equals(Object other) =>
+      identical(this, other) ||
+      (other is FhirDecimal && other.value == value) ||
+      (other is num && other == value);
+
+  @override
+  FhirDecimal clone() =>
+      FhirDecimal(value, element: element?.clone() as Element?);
 
   @override
   FhirDecimal setElement(String name, dynamic elementValue) {
@@ -68,6 +95,8 @@ class FhirDecimal extends FhirNumber {
 
   @override
   FhirDecimal copyWith({
+    num? newValue,
+    Element? element,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -76,11 +105,8 @@ class FhirDecimal extends FhirNumber {
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
   }) {
-    return FhirDecimal._(
-      valueString,
-      valueNumber,
-      isValid,
-      isInt,
+    return FhirDecimal(
+      newValue ?? value,
       element: element?.copyWith(
         userData: userData,
         formatCommentsPre: formatCommentsPre,

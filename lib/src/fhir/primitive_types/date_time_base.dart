@@ -4,10 +4,7 @@ import '../../../fhir_r4.dart';
 
 abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     implements Comparable<FhirDateTimeBase> {
-  @override
-  final bool isValid;
   final FhirDateTimePrecision precision;
-  final Exception? parseError;
   final dynamic input;
   final int year;
   final int month;
@@ -21,10 +18,8 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   final bool isUtc;
 
   FhirDateTimeBase({
-    required this.isValid,
     required this.precision,
     required this.input,
-    required this.parseError,
     required this.year,
     required this.month,
     required this.day,
@@ -117,14 +112,8 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
       [Element? element]) {
     return T == FhirInstant
         ? FhirInstant.fromBase(
-            isValid: (precision?.isValidInstantPrecision ?? false) &&
-                precision != FhirDateTimePrecision.invalid &&
-                regexpValid,
             precision: precision ?? FhirDateTimePrecision.invalid,
             input: output,
-            parseError: exception == null
-                ? null
-                : PrimitiveTypeFormatException<FhirInstant>(exception),
             year: dateTimeMap?['year'] as int? ?? 1,
             month: dateTimeMap?['month'] as int? ?? 1,
             day: dateTimeMap?['day'] as int? ?? 1,
@@ -139,14 +128,8 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
           )
         : T == FhirDateTime
             ? FhirDateTime.fromBase(
-                isValid: (precision?.isValidFhirDateTimePrecision ?? false) &&
-                    precision != FhirDateTimePrecision.invalid &&
-                    regexpValid,
                 precision: precision ?? FhirDateTimePrecision.invalid,
                 input: output,
-                parseError: exception == null
-                    ? null
-                    : PrimitiveTypeFormatException<FhirDateTime>(exception),
                 year: dateTimeMap?['year'] as int? ?? 1,
                 month: dateTimeMap?['month'] as int? ?? 1,
                 day: dateTimeMap?['day'] as int? ?? 1,
@@ -161,14 +144,8 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
               )
             : T == FhirDate
                 ? FhirDate.fromBase(
-                    isValid: (precision?.isValidDatePrecision ?? false) &&
-                        precision != FhirDateTimePrecision.invalid &&
-                        regexpValid,
                     precision: precision ?? FhirDateTimePrecision.invalid,
                     input: output,
-                    parseError: exception == null
-                        ? null
-                        : PrimitiveTypeFormatException<FhirDate>(exception),
                     year: dateTimeMap?['year'] as int? ?? 1,
                     month: dateTimeMap?['month'] as int? ?? 1,
                     day: dateTimeMap?['day'] as int? ?? 1,
@@ -546,8 +523,9 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     }
     final DateTime thisDateTime = DateTime(
         year, month, day, hour, minute, second, millisecond, microsecond);
-    final FhirDateTimeBase dateTimeBase =
-        other is DateTime ? FhirDateTime(other) : other as FhirDateTimeBase;
+    final FhirDateTimeBase dateTimeBase = other is DateTime
+        ? FhirDateTime.fromDateTime(other)
+        : other as FhirDateTimeBase;
     final DateTime otherDateTime = DateTime(
         dateTimeBase.year,
         dateTimeBase.month,

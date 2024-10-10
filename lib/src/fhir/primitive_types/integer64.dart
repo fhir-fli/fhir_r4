@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -14,234 +15,205 @@ extension FhirInteger64BigIntExtension on BigInt {
   FhirInteger64 get toFhirInteger64 => FhirInteger64(this);
 }
 
+@Entity()
 class FhirInteger64 extends PrimitiveType<BigInt>
     implements Comparable<FhirInteger64> {
-  FhirInteger64._(this.valueString, this.valueNumber, this.isValid,
-      {super.element});
+  @override
+  final BigInt value; // Store the validated BigInt value
 
-  // Factory constructors
-  factory FhirInteger64(dynamic inValue, [Element? element]) {
-    if (inValue is FhirInteger64) {
-      return inValue;
-    } else if (inValue is int) {
-      return FhirInteger64._(
-        inValue.toString(),
-        BigInt.from(inValue),
-        true,
-        element: element,
-      );
-    } else if (inValue is BigInt) {
-      return FhirInteger64._(
-        inValue.toString(),
-        inValue,
-        true,
-        element: element,
-      );
-    } else if (inValue is String) {
-      final BigInt? tempInteger64 = BigInt.tryParse(inValue);
-      return tempInteger64 == null
-          ? FhirInteger64._(inValue, null, false)
-          : FhirInteger64._(inValue, tempInteger64, true);
+  // Constructor accepts valid int, BigInt, or String input
+  FhirInteger64(dynamic input, [Element? element])
+      : value = _validateInteger64(input),
+        super(element: element);
+
+  // Validation logic for handling different input types
+  static BigInt _validateInteger64(dynamic input) {
+    if (input is int) {
+      return BigInt.from(input);
+    } else if (input is BigInt) {
+      return input;
+    } else if (input is String) {
+      final BigInt? parsed = BigInt.tryParse(input);
+      if (parsed != null) {
+        return parsed;
+      }
     }
-    throw CannotBeConstructed<FhirInteger64>(
-        'Integer64 cannot be constructed from $inValue '
-        '(${inValue.runtimeType}).');
+    throw FormatException('Invalid input for FhirInteger64: $input');
   }
 
+  static FhirInteger64? tryParse(dynamic input) {
+    if (input is int) {
+      try {
+        return FhirInteger64(input);
+      } catch (e) {
+        return null;
+      }
+    } else if (input is BigInt) {
+      return FhirInteger64(input);
+    } else if (input is String) {
+      try {
+        return FhirInteger64(input);
+      } catch (e) {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+
+  // fromJson only accepts dynamic input and validates it
   factory FhirInteger64.fromJson(dynamic json) => FhirInteger64(json);
 
-  factory FhirInteger64.fromYaml(dynamic yaml) => yaml is String
-      ? FhirInteger64.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : yaml is YamlMap
-          ? FhirInteger64.fromJson(jsonDecode(jsonEncode(yaml)))
-          : throw YamlFormatException<FhirInteger64>(
-              'Invalid Yaml format for FhirInteger64: "$yaml".');
+  // YAML conversion
+  factory FhirInteger64.fromYaml(String yaml) =>
+      FhirInteger64.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))) as String);
+
+  @override
+  @Id()
+  int dbId = 0;
 
   @override
   String get fhirType => 'integer64';
 
-  // Overriding necessary fields and methods
+  // Serialization and comparison methods
   @override
-  BigInt? get value => valueNumber;
-  final String valueString;
-  final BigInt? valueNumber;
+  String toString() => value.toString();
   @override
-  final bool isValid;
-
+  String toJson() => value.toString();
   @override
-  String toString() => valueString;
-  @override
-  String toJson() => valueString;
-  @override
-  String toYaml() => valueString;
+  String toYaml() => value.toString();
   @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
   bool equals(Object other) =>
       identical(this, other) ||
-      (other is FhirInteger64 && other.valueNumber == valueNumber) ||
-      (other is BigInt && other == valueNumber);
+      (other is FhirInteger64 && other.value == value) ||
+      (other is BigInt && other == value);
 
-  // Mirrored arithmetic and bitwise operators for BigInt and FhirInteger64
+  // Arithmetic and bitwise operators
   FhirInteger64 operator +(dynamic other) {
-    if (other is BigInt || other is FhirInteger64) {
-      final BigInt result = valueNumber! +
-          (other is FhirInteger64 ? other.valueNumber! : other as BigInt);
-      return FhirInteger64(result);
-    }
-    throw InvalidTypes<FhirInteger64>('Invalid operand for addition: $other');
+    final BigInt result =
+        value + (other is FhirInteger64 ? other.value : other as BigInt);
+    return FhirInteger64(result);
   }
 
   FhirInteger64 operator -(dynamic other) {
-    if (other is BigInt || other is FhirInteger64) {
-      final BigInt result = valueNumber! -
-          (other is FhirInteger64 ? other.valueNumber! : other as BigInt);
-      return FhirInteger64(result);
-    }
-    throw InvalidTypes<FhirInteger64>(
-        'Invalid operand for subtraction: $other');
+    final BigInt result =
+        value - (other is FhirInteger64 ? other.value : other as BigInt);
+    return FhirInteger64(result);
   }
 
   FhirInteger64 operator *(dynamic other) {
-    if (other is BigInt || other is FhirInteger64) {
-      final BigInt result = valueNumber! *
-          (other is FhirInteger64 ? other.valueNumber! : other as BigInt);
-      return FhirInteger64(result);
-    }
-    throw InvalidTypes<FhirInteger64>(
-        'Invalid operand for multiplication: $other');
+    final BigInt result =
+        value * (other is FhirInteger64 ? other.value : other as BigInt);
+    return FhirInteger64(result);
   }
 
   FhirInteger64 operator %(dynamic other) {
-    if (other is BigInt || other is FhirInteger64) {
-      final BigInt result = valueNumber! %
-          (other is FhirInteger64 ? other.valueNumber! : other as BigInt);
-      return FhirInteger64(result);
-    }
-    throw InvalidTypes<FhirInteger64>('Invalid operand for modulo: $other');
+    final BigInt result =
+        value % (other is FhirInteger64 ? other.value : other as BigInt);
+    return FhirInteger64(result);
   }
 
   FhirInteger64 operator ~/(dynamic other) {
-    if (other is BigInt || other is FhirInteger64) {
-      final BigInt result = valueNumber! ~/
-          (other is FhirInteger64 ? other.valueNumber! : other as BigInt);
-      return FhirInteger64(result);
-    }
-    throw InvalidTypes<FhirInteger64>(
-        'Invalid operand for truncating division: $other');
+    final BigInt result =
+        value ~/ (other is FhirInteger64 ? other.value : other as BigInt);
+    return FhirInteger64(result);
   }
 
-  FhirInteger64 operator -() {
-    return FhirInteger64(-valueNumber!);
-  }
+  FhirInteger64 operator -() => FhirInteger64(-value);
 
   FhirInteger64 operator &(dynamic other) {
-    if (other is BigInt || other is FhirInteger64) {
-      final BigInt result = valueNumber! &
-          (other is FhirInteger64 ? other.valueNumber! : other as BigInt);
-      return FhirInteger64(result);
-    }
-    throw InvalidTypes<FhirInteger64>(
-        'Invalid operand for bitwise AND: $other');
+    final BigInt result =
+        value & (other is FhirInteger64 ? other.value : other as BigInt);
+    return FhirInteger64(result);
   }
 
   FhirInteger64 operator |(dynamic other) {
-    if (other is BigInt || other is FhirInteger64) {
-      final BigInt result = valueNumber! |
-          (other is FhirInteger64 ? other.valueNumber! : other as BigInt);
-      return FhirInteger64(result);
-    }
-    throw InvalidTypes<FhirInteger64>('Invalid operand for bitwise OR: $other');
+    final BigInt result =
+        value | (other is FhirInteger64 ? other.value : other as BigInt);
+    return FhirInteger64(result);
   }
 
   FhirInteger64 operator ^(dynamic other) {
-    if (other is BigInt || other is FhirInteger64) {
-      final BigInt result = valueNumber! ^
-          (other is FhirInteger64 ? other.valueNumber! : other as BigInt);
-      return FhirInteger64(result);
-    }
-    throw InvalidTypes<FhirInteger64>(
-        'Invalid operand for bitwise XOR: $other');
+    final BigInt result =
+        value ^ (other is FhirInteger64 ? other.value : other as BigInt);
+    return FhirInteger64(result);
   }
 
-  FhirInteger64 operator <<(int shiftAmount) {
-    return FhirInteger64(valueNumber! << shiftAmount);
-  }
+  FhirInteger64 operator <<(int shiftAmount) =>
+      FhirInteger64(value << shiftAmount);
 
-  FhirInteger64 operator >>(int shiftAmount) {
-    return FhirInteger64(valueNumber! >> shiftAmount);
-  }
+  FhirInteger64 operator >>(int shiftAmount) =>
+      FhirInteger64(value >> shiftAmount);
 
-  BigInt remainder(BigInt other) {
-    return valueNumber!.remainder(other);
-  }
+  BigInt remainder(BigInt other) => value.remainder(other);
 
   // Comparison operators
   bool operator <(dynamic other) {
     return other is FhirInteger64
-        ? valueNumber! < other.valueNumber!
-        : valueNumber! < (other as BigInt);
+        ? value < other.value
+        : other is BigInt
+            ? value < other
+            : BigInt.tryParse(other.toString()) != null
+                ? value < BigInt.parse(other.toString())
+                : throw ArgumentError(
+                    'Invalid input for FhirInteger64: $other');
   }
 
-  bool operator <=(dynamic other) {
-    return this == other || this < other;
-  }
+  bool operator <=(dynamic other) => this == other || this < other;
 
   bool operator >(dynamic other) {
     return other is FhirInteger64
-        ? valueNumber! > other.valueNumber!
-        : valueNumber! > (other as BigInt);
+        ? value > other.value
+        : other is BigInt
+            ? value > other
+            : BigInt.tryParse(other.toString()) != null
+                ? value > BigInt.parse(other.toString())
+                : throw ArgumentError(
+                    'Invalid input for FhirInteger64: $other');
   }
 
-  bool operator >=(dynamic other) {
-    return this == other || this > other;
-  }
+  bool operator >=(dynamic other) => this == other || this > other;
 
   @override
-  int compareTo(FhirInteger64 other) {
-    if (other.isValid && isValid) {
-      return valueNumber!.compareTo(other.valueNumber!);
-    } else {
-      throw InvalidTypes<FhirInteger64>(
-          'One of the values is not valid or null.');
-    }
-  }
+  int compareTo(FhirInteger64 other) => value.compareTo(other.value);
 
   // Utility methods
   @override
   FhirInteger64 clone() => FhirInteger64.fromJson(toJson());
 
-  BigInt abs() => valueNumber!.abs();
+  BigInt abs() => value.abs();
 
-  BigInt pow(int exponent) => valueNumber!.pow(exponent);
+  BigInt pow(int exponent) => value.pow(exponent);
 
   BigInt modPow(BigInt exponent, BigInt modulus) =>
-      valueNumber!.modPow(exponent, modulus);
+      value.modPow(exponent, modulus);
 
-  BigInt modInverse(BigInt modulus) => valueNumber!.modInverse(modulus);
+  BigInt modInverse(BigInt modulus) => value.modInverse(modulus);
 
-  BigInt gcd(BigInt other) => valueNumber!.gcd(other);
+  BigInt gcd(BigInt other) => value.gcd(other);
 
-  BigInt toUnsigned(int width) => valueNumber!.toUnsigned(width);
+  BigInt toUnsigned(int width) => value.toUnsigned(width);
 
-  BigInt toSigned(int width) => valueNumber!.toSigned(width);
+  BigInt toSigned(int width) => value.toSigned(width);
 
-  bool get isEven => valueNumber!.isEven;
+  bool get isEven => value.isEven;
 
-  bool get isOdd => valueNumber!.isOdd;
+  bool get isOdd => value.isOdd;
 
-  bool get isNegative => valueNumber!.isNegative;
+  bool get isNegative => value.isNegative;
 
-  bool get isValidInt => valueNumber!.isValidInt;
+  bool get isValidInt => value.isValidInt;
 
-  int toInt() => valueNumber!.toInt();
+  int toInt() => value.toInt();
 
-  double toDouble() => valueNumber!.toDouble();
+  double toDouble() => value.toDouble();
 
-  String toRadixString(int radix) => valueNumber!.toRadixString(radix);
+  String toRadixString(int radix) => value.toRadixString(radix);
 
-  int get bitLength => valueNumber!.bitLength;
+  int get bitLength => value.bitLength;
 
   @override
   FhirInteger64 setElement(String name, dynamic elementValue) {
@@ -250,6 +222,8 @@ class FhirInteger64 extends PrimitiveType<BigInt>
 
   @override
   FhirInteger64 copyWith({
+    BigInt? newValue,
+    Element? element,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -258,11 +232,9 @@ class FhirInteger64 extends PrimitiveType<BigInt>
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
   }) {
-    return FhirInteger64._(
-      valueString,
-      valueNumber,
-      isValid,
-      element: element?.copyWith(
+    return FhirInteger64(
+      newValue ?? value,
+      element?.copyWith(
         userData: userData,
         formatCommentsPre: formatCommentsPre,
         formatCommentsPost: formatCommentsPost,

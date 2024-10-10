@@ -1,21 +1,21 @@
 import 'dart:convert';
-
+import 'package:objectbox/objectbox.dart';
+import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
 extension FhirDateTimeExtension on DateTime {
-  FhirDateTime get toFhirDateTime => FhirDateTime(this);
+  FhirDateTime get toFhirDateTime => FhirDateTime.fromDateTime(this);
 }
 
 extension FhirDateTimeStringExtension on String {
-  FhirDateTime get toFhirDateTime => FhirDateTime(this);
+  FhirDateTime get toFhirDateTime => FhirDateTime.fromString(this);
 }
 
+@Entity()
 class FhirDateTime extends FhirDateTimeBase {
   FhirDateTime.fromBase({
-    required super.isValid,
     required super.precision,
     required super.input,
-    required super.parseError,
     required super.year,
     required super.month,
     required super.day,
@@ -29,25 +29,40 @@ class FhirDateTime extends FhirDateTimeBase {
     super.element,
   });
 
-  factory FhirDateTime(dynamic inValue,
+  // Now restricting the constructor to only accept String or DateTime
+  factory FhirDateTime.fromString(String inValue,
+          [FhirDateTimePrecision? precision, Element? element]) =>
+      FhirDateTimeBase.constructor<FhirDateTime>(inValue, precision, element)
+          as FhirDateTime;
+
+  factory FhirDateTime.fromDateTime(DateTime inValue,
           [FhirDateTimePrecision? precision, Element? element]) =>
       FhirDateTimeBase.constructor<FhirDateTime>(
-          inValue,
-          inValue is DateTime
-              ? precision ??
-                  (inValue.isUtc
-                      ? FhirDateTimePrecision.yyyy_MM_dd_T_HH_mm_ss_SSS_Z
-                      : FhirDateTimePrecision.yyyy_MM_dd_T_HH_mm_ss_SSSZZ)
-              : precision,
+          inValue.toIso8601String(),
+          inValue.isUtc
+              ? precision ?? FhirDateTimePrecision.yyyy_MM_dd_T_HH_mm_ss_SSS_Z
+              : precision ?? FhirDateTimePrecision.yyyy_MM_dd_T_HH_mm_ss_SSSZZ,
           element) as FhirDateTime;
 
   factory FhirDateTime.fromJson(dynamic json,
-          {FhirDateTimePrecision? precision, Element? element}) =>
-      FhirDateTime(json, precision, element);
+      {FhirDateTimePrecision? precision, Element? element}) {
+    if (json is String) {
+      return FhirDateTime.fromString(json, precision, element);
+    } else {
+      throw const FormatException(
+          'Invalid input for FhirDateTime: Input must be a String');
+    }
+  }
 
-  factory FhirDateTime.fromYaml(String yaml,
-          [FhirDateTimePrecision? precision, Element? element]) =>
-      FhirDateTime(jsonDecode(jsonEncode(yaml)), precision, element);
+  factory FhirDateTime.fromYaml(dynamic yaml) {
+    if (yaml is String) {
+      return FhirDateTime.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))));
+    } else if (yaml is YamlMap) {
+      return FhirDateTime.fromJson(jsonDecode(jsonEncode(yaml)));
+    } else {
+      throw FormatException('Invalid Yaml format for FhirDateTime: "$yaml".');
+    }
+  }
 
   factory FhirDateTime.fromUnits({
     required int year,
@@ -77,6 +92,10 @@ class FhirDateTime extends FhirDateTimeBase {
       ) as FhirDateTime;
 
   @override
+  @Id()
+  int dbId = 0;
+
+  @override
   String get fhirType => 'dateTime';
 
   @override
@@ -104,7 +123,7 @@ class FhirDateTime extends FhirDateTimeBase {
 
   @override
   FhirDateTime setElement(String name, dynamic elementValue) {
-    return FhirDateTime(
+    return FhirDateTime.fromDateTime(
         value, precision, element?.setProperty(name, elementValue));
   }
 
@@ -118,7 +137,7 @@ class FhirDateTime extends FhirDateTimeBase {
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
   }) {
-    return FhirDateTime(
+    return FhirDateTime.fromDateTime(
       value,
       precision,
       element?.copyWith(

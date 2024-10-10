@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -6,57 +7,69 @@ extension FhirIdExtension on String {
   FhirId get toFhirId => FhirId(this);
 }
 
+@Entity()
 class FhirId extends PrimitiveType<String> {
-  FhirId._(this._valueString, this._valueId, this._isValid, [Element? element])
-      : super(element: element);
+  @override
+  final String value;
 
-  factory FhirId(dynamic inValue, [Element? element]) =>
-      inValue is String && RegExp(r'^[A-Za-z0-9\-\.]{1,64}$').hasMatch(inValue)
-          ? FhirId._(inValue, inValue, true, element)
-          : FhirId._(inValue.toString(), null, false, element);
+  FhirId(String input, [Element? element])
+      : value = _validateId(input),
+        super(element: element);
 
-  factory FhirId.fromJson(dynamic json) => FhirId(json);
+  static FhirId? tryParse(dynamic input) {
+    if (input is String) {
+      try {
+        return FhirId(input);
+      } catch (e) {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+
+  static String _validateId(String input) {
+    if (RegExp(r'^[A-Za-z0-9\-\.]{1,64}$').hasMatch(input)) {
+      return input;
+    }
+    throw FormatException('Invalid FhirId: $input');
+  }
+
+  factory FhirId.fromJson(dynamic json) {
+    if (json is String) {
+      return FhirId(json);
+    }
+    throw FormatException('Invalid input for FhirId: $json');
+  }
 
   factory FhirId.fromYaml(dynamic yaml) => yaml is String
       ? FhirId.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : yaml is YamlMap
-          ? FhirId.fromJson(jsonDecode(jsonEncode(yaml)))
-          : throw YamlFormatException<FhirId>(
-              'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+      : throw const FormatException('Invalid YAML format for FhirId');
+
+  @override
+  @Id()
+  int dbId = 0;
+
   @override
   String get fhirType => 'id';
 
-  final String _valueString;
-  final String? _valueId;
-  final bool _isValid;
-
   @override
-  bool get isValid => _isValid;
+  String toJson() => value;
   @override
-  String? get value => _valueId;
-
+  String toYaml() => value;
   @override
-  String toString() => _valueString;
-  @override
-  String toJson() => _valueString;
-  @override
-  String toYaml() => _valueString;
+  String toString() => value;
   @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
   bool equals(Object other) =>
       identical(this, other) ||
-      (other is FhirId && other.value == _valueId) ||
-      (other is String && other == _valueString);
+      (other is FhirId && other.value == value) ||
+      (other is String && other == value);
 
   @override
-  FhirId clone() => FhirId._(
-        _valueString,
-        _valueId,
-        _isValid,
-        element?.clone() as Element?,
-      );
+  FhirId clone() => FhirId(value, element?.clone() as Element?);
 
   @override
   FhirId setElement(String name, dynamic elementValue) {
@@ -65,6 +78,8 @@ class FhirId extends PrimitiveType<String> {
 
   @override
   FhirId copyWith({
+    String? newValue,
+    Element? element,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -73,10 +88,8 @@ class FhirId extends PrimitiveType<String> {
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
   }) {
-    return FhirId._(
-      _valueString,
-      _valueId,
-      _isValid,
+    return FhirId(
+      newValue ?? value,
       element?.copyWith(
         userData: userData,
         formatCommentsPre: formatCommentsPre,

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -6,59 +7,69 @@ extension FhirOidExtension on String {
   FhirOid get toFhirOid => FhirOid(this);
 }
 
+@Entity()
 class FhirOid extends PrimitiveType<String> {
-  FhirOid._(this._valueString, this._valueOid, this._isValid,
-      [Element? element])
-      : super(element: element);
+  @override
+  final String value;
 
-  factory FhirOid(dynamic inValue, [Element? element]) => inValue is String &&
-          RegExp(r'^urn:oid:[0-2](\.(0|[1-9][0-9]*))+$').hasMatch(inValue)
-      ? FhirOid._(inValue, inValue, true, element)
-      : FhirOid._(inValue.toString(), null, false, element);
+  FhirOid(String input, [Element? element])
+      : value = _validateOid(input),
+        super(element: element);
 
-  factory FhirOid.fromJson(dynamic json) => FhirOid(json);
+  static FhirOid? tryParse(dynamic input) {
+    if (input is String) {
+      try {
+        return FhirOid(input);
+      } catch (e) {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+
+  static String _validateOid(String input) {
+    if (RegExp(r'^urn:oid:[0-2](\.(0|[1-9][0-9]*))+$').hasMatch(input)) {
+      return input;
+    }
+    throw FormatException('Invalid FhirOid: $input');
+  }
+
+  factory FhirOid.fromJson(dynamic json) {
+    if (json is String) {
+      return FhirOid(json);
+    }
+    throw FormatException('Invalid input for FhirOid: $json');
+  }
 
   factory FhirOid.fromYaml(dynamic yaml) => yaml is String
       ? FhirOid.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : yaml is YamlMap
-          ? FhirOid.fromJson(jsonDecode(jsonEncode(yaml)))
-          : throw YamlFormatException<FhirOid>(
-              'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+      : throw const FormatException('Invalid YAML format for FhirOid');
+
+  @override
+  @Id()
+  int dbId = 0;
 
   @override
   String get fhirType => 'oid';
 
-  final String _valueString;
-  final String? _valueOid;
-  final bool _isValid;
-
   @override
-  bool get isValid => _isValid;
+  String toJson() => value;
   @override
-  String? get value => _valueOid;
-
+  String toYaml() => value;
   @override
-  String toString() => _valueString;
-  @override
-  String toJson() => _valueString;
-  @override
-  String toYaml() => _valueString;
+  String toString() => value;
   @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
   bool equals(Object other) =>
       identical(this, other) ||
-      (other is FhirOid && other.value == _valueOid) ||
-      (other is String && other == _valueString);
+      (other is FhirOid && other.value == value) ||
+      (other is String && other == value);
 
   @override
-  FhirOid clone() => FhirOid._(
-        _valueString,
-        _valueOid,
-        _isValid,
-        element?.clone() as Element?,
-      );
+  FhirOid clone() => FhirOid(value, element?.clone() as Element?);
 
   @override
   FhirOid setElement(String name, dynamic elementValue) {
@@ -67,6 +78,8 @@ class FhirOid extends PrimitiveType<String> {
 
   @override
   FhirOid copyWith({
+    String? newValue,
+    Element? element,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -75,10 +88,8 @@ class FhirOid extends PrimitiveType<String> {
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
   }) {
-    return FhirOid._(
-      _valueString,
-      _valueOid,
-      _isValid,
+    return FhirOid(
+      newValue ?? value,
       element?.copyWith(
         userData: userData,
         formatCommentsPre: formatCommentsPre,

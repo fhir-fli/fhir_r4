@@ -1,58 +1,84 @@
 import 'dart:convert';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
 extension FhirPositiveIntExtension on num {
-  FhirPositiveInt get toFhirPositiveInt => FhirPositiveInt(this);
+  FhirPositiveInt get toFhirInteger => this is int
+      ? FhirPositiveInt(this as int)
+      : int.tryParse(toString()) != null
+          ? FhirPositiveInt(int.parse(toString()))
+          : throw FormatException('Invalid input for FhirInteger: $this');
 }
 
+@Entity()
 class FhirPositiveInt extends FhirNumber {
-  FhirPositiveInt._(super.valueString, super.valueNumber, super.isValid,
-      {super.element});
+  @override
+  final int value;
 
-  factory FhirPositiveInt(dynamic inValue, {Element? element}) {
-    if (inValue is int) {
-      return inValue > 0
-          ? FhirPositiveInt._(inValue.toString(), inValue, true,
-              element: element)
-          : FhirPositiveInt._(inValue.toString(), null, false,
-              element: element);
-    } else if (inValue is num) {
-      final int? tempPositiveInt = int.tryParse(inValue.toString());
-      return tempPositiveInt == null
-          ? FhirPositiveInt._(inValue.toString(), null, false, element: element)
-          : tempPositiveInt > 0
-              ? FhirPositiveInt._(inValue.toString(), tempPositiveInt, true,
-                  element: element)
-              : FhirPositiveInt._(inValue.toString(), null, false,
-                  element: element);
+  // Constructor enforces valid input
+  FhirPositiveInt(int super.input, {super.element})
+      : assert(input > 0, 'PositiveInt must be greater than 0'),
+        value = input;
+
+  static FhirPositiveInt? tryParse(dynamic input) {
+    if (input is int) {
+      try {
+        return FhirPositiveInt(input);
+      } catch (e) {
+        return null;
+      }
+    } else {
+      return null;
     }
-    throw CannotBeConstructed<FhirPositiveInt>(
-        'PositiveInt cannot be constructed from $inValue.');
   }
 
-  factory FhirPositiveInt.fromJson(dynamic json) => FhirPositiveInt(json);
+  // fromJson accepts dynamic input and validates
+  factory FhirPositiveInt.fromJson(dynamic json) {
+    if (json is int && json > 0) {
+      return FhirPositiveInt(json);
+    } else if (json is num && json > 0) {
+      return FhirPositiveInt(json.toInt());
+    }
+    throw FormatException('Invalid input for FhirPositiveInt: $json');
+  }
 
+  // fromYaml accepts dynamic input and validates
   factory FhirPositiveInt.fromYaml(dynamic yaml) => yaml is String
       ? FhirPositiveInt.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
       : yaml is YamlMap
           ? FhirPositiveInt.fromJson(jsonDecode(jsonEncode(yaml)))
-          : throw YamlFormatException<FhirPositiveInt>(
-              'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+          : throw const FormatException(
+              'Invalid Yaml format for FhirPositiveInt');
+
+  @override
+  @Id()
+  int dbId = 0;
 
   @override
   String get fhirType => 'positiveInt';
 
   @override
-  int? get value => valueNumber as int?;
+  int toJson() => value;
 
   @override
-  int? toJson() => valueNumber as int?;
+  int toYaml() => value;
+
+  @override
+  String toString() => value.toString();
+
+  @override
+  String toJsonString() => jsonEncode(toJson());
+
+  @override
+  bool equals(Object other) =>
+      identical(this, other) ||
+      (other is FhirPositiveInt && other.value == value) ||
+      (other is int && other == value);
 
   @override
   FhirPositiveInt clone() =>
-      FhirPositiveInt._(valueString, valueNumber, isValid,
-          element: element?.clone() as Element?);
+      FhirPositiveInt(value, element: element?.clone() as Element?);
 
   @override
   FhirPositiveInt setElement(String name, dynamic elementValue) {
@@ -62,6 +88,8 @@ class FhirPositiveInt extends FhirNumber {
 
   @override
   FhirPositiveInt copyWith({
+    int? newValue,
+    Element? element,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -70,10 +98,8 @@ class FhirPositiveInt extends FhirNumber {
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
   }) {
-    return FhirPositiveInt._(
-      valueString,
-      valueNumber,
-      isValid,
+    return FhirPositiveInt(
+      newValue ?? value,
       element: element?.copyWith(
         userData: userData,
         formatCommentsPre: formatCommentsPre,

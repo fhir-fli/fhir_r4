@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -6,58 +7,78 @@ extension FhirCodeExtension on String {
   FhirCode get toFhirCode => FhirCode(this);
 }
 
+@Entity()
 class FhirCode extends PrimitiveType<String> {
-  FhirCode._(this._valueString, this._valueCode, this._isValid,
-      [Element? element])
-      : super(element: element);
+  @override
+  final String value;
 
-  factory FhirCode(dynamic inValue, [Element? element]) =>
-      inValue is String && RegExp(r'^[^\s]+(\s[^\s]+)*$').hasMatch(inValue)
-          ? FhirCode._(inValue, inValue, true, element)
-          : FhirCode._(inValue.toString(), null, false, element);
+  // Constructor enforces valid input
+  FhirCode(String input, [Element? element])
+      : value = _validateCode(input),
+        super(element: element);
 
-  factory FhirCode.fromJson(dynamic json) => FhirCode(json);
+  static FhirCode? tryParse(dynamic input) {
+    if (input is String) {
+      try {
+        return FhirCode(input);
+      } catch (e) {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+
+  // Validation method for the FHIR Code format
+  static String _validateCode(String input) {
+    final RegExp regex = RegExp(r'^[^\s]+(\s[^\s]+)*$');
+    if (regex.hasMatch(input)) {
+      return input;
+    } else {
+      throw const FormatException('Invalid FHIR Code');
+    }
+  }
+
+  // fromJson accepts dynamic input and validates
+  factory FhirCode.fromJson(dynamic json) {
+    if (json is String) {
+      return FhirCode(json);
+    } else {
+      throw const FormatException('Invalid input for FhirCode');
+    }
+  }
 
   factory FhirCode.fromYaml(dynamic yaml) => yaml is String
       ? FhirCode.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : yaml is YamlMap
-          ? FhirCode.fromJson(jsonDecode(jsonEncode(yaml)))
-          : throw YamlFormatException<FhirCode>(
-              'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+      : throw const FormatException('Invalid Yaml format for FhirCode');
+
+  @override
+  @Id()
+  int dbId = 0;
 
   @override
   String get fhirType => 'code';
-  final String _valueString;
-  final String? _valueCode;
-  final bool _isValid;
 
   @override
-  bool get isValid => _isValid;
-  @override
-  String? get value => _valueCode;
+  String toJson() => value;
 
   @override
-  String toString() => _valueString;
+  String toYaml() => value;
+
   @override
-  String toJson() => _valueString;
-  @override
-  String toYaml() => _valueString;
+  String toString() => value;
+
   @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
   bool equals(Object other) =>
       identical(this, other) ||
-      (other is FhirCode && other.value == _valueCode) ||
-      (other is String && other == _valueString);
+      (other is FhirCode && other.value == value) ||
+      (other is String && other == value);
 
   @override
-  FhirCode clone() => FhirCode._(
-        _valueString,
-        _valueCode,
-        _isValid,
-        element?.clone() as Element?,
-      );
+  FhirCode clone() => FhirCode(value, element?.clone() as Element?);
 
   @override
   FhirCode setElement(String name, dynamic elementValue) {
@@ -66,6 +87,8 @@ class FhirCode extends PrimitiveType<String> {
 
   @override
   FhirCode copyWith({
+    String? newValue,
+    Element? element,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -74,10 +97,8 @@ class FhirCode extends PrimitiveType<String> {
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
   }) {
-    return FhirCode._(
-      _valueString,
-      _valueCode,
-      _isValid,
+    return FhirCode(
+      newValue ?? value,
       element?.copyWith(
         userData: userData,
         formatCommentsPre: formatCommentsPre,

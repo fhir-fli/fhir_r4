@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -6,74 +7,81 @@ extension FhirBase64BinaryExtension on String {
   FhirBase64Binary get toFhirBase64Binary => FhirBase64Binary(this);
 }
 
+@Entity()
 class FhirBase64Binary extends PrimitiveType<String> {
-  const FhirBase64Binary._(
-      this._valueString, this._valueBase64Binary, this._isValid,
-      [Element? element])
-      : super(element: element);
+  @override
+  final String value;
 
-  factory FhirBase64Binary(dynamic inValue, [Element? element]) {
-    try {
-      if (inValue is String && inValue.length % 4 == 0) {
-        base64.decode(inValue); // Validates base64
-        return FhirBase64Binary._(inValue, inValue, true, element);
+  // Constructor enforces valid input
+  FhirBase64Binary(String input, [Element? element])
+      : value = _validateBase64(input),
+        super(element: element);
+
+  static FhirBase64Binary? tryParse(dynamic input) {
+    if (input is String) {
+      try {
+        return FhirBase64Binary(input);
+      } catch (e) {
+        return null;
       }
-    } catch (e) {
-      // Handle invalid base64 string
+    } else {
+      return null;
     }
-    return FhirBase64Binary._(inValue.toString(), null, false, element);
   }
 
-  factory FhirBase64Binary.fromJson(dynamic json) => FhirBase64Binary(json);
+  // Throw an exception if input is not valid base64
+  static String _validateBase64(String input) {
+    if (input.length % 4 == 0 && _isBase64(input)) {
+      return input;
+    } else {
+      throw const FormatException('Invalid Base64 String');
+    }
+  }
 
-  factory FhirBase64Binary.fromYaml(dynamic yaml) => yaml is String
-      ? FhirBase64Binary.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : yaml is YamlMap
-          ? FhirBase64Binary.fromJson(jsonDecode(jsonEncode(yaml)))
-          : throw YamlFormatException<FhirBase64Binary>(
-              'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
-  @override
-  String get fhirType => 'base64Binary';
-  final String _valueString;
-  final String? _valueBase64Binary;
-  final bool _isValid;
-
-  @override
-  bool get isValid {
+  // Utility to check base64 validity
+  static bool _isBase64(String input) {
     try {
-      base64.decode(_valueString); // Validates base64
-      return _isValid;
-    } catch (e) {
+      base64.decode(input);
+      return true;
+    } catch (_) {
       return false;
     }
   }
 
-  @override
-  String? get value => _valueBase64Binary;
+  // fromJson accepts dynamic input and validates
+  factory FhirBase64Binary.fromJson(dynamic json) {
+    if (json is String) {
+      return FhirBase64Binary(json);
+    } else {
+      throw const FormatException('Invalid input for FhirBase64Binary');
+    }
+  }
+
+  factory FhirBase64Binary.fromYaml(dynamic yaml) => yaml is String
+      ? FhirBase64Binary.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
+      : throw const FormatException('Invalid Yaml format for FhirBase64Binary');
 
   @override
-  String toString() => _valueString;
+  String toJson() => value;
+
   @override
-  String toJson() => _valueString;
+  String toYaml() => value;
+
   @override
-  String toYaml() => _valueString;
+  String toString() => value;
+
   @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
   bool equals(Object other) =>
       identical(this, other) ||
-      (other is FhirBase64Binary && other.value == _valueBase64Binary);
+      (other is FhirBase64Binary && other.value == value);
 
   @override
-  FhirBase64Binary clone() => FhirBase64Binary._(
-        _valueString,
-        _valueBase64Binary,
-        _isValid,
-        element?.clone() as Element?,
-      );
+  FhirBase64Binary clone() =>
+      FhirBase64Binary(value, element?.clone() as Element?);
 
-  /// Sets a property value.
   @override
   FhirBase64Binary setElement(String name, dynamic elementValue) {
     return FhirBase64Binary(value, element?.setProperty(name, elementValue));
@@ -81,6 +89,8 @@ class FhirBase64Binary extends PrimitiveType<String> {
 
   @override
   FhirBase64Binary copyWith({
+    String? newValue,
+    Element? element,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -89,10 +99,9 @@ class FhirBase64Binary extends PrimitiveType<String> {
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
   }) {
-    return FhirBase64Binary._(
-      _valueString,
-      _valueBase64Binary,
-      _isValid,
+    return FhirBase64Binary(
+      newValue ??
+          value, // Use the new value if provided, otherwise the current value
       element?.copyWith(
         userData: userData,
         formatCommentsPre: formatCommentsPre,

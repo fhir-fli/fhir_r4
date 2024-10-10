@@ -1,7 +1,7 @@
 import '../../../fhir_r4.dart';
 
 abstract class PrimitiveType<T> extends FhirBase {
-  const PrimitiveType({T? value, String? stringValue, this.element})
+  PrimitiveType({T? value, String? stringValue, this.element})
       : _value = value,
         _stringValue = stringValue;
 

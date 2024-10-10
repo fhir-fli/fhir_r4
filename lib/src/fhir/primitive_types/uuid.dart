@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:objectbox/objectbox.dart';
 import 'package:uuid/uuid.dart';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
@@ -7,109 +8,143 @@ extension FhirUuidExtension on String {
   FhirUuid get toFhirUuid => FhirUuid(this);
 }
 
-extension FhirUUidValueExtension on UuidValue {
-  FhirUuid get toFhirUuid => FhirUuid(this);
+extension FhirUuidValueExtension on UuidValue {
+  FhirUuid get toFhirUuid => FhirUuid.fromUuid(this);
 }
 
+@Entity()
 class FhirUuid extends PrimitiveType<UuidValue> {
-  FhirUuid._(this._valueUuid, this._isValid, [Element? element])
-      : super(element: element);
+  @override
+  final UuidValue value;
 
-  /// Factory constructor to create FhirUuid from a dynamic input.
-  factory FhirUuid(dynamic inValue, [Element? element]) {
-    if (inValue is String && Uuid.isValidUUID(fromString: inValue)) {
-      return FhirUuid._(UuidValue(inValue), true, element);
-    } else if (inValue is UuidValue) {
-      return FhirUuid._(inValue, true, element);
+  // Constructor only accepts valid UuidValue or String input
+  FhirUuid(String input, [Element? element])
+      : value = _validateUuid(input),
+        super(element: element);
+
+  FhirUuid.fromUuid(UuidValue input, [Element? element])
+      : value = input,
+        super(element: element);
+
+  static FhirUuid? tryParse(dynamic input) {
+    if (input is String) {
+      try {
+        return FhirUuid(input);
+      } catch (e) {
+        return null;
+      }
+    } else {
+      return null;
     }
-    throw CannotBeConstructed<FhirUuid>(
-        'FhirUuid cannot be constructed from $inValue.');
   }
 
-  factory FhirUuid.fromJson(dynamic json) => FhirUuid(json);
+  // Validate the input and return a UuidValue object
+  static UuidValue _validateUuid(String input) {
+    if (Uuid.isValidUUID(fromString: input)) {
+      return UuidValue(input);
+    } else {
+      throw FormatException(
+          'FhirUuid cannot be constructed from invalid String: $input');
+    }
+  }
 
-  factory FhirUuid.fromYaml(dynamic yaml) => yaml is String
-      ? FhirUuid.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : yaml is YamlMap
-          ? FhirUuid.fromJson(jsonDecode(jsonEncode(yaml)))
-          : throw YamlFormatException<FhirUuid>(
-              'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+  // fromJson only accepts a String and validates it
+  factory FhirUuid.fromJson(dynamic json) {
+    if (json is String) {
+      return FhirUuid(json);
+    } else {
+      throw const FormatException('Invalid input for FhirUuid');
+    }
+  }
+
+  factory FhirUuid.fromYaml(String yaml) =>
+      FhirUuid.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))) as String);
+
+  @override
+  @Id()
+  int dbId = 0;
 
   @override
   String get fhirType => 'uuid';
 
-  final UuidValue _valueUuid;
-  final bool _isValid;
-
+  // Convert the stored UuidValue back to a string for output formats
   @override
-  bool get isValid => _isValid;
-
+  String toJson() => value.uuid;
   @override
-  UuidValue get value => _valueUuid;
-
+  String toYaml() => value.uuid;
   @override
-  String toString() => _valueUuid.uuid;
-
-  @override
-  String toJson() => _valueUuid.uuid;
-
-  @override
-  String toYaml() => _valueUuid.uuid;
-
+  String toString() => value.uuid;
   @override
   String toJsonString() => jsonEncode(toJson());
 
+  // Equality check, can compare against another FhirUuid, UuidValue, or String
   @override
   bool equals(Object other) =>
       identical(this, other) ||
-      (other is FhirUuid && other.value == _valueUuid) ||
-      (other is UuidValue && other == _valueUuid) ||
-      (other is String && other == _valueUuid.uuid);
+      (other is FhirUuid && other.value == value) ||
+      (other is UuidValue && other == value) ||
+      (other is String &&
+          Uuid.isValidUUID(fromString: other) &&
+          UuidValue(other) == value);
 
+  // Clone the object
   @override
-  FhirUuid clone() => FhirUuid._(
-        _valueUuid,
-        _isValid,
-        element?.clone() as Element?,
-      );
+  FhirUuid clone() => FhirUuid.fromUuid(value, element?.clone() as Element?);
 
-  @override
-  FhirUuid setElement(String name, dynamic elementValue) {
-    return FhirUuid(value, element?.setProperty(name, elementValue));
-  }
-
-  factory FhirUuid.v1() {
+  // UUID generation factories
+  factory FhirUuid.v1([Element? element]) {
     const Uuid uuid = Uuid();
-    return FhirUuid(uuid.v1());
+    return FhirUuid(uuid.v1(), element);
   }
 
-  factory FhirUuid.v4() {
+  factory FhirUuid.v4([Element? element]) {
     const Uuid uuid = Uuid();
-    return FhirUuid(uuid.v4());
+    return FhirUuid(uuid.v4(), element);
   }
 
-  factory FhirUuid.v5(String namespace, String name) {
+  factory FhirUuid.v5(String namespace, String name, [Element? element]) {
     const Uuid uuid = Uuid();
-    return FhirUuid(uuid.v5(namespace, name));
+    return FhirUuid(uuid.v5(namespace, name), element);
   }
 
-  /// Validates if the provided UUID is valid.
+  /// Validates if the provided UUID is valid
   static bool isValidUuid(String uuid) {
     return Uuid.isValidUUID(fromString: uuid);
   }
 
-  /// Parses a UUID string and returns a list of bytes (List<int>).
+  /// Parses a UUID string and returns a list of bytes (List<int>)
   static List<int> parseUuid(String uuid) {
     return Uuid.parse(uuid);
   }
 
-  /// Unparses a list of bytes and returns a UUID string.
+  /// Unparses a list of bytes and returns a UUID string
   static String unparseUuid(List<int> buffer) {
     return Uuid.unparse(buffer);
   }
 
+  // Bitwise operations on Uuid (mock example, just as placeholders)
+  FhirUuid operator &(dynamic other) {
+    throw UnsupportedError('Bitwise operations are not supported on Uuid');
+  }
+
+  FhirUuid operator |(dynamic other) {
+    throw UnsupportedError('Bitwise operations are not supported on Uuid');
+  }
+
+  // Additional placeholder operations as examples
+  FhirUuid operator ^(dynamic other) {
+    throw UnsupportedError('Bitwise operations are not supported on Uuid');
+  }
+
+  @override
+  FhirUuid setElement(String name, dynamic elementValue) {
+    return FhirUuid.fromUuid(value, element?.setProperty(name, elementValue));
+  }
+
   @override
   FhirUuid copyWith({
+    UuidValue? newValue,
+    Element? element,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -118,9 +153,8 @@ class FhirUuid extends PrimitiveType<UuidValue> {
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
   }) {
-    return FhirUuid._(
-      _valueUuid,
-      _isValid,
+    return FhirUuid.fromUuid(
+      newValue ?? value,
       element?.copyWith(
         userData: userData,
         formatCommentsPre: formatCommentsPre,

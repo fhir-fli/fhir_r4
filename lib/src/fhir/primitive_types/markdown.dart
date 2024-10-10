@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 import '../../../fhir_r4.dart';
 
@@ -6,59 +7,69 @@ extension FhirMarkdownExtension on String {
   FhirMarkdown get toFhirMarkdown => FhirMarkdown(this);
 }
 
+@Entity()
 class FhirMarkdown extends PrimitiveType<String> {
-  FhirMarkdown._(this._valueString, this._valueMarkdown, this._isValid,
-      [Element? element])
-      : super(element: element);
+  @override
+  final String value;
 
-  factory FhirMarkdown(dynamic inValue, [Element? element]) =>
-      inValue is String && RegExp(r'[ \r\n\t\S]+').hasMatch(inValue)
-          ? FhirMarkdown._(inValue, inValue, true, element)
-          : FhirMarkdown._(inValue.toString(), null, false, element);
+  FhirMarkdown(String input, [Element? element])
+      : value = _validateMarkdown(input),
+        super(element: element);
 
-  factory FhirMarkdown.fromJson(dynamic json) => FhirMarkdown(json);
+  static FhirMarkdown? tryParse(dynamic input) {
+    if (input is String) {
+      try {
+        return FhirMarkdown(input);
+      } catch (e) {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+
+  static String _validateMarkdown(String input) {
+    if (RegExp(r'[ \r\n\t\S]+').hasMatch(input)) {
+      return input;
+    }
+    throw FormatException('Invalid FhirMarkdown: $input');
+  }
+
+  factory FhirMarkdown.fromJson(dynamic json) {
+    if (json is String) {
+      return FhirMarkdown(json);
+    }
+    throw FormatException('Invalid input for FhirMarkdown: $json');
+  }
 
   factory FhirMarkdown.fromYaml(dynamic yaml) => yaml is String
       ? FhirMarkdown.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : yaml is YamlMap
-          ? FhirMarkdown.fromJson(jsonDecode(jsonEncode(yaml)))
-          : throw YamlFormatException<FhirMarkdown>(
-              'FormatException: "$yaml" is not a valid Yaml string or YamlMap.');
+      : throw const FormatException('Invalid YAML format for FhirMarkdown');
+
+  @override
+  @Id()
+  int dbId = 0;
 
   @override
   String get fhirType => 'markdown';
 
-  final String _valueString;
-  final String? _valueMarkdown;
-  final bool _isValid;
-
   @override
-  bool get isValid => _isValid;
+  String toJson() => value;
   @override
-  String? get value => _valueMarkdown;
-
+  String toYaml() => value;
   @override
-  String toString() => _valueString;
-  @override
-  String toJson() => _valueString;
-  @override
-  String toYaml() => _valueString;
+  String toString() => value;
   @override
   String toJsonString() => jsonEncode(toJson());
 
   @override
   bool equals(Object other) =>
       identical(this, other) ||
-      (other is FhirMarkdown && other.value == _valueMarkdown) ||
-      (other is String && other == _valueString);
+      (other is FhirMarkdown && other.value == value) ||
+      (other is String && other == value);
 
   @override
-  FhirMarkdown clone() => FhirMarkdown._(
-        _valueString,
-        _valueMarkdown,
-        _isValid,
-        element?.clone() as Element?,
-      );
+  FhirMarkdown clone() => FhirMarkdown(value, element?.clone() as Element?);
 
   @override
   FhirMarkdown setElement(String name, dynamic elementValue) {
@@ -67,6 +78,8 @@ class FhirMarkdown extends PrimitiveType<String> {
 
   @override
   FhirMarkdown copyWith({
+    String? newValue,
+    Element? element,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -75,10 +88,8 @@ class FhirMarkdown extends PrimitiveType<String> {
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
   }) {
-    return FhirMarkdown._(
-      _valueString,
-      _valueMarkdown,
-      _isValid,
+    return FhirMarkdown(
+      newValue ?? value,
       element?.copyWith(
         userData: userData,
         formatCommentsPre: formatCommentsPre,
