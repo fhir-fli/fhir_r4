@@ -16,12 +16,10 @@ class FhirUrl extends PrimitiveType<Uri> {
       : super(element: element);
 
   factory FhirUrl(dynamic inValue, [Element? element]) {
-    print('Url: $inValue');
     if (inValue is Uri) {
       return FhirUrl._(inValue.toString(), inValue, true, element);
     } else if (inValue is String) {
       final Uri? tempUri = Uri.tryParse(inValue);
-      print(tempUri);
       return FhirUrl._(inValue, tempUri, tempUri != null, element);
     }
     return FhirUrl._(inValue.toString(), null, false, element);

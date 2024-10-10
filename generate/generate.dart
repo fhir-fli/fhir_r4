@@ -30,6 +30,27 @@ Future<void> main() async {
   generateResourceUtils();
   parseSearchParameters();
   deleteDirectories();
+  _moveTests();
+}
+
+void _moveTests() {
+  final Directory testDirectory = Directory(testPath);
+  if (!testDirectory.existsSync()) {
+    testDirectory.createSync(recursive: true);
+  }
+  final List<File> files =
+      Directory(testPath).listSync().whereType<File>().toList();
+  for (final File file in files) {
+    if (file.path.contains('StructureDefinition')) {
+      final String fileString = file.readAsStringSync();
+      final Map<String, dynamic> fileMap =
+          jsonDecode(fileString) as Map<String, dynamic>;
+      if ((fileMap['type'] as String?)?.contains('.') ?? false) {
+        file.copySync(file.path.replaceAll('/examples', '/quarantined'));
+        file.deleteSync();
+      }
+    }
+  }
 }
 
 void _classesFromStructureDefinitions() {

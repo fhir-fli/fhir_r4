@@ -142,6 +142,3 @@ const List<String> badValueSets = <String>[
   'ResourceType',
   'ElementTypes',
 ];
-const List<String> testsToRemove = <String>[
-  'StructureDefinition799.json',
-];

@@ -51,20 +51,7 @@ abstract class FhirBase {
   factory FhirBase.fromJson(dynamic json) =>
       throw UnimplementedError('FhirBase.fromJson $json');
 
-  void _printTypes(dynamic) {
-    if (dynamic is! List && dynamic is! Map) {
-      print(dynamic.runtimeType);
-      if (dynamic.runtimeType.toString() == '_SimpleUri') {
-        print(dynamic);
-      }
-    }
-  }
-
-  String toJsonString() {
-    _printTypes(toJson());
-    print(jsonEncode(toJson()));
-    return jsonEncode(toJson());
-  }
+  String toJsonString() => jsonEncode(toJson());
 
   // User Data Methods
   dynamic getUserData(String name) => userData?[name];

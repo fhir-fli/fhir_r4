@@ -16,12 +16,10 @@ class FhirCanonical extends PrimitiveType<Uri> {
       : super(element: element);
 
   factory FhirCanonical(dynamic inValue, [Element? element]) {
-    print('Canonical: $inValue');
     if (inValue is Uri) {
       return FhirCanonical._(inValue.toString(), inValue, true, element);
     } else if (inValue is String) {
       final Uri? tempUri = Uri.tryParse(inValue);
-      print(tempUri);
       return FhirCanonical._(inValue, tempUri, tempUri != null, element);
     }
     throw CannotBeConstructed<FhirCanonical>(

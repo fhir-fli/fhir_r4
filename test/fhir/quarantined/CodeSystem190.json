@@ -1,0 +1,290 @@
+{
+    "resourceType": "CodeSystem",
+    "id": "dicom-dcim",
+    "meta": {
+        "lastUpdated": "2022-05-28T12:47:40.239+10:00"
+    },
+    "url": "http://dicom.nema.org/resources/ontology/DCM",
+    "identifier": [
+        {
+            "system": "urn:ietf:rfc:3986",
+            "value": "urn:oid:1.2.840.10008.2.16.4"
+        }
+    ],
+    "version": "01",
+    "name": "DICOM Controlled Terminology Definitions",
+    "status": "active",
+    "experimental": false,
+    "date": "2015-04-20",
+    "publisher": "NEMA/DICOM",
+    "contact": [
+        {
+            "telecom": [
+                {
+                    "system": "url",
+                    "value": "http://medical.nema.org/medical/dicom/current/output/chtml/part16/chapter_D.html"
+                }
+            ]
+        }
+    ],
+    "description": "DICOM Code Definitions (Coding Scheme Designator \"DCM\" Coding Scheme Version \"01\")",
+    "purpose": "This value is published as part of FHIR in order to make the codes available to FHIR terminology services and so implementers can easily leverage the codes.",
+    "copyright": "These codes are excerpted from Digital Imaging and Communications in Medicine (DICOM) Standard, Part 16: Content Mapping Resource, Copyright © 2011 by the National Electrical Manufacturers Association.",
+    "caseSensitive": true,
+    "valueSet": "http://hl7.org/fhir/ValueSet/dicom-dcim",
+    "content": "complete",
+    "property": [
+        {
+            "code": "status",
+            "uri": "http://hl7.org/fhir/concept-properties#status",
+            "type": "code"
+        }
+    ],
+    "concept": [
+        {
+            "code": "ARCHIVE",
+            "display": "Archive",
+            "definition": "Archive device"
+        },
+        {
+            "code": "AR",
+            "display": "Autorefraction",
+            "definition": "Autorefraction device"
+        },
+        {
+            "code": "AS",
+            "display": "Angioscopy",
+            "definition": "Angioscopy device",
+            "property": [
+                {
+                    "code": "status",
+                    "valueCode": "deprecated"
+                }
+            ]
+        },
+        {
+            "code": "AU",
+            "display": "Audio",
+            "definition": "Audio object"
+        },
+        {
+            "code": "BDUS",
+            "display": "Ultrasound Bone Densitometry",
+            "definition": "Ultrasound Bone Densitometry (modality)"
+        },
+        {
+            "code": "BI",
+            "display": "Biomagnetic imaging",
+            "definition": "Biomagnetic imaging device"
+        },
+        {
+            "code": "BMD",
+            "display": "Bone Mineral Densitometry",
+            "definition": "Bone Mineral Densitometry by X-Ray (modality), including dual-energy X-Ray absorptiometry (DXA) and morphometric X-Ray absorptiometry (MXA)"
+        },
+        {
+            "code": "CAD",
+            "display": "Computer Assisted Detection/Diagnosis",
+            "definition": "Computer Assisted Detection/Diagnosis device"
+        },
+        {
+            "code": "CAPTURE",
+            "display": "Image Capture",
+            "definition": "Image Capture Device, includes video capture"
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/codesystem-replacedby",
+                    "valueCoding": {
+                        "system": "http://dicom.nema.org/resources/ontology/DCM",
+                        "code": "US",
+                        "display": "Ultrasound"
+                    }
+                }
+            ],
+            "code": "CD",
+            "display": "Color flow Doppler",
+            "definition": "Color flow Doppler",
+            "property": [
+                {
+                    "code": "status",
+                    "valueCode": "deprecated"
+                }
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/codesystem-replacedby",
+                    "valueCoding": {
+                        "system": "http://dicom.nema.org/resources/ontology/DCM",
+                        "code": "RF",
+                        "display": "Radiofluoroscopy"
+                    }
+                }
+            ],
+            "code": "CF",
+            "display": "Cinefluorography",
+            "definition": "Cinefluorography",
+            "property": [
+                {
+                    "code": "status",
+                    "valueCode": "deprecated"
+                }
+            ]
+        },
+        {
+            "code": "COMP",
+            "display": "Computation Server",
+            "definition": "Computation Server; includes radiotherapy planning"
+        },
+        {
+            "code": "CP",
+            "display": "Culposcopy",
+            "definition": "Culposcopy",
+            "property": [
+                {
+                    "code": "status",
+                    "valueCode": "deprecated"
+                }
+            ]
+        },
+        {
+            "code": "CR",
+            "display": "Computed Radiography",
+            "definition": "Computed Radiography device"
+        },
+        {
+            "code": "CS",
+            "display": "Cystoscopy",
+            "definition": "Cystoscopy",
+            "property": [
+                {
+                    "code": "status",
+                    "valueCode": "deprecated"
+                }
+            ]
+        },
+        {
+            "code": "CT",
+            "display": "Computed Tomography",
+            "definition": "Computed Tomography device"
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/codesystem-replacedby",
+                    "valueCoding": {
+                        "system": "http://dicom.nema.org/resources/ontology/DCM",
+                        "code": "US",
+                        "display": "Ultrasound"
+                    }
+                }
+            ],
+            "code": "DD",
+            "display": "Duplex Doppler",
+            "definition": "Duplex Doppler",
+            "property": [
+                {
+                    "code": "status",
+                    "valueCode": "deprecated"
+                }
+            ]
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/codesystem-replacedby",
+                    "valueCoding": {
+                        "system": "http://dicom.nema.org/resources/ontology/DCM",
+                        "code": "RF",
+                        "display": "Radiofluoroscopy"
+                    }
+                }
+            ],
+            "code": "DF",
+            "display": "Digital fluoroscopy",
+            "definition": "Digital fluoroscopy",
+            "property": [
+                {
+                    "code": "status",
+                    "valueCode": "deprecated"
+                }
+            ]
+        },
+        {
+            "code": "DG",
+            "display": "Diaphanography",
+            "definition": "Diaphanography device"
+        },
+        {
+            "code": "DM",
+            "display": "Digital microscopy",
+            "definition": "Digital microscopy",
+            "property": [
+                {
+                    "code": "status",
+                    "valueCode": "deprecated"
+                }
+            ]
+        },
+        {
+            "code": "DOCD",
+            "display": "Document Digitizer Equipment",
+            "definition": "Equipment that digitized hardcopy documents and imported them"
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/codesystem-replacedby",
+                    "valueCoding": {
+                        "system": "http://dicom.nema.org/resources/ontology/DCM",
+                        "code": "XA",
+                        "display": "X-Ray Angiography"
+                    }
+                }
+            ],
+            "code": "DS",
+            "display": "Digital Subtraction Angiography",
+            "definition": "Digital Subtraction Angiography",
+            "property": [
+                {
+                    "code": "status",
+                    "valueCode": "deprecated"
+                }
+            ]
+        },
+        {
+            "code": "DSS",
+            "display": "Department System Scheduler",
+            "definition": "Department System Scheduler, workflow manager; includes RIS"
+        },
+        {
+            "code": "DX",
+            "display": "Digital Radiography",
+            "definition": "Digital Radiography device"
+        },
+        {
+            "extension": [
+                {
+                    "url": "http://hl7.org/fhir/StructureDefinition/codesystem-replacedby",
+                    "valueCoding": {
+                        "system": "http://dicom.nema.org/resources/ontology/DCM",
+                        "code": "US",
+                        "display": "Ultrasound"
+                    }
+                }
+            ],
+            "code": "EC",
+            "display": "Echocardiography",
+            "definition": "Echocardiography",
+            "property": [
+                {
+                    "code": "status",
+                    "valueCode": "deprecated"
+                }
+            ]
+        }
+    ]
+}
