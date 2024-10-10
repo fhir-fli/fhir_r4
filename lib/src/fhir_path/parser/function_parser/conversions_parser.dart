@@ -318,8 +318,8 @@ class ToDateParser extends FhirPathParser {
           ? <dynamic>[]
           : results.length > 1
               ? throw _conversionException('.toDate()', results)
-              : FhirDate(results.first.toString()).isValid
-                  ? <dynamic>[FhirDate(results.first.toString())]
+              : FhirDate.tryParse(results.first.toString()) != null
+                  ? <dynamic>[FhirDate.fromString(results.first.toString())]
                   : <dynamic>[];
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
@@ -352,7 +352,7 @@ class ConvertsToDateParser extends FhirPathParser {
           ? <dynamic>[]
           : results.length > 1
               ? throw _conversionException('.convertsToDate()', results)
-              : <dynamic>[FhirDate(results.first.toString()).isValid];
+              : <dynamic>[FhirDate.tryParse(results.first.toString()) != null];
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
   /// of the Parsers that are used in this package by the names used in
@@ -384,8 +384,8 @@ class ToDateTimeParser extends FhirPathParser {
           ? <dynamic>[]
           : results.length > 1
               ? throw _conversionException('.toDateTime()', results)
-              : FhirDateTime(results.first.toString()).isValid
-                  ? <dynamic>[FhirDateTime(results.first.toString())]
+              : FhirDateTime.tryParse(results.first.toString()) != null
+                  ? <dynamic>[FhirDateTime.fromString(results.first.toString())]
                   : <dynamic>[];
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
@@ -418,8 +418,8 @@ class ConvertsToDateTimeParser extends FhirPathParser {
           ? <dynamic>[]
           : results.length > 1
               ? throw _conversionException('.convertsToDateTime()', results)
-              : FhirDateTime(results.first.toString()).isValid
-                  ? <dynamic>[FhirDateTime(results.first.toString()).isValid]
+              : FhirDateTime.tryParse(results.first.toString()) != null
+                  ? <dynamic>[true]
                   : <dynamic>[];
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
@@ -603,8 +603,9 @@ class ToTimeParser extends FhirPathParser {
               ? throw _conversionException('.toTime()', results)
               : results.first is FhirTime
                   ? <dynamic>[results.first]
-                  : results.first is String && FhirTime(results.first).isValid
-                      ? <dynamic>[FhirTime(results.first)]
+                  : results.first is String &&
+                          FhirTime.tryParse(results.first) != null
+                      ? <dynamic>[FhirTime.tryParse(results.first)]
                       : <dynamic>[];
 
   /// To print the entire parsed FHIRPath expression, this includes ALL
@@ -639,7 +640,7 @@ class ConvertsToTimeParser extends FhirPathParser {
               ? throw _conversionException('.convertsToTime()', results)
               : results.first is FhirTime ||
                       (results.first is String &&
-                          FhirTime(results.first).isValid)
+                          FhirTime.tryParse(results.first) != null)
                   ? <dynamic>[true]
                   : <dynamic>[false];
 

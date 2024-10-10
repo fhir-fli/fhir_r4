@@ -228,26 +228,26 @@ List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
             ? lhs.isValid && rhs.isValid
                 ? makeComparison(comparator, lhs, rhs)
                 : throw invalidException(lhs, rhs)
-            : rhs is String && FhirDateTime(rhs).isValid
+            : rhs is String && FhirDateTime.tryParse(rhs) != null
                 ? makeComparison(comparator, lhs, rhs)
                 : throw cannotCompareException(lhs, rhs);
       case DateTime _:
         return (rhs is FhirDateTimeBase && rhs.isValid)
-            ? makeComparison(comparator, FhirDateTime(lhs), rhs)
+            ? makeComparison(comparator, FhirDateTime.fromDateTime(lhs), rhs)
             : rhs is DateTime
-                ? makeComparison(
-                    comparator, FhirDateTime(lhs), FhirDateTime(rhs))
-                : rhs is String && FhirDateTime(rhs).isValid
-                    ? makeComparison(
-                        comparator, FhirDateTime(lhs), FhirDateTime(rhs))
+                ? makeComparison(comparator, FhirDateTime.fromDateTime(lhs),
+                    FhirDateTime.fromDateTime(rhs))
+                : rhs is String && FhirDateTime.tryParse(rhs) != null
+                    ? makeComparison(comparator, FhirDateTime.fromDateTime(lhs),
+                        FhirDateTime.fromString(rhs))
                     : throw cannotCompareException(lhs, rhs);
       case FhirDateTime _:
         return rhs is FhirDateTimeBase
             ? lhs.isValid && rhs.isValid
                 ? makeComparison(comparator, lhs, rhs)
                 : throw invalidException(lhs, rhs)
-            : rhs is String && FhirDateTime(rhs).isValid
-                ? makeComparison(comparator, lhs, FhirDateTime(rhs))
+            : rhs is String && FhirDateTime.tryParse(rhs) != null
+                ? makeComparison(comparator, lhs, FhirDateTime.fromString(rhs))
                 : throw cannotCompareException(lhs, rhs);
       case FhirTime _:
         return rhs is FhirTime
@@ -280,13 +280,15 @@ List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
                     : comparator == Comparator.gte
                         ? stringGt(lhs, rhs)
                         : !stringGt(lhs, rhs);
-          } else if (rhs is FhirTime && FhirTime(lhs).isValid) {
-            return makeComparison(comparator, FhirTime(lhs), rhs);
+          } else if (rhs is FhirTime && FhirTime.tryParse(lhs) != null) {
+            return makeComparison(comparator, FhirTime.tryParse(lhs), rhs);
           } else if (rhs is FhirDate || rhs is FhirDateTime) {
-            if (lhs is String && FhirDateTime(lhs).isValid) {
-              return makeComparison(comparator, FhirDateTime(lhs), rhs);
-            } else if (lhs is DateTime && FhirDateTime(lhs).isValid) {
-              return makeComparison(comparator, FhirDateTime(lhs), rhs);
+            if (lhs is String && FhirDateTime.tryParse(lhs) != null) {
+              return makeComparison(
+                  comparator, FhirDateTime.fromString(lhs), rhs);
+            } else if (lhs is DateTime) {
+              return makeComparison(
+                  comparator, FhirDateTime.fromDateTime(lhs), rhs);
             } else if (lhs is FhirDateTimeBase && lhs.isValid) {
               return makeComparison(comparator, lhs, rhs);
             }

@@ -75,7 +75,7 @@ final Parser<String> pluralDateTimePrecision = (string('years') |
 /// package to follow many of these guidelines
 final Parser<DateParser> DATE =
     (char('@') & DATEFORMAT).flatten().map((String value) {
-  return DateParser(FhirDate(value.replaceFirst('@', '')));
+  return DateParser(FhirDate.fromString(value.replaceFirst('@', '')));
 });
 
 final Parser<DateTimeParser> DATETIME = (char('@') &
@@ -84,7 +84,7 @@ final Parser<DateTimeParser> DATETIME = (char('@') &
         (TIMEFORMAT & TIMEZONEOFFSETFORMAT.optional()).optional())
     .flatten()
     .map((String value) {
-  return DateTimeParser(FhirDateTime(value.replaceFirst('@', '')));
+  return DateTimeParser(FhirDateTime.fromString(value.replaceFirst('@', '')));
 });
 
 final Parser<TimeParser> TIME = (char('@') & char('T') & TIMEFORMAT)

@@ -8,12 +8,12 @@ FhirMeta updateFhirMetaVersion(FhirMeta? oldFhirMeta,
   if (versionIdAsTime) {
     if (oldFhirMeta == null) {
       return FhirMeta(
-        lastUpdated: FhirInstant(now),
+        lastUpdated: FhirInstant.fromDateTime(now),
         versionId: FhirId(now.toIso8601String().replaceAll(':', '.')),
       );
     } else {
       return oldFhirMeta.copyWith(
-        lastUpdated: FhirInstant(now),
+        lastUpdated: FhirInstant.fromDateTime(now),
         versionId: FhirId(now.toIso8601String().replaceAll(':', '.')),
       );
     }
@@ -25,12 +25,12 @@ FhirMeta updateFhirMetaVersion(FhirMeta? oldFhirMeta,
           : int.parse(oldFhirMeta.versionId.toString()) + 1;
   if (oldFhirMeta == null) {
     return FhirMeta(
-      lastUpdated: FhirInstant(now),
+      lastUpdated: FhirInstant.fromDateTime(now),
       versionId: FhirId(version.toString()),
     );
   } else {
     return oldFhirMeta.copyWith(
-      lastUpdated: FhirInstant(now),
+      lastUpdated: FhirInstant.fromDateTime(now),
       versionId: FhirId(version.toString()),
     );
   }

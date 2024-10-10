@@ -453,16 +453,16 @@ class PlusParser extends OperatorParser {
               return <dynamic>[executedBefore.first + executedAfter.first];
             } else if (executedAfter.first is ValidatedQuantity &&
                 (executedAfter.first as ValidatedQuantity).isDuration) {
-              if (FhirDateTime(executedBefore.first).isValid) {
+              if (FhirDateTime.tryParse(executedBefore.first) != null) {
                 return <dynamic>[
-                  (FhirDateTime(executedBefore.first) +
+                  (FhirDateTime.tryParse(executedBefore.first)! +
                           extendedDurationFromValidatedQuantity(
                               executedAfter.first as ValidatedQuantity))
                       .toString()
                 ];
-              } else if (FhirTime(executedBefore.first).isValid) {
+              } else if (FhirTime.tryParse(executedBefore.first) != null) {
                 return <dynamic>[
-                  addToFhirTime(FhirTime(executedBefore.first),
+                  addToFhirTime(FhirTime.tryParse(executedBefore.first)!,
                           executedAfter.first as ValidatedQuantity)
                       .toString()
                 ];
@@ -600,16 +600,16 @@ class MinusParser extends OperatorParser {
           {
             if (executedAfter.first is ValidatedQuantity &&
                 (executedAfter.first as ValidatedQuantity).isDuration) {
-              if (FhirDateTime(executedBefore.first).isValid) {
+              if (FhirDateTime.tryParse(executedBefore.first) != null) {
                 return <dynamic>[
-                  (FhirDateTime(executedBefore.first) -
+                  (FhirDateTime.tryParse(executedBefore.first)! -
                           extendedDurationFromValidatedQuantity(
                               executedAfter.first as ValidatedQuantity))
                       .toString()
                 ];
-              } else if (FhirTime(executedBefore.first).isValid) {
+              } else if (FhirTime.tryParse(executedBefore.first) != null) {
                 return <dynamic>[
-                  subtractFromFhirTime(FhirTime(executedBefore.first),
+                  subtractFromFhirTime(FhirTime.tryParse(executedBefore.first)!,
                           executedAfter.first as ValidatedQuantity)
                       .toString()
                 ];
