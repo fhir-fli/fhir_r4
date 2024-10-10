@@ -35,7 +35,7 @@ void _writeClassHeader(StringBuffer buffer, WritableClass writableClass,
   // buffer.writeln('@JsonCodable()');
   // buffer.writeln('@Data()');
   // buffer.writeln('@JsonSerializable()');
-  // buffer.writeln('@Entity()');
+  buffer.writeln('@Entity()');
 
   final String extendsClause = writableClass.extendsClause;
   buffer.writeln('class ${writableName.fhirToDartTypes} $extendsClause {');

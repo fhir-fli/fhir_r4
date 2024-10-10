@@ -9,10 +9,9 @@ R4b Version of the FHIR Specification
 - Speaking of which, since I'm already generating most of the class, I went ahead and generated ```toJson/fromJson``` and ```==```, no external code generation packages (as always, please let me know about mistakes)
 - All of the serializable methods and copyWith should still work as before. 
 - Many more enums were incorporated than previously. I think this makes it easier to use, but it does make it less flexible. If you have a field with a value that is not allowed by the current enum, please let me know and I'll look into it.
-
-### Primitives
-- I'm including all of the Primitives back in this package
-- I'm going to include a FhirString, for standardization and because it's helpful in some other packages like fhir-mapping. I'm going to try and include almost all of the usual string functions so you should be able to work with it almost like you would a normal String in dart. 
+- I've moved the Primitive back into this package
+- Newly included FhirString, for standardization and because it's helpful in some other packages like fhir-mapping. I'm going to try and include almost all of the usual string functions so you should be able to work with it almost like you would a normal String in dart. 
+- Primitives are much stricter than previously. They will throw an error if you try and have a value that is improperly formatted.
 
 ## Updated Package
 - This was originally multiple different packages, and each package supported all FHIR versions. This became too big and broke [pub.dev](pub.dev). I have therefore grouped them together by FHIR version instead of by functionality.

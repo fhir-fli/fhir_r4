@@ -1,11 +1,13 @@
 import 'dart:convert';
 
 import 'package:collection/collection.dart';
+import 'package:objectbox/objectbox.dart';
 
 import '../../../fhir_r4.dart';
 
+@Entity()
 abstract class FhirBase {
-  const FhirBase({
+  FhirBase({
     this.userData,
     this.formatCommentsPre,
     this.formatCommentsPost,
@@ -13,6 +15,9 @@ abstract class FhirBase {
     this.children,
     this.namedChildren,
   });
+
+  @Id()
+  int dbId = 0;
 
   String get fhirType => 'FhirBase';
   final Map<String, Object?>? userData;

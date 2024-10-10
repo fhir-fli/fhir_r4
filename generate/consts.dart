@@ -147,3 +147,37 @@ const List<String> moveTests = <String>[
   'fivews.json',
   'request.json',
 ];
+
+const Map<String, String> primitiveTypeToDartType = <String, String>{
+  'FhirBase64Binary': 'String',
+  'FhirBoolean': 'bool',
+  'FhirCanonical': 'Uri',
+  'FhirCode': 'String',
+  'FhirDateTime': 'DateTime',
+  'FhirDate': 'DateTime',
+  'FhirDecimal': 'double',
+  'FhirId': 'String',
+  'FhirInstant': 'DateTime',
+  'FhirInteger': 'int',
+  'FhirInteger64': 'BigInt',
+  'FhirMarkdown': 'String',
+  'FhirOid': 'String',
+  'FhirPositiveInt': 'int',
+  'FhirString': 'String',
+  'FhirTime': 'String',
+  'FhirUnsignedInt': 'int',
+  'FhirUri': 'Uri',
+  'FhirUrl': 'Uri',
+  'FhirUuid': 'Uuid',
+  'FhirXhtml': 'String',
+};
+
+const List<String> primitiveTypeToString = <String>[
+  'FhirCanonical',
+  'FhirDateTime',
+  'FhirDate',
+  'FhirInteger64',
+  'FhirUri',
+  'FhirUrl',
+  'FhirUuid',
+];

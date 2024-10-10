@@ -1,14 +1,14 @@
 import 'dart:convert';
 
-import 'package:json_annotation/json_annotation.dart';
+import 'package:objectbox/objectbox.dart';
 import 'package:yaml/yaml.dart';
 
 import '../../../fhir_r4.dart';
 
-@JsonSerializable()
+@Entity()
 class Element extends FhirBase {
   // Constructor for Element with optional id and extension_s
-  const Element({
+  Element({
     this.id,
     this.extension_,
     super.userData,
@@ -20,14 +20,17 @@ class Element extends FhirBase {
   });
 
   @override
+  @Id()
+  // ignore: overridden_fields
+  int dbId = 0;
+
+  @override
   String get fhirType => 'Element';
 
   // Unique id for the element within a resource
-  @JsonKey(name: 'id')
   final FhirString? id;
 
   // List of extensions for additional information
-  @JsonKey(name: 'extension')
   final List<FhirExtension>? extension_;
 
   // Method to copy the current Element with modifications
@@ -55,7 +58,7 @@ class Element extends FhirBase {
   }
 
   // Getter for checking if the element has an id
-  bool get hasId => id != null && (id!.value?.isNotEmpty ?? false);
+  bool get hasId => id != null && (id!.value.isNotEmpty);
 
   // Extension handling methods
   bool hasExtension() => extension_?.isNotEmpty ?? false;
