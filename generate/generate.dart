@@ -38,6 +38,11 @@ void _moveTests() {
   if (!testDirectory.existsSync()) {
     testDirectory.createSync(recursive: true);
   }
+  for (final String moveTest in moveTests) {
+    final File file = File('$testPath/$moveTest');
+    file.copySync(file.path.replaceAll('/examples/', '/quarantined/'));
+    file.deleteSync();
+  }
   final List<File> files =
       Directory(testPath).listSync().whereType<File>().toList();
   for (final File file in files) {

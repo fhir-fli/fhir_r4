@@ -142,3 +142,8 @@ const List<String> badValueSets = <String>[
   'ResourceType',
   'ElementTypes',
 ];
+
+const List<String> moveTests = <String>[
+  'fivews.json',
+  'request.json',
+];

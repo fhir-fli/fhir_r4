@@ -8,6 +8,7 @@ R4b Version of the FHIR Specification
 - No more freezed. I really liked freezed, but it doesn't play nicely with some other code generators. 
 - Speaking of which, since I'm already generating most of the class, I went ahead and generated ```toJson/fromJson``` and ```==```, no external code generation packages (as always, please let me know about mistakes)
 - All of the serializable methods and copyWith should still work as before. 
+- Many more enums were incorporated than previously. I think this makes it easier to use, but it does make it less flexible. If you have a field with a value that is not allowed by the current enum, please let me know and I'll look into it.
 
 ### Primitives
 - I'm including all of the Primitives back in this package
