@@ -56,6 +56,14 @@ class FhirBoolean extends PrimitiveType<bool> {
   String toString() => value.toString();
 
   @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => value.hashCode;
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) => equals(other);
+
+  @override
   bool equals(Object other) =>
       identical(this, other) ||
       (other is FhirBoolean && other.value == value) ||

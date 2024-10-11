@@ -8,24 +8,43 @@ class FhirExtension {
     this.extension_,
     required this.url,
     this.valueBase64Binary,
+    this.valueBase64BinaryElement,
     this.valueBoolean,
+    this.valueBooleanElement,
     this.valueCanonical,
+    this.valueCanonicalElement,
     this.valueCode,
+    this.valueCodeElement,
     this.valueDate,
+    this.valueDateElement,
     this.valueDateTime,
+    this.valueDateTimeElement,
     this.valueDecimal,
+    this.valueDecimalElement,
     this.valueId,
+    this.valueIdElement,
     this.valueInstant,
+    this.valueInstantElement,
     this.valueInteger,
+    this.valueIntegerElement,
     this.valueMarkdown,
+    this.valueMarkdownElement,
     this.valueOid,
+    this.valueOidElement,
     this.valuePositiveInt,
+    this.valuePositiveIntElement,
     this.valueString,
+    this.valueStringElement,
     this.valueTime,
+    this.valueTimeElement,
     this.valueUnsignedInt,
+    this.valueUnsignedIntElement,
     this.valueUri,
+    this.valueUriElement,
     this.valueUrl,
+    this.valueUrlElement,
     this.valueUuid,
+    this.valueUuidElement,
     this.valueAddress,
     this.valueAge,
     this.valueAnnotation,
@@ -66,24 +85,43 @@ class FhirExtension {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToOne<String> url = ToOne<String>();
   String? valueBase64Binary;
+  ToOne<Element>? valueBase64BinaryElement = ToOne<Element>();
   bool? valueBoolean;
+  ToOne<Element>? valueBooleanElement = ToOne<Element>();
   String? valueCanonical;
+  ToOne<Element>? valueCanonicalElement = ToOne<Element>();
   String? valueCode;
+  ToOne<Element>? valueCodeElement = ToOne<Element>();
   String? valueDate;
+  ToOne<Element>? valueDateElement = ToOne<Element>();
   String? valueDateTime;
+  ToOne<Element>? valueDateTimeElement = ToOne<Element>();
   double? valueDecimal;
+  ToOne<Element>? valueDecimalElement = ToOne<Element>();
   String? valueId;
+  ToOne<Element>? valueIdElement = ToOne<Element>();
   String? valueInstant;
+  ToOne<Element>? valueInstantElement = ToOne<Element>();
   int? valueInteger;
+  ToOne<Element>? valueIntegerElement = ToOne<Element>();
   String? valueMarkdown;
+  ToOne<Element>? valueMarkdownElement = ToOne<Element>();
   String? valueOid;
+  ToOne<Element>? valueOidElement = ToOne<Element>();
   int? valuePositiveInt;
+  ToOne<Element>? valuePositiveIntElement = ToOne<Element>();
   String? valueString;
+  ToOne<Element>? valueStringElement = ToOne<Element>();
   String? valueTime;
+  ToOne<Element>? valueTimeElement = ToOne<Element>();
   int? valueUnsignedInt;
+  ToOne<Element>? valueUnsignedIntElement = ToOne<Element>();
   String? valueUri;
+  ToOne<Element>? valueUriElement = ToOne<Element>();
   String? valueUrl;
+  ToOne<Element>? valueUrlElement = ToOne<Element>();
   String? valueUuid;
+  ToOne<Element>? valueUuidElement = ToOne<Element>();
   ToOne<Address>? valueAddress = ToOne<Address>();
   ToOne<Age>? valueAge = ToOne<Age>();
   ToOne<Annotation>? valueAnnotation = ToOne<Annotation>();

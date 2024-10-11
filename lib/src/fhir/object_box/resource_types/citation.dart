@@ -7,28 +7,43 @@ class Citation extends Resource {
     this.id,
     this.meta,
     this.implicitRules,
+    this.implicitRulesElement,
     this.language,
+    this.languageElement,
     this.text,
     this.contained,
     this.extension_,
     this.modifierExtension,
     this.url,
+    this.urlElement,
     this.identifier,
     this.version,
+    this.versionElement,
     this.name,
+    this.nameElement,
     this.title,
+    this.titleElement,
     required this.status,
+    this.statusElement,
     this.experimental,
+    this.experimentalElement,
     this.date,
+    this.dateElement,
     this.publisher,
+    this.publisherElement,
     this.contact,
     this.description,
+    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
+    this.purposeElement,
     this.copyright,
+    this.copyrightElement,
     this.approvalDate,
+    this.approvalDateElement,
     this.lastReviewDate,
+    this.lastReviewDateElement,
     this.effectivePeriod,
     this.author,
     this.editor,
@@ -48,28 +63,43 @@ class Citation extends Resource {
   ToOne<String>? id = ToOne<String>();
   ToOne<FhirMeta>? meta = ToOne<FhirMeta>();
   String? implicitRules;
+  ToOne<Element>? implicitRulesElement = ToOne<Element>();
   String? language;
+  ToOne<Element>? languageElement = ToOne<Element>();
   ToOne<Narrative>? text = ToOne<Narrative>();
   ToMany<Resource>? contained = ToMany<Resource>();
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   String? url;
+  ToOne<Element>? urlElement = ToOne<Element>();
   ToMany<Identifier>? identifier = ToMany<Identifier>();
   String? version;
+  ToOne<Element>? versionElement = ToOne<Element>();
   String? name;
+  ToOne<Element>? nameElement = ToOne<Element>();
   String? title;
+  ToOne<Element>? titleElement = ToOne<Element>();
   String status;
+  ToOne<Element>? statusElement = ToOne<Element>();
   bool? experimental;
+  ToOne<Element>? experimentalElement = ToOne<Element>();
   String? date;
+  ToOne<Element>? dateElement = ToOne<Element>();
   String? publisher;
+  ToOne<Element>? publisherElement = ToOne<Element>();
   ToMany<ContactDetail>? contact = ToMany<ContactDetail>();
   String? description;
+  ToOne<Element>? descriptionElement = ToOne<Element>();
   ToMany<UsageContext>? useContext = ToMany<UsageContext>();
   ToMany<CodeableConcept>? jurisdiction = ToMany<CodeableConcept>();
   String? purpose;
+  ToOne<Element>? purposeElement = ToOne<Element>();
   String? copyright;
+  ToOne<Element>? copyrightElement = ToOne<Element>();
   String? approvalDate;
+  ToOne<Element>? approvalDateElement = ToOne<Element>();
   String? lastReviewDate;
+  ToOne<Element>? lastReviewDateElement = ToOne<Element>();
   ToOne<Period>? effectivePeriod = ToOne<Period>();
   ToMany<ContactDetail>? author = ToMany<ContactDetail>();
   ToMany<ContactDetail>? editor = ToMany<ContactDetail>();
@@ -93,6 +123,7 @@ class CitationSummary {
     this.modifierExtension,
     this.style,
     required this.text,
+    this.textElement,
   });
 
   @Id()
@@ -102,6 +133,7 @@ class CitationSummary {
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   ToOne<CodeableConcept>? style = ToOne<CodeableConcept>();
   String text;
+  ToOne<Element>? textElement = ToOne<Element>();
 }
 
 @Entity()
@@ -131,6 +163,7 @@ class CitationStatusDate {
     this.modifierExtension,
     required this.activity,
     this.actual,
+    this.actualElement,
     required this.period,
   });
 
@@ -141,6 +174,7 @@ class CitationStatusDate {
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   ToOne<CodeableConcept> activity = ToOne<CodeableConcept>();
   bool? actual;
+  ToOne<Element>? actualElement = ToOne<Element>();
   ToOne<Period> period = ToOne<Period>();
 }
 
@@ -153,6 +187,7 @@ class CitationRelatesTo {
     required this.relationshipType,
     this.targetClassifier,
     this.targetUri,
+    this.targetUriElement,
     this.targetIdentifier,
     this.targetReference,
     this.targetAttachment,
@@ -166,6 +201,7 @@ class CitationRelatesTo {
   ToOne<CodeableConcept> relationshipType = ToOne<CodeableConcept>();
   ToMany<CodeableConcept>? targetClassifier = ToMany<CodeableConcept>();
   String? targetUri;
+  ToOne<Element>? targetUriElement = ToOne<Element>();
   ToOne<Identifier>? targetIdentifier = ToOne<Identifier>();
   ToOne<Reference>? targetReference = ToOne<Reference>();
   ToOne<Attachment>? targetAttachment = ToOne<Attachment>();
@@ -180,6 +216,7 @@ class CitationCitedArtifact {
     this.identifier,
     this.relatedIdentifier,
     this.dateAccessed,
+    this.dateAccessedElement,
     this.version,
     this.currentState,
     this.statusDate,
@@ -202,6 +239,7 @@ class CitationCitedArtifact {
   ToMany<Identifier>? identifier = ToMany<Identifier>();
   ToMany<Identifier>? relatedIdentifier = ToMany<Identifier>();
   String? dateAccessed;
+  ToOne<Element>? dateAccessedElement = ToOne<Element>();
   ToOne<CitationVersion>? version = ToOne<CitationVersion>();
   ToMany<CodeableConcept>? currentState = ToMany<CodeableConcept>();
   ToMany<CitationStatusDate>? statusDate = ToMany<CitationStatusDate>();
@@ -226,6 +264,7 @@ class CitationVersion {
     this.extension_,
     this.modifierExtension,
     required this.value,
+    this.valueElement,
     this.baseCitation,
   });
 
@@ -235,6 +274,7 @@ class CitationVersion {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   String value;
+  ToOne<Element>? valueElement = ToOne<Element>();
   ToOne<Reference>? baseCitation = ToOne<Reference>();
 }
 
@@ -246,6 +286,7 @@ class CitationStatusDate1 {
     this.modifierExtension,
     required this.activity,
     this.actual,
+    this.actualElement,
     required this.period,
   });
 
@@ -256,6 +297,7 @@ class CitationStatusDate1 {
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   ToOne<CodeableConcept> activity = ToOne<CodeableConcept>();
   bool? actual;
+  ToOne<Element>? actualElement = ToOne<Element>();
   ToOne<Period> period = ToOne<Period>();
 }
 
@@ -268,6 +310,7 @@ class CitationTitle {
     this.type,
     this.language,
     required this.text,
+    this.textElement,
   });
 
   @Id()
@@ -278,6 +321,7 @@ class CitationTitle {
   ToMany<CodeableConcept>? type = ToMany<CodeableConcept>();
   ToOne<CodeableConcept>? language = ToOne<CodeableConcept>();
   String text;
+  ToOne<Element>? textElement = ToOne<Element>();
 }
 
 @Entity()
@@ -289,7 +333,9 @@ class CitationAbstract {
     this.type,
     this.language,
     required this.text,
+    this.textElement,
     this.copyright,
+    this.copyrightElement,
   });
 
   @Id()
@@ -300,7 +346,9 @@ class CitationAbstract {
   ToOne<CodeableConcept>? type = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? language = ToOne<CodeableConcept>();
   String text;
+  ToOne<Element>? textElement = ToOne<Element>();
   String? copyright;
+  ToOne<Element>? copyrightElement = ToOne<Element>();
 }
 
 @Entity()
@@ -311,6 +359,7 @@ class CitationPart {
     this.modifierExtension,
     this.type,
     this.value,
+    this.valueElement,
     this.baseCitation,
   });
 
@@ -321,6 +370,7 @@ class CitationPart {
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   ToOne<CodeableConcept>? type = ToOne<CodeableConcept>();
   String? value;
+  ToOne<Element>? valueElement = ToOne<Element>();
   ToOne<Reference>? baseCitation = ToOne<Reference>();
 }
 
@@ -333,6 +383,7 @@ class CitationRelatesTo1 {
     required this.relationshipType,
     this.targetClassifier,
     this.targetUri,
+    this.targetUriElement,
     this.targetIdentifier,
     this.targetReference,
     this.targetAttachment,
@@ -346,6 +397,7 @@ class CitationRelatesTo1 {
   ToOne<CodeableConcept> relationshipType = ToOne<CodeableConcept>();
   ToMany<CodeableConcept>? targetClassifier = ToMany<CodeableConcept>();
   String? targetUri;
+  ToOne<Element>? targetUriElement = ToOne<Element>();
   ToOne<Identifier>? targetIdentifier = ToOne<Identifier>();
   ToOne<Reference>? targetReference = ToOne<Reference>();
   ToOne<Attachment>? targetAttachment = ToOne<Attachment>();
@@ -360,14 +412,22 @@ class CitationPublicationForm {
     this.publishedIn,
     this.periodicRelease,
     this.articleDate,
+    this.articleDateElement,
     this.lastRevisionDate,
+    this.lastRevisionDateElement,
     this.language,
     this.accessionNumber,
+    this.accessionNumberElement,
     this.pageString,
+    this.pageStringElement,
     this.firstPage,
+    this.firstPageElement,
     this.lastPage,
+    this.lastPageElement,
     this.pageCount,
+    this.pageCountElement,
     this.copyright,
+    this.copyrightElement,
   });
 
   @Id()
@@ -379,14 +439,22 @@ class CitationPublicationForm {
   ToOne<CitationPeriodicRelease>? periodicRelease =
       ToOne<CitationPeriodicRelease>();
   String? articleDate;
+  ToOne<Element>? articleDateElement = ToOne<Element>();
   String? lastRevisionDate;
+  ToOne<Element>? lastRevisionDateElement = ToOne<Element>();
   ToMany<CodeableConcept>? language = ToMany<CodeableConcept>();
   String? accessionNumber;
+  ToOne<Element>? accessionNumberElement = ToOne<Element>();
   String? pageString;
+  ToOne<Element>? pageStringElement = ToOne<Element>();
   String? firstPage;
+  ToOne<Element>? firstPageElement = ToOne<Element>();
   String? lastPage;
+  ToOne<Element>? lastPageElement = ToOne<Element>();
   String? pageCount;
+  ToOne<Element>? pageCountElement = ToOne<Element>();
   String? copyright;
+  ToOne<Element>? copyrightElement = ToOne<Element>();
 }
 
 @Entity()
@@ -398,8 +466,10 @@ class CitationPublishedIn {
     this.type,
     this.identifier,
     this.title,
+    this.titleElement,
     this.publisher,
     this.publisherLocation,
+    this.publisherLocationElement,
   });
 
   @Id()
@@ -410,8 +480,10 @@ class CitationPublishedIn {
   ToOne<CodeableConcept>? type = ToOne<CodeableConcept>();
   ToMany<Identifier>? identifier = ToMany<Identifier>();
   String? title;
+  ToOne<Element>? titleElement = ToOne<Element>();
   ToOne<Reference>? publisher = ToOne<Reference>();
   String? publisherLocation;
+  ToOne<Element>? publisherLocationElement = ToOne<Element>();
 }
 
 @Entity()
@@ -422,7 +494,9 @@ class CitationPeriodicRelease {
     this.modifierExtension,
     this.citedMedium,
     this.volume,
+    this.volumeElement,
     this.issue,
+    this.issueElement,
     this.dateOfPublication,
   });
 
@@ -433,7 +507,9 @@ class CitationPeriodicRelease {
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   ToOne<CodeableConcept>? citedMedium = ToOne<CodeableConcept>();
   String? volume;
+  ToOne<Element>? volumeElement = ToOne<Element>();
   String? issue;
+  ToOne<Element>? issueElement = ToOne<Element>();
   ToOne<CitationDateOfPublication>? dateOfPublication =
       ToOne<CitationDateOfPublication>();
 }
@@ -445,11 +521,17 @@ class CitationDateOfPublication {
     this.extension_,
     this.modifierExtension,
     this.date,
+    this.dateElement,
     this.year,
+    this.yearElement,
     this.month,
+    this.monthElement,
     this.day,
+    this.dayElement,
     this.season,
+    this.seasonElement,
     this.text,
+    this.textElement,
   });
 
   @Id()
@@ -458,11 +540,17 @@ class CitationDateOfPublication {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   String? date;
+  ToOne<Element>? dateElement = ToOne<Element>();
   String? year;
+  ToOne<Element>? yearElement = ToOne<Element>();
   String? month;
+  ToOne<Element>? monthElement = ToOne<Element>();
   String? day;
+  ToOne<Element>? dayElement = ToOne<Element>();
   String? season;
+  ToOne<Element>? seasonElement = ToOne<Element>();
   String? text;
+  ToOne<Element>? textElement = ToOne<Element>();
 }
 
 @Entity()
@@ -473,6 +561,7 @@ class CitationWebLocation {
     this.modifierExtension,
     this.type,
     this.url,
+    this.urlElement,
   });
 
   @Id()
@@ -482,6 +571,7 @@ class CitationWebLocation {
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   ToOne<CodeableConcept>? type = ToOne<CodeableConcept>();
   String? url;
+  ToOne<Element>? urlElement = ToOne<Element>();
 }
 
 @Entity()
@@ -515,7 +605,9 @@ class CitationWhoClassified {
     this.organization,
     this.publisher,
     this.classifierCopyright,
+    this.classifierCopyrightElement,
     this.freeToShare,
+    this.freeToShareElement,
   });
 
   @Id()
@@ -527,7 +619,9 @@ class CitationWhoClassified {
   ToOne<Reference>? organization = ToOne<Reference>();
   ToOne<Reference>? publisher = ToOne<Reference>();
   String? classifierCopyright;
+  ToOne<Element>? classifierCopyrightElement = ToOne<Element>();
   bool? freeToShare;
+  ToOne<Element>? freeToShareElement = ToOne<Element>();
 }
 
 @Entity()
@@ -537,6 +631,7 @@ class CitationContributorship {
     this.extension_,
     this.modifierExtension,
     this.complete,
+    this.completeElement,
     this.entry,
     this.summary,
   });
@@ -547,6 +642,7 @@ class CitationContributorship {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   bool? complete;
+  ToOne<Element>? completeElement = ToOne<Element>();
   ToMany<CitationEntry>? entry = ToMany<CitationEntry>();
   ToMany<CitationSummary>? summary = ToMany<CitationSummary>();
 }
@@ -559,7 +655,9 @@ class CitationEntry {
     this.modifierExtension,
     this.name,
     this.initials,
+    this.initialsElement,
     this.collectiveName,
+    this.collectiveNameElement,
     this.identifier,
     this.affiliationInfo,
     this.address,
@@ -568,7 +666,9 @@ class CitationEntry {
     this.role,
     this.contributionInstance,
     this.correspondingContact,
+    this.correspondingContactElement,
     this.listOrder,
+    this.listOrderElement,
   });
 
   @Id()
@@ -578,7 +678,9 @@ class CitationEntry {
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   ToOne<HumanName>? name = ToOne<HumanName>();
   String? initials;
+  ToOne<Element>? initialsElement = ToOne<Element>();
   String? collectiveName;
+  ToOne<Element>? collectiveNameElement = ToOne<Element>();
   ToMany<Identifier>? identifier = ToMany<Identifier>();
   ToMany<CitationAffiliationInfo>? affiliationInfo =
       ToMany<CitationAffiliationInfo>();
@@ -589,7 +691,9 @@ class CitationEntry {
   ToMany<CitationContributionInstance>? contributionInstance =
       ToMany<CitationContributionInstance>();
   bool? correspondingContact;
+  ToOne<Element>? correspondingContactElement = ToOne<Element>();
   int? listOrder;
+  ToOne<Element>? listOrderElement = ToOne<Element>();
 }
 
 @Entity()
@@ -599,7 +703,9 @@ class CitationAffiliationInfo {
     this.extension_,
     this.modifierExtension,
     this.affiliation,
+    this.affiliationElement,
     this.role,
+    this.roleElement,
     this.identifier,
   });
 
@@ -609,7 +715,9 @@ class CitationAffiliationInfo {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   String? affiliation;
+  ToOne<Element>? affiliationElement = ToOne<Element>();
   String? role;
+  ToOne<Element>? roleElement = ToOne<Element>();
   ToMany<Identifier>? identifier = ToMany<Identifier>();
 }
 
@@ -621,6 +729,7 @@ class CitationContributionInstance {
     this.modifierExtension,
     required this.type,
     this.time,
+    this.timeElement,
   });
 
   @Id()
@@ -630,6 +739,7 @@ class CitationContributionInstance {
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   ToOne<CodeableConcept> type = ToOne<CodeableConcept>();
   String? time;
+  ToOne<Element>? timeElement = ToOne<Element>();
 }
 
 @Entity()
@@ -642,6 +752,7 @@ class CitationSummary1 {
     this.style,
     this.source,
     required this.value,
+    this.valueElement,
   });
 
   @Id()
@@ -653,4 +764,5 @@ class CitationSummary1 {
   ToOne<CodeableConcept>? style = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? source = ToOne<CodeableConcept>();
   String value;
+  ToOne<Element>? valueElement = ToOne<Element>();
 }

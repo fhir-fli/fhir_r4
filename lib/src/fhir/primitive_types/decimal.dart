@@ -73,6 +73,14 @@ class FhirDecimal extends FhirNumber {
   String toJsonString() => jsonEncode(toJson());
 
   @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => value.hashCode;
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) => equals(other);
+
+  @override
   bool equals(Object other) =>
       identical(this, other) ||
       (other is FhirDecimal && other.value == value) ||

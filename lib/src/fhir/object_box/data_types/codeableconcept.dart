@@ -8,6 +8,7 @@ class CodeableConcept {
     this.extension_,
     this.coding,
     this.text,
+    this.textElement,
   });
 
   @Id()
@@ -16,4 +17,5 @@ class CodeableConcept {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<Coding>? coding = ToMany<Coding>();
   String? text;
+  ToOne<Element>? textElement = ToOne<Element>();
 }

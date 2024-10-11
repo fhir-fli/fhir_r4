@@ -13,8 +13,6 @@ extension FhirDateTimeStringExtension on String {
 
 class FhirDateTime extends FhirDateTimeBase {
   FhirDateTime.fromBase({
-    required super.precision,
-    required super.input,
     required super.year,
     required super.month,
     required super.day,
@@ -29,19 +27,13 @@ class FhirDateTime extends FhirDateTimeBase {
   });
 
   // Now restricting the constructor to only accept String or DateTime
-  factory FhirDateTime.fromString(String inValue,
-          [FhirDateTimePrecision? precision, Element? element]) =>
-      FhirDateTimeBase.constructor<FhirDateTime>(inValue, precision, element)
+  factory FhirDateTime.fromString(String inValue, [Element? element]) =>
+      FhirDateTimeBase.constructor<FhirDateTime>(inValue, element)
           as FhirDateTime;
 
-  factory FhirDateTime.fromDateTime(DateTime inValue,
-          [FhirDateTimePrecision? precision, Element? element]) =>
-      FhirDateTimeBase.constructor<FhirDateTime>(
-          inValue.toIso8601String(),
-          inValue.isUtc
-              ? precision ?? FhirDateTimePrecision.yyyy_MM_dd_T_HH_mm_ss_SSS_Z
-              : precision ?? FhirDateTimePrecision.yyyy_MM_dd_T_HH_mm_ss_SSSZZ,
-          element) as FhirDateTime;
+  factory FhirDateTime.fromDateTime(DateTime inValue, [Element? element]) =>
+      FhirDateTimeBase.constructor<FhirDateTime>(inValue, element)
+          as FhirDateTime;
 
   static FhirDateTime? tryParse(dynamic value) {
     try {
@@ -56,11 +48,10 @@ class FhirDateTime extends FhirDateTimeBase {
     return null;
   }
 
-  factory FhirDateTime.fromJson(dynamic json,
-      {FhirDateTimePrecision? precision, Element? element}) {
+  factory FhirDateTime.fromJson(dynamic json, {Element? element}) {
     print('json: $json - ${json.runtimeType}');
     if (json is String) {
-      return FhirDateTime.fromString(json, precision, element);
+      return FhirDateTime.fromString(json, element);
     } else {
       throw const FormatException(
           'Invalid input for FhirDateTime: Input must be a String');
@@ -108,7 +99,12 @@ class FhirDateTime extends FhirDateTimeBase {
   String get fhirType => 'dateTime';
 
   @override
-  String toJson() => input.toString();
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => value.hashCode;
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) => equals(other);
 
   @override
   bool equals(Object other) => isEqual(other) ?? false;
@@ -133,7 +129,7 @@ class FhirDateTime extends FhirDateTimeBase {
   @override
   FhirDateTime setElement(String name, dynamic elementValue) {
     return FhirDateTime.fromDateTime(
-        value, precision, element?.setProperty(name, elementValue));
+        value, element?.setProperty(name, elementValue));
   }
 
   @override
@@ -148,7 +144,6 @@ class FhirDateTime extends FhirDateTimeBase {
   }) {
     return FhirDateTime.fromDateTime(
       value,
-      precision,
       element?.copyWith(
         userData: userData,
         formatCommentsPre: formatCommentsPre,

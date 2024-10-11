@@ -8,11 +8,15 @@ class Signature {
     this.extension_,
     required this.type,
     required this.when,
+    this.whenElement,
     required this.who,
     this.onBehalfOf,
     this.targetFormat,
+    this.targetFormatElement,
     this.sigFormat,
+    this.sigFormatElement,
     this.data,
+    this.dataElement,
   });
 
   @Id()
@@ -21,9 +25,13 @@ class Signature {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<Coding> type = ToMany<Coding>();
   String when;
+  ToOne<Element>? whenElement = ToOne<Element>();
   ToOne<Reference> who = ToOne<Reference>();
   ToOne<Reference>? onBehalfOf = ToOne<Reference>();
   String? targetFormat;
+  ToOne<Element>? targetFormatElement = ToOne<Element>();
   String? sigFormat;
+  ToOne<Element>? sigFormatElement = ToOne<Element>();
   String? data;
+  ToOne<Element>? dataElement = ToOne<Element>();
 }

@@ -7,7 +7,9 @@ class Period {
     this.id,
     this.extension_,
     this.start,
+    this.startElement,
     this.end,
+    this.endElement,
   });
 
   @Id()
@@ -15,5 +17,7 @@ class Period {
   ToOne<String>? id = ToOne<String>();
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   String? start;
+  ToOne<Element>? startElement = ToOne<Element>();
   String? end;
+  ToOne<Element>? endElement = ToOne<Element>();
 }

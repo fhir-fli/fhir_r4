@@ -7,7 +7,9 @@ class Contributor {
     this.id,
     this.extension_,
     required this.type,
+    this.typeElement,
     required this.name,
+    this.nameElement,
     this.contact,
   });
 
@@ -16,6 +18,8 @@ class Contributor {
   ToOne<String>? id = ToOne<String>();
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   String type;
+  ToOne<Element>? typeElement = ToOne<Element>();
   String name;
+  ToOne<Element>? nameElement = ToOne<Element>();
   ToMany<ContactDetail>? contact = ToMany<ContactDetail>();
 }

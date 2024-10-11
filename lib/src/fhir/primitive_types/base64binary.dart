@@ -43,7 +43,6 @@ class FhirBase64Binary extends PrimitiveType<String> {
       base64.decode(input);
       return true;
     } catch (e) {
-      print(e);
       return false;
     }
   }
@@ -74,9 +73,18 @@ class FhirBase64Binary extends PrimitiveType<String> {
   String toJsonString() => jsonEncode(toJson());
 
   @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => value.hashCode;
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) => equals(other);
+
+  @override
   bool equals(Object other) =>
       identical(this, other) ||
-      (other is FhirBase64Binary && other.value == value);
+      (other is FhirBase64Binary && other.value == value) ||
+      (other is String && other == value);
 
   @override
   FhirBase64Binary clone() =>

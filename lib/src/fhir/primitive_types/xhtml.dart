@@ -229,6 +229,14 @@ class FhirXhtml extends PrimitiveType<String> {
   @override
   String toJsonString() => jsonEncode(toJson());
 
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => value.hashCode;
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) => equals(other);
+
   // Equality check
   @override
   bool equals(Object other) =>

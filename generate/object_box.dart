@@ -35,6 +35,23 @@ abstract class Resource {
   @Id()
   int? dbId;
 }""");
+
+  File('$fhirDirectory/object_box/element.dart').writeAsStringSync('''
+import 'package:objectbox/objectbox.dart';
+import 'object_box.dart';
+
+@Entity()
+class Element {
+  Element({
+    this.id,
+    this.extension_,
+    });
+
+  @Id()
+  int? dbId;
+  ToOne<String>? id = ToOne<String>();
+  ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
+  }''');
 }
 
 void exportObjectBoxFiles() {
@@ -61,6 +78,7 @@ void exportObjectBoxFiles() {
       .writeAsStringSync(exportFiles.join());
   File('$fhirDirectory/object_box/object_box.dart').writeAsStringSync("""
 export 'data_types.dart';
+export 'element.dart';
 export 'resource.dart';
 export 'resource_types.dart';
 """);
@@ -83,10 +101,16 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
 
     // Loop through the fields and add them to the constructor
     for (final Field field in writableClass.fields) {
+      final String actualFieldName = field.name.fhirFieldToDartName;
       if (field.isRequired) {
-        buffer.writeln('    required this.${field.name.fhirFieldToDartName},');
+        buffer.writeln('    required this.$actualFieldName,');
       } else {
-        buffer.writeln('    this.${field.name.fhirFieldToDartName},');
+        buffer.writeln('    this.$actualFieldName,');
+      }
+      if ((field.isEnum || field.type.isPrimitiveType) &&
+          (actualFieldName != 'id')) {
+        buffer.writeln(
+            '    this.${actualFieldName.endsWith('_') ? actualFieldName.substring(0, actualFieldName.length - 1) : actualFieldName}Element,');
       }
     }
 
@@ -96,8 +120,11 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
 
     // Loop through the fields and add them as class variables
     for (final Field field in writableClass.fields) {
-      final String objectBoxType =
+      String objectBoxType =
           field.isEnum ? 'String' : field.type.fhirToObjectBoxTypes;
+      objectBoxType = objectBoxType == 'EvidenceVariable'
+          ? 'Evidencevariable'
+          : objectBoxType;
 
       // Handle complex types (ToOne or ToMany relations)
       if (!field.type.isPrimitiveType && !field.isEnum) {
@@ -112,8 +139,21 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
         // Handle primitive types or enums
         final String fieldType =
             field.isList ? 'List<$objectBoxType>' : objectBoxType;
+        final String actualFieldName = field.name.fhirFieldToDartName;
         buffer.writeln(
-            '  $fieldType${field.isRequired ? '' : '?'} ${field.name.fhirFieldToDartName};');
+            '  $fieldType${field.isRequired ? '' : '?'} $actualFieldName;');
+
+        final String finalFieldName = actualFieldName.endsWith('_')
+            ? actualFieldName.substring(0, actualFieldName.length - 1)
+            : actualFieldName;
+
+        if (field.isList) {
+          buffer.writeln(
+              '  ToMany<Element>? ${finalFieldName}Element = ToMany<Element>();');
+        } else {
+          buffer.writeln(
+              '  ToOne<Element>? ${finalFieldName}Element = ToOne<Element>();');
+        }
       }
     }
 

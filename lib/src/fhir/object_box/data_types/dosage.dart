@@ -8,11 +8,15 @@ class Dosage {
     this.extension_,
     this.modifierExtension,
     this.sequence,
+    this.sequenceElement,
     this.text,
+    this.textElement,
     this.additionalInstruction,
     this.patientInstruction,
+    this.patientInstructionElement,
     this.timing,
     this.asNeededBoolean,
+    this.asNeededBooleanElement,
     this.asNeededCodeableConcept,
     this.site,
     this.route,
@@ -29,11 +33,15 @@ class Dosage {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   int? sequence;
+  ToOne<Element>? sequenceElement = ToOne<Element>();
   String? text;
+  ToOne<Element>? textElement = ToOne<Element>();
   ToMany<CodeableConcept>? additionalInstruction = ToMany<CodeableConcept>();
   String? patientInstruction;
+  ToOne<Element>? patientInstructionElement = ToOne<Element>();
   ToOne<Timing>? timing = ToOne<Timing>();
   bool? asNeededBoolean;
+  ToOne<Element>? asNeededBooleanElement = ToOne<Element>();
   ToOne<CodeableConcept>? asNeededCodeableConcept = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? site = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? route = ToOne<CodeableConcept>();

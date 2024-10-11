@@ -210,7 +210,7 @@ List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
       case int _:
         return rhs is num
             ? makeComparison(comparator, lhs, rhs)
-            : rhs is FhirNumber && rhs.isValid
+            : rhs is FhirNumber
                 ? makeComparison(comparator, lhs, rhs.valueNumber)
                 : rhs is String && num.tryParse(rhs) != null
                     ? makeComparison(comparator, lhs, num.parse(rhs))
@@ -218,21 +218,17 @@ List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
       case double _:
         return rhs is num
             ? makeComparison(comparator, lhs, rhs)
-            : rhs is FhirNumber && rhs.isValid
+            : rhs is FhirNumber
                 ? makeComparison(comparator, lhs, rhs.valueNumber)
                 : rhs is String && num.tryParse(rhs) != null
                     ? makeComparison(comparator, lhs, num.parse(rhs))
                     : throw cannotCompareException(lhs, rhs);
       case FhirDate _:
         return rhs is FhirDateTimeBase
-            ? lhs.isValid && rhs.isValid
-                ? makeComparison(comparator, lhs, rhs)
-                : throw invalidException(lhs, rhs)
-            : rhs is String && FhirDateTime.tryParse(rhs) != null
-                ? makeComparison(comparator, lhs, rhs)
-                : throw cannotCompareException(lhs, rhs);
+            ? makeComparison(comparator, lhs, rhs)
+            : throw invalidException(lhs, rhs);
       case DateTime _:
-        return (rhs is FhirDateTimeBase && rhs.isValid)
+        return (rhs is FhirDateTimeBase)
             ? makeComparison(comparator, FhirDateTime.fromDateTime(lhs), rhs)
             : rhs is DateTime
                 ? makeComparison(comparator, FhirDateTime.fromDateTime(lhs),
@@ -243,20 +239,12 @@ List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
                     : throw cannotCompareException(lhs, rhs);
       case FhirDateTime _:
         return rhs is FhirDateTimeBase
-            ? lhs.isValid && rhs.isValid
-                ? makeComparison(comparator, lhs, rhs)
-                : throw invalidException(lhs, rhs)
-            : rhs is String && FhirDateTime.tryParse(rhs) != null
-                ? makeComparison(comparator, lhs, FhirDateTime.fromString(rhs))
-                : throw cannotCompareException(lhs, rhs);
+            ? makeComparison(comparator, lhs, rhs)
+            : throw invalidException(lhs, rhs);
       case FhirTime _:
         return rhs is FhirTime
-            ? lhs.isValid && rhs.isValid
-                ? makeComparison(comparator, lhs, rhs)
-                : throw invalidException(lhs, rhs)
-            : rhs is String && FhirTime(rhs).isValid
-                ? makeComparison(comparator, lhs, FhirTime(rhs))
-                : throw cannotCompareException(lhs, rhs);
+            ? makeComparison(comparator, lhs, rhs)
+            : throw invalidException(lhs, rhs);
       case ValidatedQuantity _:
         return rhs is ValidatedQuantity
             ? makeComparison(comparator, lhs, rhs)
@@ -289,7 +277,7 @@ List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
             } else if (lhs is DateTime) {
               return makeComparison(
                   comparator, FhirDateTime.fromDateTime(lhs), rhs);
-            } else if (lhs is FhirDateTimeBase && lhs.isValid) {
+            } else if (lhs is FhirDateTimeBase) {
               return makeComparison(comparator, lhs, rhs);
             }
           }

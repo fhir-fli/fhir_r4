@@ -154,7 +154,9 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
             ? FhirTime(other)
             : null;
 
-    if (rhs == null) return false;
+    if (rhs == null) {
+      return false;
+    }
 
     final List<String> lhsParts = value.split(':');
     final List<String> rhsParts = rhs.value.split(':');
@@ -165,23 +167,45 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
 
       switch (comparator) {
         case Comparator.eq:
-          if (lhs != rhsValue) return false;
+          if (lhs != rhsValue) {
+            return false;
+          }
         case Comparator.gt:
-          if (lhs > rhsValue) return true;
-          if (lhs < rhsValue) return false;
+          if (lhs > rhsValue) {
+            return true;
+          }
+          if (lhs < rhsValue) {
+            return false;
+          }
         case Comparator.lt:
-          if (lhs < rhsValue) return true;
-          if (lhs > rhsValue) return false;
+          if (lhs < rhsValue) {
+            return true;
+          }
+          if (lhs > rhsValue) {
+            return false;
+          }
         case Comparator.gte:
-          if (lhs >= rhsValue) return true;
+          if (lhs >= rhsValue) {
+            return true;
+          }
           return false;
         case Comparator.lte:
-          if (lhs <= rhsValue) return true;
+          if (lhs <= rhsValue) {
+            return true;
+          }
           return false;
       }
     }
     return comparator == Comparator.eq;
   }
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => value.hashCode;
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) => _compare(Comparator.eq, other) ?? false;
 
   @override
   bool equals(Object other) => _compare(Comparator.eq, other) ?? false;

@@ -12,6 +12,7 @@ class MarketingStatus {
     required this.status,
     this.dateRange,
     this.restoreDate,
+    this.restoreDateElement,
   });
 
   @Id()
@@ -24,4 +25,5 @@ class MarketingStatus {
   ToOne<CodeableConcept> status = ToOne<CodeableConcept>();
   ToOne<Period>? dateRange = ToOne<Period>();
   String? restoreDate;
+  ToOne<Element>? restoreDateElement = ToOne<Element>();
 }

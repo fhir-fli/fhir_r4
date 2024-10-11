@@ -13,31 +13,19 @@ extension FhirDateStringExtension on String {
 
 class FhirDate extends FhirDateTimeBase {
   FhirDate.fromBase({
-    required super.precision,
-    required super.input,
     required super.year,
     required super.month,
     required super.day,
-    required super.hour,
-    required super.minute,
-    required super.second,
-    required super.millisecond,
-    required super.microsecond,
-    required super.timeZoneOffset,
+    super.timeZoneOffset,
     required super.isUtc,
     super.element,
   });
 
-  factory FhirDate.fromString(String inValue,
-          [FhirDateTimePrecision? precision, Element? element]) =>
-      FhirDateTimeBase.constructor<FhirDate>(inValue, precision, element)
-          as FhirDate;
+  factory FhirDate.fromString(String inValue, [Element? element]) =>
+      FhirDateTimeBase.constructor<FhirDate>(inValue, element) as FhirDate;
 
-  factory FhirDate.fromDateTime(DateTime inValue,
-          [FhirDateTimePrecision? precision, Element? element]) =>
-      FhirDateTimeBase.constructor<FhirDate>(
-              inValue, precision ?? FhirDateTimePrecision.yyyy_MM_dd, element)
-          as FhirDate;
+  factory FhirDate.fromDateTime(DateTime inValue, [Element? element]) =>
+      FhirDateTimeBase.constructor<FhirDate>(inValue, element) as FhirDate;
 
   static FhirDate? tryParse(dynamic value) {
     try {
@@ -52,10 +40,9 @@ class FhirDate extends FhirDateTimeBase {
     return null;
   }
 
-  factory FhirDate.fromJson(dynamic json,
-      {FhirDateTimePrecision? precision, Element? element}) {
+  factory FhirDate.fromJson(dynamic json, {Element? element}) {
     if (json is String) {
-      return FhirDate.fromString(json, precision, element);
+      return FhirDate.fromString(json, element);
     } else {
       throw const FormatException(
           'Invalid input for FhirDate: Input must be a String');
@@ -90,7 +77,12 @@ class FhirDate extends FhirDateTimeBase {
   String get fhirType => 'date';
 
   @override
-  String toJson() => input.toString();
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => value.hashCode;
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) => equals(other);
 
   @override
   bool equals(Object other) => isEqual(other) ?? false;
@@ -115,7 +107,7 @@ class FhirDate extends FhirDateTimeBase {
   @override
   FhirDate setElement(String name, dynamic elementValue) {
     return FhirDate.fromDateTime(
-        value, precision, element?.setProperty(name, elementValue));
+        value, element?.setProperty(name, elementValue));
   }
 
   @override
@@ -130,7 +122,6 @@ class FhirDate extends FhirDateTimeBase {
   }) {
     return FhirDate.fromDateTime(
       value,
-      precision,
       element?.copyWith(
         userData: userData,
         formatCommentsPre: formatCommentsPre,

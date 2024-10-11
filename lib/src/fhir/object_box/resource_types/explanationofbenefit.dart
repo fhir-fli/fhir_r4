@@ -7,19 +7,24 @@ class ExplanationOfBenefit extends Resource {
     this.id,
     this.meta,
     this.implicitRules,
+    this.implicitRulesElement,
     this.language,
+    this.languageElement,
     this.text,
     this.contained,
     this.extension_,
     this.modifierExtension,
     this.identifier,
     required this.status,
+    this.statusElement,
     required this.type,
     this.subType,
     required this.use,
+    this.useElement,
     required this.patient,
     this.billablePeriod,
     required this.created,
+    this.createdElement,
     this.enterer,
     required this.insurer,
     required this.provider,
@@ -35,14 +40,18 @@ class ExplanationOfBenefit extends Resource {
     this.claim,
     this.claimResponse,
     required this.outcome,
+    this.outcomeElement,
     this.disposition,
+    this.dispositionElement,
     this.preAuthRef,
+    this.preAuthRefElement,
     this.preAuthRefPeriod,
     this.careTeam,
     this.supportingInfo,
     this.diagnosis,
     this.procedure,
     this.precedence,
+    this.precedenceElement,
     required this.insurance,
     this.accident,
     this.item,
@@ -62,19 +71,24 @@ class ExplanationOfBenefit extends Resource {
   ToOne<String>? id = ToOne<String>();
   ToOne<FhirMeta>? meta = ToOne<FhirMeta>();
   String? implicitRules;
+  ToOne<Element>? implicitRulesElement = ToOne<Element>();
   String? language;
+  ToOne<Element>? languageElement = ToOne<Element>();
   ToOne<Narrative>? text = ToOne<Narrative>();
   ToMany<Resource>? contained = ToMany<Resource>();
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   ToMany<Identifier>? identifier = ToMany<Identifier>();
   String status;
+  ToOne<Element>? statusElement = ToOne<Element>();
   ToOne<CodeableConcept> type = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? subType = ToOne<CodeableConcept>();
   String use;
+  ToOne<Element>? useElement = ToOne<Element>();
   ToOne<Reference> patient = ToOne<Reference>();
   ToOne<Period>? billablePeriod = ToOne<Period>();
   String created;
+  ToOne<Element>? createdElement = ToOne<Element>();
   ToOne<Reference>? enterer = ToOne<Reference>();
   ToOne<Reference> insurer = ToOne<Reference>();
   ToOne<Reference> provider = ToOne<Reference>();
@@ -91,8 +105,11 @@ class ExplanationOfBenefit extends Resource {
   ToOne<Reference>? claim = ToOne<Reference>();
   ToOne<Reference>? claimResponse = ToOne<Reference>();
   String outcome;
+  ToOne<Element>? outcomeElement = ToOne<Element>();
   String? disposition;
+  ToOne<Element>? dispositionElement = ToOne<Element>();
   List<String>? preAuthRef;
+  ToMany<Element>? preAuthRefElement = ToMany<Element>();
   ToMany<Period>? preAuthRefPeriod = ToMany<Period>();
   ToMany<ExplanationOfBenefitCareTeam>? careTeam =
       ToMany<ExplanationOfBenefitCareTeam>();
@@ -103,6 +120,7 @@ class ExplanationOfBenefit extends Resource {
   ToMany<ExplanationOfBenefitProcedure>? procedure =
       ToMany<ExplanationOfBenefitProcedure>();
   int? precedence;
+  ToOne<Element>? precedenceElement = ToOne<Element>();
   ToMany<ExplanationOfBenefitInsurance> insurance =
       ToMany<ExplanationOfBenefitInsurance>();
   ToOne<ExplanationOfBenefitAccident>? accident =
@@ -172,8 +190,10 @@ class ExplanationOfBenefitCareTeam {
     this.extension_,
     this.modifierExtension,
     required this.sequence,
+    this.sequenceElement,
     required this.provider,
     this.responsible,
+    this.responsibleElement,
     this.role,
     this.qualification,
   });
@@ -184,8 +204,10 @@ class ExplanationOfBenefitCareTeam {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   int sequence;
+  ToOne<Element>? sequenceElement = ToOne<Element>();
   ToOne<Reference> provider = ToOne<Reference>();
   bool? responsible;
+  ToOne<Element>? responsibleElement = ToOne<Element>();
   ToOne<CodeableConcept>? role = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? qualification = ToOne<CodeableConcept>();
 }
@@ -197,12 +219,16 @@ class ExplanationOfBenefitSupportingInfo {
     this.extension_,
     this.modifierExtension,
     required this.sequence,
+    this.sequenceElement,
     required this.category,
     this.code,
     this.timingDate,
+    this.timingDateElement,
     this.timingPeriod,
     this.valueBoolean,
+    this.valueBooleanElement,
     this.valueString,
+    this.valueStringElement,
     this.valueQuantity,
     this.valueAttachment,
     this.valueReference,
@@ -215,12 +241,16 @@ class ExplanationOfBenefitSupportingInfo {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   int sequence;
+  ToOne<Element>? sequenceElement = ToOne<Element>();
   ToOne<CodeableConcept> category = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? code = ToOne<CodeableConcept>();
   String? timingDate;
+  ToOne<Element>? timingDateElement = ToOne<Element>();
   ToOne<Period>? timingPeriod = ToOne<Period>();
   bool? valueBoolean;
+  ToOne<Element>? valueBooleanElement = ToOne<Element>();
   String? valueString;
+  ToOne<Element>? valueStringElement = ToOne<Element>();
   ToOne<Quantity>? valueQuantity = ToOne<Quantity>();
   ToOne<Attachment>? valueAttachment = ToOne<Attachment>();
   ToOne<Reference>? valueReference = ToOne<Reference>();
@@ -234,6 +264,7 @@ class ExplanationOfBenefitDiagnosis {
     this.extension_,
     this.modifierExtension,
     required this.sequence,
+    this.sequenceElement,
     this.diagnosisCodeableConcept,
     this.diagnosisReference,
     this.type,
@@ -247,6 +278,7 @@ class ExplanationOfBenefitDiagnosis {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   int sequence;
+  ToOne<Element>? sequenceElement = ToOne<Element>();
   ToOne<CodeableConcept>? diagnosisCodeableConcept = ToOne<CodeableConcept>();
   ToOne<Reference>? diagnosisReference = ToOne<Reference>();
   ToMany<CodeableConcept>? type = ToMany<CodeableConcept>();
@@ -261,8 +293,10 @@ class ExplanationOfBenefitProcedure {
     this.extension_,
     this.modifierExtension,
     required this.sequence,
+    this.sequenceElement,
     this.type,
     this.date,
+    this.dateElement,
     this.procedureCodeableConcept,
     this.procedureReference,
     this.udi,
@@ -274,8 +308,10 @@ class ExplanationOfBenefitProcedure {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   int sequence;
+  ToOne<Element>? sequenceElement = ToOne<Element>();
   ToMany<CodeableConcept>? type = ToMany<CodeableConcept>();
   String? date;
+  ToOne<Element>? dateElement = ToOne<Element>();
   ToOne<CodeableConcept>? procedureCodeableConcept = ToOne<CodeableConcept>();
   ToOne<Reference>? procedureReference = ToOne<Reference>();
   ToMany<Reference>? udi = ToMany<Reference>();
@@ -288,8 +324,10 @@ class ExplanationOfBenefitInsurance {
     this.extension_,
     this.modifierExtension,
     required this.focal,
+    this.focalElement,
     required this.coverage,
     this.preAuthRef,
+    this.preAuthRefElement,
   });
 
   @Id()
@@ -298,8 +336,10 @@ class ExplanationOfBenefitInsurance {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   bool focal;
+  ToOne<Element>? focalElement = ToOne<Element>();
   ToOne<Reference> coverage = ToOne<Reference>();
   List<String>? preAuthRef;
+  ToMany<Element>? preAuthRefElement = ToMany<Element>();
 }
 
 @Entity()
@@ -309,6 +349,7 @@ class ExplanationOfBenefitAccident {
     this.extension_,
     this.modifierExtension,
     this.date,
+    this.dateElement,
     this.type,
     this.locationAddress,
     this.locationReference,
@@ -320,6 +361,7 @@ class ExplanationOfBenefitAccident {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   String? date;
+  ToOne<Element>? dateElement = ToOne<Element>();
   ToOne<CodeableConcept>? type = ToOne<CodeableConcept>();
   ToOne<Address>? locationAddress = ToOne<Address>();
   ToOne<Reference>? locationReference = ToOne<Reference>();
@@ -332,16 +374,22 @@ class ExplanationOfBenefitItem {
     this.extension_,
     this.modifierExtension,
     required this.sequence,
+    this.sequenceElement,
     this.careTeamSequence,
+    this.careTeamSequenceElement,
     this.diagnosisSequence,
+    this.diagnosisSequenceElement,
     this.procedureSequence,
+    this.procedureSequenceElement,
     this.informationSequence,
+    this.informationSequenceElement,
     this.revenue,
     this.category,
     required this.productOrService,
     this.modifier,
     this.programCode,
     this.servicedDate,
+    this.servicedDateElement,
     this.servicedPeriod,
     this.locationCodeableConcept,
     this.locationAddress,
@@ -349,12 +397,14 @@ class ExplanationOfBenefitItem {
     this.quantity,
     this.unitPrice,
     this.factor,
+    this.factorElement,
     this.net,
     this.udi,
     this.bodySite,
     this.subSite,
     this.encounter,
     this.noteNumber,
+    this.noteNumberElement,
     this.adjudication,
     this.detail,
   });
@@ -365,16 +415,22 @@ class ExplanationOfBenefitItem {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   int sequence;
+  ToOne<Element>? sequenceElement = ToOne<Element>();
   List<int>? careTeamSequence;
+  ToMany<Element>? careTeamSequenceElement = ToMany<Element>();
   List<int>? diagnosisSequence;
+  ToMany<Element>? diagnosisSequenceElement = ToMany<Element>();
   List<int>? procedureSequence;
+  ToMany<Element>? procedureSequenceElement = ToMany<Element>();
   List<int>? informationSequence;
+  ToMany<Element>? informationSequenceElement = ToMany<Element>();
   ToOne<CodeableConcept>? revenue = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? category = ToOne<CodeableConcept>();
   ToOne<CodeableConcept> productOrService = ToOne<CodeableConcept>();
   ToMany<CodeableConcept>? modifier = ToMany<CodeableConcept>();
   ToMany<CodeableConcept>? programCode = ToMany<CodeableConcept>();
   String? servicedDate;
+  ToOne<Element>? servicedDateElement = ToOne<Element>();
   ToOne<Period>? servicedPeriod = ToOne<Period>();
   ToOne<CodeableConcept>? locationCodeableConcept = ToOne<CodeableConcept>();
   ToOne<Address>? locationAddress = ToOne<Address>();
@@ -382,12 +438,14 @@ class ExplanationOfBenefitItem {
   ToOne<Quantity>? quantity = ToOne<Quantity>();
   ToOne<Money>? unitPrice = ToOne<Money>();
   double? factor;
+  ToOne<Element>? factorElement = ToOne<Element>();
   ToOne<Money>? net = ToOne<Money>();
   ToMany<Reference>? udi = ToMany<Reference>();
   ToOne<CodeableConcept>? bodySite = ToOne<CodeableConcept>();
   ToMany<CodeableConcept>? subSite = ToMany<CodeableConcept>();
   ToMany<Reference>? encounter = ToMany<Reference>();
   List<int>? noteNumber;
+  ToMany<Element>? noteNumberElement = ToMany<Element>();
   ToMany<ExplanationOfBenefitAdjudication>? adjudication =
       ToMany<ExplanationOfBenefitAdjudication>();
   ToMany<ExplanationOfBenefitDetail>? detail =
@@ -404,6 +462,7 @@ class ExplanationOfBenefitAdjudication {
     this.reason,
     this.amount,
     this.value,
+    this.valueElement,
   });
 
   @Id()
@@ -415,6 +474,7 @@ class ExplanationOfBenefitAdjudication {
   ToOne<CodeableConcept>? reason = ToOne<CodeableConcept>();
   ToOne<Money>? amount = ToOne<Money>();
   double? value;
+  ToOne<Element>? valueElement = ToOne<Element>();
 }
 
 @Entity()
@@ -424,6 +484,7 @@ class ExplanationOfBenefitDetail {
     this.extension_,
     this.modifierExtension,
     required this.sequence,
+    this.sequenceElement,
     this.revenue,
     this.category,
     required this.productOrService,
@@ -432,9 +493,11 @@ class ExplanationOfBenefitDetail {
     this.quantity,
     this.unitPrice,
     this.factor,
+    this.factorElement,
     this.net,
     this.udi,
     this.noteNumber,
+    this.noteNumberElement,
     this.adjudication,
     this.subDetail,
   });
@@ -445,6 +508,7 @@ class ExplanationOfBenefitDetail {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   int sequence;
+  ToOne<Element>? sequenceElement = ToOne<Element>();
   ToOne<CodeableConcept>? revenue = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? category = ToOne<CodeableConcept>();
   ToOne<CodeableConcept> productOrService = ToOne<CodeableConcept>();
@@ -453,9 +517,11 @@ class ExplanationOfBenefitDetail {
   ToOne<Quantity>? quantity = ToOne<Quantity>();
   ToOne<Money>? unitPrice = ToOne<Money>();
   double? factor;
+  ToOne<Element>? factorElement = ToOne<Element>();
   ToOne<Money>? net = ToOne<Money>();
   ToMany<Reference>? udi = ToMany<Reference>();
   List<int>? noteNumber;
+  ToMany<Element>? noteNumberElement = ToMany<Element>();
   ToMany<ExplanationOfBenefitAdjudication>? adjudication =
       ToMany<ExplanationOfBenefitAdjudication>();
   ToMany<ExplanationOfBenefitSubDetail>? subDetail =
@@ -469,6 +535,7 @@ class ExplanationOfBenefitSubDetail {
     this.extension_,
     this.modifierExtension,
     required this.sequence,
+    this.sequenceElement,
     this.revenue,
     this.category,
     required this.productOrService,
@@ -477,9 +544,11 @@ class ExplanationOfBenefitSubDetail {
     this.quantity,
     this.unitPrice,
     this.factor,
+    this.factorElement,
     this.net,
     this.udi,
     this.noteNumber,
+    this.noteNumberElement,
     this.adjudication,
   });
 
@@ -489,6 +558,7 @@ class ExplanationOfBenefitSubDetail {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   int sequence;
+  ToOne<Element>? sequenceElement = ToOne<Element>();
   ToOne<CodeableConcept>? revenue = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? category = ToOne<CodeableConcept>();
   ToOne<CodeableConcept> productOrService = ToOne<CodeableConcept>();
@@ -497,9 +567,11 @@ class ExplanationOfBenefitSubDetail {
   ToOne<Quantity>? quantity = ToOne<Quantity>();
   ToOne<Money>? unitPrice = ToOne<Money>();
   double? factor;
+  ToOne<Element>? factorElement = ToOne<Element>();
   ToOne<Money>? net = ToOne<Money>();
   ToMany<Reference>? udi = ToMany<Reference>();
   List<int>? noteNumber;
+  ToMany<Element>? noteNumberElement = ToMany<Element>();
   ToMany<ExplanationOfBenefitAdjudication>? adjudication =
       ToMany<ExplanationOfBenefitAdjudication>();
 }
@@ -511,13 +583,17 @@ class ExplanationOfBenefitAddItem {
     this.extension_,
     this.modifierExtension,
     this.itemSequence,
+    this.itemSequenceElement,
     this.detailSequence,
+    this.detailSequenceElement,
     this.subDetailSequence,
+    this.subDetailSequenceElement,
     this.provider,
     required this.productOrService,
     this.modifier,
     this.programCode,
     this.servicedDate,
+    this.servicedDateElement,
     this.servicedPeriod,
     this.locationCodeableConcept,
     this.locationAddress,
@@ -525,10 +601,12 @@ class ExplanationOfBenefitAddItem {
     this.quantity,
     this.unitPrice,
     this.factor,
+    this.factorElement,
     this.net,
     this.bodySite,
     this.subSite,
     this.noteNumber,
+    this.noteNumberElement,
     this.adjudication,
     this.detail,
   });
@@ -539,13 +617,17 @@ class ExplanationOfBenefitAddItem {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   List<int>? itemSequence;
+  ToMany<Element>? itemSequenceElement = ToMany<Element>();
   List<int>? detailSequence;
+  ToMany<Element>? detailSequenceElement = ToMany<Element>();
   List<int>? subDetailSequence;
+  ToMany<Element>? subDetailSequenceElement = ToMany<Element>();
   ToMany<Reference>? provider = ToMany<Reference>();
   ToOne<CodeableConcept> productOrService = ToOne<CodeableConcept>();
   ToMany<CodeableConcept>? modifier = ToMany<CodeableConcept>();
   ToMany<CodeableConcept>? programCode = ToMany<CodeableConcept>();
   String? servicedDate;
+  ToOne<Element>? servicedDateElement = ToOne<Element>();
   ToOne<Period>? servicedPeriod = ToOne<Period>();
   ToOne<CodeableConcept>? locationCodeableConcept = ToOne<CodeableConcept>();
   ToOne<Address>? locationAddress = ToOne<Address>();
@@ -553,10 +635,12 @@ class ExplanationOfBenefitAddItem {
   ToOne<Quantity>? quantity = ToOne<Quantity>();
   ToOne<Money>? unitPrice = ToOne<Money>();
   double? factor;
+  ToOne<Element>? factorElement = ToOne<Element>();
   ToOne<Money>? net = ToOne<Money>();
   ToOne<CodeableConcept>? bodySite = ToOne<CodeableConcept>();
   ToMany<CodeableConcept>? subSite = ToMany<CodeableConcept>();
   List<int>? noteNumber;
+  ToMany<Element>? noteNumberElement = ToMany<Element>();
   ToMany<ExplanationOfBenefitAdjudication>? adjudication =
       ToMany<ExplanationOfBenefitAdjudication>();
   ToMany<ExplanationOfBenefitDetail>? detail =
@@ -574,8 +658,10 @@ class ExplanationOfBenefitDetail1 {
     this.quantity,
     this.unitPrice,
     this.factor,
+    this.factorElement,
     this.net,
     this.noteNumber,
+    this.noteNumberElement,
     this.adjudication,
     this.subDetail,
   });
@@ -590,8 +676,10 @@ class ExplanationOfBenefitDetail1 {
   ToOne<Quantity>? quantity = ToOne<Quantity>();
   ToOne<Money>? unitPrice = ToOne<Money>();
   double? factor;
+  ToOne<Element>? factorElement = ToOne<Element>();
   ToOne<Money>? net = ToOne<Money>();
   List<int>? noteNumber;
+  ToMany<Element>? noteNumberElement = ToMany<Element>();
   ToMany<ExplanationOfBenefitAdjudication>? adjudication =
       ToMany<ExplanationOfBenefitAdjudication>();
   ToMany<ExplanationOfBenefitSubDetail>? subDetail =
@@ -609,8 +697,10 @@ class ExplanationOfBenefitSubDetail1 {
     this.quantity,
     this.unitPrice,
     this.factor,
+    this.factorElement,
     this.net,
     this.noteNumber,
+    this.noteNumberElement,
     this.adjudication,
   });
 
@@ -624,8 +714,10 @@ class ExplanationOfBenefitSubDetail1 {
   ToOne<Quantity>? quantity = ToOne<Quantity>();
   ToOne<Money>? unitPrice = ToOne<Money>();
   double? factor;
+  ToOne<Element>? factorElement = ToOne<Element>();
   ToOne<Money>? net = ToOne<Money>();
   List<int>? noteNumber;
+  ToMany<Element>? noteNumberElement = ToMany<Element>();
   ToMany<ExplanationOfBenefitAdjudication>? adjudication =
       ToMany<ExplanationOfBenefitAdjudication>();
 }
@@ -659,6 +751,7 @@ class ExplanationOfBenefitPayment {
     this.adjustment,
     this.adjustmentReason,
     this.date,
+    this.dateElement,
     this.amount,
     this.identifier,
   });
@@ -672,6 +765,7 @@ class ExplanationOfBenefitPayment {
   ToOne<Money>? adjustment = ToOne<Money>();
   ToOne<CodeableConcept>? adjustmentReason = ToOne<CodeableConcept>();
   String? date;
+  ToOne<Element>? dateElement = ToOne<Element>();
   ToOne<Money>? amount = ToOne<Money>();
   ToOne<Identifier>? identifier = ToOne<Identifier>();
 }
@@ -683,8 +777,11 @@ class ExplanationOfBenefitProcessNote {
     this.extension_,
     this.modifierExtension,
     this.number,
+    this.numberElement,
     this.type,
+    this.typeElement,
     this.text,
+    this.textElement,
     this.language,
   });
 
@@ -694,8 +791,11 @@ class ExplanationOfBenefitProcessNote {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   int? number;
+  ToOne<Element>? numberElement = ToOne<Element>();
   String? type;
+  ToOne<Element>? typeElement = ToOne<Element>();
   String? text;
+  ToOne<Element>? textElement = ToOne<Element>();
   ToOne<CodeableConcept>? language = ToOne<CodeableConcept>();
 }
 
@@ -707,8 +807,11 @@ class ExplanationOfBenefitBenefitBalance {
     this.modifierExtension,
     required this.category,
     this.excluded,
+    this.excludedElement,
     this.name,
+    this.nameElement,
     this.description,
+    this.descriptionElement,
     this.network,
     this.unit,
     this.term,
@@ -722,8 +825,11 @@ class ExplanationOfBenefitBenefitBalance {
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   ToOne<CodeableConcept> category = ToOne<CodeableConcept>();
   bool? excluded;
+  ToOne<Element>? excludedElement = ToOne<Element>();
   String? name;
+  ToOne<Element>? nameElement = ToOne<Element>();
   String? description;
+  ToOne<Element>? descriptionElement = ToOne<Element>();
   ToOne<CodeableConcept>? network = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? unit = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? term = ToOne<CodeableConcept>();
@@ -739,9 +845,12 @@ class ExplanationOfBenefitFinancial {
     this.modifierExtension,
     required this.type,
     this.allowedUnsignedInt,
+    this.allowedUnsignedIntElement,
     this.allowedString,
+    this.allowedStringElement,
     this.allowedMoney,
     this.usedUnsignedInt,
+    this.usedUnsignedIntElement,
     this.usedMoney,
   });
 
@@ -752,8 +861,11 @@ class ExplanationOfBenefitFinancial {
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   ToOne<CodeableConcept> type = ToOne<CodeableConcept>();
   int? allowedUnsignedInt;
+  ToOne<Element>? allowedUnsignedIntElement = ToOne<Element>();
   String? allowedString;
+  ToOne<Element>? allowedStringElement = ToOne<Element>();
   ToOne<Money>? allowedMoney = ToOne<Money>();
   int? usedUnsignedInt;
+  ToOne<Element>? usedUnsignedIntElement = ToOne<Element>();
   ToOne<Money>? usedMoney = ToOne<Money>();
 }

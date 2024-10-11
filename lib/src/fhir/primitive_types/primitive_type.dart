@@ -40,9 +40,6 @@ abstract class PrimitiveType<T> extends FhirBase {
   @override
   dynamic toYaml() => json2yaml(toJson() as Map<String, dynamic>);
 
-  bool get isValid =>
-      _value != null || (_stringValue != null && _stringValue.isNotEmpty);
-
   @override
   bool equalsDeep(FhirBase? other) {
     return other != null &&

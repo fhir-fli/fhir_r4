@@ -1,0 +1,166 @@
+import 'package:fhir_r4/fhir_r4.dart';
+import 'package:test/test.dart';
+
+void main() {
+  group('FhirInteger64 Tests', () {
+    const int validInt = 1234567890123456;
+    const String validBigIntString = '1234567890123456789012345678901234567890';
+    final BigInt validBigInt = BigInt.parse(validBigIntString);
+    const String invalidString = 'invalid';
+    final Element element = Element(id: 'testElement'.toFhirString);
+
+    test('FhirInteger64 from int value', () {
+      final FhirInteger64 fhirInteger64 = FhirInteger64(validInt);
+      expect(fhirInteger64.value, equals(BigInt.from(validInt)));
+      expect(fhirInteger64.toString(), equals(validInt.toString()));
+      expect(fhirInteger64.toJson(), equals(validInt.toString()));
+    });
+
+    test('FhirInteger64 from BigInt value', () {
+      final FhirInteger64 fhirInteger64 = FhirInteger64(validBigInt);
+      expect(fhirInteger64.value, equals(validBigInt));
+      expect(fhirInteger64.toString(), equals(validBigInt.toString()));
+      expect(fhirInteger64.toJson(), equals(validBigInt.toString()));
+    });
+
+    test('FhirInteger64 from String value', () {
+      final FhirInteger64 fhirInteger64 = FhirInteger64(validBigIntString);
+      expect(fhirInteger64.value, equals(validBigInt));
+      expect(fhirInteger64.toString(), equals(validBigIntString));
+      expect(fhirInteger64.toJson(), equals(validBigIntString));
+    });
+
+    test('FhirInteger64 tryParse with valid int', () {
+      final FhirInteger64? fhirInteger64 = FhirInteger64.tryParse(validInt);
+      expect(fhirInteger64?.value, equals(BigInt.from(validInt)));
+    });
+
+    test('FhirInteger64 tryParse with valid BigInt', () {
+      final FhirInteger64? fhirInteger64 = FhirInteger64.tryParse(validBigInt);
+      expect(fhirInteger64?.value, equals(validBigInt));
+    });
+
+    test('FhirInteger64 tryParse with valid String', () {
+      final FhirInteger64? fhirInteger64 =
+          FhirInteger64.tryParse(validBigIntString);
+      expect(fhirInteger64?.value, equals(validBigInt));
+    });
+
+    test('FhirInteger64 tryParse with invalid input', () {
+      final FhirInteger64? fhirInteger64 =
+          FhirInteger64.tryParse(invalidString);
+      expect(fhirInteger64, isNull);
+    });
+
+    test('FhirInteger64 fromJson with valid input', () {
+      final FhirInteger64 fhirInteger64 =
+          FhirInteger64.fromJson(validBigIntString);
+      expect(fhirInteger64.value, equals(validBigInt));
+    });
+
+    test('FhirInteger64 fromJson with invalid input throws FormatException',
+        () {
+      expect(
+          () => FhirInteger64.fromJson(invalidString), throwsFormatException);
+    });
+
+    test('FhirInteger64 fromYaml with valid YAML', () {
+      final FhirInteger64 fhirInteger64 =
+          FhirInteger64.fromYaml(validBigIntString);
+      expect(fhirInteger64.value, equals(validBigInt));
+    });
+
+    test('FhirInteger64 arithmetic operations', () {
+      final FhirInteger64 fhirInt1 = FhirInteger64(BigInt.from(10));
+      final FhirInteger64 fhirInt2 = FhirInteger64(BigInt.from(3));
+
+      expect(fhirInt1 + fhirInt2, equals(FhirInteger64(BigInt.from(13))));
+      expect(fhirInt1 - fhirInt2, equals(FhirInteger64(BigInt.from(7))));
+      expect(fhirInt1 * fhirInt2, equals(FhirInteger64(BigInt.from(30))));
+      expect(fhirInt1 ~/ fhirInt2, equals(FhirInteger64(BigInt.from(3))));
+      expect(fhirInt1 % fhirInt2, equals(FhirInteger64(BigInt.from(1))));
+    });
+
+    test('FhirInteger64 bitwise operators', () {
+      final FhirInteger64 fhirInt1 =
+          FhirInteger64(BigInt.from(6)); // 110 in binary
+      final FhirInteger64 fhirInt2 =
+          FhirInteger64(BigInt.from(3)); // 011 in binary
+
+      expect(fhirInt1 & fhirInt2,
+          equals(FhirInteger64(BigInt.from(2)))); // 010 in binary
+      expect(fhirInt1 | fhirInt2,
+          equals(FhirInteger64(BigInt.from(7)))); // 111 in binary
+      expect(fhirInt1 ^ fhirInt2,
+          equals(FhirInteger64(BigInt.from(5)))); // 101 in binary
+      expect(fhirInt1 << 1,
+          equals(FhirInteger64(BigInt.from(12)))); // Left shift: 1100
+      expect(fhirInt1 >> 1,
+          equals(FhirInteger64(BigInt.from(3)))); // Right shift: 011
+    });
+
+    test('FhirInteger64 comparison operators', () {
+      final FhirInteger64 fhirInt1 = FhirInteger64(BigInt.from(5));
+      final FhirInteger64 fhirInt2 = FhirInteger64(BigInt.from(10));
+
+      expect(fhirInt1 < fhirInt2, isTrue);
+      expect(fhirInt2 > fhirInt1, isTrue);
+      expect(fhirInt1 <= fhirInt2, isTrue);
+      expect(fhirInt2 >= fhirInt1, isTrue);
+      expect(fhirInt1 == FhirInteger64(BigInt.from(5)), isTrue);
+      expect(fhirInt1.compareTo(FhirInteger64(BigInt.from(5))), equals(0));
+    });
+
+    test('FhirInteger64 utility methods', () {
+      final FhirInteger64 fhirInt = FhirInteger64(BigInt.from(-10));
+      expect(fhirInt.abs(), equals(BigInt.from(10)));
+      expect(fhirInt.pow(2), equals(BigInt.from(100)));
+      expect(fhirInt.gcd(BigInt.from(5)), equals(BigInt.from(5)));
+      expect(fhirInt.isNegative, isTrue);
+      expect(fhirInt.isEven, isTrue);
+      expect(fhirInt.isOdd, isFalse);
+      expect(fhirInt.toInt(), equals(-10));
+      expect(fhirInt.toDouble(), equals(-10.0));
+    });
+
+    test('FhirInteger64 equality and hashCode', () {
+      final FhirInteger64 fhirInt1 = FhirInteger64(BigInt.from(10));
+      final FhirInteger64 fhirInt2 = FhirInteger64(BigInt.from(10));
+      expect(fhirInt1 == fhirInt2, isTrue);
+      expect(fhirInt1.hashCode, equals(fhirInt2.hashCode));
+    });
+
+    test('FhirInteger64 cloning and copying', () {
+      final FhirInteger64 fhirInt = FhirInteger64(BigInt.from(10), element);
+      final FhirInteger64 clonedInt = fhirInt.clone();
+      expect(clonedInt.value, equals(BigInt.from(10)));
+      expect(clonedInt.element?.id, equals('testElement'));
+
+      final FhirInteger64 copiedInt =
+          fhirInt.copyWith(newValue: BigInt.from(20));
+      expect(copiedInt.value, equals(BigInt.from(20)));
+      expect(copiedInt.element?.id,
+          equals('testElement')); // Should retain element
+    });
+
+    test('FhirInteger64 toJsonString and toString', () {
+      final FhirInteger64 fhirInt = FhirInteger64(BigInt.from(100));
+      expect(fhirInt.toJsonString(), equals('100'));
+      expect(fhirInt.toString(), equals('100'));
+    });
+
+    test('FhirInteger64 with Element', () {
+      final FhirInteger64 fhirInt =
+          FhirInteger64(BigInt.from(1234567890123456), element);
+      expect(fhirInt.element?.id, equals('testElement'));
+    });
+
+    test('FhirInteger64 setElement', () {
+      final FhirInteger64 originalInt = FhirInteger64(BigInt.from(1000));
+      final FhirInteger64 updatedInt =
+          originalInt.setElement('elementName', 'newElementValue');
+      expect(updatedInt.value, equals(BigInt.from(1000)));
+      expect(updatedInt.element != originalInt.element, isTrue);
+    });
+  });
+}

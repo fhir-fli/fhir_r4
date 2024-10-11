@@ -7,7 +7,9 @@ class MedicinalProductDefinition extends Resource {
     this.id,
     this.meta,
     this.implicitRules,
+    this.implicitRulesElement,
     this.language,
+    this.languageElement,
     this.text,
     this.contained,
     this.extension_,
@@ -16,12 +18,16 @@ class MedicinalProductDefinition extends Resource {
     this.type,
     this.domain,
     this.version,
+    this.versionElement,
     this.status,
     this.statusDate,
+    this.statusDateElement,
     this.description,
+    this.descriptionElement,
     this.combinedPharmaceuticalDoseForm,
     this.route,
     this.indication,
+    this.indicationElement,
     this.legalStatusOfSupply,
     this.additionalMonitoringIndicator,
     this.specialMeasures,
@@ -47,7 +53,9 @@ class MedicinalProductDefinition extends Resource {
   ToOne<String>? id = ToOne<String>();
   ToOne<FhirMeta>? meta = ToOne<FhirMeta>();
   String? implicitRules;
+  ToOne<Element>? implicitRulesElement = ToOne<Element>();
   String? language;
+  ToOne<Element>? languageElement = ToOne<Element>();
   ToOne<Narrative>? text = ToOne<Narrative>();
   ToMany<Resource>? contained = ToMany<Resource>();
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
@@ -56,13 +64,17 @@ class MedicinalProductDefinition extends Resource {
   ToOne<CodeableConcept>? type = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? domain = ToOne<CodeableConcept>();
   String? version;
+  ToOne<Element>? versionElement = ToOne<Element>();
   ToOne<CodeableConcept>? status = ToOne<CodeableConcept>();
   String? statusDate;
+  ToOne<Element>? statusDateElement = ToOne<Element>();
   String? description;
+  ToOne<Element>? descriptionElement = ToOne<Element>();
   ToOne<CodeableConcept>? combinedPharmaceuticalDoseForm =
       ToOne<CodeableConcept>();
   ToMany<CodeableConcept>? route = ToMany<CodeableConcept>();
   String? indication;
+  ToOne<Element>? indicationElement = ToOne<Element>();
   ToOne<CodeableConcept>? legalStatusOfSupply = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? additionalMonitoringIndicator =
       ToOne<CodeableConcept>();
@@ -115,6 +127,7 @@ class MedicinalProductDefinitionName {
     this.extension_,
     this.modifierExtension,
     required this.productName,
+    this.productNameElement,
     this.type,
     this.namePart,
     this.countryLanguage,
@@ -126,6 +139,7 @@ class MedicinalProductDefinitionName {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   String productName;
+  ToOne<Element>? productNameElement = ToOne<Element>();
   ToOne<CodeableConcept>? type = ToOne<CodeableConcept>();
   ToMany<MedicinalProductDefinitionNamePart>? namePart =
       ToMany<MedicinalProductDefinitionNamePart>();
@@ -140,6 +154,7 @@ class MedicinalProductDefinitionNamePart {
     this.extension_,
     this.modifierExtension,
     required this.part_,
+    this.partElement,
     required this.type,
   });
 
@@ -149,6 +164,7 @@ class MedicinalProductDefinitionNamePart {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   String part_;
+  ToOne<Element>? partElement = ToOne<Element>();
   ToOne<CodeableConcept> type = ToOne<CodeableConcept>();
 }
 
@@ -225,7 +241,9 @@ class MedicinalProductDefinitionCharacteristic {
     this.valueCodeableConcept,
     this.valueQuantity,
     this.valueDate,
+    this.valueDateElement,
     this.valueBoolean,
+    this.valueBooleanElement,
     this.valueAttachment,
   });
 
@@ -238,6 +256,8 @@ class MedicinalProductDefinitionCharacteristic {
   ToOne<CodeableConcept>? valueCodeableConcept = ToOne<CodeableConcept>();
   ToOne<Quantity>? valueQuantity = ToOne<Quantity>();
   String? valueDate;
+  ToOne<Element>? valueDateElement = ToOne<Element>();
   bool? valueBoolean;
+  ToOne<Element>? valueBooleanElement = ToOne<Element>();
   ToOne<Attachment>? valueAttachment = ToOne<Attachment>();
 }

@@ -7,23 +7,28 @@ class MedicationKnowledge extends Resource {
     this.id,
     this.meta,
     this.implicitRules,
+    this.implicitRulesElement,
     this.language,
+    this.languageElement,
     this.text,
     this.contained,
     this.extension_,
     this.modifierExtension,
     this.code,
     this.status,
+    this.statusElement,
     this.manufacturer,
     this.doseForm,
     this.amount,
     this.synonym,
+    this.synonymElement,
     this.relatedMedicationKnowledge,
     this.associatedMedication,
     this.productType,
     this.monograph,
     this.ingredient,
     this.preparationInstruction,
+    this.preparationInstructionElement,
     this.intendedRoute,
     this.cost,
     this.monitoringProgram,
@@ -41,17 +46,21 @@ class MedicationKnowledge extends Resource {
   ToOne<String>? id = ToOne<String>();
   ToOne<FhirMeta>? meta = ToOne<FhirMeta>();
   String? implicitRules;
+  ToOne<Element>? implicitRulesElement = ToOne<Element>();
   String? language;
+  ToOne<Element>? languageElement = ToOne<Element>();
   ToOne<Narrative>? text = ToOne<Narrative>();
   ToMany<Resource>? contained = ToMany<Resource>();
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   ToOne<CodeableConcept>? code = ToOne<CodeableConcept>();
   String? status;
+  ToOne<Element>? statusElement = ToOne<Element>();
   ToOne<Reference>? manufacturer = ToOne<Reference>();
   ToOne<CodeableConcept>? doseForm = ToOne<CodeableConcept>();
   ToOne<Quantity>? amount = ToOne<Quantity>();
   List<String>? synonym;
+  ToMany<Element>? synonymElement = ToMany<Element>();
   ToMany<MedicationKnowledgeRelatedMedicationKnowledge>?
       relatedMedicationKnowledge =
       ToMany<MedicationKnowledgeRelatedMedicationKnowledge>();
@@ -62,6 +71,7 @@ class MedicationKnowledge extends Resource {
   ToMany<MedicationKnowledgeIngredient>? ingredient =
       ToMany<MedicationKnowledgeIngredient>();
   String? preparationInstruction;
+  ToOne<Element>? preparationInstructionElement = ToOne<Element>();
   ToMany<CodeableConcept>? intendedRoute = ToMany<CodeableConcept>();
   ToMany<MedicationKnowledgeCost>? cost = ToMany<MedicationKnowledgeCost>();
   ToMany<MedicationKnowledgeMonitoringProgram>? monitoringProgram =
@@ -129,6 +139,7 @@ class MedicationKnowledgeIngredient {
     this.itemCodeableConcept,
     this.itemReference,
     this.isActive,
+    this.isActiveElement,
     this.strength,
   });
 
@@ -140,6 +151,7 @@ class MedicationKnowledgeIngredient {
   ToOne<CodeableConcept>? itemCodeableConcept = ToOne<CodeableConcept>();
   ToOne<Reference>? itemReference = ToOne<Reference>();
   bool? isActive;
+  ToOne<Element>? isActiveElement = ToOne<Element>();
   ToOne<Ratio>? strength = ToOne<Ratio>();
 }
 
@@ -151,6 +163,7 @@ class MedicationKnowledgeCost {
     this.modifierExtension,
     required this.type,
     this.source,
+    this.sourceElement,
     required this.cost,
   });
 
@@ -161,6 +174,7 @@ class MedicationKnowledgeCost {
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   ToOne<CodeableConcept> type = ToOne<CodeableConcept>();
   String? source;
+  ToOne<Element>? sourceElement = ToOne<Element>();
   ToOne<Money> cost = ToOne<Money>();
 }
 
@@ -172,6 +186,7 @@ class MedicationKnowledgeMonitoringProgram {
     this.modifierExtension,
     this.type,
     this.name,
+    this.nameElement,
   });
 
   @Id()
@@ -181,6 +196,7 @@ class MedicationKnowledgeMonitoringProgram {
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   ToOne<CodeableConcept>? type = ToOne<CodeableConcept>();
   String? name;
+  ToOne<Element>? nameElement = ToOne<Element>();
 }
 
 @Entity()
@@ -236,6 +252,7 @@ class MedicationKnowledgePatientCharacteristics {
     this.characteristicCodeableConcept,
     this.characteristicQuantity,
     this.value,
+    this.valueElement,
   });
 
   @Id()
@@ -247,6 +264,7 @@ class MedicationKnowledgePatientCharacteristics {
       ToOne<CodeableConcept>();
   ToOne<Quantity>? characteristicQuantity = ToOne<Quantity>();
   List<String>? value;
+  ToMany<Element>? valueElement = ToMany<Element>();
 }
 
 @Entity()
@@ -296,8 +314,10 @@ class MedicationKnowledgeDrugCharacteristic {
     this.type,
     this.valueCodeableConcept,
     this.valueString,
+    this.valueStringElement,
     this.valueQuantity,
     this.valueBase64Binary,
+    this.valueBase64BinaryElement,
   });
 
   @Id()
@@ -308,8 +328,10 @@ class MedicationKnowledgeDrugCharacteristic {
   ToOne<CodeableConcept>? type = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? valueCodeableConcept = ToOne<CodeableConcept>();
   String? valueString;
+  ToOne<Element>? valueStringElement = ToOne<Element>();
   ToOne<Quantity>? valueQuantity = ToOne<Quantity>();
   String? valueBase64Binary;
+  ToOne<Element>? valueBase64BinaryElement = ToOne<Element>();
 }
 
 @Entity()
@@ -346,6 +368,7 @@ class MedicationKnowledgeSubstitution {
     this.modifierExtension,
     required this.type,
     required this.allowed,
+    this.allowedElement,
   });
 
   @Id()
@@ -355,6 +378,7 @@ class MedicationKnowledgeSubstitution {
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   ToOne<CodeableConcept> type = ToOne<CodeableConcept>();
   bool allowed;
+  ToOne<Element>? allowedElement = ToOne<Element>();
 }
 
 @Entity()

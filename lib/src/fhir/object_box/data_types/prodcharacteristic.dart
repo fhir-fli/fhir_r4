@@ -14,8 +14,11 @@ class ProdCharacteristic {
     this.nominalVolume,
     this.externalDiameter,
     this.shape,
+    this.shapeElement,
     this.color,
+    this.colorElement,
     this.imprint,
+    this.imprintElement,
     this.image,
     this.scoring,
   });
@@ -32,8 +35,11 @@ class ProdCharacteristic {
   ToOne<Quantity>? nominalVolume = ToOne<Quantity>();
   ToOne<Quantity>? externalDiameter = ToOne<Quantity>();
   String? shape;
+  ToOne<Element>? shapeElement = ToOne<Element>();
   List<String>? color;
+  ToMany<Element>? colorElement = ToMany<Element>();
   List<String>? imprint;
+  ToMany<Element>? imprintElement = ToMany<Element>();
   ToMany<Attachment>? image = ToMany<Attachment>();
   ToOne<CodeableConcept>? scoring = ToOne<CodeableConcept>();
 }

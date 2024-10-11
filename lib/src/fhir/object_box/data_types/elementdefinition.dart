@@ -8,41 +8,73 @@ class ElementDefinition {
     this.extension_,
     this.modifierExtension,
     required this.path,
+    this.pathElement,
     this.representation,
+    this.representationElement,
     this.sliceName,
+    this.sliceNameElement,
     this.sliceIsConstraining,
+    this.sliceIsConstrainingElement,
     this.label,
+    this.labelElement,
     this.code,
     this.slicing,
     this.short,
+    this.shortElement,
     this.definition,
+    this.definitionElement,
     this.comment,
+    this.commentElement,
     this.requirements,
+    this.requirementsElement,
     this.alias,
+    this.aliasElement,
     this.min,
+    this.minElement,
     this.max,
+    this.maxElement,
     this.base,
     this.contentReference,
+    this.contentReferenceElement,
     this.type,
     this.defaultValueBase64Binary,
+    this.defaultValueBase64BinaryElement,
     this.defaultValueBoolean,
+    this.defaultValueBooleanElement,
     this.defaultValueCanonical,
+    this.defaultValueCanonicalElement,
     this.defaultValueCode,
+    this.defaultValueCodeElement,
     this.defaultValueDate,
+    this.defaultValueDateElement,
     this.defaultValueDateTime,
+    this.defaultValueDateTimeElement,
     this.defaultValueDecimal,
+    this.defaultValueDecimalElement,
     this.defaultValueId,
+    this.defaultValueIdElement,
     this.defaultValueInstant,
+    this.defaultValueInstantElement,
     this.defaultValueInteger,
+    this.defaultValueIntegerElement,
     this.defaultValueMarkdown,
+    this.defaultValueMarkdownElement,
     this.defaultValueOid,
+    this.defaultValueOidElement,
     this.defaultValuePositiveInt,
+    this.defaultValuePositiveIntElement,
     this.defaultValueString,
+    this.defaultValueStringElement,
     this.defaultValueTime,
+    this.defaultValueTimeElement,
     this.defaultValueUnsignedInt,
+    this.defaultValueUnsignedIntElement,
     this.defaultValueUri,
+    this.defaultValueUriElement,
     this.defaultValueUrl,
+    this.defaultValueUrlElement,
     this.defaultValueUuid,
+    this.defaultValueUuidElement,
     this.defaultValueAddress,
     this.defaultValueAge,
     this.defaultValueAnnotation,
@@ -76,26 +108,47 @@ class ElementDefinition {
     this.defaultValueUsageContext,
     this.defaultValueDosage,
     this.meaningWhenMissing,
+    this.meaningWhenMissingElement,
     this.orderMeaning,
+    this.orderMeaningElement,
     this.fixedBase64Binary,
+    this.fixedBase64BinaryElement,
     this.fixedBoolean,
+    this.fixedBooleanElement,
     this.fixedCanonical,
+    this.fixedCanonicalElement,
     this.fixedCode,
+    this.fixedCodeElement,
     this.fixedDate,
+    this.fixedDateElement,
     this.fixedDateTime,
+    this.fixedDateTimeElement,
     this.fixedDecimal,
+    this.fixedDecimalElement,
     this.fixedId,
+    this.fixedIdElement,
     this.fixedInstant,
+    this.fixedInstantElement,
     this.fixedInteger,
+    this.fixedIntegerElement,
     this.fixedMarkdown,
+    this.fixedMarkdownElement,
     this.fixedOid,
+    this.fixedOidElement,
     this.fixedPositiveInt,
+    this.fixedPositiveIntElement,
     this.fixedString,
+    this.fixedStringElement,
     this.fixedTime,
+    this.fixedTimeElement,
     this.fixedUnsignedInt,
+    this.fixedUnsignedIntElement,
     this.fixedUri,
+    this.fixedUriElement,
     this.fixedUrl,
+    this.fixedUrlElement,
     this.fixedUuid,
+    this.fixedUuidElement,
     this.fixedAddress,
     this.fixedAge,
     this.fixedAnnotation,
@@ -129,24 +182,43 @@ class ElementDefinition {
     this.fixedUsageContext,
     this.fixedDosage,
     this.patternBase64Binary,
+    this.patternBase64BinaryElement,
     this.patternBoolean,
+    this.patternBooleanElement,
     this.patternCanonical,
+    this.patternCanonicalElement,
     this.patternCode,
+    this.patternCodeElement,
     this.patternDate,
+    this.patternDateElement,
     this.patternDateTime,
+    this.patternDateTimeElement,
     this.patternDecimal,
+    this.patternDecimalElement,
     this.patternId,
+    this.patternIdElement,
     this.patternInstant,
+    this.patternInstantElement,
     this.patternInteger,
+    this.patternIntegerElement,
     this.patternMarkdown,
+    this.patternMarkdownElement,
     this.patternOid,
+    this.patternOidElement,
     this.patternPositiveInt,
+    this.patternPositiveIntElement,
     this.patternString,
+    this.patternStringElement,
     this.patternTime,
+    this.patternTimeElement,
     this.patternUnsignedInt,
+    this.patternUnsignedIntElement,
     this.patternUri,
+    this.patternUriElement,
     this.patternUrl,
+    this.patternUrlElement,
     this.patternUuid,
+    this.patternUuidElement,
     this.patternAddress,
     this.patternAge,
     this.patternAnnotation,
@@ -181,30 +253,52 @@ class ElementDefinition {
     this.patternDosage,
     this.example,
     this.minValueDate,
+    this.minValueDateElement,
     this.minValueDateTime,
+    this.minValueDateTimeElement,
     this.minValueInstant,
+    this.minValueInstantElement,
     this.minValueTime,
+    this.minValueTimeElement,
     this.minValueDecimal,
+    this.minValueDecimalElement,
     this.minValueInteger,
+    this.minValueIntegerElement,
     this.minValuePositiveInt,
+    this.minValuePositiveIntElement,
     this.minValueUnsignedInt,
+    this.minValueUnsignedIntElement,
     this.minValueQuantity,
     this.maxValueDate,
+    this.maxValueDateElement,
     this.maxValueDateTime,
+    this.maxValueDateTimeElement,
     this.maxValueInstant,
+    this.maxValueInstantElement,
     this.maxValueTime,
+    this.maxValueTimeElement,
     this.maxValueDecimal,
+    this.maxValueDecimalElement,
     this.maxValueInteger,
+    this.maxValueIntegerElement,
     this.maxValuePositiveInt,
+    this.maxValuePositiveIntElement,
     this.maxValueUnsignedInt,
+    this.maxValueUnsignedIntElement,
     this.maxValueQuantity,
     this.maxLength,
+    this.maxLengthElement,
     this.condition,
+    this.conditionElement,
     this.constraint,
     this.mustSupport,
+    this.mustSupportElement,
     this.isModifier,
+    this.isModifierElement,
     this.isModifierReason,
+    this.isModifierReasonElement,
     this.isSummary,
+    this.isSummaryElement,
     this.binding,
     this.mapping,
   });
@@ -215,41 +309,73 @@ class ElementDefinition {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   String path;
+  ToOne<Element>? pathElement = ToOne<Element>();
   List<String>? representation;
+  ToMany<Element>? representationElement = ToMany<Element>();
   String? sliceName;
+  ToOne<Element>? sliceNameElement = ToOne<Element>();
   bool? sliceIsConstraining;
+  ToOne<Element>? sliceIsConstrainingElement = ToOne<Element>();
   String? label;
+  ToOne<Element>? labelElement = ToOne<Element>();
   ToMany<Coding>? code = ToMany<Coding>();
   ToOne<ElementDefinitionSlicing>? slicing = ToOne<ElementDefinitionSlicing>();
   String? short;
+  ToOne<Element>? shortElement = ToOne<Element>();
   String? definition;
+  ToOne<Element>? definitionElement = ToOne<Element>();
   String? comment;
+  ToOne<Element>? commentElement = ToOne<Element>();
   String? requirements;
+  ToOne<Element>? requirementsElement = ToOne<Element>();
   List<String>? alias;
+  ToMany<Element>? aliasElement = ToMany<Element>();
   int? min;
+  ToOne<Element>? minElement = ToOne<Element>();
   String? max;
+  ToOne<Element>? maxElement = ToOne<Element>();
   ToOne<ElementDefinitionBase>? base = ToOne<ElementDefinitionBase>();
   String? contentReference;
+  ToOne<Element>? contentReferenceElement = ToOne<Element>();
   ToMany<ElementDefinitionType>? type = ToMany<ElementDefinitionType>();
   String? defaultValueBase64Binary;
+  ToOne<Element>? defaultValueBase64BinaryElement = ToOne<Element>();
   bool? defaultValueBoolean;
+  ToOne<Element>? defaultValueBooleanElement = ToOne<Element>();
   String? defaultValueCanonical;
+  ToOne<Element>? defaultValueCanonicalElement = ToOne<Element>();
   String? defaultValueCode;
+  ToOne<Element>? defaultValueCodeElement = ToOne<Element>();
   String? defaultValueDate;
+  ToOne<Element>? defaultValueDateElement = ToOne<Element>();
   String? defaultValueDateTime;
+  ToOne<Element>? defaultValueDateTimeElement = ToOne<Element>();
   double? defaultValueDecimal;
+  ToOne<Element>? defaultValueDecimalElement = ToOne<Element>();
   String? defaultValueId;
+  ToOne<Element>? defaultValueIdElement = ToOne<Element>();
   String? defaultValueInstant;
+  ToOne<Element>? defaultValueInstantElement = ToOne<Element>();
   int? defaultValueInteger;
+  ToOne<Element>? defaultValueIntegerElement = ToOne<Element>();
   String? defaultValueMarkdown;
+  ToOne<Element>? defaultValueMarkdownElement = ToOne<Element>();
   String? defaultValueOid;
+  ToOne<Element>? defaultValueOidElement = ToOne<Element>();
   int? defaultValuePositiveInt;
+  ToOne<Element>? defaultValuePositiveIntElement = ToOne<Element>();
   String? defaultValueString;
+  ToOne<Element>? defaultValueStringElement = ToOne<Element>();
   String? defaultValueTime;
+  ToOne<Element>? defaultValueTimeElement = ToOne<Element>();
   int? defaultValueUnsignedInt;
+  ToOne<Element>? defaultValueUnsignedIntElement = ToOne<Element>();
   String? defaultValueUri;
+  ToOne<Element>? defaultValueUriElement = ToOne<Element>();
   String? defaultValueUrl;
+  ToOne<Element>? defaultValueUrlElement = ToOne<Element>();
   String? defaultValueUuid;
+  ToOne<Element>? defaultValueUuidElement = ToOne<Element>();
   ToOne<Address>? defaultValueAddress = ToOne<Address>();
   ToOne<Age>? defaultValueAge = ToOne<Age>();
   ToOne<Annotation>? defaultValueAnnotation = ToOne<Annotation>();
@@ -289,26 +415,47 @@ class ElementDefinition {
   ToOne<UsageContext>? defaultValueUsageContext = ToOne<UsageContext>();
   ToOne<Dosage>? defaultValueDosage = ToOne<Dosage>();
   String? meaningWhenMissing;
+  ToOne<Element>? meaningWhenMissingElement = ToOne<Element>();
   String? orderMeaning;
+  ToOne<Element>? orderMeaningElement = ToOne<Element>();
   String? fixedBase64Binary;
+  ToOne<Element>? fixedBase64BinaryElement = ToOne<Element>();
   bool? fixedBoolean;
+  ToOne<Element>? fixedBooleanElement = ToOne<Element>();
   String? fixedCanonical;
+  ToOne<Element>? fixedCanonicalElement = ToOne<Element>();
   String? fixedCode;
+  ToOne<Element>? fixedCodeElement = ToOne<Element>();
   String? fixedDate;
+  ToOne<Element>? fixedDateElement = ToOne<Element>();
   String? fixedDateTime;
+  ToOne<Element>? fixedDateTimeElement = ToOne<Element>();
   double? fixedDecimal;
+  ToOne<Element>? fixedDecimalElement = ToOne<Element>();
   String? fixedId;
+  ToOne<Element>? fixedIdElement = ToOne<Element>();
   String? fixedInstant;
+  ToOne<Element>? fixedInstantElement = ToOne<Element>();
   int? fixedInteger;
+  ToOne<Element>? fixedIntegerElement = ToOne<Element>();
   String? fixedMarkdown;
+  ToOne<Element>? fixedMarkdownElement = ToOne<Element>();
   String? fixedOid;
+  ToOne<Element>? fixedOidElement = ToOne<Element>();
   int? fixedPositiveInt;
+  ToOne<Element>? fixedPositiveIntElement = ToOne<Element>();
   String? fixedString;
+  ToOne<Element>? fixedStringElement = ToOne<Element>();
   String? fixedTime;
+  ToOne<Element>? fixedTimeElement = ToOne<Element>();
   int? fixedUnsignedInt;
+  ToOne<Element>? fixedUnsignedIntElement = ToOne<Element>();
   String? fixedUri;
+  ToOne<Element>? fixedUriElement = ToOne<Element>();
   String? fixedUrl;
+  ToOne<Element>? fixedUrlElement = ToOne<Element>();
   String? fixedUuid;
+  ToOne<Element>? fixedUuidElement = ToOne<Element>();
   ToOne<Address>? fixedAddress = ToOne<Address>();
   ToOne<Age>? fixedAge = ToOne<Age>();
   ToOne<Annotation>? fixedAnnotation = ToOne<Annotation>();
@@ -343,24 +490,43 @@ class ElementDefinition {
   ToOne<UsageContext>? fixedUsageContext = ToOne<UsageContext>();
   ToOne<Dosage>? fixedDosage = ToOne<Dosage>();
   String? patternBase64Binary;
+  ToOne<Element>? patternBase64BinaryElement = ToOne<Element>();
   bool? patternBoolean;
+  ToOne<Element>? patternBooleanElement = ToOne<Element>();
   String? patternCanonical;
+  ToOne<Element>? patternCanonicalElement = ToOne<Element>();
   String? patternCode;
+  ToOne<Element>? patternCodeElement = ToOne<Element>();
   String? patternDate;
+  ToOne<Element>? patternDateElement = ToOne<Element>();
   String? patternDateTime;
+  ToOne<Element>? patternDateTimeElement = ToOne<Element>();
   double? patternDecimal;
+  ToOne<Element>? patternDecimalElement = ToOne<Element>();
   String? patternId;
+  ToOne<Element>? patternIdElement = ToOne<Element>();
   String? patternInstant;
+  ToOne<Element>? patternInstantElement = ToOne<Element>();
   int? patternInteger;
+  ToOne<Element>? patternIntegerElement = ToOne<Element>();
   String? patternMarkdown;
+  ToOne<Element>? patternMarkdownElement = ToOne<Element>();
   String? patternOid;
+  ToOne<Element>? patternOidElement = ToOne<Element>();
   int? patternPositiveInt;
+  ToOne<Element>? patternPositiveIntElement = ToOne<Element>();
   String? patternString;
+  ToOne<Element>? patternStringElement = ToOne<Element>();
   String? patternTime;
+  ToOne<Element>? patternTimeElement = ToOne<Element>();
   int? patternUnsignedInt;
+  ToOne<Element>? patternUnsignedIntElement = ToOne<Element>();
   String? patternUri;
+  ToOne<Element>? patternUriElement = ToOne<Element>();
   String? patternUrl;
+  ToOne<Element>? patternUrlElement = ToOne<Element>();
   String? patternUuid;
+  ToOne<Element>? patternUuidElement = ToOne<Element>();
   ToOne<Address>? patternAddress = ToOne<Address>();
   ToOne<Age>? patternAge = ToOne<Age>();
   ToOne<Annotation>? patternAnnotation = ToOne<Annotation>();
@@ -399,31 +565,53 @@ class ElementDefinition {
   ToMany<ElementDefinitionExample>? example =
       ToMany<ElementDefinitionExample>();
   String? minValueDate;
+  ToOne<Element>? minValueDateElement = ToOne<Element>();
   String? minValueDateTime;
+  ToOne<Element>? minValueDateTimeElement = ToOne<Element>();
   String? minValueInstant;
+  ToOne<Element>? minValueInstantElement = ToOne<Element>();
   String? minValueTime;
+  ToOne<Element>? minValueTimeElement = ToOne<Element>();
   double? minValueDecimal;
+  ToOne<Element>? minValueDecimalElement = ToOne<Element>();
   int? minValueInteger;
+  ToOne<Element>? minValueIntegerElement = ToOne<Element>();
   int? minValuePositiveInt;
+  ToOne<Element>? minValuePositiveIntElement = ToOne<Element>();
   int? minValueUnsignedInt;
+  ToOne<Element>? minValueUnsignedIntElement = ToOne<Element>();
   ToOne<Quantity>? minValueQuantity = ToOne<Quantity>();
   String? maxValueDate;
+  ToOne<Element>? maxValueDateElement = ToOne<Element>();
   String? maxValueDateTime;
+  ToOne<Element>? maxValueDateTimeElement = ToOne<Element>();
   String? maxValueInstant;
+  ToOne<Element>? maxValueInstantElement = ToOne<Element>();
   String? maxValueTime;
+  ToOne<Element>? maxValueTimeElement = ToOne<Element>();
   double? maxValueDecimal;
+  ToOne<Element>? maxValueDecimalElement = ToOne<Element>();
   int? maxValueInteger;
+  ToOne<Element>? maxValueIntegerElement = ToOne<Element>();
   int? maxValuePositiveInt;
+  ToOne<Element>? maxValuePositiveIntElement = ToOne<Element>();
   int? maxValueUnsignedInt;
+  ToOne<Element>? maxValueUnsignedIntElement = ToOne<Element>();
   ToOne<Quantity>? maxValueQuantity = ToOne<Quantity>();
   int? maxLength;
+  ToOne<Element>? maxLengthElement = ToOne<Element>();
   List<String>? condition;
+  ToMany<Element>? conditionElement = ToMany<Element>();
   ToMany<ElementDefinitionConstraint>? constraint =
       ToMany<ElementDefinitionConstraint>();
   bool? mustSupport;
+  ToOne<Element>? mustSupportElement = ToOne<Element>();
   bool? isModifier;
+  ToOne<Element>? isModifierElement = ToOne<Element>();
   String? isModifierReason;
+  ToOne<Element>? isModifierReasonElement = ToOne<Element>();
   bool? isSummary;
+  ToOne<Element>? isSummaryElement = ToOne<Element>();
   ToOne<ElementDefinitionBinding>? binding = ToOne<ElementDefinitionBinding>();
   ToMany<ElementDefinitionMapping>? mapping =
       ToMany<ElementDefinitionMapping>();
@@ -436,8 +624,11 @@ class ElementDefinitionSlicing {
     this.extension_,
     this.discriminator,
     this.description,
+    this.descriptionElement,
     this.ordered,
+    this.orderedElement,
     required this.rules,
+    this.rulesElement,
   });
 
   @Id()
@@ -447,8 +638,11 @@ class ElementDefinitionSlicing {
   ToMany<ElementDefinitionDiscriminator>? discriminator =
       ToMany<ElementDefinitionDiscriminator>();
   String? description;
+  ToOne<Element>? descriptionElement = ToOne<Element>();
   bool? ordered;
+  ToOne<Element>? orderedElement = ToOne<Element>();
   String rules;
+  ToOne<Element>? rulesElement = ToOne<Element>();
 }
 
 @Entity()
@@ -457,7 +651,9 @@ class ElementDefinitionDiscriminator {
     this.id,
     this.extension_,
     required this.type,
+    this.typeElement,
     required this.path,
+    this.pathElement,
   });
 
   @Id()
@@ -465,7 +661,9 @@ class ElementDefinitionDiscriminator {
   ToOne<String>? id = ToOne<String>();
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   String type;
+  ToOne<Element>? typeElement = ToOne<Element>();
   String path;
+  ToOne<Element>? pathElement = ToOne<Element>();
 }
 
 @Entity()
@@ -474,8 +672,11 @@ class ElementDefinitionBase {
     this.id,
     this.extension_,
     required this.path,
+    this.pathElement,
     required this.min,
+    this.minElement,
     required this.max,
+    this.maxElement,
   });
 
   @Id()
@@ -483,8 +684,11 @@ class ElementDefinitionBase {
   ToOne<String>? id = ToOne<String>();
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   String path;
+  ToOne<Element>? pathElement = ToOne<Element>();
   int min;
+  ToOne<Element>? minElement = ToOne<Element>();
   String max;
+  ToOne<Element>? maxElement = ToOne<Element>();
 }
 
 @Entity()
@@ -493,10 +697,15 @@ class ElementDefinitionType {
     this.id,
     this.extension_,
     required this.code,
+    this.codeElement,
     this.profile,
+    this.profileElement,
     this.targetProfile,
+    this.targetProfileElement,
     this.aggregation,
+    this.aggregationElement,
     this.versioning,
+    this.versioningElement,
   });
 
   @Id()
@@ -504,10 +713,15 @@ class ElementDefinitionType {
   ToOne<String>? id = ToOne<String>();
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   String code;
+  ToOne<Element>? codeElement = ToOne<Element>();
   List<String>? profile;
+  ToMany<Element>? profileElement = ToMany<Element>();
   List<String>? targetProfile;
+  ToMany<Element>? targetProfileElement = ToMany<Element>();
   List<String>? aggregation;
+  ToMany<Element>? aggregationElement = ToMany<Element>();
   String? versioning;
+  ToOne<Element>? versioningElement = ToOne<Element>();
 }
 
 @Entity()
@@ -516,25 +730,45 @@ class ElementDefinitionExample {
     this.id,
     this.extension_,
     required this.label,
+    this.labelElement,
     this.valueBase64Binary,
+    this.valueBase64BinaryElement,
     this.valueBoolean,
+    this.valueBooleanElement,
     this.valueCanonical,
+    this.valueCanonicalElement,
     this.valueCode,
+    this.valueCodeElement,
     this.valueDate,
+    this.valueDateElement,
     this.valueDateTime,
+    this.valueDateTimeElement,
     this.valueDecimal,
+    this.valueDecimalElement,
     this.valueId,
+    this.valueIdElement,
     this.valueInstant,
+    this.valueInstantElement,
     this.valueInteger,
+    this.valueIntegerElement,
     this.valueMarkdown,
+    this.valueMarkdownElement,
     this.valueOid,
+    this.valueOidElement,
     this.valuePositiveInt,
+    this.valuePositiveIntElement,
     this.valueString,
+    this.valueStringElement,
     this.valueTime,
+    this.valueTimeElement,
     this.valueUnsignedInt,
+    this.valueUnsignedIntElement,
     this.valueUri,
+    this.valueUriElement,
     this.valueUrl,
+    this.valueUrlElement,
     this.valueUuid,
+    this.valueUuidElement,
     this.valueAddress,
     this.valueAge,
     this.valueAnnotation,
@@ -574,25 +808,45 @@ class ElementDefinitionExample {
   ToOne<String>? id = ToOne<String>();
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   String label;
+  ToOne<Element>? labelElement = ToOne<Element>();
   String? valueBase64Binary;
+  ToOne<Element>? valueBase64BinaryElement = ToOne<Element>();
   bool? valueBoolean;
+  ToOne<Element>? valueBooleanElement = ToOne<Element>();
   String? valueCanonical;
+  ToOne<Element>? valueCanonicalElement = ToOne<Element>();
   String? valueCode;
+  ToOne<Element>? valueCodeElement = ToOne<Element>();
   String? valueDate;
+  ToOne<Element>? valueDateElement = ToOne<Element>();
   String? valueDateTime;
+  ToOne<Element>? valueDateTimeElement = ToOne<Element>();
   double? valueDecimal;
+  ToOne<Element>? valueDecimalElement = ToOne<Element>();
   String? valueId;
+  ToOne<Element>? valueIdElement = ToOne<Element>();
   String? valueInstant;
+  ToOne<Element>? valueInstantElement = ToOne<Element>();
   int? valueInteger;
+  ToOne<Element>? valueIntegerElement = ToOne<Element>();
   String? valueMarkdown;
+  ToOne<Element>? valueMarkdownElement = ToOne<Element>();
   String? valueOid;
+  ToOne<Element>? valueOidElement = ToOne<Element>();
   int? valuePositiveInt;
+  ToOne<Element>? valuePositiveIntElement = ToOne<Element>();
   String? valueString;
+  ToOne<Element>? valueStringElement = ToOne<Element>();
   String? valueTime;
+  ToOne<Element>? valueTimeElement = ToOne<Element>();
   int? valueUnsignedInt;
+  ToOne<Element>? valueUnsignedIntElement = ToOne<Element>();
   String? valueUri;
+  ToOne<Element>? valueUriElement = ToOne<Element>();
   String? valueUrl;
+  ToOne<Element>? valueUrlElement = ToOne<Element>();
   String? valueUuid;
+  ToOne<Element>? valueUuidElement = ToOne<Element>();
   ToOne<Address>? valueAddress = ToOne<Address>();
   ToOne<Age>? valueAge = ToOne<Age>();
   ToOne<Annotation>? valueAnnotation = ToOne<Annotation>();
@@ -634,12 +888,19 @@ class ElementDefinitionConstraint {
     this.id,
     this.extension_,
     required this.key,
+    this.keyElement,
     this.requirements,
+    this.requirementsElement,
     required this.severity,
+    this.severityElement,
     required this.human,
+    this.humanElement,
     this.expression,
+    this.expressionElement,
     this.xpath,
+    this.xpathElement,
     this.source,
+    this.sourceElement,
   });
 
   @Id()
@@ -647,12 +908,19 @@ class ElementDefinitionConstraint {
   ToOne<String>? id = ToOne<String>();
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   String key;
+  ToOne<Element>? keyElement = ToOne<Element>();
   String? requirements;
+  ToOne<Element>? requirementsElement = ToOne<Element>();
   String severity;
+  ToOne<Element>? severityElement = ToOne<Element>();
   String human;
+  ToOne<Element>? humanElement = ToOne<Element>();
   String? expression;
+  ToOne<Element>? expressionElement = ToOne<Element>();
   String? xpath;
+  ToOne<Element>? xpathElement = ToOne<Element>();
   String? source;
+  ToOne<Element>? sourceElement = ToOne<Element>();
 }
 
 @Entity()
@@ -661,8 +929,11 @@ class ElementDefinitionBinding {
     this.id,
     this.extension_,
     required this.strength,
+    this.strengthElement,
     this.description,
+    this.descriptionElement,
     this.valueSet,
+    this.valueSetElement,
   });
 
   @Id()
@@ -670,8 +941,11 @@ class ElementDefinitionBinding {
   ToOne<String>? id = ToOne<String>();
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   String strength;
+  ToOne<Element>? strengthElement = ToOne<Element>();
   String? description;
+  ToOne<Element>? descriptionElement = ToOne<Element>();
   String? valueSet;
+  ToOne<Element>? valueSetElement = ToOne<Element>();
 }
 
 @Entity()
@@ -680,9 +954,13 @@ class ElementDefinitionMapping {
     this.id,
     this.extension_,
     required this.identity,
+    this.identityElement,
     this.language,
+    this.languageElement,
     required this.map,
+    this.mapElement,
     this.comment,
+    this.commentElement,
   });
 
   @Id()
@@ -690,7 +968,11 @@ class ElementDefinitionMapping {
   ToOne<String>? id = ToOne<String>();
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   String identity;
+  ToOne<Element>? identityElement = ToOne<Element>();
   String? language;
+  ToOne<Element>? languageElement = ToOne<Element>();
   String map;
+  ToOne<Element>? mapElement = ToOne<Element>();
   String? comment;
+  ToOne<Element>? commentElement = ToOne<Element>();
 }

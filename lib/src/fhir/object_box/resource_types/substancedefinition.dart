@@ -7,18 +7,22 @@ class SubstanceDefinition extends Resource {
     this.id,
     this.meta,
     this.implicitRules,
+    this.implicitRulesElement,
     this.language,
+    this.languageElement,
     this.text,
     this.contained,
     this.extension_,
     this.modifierExtension,
     this.identifier,
     this.version,
+    this.versionElement,
     this.status,
     this.classification,
     this.domain,
     this.grade,
     this.description,
+    this.descriptionElement,
     this.informationSource,
     this.note,
     this.manufacturer,
@@ -38,18 +42,22 @@ class SubstanceDefinition extends Resource {
   ToOne<String>? id = ToOne<String>();
   ToOne<FhirMeta>? meta = ToOne<FhirMeta>();
   String? implicitRules;
+  ToOne<Element>? implicitRulesElement = ToOne<Element>();
   String? language;
+  ToOne<Element>? languageElement = ToOne<Element>();
   ToOne<Narrative>? text = ToOne<Narrative>();
   ToMany<Resource>? contained = ToMany<Resource>();
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   ToMany<Identifier>? identifier = ToMany<Identifier>();
   String? version;
+  ToOne<Element>? versionElement = ToOne<Element>();
   ToOne<CodeableConcept>? status = ToOne<CodeableConcept>();
   ToMany<CodeableConcept>? classification = ToMany<CodeableConcept>();
   ToOne<CodeableConcept>? domain = ToOne<CodeableConcept>();
   ToMany<CodeableConcept>? grade = ToMany<CodeableConcept>();
   String? description;
+  ToOne<Element>? descriptionElement = ToOne<Element>();
   ToMany<Reference>? informationSource = ToMany<Reference>();
   ToMany<Annotation>? note = ToMany<Annotation>();
   ToMany<Reference>? manufacturer = ToMany<Reference>();
@@ -79,11 +87,14 @@ class SubstanceDefinitionMoiety {
     this.role,
     this.identifier,
     this.name,
+    this.nameElement,
     this.stereochemistry,
     this.opticalActivity,
     this.molecularFormula,
+    this.molecularFormulaElement,
     this.amountQuantity,
     this.amountString,
+    this.amountStringElement,
     this.measurementType,
   });
 
@@ -95,11 +106,14 @@ class SubstanceDefinitionMoiety {
   ToOne<CodeableConcept>? role = ToOne<CodeableConcept>();
   ToOne<Identifier>? identifier = ToOne<Identifier>();
   String? name;
+  ToOne<Element>? nameElement = ToOne<Element>();
   ToOne<CodeableConcept>? stereochemistry = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? opticalActivity = ToOne<CodeableConcept>();
   String? molecularFormula;
+  ToOne<Element>? molecularFormulaElement = ToOne<Element>();
   ToOne<Quantity>? amountQuantity = ToOne<Quantity>();
   String? amountString;
+  ToOne<Element>? amountStringElement = ToOne<Element>();
   ToOne<CodeableConcept>? measurementType = ToOne<CodeableConcept>();
 }
 
@@ -113,7 +127,9 @@ class SubstanceDefinitionProperty {
     this.valueCodeableConcept,
     this.valueQuantity,
     this.valueDate,
+    this.valueDateElement,
     this.valueBoolean,
+    this.valueBooleanElement,
     this.valueAttachment,
   });
 
@@ -126,7 +142,9 @@ class SubstanceDefinitionProperty {
   ToOne<CodeableConcept>? valueCodeableConcept = ToOne<CodeableConcept>();
   ToOne<Quantity>? valueQuantity = ToOne<Quantity>();
   String? valueDate;
+  ToOne<Element>? valueDateElement = ToOne<Element>();
   bool? valueBoolean;
+  ToOne<Element>? valueBooleanElement = ToOne<Element>();
   ToOne<Attachment>? valueAttachment = ToOne<Attachment>();
 }
 
@@ -160,7 +178,9 @@ class SubstanceDefinitionStructure {
     this.stereochemistry,
     this.opticalActivity,
     this.molecularFormula,
+    this.molecularFormulaElement,
     this.molecularFormulaByMoiety,
+    this.molecularFormulaByMoietyElement,
     this.molecularWeight,
     this.technique,
     this.sourceDocument,
@@ -175,7 +195,9 @@ class SubstanceDefinitionStructure {
   ToOne<CodeableConcept>? stereochemistry = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? opticalActivity = ToOne<CodeableConcept>();
   String? molecularFormula;
+  ToOne<Element>? molecularFormulaElement = ToOne<Element>();
   String? molecularFormulaByMoiety;
+  ToOne<Element>? molecularFormulaByMoietyElement = ToOne<Element>();
   ToOne<SubstanceDefinitionMolecularWeight>? molecularWeight =
       ToOne<SubstanceDefinitionMolecularWeight>();
   ToMany<CodeableConcept>? technique = ToMany<CodeableConcept>();
@@ -192,6 +214,7 @@ class SubstanceDefinitionRepresentation {
     this.modifierExtension,
     this.type,
     this.representation,
+    this.representationElement,
     this.format,
     this.document,
   });
@@ -203,6 +226,7 @@ class SubstanceDefinitionRepresentation {
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   ToOne<CodeableConcept>? type = ToOne<CodeableConcept>();
   String? representation;
+  ToOne<Element>? representationElement = ToOne<Element>();
   ToOne<CodeableConcept>? format = ToOne<CodeableConcept>();
   ToOne<Reference>? document = ToOne<Reference>();
 }
@@ -216,6 +240,7 @@ class SubstanceDefinitionCode {
     this.code,
     this.status,
     this.statusDate,
+    this.statusDateElement,
     this.note,
     this.source,
   });
@@ -228,6 +253,7 @@ class SubstanceDefinitionCode {
   ToOne<CodeableConcept>? code = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? status = ToOne<CodeableConcept>();
   String? statusDate;
+  ToOne<Element>? statusDateElement = ToOne<Element>();
   ToMany<Annotation>? note = ToMany<Annotation>();
   ToMany<Reference>? source = ToMany<Reference>();
 }
@@ -239,9 +265,11 @@ class SubstanceDefinitionName {
     this.extension_,
     this.modifierExtension,
     required this.name,
+    this.nameElement,
     this.type,
     this.status,
     this.preferred,
+    this.preferredElement,
     this.language,
     this.domain,
     this.jurisdiction,
@@ -257,9 +285,11 @@ class SubstanceDefinitionName {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToMany<FhirExtension>? modifierExtension = ToMany<FhirExtension>();
   String name;
+  ToOne<Element>? nameElement = ToOne<Element>();
   ToOne<CodeableConcept>? type = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? status = ToOne<CodeableConcept>();
   bool? preferred;
+  ToOne<Element>? preferredElement = ToOne<Element>();
   ToMany<CodeableConcept>? language = ToMany<CodeableConcept>();
   ToMany<CodeableConcept>? domain = ToMany<CodeableConcept>();
   ToMany<CodeableConcept>? jurisdiction = ToMany<CodeableConcept>();
@@ -280,6 +310,7 @@ class SubstanceDefinitionOfficial {
     this.authority,
     this.status,
     this.date,
+    this.dateElement,
   });
 
   @Id()
@@ -290,6 +321,7 @@ class SubstanceDefinitionOfficial {
   ToOne<CodeableConcept>? authority = ToOne<CodeableConcept>();
   ToOne<CodeableConcept>? status = ToOne<CodeableConcept>();
   String? date;
+  ToOne<Element>? dateElement = ToOne<Element>();
 }
 
 @Entity()
@@ -302,9 +334,11 @@ class SubstanceDefinitionRelationship {
     this.substanceDefinitionCodeableConcept,
     required this.type,
     this.isDefining,
+    this.isDefiningElement,
     this.amountQuantity,
     this.amountRatio,
     this.amountString,
+    this.amountStringElement,
     this.ratioHighLimitAmount,
     this.comparator,
     this.source,
@@ -320,9 +354,11 @@ class SubstanceDefinitionRelationship {
       ToOne<CodeableConcept>();
   ToOne<CodeableConcept> type = ToOne<CodeableConcept>();
   bool? isDefining;
+  ToOne<Element>? isDefiningElement = ToOne<Element>();
   ToOne<Quantity>? amountQuantity = ToOne<Quantity>();
   ToOne<Ratio>? amountRatio = ToOne<Ratio>();
   String? amountString;
+  ToOne<Element>? amountStringElement = ToOne<Element>();
   ToOne<Ratio>? ratioHighLimitAmount = ToOne<Ratio>();
   ToOne<CodeableConcept>? comparator = ToOne<CodeableConcept>();
   ToMany<Reference>? source = ToMany<Reference>();

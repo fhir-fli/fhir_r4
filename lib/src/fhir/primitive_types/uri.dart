@@ -71,6 +71,14 @@ class FhirUri extends PrimitiveType<Uri> {
   @override
   String toJsonString() => jsonEncode(toJson());
 
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => value.hashCode;
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) => equals(other);
+
   // Equality check, can compare against another FhirUri, Uri, or String
   @override
   bool equals(Object other) =>
@@ -102,8 +110,7 @@ class FhirUri extends PrimitiveType<Uri> {
   // Query-related methods
   String get query => value.query;
 
-  // Splitting query string into key-value pairs
-  Map<String, List<String>> splitQueryStringAll(String query,
+  static Map<String, List<String>> splitQueryStringAll(String query,
       {Encoding encoding = utf8}) {
     return Uri.splitQueryString(query, encoding: encoding).map(
         (String key, String value) => MapEntry<String, List<String>>(

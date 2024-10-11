@@ -8,11 +8,17 @@ class SampledData {
     this.extension_,
     required this.origin,
     required this.period,
+    this.periodElement,
     this.factor,
+    this.factorElement,
     this.lowerLimit,
+    this.lowerLimitElement,
     this.upperLimit,
+    this.upperLimitElement,
     required this.dimensions,
+    this.dimensionsElement,
     this.data,
+    this.dataElement,
   });
 
   @Id()
@@ -21,9 +27,15 @@ class SampledData {
   ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
   ToOne<Quantity> origin = ToOne<Quantity>();
   double period;
+  ToOne<Element>? periodElement = ToOne<Element>();
   double? factor;
+  ToOne<Element>? factorElement = ToOne<Element>();
   double? lowerLimit;
+  ToOne<Element>? lowerLimitElement = ToOne<Element>();
   double? upperLimit;
+  ToOne<Element>? upperLimitElement = ToOne<Element>();
   int dimensions;
+  ToOne<Element>? dimensionsElement = ToOne<Element>();
   String? data;
+  ToOne<Element>? dataElement = ToOne<Element>();
 }
