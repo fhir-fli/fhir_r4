@@ -7,39 +7,48 @@ void main() {
   final offset =
       timeZoneOffsetToString(DateTime(2020).timeZoneOffset.inHours.toDouble());
   test('fdtyearstring', () {
-    expect(FhirDateTime('2020').toString(), '2020');
-    expect(FhirDateTime('2020').precision, FhirDateTimePrecision.yyyy);
-    expect(FhirDateTime('2020').value, DateTime(2020));
+    expect(FhirDateTime.fromString('2020').toString(), '2020');
+    expect(
+        FhirDateTime.fromString('2020').precision, FhirDateTimePrecision.yyyy);
+    expect(FhirDateTime.fromString('2020').value, DateTime(2020));
   });
   test('fdtyearmonthstring', () {
-    expect(FhirDateTime('2020-12').toString(), '2020-12');
-    expect(FhirDateTime('2020-12').precision, FhirDateTimePrecision.yyyy_MM);
-    expect(FhirDateTime('2020-12').value, DateTime(2020, 12));
-    expect(() => FhirDateTime('2020-Bla'), returnsNormally);
-    expect(FhirDateTime('2020-Bla').isValid, false);
-    expect(FhirDateTime('2020-Bla').value, DateTime(2020));
+    expect(FhirDateTime.fromString('2020-12').toString(), '2020-12');
+    expect(FhirDateTime.fromString('2020-12').precision,
+        FhirDateTimePrecision.yyyy_MM);
+    expect(FhirDateTime.fromString('2020-12').value, DateTime(2020, 12));
+    expect(() => FhirDateTime.fromString('2020-Bla'), returnsNormally);
+    expect(FhirDateTime.fromString('2020-Bla').isValid, false);
+    expect(FhirDateTime.fromString('2020-Bla').value, DateTime(2020));
   });
   test('fdtdatetime', () {
-    expect(FhirDateTime('2018').isValid, true);
-    expect(FhirDateTime('1973-06').isValid, true);
-    expect(FhirDateTime('1905-08-23').isValid, true);
-    expect(FhirDateTime('2015-02-07T13:28:17-05:00').isValid, true);
-    expect(FhirDateTime('2017-01-01T00:00:00.000Z').isValid, true);
-    expect(FhirDateTime(DateTime.now()).precision,
+    expect(FhirDateTime.fromString('2018').isValid, true);
+    expect(FhirDateTime.fromString('1973-06').isValid, true);
+    expect(FhirDateTime.fromString('1905-08-23').isValid, true);
+    expect(FhirDateTime.fromString('2015-02-07T13:28:17-05:00').isValid, true);
+    expect(FhirDateTime.fromString('2017-01-01T00:00:00.000Z').isValid, true);
+    expect(FhirDateTime.fromDateTime(DateTime.now()).precision,
         FhirDateTimePrecision.yyyy_MM_dd_T_HH_mm_ss_SSSZZ);
-    expect(FhirDateTime(DateTime.now()).isValid, true);
-    expect(FhirDateTime(DateTime(2000)).toString(),
+    expect(FhirDateTime.fromDateTime(DateTime.now()).isValid, true);
+    expect(FhirDateTime.fromDateTime(DateTime(2000)).toString(),
         '2000-01-01T00:00:00.000$offset');
     expect(
-        FhirDateTime(FhirDate('2020')).precision, FhirDateTimePrecision.yyyy);
-    expect(FhirDateTime(FhirDate('2020-10')).precision,
+        FhirDateTime.fromString(FhirDate.fromString('2020').toString())
+            .precision,
+        FhirDateTimePrecision.yyyy);
+    expect(
+        FhirDateTime.fromString(FhirDate.fromString('2020-10').toString())
+            .precision,
         FhirDateTimePrecision.yyyy_MM);
-    expect(FhirDateTime(FhirDate('2020-10-01')).precision,
+    expect(
+        FhirDateTime.fromString(FhirDate.fromString('2020-10-01').toString())
+            .precision,
         FhirDateTimePrecision.yyyy_MM_dd);
-    final zuluTime = FhirDateTime(DateTime.utc(1973)).toString();
+    final zuluTime = FhirDateTime.fromDateTime(DateTime.utc(1973)).toString();
     expect(zuluTime.contains('Z'), true);
     final localDateTime = DateTime.parse('2015-02-07T13:28:17');
-    final localDateTimeString = FhirDateTime(localDateTime).toString();
+    final localDateTimeString =
+        FhirDateTime.fromDateTime(localDateTime).toString();
 
     /// If there's no timzeone in the input, we shouldn't have any in the output
     expect(
@@ -48,35 +57,37 @@ void main() {
   });
 
   test('dateyearstring', () {
-    expect(FhirDate('2020').toString(), '2020');
-    expect(FhirDate('2020').precision, FhirDateTimePrecision.yyyy);
-    expect(FhirDate('2020').value, DateTime(2020));
+    expect(FhirDate.fromString('2020').toString(), '2020');
+    expect(FhirDate.fromString('2020').precision, FhirDateTimePrecision.yyyy);
+    expect(FhirDate.fromString('2020').value, DateTime(2020));
   });
   test('dateyearmonthstring', () {
-    expect(FhirDate('2020-12').toString(), '2020-12');
-    expect(FhirDate('2020-12').precision, FhirDateTimePrecision.yyyy_MM);
-    expect(FhirDate('2020-12').value, DateTime(2020, 12));
-    expect(() => FhirDate('2020-Bla'), returnsNormally);
-    expect(FhirDate('2020-Bla').isValid, false);
-    expect(FhirDate('2020-Bla').value, DateTime(2020));
+    expect(FhirDate.fromString('2020-12').toString(), '2020-12');
+    expect(FhirDate.fromString('2020-12').precision,
+        FhirDateTimePrecision.yyyy_MM);
+    expect(FhirDate.fromString('2020-12').value, DateTime(2020, 12));
+    expect(() => FhirDate.fromString('2020-Bla'), returnsNormally);
+    expect(FhirDate.fromString('2020-Bla').isValid, false);
+    expect(FhirDate.fromString('2020-Bla').value, DateTime(2020));
   });
   test('date', () {
-    expect(
-        FhirDate(DateTime.now()).precision, FhirDateTimePrecision.yyyy_MM_dd);
-    expect(FhirDate(DateTime.now()).isValid, true);
-    expect(FhirDate(DateTime(2000, 10)).toString(), '2000-10-01');
+    expect(FhirDate.fromDateTime(DateTime.now()).precision,
+        FhirDateTimePrecision.yyyy_MM_dd);
+    expect(FhirDate.fromDateTime(DateTime.now()).isValid, true);
+    expect(FhirDate.fromDateTime(DateTime(2000, 10)).toString(), '2000-10-01');
   });
 
   test('instant', () {
-    expect(FhirInstant('2015-02-07T13:28:17.239+02:00').isValid, true);
-    expect(FhirInstant('2017-01-01T00:00:00Z').isValid, true);
-    expect(FhirInstant('2020-12').toJson(), '2020-12');
-    expect(FhirInstant('2020-12').isValid, false);
-    expect(FhirInstant('2020-12').value, DateTime(2020, 12));
-    expect(FhirInstant(DateTime.now()).isValid, true);
-    expect(() => FhirInstant('2020-Bla'), returnsNormally);
-    expect(FhirInstant('2020-Bla').isValid, false);
-    expect(FhirInstant('2020-Bla').value, DateTime(2020));
+    expect(
+        FhirInstant.fromString('2015-02-07T13:28:17.239+02:00').isValid, true);
+    expect(FhirInstant.fromString('2017-01-01T00:00:00Z').isValid, true);
+    expect(FhirInstant.fromString('2020-12').toJson(), '2020-12');
+    expect(FhirInstant.fromString('2020-12').isValid, false);
+    expect(FhirInstant.fromString('2020-12').value, DateTime(2020, 12));
+    expect(FhirInstant.fromDateTime(DateTime.now()).isValid, true);
+    expect(() => FhirInstant.fromString('2020-Bla'), returnsNormally);
+    expect(FhirInstant.fromString('2020-Bla').isValid, false);
+    expect(FhirInstant.fromString('2020-Bla').value, DateTime(2020));
   });
 
   test('Base64Binary', () {
@@ -98,13 +109,13 @@ void main() {
     expect(FhirBoolean(true).toString(), 'true');
     expect(FhirBoolean(true).value, true);
     expect(FhirBoolean(true).toJson(), true);
-    expect(FhirBoolean('true').toString(), 'true');
-    expect(FhirBoolean('true').value, true);
-    expect(FhirBoolean('true').toJson(), 'true');
-    expect(FhirBoolean('nope').toString(), 'nope');
-    expect(FhirBoolean('nope').value, null);
-    expect(FhirBoolean('nope').isValid, false);
-    expect(FhirBoolean('nope').toJson(), 'nope');
+    expect(FhirBoolean.tryParse('true').toString(), 'true');
+    expect(FhirBoolean.tryParse('true')?.value, true);
+    expect(FhirBoolean.tryParse('true')?.toJson(), 'true');
+    expect(FhirBoolean.tryParse('nope')?.toString(), 'nope');
+    expect(FhirBoolean.tryParse('nope')?.value, null);
+    expect(FhirBoolean.tryParse('nope')?.isValid, false);
+    expect(FhirBoolean.tryParse('nope')?.toJson(), 'nope');
   });
 
   test('Canonical', () {
@@ -143,14 +154,6 @@ void main() {
     expect(FhirDecimal(1).toString(), '1');
     expect(FhirDecimal(1).toJson(), 1);
     expect(FhirDecimal(1).value, 1.0);
-
-    /// Because Decimals aren't allowed to take in strings
-    // expect(Decimal('1.0').toString(), '1.0');
-    // expect(Decimal('1.0').toJson(), '1.0');
-    // expect(Decimal('1.0').value, 1.0);
-    // expect(Decimal('1').toString(), '1');
-    // expect(Decimal('1').toJson(), '1');
-    // expect(Decimal('1').value, 1.0);
   });
 
   test('FhirUri', () {

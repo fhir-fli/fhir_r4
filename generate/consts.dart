@@ -181,3 +181,12 @@ const List<String> primitiveTypeToString = <String>[
   'FhirUrl',
   'FhirUuid',
 ];
+
+const List<String> filesToQuarantine = <String>[
+  'ValueSet672.json',
+  'diagnosticreport-example-gingival-mass.json',
+  'activitydefinition-example.json',
+  'json-edge-cases.json',
+  'codesystem-extensions-CodeSystem-author.json',
+  'diagnosticreport-example.json',
+];

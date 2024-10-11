@@ -12,7 +12,7 @@ void main() {
     const yyyy = '2012';
     final yyyyDateTime = DateTime(2012);
     group('yyyy - 2012', () {
-      final dateyyyyFromString = FhirDate(yyyy);
+      final dateyyyyFromString = FhirDate.fromString(yyyy);
       test('dateyyyyFromString', () {
         expect(dateyyyyFromString.isValid, isTrue);
         expect(dateyyyyFromString.valueString, equals(yyyy));
@@ -20,7 +20,7 @@ void main() {
         expect(dateyyyyFromString.toJson(), equals(yyyy));
       });
       final dateyyyyFromDateTime =
-          FhirDate(yyyyDateTime, FhirDateTimePrecision.yyyy);
+          FhirDate.fromDateTime(yyyyDateTime, FhirDateTimePrecision.yyyy);
       test('dateyyyyFromDateTime', () {
         expect(dateyyyyFromDateTime.isValid, isTrue);
         expect(dateyyyyFromDateTime.valueString, equals(yyyy));
@@ -40,7 +40,7 @@ void main() {
     group('yyyyMM - 2012-01', () {
       const yyyyMM = '2012-01';
       final yyyyMMDateTime = DateTime(2012);
-      final dateyyyyMMFromString = FhirDate(yyyyMM);
+      final dateyyyyMMFromString = FhirDate.fromString(yyyyMM);
       test('dateyyyyMMFromString', () {
         expect(dateyyyyMMFromString.isValid, isTrue);
         expect(dateyyyyMMFromString.valueString, equals(yyyyMM));
@@ -48,7 +48,7 @@ void main() {
         expect(dateyyyyMMFromString.toJson(), equals(yyyyMM));
       });
       final dateyyyyMMFromDateTime =
-          FhirDate(yyyyMMDateTime, FhirDateTimePrecision.yyyy_MM);
+          FhirDate.fromDateTime(yyyyMMDateTime, FhirDateTimePrecision.yyyy_MM);
       test('dateyyyyMMFromDateTime', () {
         expect(dateyyyyMMFromDateTime.isValid, isTrue);
         expect(dateyyyyMMFromDateTime.valueString, equals(yyyyMM));
@@ -64,15 +64,15 @@ void main() {
       });
     });
     group('yyyyMMdd - 2012-01-31', () {
-      final dateyyyyMMddFromString = FhirDate(yyyyMMdd);
+      final dateyyyyMMddFromString = FhirDate.fromString(yyyyMMdd);
       test('dateyyyyMMddFromString', () {
         expect(dateyyyyMMddFromString.isValid, isTrue);
         expect(dateyyyyMMddFromString.valueString, equals(yyyyMMdd));
         expect(dateyyyyMMddFromString.valueDateTime, equals(yyyyMMddDateTime));
         expect(dateyyyyMMddFromString.toJson(), equals(yyyyMMdd));
       });
-      final dateyyyyMMddFromDateTime =
-          FhirDate(yyyyMMddDateTime, FhirDateTimePrecision.yyyy_MM_dd);
+      final dateyyyyMMddFromDateTime = FhirDate.fromDateTime(
+          yyyyMMddDateTime, FhirDateTimePrecision.yyyy_MM_dd);
       test('dateyyyyMMddFromDateTime', () {
         expect(dateyyyyMMddFromDateTime.isValid, isTrue);
         expect(dateyyyyMMddFromDateTime.valueString, equals(yyyyMMdd));
@@ -92,9 +92,9 @@ void main() {
     group('yyyyMMddT - 2012-01-31T', () {
       const yyyyMMddT = '2012-01-31T';
       final yyyyMMddTDateTime = DateTime(2012, 1, 31);
-      final dateyyyyMMddTFromString = FhirDate(yyyyMMddT);
-      final dateyyyyMMddTFromDateTime =
-          FhirDate(yyyyMMddTDateTime, FhirDateTimePrecision.yyyy_MM_dd);
+      final dateyyyyMMddTFromString = FhirDate.fromString(yyyyMMddT);
+      final dateyyyyMMddTFromDateTime = FhirDate.fromDateTime(
+          yyyyMMddTDateTime, FhirDateTimePrecision.yyyy_MM_dd);
 
       test('dateyyyyMMddTFromString', () {
         expect(dateyyyyMMddTFromString.isValid, isFalse);
@@ -115,9 +115,9 @@ void main() {
     group('yyyyMMddTZZ - 2012-01-31T$offset', () {
       final yyyyMMddTZZ = '2012-01-31T$offset';
       final yyyyMMddTZZDateTime = DateTime(2012, 1, 31);
-      final dateyyyyMMddTZZFromString = FhirDate(yyyyMMddTZZ);
-      final dateyyyyMMddTZZFromDateTime =
-          FhirDate(yyyyMMddTZZDateTime, FhirDateTimePrecision.yyyy_MM_dd);
+      final dateyyyyMMddTZZFromString = FhirDate.fromString(yyyyMMddTZZ);
+      final dateyyyyMMddTZZFromDateTime = FhirDate.fromDateTime(
+          yyyyMMddTZZDateTime, FhirDateTimePrecision.yyyy_MM_dd);
 
       test('dateyyyyMMddTZZFromString', () {
         expect(dateyyyyMMddTZZFromString.isValid, isFalse);
@@ -137,9 +137,9 @@ void main() {
     group('yyyyMMddTHH - 2012-01-31T12', () {
       const yyyyMMddTHH = '2012-01-31T12';
       final yyyyMMddTHHDateTime = DateTime(2012, 1, 31, 12);
-      final dateyyyyMMddTHHFromString = FhirDate(yyyyMMddTHH);
-      final dateyyyyMMddTHHFromDateTime =
-          FhirDate(yyyyMMddTHHDateTime, FhirDateTimePrecision.yyyy_MM_dd_T_HH);
+      final dateyyyyMMddTHHFromString = FhirDate.fromString(yyyyMMddTHH);
+      final dateyyyyMMddTHHFromDateTime = FhirDate.fromDateTime(
+          yyyyMMddTHHDateTime, FhirDateTimePrecision.yyyy_MM_dd_T_HH);
 
       test('dateyyyyMMddTHHFromString', () {
         expect(dateyyyyMMddTHHFromString.isValid, isFalse);
@@ -159,9 +159,9 @@ void main() {
     group('dateyyyyMMddTHHZ - 2012-01-31T12Z', () {
       const yyyyMMddTHHZ = '2012-01-31T12Z';
       final yyyyMMddTHHZDateTime = DateTime(2012, 1, 31, 12);
-      final dateyyyyMMddTHHZFromString = FhirDate(yyyyMMddTHHZ);
-      final dateyyyyMMddTHHZFromDateTime =
-          FhirDate(yyyyMMddTHHZDateTime, FhirDateTimePrecision.yyyy_MM_dd);
+      final dateyyyyMMddTHHZFromString = FhirDate.fromString(yyyyMMddTHHZ);
+      final dateyyyyMMddTHHZFromDateTime = FhirDate.fromDateTime(
+          yyyyMMddTHHZDateTime, FhirDateTimePrecision.yyyy_MM_dd);
 
       test('dateyyyyMMddTHHZFromString', () {
         expect(dateyyyyMMddTHHZFromString.isValid, isFalse);
@@ -181,9 +181,9 @@ void main() {
     group('yyyyMMddTHHZZ - 2012-01-31T12$offset', () {
       final yyyyMMddTHHZZ = '2012-01-31T12$offset';
       final yyyyMMddTHHZZDateTime = DateTime(2012, 1, 31, 12);
-      final dateyyyyMMddTHHZZFromString = FhirDate(yyyyMMddTHHZZ);
-      final dateyyyyMMddTHHZZFromDateTime =
-          FhirDate(yyyyMMddTHHZZDateTime, FhirDateTimePrecision.yyyy_MM_dd);
+      final dateyyyyMMddTHHZZFromString = FhirDate.fromString(yyyyMMddTHHZZ);
+      final dateyyyyMMddTHHZZFromDateTime = FhirDate.fromDateTime(
+          yyyyMMddTHHZZDateTime, FhirDateTimePrecision.yyyy_MM_dd);
 
       test('dateyyyyMMddTHHZZFromString', () {
         expect(dateyyyyMMddTHHZZFromString.isValid, isFalse);
@@ -203,9 +203,9 @@ void main() {
     group('yyyyMMddTHHmm - 2012-01-31T12:30', () {
       const yyyyMMddTHHmm = '2012-01-31T12:30';
       final yyyyMMddTHHmmDateTime = DateTime(2012, 1, 31, 12, 30);
-      final dateyyyyMMddTHHmmFromString = FhirDate(yyyyMMddTHHmm);
-      final dateyyyyMMddTHHmmFromDateTime =
-          FhirDate(yyyyMMddTHHmmDateTime, FhirDateTimePrecision.yyyy_MM_dd);
+      final dateyyyyMMddTHHmmFromString = FhirDate.fromString(yyyyMMddTHHmm);
+      final dateyyyyMMddTHHmmFromDateTime = FhirDate.fromDateTime(
+          yyyyMMddTHHmmDateTime, FhirDateTimePrecision.yyyy_MM_dd);
 
       test('dateyyyyMMddTHHmmFromString', () {
         expect(dateyyyyMMddTHHmmFromString.isValid, isFalse);
@@ -225,9 +225,9 @@ void main() {
     group('dateyyyyMMddTHHmmZ - 2012-01-31T12:30Z', () {
       const yyyyMMddTHHmmZ = '2012-01-31T12:30Z';
       final yyyyMMddTHHmmZDateTime = DateTime(2012, 1, 31, 12, 30);
-      final dateyyyyMMddTHHmmZFromString = FhirDate(yyyyMMddTHHmmZ);
-      final dateyyyyMMddTHHmmZFromDateTime =
-          FhirDate(yyyyMMddTHHmmZDateTime, FhirDateTimePrecision.yyyy_MM_dd);
+      final dateyyyyMMddTHHmmZFromString = FhirDate.fromString(yyyyMMddTHHmmZ);
+      final dateyyyyMMddTHHmmZFromDateTime = FhirDate.fromDateTime(
+          yyyyMMddTHHmmZDateTime, FhirDateTimePrecision.yyyy_MM_dd);
 
       test('dateyyyyMMddTHHmmZFromString', () {
         expect(dateyyyyMMddTHHmmZFromString.isValid, isFalse);
@@ -247,9 +247,10 @@ void main() {
     group('dateyyyyMMddTHHmmZZ - 2012-01-31T12:30$offset', () {
       final yyyyMMddTHHmmZZ = '2012-01-31T12:30$offset';
       final yyyyMMddTHHmmZZDateTime = DateTime(2012, 1, 31, 12, 30);
-      final dateyyyyMMddTHHmmZZFromString = FhirDate(yyyyMMddTHHmmZZ);
-      final dateyyyyMMddTHHmmZZFromDateTime =
-          FhirDate(yyyyMMddTHHmmZZDateTime, FhirDateTimePrecision.yyyy_MM_dd);
+      final dateyyyyMMddTHHmmZZFromString =
+          FhirDate.fromString(yyyyMMddTHHmmZZ);
+      final dateyyyyMMddTHHmmZZFromDateTime = FhirDate.fromDateTime(
+          yyyyMMddTHHmmZZDateTime, FhirDateTimePrecision.yyyy_MM_dd);
 
       test('dateyyyyMMddTHHmmZZFromString', () {
         expect(dateyyyyMMddTHHmmZZFromString.isValid, isFalse);
@@ -269,9 +270,10 @@ void main() {
     group('dateyyyyMMddTHHmmss - 2012-01-31T12:30:59', () {
       const yyyyMMddTHHmmss = '2012-01-31T12:30:59';
       final yyyyMMddTHHmmssDateTime = DateTime(2012, 1, 31, 12, 30, 59);
-      final dateyyyyMMddTHHmmssFromString = FhirDate(yyyyMMddTHHmmss);
-      final dateyyyyMMddTHHmmssFromDateTime =
-          FhirDate(yyyyMMddTHHmmssDateTime, FhirDateTimePrecision.yyyy_MM_dd);
+      final dateyyyyMMddTHHmmssFromString =
+          FhirDate.fromString(yyyyMMddTHHmmss);
+      final dateyyyyMMddTHHmmssFromDateTime = FhirDate.fromDateTime(
+          yyyyMMddTHHmmssDateTime, FhirDateTimePrecision.yyyy_MM_dd);
 
       test('dateyyyyMMddTHHmmssFromString', () {
         expect(dateyyyyMMddTHHmmssFromString.isValid, isFalse);
@@ -291,9 +293,10 @@ void main() {
     group('dateyyyyMMddTHHmmssZ - 2012-01-31T12:30:59Z', () {
       const yyyyMMddTHHmmssZ = '2012-01-31T12:30:59Z';
       final yyyyMMddTHHmmssZDateTime = DateTime(2012, 1, 31, 12, 30, 59);
-      final dateyyyyMMddTHHmmssZFromString = FhirDate(yyyyMMddTHHmmssZ);
-      final dateyyyyMMddTHHmmssZFromDateTime =
-          FhirDate(yyyyMMddTHHmmssZDateTime, FhirDateTimePrecision.yyyy_MM_dd);
+      final dateyyyyMMddTHHmmssZFromString =
+          FhirDate.fromString(yyyyMMddTHHmmssZ);
+      final dateyyyyMMddTHHmmssZFromDateTime = FhirDate.fromDateTime(
+          yyyyMMddTHHmmssZDateTime, FhirDateTimePrecision.yyyy_MM_dd);
 
       test('dateyyyyMMddTHHmmssZFromString', () {
         expect(dateyyyyMMddTHHmmssZFromString.isValid, isFalse);
@@ -314,9 +317,10 @@ void main() {
     group('yyyyMMddTHHmmssZZ - 2012-01-31T12:30:59$offset', () {
       final yyyyMMddTHHmmssZZ = '2012-01-31T12:30:59$offset';
       final yyyyMMddTHHmmssZZDateTime = DateTime(2012, 1, 31, 12, 30, 59);
-      final dateyyyyMMddTHHmmssZZFromString = FhirDate(yyyyMMddTHHmmssZZ);
-      final dateyyyyMMddTHHmmssZZFromDateTime =
-          FhirDate(yyyyMMddTHHmmssZZDateTime, FhirDateTimePrecision.yyyy_MM_dd);
+      final dateyyyyMMddTHHmmssZZFromString =
+          FhirDate.fromString(yyyyMMddTHHmmssZZ);
+      final dateyyyyMMddTHHmmssZZFromDateTime = FhirDate.fromDateTime(
+          yyyyMMddTHHmmssZZDateTime, FhirDateTimePrecision.yyyy_MM_dd);
 
       test('dateyyyyMMddTHHmmssZZFromString', () {
         expect(dateyyyyMMddTHHmmssZZFromString.isValid, isFalse);
@@ -337,8 +341,9 @@ void main() {
     group('yyyyMMddTHHmmssSSS - 2012-01-31T12:30:59.001', () {
       const yyyyMMddTHHmmssSSS = '2012-01-31T12:30:59.001';
       final yyyyMMddTHHmmssSSSDateTime = DateTime(2012, 1, 31, 12, 30, 59, 1);
-      final dateyyyyMMddTHHmmssSSSFromString = FhirDate(yyyyMMddTHHmmssSSS);
-      final dateyyyyMMddTHHmmssSSSFromDateTime = FhirDate(
+      final dateyyyyMMddTHHmmssSSSFromString =
+          FhirDate.fromString(yyyyMMddTHHmmssSSS);
+      final dateyyyyMMddTHHmmssSSSFromDateTime = FhirDate.fromDateTime(
           yyyyMMddTHHmmssSSSDateTime, FhirDateTimePrecision.yyyy_MM_dd);
       test('dateyyyyMMddTHHmmssSSSFromString', () {
         expect(dateyyyyMMddTHHmmssSSSFromString.isValid, isFalse);
@@ -360,9 +365,10 @@ void main() {
     group('yyyyMMddTHHmmssSSSZ - 2012-01-31T12:30:59.010Z', () {
       const yyyyMMddTHHmmssSSSZ = '2012-01-31T12:30:59.010Z';
       final yyyyMMddTHHmmssSSSZDateTime = DateTime(2012, 1, 31, 12, 30, 59, 10);
-      final dateyyyyMMddTHHmmssSSSZFromString = FhirDate(yyyyMMddTHHmmssSSSZ);
+      final dateyyyyMMddTHHmmssSSSZFromString =
+          FhirDate.fromString(yyyyMMddTHHmmssSSSZ);
       final dateyyyyMMddTHHmmssSSSZFromDateTime =
-          FhirDate(yyyyMMddTHHmmssSSSZDateTime);
+          FhirDate.fromDateTime(yyyyMMddTHHmmssSSSZDateTime);
 
       test('dateyyyyMMddTHHmmssSSSZFromString', () {
         expect(dateyyyyMMddTHHmmssSSSZFromString.isValid, isFalse);
@@ -385,9 +391,10 @@ void main() {
       final yyyyMMddTHHmmssSSSZZ = '2012-01-31T12:30:59.100$offset';
       final yyyyMMddTHHmmssSSSZZDateTime =
           DateTime(2012, 1, 31, 12, 30, 59, 100);
-      final dateyyyyMMddTHHmmssSSSZZFromString = FhirDate(yyyyMMddTHHmmssSSSZZ);
+      final dateyyyyMMddTHHmmssSSSZZFromString =
+          FhirDate.fromString(yyyyMMddTHHmmssSSSZZ);
       final dateyyyyMMddTHHmmssSSSZZFromDateTime =
-          FhirDate(yyyyMMddTHHmmssSSSZZDateTime);
+          FhirDate.fromDateTime(yyyyMMddTHHmmssSSSZZDateTime);
 
       test('dateyyyyMMddTHHmmssSSSZZFromString', () {
         expect(dateyyyyMMddTHHmmssSSSZZFromString.isValid, isFalse);
@@ -410,9 +417,9 @@ void main() {
     group('dateInstant - 2012-01-31T12:30:59.111$offset', () {
       final instant = '2012-01-31T12:30:59.111$offset';
       final instantDateTime = DateTime(2012, 1, 31, 12, 30, 59, 111);
-      final dateInstantFromString = FhirDate(instant);
+      final dateInstantFromString = FhirDate.fromString(instant);
       final dateInstantFromDateTime =
-          FhirDate(instantDateTime, FhirDateTimePrecision.instant);
+          FhirDate.fromDateTime(instantDateTime, FhirDateTimePrecision.instant);
 
       test('dateInstantFromString', () {
         expect(dateInstantFromString.isValid, isFalse);
@@ -430,9 +437,9 @@ void main() {
     group('DateTime - 2012-01-31T12:30:59.111111$offset', () {
       final dateTime = '2012-01-31T12:30:59.111111$offset';
       final dateTimeDateTime = DateTime(2012, 1, 31, 12, 30, 59, 111, 111);
-      final dateDateTimeFromString = FhirDate(dateTime);
-      final dateDateTimeFromDateTime =
-          FhirDate(dateTimeDateTime, FhirDateTimePrecision.dateTime);
+      final dateDateTimeFromString = FhirDate.fromString(dateTime);
+      final dateDateTimeFromDateTime = FhirDate.fromDateTime(
+          dateTimeDateTime, FhirDateTimePrecision.dateTime);
 
       test('dateDateTimeFromString', () {
         expect(dateDateTimeFromString.isValid, isFalse);

@@ -11,7 +11,7 @@ void main() {
     final yyyy = '2012';
     final yyyyDateTime = DateTime(2012);
     group('yyyy - 2012', () {
-      final dateyyyyFromString = FhirDateTime(yyyy);
+      final dateyyyyFromString = FhirDateTime.fromString(yyyy);
       test('dateyyyyFromString', () {
         expect(dateyyyyFromString.isValid, isTrue);
         expect(dateyyyyFromString.valueString, equals(yyyy));
@@ -19,7 +19,7 @@ void main() {
         expect(dateyyyyFromString.toJson(), equals(yyyy));
       });
       final dateyyyyFromDateTime =
-          FhirDateTime(yyyyDateTime, FhirDateTimePrecision.yyyy);
+          FhirDateTime.fromDateTime(yyyyDateTime, FhirDateTimePrecision.yyyy);
       test('dateyyyyFromDateTime', () {
         expect(dateyyyyFromDateTime.isValid, isTrue);
         expect(dateyyyyFromDateTime.valueString, equals(yyyy));
@@ -39,15 +39,15 @@ void main() {
     group('yyyyMM - 2012-01', () {
       final yyyyMM = '2012-01';
       final yyyyMMDateTime = DateTime(2012);
-      final dateyyyyMMFromString = FhirDateTime(yyyyMM);
+      final dateyyyyMMFromString = FhirDateTime.fromString(yyyyMM);
       test('dateyyyyMMFromString', () {
         expect(dateyyyyMMFromString.isValid, isTrue);
         expect(dateyyyyMMFromString.valueString, equals(yyyyMM));
         expect(dateyyyyMMFromString.valueDateTime, equals(yyyyMMDateTime));
         expect(dateyyyyMMFromString.toJson(), equals(yyyyMM));
       });
-      final dateyyyyMMFromDateTime =
-          FhirDateTime(yyyyMMDateTime, FhirDateTimePrecision.yyyy_MM);
+      final dateyyyyMMFromDateTime = FhirDateTime.fromDateTime(
+          yyyyMMDateTime, FhirDateTimePrecision.yyyy_MM);
       test('dateyyyyMMFromDateTime', () {
         expect(dateyyyyMMFromDateTime.isValid, isTrue);
         expect(dateyyyyMMFromDateTime.valueString, equals(yyyyMM));
@@ -65,14 +65,14 @@ void main() {
     group('yyyyMMdd - 2012-01-31', () {
       final yyyyMMdd = '2012-01-31';
       final yyyyMMddDateTime = DateTime(2012, 1, 31);
-      final dateyyyyMMddFromString = FhirDateTime(yyyyMMdd);
+      final dateyyyyMMddFromString = FhirDateTime.fromString(yyyyMMdd);
       test('dateyyyyMMddFromString', () {
         expect(dateyyyyMMddFromString.isValid, isTrue);
         expect(dateyyyyMMddFromString.valueString, equals(yyyyMMdd));
         expect(dateyyyyMMddFromString.valueDateTime, equals(yyyyMMddDateTime));
         expect(dateyyyyMMddFromString.toJson(), equals(yyyyMMdd));
       });
-      final dateyyyyMMddFromDateTime = FhirDateTime(
+      final dateyyyyMMddFromDateTime = FhirDateTime.fromDateTime(
           yyyyMMddDateTime, FhirDateTimePrecision.yyyy_MM_dd_T_HH_mm_ss_SSS);
       test('dateyyyyMMddFromDateTime', () {
         expect(dateyyyyMMddFromDateTime.isValid, isTrue);
@@ -95,8 +95,8 @@ void main() {
     group('yyyyMMddT - 2012-01-31T', () {
       final yyyyMMddT = '2012-01-31T';
       final yyyyMMddTDateTime = DateTime(2012, 1, 31);
-      final dateyyyyMMddTFromString = FhirDateTime(yyyyMMddT);
-      final dateyyyyMMddTFromDateTime = FhirDateTime(
+      final dateyyyyMMddTFromString = FhirDateTime.fromString(yyyyMMddT);
+      final dateyyyyMMddTFromDateTime = FhirDateTime.fromDateTime(
           yyyyMMddTDateTime, FhirDateTimePrecision.yyyy_MM_dd_T_HH_mm_ss_SSS);
       final dateyyyyMMddTFromUnits =
           FhirDateTime.fromUnits(year: 2012, month: 1, day: 31);
@@ -130,8 +130,8 @@ void main() {
     group('yyyyMMddTZZ - 2012-01-31T$offset', () {
       final yyyyMMddTZZ = '2012-01-31T$offset';
       final yyyyMMddTZZDateTime = DateTime(2012, 1, 31);
-      final dateyyyyMMddTZZFromString = FhirDateTime(yyyyMMddTZZ);
-      final dateyyyyMMddTZZFromDateTime = FhirDateTime(
+      final dateyyyyMMddTZZFromString = FhirDateTime.fromString(yyyyMMddTZZ);
+      final dateyyyyMMddTZZFromDateTime = FhirDateTime.fromDateTime(
           yyyyMMddTZZDateTime, FhirDateTimePrecision.yyyy_MM_dd_T_ZZ);
       final dateyyyyMMddTZZFromUnits = FhirDateTime.fromUnits(
           year: 2012,
@@ -164,8 +164,8 @@ void main() {
     group('yyyyMMddTHH - 2012-01-31T12', () {
       final yyyyMMddTHH = '2012-01-31T12';
       final yyyyMMddTHHDateTime = DateTime(2012, 1, 31, 12);
-      final dateyyyyMMddTHHFromString = FhirDateTime(yyyyMMddTHH);
-      final dateyyyyMMddTHHFromDateTime = FhirDateTime(
+      final dateyyyyMMddTHHFromString = FhirDateTime.fromString(yyyyMMddTHH);
+      final dateyyyyMMddTHHFromDateTime = FhirDateTime.fromDateTime(
           yyyyMMddTHHDateTime, FhirDateTimePrecision.yyyy_MM_dd_T_HH);
       final dateyyyyMMddTHHFromUnits =
           FhirDateTime.fromUnits(year: 2012, month: 1, day: 31, hour: 12);
@@ -195,8 +195,8 @@ void main() {
     group('dateyyyyMMddTHHZ - 2012-01-31T12Z', () {
       final yyyyMMddTHHZ = '2012-01-31T12Z';
       final yyyyMMddTHHZDateTime = DateTime(2012, 1, 31, 12);
-      final dateyyyyMMddTHHZFromString = FhirDateTime(yyyyMMddTHHZ);
-      final dateyyyyMMddTHHZFromDateTime = FhirDateTime(
+      final dateyyyyMMddTHHZFromString = FhirDateTime.fromString(yyyyMMddTHHZ);
+      final dateyyyyMMddTHHZFromDateTime = FhirDateTime.fromDateTime(
           yyyyMMddTHHZDateTime, FhirDateTimePrecision.yyyy_MM_dd_T_HH_Z);
       final dateyyyyMMddTHHZFromUnits = FhirDateTime.fromUnits(
           year: 2012, month: 1, day: 31, hour: 12, isUtc: true);
@@ -226,8 +226,9 @@ void main() {
     group('yyyyMMddTHHZZ - 2012-01-31T12$offset', () {
       final yyyyMMddTHHZZ = '2012-01-31T12$offset';
       final yyyyMMddTHHZZDateTime = DateTime(2012, 1, 31, 12);
-      final dateyyyyMMddTHHZZFromString = FhirDateTime(yyyyMMddTHHZZ);
-      final dateyyyyMMddTHHZZFromDateTime = FhirDateTime(
+      final dateyyyyMMddTHHZZFromString =
+          FhirDateTime.fromString(yyyyMMddTHHZZ);
+      final dateyyyyMMddTHHZZFromDateTime = FhirDateTime.fromDateTime(
           yyyyMMddTHHZZDateTime, FhirDateTimePrecision.yyyy_MM_dd_T_HHZZ);
       final dateyyyyMMddTHHZZFromUnits = FhirDateTime.fromUnits(
           year: 2012,
@@ -262,8 +263,9 @@ void main() {
     group('yyyyMMddTHHmm - 2012-01-31T12:30', () {
       final yyyyMMddTHHmm = '2012-01-31T12:30';
       final yyyyMMddTHHmmDateTime = DateTime(2012, 1, 31, 12, 30);
-      final dateyyyyMMddTHHmmFromString = FhirDateTime(yyyyMMddTHHmm);
-      final dateyyyyMMddTHHmmFromDateTime = FhirDateTime(
+      final dateyyyyMMddTHHmmFromString =
+          FhirDateTime.fromString(yyyyMMddTHHmm);
+      final dateyyyyMMddTHHmmFromDateTime = FhirDateTime.fromDateTime(
           yyyyMMddTHHmmDateTime, FhirDateTimePrecision.yyyy_MM_dd_T_HH_mm);
       final dateyyyyMMddTHHmmFromUnits = FhirDateTime.fromUnits(
           year: 2012, month: 1, day: 31, hour: 12, minute: 30);
@@ -294,8 +296,9 @@ void main() {
     group('dateyyyyMMddTHHmmZ - 2012-01-31T12:30Z', () {
       final yyyyMMddTHHmmZ = '2012-01-31T12:30Z';
       final yyyyMMddTHHmmZDateTime = DateTime(2012, 1, 31, 12, 30);
-      final dateyyyyMMddTHHmmZFromString = FhirDateTime(yyyyMMddTHHmmZ);
-      final dateyyyyMMddTHHmmZFromDateTime = FhirDateTime(
+      final dateyyyyMMddTHHmmZFromString =
+          FhirDateTime.fromString(yyyyMMddTHHmmZ);
+      final dateyyyyMMddTHHmmZFromDateTime = FhirDateTime.fromDateTime(
           yyyyMMddTHHmmZDateTime, FhirDateTimePrecision.yyyy_MM_dd_T_HH_mm_Z);
       final dateyyyyMMddTHHmmZFromUnits = FhirDateTime.fromUnits(
           year: 2012, month: 1, day: 31, hour: 12, minute: 30, isUtc: true);
@@ -327,8 +330,9 @@ void main() {
     group('dateyyyyMMddTHHmmZZ - 2012-01-31T12:30$offset', () {
       final yyyyMMddTHHmmZZ = '2012-01-31T12:30$offset';
       final yyyyMMddTHHmmZZDateTime = DateTime(2012, 1, 31, 12, 30);
-      final dateyyyyMMddTHHmmZZFromString = FhirDateTime(yyyyMMddTHHmmZZ);
-      final dateyyyyMMddTHHmmZZFromDateTime = FhirDateTime(
+      final dateyyyyMMddTHHmmZZFromString =
+          FhirDateTime.fromString(yyyyMMddTHHmmZZ);
+      final dateyyyyMMddTHHmmZZFromDateTime = FhirDateTime.fromDateTime(
           yyyyMMddTHHmmZZDateTime, FhirDateTimePrecision.yyyy_MM_dd_T_HH_mmZZ);
       final dateyyyyMMddTHHmmZZFromUnits = FhirDateTime.fromUnits(
           year: 2012,
@@ -367,8 +371,9 @@ void main() {
     group('dateyyyyMMddTHHmmss - 2012-01-31T12:30:59', () {
       final yyyyMMddTHHmmss = '2012-01-31T12:30:59';
       final yyyyMMddTHHmmssDateTime = DateTime(2012, 1, 31, 12, 30, 59);
-      final dateyyyyMMddTHHmmssFromString = FhirDateTime(yyyyMMddTHHmmss);
-      final dateyyyyMMddTHHmmssFromDateTime = FhirDateTime(
+      final dateyyyyMMddTHHmmssFromString =
+          FhirDateTime.fromString(yyyyMMddTHHmmss);
+      final dateyyyyMMddTHHmmssFromDateTime = FhirDateTime.fromDateTime(
           yyyyMMddTHHmmssDateTime, FhirDateTimePrecision.yyyy_MM_dd_T_HH_mm_ss);
       final dateyyyyMMddTHHmmssFromUnits = FhirDateTime.fromUnits(
           year: 2012, month: 1, day: 31, hour: 12, minute: 30, second: 59);
@@ -402,8 +407,9 @@ void main() {
     group('dateyyyyMMddTHHmmssZ - 2012-01-31T12:30:59Z', () {
       final yyyyMMddTHHmmssZ = '2012-01-31T12:30:59Z';
       final yyyyMMddTHHmmssZDateTime = DateTime(2012, 1, 31, 12, 30, 59);
-      final dateyyyyMMddTHHmmssZFromString = FhirDateTime(yyyyMMddTHHmmssZ);
-      final dateyyyyMMddTHHmmssZFromDateTime = FhirDateTime(
+      final dateyyyyMMddTHHmmssZFromString =
+          FhirDateTime.fromString(yyyyMMddTHHmmssZ);
+      final dateyyyyMMddTHHmmssZFromDateTime = FhirDateTime.fromDateTime(
           yyyyMMddTHHmmssZDateTime,
           FhirDateTimePrecision.yyyy_MM_dd_T_HH_mm_ss_Z);
       final dateyyyyMMddTHHmmssZFromUnits = FhirDateTime.fromUnits(
@@ -446,8 +452,9 @@ void main() {
     group('yyyyMMddTHHmmssZZ - 2012-01-31T12:30:59$offset', () {
       final yyyyMMddTHHmmssZZ = '2012-01-31T12:30:59$offset';
       final yyyyMMddTHHmmssZZDateTime = DateTime(2012, 1, 31, 12, 30, 59);
-      final dateyyyyMMddTHHmmssZZFromString = FhirDateTime(yyyyMMddTHHmmssZZ);
-      final dateyyyyMMddTHHmmssZZFromDateTime = FhirDateTime(
+      final dateyyyyMMddTHHmmssZZFromString =
+          FhirDateTime.fromString(yyyyMMddTHHmmssZZ);
+      final dateyyyyMMddTHHmmssZZFromDateTime = FhirDateTime.fromDateTime(
           yyyyMMddTHHmmssZZDateTime,
           FhirDateTimePrecision.yyyy_MM_dd_T_HH_mm_ssZZ);
       final dateyyyyMMddTHHmmssZZFromUnits = FhirDateTime.fromUnits(
@@ -490,8 +497,9 @@ void main() {
     group('yyyyMMddTHHmmssSSS - 2012-01-31T12:30:59.001', () {
       final yyyyMMddTHHmmssSSS = '2012-01-31T12:30:59.001';
       final yyyyMMddTHHmmssSSSDateTime = DateTime(2012, 1, 31, 12, 30, 59, 1);
-      final dateyyyyMMddTHHmmssSSSFromString = FhirDateTime(yyyyMMddTHHmmssSSS);
-      final dateyyyyMMddTHHmmssSSSFromDateTime = FhirDateTime(
+      final dateyyyyMMddTHHmmssSSSFromString =
+          FhirDateTime.fromString(yyyyMMddTHHmmssSSS);
+      final dateyyyyMMddTHHmmssSSSFromDateTime = FhirDateTime.fromDateTime(
           yyyyMMddTHHmmssSSSDateTime,
           FhirDateTimePrecision.yyyy_MM_dd_T_HH_mm_ss_SSS);
       final dateyyyyMMddTHHmmssSSSFromUnits = FhirDateTime.fromUnits(
@@ -534,8 +542,8 @@ void main() {
       final yyyyMMddTHHmmssSSSZ = '2012-01-31T12:30:59.010Z';
       final yyyyMMddTHHmmssSSSZDateTime = DateTime(2012, 1, 31, 12, 30, 59, 10);
       final dateyyyyMMddTHHmmssSSSZFromString =
-          FhirDateTime(yyyyMMddTHHmmssSSSZ);
-      final dateyyyyMMddTHHmmssSSSZFromDateTime = FhirDateTime(
+          FhirDateTime.fromString(yyyyMMddTHHmmssSSSZ);
+      final dateyyyyMMddTHHmmssSSSZFromDateTime = FhirDateTime.fromDateTime(
           yyyyMMddTHHmmssSSSZDateTime,
           FhirDateTimePrecision.yyyy_MM_dd_T_HH_mm_ss_SSS_Z);
       final dateyyyyMMddTHHmmssSSSZFromUnits = FhirDateTime.fromUnits(
@@ -581,8 +589,8 @@ void main() {
       final yyyyMMddTHHmmssSSSZZDateTime =
           DateTime(2012, 1, 31, 12, 30, 59, 100);
       final dateyyyyMMddTHHmmssSSSZZFromString =
-          FhirDateTime(yyyyMMddTHHmmssSSSZZ);
-      final dateyyyyMMddTHHmmssSSSZZFromDateTime = FhirDateTime(
+          FhirDateTime.fromString(yyyyMMddTHHmmssSSSZZ);
+      final dateyyyyMMddTHHmmssSSSZZFromDateTime = FhirDateTime.fromDateTime(
           yyyyMMddTHHmmssSSSZZDateTime,
           FhirDateTimePrecision.yyyy_MM_dd_T_HH_mm_ss_SSSZZ);
       final dateyyyyMMddTHHmmssSSSZZFromUnits = FhirDateTime.fromUnits(
@@ -626,9 +634,9 @@ void main() {
     group('dateInstant - 2012-01-31T12:30:59.111$offset', () {
       final instant = '2012-01-31T12:30:59.111$offset';
       final instantDateTime = DateTime(2012, 1, 31, 12, 30, 59, 111);
-      final dateInstantFromString = FhirDateTime(instant);
-      final dateInstantFromDateTime =
-          FhirDateTime(instantDateTime, FhirDateTimePrecision.instant);
+      final dateInstantFromString = FhirDateTime.fromString(instant);
+      final dateInstantFromDateTime = FhirDateTime.fromDateTime(
+          instantDateTime, FhirDateTimePrecision.instant);
       final dateInstantFromUnits = FhirDateTime.fromUnits(
           year: 2012,
           month: 1,
@@ -661,9 +669,9 @@ void main() {
     group('DateTime - 2012-01-31T12:30:59.111111$offset', () {
       final dateTime = '2012-01-31T12:30:59.111111$offset';
       final dateTimeDateTime = DateTime(2012, 1, 31, 12, 30, 59, 111, 111);
-      final dateDateTimeFromString = FhirDateTime(dateTime);
-      final dateDateTimeFromDateTime =
-          FhirDateTime(dateTimeDateTime, FhirDateTimePrecision.dateTime);
+      final dateDateTimeFromString = FhirDateTime.fromString(dateTime);
+      final dateDateTimeFromDateTime = FhirDateTime.fromDateTime(
+          dateTimeDateTime, FhirDateTimePrecision.dateTime);
       final dateDateTimeFromUnits = FhirDateTime.fromUnits(
           year: 2012,
           month: 1,

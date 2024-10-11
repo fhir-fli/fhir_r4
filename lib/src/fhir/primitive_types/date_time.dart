@@ -58,6 +58,7 @@ class FhirDateTime extends FhirDateTimeBase {
 
   factory FhirDateTime.fromJson(dynamic json,
       {FhirDateTimePrecision? precision, Element? element}) {
+    print('json: $json - ${json.runtimeType}');
     if (json is String) {
       return FhirDateTime.fromString(json, precision, element);
     } else {

@@ -6,6 +6,8 @@ import 'consts.dart';
 import 'fhir_generate_extension.dart';
 import 'writable_class.dart';
 
+int numberOfResources = 0;
+
 void prepareObjectBox() {
   final Directory objectBoxDir = Directory('$fhirDirectory/object_box');
   if (!objectBoxDir.existsSync()) {
@@ -114,9 +116,11 @@ String _writeToFile(
 
   final String baseFilePath = writeFileName.properFileName.split('.').first;
 
-  if (baseFilePath.isResource) {
+  if (baseFilePath.isResource && numberOfResources > 700) {
     return '';
   }
+  print('Number of resources: $numberOfResources');
+  numberOfResources++;
 
   final String filePath = '$fhirDirectory/$targetDirectory/$baseFilePath.dart';
 

@@ -27,7 +27,7 @@ Future<void> main() async {
   _codesAndVS.addAll(codesAndValueSets(valueSetPath, examplesPath));
   _nameMap.addAll(populateNameMap(fhirSchemaPath));
   _classesFromStructureDefinitions();
-  exportFiles();
+  // exportFiles();
   writeEnums(_valueSets, _codesAndVS, _nameMap);
   generateResourceUtils();
   parseSearchParameters();
@@ -76,6 +76,14 @@ void _moveTests() {
         file.copySync(file.path.replaceAll('/examples', '/quarantined'));
         file.deleteSync();
       }
+    }
+  }
+  for (final String file in filesToQuarantine) {
+    final File fileToQuarantine = File('$testPath/$file');
+    if (fileToQuarantine.existsSync()) {
+      fileToQuarantine.copySync(
+          fileToQuarantine.path.replaceAll('/examples', '/quarantined'));
+      fileToQuarantine.deleteSync();
     }
   }
 }

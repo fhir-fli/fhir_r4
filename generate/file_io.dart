@@ -9,8 +9,8 @@ import 'fhir_generate_extension.dart';
 
 Future<void> extract() async {
   await _extractFilesToDisk();
-  _moveJsonExamples();
-  _moveNdJsonExamples();
+  // _moveJsonExamples();
+  // _moveNdJsonExamples();
 }
 
 Future<void> _extractFilesToDisk() async {

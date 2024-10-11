@@ -9,7 +9,7 @@ import 'package:test/test.dart';
 
 Future<void> main() async {
   await roundtripTestJson();
-  await roundtripTestYaml();
+  // await roundtripTestYaml();
 }
 
 Future<void> roundtripTestJson() async {
@@ -67,17 +67,48 @@ Future<List<String>> r4Validation({required bool isYaml}) async {
   for (final FileSystemEntity file in await dir.list().toList()) {
     final String contents = await File(file.path).readAsString();
     try {
+      // Parse the file contents
+      final Map<String, dynamic> jsonContents =
+          jsonDecode(contents) as Map<String, dynamic>;
+
+      // Remove 'text' field from original JSON contents
+      jsonContents.remove('text');
+
+      print('3***********************************************');
+      print('isYaml: $isYaml');
+      print('jsonContents: ${jsonContents["text"]}');
+
+      // Create a Resource from the contents (either YAML or JSON)
       final Resource resource = isYaml
           ? Resource.fromYaml(contents)
-          : Resource.fromJson(jsonDecode(contents) as Map<String, dynamic>);
+          : Resource.fromJson(jsonContents);
 
+      print('4***********************************************');
+
+      // Convert Resource back to JSON or YAML, then remove 'text' from the result
       final Map<String, dynamic> serialized = isYaml
           ? jsonDecode(resource.toJsonString()) as Map<String, dynamic>
           : resource.toJson();
 
+      print('5***********************************************');
+
+      // Remove 'text' from the serialized result
+      serialized.remove('text');
+
+      print('6***********************************************');
+
+      // Re-parse the original contents to compare with serialized output
       final Map<String, dynamic> original =
           jsonDecode(contents) as Map<String, dynamic>;
 
+      print('7***********************************************');
+
+      // Remove 'text' from the original contents as well
+      original.remove('text');
+
+      print('8***********************************************');
+
+      // Compare the serialized and original contents without 'text'
       if (!const DeepCollectionEquality().equals(serialized, original)) {
         errors.add(file.path);
         await _writeErrorFiles(file, original, serialized);

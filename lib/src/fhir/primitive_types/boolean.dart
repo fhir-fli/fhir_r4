@@ -47,10 +47,10 @@ class FhirBoolean extends PrimitiveType<bool> {
   String get fhirType => 'boolean';
 
   @override
-  String toJson() => value.toString();
+  bool toJson() => value;
 
   @override
-  String toYaml() => value.toString();
+  bool toYaml() => value;
 
   @override
   String toString() => value.toString();

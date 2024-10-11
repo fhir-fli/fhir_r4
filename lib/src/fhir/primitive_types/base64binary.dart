@@ -42,7 +42,8 @@ class FhirBase64Binary extends PrimitiveType<String> {
     try {
       base64.decode(input);
       return true;
-    } catch (_) {
+    } catch (e) {
+      print(e);
       return false;
     }
   }

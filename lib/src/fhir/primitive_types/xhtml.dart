@@ -35,59 +35,174 @@ class FhirXhtml extends PrimitiveType<String> {
     }
   }
 
-  // Validation logic for the XHTML input
   static bool _validateXhtml(String xhtml) {
     try {
-      final XmlDocument document =
-          XmlDocument.parse(xhtml.replaceAll(r'\"', r'"'));
+      final XmlDocument document = XmlDocument.parse(xhtml);
+
       final XmlElement rootElement = document.rootElement;
 
+      // Check if root element is <div>
       if (rootElement.name.local != 'div') {
         return false;
       }
-      if (rootElement.getAttribute('xmlns') != 'http://www.w3.org/1999/xhtml') {
+
+      // Check for the correct XHTML namespace
+      final String? xmlns = rootElement.getAttribute('xmlns');
+      if (xmlns != 'http://www.w3.org/1999/xhtml') {
         return false;
       }
 
-      return _validateElement(rootElement, true);
+      // Recursively validate elements
+      final bool result = _validateElement(rootElement, isRoot: true);
+
+      return result;
     } catch (e) {
-      // ignore: avoid_print
-      print('Error parsing XHTML: $e');
       return false;
     }
   }
 
-  // Recursive validation for XHTML elements
-  static bool _validateElement(XmlElement element, [bool isRoot = false]) {
-    if (!_allowedElements.contains(element.name.local) &&
-        _prohibitedElements.contains(element.name.local)) {
+  static bool _validateElement(XmlElement element, {bool isRoot = false}) {
+    // Check if the element is allowed
+    if (!allowedElements.contains(element.name.local)) {
       return false;
     }
 
+    // Validate attributes
     for (final XmlAttribute attribute in element.attributes) {
-      if (attribute.name.local == 'style' ||
-          attribute.name.local == 'class' ||
-          (attribute.name.local == 'src' && attribute.value.startsWith('#')) ||
-          (isRoot &&
-              attribute.name.local == 'xmlns' &&
-              attribute.value == 'http://www.w3.org/1999/xhtml') ||
-          (element.name.local == 'a' && attribute.name.local == 'href') ||
-          attribute.name.local == 'xml:id' ||
-          attribute.name.local == 'lang') {
+      if (_isValidAttribute(attribute, element.name.local, isRoot)) {
         continue;
       } else {
         return false;
       }
     }
 
+    // Recursively validate child elements
     for (final XmlNode child in element.children) {
-      if (child is XmlElement && !_validateElement(child)) {
+      if (child is XmlElement) {
+        if (!_validateElement(child)) {
+          return false;
+        }
+      }
+    }
+
+    // Ensure the root div has non-whitespace content
+    if (element.name.local == 'div' && element.innerText.trim().isEmpty) {
+      return false;
+    }
+
+    return true;
+  }
+
+// Helper method to validate XHTML attributes
+  static bool _isValidAttribute(
+      XmlAttribute attribute, String elementName, bool isRoot) {
+    // Allowed attributes
+    if (attribute.name.local == 'style') {
+      return _validateStyleAttribute(
+          attribute.value); // Only validate styles for style attribute
+    } else if (attribute.name.local == 'class') {
+      return true; // Class does not need style validation, just allowed as is
+    } else if (attribute.name.local == 'src' &&
+        attribute.value.startsWith('#')) {
+      return true;
+    } else if (attribute.name.local == 'xml:id' ||
+        attribute.name.local == 'lang') {
+      return true;
+    } else if (isRoot &&
+        attribute.name.local == 'xmlns' &&
+        attribute.value == 'http://www.w3.org/1999/xhtml') {
+      return true;
+    } else if (elementName == 'a' &&
+        (attribute.name.local == 'href' || attribute.name.local == 'name')) {
+      return true;
+    }
+
+    // Disallowed event attributes (e.g., onClick, onLoad)
+    if (attribute.name.local.startsWith('on')) {
+      return false;
+    }
+
+    return false;
+  }
+
+// Method to validate allowed CSS properties in the 'style' attribute
+  static bool _validateStyleAttribute(String style) {
+    final List<String> allowedStyles = <String>[
+      'font-weight',
+      'font-style',
+      'text-decoration',
+      'text-align',
+      'border-left',
+      'border-right',
+      'border-top',
+      'border-bottom',
+      'list-style-type',
+      'color',
+      'background-color',
+      'white-space'
+    ];
+
+    final List<String> styles = style.split(';');
+    for (final String styleProperty in styles) {
+      final String property = styleProperty.split(':').first.trim();
+
+      if (!allowedStyles.contains(property)) {
         return false;
       }
     }
 
-    return !(element.name.local == 'div' && element.innerText.trim().isEmpty);
+    return true;
   }
+
+// Allowed XHTML elements based on FHIR's specification
+  static final List<String> allowedElements = <String>[
+    'div',
+    'p',
+    'b',
+    'i',
+    'em',
+    'strong',
+    'ul',
+    'ol',
+    'li',
+    'span',
+    'br',
+    'a',
+    'img',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'table',
+    'thead',
+    'tbody',
+    'tr',
+    'th',
+    'td'
+  ];
+
+// Prohibited elements as per FHIR's specification
+  static final List<String> prohibitedElements = <String>[
+    'head',
+    'body',
+    'script',
+    'form',
+    'base',
+    'link',
+    'frame',
+    'iframe',
+    'object',
+    'frameset',
+    'meta',
+    'input',
+    'textarea',
+    'button',
+    'select',
+    'option',
+    'style'
+  ];
 
   // fromJson only accepts a String and validates it
   factory FhirXhtml.fromJson(dynamic json) {
@@ -125,55 +240,6 @@ class FhirXhtml extends PrimitiveType<String> {
   @override
   FhirXhtml clone() =>
       FhirXhtml.fromValidatedXhtml(value, element?.clone() as Element?);
-
-  // Allowed and prohibited elements
-  static const List<String> _allowedElements = <String>[
-    'div',
-    'p',
-    'b',
-    'i',
-    'em',
-    'strong',
-    'ul',
-    'ol',
-    'li',
-    'span',
-    'br',
-    'a',
-    'img',
-    'h1',
-    'h2',
-    'h3',
-    'h4',
-    'h5',
-    'h6',
-    'table',
-    'thead',
-    'tbody',
-    'tr',
-    'th',
-    'td'
-  ];
-
-  static const List<String> _prohibitedElements = <String>[
-    'head',
-    'body',
-    'script',
-    'form',
-    'base',
-    'link',
-    'frame',
-    'iframe',
-    'object',
-    'frameset',
-    'meta',
-    'input',
-    'textarea',
-    'button',
-    'select',
-    'option',
-    'style'
-  ];
 
   // Copy with updated elements or fields
   @override

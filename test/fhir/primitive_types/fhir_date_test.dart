@@ -6,7 +6,7 @@ import 'package:test/test.dart';
 void main() {
   group('FhirDate Tests', () {
     test('Valid FhirDate String', () {
-      final fhirDate = FhirDate('2023-12-31');
+      final fhirDate = FhirDate.fromString('2023-12-31');
       expect(fhirDate.isValid, isTrue);
       expect(fhirDate.toString(), '2023-12-31');
       expect(fhirDate.year, 2023);
@@ -15,7 +15,7 @@ void main() {
     });
 
     test('Invalid FhirDate String', () {
-      final fhirDate = FhirDate('invalid_date');
+      final fhirDate = FhirDate.fromString('invalid_date');
       expect(fhirDate.isValid, isFalse);
       expect(fhirDate.value, DateTime(1));
       expect(fhirDate.year, 1);
@@ -24,9 +24,9 @@ void main() {
     });
 
     test('FhirDate Comparison', () {
-      final fhirDate1 = FhirDate('2023-12-31');
-      final fhirDate2 = FhirDate('2022-11-15');
-      final fhirDate3 = FhirDate('2023-12-31');
+      final fhirDate1 = FhirDate.fromString('2023-12-31');
+      final fhirDate2 = FhirDate.fromString('2022-11-15');
+      final fhirDate3 = FhirDate.fromString('2023-12-31');
 
       expect(fhirDate1 == fhirDate2, isFalse);
       expect(fhirDate1 == fhirDate3, isTrue);
