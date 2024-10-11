@@ -33,6 +33,7 @@ Future<void> main() async {
   parseSearchParameters();
   deleteDirectories();
   _moveTests();
+  exportObjectBoxFiles();
 }
 
 void _moveTests() {

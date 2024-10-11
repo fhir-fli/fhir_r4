@@ -16,6 +16,16 @@ void prepareObjectBox() {
     objectBoxDir.deleteSync(recursive: true);
     objectBoxDir.createSync();
   }
+  final Directory dataTypes = Directory('$fhirDirectory/object_box/data_types');
+  if (!dataTypes.existsSync()) {
+    dataTypes.createSync();
+  }
+
+  final Directory resourceTypes =
+      Directory('$fhirDirectory/object_box/resource_types');
+  if (!resourceTypes.existsSync()) {
+    resourceTypes.createSync();
+  }
   File('$fhirDirectory/object_box/object_box.dart')
       .writeAsStringSync("export 'resource.dart';\n");
 
@@ -27,6 +37,33 @@ abstract class Resource {
   @Id()
   int? dbId;
 }""");
+}
+
+void exportObjectBoxFiles() {
+  final List<String> exportFiles = <String>[];
+  final Directory dataTypes = Directory('$fhirDirectory/object_box/data_types');
+  final List<FileSystemEntity> files = dataTypes.listSync();
+  for (final FileSystemEntity file in files) {
+    final String fileName = file.path.split('/').last;
+    exportFiles.add("export 'data_types/$fileName';\n");
+  }
+  File('$fhirDirectory/object_box/data_types.dart')
+      .writeAsStringSync(exportFiles.join());
+  exportFiles.clear();
+  final Directory resourceTypes =
+      Directory('$fhirDirectory/object_box/resource_types');
+  final List<FileSystemEntity> resourceFiles = resourceTypes.listSync();
+  for (final FileSystemEntity file in resourceFiles) {
+    final String fileName = file.path.split('/').last;
+    exportFiles.add("export 'resource_types/$fileName';\n");
+  }
+  File('$fhirDirectory/object_box/resource_types.dart')
+      .writeAsStringSync(exportFiles.join());
+  File('$fhirDirectory/object_box/object_box.dart').writeAsStringSync("""
+export 'data_types/data_types.dart';
+export 'resource.dart';
+export 'resource_types/resource_types.dart';
+""");
 }
 
 void generateObjectBoxClasses(Map<String, WritableClass> classes) {
@@ -89,16 +126,6 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
       exportFile.add("export '$fileName';\n");
     }
   });
-
-  // Write to object_box.dart for exports
-  final List<String> exportList = exportFile.toList();
-  exportList.sort();
-  final File objectBoxFile = File('$fhirDirectory/object_box/object_box.dart');
-
-  String fileString = objectBoxFile.readAsStringSync();
-  fileString += exportList.join();
-
-  objectBoxFile.writeAsStringSync(fileString);
 }
 
 String _writeToFile(
@@ -116,13 +143,20 @@ String _writeToFile(
 
   final String baseFilePath = writeFileName.properFileName.split('.').first;
 
-  if (baseFilePath.isResource && numberOfResources > 700) {
-    return '';
-  }
-  print('Number of resources: $numberOfResources');
+  // if (baseFilePath.isResource) {
+  //   return '';
+  // }
+
   numberOfResources++;
 
-  final String filePath = '$fhirDirectory/$targetDirectory/$baseFilePath.dart';
+  final String filePath =
+      baseFilePath.isResource || baseFilePath.isDomainResource
+          ? '$fhirDirectory/$targetDirectory/resource_types/$baseFilePath.dart'
+          : baseFilePath.isDataType ||
+                  baseFilePath.isQuantity ||
+                  baseFilePath.isBackboneType
+              ? '$fhirDirectory/$targetDirectory/data_types/$baseFilePath.dart'
+              : '$fhirDirectory/$targetDirectory/$baseFilePath.dart';
 
   final File fileToWrite = File(filePath);
 
