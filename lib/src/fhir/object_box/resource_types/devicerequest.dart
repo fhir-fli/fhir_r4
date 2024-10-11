@@ -1,5 +1,5 @@
 import 'package:objectbox/objectbox.dart';
-import 'object_box.dart';
+import '../object_box.dart';
 
 @Entity()
 class DeviceRequest extends Resource {

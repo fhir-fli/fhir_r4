@@ -26,8 +26,6 @@ void prepareObjectBox() {
   if (!resourceTypes.existsSync()) {
     resourceTypes.createSync();
   }
-  File('$fhirDirectory/object_box/object_box.dart')
-      .writeAsStringSync("export 'resource.dart';\n");
 
   File('$fhirDirectory/object_box/resource.dart').writeAsStringSync("""
 import 'package:objectbox/objectbox.dart';
@@ -47,6 +45,7 @@ void exportObjectBoxFiles() {
     final String fileName = file.path.split('/').last;
     exportFiles.add("export 'data_types/$fileName';\n");
   }
+  exportFiles.sort();
   File('$fhirDirectory/object_box/data_types.dart')
       .writeAsStringSync(exportFiles.join());
   exportFiles.clear();
@@ -57,12 +56,13 @@ void exportObjectBoxFiles() {
     final String fileName = file.path.split('/').last;
     exportFiles.add("export 'resource_types/$fileName';\n");
   }
+  exportFiles.sort();
   File('$fhirDirectory/object_box/resource_types.dart')
       .writeAsStringSync(exportFiles.join());
   File('$fhirDirectory/object_box/object_box.dart').writeAsStringSync("""
-export 'data_types/data_types.dart';
+export 'data_types.dart';
 export 'resource.dart';
-export 'resource_types/resource_types.dart';
+export 'resource_types.dart';
 """);
 }
 
@@ -166,7 +166,7 @@ String _writeToFile(
     try {
       fileToWrite.createSync();
       fileContent = "import 'package:objectbox/objectbox.dart';\n";
-      fileContent += "import 'object_box.dart';\n";
+      fileContent += "import '../object_box.dart';\n";
     } catch (e) {
       print('Error: Failed to create file for class $className. Error: $e');
       return '';
@@ -179,7 +179,7 @@ String _writeToFile(
 
   try {
     File(filePath).writeAsStringSync(fileContent);
-    print('Successfully wrote to: $filePath');
+    // print('Successfully wrote to: $filePath');
   } catch (e) {
     print('Error: Failed to write file for class $className. Error: $e');
   }

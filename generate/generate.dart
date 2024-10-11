@@ -31,9 +31,9 @@ Future<void> main() async {
   writeEnums(_valueSets, _codesAndVS, _nameMap);
   generateResourceUtils();
   parseSearchParameters();
-  deleteDirectories();
-  _moveTests();
   exportObjectBoxFiles();
+  deleteDirectories();
+  // _moveTests();
 }
 
 void _moveTests() {
