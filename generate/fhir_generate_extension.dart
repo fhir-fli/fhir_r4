@@ -89,15 +89,51 @@ extension FhirGenerate on String {
         'time': 'String',
         'unsignedint': 'int',
         'uuid': 'String',
-        'duration': 'FhirDuration',
+        'duration': 'ObjectBoxFhirDuration',
         'xhtml': 'String',
-        'meta': 'FhirMeta',
-        'expression': 'FhirExpression',
-        'list': 'FhirList',
-        'extension': 'FhirExtension',
-        'resourceList': 'Resource',
-        'group': 'FhirGroup',
-        'endpoint': 'FhirEndpoint',
+        'meta': 'ObjectBoxFhirMeta',
+        'expression': 'ObjectBoxFhirExpression',
+        'list': 'ObjectBoxFhirList',
+        'extension': 'ObjectBoxFhirExtension',
+        'resourceList': 'ObjectBoxResource',
+        'group': 'ObjectBoxFhirGroup',
+        'endpoint': 'ObjectBoxFhirEndpoint',
+        'http://hl7.org/fhirpath/system.string': 'String',
+      }[toLowerCase()] ??
+      'ObjectBox$this';
+
+  String get fhirToIsarTypes =>
+      const <String, String>{
+        'string': 'String',
+        'base64binary': 'String',
+        'boolean': 'bool',
+        'canonical': 'String',
+        'code': 'String',
+        'date': 'String',
+        'decimal': 'double',
+        'datetime': 'String',
+        'uri': 'String',
+        'url': 'String',
+        'id': 'String',
+        'instant': 'String',
+        'integer': 'int',
+        'integer64': 'String', // BigInt would need custom handling in Isar
+        'markdown': 'String',
+        'oid': 'String',
+        'positiveint': 'int',
+        'time': 'String',
+        'unsignedint': 'int',
+        'uuid': 'String',
+        'duration': 'FhirDuration', // Custom FHIR class, create Isar support
+        'xhtml': 'String',
+        'meta': 'FhirMeta', // Custom FHIR class, create Isar support
+        'expression':
+            'FhirExpression', // Custom FHIR class, create Isar support
+        'list': 'List', // FHIR lists would map to Dart/Isar lists
+        'extension': 'FhirExtension', // Custom FHIR class, create Isar support
+        'resourceList': 'Resource', // Custom class
+        'group': 'FhirGroup', // Custom FHIR class
+        'endpoint': 'FhirEndpoint', // Custom FHIR class
         'http://hl7.org/fhirpath/system.string': 'String',
       }[toLowerCase()] ??
       this;

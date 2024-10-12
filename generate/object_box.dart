@@ -28,21 +28,25 @@ void prepareObjectBox() {
   }
 
   File('$fhirDirectory/object_box/resource.dart').writeAsStringSync("""
+// ignore_for_file: public_member_api_docs
+
 import 'package:objectbox/objectbox.dart';
 
 @Entity()
-abstract class Resource {
+abstract class ObjectBoxResource {
   @Id()
   int? dbId;
 }""");
 
   File('$fhirDirectory/object_box/element.dart').writeAsStringSync('''
+// ignore_for_file: public_member_api_docs
+
+import 'package:fhir_r4/src/fhir/object_box/object_box.dart';
 import 'package:objectbox/objectbox.dart';
-import 'object_box.dart';
 
 @Entity()
-class Element {
-  Element({
+class ObjectBoxElement {
+  ObjectBoxElement({
     this.id,
     this.extension_,
     });
@@ -50,7 +54,7 @@ class Element {
   @Id()
   int? dbId;
   ToOne<String>? id = ToOne<String>();
-  ToMany<FhirExtension>? extension_ = ToMany<FhirExtension>();
+  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
   }''');
 }
 
@@ -88,8 +92,9 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
 
   classes.forEach((String className, WritableClass writableClass) {
     final buffer = StringBuffer();
-    final officialClassName = writableClass.className.fhirToDartTypes;
-    final extended = officialClassName.isResource ? 'extends Resource' : '';
+    final officialClassName = writableClass.className.fhirToObjectBoxTypes;
+    final extended =
+        officialClassName.isResource ? 'extends ObjectBoxResource' : '';
 
     // Write class header
     buffer
@@ -121,8 +126,8 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
     for (final field in writableClass.fields) {
       var objectBoxType =
           field.isEnum ? 'String' : field.type.fhirToObjectBoxTypes;
-      objectBoxType = objectBoxType == 'EvidenceVariable'
-          ? 'Evidencevariable'
+      objectBoxType = objectBoxType == 'ObjectBoxEvidenceVariable'
+          ? 'ObjectBoxEvidencevariable'
           : objectBoxType;
 
       // Handle complex types (ToOne or ToMany relations)
@@ -152,11 +157,11 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
 
         if (field.isList) {
           buffer.writeln(
-            '  ToMany<Element>? ${finalFieldName}Element = ToMany<Element>();',
+            '  ToMany<ObjectBoxElement>? ${finalFieldName}Element = ToMany<ObjectBoxElement>();',
           );
         } else {
           buffer.writeln(
-            '  ToOne<Element>? ${finalFieldName}Element = ToOne<Element>();',
+            '  ToOne<ObjectBoxElement>? ${finalFieldName}Element = ToOne<ObjectBoxElement>();',
           );
         }
       }
@@ -179,19 +184,7 @@ String _writeToFile(
   String targetDirectory, {
   Map<String, String>? nameMap,
 }) {
-  final writeFileName = nameMap != null
-      ? className.fileNameFromClassName(nameMap)
-      : className.toLowerCase();
-
-  if (writeFileName == null) {
-    print(
-      'Warning: Skipping file generation for class $className, '
-      'invalid file name.',
-    );
-    return '';
-  }
-
-  final baseFilePath = writeFileName.properFileName.split('.').first;
+  final baseFilePath = className.split('.').first;
 
   // if (baseFilePath.isResource) {
   //   return '';
@@ -200,12 +193,12 @@ String _writeToFile(
   numberOfResources++;
 
   final filePath = baseFilePath.isResource || baseFilePath.isDomainResource
-      ? '$fhirDirectory/$targetDirectory/resource_types/$baseFilePath.dart'
+      ? '$fhirDirectory/$targetDirectory/resource_types/${baseFilePath.properFileName}.dart'
       : baseFilePath.isDataType ||
               baseFilePath.isQuantity ||
               baseFilePath.isBackboneType
-          ? '$fhirDirectory/$targetDirectory/data_types/$baseFilePath.dart'
-          : '$fhirDirectory/$targetDirectory/$baseFilePath.dart';
+          ? '$fhirDirectory/$targetDirectory/data_types/${baseFilePath.properFileName}.dart'
+          : '$fhirDirectory/$targetDirectory/object_box_${baseFilePath.properFileName}.dart';
 
   final fileToWrite = File(filePath);
 
@@ -214,8 +207,10 @@ String _writeToFile(
   if (!fileToWrite.existsSync()) {
     try {
       fileToWrite.createSync();
-      fileContent = "import 'package:objectbox/objectbox.dart';\n";
-      fileContent += "import '../object_box.dart';\n";
+      fileContent += '// ignore_for_file: public_member_api_docs\n\n';
+      fileContent +=
+          "import 'package:fhir_r4/src/fhir/object_box/object_box.dart';";
+      fileContent += "import 'package:objectbox/objectbox.dart';";
     } catch (e) {
       print('Error: Failed to create file for class $className. Error: $e');
       return '';

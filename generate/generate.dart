@@ -9,7 +9,8 @@ import 'class_buffer.dart';
 import 'consts.dart';
 import 'fhir_generate_extension.dart';
 import 'file_io.dart';
-// import 'object_box.dart';
+import 'object_box.dart';
+// import 'isar.dart';
 import 'parse_search_parameters.dart';
 import 'resource_utils.dart';
 import 'utility.dart';
@@ -23,7 +24,8 @@ final Set<String> _valueSets = <String>{};
 
 Future<void> main() async {
   await extract();
-  // prepareObjectBox();
+  prepareObjectBox();
+  // prepareIsar();
   _codesAndVS.addAll(codesAndValueSets(valueSetPath, examplesPath));
   _nameMap.addAll(populateNameMap(fhirSchemaPath));
   _classesFromStructureDefinitions();
@@ -31,7 +33,8 @@ Future<void> main() async {
   writeEnums(_valueSets, _codesAndVS, _nameMap);
   generateResourceUtils();
   parseSearchParameters();
-  // exportObjectBoxFiles();
+  exportObjectBoxFiles();
+  // exportIsarFiles();
   deleteDirectories();
   // _moveTests();
 }
@@ -158,7 +161,8 @@ void _generateFromSd(Map<String, dynamic> sd, StringBuffer fhirFieldMapBuffer) {
     return;
   }
   final classes = _buildWritableClasses(sd, className);
-  // generateObjectBoxClasses(classes);
+  generateObjectBoxClasses(classes);
+  // generateIsarClasses(classes);
   final buffer = generateClassBuffer(classes, fhirFieldMapBuffer);
 
   writeToFile(buffer, className, _nameMap);
