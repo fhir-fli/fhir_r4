@@ -1,25 +1,45 @@
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
-import '../../../fhir_r4.dart';
 
+/// FhirPositiveInt is a type of integer that is used in FHIR resources
 extension FhirPositiveIntExtension on num {
-  FhirPositiveInt get toFhirInteger => this is int
+  /// This method converts a Dart integer to a FHIR integer
+  FhirPositiveInt get toFhirPositiveInt => this is int
       ? FhirPositiveInt(this as int)
       : int.tryParse(toString()) != null
           ? FhirPositiveInt(int.parse(toString()))
-          : throw FormatException('Invalid input for FhirInteger: $this');
+          : throw FormatException('Invalid input for FhirPositiveInt: $this');
 }
 
+/// This class represents the FHIR primitive type `integer`
 class FhirPositiveInt extends FhirNumber {
+  /// Constructor enforces valid input
+  FhirPositiveInt(int super.input, {super.element}) : value = input;
+
+  /// fromJson accepts dynamic input and validates
+  factory FhirPositiveInt.fromJson(dynamic json) {
+    if (json is int) {
+      return FhirPositiveInt(json);
+    } else if (json is num) {
+      return FhirPositiveInt(json.toInt());
+    }
+    throw FormatException('Invalid input for FhirPositiveInt: $json');
+  }
+
+  /// fromYaml accepts dynamic input and validates
+  factory FhirPositiveInt.fromYaml(dynamic yaml) => yaml is String
+      ? FhirPositiveInt.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
+      : yaml is YamlMap
+          ? FhirPositiveInt.fromJson(jsonDecode(jsonEncode(yaml)))
+          : throw const FormatException(
+              'Invalid Yaml format for FhirPositiveInt',
+            );
   @override
   final int value;
 
-  // Constructor enforces valid input
-  FhirPositiveInt(int super.input, {super.element})
-      : assert(input > 0, 'PositiveInt must be greater than 0'),
-        value = input;
-
+  /// This method tries to parse a dynamic input into a FHIR integer
   static FhirPositiveInt? tryParse(dynamic input) {
     if (input is int) {
       try {
@@ -32,26 +52,8 @@ class FhirPositiveInt extends FhirNumber {
     }
   }
 
-  // fromJson accepts dynamic input and validates
-  factory FhirPositiveInt.fromJson(dynamic json) {
-    if (json is int && json > 0) {
-      return FhirPositiveInt(json);
-    } else if (json is num && json > 0) {
-      return FhirPositiveInt(json.toInt());
-    }
-    throw FormatException('Invalid input for FhirPositiveInt: $json');
-  }
-
-  // fromYaml accepts dynamic input and validates
-  factory FhirPositiveInt.fromYaml(dynamic yaml) => yaml is String
-      ? FhirPositiveInt.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : yaml is YamlMap
-          ? FhirPositiveInt.fromJson(jsonDecode(jsonEncode(yaml)))
-          : throw const FormatException(
-              'Invalid Yaml format for FhirPositiveInt');
-
   @override
-  String get fhirType => 'positiveInt';
+  String get fhirType => 'integer';
 
   @override
   int toJson() => value;
@@ -85,8 +87,10 @@ class FhirPositiveInt extends FhirNumber {
 
   @override
   FhirPositiveInt setElement(String name, dynamic elementValue) {
-    return FhirPositiveInt(value,
-        element: element?.setProperty(name, elementValue));
+    return FhirPositiveInt(
+      value,
+      element: element?.setProperty(name, elementValue),
+    );
   }
 
   @override

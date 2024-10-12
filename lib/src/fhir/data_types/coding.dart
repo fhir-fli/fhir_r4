@@ -1,22 +1,34 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [Coding] /// A reference to a code defined by a terminology system.
+/// [Coding]
+/// A reference to a code defined by a terminology system.
 class Coding extends DataType {
+  /// Primary constructor for [Coding]
+
   Coding({
     super.id,
     super.extension_,
     this.system,
+
+    /// Extensions for [system]
     this.systemElement,
     this.version,
+
+    /// Extensions for [version]
     this.versionElement,
     this.code,
+
+    /// Extensions for [code]
     this.codeElement,
     this.display,
+
+    /// Extensions for [display]
     this.displayElement,
     this.userSelected,
+
+    /// Extensions for [userSelected]
     this.userSelectedElement,
     super.userData,
     super.formatCommentsPre,
@@ -26,46 +38,136 @@ class Coding extends DataType {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory Coding.fromJson(Map<String, dynamic> json) {
+    return Coding(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      system: json['system'] != null ? FhirUri.fromJson(json['system']) : null,
+      systemElement: json['_system'] != null
+          ? Element.fromJson(
+              json['_system'] as Map<String, dynamic>,
+            )
+          : null,
+      version:
+          json['version'] != null ? FhirString.fromJson(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(
+              json['_version'] as Map<String, dynamic>,
+            )
+          : null,
+      code: json['code'] != null ? FhirCode.fromJson(json['code']) : null,
+      codeElement: json['_code'] != null
+          ? Element.fromJson(
+              json['_code'] as Map<String, dynamic>,
+            )
+          : null,
+      display:
+          json['display'] != null ? FhirString.fromJson(json['display']) : null,
+      displayElement: json['_display'] != null
+          ? Element.fromJson(
+              json['_display'] as Map<String, dynamic>,
+            )
+          : null,
+      userSelected: json['userSelected'] != null
+          ? FhirBoolean.fromJson(json['userSelected'])
+          : null,
+      userSelectedElement: json['_userSelected'] != null
+          ? Element.fromJson(
+              json['_userSelected'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [Coding] from a [String] or [YamlMap] object
+  factory Coding.fromYaml(dynamic yaml) => yaml is String
+      ? Coding.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? Coding.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('Coding cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [Coding] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory Coding.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Coding.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'Coding';
 
-  /// [system] /// The identification of the code system that defines the meaning of the
+  /// [system]
+  /// The identification of the code system that defines the meaning of the
   /// symbol in the code.
   final FhirUri? system;
+
+  /// Extensions for [system]
   final Element? systemElement;
 
-  /// [version] /// The version of the code system which was used when choosing this code. Note
-  /// that a well-maintained code system does not need the version reported,
-  /// because the meaning of codes is consistent across versions. However this
-  /// cannot consistently be assured, and when the meaning is not guaranteed to
-  /// be consistent, the version SHOULD be exchanged.
+  /// [version]
+  /// The version of the code system which was used when choosing this code.
+  /// Note that a well-maintained code system does not need the version
+  /// reported, because the meaning of codes is consistent across versions.
+  /// However this cannot consistently be assured, and when the meaning is
+  /// not guaranteed to be consistent, the version SHOULD be exchanged.
   final FhirString? version;
+
+  /// Extensions for [version]
   final Element? versionElement;
 
-  /// [code] /// A symbol in syntax defined by the system. The symbol may be a predefined
-  /// code or an expression in a syntax defined by the coding system (e.g.
-  /// post-coordination).
+  /// [code]
+  /// A symbol in syntax defined by the system. The symbol may be a
+  /// predefined code or an expression in a syntax defined by the coding
+  /// system (e.g. post-coordination).
   final FhirCode? code;
+
+  /// Extensions for [code]
   final Element? codeElement;
 
-  /// [display] /// A representation of the meaning of the code in the system, following the
-  /// rules of the system.
+  /// [display]
+  /// A representation of the meaning of the code in the system, following
+  /// the rules of the system.
   final FhirString? display;
+
+  /// Extensions for [display]
   final Element? displayElement;
 
-  /// [userSelected] /// Indicates that this coding was chosen by a user directly - e.g. off a pick
-  /// list of available items (codes or displays).
+  /// [userSelected]
+  /// Indicates that this coding was chosen by a user directly - e.g. off a
+  /// pick list of available items (codes or displays).
   final FhirBoolean? userSelected;
+
+  /// Extensions for [userSelected]
   final Element? userSelectedElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (system?.value != null) {
       json['system'] = system!.toJson();
@@ -100,41 +202,6 @@ class Coding extends DataType {
     return json;
   }
 
-  factory Coding.fromJson(Map<String, dynamic> json) {
-    return Coding(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      system: json['system'] != null ? FhirUri.fromJson(json['system']) : null,
-      systemElement: json['_system'] != null
-          ? Element.fromJson(json['_system'] as Map<String, dynamic>)
-          : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
-          : null,
-      code: json['code'] != null ? FhirCode.fromJson(json['code']) : null,
-      codeElement: json['_code'] != null
-          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
-          : null,
-      display:
-          json['display'] != null ? FhirString.fromJson(json['display']) : null,
-      displayElement: json['_display'] != null
-          ? Element.fromJson(json['_display'] as Map<String, dynamic>)
-          : null,
-      userSelected: json['userSelected'] != null
-          ? FhirBoolean.fromJson(json['userSelected'])
-          : null,
-      userSelectedElement: json['_userSelected'] != null
-          ? Element.fromJson(json['_userSelected'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   Coding clone() => throw UnimplementedError();
   @override
@@ -178,24 +245,5 @@ class Coding extends DataType {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory Coding.fromYaml(dynamic yaml) => yaml is String
-      ? Coding.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? Coding.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'Coding cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory Coding.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return Coding.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

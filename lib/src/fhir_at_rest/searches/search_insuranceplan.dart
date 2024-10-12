@@ -3,8 +3,7 @@ import '../../../fhir_r4.dart';
 
 class SearchInsurancePlan extends SearchResource {
   SearchInsurancePlan address(FhirString value, {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}address'] =
@@ -14,8 +13,7 @@ class SearchInsurancePlan extends SearchResource {
 
   SearchInsurancePlan addressCity(FhirString value,
       {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}address_city'] =
@@ -25,8 +23,7 @@ class SearchInsurancePlan extends SearchResource {
 
   SearchInsurancePlan addressCountry(FhirString value,
       {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}address_country'] =
@@ -36,8 +33,7 @@ class SearchInsurancePlan extends SearchResource {
 
   SearchInsurancePlan addressPostalcode(FhirString value,
       {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}address_postalcode'] =
@@ -47,8 +43,7 @@ class SearchInsurancePlan extends SearchResource {
 
   SearchInsurancePlan addressState(FhirString value,
       {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}address_state'] =
@@ -71,8 +66,7 @@ class SearchInsurancePlan extends SearchResource {
   }
 
   SearchInsurancePlan name(FhirString value, {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}name'] = value.toString();
@@ -80,8 +74,7 @@ class SearchInsurancePlan extends SearchResource {
   }
 
   SearchInsurancePlan phonetic(FhirString value, {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}phonetic'] =

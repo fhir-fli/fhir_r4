@@ -1,10 +1,13 @@
-import '../../../fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart';
 
 /// Returns a [FhirMeta] object, creates a new one if none is passed, otherwise
 /// updates the [lastUpdated] and increases the [version] by 1
-FhirMeta updateFhirMetaVersion(FhirMeta? oldFhirMeta,
-    [bool versionIdAsTime = false]) {
-  final DateTime now = DateTime.now().toUtc();
+FhirMeta updateFhirMetaVersion(
+  FhirMeta? oldFhirMeta, [
+  // ignore: avoid_positional_boolean_parameters
+  bool versionIdAsTime = false,
+]) {
+  final now = DateTime.now().toUtc();
   if (versionIdAsTime) {
     if (oldFhirMeta == null) {
       return FhirMeta(
@@ -18,7 +21,7 @@ FhirMeta updateFhirMetaVersion(FhirMeta? oldFhirMeta,
       );
     }
   }
-  final int version = oldFhirMeta == null
+  final version = oldFhirMeta == null
       ? 1
       : oldFhirMeta.versionId == null
           ? 1
@@ -40,10 +43,12 @@ FhirMeta updateFhirMetaVersion(FhirMeta? oldFhirMeta,
 /// field, adds 1 to the version number and adds an [Id] if there is not already
 /// one, accepts [meta] as an argument and will update that field, otherwise
 /// will try and update the [meta] field already in the resource
-Resource updateMeta(Resource resource,
-    {FhirMeta? meta, bool versionIdAsTime = false}) {
-  final FhirMeta newMeta =
-      updateFhirMetaVersion(meta ?? resource.meta, versionIdAsTime);
+Resource updateMeta(
+  Resource resource, {
+  FhirMeta? meta,
+  bool versionIdAsTime = false,
+}) {
+  final newMeta = updateFhirMetaVersion(meta ?? resource.meta, versionIdAsTime);
   switch (resource.resourceType) {
     case R4ResourceType.Account:
       return (resource as Account).copyWith(meta: newMeta);

@@ -1,17 +1,23 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [PaymentNotice] /// This resource provides the status of the payment for goods and services
+/// [PaymentNotice]
+/// This resource provides the status of the payment for goods and services
 /// rendered, and the request and response resource references.
 class PaymentNotice extends DomainResource {
+  /// Primary constructor for [PaymentNotice]
+
   PaymentNotice({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -19,14 +25,20 @@ class PaymentNotice extends DomainResource {
     super.modifierExtension,
     this.identifier,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     this.request,
     this.response,
     required this.created,
+
+    /// Extensions for [created]
     this.createdElement,
     this.provider,
     required this.payment,
     this.paymentDate,
+
+    /// Extensions for [paymentDate]
     this.paymentDateElement,
     this.payee,
     required this.recipient,
@@ -38,54 +50,223 @@ class PaymentNotice extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.PaymentNotice);
+  }) : super(
+          resourceType: R4ResourceType.PaymentNotice,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory PaymentNotice.fromJson(Map<String, dynamic> json) {
+    return PaymentNotice(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      status: FinancialResourceStatusCodes.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      request: json['request'] != null
+          ? Reference.fromJson(
+              json['request'] as Map<String, dynamic>,
+            )
+          : null,
+      response: json['response'] != null
+          ? Reference.fromJson(
+              json['response'] as Map<String, dynamic>,
+            )
+          : null,
+      created: FhirDateTime.fromJson(json['created']),
+      createdElement: json['_created'] != null
+          ? Element.fromJson(
+              json['_created'] as Map<String, dynamic>,
+            )
+          : null,
+      provider: json['provider'] != null
+          ? Reference.fromJson(
+              json['provider'] as Map<String, dynamic>,
+            )
+          : null,
+      payment: Reference.fromJson(
+        json['payment'] as Map<String, dynamic>,
+      ),
+      paymentDate: json['paymentDate'] != null
+          ? FhirDate.fromJson(json['paymentDate'])
+          : null,
+      paymentDateElement: json['_paymentDate'] != null
+          ? Element.fromJson(
+              json['_paymentDate'] as Map<String, dynamic>,
+            )
+          : null,
+      payee: json['payee'] != null
+          ? Reference.fromJson(
+              json['payee'] as Map<String, dynamic>,
+            )
+          : null,
+      recipient: Reference.fromJson(
+        json['recipient'] as Map<String, dynamic>,
+      ),
+      amount: Money.fromJson(
+        json['amount'] as Map<String, dynamic>,
+      ),
+      paymentStatus: json['paymentStatus'] != null
+          ? CodeableConcept.fromJson(
+              json['paymentStatus'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [PaymentNotice] from a [String] or [YamlMap] object
+  factory PaymentNotice.fromYaml(dynamic yaml) => yaml is String
+      ? PaymentNotice.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? PaymentNotice.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'PaymentNotice cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [PaymentNotice] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory PaymentNotice.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return PaymentNotice.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'PaymentNotice';
 
-  /// [identifier] /// A unique identifier assigned to this payment notice.
+  /// [identifier]
+  /// A unique identifier assigned to this payment notice.
   final List<Identifier>? identifier;
 
-  /// [status] /// The status of the resource instance.
+  /// [status]
+  /// The status of the resource instance.
   final FinancialResourceStatusCodes status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [request] /// Reference of resource for which payment is being made.
+  /// [request]
+  /// Reference of resource for which payment is being made.
   final Reference? request;
 
-  /// [response] /// Reference of response to resource for which payment is being made.
+  /// [response]
+  /// Reference of response to resource for which payment is being made.
   final Reference? response;
 
-  /// [created] /// The date when this resource was created.
+  /// [created]
+  /// The date when this resource was created.
   final FhirDateTime created;
+
+  /// Extensions for [created]
   final Element? createdElement;
 
-  /// [provider] /// The practitioner who is responsible for the services rendered to the
+  /// [provider]
+  /// The practitioner who is responsible for the services rendered to the
   /// patient.
   final Reference? provider;
 
-  /// [payment] /// A reference to the payment which is the subject of this notice.
+  /// [payment]
+  /// A reference to the payment which is the subject of this notice.
   final Reference payment;
 
-  /// [paymentDate] /// The date when the above payment action occurred.
+  /// [paymentDate]
+  /// The date when the above payment action occurred.
   final FhirDate? paymentDate;
+
+  /// Extensions for [paymentDate]
   final Element? paymentDateElement;
 
-  /// [payee] /// The party who will receive or has received payment that is the subject of
-  /// this notification.
+  /// [payee]
+  /// The party who will receive or has received payment that is the subject
+  /// of this notification.
   final Reference? payee;
 
-  /// [recipient] /// The party who is notified of the payment status.
+  /// [recipient]
+  /// The party who is notified of the payment status.
   final Reference recipient;
 
-  /// [amount] /// The amount sent to the payee.
+  /// [amount]
+  /// The amount sent to the payee.
   final Money amount;
 
-  /// [paymentStatus] /// A code indicating whether payment has been sent or cleared.
+  /// [paymentStatus]
+  /// A code indicating whether payment has been sent or cleared.
   final CodeableConcept? paymentStatus;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -106,21 +287,19 @@ class PaymentNotice extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     json['status'] = status.toJson();
     if (request != null) {
@@ -154,86 +333,6 @@ class PaymentNotice extends DomainResource {
     return json;
   }
 
-  factory PaymentNotice.fromJson(Map<String, dynamic> json) {
-    return PaymentNotice(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      status: FinancialResourceStatusCodes.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      request: json['request'] != null
-          ? Reference.fromJson(json['request'] as Map<String, dynamic>)
-          : null,
-      response: json['response'] != null
-          ? Reference.fromJson(json['response'] as Map<String, dynamic>)
-          : null,
-      created: FhirDateTime.fromJson(json['created']),
-      createdElement: json['_created'] != null
-          ? Element.fromJson(json['_created'] as Map<String, dynamic>)
-          : null,
-      provider: json['provider'] != null
-          ? Reference.fromJson(json['provider'] as Map<String, dynamic>)
-          : null,
-      payment: Reference.fromJson(json['payment'] as Map<String, dynamic>),
-      paymentDate: json['paymentDate'] != null
-          ? FhirDate.fromJson(json['paymentDate'])
-          : null,
-      paymentDateElement: json['_paymentDate'] != null
-          ? Element.fromJson(json['_paymentDate'] as Map<String, dynamic>)
-          : null,
-      payee: json['payee'] != null
-          ? Reference.fromJson(json['payee'] as Map<String, dynamic>)
-          : null,
-      recipient: Reference.fromJson(json['recipient'] as Map<String, dynamic>),
-      amount: Money.fromJson(json['amount'] as Map<String, dynamic>),
-      paymentStatus: json['paymentStatus'] != null
-          ? CodeableConcept.fromJson(
-              json['paymentStatus'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   PaymentNotice clone() => throw UnimplementedError();
   @override
@@ -303,24 +402,5 @@ class PaymentNotice extends DomainResource {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory PaymentNotice.fromYaml(dynamic yaml) => yaml is String
-      ? PaymentNotice.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? PaymentNotice.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'PaymentNotice cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory PaymentNotice.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return PaymentNotice.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

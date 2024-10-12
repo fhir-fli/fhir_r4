@@ -1,37 +1,28 @@
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
-import '../../../fhir_r4.dart';
 
+/// This extension is used to convert a Dart boolean to a FHIR boolean
 extension FhirBooleanExtension on bool {
+  /// This method converts a Dart boolean to a FHIR boolean
   FhirBoolean get toFhirBoolean => FhirBoolean(this);
 }
 
+/// This class represents the FHIR primitive type `boolean`
 class FhirBoolean extends PrimitiveType<bool> {
-  @override
-  final bool value;
-
+  /// This constructor enforces valid input
+  // ignore: avoid_positional_boolean_parameters
   FhirBoolean(bool input, [Element? element])
       : value = input,
         super(element: element);
 
-  static FhirBoolean? tryParse(dynamic input) {
-    if (input is bool) {
-      return FhirBoolean(input);
-    } else if (input is String) {
-      final String lowerValue = input.toLowerCase();
-      if (lowerValue == 'true' || lowerValue == 'false') {
-        return FhirBoolean(lowerValue == 'true');
-      }
-    }
-    return null;
-  }
-
+  /// This method accepts a FHIR integer and returns a FHIR decimal
   factory FhirBoolean.fromJson(dynamic json) {
     if (json is bool) {
       return FhirBoolean(json);
     } else if (json is String) {
-      final String lowerValue = json.toLowerCase();
+      final lowerValue = json.toLowerCase();
       if (lowerValue == 'true' || lowerValue == 'false') {
         return FhirBoolean(lowerValue == 'true');
       }
@@ -39,9 +30,25 @@ class FhirBoolean extends PrimitiveType<bool> {
     throw const FormatException('Invalid input for FhirBoolean');
   }
 
+  /// This method accepts a dynamic input and returns a FHIR boolean
   factory FhirBoolean.fromYaml(dynamic yaml) => yaml is String
       ? FhirBoolean.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
       : throw const FormatException('Invalid Yaml format for FhirBoolean');
+  @override
+  final bool value;
+
+  /// This method tries to parse a dynamic input into a FHIR boolean
+  static FhirBoolean? tryParse(dynamic input) {
+    if (input is bool) {
+      return FhirBoolean(input);
+    } else if (input is String) {
+      final lowerValue = input.toLowerCase();
+      if (lowerValue == 'true' || lowerValue == 'false') {
+        return FhirBoolean(lowerValue == 'true');
+      }
+    }
+    return null;
+  }
 
   @override
   String get fhirType => 'boolean';
@@ -74,7 +81,10 @@ class FhirBoolean extends PrimitiveType<bool> {
 
   @override
   FhirBoolean setElement(String name, dynamic elementValue) {
-    return FhirBoolean(value, element?.setProperty(name, elementValue));
+    return FhirBoolean(
+      value,
+      element?.setProperty(name, elementValue),
+    );
   }
 
   @override
@@ -102,6 +112,8 @@ class FhirBoolean extends PrimitiveType<bool> {
     );
   }
 
+  /// This method returns the logical AND of two [bool]s, or a [FhirBoolean]
+  /// and a [bool]
   bool operator &(dynamic other) {
     if (other is bool) {
       return value && other;
@@ -111,6 +123,8 @@ class FhirBoolean extends PrimitiveType<bool> {
     return false;
   }
 
+  /// This method returns the logical OR of two [bool]s, or a [FhirBoolean]
+  /// and a [bool]
   bool operator |(dynamic other) {
     if (other is bool) {
       return value || other;
@@ -120,6 +134,8 @@ class FhirBoolean extends PrimitiveType<bool> {
     return false;
   }
 
+  /// This method returns the logical XOR of two [bool]s, or a [FhirBoolean]
+  /// and a [bool]
   bool operator ^(dynamic other) {
     if (other is bool) {
       return value ^ other;

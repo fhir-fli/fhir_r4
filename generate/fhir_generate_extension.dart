@@ -1,6 +1,6 @@
 extension FhirGenerate on String {
   bool get shouldGenerate {
-    const List<String> excludedTypes = <String>[
+    const excludedTypes = <String>[
       'resourcelist',
       'base64binary',
       'boolean',
@@ -436,8 +436,8 @@ extension FhirGenerate on String {
           : this;
 
   String get properFileName {
-    final RegExp upperCase = RegExp(r'(?<!^)([A-Z])');
-    final String snakeCase = replaceAllMapped(upperCase, (Match match) {
+    final upperCase = RegExp('(?<!^)([A-Z])');
+    final snakeCase = replaceAllMapped(upperCase, (Match match) {
       return '_${match.group(1)!.toLowerCase()}';
     });
     return snakeCase.toLowerCase();
@@ -451,16 +451,15 @@ extension FhirGenerate on String {
   }
 
   String get camelCase {
-    final List<String> parts = split(RegExp(r'[^A-Za-z0-9]'))
+    final parts = split(RegExp('[^A-Za-z0-9]'))
         .where((String part) => part.isNotEmpty)
         .toList();
     if (parts.isEmpty) {
       return '';
     }
-    final StringBuffer camelCaseString =
-        StringBuffer(parts.first.toLowerCase());
-    for (int i = 1; i < parts.length; i++) {
-      final String part = parts[i];
+    final camelCaseString = StringBuffer(parts.first.toLowerCase());
+    for (var i = 1; i < parts.length; i++) {
+      final part = parts[i];
       camelCaseString
           .write(part[0].toUpperCase() + part.substring(1).toLowerCase());
     }
@@ -470,7 +469,7 @@ extension FhirGenerate on String {
   // Convert a string to snake_case
   String get snakeCase {
     return replaceAllMapped(
-      RegExp(r'([a-z0-9])([A-Z])'),
+      RegExp('([a-z0-9])([A-Z])'),
       (Match match) => '${match.group(1)}_${match.group(2)?.toLowerCase()}',
     ).toLowerCase().replaceAll('-', '_');
   }
@@ -481,7 +480,7 @@ extension FhirGenerate on String {
   }
 
   String get splitOffVersion {
-    final int lastPipeIndex = lastIndexOf('|');
+    final lastPipeIndex = lastIndexOf('|');
 
     if (lastPipeIndex == -1) {
       // No version number present, return the input string as is
@@ -494,8 +493,9 @@ extension FhirGenerate on String {
 
   String get upperCamelCase {
     return
-        // Replace hyphens, underscores, spaces, and slashes with a space (temporary)
-        replaceAll(RegExp(r'[-_/()]'), ' ')
+        // Replace hyphens, underscores, spaces, and slashes with a space
+        // (temporary)
+        replaceAll(RegExp('[-_/()]'), ' ')
             // Split by space and capitalize each word
             .split(' ')
             .where((String word) => word.isNotEmpty) // Remove any empty words
@@ -505,8 +505,8 @@ extension FhirGenerate on String {
   }
 
   String findLongestMatch(List<String> classes) {
-    String longestMatch = '';
-    for (final String key in classes) {
+    var longestMatch = '';
+    for (final key in classes) {
       if (startsWith(key) && key.length > longestMatch.length) {
         longestMatch = key;
       }

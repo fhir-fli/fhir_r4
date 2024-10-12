@@ -1,20 +1,37 @@
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
-import '../../../fhir_r4.dart';
 
+/// FhirId is a type of string that is used in FHIR resources
 extension FhirIdExtension on String {
+  /// This method converts a Dart string to a FHIR id
   FhirId get toFhirId => FhirId(this);
 }
 
+/// This class represents the FHIR primitive type `id`
 class FhirId extends PrimitiveType<String> {
-  @override
-  final String value;
-
+  /// Constructor enforces valid input
   FhirId(String input, [Element? element])
       : value = _validateId(input),
         super(element: element);
 
+  /// fromJson accepts dynamic input and validates
+  factory FhirId.fromJson(dynamic json) {
+    if (json is String) {
+      return FhirId(json);
+    }
+    throw FormatException('Invalid input for FhirId: $json');
+  }
+
+  /// fromYaml accepts dynamic input and validates
+  factory FhirId.fromYaml(dynamic yaml) => yaml is String
+      ? FhirId.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
+      : throw const FormatException('Invalid YAML format for FhirId');
+  @override
+  final String value;
+
+  /// Static method to try parsing the input
   static FhirId? tryParse(dynamic input) {
     if (input is String) {
       try {
@@ -33,17 +50,6 @@ class FhirId extends PrimitiveType<String> {
     }
     throw FormatException('Invalid FhirId: $input');
   }
-
-  factory FhirId.fromJson(dynamic json) {
-    if (json is String) {
-      return FhirId(json);
-    }
-    throw FormatException('Invalid input for FhirId: $json');
-  }
-
-  factory FhirId.fromYaml(dynamic yaml) => yaml is String
-      ? FhirId.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : throw const FormatException('Invalid YAML format for FhirId');
 
   @override
   String get fhirType => 'id';

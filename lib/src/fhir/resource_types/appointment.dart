@@ -1,18 +1,24 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [Appointment] /// A booking of a healthcare event among patient(s), practitioner(s), related
-/// person(s) and/or device(s) for a specific date/time. This may result in one
-/// or more Encounter(s).
+/// [Appointment]
+/// A booking of a healthcare event among patient(s), practitioner(s),
+/// related person(s) and/or device(s) for a specific date/time. This may
+/// result in one or more Encounter(s).
 class Appointment extends DomainResource {
+  /// Primary constructor for [Appointment]
+
   Appointment({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -20,6 +26,8 @@ class Appointment extends DomainResource {
     super.modifierExtension,
     this.identifier,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     this.cancelationReason,
     this.serviceCategory,
@@ -29,22 +37,38 @@ class Appointment extends DomainResource {
     this.reasonCode,
     this.reasonReference,
     this.priority,
+
+    /// Extensions for [priority]
     this.priorityElement,
     this.description,
+
+    /// Extensions for [description]
     this.descriptionElement,
     this.supportingInformation,
     this.start,
+
+    /// Extensions for [start]
     this.startElement,
     this.end,
+
+    /// Extensions for [end]
     this.endElement,
     this.minutesDuration,
+
+    /// Extensions for [minutesDuration]
     this.minutesDurationElement,
     this.slot,
     this.created,
+
+    /// Extensions for [created]
     this.createdElement,
     this.comment,
+
+    /// Extensions for [comment]
     this.commentElement,
     this.patientInstruction,
+
+    /// Extensions for [patientInstruction]
     this.patientInstructionElement,
     this.basedOn,
     required this.participant,
@@ -55,127 +79,424 @@ class Appointment extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.Appointment);
+  }) : super(
+          resourceType: R4ResourceType.Appointment,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory Appointment.fromJson(Map<String, dynamic> json) {
+    return Appointment(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      status: AppointmentStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      cancelationReason: json['cancelationReason'] != null
+          ? CodeableConcept.fromJson(
+              json['cancelationReason'] as Map<String, dynamic>,
+            )
+          : null,
+      serviceCategory: json['serviceCategory'] != null
+          ? (json['serviceCategory'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      serviceType: json['serviceType'] != null
+          ? (json['serviceType'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      specialty: json['specialty'] != null
+          ? (json['specialty'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      appointmentType: json['appointmentType'] != null
+          ? CodeableConcept.fromJson(
+              json['appointmentType'] as Map<String, dynamic>,
+            )
+          : null,
+      reasonCode: json['reasonCode'] != null
+          ? (json['reasonCode'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      reasonReference: json['reasonReference'] != null
+          ? (json['reasonReference'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      priority: json['priority'] != null
+          ? FhirUnsignedInt.fromJson(json['priority'])
+          : null,
+      priorityElement: json['_priority'] != null
+          ? Element.fromJson(
+              json['_priority'] as Map<String, dynamic>,
+            )
+          : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(
+              json['_description'] as Map<String, dynamic>,
+            )
+          : null,
+      supportingInformation: json['supportingInformation'] != null
+          ? (json['supportingInformation'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      start: json['start'] != null ? FhirInstant.fromJson(json['start']) : null,
+      startElement: json['_start'] != null
+          ? Element.fromJson(
+              json['_start'] as Map<String, dynamic>,
+            )
+          : null,
+      end: json['end'] != null ? FhirInstant.fromJson(json['end']) : null,
+      endElement: json['_end'] != null
+          ? Element.fromJson(
+              json['_end'] as Map<String, dynamic>,
+            )
+          : null,
+      minutesDuration: json['minutesDuration'] != null
+          ? FhirPositiveInt.fromJson(json['minutesDuration'])
+          : null,
+      minutesDurationElement: json['_minutesDuration'] != null
+          ? Element.fromJson(
+              json['_minutesDuration'] as Map<String, dynamic>,
+            )
+          : null,
+      slot: json['slot'] != null
+          ? (json['slot'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      created: json['created'] != null
+          ? FhirDateTime.fromJson(json['created'])
+          : null,
+      createdElement: json['_created'] != null
+          ? Element.fromJson(
+              json['_created'] as Map<String, dynamic>,
+            )
+          : null,
+      comment:
+          json['comment'] != null ? FhirString.fromJson(json['comment']) : null,
+      commentElement: json['_comment'] != null
+          ? Element.fromJson(
+              json['_comment'] as Map<String, dynamic>,
+            )
+          : null,
+      patientInstruction: json['patientInstruction'] != null
+          ? FhirString.fromJson(json['patientInstruction'])
+          : null,
+      patientInstructionElement: json['_patientInstruction'] != null
+          ? Element.fromJson(
+              json['_patientInstruction'] as Map<String, dynamic>,
+            )
+          : null,
+      basedOn: json['basedOn'] != null
+          ? (json['basedOn'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      participant: (json['participant'] as List<dynamic>)
+          .map<AppointmentParticipant>((dynamic v) =>
+              AppointmentParticipant.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      requestedPeriod: json['requestedPeriod'] != null
+          ? (json['requestedPeriod'] as List<dynamic>)
+              .map<Period>(
+                (dynamic v) => Period.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [Appointment] from a [String] or [YamlMap] object
+  factory Appointment.fromYaml(dynamic yaml) => yaml is String
+      ? Appointment.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? Appointment.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('Appointment cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [Appointment] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory Appointment.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Appointment.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'Appointment';
 
-  /// [identifier] /// This records identifiers associated with this appointment concern that are
-  /// defined by business processes and/or used to refer to it when a direct URL
-  /// reference to the resource itself is not appropriate (e.g. in CDA documents,
-  /// or in written / printed documentation).
+  /// [identifier]
+  /// This records identifiers associated with this appointment concern that
+  /// are defined by business processes and/or used to refer to it when a
+  /// direct URL reference to the resource itself is not appropriate (e.g. in
+  /// CDA documents, or in written / printed documentation).
   final List<Identifier>? identifier;
 
-  /// [status] /// The overall status of the Appointment. Each of the participants has their
-  /// own participation status which indicates their involvement in the process,
-  /// however this status indicates the shared status.
+  /// [status]
+  /// The overall status of the Appointment. Each of the participants has
+  /// their own participation status which indicates their involvement in the
+  /// process, however this status indicates the shared status.
   final AppointmentStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [cancelationReason] /// The coded reason for the appointment being cancelled. This is often used in
-  /// reporting/billing/futher processing to determine if further actions are
-  /// required, or specific fees apply.
+  /// [cancelationReason]
+  /// The coded reason for the appointment being cancelled. This is often
+  /// used in reporting/billing/futher processing to determine if further
+  /// actions are required, or specific fees apply.
   final CodeableConcept? cancelationReason;
 
-  /// [serviceCategory] /// A broad categorization of the service that is to be performed during this
-  /// appointment.
+  /// [serviceCategory]
+  /// A broad categorization of the service that is to be performed during
+  /// this appointment.
   final List<CodeableConcept>? serviceCategory;
 
-  /// [serviceType] /// The specific service that is to be performed during this appointment.
+  /// [serviceType]
+  /// The specific service that is to be performed during this appointment.
   final List<CodeableConcept>? serviceType;
 
-  /// [specialty] /// The specialty of a practitioner that would be required to perform the
+  /// [specialty]
+  /// The specialty of a practitioner that would be required to perform the
   /// service requested in this appointment.
   final List<CodeableConcept>? specialty;
 
-  /// [appointmentType] /// The style of appointment or patient that has been booked in the slot (not
-  /// service type).
+  /// [appointmentType]
+  /// The style of appointment or patient that has been booked in the slot
+  /// (not service type).
   final CodeableConcept? appointmentType;
 
-  /// [reasonCode] /// The coded reason that this appointment is being scheduled. This is more
+  /// [reasonCode]
+  /// The coded reason that this appointment is being scheduled. This is more
   /// clinical than administrative.
   final List<CodeableConcept>? reasonCode;
 
-  /// [reasonReference] /// Reason the appointment has been scheduled to take place, as specified using
-  /// information from another resource. When the patient arrives and the
-  /// encounter begins it may be used as the admission diagnosis. The indication
-  /// will typically be a Condition (with other resources referenced in the
-  /// evidence.detail), or a Procedure.
+  /// [reasonReference]
+  /// Reason the appointment has been scheduled to take place, as specified
+  /// using information from another resource. When the patient arrives and
+  /// the encounter begins it may be used as the admission diagnosis. The
+  /// indication will typically be a Condition (with other resources
+  /// referenced in the evidence.detail), or a Procedure.
   final List<Reference>? reasonReference;
 
-  /// [priority] /// The priority of the appointment. Can be used to make informed decisions if
-  /// needing to re-prioritize appointments. (The iCal Standard specifies 0 as
-  /// undefined, 1 as highest, 9 as lowest priority).
+  /// [priority]
+  /// The priority of the appointment. Can be used to make informed decisions
+  /// if needing to re-prioritize appointments. (The iCal Standard specifies
+  /// 0 as undefined, 1 as highest, 9 as lowest priority).
   final FhirUnsignedInt? priority;
+
+  /// Extensions for [priority]
   final Element? priorityElement;
 
-  /// [description] /// The brief description of the appointment as would be shown on a subject
+  /// [description]
+  /// The brief description of the appointment as would be shown on a subject
   /// line in a meeting request, or appointment list. Detailed or expanded
   /// information should be put in the comment field.
   final FhirString? description;
+
+  /// Extensions for [description]
   final Element? descriptionElement;
 
-  /// [supportingInformation] /// Additional information to support the appointment provided when making the
-  /// appointment.
+  /// [supportingInformation]
+  /// Additional information to support the appointment provided when making
+  /// the appointment.
   final List<Reference>? supportingInformation;
 
-  /// [start] /// Date/Time that the appointment is to take place.
+  /// [start]
+  /// Date/Time that the appointment is to take place.
   final FhirInstant? start;
+
+  /// Extensions for [start]
   final Element? startElement;
 
-  /// [end] /// Date/Time that the appointment is to conclude.
+  /// [end]
+  /// Date/Time that the appointment is to conclude.
   final FhirInstant? end;
+
+  /// Extensions for [end]
   final Element? endElement;
 
-  /// [minutesDuration] /// Number of minutes that the appointment is to take. This can be less than
-  /// the duration between the start and end times. For example, where the actual
-  /// time of appointment is only an estimate or if a 30 minute appointment is
-  /// being requested, but any time would work. Also, if there is, for example, a
-  /// planned 15 minute break in the middle of a long appointment, the duration
-  /// may be 15 minutes less than the difference between the start and end.
+  /// [minutesDuration]
+  /// Number of minutes that the appointment is to take. This can be less
+  /// than the duration between the start and end times. For example, where
+  /// the actual time of appointment is only an estimate or if a 30 minute
+  /// appointment is being requested, but any time would work. Also, if there
+  /// is, for example, a planned 15 minute break in the middle of a long
+  /// appointment, the duration may be 15 minutes less than the difference
+  /// between the start and end.
   final FhirPositiveInt? minutesDuration;
+
+  /// Extensions for [minutesDuration]
   final Element? minutesDurationElement;
 
-  /// [slot] /// The slots from the participants' schedules that will be filled by the
+  /// [slot]
+  /// The slots from the participants' schedules that will be filled by the
   /// appointment.
   final List<Reference>? slot;
 
-  /// [created] /// The date that this appointment was initially created. This could be
+  /// [created]
+  /// The date that this appointment was initially created. This could be
   /// different to the meta.lastModified value on the initial entry, as this
   /// could have been before the resource was created on the FHIR server, and
   /// should remain unchanged over the lifespan of the appointment.
   final FhirDateTime? created;
+
+  /// Extensions for [created]
   final Element? createdElement;
 
-  /// [comment] /// Additional comments about the appointment.
+  /// [comment]
+  /// Additional comments about the appointment.
   final FhirString? comment;
+
+  /// Extensions for [comment]
   final Element? commentElement;
 
-  /// [patientInstruction] /// While Appointment.comment contains information for internal use,
+  /// [patientInstruction]
+  /// While Appointment.comment contains information for internal use,
   /// Appointment.patientInstructions is used to capture patient facing
-  /// information about the Appointment (e.g. please bring your referral or fast
-  /// from 8pm night before).
+  /// information about the Appointment (e.g. please bring your referral or
+  /// fast from 8pm night before).
   final FhirString? patientInstruction;
+
+  /// Extensions for [patientInstruction]
   final Element? patientInstructionElement;
 
-  /// [basedOn] /// The service request this appointment is allocated to assess (e.g. incoming
-  /// referral or procedure request).
+  /// [basedOn]
+  /// The service request this appointment is allocated to assess (e.g.
+  /// incoming referral or procedure request).
   final List<Reference>? basedOn;
 
-  /// [participant] /// List of participants involved in the appointment.
+  /// [participant]
+  /// List of participants involved in the appointment.
   final List<AppointmentParticipant> participant;
 
-  /// [requestedPeriod] /// A set of date ranges (potentially including times) that the appointment is
-  /// preferred to be scheduled within.
+  /// [requestedPeriod]
+  /// A set of date ranges (potentially including times) that the appointment
+  /// is preferred to be scheduled within.
   ///
-  /// The duration (usually in minutes) could also be provided to indicate the
-  /// length of the appointment to fill and populate the start/end times for the
-  /// actual allocated time. However, in other situations the duration may be
-  /// calculated by the scheduling system.
+  /// The duration (usually in minutes) could also be provided to indicate
+  /// the length of the appointment to fill and populate the start/end times
+  /// for the actual allocated time. However, in other situations the
+  /// duration may be calculated by the scheduling system.
   final List<Period>? requestedPeriod;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -196,49 +517,46 @@ class Appointment extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     json['status'] = status.toJson();
     if (cancelationReason != null) {
       json['cancelationReason'] = cancelationReason!.toJson();
     }
     if (serviceCategory != null && serviceCategory!.isNotEmpty) {
-      json['serviceCategory'] = serviceCategory!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['serviceCategory'] =
+          serviceCategory!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (serviceType != null && serviceType!.isNotEmpty) {
       json['serviceType'] =
-          serviceType!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          serviceType!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (specialty != null && specialty!.isNotEmpty) {
       json['specialty'] =
-          specialty!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          specialty!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (appointmentType != null) {
       json['appointmentType'] = appointmentType!.toJson();
     }
     if (reasonCode != null && reasonCode!.isNotEmpty) {
       json['reasonCode'] =
-          reasonCode!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          reasonCode!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (reasonReference != null && reasonReference!.isNotEmpty) {
       json['reasonReference'] =
-          reasonReference!.map<dynamic>((Reference v) => v.toJson()).toList();
+          reasonReference!.map((Reference v) => v.toJson()).toList();
     }
     if (priority?.value != null) {
       json['priority'] = priority!.toJson();
@@ -253,9 +571,8 @@ class Appointment extends DomainResource {
       json['_description'] = descriptionElement!.toJson();
     }
     if (supportingInformation != null && supportingInformation!.isNotEmpty) {
-      json['supportingInformation'] = supportingInformation!
-          .map<dynamic>((Reference v) => v.toJson())
-          .toList();
+      json['supportingInformation'] =
+          supportingInformation!.map((Reference v) => v.toJson()).toList();
     }
     if (start?.value != null) {
       json['start'] = start!.toJson();
@@ -276,7 +593,7 @@ class Appointment extends DomainResource {
       json['_minutesDuration'] = minutesDurationElement!.toJson();
     }
     if (slot != null && slot!.isNotEmpty) {
-      json['slot'] = slot!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['slot'] = slot!.map((Reference v) => v.toJson()).toList();
     }
     if (created?.value != null) {
       json['created'] = created!.toJson();
@@ -297,180 +614,18 @@ class Appointment extends DomainResource {
       json['_patientInstruction'] = patientInstructionElement!.toJson();
     }
     if (basedOn != null && basedOn!.isNotEmpty) {
-      json['basedOn'] =
-          basedOn!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['basedOn'] = basedOn!.map((Reference v) => v.toJson()).toList();
     }
     json['participant'] = participant
         .map<dynamic>((AppointmentParticipant v) => v.toJson())
         .toList();
     if (requestedPeriod != null && requestedPeriod!.isNotEmpty) {
       json['requestedPeriod'] =
-          requestedPeriod!.map<dynamic>((Period v) => v.toJson()).toList();
+          requestedPeriod!.map((Period v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory Appointment.fromJson(Map<String, dynamic> json) {
-    return Appointment(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      status: AppointmentStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      cancelationReason: json['cancelationReason'] != null
-          ? CodeableConcept.fromJson(
-              json['cancelationReason'] as Map<String, dynamic>)
-          : null,
-      serviceCategory: json['serviceCategory'] != null
-          ? (json['serviceCategory'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      serviceType: json['serviceType'] != null
-          ? (json['serviceType'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      specialty: json['specialty'] != null
-          ? (json['specialty'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      appointmentType: json['appointmentType'] != null
-          ? CodeableConcept.fromJson(
-              json['appointmentType'] as Map<String, dynamic>)
-          : null,
-      reasonCode: json['reasonCode'] != null
-          ? (json['reasonCode'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      reasonReference: json['reasonReference'] != null
-          ? (json['reasonReference'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      priority: json['priority'] != null
-          ? FhirUnsignedInt.fromJson(json['priority'])
-          : null,
-      priorityElement: json['_priority'] != null
-          ? Element.fromJson(json['_priority'] as Map<String, dynamic>)
-          : null,
-      description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
-          : null,
-      supportingInformation: json['supportingInformation'] != null
-          ? (json['supportingInformation'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      start: json['start'] != null ? FhirInstant.fromJson(json['start']) : null,
-      startElement: json['_start'] != null
-          ? Element.fromJson(json['_start'] as Map<String, dynamic>)
-          : null,
-      end: json['end'] != null ? FhirInstant.fromJson(json['end']) : null,
-      endElement: json['_end'] != null
-          ? Element.fromJson(json['_end'] as Map<String, dynamic>)
-          : null,
-      minutesDuration: json['minutesDuration'] != null
-          ? FhirPositiveInt.fromJson(json['minutesDuration'])
-          : null,
-      minutesDurationElement: json['_minutesDuration'] != null
-          ? Element.fromJson(json['_minutesDuration'] as Map<String, dynamic>)
-          : null,
-      slot: json['slot'] != null
-          ? (json['slot'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      created: json['created'] != null
-          ? FhirDateTime.fromJson(json['created'])
-          : null,
-      createdElement: json['_created'] != null
-          ? Element.fromJson(json['_created'] as Map<String, dynamic>)
-          : null,
-      comment:
-          json['comment'] != null ? FhirString.fromJson(json['comment']) : null,
-      commentElement: json['_comment'] != null
-          ? Element.fromJson(json['_comment'] as Map<String, dynamic>)
-          : null,
-      patientInstruction: json['patientInstruction'] != null
-          ? FhirString.fromJson(json['patientInstruction'])
-          : null,
-      patientInstructionElement: json['_patientInstruction'] != null
-          ? Element.fromJson(
-              json['_patientInstruction'] as Map<String, dynamic>)
-          : null,
-      basedOn: json['basedOn'] != null
-          ? (json['basedOn'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      participant: (json['participant'] as List<dynamic>)
-          .map<AppointmentParticipant>((dynamic v) =>
-              AppointmentParticipant.fromJson(v as Map<String, dynamic>))
-          .toList(),
-      requestedPeriod: json['requestedPeriod'] != null
-          ? (json['requestedPeriod'] as List<dynamic>)
-              .map<Period>(
-                  (dynamic v) => Period.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   Appointment clone() => throw UnimplementedError();
   @override
@@ -576,29 +731,13 @@ class Appointment extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory Appointment.fromYaml(dynamic yaml) => yaml is String
-      ? Appointment.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? Appointment.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'Appointment cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory Appointment.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return Appointment.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [AppointmentParticipant] /// List of participants involved in the appointment.
+/// [AppointmentParticipant]
+/// List of participants involved in the appointment.
 class AppointmentParticipant extends BackboneElement {
+  /// Primary constructor for [AppointmentParticipant]
+
   AppointmentParticipant({
     super.id,
     super.extension_,
@@ -606,8 +745,12 @@ class AppointmentParticipant extends BackboneElement {
     this.type,
     this.actor,
     this.required_,
+
+    /// Extensions for [required]
     this.requiredElement,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     this.period,
     super.userData,
@@ -618,46 +761,137 @@ class AppointmentParticipant extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory AppointmentParticipant.fromJson(Map<String, dynamic> json) {
+    return AppointmentParticipant(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? (json['type'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      actor: json['actor'] != null
+          ? Reference.fromJson(
+              json['actor'] as Map<String, dynamic>,
+            )
+          : null,
+      required_: json['required'] != null
+          ? ParticipantRequired.fromJson(json['required'])
+          : null,
+      requiredElement: json['_required'] != null
+          ? Element.fromJson(
+              json['_required'] as Map<String, dynamic>,
+            )
+          : null,
+      status: ParticipationStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      period: json['period'] != null
+          ? Period.fromJson(
+              json['period'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [AppointmentParticipant] from a [String] or [YamlMap] object
+  factory AppointmentParticipant.fromYaml(dynamic yaml) => yaml is String
+      ? AppointmentParticipant.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? AppointmentParticipant.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'AppointmentParticipant cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [AppointmentParticipant] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory AppointmentParticipant.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return AppointmentParticipant.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'AppointmentParticipant';
 
-  /// [type] /// Role of participant in the appointment.
+  /// [type]
+  /// Role of participant in the appointment.
   final List<CodeableConcept>? type;
 
-  /// [actor] /// A Person, Location/HealthcareService or Device that is participating in the
-  /// appointment.
+  /// [actor]
+  /// A Person, Location/HealthcareService or Device that is participating in
+  /// the appointment.
   final Reference? actor;
 
-  /// [required_] /// Whether this participant is required to be present at the meeting. This
-  /// covers a use-case where two doctors need to meet to discuss the results for
-  /// a specific patient, and the patient is not required to be present.
+  /// [required_]
+  /// Whether this participant is required to be present at the meeting. This
+  /// covers a use-case where two doctors need to meet to discuss the results
+  /// for a specific patient, and the patient is not required to be present.
   final ParticipantRequired? required_;
+
+  /// Extensions for [required]
   final Element? requiredElement;
 
-  /// [status] /// Participation status of the actor.
+  /// [status]
+  /// Participation status of the actor.
   final ParticipationStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [period] /// Participation period of the actor.
+  /// [period]
+  /// Participation period of the actor.
   final Period? period;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (type != null && type!.isNotEmpty) {
-      json['type'] =
-          type!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+      json['type'] = type!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (actor != null) {
       json['actor'] = actor!.toJson();
@@ -672,45 +906,6 @@ class AppointmentParticipant extends BackboneElement {
     return json;
   }
 
-  factory AppointmentParticipant.fromJson(Map<String, dynamic> json) {
-    return AppointmentParticipant(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? (json['type'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      actor: json['actor'] != null
-          ? Reference.fromJson(json['actor'] as Map<String, dynamic>)
-          : null,
-      required_: json['required'] != null
-          ? ParticipantRequired.fromJson(json['required'])
-          : null,
-      requiredElement: json['_required'] != null
-          ? Element.fromJson(json['_required'] as Map<String, dynamic>)
-          : null,
-      status: ParticipationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      period: json['period'] != null
-          ? Period.fromJson(json['period'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   AppointmentParticipant clone() => throw UnimplementedError();
   @override
@@ -750,24 +945,5 @@ class AppointmentParticipant extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory AppointmentParticipant.fromYaml(dynamic yaml) => yaml is String
-      ? AppointmentParticipant.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? AppointmentParticipant.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'AppointmentParticipant cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory AppointmentParticipant.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return AppointmentParticipant.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

@@ -1,17 +1,23 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [PractitionerRole] /// A specific set of Roles/Locations/specialties/services that a practitioner
-/// may perform at an organization for a period of time.
+/// [PractitionerRole]
+/// A specific set of Roles/Locations/specialties/services that a
+/// practitioner may perform at an organization for a period of time.
 class PractitionerRole extends DomainResource {
+  /// Primary constructor for [PractitionerRole]
+
   PractitionerRole({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -19,6 +25,8 @@ class PractitionerRole extends DomainResource {
     super.modifierExtension,
     this.identifier,
     this.active,
+
+    /// Extensions for [active]
     this.activeElement,
     this.period,
     this.practitioner,
@@ -31,6 +39,8 @@ class PractitionerRole extends DomainResource {
     this.availableTime,
     this.notAvailable,
     this.availabilityExceptions,
+
+    /// Extensions for [availabilityExceptions]
     this.availabilityExceptionsElement,
     this.endpoint,
     super.userData,
@@ -39,66 +49,284 @@ class PractitionerRole extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.PractitionerRole);
+  }) : super(
+          resourceType: R4ResourceType.PractitionerRole,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory PractitionerRole.fromJson(Map<String, dynamic> json) {
+    return PractitionerRole(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      active:
+          json['active'] != null ? FhirBoolean.fromJson(json['active']) : null,
+      activeElement: json['_active'] != null
+          ? Element.fromJson(
+              json['_active'] as Map<String, dynamic>,
+            )
+          : null,
+      period: json['period'] != null
+          ? Period.fromJson(
+              json['period'] as Map<String, dynamic>,
+            )
+          : null,
+      practitioner: json['practitioner'] != null
+          ? Reference.fromJson(
+              json['practitioner'] as Map<String, dynamic>,
+            )
+          : null,
+      organization: json['organization'] != null
+          ? Reference.fromJson(
+              json['organization'] as Map<String, dynamic>,
+            )
+          : null,
+      code: json['code'] != null
+          ? (json['code'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      specialty: json['specialty'] != null
+          ? (json['specialty'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      location: json['location'] != null
+          ? (json['location'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      healthcareService: json['healthcareService'] != null
+          ? (json['healthcareService'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      telecom: json['telecom'] != null
+          ? (json['telecom'] as List<dynamic>)
+              .map<ContactPoint>(
+                (dynamic v) => ContactPoint.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      availableTime: json['availableTime'] != null
+          ? (json['availableTime'] as List<dynamic>)
+              .map<PractitionerRoleAvailableTime>(
+                (dynamic v) => PractitionerRoleAvailableTime.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      notAvailable: json['notAvailable'] != null
+          ? (json['notAvailable'] as List<dynamic>)
+              .map<PractitionerRoleNotAvailable>(
+                (dynamic v) => PractitionerRoleNotAvailable.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      availabilityExceptions: json['availabilityExceptions'] != null
+          ? FhirString.fromJson(json['availabilityExceptions'])
+          : null,
+      availabilityExceptionsElement: json['_availabilityExceptions'] != null
+          ? Element.fromJson(
+              json['_availabilityExceptions'] as Map<String, dynamic>,
+            )
+          : null,
+      endpoint: json['endpoint'] != null
+          ? (json['endpoint'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [PractitionerRole] from a [String] or [YamlMap] object
+  factory PractitionerRole.fromYaml(dynamic yaml) => yaml is String
+      ? PractitionerRole.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? PractitionerRole.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'PractitionerRole cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [PractitionerRole] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory PractitionerRole.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return PractitionerRole.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'PractitionerRole';
 
-  /// [identifier] /// Business Identifiers that are specific to a role/location.
+  /// [identifier]
+  /// Business Identifiers that are specific to a role/location.
   final List<Identifier>? identifier;
 
-  /// [active] /// Whether this practitioner role record is in active use.
+  /// [active]
+  /// Whether this practitioner role record is in active use.
   final FhirBoolean? active;
+
+  /// Extensions for [active]
   final Element? activeElement;
 
-  /// [period] /// The period during which the person is authorized to act as a practitioner
-  /// in these role(s) for the organization.
+  /// [period]
+  /// The period during which the person is authorized to act as a
+  /// practitioner in these role(s) for the organization.
   final Period? period;
 
-  /// [practitioner] /// Practitioner that is able to provide the defined services for the
+  /// [practitioner]
+  /// Practitioner that is able to provide the defined services for the
   /// organization.
   final Reference? practitioner;
 
-  /// [organization] /// The organization where the Practitioner performs the roles associated.
+  /// [organization]
+  /// The organization where the Practitioner performs the roles associated.
   final Reference? organization;
 
-  /// [code] /// Roles which this practitioner is authorized to perform for the
+  /// [code]
+  /// Roles which this practitioner is authorized to perform for the
   /// organization.
   final List<CodeableConcept>? code;
 
-  /// [specialty] /// Specific specialty of the practitioner.
+  /// [specialty]
+  /// Specific specialty of the practitioner.
   final List<CodeableConcept>? specialty;
 
-  /// [location] /// The location(s) at which this practitioner provides care.
+  /// [location]
+  /// The location(s) at which this practitioner provides care.
   final List<Reference>? location;
 
-  /// [healthcareService] /// The list of healthcare services that this worker provides for this role's
-  /// Organization/Location(s).
+  /// [healthcareService]
+  /// The list of healthcare services that this worker provides for this
+  /// role's Organization/Location(s).
   final List<Reference>? healthcareService;
 
-  /// [telecom] /// Contact details that are specific to the role/location/service.
+  /// [telecom]
+  /// Contact details that are specific to the role/location/service.
   final List<ContactPoint>? telecom;
 
-  /// [availableTime] /// A collection of times the practitioner is available or performing this role
-  /// at the location and/or healthcareservice.
+  /// [availableTime]
+  /// A collection of times the practitioner is available or performing this
+  /// role at the location and/or healthcareservice.
   final List<PractitionerRoleAvailableTime>? availableTime;
 
-  /// [notAvailable] /// The practitioner is not available or performing this role during this
+  /// [notAvailable]
+  /// The practitioner is not available or performing this role during this
   /// period of time due to the provided reason.
   final List<PractitionerRoleNotAvailable>? notAvailable;
 
-  /// [availabilityExceptions] /// A description of site availability exceptions, e.g. public holiday
-  /// availability. Succinctly describing all possible exceptions to normal site
-  /// availability as details in the available Times and not available Times.
+  /// [availabilityExceptions]
+  /// A description of site availability exceptions, e.g. public holiday
+  /// availability. Succinctly describing all possible exceptions to normal
+  /// site availability as details in the available Times and not available
+  /// Times.
   final FhirString? availabilityExceptions;
+
+  /// Extensions for [availabilityExceptions]
   final Element? availabilityExceptionsElement;
 
-  /// [endpoint] /// Technical endpoints providing access to services operated for the
+  /// [endpoint]
+  /// Technical endpoints providing access to services operated for the
   /// practitioner with this role.
   final List<Reference>? endpoint;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -119,21 +347,19 @@ class PractitionerRole extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (active?.value != null) {
       json['active'] = active!.toJson();
@@ -151,33 +377,30 @@ class PractitionerRole extends DomainResource {
       json['organization'] = organization!.toJson();
     }
     if (code != null && code!.isNotEmpty) {
-      json['code'] =
-          code!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+      json['code'] = code!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (specialty != null && specialty!.isNotEmpty) {
       json['specialty'] =
-          specialty!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          specialty!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (location != null && location!.isNotEmpty) {
-      json['location'] =
-          location!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['location'] = location!.map((Reference v) => v.toJson()).toList();
     }
     if (healthcareService != null && healthcareService!.isNotEmpty) {
       json['healthcareService'] =
-          healthcareService!.map<dynamic>((Reference v) => v.toJson()).toList();
+          healthcareService!.map((Reference v) => v.toJson()).toList();
     }
     if (telecom != null && telecom!.isNotEmpty) {
-      json['telecom'] =
-          telecom!.map<dynamic>((ContactPoint v) => v.toJson()).toList();
+      json['telecom'] = telecom!.map((ContactPoint v) => v.toJson()).toList();
     }
     if (availableTime != null && availableTime!.isNotEmpty) {
       json['availableTime'] = availableTime!
-          .map<dynamic>((PractitionerRoleAvailableTime v) => v.toJson())
+          .map((PractitionerRoleAvailableTime v) => v.toJson())
           .toList();
     }
     if (notAvailable != null && notAvailable!.isNotEmpty) {
       json['notAvailable'] = notAvailable!
-          .map<dynamic>((PractitionerRoleNotAvailable v) => v.toJson())
+          .map((PractitionerRoleNotAvailable v) => v.toJson())
           .toList();
     }
     if (availabilityExceptions?.value != null) {
@@ -187,130 +410,11 @@ class PractitionerRole extends DomainResource {
       json['_availabilityExceptions'] = availabilityExceptionsElement!.toJson();
     }
     if (endpoint != null && endpoint!.isNotEmpty) {
-      json['endpoint'] =
-          endpoint!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['endpoint'] = endpoint!.map((Reference v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory PractitionerRole.fromJson(Map<String, dynamic> json) {
-    return PractitionerRole(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      active:
-          json['active'] != null ? FhirBoolean.fromJson(json['active']) : null,
-      activeElement: json['_active'] != null
-          ? Element.fromJson(json['_active'] as Map<String, dynamic>)
-          : null,
-      period: json['period'] != null
-          ? Period.fromJson(json['period'] as Map<String, dynamic>)
-          : null,
-      practitioner: json['practitioner'] != null
-          ? Reference.fromJson(json['practitioner'] as Map<String, dynamic>)
-          : null,
-      organization: json['organization'] != null
-          ? Reference.fromJson(json['organization'] as Map<String, dynamic>)
-          : null,
-      code: json['code'] != null
-          ? (json['code'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      specialty: json['specialty'] != null
-          ? (json['specialty'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      location: json['location'] != null
-          ? (json['location'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      healthcareService: json['healthcareService'] != null
-          ? (json['healthcareService'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      telecom: json['telecom'] != null
-          ? (json['telecom'] as List<dynamic>)
-              .map<ContactPoint>((dynamic v) =>
-                  ContactPoint.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      availableTime: json['availableTime'] != null
-          ? (json['availableTime'] as List<dynamic>)
-              .map<PractitionerRoleAvailableTime>((dynamic v) =>
-                  PractitionerRoleAvailableTime.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      notAvailable: json['notAvailable'] != null
-          ? (json['notAvailable'] as List<dynamic>)
-              .map<PractitionerRoleNotAvailable>((dynamic v) =>
-                  PractitionerRoleNotAvailable.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      availabilityExceptions: json['availabilityExceptions'] != null
-          ? FhirString.fromJson(json['availabilityExceptions'])
-          : null,
-      availabilityExceptionsElement: json['_availabilityExceptions'] != null
-          ? Element.fromJson(
-              json['_availabilityExceptions'] as Map<String, dynamic>)
-          : null,
-      endpoint: json['endpoint'] != null
-          ? (json['endpoint'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   PractitionerRole clone() => throw UnimplementedError();
   @override
@@ -385,41 +489,33 @@ class PractitionerRole extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory PractitionerRole.fromYaml(dynamic yaml) => yaml is String
-      ? PractitionerRole.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? PractitionerRole.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'PractitionerRole cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory PractitionerRole.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return PractitionerRole.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [PractitionerRoleAvailableTime] /// A collection of times the practitioner is available or performing this role
-/// at the location and/or healthcareservice.
+/// [PractitionerRoleAvailableTime]
+/// A collection of times the practitioner is available or performing this
+/// role at the location and/or healthcareservice.
 class PractitionerRoleAvailableTime extends BackboneElement {
+  /// Primary constructor for [PractitionerRoleAvailableTime]
+
   PractitionerRoleAvailableTime({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.daysOfWeek,
+
+    /// Extensions for [daysOfWeek]
     this.daysOfWeekElement,
     this.allDay,
+
+    /// Extensions for [allDay]
     this.allDayElement,
     this.availableStartTime,
+
+    /// Extensions for [availableStartTime]
     this.availableStartTimeElement,
     this.availableEndTime,
+
+    /// Extensions for [availableEndTime]
     this.availableEndTimeElement,
     super.userData,
     super.formatCommentsPre,
@@ -429,46 +525,145 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory PractitionerRoleAvailableTime.fromJson(Map<String, dynamic> json) {
+    return PractitionerRoleAvailableTime(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      daysOfWeek: json['daysOfWeek'] != null
+          ? (json['daysOfWeek'] as List<dynamic>)
+              .map<DaysOfWeek>(
+                (dynamic v) => DaysOfWeek.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      daysOfWeekElement: json['_daysOfWeek'] != null
+          ? (json['_daysOfWeek'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      allDay:
+          json['allDay'] != null ? FhirBoolean.fromJson(json['allDay']) : null,
+      allDayElement: json['_allDay'] != null
+          ? Element.fromJson(
+              json['_allDay'] as Map<String, dynamic>,
+            )
+          : null,
+      availableStartTime: json['availableStartTime'] != null
+          ? FhirTime.fromJson(json['availableStartTime'])
+          : null,
+      availableStartTimeElement: json['_availableStartTime'] != null
+          ? Element.fromJson(
+              json['_availableStartTime'] as Map<String, dynamic>,
+            )
+          : null,
+      availableEndTime: json['availableEndTime'] != null
+          ? FhirTime.fromJson(json['availableEndTime'])
+          : null,
+      availableEndTimeElement: json['_availableEndTime'] != null
+          ? Element.fromJson(
+              json['_availableEndTime'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [PractitionerRoleAvailableTime] from a [String] or [YamlMap] object
+  factory PractitionerRoleAvailableTime.fromYaml(dynamic yaml) => yaml is String
+      ? PractitionerRoleAvailableTime.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? PractitionerRoleAvailableTime.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'PractitionerRoleAvailableTime cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [PractitionerRoleAvailableTime] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory PractitionerRoleAvailableTime.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return PractitionerRoleAvailableTime.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'PractitionerRoleAvailableTime';
 
-  /// [daysOfWeek] /// Indicates which days of the week are available between the start and end
-  /// Times.
+  /// [daysOfWeek]
+  /// Indicates which days of the week are available between the start and
+  /// end Times.
   final List<DaysOfWeek>? daysOfWeek;
+
+  /// Extensions for [daysOfWeek]
   final List<Element>? daysOfWeekElement;
 
-  /// [allDay] /// Is this always available? (hence times are irrelevant) e.g. 24 hour
+  /// [allDay]
+  /// Is this always available? (hence times are irrelevant) e.g. 24 hour
   /// service.
   final FhirBoolean? allDay;
+
+  /// Extensions for [allDay]
   final Element? allDayElement;
 
-  /// [availableStartTime] /// The opening time of day. Note: If the AllDay flag is set, then this time is
-  /// ignored.
+  /// [availableStartTime]
+  /// The opening time of day. Note: If the AllDay flag is set, then this
+  /// time is ignored.
   final FhirTime? availableStartTime;
+
+  /// Extensions for [availableStartTime]
   final Element? availableStartTimeElement;
 
-  /// [availableEndTime] /// The closing time of day. Note: If the AllDay flag is set, then this time is
-  /// ignored.
+  /// [availableEndTime]
+  /// The closing time of day. Note: If the AllDay flag is set, then this
+  /// time is ignored.
   final FhirTime? availableEndTime;
+
+  /// Extensions for [availableEndTime]
   final Element? availableEndTimeElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (daysOfWeek != null && daysOfWeek!.isNotEmpty) {
       json['daysOfWeek'] =
-          daysOfWeek!.map<dynamic>((DaysOfWeek v) => v.toJson()).toList();
+          daysOfWeek!.map((DaysOfWeek v) => v.toJson()).toList();
     }
     if (allDay?.value != null) {
       json['allDay'] = allDay!.toJson();
@@ -491,52 +686,6 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     return json;
   }
 
-  factory PractitionerRoleAvailableTime.fromJson(Map<String, dynamic> json) {
-    return PractitionerRoleAvailableTime(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      daysOfWeek: json['daysOfWeek'] != null
-          ? (json['daysOfWeek'] as List<dynamic>)
-              .map<DaysOfWeek>((dynamic v) => DaysOfWeek.fromJson(v as dynamic))
-              .toList()
-          : null,
-      daysOfWeekElement: json['_daysOfWeek'] != null
-          ? (json['_daysOfWeek'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      allDay:
-          json['allDay'] != null ? FhirBoolean.fromJson(json['allDay']) : null,
-      allDayElement: json['_allDay'] != null
-          ? Element.fromJson(json['_allDay'] as Map<String, dynamic>)
-          : null,
-      availableStartTime: json['availableStartTime'] != null
-          ? FhirTime.fromJson(json['availableStartTime'])
-          : null,
-      availableStartTimeElement: json['_availableStartTime'] != null
-          ? Element.fromJson(
-              json['_availableStartTime'] as Map<String, dynamic>)
-          : null,
-      availableEndTime: json['availableEndTime'] != null
-          ? FhirTime.fromJson(json['availableEndTime'])
-          : null,
-      availableEndTimeElement: json['_availableEndTime'] != null
-          ? Element.fromJson(json['_availableEndTime'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   PractitionerRoleAvailableTime clone() => throw UnimplementedError();
   @override
@@ -581,35 +730,21 @@ class PractitionerRoleAvailableTime extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory PractitionerRoleAvailableTime.fromYaml(dynamic yaml) => yaml is String
-      ? PractitionerRoleAvailableTime.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? PractitionerRoleAvailableTime.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'PractitionerRoleAvailableTime cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory PractitionerRoleAvailableTime.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return PractitionerRoleAvailableTime.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [PractitionerRoleNotAvailable] /// The practitioner is not available or performing this role during this
+/// [PractitionerRoleNotAvailable]
+/// The practitioner is not available or performing this role during this
 /// period of time due to the provided reason.
 class PractitionerRoleNotAvailable extends BackboneElement {
+  /// Primary constructor for [PractitionerRoleNotAvailable]
+
   PractitionerRoleNotAvailable({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.description,
+
+    /// Extensions for [description]
     this.descriptionElement,
     this.during,
     super.userData,
@@ -620,31 +755,96 @@ class PractitionerRoleNotAvailable extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory PractitionerRoleNotAvailable.fromJson(Map<String, dynamic> json) {
+    return PractitionerRoleNotAvailable(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      description: FhirString.fromJson(json['description']),
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(
+              json['_description'] as Map<String, dynamic>,
+            )
+          : null,
+      during: json['during'] != null
+          ? Period.fromJson(
+              json['during'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [PractitionerRoleNotAvailable] from a [String] or [YamlMap] object
+  factory PractitionerRoleNotAvailable.fromYaml(dynamic yaml) => yaml is String
+      ? PractitionerRoleNotAvailable.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? PractitionerRoleNotAvailable.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'PractitionerRoleNotAvailable cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [PractitionerRoleNotAvailable] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory PractitionerRoleNotAvailable.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return PractitionerRoleNotAvailable.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'PractitionerRoleNotAvailable';
 
-  /// [description] /// The reason that can be presented to the user as to why this time is not
+  /// [description]
+  /// The reason that can be presented to the user as to why this time is not
   /// available.
   final FhirString description;
+
+  /// Extensions for [description]
   final Element? descriptionElement;
 
-  /// [during] /// Service is not available (seasonally or for a public holiday) from this
+  /// [during]
+  /// Service is not available (seasonally or for a public holiday) from this
   /// date.
   final Period? during;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['description'] = description.toJson();
     if (descriptionElement != null) {
@@ -656,30 +856,6 @@ class PractitionerRoleNotAvailable extends BackboneElement {
     return json;
   }
 
-  factory PractitionerRoleNotAvailable.fromJson(Map<String, dynamic> json) {
-    return PractitionerRoleNotAvailable(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      description: FhirString.fromJson(json['description']),
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
-          : null,
-      during: json['during'] != null
-          ? Period.fromJson(json['during'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   PractitionerRoleNotAvailable clone() => throw UnimplementedError();
   @override
@@ -711,24 +887,5 @@ class PractitionerRoleNotAvailable extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory PractitionerRoleNotAvailable.fromYaml(dynamic yaml) => yaml is String
-      ? PractitionerRoleNotAvailable.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? PractitionerRoleNotAvailable.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'PractitionerRoleNotAvailable cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory PractitionerRoleNotAvailable.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return PractitionerRoleNotAvailable.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

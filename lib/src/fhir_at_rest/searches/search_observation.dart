@@ -53,7 +53,7 @@ class SearchObservation extends SearchResource {
   SearchObservation comboValueQuantity(FhirDecimal value,
       {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {
     if (modifier != null &&
-        !<String>['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
+        !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
     }
     parameters['${modifier != null ? '$modifier' : ''}combo_value_quantity'] =
@@ -87,7 +87,7 @@ class SearchObservation extends SearchResource {
   SearchObservation componentValueQuantity(FhirDecimal value,
       {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {
     if (modifier != null &&
-        !<String>['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
+        !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
     }
     parameters[
@@ -133,7 +133,7 @@ class SearchObservation extends SearchResource {
   SearchObservation valueQuantity(FhirDecimal value,
       {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {
     if (modifier != null &&
-        !<String>['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
+        !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
     }
     parameters['${modifier != null ? '$modifier' : ''}value_quantity'] =
@@ -142,8 +142,7 @@ class SearchObservation extends SearchResource {
   }
 
   SearchObservation valueString(FhirString value, {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}value_string'] =

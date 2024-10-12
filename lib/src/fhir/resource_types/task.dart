@@ -1,16 +1,22 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [Task] /// A task to be performed.
+/// [Task]
+/// A task to be performed.
 class Task extends DomainResource {
+  /// Primary constructor for [Task]
+
   Task({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -18,30 +24,46 @@ class Task extends DomainResource {
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
+
+    /// Extensions for [instantiatesCanonical]
     this.instantiatesCanonicalElement,
     this.instantiatesUri,
+
+    /// Extensions for [instantiatesUri]
     this.instantiatesUriElement,
     this.basedOn,
     this.groupIdentifier,
     this.partOf,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     this.statusReason,
     this.businessStatus,
     required this.intent,
+
+    /// Extensions for [intent]
     this.intentElement,
     this.priority,
+
+    /// Extensions for [priority]
     this.priorityElement,
     this.code,
     this.description,
+
+    /// Extensions for [description]
     this.descriptionElement,
     this.focus,
     this.for_,
     this.encounter,
     this.executionPeriod,
     this.authoredOn,
+
+    /// Extensions for [authoredOn]
     this.authoredOnElement,
     this.lastModified,
+
+    /// Extensions for [lastModified]
     this.lastModifiedElement,
     this.requester,
     this.performerType,
@@ -61,135 +83,483 @@ class Task extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.Task);
+  }) : super(
+          resourceType: R4ResourceType.Task,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory Task.fromJson(Map<String, dynamic> json) {
+    return Task(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      instantiatesCanonical: json['instantiatesCanonical'] != null
+          ? FhirCanonical.fromJson(json['instantiatesCanonical'])
+          : null,
+      instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
+          ? Element.fromJson(
+              json['_instantiatesCanonical'] as Map<String, dynamic>,
+            )
+          : null,
+      instantiatesUri: json['instantiatesUri'] != null
+          ? FhirUri.fromJson(json['instantiatesUri'])
+          : null,
+      instantiatesUriElement: json['_instantiatesUri'] != null
+          ? Element.fromJson(
+              json['_instantiatesUri'] as Map<String, dynamic>,
+            )
+          : null,
+      basedOn: json['basedOn'] != null
+          ? (json['basedOn'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      groupIdentifier: json['groupIdentifier'] != null
+          ? Identifier.fromJson(
+              json['groupIdentifier'] as Map<String, dynamic>,
+            )
+          : null,
+      partOf: json['partOf'] != null
+          ? (json['partOf'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      status: TaskStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      statusReason: json['statusReason'] != null
+          ? CodeableConcept.fromJson(
+              json['statusReason'] as Map<String, dynamic>,
+            )
+          : null,
+      businessStatus: json['businessStatus'] != null
+          ? CodeableConcept.fromJson(
+              json['businessStatus'] as Map<String, dynamic>,
+            )
+          : null,
+      intent: TaskIntent.fromJson(json['intent']),
+      intentElement: json['_intent'] != null
+          ? Element.fromJson(
+              json['_intent'] as Map<String, dynamic>,
+            )
+          : null,
+      priority: json['priority'] != null
+          ? RequestPriority.fromJson(json['priority'])
+          : null,
+      priorityElement: json['_priority'] != null
+          ? Element.fromJson(
+              json['_priority'] as Map<String, dynamic>,
+            )
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(
+              json['code'] as Map<String, dynamic>,
+            )
+          : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(
+              json['_description'] as Map<String, dynamic>,
+            )
+          : null,
+      focus: json['focus'] != null
+          ? Reference.fromJson(
+              json['focus'] as Map<String, dynamic>,
+            )
+          : null,
+      for_: json['for'] != null
+          ? Reference.fromJson(
+              json['for'] as Map<String, dynamic>,
+            )
+          : null,
+      encounter: json['encounter'] != null
+          ? Reference.fromJson(
+              json['encounter'] as Map<String, dynamic>,
+            )
+          : null,
+      executionPeriod: json['executionPeriod'] != null
+          ? Period.fromJson(
+              json['executionPeriod'] as Map<String, dynamic>,
+            )
+          : null,
+      authoredOn: json['authoredOn'] != null
+          ? FhirDateTime.fromJson(json['authoredOn'])
+          : null,
+      authoredOnElement: json['_authoredOn'] != null
+          ? Element.fromJson(
+              json['_authoredOn'] as Map<String, dynamic>,
+            )
+          : null,
+      lastModified: json['lastModified'] != null
+          ? FhirDateTime.fromJson(json['lastModified'])
+          : null,
+      lastModifiedElement: json['_lastModified'] != null
+          ? Element.fromJson(
+              json['_lastModified'] as Map<String, dynamic>,
+            )
+          : null,
+      requester: json['requester'] != null
+          ? Reference.fromJson(
+              json['requester'] as Map<String, dynamic>,
+            )
+          : null,
+      performerType: json['performerType'] != null
+          ? (json['performerType'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      owner: json['owner'] != null
+          ? Reference.fromJson(
+              json['owner'] as Map<String, dynamic>,
+            )
+          : null,
+      location: json['location'] != null
+          ? Reference.fromJson(
+              json['location'] as Map<String, dynamic>,
+            )
+          : null,
+      reasonCode: json['reasonCode'] != null
+          ? CodeableConcept.fromJson(
+              json['reasonCode'] as Map<String, dynamic>,
+            )
+          : null,
+      reasonReference: json['reasonReference'] != null
+          ? Reference.fromJson(
+              json['reasonReference'] as Map<String, dynamic>,
+            )
+          : null,
+      insurance: json['insurance'] != null
+          ? (json['insurance'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                (dynamic v) => Annotation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      relevantHistory: json['relevantHistory'] != null
+          ? (json['relevantHistory'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      restriction: json['restriction'] != null
+          ? TaskRestriction.fromJson(
+              json['restriction'] as Map<String, dynamic>,
+            )
+          : null,
+      input: json['input'] != null
+          ? (json['input'] as List<dynamic>)
+              .map<TaskInput>(
+                (dynamic v) => TaskInput.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      output: json['output'] != null
+          ? (json['output'] as List<dynamic>)
+              .map<TaskOutput>(
+                (dynamic v) => TaskOutput.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [Task] from a [String] or [YamlMap] object
+  factory Task.fromYaml(dynamic yaml) => yaml is String
+      ? Task.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? Task.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('Task cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [Task] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory Task.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Task.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'Task';
 
-  /// [identifier] /// The business identifier for this task.
+  /// [identifier]
+  /// The business identifier for this task.
   final List<Identifier>? identifier;
 
-  /// [instantiatesCanonical] /// The URL pointing to a *FHIR*-defined protocol, guideline, orderset or other
-  /// definition that is adhered to in whole or in part by this Task.
+  /// [instantiatesCanonical]
+  /// The URL pointing to a *FHIR*-defined protocol, guideline, orderset or
+  /// other definition that is adhered to in whole or in part by this Task.
   final FhirCanonical? instantiatesCanonical;
+
+  /// Extensions for [instantiatesCanonical]
   final Element? instantiatesCanonicalElement;
 
-  /// [instantiatesUri] /// The URL pointing to an *externally* maintained protocol, guideline,
-  /// orderset or other definition that is adhered to in whole or in part by this
-  /// Task.
+  /// [instantiatesUri]
+  /// The URL pointing to an *externally* maintained protocol, guideline,
+  /// orderset or other definition that is adhered to in whole or in part by
+  /// this Task.
   final FhirUri? instantiatesUri;
+
+  /// Extensions for [instantiatesUri]
   final Element? instantiatesUriElement;
 
-  /// [basedOn] /// BasedOn refers to a higher-level authorization that triggered the creation
-  /// of the task. It references a "request" resource such as a ServiceRequest,
-  /// MedicationRequest, ServiceRequest, CarePlan, etc. which is distinct from
-  /// the "request" resource the task is seeking to fulfill. This latter resource
-  /// is referenced by FocusOn. For example, based on a ServiceRequest (=
-  /// BasedOn), a task is created to fulfill a procedureRequest ( = FocusOn ) to
-  /// collect a specimen from a patient.
+  /// [basedOn]
+  /// BasedOn refers to a higher-level authorization that triggered the
+  /// creation of the task. It references a "request" resource such as a
+  /// ServiceRequest, MedicationRequest, ServiceRequest, CarePlan, etc. which
+  /// is distinct from the "request" resource the task is seeking to fulfill.
+  /// This latter resource is referenced by FocusOn. For example, based on a
+  /// ServiceRequest (= BasedOn), a task is created to fulfill a
+  /// procedureRequest ( = FocusOn ) to collect a specimen from a patient.
   final List<Reference>? basedOn;
 
-  /// [groupIdentifier] /// An identifier that links together multiple tasks and other requests that
-  /// were created in the same context.
+  /// [groupIdentifier]
+  /// An identifier that links together multiple tasks and other requests
+  /// that were created in the same context.
   final Identifier? groupIdentifier;
 
-  /// [partOf] /// Task that this particular task is part of.
+  /// [partOf]
+  /// Task that this particular task is part of.
   final List<Reference>? partOf;
 
-  /// [status] /// The current status of the task.
+  /// [status]
+  /// The current status of the task.
   final TaskStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [statusReason] /// An explanation as to why this task is held, failed, was refused, etc.
+  /// [statusReason]
+  /// An explanation as to why this task is held, failed, was refused, etc.
   final CodeableConcept? statusReason;
 
-  /// [businessStatus] /// Contains business-specific nuances of the business state.
+  /// [businessStatus]
+  /// Contains business-specific nuances of the business state.
   final CodeableConcept? businessStatus;
 
-  /// [intent] /// Indicates the "level" of actionability associated with the Task, i.e.
+  /// [intent]
+  /// Indicates the "level" of actionability associated with the Task, i.e.
   /// i+R[9]Cs this a proposed task, a planned task, an actionable task, etc.
   final TaskIntent intent;
+
+  /// Extensions for [intent]
   final Element? intentElement;
 
-  /// [priority] /// Indicates how quickly the Task should be addressed with respect to other
-  /// requests.
+  /// [priority]
+  /// Indicates how quickly the Task should be addressed with respect to
+  /// other requests.
   final RequestPriority? priority;
+
+  /// Extensions for [priority]
   final Element? priorityElement;
 
-  /// [code] /// A name or code (or both) briefly describing what the task involves.
+  /// [code]
+  /// A name or code (or both) briefly describing what the task involves.
   final CodeableConcept? code;
 
-  /// [description] /// A free-text description of what is to be performed.
+  /// [description]
+  /// A free-text description of what is to be performed.
   final FhirString? description;
+
+  /// Extensions for [description]
   final Element? descriptionElement;
 
-  /// [focus] /// The request being actioned or the resource being manipulated by this task.
+  /// [focus]
+  /// The request being actioned or the resource being manipulated by this
+  /// task.
   final Reference? focus;
 
-  /// [for_] /// The entity who benefits from the performance of the service specified in
-  /// the task (e.g., the patient).
+  /// [for_]
+  /// The entity who benefits from the performance of the service specified
+  /// in the task (e.g., the patient).
   final Reference? for_;
 
-  /// [encounter] /// The healthcare event (e.g. a patient and healthcare provider interaction)
-  /// during which this task was created.
+  /// [encounter]
+  /// The healthcare event (e.g. a patient and healthcare provider
+  /// interaction) during which this task was created.
   final Reference? encounter;
 
-  /// [executionPeriod] /// Identifies the time action was first taken against the task (start) and/or
-  /// the time final action was taken against the task prior to marking it as
-  /// completed (end).
+  /// [executionPeriod]
+  /// Identifies the time action was first taken against the task (start)
+  /// and/or the time final action was taken against the task prior to
+  /// marking it as completed (end).
   final Period? executionPeriod;
 
-  /// [authoredOn] /// The date and time this task was created.
+  /// [authoredOn]
+  /// The date and time this task was created.
   final FhirDateTime? authoredOn;
+
+  /// Extensions for [authoredOn]
   final Element? authoredOnElement;
 
-  /// [lastModified] /// The date and time of last modification to this task.
+  /// [lastModified]
+  /// The date and time of last modification to this task.
   final FhirDateTime? lastModified;
+
+  /// Extensions for [lastModified]
   final Element? lastModifiedElement;
 
-  /// [requester] /// The creator of the task.
+  /// [requester]
+  /// The creator of the task.
   final Reference? requester;
 
-  /// [performerType] /// The kind of participant that should perform the task.
+  /// [performerType]
+  /// The kind of participant that should perform the task.
   final List<CodeableConcept>? performerType;
 
-  /// [owner] /// Individual organization or Device currently responsible for task execution.
+  /// [owner]
+  /// Individual organization or Device currently responsible for task
+  /// execution.
   final Reference? owner;
 
-  /// [location] /// Principal physical location where the this task is performed.
+  /// [location]
+  /// Principal physical location where the this task is performed.
   final Reference? location;
 
-  /// [reasonCode] /// A description or code indicating why this task needs to be performed.
+  /// [reasonCode]
+  /// A description or code indicating why this task needs to be performed.
   final CodeableConcept? reasonCode;
 
-  /// [reasonReference] /// A resource reference indicating why this task needs to be performed.
+  /// [reasonReference]
+  /// A resource reference indicating why this task needs to be performed.
   final Reference? reasonReference;
 
-  /// [insurance] /// Insurance plans, coverage extensions, pre-authorizations and/or
+  /// [insurance]
+  /// Insurance plans, coverage extensions, pre-authorizations and/or
   /// pre-determinations that may be relevant to the Task.
   final List<Reference>? insurance;
 
-  /// [note] /// Free-text information captured about the task as it progresses.
+  /// [note]
+  /// Free-text information captured about the task as it progresses.
   final List<Annotation>? note;
 
-  /// [relevantHistory] /// Links to Provenance records for past versions of this Task that identify
-  /// key state transitions or updates that are likely to be relevant to a user
-  /// looking at the current version of the task.
+  /// [relevantHistory]
+  /// Links to Provenance records for past versions of this Task that
+  /// identify key state transitions or updates that are likely to be
+  /// relevant to a user looking at the current version of the task.
   final List<Reference>? relevantHistory;
 
-  /// [restriction] /// If the Task.focus is a request resource and the task is seeking fulfillment
-  /// (i.e. is asking for the request to be actioned), this element identifies
-  /// any limitations on what parts of the referenced request should be actioned.
+  /// [restriction]
+  /// If the Task.focus is a request resource and the task is seeking
+  /// fulfillment (i.e. is asking for the request to be actioned), this
+  /// element identifies any limitations on what parts of the referenced
+  /// request should be actioned.
   final TaskRestriction? restriction;
 
-  /// [input] /// Additional information that may be needed in the execution of the task.
+  /// [input]
+  /// Additional information that may be needed in the execution of the task.
   final List<TaskInput>? input;
 
-  /// [output] /// Outputs produced by the Task.
+  /// [output]
+  /// Outputs produced by the Task.
   final List<TaskOutput>? output;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -210,21 +580,19 @@ class Task extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (instantiatesCanonical?.value != null) {
       json['instantiatesCanonical'] = instantiatesCanonical!.toJson();
@@ -239,15 +607,13 @@ class Task extends DomainResource {
       json['_instantiatesUri'] = instantiatesUriElement!.toJson();
     }
     if (basedOn != null && basedOn!.isNotEmpty) {
-      json['basedOn'] =
-          basedOn!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['basedOn'] = basedOn!.map((Reference v) => v.toJson()).toList();
     }
     if (groupIdentifier != null) {
       json['groupIdentifier'] = groupIdentifier!.toJson();
     }
     if (partOf != null && partOf!.isNotEmpty) {
-      json['partOf'] =
-          partOf!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['partOf'] = partOf!.map((Reference v) => v.toJson()).toList();
     }
     json['status'] = status.toJson();
     if (statusReason != null) {
@@ -297,9 +663,8 @@ class Task extends DomainResource {
       json['requester'] = requester!.toJson();
     }
     if (performerType != null && performerType!.isNotEmpty) {
-      json['performerType'] = performerType!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['performerType'] =
+          performerType!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (owner != null) {
       json['owner'] = owner!.toJson();
@@ -314,214 +679,27 @@ class Task extends DomainResource {
       json['reasonReference'] = reasonReference!.toJson();
     }
     if (insurance != null && insurance!.isNotEmpty) {
-      json['insurance'] =
-          insurance!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['insurance'] = insurance!.map((Reference v) => v.toJson()).toList();
     }
     if (note != null && note!.isNotEmpty) {
-      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+      json['note'] = note!.map((Annotation v) => v.toJson()).toList();
     }
     if (relevantHistory != null && relevantHistory!.isNotEmpty) {
       json['relevantHistory'] =
-          relevantHistory!.map<dynamic>((Reference v) => v.toJson()).toList();
+          relevantHistory!.map((Reference v) => v.toJson()).toList();
     }
     if (restriction != null) {
       json['restriction'] = restriction!.toJson();
     }
     if (input != null && input!.isNotEmpty) {
-      json['input'] = input!.map<dynamic>((TaskInput v) => v.toJson()).toList();
+      json['input'] = input!.map((TaskInput v) => v.toJson()).toList();
     }
     if (output != null && output!.isNotEmpty) {
-      json['output'] =
-          output!.map<dynamic>((TaskOutput v) => v.toJson()).toList();
+      json['output'] = output!.map((TaskOutput v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory Task.fromJson(Map<String, dynamic> json) {
-    return Task(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      instantiatesCanonical: json['instantiatesCanonical'] != null
-          ? FhirCanonical.fromJson(json['instantiatesCanonical'])
-          : null,
-      instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
-          ? Element.fromJson(
-              json['_instantiatesCanonical'] as Map<String, dynamic>)
-          : null,
-      instantiatesUri: json['instantiatesUri'] != null
-          ? FhirUri.fromJson(json['instantiatesUri'])
-          : null,
-      instantiatesUriElement: json['_instantiatesUri'] != null
-          ? Element.fromJson(json['_instantiatesUri'] as Map<String, dynamic>)
-          : null,
-      basedOn: json['basedOn'] != null
-          ? (json['basedOn'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      groupIdentifier: json['groupIdentifier'] != null
-          ? Identifier.fromJson(json['groupIdentifier'] as Map<String, dynamic>)
-          : null,
-      partOf: json['partOf'] != null
-          ? (json['partOf'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      status: TaskStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      statusReason: json['statusReason'] != null
-          ? CodeableConcept.fromJson(
-              json['statusReason'] as Map<String, dynamic>)
-          : null,
-      businessStatus: json['businessStatus'] != null
-          ? CodeableConcept.fromJson(
-              json['businessStatus'] as Map<String, dynamic>)
-          : null,
-      intent: TaskIntent.fromJson(json['intent']),
-      intentElement: json['_intent'] != null
-          ? Element.fromJson(json['_intent'] as Map<String, dynamic>)
-          : null,
-      priority: json['priority'] != null
-          ? RequestPriority.fromJson(json['priority'])
-          : null,
-      priorityElement: json['_priority'] != null
-          ? Element.fromJson(json['_priority'] as Map<String, dynamic>)
-          : null,
-      code: json['code'] != null
-          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
-          : null,
-      description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
-          : null,
-      focus: json['focus'] != null
-          ? Reference.fromJson(json['focus'] as Map<String, dynamic>)
-          : null,
-      for_: json['for'] != null
-          ? Reference.fromJson(json['for'] as Map<String, dynamic>)
-          : null,
-      encounter: json['encounter'] != null
-          ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
-          : null,
-      executionPeriod: json['executionPeriod'] != null
-          ? Period.fromJson(json['executionPeriod'] as Map<String, dynamic>)
-          : null,
-      authoredOn: json['authoredOn'] != null
-          ? FhirDateTime.fromJson(json['authoredOn'])
-          : null,
-      authoredOnElement: json['_authoredOn'] != null
-          ? Element.fromJson(json['_authoredOn'] as Map<String, dynamic>)
-          : null,
-      lastModified: json['lastModified'] != null
-          ? FhirDateTime.fromJson(json['lastModified'])
-          : null,
-      lastModifiedElement: json['_lastModified'] != null
-          ? Element.fromJson(json['_lastModified'] as Map<String, dynamic>)
-          : null,
-      requester: json['requester'] != null
-          ? Reference.fromJson(json['requester'] as Map<String, dynamic>)
-          : null,
-      performerType: json['performerType'] != null
-          ? (json['performerType'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      owner: json['owner'] != null
-          ? Reference.fromJson(json['owner'] as Map<String, dynamic>)
-          : null,
-      location: json['location'] != null
-          ? Reference.fromJson(json['location'] as Map<String, dynamic>)
-          : null,
-      reasonCode: json['reasonCode'] != null
-          ? CodeableConcept.fromJson(json['reasonCode'] as Map<String, dynamic>)
-          : null,
-      reasonReference: json['reasonReference'] != null
-          ? Reference.fromJson(json['reasonReference'] as Map<String, dynamic>)
-          : null,
-      insurance: json['insurance'] != null
-          ? (json['insurance'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      relevantHistory: json['relevantHistory'] != null
-          ? (json['relevantHistory'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      restriction: json['restriction'] != null
-          ? TaskRestriction.fromJson(
-              json['restriction'] as Map<String, dynamic>)
-          : null,
-      input: json['input'] != null
-          ? (json['input'] as List<dynamic>)
-              .map<TaskInput>(
-                  (dynamic v) => TaskInput.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      output: json['output'] != null
-          ? (json['output'] as List<dynamic>)
-              .map<TaskOutput>(
-                  (dynamic v) => TaskOutput.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   Task clone() => throw UnimplementedError();
   @override
@@ -643,35 +821,23 @@ class Task extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory Task.fromYaml(dynamic yaml) => yaml is String
-      ? Task.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? Task.fromJson(jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'Task cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory Task.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return Task.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [TaskRestriction] /// If the Task.focus is a request resource and the task is seeking fulfillment
-/// (i.e. is asking for the request to be actioned), this element identifies
-/// any limitations on what parts of the referenced request should be actioned.
+/// [TaskRestriction]
+/// If the Task.focus is a request resource and the task is seeking
+/// fulfillment (i.e. is asking for the request to be actioned), this
+/// element identifies any limitations on what parts of the referenced
+/// request should be actioned.
 class TaskRestriction extends BackboneElement {
+  /// Primary constructor for [TaskRestriction]
+
   TaskRestriction({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.repetitions,
+
+    /// Extensions for [repetitions]
     this.repetitionsElement,
     this.period,
     this.recipient,
@@ -683,33 +849,110 @@ class TaskRestriction extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory TaskRestriction.fromJson(Map<String, dynamic> json) {
+    return TaskRestriction(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      repetitions: json['repetitions'] != null
+          ? FhirPositiveInt.fromJson(json['repetitions'])
+          : null,
+      repetitionsElement: json['_repetitions'] != null
+          ? Element.fromJson(
+              json['_repetitions'] as Map<String, dynamic>,
+            )
+          : null,
+      period: json['period'] != null
+          ? Period.fromJson(
+              json['period'] as Map<String, dynamic>,
+            )
+          : null,
+      recipient: json['recipient'] != null
+          ? (json['recipient'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [TaskRestriction] from a [String] or [YamlMap] object
+  factory TaskRestriction.fromYaml(dynamic yaml) => yaml is String
+      ? TaskRestriction.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? TaskRestriction.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'TaskRestriction cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [TaskRestriction] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory TaskRestriction.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return TaskRestriction.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'TaskRestriction';
 
-  /// [repetitions] /// Indicates the number of times the requested action should occur.
+  /// [repetitions]
+  /// Indicates the number of times the requested action should occur.
   final FhirPositiveInt? repetitions;
+
+  /// Extensions for [repetitions]
   final Element? repetitionsElement;
 
-  /// [period] /// Over what time-period is fulfillment sought.
+  /// [period]
+  /// Over what time-period is fulfillment sought.
   final Period? period;
 
-  /// [recipient] /// For requests that are targeted to more than on potential recipient/target,
-  /// for whom is fulfillment sought?
+  /// [recipient]
+  /// For requests that are targeted to more than on potential
+  /// recipient/target, for whom is fulfillment sought?
   final List<Reference>? recipient;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (repetitions?.value != null) {
       json['repetitions'] = repetitions!.toJson();
@@ -721,44 +964,11 @@ class TaskRestriction extends BackboneElement {
       json['period'] = period!.toJson();
     }
     if (recipient != null && recipient!.isNotEmpty) {
-      json['recipient'] =
-          recipient!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['recipient'] = recipient!.map((Reference v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory TaskRestriction.fromJson(Map<String, dynamic> json) {
-    return TaskRestriction(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      repetitions: json['repetitions'] != null
-          ? FhirPositiveInt.fromJson(json['repetitions'])
-          : null,
-      repetitionsElement: json['_repetitions'] != null
-          ? Element.fromJson(json['_repetitions'] as Map<String, dynamic>)
-          : null,
-      period: json['period'] != null
-          ? Period.fromJson(json['period'] as Map<String, dynamic>)
-          : null,
-      recipient: json['recipient'] != null
-          ? (json['recipient'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   TaskRestriction clone() => throw UnimplementedError();
   @override
@@ -793,71 +1003,93 @@ class TaskRestriction extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory TaskRestriction.fromYaml(dynamic yaml) => yaml is String
-      ? TaskRestriction.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? TaskRestriction.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'TaskRestriction cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory TaskRestriction.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return TaskRestriction.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [TaskInput] /// Additional information that may be needed in the execution of the task.
+/// [TaskInput]
+/// Additional information that may be needed in the execution of the task.
 class TaskInput extends BackboneElement {
+  /// Primary constructor for [TaskInput]
+
   TaskInput({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.type,
     this.valueBase64Binary,
+
+    /// Extensions for [valueBase64Binary]
     this.valueBase64BinaryElement,
     this.valueBoolean,
+
+    /// Extensions for [valueBoolean]
     this.valueBooleanElement,
     this.valueCanonical,
+
+    /// Extensions for [valueCanonical]
     this.valueCanonicalElement,
     this.valueCode,
+
+    /// Extensions for [valueCode]
     this.valueCodeElement,
     this.valueDate,
+
+    /// Extensions for [valueDate]
     this.valueDateElement,
     this.valueDateTime,
+
+    /// Extensions for [valueDateTime]
     this.valueDateTimeElement,
     this.valueDecimal,
+
+    /// Extensions for [valueDecimal]
     this.valueDecimalElement,
     this.valueId,
+
+    /// Extensions for [valueId]
     this.valueIdElement,
     this.valueInstant,
+
+    /// Extensions for [valueInstant]
     this.valueInstantElement,
     this.valueInteger,
+
+    /// Extensions for [valueInteger]
     this.valueIntegerElement,
     this.valueMarkdown,
+
+    /// Extensions for [valueMarkdown]
     this.valueMarkdownElement,
     this.valueOid,
+
+    /// Extensions for [valueOid]
     this.valueOidElement,
     this.valuePositiveInt,
+
+    /// Extensions for [valuePositiveInt]
     this.valuePositiveIntElement,
     this.valueString,
+
+    /// Extensions for [valueString]
     this.valueStringElement,
     this.valueTime,
+
+    /// Extensions for [valueTime]
     this.valueTimeElement,
     this.valueUnsignedInt,
+
+    /// Extensions for [valueUnsignedInt]
     this.valueUnsignedIntElement,
     this.valueUri,
+
+    /// Extensions for [valueUri]
     this.valueUriElement,
     this.valueUrl,
+
+    /// Extensions for [valueUrl]
     this.valueUrlElement,
     this.valueUuid,
+
+    /// Extensions for [valueUuid]
     this.valueUuidElement,
     this.valueAddress,
     this.valueAge,
@@ -898,195 +1130,639 @@ class TaskInput extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory TaskInput.fromJson(Map<String, dynamic> json) {
+    return TaskInput(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: CodeableConcept.fromJson(
+        json['type'] as Map<String, dynamic>,
+      ),
+      valueBase64Binary: json['valueBase64Binary'] != null
+          ? FhirBase64Binary.fromJson(json['valueBase64Binary'])
+          : null,
+      valueBase64BinaryElement: json['_valueBase64Binary'] != null
+          ? Element.fromJson(
+              json['_valueBase64Binary'] as Map<String, dynamic>,
+            )
+          : null,
+      valueBoolean: json['valueBoolean'] != null
+          ? FhirBoolean.fromJson(json['valueBoolean'])
+          : null,
+      valueBooleanElement: json['_valueBoolean'] != null
+          ? Element.fromJson(
+              json['_valueBoolean'] as Map<String, dynamic>,
+            )
+          : null,
+      valueCanonical: json['valueCanonical'] != null
+          ? FhirCanonical.fromJson(json['valueCanonical'])
+          : null,
+      valueCanonicalElement: json['_valueCanonical'] != null
+          ? Element.fromJson(
+              json['_valueCanonical'] as Map<String, dynamic>,
+            )
+          : null,
+      valueCode: json['valueCode'] != null
+          ? FhirCode.fromJson(json['valueCode'])
+          : null,
+      valueCodeElement: json['_valueCode'] != null
+          ? Element.fromJson(
+              json['_valueCode'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDate: json['valueDate'] != null
+          ? FhirDate.fromJson(json['valueDate'])
+          : null,
+      valueDateElement: json['_valueDate'] != null
+          ? Element.fromJson(
+              json['_valueDate'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDateTime: json['valueDateTime'] != null
+          ? FhirDateTime.fromJson(json['valueDateTime'])
+          : null,
+      valueDateTimeElement: json['_valueDateTime'] != null
+          ? Element.fromJson(
+              json['_valueDateTime'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDecimal: json['valueDecimal'] != null
+          ? FhirDecimal.fromJson(json['valueDecimal'])
+          : null,
+      valueDecimalElement: json['_valueDecimal'] != null
+          ? Element.fromJson(
+              json['_valueDecimal'] as Map<String, dynamic>,
+            )
+          : null,
+      valueId:
+          json['valueId'] != null ? FhirId.fromJson(json['valueId']) : null,
+      valueIdElement: json['_valueId'] != null
+          ? Element.fromJson(
+              json['_valueId'] as Map<String, dynamic>,
+            )
+          : null,
+      valueInstant: json['valueInstant'] != null
+          ? FhirInstant.fromJson(json['valueInstant'])
+          : null,
+      valueInstantElement: json['_valueInstant'] != null
+          ? Element.fromJson(
+              json['_valueInstant'] as Map<String, dynamic>,
+            )
+          : null,
+      valueInteger: json['valueInteger'] != null
+          ? FhirInteger.fromJson(json['valueInteger'])
+          : null,
+      valueIntegerElement: json['_valueInteger'] != null
+          ? Element.fromJson(
+              json['_valueInteger'] as Map<String, dynamic>,
+            )
+          : null,
+      valueMarkdown: json['valueMarkdown'] != null
+          ? FhirMarkdown.fromJson(json['valueMarkdown'])
+          : null,
+      valueMarkdownElement: json['_valueMarkdown'] != null
+          ? Element.fromJson(
+              json['_valueMarkdown'] as Map<String, dynamic>,
+            )
+          : null,
+      valueOid:
+          json['valueOid'] != null ? FhirOid.fromJson(json['valueOid']) : null,
+      valueOidElement: json['_valueOid'] != null
+          ? Element.fromJson(
+              json['_valueOid'] as Map<String, dynamic>,
+            )
+          : null,
+      valuePositiveInt: json['valuePositiveInt'] != null
+          ? FhirPositiveInt.fromJson(json['valuePositiveInt'])
+          : null,
+      valuePositiveIntElement: json['_valuePositiveInt'] != null
+          ? Element.fromJson(
+              json['_valuePositiveInt'] as Map<String, dynamic>,
+            )
+          : null,
+      valueString: json['valueString'] != null
+          ? FhirString.fromJson(json['valueString'])
+          : null,
+      valueStringElement: json['_valueString'] != null
+          ? Element.fromJson(
+              json['_valueString'] as Map<String, dynamic>,
+            )
+          : null,
+      valueTime: json['valueTime'] != null
+          ? FhirTime.fromJson(json['valueTime'])
+          : null,
+      valueTimeElement: json['_valueTime'] != null
+          ? Element.fromJson(
+              json['_valueTime'] as Map<String, dynamic>,
+            )
+          : null,
+      valueUnsignedInt: json['valueUnsignedInt'] != null
+          ? FhirUnsignedInt.fromJson(json['valueUnsignedInt'])
+          : null,
+      valueUnsignedIntElement: json['_valueUnsignedInt'] != null
+          ? Element.fromJson(
+              json['_valueUnsignedInt'] as Map<String, dynamic>,
+            )
+          : null,
+      valueUri:
+          json['valueUri'] != null ? FhirUri.fromJson(json['valueUri']) : null,
+      valueUriElement: json['_valueUri'] != null
+          ? Element.fromJson(
+              json['_valueUri'] as Map<String, dynamic>,
+            )
+          : null,
+      valueUrl:
+          json['valueUrl'] != null ? FhirUrl.fromJson(json['valueUrl']) : null,
+      valueUrlElement: json['_valueUrl'] != null
+          ? Element.fromJson(
+              json['_valueUrl'] as Map<String, dynamic>,
+            )
+          : null,
+      valueUuid: json['valueUuid'] != null
+          ? FhirUuid.fromJson(json['valueUuid'])
+          : null,
+      valueUuidElement: json['_valueUuid'] != null
+          ? Element.fromJson(
+              json['_valueUuid'] as Map<String, dynamic>,
+            )
+          : null,
+      valueAddress: json['valueAddress'] != null
+          ? Address.fromJson(
+              json['valueAddress'] as Map<String, dynamic>,
+            )
+          : null,
+      valueAge: json['valueAge'] != null
+          ? Age.fromJson(
+              json['valueAge'] as Map<String, dynamic>,
+            )
+          : null,
+      valueAnnotation: json['valueAnnotation'] != null
+          ? Annotation.fromJson(
+              json['valueAnnotation'] as Map<String, dynamic>,
+            )
+          : null,
+      valueAttachment: json['valueAttachment'] != null
+          ? Attachment.fromJson(
+              json['valueAttachment'] as Map<String, dynamic>,
+            )
+          : null,
+      valueCodeableConcept: json['valueCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['valueCodeableConcept'] as Map<String, dynamic>,
+            )
+          : null,
+      valueCoding: json['valueCoding'] != null
+          ? Coding.fromJson(
+              json['valueCoding'] as Map<String, dynamic>,
+            )
+          : null,
+      valueContactPoint: json['valueContactPoint'] != null
+          ? ContactPoint.fromJson(
+              json['valueContactPoint'] as Map<String, dynamic>,
+            )
+          : null,
+      valueCount: json['valueCount'] != null
+          ? Count.fromJson(
+              json['valueCount'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDistance: json['valueDistance'] != null
+          ? Distance.fromJson(
+              json['valueDistance'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDuration: json['valueDuration'] != null
+          ? FhirDuration.fromJson(
+              json['valueDuration'] as Map<String, dynamic>,
+            )
+          : null,
+      valueHumanName: json['valueHumanName'] != null
+          ? HumanName.fromJson(
+              json['valueHumanName'] as Map<String, dynamic>,
+            )
+          : null,
+      valueIdentifier: json['valueIdentifier'] != null
+          ? Identifier.fromJson(
+              json['valueIdentifier'] as Map<String, dynamic>,
+            )
+          : null,
+      valueMoney: json['valueMoney'] != null
+          ? Money.fromJson(
+              json['valueMoney'] as Map<String, dynamic>,
+            )
+          : null,
+      valuePeriod: json['valuePeriod'] != null
+          ? Period.fromJson(
+              json['valuePeriod'] as Map<String, dynamic>,
+            )
+          : null,
+      valueQuantity: json['valueQuantity'] != null
+          ? Quantity.fromJson(
+              json['valueQuantity'] as Map<String, dynamic>,
+            )
+          : null,
+      valueRange: json['valueRange'] != null
+          ? Range.fromJson(
+              json['valueRange'] as Map<String, dynamic>,
+            )
+          : null,
+      valueRatio: json['valueRatio'] != null
+          ? Ratio.fromJson(
+              json['valueRatio'] as Map<String, dynamic>,
+            )
+          : null,
+      valueReference: json['valueReference'] != null
+          ? Reference.fromJson(
+              json['valueReference'] as Map<String, dynamic>,
+            )
+          : null,
+      valueSampledData: json['valueSampledData'] != null
+          ? SampledData.fromJson(
+              json['valueSampledData'] as Map<String, dynamic>,
+            )
+          : null,
+      valueSignature: json['valueSignature'] != null
+          ? Signature.fromJson(
+              json['valueSignature'] as Map<String, dynamic>,
+            )
+          : null,
+      valueTiming: json['valueTiming'] != null
+          ? Timing.fromJson(
+              json['valueTiming'] as Map<String, dynamic>,
+            )
+          : null,
+      valueContactDetail: json['valueContactDetail'] != null
+          ? ContactDetail.fromJson(
+              json['valueContactDetail'] as Map<String, dynamic>,
+            )
+          : null,
+      valueContributor: json['valueContributor'] != null
+          ? Contributor.fromJson(
+              json['valueContributor'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDataRequirement: json['valueDataRequirement'] != null
+          ? DataRequirement.fromJson(
+              json['valueDataRequirement'] as Map<String, dynamic>,
+            )
+          : null,
+      valueExpression: json['valueExpression'] != null
+          ? FhirExpression.fromJson(
+              json['valueExpression'] as Map<String, dynamic>,
+            )
+          : null,
+      valueParameterDefinition: json['valueParameterDefinition'] != null
+          ? ParameterDefinition.fromJson(
+              json['valueParameterDefinition'] as Map<String, dynamic>,
+            )
+          : null,
+      valueRelatedArtifact: json['valueRelatedArtifact'] != null
+          ? RelatedArtifact.fromJson(
+              json['valueRelatedArtifact'] as Map<String, dynamic>,
+            )
+          : null,
+      valueTriggerDefinition: json['valueTriggerDefinition'] != null
+          ? TriggerDefinition.fromJson(
+              json['valueTriggerDefinition'] as Map<String, dynamic>,
+            )
+          : null,
+      valueUsageContext: json['valueUsageContext'] != null
+          ? UsageContext.fromJson(
+              json['valueUsageContext'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDosage: json['valueDosage'] != null
+          ? Dosage.fromJson(
+              json['valueDosage'] as Map<String, dynamic>,
+            )
+          : null,
+      valueMeta: json['valueMeta'] != null
+          ? FhirMeta.fromJson(
+              json['valueMeta'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [TaskInput] from a [String] or [YamlMap] object
+  factory TaskInput.fromYaml(dynamic yaml) => yaml is String
+      ? TaskInput.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? TaskInput.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('TaskInput cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [TaskInput] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory TaskInput.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return TaskInput.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'TaskInput';
 
-  /// [type] /// A code or description indicating how the input is intended to be used as
-  /// part of the task execution.
+  /// [type]
+  /// A code or description indicating how the input is intended to be used
+  /// as part of the task execution.
   final CodeableConcept type;
 
-  /// [valueBase64Binary] /// The value of the input parameter as a basic type.
+  /// [valueBase64Binary]
+  /// The value of the input parameter as a basic type.
   final FhirBase64Binary? valueBase64Binary;
+
+  /// Extensions for [valueBase64Binary]
   final Element? valueBase64BinaryElement;
 
-  /// [valueBoolean] /// The value of the input parameter as a basic type.
+  /// [valueBoolean]
+  /// The value of the input parameter as a basic type.
   final FhirBoolean? valueBoolean;
+
+  /// Extensions for [valueBoolean]
   final Element? valueBooleanElement;
 
-  /// [valueCanonical] /// The value of the input parameter as a basic type.
+  /// [valueCanonical]
+  /// The value of the input parameter as a basic type.
   final FhirCanonical? valueCanonical;
+
+  /// Extensions for [valueCanonical]
   final Element? valueCanonicalElement;
 
-  /// [valueCode] /// The value of the input parameter as a basic type.
+  /// [valueCode]
+  /// The value of the input parameter as a basic type.
   final FhirCode? valueCode;
+
+  /// Extensions for [valueCode]
   final Element? valueCodeElement;
 
-  /// [valueDate] /// The value of the input parameter as a basic type.
+  /// [valueDate]
+  /// The value of the input parameter as a basic type.
   final FhirDate? valueDate;
+
+  /// Extensions for [valueDate]
   final Element? valueDateElement;
 
-  /// [valueDateTime] /// The value of the input parameter as a basic type.
+  /// [valueDateTime]
+  /// The value of the input parameter as a basic type.
   final FhirDateTime? valueDateTime;
+
+  /// Extensions for [valueDateTime]
   final Element? valueDateTimeElement;
 
-  /// [valueDecimal] /// The value of the input parameter as a basic type.
+  /// [valueDecimal]
+  /// The value of the input parameter as a basic type.
   final FhirDecimal? valueDecimal;
+
+  /// Extensions for [valueDecimal]
   final Element? valueDecimalElement;
 
-  /// [valueId] /// The value of the input parameter as a basic type.
+  /// [valueId]
+  /// The value of the input parameter as a basic type.
   final FhirId? valueId;
+
+  /// Extensions for [valueId]
   final Element? valueIdElement;
 
-  /// [valueInstant] /// The value of the input parameter as a basic type.
+  /// [valueInstant]
+  /// The value of the input parameter as a basic type.
   final FhirInstant? valueInstant;
+
+  /// Extensions for [valueInstant]
   final Element? valueInstantElement;
 
-  /// [valueInteger] /// The value of the input parameter as a basic type.
+  /// [valueInteger]
+  /// The value of the input parameter as a basic type.
   final FhirInteger? valueInteger;
+
+  /// Extensions for [valueInteger]
   final Element? valueIntegerElement;
 
-  /// [valueMarkdown] /// The value of the input parameter as a basic type.
+  /// [valueMarkdown]
+  /// The value of the input parameter as a basic type.
   final FhirMarkdown? valueMarkdown;
+
+  /// Extensions for [valueMarkdown]
   final Element? valueMarkdownElement;
 
-  /// [valueOid] /// The value of the input parameter as a basic type.
+  /// [valueOid]
+  /// The value of the input parameter as a basic type.
   final FhirOid? valueOid;
+
+  /// Extensions for [valueOid]
   final Element? valueOidElement;
 
-  /// [valuePositiveInt] /// The value of the input parameter as a basic type.
+  /// [valuePositiveInt]
+  /// The value of the input parameter as a basic type.
   final FhirPositiveInt? valuePositiveInt;
+
+  /// Extensions for [valuePositiveInt]
   final Element? valuePositiveIntElement;
 
-  /// [valueString] /// The value of the input parameter as a basic type.
+  /// [valueString]
+  /// The value of the input parameter as a basic type.
   final FhirString? valueString;
+
+  /// Extensions for [valueString]
   final Element? valueStringElement;
 
-  /// [valueTime] /// The value of the input parameter as a basic type.
+  /// [valueTime]
+  /// The value of the input parameter as a basic type.
   final FhirTime? valueTime;
+
+  /// Extensions for [valueTime]
   final Element? valueTimeElement;
 
-  /// [valueUnsignedInt] /// The value of the input parameter as a basic type.
+  /// [valueUnsignedInt]
+  /// The value of the input parameter as a basic type.
   final FhirUnsignedInt? valueUnsignedInt;
+
+  /// Extensions for [valueUnsignedInt]
   final Element? valueUnsignedIntElement;
 
-  /// [valueUri] /// The value of the input parameter as a basic type.
+  /// [valueUri]
+  /// The value of the input parameter as a basic type.
   final FhirUri? valueUri;
+
+  /// Extensions for [valueUri]
   final Element? valueUriElement;
 
-  /// [valueUrl] /// The value of the input parameter as a basic type.
+  /// [valueUrl]
+  /// The value of the input parameter as a basic type.
   final FhirUrl? valueUrl;
+
+  /// Extensions for [valueUrl]
   final Element? valueUrlElement;
 
-  /// [valueUuid] /// The value of the input parameter as a basic type.
+  /// [valueUuid]
+  /// The value of the input parameter as a basic type.
   final FhirUuid? valueUuid;
+
+  /// Extensions for [valueUuid]
   final Element? valueUuidElement;
 
-  /// [valueAddress] /// The value of the input parameter as a basic type.
+  /// [valueAddress]
+  /// The value of the input parameter as a basic type.
   final Address? valueAddress;
 
-  /// [valueAge] /// The value of the input parameter as a basic type.
+  /// [valueAge]
+  /// The value of the input parameter as a basic type.
   final Age? valueAge;
 
-  /// [valueAnnotation] /// The value of the input parameter as a basic type.
+  /// [valueAnnotation]
+  /// The value of the input parameter as a basic type.
   final Annotation? valueAnnotation;
 
-  /// [valueAttachment] /// The value of the input parameter as a basic type.
+  /// [valueAttachment]
+  /// The value of the input parameter as a basic type.
   final Attachment? valueAttachment;
 
-  /// [valueCodeableConcept] /// The value of the input parameter as a basic type.
+  /// [valueCodeableConcept]
+  /// The value of the input parameter as a basic type.
   final CodeableConcept? valueCodeableConcept;
 
-  /// [valueCoding] /// The value of the input parameter as a basic type.
+  /// [valueCoding]
+  /// The value of the input parameter as a basic type.
   final Coding? valueCoding;
 
-  /// [valueContactPoint] /// The value of the input parameter as a basic type.
+  /// [valueContactPoint]
+  /// The value of the input parameter as a basic type.
   final ContactPoint? valueContactPoint;
 
-  /// [valueCount] /// The value of the input parameter as a basic type.
+  /// [valueCount]
+  /// The value of the input parameter as a basic type.
   final Count? valueCount;
 
-  /// [valueDistance] /// The value of the input parameter as a basic type.
+  /// [valueDistance]
+  /// The value of the input parameter as a basic type.
   final Distance? valueDistance;
 
-  /// [valueDuration] /// The value of the input parameter as a basic type.
+  /// [valueDuration]
+  /// The value of the input parameter as a basic type.
   final FhirDuration? valueDuration;
 
-  /// [valueHumanName] /// The value of the input parameter as a basic type.
+  /// [valueHumanName]
+  /// The value of the input parameter as a basic type.
   final HumanName? valueHumanName;
 
-  /// [valueIdentifier] /// The value of the input parameter as a basic type.
+  /// [valueIdentifier]
+  /// The value of the input parameter as a basic type.
   final Identifier? valueIdentifier;
 
-  /// [valueMoney] /// The value of the input parameter as a basic type.
+  /// [valueMoney]
+  /// The value of the input parameter as a basic type.
   final Money? valueMoney;
 
-  /// [valuePeriod] /// The value of the input parameter as a basic type.
+  /// [valuePeriod]
+  /// The value of the input parameter as a basic type.
   final Period? valuePeriod;
 
-  /// [valueQuantity] /// The value of the input parameter as a basic type.
+  /// [valueQuantity]
+  /// The value of the input parameter as a basic type.
   final Quantity? valueQuantity;
 
-  /// [valueRange] /// The value of the input parameter as a basic type.
+  /// [valueRange]
+  /// The value of the input parameter as a basic type.
   final Range? valueRange;
 
-  /// [valueRatio] /// The value of the input parameter as a basic type.
+  /// [valueRatio]
+  /// The value of the input parameter as a basic type.
   final Ratio? valueRatio;
 
-  /// [valueReference] /// The value of the input parameter as a basic type.
+  /// [valueReference]
+  /// The value of the input parameter as a basic type.
   final Reference? valueReference;
 
-  /// [valueSampledData] /// The value of the input parameter as a basic type.
+  /// [valueSampledData]
+  /// The value of the input parameter as a basic type.
   final SampledData? valueSampledData;
 
-  /// [valueSignature] /// The value of the input parameter as a basic type.
+  /// [valueSignature]
+  /// The value of the input parameter as a basic type.
   final Signature? valueSignature;
 
-  /// [valueTiming] /// The value of the input parameter as a basic type.
+  /// [valueTiming]
+  /// The value of the input parameter as a basic type.
   final Timing? valueTiming;
 
-  /// [valueContactDetail] /// The value of the input parameter as a basic type.
+  /// [valueContactDetail]
+  /// The value of the input parameter as a basic type.
   final ContactDetail? valueContactDetail;
 
-  /// [valueContributor] /// The value of the input parameter as a basic type.
+  /// [valueContributor]
+  /// The value of the input parameter as a basic type.
   final Contributor? valueContributor;
 
-  /// [valueDataRequirement] /// The value of the input parameter as a basic type.
+  /// [valueDataRequirement]
+  /// The value of the input parameter as a basic type.
   final DataRequirement? valueDataRequirement;
 
-  /// [valueExpression] /// The value of the input parameter as a basic type.
+  /// [valueExpression]
+  /// The value of the input parameter as a basic type.
   final FhirExpression? valueExpression;
 
-  /// [valueParameterDefinition] /// The value of the input parameter as a basic type.
+  /// [valueParameterDefinition]
+  /// The value of the input parameter as a basic type.
   final ParameterDefinition? valueParameterDefinition;
 
-  /// [valueRelatedArtifact] /// The value of the input parameter as a basic type.
+  /// [valueRelatedArtifact]
+  /// The value of the input parameter as a basic type.
   final RelatedArtifact? valueRelatedArtifact;
 
-  /// [valueTriggerDefinition] /// The value of the input parameter as a basic type.
+  /// [valueTriggerDefinition]
+  /// The value of the input parameter as a basic type.
   final TriggerDefinition? valueTriggerDefinition;
 
-  /// [valueUsageContext] /// The value of the input parameter as a basic type.
+  /// [valueUsageContext]
+  /// The value of the input parameter as a basic type.
   final UsageContext? valueUsageContext;
 
-  /// [valueDosage] /// The value of the input parameter as a basic type.
+  /// [valueDosage]
+  /// The value of the input parameter as a basic type.
   final Dosage? valueDosage;
 
-  /// [valueMeta] /// The value of the input parameter as a basic type.
+  /// [valueMeta]
+  /// The value of the input parameter as a basic type.
   final FhirMeta? valueMeta;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['type'] = type.toJson();
     if (valueBase64Binary?.value != null) {
@@ -1299,238 +1975,6 @@ class TaskInput extends BackboneElement {
     return json;
   }
 
-  factory TaskInput.fromJson(Map<String, dynamic> json) {
-    return TaskInput(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
-      valueBase64Binary: json['valueBase64Binary'] != null
-          ? FhirBase64Binary.fromJson(json['valueBase64Binary'])
-          : null,
-      valueBase64BinaryElement: json['_valueBase64Binary'] != null
-          ? Element.fromJson(json['_valueBase64Binary'] as Map<String, dynamic>)
-          : null,
-      valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)
-          : null,
-      valueCanonical: json['valueCanonical'] != null
-          ? FhirCanonical.fromJson(json['valueCanonical'])
-          : null,
-      valueCanonicalElement: json['_valueCanonical'] != null
-          ? Element.fromJson(json['_valueCanonical'] as Map<String, dynamic>)
-          : null,
-      valueCode: json['valueCode'] != null
-          ? FhirCode.fromJson(json['valueCode'])
-          : null,
-      valueCodeElement: json['_valueCode'] != null
-          ? Element.fromJson(json['_valueCode'] as Map<String, dynamic>)
-          : null,
-      valueDate: json['valueDate'] != null
-          ? FhirDate.fromJson(json['valueDate'])
-          : null,
-      valueDateElement: json['_valueDate'] != null
-          ? Element.fromJson(json['_valueDate'] as Map<String, dynamic>)
-          : null,
-      valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime.fromJson(json['valueDateTime'])
-          : null,
-      valueDateTimeElement: json['_valueDateTime'] != null
-          ? Element.fromJson(json['_valueDateTime'] as Map<String, dynamic>)
-          : null,
-      valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal.fromJson(json['valueDecimal'])
-          : null,
-      valueDecimalElement: json['_valueDecimal'] != null
-          ? Element.fromJson(json['_valueDecimal'] as Map<String, dynamic>)
-          : null,
-      valueId:
-          json['valueId'] != null ? FhirId.fromJson(json['valueId']) : null,
-      valueIdElement: json['_valueId'] != null
-          ? Element.fromJson(json['_valueId'] as Map<String, dynamic>)
-          : null,
-      valueInstant: json['valueInstant'] != null
-          ? FhirInstant.fromJson(json['valueInstant'])
-          : null,
-      valueInstantElement: json['_valueInstant'] != null
-          ? Element.fromJson(json['_valueInstant'] as Map<String, dynamic>)
-          : null,
-      valueInteger: json['valueInteger'] != null
-          ? FhirInteger.fromJson(json['valueInteger'])
-          : null,
-      valueIntegerElement: json['_valueInteger'] != null
-          ? Element.fromJson(json['_valueInteger'] as Map<String, dynamic>)
-          : null,
-      valueMarkdown: json['valueMarkdown'] != null
-          ? FhirMarkdown.fromJson(json['valueMarkdown'])
-          : null,
-      valueMarkdownElement: json['_valueMarkdown'] != null
-          ? Element.fromJson(json['_valueMarkdown'] as Map<String, dynamic>)
-          : null,
-      valueOid:
-          json['valueOid'] != null ? FhirOid.fromJson(json['valueOid']) : null,
-      valueOidElement: json['_valueOid'] != null
-          ? Element.fromJson(json['_valueOid'] as Map<String, dynamic>)
-          : null,
-      valuePositiveInt: json['valuePositiveInt'] != null
-          ? FhirPositiveInt.fromJson(json['valuePositiveInt'])
-          : null,
-      valuePositiveIntElement: json['_valuePositiveInt'] != null
-          ? Element.fromJson(json['_valuePositiveInt'] as Map<String, dynamic>)
-          : null,
-      valueString: json['valueString'] != null
-          ? FhirString.fromJson(json['valueString'])
-          : null,
-      valueStringElement: json['_valueString'] != null
-          ? Element.fromJson(json['_valueString'] as Map<String, dynamic>)
-          : null,
-      valueTime: json['valueTime'] != null
-          ? FhirTime.fromJson(json['valueTime'])
-          : null,
-      valueTimeElement: json['_valueTime'] != null
-          ? Element.fromJson(json['_valueTime'] as Map<String, dynamic>)
-          : null,
-      valueUnsignedInt: json['valueUnsignedInt'] != null
-          ? FhirUnsignedInt.fromJson(json['valueUnsignedInt'])
-          : null,
-      valueUnsignedIntElement: json['_valueUnsignedInt'] != null
-          ? Element.fromJson(json['_valueUnsignedInt'] as Map<String, dynamic>)
-          : null,
-      valueUri:
-          json['valueUri'] != null ? FhirUri.fromJson(json['valueUri']) : null,
-      valueUriElement: json['_valueUri'] != null
-          ? Element.fromJson(json['_valueUri'] as Map<String, dynamic>)
-          : null,
-      valueUrl:
-          json['valueUrl'] != null ? FhirUrl.fromJson(json['valueUrl']) : null,
-      valueUrlElement: json['_valueUrl'] != null
-          ? Element.fromJson(json['_valueUrl'] as Map<String, dynamic>)
-          : null,
-      valueUuid: json['valueUuid'] != null
-          ? FhirUuid.fromJson(json['valueUuid'])
-          : null,
-      valueUuidElement: json['_valueUuid'] != null
-          ? Element.fromJson(json['_valueUuid'] as Map<String, dynamic>)
-          : null,
-      valueAddress: json['valueAddress'] != null
-          ? Address.fromJson(json['valueAddress'] as Map<String, dynamic>)
-          : null,
-      valueAge: json['valueAge'] != null
-          ? Age.fromJson(json['valueAge'] as Map<String, dynamic>)
-          : null,
-      valueAnnotation: json['valueAnnotation'] != null
-          ? Annotation.fromJson(json['valueAnnotation'] as Map<String, dynamic>)
-          : null,
-      valueAttachment: json['valueAttachment'] != null
-          ? Attachment.fromJson(json['valueAttachment'] as Map<String, dynamic>)
-          : null,
-      valueCodeableConcept: json['valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['valueCodeableConcept'] as Map<String, dynamic>)
-          : null,
-      valueCoding: json['valueCoding'] != null
-          ? Coding.fromJson(json['valueCoding'] as Map<String, dynamic>)
-          : null,
-      valueContactPoint: json['valueContactPoint'] != null
-          ? ContactPoint.fromJson(
-              json['valueContactPoint'] as Map<String, dynamic>)
-          : null,
-      valueCount: json['valueCount'] != null
-          ? Count.fromJson(json['valueCount'] as Map<String, dynamic>)
-          : null,
-      valueDistance: json['valueDistance'] != null
-          ? Distance.fromJson(json['valueDistance'] as Map<String, dynamic>)
-          : null,
-      valueDuration: json['valueDuration'] != null
-          ? FhirDuration.fromJson(json['valueDuration'] as Map<String, dynamic>)
-          : null,
-      valueHumanName: json['valueHumanName'] != null
-          ? HumanName.fromJson(json['valueHumanName'] as Map<String, dynamic>)
-          : null,
-      valueIdentifier: json['valueIdentifier'] != null
-          ? Identifier.fromJson(json['valueIdentifier'] as Map<String, dynamic>)
-          : null,
-      valueMoney: json['valueMoney'] != null
-          ? Money.fromJson(json['valueMoney'] as Map<String, dynamic>)
-          : null,
-      valuePeriod: json['valuePeriod'] != null
-          ? Period.fromJson(json['valuePeriod'] as Map<String, dynamic>)
-          : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>)
-          : null,
-      valueRange: json['valueRange'] != null
-          ? Range.fromJson(json['valueRange'] as Map<String, dynamic>)
-          : null,
-      valueRatio: json['valueRatio'] != null
-          ? Ratio.fromJson(json['valueRatio'] as Map<String, dynamic>)
-          : null,
-      valueReference: json['valueReference'] != null
-          ? Reference.fromJson(json['valueReference'] as Map<String, dynamic>)
-          : null,
-      valueSampledData: json['valueSampledData'] != null
-          ? SampledData.fromJson(
-              json['valueSampledData'] as Map<String, dynamic>)
-          : null,
-      valueSignature: json['valueSignature'] != null
-          ? Signature.fromJson(json['valueSignature'] as Map<String, dynamic>)
-          : null,
-      valueTiming: json['valueTiming'] != null
-          ? Timing.fromJson(json['valueTiming'] as Map<String, dynamic>)
-          : null,
-      valueContactDetail: json['valueContactDetail'] != null
-          ? ContactDetail.fromJson(
-              json['valueContactDetail'] as Map<String, dynamic>)
-          : null,
-      valueContributor: json['valueContributor'] != null
-          ? Contributor.fromJson(
-              json['valueContributor'] as Map<String, dynamic>)
-          : null,
-      valueDataRequirement: json['valueDataRequirement'] != null
-          ? DataRequirement.fromJson(
-              json['valueDataRequirement'] as Map<String, dynamic>)
-          : null,
-      valueExpression: json['valueExpression'] != null
-          ? FhirExpression.fromJson(
-              json['valueExpression'] as Map<String, dynamic>)
-          : null,
-      valueParameterDefinition: json['valueParameterDefinition'] != null
-          ? ParameterDefinition.fromJson(
-              json['valueParameterDefinition'] as Map<String, dynamic>)
-          : null,
-      valueRelatedArtifact: json['valueRelatedArtifact'] != null
-          ? RelatedArtifact.fromJson(
-              json['valueRelatedArtifact'] as Map<String, dynamic>)
-          : null,
-      valueTriggerDefinition: json['valueTriggerDefinition'] != null
-          ? TriggerDefinition.fromJson(
-              json['valueTriggerDefinition'] as Map<String, dynamic>)
-          : null,
-      valueUsageContext: json['valueUsageContext'] != null
-          ? UsageContext.fromJson(
-              json['valueUsageContext'] as Map<String, dynamic>)
-          : null,
-      valueDosage: json['valueDosage'] != null
-          ? Dosage.fromJson(json['valueDosage'] as Map<String, dynamic>)
-          : null,
-      valueMeta: json['valueMeta'] != null
-          ? FhirMeta.fromJson(json['valueMeta'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   TaskInput clone() => throw UnimplementedError();
   @override
@@ -1703,71 +2147,93 @@ class TaskInput extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory TaskInput.fromYaml(dynamic yaml) => yaml is String
-      ? TaskInput.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? TaskInput.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'TaskInput cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory TaskInput.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return TaskInput.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [TaskOutput] /// Outputs produced by the Task.
+/// [TaskOutput]
+/// Outputs produced by the Task.
 class TaskOutput extends BackboneElement {
+  /// Primary constructor for [TaskOutput]
+
   TaskOutput({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.type,
     this.valueBase64Binary,
+
+    /// Extensions for [valueBase64Binary]
     this.valueBase64BinaryElement,
     this.valueBoolean,
+
+    /// Extensions for [valueBoolean]
     this.valueBooleanElement,
     this.valueCanonical,
+
+    /// Extensions for [valueCanonical]
     this.valueCanonicalElement,
     this.valueCode,
+
+    /// Extensions for [valueCode]
     this.valueCodeElement,
     this.valueDate,
+
+    /// Extensions for [valueDate]
     this.valueDateElement,
     this.valueDateTime,
+
+    /// Extensions for [valueDateTime]
     this.valueDateTimeElement,
     this.valueDecimal,
+
+    /// Extensions for [valueDecimal]
     this.valueDecimalElement,
     this.valueId,
+
+    /// Extensions for [valueId]
     this.valueIdElement,
     this.valueInstant,
+
+    /// Extensions for [valueInstant]
     this.valueInstantElement,
     this.valueInteger,
+
+    /// Extensions for [valueInteger]
     this.valueIntegerElement,
     this.valueMarkdown,
+
+    /// Extensions for [valueMarkdown]
     this.valueMarkdownElement,
     this.valueOid,
+
+    /// Extensions for [valueOid]
     this.valueOidElement,
     this.valuePositiveInt,
+
+    /// Extensions for [valuePositiveInt]
     this.valuePositiveIntElement,
     this.valueString,
+
+    /// Extensions for [valueString]
     this.valueStringElement,
     this.valueTime,
+
+    /// Extensions for [valueTime]
     this.valueTimeElement,
     this.valueUnsignedInt,
+
+    /// Extensions for [valueUnsignedInt]
     this.valueUnsignedIntElement,
     this.valueUri,
+
+    /// Extensions for [valueUri]
     this.valueUriElement,
     this.valueUrl,
+
+    /// Extensions for [valueUrl]
     this.valueUrlElement,
     this.valueUuid,
+
+    /// Extensions for [valueUuid]
     this.valueUuidElement,
     this.valueAddress,
     this.valueAge,
@@ -1808,194 +2274,638 @@ class TaskOutput extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory TaskOutput.fromJson(Map<String, dynamic> json) {
+    return TaskOutput(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: CodeableConcept.fromJson(
+        json['type'] as Map<String, dynamic>,
+      ),
+      valueBase64Binary: json['valueBase64Binary'] != null
+          ? FhirBase64Binary.fromJson(json['valueBase64Binary'])
+          : null,
+      valueBase64BinaryElement: json['_valueBase64Binary'] != null
+          ? Element.fromJson(
+              json['_valueBase64Binary'] as Map<String, dynamic>,
+            )
+          : null,
+      valueBoolean: json['valueBoolean'] != null
+          ? FhirBoolean.fromJson(json['valueBoolean'])
+          : null,
+      valueBooleanElement: json['_valueBoolean'] != null
+          ? Element.fromJson(
+              json['_valueBoolean'] as Map<String, dynamic>,
+            )
+          : null,
+      valueCanonical: json['valueCanonical'] != null
+          ? FhirCanonical.fromJson(json['valueCanonical'])
+          : null,
+      valueCanonicalElement: json['_valueCanonical'] != null
+          ? Element.fromJson(
+              json['_valueCanonical'] as Map<String, dynamic>,
+            )
+          : null,
+      valueCode: json['valueCode'] != null
+          ? FhirCode.fromJson(json['valueCode'])
+          : null,
+      valueCodeElement: json['_valueCode'] != null
+          ? Element.fromJson(
+              json['_valueCode'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDate: json['valueDate'] != null
+          ? FhirDate.fromJson(json['valueDate'])
+          : null,
+      valueDateElement: json['_valueDate'] != null
+          ? Element.fromJson(
+              json['_valueDate'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDateTime: json['valueDateTime'] != null
+          ? FhirDateTime.fromJson(json['valueDateTime'])
+          : null,
+      valueDateTimeElement: json['_valueDateTime'] != null
+          ? Element.fromJson(
+              json['_valueDateTime'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDecimal: json['valueDecimal'] != null
+          ? FhirDecimal.fromJson(json['valueDecimal'])
+          : null,
+      valueDecimalElement: json['_valueDecimal'] != null
+          ? Element.fromJson(
+              json['_valueDecimal'] as Map<String, dynamic>,
+            )
+          : null,
+      valueId:
+          json['valueId'] != null ? FhirId.fromJson(json['valueId']) : null,
+      valueIdElement: json['_valueId'] != null
+          ? Element.fromJson(
+              json['_valueId'] as Map<String, dynamic>,
+            )
+          : null,
+      valueInstant: json['valueInstant'] != null
+          ? FhirInstant.fromJson(json['valueInstant'])
+          : null,
+      valueInstantElement: json['_valueInstant'] != null
+          ? Element.fromJson(
+              json['_valueInstant'] as Map<String, dynamic>,
+            )
+          : null,
+      valueInteger: json['valueInteger'] != null
+          ? FhirInteger.fromJson(json['valueInteger'])
+          : null,
+      valueIntegerElement: json['_valueInteger'] != null
+          ? Element.fromJson(
+              json['_valueInteger'] as Map<String, dynamic>,
+            )
+          : null,
+      valueMarkdown: json['valueMarkdown'] != null
+          ? FhirMarkdown.fromJson(json['valueMarkdown'])
+          : null,
+      valueMarkdownElement: json['_valueMarkdown'] != null
+          ? Element.fromJson(
+              json['_valueMarkdown'] as Map<String, dynamic>,
+            )
+          : null,
+      valueOid:
+          json['valueOid'] != null ? FhirOid.fromJson(json['valueOid']) : null,
+      valueOidElement: json['_valueOid'] != null
+          ? Element.fromJson(
+              json['_valueOid'] as Map<String, dynamic>,
+            )
+          : null,
+      valuePositiveInt: json['valuePositiveInt'] != null
+          ? FhirPositiveInt.fromJson(json['valuePositiveInt'])
+          : null,
+      valuePositiveIntElement: json['_valuePositiveInt'] != null
+          ? Element.fromJson(
+              json['_valuePositiveInt'] as Map<String, dynamic>,
+            )
+          : null,
+      valueString: json['valueString'] != null
+          ? FhirString.fromJson(json['valueString'])
+          : null,
+      valueStringElement: json['_valueString'] != null
+          ? Element.fromJson(
+              json['_valueString'] as Map<String, dynamic>,
+            )
+          : null,
+      valueTime: json['valueTime'] != null
+          ? FhirTime.fromJson(json['valueTime'])
+          : null,
+      valueTimeElement: json['_valueTime'] != null
+          ? Element.fromJson(
+              json['_valueTime'] as Map<String, dynamic>,
+            )
+          : null,
+      valueUnsignedInt: json['valueUnsignedInt'] != null
+          ? FhirUnsignedInt.fromJson(json['valueUnsignedInt'])
+          : null,
+      valueUnsignedIntElement: json['_valueUnsignedInt'] != null
+          ? Element.fromJson(
+              json['_valueUnsignedInt'] as Map<String, dynamic>,
+            )
+          : null,
+      valueUri:
+          json['valueUri'] != null ? FhirUri.fromJson(json['valueUri']) : null,
+      valueUriElement: json['_valueUri'] != null
+          ? Element.fromJson(
+              json['_valueUri'] as Map<String, dynamic>,
+            )
+          : null,
+      valueUrl:
+          json['valueUrl'] != null ? FhirUrl.fromJson(json['valueUrl']) : null,
+      valueUrlElement: json['_valueUrl'] != null
+          ? Element.fromJson(
+              json['_valueUrl'] as Map<String, dynamic>,
+            )
+          : null,
+      valueUuid: json['valueUuid'] != null
+          ? FhirUuid.fromJson(json['valueUuid'])
+          : null,
+      valueUuidElement: json['_valueUuid'] != null
+          ? Element.fromJson(
+              json['_valueUuid'] as Map<String, dynamic>,
+            )
+          : null,
+      valueAddress: json['valueAddress'] != null
+          ? Address.fromJson(
+              json['valueAddress'] as Map<String, dynamic>,
+            )
+          : null,
+      valueAge: json['valueAge'] != null
+          ? Age.fromJson(
+              json['valueAge'] as Map<String, dynamic>,
+            )
+          : null,
+      valueAnnotation: json['valueAnnotation'] != null
+          ? Annotation.fromJson(
+              json['valueAnnotation'] as Map<String, dynamic>,
+            )
+          : null,
+      valueAttachment: json['valueAttachment'] != null
+          ? Attachment.fromJson(
+              json['valueAttachment'] as Map<String, dynamic>,
+            )
+          : null,
+      valueCodeableConcept: json['valueCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['valueCodeableConcept'] as Map<String, dynamic>,
+            )
+          : null,
+      valueCoding: json['valueCoding'] != null
+          ? Coding.fromJson(
+              json['valueCoding'] as Map<String, dynamic>,
+            )
+          : null,
+      valueContactPoint: json['valueContactPoint'] != null
+          ? ContactPoint.fromJson(
+              json['valueContactPoint'] as Map<String, dynamic>,
+            )
+          : null,
+      valueCount: json['valueCount'] != null
+          ? Count.fromJson(
+              json['valueCount'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDistance: json['valueDistance'] != null
+          ? Distance.fromJson(
+              json['valueDistance'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDuration: json['valueDuration'] != null
+          ? FhirDuration.fromJson(
+              json['valueDuration'] as Map<String, dynamic>,
+            )
+          : null,
+      valueHumanName: json['valueHumanName'] != null
+          ? HumanName.fromJson(
+              json['valueHumanName'] as Map<String, dynamic>,
+            )
+          : null,
+      valueIdentifier: json['valueIdentifier'] != null
+          ? Identifier.fromJson(
+              json['valueIdentifier'] as Map<String, dynamic>,
+            )
+          : null,
+      valueMoney: json['valueMoney'] != null
+          ? Money.fromJson(
+              json['valueMoney'] as Map<String, dynamic>,
+            )
+          : null,
+      valuePeriod: json['valuePeriod'] != null
+          ? Period.fromJson(
+              json['valuePeriod'] as Map<String, dynamic>,
+            )
+          : null,
+      valueQuantity: json['valueQuantity'] != null
+          ? Quantity.fromJson(
+              json['valueQuantity'] as Map<String, dynamic>,
+            )
+          : null,
+      valueRange: json['valueRange'] != null
+          ? Range.fromJson(
+              json['valueRange'] as Map<String, dynamic>,
+            )
+          : null,
+      valueRatio: json['valueRatio'] != null
+          ? Ratio.fromJson(
+              json['valueRatio'] as Map<String, dynamic>,
+            )
+          : null,
+      valueReference: json['valueReference'] != null
+          ? Reference.fromJson(
+              json['valueReference'] as Map<String, dynamic>,
+            )
+          : null,
+      valueSampledData: json['valueSampledData'] != null
+          ? SampledData.fromJson(
+              json['valueSampledData'] as Map<String, dynamic>,
+            )
+          : null,
+      valueSignature: json['valueSignature'] != null
+          ? Signature.fromJson(
+              json['valueSignature'] as Map<String, dynamic>,
+            )
+          : null,
+      valueTiming: json['valueTiming'] != null
+          ? Timing.fromJson(
+              json['valueTiming'] as Map<String, dynamic>,
+            )
+          : null,
+      valueContactDetail: json['valueContactDetail'] != null
+          ? ContactDetail.fromJson(
+              json['valueContactDetail'] as Map<String, dynamic>,
+            )
+          : null,
+      valueContributor: json['valueContributor'] != null
+          ? Contributor.fromJson(
+              json['valueContributor'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDataRequirement: json['valueDataRequirement'] != null
+          ? DataRequirement.fromJson(
+              json['valueDataRequirement'] as Map<String, dynamic>,
+            )
+          : null,
+      valueExpression: json['valueExpression'] != null
+          ? FhirExpression.fromJson(
+              json['valueExpression'] as Map<String, dynamic>,
+            )
+          : null,
+      valueParameterDefinition: json['valueParameterDefinition'] != null
+          ? ParameterDefinition.fromJson(
+              json['valueParameterDefinition'] as Map<String, dynamic>,
+            )
+          : null,
+      valueRelatedArtifact: json['valueRelatedArtifact'] != null
+          ? RelatedArtifact.fromJson(
+              json['valueRelatedArtifact'] as Map<String, dynamic>,
+            )
+          : null,
+      valueTriggerDefinition: json['valueTriggerDefinition'] != null
+          ? TriggerDefinition.fromJson(
+              json['valueTriggerDefinition'] as Map<String, dynamic>,
+            )
+          : null,
+      valueUsageContext: json['valueUsageContext'] != null
+          ? UsageContext.fromJson(
+              json['valueUsageContext'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDosage: json['valueDosage'] != null
+          ? Dosage.fromJson(
+              json['valueDosage'] as Map<String, dynamic>,
+            )
+          : null,
+      valueMeta: json['valueMeta'] != null
+          ? FhirMeta.fromJson(
+              json['valueMeta'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [TaskOutput] from a [String] or [YamlMap] object
+  factory TaskOutput.fromYaml(dynamic yaml) => yaml is String
+      ? TaskOutput.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? TaskOutput.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('TaskOutput cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [TaskOutput] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory TaskOutput.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return TaskOutput.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'TaskOutput';
 
-  /// [type] /// The name of the Output parameter.
+  /// [type]
+  /// The name of the Output parameter.
   final CodeableConcept type;
 
-  /// [valueBase64Binary] /// The value of the Output parameter as a basic type.
+  /// [valueBase64Binary]
+  /// The value of the Output parameter as a basic type.
   final FhirBase64Binary? valueBase64Binary;
+
+  /// Extensions for [valueBase64Binary]
   final Element? valueBase64BinaryElement;
 
-  /// [valueBoolean] /// The value of the Output parameter as a basic type.
+  /// [valueBoolean]
+  /// The value of the Output parameter as a basic type.
   final FhirBoolean? valueBoolean;
+
+  /// Extensions for [valueBoolean]
   final Element? valueBooleanElement;
 
-  /// [valueCanonical] /// The value of the Output parameter as a basic type.
+  /// [valueCanonical]
+  /// The value of the Output parameter as a basic type.
   final FhirCanonical? valueCanonical;
+
+  /// Extensions for [valueCanonical]
   final Element? valueCanonicalElement;
 
-  /// [valueCode] /// The value of the Output parameter as a basic type.
+  /// [valueCode]
+  /// The value of the Output parameter as a basic type.
   final FhirCode? valueCode;
+
+  /// Extensions for [valueCode]
   final Element? valueCodeElement;
 
-  /// [valueDate] /// The value of the Output parameter as a basic type.
+  /// [valueDate]
+  /// The value of the Output parameter as a basic type.
   final FhirDate? valueDate;
+
+  /// Extensions for [valueDate]
   final Element? valueDateElement;
 
-  /// [valueDateTime] /// The value of the Output parameter as a basic type.
+  /// [valueDateTime]
+  /// The value of the Output parameter as a basic type.
   final FhirDateTime? valueDateTime;
+
+  /// Extensions for [valueDateTime]
   final Element? valueDateTimeElement;
 
-  /// [valueDecimal] /// The value of the Output parameter as a basic type.
+  /// [valueDecimal]
+  /// The value of the Output parameter as a basic type.
   final FhirDecimal? valueDecimal;
+
+  /// Extensions for [valueDecimal]
   final Element? valueDecimalElement;
 
-  /// [valueId] /// The value of the Output parameter as a basic type.
+  /// [valueId]
+  /// The value of the Output parameter as a basic type.
   final FhirId? valueId;
+
+  /// Extensions for [valueId]
   final Element? valueIdElement;
 
-  /// [valueInstant] /// The value of the Output parameter as a basic type.
+  /// [valueInstant]
+  /// The value of the Output parameter as a basic type.
   final FhirInstant? valueInstant;
+
+  /// Extensions for [valueInstant]
   final Element? valueInstantElement;
 
-  /// [valueInteger] /// The value of the Output parameter as a basic type.
+  /// [valueInteger]
+  /// The value of the Output parameter as a basic type.
   final FhirInteger? valueInteger;
+
+  /// Extensions for [valueInteger]
   final Element? valueIntegerElement;
 
-  /// [valueMarkdown] /// The value of the Output parameter as a basic type.
+  /// [valueMarkdown]
+  /// The value of the Output parameter as a basic type.
   final FhirMarkdown? valueMarkdown;
+
+  /// Extensions for [valueMarkdown]
   final Element? valueMarkdownElement;
 
-  /// [valueOid] /// The value of the Output parameter as a basic type.
+  /// [valueOid]
+  /// The value of the Output parameter as a basic type.
   final FhirOid? valueOid;
+
+  /// Extensions for [valueOid]
   final Element? valueOidElement;
 
-  /// [valuePositiveInt] /// The value of the Output parameter as a basic type.
+  /// [valuePositiveInt]
+  /// The value of the Output parameter as a basic type.
   final FhirPositiveInt? valuePositiveInt;
+
+  /// Extensions for [valuePositiveInt]
   final Element? valuePositiveIntElement;
 
-  /// [valueString] /// The value of the Output parameter as a basic type.
+  /// [valueString]
+  /// The value of the Output parameter as a basic type.
   final FhirString? valueString;
+
+  /// Extensions for [valueString]
   final Element? valueStringElement;
 
-  /// [valueTime] /// The value of the Output parameter as a basic type.
+  /// [valueTime]
+  /// The value of the Output parameter as a basic type.
   final FhirTime? valueTime;
+
+  /// Extensions for [valueTime]
   final Element? valueTimeElement;
 
-  /// [valueUnsignedInt] /// The value of the Output parameter as a basic type.
+  /// [valueUnsignedInt]
+  /// The value of the Output parameter as a basic type.
   final FhirUnsignedInt? valueUnsignedInt;
+
+  /// Extensions for [valueUnsignedInt]
   final Element? valueUnsignedIntElement;
 
-  /// [valueUri] /// The value of the Output parameter as a basic type.
+  /// [valueUri]
+  /// The value of the Output parameter as a basic type.
   final FhirUri? valueUri;
+
+  /// Extensions for [valueUri]
   final Element? valueUriElement;
 
-  /// [valueUrl] /// The value of the Output parameter as a basic type.
+  /// [valueUrl]
+  /// The value of the Output parameter as a basic type.
   final FhirUrl? valueUrl;
+
+  /// Extensions for [valueUrl]
   final Element? valueUrlElement;
 
-  /// [valueUuid] /// The value of the Output parameter as a basic type.
+  /// [valueUuid]
+  /// The value of the Output parameter as a basic type.
   final FhirUuid? valueUuid;
+
+  /// Extensions for [valueUuid]
   final Element? valueUuidElement;
 
-  /// [valueAddress] /// The value of the Output parameter as a basic type.
+  /// [valueAddress]
+  /// The value of the Output parameter as a basic type.
   final Address? valueAddress;
 
-  /// [valueAge] /// The value of the Output parameter as a basic type.
+  /// [valueAge]
+  /// The value of the Output parameter as a basic type.
   final Age? valueAge;
 
-  /// [valueAnnotation] /// The value of the Output parameter as a basic type.
+  /// [valueAnnotation]
+  /// The value of the Output parameter as a basic type.
   final Annotation? valueAnnotation;
 
-  /// [valueAttachment] /// The value of the Output parameter as a basic type.
+  /// [valueAttachment]
+  /// The value of the Output parameter as a basic type.
   final Attachment? valueAttachment;
 
-  /// [valueCodeableConcept] /// The value of the Output parameter as a basic type.
+  /// [valueCodeableConcept]
+  /// The value of the Output parameter as a basic type.
   final CodeableConcept? valueCodeableConcept;
 
-  /// [valueCoding] /// The value of the Output parameter as a basic type.
+  /// [valueCoding]
+  /// The value of the Output parameter as a basic type.
   final Coding? valueCoding;
 
-  /// [valueContactPoint] /// The value of the Output parameter as a basic type.
+  /// [valueContactPoint]
+  /// The value of the Output parameter as a basic type.
   final ContactPoint? valueContactPoint;
 
-  /// [valueCount] /// The value of the Output parameter as a basic type.
+  /// [valueCount]
+  /// The value of the Output parameter as a basic type.
   final Count? valueCount;
 
-  /// [valueDistance] /// The value of the Output parameter as a basic type.
+  /// [valueDistance]
+  /// The value of the Output parameter as a basic type.
   final Distance? valueDistance;
 
-  /// [valueDuration] /// The value of the Output parameter as a basic type.
+  /// [valueDuration]
+  /// The value of the Output parameter as a basic type.
   final FhirDuration? valueDuration;
 
-  /// [valueHumanName] /// The value of the Output parameter as a basic type.
+  /// [valueHumanName]
+  /// The value of the Output parameter as a basic type.
   final HumanName? valueHumanName;
 
-  /// [valueIdentifier] /// The value of the Output parameter as a basic type.
+  /// [valueIdentifier]
+  /// The value of the Output parameter as a basic type.
   final Identifier? valueIdentifier;
 
-  /// [valueMoney] /// The value of the Output parameter as a basic type.
+  /// [valueMoney]
+  /// The value of the Output parameter as a basic type.
   final Money? valueMoney;
 
-  /// [valuePeriod] /// The value of the Output parameter as a basic type.
+  /// [valuePeriod]
+  /// The value of the Output parameter as a basic type.
   final Period? valuePeriod;
 
-  /// [valueQuantity] /// The value of the Output parameter as a basic type.
+  /// [valueQuantity]
+  /// The value of the Output parameter as a basic type.
   final Quantity? valueQuantity;
 
-  /// [valueRange] /// The value of the Output parameter as a basic type.
+  /// [valueRange]
+  /// The value of the Output parameter as a basic type.
   final Range? valueRange;
 
-  /// [valueRatio] /// The value of the Output parameter as a basic type.
+  /// [valueRatio]
+  /// The value of the Output parameter as a basic type.
   final Ratio? valueRatio;
 
-  /// [valueReference] /// The value of the Output parameter as a basic type.
+  /// [valueReference]
+  /// The value of the Output parameter as a basic type.
   final Reference? valueReference;
 
-  /// [valueSampledData] /// The value of the Output parameter as a basic type.
+  /// [valueSampledData]
+  /// The value of the Output parameter as a basic type.
   final SampledData? valueSampledData;
 
-  /// [valueSignature] /// The value of the Output parameter as a basic type.
+  /// [valueSignature]
+  /// The value of the Output parameter as a basic type.
   final Signature? valueSignature;
 
-  /// [valueTiming] /// The value of the Output parameter as a basic type.
+  /// [valueTiming]
+  /// The value of the Output parameter as a basic type.
   final Timing? valueTiming;
 
-  /// [valueContactDetail] /// The value of the Output parameter as a basic type.
+  /// [valueContactDetail]
+  /// The value of the Output parameter as a basic type.
   final ContactDetail? valueContactDetail;
 
-  /// [valueContributor] /// The value of the Output parameter as a basic type.
+  /// [valueContributor]
+  /// The value of the Output parameter as a basic type.
   final Contributor? valueContributor;
 
-  /// [valueDataRequirement] /// The value of the Output parameter as a basic type.
+  /// [valueDataRequirement]
+  /// The value of the Output parameter as a basic type.
   final DataRequirement? valueDataRequirement;
 
-  /// [valueExpression] /// The value of the Output parameter as a basic type.
+  /// [valueExpression]
+  /// The value of the Output parameter as a basic type.
   final FhirExpression? valueExpression;
 
-  /// [valueParameterDefinition] /// The value of the Output parameter as a basic type.
+  /// [valueParameterDefinition]
+  /// The value of the Output parameter as a basic type.
   final ParameterDefinition? valueParameterDefinition;
 
-  /// [valueRelatedArtifact] /// The value of the Output parameter as a basic type.
+  /// [valueRelatedArtifact]
+  /// The value of the Output parameter as a basic type.
   final RelatedArtifact? valueRelatedArtifact;
 
-  /// [valueTriggerDefinition] /// The value of the Output parameter as a basic type.
+  /// [valueTriggerDefinition]
+  /// The value of the Output parameter as a basic type.
   final TriggerDefinition? valueTriggerDefinition;
 
-  /// [valueUsageContext] /// The value of the Output parameter as a basic type.
+  /// [valueUsageContext]
+  /// The value of the Output parameter as a basic type.
   final UsageContext? valueUsageContext;
 
-  /// [valueDosage] /// The value of the Output parameter as a basic type.
+  /// [valueDosage]
+  /// The value of the Output parameter as a basic type.
   final Dosage? valueDosage;
 
-  /// [valueMeta] /// The value of the Output parameter as a basic type.
+  /// [valueMeta]
+  /// The value of the Output parameter as a basic type.
   final FhirMeta? valueMeta;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['type'] = type.toJson();
     if (valueBase64Binary?.value != null) {
@@ -2208,238 +3118,6 @@ class TaskOutput extends BackboneElement {
     return json;
   }
 
-  factory TaskOutput.fromJson(Map<String, dynamic> json) {
-    return TaskOutput(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
-      valueBase64Binary: json['valueBase64Binary'] != null
-          ? FhirBase64Binary.fromJson(json['valueBase64Binary'])
-          : null,
-      valueBase64BinaryElement: json['_valueBase64Binary'] != null
-          ? Element.fromJson(json['_valueBase64Binary'] as Map<String, dynamic>)
-          : null,
-      valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)
-          : null,
-      valueCanonical: json['valueCanonical'] != null
-          ? FhirCanonical.fromJson(json['valueCanonical'])
-          : null,
-      valueCanonicalElement: json['_valueCanonical'] != null
-          ? Element.fromJson(json['_valueCanonical'] as Map<String, dynamic>)
-          : null,
-      valueCode: json['valueCode'] != null
-          ? FhirCode.fromJson(json['valueCode'])
-          : null,
-      valueCodeElement: json['_valueCode'] != null
-          ? Element.fromJson(json['_valueCode'] as Map<String, dynamic>)
-          : null,
-      valueDate: json['valueDate'] != null
-          ? FhirDate.fromJson(json['valueDate'])
-          : null,
-      valueDateElement: json['_valueDate'] != null
-          ? Element.fromJson(json['_valueDate'] as Map<String, dynamic>)
-          : null,
-      valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime.fromJson(json['valueDateTime'])
-          : null,
-      valueDateTimeElement: json['_valueDateTime'] != null
-          ? Element.fromJson(json['_valueDateTime'] as Map<String, dynamic>)
-          : null,
-      valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal.fromJson(json['valueDecimal'])
-          : null,
-      valueDecimalElement: json['_valueDecimal'] != null
-          ? Element.fromJson(json['_valueDecimal'] as Map<String, dynamic>)
-          : null,
-      valueId:
-          json['valueId'] != null ? FhirId.fromJson(json['valueId']) : null,
-      valueIdElement: json['_valueId'] != null
-          ? Element.fromJson(json['_valueId'] as Map<String, dynamic>)
-          : null,
-      valueInstant: json['valueInstant'] != null
-          ? FhirInstant.fromJson(json['valueInstant'])
-          : null,
-      valueInstantElement: json['_valueInstant'] != null
-          ? Element.fromJson(json['_valueInstant'] as Map<String, dynamic>)
-          : null,
-      valueInteger: json['valueInteger'] != null
-          ? FhirInteger.fromJson(json['valueInteger'])
-          : null,
-      valueIntegerElement: json['_valueInteger'] != null
-          ? Element.fromJson(json['_valueInteger'] as Map<String, dynamic>)
-          : null,
-      valueMarkdown: json['valueMarkdown'] != null
-          ? FhirMarkdown.fromJson(json['valueMarkdown'])
-          : null,
-      valueMarkdownElement: json['_valueMarkdown'] != null
-          ? Element.fromJson(json['_valueMarkdown'] as Map<String, dynamic>)
-          : null,
-      valueOid:
-          json['valueOid'] != null ? FhirOid.fromJson(json['valueOid']) : null,
-      valueOidElement: json['_valueOid'] != null
-          ? Element.fromJson(json['_valueOid'] as Map<String, dynamic>)
-          : null,
-      valuePositiveInt: json['valuePositiveInt'] != null
-          ? FhirPositiveInt.fromJson(json['valuePositiveInt'])
-          : null,
-      valuePositiveIntElement: json['_valuePositiveInt'] != null
-          ? Element.fromJson(json['_valuePositiveInt'] as Map<String, dynamic>)
-          : null,
-      valueString: json['valueString'] != null
-          ? FhirString.fromJson(json['valueString'])
-          : null,
-      valueStringElement: json['_valueString'] != null
-          ? Element.fromJson(json['_valueString'] as Map<String, dynamic>)
-          : null,
-      valueTime: json['valueTime'] != null
-          ? FhirTime.fromJson(json['valueTime'])
-          : null,
-      valueTimeElement: json['_valueTime'] != null
-          ? Element.fromJson(json['_valueTime'] as Map<String, dynamic>)
-          : null,
-      valueUnsignedInt: json['valueUnsignedInt'] != null
-          ? FhirUnsignedInt.fromJson(json['valueUnsignedInt'])
-          : null,
-      valueUnsignedIntElement: json['_valueUnsignedInt'] != null
-          ? Element.fromJson(json['_valueUnsignedInt'] as Map<String, dynamic>)
-          : null,
-      valueUri:
-          json['valueUri'] != null ? FhirUri.fromJson(json['valueUri']) : null,
-      valueUriElement: json['_valueUri'] != null
-          ? Element.fromJson(json['_valueUri'] as Map<String, dynamic>)
-          : null,
-      valueUrl:
-          json['valueUrl'] != null ? FhirUrl.fromJson(json['valueUrl']) : null,
-      valueUrlElement: json['_valueUrl'] != null
-          ? Element.fromJson(json['_valueUrl'] as Map<String, dynamic>)
-          : null,
-      valueUuid: json['valueUuid'] != null
-          ? FhirUuid.fromJson(json['valueUuid'])
-          : null,
-      valueUuidElement: json['_valueUuid'] != null
-          ? Element.fromJson(json['_valueUuid'] as Map<String, dynamic>)
-          : null,
-      valueAddress: json['valueAddress'] != null
-          ? Address.fromJson(json['valueAddress'] as Map<String, dynamic>)
-          : null,
-      valueAge: json['valueAge'] != null
-          ? Age.fromJson(json['valueAge'] as Map<String, dynamic>)
-          : null,
-      valueAnnotation: json['valueAnnotation'] != null
-          ? Annotation.fromJson(json['valueAnnotation'] as Map<String, dynamic>)
-          : null,
-      valueAttachment: json['valueAttachment'] != null
-          ? Attachment.fromJson(json['valueAttachment'] as Map<String, dynamic>)
-          : null,
-      valueCodeableConcept: json['valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['valueCodeableConcept'] as Map<String, dynamic>)
-          : null,
-      valueCoding: json['valueCoding'] != null
-          ? Coding.fromJson(json['valueCoding'] as Map<String, dynamic>)
-          : null,
-      valueContactPoint: json['valueContactPoint'] != null
-          ? ContactPoint.fromJson(
-              json['valueContactPoint'] as Map<String, dynamic>)
-          : null,
-      valueCount: json['valueCount'] != null
-          ? Count.fromJson(json['valueCount'] as Map<String, dynamic>)
-          : null,
-      valueDistance: json['valueDistance'] != null
-          ? Distance.fromJson(json['valueDistance'] as Map<String, dynamic>)
-          : null,
-      valueDuration: json['valueDuration'] != null
-          ? FhirDuration.fromJson(json['valueDuration'] as Map<String, dynamic>)
-          : null,
-      valueHumanName: json['valueHumanName'] != null
-          ? HumanName.fromJson(json['valueHumanName'] as Map<String, dynamic>)
-          : null,
-      valueIdentifier: json['valueIdentifier'] != null
-          ? Identifier.fromJson(json['valueIdentifier'] as Map<String, dynamic>)
-          : null,
-      valueMoney: json['valueMoney'] != null
-          ? Money.fromJson(json['valueMoney'] as Map<String, dynamic>)
-          : null,
-      valuePeriod: json['valuePeriod'] != null
-          ? Period.fromJson(json['valuePeriod'] as Map<String, dynamic>)
-          : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>)
-          : null,
-      valueRange: json['valueRange'] != null
-          ? Range.fromJson(json['valueRange'] as Map<String, dynamic>)
-          : null,
-      valueRatio: json['valueRatio'] != null
-          ? Ratio.fromJson(json['valueRatio'] as Map<String, dynamic>)
-          : null,
-      valueReference: json['valueReference'] != null
-          ? Reference.fromJson(json['valueReference'] as Map<String, dynamic>)
-          : null,
-      valueSampledData: json['valueSampledData'] != null
-          ? SampledData.fromJson(
-              json['valueSampledData'] as Map<String, dynamic>)
-          : null,
-      valueSignature: json['valueSignature'] != null
-          ? Signature.fromJson(json['valueSignature'] as Map<String, dynamic>)
-          : null,
-      valueTiming: json['valueTiming'] != null
-          ? Timing.fromJson(json['valueTiming'] as Map<String, dynamic>)
-          : null,
-      valueContactDetail: json['valueContactDetail'] != null
-          ? ContactDetail.fromJson(
-              json['valueContactDetail'] as Map<String, dynamic>)
-          : null,
-      valueContributor: json['valueContributor'] != null
-          ? Contributor.fromJson(
-              json['valueContributor'] as Map<String, dynamic>)
-          : null,
-      valueDataRequirement: json['valueDataRequirement'] != null
-          ? DataRequirement.fromJson(
-              json['valueDataRequirement'] as Map<String, dynamic>)
-          : null,
-      valueExpression: json['valueExpression'] != null
-          ? FhirExpression.fromJson(
-              json['valueExpression'] as Map<String, dynamic>)
-          : null,
-      valueParameterDefinition: json['valueParameterDefinition'] != null
-          ? ParameterDefinition.fromJson(
-              json['valueParameterDefinition'] as Map<String, dynamic>)
-          : null,
-      valueRelatedArtifact: json['valueRelatedArtifact'] != null
-          ? RelatedArtifact.fromJson(
-              json['valueRelatedArtifact'] as Map<String, dynamic>)
-          : null,
-      valueTriggerDefinition: json['valueTriggerDefinition'] != null
-          ? TriggerDefinition.fromJson(
-              json['valueTriggerDefinition'] as Map<String, dynamic>)
-          : null,
-      valueUsageContext: json['valueUsageContext'] != null
-          ? UsageContext.fromJson(
-              json['valueUsageContext'] as Map<String, dynamic>)
-          : null,
-      valueDosage: json['valueDosage'] != null
-          ? Dosage.fromJson(json['valueDosage'] as Map<String, dynamic>)
-          : null,
-      valueMeta: json['valueMeta'] != null
-          ? FhirMeta.fromJson(json['valueMeta'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   TaskOutput clone() => throw UnimplementedError();
   @override
@@ -2611,24 +3289,5 @@ class TaskOutput extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory TaskOutput.fromYaml(dynamic yaml) => yaml is String
-      ? TaskOutput.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? TaskOutput.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'TaskOutput cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory TaskOutput.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return TaskOutput.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

@@ -11,10 +11,10 @@ import 'ndjson/ndjson.dart';
 void main() {
   group('FHIR Bulk From File/s:', () {
     test('From Accounts ndjson file', () async {
-      final List<Resource> resources =
+      final resources =
           await FhirBulk.fromFile('./test/fhir_bulk/ndjson/Account.ndjson');
-      String stringList = '';
-      for (final Resource resource in resources) {
+      var stringList = '';
+      for (final resource in resources) {
         stringList += '\n${jsonEncode(resource.toJson())}';
       }
       stringList = stringList.replaceFirst('\n', '');
@@ -22,10 +22,11 @@ void main() {
     });
 
     test('From MedicationRequest ndjson file', () async {
-      final List<Resource> resources = await FhirBulk.fromFile(
-          './test/fhir_bulk/ndjson/MedicationRequest.ndjson');
-      String stringList = '';
-      for (final Resource resource in resources) {
+      final resources = await FhirBulk.fromFile(
+        './test/fhir_bulk/ndjson/MedicationRequest.ndjson',
+      );
+      var stringList = '';
+      for (final resource in resources) {
         stringList += '\n${jsonEncode(resource.toJson())}';
       }
       stringList = stringList.replaceFirst('\n', '');
@@ -35,10 +36,11 @@ void main() {
 
   group('FHIR Bulk From Compressed File/s:', () {
     test('From Accounts zip file', () async {
-      final List<Resource> resources = await FhirBulk.fromCompressedFile(
-          './test/fhir_bulk/ndjson/account.zip');
-      String stringList = '';
-      for (final Resource resource in resources) {
+      final resources = await FhirBulk.fromCompressedFile(
+        './test/fhir_bulk/ndjson/account.zip',
+      );
+      var stringList = '';
+      for (final resource in resources) {
         stringList += '\n${jsonEncode(resource.toJson())}';
       }
       stringList = stringList.replaceFirst('\n', '');
@@ -46,10 +48,11 @@ void main() {
     });
 
     test('From MedicationRequest zip file', () async {
-      final List<Resource> resources = await FhirBulk.fromCompressedFile(
-          './test/fhir_bulk/ndjson/medicationRequest.zip');
-      String stringList = '';
-      for (final Resource resource in resources) {
+      final resources = await FhirBulk.fromCompressedFile(
+        './test/fhir_bulk/ndjson/medicationRequest.zip',
+      );
+      var stringList = '';
+      for (final resource in resources) {
         stringList += '\n${jsonEncode(resource.toJson())}';
       }
       stringList = stringList.replaceFirst('\n', '');
@@ -57,10 +60,11 @@ void main() {
     });
 
     test('From Accounts & MedicationRequest zip file', () async {
-      final List<Resource> resources = await FhirBulk.fromCompressedFile(
-          './test/fhir_bulk/ndjson/accountMedRequest.zip');
-      String stringList = '';
-      for (final Resource resource in resources) {
+      final resources = await FhirBulk.fromCompressedFile(
+        './test/fhir_bulk/ndjson/accountMedRequest.zip',
+      );
+      var stringList = '';
+      for (final resource in resources) {
         stringList += '\n${jsonEncode(resource.toJson())}';
       }
       stringList = stringList.replaceFirst('\n', '');
@@ -68,10 +72,11 @@ void main() {
     });
 
     test('From Account gzip file', () async {
-      final List<Resource> resources = await FhirBulk.fromCompressedFile(
-          './test/fhir_bulk/ndjson/Account.ndjson.gz');
-      String stringList = '';
-      for (final Resource resource in resources) {
+      final resources = await FhirBulk.fromCompressedFile(
+        './test/fhir_bulk/ndjson/Account.ndjson.gz',
+      );
+      var stringList = '';
+      for (final resource in resources) {
         stringList += '\n${jsonEncode(resource.toJson())}';
       }
       stringList = stringList.replaceFirst('\n', '');
@@ -79,10 +84,11 @@ void main() {
     });
 
     test('From MedicationRequest gzip file', () async {
-      final List<Resource> resources = await FhirBulk.fromCompressedFile(
-          './test/fhir_bulk/ndjson/MedicationRequest.ndjson.gz');
-      String stringList = '';
-      for (final Resource resource in resources) {
+      final resources = await FhirBulk.fromCompressedFile(
+        './test/fhir_bulk/ndjson/MedicationRequest.ndjson.gz',
+      );
+      var stringList = '';
+      for (final resource in resources) {
         stringList += '\n${jsonEncode(resource.toJson())}';
       }
       stringList = stringList.replaceFirst('\n', '');
@@ -90,10 +96,11 @@ void main() {
     });
 
     test('From MedicationRequest tar-gzip file', () async {
-      final List<Resource> resources = await FhirBulk.fromCompressedFile(
-          './test/fhir_bulk/ndjson/tarGzip.tar.gz');
-      String stringList = '';
-      for (final Resource resource in resources) {
+      final resources = await FhirBulk.fromCompressedFile(
+        './test/fhir_bulk/ndjson/tarGzip.tar.gz',
+      );
+      var stringList = '';
+      for (final resource in resources) {
         stringList += '\n${jsonEncode(resource.toJson())}';
       }
       stringList = stringList.replaceFirst('\n', '');
@@ -103,18 +110,18 @@ void main() {
 
   group('Creating Bulk FHIR String', () {
     test('To Accounts ndjson', () async {
-      final List<Resource> resources = FhirBulk.fromNdJson(account);
-      final List<Resource> resourceList = <Resource>[];
+      final resources = FhirBulk.fromNdJson(account);
+      final resourceList = <Resource>[];
       resources.forEach(resourceList.add);
-      final String bulkString = FhirBulk.toNdJson(resourceList);
+      final bulkString = FhirBulk.toNdJson(resourceList);
       expect(bulkString, account);
     });
 
     test('To MedicationRequest ndjson', () {
-      final List<Resource> resources = FhirBulk.fromNdJson(medicationRequest);
-      final List<Resource> resourceList = <Resource>[];
+      final resources = FhirBulk.fromNdJson(medicationRequest);
+      final resourceList = <Resource>[];
       resources.forEach(resourceList.add);
-      final String bulkString = FhirBulk.toNdJson(resourceList);
+      final bulkString = FhirBulk.toNdJson(resourceList);
       expect(bulkString, medicationRequest);
     });
   });

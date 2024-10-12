@@ -1,25 +1,35 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [DataRequirement] /// Describes a required data item for evaluation in terms of the type of data,
-/// and optional code or date-based filters of the data.
+/// [DataRequirement]
+/// Describes a required data item for evaluation in terms of the type of
+/// data, and optional code or date-based filters of the data.
 class DataRequirement extends DataType {
+  /// Primary constructor for [DataRequirement]
+
   DataRequirement({
     super.id,
     super.extension_,
     required this.type,
+
+    /// Extensions for [type]
     this.typeElement,
     this.profile,
+
+    /// Extensions for [profile]
     this.profileElement,
     this.subjectCodeableConcept,
     this.subjectReference,
     this.mustSupport,
+
+    /// Extensions for [mustSupport]
     this.mustSupportElement,
     this.codeFilter,
     this.dateFilter,
     this.limit,
+
+    /// Extensions for [limit]
     this.limitElement,
     this.sort,
     super.userData,
@@ -30,68 +40,208 @@ class DataRequirement extends DataType {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory DataRequirement.fromJson(Map<String, dynamic> json) {
+    return DataRequirement(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: FHIRAllTypes.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(
+              json['_type'] as Map<String, dynamic>,
+            )
+          : null,
+      profile: json['profile'] != null
+          ? (json['profile'] as List<dynamic>)
+              .map<FhirCanonical>(
+                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      profileElement: json['_profile'] != null
+          ? (json['_profile'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      subjectCodeableConcept: json['subjectCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['subjectCodeableConcept'] as Map<String, dynamic>,
+            )
+          : null,
+      subjectReference: json['subjectReference'] != null
+          ? Reference.fromJson(
+              json['subjectReference'] as Map<String, dynamic>,
+            )
+          : null,
+      mustSupport: json['mustSupport'] != null
+          ? (json['mustSupport'] as List<dynamic>)
+              .map<FhirString>(
+                (dynamic v) => FhirString.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      mustSupportElement: json['_mustSupport'] != null
+          ? (json['_mustSupport'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      codeFilter: json['codeFilter'] != null
+          ? (json['codeFilter'] as List<dynamic>)
+              .map<DataRequirementCodeFilter>(
+                (dynamic v) => DataRequirementCodeFilter.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      dateFilter: json['dateFilter'] != null
+          ? (json['dateFilter'] as List<dynamic>)
+              .map<DataRequirementDateFilter>(
+                (dynamic v) => DataRequirementDateFilter.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      limit: json['limit'] != null
+          ? FhirPositiveInt.fromJson(json['limit'])
+          : null,
+      limitElement: json['_limit'] != null
+          ? Element.fromJson(
+              json['_limit'] as Map<String, dynamic>,
+            )
+          : null,
+      sort: json['sort'] != null
+          ? (json['sort'] as List<dynamic>)
+              .map<DataRequirementSort>(
+                (dynamic v) => DataRequirementSort.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [DataRequirement] from a [String] or [YamlMap] object
+  factory DataRequirement.fromYaml(dynamic yaml) => yaml is String
+      ? DataRequirement.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? DataRequirement.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'DataRequirement cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [DataRequirement] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory DataRequirement.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DataRequirement.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'DataRequirement';
 
-  /// [type] /// The type of the required data, specified as the type name of a resource.
-  /// For profiles, this value is set to the type of the base resource of the
-  /// profile.
+  /// [type]
+  /// The type of the required data, specified as the type name of a
+  /// resource. For profiles, this value is set to the type of the base
+  /// resource of the profile.
   final FHIRAllTypes type;
+
+  /// Extensions for [type]
   final Element? typeElement;
 
-  /// [profile] /// The profile of the required data, specified as the uri of the profile
+  /// [profile]
+  /// The profile of the required data, specified as the uri of the profile
   /// definition.
   final List<FhirCanonical>? profile;
+
+  /// Extensions for [profile]
   final List<Element>? profileElement;
 
-  /// [subjectCodeableConcept] /// The intended subjects of the data requirement. If this element is not
+  /// [subjectCodeableConcept]
+  /// The intended subjects of the data requirement. If this element is not
   /// provided, a Patient subject is assumed.
   final CodeableConcept? subjectCodeableConcept;
 
-  /// [subjectReference] /// The intended subjects of the data requirement. If this element is not
+  /// [subjectReference]
+  /// The intended subjects of the data requirement. If this element is not
   /// provided, a Patient subject is assumed.
   final Reference? subjectReference;
 
-  /// [mustSupport] /// Indicates that specific elements of the type are referenced by the
-  /// knowledge module and must be supported by the consumer in order to obtain
-  /// an effective evaluation. This does not mean that a value is required for
-  /// this element, only that the consuming system must understand the element
-  /// and be able to provide values for it if they are available.
+  /// [mustSupport]
+  /// Indicates that specific elements of the type are referenced by the
+  /// knowledge module and must be supported by the consumer in order to
+  /// obtain an effective evaluation. This does not mean that a value is
+  /// required for this element, only that the consuming system must
+  /// understand the element and be able to provide values for it if they are
+  /// available.
   ///
-  /// The value of mustSupport SHALL be a FHIRPath resolveable on the type of the
-  /// DataRequirement. The path SHALL consist only of identifiers, constant
-  /// indexers, and .resolve() (see the [Simple FHIRPath
+  /// The value of mustSupport SHALL be a FHIRPath resolveable on the type of
+  /// the DataRequirement. The path SHALL consist only of identifiers,
+  /// constant indexers, and .resolve() (see the [Simple FHIRPath
   /// Profile](fhirpath.html#simple) for full details).
   final List<FhirString>? mustSupport;
+
+  /// Extensions for [mustSupport]
   final List<Element>? mustSupportElement;
 
-  /// [codeFilter] /// Code filters specify additional constraints on the data, specifying the
+  /// [codeFilter]
+  /// Code filters specify additional constraints on the data, specifying the
   /// value set of interest for a particular element of the data. Each code
-  /// filter defines an additional constraint on the data, i.e. code filters are
-  /// AND'ed, not OR'ed.
+  /// filter defines an additional constraint on the data, i.e. code filters
+  /// are AND'ed, not OR'ed.
   final List<DataRequirementCodeFilter>? codeFilter;
 
-  /// [dateFilter] /// Date filters specify additional constraints on the data in terms of the
-  /// applicable date range for specific elements. Each date filter specifies an
-  /// additional constraint on the data, i.e. date filters are AND'ed, not OR'ed.
+  /// [dateFilter]
+  /// Date filters specify additional constraints on the data in terms of the
+  /// applicable date range for specific elements. Each date filter specifies
+  /// an additional constraint on the data, i.e. date filters are AND'ed, not
+  /// OR'ed.
   final List<DataRequirementDateFilter>? dateFilter;
 
-  /// [limit] /// Specifies a maximum number of results that are required (uses the _count
-  /// search parameter).
+  /// [limit]
+  /// Specifies a maximum number of results that are required (uses the
+  /// _count search parameter).
   final FhirPositiveInt? limit;
+
+  /// Extensions for [limit]
   final Element? limitElement;
 
-  /// [sort] /// Specifies the order of the results to be returned.
+  /// [sort]
+  /// Specifies the order of the results to be returned.
   final List<DataRequirementSort>? sort;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['type'] = type.toJson();
     if (profile != null && profile!.isNotEmpty) {
@@ -116,14 +266,12 @@ class DataRequirement extends DataType {
           mustSupportElement!.map((Element v) => v.toJson()).toList();
     }
     if (codeFilter != null && codeFilter!.isNotEmpty) {
-      json['codeFilter'] = codeFilter!
-          .map<dynamic>((DataRequirementCodeFilter v) => v.toJson())
-          .toList();
+      json['codeFilter'] =
+          codeFilter!.map((DataRequirementCodeFilter v) => v.toJson()).toList();
     }
     if (dateFilter != null && dateFilter!.isNotEmpty) {
-      json['dateFilter'] = dateFilter!
-          .map<dynamic>((DataRequirementDateFilter v) => v.toJson())
-          .toList();
+      json['dateFilter'] =
+          dateFilter!.map((DataRequirementDateFilter v) => v.toJson()).toList();
     }
     if (limit?.value != null) {
       json['limit'] = limit!.toJson();
@@ -132,81 +280,11 @@ class DataRequirement extends DataType {
       json['_limit'] = limitElement!.toJson();
     }
     if (sort != null && sort!.isNotEmpty) {
-      json['sort'] =
-          sort!.map<dynamic>((DataRequirementSort v) => v.toJson()).toList();
+      json['sort'] = sort!.map((DataRequirementSort v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory DataRequirement.fromJson(Map<String, dynamic> json) {
-    return DataRequirement(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: FHIRAllTypes.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
-          : null,
-      profile: json['profile'] != null
-          ? (json['profile'] as List<dynamic>)
-              .map<FhirCanonical>(
-                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
-              .toList()
-          : null,
-      profileElement: json['_profile'] != null
-          ? (json['_profile'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      subjectCodeableConcept: json['subjectCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['subjectCodeableConcept'] as Map<String, dynamic>)
-          : null,
-      subjectReference: json['subjectReference'] != null
-          ? Reference.fromJson(json['subjectReference'] as Map<String, dynamic>)
-          : null,
-      mustSupport: json['mustSupport'] != null
-          ? (json['mustSupport'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
-              .toList()
-          : null,
-      mustSupportElement: json['_mustSupport'] != null
-          ? (json['_mustSupport'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      codeFilter: json['codeFilter'] != null
-          ? (json['codeFilter'] as List<dynamic>)
-              .map<DataRequirementCodeFilter>((dynamic v) =>
-                  DataRequirementCodeFilter.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      dateFilter: json['dateFilter'] != null
-          ? (json['dateFilter'] as List<dynamic>)
-              .map<DataRequirementDateFilter>((dynamic v) =>
-                  DataRequirementDateFilter.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      limit: json['limit'] != null
-          ? FhirPositiveInt.fromJson(json['limit'])
-          : null,
-      limitElement: json['_limit'] != null
-          ? Element.fromJson(json['_limit'] as Map<String, dynamic>)
-          : null,
-      sort: json['sort'] != null
-          ? (json['sort'] as List<dynamic>)
-              .map<DataRequirementSort>((dynamic v) =>
-                  DataRequirementSort.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   DataRequirement clone() => throw UnimplementedError();
   @override
@@ -258,40 +336,30 @@ class DataRequirement extends DataType {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory DataRequirement.fromYaml(dynamic yaml) => yaml is String
-      ? DataRequirement.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? DataRequirement.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'DataRequirement cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory DataRequirement.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return DataRequirement.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [DataRequirementCodeFilter] /// Code filters specify additional constraints on the data, specifying the
+/// [DataRequirementCodeFilter]
+/// Code filters specify additional constraints on the data, specifying the
 /// value set of interest for a particular element of the data. Each code
-/// filter defines an additional constraint on the data, i.e. code filters are
-/// AND'ed, not OR'ed.
+/// filter defines an additional constraint on the data, i.e. code filters
+/// are AND'ed, not OR'ed.
 class DataRequirementCodeFilter extends Element {
+  /// Primary constructor for [DataRequirementCodeFilter]
+
   DataRequirementCodeFilter({
     super.id,
     super.extension_,
     this.path,
+
+    /// Extensions for [path]
     this.pathElement,
     this.searchParam,
+
+    /// Extensions for [searchParam]
     this.searchParamElement,
     this.valueSet,
+
+    /// Extensions for [valueSet]
     this.valueSetElement,
     this.code,
     super.userData,
@@ -302,48 +370,131 @@ class DataRequirementCodeFilter extends Element {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory DataRequirementCodeFilter.fromJson(Map<String, dynamic> json) {
+    return DataRequirementCodeFilter(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      path: json['path'] != null ? FhirString.fromJson(json['path']) : null,
+      pathElement: json['_path'] != null
+          ? Element.fromJson(
+              json['_path'] as Map<String, dynamic>,
+            )
+          : null,
+      searchParam: json['searchParam'] != null
+          ? FhirString.fromJson(json['searchParam'])
+          : null,
+      searchParamElement: json['_searchParam'] != null
+          ? Element.fromJson(
+              json['_searchParam'] as Map<String, dynamic>,
+            )
+          : null,
+      valueSet: json['valueSet'] != null
+          ? FhirCanonical.fromJson(json['valueSet'])
+          : null,
+      valueSetElement: json['_valueSet'] != null
+          ? Element.fromJson(
+              json['_valueSet'] as Map<String, dynamic>,
+            )
+          : null,
+      code: json['code'] != null
+          ? (json['code'] as List<dynamic>)
+              .map<Coding>(
+                (dynamic v) => Coding.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [DataRequirementCodeFilter] from a [String] or [YamlMap] object
+  factory DataRequirementCodeFilter.fromYaml(dynamic yaml) => yaml is String
+      ? DataRequirementCodeFilter.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? DataRequirementCodeFilter.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'DataRequirementCodeFilter cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [DataRequirementCodeFilter] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory DataRequirementCodeFilter.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DataRequirementCodeFilter.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'DataRequirementCodeFilter';
 
-  /// [path] /// The code-valued attribute of the filter. The specified path SHALL be a
+  /// [path]
+  /// The code-valued attribute of the filter. The specified path SHALL be a
   /// FHIRPath resolveable on the specified type of the DataRequirement, and
-  /// SHALL consist only of identifiers, constant indexers, and .resolve(). The
-  /// path is allowed to contain qualifiers (.) to traverse sub-elements, as well
-  /// as indexers ([x]) to traverse multiple-cardinality sub-elements (see the
-  /// [Simple FHIRPath Profile](fhirpath.html#simple) for full details). Note
-  /// that the index must be an integer constant. The path must resolve to an
-  /// element of type code, Coding, or CodeableConcept.
+  /// SHALL consist only of identifiers, constant indexers, and .resolve().
+  /// The path is allowed to contain qualifiers (.) to traverse sub-elements,
+  /// as well as indexers ([x]) to traverse multiple-cardinality sub-elements
+  /// (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full
+  /// details). Note that the index must be an integer constant. The path
+  /// must resolve to an element of type code, Coding, or CodeableConcept.
   final FhirString? path;
+
+  /// Extensions for [path]
   final Element? pathElement;
 
-  /// [searchParam] /// A token parameter that refers to a search parameter defined on the
-  /// specified type of the DataRequirement, and which searches on elements of
-  /// type code, Coding, or CodeableConcept.
+  /// [searchParam]
+  /// A token parameter that refers to a search parameter defined on the
+  /// specified type of the DataRequirement, and which searches on elements
+  /// of type code, Coding, or CodeableConcept.
   final FhirString? searchParam;
+
+  /// Extensions for [searchParam]
   final Element? searchParamElement;
 
-  /// [valueSet] /// The valueset for the code filter. The valueSet and code elements are
-  /// additive. If valueSet is specified, the filter will return only those data
-  /// items for which the value of the code-valued element specified in the path
-  /// is a member of the specified valueset.
+  /// [valueSet]
+  /// The valueset for the code filter. The valueSet and code elements are
+  /// additive. If valueSet is specified, the filter will return only those
+  /// data items for which the value of the code-valued element specified in
+  /// the path is a member of the specified valueset.
   final FhirCanonical? valueSet;
+
+  /// Extensions for [valueSet]
   final Element? valueSetElement;
 
-  /// [code] /// The codes for the code filter. If values are given, the filter will return
-  /// only those data items for which the code-valued attribute specified by the
-  /// path has a value that is one of the specified codes. If codes are specified
-  /// in addition to a value set, the filter returns items matching a code in the
-  /// value set or one of the specified codes.
+  /// [code]
+  /// The codes for the code filter. If values are given, the filter will
+  /// return only those data items for which the code-valued attribute
+  /// specified by the path has a value that is one of the specified codes.
+  /// If codes are specified in addition to a value set, the filter returns
+  /// items matching a code in the value set or one of the specified codes.
   final List<Coding>? code;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (path?.value != null) {
       json['path'] = path!.toJson();
@@ -364,44 +515,11 @@ class DataRequirementCodeFilter extends Element {
       json['_valueSet'] = valueSetElement!.toJson();
     }
     if (code != null && code!.isNotEmpty) {
-      json['code'] = code!.map<dynamic>((Coding v) => v.toJson()).toList();
+      json['code'] = code!.map((Coding v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory DataRequirementCodeFilter.fromJson(Map<String, dynamic> json) {
-    return DataRequirementCodeFilter(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      path: json['path'] != null ? FhirString.fromJson(json['path']) : null,
-      pathElement: json['_path'] != null
-          ? Element.fromJson(json['_path'] as Map<String, dynamic>)
-          : null,
-      searchParam: json['searchParam'] != null
-          ? FhirString.fromJson(json['searchParam'])
-          : null,
-      searchParamElement: json['_searchParam'] != null
-          ? Element.fromJson(json['_searchParam'] as Map<String, dynamic>)
-          : null,
-      valueSet: json['valueSet'] != null
-          ? FhirCanonical.fromJson(json['valueSet'])
-          : null,
-      valueSetElement: json['_valueSet'] != null
-          ? Element.fromJson(json['_valueSet'] as Map<String, dynamic>)
-          : null,
-      code: json['code'] != null
-          ? (json['code'] as List<dynamic>)
-              .map<Coding>(
-                  (dynamic v) => Coding.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   DataRequirementCodeFilter clone() => throw UnimplementedError();
   @override
@@ -440,39 +558,30 @@ class DataRequirementCodeFilter extends Element {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory DataRequirementCodeFilter.fromYaml(dynamic yaml) => yaml is String
-      ? DataRequirementCodeFilter.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? DataRequirementCodeFilter.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'DataRequirementCodeFilter cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory DataRequirementCodeFilter.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return DataRequirementCodeFilter.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [DataRequirementDateFilter] /// Date filters specify additional constraints on the data in terms of the
-/// applicable date range for specific elements. Each date filter specifies an
-/// additional constraint on the data, i.e. date filters are AND'ed, not OR'ed.
+/// [DataRequirementDateFilter]
+/// Date filters specify additional constraints on the data in terms of the
+/// applicable date range for specific elements. Each date filter specifies
+/// an additional constraint on the data, i.e. date filters are AND'ed, not
+/// OR'ed.
 class DataRequirementDateFilter extends Element {
+  /// Primary constructor for [DataRequirementDateFilter]
+
   DataRequirementDateFilter({
     super.id,
     super.extension_,
     this.path,
+
+    /// Extensions for [path]
     this.pathElement,
     this.searchParam,
+
+    /// Extensions for [searchParam]
     this.searchParamElement,
     this.valueDateTime,
+
+    /// Extensions for [valueDateTime]
     this.valueDateTimeElement,
     this.valuePeriod,
     this.valueDuration,
@@ -484,59 +593,145 @@ class DataRequirementDateFilter extends Element {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory DataRequirementDateFilter.fromJson(Map<String, dynamic> json) {
+    return DataRequirementDateFilter(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      path: json['path'] != null ? FhirString.fromJson(json['path']) : null,
+      pathElement: json['_path'] != null
+          ? Element.fromJson(
+              json['_path'] as Map<String, dynamic>,
+            )
+          : null,
+      searchParam: json['searchParam'] != null
+          ? FhirString.fromJson(json['searchParam'])
+          : null,
+      searchParamElement: json['_searchParam'] != null
+          ? Element.fromJson(
+              json['_searchParam'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDateTime: json['valueDateTime'] != null
+          ? FhirDateTime.fromJson(json['valueDateTime'])
+          : null,
+      valueDateTimeElement: json['_valueDateTime'] != null
+          ? Element.fromJson(
+              json['_valueDateTime'] as Map<String, dynamic>,
+            )
+          : null,
+      valuePeriod: json['valuePeriod'] != null
+          ? Period.fromJson(
+              json['valuePeriod'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDuration: json['valueDuration'] != null
+          ? FhirDuration.fromJson(
+              json['valueDuration'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [DataRequirementDateFilter] from a [String] or [YamlMap] object
+  factory DataRequirementDateFilter.fromYaml(dynamic yaml) => yaml is String
+      ? DataRequirementDateFilter.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? DataRequirementDateFilter.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'DataRequirementDateFilter cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [DataRequirementDateFilter] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory DataRequirementDateFilter.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DataRequirementDateFilter.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'DataRequirementDateFilter';
 
-  /// [path] /// The date-valued attribute of the filter. The specified path SHALL be a
+  /// [path]
+  /// The date-valued attribute of the filter. The specified path SHALL be a
   /// FHIRPath resolveable on the specified type of the DataRequirement, and
-  /// SHALL consist only of identifiers, constant indexers, and .resolve(). The
-  /// path is allowed to contain qualifiers (.) to traverse sub-elements, as well
-  /// as indexers ([x]) to traverse multiple-cardinality sub-elements (see the
-  /// [Simple FHIRPath Profile](fhirpath.html#simple) for full details). Note
-  /// that the index must be an integer constant. The path must resolve to an
-  /// element of type date, dateTime, Period, Schedule, or Timing.
+  /// SHALL consist only of identifiers, constant indexers, and .resolve().
+  /// The path is allowed to contain qualifiers (.) to traverse sub-elements,
+  /// as well as indexers ([x]) to traverse multiple-cardinality sub-elements
+  /// (see the [Simple FHIRPath Profile](fhirpath.html#simple) for full
+  /// details). Note that the index must be an integer constant. The path
+  /// must resolve to an element of type date, dateTime, Period, Schedule, or
+  /// Timing.
   final FhirString? path;
+
+  /// Extensions for [path]
   final Element? pathElement;
 
-  /// [searchParam] /// A date parameter that refers to a search parameter defined on the specified
-  /// type of the DataRequirement, and which searches on elements of type date,
-  /// dateTime, Period, Schedule, or Timing.
+  /// [searchParam]
+  /// A date parameter that refers to a search parameter defined on the
+  /// specified type of the DataRequirement, and which searches on elements
+  /// of type date, dateTime, Period, Schedule, or Timing.
   final FhirString? searchParam;
+
+  /// Extensions for [searchParam]
   final Element? searchParamElement;
 
-  /// [valueDateTime] /// The value of the filter. If period is specified, the filter will return
-  /// only those data items that fall within the bounds determined by the Period,
-  /// inclusive of the period boundaries. If dateTime is specified, the filter
-  /// will return only those data items that are equal to the specified dateTime.
-  /// If a Duration is specified, the filter will return only those data items
-  /// that fall within Duration before now.
+  /// [valueDateTime]
+  /// The value of the filter. If period is specified, the filter will return
+  /// only those data items that fall within the bounds determined by the
+  /// Period, inclusive of the period boundaries. If dateTime is specified,
+  /// the filter will return only those data items that are equal to the
+  /// specified dateTime. If a Duration is specified, the filter will return
+  /// only those data items that fall within Duration before now.
   final FhirDateTime? valueDateTime;
+
+  /// Extensions for [valueDateTime]
   final Element? valueDateTimeElement;
 
-  /// [valuePeriod] /// The value of the filter. If period is specified, the filter will return
-  /// only those data items that fall within the bounds determined by the Period,
-  /// inclusive of the period boundaries. If dateTime is specified, the filter
-  /// will return only those data items that are equal to the specified dateTime.
-  /// If a Duration is specified, the filter will return only those data items
-  /// that fall within Duration before now.
+  /// [valuePeriod]
+  /// The value of the filter. If period is specified, the filter will return
+  /// only those data items that fall within the bounds determined by the
+  /// Period, inclusive of the period boundaries. If dateTime is specified,
+  /// the filter will return only those data items that are equal to the
+  /// specified dateTime. If a Duration is specified, the filter will return
+  /// only those data items that fall within Duration before now.
   final Period? valuePeriod;
 
-  /// [valueDuration] /// The value of the filter. If period is specified, the filter will return
-  /// only those data items that fall within the bounds determined by the Period,
-  /// inclusive of the period boundaries. If dateTime is specified, the filter
-  /// will return only those data items that are equal to the specified dateTime.
-  /// If a Duration is specified, the filter will return only those data items
-  /// that fall within Duration before now.
+  /// [valueDuration]
+  /// The value of the filter. If period is specified, the filter will return
+  /// only those data items that fall within the bounds determined by the
+  /// Period, inclusive of the period boundaries. If dateTime is specified,
+  /// the filter will return only those data items that are equal to the
+  /// specified dateTime. If a Duration is specified, the filter will return
+  /// only those data items that fall within Duration before now.
   final FhirDuration? valueDuration;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (path?.value != null) {
       json['path'] = path!.toJson();
@@ -565,39 +760,6 @@ class DataRequirementDateFilter extends Element {
     return json;
   }
 
-  factory DataRequirementDateFilter.fromJson(Map<String, dynamic> json) {
-    return DataRequirementDateFilter(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      path: json['path'] != null ? FhirString.fromJson(json['path']) : null,
-      pathElement: json['_path'] != null
-          ? Element.fromJson(json['_path'] as Map<String, dynamic>)
-          : null,
-      searchParam: json['searchParam'] != null
-          ? FhirString.fromJson(json['searchParam'])
-          : null,
-      searchParamElement: json['_searchParam'] != null
-          ? Element.fromJson(json['_searchParam'] as Map<String, dynamic>)
-          : null,
-      valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime.fromJson(json['valueDateTime'])
-          : null,
-      valueDateTimeElement: json['_valueDateTime'] != null
-          ? Element.fromJson(json['_valueDateTime'] as Map<String, dynamic>)
-          : null,
-      valuePeriod: json['valuePeriod'] != null
-          ? Period.fromJson(json['valuePeriod'] as Map<String, dynamic>)
-          : null,
-      valueDuration: json['valueDuration'] != null
-          ? FhirDuration.fromJson(json['valueDuration'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   DataRequirementDateFilter clone() => throw UnimplementedError();
   @override
@@ -638,35 +800,23 @@ class DataRequirementDateFilter extends Element {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory DataRequirementDateFilter.fromYaml(dynamic yaml) => yaml is String
-      ? DataRequirementDateFilter.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? DataRequirementDateFilter.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'DataRequirementDateFilter cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory DataRequirementDateFilter.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return DataRequirementDateFilter.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [DataRequirementSort] /// Specifies the order of the results to be returned.
+/// [DataRequirementSort]
+/// Specifies the order of the results to be returned.
 class DataRequirementSort extends Element {
+  /// Primary constructor for [DataRequirementSort]
+
   DataRequirementSort({
     super.id,
     super.extension_,
     required this.path,
+
+    /// Extensions for [path]
     this.pathElement,
     required this.direction,
+
+    /// Extensions for [direction]
     this.directionElement,
     super.userData,
     super.formatCommentsPre,
@@ -676,29 +826,89 @@ class DataRequirementSort extends Element {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory DataRequirementSort.fromJson(Map<String, dynamic> json) {
+    return DataRequirementSort(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      path: FhirString.fromJson(json['path']),
+      pathElement: json['_path'] != null
+          ? Element.fromJson(
+              json['_path'] as Map<String, dynamic>,
+            )
+          : null,
+      direction: SortDirection.fromJson(json['direction']),
+      directionElement: json['_direction'] != null
+          ? Element.fromJson(
+              json['_direction'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [DataRequirementSort] from a [String] or [YamlMap] object
+  factory DataRequirementSort.fromYaml(dynamic yaml) => yaml is String
+      ? DataRequirementSort.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? DataRequirementSort.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'DataRequirementSort cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [DataRequirementSort] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory DataRequirementSort.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DataRequirementSort.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'DataRequirementSort';
 
-  /// [path] /// The attribute of the sort. The specified path must be resolvable from the
-  /// type of the required data. The path is allowed to contain qualifiers (.) to
-  /// traverse sub-elements, as well as indexers ([x]) to traverse
-  /// multiple-cardinality sub-elements. Note that the index must be an integer
-  /// constant.
+  /// [path]
+  /// The attribute of the sort. The specified path must be resolvable from
+  /// the type of the required data. The path is allowed to contain
+  /// qualifiers (.) to traverse sub-elements, as well as indexers ([x]) to
+  /// traverse multiple-cardinality sub-elements. Note that the index must be
+  /// an integer constant.
   final FhirString path;
+
+  /// Extensions for [path]
   final Element? pathElement;
 
-  /// [direction] /// The direction of the sort, ascending or descending.
+  /// [direction]
+  /// The direction of the sort, ascending or descending.
   final SortDirection direction;
+
+  /// Extensions for [direction]
   final Element? directionElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['path'] = path.toJson();
     if (pathElement != null) {
@@ -708,25 +918,6 @@ class DataRequirementSort extends Element {
     return json;
   }
 
-  factory DataRequirementSort.fromJson(Map<String, dynamic> json) {
-    return DataRequirementSort(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      path: FhirString.fromJson(json['path']),
-      pathElement: json['_path'] != null
-          ? Element.fromJson(json['_path'] as Map<String, dynamic>)
-          : null,
-      direction: SortDirection.fromJson(json['direction']),
-      directionElement: json['_direction'] != null
-          ? Element.fromJson(json['_direction'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   DataRequirementSort clone() => throw UnimplementedError();
   @override
@@ -758,24 +949,5 @@ class DataRequirementSort extends Element {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory DataRequirementSort.fromYaml(dynamic yaml) => yaml is String
-      ? DataRequirementSort.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? DataRequirementSort.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'DataRequirementSort cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory DataRequirementSort.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return DataRequirementSort.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

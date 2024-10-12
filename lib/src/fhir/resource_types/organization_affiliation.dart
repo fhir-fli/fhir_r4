@@ -1,17 +1,24 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [OrganizationAffiliation] /// Defines an affiliation/assotiation/relationship between 2 distinct
-/// oganizations, that is not a part-of relationship/sub-division relationship.
+/// [OrganizationAffiliation]
+/// Defines an affiliation/assotiation/relationship between 2 distinct
+/// oganizations, that is not a part-of relationship/sub-division
+/// relationship.
 class OrganizationAffiliation extends DomainResource {
+  /// Primary constructor for [OrganizationAffiliation]
+
   OrganizationAffiliation({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -19,6 +26,8 @@ class OrganizationAffiliation extends DomainResource {
     super.modifierExtension,
     this.identifier,
     this.active,
+
+    /// Extensions for [active]
     this.activeElement,
     this.period,
     this.organization,
@@ -36,59 +45,256 @@ class OrganizationAffiliation extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.OrganizationAffiliation);
+  }) : super(
+          resourceType: R4ResourceType.OrganizationAffiliation,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory OrganizationAffiliation.fromJson(Map<String, dynamic> json) {
+    return OrganizationAffiliation(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      active:
+          json['active'] != null ? FhirBoolean.fromJson(json['active']) : null,
+      activeElement: json['_active'] != null
+          ? Element.fromJson(
+              json['_active'] as Map<String, dynamic>,
+            )
+          : null,
+      period: json['period'] != null
+          ? Period.fromJson(
+              json['period'] as Map<String, dynamic>,
+            )
+          : null,
+      organization: json['organization'] != null
+          ? Reference.fromJson(
+              json['organization'] as Map<String, dynamic>,
+            )
+          : null,
+      participatingOrganization: json['participatingOrganization'] != null
+          ? Reference.fromJson(
+              json['participatingOrganization'] as Map<String, dynamic>,
+            )
+          : null,
+      network: json['network'] != null
+          ? (json['network'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      code: json['code'] != null
+          ? (json['code'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      specialty: json['specialty'] != null
+          ? (json['specialty'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      location: json['location'] != null
+          ? (json['location'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      healthcareService: json['healthcareService'] != null
+          ? (json['healthcareService'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      telecom: json['telecom'] != null
+          ? (json['telecom'] as List<dynamic>)
+              .map<ContactPoint>(
+                (dynamic v) => ContactPoint.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      endpoint: json['endpoint'] != null
+          ? (json['endpoint'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [OrganizationAffiliation] from a [String] or [YamlMap] object
+  factory OrganizationAffiliation.fromYaml(dynamic yaml) => yaml is String
+      ? OrganizationAffiliation.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? OrganizationAffiliation.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'OrganizationAffiliation cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [OrganizationAffiliation] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory OrganizationAffiliation.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return OrganizationAffiliation.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'OrganizationAffiliation';
 
-  /// [identifier] /// Business identifiers that are specific to this role.
+  /// [identifier]
+  /// Business identifiers that are specific to this role.
   final List<Identifier>? identifier;
 
-  /// [active] /// Whether this organization affiliation record is in active use.
+  /// [active]
+  /// Whether this organization affiliation record is in active use.
   final FhirBoolean? active;
+
+  /// Extensions for [active]
   final Element? activeElement;
 
-  /// [period] /// The period during which the participatingOrganization is affiliated with
-  /// the primary organization.
+  /// [period]
+  /// The period during which the participatingOrganization is affiliated
+  /// with the primary organization.
   final Period? period;
 
-  /// [organization] /// Organization where the role is available (primary organization/has
+  /// [organization]
+  /// Organization where the role is available (primary organization/has
   /// members).
   final Reference? organization;
 
-  /// [participatingOrganization] /// The Participating Organization provides/performs the role(s) defined by the
-  /// code to the Primary Organization (e.g. providing services or is a member
-  /// of).
+  /// [participatingOrganization]
+  /// The Participating Organization provides/performs the role(s) defined by
+  /// the code to the Primary Organization (e.g. providing services or is a
+  /// member of).
   final Reference? participatingOrganization;
 
-  /// [network] /// Health insurance provider network in which the participatingOrganization
-  /// provides the role's services (if defined) at the indicated locations (if
-  /// defined).
+  /// [network]
+  /// Health insurance provider network in which the
+  /// participatingOrganization provides the role's services (if defined) at
+  /// the indicated locations (if defined).
   final List<Reference>? network;
 
-  /// [code] /// Definition of the role the participatingOrganization plays in the
+  /// [code]
+  /// Definition of the role the participatingOrganization plays in the
   /// association.
   final List<CodeableConcept>? code;
 
-  /// [specialty] /// Specific specialty of the participatingOrganization in the context of the
-  /// role.
+  /// [specialty]
+  /// Specific specialty of the participatingOrganization in the context of
+  /// the role.
   final List<CodeableConcept>? specialty;
 
-  /// [location] /// The location(s) at which the role occurs.
+  /// [location]
+  /// The location(s) at which the role occurs.
   final List<Reference>? location;
 
-  /// [healthcareService] /// Healthcare services provided through the role.
+  /// [healthcareService]
+  /// Healthcare services provided through the role.
   final List<Reference>? healthcareService;
 
-  /// [telecom] /// Contact details at the participatingOrganization relevant to this
+  /// [telecom]
+  /// Contact details at the participatingOrganization relevant to this
   /// Affiliation.
   final List<ContactPoint>? telecom;
 
-  /// [endpoint] /// Technical endpoints providing access to services operated for this role.
+  /// [endpoint]
+  /// Technical endpoints providing access to services operated for this
+  /// role.
   final List<Reference>? endpoint;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -109,21 +315,19 @@ class OrganizationAffiliation extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (active?.value != null) {
       json['active'] = active!.toJson();
@@ -141,140 +345,31 @@ class OrganizationAffiliation extends DomainResource {
       json['participatingOrganization'] = participatingOrganization!.toJson();
     }
     if (network != null && network!.isNotEmpty) {
-      json['network'] =
-          network!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['network'] = network!.map((Reference v) => v.toJson()).toList();
     }
     if (code != null && code!.isNotEmpty) {
-      json['code'] =
-          code!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+      json['code'] = code!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (specialty != null && specialty!.isNotEmpty) {
       json['specialty'] =
-          specialty!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          specialty!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (location != null && location!.isNotEmpty) {
-      json['location'] =
-          location!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['location'] = location!.map((Reference v) => v.toJson()).toList();
     }
     if (healthcareService != null && healthcareService!.isNotEmpty) {
       json['healthcareService'] =
-          healthcareService!.map<dynamic>((Reference v) => v.toJson()).toList();
+          healthcareService!.map((Reference v) => v.toJson()).toList();
     }
     if (telecom != null && telecom!.isNotEmpty) {
-      json['telecom'] =
-          telecom!.map<dynamic>((ContactPoint v) => v.toJson()).toList();
+      json['telecom'] = telecom!.map((ContactPoint v) => v.toJson()).toList();
     }
     if (endpoint != null && endpoint!.isNotEmpty) {
-      json['endpoint'] =
-          endpoint!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['endpoint'] = endpoint!.map((Reference v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory OrganizationAffiliation.fromJson(Map<String, dynamic> json) {
-    return OrganizationAffiliation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      active:
-          json['active'] != null ? FhirBoolean.fromJson(json['active']) : null,
-      activeElement: json['_active'] != null
-          ? Element.fromJson(json['_active'] as Map<String, dynamic>)
-          : null,
-      period: json['period'] != null
-          ? Period.fromJson(json['period'] as Map<String, dynamic>)
-          : null,
-      organization: json['organization'] != null
-          ? Reference.fromJson(json['organization'] as Map<String, dynamic>)
-          : null,
-      participatingOrganization: json['participatingOrganization'] != null
-          ? Reference.fromJson(
-              json['participatingOrganization'] as Map<String, dynamic>)
-          : null,
-      network: json['network'] != null
-          ? (json['network'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      code: json['code'] != null
-          ? (json['code'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      specialty: json['specialty'] != null
-          ? (json['specialty'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      location: json['location'] != null
-          ? (json['location'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      healthcareService: json['healthcareService'] != null
-          ? (json['healthcareService'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      telecom: json['telecom'] != null
-          ? (json['telecom'] as List<dynamic>)
-              .map<ContactPoint>((dynamic v) =>
-                  ContactPoint.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      endpoint: json['endpoint'] != null
-          ? (json['endpoint'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   OrganizationAffiliation clone() => throw UnimplementedError();
   @override
@@ -341,24 +436,5 @@ class OrganizationAffiliation extends DomainResource {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory OrganizationAffiliation.fromYaml(dynamic yaml) => yaml is String
-      ? OrganizationAffiliation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? OrganizationAffiliation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'OrganizationAffiliation cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory OrganizationAffiliation.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return OrganizationAffiliation.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

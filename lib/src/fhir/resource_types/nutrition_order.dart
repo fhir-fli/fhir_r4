@@ -1,17 +1,23 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [NutritionOrder] /// A request to supply a diet, formula feeding (enteral) or oral nutritional
-/// supplement to a patient/resident.
+/// [NutritionOrder]
+/// A request to supply a diet, formula feeding (enteral) or oral
+/// nutritional supplement to a patient/resident.
 class NutritionOrder extends DomainResource {
+  /// Primary constructor for [NutritionOrder]
+
   NutritionOrder({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -19,18 +25,30 @@ class NutritionOrder extends DomainResource {
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
+
+    /// Extensions for [instantiatesCanonical]
     this.instantiatesCanonicalElement,
     this.instantiatesUri,
+
+    /// Extensions for [instantiatesUri]
     this.instantiatesUriElement,
     this.instantiates,
+
+    /// Extensions for [instantiates]
     this.instantiatesElement,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     required this.intent,
+
+    /// Extensions for [intent]
     this.intentElement,
     required this.patient,
     this.encounter,
     required this.dateTime,
+
+    /// Extensions for [dateTime]
     this.dateTimeElement,
     this.orderer,
     this.allergyIntolerance,
@@ -46,96 +64,351 @@ class NutritionOrder extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.NutritionOrder);
+  }) : super(
+          resourceType: R4ResourceType.NutritionOrder,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory NutritionOrder.fromJson(Map<String, dynamic> json) {
+    return NutritionOrder(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      instantiatesCanonical: json['instantiatesCanonical'] != null
+          ? (json['instantiatesCanonical'] as List<dynamic>)
+              .map<FhirCanonical>(
+                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
+          ? (json['_instantiatesCanonical'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      instantiatesUri: json['instantiatesUri'] != null
+          ? (json['instantiatesUri'] as List<dynamic>)
+              .map<FhirUri>(
+                (dynamic v) => FhirUri.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      instantiatesUriElement: json['_instantiatesUri'] != null
+          ? (json['_instantiatesUri'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      instantiates: json['instantiates'] != null
+          ? (json['instantiates'] as List<dynamic>)
+              .map<FhirUri>(
+                (dynamic v) => FhirUri.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      instantiatesElement: json['_instantiates'] != null
+          ? (json['_instantiates'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      status: RequestStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      intent: RequestIntent.fromJson(json['intent']),
+      intentElement: json['_intent'] != null
+          ? Element.fromJson(
+              json['_intent'] as Map<String, dynamic>,
+            )
+          : null,
+      patient: Reference.fromJson(
+        json['patient'] as Map<String, dynamic>,
+      ),
+      encounter: json['encounter'] != null
+          ? Reference.fromJson(
+              json['encounter'] as Map<String, dynamic>,
+            )
+          : null,
+      dateTime: FhirDateTime.fromJson(json['dateTime']),
+      dateTimeElement: json['_dateTime'] != null
+          ? Element.fromJson(
+              json['_dateTime'] as Map<String, dynamic>,
+            )
+          : null,
+      orderer: json['orderer'] != null
+          ? Reference.fromJson(
+              json['orderer'] as Map<String, dynamic>,
+            )
+          : null,
+      allergyIntolerance: json['allergyIntolerance'] != null
+          ? (json['allergyIntolerance'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      foodPreferenceModifier: json['foodPreferenceModifier'] != null
+          ? (json['foodPreferenceModifier'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      excludeFoodModifier: json['excludeFoodModifier'] != null
+          ? (json['excludeFoodModifier'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      oralDiet: json['oralDiet'] != null
+          ? NutritionOrderOralDiet.fromJson(
+              json['oralDiet'] as Map<String, dynamic>,
+            )
+          : null,
+      supplement: json['supplement'] != null
+          ? (json['supplement'] as List<dynamic>)
+              .map<NutritionOrderSupplement>(
+                (dynamic v) => NutritionOrderSupplement.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      enteralFormula: json['enteralFormula'] != null
+          ? NutritionOrderEnteralFormula.fromJson(
+              json['enteralFormula'] as Map<String, dynamic>,
+            )
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                (dynamic v) => Annotation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [NutritionOrder] from a [String] or [YamlMap] object
+  factory NutritionOrder.fromYaml(dynamic yaml) => yaml is String
+      ? NutritionOrder.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? NutritionOrder.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'NutritionOrder cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [NutritionOrder] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory NutritionOrder.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return NutritionOrder.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'NutritionOrder';
 
-  /// [identifier] /// Identifiers assigned to this order by the order sender or by the order
+  /// [identifier]
+  /// Identifiers assigned to this order by the order sender or by the order
   /// receiver.
   final List<Identifier>? identifier;
 
-  /// [instantiatesCanonical] /// The URL pointing to a FHIR-defined protocol, guideline, orderset or other
-  /// definition that is adhered to in whole or in part by this NutritionOrder.
+  /// [instantiatesCanonical]
+  /// The URL pointing to a FHIR-defined protocol, guideline, orderset or
+  /// other definition that is adhered to in whole or in part by this
+  /// NutritionOrder.
   final List<FhirCanonical>? instantiatesCanonical;
+
+  /// Extensions for [instantiatesCanonical]
   final List<Element>? instantiatesCanonicalElement;
 
-  /// [instantiatesUri] /// The URL pointing to an externally maintained protocol, guideline, orderset
-  /// or other definition that is adhered to in whole or in part by this
-  /// NutritionOrder.
+  /// [instantiatesUri]
+  /// The URL pointing to an externally maintained protocol, guideline,
+  /// orderset or other definition that is adhered to in whole or in part by
+  /// this NutritionOrder.
   final List<FhirUri>? instantiatesUri;
+
+  /// Extensions for [instantiatesUri]
   final List<Element>? instantiatesUriElement;
 
-  /// [instantiates] /// The URL pointing to a protocol, guideline, orderset or other definition
+  /// [instantiates]
+  /// The URL pointing to a protocol, guideline, orderset or other definition
   /// that is adhered to in whole or in part by this NutritionOrder.
   final List<FhirUri>? instantiates;
+
+  /// Extensions for [instantiates]
   final List<Element>? instantiatesElement;
 
-  /// [status] /// The workflow status of the nutrition order/request.
+  /// [status]
+  /// The workflow status of the nutrition order/request.
   final RequestStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [intent] /// Indicates the level of authority/intentionality associated with the
+  /// [intent]
+  /// Indicates the level of authority/intentionality associated with the
   /// NutrionOrder and where the request fits into the workflow chain.
   final RequestIntent intent;
+
+  /// Extensions for [intent]
   final Element? intentElement;
 
-  /// [patient] /// The person (patient) who needs the nutrition order for an oral diet,
+  /// [patient]
+  /// The person (patient) who needs the nutrition order for an oral diet,
   /// nutritional supplement and/or enteral or formula feeding.
   final Reference patient;
 
-  /// [encounter] /// An encounter that provides additional information about the healthcare
+  /// [encounter]
+  /// An encounter that provides additional information about the healthcare
   /// context in which this request is made.
   final Reference? encounter;
 
-  /// [dateTime] /// The date and time that this nutrition order was requested.
+  /// [dateTime]
+  /// The date and time that this nutrition order was requested.
   final FhirDateTime dateTime;
+
+  /// Extensions for [dateTime]
   final Element? dateTimeElement;
 
-  /// [orderer] /// The practitioner that holds legal responsibility for ordering the diet,
+  /// [orderer]
+  /// The practitioner that holds legal responsibility for ordering the diet,
   /// nutritional supplement, or formula feedings.
   final Reference? orderer;
 
-  /// [allergyIntolerance] /// A link to a record of allergies or intolerances which should be included in
-  /// the nutrition order.
+  /// [allergyIntolerance]
+  /// A link to a record of allergies or intolerances which should be
+  /// included in the nutrition order.
   final List<Reference>? allergyIntolerance;
 
-  /// [foodPreferenceModifier] /// This modifier is used to convey order-specific modifiers about the type of
-  /// food that should be given. These can be derived from patient allergies,
-  /// intolerances, or preferences such as Halal, Vegan or Kosher. This modifier
-  /// applies to the entire nutrition order inclusive of the oral diet,
-  /// nutritional supplements and enteral formula feedings.
+  /// [foodPreferenceModifier]
+  /// This modifier is used to convey order-specific modifiers about the type
+  /// of food that should be given. These can be derived from patient
+  /// allergies, intolerances, or preferences such as Halal, Vegan or Kosher.
+  /// This modifier applies to the entire nutrition order inclusive of the
+  /// oral diet, nutritional supplements and enteral formula feedings.
   final List<CodeableConcept>? foodPreferenceModifier;
 
-  /// [excludeFoodModifier] /// This modifier is used to convey Order-specific modifier about the type of
-  /// oral food or oral fluids that should not be given. These can be derived
-  /// from patient allergies, intolerances, or preferences such as No Red Meat,
-  /// No Soy or No Wheat or Gluten-Free. While it should not be necessary to
-  /// repeat allergy or intolerance information captured in the referenced
-  /// AllergyIntolerance resource in the excludeFoodModifier, this element may be
-  /// used to convey additional specificity related to foods that should be
-  /// eliminated from the patient’s diet for any reason. This modifier applies to
-  /// the entire nutrition order inclusive of the oral diet, nutritional
-  /// supplements and enteral formula feedings.
+  /// [excludeFoodModifier]
+  /// This modifier is used to convey Order-specific modifier about the type
+  /// of oral food or oral fluids that should not be given. These can be
+  /// derived from patient allergies, intolerances, or preferences such as No
+  /// Red Meat, No Soy or No Wheat or Gluten-Free. While it should not be
+  /// necessary to repeat allergy or intolerance information captured in the
+  /// referenced AllergyIntolerance resource in the excludeFoodModifier, this
+  /// element may be used to convey additional specificity related to foods
+  /// that should be eliminated from the patient’s diet for any reason. This
+  /// modifier applies to the entire nutrition order inclusive of the oral
+  /// diet, nutritional supplements and enteral formula feedings.
   final List<CodeableConcept>? excludeFoodModifier;
 
-  /// [oralDiet] /// Diet given orally in contrast to enteral (tube) feeding.
+  /// [oralDiet]
+  /// Diet given orally in contrast to enteral (tube) feeding.
   final NutritionOrderOralDiet? oralDiet;
 
-  /// [supplement] /// Oral nutritional products given in order to add further nutritional value
-  /// to the patient's diet.
+  /// [supplement]
+  /// Oral nutritional products given in order to add further nutritional
+  /// value to the patient's diet.
   final List<NutritionOrderSupplement>? supplement;
 
-  /// [enteralFormula] /// Feeding provided through the gastrointestinal tract via a tube, catheter,
-  /// or stoma that delivers nutrition distal to the oral cavity.
+  /// [enteralFormula]
+  /// Feeding provided through the gastrointestinal tract via a tube,
+  /// catheter, or stoma that delivers nutrition distal to the oral cavity.
   final NutritionOrderEnteralFormula? enteralFormula;
 
-  /// [note] /// Comments made about the {{title}} by the requester, performer, subject or
-  /// other participants.
+  /// [note]
+  /// Comments made about the {{title}} by the requester, performer, subject
+  /// or other participants.
   final List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -156,21 +429,19 @@ class NutritionOrder extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
       json['instantiatesCanonical'] =
@@ -211,175 +482,34 @@ class NutritionOrder extends DomainResource {
       json['orderer'] = orderer!.toJson();
     }
     if (allergyIntolerance != null && allergyIntolerance!.isNotEmpty) {
-      json['allergyIntolerance'] = allergyIntolerance!
-          .map<dynamic>((Reference v) => v.toJson())
-          .toList();
+      json['allergyIntolerance'] =
+          allergyIntolerance!.map((Reference v) => v.toJson()).toList();
     }
     if (foodPreferenceModifier != null && foodPreferenceModifier!.isNotEmpty) {
       json['foodPreferenceModifier'] = foodPreferenceModifier!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .map((CodeableConcept v) => v.toJson())
           .toList();
     }
     if (excludeFoodModifier != null && excludeFoodModifier!.isNotEmpty) {
-      json['excludeFoodModifier'] = excludeFoodModifier!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['excludeFoodModifier'] =
+          excludeFoodModifier!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (oralDiet != null) {
       json['oralDiet'] = oralDiet!.toJson();
     }
     if (supplement != null && supplement!.isNotEmpty) {
-      json['supplement'] = supplement!
-          .map<dynamic>((NutritionOrderSupplement v) => v.toJson())
-          .toList();
+      json['supplement'] =
+          supplement!.map((NutritionOrderSupplement v) => v.toJson()).toList();
     }
     if (enteralFormula != null) {
       json['enteralFormula'] = enteralFormula!.toJson();
     }
     if (note != null && note!.isNotEmpty) {
-      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+      json['note'] = note!.map((Annotation v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory NutritionOrder.fromJson(Map<String, dynamic> json) {
-    return NutritionOrder(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      instantiatesCanonical: json['instantiatesCanonical'] != null
-          ? (json['instantiatesCanonical'] as List<dynamic>)
-              .map<FhirCanonical>(
-                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
-              .toList()
-          : null,
-      instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
-          ? (json['_instantiatesCanonical'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      instantiatesUri: json['instantiatesUri'] != null
-          ? (json['instantiatesUri'] as List<dynamic>)
-              .map<FhirUri>((dynamic v) => FhirUri.fromJson(v as dynamic))
-              .toList()
-          : null,
-      instantiatesUriElement: json['_instantiatesUri'] != null
-          ? (json['_instantiatesUri'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      instantiates: json['instantiates'] != null
-          ? (json['instantiates'] as List<dynamic>)
-              .map<FhirUri>((dynamic v) => FhirUri.fromJson(v as dynamic))
-              .toList()
-          : null,
-      instantiatesElement: json['_instantiates'] != null
-          ? (json['_instantiates'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      status: RequestStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      intent: RequestIntent.fromJson(json['intent']),
-      intentElement: json['_intent'] != null
-          ? Element.fromJson(json['_intent'] as Map<String, dynamic>)
-          : null,
-      patient: Reference.fromJson(json['patient'] as Map<String, dynamic>),
-      encounter: json['encounter'] != null
-          ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
-          : null,
-      dateTime: FhirDateTime.fromJson(json['dateTime']),
-      dateTimeElement: json['_dateTime'] != null
-          ? Element.fromJson(json['_dateTime'] as Map<String, dynamic>)
-          : null,
-      orderer: json['orderer'] != null
-          ? Reference.fromJson(json['orderer'] as Map<String, dynamic>)
-          : null,
-      allergyIntolerance: json['allergyIntolerance'] != null
-          ? (json['allergyIntolerance'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      foodPreferenceModifier: json['foodPreferenceModifier'] != null
-          ? (json['foodPreferenceModifier'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      excludeFoodModifier: json['excludeFoodModifier'] != null
-          ? (json['excludeFoodModifier'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      oralDiet: json['oralDiet'] != null
-          ? NutritionOrderOralDiet.fromJson(
-              json['oralDiet'] as Map<String, dynamic>)
-          : null,
-      supplement: json['supplement'] != null
-          ? (json['supplement'] as List<dynamic>)
-              .map<NutritionOrderSupplement>((dynamic v) =>
-                  NutritionOrderSupplement.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      enteralFormula: json['enteralFormula'] != null
-          ? NutritionOrderEnteralFormula.fromJson(
-              json['enteralFormula'] as Map<String, dynamic>)
-          : null,
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   NutritionOrder clone() => throw UnimplementedError();
   @override
@@ -470,29 +600,13 @@ class NutritionOrder extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory NutritionOrder.fromYaml(dynamic yaml) => yaml is String
-      ? NutritionOrder.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? NutritionOrder.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'NutritionOrder cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory NutritionOrder.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return NutritionOrder.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [NutritionOrderOralDiet] /// Diet given orally in contrast to enteral (tube) feeding.
+/// [NutritionOrderOralDiet]
+/// Diet given orally in contrast to enteral (tube) feeding.
 class NutritionOrderOralDiet extends BackboneElement {
+  /// Primary constructor for [NutritionOrderOralDiet]
+
   NutritionOrderOralDiet({
     super.id,
     super.extension_,
@@ -503,6 +617,8 @@ class NutritionOrderOralDiet extends BackboneElement {
     this.texture,
     this.fluidConsistencyType,
     this.instruction,
+
+    /// Extensions for [instruction]
     this.instructionElement,
     super.userData,
     super.formatCommentsPre,
@@ -512,71 +628,177 @@ class NutritionOrderOralDiet extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory NutritionOrderOralDiet.fromJson(Map<String, dynamic> json) {
+    return NutritionOrderOralDiet(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? (json['type'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      schedule: json['schedule'] != null
+          ? (json['schedule'] as List<dynamic>)
+              .map<Timing>(
+                (dynamic v) => Timing.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      nutrient: json['nutrient'] != null
+          ? (json['nutrient'] as List<dynamic>)
+              .map<NutritionOrderNutrient>(
+                (dynamic v) => NutritionOrderNutrient.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      texture: json['texture'] != null
+          ? (json['texture'] as List<dynamic>)
+              .map<NutritionOrderTexture>(
+                (dynamic v) => NutritionOrderTexture.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      fluidConsistencyType: json['fluidConsistencyType'] != null
+          ? (json['fluidConsistencyType'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      instruction: json['instruction'] != null
+          ? FhirString.fromJson(json['instruction'])
+          : null,
+      instructionElement: json['_instruction'] != null
+          ? Element.fromJson(
+              json['_instruction'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [NutritionOrderOralDiet] from a [String] or [YamlMap] object
+  factory NutritionOrderOralDiet.fromYaml(dynamic yaml) => yaml is String
+      ? NutritionOrderOralDiet.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? NutritionOrderOralDiet.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'NutritionOrderOralDiet cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [NutritionOrderOralDiet] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory NutritionOrderOralDiet.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return NutritionOrderOralDiet.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'NutritionOrderOralDiet';
 
-  /// [type] /// The kind of diet or dietary restriction such as fiber restricted diet or
-  /// diabetic diet.
+  /// [type]
+  /// The kind of diet or dietary restriction such as fiber restricted diet
+  /// or diabetic diet.
   final List<CodeableConcept>? type;
 
-  /// [schedule] /// The time period and frequency at which the diet should be given. The diet
-  /// should be given for the combination of all schedules if more than one
-  /// schedule is present.
+  /// [schedule]
+  /// The time period and frequency at which the diet should be given. The
+  /// diet should be given for the combination of all schedules if more than
+  /// one schedule is present.
   final List<Timing>? schedule;
 
-  /// [nutrient] /// Class that defines the quantity and type of nutrient modifications (for
+  /// [nutrient]
+  /// Class that defines the quantity and type of nutrient modifications (for
   /// example carbohydrate, fiber or sodium) required for the oral diet.
   final List<NutritionOrderNutrient>? nutrient;
 
-  /// [texture] /// Class that describes any texture modifications required for the patient to
-  /// safely consume various types of solid foods.
+  /// [texture]
+  /// Class that describes any texture modifications required for the patient
+  /// to safely consume various types of solid foods.
   final List<NutritionOrderTexture>? texture;
 
-  /// [fluidConsistencyType] /// The required consistency (e.g. honey-thick, nectar-thick, thin, thickened.)
-  /// of liquids or fluids served to the patient.
+  /// [fluidConsistencyType]
+  /// The required consistency (e.g. honey-thick, nectar-thick, thin,
+  /// thickened.) of liquids or fluids served to the patient.
   final List<CodeableConcept>? fluidConsistencyType;
 
-  /// [instruction] /// Free text or additional instructions or information pertaining to the oral
-  /// diet.
+  /// [instruction]
+  /// Free text or additional instructions or information pertaining to the
+  /// oral diet.
   final FhirString? instruction;
+
+  /// Extensions for [instruction]
   final Element? instructionElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (type != null && type!.isNotEmpty) {
-      json['type'] =
-          type!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+      json['type'] = type!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (schedule != null && schedule!.isNotEmpty) {
-      json['schedule'] =
-          schedule!.map<dynamic>((Timing v) => v.toJson()).toList();
+      json['schedule'] = schedule!.map((Timing v) => v.toJson()).toList();
     }
     if (nutrient != null && nutrient!.isNotEmpty) {
-      json['nutrient'] = nutrient!
-          .map<dynamic>((NutritionOrderNutrient v) => v.toJson())
-          .toList();
+      json['nutrient'] =
+          nutrient!.map((NutritionOrderNutrient v) => v.toJson()).toList();
     }
     if (texture != null && texture!.isNotEmpty) {
-      json['texture'] = texture!
-          .map<dynamic>((NutritionOrderTexture v) => v.toJson())
-          .toList();
+      json['texture'] =
+          texture!.map((NutritionOrderTexture v) => v.toJson()).toList();
     }
     if (fluidConsistencyType != null && fluidConsistencyType!.isNotEmpty) {
-      json['fluidConsistencyType'] = fluidConsistencyType!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['fluidConsistencyType'] =
+          fluidConsistencyType!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (instruction?.value != null) {
       json['instruction'] = instruction!.toJson();
@@ -587,59 +809,6 @@ class NutritionOrderOralDiet extends BackboneElement {
     return json;
   }
 
-  factory NutritionOrderOralDiet.fromJson(Map<String, dynamic> json) {
-    return NutritionOrderOralDiet(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? (json['type'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      schedule: json['schedule'] != null
-          ? (json['schedule'] as List<dynamic>)
-              .map<Timing>(
-                  (dynamic v) => Timing.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      nutrient: json['nutrient'] != null
-          ? (json['nutrient'] as List<dynamic>)
-              .map<NutritionOrderNutrient>((dynamic v) =>
-                  NutritionOrderNutrient.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      texture: json['texture'] != null
-          ? (json['texture'] as List<dynamic>)
-              .map<NutritionOrderTexture>((dynamic v) =>
-                  NutritionOrderTexture.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      fluidConsistencyType: json['fluidConsistencyType'] != null
-          ? (json['fluidConsistencyType'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      instruction: json['instruction'] != null
-          ? FhirString.fromJson(json['instruction'])
-          : null,
-      instructionElement: json['_instruction'] != null
-          ? Element.fromJson(json['_instruction'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   NutritionOrderOralDiet clone() => throw UnimplementedError();
   @override
@@ -680,30 +849,14 @@ class NutritionOrderOralDiet extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory NutritionOrderOralDiet.fromYaml(dynamic yaml) => yaml is String
-      ? NutritionOrderOralDiet.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? NutritionOrderOralDiet.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'NutritionOrderOralDiet cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory NutritionOrderOralDiet.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return NutritionOrderOralDiet.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [NutritionOrderNutrient] /// Class that defines the quantity and type of nutrient modifications (for
+/// [NutritionOrderNutrient]
+/// Class that defines the quantity and type of nutrient modifications (for
 /// example carbohydrate, fiber or sodium) required for the oral diet.
 class NutritionOrderNutrient extends BackboneElement {
+  /// Primary constructor for [NutritionOrderNutrient]
+
   NutritionOrderNutrient({
     super.id,
     super.extension_,
@@ -718,28 +871,90 @@ class NutritionOrderNutrient extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory NutritionOrderNutrient.fromJson(Map<String, dynamic> json) {
+    return NutritionOrderNutrient(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifier: json['modifier'] != null
+          ? CodeableConcept.fromJson(
+              json['modifier'] as Map<String, dynamic>,
+            )
+          : null,
+      amount: json['amount'] != null
+          ? Quantity.fromJson(
+              json['amount'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [NutritionOrderNutrient] from a [String] or [YamlMap] object
+  factory NutritionOrderNutrient.fromYaml(dynamic yaml) => yaml is String
+      ? NutritionOrderNutrient.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? NutritionOrderNutrient.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'NutritionOrderNutrient cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [NutritionOrderNutrient] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory NutritionOrderNutrient.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return NutritionOrderNutrient.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'NutritionOrderNutrient';
 
-  /// [modifier] /// The nutrient that is being modified such as carbohydrate or sodium.
+  /// [modifier]
+  /// The nutrient that is being modified such as carbohydrate or sodium.
   final CodeableConcept? modifier;
 
-  /// [amount] /// The quantity of the specified nutrient to include in diet.
+  /// [amount]
+  /// The quantity of the specified nutrient to include in diet.
   final Quantity? amount;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifier != null) {
       json['modifier'] = modifier!.toJson();
@@ -750,29 +965,6 @@ class NutritionOrderNutrient extends BackboneElement {
     return json;
   }
 
-  factory NutritionOrderNutrient.fromJson(Map<String, dynamic> json) {
-    return NutritionOrderNutrient(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifier: json['modifier'] != null
-          ? CodeableConcept.fromJson(json['modifier'] as Map<String, dynamic>)
-          : null,
-      amount: json['amount'] != null
-          ? Quantity.fromJson(json['amount'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   NutritionOrderNutrient clone() => throw UnimplementedError();
   @override
@@ -803,30 +995,14 @@ class NutritionOrderNutrient extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory NutritionOrderNutrient.fromYaml(dynamic yaml) => yaml is String
-      ? NutritionOrderNutrient.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? NutritionOrderNutrient.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'NutritionOrderNutrient cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory NutritionOrderNutrient.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return NutritionOrderNutrient.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [NutritionOrderTexture] /// Class that describes any texture modifications required for the patient to
-/// safely consume various types of solid foods.
+/// [NutritionOrderTexture]
+/// Class that describes any texture modifications required for the patient
+/// to safely consume various types of solid foods.
 class NutritionOrderTexture extends BackboneElement {
+  /// Primary constructor for [NutritionOrderTexture]
+
   NutritionOrderTexture({
     super.id,
     super.extension_,
@@ -841,30 +1017,92 @@ class NutritionOrderTexture extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory NutritionOrderTexture.fromJson(Map<String, dynamic> json) {
+    return NutritionOrderTexture(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifier: json['modifier'] != null
+          ? CodeableConcept.fromJson(
+              json['modifier'] as Map<String, dynamic>,
+            )
+          : null,
+      foodType: json['foodType'] != null
+          ? CodeableConcept.fromJson(
+              json['foodType'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [NutritionOrderTexture] from a [String] or [YamlMap] object
+  factory NutritionOrderTexture.fromYaml(dynamic yaml) => yaml is String
+      ? NutritionOrderTexture.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? NutritionOrderTexture.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'NutritionOrderTexture cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [NutritionOrderTexture] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory NutritionOrderTexture.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return NutritionOrderTexture.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'NutritionOrderTexture';
 
-  /// [modifier] /// Any texture modifications (for solid foods) that should be made, e.g. easy
-  /// to chew, chopped, ground, and pureed.
+  /// [modifier]
+  /// Any texture modifications (for solid foods) that should be made, e.g.
+  /// easy to chew, chopped, ground, and pureed.
   final CodeableConcept? modifier;
 
-  /// [foodType] /// The food type(s) (e.g. meats, all foods) that the texture modification
+  /// [foodType]
+  /// The food type(s) (e.g. meats, all foods) that the texture modification
   /// applies to. This could be all foods types.
   final CodeableConcept? foodType;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifier != null) {
       json['modifier'] = modifier!.toJson();
@@ -875,29 +1113,6 @@ class NutritionOrderTexture extends BackboneElement {
     return json;
   }
 
-  factory NutritionOrderTexture.fromJson(Map<String, dynamic> json) {
-    return NutritionOrderTexture(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifier: json['modifier'] != null
-          ? CodeableConcept.fromJson(json['modifier'] as Map<String, dynamic>)
-          : null,
-      foodType: json['foodType'] != null
-          ? CodeableConcept.fromJson(json['foodType'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   NutritionOrderTexture clone() => throw UnimplementedError();
   @override
@@ -928,40 +1143,28 @@ class NutritionOrderTexture extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory NutritionOrderTexture.fromYaml(dynamic yaml) => yaml is String
-      ? NutritionOrderTexture.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? NutritionOrderTexture.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'NutritionOrderTexture cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory NutritionOrderTexture.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return NutritionOrderTexture.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [NutritionOrderSupplement] /// Oral nutritional products given in order to add further nutritional value
-/// to the patient's diet.
+/// [NutritionOrderSupplement]
+/// Oral nutritional products given in order to add further nutritional
+/// value to the patient's diet.
 class NutritionOrderSupplement extends BackboneElement {
+  /// Primary constructor for [NutritionOrderSupplement]
+
   NutritionOrderSupplement({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.type,
     this.productName,
+
+    /// Extensions for [productName]
     this.productNameElement,
     this.schedule,
     this.quantity,
     this.instruction,
+
+    /// Extensions for [instruction]
     this.instructionElement,
     super.userData,
     super.formatCommentsPre,
@@ -971,44 +1174,138 @@ class NutritionOrderSupplement extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory NutritionOrderSupplement.fromJson(Map<String, dynamic> json) {
+    return NutritionOrderSupplement(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(
+              json['type'] as Map<String, dynamic>,
+            )
+          : null,
+      productName: json['productName'] != null
+          ? FhirString.fromJson(json['productName'])
+          : null,
+      productNameElement: json['_productName'] != null
+          ? Element.fromJson(
+              json['_productName'] as Map<String, dynamic>,
+            )
+          : null,
+      schedule: json['schedule'] != null
+          ? (json['schedule'] as List<dynamic>)
+              .map<Timing>(
+                (dynamic v) => Timing.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      quantity: json['quantity'] != null
+          ? Quantity.fromJson(
+              json['quantity'] as Map<String, dynamic>,
+            )
+          : null,
+      instruction: json['instruction'] != null
+          ? FhirString.fromJson(json['instruction'])
+          : null,
+      instructionElement: json['_instruction'] != null
+          ? Element.fromJson(
+              json['_instruction'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [NutritionOrderSupplement] from a [String] or [YamlMap] object
+  factory NutritionOrderSupplement.fromYaml(dynamic yaml) => yaml is String
+      ? NutritionOrderSupplement.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? NutritionOrderSupplement.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'NutritionOrderSupplement cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [NutritionOrderSupplement] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory NutritionOrderSupplement.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return NutritionOrderSupplement.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'NutritionOrderSupplement';
 
-  /// [type] /// The kind of nutritional supplement product required such as a high protein
-  /// or pediatric clear liquid supplement.
+  /// [type]
+  /// The kind of nutritional supplement product required such as a high
+  /// protein or pediatric clear liquid supplement.
   final CodeableConcept? type;
 
-  /// [productName] /// The product or brand name of the nutritional supplement such as "Acme
+  /// [productName]
+  /// The product or brand name of the nutritional supplement such as "Acme
   /// Protein Shake".
   final FhirString? productName;
+
+  /// Extensions for [productName]
   final Element? productNameElement;
 
-  /// [schedule] /// The time period and frequency at which the supplement(s) should be given.
-  /// The supplement should be given for the combination of all schedules if more
-  /// than one schedule is present.
+  /// [schedule]
+  /// The time period and frequency at which the supplement(s) should be
+  /// given. The supplement should be given for the combination of all
+  /// schedules if more than one schedule is present.
   final List<Timing>? schedule;
 
-  /// [quantity] /// The amount of the nutritional supplement to be given.
+  /// [quantity]
+  /// The amount of the nutritional supplement to be given.
   final Quantity? quantity;
 
-  /// [instruction] /// Free text or additional instructions or information pertaining to the oral
-  /// supplement.
+  /// [instruction]
+  /// Free text or additional instructions or information pertaining to the
+  /// oral supplement.
   final FhirString? instruction;
+
+  /// Extensions for [instruction]
   final Element? instructionElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (type != null) {
       json['type'] = type!.toJson();
@@ -1020,8 +1317,7 @@ class NutritionOrderSupplement extends BackboneElement {
       json['_productName'] = productNameElement!.toJson();
     }
     if (schedule != null && schedule!.isNotEmpty) {
-      json['schedule'] =
-          schedule!.map<dynamic>((Timing v) => v.toJson()).toList();
+      json['schedule'] = schedule!.map((Timing v) => v.toJson()).toList();
     }
     if (quantity != null) {
       json['quantity'] = quantity!.toJson();
@@ -1035,47 +1331,6 @@ class NutritionOrderSupplement extends BackboneElement {
     return json;
   }
 
-  factory NutritionOrderSupplement.fromJson(Map<String, dynamic> json) {
-    return NutritionOrderSupplement(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
-          : null,
-      productName: json['productName'] != null
-          ? FhirString.fromJson(json['productName'])
-          : null,
-      productNameElement: json['_productName'] != null
-          ? Element.fromJson(json['_productName'] as Map<String, dynamic>)
-          : null,
-      schedule: json['schedule'] != null
-          ? (json['schedule'] as List<dynamic>)
-              .map<Timing>(
-                  (dynamic v) => Timing.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      quantity: json['quantity'] != null
-          ? Quantity.fromJson(json['quantity'] as Map<String, dynamic>)
-          : null,
-      instruction: json['instruction'] != null
-          ? FhirString.fromJson(json['instruction'])
-          : null,
-      instructionElement: json['_instruction'] != null
-          ? Element.fromJson(json['_instruction'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   NutritionOrderSupplement clone() => throw UnimplementedError();
   @override
@@ -1116,39 +1371,27 @@ class NutritionOrderSupplement extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory NutritionOrderSupplement.fromYaml(dynamic yaml) => yaml is String
-      ? NutritionOrderSupplement.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? NutritionOrderSupplement.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'NutritionOrderSupplement cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory NutritionOrderSupplement.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return NutritionOrderSupplement.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [NutritionOrderEnteralFormula] /// Feeding provided through the gastrointestinal tract via a tube, catheter,
-/// or stoma that delivers nutrition distal to the oral cavity.
+/// [NutritionOrderEnteralFormula]
+/// Feeding provided through the gastrointestinal tract via a tube,
+/// catheter, or stoma that delivers nutrition distal to the oral cavity.
 class NutritionOrderEnteralFormula extends BackboneElement {
+  /// Primary constructor for [NutritionOrderEnteralFormula]
+
   NutritionOrderEnteralFormula({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.baseFormulaType,
     this.baseFormulaProductName,
+
+    /// Extensions for [baseFormulaProductName]
     this.baseFormulaProductNameElement,
     this.additiveType,
     this.additiveProductName,
+
+    /// Extensions for [additiveProductName]
     this.additiveProductNameElement,
     this.caloricDensity,
     this.routeofAdministration,
@@ -1162,61 +1405,175 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory NutritionOrderEnteralFormula.fromJson(Map<String, dynamic> json) {
+    return NutritionOrderEnteralFormula(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      baseFormulaType: json['baseFormulaType'] != null
+          ? CodeableConcept.fromJson(
+              json['baseFormulaType'] as Map<String, dynamic>,
+            )
+          : null,
+      baseFormulaProductName: json['baseFormulaProductName'] != null
+          ? FhirString.fromJson(json['baseFormulaProductName'])
+          : null,
+      baseFormulaProductNameElement: json['_baseFormulaProductName'] != null
+          ? Element.fromJson(
+              json['_baseFormulaProductName'] as Map<String, dynamic>,
+            )
+          : null,
+      additiveType: json['additiveType'] != null
+          ? CodeableConcept.fromJson(
+              json['additiveType'] as Map<String, dynamic>,
+            )
+          : null,
+      additiveProductName: json['additiveProductName'] != null
+          ? FhirString.fromJson(json['additiveProductName'])
+          : null,
+      additiveProductNameElement: json['_additiveProductName'] != null
+          ? Element.fromJson(
+              json['_additiveProductName'] as Map<String, dynamic>,
+            )
+          : null,
+      caloricDensity: json['caloricDensity'] != null
+          ? Quantity.fromJson(
+              json['caloricDensity'] as Map<String, dynamic>,
+            )
+          : null,
+      routeofAdministration: json['routeofAdministration'] != null
+          ? CodeableConcept.fromJson(
+              json['routeofAdministration'] as Map<String, dynamic>,
+            )
+          : null,
+      administration: json['administration'] != null
+          ? (json['administration'] as List<dynamic>)
+              .map<NutritionOrderAdministration>(
+                (dynamic v) => NutritionOrderAdministration.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      maxVolumeToDeliver: json['maxVolumeToDeliver'] != null
+          ? Quantity.fromJson(
+              json['maxVolumeToDeliver'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [NutritionOrderEnteralFormula] from a [String] or [YamlMap] object
+  factory NutritionOrderEnteralFormula.fromYaml(dynamic yaml) => yaml is String
+      ? NutritionOrderEnteralFormula.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? NutritionOrderEnteralFormula.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'NutritionOrderEnteralFormula cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [NutritionOrderEnteralFormula] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory NutritionOrderEnteralFormula.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return NutritionOrderEnteralFormula.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'NutritionOrderEnteralFormula';
 
-  /// [baseFormulaType] /// The type of enteral or infant formula such as an adult standard formula
+  /// [baseFormulaType]
+  /// The type of enteral or infant formula such as an adult standard formula
   /// with fiber or a soy-based infant formula.
   final CodeableConcept? baseFormulaType;
 
-  /// [baseFormulaProductName] /// The product or brand name of the enteral or infant formula product such as
-  /// "ACME Adult Standard Formula".
+  /// [baseFormulaProductName]
+  /// The product or brand name of the enteral or infant formula product such
+  /// as "ACME Adult Standard Formula".
   final FhirString? baseFormulaProductName;
+
+  /// Extensions for [baseFormulaProductName]
   final Element? baseFormulaProductNameElement;
 
-  /// [additiveType] /// Indicates the type of modular component such as protein, carbohydrate, fat
-  /// or fiber to be provided in addition to or mixed with the base formula.
+  /// [additiveType]
+  /// Indicates the type of modular component such as protein, carbohydrate,
+  /// fat or fiber to be provided in addition to or mixed with the base
+  /// formula.
   final CodeableConcept? additiveType;
 
-  /// [additiveProductName] /// The product or brand name of the type of modular component to be added to
-  /// the formula.
+  /// [additiveProductName]
+  /// The product or brand name of the type of modular component to be added
+  /// to the formula.
   final FhirString? additiveProductName;
+
+  /// Extensions for [additiveProductName]
   final Element? additiveProductNameElement;
 
-  /// [caloricDensity] /// The amount of energy (calories) that the formula should provide per
-  /// specified volume, typically per mL or fluid oz. For example, an infant may
-  /// require a formula that provides 24 calories per fluid ounce or an adult may
-  /// require an enteral formula that provides 1.5 calorie/mL.
+  /// [caloricDensity]
+  /// The amount of energy (calories) that the formula should provide per
+  /// specified volume, typically per mL or fluid oz. For example, an infant
+  /// may require a formula that provides 24 calories per fluid ounce or an
+  /// adult may require an enteral formula that provides 1.5 calorie/mL.
   final Quantity? caloricDensity;
 
-  /// [routeofAdministration] /// The route or physiological path of administration into the patient's
-  /// gastrointestinal tract for purposes of providing the formula feeding, e.g.
-  /// nasogastric tube.
+  /// [routeofAdministration]
+  /// The route or physiological path of administration into the patient's
+  /// gastrointestinal tract for purposes of providing the formula feeding,
+  /// e.g. nasogastric tube.
   final CodeableConcept? routeofAdministration;
 
-  /// [administration] /// Formula administration instructions as structured data. This repeating
-  /// structure allows for changing the administration rate or volume over time
-  /// for both bolus and continuous feeding. An example of this would be an
-  /// instruction to increase the rate of continuous feeding every 2 hours.
+  /// [administration]
+  /// Formula administration instructions as structured data. This repeating
+  /// structure allows for changing the administration rate or volume over
+  /// time for both bolus and continuous feeding. An example of this would be
+  /// an instruction to increase the rate of continuous feeding every 2
+  /// hours.
   final List<NutritionOrderAdministration>? administration;
 
-  /// [maxVolumeToDeliver] /// The maximum total quantity of formula that may be administered to a subject
-  /// over the period of time, e.g. 1440 mL over 24 hours.
+  /// [maxVolumeToDeliver]
+  /// The maximum total quantity of formula that may be administered to a
+  /// subject over the period of time, e.g. 1440 mL over 24 hours.
   final Quantity? maxVolumeToDeliver;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (baseFormulaType != null) {
       json['baseFormulaType'] = baseFormulaType!.toJson();
@@ -1244,7 +1601,7 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     }
     if (administration != null && administration!.isNotEmpty) {
       json['administration'] = administration!
-          .map<dynamic>((NutritionOrderAdministration v) => v.toJson())
+          .map((NutritionOrderAdministration v) => v.toJson())
           .toList();
     }
     if (maxVolumeToDeliver != null) {
@@ -1253,63 +1610,6 @@ class NutritionOrderEnteralFormula extends BackboneElement {
     return json;
   }
 
-  factory NutritionOrderEnteralFormula.fromJson(Map<String, dynamic> json) {
-    return NutritionOrderEnteralFormula(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      baseFormulaType: json['baseFormulaType'] != null
-          ? CodeableConcept.fromJson(
-              json['baseFormulaType'] as Map<String, dynamic>)
-          : null,
-      baseFormulaProductName: json['baseFormulaProductName'] != null
-          ? FhirString.fromJson(json['baseFormulaProductName'])
-          : null,
-      baseFormulaProductNameElement: json['_baseFormulaProductName'] != null
-          ? Element.fromJson(
-              json['_baseFormulaProductName'] as Map<String, dynamic>)
-          : null,
-      additiveType: json['additiveType'] != null
-          ? CodeableConcept.fromJson(
-              json['additiveType'] as Map<String, dynamic>)
-          : null,
-      additiveProductName: json['additiveProductName'] != null
-          ? FhirString.fromJson(json['additiveProductName'])
-          : null,
-      additiveProductNameElement: json['_additiveProductName'] != null
-          ? Element.fromJson(
-              json['_additiveProductName'] as Map<String, dynamic>)
-          : null,
-      caloricDensity: json['caloricDensity'] != null
-          ? Quantity.fromJson(json['caloricDensity'] as Map<String, dynamic>)
-          : null,
-      routeofAdministration: json['routeofAdministration'] != null
-          ? CodeableConcept.fromJson(
-              json['routeofAdministration'] as Map<String, dynamic>)
-          : null,
-      administration: json['administration'] != null
-          ? (json['administration'] as List<dynamic>)
-              .map<NutritionOrderAdministration>((dynamic v) =>
-                  NutritionOrderAdministration.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      maxVolumeToDeliver: json['maxVolumeToDeliver'] != null
-          ? Quantity.fromJson(
-              json['maxVolumeToDeliver'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   NutritionOrderEnteralFormula clone() => throw UnimplementedError();
   @override
@@ -1360,32 +1660,17 @@ class NutritionOrderEnteralFormula extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory NutritionOrderEnteralFormula.fromYaml(dynamic yaml) => yaml is String
-      ? NutritionOrderEnteralFormula.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? NutritionOrderEnteralFormula.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'NutritionOrderEnteralFormula cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory NutritionOrderEnteralFormula.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return NutritionOrderEnteralFormula.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [NutritionOrderAdministration] /// Formula administration instructions as structured data. This repeating
-/// structure allows for changing the administration rate or volume over time
-/// for both bolus and continuous feeding. An example of this would be an
-/// instruction to increase the rate of continuous feeding every 2 hours.
+/// [NutritionOrderAdministration]
+/// Formula administration instructions as structured data. This repeating
+/// structure allows for changing the administration rate or volume over
+/// time for both bolus and continuous feeding. An example of this would be
+/// an instruction to increase the rate of continuous feeding every 2
+/// hours.
 class NutritionOrderAdministration extends BackboneElement {
+  /// Primary constructor for [NutritionOrderAdministration]
+
   NutritionOrderAdministration({
     super.id,
     super.extension_,
@@ -1395,6 +1680,8 @@ class NutritionOrderAdministration extends BackboneElement {
     this.rateQuantity,
     this.rateRatio,
     this.administrationInstruction,
+
+    /// Extensions for [administrationInstruction]
     this.administrationInstructionElement,
     super.userData,
     super.formatCommentsPre,
@@ -1404,43 +1691,129 @@ class NutritionOrderAdministration extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory NutritionOrderAdministration.fromJson(Map<String, dynamic> json) {
+    return NutritionOrderAdministration(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      schedule: json['schedule'] != null
+          ? Timing.fromJson(
+              json['schedule'] as Map<String, dynamic>,
+            )
+          : null,
+      quantity: json['quantity'] != null
+          ? Quantity.fromJson(
+              json['quantity'] as Map<String, dynamic>,
+            )
+          : null,
+      rateQuantity: json['rateQuantity'] != null
+          ? Quantity.fromJson(
+              json['rateQuantity'] as Map<String, dynamic>,
+            )
+          : null,
+      rateRatio: json['rateRatio'] != null
+          ? Ratio.fromJson(
+              json['rateRatio'] as Map<String, dynamic>,
+            )
+          : null,
+      administrationInstruction: json['administrationInstruction'] != null
+          ? FhirString.fromJson(json['administrationInstruction'])
+          : null,
+      administrationInstructionElement:
+          json['_administrationInstruction'] != null
+              ? Element.fromJson(
+                  json['_administrationInstruction'] as Map<String, dynamic>,
+                )
+              : null,
+    );
+  }
+
+  /// Deserialize [NutritionOrderAdministration] from a [String] or [YamlMap] object
+  factory NutritionOrderAdministration.fromYaml(dynamic yaml) => yaml is String
+      ? NutritionOrderAdministration.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? NutritionOrderAdministration.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'NutritionOrderAdministration cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [NutritionOrderAdministration] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory NutritionOrderAdministration.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return NutritionOrderAdministration.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'NutritionOrderAdministration';
 
-  /// [schedule] /// The time period and frequency at which the enteral formula should be
+  /// [schedule]
+  /// The time period and frequency at which the enteral formula should be
   /// delivered to the patient.
   final Timing? schedule;
 
-  /// [quantity] /// The volume of formula to provide to the patient per the specified
+  /// [quantity]
+  /// The volume of formula to provide to the patient per the specified
   /// administration schedule.
   final Quantity? quantity;
 
-  /// [rateQuantity] /// The rate of administration of formula via a feeding pump, e.g. 60 mL per
-  /// hour, according to the specified schedule.
+  /// [rateQuantity]
+  /// The rate of administration of formula via a feeding pump, e.g. 60 mL
+  /// per hour, according to the specified schedule.
   final Quantity? rateQuantity;
 
-  /// [rateRatio] /// The rate of administration of formula via a feeding pump, e.g. 60 mL per
-  /// hour, according to the specified schedule.
+  /// [rateRatio]
+  /// The rate of administration of formula via a feeding pump, e.g. 60 mL
+  /// per hour, according to the specified schedule.
   final Ratio? rateRatio;
 
-  /// [administrationInstruction] /// Free text formula administration, feeding instructions or additional
+  /// [administrationInstruction]
+  /// Free text formula administration, feeding instructions or additional
   /// instructions or information.
   final FhirString? administrationInstruction;
+
+  /// Extensions for [administrationInstruction]
   final Element? administrationInstructionElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (schedule != null) {
       json['schedule'] = schedule!.toJson();
@@ -1464,43 +1837,6 @@ class NutritionOrderAdministration extends BackboneElement {
     return json;
   }
 
-  factory NutritionOrderAdministration.fromJson(Map<String, dynamic> json) {
-    return NutritionOrderAdministration(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      schedule: json['schedule'] != null
-          ? Timing.fromJson(json['schedule'] as Map<String, dynamic>)
-          : null,
-      quantity: json['quantity'] != null
-          ? Quantity.fromJson(json['quantity'] as Map<String, dynamic>)
-          : null,
-      rateQuantity: json['rateQuantity'] != null
-          ? Quantity.fromJson(json['rateQuantity'] as Map<String, dynamic>)
-          : null,
-      rateRatio: json['rateRatio'] != null
-          ? Ratio.fromJson(json['rateRatio'] as Map<String, dynamic>)
-          : null,
-      administrationInstruction: json['administrationInstruction'] != null
-          ? FhirString.fromJson(json['administrationInstruction'])
-          : null,
-      administrationInstructionElement:
-          json['_administrationInstruction'] != null
-              ? Element.fromJson(
-                  json['_administrationInstruction'] as Map<String, dynamic>)
-              : null,
-    );
-  }
   @override
   NutritionOrderAdministration clone() => throw UnimplementedError();
   @override
@@ -1540,24 +1876,5 @@ class NutritionOrderAdministration extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory NutritionOrderAdministration.fromYaml(dynamic yaml) => yaml is String
-      ? NutritionOrderAdministration.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? NutritionOrderAdministration.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'NutritionOrderAdministration cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory NutritionOrderAdministration.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return NutritionOrderAdministration.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

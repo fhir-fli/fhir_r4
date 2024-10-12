@@ -33,7 +33,7 @@ class SearchMolecularSequence extends SearchResource {
   SearchMolecularSequence variantEnd(FhirDecimal value,
       {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {
     if (modifier != null &&
-        !<String>['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
+        !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for number type');
     }
     parameters['${modifier != null ? '$modifier' : ''}variant_end'] =
@@ -44,7 +44,7 @@ class SearchMolecularSequence extends SearchResource {
   SearchMolecularSequence variantStart(FhirDecimal value,
       {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {
     if (modifier != null &&
-        !<String>['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
+        !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for number type');
     }
     parameters['${modifier != null ? '$modifier' : ''}variant_start'] =
@@ -55,7 +55,7 @@ class SearchMolecularSequence extends SearchResource {
   SearchMolecularSequence windowEnd(FhirDecimal value,
       {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {
     if (modifier != null &&
-        !<String>['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
+        !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for number type');
     }
     parameters['${modifier != null ? '$modifier' : ''}window_end'] =
@@ -66,7 +66,7 @@ class SearchMolecularSequence extends SearchResource {
   SearchMolecularSequence windowStart(FhirDecimal value,
       {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {
     if (modifier != null &&
-        !<String>['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
+        !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for number type');
     }
     parameters['${modifier != null ? '$modifier' : ''}window_start'] =

@@ -10,8 +10,7 @@ class SearchCoverage extends SearchResource {
   }
 
   SearchCoverage classValue(FhirString value, {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}class_value'] =
@@ -20,8 +19,7 @@ class SearchCoverage extends SearchResource {
   }
 
   SearchCoverage dependent(FhirString value, {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}dependent'] =

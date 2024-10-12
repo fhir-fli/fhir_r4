@@ -1,29 +1,45 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [ParameterDefinition] /// The parameters to the module. This collection specifies both the input and
-/// output parameters. Input parameters are provided by the caller as part of
-/// the $evaluate operation. Output parameters are included in the
+/// [ParameterDefinition]
+/// The parameters to the module. This collection specifies both the input
+/// and output parameters. Input parameters are provided by the caller as
+/// part of the $evaluate operation. Output parameters are included in the
 /// GuidanceResponse.
 class ParameterDefinition extends DataType {
+  /// Primary constructor for [ParameterDefinition]
+
   ParameterDefinition({
     super.id,
     super.extension_,
     this.name,
+
+    /// Extensions for [name]
     this.nameElement,
     required this.use,
+
+    /// Extensions for [use]
     this.useElement,
     this.min,
+
+    /// Extensions for [min]
     this.minElement,
     this.max,
+
+    /// Extensions for [max]
     this.maxElement,
     this.documentation,
+
+    /// Extensions for [documentation]
     this.documentationElement,
     required this.type,
+
+    /// Extensions for [type]
     this.typeElement,
     this.profile,
+
+    /// Extensions for [profile]
     this.profileElement,
     super.userData,
     super.formatCommentsPre,
@@ -33,50 +49,159 @@ class ParameterDefinition extends DataType {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory ParameterDefinition.fromJson(Map<String, dynamic> json) {
+    return ParameterDefinition(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      name: json['name'] != null ? FhirCode.fromJson(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(
+              json['_name'] as Map<String, dynamic>,
+            )
+          : null,
+      use: OperationParameterUse.fromJson(json['use']),
+      useElement: json['_use'] != null
+          ? Element.fromJson(
+              json['_use'] as Map<String, dynamic>,
+            )
+          : null,
+      min: json['min'] != null ? FhirInteger.fromJson(json['min']) : null,
+      minElement: json['_min'] != null
+          ? Element.fromJson(
+              json['_min'] as Map<String, dynamic>,
+            )
+          : null,
+      max: json['max'] != null ? FhirString.fromJson(json['max']) : null,
+      maxElement: json['_max'] != null
+          ? Element.fromJson(
+              json['_max'] as Map<String, dynamic>,
+            )
+          : null,
+      documentation: json['documentation'] != null
+          ? FhirString.fromJson(json['documentation'])
+          : null,
+      documentationElement: json['_documentation'] != null
+          ? Element.fromJson(
+              json['_documentation'] as Map<String, dynamic>,
+            )
+          : null,
+      type: FHIRAllTypes.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(
+              json['_type'] as Map<String, dynamic>,
+            )
+          : null,
+      profile: json['profile'] != null
+          ? FhirCanonical.fromJson(json['profile'])
+          : null,
+      profileElement: json['_profile'] != null
+          ? Element.fromJson(
+              json['_profile'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [ParameterDefinition] from a [String] or [YamlMap] object
+  factory ParameterDefinition.fromYaml(dynamic yaml) => yaml is String
+      ? ParameterDefinition.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? ParameterDefinition.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'ParameterDefinition cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [ParameterDefinition] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory ParameterDefinition.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ParameterDefinition.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'ParameterDefinition';
 
-  /// [name] /// The name of the parameter used to allow access to the value of the
+  /// [name]
+  /// The name of the parameter used to allow access to the value of the
   /// parameter in evaluation contexts.
   final FhirCode? name;
+
+  /// Extensions for [name]
   final Element? nameElement;
 
-  /// [use] /// Whether the parameter is input or output for the module.
+  /// [use]
+  /// Whether the parameter is input or output for the module.
   final OperationParameterUse use;
+
+  /// Extensions for [use]
   final Element? useElement;
 
-  /// [min] /// The minimum number of times this parameter SHALL appear in the request or
-  /// response.
+  /// [min]
+  /// The minimum number of times this parameter SHALL appear in the request
+  /// or response.
   final FhirInteger? min;
+
+  /// Extensions for [min]
   final Element? minElement;
 
-  /// [max] /// The maximum number of times this element is permitted to appear in the
+  /// [max]
+  /// The maximum number of times this element is permitted to appear in the
   /// request or response.
   final FhirString? max;
+
+  /// Extensions for [max]
   final Element? maxElement;
 
-  /// [documentation] /// A brief discussion of what the parameter is for and how it is used by the
-  /// module.
+  /// [documentation]
+  /// A brief discussion of what the parameter is for and how it is used by
+  /// the module.
   final FhirString? documentation;
+
+  /// Extensions for [documentation]
   final Element? documentationElement;
 
-  /// [type] /// The type of the parameter.
+  /// [type]
+  /// The type of the parameter.
   final FHIRAllTypes type;
+
+  /// Extensions for [type]
   final Element? typeElement;
 
-  /// [profile] /// If specified, this indicates a profile that the input data must conform to,
-  /// or that the output data will conform to.
+  /// [profile]
+  /// If specified, this indicates a profile that the input data must conform
+  /// to, or that the output data will conform to.
   final FhirCanonical? profile;
+
+  /// Extensions for [profile]
   final Element? profileElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (name?.value != null) {
       json['name'] = name!.toJson();
@@ -113,49 +238,6 @@ class ParameterDefinition extends DataType {
     return json;
   }
 
-  factory ParameterDefinition.fromJson(Map<String, dynamic> json) {
-    return ParameterDefinition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      name: json['name'] != null ? FhirCode.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
-          : null,
-      use: OperationParameterUse.fromJson(json['use']),
-      useElement: json['_use'] != null
-          ? Element.fromJson(json['_use'] as Map<String, dynamic>)
-          : null,
-      min: json['min'] != null ? FhirInteger.fromJson(json['min']) : null,
-      minElement: json['_min'] != null
-          ? Element.fromJson(json['_min'] as Map<String, dynamic>)
-          : null,
-      max: json['max'] != null ? FhirString.fromJson(json['max']) : null,
-      maxElement: json['_max'] != null
-          ? Element.fromJson(json['_max'] as Map<String, dynamic>)
-          : null,
-      documentation: json['documentation'] != null
-          ? FhirString.fromJson(json['documentation'])
-          : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(json['_documentation'] as Map<String, dynamic>)
-          : null,
-      type: FHIRAllTypes.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
-          : null,
-      profile: json['profile'] != null
-          ? FhirCanonical.fromJson(json['profile'])
-          : null,
-      profileElement: json['_profile'] != null
-          ? Element.fromJson(json['_profile'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   ParameterDefinition clone() => throw UnimplementedError();
   @override
@@ -207,24 +289,5 @@ class ParameterDefinition extends DataType {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory ParameterDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? ParameterDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? ParameterDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'ParameterDefinition cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory ParameterDefinition.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return ParameterDefinition.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

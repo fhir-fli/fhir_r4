@@ -1,20 +1,37 @@
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
-import '../../../fhir_r4.dart';
 
+/// Extension to convert a String to a [FhirOid].
 extension FhirOidExtension on String {
+  /// Converts a String to a [FhirOid].
   FhirOid get toFhirOid => FhirOid(this);
 }
 
+/// [FhirOid] represents a validated OID value in the FHIR standard.
 class FhirOid extends PrimitiveType<String> {
-  @override
-  final String value;
-
+  /// Constructs a [FhirOid] from a String input.
   FhirOid(String input, [Element? element])
       : value = _validateOid(input),
         super(element: element);
 
+  /// Factory constructor to create [FhirOid] from JSON.
+  factory FhirOid.fromJson(dynamic json) {
+    if (json is String) {
+      return FhirOid(json);
+    }
+    throw FormatException('Invalid input for FhirOid: $json');
+  }
+
+  /// Factory constructor to create [FhirOid] from YAML.
+  factory FhirOid.fromYaml(dynamic yaml) => yaml is String
+      ? FhirOid.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
+      : throw const FormatException('Invalid YAML format for FhirOid');
+  @override
+  final String value;
+
+  /// Attempts to parse the input as a [FhirOid], returns `null` if
   static FhirOid? tryParse(dynamic input) {
     if (input is String) {
       try {
@@ -33,17 +50,6 @@ class FhirOid extends PrimitiveType<String> {
     }
     throw FormatException('Invalid FhirOid: $input');
   }
-
-  factory FhirOid.fromJson(dynamic json) {
-    if (json is String) {
-      return FhirOid(json);
-    }
-    throw FormatException('Invalid input for FhirOid: $json');
-  }
-
-  factory FhirOid.fromYaml(dynamic yaml) => yaml is String
-      ? FhirOid.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : throw const FormatException('Invalid YAML format for FhirOid');
 
   @override
   String get fhirType => 'oid';

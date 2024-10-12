@@ -1,23 +1,35 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [Bundle] /// A container for a collection of resources.
+/// [Bundle]
+/// A container for a collection of resources.
 class Bundle extends Resource {
+  /// Primary constructor for [Bundle]
+
   Bundle({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     this.identifier,
     required this.type,
+
+    /// Extensions for [type]
     this.typeElement,
     this.timestamp,
+
+    /// Extensions for [timestamp]
     this.timestampElement,
     this.total,
+
+    /// Extensions for [total]
     this.totalElement,
     this.link,
     this.entry,
@@ -28,43 +40,161 @@ class Bundle extends Resource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.Bundle);
+  }) : super(
+          resourceType: R4ResourceType.Bundle,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory Bundle.fromJson(Map<String, dynamic> json) {
+    return Bundle(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      identifier: json['identifier'] != null
+          ? Identifier.fromJson(
+              json['identifier'] as Map<String, dynamic>,
+            )
+          : null,
+      type: BundleType.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(
+              json['_type'] as Map<String, dynamic>,
+            )
+          : null,
+      timestamp: json['timestamp'] != null
+          ? FhirInstant.fromJson(json['timestamp'])
+          : null,
+      timestampElement: json['_timestamp'] != null
+          ? Element.fromJson(
+              json['_timestamp'] as Map<String, dynamic>,
+            )
+          : null,
+      total: json['total'] != null
+          ? FhirUnsignedInt.fromJson(json['total'])
+          : null,
+      totalElement: json['_total'] != null
+          ? Element.fromJson(
+              json['_total'] as Map<String, dynamic>,
+            )
+          : null,
+      link: json['link'] != null
+          ? (json['link'] as List<dynamic>)
+              .map<BundleLink>(
+                (dynamic v) => BundleLink.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      entry: json['entry'] != null
+          ? (json['entry'] as List<dynamic>)
+              .map<BundleEntry>(
+                (dynamic v) => BundleEntry.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      signature: json['signature'] != null
+          ? Signature.fromJson(
+              json['signature'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [Bundle] from a [String] or [YamlMap] object
+  factory Bundle.fromYaml(dynamic yaml) => yaml is String
+      ? Bundle.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? Bundle.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('Bundle cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [Bundle] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory Bundle.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Bundle.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'Bundle';
 
-  /// [identifier] /// A persistent identifier for the bundle that won't change as a bundle is
+  /// [identifier]
+  /// A persistent identifier for the bundle that won't change as a bundle is
   /// copied from server to server.
   final Identifier? identifier;
 
-  /// [type] /// Indicates the purpose of this bundle - how it is intended to be used.
+  /// [type]
+  /// Indicates the purpose of this bundle - how it is intended to be used.
   final BundleType type;
+
+  /// Extensions for [type]
   final Element? typeElement;
 
-  /// [timestamp] /// The date/time that the bundle was assembled - i.e. when the resources were
-  /// placed in the bundle.
+  /// [timestamp]
+  /// The date/time that the bundle was assembled - i.e. when the resources
+  /// were placed in the bundle.
   final FhirInstant? timestamp;
+
+  /// Extensions for [timestamp]
   final Element? timestampElement;
 
-  /// [total] /// If a set of search matches, this is the total number of entries of type
-  /// 'match' across all pages in the search. It does not include search.mode =
-  /// 'include' or 'outcome' entries and it does not provide a count of the
+  /// [total]
+  /// If a set of search matches, this is the total number of entries of type
+  /// 'match' across all pages in the search. It does not include search.mode
+  /// = 'include' or 'outcome' entries and it does not provide a count of the
   /// number of entries in the Bundle.
   final FhirUnsignedInt? total;
+
+  /// Extensions for [total]
   final Element? totalElement;
 
-  /// [link] /// A series of links that provide context to this bundle.
+  /// [link]
+  /// A series of links that provide context to this bundle.
   final List<BundleLink>? link;
 
-  /// [entry] /// An entry in a bundle resource - will either contain a resource or
+  /// [entry]
+  /// An entry in a bundle resource - will either contain a resource or
   /// information about a resource (transactions and history only).
   final List<BundleEntry>? entry;
 
-  /// [signature] /// Digital Signature - base64 encoded. XML-DSig or a JWT.
+  /// [signature]
+  /// Digital Signature - base64 encoded. XML-DSig or a JWT.
   final Signature? signature;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -98,11 +228,10 @@ class Bundle extends Resource {
       json['_total'] = totalElement!.toJson();
     }
     if (link != null && link!.isNotEmpty) {
-      json['link'] = link!.map<dynamic>((BundleLink v) => v.toJson()).toList();
+      json['link'] = link!.map((BundleLink v) => v.toJson()).toList();
     }
     if (entry != null && entry!.isNotEmpty) {
-      json['entry'] =
-          entry!.map<dynamic>((BundleEntry v) => v.toJson()).toList();
+      json['entry'] = entry!.map((BundleEntry v) => v.toJson()).toList();
     }
     if (signature != null) {
       json['signature'] = signature!.toJson();
@@ -110,60 +239,6 @@ class Bundle extends Resource {
     return json;
   }
 
-  factory Bundle.fromJson(Map<String, dynamic> json) {
-    return Bundle(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      identifier: json['identifier'] != null
-          ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
-          : null,
-      type: BundleType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
-          : null,
-      timestamp: json['timestamp'] != null
-          ? FhirInstant.fromJson(json['timestamp'])
-          : null,
-      timestampElement: json['_timestamp'] != null
-          ? Element.fromJson(json['_timestamp'] as Map<String, dynamic>)
-          : null,
-      total: json['total'] != null
-          ? FhirUnsignedInt.fromJson(json['total'])
-          : null,
-      totalElement: json['_total'] != null
-          ? Element.fromJson(json['_total'] as Map<String, dynamic>)
-          : null,
-      link: json['link'] != null
-          ? (json['link'] as List<dynamic>)
-              .map<BundleLink>(
-                  (dynamic v) => BundleLink.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      entry: json['entry'] != null
-          ? (json['entry'] as List<dynamic>)
-              .map<BundleEntry>((dynamic v) =>
-                  BundleEntry.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      signature: json['signature'] != null
-          ? Signature.fromJson(json['signature'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   Bundle clone() => throw UnimplementedError();
   @override
@@ -216,36 +291,24 @@ class Bundle extends Resource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory Bundle.fromYaml(dynamic yaml) => yaml is String
-      ? Bundle.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? Bundle.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'Bundle cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory Bundle.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return Bundle.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [BundleLink] /// A series of links that provide context to this bundle.
+/// [BundleLink]
+/// A series of links that provide context to this bundle.
 class BundleLink extends BackboneElement {
+  /// Primary constructor for [BundleLink]
+
   BundleLink({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.relation,
+
+    /// Extensions for [relation]
     this.relationElement,
     required this.url,
+
+    /// Extensions for [url]
     this.urlElement,
     super.userData,
     super.formatCommentsPre,
@@ -255,31 +318,98 @@ class BundleLink extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory BundleLink.fromJson(Map<String, dynamic> json) {
+    return BundleLink(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      relation: FhirString.fromJson(json['relation']),
+      relationElement: json['_relation'] != null
+          ? Element.fromJson(
+              json['_relation'] as Map<String, dynamic>,
+            )
+          : null,
+      url: FhirUri.fromJson(json['url']),
+      urlElement: json['_url'] != null
+          ? Element.fromJson(
+              json['_url'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [BundleLink] from a [String] or [YamlMap] object
+  factory BundleLink.fromYaml(dynamic yaml) => yaml is String
+      ? BundleLink.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? BundleLink.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('BundleLink cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [BundleLink] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory BundleLink.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return BundleLink.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'BundleLink';
 
-  /// [relation] /// A name which details the functional use for this link - see
+  /// [relation]
+  /// A name which details the functional use for this link - see
   /// [http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1](http://www.iana.org/assignments/link-relations/link-relations.xhtml#link-relations-1).
   final FhirString relation;
+
+  /// Extensions for [relation]
   final Element? relationElement;
 
-  /// [url] /// The reference details for the link.
+  /// [url]
+  /// The reference details for the link.
   final FhirUri url;
+
+  /// Extensions for [url]
   final Element? urlElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['relation'] = relation.toJson();
     if (relationElement != null) {
@@ -292,31 +422,6 @@ class BundleLink extends BackboneElement {
     return json;
   }
 
-  factory BundleLink.fromJson(Map<String, dynamic> json) {
-    return BundleLink(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      relation: FhirString.fromJson(json['relation']),
-      relationElement: json['_relation'] != null
-          ? Element.fromJson(json['_relation'] as Map<String, dynamic>)
-          : null,
-      url: FhirUri.fromJson(json['url']),
-      urlElement: json['_url'] != null
-          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   BundleLink clone() => throw UnimplementedError();
   @override
@@ -351,36 +456,22 @@ class BundleLink extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory BundleLink.fromYaml(dynamic yaml) => yaml is String
-      ? BundleLink.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? BundleLink.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'BundleLink cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory BundleLink.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return BundleLink.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [BundleEntry] /// An entry in a bundle resource - will either contain a resource or
+/// [BundleEntry]
+/// An entry in a bundle resource - will either contain a resource or
 /// information about a resource (transactions and history only).
 class BundleEntry extends BackboneElement {
+  /// Primary constructor for [BundleEntry]
+
   BundleEntry({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.link,
     this.fullUrl,
+
+    /// Extensions for [fullUrl]
     this.fullUrlElement,
     this.resource,
     this.search,
@@ -394,57 +485,151 @@ class BundleEntry extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory BundleEntry.fromJson(Map<String, dynamic> json) {
+    return BundleEntry(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      link: json['link'] != null
+          ? (json['link'] as List<dynamic>)
+              .map<BundleLink>(
+                (dynamic v) => BundleLink.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      fullUrl:
+          json['fullUrl'] != null ? FhirUri.fromJson(json['fullUrl']) : null,
+      fullUrlElement: json['_fullUrl'] != null
+          ? Element.fromJson(
+              json['_fullUrl'] as Map<String, dynamic>,
+            )
+          : null,
+      resource: json['resource'] != null
+          ? Resource.fromJson(
+              json['resource'] as Map<String, dynamic>,
+            )
+          : null,
+      search: json['search'] != null
+          ? BundleSearch.fromJson(
+              json['search'] as Map<String, dynamic>,
+            )
+          : null,
+      request: json['request'] != null
+          ? BundleRequest.fromJson(
+              json['request'] as Map<String, dynamic>,
+            )
+          : null,
+      response: json['response'] != null
+          ? BundleResponse.fromJson(
+              json['response'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [BundleEntry] from a [String] or [YamlMap] object
+  factory BundleEntry.fromYaml(dynamic yaml) => yaml is String
+      ? BundleEntry.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? BundleEntry.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('BundleEntry cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [BundleEntry] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory BundleEntry.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return BundleEntry.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'BundleEntry';
 
-  /// [link] /// A series of links that provide context to this entry.
+  /// [link]
+  /// A series of links that provide context to this entry.
   final List<BundleLink>? link;
 
-  /// [fullUrl] /// The Absolute URL for the resource. The fullUrl SHALL NOT disagree with the
-  /// id in the resource - i.e. if the fullUrl is not a urn:uuid, the URL shall
-  /// be version-independent URL consistent with the Resource.id. The fullUrl is
-  /// a version independent reference to the resource. The fullUrl element SHALL
-  /// have a value except that:
+  /// [fullUrl]
+  /// The Absolute URL for the resource. The fullUrl SHALL NOT disagree with
+  /// the id in the resource - i.e. if the fullUrl is not a urn:uuid, the URL
+  /// shall be version-independent URL consistent with the Resource.id. The
+  /// fullUrl is a version independent reference to the resource. The fullUrl
+  /// element SHALL have a value except that:
   /// * fullUrl can be empty on a POST (although it does not need to when
   /// specifying a temporary id for reference in the bundle)
-  /// * Results from operations might involve resources that are not identified.
+  /// * Results from operations might involve resources that are not
+  /// identified.
   final FhirUri? fullUrl;
+
+  /// Extensions for [fullUrl]
   final Element? fullUrlElement;
 
-  /// [resource] /// The Resource for the entry. The purpose/meaning of the resource is
+  /// [resource]
+  /// The Resource for the entry. The purpose/meaning of the resource is
   /// determined by the Bundle.type.
   final Resource? resource;
 
-  /// [search] /// Information about the search process that lead to the creation of this
+  /// [search]
+  /// Information about the search process that lead to the creation of this
   /// entry.
   final BundleSearch? search;
 
-  /// [request] /// Additional information about how this entry should be processed as part of
-  /// a transaction or batch. For history, it shows how the entry was processed
-  /// to create the version contained in the entry.
+  /// [request]
+  /// Additional information about how this entry should be processed as part
+  /// of a transaction or batch. For history, it shows how the entry was
+  /// processed to create the version contained in the entry.
   final BundleRequest? request;
 
-  /// [response] /// Indicates the results of processing the corresponding 'request' entry in
-  /// the batch or transaction being responded to or what the results of an
-  /// operation where when returning history.
+  /// [response]
+  /// Indicates the results of processing the corresponding 'request' entry
+  /// in the batch or transaction being responded to or what the results of
+  /// an operation where when returning history.
   final BundleResponse? response;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (link != null && link!.isNotEmpty) {
-      json['link'] = link!.map<dynamic>((BundleLink v) => v.toJson()).toList();
+      json['link'] = link!.map((BundleLink v) => v.toJson()).toList();
     }
     if (fullUrl?.value != null) {
       json['fullUrl'] = fullUrl!.toJson();
@@ -467,46 +652,6 @@ class BundleEntry extends BackboneElement {
     return json;
   }
 
-  factory BundleEntry.fromJson(Map<String, dynamic> json) {
-    return BundleEntry(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      link: json['link'] != null
-          ? (json['link'] as List<dynamic>)
-              .map<BundleLink>(
-                  (dynamic v) => BundleLink.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      fullUrl:
-          json['fullUrl'] != null ? FhirUri.fromJson(json['fullUrl']) : null,
-      fullUrlElement: json['_fullUrl'] != null
-          ? Element.fromJson(json['_fullUrl'] as Map<String, dynamic>)
-          : null,
-      resource: json['resource'] != null
-          ? Resource.fromJson(json['resource'] as Map<String, dynamic>)
-          : null,
-      search: json['search'] != null
-          ? BundleSearch.fromJson(json['search'] as Map<String, dynamic>)
-          : null,
-      request: json['request'] != null
-          ? BundleRequest.fromJson(json['request'] as Map<String, dynamic>)
-          : null,
-      response: json['response'] != null
-          ? BundleResponse.fromJson(json['response'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   BundleEntry clone() => throw UnimplementedError();
   @override
@@ -547,37 +692,25 @@ class BundleEntry extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory BundleEntry.fromYaml(dynamic yaml) => yaml is String
-      ? BundleEntry.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? BundleEntry.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'BundleEntry cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory BundleEntry.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return BundleEntry.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [BundleSearch] /// Information about the search process that lead to the creation of this
+/// [BundleSearch]
+/// Information about the search process that lead to the creation of this
 /// entry.
 class BundleSearch extends BackboneElement {
+  /// Primary constructor for [BundleSearch]
+
   BundleSearch({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.mode,
+
+    /// Extensions for [mode]
     this.modeElement,
     this.score,
+
+    /// Extensions for [score]
     this.scoreElement,
     super.userData,
     super.formatCommentsPre,
@@ -587,32 +720,100 @@ class BundleSearch extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory BundleSearch.fromJson(Map<String, dynamic> json) {
+    return BundleSearch(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      mode:
+          json['mode'] != null ? SearchEntryMode.fromJson(json['mode']) : null,
+      modeElement: json['_mode'] != null
+          ? Element.fromJson(
+              json['_mode'] as Map<String, dynamic>,
+            )
+          : null,
+      score: json['score'] != null ? FhirDecimal.fromJson(json['score']) : null,
+      scoreElement: json['_score'] != null
+          ? Element.fromJson(
+              json['_score'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [BundleSearch] from a [String] or [YamlMap] object
+  factory BundleSearch.fromYaml(dynamic yaml) => yaml is String
+      ? BundleSearch.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? BundleSearch.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('BundleSearch cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [BundleSearch] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory BundleSearch.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return BundleSearch.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'BundleSearch';
 
-  /// [mode] /// Why this entry is in the result set - whether it's included as a match or
-  /// because of an _include requirement, or to convey information or warning
-  /// information about the search process.
+  /// [mode]
+  /// Why this entry is in the result set - whether it's included as a match
+  /// or because of an _include requirement, or to convey information or
+  /// warning information about the search process.
   final SearchEntryMode? mode;
+
+  /// Extensions for [mode]
   final Element? modeElement;
 
-  /// [score] /// When searching, the server's search ranking score for the entry.
+  /// [score]
+  /// When searching, the server's search ranking score for the entry.
   final FhirDecimal? score;
+
+  /// Extensions for [score]
   final Element? scoreElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (mode != null) {
       json['mode'] = mode!.toJson();
@@ -626,32 +827,6 @@ class BundleSearch extends BackboneElement {
     return json;
   }
 
-  factory BundleSearch.fromJson(Map<String, dynamic> json) {
-    return BundleSearch(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      mode:
-          json['mode'] != null ? SearchEntryMode.fromJson(json['mode']) : null,
-      modeElement: json['_mode'] != null
-          ? Element.fromJson(json['_mode'] as Map<String, dynamic>)
-          : null,
-      score: json['score'] != null ? FhirDecimal.fromJson(json['score']) : null,
-      scoreElement: json['_score'] != null
-          ? Element.fromJson(json['_score'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   BundleSearch clone() => throw UnimplementedError();
   @override
@@ -686,46 +861,42 @@ class BundleSearch extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory BundleSearch.fromYaml(dynamic yaml) => yaml is String
-      ? BundleSearch.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? BundleSearch.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'BundleSearch cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory BundleSearch.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return BundleSearch.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [BundleRequest] /// Additional information about how this entry should be processed as part of
-/// a transaction or batch. For history, it shows how the entry was processed
-/// to create the version contained in the entry.
+/// [BundleRequest]
+/// Additional information about how this entry should be processed as part
+/// of a transaction or batch. For history, it shows how the entry was
+/// processed to create the version contained in the entry.
 class BundleRequest extends BackboneElement {
+  /// Primary constructor for [BundleRequest]
+
   BundleRequest({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.method,
+
+    /// Extensions for [method]
     this.methodElement,
     required this.url,
+
+    /// Extensions for [url]
     this.urlElement,
     this.ifNoneMatch,
+
+    /// Extensions for [ifNoneMatch]
     this.ifNoneMatchElement,
     this.ifModifiedSince,
+
+    /// Extensions for [ifModifiedSince]
     this.ifModifiedSinceElement,
     this.ifMatch,
+
+    /// Extensions for [ifMatch]
     this.ifMatchElement,
     this.ifNoneExist,
+
+    /// Extensions for [ifNoneExist]
     this.ifNoneExistElement,
     super.userData,
     super.formatCommentsPre,
@@ -735,55 +906,167 @@ class BundleRequest extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory BundleRequest.fromJson(Map<String, dynamic> json) {
+    return BundleRequest(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      method: HTTPVerb.fromJson(json['method']),
+      methodElement: json['_method'] != null
+          ? Element.fromJson(
+              json['_method'] as Map<String, dynamic>,
+            )
+          : null,
+      url: FhirUri.fromJson(json['url']),
+      urlElement: json['_url'] != null
+          ? Element.fromJson(
+              json['_url'] as Map<String, dynamic>,
+            )
+          : null,
+      ifNoneMatch: json['ifNoneMatch'] != null
+          ? FhirString.fromJson(json['ifNoneMatch'])
+          : null,
+      ifNoneMatchElement: json['_ifNoneMatch'] != null
+          ? Element.fromJson(
+              json['_ifNoneMatch'] as Map<String, dynamic>,
+            )
+          : null,
+      ifModifiedSince: json['ifModifiedSince'] != null
+          ? FhirInstant.fromJson(json['ifModifiedSince'])
+          : null,
+      ifModifiedSinceElement: json['_ifModifiedSince'] != null
+          ? Element.fromJson(
+              json['_ifModifiedSince'] as Map<String, dynamic>,
+            )
+          : null,
+      ifMatch:
+          json['ifMatch'] != null ? FhirString.fromJson(json['ifMatch']) : null,
+      ifMatchElement: json['_ifMatch'] != null
+          ? Element.fromJson(
+              json['_ifMatch'] as Map<String, dynamic>,
+            )
+          : null,
+      ifNoneExist: json['ifNoneExist'] != null
+          ? FhirString.fromJson(json['ifNoneExist'])
+          : null,
+      ifNoneExistElement: json['_ifNoneExist'] != null
+          ? Element.fromJson(
+              json['_ifNoneExist'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [BundleRequest] from a [String] or [YamlMap] object
+  factory BundleRequest.fromYaml(dynamic yaml) => yaml is String
+      ? BundleRequest.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? BundleRequest.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'BundleRequest cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [BundleRequest] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory BundleRequest.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return BundleRequest.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'BundleRequest';
 
-  /// [method] /// In a transaction or batch, this is the HTTP action to be executed for this
-  /// entry. In a history bundle, this indicates the HTTP action that occurred.
+  /// [method]
+  /// In a transaction or batch, this is the HTTP action to be executed for
+  /// this entry. In a history bundle, this indicates the HTTP action that
+  /// occurred.
   final HTTPVerb method;
+
+  /// Extensions for [method]
   final Element? methodElement;
 
-  /// [url] /// The URL for this entry, relative to the root (the address to which the
+  /// [url]
+  /// The URL for this entry, relative to the root (the address to which the
   /// request is posted).
   final FhirUri url;
+
+  /// Extensions for [url]
   final Element? urlElement;
 
-  /// [ifNoneMatch] /// If the ETag values match, return a 304 Not Modified status. See the API
+  /// [ifNoneMatch]
+  /// If the ETag values match, return a 304 Not Modified status. See the API
   /// documentation for ["Conditional Read"](http.html#cread).
   final FhirString? ifNoneMatch;
+
+  /// Extensions for [ifNoneMatch]
   final Element? ifNoneMatchElement;
 
-  /// [ifModifiedSince] /// Only perform the operation if the last updated date matches. See the API
-  /// documentation for ["Conditional Read"](http.html#cread).
+  /// [ifModifiedSince]
+  /// Only perform the operation if the last updated date matches. See the
+  /// API documentation for ["Conditional Read"](http.html#cread).
   final FhirInstant? ifModifiedSince;
+
+  /// Extensions for [ifModifiedSince]
   final Element? ifModifiedSinceElement;
 
-  /// [ifMatch] /// Only perform the operation if the Etag value matches. For more information,
-  /// see the API section ["Managing Resource
+  /// [ifMatch]
+  /// Only perform the operation if the Etag value matches. For more
+  /// information, see the API section ["Managing Resource
   /// Contention"](http.html#concurrency).
   final FhirString? ifMatch;
+
+  /// Extensions for [ifMatch]
   final Element? ifMatchElement;
 
-  /// [ifNoneExist] /// Instruct the server not to perform the create if a specified resource
+  /// [ifNoneExist]
+  /// Instruct the server not to perform the create if a specified resource
   /// already exists. For further information, see the API documentation for
-  /// ["Conditional Create"](http.html#ccreate). This is just the query portion
-  /// of the URL - what follows the "?" (not including the "?").
+  /// ["Conditional Create"](http.html#ccreate). This is just the query
+  /// portion of the URL - what follows the "?" (not including the "?").
   final FhirString? ifNoneExist;
+
+  /// Extensions for [ifNoneExist]
   final Element? ifNoneExistElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['method'] = method.toJson();
     json['url'] = url.toJson();
@@ -817,54 +1100,6 @@ class BundleRequest extends BackboneElement {
     return json;
   }
 
-  factory BundleRequest.fromJson(Map<String, dynamic> json) {
-    return BundleRequest(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      method: HTTPVerb.fromJson(json['method']),
-      methodElement: json['_method'] != null
-          ? Element.fromJson(json['_method'] as Map<String, dynamic>)
-          : null,
-      url: FhirUri.fromJson(json['url']),
-      urlElement: json['_url'] != null
-          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
-          : null,
-      ifNoneMatch: json['ifNoneMatch'] != null
-          ? FhirString.fromJson(json['ifNoneMatch'])
-          : null,
-      ifNoneMatchElement: json['_ifNoneMatch'] != null
-          ? Element.fromJson(json['_ifNoneMatch'] as Map<String, dynamic>)
-          : null,
-      ifModifiedSince: json['ifModifiedSince'] != null
-          ? FhirInstant.fromJson(json['ifModifiedSince'])
-          : null,
-      ifModifiedSinceElement: json['_ifModifiedSince'] != null
-          ? Element.fromJson(json['_ifModifiedSince'] as Map<String, dynamic>)
-          : null,
-      ifMatch:
-          json['ifMatch'] != null ? FhirString.fromJson(json['ifMatch']) : null,
-      ifMatchElement: json['_ifMatch'] != null
-          ? Element.fromJson(json['_ifMatch'] as Map<String, dynamic>)
-          : null,
-      ifNoneExist: json['ifNoneExist'] != null
-          ? FhirString.fromJson(json['ifNoneExist'])
-          : null,
-      ifNoneExistElement: json['_ifNoneExist'] != null
-          ? Element.fromJson(json['_ifNoneExist'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   BundleRequest clone() => throw UnimplementedError();
   @override
@@ -916,42 +1151,34 @@ class BundleRequest extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory BundleRequest.fromYaml(dynamic yaml) => yaml is String
-      ? BundleRequest.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? BundleRequest.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'BundleRequest cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory BundleRequest.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return BundleRequest.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [BundleResponse] /// Indicates the results of processing the corresponding 'request' entry in
-/// the batch or transaction being responded to or what the results of an
-/// operation where when returning history.
+/// [BundleResponse]
+/// Indicates the results of processing the corresponding 'request' entry
+/// in the batch or transaction being responded to or what the results of
+/// an operation where when returning history.
 class BundleResponse extends BackboneElement {
+  /// Primary constructor for [BundleResponse]
+
   BundleResponse({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     this.location,
+
+    /// Extensions for [location]
     this.locationElement,
     this.etag,
+
+    /// Extensions for [etag]
     this.etagElement,
     this.lastModified,
+
+    /// Extensions for [lastModified]
     this.lastModifiedElement,
     this.outcome,
     super.userData,
@@ -962,48 +1189,143 @@ class BundleResponse extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory BundleResponse.fromJson(Map<String, dynamic> json) {
+    return BundleResponse(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      status: FhirString.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      location:
+          json['location'] != null ? FhirUri.fromJson(json['location']) : null,
+      locationElement: json['_location'] != null
+          ? Element.fromJson(
+              json['_location'] as Map<String, dynamic>,
+            )
+          : null,
+      etag: json['etag'] != null ? FhirString.fromJson(json['etag']) : null,
+      etagElement: json['_etag'] != null
+          ? Element.fromJson(
+              json['_etag'] as Map<String, dynamic>,
+            )
+          : null,
+      lastModified: json['lastModified'] != null
+          ? FhirInstant.fromJson(json['lastModified'])
+          : null,
+      lastModifiedElement: json['_lastModified'] != null
+          ? Element.fromJson(
+              json['_lastModified'] as Map<String, dynamic>,
+            )
+          : null,
+      outcome: json['outcome'] != null
+          ? Resource.fromJson(
+              json['outcome'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [BundleResponse] from a [String] or [YamlMap] object
+  factory BundleResponse.fromYaml(dynamic yaml) => yaml is String
+      ? BundleResponse.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? BundleResponse.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'BundleResponse cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [BundleResponse] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory BundleResponse.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return BundleResponse.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'BundleResponse';
 
-  /// [status] /// The status code returned by processing this entry. The status SHALL start
-  /// with a 3 digit HTTP code (e.g. 404) and may contain the standard HTTP
-  /// description associated with the status code.
+  /// [status]
+  /// The status code returned by processing this entry. The status SHALL
+  /// start with a 3 digit HTTP code (e.g. 404) and may contain the standard
+  /// HTTP description associated with the status code.
   final FhirString status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [location] /// The location header created by processing this operation, populated if the
-  /// operation returns a location.
+  /// [location]
+  /// The location header created by processing this operation, populated if
+  /// the operation returns a location.
   final FhirUri? location;
+
+  /// Extensions for [location]
   final Element? locationElement;
 
-  /// [etag] /// The Etag for the resource, if the operation for the entry produced a
+  /// [etag]
+  /// The Etag for the resource, if the operation for the entry produced a
   /// versioned resource (see [Resource Metadata and
   /// Versioning](http.html#versioning) and [Managing Resource
   /// Contention](http.html#concurrency)).
   final FhirString? etag;
+
+  /// Extensions for [etag]
   final Element? etagElement;
 
-  /// [lastModified] /// The date/time that the resource was modified on the server.
+  /// [lastModified]
+  /// The date/time that the resource was modified on the server.
   final FhirInstant? lastModified;
+
+  /// Extensions for [lastModified]
   final Element? lastModifiedElement;
 
-  /// [outcome] /// An OperationOutcome containing hints and warnings produced as part of
+  /// [outcome]
+  /// An OperationOutcome containing hints and warnings produced as part of
   /// processing this entry in a batch or transaction.
   final Resource? outcome;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['status'] = status.toJson();
     if (statusElement != null) {
@@ -1033,45 +1355,6 @@ class BundleResponse extends BackboneElement {
     return json;
   }
 
-  factory BundleResponse.fromJson(Map<String, dynamic> json) {
-    return BundleResponse(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      status: FhirString.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      location:
-          json['location'] != null ? FhirUri.fromJson(json['location']) : null,
-      locationElement: json['_location'] != null
-          ? Element.fromJson(json['_location'] as Map<String, dynamic>)
-          : null,
-      etag: json['etag'] != null ? FhirString.fromJson(json['etag']) : null,
-      etagElement: json['_etag'] != null
-          ? Element.fromJson(json['_etag'] as Map<String, dynamic>)
-          : null,
-      lastModified: json['lastModified'] != null
-          ? FhirInstant.fromJson(json['lastModified'])
-          : null,
-      lastModifiedElement: json['_lastModified'] != null
-          ? Element.fromJson(json['_lastModified'] as Map<String, dynamic>)
-          : null,
-      outcome: json['outcome'] != null
-          ? Resource.fromJson(json['outcome'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   BundleResponse clone() => throw UnimplementedError();
   @override
@@ -1115,24 +1398,5 @@ class BundleResponse extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory BundleResponse.fromYaml(dynamic yaml) => yaml is String
-      ? BundleResponse.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? BundleResponse.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'BundleResponse cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory BundleResponse.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return BundleResponse.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

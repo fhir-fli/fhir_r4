@@ -12,7 +12,7 @@ class SearchCitation extends SearchResource {
   SearchCitation contextQuantity(FhirDecimal value,
       {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {
     if (modifier != null &&
-        !<String>['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
+        !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
     }
     parameters['${modifier != null ? '$modifier' : ''}context_quantity'] =
@@ -33,8 +33,7 @@ class SearchCitation extends SearchResource {
   }
 
   SearchCitation description(FhirString value, {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}description'] =
@@ -63,8 +62,7 @@ class SearchCitation extends SearchResource {
   }
 
   SearchCitation name(FhirString value, {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}name'] = value.toString();
@@ -72,8 +70,7 @@ class SearchCitation extends SearchResource {
   }
 
   SearchCitation publisher(FhirString value, {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}publisher'] =
@@ -89,8 +86,7 @@ class SearchCitation extends SearchResource {
   }
 
   SearchCitation title(FhirString value, {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}title'] =

@@ -1,8 +1,8 @@
-import '../../../fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart';
 
 /// Creates a new [id] for the Resources that's passed
 Resource newId(Resource resource) {
-  final FhirString newId = generateNewUuidFhirString();
+  final newId = generateNewUuidFhirString();
   switch (resource.resourceType) {
     case R4ResourceType.Account:
       return (resource as Account).copyWith(id: newId);

@@ -1,17 +1,23 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [DeviceDefinition] /// The characteristics, operational status and capabilities of a
+/// [DeviceDefinition]
+/// The characteristics, operational status and capabilities of a
 /// medical-related component of a medical device.
 class DeviceDefinition extends DomainResource {
+  /// Primary constructor for [DeviceDefinition]
+
   DeviceDefinition({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -20,14 +26,20 @@ class DeviceDefinition extends DomainResource {
     this.identifier,
     this.udiDeviceIdentifier,
     this.manufacturerString,
+
+    /// Extensions for [manufacturerString]
     this.manufacturerStringElement,
     this.manufacturerReference,
     this.deviceName,
     this.modelNumber,
+
+    /// Extensions for [modelNumber]
     this.modelNumberElement,
     this.type,
     this.specialization,
     this.version,
+
+    /// Extensions for [version]
     this.versionElement,
     this.safety,
     this.shelfLifeStorage,
@@ -38,8 +50,12 @@ class DeviceDefinition extends DomainResource {
     this.owner,
     this.contact,
     this.url,
+
+    /// Extensions for [url]
     this.urlElement,
     this.onlineInformation,
+
+    /// Extensions for [onlineInformation]
     this.onlineInformationElement,
     this.note,
     this.quantity,
@@ -51,99 +67,403 @@ class DeviceDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.DeviceDefinition);
+  }) : super(
+          resourceType: R4ResourceType.DeviceDefinition,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory DeviceDefinition.fromJson(Map<String, dynamic> json) {
+    return DeviceDefinition(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      udiDeviceIdentifier: json['udiDeviceIdentifier'] != null
+          ? (json['udiDeviceIdentifier'] as List<dynamic>)
+              .map<DeviceDefinitionUdiDeviceIdentifier>(
+                (dynamic v) => DeviceDefinitionUdiDeviceIdentifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      manufacturerString: json['manufacturerString'] != null
+          ? FhirString.fromJson(json['manufacturerString'])
+          : null,
+      manufacturerStringElement: json['_manufacturerString'] != null
+          ? Element.fromJson(
+              json['_manufacturerString'] as Map<String, dynamic>,
+            )
+          : null,
+      manufacturerReference: json['manufacturerReference'] != null
+          ? Reference.fromJson(
+              json['manufacturerReference'] as Map<String, dynamic>,
+            )
+          : null,
+      deviceName: json['deviceName'] != null
+          ? (json['deviceName'] as List<dynamic>)
+              .map<DeviceDefinitionDeviceName>(
+                (dynamic v) => DeviceDefinitionDeviceName.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modelNumber: json['modelNumber'] != null
+          ? FhirString.fromJson(json['modelNumber'])
+          : null,
+      modelNumberElement: json['_modelNumber'] != null
+          ? Element.fromJson(
+              json['_modelNumber'] as Map<String, dynamic>,
+            )
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(
+              json['type'] as Map<String, dynamic>,
+            )
+          : null,
+      specialization: json['specialization'] != null
+          ? (json['specialization'] as List<dynamic>)
+              .map<DeviceDefinitionSpecialization>(
+                (dynamic v) => DeviceDefinitionSpecialization.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      version: json['version'] != null
+          ? (json['version'] as List<dynamic>)
+              .map<FhirString>(
+                (dynamic v) => FhirString.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      versionElement: json['_version'] != null
+          ? (json['_version'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      safety: json['safety'] != null
+          ? (json['safety'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      shelfLifeStorage: json['shelfLifeStorage'] != null
+          ? (json['shelfLifeStorage'] as List<dynamic>)
+              .map<ProductShelfLife>(
+                (dynamic v) => ProductShelfLife.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      physicalCharacteristics: json['physicalCharacteristics'] != null
+          ? ProdCharacteristic.fromJson(
+              json['physicalCharacteristics'] as Map<String, dynamic>,
+            )
+          : null,
+      languageCode: json['languageCode'] != null
+          ? (json['languageCode'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      capability: json['capability'] != null
+          ? (json['capability'] as List<dynamic>)
+              .map<DeviceDefinitionCapability>(
+                (dynamic v) => DeviceDefinitionCapability.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      property: json['property'] != null
+          ? (json['property'] as List<dynamic>)
+              .map<DeviceDefinitionProperty>(
+                (dynamic v) => DeviceDefinitionProperty.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      owner: json['owner'] != null
+          ? Reference.fromJson(
+              json['owner'] as Map<String, dynamic>,
+            )
+          : null,
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<ContactPoint>(
+                (dynamic v) => ContactPoint.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
+      urlElement: json['_url'] != null
+          ? Element.fromJson(
+              json['_url'] as Map<String, dynamic>,
+            )
+          : null,
+      onlineInformation: json['onlineInformation'] != null
+          ? FhirUri.fromJson(json['onlineInformation'])
+          : null,
+      onlineInformationElement: json['_onlineInformation'] != null
+          ? Element.fromJson(
+              json['_onlineInformation'] as Map<String, dynamic>,
+            )
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                (dynamic v) => Annotation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      quantity: json['quantity'] != null
+          ? Quantity.fromJson(
+              json['quantity'] as Map<String, dynamic>,
+            )
+          : null,
+      parentDevice: json['parentDevice'] != null
+          ? Reference.fromJson(
+              json['parentDevice'] as Map<String, dynamic>,
+            )
+          : null,
+      material: json['material'] != null
+          ? (json['material'] as List<dynamic>)
+              .map<DeviceDefinitionMaterial>(
+                (dynamic v) => DeviceDefinitionMaterial.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [DeviceDefinition] from a [String] or [YamlMap] object
+  factory DeviceDefinition.fromYaml(dynamic yaml) => yaml is String
+      ? DeviceDefinition.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? DeviceDefinition.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'DeviceDefinition cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [DeviceDefinition] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory DeviceDefinition.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DeviceDefinition.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'DeviceDefinition';
 
-  /// [identifier] /// Unique instance identifiers assigned to a device by the software,
+  /// [identifier]
+  /// Unique instance identifiers assigned to a device by the software,
   /// manufacturers, other organizations or owners. For example: handle ID.
   final List<Identifier>? identifier;
 
-  /// [udiDeviceIdentifier] /// Unique device identifier (UDI) assigned to device label or package. Note
-  /// that the Device may include multiple udiCarriers as it either may include
-  /// just the udiCarrier for the jurisdiction it is sold, or for multiple
-  /// jurisdictions it could have been sold.
+  /// [udiDeviceIdentifier]
+  /// Unique device identifier (UDI) assigned to device label or package.
+  /// Note that the Device may include multiple udiCarriers as it either may
+  /// include just the udiCarrier for the jurisdiction it is sold, or for
+  /// multiple jurisdictions it could have been sold.
   final List<DeviceDefinitionUdiDeviceIdentifier>? udiDeviceIdentifier;
 
-  /// [manufacturerString] /// A name of the manufacturer.
+  /// [manufacturerString]
+  /// A name of the manufacturer.
   final FhirString? manufacturerString;
+
+  /// Extensions for [manufacturerString]
   final Element? manufacturerStringElement;
 
-  /// [manufacturerReference] /// A name of the manufacturer.
+  /// [manufacturerReference]
+  /// A name of the manufacturer.
   final Reference? manufacturerReference;
 
-  /// [deviceName] /// A name given to the device to identify it.
+  /// [deviceName]
+  /// A name given to the device to identify it.
   final List<DeviceDefinitionDeviceName>? deviceName;
 
-  /// [modelNumber] /// The model number for the device.
+  /// [modelNumber]
+  /// The model number for the device.
   final FhirString? modelNumber;
+
+  /// Extensions for [modelNumber]
   final Element? modelNumberElement;
 
-  /// [type] /// What kind of device or device system this is.
+  /// [type]
+  /// What kind of device or device system this is.
   final CodeableConcept? type;
 
-  /// [specialization] /// The capabilities supported on a device, the standards to which the device
-  /// conforms for a particular purpose, and used for the communication.
+  /// [specialization]
+  /// The capabilities supported on a device, the standards to which the
+  /// device conforms for a particular purpose, and used for the
+  /// communication.
   final List<DeviceDefinitionSpecialization>? specialization;
 
-  /// [version] /// The available versions of the device, e.g., software versions.
+  /// [version]
+  /// The available versions of the device, e.g., software versions.
   final List<FhirString>? version;
+
+  /// Extensions for [version]
   final List<Element>? versionElement;
 
-  /// [safety] /// Safety characteristics of the device.
+  /// [safety]
+  /// Safety characteristics of the device.
   final List<CodeableConcept>? safety;
 
-  /// [shelfLifeStorage] /// Shelf Life and storage information.
+  /// [shelfLifeStorage]
+  /// Shelf Life and storage information.
   final List<ProductShelfLife>? shelfLifeStorage;
 
-  /// [physicalCharacteristics] /// Dimensions, color etc.
+  /// [physicalCharacteristics]
+  /// Dimensions, color etc.
   final ProdCharacteristic? physicalCharacteristics;
 
-  /// [languageCode] /// Language code for the human-readable text strings produced by the device
-  /// (all supported).
+  /// [languageCode]
+  /// Language code for the human-readable text strings produced by the
+  /// device (all supported).
   final List<CodeableConcept>? languageCode;
 
-  /// [capability] /// Device capabilities.
+  /// [capability]
+  /// Device capabilities.
   final List<DeviceDefinitionCapability>? capability;
 
-  /// [property] /// The actual configuration settings of a device as it actually operates,
+  /// [property]
+  /// The actual configuration settings of a device as it actually operates,
   /// e.g., regulation status, time properties.
   final List<DeviceDefinitionProperty>? property;
 
-  /// [owner] /// An organization that is responsible for the provision and ongoing
+  /// [owner]
+  /// An organization that is responsible for the provision and ongoing
   /// maintenance of the device.
   final Reference? owner;
 
-  /// [contact] /// Contact details for an organization or a particular human that is
+  /// [contact]
+  /// Contact details for an organization or a particular human that is
   /// responsible for the device.
   final List<ContactPoint>? contact;
 
-  /// [url] /// A network address on which the device may be contacted directly.
+  /// [url]
+  /// A network address on which the device may be contacted directly.
   final FhirUri? url;
+
+  /// Extensions for [url]
   final Element? urlElement;
 
-  /// [onlineInformation] /// Access to on-line information about the device.
+  /// [onlineInformation]
+  /// Access to on-line information about the device.
   final FhirUri? onlineInformation;
+
+  /// Extensions for [onlineInformation]
   final Element? onlineInformationElement;
 
-  /// [note] /// Descriptive information, usage information or implantation information that
-  /// is not captured in an existing element.
+  /// [note]
+  /// Descriptive information, usage information or implantation information
+  /// that is not captured in an existing element.
   final List<Annotation>? note;
 
-  /// [quantity] /// The quantity of the device present in the packaging (e.g. the number of
-  /// devices present in a pack, or the number of devices in the same package of
-  /// the medicinal product).
+  /// [quantity]
+  /// The quantity of the device present in the packaging (e.g. the number of
+  /// devices present in a pack, or the number of devices in the same package
+  /// of the medicinal product).
   final Quantity? quantity;
 
-  /// [parentDevice] /// The parent device it can be part of.
+  /// [parentDevice]
+  /// The parent device it can be part of.
   final Reference? parentDevice;
 
-  /// [material] /// A substance used to create the material(s) of which the device is made.
+  /// [material]
+  /// A substance used to create the material(s) of which the device is made.
   final List<DeviceDefinitionMaterial>? material;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -164,25 +484,23 @@ class DeviceDefinition extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (udiDeviceIdentifier != null && udiDeviceIdentifier!.isNotEmpty) {
       json['udiDeviceIdentifier'] = udiDeviceIdentifier!
-          .map<dynamic>((DeviceDefinitionUdiDeviceIdentifier v) => v.toJson())
+          .map((DeviceDefinitionUdiDeviceIdentifier v) => v.toJson())
           .toList();
     }
     if (manufacturerString?.value != null) {
@@ -196,7 +514,7 @@ class DeviceDefinition extends DomainResource {
     }
     if (deviceName != null && deviceName!.isNotEmpty) {
       json['deviceName'] = deviceName!
-          .map<dynamic>((DeviceDefinitionDeviceName v) => v.toJson())
+          .map((DeviceDefinitionDeviceName v) => v.toJson())
           .toList();
     }
     if (modelNumber?.value != null) {
@@ -210,7 +528,7 @@ class DeviceDefinition extends DomainResource {
     }
     if (specialization != null && specialization!.isNotEmpty) {
       json['specialization'] = specialization!
-          .map<dynamic>((DeviceDefinitionSpecialization v) => v.toJson())
+          .map((DeviceDefinitionSpecialization v) => v.toJson())
           .toList();
     }
     if (version != null && version!.isNotEmpty) {
@@ -221,38 +539,33 @@ class DeviceDefinition extends DomainResource {
           versionElement!.map((Element v) => v.toJson()).toList();
     }
     if (safety != null && safety!.isNotEmpty) {
-      json['safety'] =
-          safety!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+      json['safety'] = safety!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (shelfLifeStorage != null && shelfLifeStorage!.isNotEmpty) {
-      json['shelfLifeStorage'] = shelfLifeStorage!
-          .map<dynamic>((ProductShelfLife v) => v.toJson())
-          .toList();
+      json['shelfLifeStorage'] =
+          shelfLifeStorage!.map((ProductShelfLife v) => v.toJson()).toList();
     }
     if (physicalCharacteristics != null) {
       json['physicalCharacteristics'] = physicalCharacteristics!.toJson();
     }
     if (languageCode != null && languageCode!.isNotEmpty) {
-      json['languageCode'] = languageCode!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['languageCode'] =
+          languageCode!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (capability != null && capability!.isNotEmpty) {
       json['capability'] = capability!
-          .map<dynamic>((DeviceDefinitionCapability v) => v.toJson())
+          .map((DeviceDefinitionCapability v) => v.toJson())
           .toList();
     }
     if (property != null && property!.isNotEmpty) {
-      json['property'] = property!
-          .map<dynamic>((DeviceDefinitionProperty v) => v.toJson())
-          .toList();
+      json['property'] =
+          property!.map((DeviceDefinitionProperty v) => v.toJson()).toList();
     }
     if (owner != null) {
       json['owner'] = owner!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
-      json['contact'] =
-          contact!.map<dynamic>((ContactPoint v) => v.toJson()).toList();
+      json['contact'] = contact!.map((ContactPoint v) => v.toJson()).toList();
     }
     if (url?.value != null) {
       json['url'] = url!.toJson();
@@ -267,7 +580,7 @@ class DeviceDefinition extends DomainResource {
       json['_onlineInformation'] = onlineInformationElement!.toJson();
     }
     if (note != null && note!.isNotEmpty) {
-      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+      json['note'] = note!.map((Annotation v) => v.toJson()).toList();
     }
     if (quantity != null) {
       json['quantity'] = quantity!.toJson();
@@ -276,184 +589,12 @@ class DeviceDefinition extends DomainResource {
       json['parentDevice'] = parentDevice!.toJson();
     }
     if (material != null && material!.isNotEmpty) {
-      json['material'] = material!
-          .map<dynamic>((DeviceDefinitionMaterial v) => v.toJson())
-          .toList();
+      json['material'] =
+          material!.map((DeviceDefinitionMaterial v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory DeviceDefinition.fromJson(Map<String, dynamic> json) {
-    return DeviceDefinition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      udiDeviceIdentifier: json['udiDeviceIdentifier'] != null
-          ? (json['udiDeviceIdentifier'] as List<dynamic>)
-              .map<DeviceDefinitionUdiDeviceIdentifier>((dynamic v) =>
-                  DeviceDefinitionUdiDeviceIdentifier.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      manufacturerString: json['manufacturerString'] != null
-          ? FhirString.fromJson(json['manufacturerString'])
-          : null,
-      manufacturerStringElement: json['_manufacturerString'] != null
-          ? Element.fromJson(
-              json['_manufacturerString'] as Map<String, dynamic>)
-          : null,
-      manufacturerReference: json['manufacturerReference'] != null
-          ? Reference.fromJson(
-              json['manufacturerReference'] as Map<String, dynamic>)
-          : null,
-      deviceName: json['deviceName'] != null
-          ? (json['deviceName'] as List<dynamic>)
-              .map<DeviceDefinitionDeviceName>((dynamic v) =>
-                  DeviceDefinitionDeviceName.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modelNumber: json['modelNumber'] != null
-          ? FhirString.fromJson(json['modelNumber'])
-          : null,
-      modelNumberElement: json['_modelNumber'] != null
-          ? Element.fromJson(json['_modelNumber'] as Map<String, dynamic>)
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
-          : null,
-      specialization: json['specialization'] != null
-          ? (json['specialization'] as List<dynamic>)
-              .map<DeviceDefinitionSpecialization>((dynamic v) =>
-                  DeviceDefinitionSpecialization.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      version: json['version'] != null
-          ? (json['version'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
-              .toList()
-          : null,
-      versionElement: json['_version'] != null
-          ? (json['_version'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      safety: json['safety'] != null
-          ? (json['safety'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      shelfLifeStorage: json['shelfLifeStorage'] != null
-          ? (json['shelfLifeStorage'] as List<dynamic>)
-              .map<ProductShelfLife>((dynamic v) =>
-                  ProductShelfLife.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      physicalCharacteristics: json['physicalCharacteristics'] != null
-          ? ProdCharacteristic.fromJson(
-              json['physicalCharacteristics'] as Map<String, dynamic>)
-          : null,
-      languageCode: json['languageCode'] != null
-          ? (json['languageCode'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      capability: json['capability'] != null
-          ? (json['capability'] as List<dynamic>)
-              .map<DeviceDefinitionCapability>((dynamic v) =>
-                  DeviceDefinitionCapability.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      property: json['property'] != null
-          ? (json['property'] as List<dynamic>)
-              .map<DeviceDefinitionProperty>((dynamic v) =>
-                  DeviceDefinitionProperty.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      owner: json['owner'] != null
-          ? Reference.fromJson(json['owner'] as Map<String, dynamic>)
-          : null,
-      contact: json['contact'] != null
-          ? (json['contact'] as List<dynamic>)
-              .map<ContactPoint>((dynamic v) =>
-                  ContactPoint.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
-          : null,
-      onlineInformation: json['onlineInformation'] != null
-          ? FhirUri.fromJson(json['onlineInformation'])
-          : null,
-      onlineInformationElement: json['_onlineInformation'] != null
-          ? Element.fromJson(json['_onlineInformation'] as Map<String, dynamic>)
-          : null,
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      quantity: json['quantity'] != null
-          ? Quantity.fromJson(json['quantity'] as Map<String, dynamic>)
-          : null,
-      parentDevice: json['parentDevice'] != null
-          ? Reference.fromJson(json['parentDevice'] as Map<String, dynamic>)
-          : null,
-      material: json['material'] != null
-          ? (json['material'] as List<dynamic>)
-              .map<DeviceDefinitionMaterial>((dynamic v) =>
-                  DeviceDefinitionMaterial.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   DeviceDefinition clone() => throw UnimplementedError();
   @override
@@ -554,41 +695,31 @@ class DeviceDefinition extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory DeviceDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? DeviceDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? DeviceDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'DeviceDefinition cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory DeviceDefinition.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return DeviceDefinition.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [DeviceDefinitionUdiDeviceIdentifier] /// Unique device identifier (UDI) assigned to device label or package. Note
-/// that the Device may include multiple udiCarriers as it either may include
-/// just the udiCarrier for the jurisdiction it is sold, or for multiple
-/// jurisdictions it could have been sold.
+/// [DeviceDefinitionUdiDeviceIdentifier]
+/// Unique device identifier (UDI) assigned to device label or package.
+/// Note that the Device may include multiple udiCarriers as it either may
+/// include just the udiCarrier for the jurisdiction it is sold, or for
+/// multiple jurisdictions it could have been sold.
 class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
+  /// Primary constructor for [DeviceDefinitionUdiDeviceIdentifier]
+
   DeviceDefinitionUdiDeviceIdentifier({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.deviceIdentifier,
+
+    /// Extensions for [deviceIdentifier]
     this.deviceIdentifierElement,
     required this.issuer,
+
+    /// Extensions for [issuer]
     this.issuerElement,
     required this.jurisdiction,
+
+    /// Extensions for [jurisdiction]
     this.jurisdictionElement,
     super.userData,
     super.formatCommentsPre,
@@ -598,36 +729,115 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory DeviceDefinitionUdiDeviceIdentifier.fromJson(
+      Map<String, dynamic> json) {
+    return DeviceDefinitionUdiDeviceIdentifier(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      deviceIdentifier: FhirString.fromJson(json['deviceIdentifier']),
+      deviceIdentifierElement: json['_deviceIdentifier'] != null
+          ? Element.fromJson(
+              json['_deviceIdentifier'] as Map<String, dynamic>,
+            )
+          : null,
+      issuer: FhirUri.fromJson(json['issuer']),
+      issuerElement: json['_issuer'] != null
+          ? Element.fromJson(
+              json['_issuer'] as Map<String, dynamic>,
+            )
+          : null,
+      jurisdiction: FhirUri.fromJson(json['jurisdiction']),
+      jurisdictionElement: json['_jurisdiction'] != null
+          ? Element.fromJson(
+              json['_jurisdiction'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [DeviceDefinitionUdiDeviceIdentifier] from a [String] or [YamlMap] object
+  factory DeviceDefinitionUdiDeviceIdentifier.fromYaml(dynamic yaml) => yaml
+          is String
+      ? DeviceDefinitionUdiDeviceIdentifier.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? DeviceDefinitionUdiDeviceIdentifier.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'DeviceDefinitionUdiDeviceIdentifier cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [DeviceDefinitionUdiDeviceIdentifier] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory DeviceDefinitionUdiDeviceIdentifier.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DeviceDefinitionUdiDeviceIdentifier.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'DeviceDefinitionUdiDeviceIdentifier';
 
-  /// [deviceIdentifier] /// The identifier that is to be associated with every Device that references
-  /// this DeviceDefintiion for the issuer and jurisdication porvided in the
-  /// DeviceDefinition.udiDeviceIdentifier.
+  /// [deviceIdentifier]
+  /// The identifier that is to be associated with every Device that
+  /// references this DeviceDefintiion for the issuer and jurisdication
+  /// porvided in the DeviceDefinition.udiDeviceIdentifier.
   final FhirString deviceIdentifier;
+
+  /// Extensions for [deviceIdentifier]
   final Element? deviceIdentifierElement;
 
-  /// [issuer] /// The organization that assigns the identifier algorithm.
+  /// [issuer]
+  /// The organization that assigns the identifier algorithm.
   final FhirUri issuer;
+
+  /// Extensions for [issuer]
   final Element? issuerElement;
 
-  /// [jurisdiction] /// The jurisdiction to which the deviceIdentifier applies.
+  /// [jurisdiction]
+  /// The jurisdiction to which the deviceIdentifier applies.
   final FhirUri jurisdiction;
+
+  /// Extensions for [jurisdiction]
   final Element? jurisdictionElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['deviceIdentifier'] = deviceIdentifier.toJson();
     if (deviceIdentifierElement != null) {
@@ -644,36 +854,6 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
     return json;
   }
 
-  factory DeviceDefinitionUdiDeviceIdentifier.fromJson(
-      Map<String, dynamic> json) {
-    return DeviceDefinitionUdiDeviceIdentifier(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      deviceIdentifier: FhirString.fromJson(json['deviceIdentifier']),
-      deviceIdentifierElement: json['_deviceIdentifier'] != null
-          ? Element.fromJson(json['_deviceIdentifier'] as Map<String, dynamic>)
-          : null,
-      issuer: FhirUri.fromJson(json['issuer']),
-      issuerElement: json['_issuer'] != null
-          ? Element.fromJson(json['_issuer'] as Map<String, dynamic>)
-          : null,
-      jurisdiction: FhirUri.fromJson(json['jurisdiction']),
-      jurisdictionElement: json['_jurisdiction'] != null
-          ? Element.fromJson(json['_jurisdiction'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   DeviceDefinitionUdiDeviceIdentifier clone() => throw UnimplementedError();
   @override
@@ -713,37 +893,24 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory DeviceDefinitionUdiDeviceIdentifier.fromYaml(dynamic yaml) => yaml
-          is String
-      ? DeviceDefinitionUdiDeviceIdentifier.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? DeviceDefinitionUdiDeviceIdentifier.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'DeviceDefinitionUdiDeviceIdentifier cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory DeviceDefinitionUdiDeviceIdentifier.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return DeviceDefinitionUdiDeviceIdentifier.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [DeviceDefinitionDeviceName] /// A name given to the device to identify it.
+/// [DeviceDefinitionDeviceName]
+/// A name given to the device to identify it.
 class DeviceDefinitionDeviceName extends BackboneElement {
+  /// Primary constructor for [DeviceDefinitionDeviceName]
+
   DeviceDefinitionDeviceName({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.name,
+
+    /// Extensions for [name]
     this.nameElement,
     required this.type,
+
+    /// Extensions for [type]
     this.typeElement,
     super.userData,
     super.formatCommentsPre,
@@ -753,32 +920,100 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory DeviceDefinitionDeviceName.fromJson(Map<String, dynamic> json) {
+    return DeviceDefinitionDeviceName(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      name: FhirString.fromJson(json['name']),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(
+              json['_name'] as Map<String, dynamic>,
+            )
+          : null,
+      type: DeviceNameType.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(
+              json['_type'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [DeviceDefinitionDeviceName] from a [String] or [YamlMap] object
+  factory DeviceDefinitionDeviceName.fromYaml(dynamic yaml) => yaml is String
+      ? DeviceDefinitionDeviceName.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? DeviceDefinitionDeviceName.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'DeviceDefinitionDeviceName cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [DeviceDefinitionDeviceName] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory DeviceDefinitionDeviceName.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DeviceDefinitionDeviceName.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'DeviceDefinitionDeviceName';
 
-  /// [name] /// The name of the device.
+  /// [name]
+  /// The name of the device.
   final FhirString name;
+
+  /// Extensions for [name]
   final Element? nameElement;
 
-  /// [type] /// The type of deviceName.
+  /// [type]
+  /// The type of deviceName.
   /// UDILabelName | UserFriendlyName | PatientReportedName |
   /// ManufactureDeviceName | ModelName.
   final DeviceNameType type;
+
+  /// Extensions for [type]
   final Element? typeElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
     if (nameElement != null) {
@@ -788,31 +1023,6 @@ class DeviceDefinitionDeviceName extends BackboneElement {
     return json;
   }
 
-  factory DeviceDefinitionDeviceName.fromJson(Map<String, dynamic> json) {
-    return DeviceDefinitionDeviceName(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      name: FhirString.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
-          : null,
-      type: DeviceNameType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   DeviceDefinitionDeviceName clone() => throw UnimplementedError();
   @override
@@ -847,37 +1057,26 @@ class DeviceDefinitionDeviceName extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory DeviceDefinitionDeviceName.fromYaml(dynamic yaml) => yaml is String
-      ? DeviceDefinitionDeviceName.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? DeviceDefinitionDeviceName.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'DeviceDefinitionDeviceName cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory DeviceDefinitionDeviceName.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return DeviceDefinitionDeviceName.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [DeviceDefinitionSpecialization] /// The capabilities supported on a device, the standards to which the device
-/// conforms for a particular purpose, and used for the communication.
+/// [DeviceDefinitionSpecialization]
+/// The capabilities supported on a device, the standards to which the
+/// device conforms for a particular purpose, and used for the
+/// communication.
 class DeviceDefinitionSpecialization extends BackboneElement {
+  /// Primary constructor for [DeviceDefinitionSpecialization]
+
   DeviceDefinitionSpecialization({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.systemType,
+
+    /// Extensions for [systemType]
     this.systemTypeElement,
     this.version,
+
+    /// Extensions for [version]
     this.versionElement,
     super.userData,
     super.formatCommentsPre,
@@ -887,30 +1086,100 @@ class DeviceDefinitionSpecialization extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory DeviceDefinitionSpecialization.fromJson(Map<String, dynamic> json) {
+    return DeviceDefinitionSpecialization(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      systemType: FhirString.fromJson(json['systemType']),
+      systemTypeElement: json['_systemType'] != null
+          ? Element.fromJson(
+              json['_systemType'] as Map<String, dynamic>,
+            )
+          : null,
+      version:
+          json['version'] != null ? FhirString.fromJson(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(
+              json['_version'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [DeviceDefinitionSpecialization] from a [String] or [YamlMap] object
+  factory DeviceDefinitionSpecialization.fromYaml(dynamic yaml) => yaml
+          is String
+      ? DeviceDefinitionSpecialization.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? DeviceDefinitionSpecialization.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'DeviceDefinitionSpecialization cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [DeviceDefinitionSpecialization] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory DeviceDefinitionSpecialization.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DeviceDefinitionSpecialization.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'DeviceDefinitionSpecialization';
 
-  /// [systemType] /// The standard that is used to operate and communicate.
+  /// [systemType]
+  /// The standard that is used to operate and communicate.
   final FhirString systemType;
+
+  /// Extensions for [systemType]
   final Element? systemTypeElement;
 
-  /// [version] /// The version of the standard that is used to operate and communicate.
+  /// [version]
+  /// The version of the standard that is used to operate and communicate.
   final FhirString? version;
+
+  /// Extensions for [version]
   final Element? versionElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['systemType'] = systemType.toJson();
     if (systemTypeElement != null) {
@@ -925,32 +1194,6 @@ class DeviceDefinitionSpecialization extends BackboneElement {
     return json;
   }
 
-  factory DeviceDefinitionSpecialization.fromJson(Map<String, dynamic> json) {
-    return DeviceDefinitionSpecialization(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      systemType: FhirString.fromJson(json['systemType']),
-      systemTypeElement: json['_systemType'] != null
-          ? Element.fromJson(json['_systemType'] as Map<String, dynamic>)
-          : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   DeviceDefinitionSpecialization clone() => throw UnimplementedError();
   @override
@@ -985,30 +1228,13 @@ class DeviceDefinitionSpecialization extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory DeviceDefinitionSpecialization.fromYaml(dynamic yaml) => yaml
-          is String
-      ? DeviceDefinitionSpecialization.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? DeviceDefinitionSpecialization.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'DeviceDefinitionSpecialization cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory DeviceDefinitionSpecialization.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return DeviceDefinitionSpecialization.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [DeviceDefinitionCapability] /// Device capabilities.
+/// [DeviceDefinitionCapability]
+/// Device capabilities.
 class DeviceDefinitionCapability extends BackboneElement {
+  /// Primary constructor for [DeviceDefinitionCapability]
+
   DeviceDefinitionCapability({
     super.id,
     super.extension_,
@@ -1023,61 +1249,101 @@ class DeviceDefinitionCapability extends BackboneElement {
     super.namedChildren,
   });
 
-  @override
-  String get fhirType => 'DeviceDefinitionCapability';
-
-  /// [type] /// Type of capability.
-  final CodeableConcept type;
-
-  /// [description] /// Description of capability.
-  final List<CodeableConcept>? description;
-  @override
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson();
-    }
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
-    }
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
-    }
-    json['type'] = type.toJson();
-    if (description != null && description!.isNotEmpty) {
-      json['description'] =
-          description!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
-    }
-    return json;
-  }
-
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceDefinitionCapability.fromJson(Map<String, dynamic> json) {
     return DeviceDefinitionCapability(
       id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
-      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      type: CodeableConcept.fromJson(
+        json['type'] as Map<String, dynamic>,
+      ),
       description: json['description'] != null
           ? (json['description'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
     );
   }
+
+  /// Deserialize [DeviceDefinitionCapability] from a [String] or [YamlMap] object
+  factory DeviceDefinitionCapability.fromYaml(dynamic yaml) => yaml is String
+      ? DeviceDefinitionCapability.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? DeviceDefinitionCapability.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'DeviceDefinitionCapability cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [DeviceDefinitionCapability] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory DeviceDefinitionCapability.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DeviceDefinitionCapability.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
+  @override
+  String get fhirType => 'DeviceDefinitionCapability';
+
+  /// [type]
+  /// Type of capability.
+  final CodeableConcept type;
+
+  /// [description]
+  /// Description of capability.
+  final List<CodeableConcept>? description;
+  @override
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    json['type'] = type.toJson();
+    if (description != null && description!.isNotEmpty) {
+      json['description'] =
+          description!.map((CodeableConcept v) => v.toJson()).toList();
+    }
+    return json;
+  }
+
   @override
   DeviceDefinitionCapability clone() => throw UnimplementedError();
   @override
@@ -1108,30 +1374,14 @@ class DeviceDefinitionCapability extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory DeviceDefinitionCapability.fromYaml(dynamic yaml) => yaml is String
-      ? DeviceDefinitionCapability.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? DeviceDefinitionCapability.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'DeviceDefinitionCapability cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory DeviceDefinitionCapability.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return DeviceDefinitionCapability.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [DeviceDefinitionProperty] /// The actual configuration settings of a device as it actually operates,
+/// [DeviceDefinitionProperty]
+/// The actual configuration settings of a device as it actually operates,
 /// e.g., regulation status, time properties.
 class DeviceDefinitionProperty extends BackboneElement {
+  /// Primary constructor for [DeviceDefinitionProperty]
+
   DeviceDefinitionProperty({
     super.id,
     super.extension_,
@@ -1147,74 +1397,119 @@ class DeviceDefinitionProperty extends BackboneElement {
     super.namedChildren,
   });
 
-  @override
-  String get fhirType => 'DeviceDefinitionProperty';
-
-  /// [type] /// Code that specifies the property DeviceDefinitionPropetyCode (Extensible).
-  final CodeableConcept type;
-
-  /// [valueQuantity] /// Property value as a quantity.
-  final List<Quantity>? valueQuantity;
-
-  /// [valueCode] /// Property value as a code, e.g., NTP4 (synced to NTP).
-  final List<CodeableConcept>? valueCode;
-  @override
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson();
-    }
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
-    }
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
-    }
-    json['type'] = type.toJson();
-    if (valueQuantity != null && valueQuantity!.isNotEmpty) {
-      json['valueQuantity'] =
-          valueQuantity!.map<dynamic>((Quantity v) => v.toJson()).toList();
-    }
-    if (valueCode != null && valueCode!.isNotEmpty) {
-      json['valueCode'] =
-          valueCode!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
-    }
-    return json;
-  }
-
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceDefinitionProperty.fromJson(Map<String, dynamic> json) {
     return DeviceDefinitionProperty(
       id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
-      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      type: CodeableConcept.fromJson(
+        json['type'] as Map<String, dynamic>,
+      ),
       valueQuantity: json['valueQuantity'] != null
           ? (json['valueQuantity'] as List<dynamic>)
               .map<Quantity>(
-                  (dynamic v) => Quantity.fromJson(v as Map<String, dynamic>))
+                (dynamic v) => Quantity.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       valueCode: json['valueCode'] != null
           ? (json['valueCode'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
     );
   }
+
+  /// Deserialize [DeviceDefinitionProperty] from a [String] or [YamlMap] object
+  factory DeviceDefinitionProperty.fromYaml(dynamic yaml) => yaml is String
+      ? DeviceDefinitionProperty.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? DeviceDefinitionProperty.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'DeviceDefinitionProperty cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [DeviceDefinitionProperty] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory DeviceDefinitionProperty.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DeviceDefinitionProperty.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
+  @override
+  String get fhirType => 'DeviceDefinitionProperty';
+
+  /// [type]
+  /// Code that specifies the property DeviceDefinitionPropetyCode
+  /// (Extensible).
+  final CodeableConcept type;
+
+  /// [valueQuantity]
+  /// Property value as a quantity.
+  final List<Quantity>? valueQuantity;
+
+  /// [valueCode]
+  /// Property value as a code, e.g., NTP4 (synced to NTP).
+  final List<CodeableConcept>? valueCode;
+  @override
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    json['type'] = type.toJson();
+    if (valueQuantity != null && valueQuantity!.isNotEmpty) {
+      json['valueQuantity'] =
+          valueQuantity!.map((Quantity v) => v.toJson()).toList();
+    }
+    if (valueCode != null && valueCode!.isNotEmpty) {
+      json['valueCode'] =
+          valueCode!.map((CodeableConcept v) => v.toJson()).toList();
+    }
+    return json;
+  }
+
   @override
   DeviceDefinitionProperty clone() => throw UnimplementedError();
   @override
@@ -1247,37 +1542,25 @@ class DeviceDefinitionProperty extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory DeviceDefinitionProperty.fromYaml(dynamic yaml) => yaml is String
-      ? DeviceDefinitionProperty.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? DeviceDefinitionProperty.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'DeviceDefinitionProperty cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory DeviceDefinitionProperty.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return DeviceDefinitionProperty.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [DeviceDefinitionMaterial] /// A substance used to create the material(s) of which the device is made.
+/// [DeviceDefinitionMaterial]
+/// A substance used to create the material(s) of which the device is made.
 class DeviceDefinitionMaterial extends BackboneElement {
+  /// Primary constructor for [DeviceDefinitionMaterial]
+
   DeviceDefinitionMaterial({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.substance,
     this.alternate,
+
+    /// Extensions for [alternate]
     this.alternateElement,
     this.allergenicIndicator,
+
+    /// Extensions for [allergenicIndicator]
     this.allergenicIndicatorElement,
     super.userData,
     super.formatCommentsPre,
@@ -1287,33 +1570,109 @@ class DeviceDefinitionMaterial extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory DeviceDefinitionMaterial.fromJson(Map<String, dynamic> json) {
+    return DeviceDefinitionMaterial(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      substance: CodeableConcept.fromJson(
+        json['substance'] as Map<String, dynamic>,
+      ),
+      alternate: json['alternate'] != null
+          ? FhirBoolean.fromJson(json['alternate'])
+          : null,
+      alternateElement: json['_alternate'] != null
+          ? Element.fromJson(
+              json['_alternate'] as Map<String, dynamic>,
+            )
+          : null,
+      allergenicIndicator: json['allergenicIndicator'] != null
+          ? FhirBoolean.fromJson(json['allergenicIndicator'])
+          : null,
+      allergenicIndicatorElement: json['_allergenicIndicator'] != null
+          ? Element.fromJson(
+              json['_allergenicIndicator'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [DeviceDefinitionMaterial] from a [String] or [YamlMap] object
+  factory DeviceDefinitionMaterial.fromYaml(dynamic yaml) => yaml is String
+      ? DeviceDefinitionMaterial.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? DeviceDefinitionMaterial.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'DeviceDefinitionMaterial cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [DeviceDefinitionMaterial] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory DeviceDefinitionMaterial.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DeviceDefinitionMaterial.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'DeviceDefinitionMaterial';
 
-  /// [substance] /// The substance.
+  /// [substance]
+  /// The substance.
   final CodeableConcept substance;
 
-  /// [alternate] /// Indicates an alternative material of the device.
+  /// [alternate]
+  /// Indicates an alternative material of the device.
   final FhirBoolean? alternate;
+
+  /// Extensions for [alternate]
   final Element? alternateElement;
 
-  /// [allergenicIndicator] /// Whether the substance is a known or suspected allergen.
+  /// [allergenicIndicator]
+  /// Whether the substance is a known or suspected allergen.
   final FhirBoolean? allergenicIndicator;
+
+  /// Extensions for [allergenicIndicator]
   final Element? allergenicIndicatorElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['substance'] = substance.toJson();
     if (alternate?.value != null) {
@@ -1331,38 +1690,6 @@ class DeviceDefinitionMaterial extends BackboneElement {
     return json;
   }
 
-  factory DeviceDefinitionMaterial.fromJson(Map<String, dynamic> json) {
-    return DeviceDefinitionMaterial(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      substance:
-          CodeableConcept.fromJson(json['substance'] as Map<String, dynamic>),
-      alternate: json['alternate'] != null
-          ? FhirBoolean.fromJson(json['alternate'])
-          : null,
-      alternateElement: json['_alternate'] != null
-          ? Element.fromJson(json['_alternate'] as Map<String, dynamic>)
-          : null,
-      allergenicIndicator: json['allergenicIndicator'] != null
-          ? FhirBoolean.fromJson(json['allergenicIndicator'])
-          : null,
-      allergenicIndicatorElement: json['_allergenicIndicator'] != null
-          ? Element.fromJson(
-              json['_allergenicIndicator'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   DeviceDefinitionMaterial clone() => throw UnimplementedError();
   @override
@@ -1399,24 +1726,5 @@ class DeviceDefinitionMaterial extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory DeviceDefinitionMaterial.fromYaml(dynamic yaml) => yaml is String
-      ? DeviceDefinitionMaterial.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? DeviceDefinitionMaterial.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'DeviceDefinitionMaterial cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory DeviceDefinitionMaterial.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return DeviceDefinitionMaterial.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

@@ -1,6 +1,6 @@
 // ignore_for_file: annotate_overrides, overridden_fields
 
-import 'fhir_path_parser.dart';
+import 'package:fhir_r4/src/fhir_path/parser/fhir_path_parsers/fhir_path_parser.dart';
 
 /// BaseDateTimeParser: either a DateParser or DateTimeParser
 abstract class BaseDateTimeParser<T> extends ValueParser<T> {

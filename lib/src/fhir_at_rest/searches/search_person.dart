@@ -3,8 +3,7 @@ import '../../../fhir_r4.dart';
 
 class SearchPerson extends SearchResource {
   SearchPerson address(FhirString value, {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}address'] =
@@ -13,8 +12,7 @@ class SearchPerson extends SearchResource {
   }
 
   SearchPerson addressCity(FhirString value, {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}address_city'] =
@@ -23,8 +21,7 @@ class SearchPerson extends SearchResource {
   }
 
   SearchPerson addressCountry(FhirString value, {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}address_country'] =
@@ -33,8 +30,7 @@ class SearchPerson extends SearchResource {
   }
 
   SearchPerson addressPostalcode(FhirString value, {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}address_postalcode'] =
@@ -43,8 +39,7 @@ class SearchPerson extends SearchResource {
   }
 
   SearchPerson addressState(FhirString value, {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}address_state'] =
@@ -87,8 +82,7 @@ class SearchPerson extends SearchResource {
   }
 
   SearchPerson phonetic(FhirString value, {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}phonetic'] =
@@ -111,8 +105,7 @@ class SearchPerson extends SearchResource {
   }
 
   SearchPerson name(FhirString value, {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}name'] = value.toString();

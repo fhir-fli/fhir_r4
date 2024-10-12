@@ -1,17 +1,23 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [VerificationResult] /// Describes validation requirements, source(s), status and dates for one or
-/// more elements.
+/// [VerificationResult]
+/// Describes validation requirements, source(s), status and dates for one
+/// or more elements.
 class VerificationResult extends DomainResource {
+  /// Primary constructor for [VerificationResult]
+
   VerificationResult({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -19,18 +25,28 @@ class VerificationResult extends DomainResource {
     super.modifierExtension,
     this.target,
     this.targetLocation,
+
+    /// Extensions for [targetLocation]
     this.targetLocationElement,
     this.need,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     this.statusDate,
+
+    /// Extensions for [statusDate]
     this.statusDateElement,
     this.validationType,
     this.validationProcess,
     this.frequency,
     this.lastPerformed,
+
+    /// Extensions for [lastPerformed]
     this.lastPerformedElement,
     this.nextScheduled,
+
+    /// Extensions for [nextScheduled]
     this.nextScheduledElement,
     this.failureAction,
     this.primarySource,
@@ -42,64 +58,282 @@ class VerificationResult extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.VerificationResult);
+  }) : super(
+          resourceType: R4ResourceType.VerificationResult,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory VerificationResult.fromJson(Map<String, dynamic> json) {
+    return VerificationResult(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      target: json['target'] != null
+          ? (json['target'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      targetLocation: json['targetLocation'] != null
+          ? (json['targetLocation'] as List<dynamic>)
+              .map<FhirString>(
+                (dynamic v) => FhirString.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      targetLocationElement: json['_targetLocation'] != null
+          ? (json['_targetLocation'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      need: json['need'] != null
+          ? CodeableConcept.fromJson(
+              json['need'] as Map<String, dynamic>,
+            )
+          : null,
+      status: Status.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      statusDate: json['statusDate'] != null
+          ? FhirDateTime.fromJson(json['statusDate'])
+          : null,
+      statusDateElement: json['_statusDate'] != null
+          ? Element.fromJson(
+              json['_statusDate'] as Map<String, dynamic>,
+            )
+          : null,
+      validationType: json['validationType'] != null
+          ? CodeableConcept.fromJson(
+              json['validationType'] as Map<String, dynamic>,
+            )
+          : null,
+      validationProcess: json['validationProcess'] != null
+          ? (json['validationProcess'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      frequency: json['frequency'] != null
+          ? Timing.fromJson(
+              json['frequency'] as Map<String, dynamic>,
+            )
+          : null,
+      lastPerformed: json['lastPerformed'] != null
+          ? FhirDateTime.fromJson(json['lastPerformed'])
+          : null,
+      lastPerformedElement: json['_lastPerformed'] != null
+          ? Element.fromJson(
+              json['_lastPerformed'] as Map<String, dynamic>,
+            )
+          : null,
+      nextScheduled: json['nextScheduled'] != null
+          ? FhirDate.fromJson(json['nextScheduled'])
+          : null,
+      nextScheduledElement: json['_nextScheduled'] != null
+          ? Element.fromJson(
+              json['_nextScheduled'] as Map<String, dynamic>,
+            )
+          : null,
+      failureAction: json['failureAction'] != null
+          ? CodeableConcept.fromJson(
+              json['failureAction'] as Map<String, dynamic>,
+            )
+          : null,
+      primarySource: json['primarySource'] != null
+          ? (json['primarySource'] as List<dynamic>)
+              .map<VerificationResultPrimarySource>(
+                (dynamic v) => VerificationResultPrimarySource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      attestation: json['attestation'] != null
+          ? VerificationResultAttestation.fromJson(
+              json['attestation'] as Map<String, dynamic>,
+            )
+          : null,
+      validator: json['validator'] != null
+          ? (json['validator'] as List<dynamic>)
+              .map<VerificationResultValidator>(
+                (dynamic v) => VerificationResultValidator.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [VerificationResult] from a [String] or [YamlMap] object
+  factory VerificationResult.fromYaml(dynamic yaml) => yaml is String
+      ? VerificationResult.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? VerificationResult.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'VerificationResult cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [VerificationResult] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory VerificationResult.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return VerificationResult.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'VerificationResult';
 
-  /// [target] /// A resource that was validated.
+  /// [target]
+  /// A resource that was validated.
   final List<Reference>? target;
 
-  /// [targetLocation] /// The fhirpath location(s) within the resource that was validated.
+  /// [targetLocation]
+  /// The fhirpath location(s) within the resource that was validated.
   final List<FhirString>? targetLocation;
+
+  /// Extensions for [targetLocation]
   final List<Element>? targetLocationElement;
 
-  /// [need] /// The frequency with which the target must be validated (none; initial;
+  /// [need]
+  /// The frequency with which the target must be validated (none; initial;
   /// periodic).
   final CodeableConcept? need;
 
-  /// [status] /// The validation status of the target (attested; validated; in process;
+  /// [status]
+  /// The validation status of the target (attested; validated; in process;
   /// requires revalidation; validation failed; revalidation failed).
   final Status status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [statusDate] /// When the validation status was updated.
+  /// [statusDate]
+  /// When the validation status was updated.
   final FhirDateTime? statusDate;
+
+  /// Extensions for [statusDate]
   final Element? statusDateElement;
 
-  /// [validationType] /// What the target is validated against (nothing; primary source; multiple
+  /// [validationType]
+  /// What the target is validated against (nothing; primary source; multiple
   /// sources).
   final CodeableConcept? validationType;
 
-  /// [validationProcess] /// The primary process by which the target is validated (edit check; value
+  /// [validationProcess]
+  /// The primary process by which the target is validated (edit check; value
   /// set; primary source; multiple sources; standalone; in context).
   final List<CodeableConcept>? validationProcess;
 
-  /// [frequency] /// Frequency of revalidation.
+  /// [frequency]
+  /// Frequency of revalidation.
   final Timing? frequency;
 
-  /// [lastPerformed] /// The date/time validation was last completed (including failed validations).
+  /// [lastPerformed]
+  /// The date/time validation was last completed (including failed
+  /// validations).
   final FhirDateTime? lastPerformed;
+
+  /// Extensions for [lastPerformed]
   final Element? lastPerformedElement;
 
-  /// [nextScheduled] /// The date when target is next validated, if appropriate.
+  /// [nextScheduled]
+  /// The date when target is next validated, if appropriate.
   final FhirDate? nextScheduled;
+
+  /// Extensions for [nextScheduled]
   final Element? nextScheduledElement;
 
-  /// [failureAction] /// The result if validation fails (fatal; warning; record only; none).
+  /// [failureAction]
+  /// The result if validation fails (fatal; warning; record only; none).
   final CodeableConcept? failureAction;
 
-  /// [primarySource] /// Information about the primary source(s) involved in validation.
+  /// [primarySource]
+  /// Information about the primary source(s) involved in validation.
   final List<VerificationResultPrimarySource>? primarySource;
 
-  /// [attestation] /// Information about the entity attesting to information.
+  /// [attestation]
+  /// Information about the entity attesting to information.
   final VerificationResultAttestation? attestation;
 
-  /// [validator] /// Information about the entity validating information.
+  /// [validator]
+  /// Information about the entity validating information.
   final List<VerificationResultValidator>? validator;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -120,21 +354,18 @@ class VerificationResult extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (target != null && target!.isNotEmpty) {
-      json['target'] =
-          target!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['target'] = target!.map((Reference v) => v.toJson()).toList();
     }
     if (targetLocation != null && targetLocation!.isNotEmpty) {
       json['targetLocation'] =
@@ -158,9 +389,8 @@ class VerificationResult extends DomainResource {
       json['validationType'] = validationType!.toJson();
     }
     if (validationProcess != null && validationProcess!.isNotEmpty) {
-      json['validationProcess'] = validationProcess!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['validationProcess'] =
+          validationProcess!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (frequency != null) {
       json['frequency'] = frequency!.toJson();
@@ -182,7 +412,7 @@ class VerificationResult extends DomainResource {
     }
     if (primarySource != null && primarySource!.isNotEmpty) {
       json['primarySource'] = primarySource!
-          .map<dynamic>((VerificationResultPrimarySource v) => v.toJson())
+          .map((VerificationResultPrimarySource v) => v.toJson())
           .toList();
     }
     if (attestation != null) {
@@ -190,130 +420,12 @@ class VerificationResult extends DomainResource {
     }
     if (validator != null && validator!.isNotEmpty) {
       json['validator'] = validator!
-          .map<dynamic>((VerificationResultValidator v) => v.toJson())
+          .map((VerificationResultValidator v) => v.toJson())
           .toList();
     }
     return json;
   }
 
-  factory VerificationResult.fromJson(Map<String, dynamic> json) {
-    return VerificationResult(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      target: json['target'] != null
-          ? (json['target'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      targetLocation: json['targetLocation'] != null
-          ? (json['targetLocation'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
-              .toList()
-          : null,
-      targetLocationElement: json['_targetLocation'] != null
-          ? (json['_targetLocation'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      need: json['need'] != null
-          ? CodeableConcept.fromJson(json['need'] as Map<String, dynamic>)
-          : null,
-      status: Status.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      statusDate: json['statusDate'] != null
-          ? FhirDateTime.fromJson(json['statusDate'])
-          : null,
-      statusDateElement: json['_statusDate'] != null
-          ? Element.fromJson(json['_statusDate'] as Map<String, dynamic>)
-          : null,
-      validationType: json['validationType'] != null
-          ? CodeableConcept.fromJson(
-              json['validationType'] as Map<String, dynamic>)
-          : null,
-      validationProcess: json['validationProcess'] != null
-          ? (json['validationProcess'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      frequency: json['frequency'] != null
-          ? Timing.fromJson(json['frequency'] as Map<String, dynamic>)
-          : null,
-      lastPerformed: json['lastPerformed'] != null
-          ? FhirDateTime.fromJson(json['lastPerformed'])
-          : null,
-      lastPerformedElement: json['_lastPerformed'] != null
-          ? Element.fromJson(json['_lastPerformed'] as Map<String, dynamic>)
-          : null,
-      nextScheduled: json['nextScheduled'] != null
-          ? FhirDate.fromJson(json['nextScheduled'])
-          : null,
-      nextScheduledElement: json['_nextScheduled'] != null
-          ? Element.fromJson(json['_nextScheduled'] as Map<String, dynamic>)
-          : null,
-      failureAction: json['failureAction'] != null
-          ? CodeableConcept.fromJson(
-              json['failureAction'] as Map<String, dynamic>)
-          : null,
-      primarySource: json['primarySource'] != null
-          ? (json['primarySource'] as List<dynamic>)
-              .map<VerificationResultPrimarySource>((dynamic v) =>
-                  VerificationResultPrimarySource.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      attestation: json['attestation'] != null
-          ? VerificationResultAttestation.fromJson(
-              json['attestation'] as Map<String, dynamic>)
-          : null,
-      validator: json['validator'] != null
-          ? (json['validator'] as List<dynamic>)
-              .map<VerificationResultValidator>((dynamic v) =>
-                  VerificationResultValidator.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   VerificationResult clone() => throw UnimplementedError();
   @override
@@ -393,29 +505,13 @@ class VerificationResult extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory VerificationResult.fromYaml(dynamic yaml) => yaml is String
-      ? VerificationResult.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? VerificationResult.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'VerificationResult cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory VerificationResult.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return VerificationResult.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [VerificationResultPrimarySource] /// Information about the primary source(s) involved in validation.
+/// [VerificationResultPrimarySource]
+/// Information about the primary source(s) involved in validation.
 class VerificationResultPrimarySource extends BackboneElement {
+  /// Primary constructor for [VerificationResultPrimarySource]
+
   VerificationResultPrimarySource({
     super.id,
     super.extension_,
@@ -425,6 +521,8 @@ class VerificationResultPrimarySource extends BackboneElement {
     this.communicationMethod,
     this.validationStatus,
     this.validationDate,
+
+    /// Extensions for [validationDate]
     this.validationDateElement,
     this.canPushUpdates,
     this.pushTypeAvailable,
@@ -436,61 +534,169 @@ class VerificationResultPrimarySource extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory VerificationResultPrimarySource.fromJson(Map<String, dynamic> json) {
+    return VerificationResultPrimarySource(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      who: json['who'] != null
+          ? Reference.fromJson(
+              json['who'] as Map<String, dynamic>,
+            )
+          : null,
+      type: json['type'] != null
+          ? (json['type'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      communicationMethod: json['communicationMethod'] != null
+          ? (json['communicationMethod'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      validationStatus: json['validationStatus'] != null
+          ? CodeableConcept.fromJson(
+              json['validationStatus'] as Map<String, dynamic>,
+            )
+          : null,
+      validationDate: json['validationDate'] != null
+          ? FhirDateTime.fromJson(json['validationDate'])
+          : null,
+      validationDateElement: json['_validationDate'] != null
+          ? Element.fromJson(
+              json['_validationDate'] as Map<String, dynamic>,
+            )
+          : null,
+      canPushUpdates: json['canPushUpdates'] != null
+          ? CodeableConcept.fromJson(
+              json['canPushUpdates'] as Map<String, dynamic>,
+            )
+          : null,
+      pushTypeAvailable: json['pushTypeAvailable'] != null
+          ? (json['pushTypeAvailable'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [VerificationResultPrimarySource] from a [String] or [YamlMap] object
+  factory VerificationResultPrimarySource.fromYaml(dynamic yaml) => yaml
+          is String
+      ? VerificationResultPrimarySource.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? VerificationResultPrimarySource.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'VerificationResultPrimarySource cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [VerificationResultPrimarySource] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory VerificationResultPrimarySource.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return VerificationResultPrimarySource.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'VerificationResultPrimarySource';
 
-  /// [who] /// Reference to the primary source.
+  /// [who]
+  /// Reference to the primary source.
   final Reference? who;
 
-  /// [type] /// Type of primary source (License Board; Primary Education; Continuing
+  /// [type]
+  /// Type of primary source (License Board; Primary Education; Continuing
   /// Education; Postal Service; Relationship owner; Registration Authority;
   /// legal source; issuing source; authoritative source).
   final List<CodeableConcept>? type;
 
-  /// [communicationMethod] /// Method for communicating with the primary source (manual; API; Push).
+  /// [communicationMethod]
+  /// Method for communicating with the primary source (manual; API; Push).
   final List<CodeableConcept>? communicationMethod;
 
-  /// [validationStatus] /// Status of the validation of the target against the primary source
+  /// [validationStatus]
+  /// Status of the validation of the target against the primary source
   /// (successful; failed; unknown).
   final CodeableConcept? validationStatus;
 
-  /// [validationDate] /// When the target was validated against the primary source.
+  /// [validationDate]
+  /// When the target was validated against the primary source.
   final FhirDateTime? validationDate;
+
+  /// Extensions for [validationDate]
   final Element? validationDateElement;
 
-  /// [canPushUpdates] /// Ability of the primary source to push updates/alerts (yes; no;
+  /// [canPushUpdates]
+  /// Ability of the primary source to push updates/alerts (yes; no;
   /// undetermined).
   final CodeableConcept? canPushUpdates;
 
-  /// [pushTypeAvailable] /// Type of alerts/updates the primary source can send (specific requested
+  /// [pushTypeAvailable]
+  /// Type of alerts/updates the primary source can send (specific requested
   /// changes; any changes; as defined by source).
   final List<CodeableConcept>? pushTypeAvailable;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (who != null) {
       json['who'] = who!.toJson();
     }
     if (type != null && type!.isNotEmpty) {
-      json['type'] =
-          type!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+      json['type'] = type!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (communicationMethod != null && communicationMethod!.isNotEmpty) {
-      json['communicationMethod'] = communicationMethod!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['communicationMethod'] =
+          communicationMethod!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (validationStatus != null) {
       json['validationStatus'] = validationStatus!.toJson();
@@ -505,65 +711,12 @@ class VerificationResultPrimarySource extends BackboneElement {
       json['canPushUpdates'] = canPushUpdates!.toJson();
     }
     if (pushTypeAvailable != null && pushTypeAvailable!.isNotEmpty) {
-      json['pushTypeAvailable'] = pushTypeAvailable!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['pushTypeAvailable'] =
+          pushTypeAvailable!.map((CodeableConcept v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory VerificationResultPrimarySource.fromJson(Map<String, dynamic> json) {
-    return VerificationResultPrimarySource(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      who: json['who'] != null
-          ? Reference.fromJson(json['who'] as Map<String, dynamic>)
-          : null,
-      type: json['type'] != null
-          ? (json['type'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      communicationMethod: json['communicationMethod'] != null
-          ? (json['communicationMethod'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      validationStatus: json['validationStatus'] != null
-          ? CodeableConcept.fromJson(
-              json['validationStatus'] as Map<String, dynamic>)
-          : null,
-      validationDate: json['validationDate'] != null
-          ? FhirDateTime.fromJson(json['validationDate'])
-          : null,
-      validationDateElement: json['_validationDate'] != null
-          ? Element.fromJson(json['_validationDate'] as Map<String, dynamic>)
-          : null,
-      canPushUpdates: json['canPushUpdates'] != null
-          ? CodeableConcept.fromJson(
-              json['canPushUpdates'] as Map<String, dynamic>)
-          : null,
-      pushTypeAvailable: json['pushTypeAvailable'] != null
-          ? (json['pushTypeAvailable'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   VerificationResultPrimarySource clone() => throw UnimplementedError();
   @override
@@ -607,30 +760,13 @@ class VerificationResultPrimarySource extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory VerificationResultPrimarySource.fromYaml(dynamic yaml) => yaml
-          is String
-      ? VerificationResultPrimarySource.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? VerificationResultPrimarySource.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'VerificationResultPrimarySource cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory VerificationResultPrimarySource.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return VerificationResultPrimarySource.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [VerificationResultAttestation] /// Information about the entity attesting to information.
+/// [VerificationResultAttestation]
+/// Information about the entity attesting to information.
 class VerificationResultAttestation extends BackboneElement {
+  /// Primary constructor for [VerificationResultAttestation]
+
   VerificationResultAttestation({
     super.id,
     super.extension_,
@@ -639,10 +775,16 @@ class VerificationResultAttestation extends BackboneElement {
     this.onBehalfOf,
     this.communicationMethod,
     this.date,
+
+    /// Extensions for [date]
     this.dateElement,
     this.sourceIdentityCertificate,
+
+    /// Extensions for [sourceIdentityCertificate]
     this.sourceIdentityCertificateElement,
     this.proxyIdentityCertificate,
+
+    /// Extensions for [proxyIdentityCertificate]
     this.proxyIdentityCertificateElement,
     this.proxySignature,
     this.sourceSignature,
@@ -654,54 +796,167 @@ class VerificationResultAttestation extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory VerificationResultAttestation.fromJson(Map<String, dynamic> json) {
+    return VerificationResultAttestation(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      who: json['who'] != null
+          ? Reference.fromJson(
+              json['who'] as Map<String, dynamic>,
+            )
+          : null,
+      onBehalfOf: json['onBehalfOf'] != null
+          ? Reference.fromJson(
+              json['onBehalfOf'] as Map<String, dynamic>,
+            )
+          : null,
+      communicationMethod: json['communicationMethod'] != null
+          ? CodeableConcept.fromJson(
+              json['communicationMethod'] as Map<String, dynamic>,
+            )
+          : null,
+      date: json['date'] != null ? FhirDate.fromJson(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(
+              json['_date'] as Map<String, dynamic>,
+            )
+          : null,
+      sourceIdentityCertificate: json['sourceIdentityCertificate'] != null
+          ? FhirString.fromJson(json['sourceIdentityCertificate'])
+          : null,
+      sourceIdentityCertificateElement:
+          json['_sourceIdentityCertificate'] != null
+              ? Element.fromJson(
+                  json['_sourceIdentityCertificate'] as Map<String, dynamic>,
+                )
+              : null,
+      proxyIdentityCertificate: json['proxyIdentityCertificate'] != null
+          ? FhirString.fromJson(json['proxyIdentityCertificate'])
+          : null,
+      proxyIdentityCertificateElement: json['_proxyIdentityCertificate'] != null
+          ? Element.fromJson(
+              json['_proxyIdentityCertificate'] as Map<String, dynamic>,
+            )
+          : null,
+      proxySignature: json['proxySignature'] != null
+          ? Signature.fromJson(
+              json['proxySignature'] as Map<String, dynamic>,
+            )
+          : null,
+      sourceSignature: json['sourceSignature'] != null
+          ? Signature.fromJson(
+              json['sourceSignature'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [VerificationResultAttestation] from a [String] or [YamlMap] object
+  factory VerificationResultAttestation.fromYaml(dynamic yaml) => yaml is String
+      ? VerificationResultAttestation.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? VerificationResultAttestation.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'VerificationResultAttestation cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [VerificationResultAttestation] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory VerificationResultAttestation.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return VerificationResultAttestation.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'VerificationResultAttestation';
 
-  /// [who] /// The individual or organization attesting to information.
+  /// [who]
+  /// The individual or organization attesting to information.
   final Reference? who;
 
-  /// [onBehalfOf] /// When the who is asserting on behalf of another (organization or
+  /// [onBehalfOf]
+  /// When the who is asserting on behalf of another (organization or
   /// individual).
   final Reference? onBehalfOf;
 
-  /// [communicationMethod] /// The method by which attested information was submitted/retrieved (manual;
-  /// API; Push).
+  /// [communicationMethod]
+  /// The method by which attested information was submitted/retrieved
+  /// (manual; API; Push).
   final CodeableConcept? communicationMethod;
 
-  /// [date] /// The date the information was attested to.
+  /// [date]
+  /// The date the information was attested to.
   final FhirDate? date;
+
+  /// Extensions for [date]
   final Element? dateElement;
 
-  /// [sourceIdentityCertificate] /// A digital identity certificate associated with the attestation source.
+  /// [sourceIdentityCertificate]
+  /// A digital identity certificate associated with the attestation source.
   final FhirString? sourceIdentityCertificate;
+
+  /// Extensions for [sourceIdentityCertificate]
   final Element? sourceIdentityCertificateElement;
 
-  /// [proxyIdentityCertificate] /// A digital identity certificate associated with the proxy entity submitting
-  /// attested information on behalf of the attestation source.
+  /// [proxyIdentityCertificate]
+  /// A digital identity certificate associated with the proxy entity
+  /// submitting attested information on behalf of the attestation source.
   final FhirString? proxyIdentityCertificate;
+
+  /// Extensions for [proxyIdentityCertificate]
   final Element? proxyIdentityCertificateElement;
 
-  /// [proxySignature] /// Signed assertion by the proxy entity indicating that they have the right to
-  /// submit attested information on behalf of the attestation source.
+  /// [proxySignature]
+  /// Signed assertion by the proxy entity indicating that they have the
+  /// right to submit attested information on behalf of the attestation
+  /// source.
   final Signature? proxySignature;
 
-  /// [sourceSignature] /// Signed assertion by the attestation source that they have attested to the
-  /// information.
+  /// [sourceSignature]
+  /// Signed assertion by the attestation source that they have attested to
+  /// the information.
   final Signature? sourceSignature;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (who != null) {
       json['who'] = who!.toJson();
@@ -741,58 +996,6 @@ class VerificationResultAttestation extends BackboneElement {
     return json;
   }
 
-  factory VerificationResultAttestation.fromJson(Map<String, dynamic> json) {
-    return VerificationResultAttestation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      who: json['who'] != null
-          ? Reference.fromJson(json['who'] as Map<String, dynamic>)
-          : null,
-      onBehalfOf: json['onBehalfOf'] != null
-          ? Reference.fromJson(json['onBehalfOf'] as Map<String, dynamic>)
-          : null,
-      communicationMethod: json['communicationMethod'] != null
-          ? CodeableConcept.fromJson(
-              json['communicationMethod'] as Map<String, dynamic>)
-          : null,
-      date: json['date'] != null ? FhirDate.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
-          : null,
-      sourceIdentityCertificate: json['sourceIdentityCertificate'] != null
-          ? FhirString.fromJson(json['sourceIdentityCertificate'])
-          : null,
-      sourceIdentityCertificateElement:
-          json['_sourceIdentityCertificate'] != null
-              ? Element.fromJson(
-                  json['_sourceIdentityCertificate'] as Map<String, dynamic>)
-              : null,
-      proxyIdentityCertificate: json['proxyIdentityCertificate'] != null
-          ? FhirString.fromJson(json['proxyIdentityCertificate'])
-          : null,
-      proxyIdentityCertificateElement: json['_proxyIdentityCertificate'] != null
-          ? Element.fromJson(
-              json['_proxyIdentityCertificate'] as Map<String, dynamic>)
-          : null,
-      proxySignature: json['proxySignature'] != null
-          ? Signature.fromJson(json['proxySignature'] as Map<String, dynamic>)
-          : null,
-      sourceSignature: json['sourceSignature'] != null
-          ? Signature.fromJson(json['sourceSignature'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   VerificationResultAttestation clone() => throw UnimplementedError();
   @override
@@ -845,35 +1048,21 @@ class VerificationResultAttestation extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory VerificationResultAttestation.fromYaml(dynamic yaml) => yaml is String
-      ? VerificationResultAttestation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? VerificationResultAttestation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'VerificationResultAttestation cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory VerificationResultAttestation.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return VerificationResultAttestation.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [VerificationResultValidator] /// Information about the entity validating information.
+/// [VerificationResultValidator]
+/// Information about the entity validating information.
 class VerificationResultValidator extends BackboneElement {
+  /// Primary constructor for [VerificationResultValidator]
+
   VerificationResultValidator({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.organization,
     this.identityCertificate,
+
+    /// Extensions for [identityCertificate]
     this.identityCertificateElement,
     this.attestationSignature,
     super.userData,
@@ -884,32 +1073,104 @@ class VerificationResultValidator extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory VerificationResultValidator.fromJson(Map<String, dynamic> json) {
+    return VerificationResultValidator(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      organization: Reference.fromJson(
+        json['organization'] as Map<String, dynamic>,
+      ),
+      identityCertificate: json['identityCertificate'] != null
+          ? FhirString.fromJson(json['identityCertificate'])
+          : null,
+      identityCertificateElement: json['_identityCertificate'] != null
+          ? Element.fromJson(
+              json['_identityCertificate'] as Map<String, dynamic>,
+            )
+          : null,
+      attestationSignature: json['attestationSignature'] != null
+          ? Signature.fromJson(
+              json['attestationSignature'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [VerificationResultValidator] from a [String] or [YamlMap] object
+  factory VerificationResultValidator.fromYaml(dynamic yaml) => yaml is String
+      ? VerificationResultValidator.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? VerificationResultValidator.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'VerificationResultValidator cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [VerificationResultValidator] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory VerificationResultValidator.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return VerificationResultValidator.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'VerificationResultValidator';
 
-  /// [organization] /// Reference to the organization validating information.
+  /// [organization]
+  /// Reference to the organization validating information.
   final Reference organization;
 
-  /// [identityCertificate] /// A digital identity certificate associated with the validator.
+  /// [identityCertificate]
+  /// A digital identity certificate associated with the validator.
   final FhirString? identityCertificate;
+
+  /// Extensions for [identityCertificate]
   final Element? identityCertificateElement;
 
-  /// [attestationSignature] /// Signed assertion by the validator that they have validated the information.
+  /// [attestationSignature]
+  /// Signed assertion by the validator that they have validated the
+  /// information.
   final Signature? attestationSignature;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['organization'] = organization.toJson();
     if (identityCertificate?.value != null) {
@@ -924,36 +1185,6 @@ class VerificationResultValidator extends BackboneElement {
     return json;
   }
 
-  factory VerificationResultValidator.fromJson(Map<String, dynamic> json) {
-    return VerificationResultValidator(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      organization:
-          Reference.fromJson(json['organization'] as Map<String, dynamic>),
-      identityCertificate: json['identityCertificate'] != null
-          ? FhirString.fromJson(json['identityCertificate'])
-          : null,
-      identityCertificateElement: json['_identityCertificate'] != null
-          ? Element.fromJson(
-              json['_identityCertificate'] as Map<String, dynamic>)
-          : null,
-      attestationSignature: json['attestationSignature'] != null
-          ? Signature.fromJson(
-              json['attestationSignature'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   VerificationResultValidator clone() => throw UnimplementedError();
   @override
@@ -988,24 +1219,5 @@ class VerificationResultValidator extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory VerificationResultValidator.fromYaml(dynamic yaml) => yaml is String
-      ? VerificationResultValidator.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? VerificationResultValidator.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'VerificationResultValidator cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory VerificationResultValidator.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return VerificationResultValidator.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

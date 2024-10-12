@@ -1,16 +1,22 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [Ingredient] /// An ingredient of a manufactured item or pharmaceutical product.
+/// [Ingredient]
+/// An ingredient of a manufactured item or pharmaceutical product.
 class Ingredient extends DomainResource {
+  /// Primary constructor for [Ingredient]
+
   Ingredient({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -18,11 +24,15 @@ class Ingredient extends DomainResource {
     super.modifierExtension,
     this.identifier,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     this.for_,
     required this.role,
     this.function_,
     this.allergenicIndicator,
+
+    /// Extensions for [allergenicIndicator]
     this.allergenicIndicatorElement,
     this.manufacturer,
     required this.substance,
@@ -32,52 +42,204 @@ class Ingredient extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.Ingredient);
+  }) : super(
+          resourceType: R4ResourceType.Ingredient,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory Ingredient.fromJson(Map<String, dynamic> json) {
+    return Ingredient(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? Identifier.fromJson(
+              json['identifier'] as Map<String, dynamic>,
+            )
+          : null,
+      status: PublicationStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      for_: json['for'] != null
+          ? (json['for'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      role: CodeableConcept.fromJson(
+        json['role'] as Map<String, dynamic>,
+      ),
+      function_: json['function'] != null
+          ? (json['function'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      allergenicIndicator: json['allergenicIndicator'] != null
+          ? FhirBoolean.fromJson(json['allergenicIndicator'])
+          : null,
+      allergenicIndicatorElement: json['_allergenicIndicator'] != null
+          ? Element.fromJson(
+              json['_allergenicIndicator'] as Map<String, dynamic>,
+            )
+          : null,
+      manufacturer: json['manufacturer'] != null
+          ? (json['manufacturer'] as List<dynamic>)
+              .map<IngredientManufacturer>(
+                (dynamic v) => IngredientManufacturer.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      substance: IngredientSubstance.fromJson(
+        json['substance'] as Map<String, dynamic>,
+      ),
+    );
+  }
+
+  /// Deserialize [Ingredient] from a [String] or [YamlMap] object
+  factory Ingredient.fromYaml(dynamic yaml) => yaml is String
+      ? Ingredient.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? Ingredient.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('Ingredient cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [Ingredient] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory Ingredient.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Ingredient.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'Ingredient';
 
-  /// [identifier] /// The identifier(s) of this Ingredient that are assigned by business
+  /// [identifier]
+  /// The identifier(s) of this Ingredient that are assigned by business
   /// processes and/or used to refer to it when a direct URL reference to the
   /// resource itself is not appropriate.
   final Identifier? identifier;
 
-  /// [status] /// The status of this ingredient. Enables tracking the life-cycle of the
+  /// [status]
+  /// The status of this ingredient. Enables tracking the life-cycle of the
   /// content.
   final PublicationStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [for_] /// The product which this ingredient is a constituent part of.
+  /// [for_]
+  /// The product which this ingredient is a constituent part of.
   final List<Reference>? for_;
 
-  /// [role] /// A classification of the ingredient identifying its purpose within the
+  /// [role]
+  /// A classification of the ingredient identifying its purpose within the
   /// product, e.g. active, inactive.
   final CodeableConcept role;
 
-  /// [function_] /// A classification of the ingredient identifying its precise purpose(s) in
-  /// the drug product. This extends the Ingredient.role to add more detail.
-  /// Example: antioxidant, alkalizing agent.
+  /// [function_]
+  /// A classification of the ingredient identifying its precise purpose(s)
+  /// in the drug product. This extends the Ingredient.role to add more
+  /// detail. Example: antioxidant, alkalizing agent.
   final List<CodeableConcept>? function_;
 
-  /// [allergenicIndicator] /// If the ingredient is a known or suspected allergen. Note that this is a
-  /// property of the substance, so if a reference to a SubstanceDefinition is
-  /// used to decribe that (rather than just a code), the allergen information
-  /// should go there, not here.
+  /// [allergenicIndicator]
+  /// If the ingredient is a known or suspected allergen. Note that this is a
+  /// property of the substance, so if a reference to a SubstanceDefinition
+  /// is used to decribe that (rather than just a code), the allergen
+  /// information should go there, not here.
   final FhirBoolean? allergenicIndicator;
+
+  /// Extensions for [allergenicIndicator]
   final Element? allergenicIndicatorElement;
 
-  /// [manufacturer] /// The organization(s) that manufacture this ingredient. Can be used to
-  /// indicate: 1) Organizations we are aware of that manufacture this ingredient
-  /// 2) Specific Manufacturer(s) currently being used 3) Set of organisations
-  /// allowed to manufacture this ingredient for this product Users must be clear
-  /// on the application of context relevant to their use case.
+  /// [manufacturer]
+  /// The organization(s) that manufacture this ingredient. Can be used to
+  /// indicate: 1) Organizations we are aware of that manufacture this
+  /// ingredient 2) Specific Manufacturer(s) currently being used 3) Set of
+  /// organisations allowed to manufacture this ingredient for this product
+  /// Users must be clear on the application of context relevant to their use
+  /// case.
   final List<IngredientManufacturer>? manufacturer;
 
-  /// [substance] /// The substance that comprises this ingredient.
+  /// [substance]
+  /// The substance that comprises this ingredient.
   final IngredientSubstance substance;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -98,29 +260,27 @@ class Ingredient extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null) {
       json['identifier'] = identifier!.toJson();
     }
     json['status'] = status.toJson();
     if (for_ != null && for_!.isNotEmpty) {
-      json['for'] = for_!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['for'] = for_!.map((Reference v) => v.toJson()).toList();
     }
     json['role'] = role.toJson();
     if (function_ != null && function_!.isNotEmpty) {
       json['function'] =
-          function_!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          function_!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (allergenicIndicator?.value != null) {
       json['allergenicIndicator'] = allergenicIndicator!.toJson();
@@ -129,90 +289,13 @@ class Ingredient extends DomainResource {
       json['_allergenicIndicator'] = allergenicIndicatorElement!.toJson();
     }
     if (manufacturer != null && manufacturer!.isNotEmpty) {
-      json['manufacturer'] = manufacturer!
-          .map<dynamic>((IngredientManufacturer v) => v.toJson())
-          .toList();
+      json['manufacturer'] =
+          manufacturer!.map((IngredientManufacturer v) => v.toJson()).toList();
     }
     json['substance'] = substance.toJson();
     return json;
   }
 
-  factory Ingredient.fromJson(Map<String, dynamic> json) {
-    return Ingredient(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
-          : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      for_: json['for'] != null
-          ? (json['for'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      role: CodeableConcept.fromJson(json['role'] as Map<String, dynamic>),
-      function_: json['function'] != null
-          ? (json['function'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      allergenicIndicator: json['allergenicIndicator'] != null
-          ? FhirBoolean.fromJson(json['allergenicIndicator'])
-          : null,
-      allergenicIndicatorElement: json['_allergenicIndicator'] != null
-          ? Element.fromJson(
-              json['_allergenicIndicator'] as Map<String, dynamic>)
-          : null,
-      manufacturer: json['manufacturer'] != null
-          ? (json['manufacturer'] as List<dynamic>)
-              .map<IngredientManufacturer>((dynamic v) =>
-                  IngredientManufacturer.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      substance: IngredientSubstance.fromJson(
-          json['substance'] as Map<String, dynamic>),
-    );
-  }
   @override
   Ingredient clone() => throw UnimplementedError();
   @override
@@ -274,38 +357,25 @@ class Ingredient extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory Ingredient.fromYaml(dynamic yaml) => yaml is String
-      ? Ingredient.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? Ingredient.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'Ingredient cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory Ingredient.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return Ingredient.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [IngredientManufacturer] /// The organization(s) that manufacture this ingredient. Can be used to
-/// indicate: 1) Organizations we are aware of that manufacture this ingredient
-/// 2) Specific Manufacturer(s) currently being used 3) Set of organisations
-/// allowed to manufacture this ingredient for this product Users must be clear
-/// on the application of context relevant to their use case.
+/// [IngredientManufacturer]
+/// The organization(s) that manufacture this ingredient. Can be used to
+/// indicate: 1) Organizations we are aware of that manufacture this
+/// ingredient 2) Specific Manufacturer(s) currently being used 3) Set of
+/// organisations allowed to manufacture this ingredient for this product
+/// Users must be clear on the application of context relevant to their use
+/// case.
 class IngredientManufacturer extends BackboneElement {
+  /// Primary constructor for [IngredientManufacturer]
+
   IngredientManufacturer({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.role,
+
+    /// Extensions for [role]
     this.roleElement,
     required this.manufacturer,
     super.userData,
@@ -316,32 +386,97 @@ class IngredientManufacturer extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory IngredientManufacturer.fromJson(Map<String, dynamic> json) {
+    return IngredientManufacturer(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      role: json['role'] != null
+          ? IngredientManufacturerRole.fromJson(json['role'])
+          : null,
+      roleElement: json['_role'] != null
+          ? Element.fromJson(
+              json['_role'] as Map<String, dynamic>,
+            )
+          : null,
+      manufacturer: Reference.fromJson(
+        json['manufacturer'] as Map<String, dynamic>,
+      ),
+    );
+  }
+
+  /// Deserialize [IngredientManufacturer] from a [String] or [YamlMap] object
+  factory IngredientManufacturer.fromYaml(dynamic yaml) => yaml is String
+      ? IngredientManufacturer.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? IngredientManufacturer.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'IngredientManufacturer cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [IngredientManufacturer] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory IngredientManufacturer.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return IngredientManufacturer.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'IngredientManufacturer';
 
-  /// [role] /// The way in which this manufacturer is associated with the ingredient. For
-  /// example whether it is a possible one (others allowed), or an exclusive
-  /// authorized one for this ingredient. Note that this is not the manufacturing
-  /// process role.
+  /// [role]
+  /// The way in which this manufacturer is associated with the ingredient.
+  /// For example whether it is a possible one (others allowed), or an
+  /// exclusive authorized one for this ingredient. Note that this is not the
+  /// manufacturing process role.
   final IngredientManufacturerRole? role;
+
+  /// Extensions for [role]
   final Element? roleElement;
 
-  /// [manufacturer] /// An organization that manufactures this ingredient.
+  /// [manufacturer]
+  /// An organization that manufactures this ingredient.
   final Reference manufacturer;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (role != null) {
       json['role'] = role!.toJson();
@@ -350,31 +485,6 @@ class IngredientManufacturer extends BackboneElement {
     return json;
   }
 
-  factory IngredientManufacturer.fromJson(Map<String, dynamic> json) {
-    return IngredientManufacturer(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      role: json['role'] != null
-          ? IngredientManufacturerRole.fromJson(json['role'])
-          : null,
-      roleElement: json['_role'] != null
-          ? Element.fromJson(json['_role'] as Map<String, dynamic>)
-          : null,
-      manufacturer:
-          Reference.fromJson(json['manufacturer'] as Map<String, dynamic>),
-    );
-  }
   @override
   IngredientManufacturer clone() => throw UnimplementedError();
   @override
@@ -407,29 +517,13 @@ class IngredientManufacturer extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory IngredientManufacturer.fromYaml(dynamic yaml) => yaml is String
-      ? IngredientManufacturer.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? IngredientManufacturer.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'IngredientManufacturer cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory IngredientManufacturer.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return IngredientManufacturer.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [IngredientSubstance] /// The substance that comprises this ingredient.
+/// [IngredientSubstance]
+/// The substance that comprises this ingredient.
 class IngredientSubstance extends BackboneElement {
+  /// Primary constructor for [IngredientSubstance]
+
   IngredientSubstance({
     super.id,
     super.extension_,
@@ -444,64 +538,105 @@ class IngredientSubstance extends BackboneElement {
     super.namedChildren,
   });
 
-  @override
-  String get fhirType => 'IngredientSubstance';
-
-  /// [code] /// A code or full resource that represents the ingredient's substance.
-  final CodeableReference code;
-
-  /// [strength] /// The quantity of substance in the unit of presentation, or in the volume (or
-  /// mass) of the single pharmaceutical product or manufactured item. The
-  /// allowed repetitions do not represent different strengths, but are different
-  /// representations - mathematically equivalent - of a single strength.
-  final List<IngredientStrength>? strength;
-  @override
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson();
-    }
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
-    }
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
-    }
-    json['code'] = code.toJson();
-    if (strength != null && strength!.isNotEmpty) {
-      json['strength'] =
-          strength!.map<dynamic>((IngredientStrength v) => v.toJson()).toList();
-    }
-    return json;
-  }
-
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory IngredientSubstance.fromJson(Map<String, dynamic> json) {
     return IngredientSubstance(
       id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
-      code: CodeableReference.fromJson(json['code'] as Map<String, dynamic>),
+      code: CodeableReference.fromJson(
+        json['code'] as Map<String, dynamic>,
+      ),
       strength: json['strength'] != null
           ? (json['strength'] as List<dynamic>)
-              .map<IngredientStrength>((dynamic v) =>
-                  IngredientStrength.fromJson(v as Map<String, dynamic>))
+              .map<IngredientStrength>(
+                (dynamic v) => IngredientStrength.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
     );
   }
+
+  /// Deserialize [IngredientSubstance] from a [String] or [YamlMap] object
+  factory IngredientSubstance.fromYaml(dynamic yaml) => yaml is String
+      ? IngredientSubstance.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? IngredientSubstance.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'IngredientSubstance cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [IngredientSubstance] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory IngredientSubstance.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return IngredientSubstance.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
+  @override
+  String get fhirType => 'IngredientSubstance';
+
+  /// [code]
+  /// A code or full resource that represents the ingredient's substance.
+  final CodeableReference code;
+
+  /// [strength]
+  /// The quantity of substance in the unit of presentation, or in the volume
+  /// (or mass) of the single pharmaceutical product or manufactured item.
+  /// The allowed repetitions do not represent different strengths, but are
+  /// different representations - mathematically equivalent - of a single
+  /// strength.
+  final List<IngredientStrength>? strength;
+  @override
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    json['code'] = code.toJson();
+    if (strength != null && strength!.isNotEmpty) {
+      json['strength'] =
+          strength!.map((IngredientStrength v) => v.toJson()).toList();
+    }
+    return json;
+  }
+
   @override
   IngredientSubstance clone() => throw UnimplementedError();
   @override
@@ -532,32 +667,17 @@ class IngredientSubstance extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory IngredientSubstance.fromYaml(dynamic yaml) => yaml is String
-      ? IngredientSubstance.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? IngredientSubstance.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'IngredientSubstance cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory IngredientSubstance.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return IngredientSubstance.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [IngredientStrength] /// The quantity of substance in the unit of presentation, or in the volume (or
-/// mass) of the single pharmaceutical product or manufactured item. The
-/// allowed repetitions do not represent different strengths, but are different
-/// representations - mathematically equivalent - of a single strength.
+/// [IngredientStrength]
+/// The quantity of substance in the unit of presentation, or in the volume
+/// (or mass) of the single pharmaceutical product or manufactured item.
+/// The allowed repetitions do not represent different strengths, but are
+/// different representations - mathematically equivalent - of a single
+/// strength.
 class IngredientStrength extends BackboneElement {
+  /// Primary constructor for [IngredientStrength]
+
   IngredientStrength({
     super.id,
     super.extension_,
@@ -565,12 +685,18 @@ class IngredientStrength extends BackboneElement {
     this.presentationRatio,
     this.presentationRatioRange,
     this.textPresentation,
+
+    /// Extensions for [textPresentation]
     this.textPresentationElement,
     this.concentrationRatio,
     this.concentrationRatioRange,
     this.textConcentration,
+
+    /// Extensions for [textConcentration]
     this.textConcentrationElement,
     this.measurementPoint,
+
+    /// Extensions for [measurementPoint]
     this.measurementPointElement,
     this.country,
     this.referenceStrength,
@@ -582,71 +708,202 @@ class IngredientStrength extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory IngredientStrength.fromJson(Map<String, dynamic> json) {
+    return IngredientStrength(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      presentationRatio: json['presentationRatio'] != null
+          ? Ratio.fromJson(
+              json['presentationRatio'] as Map<String, dynamic>,
+            )
+          : null,
+      presentationRatioRange: json['presentationRatioRange'] != null
+          ? RatioRange.fromJson(
+              json['presentationRatioRange'] as Map<String, dynamic>,
+            )
+          : null,
+      textPresentation: json['textPresentation'] != null
+          ? FhirString.fromJson(json['textPresentation'])
+          : null,
+      textPresentationElement: json['_textPresentation'] != null
+          ? Element.fromJson(
+              json['_textPresentation'] as Map<String, dynamic>,
+            )
+          : null,
+      concentrationRatio: json['concentrationRatio'] != null
+          ? Ratio.fromJson(
+              json['concentrationRatio'] as Map<String, dynamic>,
+            )
+          : null,
+      concentrationRatioRange: json['concentrationRatioRange'] != null
+          ? RatioRange.fromJson(
+              json['concentrationRatioRange'] as Map<String, dynamic>,
+            )
+          : null,
+      textConcentration: json['textConcentration'] != null
+          ? FhirString.fromJson(json['textConcentration'])
+          : null,
+      textConcentrationElement: json['_textConcentration'] != null
+          ? Element.fromJson(
+              json['_textConcentration'] as Map<String, dynamic>,
+            )
+          : null,
+      measurementPoint: json['measurementPoint'] != null
+          ? FhirString.fromJson(json['measurementPoint'])
+          : null,
+      measurementPointElement: json['_measurementPoint'] != null
+          ? Element.fromJson(
+              json['_measurementPoint'] as Map<String, dynamic>,
+            )
+          : null,
+      country: json['country'] != null
+          ? (json['country'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      referenceStrength: json['referenceStrength'] != null
+          ? (json['referenceStrength'] as List<dynamic>)
+              .map<IngredientReferenceStrength>(
+                (dynamic v) => IngredientReferenceStrength.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [IngredientStrength] from a [String] or [YamlMap] object
+  factory IngredientStrength.fromYaml(dynamic yaml) => yaml is String
+      ? IngredientStrength.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? IngredientStrength.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'IngredientStrength cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [IngredientStrength] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory IngredientStrength.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return IngredientStrength.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'IngredientStrength';
 
-  /// [presentationRatio] /// The quantity of substance in the unit of presentation, or in the volume (or
-  /// mass) of the single pharmaceutical product or manufactured item. Unit of
-  /// presentation refers to the quantity that the item occurs in e.g. a strength
-  /// per tablet size, perhaps 'per 20mg' (the size of the tablet). It is not
-  /// generally normalized as a unitary unit, which would be 'per mg').
+  /// [presentationRatio]
+  /// The quantity of substance in the unit of presentation, or in the volume
+  /// (or mass) of the single pharmaceutical product or manufactured item.
+  /// Unit of presentation refers to the quantity that the item occurs in
+  /// e.g. a strength per tablet size, perhaps 'per 20mg' (the size of the
+  /// tablet). It is not generally normalized as a unitary unit, which would
+  /// be 'per mg').
   final Ratio? presentationRatio;
 
-  /// [presentationRatioRange] /// The quantity of substance in the unit of presentation, or in the volume (or
-  /// mass) of the single pharmaceutical product or manufactured item. Unit of
-  /// presentation refers to the quantity that the item occurs in e.g. a strength
-  /// per tablet size, perhaps 'per 20mg' (the size of the tablet). It is not
-  /// generally normalized as a unitary unit, which would be 'per mg').
+  /// [presentationRatioRange]
+  /// The quantity of substance in the unit of presentation, or in the volume
+  /// (or mass) of the single pharmaceutical product or manufactured item.
+  /// Unit of presentation refers to the quantity that the item occurs in
+  /// e.g. a strength per tablet size, perhaps 'per 20mg' (the size of the
+  /// tablet). It is not generally normalized as a unitary unit, which would
+  /// be 'per mg').
   final RatioRange? presentationRatioRange;
 
-  /// [textPresentation] /// A textual represention of either the whole of the presentation strength or
-  /// a part of it - with the rest being in Strength.presentation as a ratio.
+  /// [textPresentation]
+  /// A textual represention of either the whole of the presentation strength
+  /// or a part of it - with the rest being in Strength.presentation as a
+  /// ratio.
   final FhirString? textPresentation;
+
+  /// Extensions for [textPresentation]
   final Element? textPresentationElement;
 
-  /// [concentrationRatio] /// The strength per unitary volume (or mass).
+  /// [concentrationRatio]
+  /// The strength per unitary volume (or mass).
   final Ratio? concentrationRatio;
 
-  /// [concentrationRatioRange] /// The strength per unitary volume (or mass).
+  /// [concentrationRatioRange]
+  /// The strength per unitary volume (or mass).
   final RatioRange? concentrationRatioRange;
 
-  /// [textConcentration] /// A textual represention of either the whole of the concentration strength or
-  /// a part of it - with the rest being in Strength.concentration as a ratio.
+  /// [textConcentration]
+  /// A textual represention of either the whole of the concentration
+  /// strength or a part of it - with the rest being in
+  /// Strength.concentration as a ratio.
   final FhirString? textConcentration;
+
+  /// Extensions for [textConcentration]
   final Element? textConcentrationElement;
 
-  /// [measurementPoint] /// For when strength is measured at a particular point or distance. There are
-  /// products where strength is measured at a particular point. For example, the
-  /// strength of the ingredient in some inhalers is measured at a particular
-  /// position relative to the point of aerosolization.
+  /// [measurementPoint]
+  /// For when strength is measured at a particular point or distance. There
+  /// are products where strength is measured at a particular point. For
+  /// example, the strength of the ingredient in some inhalers is measured at
+  /// a particular position relative to the point of aerosolization.
   final FhirString? measurementPoint;
+
+  /// Extensions for [measurementPoint]
   final Element? measurementPointElement;
 
-  /// [country] /// The country or countries for which the strength range applies.
+  /// [country]
+  /// The country or countries for which the strength range applies.
   final List<CodeableConcept>? country;
 
-  /// [referenceStrength] /// Strength expressed in terms of a reference substance. For when the
-  /// ingredient strength is additionally expressed as equivalent to the strength
-  /// of some other closely related substance (e.g. salt vs. base). Reference
-  /// strength represents the strength (quantitative composition) of the active
-  /// moiety of the active substance. There are situations when the active
-  /// substance and active moiety are different, therefore both a strength and a
-  /// reference strength are needed.
+  /// [referenceStrength]
+  /// Strength expressed in terms of a reference substance. For when the
+  /// ingredient strength is additionally expressed as equivalent to the
+  /// strength of some other closely related substance (e.g. salt vs. base).
+  /// Reference strength represents the strength (quantitative composition)
+  /// of the active moiety of the active substance. There are situations when
+  /// the active substance and active moiety are different, therefore both a
+  /// strength and a reference strength are needed.
   final List<IngredientReferenceStrength>? referenceStrength;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (presentationRatio != null) {
       json['presentationRatio'] = presentationRatio!.toJson();
@@ -680,78 +937,16 @@ class IngredientStrength extends BackboneElement {
     }
     if (country != null && country!.isNotEmpty) {
       json['country'] =
-          country!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          country!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (referenceStrength != null && referenceStrength!.isNotEmpty) {
       json['referenceStrength'] = referenceStrength!
-          .map<dynamic>((IngredientReferenceStrength v) => v.toJson())
+          .map((IngredientReferenceStrength v) => v.toJson())
           .toList();
     }
     return json;
   }
 
-  factory IngredientStrength.fromJson(Map<String, dynamic> json) {
-    return IngredientStrength(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      presentationRatio: json['presentationRatio'] != null
-          ? Ratio.fromJson(json['presentationRatio'] as Map<String, dynamic>)
-          : null,
-      presentationRatioRange: json['presentationRatioRange'] != null
-          ? RatioRange.fromJson(
-              json['presentationRatioRange'] as Map<String, dynamic>)
-          : null,
-      textPresentation: json['textPresentation'] != null
-          ? FhirString.fromJson(json['textPresentation'])
-          : null,
-      textPresentationElement: json['_textPresentation'] != null
-          ? Element.fromJson(json['_textPresentation'] as Map<String, dynamic>)
-          : null,
-      concentrationRatio: json['concentrationRatio'] != null
-          ? Ratio.fromJson(json['concentrationRatio'] as Map<String, dynamic>)
-          : null,
-      concentrationRatioRange: json['concentrationRatioRange'] != null
-          ? RatioRange.fromJson(
-              json['concentrationRatioRange'] as Map<String, dynamic>)
-          : null,
-      textConcentration: json['textConcentration'] != null
-          ? FhirString.fromJson(json['textConcentration'])
-          : null,
-      textConcentrationElement: json['_textConcentration'] != null
-          ? Element.fromJson(json['_textConcentration'] as Map<String, dynamic>)
-          : null,
-      measurementPoint: json['measurementPoint'] != null
-          ? FhirString.fromJson(json['measurementPoint'])
-          : null,
-      measurementPointElement: json['_measurementPoint'] != null
-          ? Element.fromJson(json['_measurementPoint'] as Map<String, dynamic>)
-          : null,
-      country: json['country'] != null
-          ? (json['country'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      referenceStrength: json['referenceStrength'] != null
-          ? (json['referenceStrength'] as List<dynamic>)
-              .map<IngredientReferenceStrength>((dynamic v) =>
-                  IngredientReferenceStrength.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   IngredientStrength clone() => throw UnimplementedError();
   @override
@@ -807,35 +1002,19 @@ class IngredientStrength extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory IngredientStrength.fromYaml(dynamic yaml) => yaml is String
-      ? IngredientStrength.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? IngredientStrength.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'IngredientStrength cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory IngredientStrength.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return IngredientStrength.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [IngredientReferenceStrength] /// Strength expressed in terms of a reference substance. For when the
-/// ingredient strength is additionally expressed as equivalent to the strength
-/// of some other closely related substance (e.g. salt vs. base). Reference
-/// strength represents the strength (quantitative composition) of the active
-/// moiety of the active substance. There are situations when the active
-/// substance and active moiety are different, therefore both a strength and a
-/// reference strength are needed.
+/// [IngredientReferenceStrength]
+/// Strength expressed in terms of a reference substance. For when the
+/// ingredient strength is additionally expressed as equivalent to the
+/// strength of some other closely related substance (e.g. salt vs. base).
+/// Reference strength represents the strength (quantitative composition)
+/// of the active moiety of the active substance. There are situations when
+/// the active substance and active moiety are different, therefore both a
+/// strength and a reference strength are needed.
 class IngredientReferenceStrength extends BackboneElement {
+  /// Primary constructor for [IngredientReferenceStrength]
+
   IngredientReferenceStrength({
     super.id,
     super.extension_,
@@ -844,6 +1023,8 @@ class IngredientReferenceStrength extends BackboneElement {
     this.strengthRatio,
     this.strengthRatioRange,
     this.measurementPoint,
+
+    /// Extensions for [measurementPoint]
     this.measurementPointElement,
     this.country,
     super.userData,
@@ -854,38 +1035,127 @@ class IngredientReferenceStrength extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory IngredientReferenceStrength.fromJson(Map<String, dynamic> json) {
+    return IngredientReferenceStrength(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      substance: json['substance'] != null
+          ? CodeableReference.fromJson(
+              json['substance'] as Map<String, dynamic>,
+            )
+          : null,
+      strengthRatio: json['strengthRatio'] != null
+          ? Ratio.fromJson(
+              json['strengthRatio'] as Map<String, dynamic>,
+            )
+          : null,
+      strengthRatioRange: json['strengthRatioRange'] != null
+          ? RatioRange.fromJson(
+              json['strengthRatioRange'] as Map<String, dynamic>,
+            )
+          : null,
+      measurementPoint: json['measurementPoint'] != null
+          ? FhirString.fromJson(json['measurementPoint'])
+          : null,
+      measurementPointElement: json['_measurementPoint'] != null
+          ? Element.fromJson(
+              json['_measurementPoint'] as Map<String, dynamic>,
+            )
+          : null,
+      country: json['country'] != null
+          ? (json['country'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [IngredientReferenceStrength] from a [String] or [YamlMap] object
+  factory IngredientReferenceStrength.fromYaml(dynamic yaml) => yaml is String
+      ? IngredientReferenceStrength.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? IngredientReferenceStrength.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'IngredientReferenceStrength cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [IngredientReferenceStrength] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory IngredientReferenceStrength.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return IngredientReferenceStrength.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'IngredientReferenceStrength';
 
-  /// [substance] /// Relevant reference substance.
+  /// [substance]
+  /// Relevant reference substance.
   final CodeableReference? substance;
 
-  /// [strengthRatio] /// Strength expressed in terms of a reference substance.
+  /// [strengthRatio]
+  /// Strength expressed in terms of a reference substance.
   final Ratio? strengthRatio;
 
-  /// [strengthRatioRange] /// Strength expressed in terms of a reference substance.
+  /// [strengthRatioRange]
+  /// Strength expressed in terms of a reference substance.
   final RatioRange? strengthRatioRange;
 
-  /// [measurementPoint] /// For when strength is measured at a particular point or distance.
+  /// [measurementPoint]
+  /// For when strength is measured at a particular point or distance.
   final FhirString? measurementPoint;
+
+  /// Extensions for [measurementPoint]
   final Element? measurementPointElement;
 
-  /// [country] /// The country or countries for which the strength range applies.
+  /// [country]
+  /// The country or countries for which the strength range applies.
   final List<CodeableConcept>? country;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (substance != null) {
       json['substance'] = substance!.toJson();
@@ -904,51 +1174,11 @@ class IngredientReferenceStrength extends BackboneElement {
     }
     if (country != null && country!.isNotEmpty) {
       json['country'] =
-          country!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          country!.map((CodeableConcept v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory IngredientReferenceStrength.fromJson(Map<String, dynamic> json) {
-    return IngredientReferenceStrength(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      substance: json['substance'] != null
-          ? CodeableReference.fromJson(
-              json['substance'] as Map<String, dynamic>)
-          : null,
-      strengthRatio: json['strengthRatio'] != null
-          ? Ratio.fromJson(json['strengthRatio'] as Map<String, dynamic>)
-          : null,
-      strengthRatioRange: json['strengthRatioRange'] != null
-          ? RatioRange.fromJson(
-              json['strengthRatioRange'] as Map<String, dynamic>)
-          : null,
-      measurementPoint: json['measurementPoint'] != null
-          ? FhirString.fromJson(json['measurementPoint'])
-          : null,
-      measurementPointElement: json['_measurementPoint'] != null
-          ? Element.fromJson(json['_measurementPoint'] as Map<String, dynamic>)
-          : null,
-      country: json['country'] != null
-          ? (json['country'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   IngredientReferenceStrength clone() => throw UnimplementedError();
   @override
@@ -987,24 +1217,5 @@ class IngredientReferenceStrength extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory IngredientReferenceStrength.fromYaml(dynamic yaml) => yaml is String
-      ? IngredientReferenceStrength.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? IngredientReferenceStrength.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'IngredientReferenceStrength cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory IngredientReferenceStrength.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return IngredientReferenceStrength.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

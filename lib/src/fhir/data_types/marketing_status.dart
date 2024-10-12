@@ -1,12 +1,14 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [MarketingStatus] /// The marketing status describes the date when a medicinal product is
+/// [MarketingStatus]
+/// The marketing status describes the date when a medicinal product is
 /// actually put on the market or the date as of which it is no longer
 /// available.
 class MarketingStatus extends BackboneType {
+  /// Primary constructor for [MarketingStatus]
+
   MarketingStatus({
     super.id,
     super.extension_,
@@ -16,6 +18,8 @@ class MarketingStatus extends BackboneType {
     required this.status,
     this.dateRange,
     this.restoreDate,
+
+    /// Extensions for [restoreDate]
     this.restoreDateElement,
     super.userData,
     super.formatCommentsPre,
@@ -25,54 +29,141 @@ class MarketingStatus extends BackboneType {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MarketingStatus.fromJson(Map<String, dynamic> json) {
+    return MarketingStatus(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      country: json['country'] != null
+          ? CodeableConcept.fromJson(
+              json['country'] as Map<String, dynamic>,
+            )
+          : null,
+      jurisdiction: json['jurisdiction'] != null
+          ? CodeableConcept.fromJson(
+              json['jurisdiction'] as Map<String, dynamic>,
+            )
+          : null,
+      status: CodeableConcept.fromJson(
+        json['status'] as Map<String, dynamic>,
+      ),
+      dateRange: json['dateRange'] != null
+          ? Period.fromJson(
+              json['dateRange'] as Map<String, dynamic>,
+            )
+          : null,
+      restoreDate: json['restoreDate'] != null
+          ? FhirDateTime.fromJson(json['restoreDate'])
+          : null,
+      restoreDateElement: json['_restoreDate'] != null
+          ? Element.fromJson(
+              json['_restoreDate'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [MarketingStatus] from a [String] or [YamlMap] object
+  factory MarketingStatus.fromYaml(dynamic yaml) => yaml is String
+      ? MarketingStatus.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MarketingStatus.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MarketingStatus cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MarketingStatus] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MarketingStatus.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MarketingStatus.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'MarketingStatus';
 
-  /// [country] /// The country in which the marketing authorisation has been granted shall be
-  /// specified It should be specified using the ISO 3166 ‑ 1 alpha-2 code
+  /// [country]
+  /// The country in which the marketing authorisation has been granted shall
+  /// be specified It should be specified using the ISO 3166 ‑ 1 alpha-2 code
   /// elements.
   final CodeableConcept? country;
 
-  /// [jurisdiction] /// Where a Medicines Regulatory Agency has granted a marketing authorisation
-  /// for which specific provisions within a jurisdiction apply, the jurisdiction
-  /// can be specified using an appropriate controlled terminology The controlled
-  /// term and the controlled term identifier shall be specified.
+  /// [jurisdiction]
+  /// Where a Medicines Regulatory Agency has granted a marketing
+  /// authorisation for which specific provisions within a jurisdiction
+  /// apply, the jurisdiction can be specified using an appropriate
+  /// controlled terminology The controlled term and the controlled term
+  /// identifier shall be specified.
   final CodeableConcept? jurisdiction;
 
-  /// [status] /// This attribute provides information on the status of the marketing of the
-  /// medicinal product See ISO/TS 20443 for more information and examples.
+  /// [status]
+  /// This attribute provides information on the status of the marketing of
+  /// the medicinal product See ISO/TS 20443 for more information and
+  /// examples.
   final CodeableConcept status;
 
-  /// [dateRange] /// The date when the Medicinal Product is placed on the market by the
+  /// [dateRange]
+  /// The date when the Medicinal Product is placed on the market by the
   /// Marketing Authorisation Holder (or where applicable, the
   /// manufacturer/distributor) in a country and/or jurisdiction shall be
   /// provided A complete date consisting of day, month and year shall be
-  /// specified using the ISO 8601 date format NOTE “Placed on the market” refers
-  /// to the release of the Medicinal Product into the distribution chain.
+  /// specified using the ISO 8601 date format NOTE “Placed on the market”
+  /// refers to the release of the Medicinal Product into the distribution
+  /// chain.
   final Period? dateRange;
 
-  /// [restoreDate] /// The date when the Medicinal Product is placed on the market by the
+  /// [restoreDate]
+  /// The date when the Medicinal Product is placed on the market by the
   /// Marketing Authorisation Holder (or where applicable, the
   /// manufacturer/distributor) in a country and/or jurisdiction shall be
   /// provided A complete date consisting of day, month and year shall be
-  /// specified using the ISO 8601 date format NOTE “Placed on the market” refers
-  /// to the release of the Medicinal Product into the distribution chain.
+  /// specified using the ISO 8601 date format NOTE “Placed on the market”
+  /// refers to the release of the Medicinal Product into the distribution
+  /// chain.
   final FhirDateTime? restoreDate;
+
+  /// Extensions for [restoreDate]
   final Element? restoreDateElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (country != null) {
       json['country'] = country!.toJson();
@@ -93,40 +184,6 @@ class MarketingStatus extends BackboneType {
     return json;
   }
 
-  factory MarketingStatus.fromJson(Map<String, dynamic> json) {
-    return MarketingStatus(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      country: json['country'] != null
-          ? CodeableConcept.fromJson(json['country'] as Map<String, dynamic>)
-          : null,
-      jurisdiction: json['jurisdiction'] != null
-          ? CodeableConcept.fromJson(
-              json['jurisdiction'] as Map<String, dynamic>)
-          : null,
-      status: CodeableConcept.fromJson(json['status'] as Map<String, dynamic>),
-      dateRange: json['dateRange'] != null
-          ? Period.fromJson(json['dateRange'] as Map<String, dynamic>)
-          : null,
-      restoreDate: json['restoreDate'] != null
-          ? FhirDateTime.fromJson(json['restoreDate'])
-          : null,
-      restoreDateElement: json['_restoreDate'] != null
-          ? Element.fromJson(json['_restoreDate'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   MarketingStatus clone() => throw UnimplementedError();
   @override
@@ -164,24 +221,5 @@ class MarketingStatus extends BackboneType {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory MarketingStatus.fromYaml(dynamic yaml) => yaml is String
-      ? MarketingStatus.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MarketingStatus.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MarketingStatus cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MarketingStatus.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MarketingStatus.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

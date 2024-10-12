@@ -1,44 +1,70 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [EvidenceVariable] /// The EvidenceVariable resource describes an element that knowledge
+/// [EvidenceVariable]
+/// The EvidenceVariable resource describes an element that knowledge
 /// (Evidence) is about.
 class EvidenceVariable extends DomainResource {
+  /// Primary constructor for [EvidenceVariable]
+
   EvidenceVariable({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
+
+    /// Extensions for [url]
     this.urlElement,
     this.identifier,
     this.version,
+
+    /// Extensions for [version]
     this.versionElement,
     this.name,
+
+    /// Extensions for [name]
     this.nameElement,
     this.title,
+
+    /// Extensions for [title]
     this.titleElement,
     this.shortTitle,
+
+    /// Extensions for [shortTitle]
     this.shortTitleElement,
     this.subtitle,
+
+    /// Extensions for [subtitle]
     this.subtitleElement,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     this.date,
+
+    /// Extensions for [date]
     this.dateElement,
     this.description,
+
+    /// Extensions for [description]
     this.descriptionElement,
     this.note,
     this.useContext,
     this.publisher,
+
+    /// Extensions for [publisher]
     this.publisherElement,
     this.contact,
     this.author,
@@ -47,11 +73,17 @@ class EvidenceVariable extends DomainResource {
     this.endorser,
     this.relatedArtifact,
     this.actual,
+
+    /// Extensions for [actual]
     this.actualElement,
     this.characteristicCombination,
+
+    /// Extensions for [characteristicCombination]
     this.characteristicCombinationElement,
     this.characteristic,
     this.handling,
+
+    /// Extensions for [handling]
     this.handlingElement,
     this.category,
     super.userData,
@@ -60,139 +92,472 @@ class EvidenceVariable extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.EvidenceVariable);
+  }) : super(
+          resourceType: R4ResourceType.EvidenceVariable,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory EvidenceVariable.fromJson(Map<String, dynamic> json) {
+    return EvidenceVariable(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
+      urlElement: json['_url'] != null
+          ? Element.fromJson(
+              json['_url'] as Map<String, dynamic>,
+            )
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      version:
+          json['version'] != null ? FhirString.fromJson(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(
+              json['_version'] as Map<String, dynamic>,
+            )
+          : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(
+              json['_name'] as Map<String, dynamic>,
+            )
+          : null,
+      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
+      titleElement: json['_title'] != null
+          ? Element.fromJson(
+              json['_title'] as Map<String, dynamic>,
+            )
+          : null,
+      shortTitle: json['shortTitle'] != null
+          ? FhirString.fromJson(json['shortTitle'])
+          : null,
+      shortTitleElement: json['_shortTitle'] != null
+          ? Element.fromJson(
+              json['_shortTitle'] as Map<String, dynamic>,
+            )
+          : null,
+      subtitle: json['subtitle'] != null
+          ? FhirString.fromJson(json['subtitle'])
+          : null,
+      subtitleElement: json['_subtitle'] != null
+          ? Element.fromJson(
+              json['_subtitle'] as Map<String, dynamic>,
+            )
+          : null,
+      status: PublicationStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(
+              json['_date'] as Map<String, dynamic>,
+            )
+          : null,
+      description: json['description'] != null
+          ? FhirMarkdown.fromJson(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(
+              json['_description'] as Map<String, dynamic>,
+            )
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                (dynamic v) => Annotation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      useContext: json['useContext'] != null
+          ? (json['useContext'] as List<dynamic>)
+              .map<UsageContext>(
+                (dynamic v) => UsageContext.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      publisher: json['publisher'] != null
+          ? FhirString.fromJson(json['publisher'])
+          : null,
+      publisherElement: json['_publisher'] != null
+          ? Element.fromJson(
+              json['_publisher'] as Map<String, dynamic>,
+            )
+          : null,
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<ContactDetail>(
+                (dynamic v) => ContactDetail.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      author: json['author'] != null
+          ? (json['author'] as List<dynamic>)
+              .map<ContactDetail>(
+                (dynamic v) => ContactDetail.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      editor: json['editor'] != null
+          ? (json['editor'] as List<dynamic>)
+              .map<ContactDetail>(
+                (dynamic v) => ContactDetail.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      reviewer: json['reviewer'] != null
+          ? (json['reviewer'] as List<dynamic>)
+              .map<ContactDetail>(
+                (dynamic v) => ContactDetail.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      endorser: json['endorser'] != null
+          ? (json['endorser'] as List<dynamic>)
+              .map<ContactDetail>(
+                (dynamic v) => ContactDetail.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      relatedArtifact: json['relatedArtifact'] != null
+          ? (json['relatedArtifact'] as List<dynamic>)
+              .map<RelatedArtifact>(
+                (dynamic v) => RelatedArtifact.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      actual:
+          json['actual'] != null ? FhirBoolean.fromJson(json['actual']) : null,
+      actualElement: json['_actual'] != null
+          ? Element.fromJson(
+              json['_actual'] as Map<String, dynamic>,
+            )
+          : null,
+      characteristicCombination: json['characteristicCombination'] != null
+          ? CharacteristicCombination.fromJson(
+              json['characteristicCombination'])
+          : null,
+      characteristicCombinationElement:
+          json['_characteristicCombination'] != null
+              ? Element.fromJson(
+                  json['_characteristicCombination'] as Map<String, dynamic>,
+                )
+              : null,
+      characteristic: json['characteristic'] != null
+          ? (json['characteristic'] as List<dynamic>)
+              .map<EvidenceVariableCharacteristic>(
+                (dynamic v) => EvidenceVariableCharacteristic.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      handling: json['handling'] != null
+          ? EvidenceVariableHandling.fromJson(json['handling'])
+          : null,
+      handlingElement: json['_handling'] != null
+          ? Element.fromJson(
+              json['_handling'] as Map<String, dynamic>,
+            )
+          : null,
+      category: json['category'] != null
+          ? (json['category'] as List<dynamic>)
+              .map<EvidenceVariableCategory>(
+                (dynamic v) => EvidenceVariableCategory.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [EvidenceVariable] from a [String] or [YamlMap] object
+  factory EvidenceVariable.fromYaml(dynamic yaml) => yaml is String
+      ? EvidenceVariable.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? EvidenceVariable.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'EvidenceVariable cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [EvidenceVariable] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory EvidenceVariable.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return EvidenceVariable.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'EvidenceVariable';
 
-  /// [url] /// An absolute URI that is used to identify this evidence variable when it is
-  /// referenced in a specification, model, design or an instance; also called
-  /// its canonical identifier. This SHOULD be globally unique and SHOULD be a
-  /// literal address at which at which an authoritative instance of this
-  /// evidence variable is (or will be) published. This URL can be the target of
-  /// a canonical reference. It SHALL remain the same when the evidence variable
-  /// is stored on different servers.
+  /// [url]
+  /// An absolute URI that is used to identify this evidence variable when it
+  /// is referenced in a specification, model, design or an instance; also
+  /// called its canonical identifier. This SHOULD be globally unique and
+  /// SHOULD be a literal address at which at which an authoritative instance
+  /// of this evidence variable is (or will be) published. This URL can be
+  /// the target of a canonical reference. It SHALL remain the same when the
+  /// evidence variable is stored on different servers.
   final FhirUri? url;
+
+  /// Extensions for [url]
   final Element? urlElement;
 
-  /// [identifier] /// A formal identifier that is used to identify this evidence variable when it
-  /// is represented in other formats, or referenced in a specification, model,
-  /// design or an instance.
+  /// [identifier]
+  /// A formal identifier that is used to identify this evidence variable
+  /// when it is represented in other formats, or referenced in a
+  /// specification, model, design or an instance.
   final List<Identifier>? identifier;
 
-  /// [version] /// The identifier that is used to identify this version of the evidence
+  /// [version]
+  /// The identifier that is used to identify this version of the evidence
   /// variable when it is referenced in a specification, model, design or
   /// instance. This is an arbitrary value managed by the evidence variable
-  /// author and is not expected to be globally unique. For example, it might be
-  /// a timestamp (e.g. yyyymmdd) if a managed version is not available. There is
-  /// also no expectation that versions can be placed in a lexicographical
-  /// sequence. To provide a version consistent with the Decision Support Service
-  /// specification, use the format Major.Minor.Revision (e.g. 1.0.0). For more
-  /// information on versioning knowledge assets, refer to the Decision Support
-  /// Service specification. Note that a version is required for non-experimental
-  /// active artifacts.
+  /// author and is not expected to be globally unique. For example, it might
+  /// be a timestamp (e.g. yyyymmdd) if a managed version is not available.
+  /// There is also no expectation that versions can be placed in a
+  /// lexicographical sequence. To provide a version consistent with the
+  /// Decision Support Service specification, use the format
+  /// Major.Minor.Revision (e.g. 1.0.0). For more information on versioning
+  /// knowledge assets, refer to the Decision Support Service specification.
+  /// Note that a version is required for non-experimental active artifacts.
   final FhirString? version;
+
+  /// Extensions for [version]
   final Element? versionElement;
 
-  /// [name] /// A natural language name identifying the evidence variable. This name should
-  /// be usable as an identifier for the module by machine processing
+  /// [name]
+  /// A natural language name identifying the evidence variable. This name
+  /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
   final FhirString? name;
+
+  /// Extensions for [name]
   final Element? nameElement;
 
-  /// [title] /// A short, descriptive, user-friendly title for the evidence variable.
+  /// [title]
+  /// A short, descriptive, user-friendly title for the evidence variable.
   final FhirString? title;
+
+  /// Extensions for [title]
   final Element? titleElement;
 
-  /// [shortTitle] /// The short title provides an alternate title for use in informal descriptive
-  /// contexts where the full, formal title is not necessary.
+  /// [shortTitle]
+  /// The short title provides an alternate title for use in informal
+  /// descriptive contexts where the full, formal title is not necessary.
   final FhirString? shortTitle;
+
+  /// Extensions for [shortTitle]
   final Element? shortTitleElement;
 
-  /// [subtitle] /// An explanatory or alternate title for the EvidenceVariable giving
+  /// [subtitle]
+  /// An explanatory or alternate title for the EvidenceVariable giving
   /// additional information about its content.
   final FhirString? subtitle;
+
+  /// Extensions for [subtitle]
   final Element? subtitleElement;
 
-  /// [status] /// The status of this evidence variable. Enables tracking the life-cycle of
-  /// the content.
+  /// [status]
+  /// The status of this evidence variable. Enables tracking the life-cycle
+  /// of the content.
   final PublicationStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [date] /// The date (and optionally time) when the evidence variable was published.
-  /// The date must change when the business version changes and it must change
-  /// if the status code changes. In addition, it should change when the
-  /// substantive content of the evidence variable changes.
+  /// [date]
+  /// The date (and optionally time) when the evidence variable was
+  /// published. The date must change when the business version changes and
+  /// it must change if the status code changes. In addition, it should
+  /// change when the substantive content of the evidence variable changes.
   final FhirDateTime? date;
+
+  /// Extensions for [date]
   final Element? dateElement;
 
-  /// [description] /// A free text natural language description of the evidence variable from a
-  /// consumer's perspective.
+  /// [description]
+  /// A free text natural language description of the evidence variable from
+  /// a consumer's perspective.
   final FhirMarkdown? description;
+
+  /// Extensions for [description]
   final Element? descriptionElement;
 
-  /// [note] /// A human-readable string to clarify or explain concepts about the resource.
+  /// [note]
+  /// A human-readable string to clarify or explain concepts about the
+  /// resource.
   final List<Annotation>? note;
 
-  /// [useContext] /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These contexts may be general categories (gender,
-  /// age, ...) or may be references to specific programs (insurance plans,
-  /// studies, ...) and may be used to assist with indexing and searching for
-  /// appropriate evidence variable instances.
+  /// [useContext]
+  /// The content was developed with a focus and intent of supporting the
+  /// contexts that are listed. These contexts may be general categories
+  /// (gender, age, ...) or may be references to specific programs (insurance
+  /// plans, studies, ...) and may be used to assist with indexing and
+  /// searching for appropriate evidence variable instances.
   final List<UsageContext>? useContext;
 
-  /// [publisher] /// The name of the organization or individual that published the evidence
+  /// [publisher]
+  /// The name of the organization or individual that published the evidence
   /// variable.
   final FhirString? publisher;
+
+  /// Extensions for [publisher]
   final Element? publisherElement;
 
-  /// [contact] /// Contact details to assist a user in finding and communicating with the
+  /// [contact]
+  /// Contact details to assist a user in finding and communicating with the
   /// publisher.
   final List<ContactDetail>? contact;
 
-  /// [author] /// An individiual or organization primarily involved in the creation and
+  /// [author]
+  /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
   final List<ContactDetail>? author;
 
-  /// [editor] /// An individual or organization primarily responsible for internal coherence
-  /// of the content.
+  /// [editor]
+  /// An individual or organization primarily responsible for internal
+  /// coherence of the content.
   final List<ContactDetail>? editor;
 
-  /// [reviewer] /// An individual or organization primarily responsible for review of some
+  /// [reviewer]
+  /// An individual or organization primarily responsible for review of some
   /// aspect of the content.
   final List<ContactDetail>? reviewer;
 
-  /// [endorser] /// An individual or organization responsible for officially endorsing the
+  /// [endorser]
+  /// An individual or organization responsible for officially endorsing the
   /// content for use in some setting.
   final List<ContactDetail>? endorser;
 
-  /// [relatedArtifact] /// Related artifacts such as additional documentation, justification, or
+  /// [relatedArtifact]
+  /// Related artifacts such as additional documentation, justification, or
   /// bibliographic references.
   final List<RelatedArtifact>? relatedArtifact;
 
-  /// [actual] /// True if the actual variable measured, false if a conceptual representation
-  /// of the intended variable.
+  /// [actual]
+  /// True if the actual variable measured, false if a conceptual
+  /// representation of the intended variable.
   final FhirBoolean? actual;
+
+  /// Extensions for [actual]
   final Element? actualElement;
 
-  /// [characteristicCombination] /// Used to specify if two or more characteristics are combined with OR or AND.
+  /// [characteristicCombination]
+  /// Used to specify if two or more characteristics are combined with OR or
+  /// AND.
   final CharacteristicCombination? characteristicCombination;
+
+  /// Extensions for [characteristicCombination]
   final Element? characteristicCombinationElement;
 
-  /// [characteristic] /// A characteristic that defines the members of the evidence element. Multiple
-  /// characteristics are applied with "and" semantics.
+  /// [characteristic]
+  /// A characteristic that defines the members of the evidence element.
+  /// Multiple characteristics are applied with "and" semantics.
   final List<EvidenceVariableCharacteristic>? characteristic;
 
-  /// [handling] /// Used for an outcome to classify.
+  /// [handling]
+  /// Used for an outcome to classify.
   final EvidenceVariableHandling? handling;
+
+  /// Extensions for [handling]
   final Element? handlingElement;
 
-  /// [category] /// A grouping (or set of values) described along with other groupings to
+  /// [category]
+  /// A grouping (or set of values) described along with other groupings to
   /// specify the set of groupings allowed for the variable.
   final List<EvidenceVariableCategory>? category;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -213,17 +578,15 @@ class EvidenceVariable extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (url?.value != null) {
       json['url'] = url!.toJson();
@@ -233,7 +596,7 @@ class EvidenceVariable extends DomainResource {
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (version?.value != null) {
       json['version'] = version!.toJson();
@@ -279,11 +642,11 @@ class EvidenceVariable extends DomainResource {
       json['_description'] = descriptionElement!.toJson();
     }
     if (note != null && note!.isNotEmpty) {
-      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+      json['note'] = note!.map((Annotation v) => v.toJson()).toList();
     }
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] =
-          useContext!.map<dynamic>((UsageContext v) => v.toJson()).toList();
+          useContext!.map((UsageContext v) => v.toJson()).toList();
     }
     if (publisher?.value != null) {
       json['publisher'] = publisher!.toJson();
@@ -292,29 +655,25 @@ class EvidenceVariable extends DomainResource {
       json['_publisher'] = publisherElement!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
-      json['contact'] =
-          contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+      json['contact'] = contact!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (author != null && author!.isNotEmpty) {
-      json['author'] =
-          author!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+      json['author'] = author!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (editor != null && editor!.isNotEmpty) {
-      json['editor'] =
-          editor!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+      json['editor'] = editor!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (reviewer != null && reviewer!.isNotEmpty) {
       json['reviewer'] =
-          reviewer!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+          reviewer!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (endorser != null && endorser!.isNotEmpty) {
       json['endorser'] =
-          endorser!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+          endorser!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (relatedArtifact != null && relatedArtifact!.isNotEmpty) {
-      json['relatedArtifact'] = relatedArtifact!
-          .map<dynamic>((RelatedArtifact v) => v.toJson())
-          .toList();
+      json['relatedArtifact'] =
+          relatedArtifact!.map((RelatedArtifact v) => v.toJson()).toList();
     }
     if (actual?.value != null) {
       json['actual'] = actual!.toJson();
@@ -327,197 +686,19 @@ class EvidenceVariable extends DomainResource {
     }
     if (characteristic != null && characteristic!.isNotEmpty) {
       json['characteristic'] = characteristic!
-          .map<dynamic>((EvidenceVariableCharacteristic v) => v.toJson())
+          .map((EvidenceVariableCharacteristic v) => v.toJson())
           .toList();
     }
     if (handling != null) {
       json['handling'] = handling!.toJson();
     }
     if (category != null && category!.isNotEmpty) {
-      json['category'] = category!
-          .map<dynamic>((EvidenceVariableCategory v) => v.toJson())
-          .toList();
+      json['category'] =
+          category!.map((EvidenceVariableCategory v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory EvidenceVariable.fromJson(Map<String, dynamic> json) {
-    return EvidenceVariable(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
-          : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
-          : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
-          : null,
-      shortTitle: json['shortTitle'] != null
-          ? FhirString.fromJson(json['shortTitle'])
-          : null,
-      shortTitleElement: json['_shortTitle'] != null
-          ? Element.fromJson(json['_shortTitle'] as Map<String, dynamic>)
-          : null,
-      subtitle: json['subtitle'] != null
-          ? FhirString.fromJson(json['subtitle'])
-          : null,
-      subtitleElement: json['_subtitle'] != null
-          ? Element.fromJson(json['_subtitle'] as Map<String, dynamic>)
-          : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
-          : null,
-      description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
-          : null,
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      useContext: json['useContext'] != null
-          ? (json['useContext'] as List<dynamic>)
-              .map<UsageContext>((dynamic v) =>
-                  UsageContext.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      publisher: json['publisher'] != null
-          ? FhirString.fromJson(json['publisher'])
-          : null,
-      publisherElement: json['_publisher'] != null
-          ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
-          : null,
-      contact: json['contact'] != null
-          ? (json['contact'] as List<dynamic>)
-              .map<ContactDetail>((dynamic v) =>
-                  ContactDetail.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      author: json['author'] != null
-          ? (json['author'] as List<dynamic>)
-              .map<ContactDetail>((dynamic v) =>
-                  ContactDetail.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      editor: json['editor'] != null
-          ? (json['editor'] as List<dynamic>)
-              .map<ContactDetail>((dynamic v) =>
-                  ContactDetail.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      reviewer: json['reviewer'] != null
-          ? (json['reviewer'] as List<dynamic>)
-              .map<ContactDetail>((dynamic v) =>
-                  ContactDetail.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      endorser: json['endorser'] != null
-          ? (json['endorser'] as List<dynamic>)
-              .map<ContactDetail>((dynamic v) =>
-                  ContactDetail.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      relatedArtifact: json['relatedArtifact'] != null
-          ? (json['relatedArtifact'] as List<dynamic>)
-              .map<RelatedArtifact>((dynamic v) =>
-                  RelatedArtifact.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      actual:
-          json['actual'] != null ? FhirBoolean.fromJson(json['actual']) : null,
-      actualElement: json['_actual'] != null
-          ? Element.fromJson(json['_actual'] as Map<String, dynamic>)
-          : null,
-      characteristicCombination: json['characteristicCombination'] != null
-          ? CharacteristicCombination.fromJson(
-              json['characteristicCombination'])
-          : null,
-      characteristicCombinationElement:
-          json['_characteristicCombination'] != null
-              ? Element.fromJson(
-                  json['_characteristicCombination'] as Map<String, dynamic>)
-              : null,
-      characteristic: json['characteristic'] != null
-          ? (json['characteristic'] as List<dynamic>)
-              .map<EvidenceVariableCharacteristic>((dynamic v) =>
-                  EvidenceVariableCharacteristic.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      handling: json['handling'] != null
-          ? EvidenceVariableHandling.fromJson(json['handling'])
-          : null,
-      handlingElement: json['_handling'] != null
-          ? Element.fromJson(json['_handling'] as Map<String, dynamic>)
-          : null,
-      category: json['category'] != null
-          ? (json['category'] as List<dynamic>)
-              .map<EvidenceVariableCategory>((dynamic v) =>
-                  EvidenceVariableCategory.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   EvidenceVariable clone() => throw UnimplementedError();
   @override
@@ -634,47 +815,39 @@ class EvidenceVariable extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory EvidenceVariable.fromYaml(dynamic yaml) => yaml is String
-      ? EvidenceVariable.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? EvidenceVariable.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'EvidenceVariable cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory EvidenceVariable.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return EvidenceVariable.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [EvidenceVariableCharacteristic] /// A characteristic that defines the members of the evidence element. Multiple
-/// characteristics are applied with "and" semantics.
+/// [EvidenceVariableCharacteristic]
+/// A characteristic that defines the members of the evidence element.
+/// Multiple characteristics are applied with "and" semantics.
 class EvidenceVariableCharacteristic extends BackboneElement {
+  /// Primary constructor for [EvidenceVariableCharacteristic]
+
   EvidenceVariableCharacteristic({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.description,
+
+    /// Extensions for [description]
     this.descriptionElement,
     this.definitionReference,
     this.definitionCanonical,
+
+    /// Extensions for [definitionCanonical]
     this.definitionCanonicalElement,
     this.definitionCodeableConcept,
     this.definitionExpression,
     this.method,
     this.device,
     this.exclude,
+
+    /// Extensions for [exclude]
     this.excludeElement,
     this.timeFromStart,
     this.groupMeasure,
+
+    /// Extensions for [groupMeasure]
     this.groupMeasureElement,
     super.userData,
     super.formatCommentsPre,
@@ -684,70 +857,203 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory EvidenceVariableCharacteristic.fromJson(Map<String, dynamic> json) {
+    return EvidenceVariableCharacteristic(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(
+              json['_description'] as Map<String, dynamic>,
+            )
+          : null,
+      definitionReference: json['definitionReference'] != null
+          ? Reference.fromJson(
+              json['definitionReference'] as Map<String, dynamic>,
+            )
+          : null,
+      definitionCanonical: json['definitionCanonical'] != null
+          ? FhirCanonical.fromJson(json['definitionCanonical'])
+          : null,
+      definitionCanonicalElement: json['_definitionCanonical'] != null
+          ? Element.fromJson(
+              json['_definitionCanonical'] as Map<String, dynamic>,
+            )
+          : null,
+      definitionCodeableConcept: json['definitionCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['definitionCodeableConcept'] as Map<String, dynamic>,
+            )
+          : null,
+      definitionExpression: json['definitionExpression'] != null
+          ? FhirExpression.fromJson(
+              json['definitionExpression'] as Map<String, dynamic>,
+            )
+          : null,
+      method: json['method'] != null
+          ? CodeableConcept.fromJson(
+              json['method'] as Map<String, dynamic>,
+            )
+          : null,
+      device: json['device'] != null
+          ? Reference.fromJson(
+              json['device'] as Map<String, dynamic>,
+            )
+          : null,
+      exclude: json['exclude'] != null
+          ? FhirBoolean.fromJson(json['exclude'])
+          : null,
+      excludeElement: json['_exclude'] != null
+          ? Element.fromJson(
+              json['_exclude'] as Map<String, dynamic>,
+            )
+          : null,
+      timeFromStart: json['timeFromStart'] != null
+          ? EvidenceVariableTimeFromStart.fromJson(
+              json['timeFromStart'] as Map<String, dynamic>,
+            )
+          : null,
+      groupMeasure: json['groupMeasure'] != null
+          ? GroupMeasure.fromJson(json['groupMeasure'])
+          : null,
+      groupMeasureElement: json['_groupMeasure'] != null
+          ? Element.fromJson(
+              json['_groupMeasure'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [EvidenceVariableCharacteristic] from a [String] or [YamlMap] object
+  factory EvidenceVariableCharacteristic.fromYaml(dynamic yaml) => yaml
+          is String
+      ? EvidenceVariableCharacteristic.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? EvidenceVariableCharacteristic.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'EvidenceVariableCharacteristic cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [EvidenceVariableCharacteristic] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory EvidenceVariableCharacteristic.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return EvidenceVariableCharacteristic.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'EvidenceVariableCharacteristic';
 
-  /// [description] /// A short, natural language description of the characteristic that could be
-  /// used to communicate the criteria to an end-user.
+  /// [description]
+  /// A short, natural language description of the characteristic that could
+  /// be used to communicate the criteria to an end-user.
   final FhirString? description;
+
+  /// Extensions for [description]
   final Element? descriptionElement;
 
-  /// [definitionReference] /// Define members of the evidence element using Codes (such as condition,
+  /// [definitionReference]
+  /// Define members of the evidence element using Codes (such as condition,
   /// medication, or observation), Expressions ( using an expression language
-  /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
-  /// onset in the last year).
+  /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes
+  /// diagnosis onset in the last year).
   final Reference? definitionReference;
 
-  /// [definitionCanonical] /// Define members of the evidence element using Codes (such as condition,
+  /// [definitionCanonical]
+  /// Define members of the evidence element using Codes (such as condition,
   /// medication, or observation), Expressions ( using an expression language
-  /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
-  /// onset in the last year).
+  /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes
+  /// diagnosis onset in the last year).
   final FhirCanonical? definitionCanonical;
+
+  /// Extensions for [definitionCanonical]
   final Element? definitionCanonicalElement;
 
-  /// [definitionCodeableConcept] /// Define members of the evidence element using Codes (such as condition,
+  /// [definitionCodeableConcept]
+  /// Define members of the evidence element using Codes (such as condition,
   /// medication, or observation), Expressions ( using an expression language
-  /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
-  /// onset in the last year).
+  /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes
+  /// diagnosis onset in the last year).
   final CodeableConcept? definitionCodeableConcept;
 
-  /// [definitionExpression] /// Define members of the evidence element using Codes (such as condition,
+  /// [definitionExpression]
+  /// Define members of the evidence element using Codes (such as condition,
   /// medication, or observation), Expressions ( using an expression language
-  /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes diagnosis
-  /// onset in the last year).
+  /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes
+  /// diagnosis onset in the last year).
   final FhirExpression? definitionExpression;
 
-  /// [method] /// Method used for describing characteristic.
+  /// [method]
+  /// Method used for describing characteristic.
   final CodeableConcept? method;
 
-  /// [device] /// Device used for determining characteristic.
+  /// [device]
+  /// Device used for determining characteristic.
   final Reference? device;
 
-  /// [exclude] /// When true, members with this characteristic are excluded from the element.
+  /// [exclude]
+  /// When true, members with this characteristic are excluded from the
+  /// element.
   final FhirBoolean? exclude;
+
+  /// Extensions for [exclude]
   final Element? excludeElement;
 
-  /// [timeFromStart] /// Indicates duration, period, or point of observation from the participant's
-  /// study entry.
+  /// [timeFromStart]
+  /// Indicates duration, period, or point of observation from the
+  /// participant's study entry.
   final EvidenceVariableTimeFromStart? timeFromStart;
 
-  /// [groupMeasure] /// Indicates how elements are aggregated within the study effective period.
+  /// [groupMeasure]
+  /// Indicates how elements are aggregated within the study effective
+  /// period.
   final GroupMeasure? groupMeasure;
+
+  /// Extensions for [groupMeasure]
   final Element? groupMeasureElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
@@ -791,70 +1097,6 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     return json;
   }
 
-  factory EvidenceVariableCharacteristic.fromJson(Map<String, dynamic> json) {
-    return EvidenceVariableCharacteristic(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
-          : null,
-      definitionReference: json['definitionReference'] != null
-          ? Reference.fromJson(
-              json['definitionReference'] as Map<String, dynamic>)
-          : null,
-      definitionCanonical: json['definitionCanonical'] != null
-          ? FhirCanonical.fromJson(json['definitionCanonical'])
-          : null,
-      definitionCanonicalElement: json['_definitionCanonical'] != null
-          ? Element.fromJson(
-              json['_definitionCanonical'] as Map<String, dynamic>)
-          : null,
-      definitionCodeableConcept: json['definitionCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['definitionCodeableConcept'] as Map<String, dynamic>)
-          : null,
-      definitionExpression: json['definitionExpression'] != null
-          ? FhirExpression.fromJson(
-              json['definitionExpression'] as Map<String, dynamic>)
-          : null,
-      method: json['method'] != null
-          ? CodeableConcept.fromJson(json['method'] as Map<String, dynamic>)
-          : null,
-      device: json['device'] != null
-          ? Reference.fromJson(json['device'] as Map<String, dynamic>)
-          : null,
-      exclude: json['exclude'] != null
-          ? FhirBoolean.fromJson(json['exclude'])
-          : null,
-      excludeElement: json['_exclude'] != null
-          ? Element.fromJson(json['_exclude'] as Map<String, dynamic>)
-          : null,
-      timeFromStart: json['timeFromStart'] != null
-          ? EvidenceVariableTimeFromStart.fromJson(
-              json['timeFromStart'] as Map<String, dynamic>)
-          : null,
-      groupMeasure: json['groupMeasure'] != null
-          ? GroupMeasure.fromJson(json['groupMeasure'])
-          : null,
-      groupMeasureElement: json['_groupMeasure'] != null
-          ? Element.fromJson(json['_groupMeasure'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   EvidenceVariableCharacteristic clone() => throw UnimplementedError();
   @override
@@ -911,36 +1153,21 @@ class EvidenceVariableCharacteristic extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory EvidenceVariableCharacteristic.fromYaml(dynamic yaml) => yaml
-          is String
-      ? EvidenceVariableCharacteristic.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? EvidenceVariableCharacteristic.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'EvidenceVariableCharacteristic cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory EvidenceVariableCharacteristic.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return EvidenceVariableCharacteristic.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [EvidenceVariableTimeFromStart] /// Indicates duration, period, or point of observation from the participant's
-/// study entry.
+/// [EvidenceVariableTimeFromStart]
+/// Indicates duration, period, or point of observation from the
+/// participant's study entry.
 class EvidenceVariableTimeFromStart extends BackboneElement {
+  /// Primary constructor for [EvidenceVariableTimeFromStart]
+
   EvidenceVariableTimeFromStart({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.description,
+
+    /// Extensions for [description]
     this.descriptionElement,
     this.quantity,
     this.range,
@@ -953,36 +1180,120 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory EvidenceVariableTimeFromStart.fromJson(Map<String, dynamic> json) {
+    return EvidenceVariableTimeFromStart(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(
+              json['_description'] as Map<String, dynamic>,
+            )
+          : null,
+      quantity: json['quantity'] != null
+          ? Quantity.fromJson(
+              json['quantity'] as Map<String, dynamic>,
+            )
+          : null,
+      range: json['range'] != null
+          ? Range.fromJson(
+              json['range'] as Map<String, dynamic>,
+            )
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                (dynamic v) => Annotation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [EvidenceVariableTimeFromStart] from a [String] or [YamlMap] object
+  factory EvidenceVariableTimeFromStart.fromYaml(dynamic yaml) => yaml is String
+      ? EvidenceVariableTimeFromStart.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? EvidenceVariableTimeFromStart.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'EvidenceVariableTimeFromStart cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [EvidenceVariableTimeFromStart] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory EvidenceVariableTimeFromStart.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return EvidenceVariableTimeFromStart.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'EvidenceVariableTimeFromStart';
 
-  /// [description] /// A short, natural language description.
+  /// [description]
+  /// A short, natural language description.
   final FhirString? description;
+
+  /// Extensions for [description]
   final Element? descriptionElement;
 
-  /// [quantity] /// Used to express the observation at a defined amount of time after the study
-  /// start.
+  /// [quantity]
+  /// Used to express the observation at a defined amount of time after the
+  /// study start.
   final Quantity? quantity;
 
-  /// [range] /// Used to express the observation within a period after the study start.
+  /// [range]
+  /// Used to express the observation within a period after the study start.
   final Range? range;
 
-  /// [note] /// A human-readable string to clarify or explain concepts about the resource.
+  /// [note]
+  /// A human-readable string to clarify or explain concepts about the
+  /// resource.
   final List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
@@ -997,46 +1308,11 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
       json['range'] = range!.toJson();
     }
     if (note != null && note!.isNotEmpty) {
-      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+      json['note'] = note!.map((Annotation v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory EvidenceVariableTimeFromStart.fromJson(Map<String, dynamic> json) {
-    return EvidenceVariableTimeFromStart(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
-          : null,
-      quantity: json['quantity'] != null
-          ? Quantity.fromJson(json['quantity'] as Map<String, dynamic>)
-          : null,
-      range: json['range'] != null
-          ? Range.fromJson(json['range'] as Map<String, dynamic>)
-          : null,
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   EvidenceVariableTimeFromStart clone() => throw UnimplementedError();
   @override
@@ -1073,35 +1349,21 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory EvidenceVariableTimeFromStart.fromYaml(dynamic yaml) => yaml is String
-      ? EvidenceVariableTimeFromStart.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? EvidenceVariableTimeFromStart.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'EvidenceVariableTimeFromStart cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory EvidenceVariableTimeFromStart.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return EvidenceVariableTimeFromStart.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [EvidenceVariableCategory] /// A grouping (or set of values) described along with other groupings to
+/// [EvidenceVariableCategory]
+/// A grouping (or set of values) described along with other groupings to
 /// specify the set of groupings allowed for the variable.
 class EvidenceVariableCategory extends BackboneElement {
+  /// Primary constructor for [EvidenceVariableCategory]
+
   EvidenceVariableCategory({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.name,
+
+    /// Extensions for [name]
     this.nameElement,
     this.valueCodeableConcept,
     this.valueQuantity,
@@ -1114,35 +1376,112 @@ class EvidenceVariableCategory extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory EvidenceVariableCategory.fromJson(Map<String, dynamic> json) {
+    return EvidenceVariableCategory(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(
+              json['_name'] as Map<String, dynamic>,
+            )
+          : null,
+      valueCodeableConcept: json['valueCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['valueCodeableConcept'] as Map<String, dynamic>,
+            )
+          : null,
+      valueQuantity: json['valueQuantity'] != null
+          ? Quantity.fromJson(
+              json['valueQuantity'] as Map<String, dynamic>,
+            )
+          : null,
+      valueRange: json['valueRange'] != null
+          ? Range.fromJson(
+              json['valueRange'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [EvidenceVariableCategory] from a [String] or [YamlMap] object
+  factory EvidenceVariableCategory.fromYaml(dynamic yaml) => yaml is String
+      ? EvidenceVariableCategory.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? EvidenceVariableCategory.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'EvidenceVariableCategory cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [EvidenceVariableCategory] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory EvidenceVariableCategory.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return EvidenceVariableCategory.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'EvidenceVariableCategory';
 
-  /// [name] /// A human-readable title or representation of the grouping.
+  /// [name]
+  /// A human-readable title or representation of the grouping.
   final FhirString? name;
+
+  /// Extensions for [name]
   final Element? nameElement;
 
-  /// [valueCodeableConcept] /// Value or set of values that define the grouping.
+  /// [valueCodeableConcept]
+  /// Value or set of values that define the grouping.
   final CodeableConcept? valueCodeableConcept;
 
-  /// [valueQuantity] /// Value or set of values that define the grouping.
+  /// [valueQuantity]
+  /// Value or set of values that define the grouping.
   final Quantity? valueQuantity;
 
-  /// [valueRange] /// Value or set of values that define the grouping.
+  /// [valueRange]
+  /// Value or set of values that define the grouping.
   final Range? valueRange;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (name?.value != null) {
       json['name'] = name!.toJson();
@@ -1162,37 +1501,6 @@ class EvidenceVariableCategory extends BackboneElement {
     return json;
   }
 
-  factory EvidenceVariableCategory.fromJson(Map<String, dynamic> json) {
-    return EvidenceVariableCategory(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
-          : null,
-      valueCodeableConcept: json['valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['valueCodeableConcept'] as Map<String, dynamic>)
-          : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>)
-          : null,
-      valueRange: json['valueRange'] != null
-          ? Range.fromJson(json['valueRange'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   EvidenceVariableCategory clone() => throw UnimplementedError();
   @override
@@ -1228,24 +1536,5 @@ class EvidenceVariableCategory extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory EvidenceVariableCategory.fromYaml(dynamic yaml) => yaml is String
-      ? EvidenceVariableCategory.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? EvidenceVariableCategory.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'EvidenceVariableCategory cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory EvidenceVariableCategory.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return EvidenceVariableCategory.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

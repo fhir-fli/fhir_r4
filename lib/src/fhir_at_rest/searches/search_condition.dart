@@ -19,7 +19,7 @@ class SearchCondition extends SearchResource {
   SearchCondition abatementAge(FhirDecimal value,
       {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {
     if (modifier != null &&
-        !<String>['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
+        !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
     }
     parameters['${modifier != null ? '$modifier' : ''}abatement_age'] =
@@ -36,8 +36,7 @@ class SearchCondition extends SearchResource {
 
   SearchCondition abatementString(FhirString value,
       {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}abatement_string'] =
@@ -76,7 +75,7 @@ class SearchCondition extends SearchResource {
   SearchCondition onsetAge(FhirDecimal value,
       {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {
     if (modifier != null &&
-        !<String>['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
+        !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
     }
     parameters['${modifier != null ? '$modifier' : ''}onset_age'] =
@@ -91,8 +90,7 @@ class SearchCondition extends SearchResource {
   }
 
   SearchCondition onsetInfo(FhirString value, {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}onset_info'] =

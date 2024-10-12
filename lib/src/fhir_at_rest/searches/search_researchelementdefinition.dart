@@ -12,7 +12,7 @@ class SearchResearchElementDefinition extends SearchResource {
   SearchResearchElementDefinition contextQuantity(FhirDecimal value,
       {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {
     if (modifier != null &&
-        !<String>['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
+        !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
     }
     parameters['${modifier != null ? '$modifier' : ''}context_quantity'] =
@@ -35,8 +35,7 @@ class SearchResearchElementDefinition extends SearchResource {
 
   SearchResearchElementDefinition description(FhirString value,
       {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}description'] =
@@ -67,8 +66,7 @@ class SearchResearchElementDefinition extends SearchResource {
 
   SearchResearchElementDefinition name(FhirString value,
       {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}name'] = value.toString();
@@ -77,8 +75,7 @@ class SearchResearchElementDefinition extends SearchResource {
 
   SearchResearchElementDefinition publisher(FhirString value,
       {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}publisher'] =
@@ -95,8 +92,7 @@ class SearchResearchElementDefinition extends SearchResource {
 
   SearchResearchElementDefinition title(FhirString value,
       {SearchModifier? modifier}) {
-    if (modifier != null &&
-        !<String>['eq', 'ne'].contains(modifier.toString())) {
+    if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
     parameters['${modifier != null ? '$modifier' : ''}title'] =

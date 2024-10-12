@@ -1,4 +1,4 @@
-import '../../../fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart';
 
 /// Acts like a constructor, returns a [Resource], accepts a
 /// [Map<String, Dynamic>] as an argument
@@ -289,7 +289,7 @@ Resource resourceFromJson(Map<String, dynamic> json) {
       return VisionPrescription.fromJson(json);
     default:
       throw UnsupportedError(
-          'You have passed Resource.fromJson a type which does not exist or is null. '
-          'In this case, the resourceType is $resourceType.');
+          'You have passed Resource.fromJson a type which does not exist or is '
+          'null. In this case, the resourceType is $resourceType.');
   }
 }

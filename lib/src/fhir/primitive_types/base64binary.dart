@@ -1,21 +1,38 @@
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
-import '../../../fhir_r4.dart';
 
+/// Simplifies getting a [FhirBase64Binary] from a [String]
 extension FhirBase64BinaryExtension on String {
+  /// Returns a [FhirBase64Binary] object from a [String]
   FhirBase64Binary get toFhirBase64Binary => FhirBase64Binary(this);
 }
 
+/// [FhirBase64Binary]
 class FhirBase64Binary extends PrimitiveType<String> {
-  @override
-  final String value;
-
-  // Constructor enforces valid input
+  /// Constructor enforces valid input
   FhirBase64Binary(String input, [Element? element])
       : value = _validateBase64(input),
         super(element: element);
 
+  /// fromJson accepts dynamic input and validates
+  factory FhirBase64Binary.fromJson(dynamic json) {
+    if (json is String) {
+      return FhirBase64Binary(json);
+    } else {
+      throw const FormatException('Invalid input for FhirBase64Binary');
+    }
+  }
+
+  /// fromYaml accepts dynamic input and validates
+  factory FhirBase64Binary.fromYaml(dynamic yaml) => yaml is String
+      ? FhirBase64Binary.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
+      : throw const FormatException('Invalid Yaml format for FhirBase64Binary');
+  @override
+  final String value;
+
+  /// Try to parse a dynamic input into a [FhirBase64Binary]
   static FhirBase64Binary? tryParse(dynamic input) {
     if (input is String) {
       try {
@@ -28,7 +45,7 @@ class FhirBase64Binary extends PrimitiveType<String> {
     }
   }
 
-  // Throw an exception if input is not valid base64
+  /// Throw an exception if input is not valid base64
   static String _validateBase64(String input) {
     if (input.length % 4 == 0 && _isBase64(input)) {
       return input;
@@ -37,7 +54,7 @@ class FhirBase64Binary extends PrimitiveType<String> {
     }
   }
 
-  // Utility to check base64 validity
+  /// Utility to check base64 validity
   static bool _isBase64(String input) {
     try {
       base64.decode(input);
@@ -46,19 +63,6 @@ class FhirBase64Binary extends PrimitiveType<String> {
       return false;
     }
   }
-
-  // fromJson accepts dynamic input and validates
-  factory FhirBase64Binary.fromJson(dynamic json) {
-    if (json is String) {
-      return FhirBase64Binary(json);
-    } else {
-      throw const FormatException('Invalid input for FhirBase64Binary');
-    }
-  }
-
-  factory FhirBase64Binary.fromYaml(dynamic yaml) => yaml is String
-      ? FhirBase64Binary.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : throw const FormatException('Invalid Yaml format for FhirBase64Binary');
 
   @override
   String toJson() => value;

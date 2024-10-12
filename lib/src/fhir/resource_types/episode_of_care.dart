@@ -1,19 +1,25 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [EpisodeOfCare] /// An association between a patient and an organization / healthcare
+/// [EpisodeOfCare]
+/// An association between a patient and an organization / healthcare
 /// provider(s) during which time encounters may occur. The managing
-/// organization assumes a level of responsibility for the patient during this
-/// time.
+/// organization assumes a level of responsibility for the patient during
+/// this time.
 class EpisodeOfCare extends DomainResource {
+  /// Primary constructor for [EpisodeOfCare]
+
   EpisodeOfCare({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -21,6 +27,8 @@ class EpisodeOfCare extends DomainResource {
     super.modifierExtension,
     this.identifier,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     this.statusHistory,
     this.type,
@@ -38,59 +46,249 @@ class EpisodeOfCare extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.EpisodeOfCare);
+  }) : super(
+          resourceType: R4ResourceType.EpisodeOfCare,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory EpisodeOfCare.fromJson(Map<String, dynamic> json) {
+    return EpisodeOfCare(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      status: EpisodeOfCareStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      statusHistory: json['statusHistory'] != null
+          ? (json['statusHistory'] as List<dynamic>)
+              .map<EpisodeOfCareStatusHistory>(
+                (dynamic v) => EpisodeOfCareStatusHistory.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? (json['type'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      diagnosis: json['diagnosis'] != null
+          ? (json['diagnosis'] as List<dynamic>)
+              .map<EpisodeOfCareDiagnosis>(
+                (dynamic v) => EpisodeOfCareDiagnosis.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      patient: Reference.fromJson(
+        json['patient'] as Map<String, dynamic>,
+      ),
+      managingOrganization: json['managingOrganization'] != null
+          ? Reference.fromJson(
+              json['managingOrganization'] as Map<String, dynamic>,
+            )
+          : null,
+      period: json['period'] != null
+          ? Period.fromJson(
+              json['period'] as Map<String, dynamic>,
+            )
+          : null,
+      referralRequest: json['referralRequest'] != null
+          ? (json['referralRequest'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      careManager: json['careManager'] != null
+          ? Reference.fromJson(
+              json['careManager'] as Map<String, dynamic>,
+            )
+          : null,
+      team: json['team'] != null
+          ? (json['team'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      account: json['account'] != null
+          ? (json['account'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [EpisodeOfCare] from a [String] or [YamlMap] object
+  factory EpisodeOfCare.fromYaml(dynamic yaml) => yaml is String
+      ? EpisodeOfCare.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? EpisodeOfCare.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'EpisodeOfCare cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [EpisodeOfCare] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory EpisodeOfCare.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return EpisodeOfCare.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'EpisodeOfCare';
 
-  /// [identifier] /// The EpisodeOfCare may be known by different identifiers for different
-  /// contexts of use, such as when an external agency is tracking the Episode
-  /// for funding purposes.
+  /// [identifier]
+  /// The EpisodeOfCare may be known by different identifiers for different
+  /// contexts of use, such as when an external agency is tracking the
+  /// Episode for funding purposes.
   final List<Identifier>? identifier;
 
-  /// [status] /// planned | waitlist | active | onhold | finished | cancelled.
+  /// [status]
+  /// planned | waitlist | active | onhold | finished | cancelled.
   final EpisodeOfCareStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [statusHistory] /// The history of statuses that the EpisodeOfCare has been through (without
-  /// requiring processing the history of the resource).
+  /// [statusHistory]
+  /// The history of statuses that the EpisodeOfCare has been through
+  /// (without requiring processing the history of the resource).
   final List<EpisodeOfCareStatusHistory>? statusHistory;
 
-  /// [type] /// A classification of the type of episode of care; e.g. specialist referral,
-  /// disease management, type of funded care.
+  /// [type]
+  /// A classification of the type of episode of care; e.g. specialist
+  /// referral, disease management, type of funded care.
   final List<CodeableConcept>? type;
 
-  /// [diagnosis] /// The list of diagnosis relevant to this episode of care.
+  /// [diagnosis]
+  /// The list of diagnosis relevant to this episode of care.
   final List<EpisodeOfCareDiagnosis>? diagnosis;
 
-  /// [patient] /// The patient who is the focus of this episode of care.
+  /// [patient]
+  /// The patient who is the focus of this episode of care.
   final Reference patient;
 
-  /// [managingOrganization] /// The organization that has assumed the specific responsibilities for the
+  /// [managingOrganization]
+  /// The organization that has assumed the specific responsibilities for the
   /// specified duration.
   final Reference? managingOrganization;
 
-  /// [period] /// The interval during which the managing organization assumes the defined
+  /// [period]
+  /// The interval during which the managing organization assumes the defined
   /// responsibility.
   final Period? period;
 
-  /// [referralRequest] /// Referral Request(s) that are fulfilled by this EpisodeOfCare, incoming
+  /// [referralRequest]
+  /// Referral Request(s) that are fulfilled by this EpisodeOfCare, incoming
   /// referrals.
   final List<Reference>? referralRequest;
 
-  /// [careManager] /// The practitioner that is the care manager/care coordinator for this
+  /// [careManager]
+  /// The practitioner that is the care manager/care coordinator for this
   /// patient.
   final Reference? careManager;
 
-  /// [team] /// The list of practitioners that may be facilitating this episode of care for
-  /// specific purposes.
+  /// [team]
+  /// The list of practitioners that may be facilitating this episode of care
+  /// for specific purposes.
   final List<Reference>? team;
 
-  /// [account] /// The set of accounts that may be used for billing for this EpisodeOfCare.
+  /// [account]
+  /// The set of accounts that may be used for billing for this
+  /// EpisodeOfCare.
   final List<Reference>? account;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -111,36 +309,32 @@ class EpisodeOfCare extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     json['status'] = status.toJson();
     if (statusHistory != null && statusHistory!.isNotEmpty) {
       json['statusHistory'] = statusHistory!
-          .map<dynamic>((EpisodeOfCareStatusHistory v) => v.toJson())
+          .map((EpisodeOfCareStatusHistory v) => v.toJson())
           .toList();
     }
     if (type != null && type!.isNotEmpty) {
-      json['type'] =
-          type!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+      json['type'] = type!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (diagnosis != null && diagnosis!.isNotEmpty) {
-      json['diagnosis'] = diagnosis!
-          .map<dynamic>((EpisodeOfCareDiagnosis v) => v.toJson())
-          .toList();
+      json['diagnosis'] =
+          diagnosis!.map((EpisodeOfCareDiagnosis v) => v.toJson()).toList();
     }
     json['patient'] = patient.toJson();
     if (managingOrganization != null) {
@@ -151,120 +345,20 @@ class EpisodeOfCare extends DomainResource {
     }
     if (referralRequest != null && referralRequest!.isNotEmpty) {
       json['referralRequest'] =
-          referralRequest!.map<dynamic>((Reference v) => v.toJson()).toList();
+          referralRequest!.map((Reference v) => v.toJson()).toList();
     }
     if (careManager != null) {
       json['careManager'] = careManager!.toJson();
     }
     if (team != null && team!.isNotEmpty) {
-      json['team'] = team!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['team'] = team!.map((Reference v) => v.toJson()).toList();
     }
     if (account != null && account!.isNotEmpty) {
-      json['account'] =
-          account!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['account'] = account!.map((Reference v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory EpisodeOfCare.fromJson(Map<String, dynamic> json) {
-    return EpisodeOfCare(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      status: EpisodeOfCareStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      statusHistory: json['statusHistory'] != null
-          ? (json['statusHistory'] as List<dynamic>)
-              .map<EpisodeOfCareStatusHistory>((dynamic v) =>
-                  EpisodeOfCareStatusHistory.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? (json['type'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      diagnosis: json['diagnosis'] != null
-          ? (json['diagnosis'] as List<dynamic>)
-              .map<EpisodeOfCareDiagnosis>((dynamic v) =>
-                  EpisodeOfCareDiagnosis.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      patient: Reference.fromJson(json['patient'] as Map<String, dynamic>),
-      managingOrganization: json['managingOrganization'] != null
-          ? Reference.fromJson(
-              json['managingOrganization'] as Map<String, dynamic>)
-          : null,
-      period: json['period'] != null
-          ? Period.fromJson(json['period'] as Map<String, dynamic>)
-          : null,
-      referralRequest: json['referralRequest'] != null
-          ? (json['referralRequest'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      careManager: json['careManager'] != null
-          ? Reference.fromJson(json['careManager'] as Map<String, dynamic>)
-          : null,
-      team: json['team'] != null
-          ? (json['team'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      account: json['account'] != null
-          ? (json['account'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   EpisodeOfCare clone() => throw UnimplementedError();
   @override
@@ -331,35 +425,21 @@ class EpisodeOfCare extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory EpisodeOfCare.fromYaml(dynamic yaml) => yaml is String
-      ? EpisodeOfCare.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? EpisodeOfCare.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'EpisodeOfCare cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory EpisodeOfCare.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return EpisodeOfCare.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [EpisodeOfCareStatusHistory] /// The history of statuses that the EpisodeOfCare has been through (without
-/// requiring processing the history of the resource).
+/// [EpisodeOfCareStatusHistory]
+/// The history of statuses that the EpisodeOfCare has been through
+/// (without requiring processing the history of the resource).
 class EpisodeOfCareStatusHistory extends BackboneElement {
+  /// Primary constructor for [EpisodeOfCareStatusHistory]
+
   EpisodeOfCareStatusHistory({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     required this.period,
     super.userData,
@@ -370,57 +450,98 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory EpisodeOfCareStatusHistory.fromJson(Map<String, dynamic> json) {
+    return EpisodeOfCareStatusHistory(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      status: EpisodeOfCareStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      period: Period.fromJson(
+        json['period'] as Map<String, dynamic>,
+      ),
+    );
+  }
+
+  /// Deserialize [EpisodeOfCareStatusHistory] from a [String] or [YamlMap] object
+  factory EpisodeOfCareStatusHistory.fromYaml(dynamic yaml) => yaml is String
+      ? EpisodeOfCareStatusHistory.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? EpisodeOfCareStatusHistory.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'EpisodeOfCareStatusHistory cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [EpisodeOfCareStatusHistory] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory EpisodeOfCareStatusHistory.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return EpisodeOfCareStatusHistory.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'EpisodeOfCareStatusHistory';
 
-  /// [status] /// planned | waitlist | active | onhold | finished | cancelled.
+  /// [status]
+  /// planned | waitlist | active | onhold | finished | cancelled.
   final EpisodeOfCareStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [period] /// The period during this EpisodeOfCare that the specific status applied.
+  /// [period]
+  /// The period during this EpisodeOfCare that the specific status applied.
   final Period period;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['status'] = status.toJson();
     json['period'] = period.toJson();
     return json;
   }
 
-  factory EpisodeOfCareStatusHistory.fromJson(Map<String, dynamic> json) {
-    return EpisodeOfCareStatusHistory(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      status: EpisodeOfCareStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      period: Period.fromJson(json['period'] as Map<String, dynamic>),
-    );
-  }
   @override
   EpisodeOfCareStatusHistory clone() => throw UnimplementedError();
   @override
@@ -453,29 +574,13 @@ class EpisodeOfCareStatusHistory extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory EpisodeOfCareStatusHistory.fromYaml(dynamic yaml) => yaml is String
-      ? EpisodeOfCareStatusHistory.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? EpisodeOfCareStatusHistory.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'EpisodeOfCareStatusHistory cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory EpisodeOfCareStatusHistory.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return EpisodeOfCareStatusHistory.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [EpisodeOfCareDiagnosis] /// The list of diagnosis relevant to this episode of care.
+/// [EpisodeOfCareDiagnosis]
+/// The list of diagnosis relevant to this episode of care.
 class EpisodeOfCareDiagnosis extends BackboneElement {
+  /// Primary constructor for [EpisodeOfCareDiagnosis]
+
   EpisodeOfCareDiagnosis({
     super.id,
     super.extension_,
@@ -483,6 +588,8 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
     required this.condition,
     this.role,
     this.rank,
+
+    /// Extensions for [rank]
     this.rankElement,
     super.userData,
     super.formatCommentsPre,
@@ -492,34 +599,104 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory EpisodeOfCareDiagnosis.fromJson(Map<String, dynamic> json) {
+    return EpisodeOfCareDiagnosis(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      condition: Reference.fromJson(
+        json['condition'] as Map<String, dynamic>,
+      ),
+      role: json['role'] != null
+          ? CodeableConcept.fromJson(
+              json['role'] as Map<String, dynamic>,
+            )
+          : null,
+      rank:
+          json['rank'] != null ? FhirPositiveInt.fromJson(json['rank']) : null,
+      rankElement: json['_rank'] != null
+          ? Element.fromJson(
+              json['_rank'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [EpisodeOfCareDiagnosis] from a [String] or [YamlMap] object
+  factory EpisodeOfCareDiagnosis.fromYaml(dynamic yaml) => yaml is String
+      ? EpisodeOfCareDiagnosis.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? EpisodeOfCareDiagnosis.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'EpisodeOfCareDiagnosis cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [EpisodeOfCareDiagnosis] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory EpisodeOfCareDiagnosis.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return EpisodeOfCareDiagnosis.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'EpisodeOfCareDiagnosis';
 
-  /// [condition] /// A list of conditions/problems/diagnoses that this episode of care is
+  /// [condition]
+  /// A list of conditions/problems/diagnoses that this episode of care is
   /// intended to be providing care for.
   final Reference condition;
 
-  /// [role] /// Role that this diagnosis has within the episode of care (e.g. admission,
-  /// billing, discharge …).
+  /// [role]
+  /// Role that this diagnosis has within the episode of care (e.g.
+  /// admission, billing, discharge …).
   final CodeableConcept? role;
 
-  /// [rank] /// Ranking of the diagnosis (for each role type).
+  /// [rank]
+  /// Ranking of the diagnosis (for each role type).
   final FhirPositiveInt? rank;
+
+  /// Extensions for [rank]
   final Element? rankElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['condition'] = condition.toJson();
     if (role != null) {
@@ -534,32 +711,6 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
     return json;
   }
 
-  factory EpisodeOfCareDiagnosis.fromJson(Map<String, dynamic> json) {
-    return EpisodeOfCareDiagnosis(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      condition: Reference.fromJson(json['condition'] as Map<String, dynamic>),
-      role: json['role'] != null
-          ? CodeableConcept.fromJson(json['role'] as Map<String, dynamic>)
-          : null,
-      rank:
-          json['rank'] != null ? FhirPositiveInt.fromJson(json['rank']) : null,
-      rankElement: json['_rank'] != null
-          ? Element.fromJson(json['_rank'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   EpisodeOfCareDiagnosis clone() => throw UnimplementedError();
   @override
@@ -593,24 +744,5 @@ class EpisodeOfCareDiagnosis extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory EpisodeOfCareDiagnosis.fromYaml(dynamic yaml) => yaml is String
-      ? EpisodeOfCareDiagnosis.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? EpisodeOfCareDiagnosis.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'EpisodeOfCareDiagnosis cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory EpisodeOfCareDiagnosis.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return EpisodeOfCareDiagnosis.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

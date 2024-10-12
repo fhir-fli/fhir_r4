@@ -1,63 +1,103 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [ResearchDefinition] /// The ResearchDefinition resource describes the conditional state (population
-/// and any exposures being compared within the population) and outcome (if
-/// specified) that the knowledge (evidence, assertion, recommendation) is
-/// about.
+/// [ResearchDefinition]
+/// The ResearchDefinition resource describes the conditional state
+/// (population and any exposures being compared within the population) and
+/// outcome (if specified) that the knowledge (evidence, assertion,
+/// recommendation) is about.
 class ResearchDefinition extends DomainResource {
+  /// Primary constructor for [ResearchDefinition]
+
   ResearchDefinition({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
+
+    /// Extensions for [url]
     this.urlElement,
     this.identifier,
     this.version,
+
+    /// Extensions for [version]
     this.versionElement,
     this.name,
+
+    /// Extensions for [name]
     this.nameElement,
     this.title,
+
+    /// Extensions for [title]
     this.titleElement,
     this.shortTitle,
+
+    /// Extensions for [shortTitle]
     this.shortTitleElement,
     this.subtitle,
+
+    /// Extensions for [subtitle]
     this.subtitleElement,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     this.experimental,
+
+    /// Extensions for [experimental]
     this.experimentalElement,
     this.subjectCodeableConcept,
     this.subjectReference,
     this.date,
+
+    /// Extensions for [date]
     this.dateElement,
     this.publisher,
+
+    /// Extensions for [publisher]
     this.publisherElement,
     this.contact,
     this.description,
+
+    /// Extensions for [description]
     this.descriptionElement,
     this.comment,
+
+    /// Extensions for [comment]
     this.commentElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
+
+    /// Extensions for [purpose]
     this.purposeElement,
     this.usage,
+
+    /// Extensions for [usage]
     this.usageElement,
     this.copyright,
+
+    /// Extensions for [copyright]
     this.copyrightElement,
     this.approvalDate,
+
+    /// Extensions for [approvalDate]
     this.approvalDateElement,
     this.lastReviewDate,
+
+    /// Extensions for [lastReviewDate]
     this.lastReviewDateElement,
     this.effectivePeriod,
     this.topic,
@@ -67,6 +107,8 @@ class ResearchDefinition extends DomainResource {
     this.endorser,
     this.relatedArtifact,
     this.library_,
+
+    /// Extensions for [library]
     this.libraryElement,
     required this.population,
     this.exposure,
@@ -78,195 +120,623 @@ class ResearchDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.ResearchDefinition);
+  }) : super(
+          resourceType: R4ResourceType.ResearchDefinition,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory ResearchDefinition.fromJson(Map<String, dynamic> json) {
+    return ResearchDefinition(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
+      urlElement: json['_url'] != null
+          ? Element.fromJson(
+              json['_url'] as Map<String, dynamic>,
+            )
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      version:
+          json['version'] != null ? FhirString.fromJson(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(
+              json['_version'] as Map<String, dynamic>,
+            )
+          : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(
+              json['_name'] as Map<String, dynamic>,
+            )
+          : null,
+      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
+      titleElement: json['_title'] != null
+          ? Element.fromJson(
+              json['_title'] as Map<String, dynamic>,
+            )
+          : null,
+      shortTitle: json['shortTitle'] != null
+          ? FhirString.fromJson(json['shortTitle'])
+          : null,
+      shortTitleElement: json['_shortTitle'] != null
+          ? Element.fromJson(
+              json['_shortTitle'] as Map<String, dynamic>,
+            )
+          : null,
+      subtitle: json['subtitle'] != null
+          ? FhirString.fromJson(json['subtitle'])
+          : null,
+      subtitleElement: json['_subtitle'] != null
+          ? Element.fromJson(
+              json['_subtitle'] as Map<String, dynamic>,
+            )
+          : null,
+      status: PublicationStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      experimental: json['experimental'] != null
+          ? FhirBoolean.fromJson(json['experimental'])
+          : null,
+      experimentalElement: json['_experimental'] != null
+          ? Element.fromJson(
+              json['_experimental'] as Map<String, dynamic>,
+            )
+          : null,
+      subjectCodeableConcept: json['subjectCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['subjectCodeableConcept'] as Map<String, dynamic>,
+            )
+          : null,
+      subjectReference: json['subjectReference'] != null
+          ? Reference.fromJson(
+              json['subjectReference'] as Map<String, dynamic>,
+            )
+          : null,
+      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(
+              json['_date'] as Map<String, dynamic>,
+            )
+          : null,
+      publisher: json['publisher'] != null
+          ? FhirString.fromJson(json['publisher'])
+          : null,
+      publisherElement: json['_publisher'] != null
+          ? Element.fromJson(
+              json['_publisher'] as Map<String, dynamic>,
+            )
+          : null,
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<ContactDetail>(
+                (dynamic v) => ContactDetail.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      description: json['description'] != null
+          ? FhirMarkdown.fromJson(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(
+              json['_description'] as Map<String, dynamic>,
+            )
+          : null,
+      comment: json['comment'] != null
+          ? (json['comment'] as List<dynamic>)
+              .map<FhirString>(
+                (dynamic v) => FhirString.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      commentElement: json['_comment'] != null
+          ? (json['_comment'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      useContext: json['useContext'] != null
+          ? (json['useContext'] as List<dynamic>)
+              .map<UsageContext>(
+                (dynamic v) => UsageContext.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      jurisdiction: json['jurisdiction'] != null
+          ? (json['jurisdiction'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      purpose: json['purpose'] != null
+          ? FhirMarkdown.fromJson(json['purpose'])
+          : null,
+      purposeElement: json['_purpose'] != null
+          ? Element.fromJson(
+              json['_purpose'] as Map<String, dynamic>,
+            )
+          : null,
+      usage: json['usage'] != null ? FhirString.fromJson(json['usage']) : null,
+      usageElement: json['_usage'] != null
+          ? Element.fromJson(
+              json['_usage'] as Map<String, dynamic>,
+            )
+          : null,
+      copyright: json['copyright'] != null
+          ? FhirMarkdown.fromJson(json['copyright'])
+          : null,
+      copyrightElement: json['_copyright'] != null
+          ? Element.fromJson(
+              json['_copyright'] as Map<String, dynamic>,
+            )
+          : null,
+      approvalDate: json['approvalDate'] != null
+          ? FhirDate.fromJson(json['approvalDate'])
+          : null,
+      approvalDateElement: json['_approvalDate'] != null
+          ? Element.fromJson(
+              json['_approvalDate'] as Map<String, dynamic>,
+            )
+          : null,
+      lastReviewDate: json['lastReviewDate'] != null
+          ? FhirDate.fromJson(json['lastReviewDate'])
+          : null,
+      lastReviewDateElement: json['_lastReviewDate'] != null
+          ? Element.fromJson(
+              json['_lastReviewDate'] as Map<String, dynamic>,
+            )
+          : null,
+      effectivePeriod: json['effectivePeriod'] != null
+          ? Period.fromJson(
+              json['effectivePeriod'] as Map<String, dynamic>,
+            )
+          : null,
+      topic: json['topic'] != null
+          ? (json['topic'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      author: json['author'] != null
+          ? (json['author'] as List<dynamic>)
+              .map<ContactDetail>(
+                (dynamic v) => ContactDetail.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      editor: json['editor'] != null
+          ? (json['editor'] as List<dynamic>)
+              .map<ContactDetail>(
+                (dynamic v) => ContactDetail.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      reviewer: json['reviewer'] != null
+          ? (json['reviewer'] as List<dynamic>)
+              .map<ContactDetail>(
+                (dynamic v) => ContactDetail.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      endorser: json['endorser'] != null
+          ? (json['endorser'] as List<dynamic>)
+              .map<ContactDetail>(
+                (dynamic v) => ContactDetail.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      relatedArtifact: json['relatedArtifact'] != null
+          ? (json['relatedArtifact'] as List<dynamic>)
+              .map<RelatedArtifact>(
+                (dynamic v) => RelatedArtifact.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      library_: json['library'] != null
+          ? (json['library'] as List<dynamic>)
+              .map<FhirCanonical>(
+                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      libraryElement: json['_library'] != null
+          ? (json['_library'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      population: Reference.fromJson(
+        json['population'] as Map<String, dynamic>,
+      ),
+      exposure: json['exposure'] != null
+          ? Reference.fromJson(
+              json['exposure'] as Map<String, dynamic>,
+            )
+          : null,
+      exposureAlternative: json['exposureAlternative'] != null
+          ? Reference.fromJson(
+              json['exposureAlternative'] as Map<String, dynamic>,
+            )
+          : null,
+      outcome: json['outcome'] != null
+          ? Reference.fromJson(
+              json['outcome'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [ResearchDefinition] from a [String] or [YamlMap] object
+  factory ResearchDefinition.fromYaml(dynamic yaml) => yaml is String
+      ? ResearchDefinition.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? ResearchDefinition.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'ResearchDefinition cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [ResearchDefinition] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory ResearchDefinition.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ResearchDefinition.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'ResearchDefinition';
 
-  /// [url] /// An absolute URI that is used to identify this research definition when it
-  /// is referenced in a specification, model, design or an instance; also called
-  /// its canonical identifier. This SHOULD be globally unique and SHOULD be a
-  /// literal address at which at which an authoritative instance of this
-  /// research definition is (or will be) published. This URL can be the target
-  /// of a canonical reference. It SHALL remain the same when the research
-  /// definition is stored on different servers.
+  /// [url]
+  /// An absolute URI that is used to identify this research definition when
+  /// it is referenced in a specification, model, design or an instance; also
+  /// called its canonical identifier. This SHOULD be globally unique and
+  /// SHOULD be a literal address at which at which an authoritative instance
+  /// of this research definition is (or will be) published. This URL can be
+  /// the target of a canonical reference. It SHALL remain the same when the
+  /// research definition is stored on different servers.
   final FhirUri? url;
+
+  /// Extensions for [url]
   final Element? urlElement;
 
-  /// [identifier] /// A formal identifier that is used to identify this research definition when
-  /// it is represented in other formats, or referenced in a specification,
-  /// model, design or an instance.
+  /// [identifier]
+  /// A formal identifier that is used to identify this research definition
+  /// when it is represented in other formats, or referenced in a
+  /// specification, model, design or an instance.
   final List<Identifier>? identifier;
 
-  /// [version] /// The identifier that is used to identify this version of the research
+  /// [version]
+  /// The identifier that is used to identify this version of the research
   /// definition when it is referenced in a specification, model, design or
   /// instance. This is an arbitrary value managed by the research definition
-  /// author and is not expected to be globally unique. For example, it might be
-  /// a timestamp (e.g. yyyymmdd) if a managed version is not available. There is
-  /// also no expectation that versions can be placed in a lexicographical
-  /// sequence. To provide a version consistent with the Decision Support Service
-  /// specification, use the format Major.Minor.Revision (e.g. 1.0.0). For more
-  /// information on versioning knowledge assets, refer to the Decision Support
-  /// Service specification. Note that a version is required for non-experimental
-  /// active artifacts.
+  /// author and is not expected to be globally unique. For example, it might
+  /// be a timestamp (e.g. yyyymmdd) if a managed version is not available.
+  /// There is also no expectation that versions can be placed in a
+  /// lexicographical sequence. To provide a version consistent with the
+  /// Decision Support Service specification, use the format
+  /// Major.Minor.Revision (e.g. 1.0.0). For more information on versioning
+  /// knowledge assets, refer to the Decision Support Service specification.
+  /// Note that a version is required for non-experimental active artifacts.
   final FhirString? version;
+
+  /// Extensions for [version]
   final Element? versionElement;
 
-  /// [name] /// A natural language name identifying the research definition. This name
+  /// [name]
+  /// A natural language name identifying the research definition. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
   final FhirString? name;
+
+  /// Extensions for [name]
   final Element? nameElement;
 
-  /// [title] /// A short, descriptive, user-friendly title for the research definition.
+  /// [title]
+  /// A short, descriptive, user-friendly title for the research definition.
   final FhirString? title;
+
+  /// Extensions for [title]
   final Element? titleElement;
 
-  /// [shortTitle] /// The short title provides an alternate title for use in informal descriptive
-  /// contexts where the full, formal title is not necessary.
+  /// [shortTitle]
+  /// The short title provides an alternate title for use in informal
+  /// descriptive contexts where the full, formal title is not necessary.
   final FhirString? shortTitle;
+
+  /// Extensions for [shortTitle]
   final Element? shortTitleElement;
 
-  /// [subtitle] /// An explanatory or alternate title for the ResearchDefinition giving
+  /// [subtitle]
+  /// An explanatory or alternate title for the ResearchDefinition giving
   /// additional information about its content.
   final FhirString? subtitle;
+
+  /// Extensions for [subtitle]
   final Element? subtitleElement;
 
-  /// [status] /// The status of this research definition. Enables tracking the life-cycle of
-  /// the content.
+  /// [status]
+  /// The status of this research definition. Enables tracking the life-cycle
+  /// of the content.
   final PublicationStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [experimental] /// A Boolean value to indicate that this research definition is authored for
-  /// testing purposes (or education/evaluation/marketing) and is not intended to
-  /// be used for genuine usage.
+  /// [experimental]
+  /// A Boolean value to indicate that this research definition is authored
+  /// for testing purposes (or education/evaluation/marketing) and is not
+  /// intended to be used for genuine usage.
   final FhirBoolean? experimental;
+
+  /// Extensions for [experimental]
   final Element? experimentalElement;
 
-  /// [subjectCodeableConcept] /// The intended subjects for the ResearchDefinition. If this element is not
-  /// provided, a Patient subject is assumed, but the subject of the
+  /// [subjectCodeableConcept]
+  /// The intended subjects for the ResearchDefinition. If this element is
+  /// not provided, a Patient subject is assumed, but the subject of the
   /// ResearchDefinition can be anything.
   final CodeableConcept? subjectCodeableConcept;
 
-  /// [subjectReference] /// The intended subjects for the ResearchDefinition. If this element is not
-  /// provided, a Patient subject is assumed, but the subject of the
+  /// [subjectReference]
+  /// The intended subjects for the ResearchDefinition. If this element is
+  /// not provided, a Patient subject is assumed, but the subject of the
   /// ResearchDefinition can be anything.
   final Reference? subjectReference;
 
-  /// [date] /// The date (and optionally time) when the research definition was published.
-  /// The date must change when the business version changes and it must change
-  /// if the status code changes. In addition, it should change when the
-  /// substantive content of the research definition changes.
+  /// [date]
+  /// The date (and optionally time) when the research definition was
+  /// published. The date must change when the business version changes and
+  /// it must change if the status code changes. In addition, it should
+  /// change when the substantive content of the research definition changes.
   final FhirDateTime? date;
+
+  /// Extensions for [date]
   final Element? dateElement;
 
-  /// [publisher] /// The name of the organization or individual that published the research
+  /// [publisher]
+  /// The name of the organization or individual that published the research
   /// definition.
   final FhirString? publisher;
+
+  /// Extensions for [publisher]
   final Element? publisherElement;
 
-  /// [contact] /// Contact details to assist a user in finding and communicating with the
+  /// [contact]
+  /// Contact details to assist a user in finding and communicating with the
   /// publisher.
   final List<ContactDetail>? contact;
 
-  /// [description] /// A free text natural language description of the research definition from a
-  /// consumer's perspective.
+  /// [description]
+  /// A free text natural language description of the research definition
+  /// from a consumer's perspective.
   final FhirMarkdown? description;
+
+  /// Extensions for [description]
   final Element? descriptionElement;
 
-  /// [comment] /// A human-readable string to clarify or explain concepts about the resource.
+  /// [comment]
+  /// A human-readable string to clarify or explain concepts about the
+  /// resource.
   final List<FhirString>? comment;
+
+  /// Extensions for [comment]
   final List<Element>? commentElement;
 
-  /// [useContext] /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These contexts may be general categories (gender,
-  /// age, ...) or may be references to specific programs (insurance plans,
-  /// studies, ...) and may be used to assist with indexing and searching for
-  /// appropriate research definition instances.
+  /// [useContext]
+  /// The content was developed with a focus and intent of supporting the
+  /// contexts that are listed. These contexts may be general categories
+  /// (gender, age, ...) or may be references to specific programs (insurance
+  /// plans, studies, ...) and may be used to assist with indexing and
+  /// searching for appropriate research definition instances.
   final List<UsageContext>? useContext;
 
-  /// [jurisdiction] /// A legal or geographic region in which the research definition is intended
-  /// to be used.
+  /// [jurisdiction]
+  /// A legal or geographic region in which the research definition is
+  /// intended to be used.
   final List<CodeableConcept>? jurisdiction;
 
-  /// [purpose] /// Explanation of why this research definition is needed and why it has been
-  /// designed as it has.
+  /// [purpose]
+  /// Explanation of why this research definition is needed and why it has
+  /// been designed as it has.
   final FhirMarkdown? purpose;
+
+  /// Extensions for [purpose]
   final Element? purposeElement;
 
-  /// [usage] /// A detailed description, from a clinical perspective, of how the
+  /// [usage]
+  /// A detailed description, from a clinical perspective, of how the
   /// ResearchDefinition is used.
   final FhirString? usage;
+
+  /// Extensions for [usage]
   final Element? usageElement;
 
-  /// [copyright] /// A copyright statement relating to the research definition and/or its
-  /// contents. Copyright statements are generally legal restrictions on the use
-  /// and publishing of the research definition.
+  /// [copyright]
+  /// A copyright statement relating to the research definition and/or its
+  /// contents. Copyright statements are generally legal restrictions on the
+  /// use and publishing of the research definition.
   final FhirMarkdown? copyright;
+
+  /// Extensions for [copyright]
   final Element? copyrightElement;
 
-  /// [approvalDate] /// The date on which the resource content was approved by the publisher.
-  /// Approval happens once when the content is officially approved for usage.
+  /// [approvalDate]
+  /// The date on which the resource content was approved by the publisher.
+  /// Approval happens once when the content is officially approved for
+  /// usage.
   final FhirDate? approvalDate;
+
+  /// Extensions for [approvalDate]
   final Element? approvalDateElement;
 
-  /// [lastReviewDate] /// The date on which the resource content was last reviewed. Review happens
-  /// periodically after approval but does not change the original approval date.
+  /// [lastReviewDate]
+  /// The date on which the resource content was last reviewed. Review
+  /// happens periodically after approval but does not change the original
+  /// approval date.
   final FhirDate? lastReviewDate;
+
+  /// Extensions for [lastReviewDate]
   final Element? lastReviewDateElement;
 
-  /// [effectivePeriod] /// The period during which the research definition content was or is planned
-  /// to be in active use.
+  /// [effectivePeriod]
+  /// The period during which the research definition content was or is
+  /// planned to be in active use.
   final Period? effectivePeriod;
 
-  /// [topic] /// Descriptive topics related to the content of the ResearchDefinition. Topics
-  /// provide a high-level categorization grouping types of ResearchDefinitions
-  /// that can be useful for filtering and searching.
+  /// [topic]
+  /// Descriptive topics related to the content of the ResearchDefinition.
+  /// Topics provide a high-level categorization grouping types of
+  /// ResearchDefinitions that can be useful for filtering and searching.
   final List<CodeableConcept>? topic;
 
-  /// [author] /// An individiual or organization primarily involved in the creation and
+  /// [author]
+  /// An individiual or organization primarily involved in the creation and
   /// maintenance of the content.
   final List<ContactDetail>? author;
 
-  /// [editor] /// An individual or organization primarily responsible for internal coherence
-  /// of the content.
+  /// [editor]
+  /// An individual or organization primarily responsible for internal
+  /// coherence of the content.
   final List<ContactDetail>? editor;
 
-  /// [reviewer] /// An individual or organization primarily responsible for review of some
+  /// [reviewer]
+  /// An individual or organization primarily responsible for review of some
   /// aspect of the content.
   final List<ContactDetail>? reviewer;
 
-  /// [endorser] /// An individual or organization responsible for officially endorsing the
+  /// [endorser]
+  /// An individual or organization responsible for officially endorsing the
   /// content for use in some setting.
   final List<ContactDetail>? endorser;
 
-  /// [relatedArtifact] /// Related artifacts such as additional documentation, justification, or
+  /// [relatedArtifact]
+  /// Related artifacts such as additional documentation, justification, or
   /// bibliographic references.
   final List<RelatedArtifact>? relatedArtifact;
 
-  /// [library_] /// A reference to a Library resource containing the formal logic used by the
-  /// ResearchDefinition.
+  /// [library_]
+  /// A reference to a Library resource containing the formal logic used by
+  /// the ResearchDefinition.
   final List<FhirCanonical>? library_;
+
+  /// Extensions for [library]
   final List<Element>? libraryElement;
 
-  /// [population] /// A reference to a ResearchElementDefinition resource that defines the
+  /// [population]
+  /// A reference to a ResearchElementDefinition resource that defines the
   /// population for the research.
   final Reference population;
 
-  /// [exposure] /// A reference to a ResearchElementDefinition resource that defines the
+  /// [exposure]
+  /// A reference to a ResearchElementDefinition resource that defines the
   /// exposure for the research.
   final Reference? exposure;
 
-  /// [exposureAlternative] /// A reference to a ResearchElementDefinition resource that defines the
+  /// [exposureAlternative]
+  /// A reference to a ResearchElementDefinition resource that defines the
   /// exposureAlternative for the research.
   final Reference? exposureAlternative;
 
-  /// [outcome] /// A reference to a ResearchElementDefinition resomece that defines the
+  /// [outcome]
+  /// A reference to a ResearchElementDefinition resomece that defines the
   /// outcome for the research.
   final Reference? outcome;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -287,17 +757,15 @@ class ResearchDefinition extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (url?.value != null) {
       json['url'] = url!.toJson();
@@ -307,7 +775,7 @@ class ResearchDefinition extends DomainResource {
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (version?.value != null) {
       json['version'] = version!.toJson();
@@ -365,8 +833,7 @@ class ResearchDefinition extends DomainResource {
       json['_publisher'] = publisherElement!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
-      json['contact'] =
-          contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+      json['contact'] = contact!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
@@ -383,12 +850,11 @@ class ResearchDefinition extends DomainResource {
     }
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] =
-          useContext!.map<dynamic>((UsageContext v) => v.toJson()).toList();
+          useContext!.map((UsageContext v) => v.toJson()).toList();
     }
     if (jurisdiction != null && jurisdiction!.isNotEmpty) {
-      json['jurisdiction'] = jurisdiction!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['jurisdiction'] =
+          jurisdiction!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (purpose?.value != null) {
       json['purpose'] = purpose!.toJson();
@@ -424,29 +890,25 @@ class ResearchDefinition extends DomainResource {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
     if (topic != null && topic!.isNotEmpty) {
-      json['topic'] =
-          topic!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+      json['topic'] = topic!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (author != null && author!.isNotEmpty) {
-      json['author'] =
-          author!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+      json['author'] = author!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (editor != null && editor!.isNotEmpty) {
-      json['editor'] =
-          editor!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+      json['editor'] = editor!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (reviewer != null && reviewer!.isNotEmpty) {
       json['reviewer'] =
-          reviewer!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+          reviewer!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (endorser != null && endorser!.isNotEmpty) {
       json['endorser'] =
-          endorser!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+          endorser!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (relatedArtifact != null && relatedArtifact!.isNotEmpty) {
-      json['relatedArtifact'] = relatedArtifact!
-          .map<dynamic>((RelatedArtifact v) => v.toJson())
-          .toList();
+      json['relatedArtifact'] =
+          relatedArtifact!.map((RelatedArtifact v) => v.toJson()).toList();
     }
     if (library_ != null && library_!.isNotEmpty) {
       json['library'] = library_!.map((FhirCanonical v) => v.toJson()).toList();
@@ -468,235 +930,6 @@ class ResearchDefinition extends DomainResource {
     return json;
   }
 
-  factory ResearchDefinition.fromJson(Map<String, dynamic> json) {
-    return ResearchDefinition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
-          : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
-          : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
-          : null,
-      shortTitle: json['shortTitle'] != null
-          ? FhirString.fromJson(json['shortTitle'])
-          : null,
-      shortTitleElement: json['_shortTitle'] != null
-          ? Element.fromJson(json['_shortTitle'] as Map<String, dynamic>)
-          : null,
-      subtitle: json['subtitle'] != null
-          ? FhirString.fromJson(json['subtitle'])
-          : null,
-      subtitleElement: json['_subtitle'] != null
-          ? Element.fromJson(json['_subtitle'] as Map<String, dynamic>)
-          : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson(json['experimental'])
-          : null,
-      experimentalElement: json['_experimental'] != null
-          ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
-          : null,
-      subjectCodeableConcept: json['subjectCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['subjectCodeableConcept'] as Map<String, dynamic>)
-          : null,
-      subjectReference: json['subjectReference'] != null
-          ? Reference.fromJson(json['subjectReference'] as Map<String, dynamic>)
-          : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
-          : null,
-      publisher: json['publisher'] != null
-          ? FhirString.fromJson(json['publisher'])
-          : null,
-      publisherElement: json['_publisher'] != null
-          ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
-          : null,
-      contact: json['contact'] != null
-          ? (json['contact'] as List<dynamic>)
-              .map<ContactDetail>((dynamic v) =>
-                  ContactDetail.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
-          : null,
-      comment: json['comment'] != null
-          ? (json['comment'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
-              .toList()
-          : null,
-      commentElement: json['_comment'] != null
-          ? (json['_comment'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      useContext: json['useContext'] != null
-          ? (json['useContext'] as List<dynamic>)
-              .map<UsageContext>((dynamic v) =>
-                  UsageContext.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      jurisdiction: json['jurisdiction'] != null
-          ? (json['jurisdiction'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      purpose: json['purpose'] != null
-          ? FhirMarkdown.fromJson(json['purpose'])
-          : null,
-      purposeElement: json['_purpose'] != null
-          ? Element.fromJson(json['_purpose'] as Map<String, dynamic>)
-          : null,
-      usage: json['usage'] != null ? FhirString.fromJson(json['usage']) : null,
-      usageElement: json['_usage'] != null
-          ? Element.fromJson(json['_usage'] as Map<String, dynamic>)
-          : null,
-      copyright: json['copyright'] != null
-          ? FhirMarkdown.fromJson(json['copyright'])
-          : null,
-      copyrightElement: json['_copyright'] != null
-          ? Element.fromJson(json['_copyright'] as Map<String, dynamic>)
-          : null,
-      approvalDate: json['approvalDate'] != null
-          ? FhirDate.fromJson(json['approvalDate'])
-          : null,
-      approvalDateElement: json['_approvalDate'] != null
-          ? Element.fromJson(json['_approvalDate'] as Map<String, dynamic>)
-          : null,
-      lastReviewDate: json['lastReviewDate'] != null
-          ? FhirDate.fromJson(json['lastReviewDate'])
-          : null,
-      lastReviewDateElement: json['_lastReviewDate'] != null
-          ? Element.fromJson(json['_lastReviewDate'] as Map<String, dynamic>)
-          : null,
-      effectivePeriod: json['effectivePeriod'] != null
-          ? Period.fromJson(json['effectivePeriod'] as Map<String, dynamic>)
-          : null,
-      topic: json['topic'] != null
-          ? (json['topic'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      author: json['author'] != null
-          ? (json['author'] as List<dynamic>)
-              .map<ContactDetail>((dynamic v) =>
-                  ContactDetail.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      editor: json['editor'] != null
-          ? (json['editor'] as List<dynamic>)
-              .map<ContactDetail>((dynamic v) =>
-                  ContactDetail.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      reviewer: json['reviewer'] != null
-          ? (json['reviewer'] as List<dynamic>)
-              .map<ContactDetail>((dynamic v) =>
-                  ContactDetail.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      endorser: json['endorser'] != null
-          ? (json['endorser'] as List<dynamic>)
-              .map<ContactDetail>((dynamic v) =>
-                  ContactDetail.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      relatedArtifact: json['relatedArtifact'] != null
-          ? (json['relatedArtifact'] as List<dynamic>)
-              .map<RelatedArtifact>((dynamic v) =>
-                  RelatedArtifact.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      library_: json['library'] != null
-          ? (json['library'] as List<dynamic>)
-              .map<FhirCanonical>(
-                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
-              .toList()
-          : null,
-      libraryElement: json['_library'] != null
-          ? (json['_library'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      population:
-          Reference.fromJson(json['population'] as Map<String, dynamic>),
-      exposure: json['exposure'] != null
-          ? Reference.fromJson(json['exposure'] as Map<String, dynamic>)
-          : null,
-      exposureAlternative: json['exposureAlternative'] != null
-          ? Reference.fromJson(
-              json['exposureAlternative'] as Map<String, dynamic>)
-          : null,
-      outcome: json['outcome'] != null
-          ? Reference.fromJson(json['outcome'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   ResearchDefinition clone() => throw UnimplementedError();
   @override
@@ -844,24 +1077,5 @@ class ResearchDefinition extends DomainResource {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory ResearchDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? ResearchDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? ResearchDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'ResearchDefinition cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory ResearchDefinition.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return ResearchDefinition.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

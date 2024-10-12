@@ -1,31 +1,45 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [SubscriptionStatus] /// The SubscriptionStatus resource describes the state of a Subscription
+/// [SubscriptionStatus]
+/// The SubscriptionStatus resource describes the state of a Subscription
 /// during notifications.
 class SubscriptionStatus extends DomainResource {
+  /// Primary constructor for [SubscriptionStatus]
+
   SubscriptionStatus({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     required this.type,
+
+    /// Extensions for [type]
     this.typeElement,
     this.eventsSinceSubscriptionStart,
+
+    /// Extensions for [eventsSinceSubscriptionStart]
     this.eventsSinceSubscriptionStartElement,
     this.notificationEvent,
     required this.subscription,
     this.topic,
+
+    /// Extensions for [topic]
     this.topicElement,
     this.error,
     super.userData,
@@ -34,44 +48,199 @@ class SubscriptionStatus extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.SubscriptionStatus);
+  }) : super(
+          resourceType: R4ResourceType.SubscriptionStatus,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory SubscriptionStatus.fromJson(Map<String, dynamic> json) {
+    return SubscriptionStatus(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      status: json['status'] != null
+          ? SubscriptionStatusCodes.fromJson(json['status'])
+          : null,
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      type: SubscriptionNotificationType.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(
+              json['_type'] as Map<String, dynamic>,
+            )
+          : null,
+      eventsSinceSubscriptionStart: json['eventsSinceSubscriptionStart'] != null
+          ? FhirString.fromJson(json['eventsSinceSubscriptionStart'])
+          : null,
+      eventsSinceSubscriptionStartElement:
+          json['_eventsSinceSubscriptionStart'] != null
+              ? Element.fromJson(
+                  json['_eventsSinceSubscriptionStart'] as Map<String, dynamic>,
+                )
+              : null,
+      notificationEvent: json['notificationEvent'] != null
+          ? (json['notificationEvent'] as List<dynamic>)
+              .map<SubscriptionStatusNotificationEvent>(
+                (dynamic v) => SubscriptionStatusNotificationEvent.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      subscription: Reference.fromJson(
+        json['subscription'] as Map<String, dynamic>,
+      ),
+      topic:
+          json['topic'] != null ? FhirCanonical.fromJson(json['topic']) : null,
+      topicElement: json['_topic'] != null
+          ? Element.fromJson(
+              json['_topic'] as Map<String, dynamic>,
+            )
+          : null,
+      error: json['error'] != null
+          ? (json['error'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [SubscriptionStatus] from a [String] or [YamlMap] object
+  factory SubscriptionStatus.fromYaml(dynamic yaml) => yaml is String
+      ? SubscriptionStatus.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? SubscriptionStatus.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'SubscriptionStatus cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [SubscriptionStatus] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory SubscriptionStatus.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return SubscriptionStatus.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'SubscriptionStatus';
 
-  /// [status] /// The status of the subscription, which marks the server state for managing
-  /// the subscription.
+  /// [status]
+  /// The status of the subscription, which marks the server state for
+  /// managing the subscription.
   final SubscriptionStatusCodes? status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [type] /// The type of event being conveyed with this notificaiton.
+  /// [type]
+  /// The type of event being conveyed with this notificaiton.
   final SubscriptionNotificationType type;
+
+  /// Extensions for [type]
   final Element? typeElement;
 
-  /// [eventsSinceSubscriptionStart] /// The total number of actual events which have been generated since the
-  /// Subscription was created (inclusive of this notification) - regardless of
-  /// how many have been successfully communicated. This number is NOT
+  /// [eventsSinceSubscriptionStart]
+  /// The total number of actual events which have been generated since the
+  /// Subscription was created (inclusive of this notification) - regardless
+  /// of how many have been successfully communicated. This number is NOT
   /// incremented for handshake and heartbeat notifications.
   final FhirString? eventsSinceSubscriptionStart;
+
+  /// Extensions for [eventsSinceSubscriptionStart]
   final Element? eventsSinceSubscriptionStartElement;
 
-  /// [notificationEvent] /// Detailed information about events relevant to this subscription
+  /// [notificationEvent]
+  /// Detailed information about events relevant to this subscription
   /// notification.
   final List<SubscriptionStatusNotificationEvent>? notificationEvent;
 
-  /// [subscription] /// The reference to the Subscription which generated this notification.
+  /// [subscription]
+  /// The reference to the Subscription which generated this notification.
   final Reference subscription;
 
-  /// [topic] /// The reference to the SubscriptionTopic for the Subscription which generated
-  /// this notification.
+  /// [topic]
+  /// The reference to the SubscriptionTopic for the Subscription which
+  /// generated this notification.
   final FhirCanonical? topic;
+
+  /// Extensions for [topic]
   final Element? topicElement;
 
-  /// [error] /// A record of errors that occurred when the server processed a notification.
+  /// [error]
+  /// A record of errors that occurred when the server processed a
+  /// notification.
   final List<CodeableConcept>? error;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -92,17 +261,15 @@ class SubscriptionStatus extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (status != null) {
       json['status'] = status!.toJson();
@@ -118,7 +285,7 @@ class SubscriptionStatus extends DomainResource {
     }
     if (notificationEvent != null && notificationEvent!.isNotEmpty) {
       json['notificationEvent'] = notificationEvent!
-          .map<dynamic>((SubscriptionStatusNotificationEvent v) => v.toJson())
+          .map((SubscriptionStatusNotificationEvent v) => v.toJson())
           .toList();
     }
     json['subscription'] = subscription.toJson();
@@ -129,91 +296,11 @@ class SubscriptionStatus extends DomainResource {
       json['_topic'] = topicElement!.toJson();
     }
     if (error != null && error!.isNotEmpty) {
-      json['error'] =
-          error!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+      json['error'] = error!.map((CodeableConcept v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory SubscriptionStatus.fromJson(Map<String, dynamic> json) {
-    return SubscriptionStatus(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      status: json['status'] != null
-          ? SubscriptionStatusCodes.fromJson(json['status'])
-          : null,
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      type: SubscriptionNotificationType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
-          : null,
-      eventsSinceSubscriptionStart: json['eventsSinceSubscriptionStart'] != null
-          ? FhirString.fromJson(json['eventsSinceSubscriptionStart'])
-          : null,
-      eventsSinceSubscriptionStartElement:
-          json['_eventsSinceSubscriptionStart'] != null
-              ? Element.fromJson(
-                  json['_eventsSinceSubscriptionStart'] as Map<String, dynamic>)
-              : null,
-      notificationEvent: json['notificationEvent'] != null
-          ? (json['notificationEvent'] as List<dynamic>)
-              .map<SubscriptionStatusNotificationEvent>((dynamic v) =>
-                  SubscriptionStatusNotificationEvent.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      subscription:
-          Reference.fromJson(json['subscription'] as Map<String, dynamic>),
-      topic:
-          json['topic'] != null ? FhirCanonical.fromJson(json['topic']) : null,
-      topicElement: json['_topic'] != null
-          ? Element.fromJson(json['_topic'] as Map<String, dynamic>)
-          : null,
-      error: json['error'] != null
-          ? (json['error'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   SubscriptionStatus clone() => throw UnimplementedError();
   @override
@@ -279,37 +366,25 @@ class SubscriptionStatus extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory SubscriptionStatus.fromYaml(dynamic yaml) => yaml is String
-      ? SubscriptionStatus.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? SubscriptionStatus.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'SubscriptionStatus cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory SubscriptionStatus.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return SubscriptionStatus.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [SubscriptionStatusNotificationEvent] /// Detailed information about events relevant to this subscription
+/// [SubscriptionStatusNotificationEvent]
+/// Detailed information about events relevant to this subscription
 /// notification.
 class SubscriptionStatusNotificationEvent extends BackboneElement {
+  /// Primary constructor for [SubscriptionStatusNotificationEvent]
+
   SubscriptionStatusNotificationEvent({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.eventNumber,
+
+    /// Extensions for [eventNumber]
     this.eventNumberElement,
     this.timestamp,
+
+    /// Extensions for [timestamp]
     this.timestampElement,
     this.focus,
     this.additionalContext,
@@ -321,42 +396,130 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory SubscriptionStatusNotificationEvent.fromJson(
+      Map<String, dynamic> json) {
+    return SubscriptionStatusNotificationEvent(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      eventNumber: FhirString.fromJson(json['eventNumber']),
+      eventNumberElement: json['_eventNumber'] != null
+          ? Element.fromJson(
+              json['_eventNumber'] as Map<String, dynamic>,
+            )
+          : null,
+      timestamp: json['timestamp'] != null
+          ? FhirInstant.fromJson(json['timestamp'])
+          : null,
+      timestampElement: json['_timestamp'] != null
+          ? Element.fromJson(
+              json['_timestamp'] as Map<String, dynamic>,
+            )
+          : null,
+      focus: json['focus'] != null
+          ? Reference.fromJson(
+              json['focus'] as Map<String, dynamic>,
+            )
+          : null,
+      additionalContext: json['additionalContext'] != null
+          ? (json['additionalContext'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [SubscriptionStatusNotificationEvent] from a [String] or [YamlMap] object
+  factory SubscriptionStatusNotificationEvent.fromYaml(dynamic yaml) => yaml
+          is String
+      ? SubscriptionStatusNotificationEvent.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? SubscriptionStatusNotificationEvent.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'SubscriptionStatusNotificationEvent cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [SubscriptionStatusNotificationEvent] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory SubscriptionStatusNotificationEvent.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return SubscriptionStatusNotificationEvent.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'SubscriptionStatusNotificationEvent';
 
-  /// [eventNumber] /// The sequential number of this event in this subscription context. Note that
-  /// this value is a 64-bit integer value, encoded as a string.
+  /// [eventNumber]
+  /// The sequential number of this event in this subscription context. Note
+  /// that this value is a 64-bit integer value, encoded as a string.
   final FhirString eventNumber;
+
+  /// Extensions for [eventNumber]
   final Element? eventNumberElement;
 
-  /// [timestamp] /// The actual time this event occured on the server.
+  /// [timestamp]
+  /// The actual time this event occured on the server.
   final FhirInstant? timestamp;
+
+  /// Extensions for [timestamp]
   final Element? timestampElement;
 
-  /// [focus] /// The focus of this event. While this will usually be a reference to the
+  /// [focus]
+  /// The focus of this event. While this will usually be a reference to the
   /// focus resource of the event, it MAY contain a reference to a non-FHIR
   /// object.
   final Reference? focus;
 
-  /// [additionalContext] /// Additional context information for this event. Generally, this will contain
-  /// references to additional resources included with the event (e.g., the
-  /// Patient relevant to an Encounter), however it MAY refer to non-FHIR
-  /// objects.
+  /// [additionalContext]
+  /// Additional context information for this event. Generally, this will
+  /// contain references to additional resources included with the event
+  /// (e.g., the Patient relevant to an Encounter), however it MAY refer to
+  /// non-FHIR objects.
   final List<Reference>? additionalContext;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['eventNumber'] = eventNumber.toJson();
     if (eventNumberElement != null) {
@@ -373,48 +536,11 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     }
     if (additionalContext != null && additionalContext!.isNotEmpty) {
       json['additionalContext'] =
-          additionalContext!.map<dynamic>((Reference v) => v.toJson()).toList();
+          additionalContext!.map((Reference v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory SubscriptionStatusNotificationEvent.fromJson(
-      Map<String, dynamic> json) {
-    return SubscriptionStatusNotificationEvent(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      eventNumber: FhirString.fromJson(json['eventNumber']),
-      eventNumberElement: json['_eventNumber'] != null
-          ? Element.fromJson(json['_eventNumber'] as Map<String, dynamic>)
-          : null,
-      timestamp: json['timestamp'] != null
-          ? FhirInstant.fromJson(json['timestamp'])
-          : null,
-      timestampElement: json['_timestamp'] != null
-          ? Element.fromJson(json['_timestamp'] as Map<String, dynamic>)
-          : null,
-      focus: json['focus'] != null
-          ? Reference.fromJson(json['focus'] as Map<String, dynamic>)
-          : null,
-      additionalContext: json['additionalContext'] != null
-          ? (json['additionalContext'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   SubscriptionStatusNotificationEvent clone() => throw UnimplementedError();
   @override
@@ -452,25 +578,5 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory SubscriptionStatusNotificationEvent.fromYaml(dynamic yaml) => yaml
-          is String
-      ? SubscriptionStatusNotificationEvent.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? SubscriptionStatusNotificationEvent.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'SubscriptionStatusNotificationEvent cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory SubscriptionStatusNotificationEvent.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return SubscriptionStatusNotificationEvent.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

@@ -1,16 +1,22 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [MedicationKnowledge] /// Information about a medication that is used to support knowledge.
+/// [MedicationKnowledge]
+/// Information about a medication that is used to support knowledge.
 class MedicationKnowledge extends DomainResource {
+  /// Primary constructor for [MedicationKnowledge]
+
   MedicationKnowledge({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -18,11 +24,15 @@ class MedicationKnowledge extends DomainResource {
     super.modifierExtension,
     this.code,
     this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     this.manufacturer,
     this.doseForm,
     this.amount,
     this.synonym,
+
+    /// Extensions for [synonym]
     this.synonymElement,
     this.relatedMedicationKnowledge,
     this.associatedMedication,
@@ -30,6 +40,8 @@ class MedicationKnowledge extends DomainResource {
     this.monograph,
     this.ingredient,
     this.preparationInstruction,
+
+    /// Extensions for [preparationInstruction]
     this.preparationInstructionElement,
     this.intendedRoute,
     this.cost,
@@ -47,105 +59,407 @@ class MedicationKnowledge extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.MedicationKnowledge);
+  }) : super(
+          resourceType: R4ResourceType.MedicationKnowledge,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MedicationKnowledge.fromJson(Map<String, dynamic> json) {
+    return MedicationKnowledge(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(
+              json['code'] as Map<String, dynamic>,
+            )
+          : null,
+      status: json['status'] != null
+          ? MedicationKnowledgeStatusCodes.fromJson(json['status'])
+          : null,
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      manufacturer: json['manufacturer'] != null
+          ? Reference.fromJson(
+              json['manufacturer'] as Map<String, dynamic>,
+            )
+          : null,
+      doseForm: json['doseForm'] != null
+          ? CodeableConcept.fromJson(
+              json['doseForm'] as Map<String, dynamic>,
+            )
+          : null,
+      amount: json['amount'] != null
+          ? Quantity.fromJson(
+              json['amount'] as Map<String, dynamic>,
+            )
+          : null,
+      synonym: json['synonym'] != null
+          ? (json['synonym'] as List<dynamic>)
+              .map<FhirString>(
+                (dynamic v) => FhirString.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      synonymElement: json['_synonym'] != null
+          ? (json['_synonym'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      relatedMedicationKnowledge: json['relatedMedicationKnowledge'] != null
+          ? (json['relatedMedicationKnowledge'] as List<dynamic>)
+              .map<MedicationKnowledgeRelatedMedicationKnowledge>(
+                (dynamic v) =>
+                    MedicationKnowledgeRelatedMedicationKnowledge.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      associatedMedication: json['associatedMedication'] != null
+          ? (json['associatedMedication'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      productType: json['productType'] != null
+          ? (json['productType'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      monograph: json['monograph'] != null
+          ? (json['monograph'] as List<dynamic>)
+              .map<MedicationKnowledgeMonograph>(
+                (dynamic v) => MedicationKnowledgeMonograph.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      ingredient: json['ingredient'] != null
+          ? (json['ingredient'] as List<dynamic>)
+              .map<MedicationKnowledgeIngredient>(
+                (dynamic v) => MedicationKnowledgeIngredient.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      preparationInstruction: json['preparationInstruction'] != null
+          ? FhirMarkdown.fromJson(json['preparationInstruction'])
+          : null,
+      preparationInstructionElement: json['_preparationInstruction'] != null
+          ? Element.fromJson(
+              json['_preparationInstruction'] as Map<String, dynamic>,
+            )
+          : null,
+      intendedRoute: json['intendedRoute'] != null
+          ? (json['intendedRoute'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      cost: json['cost'] != null
+          ? (json['cost'] as List<dynamic>)
+              .map<MedicationKnowledgeCost>(
+                (dynamic v) => MedicationKnowledgeCost.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      monitoringProgram: json['monitoringProgram'] != null
+          ? (json['monitoringProgram'] as List<dynamic>)
+              .map<MedicationKnowledgeMonitoringProgram>(
+                (dynamic v) => MedicationKnowledgeMonitoringProgram.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      administrationGuidelines: json['administrationGuidelines'] != null
+          ? (json['administrationGuidelines'] as List<dynamic>)
+              .map<MedicationKnowledgeAdministrationGuidelines>(
+                (dynamic v) =>
+                    MedicationKnowledgeAdministrationGuidelines.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      medicineClassification: json['medicineClassification'] != null
+          ? (json['medicineClassification'] as List<dynamic>)
+              .map<MedicationKnowledgeMedicineClassification>(
+                (dynamic v) =>
+                    MedicationKnowledgeMedicineClassification.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      packaging: json['packaging'] != null
+          ? MedicationKnowledgePackaging.fromJson(
+              json['packaging'] as Map<String, dynamic>,
+            )
+          : null,
+      drugCharacteristic: json['drugCharacteristic'] != null
+          ? (json['drugCharacteristic'] as List<dynamic>)
+              .map<MedicationKnowledgeDrugCharacteristic>(
+                (dynamic v) => MedicationKnowledgeDrugCharacteristic.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      contraindication: json['contraindication'] != null
+          ? (json['contraindication'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      regulatory: json['regulatory'] != null
+          ? (json['regulatory'] as List<dynamic>)
+              .map<MedicationKnowledgeRegulatory>(
+                (dynamic v) => MedicationKnowledgeRegulatory.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      kinetics: json['kinetics'] != null
+          ? (json['kinetics'] as List<dynamic>)
+              .map<MedicationKnowledgeKinetics>(
+                (dynamic v) => MedicationKnowledgeKinetics.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [MedicationKnowledge] from a [String] or [YamlMap] object
+  factory MedicationKnowledge.fromYaml(dynamic yaml) => yaml is String
+      ? MedicationKnowledge.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MedicationKnowledge.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MedicationKnowledge cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MedicationKnowledge] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MedicationKnowledge.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicationKnowledge.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'MedicationKnowledge';
 
-  /// [code] /// A code that specifies this medication, or a textual description if no code
-  /// is available. Usage note: This could be a standard medication code such as
-  /// a code from RxNorm, SNOMED CT, IDMP etc. It could also be a national or
-  /// local formulary code, optionally with translations to other code systems.
+  /// [code]
+  /// A code that specifies this medication, or a textual description if no
+  /// code is available. Usage note: This could be a standard medication code
+  /// such as a code from RxNorm, SNOMED CT, IDMP etc. It could also be a
+  /// national or local formulary code, optionally with translations to other
+  /// code systems.
   final CodeableConcept? code;
 
-  /// [status] /// A code to indicate if the medication is in active use. The status refers to
-  /// the validity about the information of the medication and not to its
-  /// medicinal properties.
+  /// [status]
+  /// A code to indicate if the medication is in active use. The status
+  /// refers to the validity about the information of the medication and not
+  /// to its medicinal properties.
   final MedicationKnowledgeStatusCodes? status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [manufacturer] /// Describes the details of the manufacturer of the medication product. This
-  /// is not intended to represent the distributor of a medication product.
+  /// [manufacturer]
+  /// Describes the details of the manufacturer of the medication product.
+  /// This is not intended to represent the distributor of a medication
+  /// product.
   final Reference? manufacturer;
 
-  /// [doseForm] /// Describes the form of the item. Powder; tablets; capsule.
+  /// [doseForm]
+  /// Describes the form of the item. Powder; tablets; capsule.
   final CodeableConcept? doseForm;
 
-  /// [amount] /// Specific amount of the drug in the packaged product. For example, when
+  /// [amount]
+  /// Specific amount of the drug in the packaged product. For example, when
   /// specifying a product that has the same strength (For example, Insulin
-  /// glargine 100 unit per mL solution for injection), this attribute provides
-  /// additional clarification of the package amount (For example, 3 mL, 10mL,
-  /// etc.).
+  /// glargine 100 unit per mL solution for injection), this attribute
+  /// provides additional clarification of the package amount (For example, 3
+  /// mL, 10mL, etc.).
   final Quantity? amount;
 
-  /// [synonym] /// Additional names for a medication, for example, the name(s) given to a
+  /// [synonym]
+  /// Additional names for a medication, for example, the name(s) given to a
   /// medication in different countries. For example, acetaminophen and
   /// paracetamol or salbutamol and albuterol.
   final List<FhirString>? synonym;
+
+  /// Extensions for [synonym]
   final List<Element>? synonymElement;
 
-  /// [relatedMedicationKnowledge] /// Associated or related knowledge about a medication.
+  /// [relatedMedicationKnowledge]
+  /// Associated or related knowledge about a medication.
   final List<MedicationKnowledgeRelatedMedicationKnowledge>?
       relatedMedicationKnowledge;
 
-  /// [associatedMedication] /// Associated or related medications. For example, if the medication is a
+  /// [associatedMedication]
+  /// Associated or related medications. For example, if the medication is a
   /// branded product (e.g. Crestor), this is the Therapeutic Moeity (e.g.
-  /// Rosuvastatin) or if this is a generic medication (e.g. Rosuvastatin), this
-  /// would link to a branded product (e.g. Crestor).
+  /// Rosuvastatin) or if this is a generic medication (e.g. Rosuvastatin),
+  /// this would link to a branded product (e.g. Crestor).
   final List<Reference>? associatedMedication;
 
-  /// [productType] /// Category of the medication or product (e.g. branded product, therapeutic
-  /// moeity, generic product, innovator product, etc.).
+  /// [productType]
+  /// Category of the medication or product (e.g. branded product,
+  /// therapeutic moeity, generic product, innovator product, etc.).
   final List<CodeableConcept>? productType;
 
-  /// [monograph] /// Associated documentation about the medication.
+  /// [monograph]
+  /// Associated documentation about the medication.
   final List<MedicationKnowledgeMonograph>? monograph;
 
-  /// [ingredient] /// Identifies a particular constituent of interest in the product.
+  /// [ingredient]
+  /// Identifies a particular constituent of interest in the product.
   final List<MedicationKnowledgeIngredient>? ingredient;
 
-  /// [preparationInstruction] /// The instructions for preparing the medication.
+  /// [preparationInstruction]
+  /// The instructions for preparing the medication.
   final FhirMarkdown? preparationInstruction;
+
+  /// Extensions for [preparationInstruction]
   final Element? preparationInstructionElement;
 
-  /// [intendedRoute] /// The intended or approved route of administration.
+  /// [intendedRoute]
+  /// The intended or approved route of administration.
   final List<CodeableConcept>? intendedRoute;
 
-  /// [cost] /// The price of the medication.
+  /// [cost]
+  /// The price of the medication.
   final List<MedicationKnowledgeCost>? cost;
 
-  /// [monitoringProgram] /// The program under which the medication is reviewed.
+  /// [monitoringProgram]
+  /// The program under which the medication is reviewed.
   final List<MedicationKnowledgeMonitoringProgram>? monitoringProgram;
 
-  /// [administrationGuidelines] /// Guidelines for the administration of the medication.
+  /// [administrationGuidelines]
+  /// Guidelines for the administration of the medication.
   final List<MedicationKnowledgeAdministrationGuidelines>?
       administrationGuidelines;
 
-  /// [medicineClassification] /// Categorization of the medication within a formulary or classification
+  /// [medicineClassification]
+  /// Categorization of the medication within a formulary or classification
   /// system.
   final List<MedicationKnowledgeMedicineClassification>? medicineClassification;
 
-  /// [packaging] /// Information that only applies to packages (not products).
+  /// [packaging]
+  /// Information that only applies to packages (not products).
   final MedicationKnowledgePackaging? packaging;
 
-  /// [drugCharacteristic] /// Specifies descriptive properties of the medicine, such as color, shape,
+  /// [drugCharacteristic]
+  /// Specifies descriptive properties of the medicine, such as color, shape,
   /// imprints, etc.
   final List<MedicationKnowledgeDrugCharacteristic>? drugCharacteristic;
 
-  /// [contraindication] /// Potential clinical issue with or between medication(s) (for example,
+  /// [contraindication]
+  /// Potential clinical issue with or between medication(s) (for example,
   /// drug-drug interaction, drug-disease contraindication, drug-allergy
   /// interaction, etc.).
   final List<Reference>? contraindication;
 
-  /// [regulatory] /// Regulatory information about a medication.
+  /// [regulatory]
+  /// Regulatory information about a medication.
   final List<MedicationKnowledgeRegulatory>? regulatory;
 
-  /// [kinetics] /// The time course of drug absorption, distribution, metabolism and excretion
-  /// of a medication from the body.
+  /// [kinetics]
+  /// The time course of drug absorption, distribution, metabolism and
+  /// excretion of a medication from the body.
   final List<MedicationKnowledgeKinetics>? kinetics;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -166,17 +480,15 @@ class MedicationKnowledge extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (code != null) {
       json['code'] = code!.toJson();
@@ -203,27 +515,25 @@ class MedicationKnowledge extends DomainResource {
     if (relatedMedicationKnowledge != null &&
         relatedMedicationKnowledge!.isNotEmpty) {
       json['relatedMedicationKnowledge'] = relatedMedicationKnowledge!
-          .map<dynamic>(
-              (MedicationKnowledgeRelatedMedicationKnowledge v) => v.toJson())
+          .map((MedicationKnowledgeRelatedMedicationKnowledge v) => v.toJson())
           .toList();
     }
     if (associatedMedication != null && associatedMedication!.isNotEmpty) {
-      json['associatedMedication'] = associatedMedication!
-          .map<dynamic>((Reference v) => v.toJson())
-          .toList();
+      json['associatedMedication'] =
+          associatedMedication!.map((Reference v) => v.toJson()).toList();
     }
     if (productType != null && productType!.isNotEmpty) {
       json['productType'] =
-          productType!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          productType!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (monograph != null && monograph!.isNotEmpty) {
       json['monograph'] = monograph!
-          .map<dynamic>((MedicationKnowledgeMonograph v) => v.toJson())
+          .map((MedicationKnowledgeMonograph v) => v.toJson())
           .toList();
     }
     if (ingredient != null && ingredient!.isNotEmpty) {
       json['ingredient'] = ingredient!
-          .map<dynamic>((MedicationKnowledgeIngredient v) => v.toJson())
+          .map((MedicationKnowledgeIngredient v) => v.toJson())
           .toList();
     }
     if (preparationInstruction?.value != null) {
@@ -233,31 +543,27 @@ class MedicationKnowledge extends DomainResource {
       json['_preparationInstruction'] = preparationInstructionElement!.toJson();
     }
     if (intendedRoute != null && intendedRoute!.isNotEmpty) {
-      json['intendedRoute'] = intendedRoute!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['intendedRoute'] =
+          intendedRoute!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (cost != null && cost!.isNotEmpty) {
-      json['cost'] = cost!
-          .map<dynamic>((MedicationKnowledgeCost v) => v.toJson())
-          .toList();
+      json['cost'] =
+          cost!.map((MedicationKnowledgeCost v) => v.toJson()).toList();
     }
     if (monitoringProgram != null && monitoringProgram!.isNotEmpty) {
       json['monitoringProgram'] = monitoringProgram!
-          .map<dynamic>((MedicationKnowledgeMonitoringProgram v) => v.toJson())
+          .map((MedicationKnowledgeMonitoringProgram v) => v.toJson())
           .toList();
     }
     if (administrationGuidelines != null &&
         administrationGuidelines!.isNotEmpty) {
       json['administrationGuidelines'] = administrationGuidelines!
-          .map<dynamic>(
-              (MedicationKnowledgeAdministrationGuidelines v) => v.toJson())
+          .map((MedicationKnowledgeAdministrationGuidelines v) => v.toJson())
           .toList();
     }
     if (medicineClassification != null && medicineClassification!.isNotEmpty) {
       json['medicineClassification'] = medicineClassification!
-          .map<dynamic>(
-              (MedicationKnowledgeMedicineClassification v) => v.toJson())
+          .map((MedicationKnowledgeMedicineClassification v) => v.toJson())
           .toList();
     }
     if (packaging != null) {
@@ -265,200 +571,25 @@ class MedicationKnowledge extends DomainResource {
     }
     if (drugCharacteristic != null && drugCharacteristic!.isNotEmpty) {
       json['drugCharacteristic'] = drugCharacteristic!
-          .map<dynamic>((MedicationKnowledgeDrugCharacteristic v) => v.toJson())
+          .map((MedicationKnowledgeDrugCharacteristic v) => v.toJson())
           .toList();
     }
     if (contraindication != null && contraindication!.isNotEmpty) {
       json['contraindication'] =
-          contraindication!.map<dynamic>((Reference v) => v.toJson()).toList();
+          contraindication!.map((Reference v) => v.toJson()).toList();
     }
     if (regulatory != null && regulatory!.isNotEmpty) {
       json['regulatory'] = regulatory!
-          .map<dynamic>((MedicationKnowledgeRegulatory v) => v.toJson())
+          .map((MedicationKnowledgeRegulatory v) => v.toJson())
           .toList();
     }
     if (kinetics != null && kinetics!.isNotEmpty) {
-      json['kinetics'] = kinetics!
-          .map<dynamic>((MedicationKnowledgeKinetics v) => v.toJson())
-          .toList();
+      json['kinetics'] =
+          kinetics!.map((MedicationKnowledgeKinetics v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory MedicationKnowledge.fromJson(Map<String, dynamic> json) {
-    return MedicationKnowledge(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      code: json['code'] != null
-          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
-          : null,
-      status: json['status'] != null
-          ? MedicationKnowledgeStatusCodes.fromJson(json['status'])
-          : null,
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      manufacturer: json['manufacturer'] != null
-          ? Reference.fromJson(json['manufacturer'] as Map<String, dynamic>)
-          : null,
-      doseForm: json['doseForm'] != null
-          ? CodeableConcept.fromJson(json['doseForm'] as Map<String, dynamic>)
-          : null,
-      amount: json['amount'] != null
-          ? Quantity.fromJson(json['amount'] as Map<String, dynamic>)
-          : null,
-      synonym: json['synonym'] != null
-          ? (json['synonym'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
-              .toList()
-          : null,
-      synonymElement: json['_synonym'] != null
-          ? (json['_synonym'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      relatedMedicationKnowledge: json['relatedMedicationKnowledge'] != null
-          ? (json['relatedMedicationKnowledge'] as List<dynamic>)
-              .map<MedicationKnowledgeRelatedMedicationKnowledge>((dynamic v) =>
-                  MedicationKnowledgeRelatedMedicationKnowledge.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      associatedMedication: json['associatedMedication'] != null
-          ? (json['associatedMedication'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      productType: json['productType'] != null
-          ? (json['productType'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      monograph: json['monograph'] != null
-          ? (json['monograph'] as List<dynamic>)
-              .map<MedicationKnowledgeMonograph>((dynamic v) =>
-                  MedicationKnowledgeMonograph.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      ingredient: json['ingredient'] != null
-          ? (json['ingredient'] as List<dynamic>)
-              .map<MedicationKnowledgeIngredient>((dynamic v) =>
-                  MedicationKnowledgeIngredient.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      preparationInstruction: json['preparationInstruction'] != null
-          ? FhirMarkdown.fromJson(json['preparationInstruction'])
-          : null,
-      preparationInstructionElement: json['_preparationInstruction'] != null
-          ? Element.fromJson(
-              json['_preparationInstruction'] as Map<String, dynamic>)
-          : null,
-      intendedRoute: json['intendedRoute'] != null
-          ? (json['intendedRoute'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      cost: json['cost'] != null
-          ? (json['cost'] as List<dynamic>)
-              .map<MedicationKnowledgeCost>((dynamic v) =>
-                  MedicationKnowledgeCost.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      monitoringProgram: json['monitoringProgram'] != null
-          ? (json['monitoringProgram'] as List<dynamic>)
-              .map<MedicationKnowledgeMonitoringProgram>((dynamic v) =>
-                  MedicationKnowledgeMonitoringProgram.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      administrationGuidelines: json['administrationGuidelines'] != null
-          ? (json['administrationGuidelines'] as List<dynamic>)
-              .map<MedicationKnowledgeAdministrationGuidelines>((dynamic v) =>
-                  MedicationKnowledgeAdministrationGuidelines.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      medicineClassification: json['medicineClassification'] != null
-          ? (json['medicineClassification'] as List<dynamic>)
-              .map<MedicationKnowledgeMedicineClassification>((dynamic v) =>
-                  MedicationKnowledgeMedicineClassification.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      packaging: json['packaging'] != null
-          ? MedicationKnowledgePackaging.fromJson(
-              json['packaging'] as Map<String, dynamic>)
-          : null,
-      drugCharacteristic: json['drugCharacteristic'] != null
-          ? (json['drugCharacteristic'] as List<dynamic>)
-              .map<MedicationKnowledgeDrugCharacteristic>((dynamic v) =>
-                  MedicationKnowledgeDrugCharacteristic.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      contraindication: json['contraindication'] != null
-          ? (json['contraindication'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      regulatory: json['regulatory'] != null
-          ? (json['regulatory'] as List<dynamic>)
-              .map<MedicationKnowledgeRegulatory>((dynamic v) =>
-                  MedicationKnowledgeRegulatory.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      kinetics: json['kinetics'] != null
-          ? (json['kinetics'] as List<dynamic>)
-              .map<MedicationKnowledgeKinetics>((dynamic v) =>
-                  MedicationKnowledgeKinetics.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   MedicationKnowledge clone() => throw UnimplementedError();
   @override
@@ -555,29 +686,13 @@ class MedicationKnowledge extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MedicationKnowledge.fromYaml(dynamic yaml) => yaml is String
-      ? MedicationKnowledge.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MedicationKnowledge.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MedicationKnowledge cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MedicationKnowledge.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MedicationKnowledge.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MedicationKnowledgeRelatedMedicationKnowledge] /// Associated or related knowledge about a medication.
+/// [MedicationKnowledgeRelatedMedicationKnowledge]
+/// Associated or related knowledge about a medication.
 class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
+  /// Primary constructor for [MedicationKnowledgeRelatedMedicationKnowledge]
+
   MedicationKnowledgeRelatedMedicationKnowledge({
     super.id,
     super.extension_,
@@ -592,28 +707,91 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MedicationKnowledgeRelatedMedicationKnowledge.fromJson(
+      Map<String, dynamic> json) {
+    return MedicationKnowledgeRelatedMedicationKnowledge(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: CodeableConcept.fromJson(
+        json['type'] as Map<String, dynamic>,
+      ),
+      reference: (json['reference'] as List<dynamic>)
+          .map<Reference>(
+              (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  /// Deserialize [MedicationKnowledgeRelatedMedicationKnowledge] from a [String] or [YamlMap] object
+  factory MedicationKnowledgeRelatedMedicationKnowledge.fromYaml(
+          dynamic yaml) =>
+      yaml is String
+          ? MedicationKnowledgeRelatedMedicationKnowledge.fromJson(
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+            )
+          : yaml is YamlMap
+              ? MedicationKnowledgeRelatedMedicationKnowledge.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MedicationKnowledgeRelatedMedicationKnowledge cannot be constructed from input '
+                  'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MedicationKnowledgeRelatedMedicationKnowledge] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MedicationKnowledgeRelatedMedicationKnowledge.fromJsonString(
+      String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicationKnowledgeRelatedMedicationKnowledge.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'MedicationKnowledgeRelatedMedicationKnowledge';
 
-  /// [type] /// The category of the associated medication knowledge reference.
+  /// [type]
+  /// The category of the associated medication knowledge reference.
   final CodeableConcept type;
 
-  /// [reference] /// Associated documentation about the associated medication knowledge.
+  /// [reference]
+  /// Associated documentation about the associated medication knowledge.
   final List<Reference> reference;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['type'] = type.toJson();
     json['reference'] =
@@ -621,29 +799,6 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
     return json;
   }
 
-  factory MedicationKnowledgeRelatedMedicationKnowledge.fromJson(
-      Map<String, dynamic> json) {
-    return MedicationKnowledgeRelatedMedicationKnowledge(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
-      reference: (json['reference'] as List<dynamic>)
-          .map<Reference>(
-              (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-          .toList(),
-    );
-  }
   @override
   MedicationKnowledgeRelatedMedicationKnowledge clone() =>
       throw UnimplementedError();
@@ -675,32 +830,13 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MedicationKnowledgeRelatedMedicationKnowledge.fromYaml(
-          dynamic yaml) =>
-      yaml is String
-          ? MedicationKnowledgeRelatedMedicationKnowledge.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-          : yaml is YamlMap
-              ? MedicationKnowledgeRelatedMedicationKnowledge.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-              : throw ArgumentError(
-                  'MedicationKnowledgeRelatedMedicationKnowledge cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MedicationKnowledgeRelatedMedicationKnowledge.fromJsonString(
-      String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MedicationKnowledgeRelatedMedicationKnowledge.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MedicationKnowledgeMonograph] /// Associated documentation about the medication.
+/// [MedicationKnowledgeMonograph]
+/// Associated documentation about the medication.
 class MedicationKnowledgeMonograph extends BackboneElement {
+  /// Primary constructor for [MedicationKnowledgeMonograph]
+
   MedicationKnowledgeMonograph({
     super.id,
     super.extension_,
@@ -715,29 +851,91 @@ class MedicationKnowledgeMonograph extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MedicationKnowledgeMonograph.fromJson(Map<String, dynamic> json) {
+    return MedicationKnowledgeMonograph(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(
+              json['type'] as Map<String, dynamic>,
+            )
+          : null,
+      source: json['source'] != null
+          ? Reference.fromJson(
+              json['source'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [MedicationKnowledgeMonograph] from a [String] or [YamlMap] object
+  factory MedicationKnowledgeMonograph.fromYaml(dynamic yaml) => yaml is String
+      ? MedicationKnowledgeMonograph.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MedicationKnowledgeMonograph.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MedicationKnowledgeMonograph cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MedicationKnowledgeMonograph] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MedicationKnowledgeMonograph.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicationKnowledgeMonograph.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'MedicationKnowledgeMonograph';
 
-  /// [type] /// The category of documentation about the medication. (e.g. professional
+  /// [type]
+  /// The category of documentation about the medication. (e.g. professional
   /// monograph, patient education monograph).
   final CodeableConcept? type;
 
-  /// [source] /// Associated documentation about the medication.
+  /// [source]
+  /// Associated documentation about the medication.
   final Reference? source;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (type != null) {
       json['type'] = type!.toJson();
@@ -748,29 +946,6 @@ class MedicationKnowledgeMonograph extends BackboneElement {
     return json;
   }
 
-  factory MedicationKnowledgeMonograph.fromJson(Map<String, dynamic> json) {
-    return MedicationKnowledgeMonograph(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
-          : null,
-      source: json['source'] != null
-          ? Reference.fromJson(json['source'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   MedicationKnowledgeMonograph clone() => throw UnimplementedError();
   @override
@@ -801,29 +976,13 @@ class MedicationKnowledgeMonograph extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MedicationKnowledgeMonograph.fromYaml(dynamic yaml) => yaml is String
-      ? MedicationKnowledgeMonograph.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MedicationKnowledgeMonograph.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MedicationKnowledgeMonograph cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MedicationKnowledgeMonograph.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MedicationKnowledgeMonograph.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MedicationKnowledgeIngredient] /// Identifies a particular constituent of interest in the product.
+/// [MedicationKnowledgeIngredient]
+/// Identifies a particular constituent of interest in the product.
 class MedicationKnowledgeIngredient extends BackboneElement {
+  /// Primary constructor for [MedicationKnowledgeIngredient]
+
   MedicationKnowledgeIngredient({
     super.id,
     super.extension_,
@@ -831,6 +990,8 @@ class MedicationKnowledgeIngredient extends BackboneElement {
     this.itemCodeableConcept,
     this.itemReference,
     this.isActive,
+
+    /// Extensions for [isActive]
     this.isActiveElement,
     this.strength,
     super.userData,
@@ -841,40 +1002,119 @@ class MedicationKnowledgeIngredient extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MedicationKnowledgeIngredient.fromJson(Map<String, dynamic> json) {
+    return MedicationKnowledgeIngredient(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      itemCodeableConcept: json['itemCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['itemCodeableConcept'] as Map<String, dynamic>,
+            )
+          : null,
+      itemReference: json['itemReference'] != null
+          ? Reference.fromJson(
+              json['itemReference'] as Map<String, dynamic>,
+            )
+          : null,
+      isActive: json['isActive'] != null
+          ? FhirBoolean.fromJson(json['isActive'])
+          : null,
+      isActiveElement: json['_isActive'] != null
+          ? Element.fromJson(
+              json['_isActive'] as Map<String, dynamic>,
+            )
+          : null,
+      strength: json['strength'] != null
+          ? Ratio.fromJson(
+              json['strength'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [MedicationKnowledgeIngredient] from a [String] or [YamlMap] object
+  factory MedicationKnowledgeIngredient.fromYaml(dynamic yaml) => yaml is String
+      ? MedicationKnowledgeIngredient.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MedicationKnowledgeIngredient.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MedicationKnowledgeIngredient cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MedicationKnowledgeIngredient] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MedicationKnowledgeIngredient.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicationKnowledgeIngredient.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'MedicationKnowledgeIngredient';
 
-  /// [itemCodeableConcept] /// The actual ingredient - either a substance (simple ingredient) or another
-  /// medication.
+  /// [itemCodeableConcept]
+  /// The actual ingredient - either a substance (simple ingredient) or
+  /// another medication.
   final CodeableConcept? itemCodeableConcept;
 
-  /// [itemReference] /// The actual ingredient - either a substance (simple ingredient) or another
-  /// medication.
+  /// [itemReference]
+  /// The actual ingredient - either a substance (simple ingredient) or
+  /// another medication.
   final Reference? itemReference;
 
-  /// [isActive] /// Indication of whether this ingredient affects the therapeutic action of the
-  /// drug.
+  /// [isActive]
+  /// Indication of whether this ingredient affects the therapeutic action of
+  /// the drug.
   final FhirBoolean? isActive;
+
+  /// Extensions for [isActive]
   final Element? isActiveElement;
 
-  /// [strength] /// Specifies how many (or how much) of the items there are in this Medication.
-  /// For example, 250 mg per tablet. This is expressed as a ratio where the
-  /// numerator is 250mg and the denominator is 1 tablet.
+  /// [strength]
+  /// Specifies how many (or how much) of the items there are in this
+  /// Medication. For example, 250 mg per tablet. This is expressed as a
+  /// ratio where the numerator is 250mg and the denominator is 1 tablet.
   final Ratio? strength;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (itemCodeableConcept != null) {
       json['itemCodeableConcept'] = itemCodeableConcept!.toJson();
@@ -894,39 +1134,6 @@ class MedicationKnowledgeIngredient extends BackboneElement {
     return json;
   }
 
-  factory MedicationKnowledgeIngredient.fromJson(Map<String, dynamic> json) {
-    return MedicationKnowledgeIngredient(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      itemCodeableConcept: json['itemCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['itemCodeableConcept'] as Map<String, dynamic>)
-          : null,
-      itemReference: json['itemReference'] != null
-          ? Reference.fromJson(json['itemReference'] as Map<String, dynamic>)
-          : null,
-      isActive: json['isActive'] != null
-          ? FhirBoolean.fromJson(json['isActive'])
-          : null,
-      isActiveElement: json['_isActive'] != null
-          ? Element.fromJson(json['_isActive'] as Map<String, dynamic>)
-          : null,
-      strength: json['strength'] != null
-          ? Ratio.fromJson(json['strength'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   MedicationKnowledgeIngredient clone() => throw UnimplementedError();
   @override
@@ -963,35 +1170,21 @@ class MedicationKnowledgeIngredient extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MedicationKnowledgeIngredient.fromYaml(dynamic yaml) => yaml is String
-      ? MedicationKnowledgeIngredient.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MedicationKnowledgeIngredient.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MedicationKnowledgeIngredient cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MedicationKnowledgeIngredient.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MedicationKnowledgeIngredient.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MedicationKnowledgeCost] /// The price of the medication.
+/// [MedicationKnowledgeCost]
+/// The price of the medication.
 class MedicationKnowledgeCost extends BackboneElement {
+  /// Primary constructor for [MedicationKnowledgeCost]
+
   MedicationKnowledgeCost({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.type,
     this.source,
+
+    /// Extensions for [source]
     this.sourceElement,
     required this.cost,
     super.userData,
@@ -1002,33 +1195,101 @@ class MedicationKnowledgeCost extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MedicationKnowledgeCost.fromJson(Map<String, dynamic> json) {
+    return MedicationKnowledgeCost(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: CodeableConcept.fromJson(
+        json['type'] as Map<String, dynamic>,
+      ),
+      source:
+          json['source'] != null ? FhirString.fromJson(json['source']) : null,
+      sourceElement: json['_source'] != null
+          ? Element.fromJson(
+              json['_source'] as Map<String, dynamic>,
+            )
+          : null,
+      cost: Money.fromJson(
+        json['cost'] as Map<String, dynamic>,
+      ),
+    );
+  }
+
+  /// Deserialize [MedicationKnowledgeCost] from a [String] or [YamlMap] object
+  factory MedicationKnowledgeCost.fromYaml(dynamic yaml) => yaml is String
+      ? MedicationKnowledgeCost.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MedicationKnowledgeCost.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MedicationKnowledgeCost cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MedicationKnowledgeCost] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MedicationKnowledgeCost.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicationKnowledgeCost.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'MedicationKnowledgeCost';
 
-  /// [type] /// The category of the cost information. For example, manufacturers' cost,
+  /// [type]
+  /// The category of the cost information. For example, manufacturers' cost,
   /// patient cost, claim reimbursement cost, actual acquisition cost.
   final CodeableConcept type;
 
-  /// [source] /// The source or owner that assigns the price to the medication.
+  /// [source]
+  /// The source or owner that assigns the price to the medication.
   final FhirString? source;
+
+  /// Extensions for [source]
   final Element? sourceElement;
 
-  /// [cost] /// The price of the medication.
+  /// [cost]
+  /// The price of the medication.
   final Money cost;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['type'] = type.toJson();
     if (source?.value != null) {
@@ -1041,30 +1302,6 @@ class MedicationKnowledgeCost extends BackboneElement {
     return json;
   }
 
-  factory MedicationKnowledgeCost.fromJson(Map<String, dynamic> json) {
-    return MedicationKnowledgeCost(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
-      source:
-          json['source'] != null ? FhirString.fromJson(json['source']) : null,
-      sourceElement: json['_source'] != null
-          ? Element.fromJson(json['_source'] as Map<String, dynamic>)
-          : null,
-      cost: Money.fromJson(json['cost'] as Map<String, dynamic>),
-    );
-  }
   @override
   MedicationKnowledgeCost clone() => throw UnimplementedError();
   @override
@@ -1099,35 +1336,21 @@ class MedicationKnowledgeCost extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MedicationKnowledgeCost.fromYaml(dynamic yaml) => yaml is String
-      ? MedicationKnowledgeCost.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MedicationKnowledgeCost.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MedicationKnowledgeCost cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MedicationKnowledgeCost.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MedicationKnowledgeCost.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MedicationKnowledgeMonitoringProgram] /// The program under which the medication is reviewed.
+/// [MedicationKnowledgeMonitoringProgram]
+/// The program under which the medication is reviewed.
 class MedicationKnowledgeMonitoringProgram extends BackboneElement {
+  /// Primary constructor for [MedicationKnowledgeMonitoringProgram]
+
   MedicationKnowledgeMonitoringProgram({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.type,
     this.name,
+
+    /// Extensions for [name]
     this.nameElement,
     super.userData,
     super.formatCommentsPre,
@@ -1137,29 +1360,96 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MedicationKnowledgeMonitoringProgram.fromJson(
+      Map<String, dynamic> json) {
+    return MedicationKnowledgeMonitoringProgram(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(
+              json['type'] as Map<String, dynamic>,
+            )
+          : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(
+              json['_name'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [MedicationKnowledgeMonitoringProgram] from a [String] or [YamlMap] object
+  factory MedicationKnowledgeMonitoringProgram.fromYaml(dynamic yaml) => yaml
+          is String
+      ? MedicationKnowledgeMonitoringProgram.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MedicationKnowledgeMonitoringProgram.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MedicationKnowledgeMonitoringProgram cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MedicationKnowledgeMonitoringProgram] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MedicationKnowledgeMonitoringProgram.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicationKnowledgeMonitoringProgram.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'MedicationKnowledgeMonitoringProgram';
 
-  /// [type] /// Type of program under which the medication is monitored.
+  /// [type]
+  /// Type of program under which the medication is monitored.
   final CodeableConcept? type;
 
-  /// [name] /// Name of the reviewing program.
+  /// [name]
+  /// Name of the reviewing program.
   final FhirString? name;
+
+  /// Extensions for [name]
   final Element? nameElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (type != null) {
       json['type'] = type!.toJson();
@@ -1173,31 +1463,6 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
     return json;
   }
 
-  factory MedicationKnowledgeMonitoringProgram.fromJson(
-      Map<String, dynamic> json) {
-    return MedicationKnowledgeMonitoringProgram(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
-          : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   MedicationKnowledgeMonitoringProgram clone() => throw UnimplementedError();
   @override
@@ -1230,30 +1495,13 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MedicationKnowledgeMonitoringProgram.fromYaml(dynamic yaml) => yaml
-          is String
-      ? MedicationKnowledgeMonitoringProgram.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MedicationKnowledgeMonitoringProgram.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MedicationKnowledgeMonitoringProgram cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MedicationKnowledgeMonitoringProgram.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MedicationKnowledgeMonitoringProgram.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MedicationKnowledgeAdministrationGuidelines] /// Guidelines for the administration of the medication.
+/// [MedicationKnowledgeAdministrationGuidelines]
+/// Guidelines for the administration of the medication.
 class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
+  /// Primary constructor for [MedicationKnowledgeAdministrationGuidelines]
+
   MedicationKnowledgeAdministrationGuidelines({
     super.id,
     super.extension_,
@@ -1270,40 +1518,127 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MedicationKnowledgeAdministrationGuidelines.fromJson(
+      Map<String, dynamic> json) {
+    return MedicationKnowledgeAdministrationGuidelines(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      dosage: json['dosage'] != null
+          ? (json['dosage'] as List<dynamic>)
+              .map<MedicationKnowledgeDosage>(
+                (dynamic v) => MedicationKnowledgeDosage.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      indicationCodeableConcept: json['indicationCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['indicationCodeableConcept'] as Map<String, dynamic>,
+            )
+          : null,
+      indicationReference: json['indicationReference'] != null
+          ? Reference.fromJson(
+              json['indicationReference'] as Map<String, dynamic>,
+            )
+          : null,
+      patientCharacteristics: json['patientCharacteristics'] != null
+          ? (json['patientCharacteristics'] as List<dynamic>)
+              .map<MedicationKnowledgePatientCharacteristics>(
+                (dynamic v) =>
+                    MedicationKnowledgePatientCharacteristics.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [MedicationKnowledgeAdministrationGuidelines] from a [String] or [YamlMap] object
+  factory MedicationKnowledgeAdministrationGuidelines.fromYaml(dynamic yaml) =>
+      yaml is String
+          ? MedicationKnowledgeAdministrationGuidelines.fromJson(
+              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+            )
+          : yaml is YamlMap
+              ? MedicationKnowledgeAdministrationGuidelines.fromJson(
+                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+                )
+              : throw ArgumentError(
+                  'MedicationKnowledgeAdministrationGuidelines cannot be constructed from input '
+                  'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MedicationKnowledgeAdministrationGuidelines] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MedicationKnowledgeAdministrationGuidelines.fromJsonString(
+      String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicationKnowledgeAdministrationGuidelines.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'MedicationKnowledgeAdministrationGuidelines';
 
-  /// [dosage] /// Dosage for the medication for the specific guidelines.
+  /// [dosage]
+  /// Dosage for the medication for the specific guidelines.
   final List<MedicationKnowledgeDosage>? dosage;
 
-  /// [indicationCodeableConcept] /// Indication for use that apply to the specific administration guidelines.
+  /// [indicationCodeableConcept]
+  /// Indication for use that apply to the specific administration
+  /// guidelines.
   final CodeableConcept? indicationCodeableConcept;
 
-  /// [indicationReference] /// Indication for use that apply to the specific administration guidelines.
+  /// [indicationReference]
+  /// Indication for use that apply to the specific administration
+  /// guidelines.
   final Reference? indicationReference;
 
-  /// [patientCharacteristics] /// Characteristics of the patient that are relevant to the administration
+  /// [patientCharacteristics]
+  /// Characteristics of the patient that are relevant to the administration
   /// guidelines (for example, height, weight, gender, etc.).
   final List<MedicationKnowledgePatientCharacteristics>? patientCharacteristics;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (dosage != null && dosage!.isNotEmpty) {
-      json['dosage'] = dosage!
-          .map<dynamic>((MedicationKnowledgeDosage v) => v.toJson())
-          .toList();
+      json['dosage'] =
+          dosage!.map((MedicationKnowledgeDosage v) => v.toJson()).toList();
     }
     if (indicationCodeableConcept != null) {
       json['indicationCodeableConcept'] = indicationCodeableConcept!.toJson();
@@ -1313,52 +1648,12 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
     }
     if (patientCharacteristics != null && patientCharacteristics!.isNotEmpty) {
       json['patientCharacteristics'] = patientCharacteristics!
-          .map<dynamic>(
-              (MedicationKnowledgePatientCharacteristics v) => v.toJson())
+          .map((MedicationKnowledgePatientCharacteristics v) => v.toJson())
           .toList();
     }
     return json;
   }
 
-  factory MedicationKnowledgeAdministrationGuidelines.fromJson(
-      Map<String, dynamic> json) {
-    return MedicationKnowledgeAdministrationGuidelines(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      dosage: json['dosage'] != null
-          ? (json['dosage'] as List<dynamic>)
-              .map<MedicationKnowledgeDosage>((dynamic v) =>
-                  MedicationKnowledgeDosage.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      indicationCodeableConcept: json['indicationCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['indicationCodeableConcept'] as Map<String, dynamic>)
-          : null,
-      indicationReference: json['indicationReference'] != null
-          ? Reference.fromJson(
-              json['indicationReference'] as Map<String, dynamic>)
-          : null,
-      patientCharacteristics: json['patientCharacteristics'] != null
-          ? (json['patientCharacteristics'] as List<dynamic>)
-              .map<MedicationKnowledgePatientCharacteristics>((dynamic v) =>
-                  MedicationKnowledgePatientCharacteristics.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   MedicationKnowledgeAdministrationGuidelines clone() =>
       throw UnimplementedError();
@@ -1396,31 +1691,13 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MedicationKnowledgeAdministrationGuidelines.fromYaml(dynamic yaml) =>
-      yaml is String
-          ? MedicationKnowledgeAdministrationGuidelines.fromJson(
-              jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-          : yaml is YamlMap
-              ? MedicationKnowledgeAdministrationGuidelines.fromJson(
-                  jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-              : throw ArgumentError(
-                  'MedicationKnowledgeAdministrationGuidelines cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MedicationKnowledgeAdministrationGuidelines.fromJsonString(
-      String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MedicationKnowledgeAdministrationGuidelines.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MedicationKnowledgeDosage] /// Dosage for the medication for the specific guidelines.
+/// [MedicationKnowledgeDosage]
+/// Dosage for the medication for the specific guidelines.
 class MedicationKnowledgeDosage extends BackboneElement {
+  /// Primary constructor for [MedicationKnowledgeDosage]
+
   MedicationKnowledgeDosage({
     super.id,
     super.extension_,
@@ -1435,57 +1712,94 @@ class MedicationKnowledgeDosage extends BackboneElement {
     super.namedChildren,
   });
 
-  @override
-  String get fhirType => 'MedicationKnowledgeDosage';
-
-  /// [type] /// The type of dosage (for example, prophylaxis, maintenance, therapeutic,
-  /// etc.).
-  final CodeableConcept type;
-
-  /// [dosage] /// Dosage for the medication for the specific guidelines.
-  final List<Dosage> dosage;
-  @override
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson();
-    }
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
-    }
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
-    }
-    json['type'] = type.toJson();
-    json['dosage'] = dosage.map<dynamic>((Dosage v) => v.toJson()).toList();
-    return json;
-  }
-
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationKnowledgeDosage.fromJson(Map<String, dynamic> json) {
     return MedicationKnowledgeDosage(
       id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
-      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      type: CodeableConcept.fromJson(
+        json['type'] as Map<String, dynamic>,
+      ),
       dosage: (json['dosage'] as List<dynamic>)
           .map<Dosage>(
               (dynamic v) => Dosage.fromJson(v as Map<String, dynamic>))
           .toList(),
     );
   }
+
+  /// Deserialize [MedicationKnowledgeDosage] from a [String] or [YamlMap] object
+  factory MedicationKnowledgeDosage.fromYaml(dynamic yaml) => yaml is String
+      ? MedicationKnowledgeDosage.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MedicationKnowledgeDosage.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MedicationKnowledgeDosage cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MedicationKnowledgeDosage] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MedicationKnowledgeDosage.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicationKnowledgeDosage.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
+  @override
+  String get fhirType => 'MedicationKnowledgeDosage';
+
+  /// [type]
+  /// The type of dosage (for example, prophylaxis, maintenance, therapeutic,
+  /// etc.).
+  final CodeableConcept type;
+
+  /// [dosage]
+  /// Dosage for the medication for the specific guidelines.
+  final List<Dosage> dosage;
+  @override
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    json['type'] = type.toJson();
+    json['dosage'] = dosage.map<dynamic>((Dosage v) => v.toJson()).toList();
+    return json;
+  }
+
   @override
   MedicationKnowledgeDosage clone() => throw UnimplementedError();
   @override
@@ -1516,30 +1830,14 @@ class MedicationKnowledgeDosage extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MedicationKnowledgeDosage.fromYaml(dynamic yaml) => yaml is String
-      ? MedicationKnowledgeDosage.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MedicationKnowledgeDosage.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MedicationKnowledgeDosage cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MedicationKnowledgeDosage.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MedicationKnowledgeDosage.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MedicationKnowledgePatientCharacteristics] /// Characteristics of the patient that are relevant to the administration
+/// [MedicationKnowledgePatientCharacteristics]
+/// Characteristics of the patient that are relevant to the administration
 /// guidelines (for example, height, weight, gender, etc.).
 class MedicationKnowledgePatientCharacteristics extends BackboneElement {
+  /// Primary constructor for [MedicationKnowledgePatientCharacteristics]
+
   MedicationKnowledgePatientCharacteristics({
     super.id,
     super.extension_,
@@ -1547,6 +1845,8 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     this.characteristicCodeableConcept,
     this.characteristicQuantity,
     this.value,
+
+    /// Extensions for [value]
     this.valueElement,
     super.userData,
     super.formatCommentsPre,
@@ -1556,34 +1856,117 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MedicationKnowledgePatientCharacteristics.fromJson(
+      Map<String, dynamic> json) {
+    return MedicationKnowledgePatientCharacteristics(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      characteristicCodeableConcept:
+          json['characteristicCodeableConcept'] != null
+              ? CodeableConcept.fromJson(
+                  json['characteristicCodeableConcept'] as Map<String, dynamic>,
+                )
+              : null,
+      characteristicQuantity: json['characteristicQuantity'] != null
+          ? Quantity.fromJson(
+              json['characteristicQuantity'] as Map<String, dynamic>,
+            )
+          : null,
+      value: json['value'] != null
+          ? (json['value'] as List<dynamic>)
+              .map<FhirString>(
+                (dynamic v) => FhirString.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      valueElement: json['_value'] != null
+          ? (json['_value'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [MedicationKnowledgePatientCharacteristics] from a [String] or [YamlMap] object
+  factory MedicationKnowledgePatientCharacteristics.fromYaml(dynamic yaml) => yaml
+          is String
+      ? MedicationKnowledgePatientCharacteristics.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MedicationKnowledgePatientCharacteristics.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MedicationKnowledgePatientCharacteristics cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MedicationKnowledgePatientCharacteristics] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MedicationKnowledgePatientCharacteristics.fromJsonString(
+      String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicationKnowledgePatientCharacteristics.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'MedicationKnowledgePatientCharacteristics';
 
-  /// [characteristicCodeableConcept] /// Specific characteristic that is relevant to the administration guideline
-  /// (e.g. height, weight, gender).
+  /// [characteristicCodeableConcept]
+  /// Specific characteristic that is relevant to the administration
+  /// guideline (e.g. height, weight, gender).
   final CodeableConcept? characteristicCodeableConcept;
 
-  /// [characteristicQuantity] /// Specific characteristic that is relevant to the administration guideline
-  /// (e.g. height, weight, gender).
+  /// [characteristicQuantity]
+  /// Specific characteristic that is relevant to the administration
+  /// guideline (e.g. height, weight, gender).
   final Quantity? characteristicQuantity;
 
-  /// [value] /// The specific characteristic (e.g. height, weight, gender, etc.).
+  /// [value]
+  /// The specific characteristic (e.g. height, weight, gender, etc.).
   final List<FhirString>? value;
+
+  /// Extensions for [value]
   final List<Element>? valueElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (characteristicCodeableConcept != null) {
       json['characteristicCodeableConcept'] =
@@ -1601,44 +1984,6 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
     return json;
   }
 
-  factory MedicationKnowledgePatientCharacteristics.fromJson(
-      Map<String, dynamic> json) {
-    return MedicationKnowledgePatientCharacteristics(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      characteristicCodeableConcept:
-          json['characteristicCodeableConcept'] != null
-              ? CodeableConcept.fromJson(
-                  json['characteristicCodeableConcept'] as Map<String, dynamic>)
-              : null,
-      characteristicQuantity: json['characteristicQuantity'] != null
-          ? Quantity.fromJson(
-              json['characteristicQuantity'] as Map<String, dynamic>)
-          : null,
-      value: json['value'] != null
-          ? (json['value'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
-              .toList()
-          : null,
-      valueElement: json['_value'] != null
-          ? (json['_value'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   MedicationKnowledgePatientCharacteristics clone() =>
       throw UnimplementedError();
@@ -1676,32 +2021,14 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MedicationKnowledgePatientCharacteristics.fromYaml(dynamic yaml) => yaml
-          is String
-      ? MedicationKnowledgePatientCharacteristics.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MedicationKnowledgePatientCharacteristics.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MedicationKnowledgePatientCharacteristics cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MedicationKnowledgePatientCharacteristics.fromJsonString(
-      String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MedicationKnowledgePatientCharacteristics.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MedicationKnowledgeMedicineClassification] /// Categorization of the medication within a formulary or classification
+/// [MedicationKnowledgeMedicineClassification]
+/// Categorization of the medication within a formulary or classification
 /// system.
 class MedicationKnowledgeMedicineClassification extends BackboneElement {
+  /// Primary constructor for [MedicationKnowledgeMedicineClassification]
+
   MedicationKnowledgeMedicineClassification({
     super.id,
     super.extension_,
@@ -1716,65 +2043,106 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
     super.namedChildren,
   });
 
-  @override
-  String get fhirType => 'MedicationKnowledgeMedicineClassification';
-
-  /// [type] /// The type of category for the medication (for example, therapeutic
-  /// classification, therapeutic sub-classification).
-  final CodeableConcept type;
-
-  /// [classification] /// Specific category assigned to the medication (e.g. anti-infective,
-  /// anti-hypertensive, antibiotic, etc.).
-  final List<CodeableConcept>? classification;
-  @override
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson();
-    }
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
-    }
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
-    }
-    json['type'] = type.toJson();
-    if (classification != null && classification!.isNotEmpty) {
-      json['classification'] = classification!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
-    }
-    return json;
-  }
-
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationKnowledgeMedicineClassification.fromJson(
       Map<String, dynamic> json) {
     return MedicationKnowledgeMedicineClassification(
       id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
-      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
+      type: CodeableConcept.fromJson(
+        json['type'] as Map<String, dynamic>,
+      ),
       classification: json['classification'] != null
           ? (json['classification'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
     );
   }
+
+  /// Deserialize [MedicationKnowledgeMedicineClassification] from a [String] or [YamlMap] object
+  factory MedicationKnowledgeMedicineClassification.fromYaml(dynamic yaml) => yaml
+          is String
+      ? MedicationKnowledgeMedicineClassification.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MedicationKnowledgeMedicineClassification.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MedicationKnowledgeMedicineClassification cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MedicationKnowledgeMedicineClassification] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MedicationKnowledgeMedicineClassification.fromJsonString(
+      String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicationKnowledgeMedicineClassification.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
+  @override
+  String get fhirType => 'MedicationKnowledgeMedicineClassification';
+
+  /// [type]
+  /// The type of category for the medication (for example, therapeutic
+  /// classification, therapeutic sub-classification).
+  final CodeableConcept type;
+
+  /// [classification]
+  /// Specific category assigned to the medication (e.g. anti-infective,
+  /// anti-hypertensive, antibiotic, etc.).
+  final List<CodeableConcept>? classification;
+  @override
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    json['type'] = type.toJson();
+    if (classification != null && classification!.isNotEmpty) {
+      json['classification'] =
+          classification!.map((CodeableConcept v) => v.toJson()).toList();
+    }
+    return json;
+  }
+
   @override
   MedicationKnowledgeMedicineClassification clone() =>
       throw UnimplementedError();
@@ -1806,31 +2174,13 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MedicationKnowledgeMedicineClassification.fromYaml(dynamic yaml) => yaml
-          is String
-      ? MedicationKnowledgeMedicineClassification.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MedicationKnowledgeMedicineClassification.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MedicationKnowledgeMedicineClassification cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MedicationKnowledgeMedicineClassification.fromJsonString(
-      String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MedicationKnowledgeMedicineClassification.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MedicationKnowledgePackaging] /// Information that only applies to packages (not products).
+/// [MedicationKnowledgePackaging]
+/// Information that only applies to packages (not products).
 class MedicationKnowledgePackaging extends BackboneElement {
+  /// Primary constructor for [MedicationKnowledgePackaging]
+
   MedicationKnowledgePackaging({
     super.id,
     super.extension_,
@@ -1845,29 +2195,91 @@ class MedicationKnowledgePackaging extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MedicationKnowledgePackaging.fromJson(Map<String, dynamic> json) {
+    return MedicationKnowledgePackaging(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(
+              json['type'] as Map<String, dynamic>,
+            )
+          : null,
+      quantity: json['quantity'] != null
+          ? Quantity.fromJson(
+              json['quantity'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [MedicationKnowledgePackaging] from a [String] or [YamlMap] object
+  factory MedicationKnowledgePackaging.fromYaml(dynamic yaml) => yaml is String
+      ? MedicationKnowledgePackaging.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MedicationKnowledgePackaging.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MedicationKnowledgePackaging cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MedicationKnowledgePackaging] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MedicationKnowledgePackaging.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicationKnowledgePackaging.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'MedicationKnowledgePackaging';
 
-  /// [type] /// A code that defines the specific type of packaging that the medication can
-  /// be found in (e.g. blister sleeve, tube, bottle).
+  /// [type]
+  /// A code that defines the specific type of packaging that the medication
+  /// can be found in (e.g. blister sleeve, tube, bottle).
   final CodeableConcept? type;
 
-  /// [quantity] /// The number of product units the package would contain if fully loaded.
+  /// [quantity]
+  /// The number of product units the package would contain if fully loaded.
   final Quantity? quantity;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (type != null) {
       json['type'] = type!.toJson();
@@ -1878,29 +2290,6 @@ class MedicationKnowledgePackaging extends BackboneElement {
     return json;
   }
 
-  factory MedicationKnowledgePackaging.fromJson(Map<String, dynamic> json) {
-    return MedicationKnowledgePackaging(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
-          : null,
-      quantity: json['quantity'] != null
-          ? Quantity.fromJson(json['quantity'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   MedicationKnowledgePackaging clone() => throw UnimplementedError();
   @override
@@ -1931,30 +2320,14 @@ class MedicationKnowledgePackaging extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MedicationKnowledgePackaging.fromYaml(dynamic yaml) => yaml is String
-      ? MedicationKnowledgePackaging.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MedicationKnowledgePackaging.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MedicationKnowledgePackaging cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MedicationKnowledgePackaging.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MedicationKnowledgePackaging.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MedicationKnowledgeDrugCharacteristic] /// Specifies descriptive properties of the medicine, such as color, shape,
+/// [MedicationKnowledgeDrugCharacteristic]
+/// Specifies descriptive properties of the medicine, such as color, shape,
 /// imprints, etc.
 class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
+  /// Primary constructor for [MedicationKnowledgeDrugCharacteristic]
+
   MedicationKnowledgeDrugCharacteristic({
     super.id,
     super.extension_,
@@ -1962,9 +2335,13 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     this.type,
     this.valueCodeableConcept,
     this.valueString,
+
+    /// Extensions for [valueString]
     this.valueStringElement,
     this.valueQuantity,
     this.valueBase64Binary,
+
+    /// Extensions for [valueBase64Binary]
     this.valueBase64BinaryElement,
     super.userData,
     super.formatCommentsPre,
@@ -1974,40 +2351,132 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MedicationKnowledgeDrugCharacteristic.fromJson(
+      Map<String, dynamic> json) {
+    return MedicationKnowledgeDrugCharacteristic(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(
+              json['type'] as Map<String, dynamic>,
+            )
+          : null,
+      valueCodeableConcept: json['valueCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['valueCodeableConcept'] as Map<String, dynamic>,
+            )
+          : null,
+      valueString: json['valueString'] != null
+          ? FhirString.fromJson(json['valueString'])
+          : null,
+      valueStringElement: json['_valueString'] != null
+          ? Element.fromJson(
+              json['_valueString'] as Map<String, dynamic>,
+            )
+          : null,
+      valueQuantity: json['valueQuantity'] != null
+          ? Quantity.fromJson(
+              json['valueQuantity'] as Map<String, dynamic>,
+            )
+          : null,
+      valueBase64Binary: json['valueBase64Binary'] != null
+          ? FhirBase64Binary.fromJson(json['valueBase64Binary'])
+          : null,
+      valueBase64BinaryElement: json['_valueBase64Binary'] != null
+          ? Element.fromJson(
+              json['_valueBase64Binary'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [MedicationKnowledgeDrugCharacteristic] from a [String] or [YamlMap] object
+  factory MedicationKnowledgeDrugCharacteristic.fromYaml(dynamic yaml) => yaml
+          is String
+      ? MedicationKnowledgeDrugCharacteristic.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MedicationKnowledgeDrugCharacteristic.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MedicationKnowledgeDrugCharacteristic cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MedicationKnowledgeDrugCharacteristic] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MedicationKnowledgeDrugCharacteristic.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicationKnowledgeDrugCharacteristic.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'MedicationKnowledgeDrugCharacteristic';
 
-  /// [type] /// A code specifying which characteristic of the medicine is being described
-  /// (for example, colour, shape, imprint).
+  /// [type]
+  /// A code specifying which characteristic of the medicine is being
+  /// described (for example, colour, shape, imprint).
   final CodeableConcept? type;
 
-  /// [valueCodeableConcept] /// Description of the characteristic.
+  /// [valueCodeableConcept]
+  /// Description of the characteristic.
   final CodeableConcept? valueCodeableConcept;
 
-  /// [valueString] /// Description of the characteristic.
+  /// [valueString]
+  /// Description of the characteristic.
   final FhirString? valueString;
+
+  /// Extensions for [valueString]
   final Element? valueStringElement;
 
-  /// [valueQuantity] /// Description of the characteristic.
+  /// [valueQuantity]
+  /// Description of the characteristic.
   final Quantity? valueQuantity;
 
-  /// [valueBase64Binary] /// Description of the characteristic.
+  /// [valueBase64Binary]
+  /// Description of the characteristic.
   final FhirBase64Binary? valueBase64Binary;
+
+  /// Extensions for [valueBase64Binary]
   final Element? valueBase64BinaryElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (type != null) {
       json['type'] = type!.toJson();
@@ -2033,46 +2502,6 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
     return json;
   }
 
-  factory MedicationKnowledgeDrugCharacteristic.fromJson(
-      Map<String, dynamic> json) {
-    return MedicationKnowledgeDrugCharacteristic(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
-          : null,
-      valueCodeableConcept: json['valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['valueCodeableConcept'] as Map<String, dynamic>)
-          : null,
-      valueString: json['valueString'] != null
-          ? FhirString.fromJson(json['valueString'])
-          : null,
-      valueStringElement: json['_valueString'] != null
-          ? Element.fromJson(json['_valueString'] as Map<String, dynamic>)
-          : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>)
-          : null,
-      valueBase64Binary: json['valueBase64Binary'] != null
-          ? FhirBase64Binary.fromJson(json['valueBase64Binary'])
-          : null,
-      valueBase64BinaryElement: json['_valueBase64Binary'] != null
-          ? Element.fromJson(json['_valueBase64Binary'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   MedicationKnowledgeDrugCharacteristic clone() => throw UnimplementedError();
   @override
@@ -2114,30 +2543,13 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MedicationKnowledgeDrugCharacteristic.fromYaml(dynamic yaml) => yaml
-          is String
-      ? MedicationKnowledgeDrugCharacteristic.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MedicationKnowledgeDrugCharacteristic.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MedicationKnowledgeDrugCharacteristic cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MedicationKnowledgeDrugCharacteristic.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MedicationKnowledgeDrugCharacteristic.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MedicationKnowledgeRegulatory] /// Regulatory information about a medication.
+/// [MedicationKnowledgeRegulatory]
+/// Regulatory information about a medication.
 class MedicationKnowledgeRegulatory extends BackboneElement {
+  /// Primary constructor for [MedicationKnowledgeRegulatory]
+
   MedicationKnowledgeRegulatory({
     super.id,
     super.extension_,
@@ -2154,47 +2566,126 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MedicationKnowledgeRegulatory.fromJson(Map<String, dynamic> json) {
+    return MedicationKnowledgeRegulatory(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      regulatoryAuthority: Reference.fromJson(
+        json['regulatoryAuthority'] as Map<String, dynamic>,
+      ),
+      substitution: json['substitution'] != null
+          ? (json['substitution'] as List<dynamic>)
+              .map<MedicationKnowledgeSubstitution>(
+                (dynamic v) => MedicationKnowledgeSubstitution.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      schedule: json['schedule'] != null
+          ? (json['schedule'] as List<dynamic>)
+              .map<MedicationKnowledgeSchedule>(
+                (dynamic v) => MedicationKnowledgeSchedule.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      maxDispense: json['maxDispense'] != null
+          ? MedicationKnowledgeMaxDispense.fromJson(
+              json['maxDispense'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [MedicationKnowledgeRegulatory] from a [String] or [YamlMap] object
+  factory MedicationKnowledgeRegulatory.fromYaml(dynamic yaml) => yaml is String
+      ? MedicationKnowledgeRegulatory.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MedicationKnowledgeRegulatory.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MedicationKnowledgeRegulatory cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MedicationKnowledgeRegulatory] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MedicationKnowledgeRegulatory.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicationKnowledgeRegulatory.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'MedicationKnowledgeRegulatory';
 
-  /// [regulatoryAuthority] /// The authority that is specifying the regulations.
+  /// [regulatoryAuthority]
+  /// The authority that is specifying the regulations.
   final Reference regulatoryAuthority;
 
-  /// [substitution] /// Specifies if changes are allowed when dispensing a medication from a
+  /// [substitution]
+  /// Specifies if changes are allowed when dispensing a medication from a
   /// regulatory perspective.
   final List<MedicationKnowledgeSubstitution>? substitution;
 
-  /// [schedule] /// Specifies the schedule of a medication in jurisdiction.
+  /// [schedule]
+  /// Specifies the schedule of a medication in jurisdiction.
   final List<MedicationKnowledgeSchedule>? schedule;
 
-  /// [maxDispense] /// The maximum number of units of the medication that can be dispensed in a
-  /// period.
+  /// [maxDispense]
+  /// The maximum number of units of the medication that can be dispensed in
+  /// a period.
   final MedicationKnowledgeMaxDispense? maxDispense;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['regulatoryAuthority'] = regulatoryAuthority.toJson();
     if (substitution != null && substitution!.isNotEmpty) {
       json['substitution'] = substitution!
-          .map<dynamic>((MedicationKnowledgeSubstitution v) => v.toJson())
+          .map((MedicationKnowledgeSubstitution v) => v.toJson())
           .toList();
     }
     if (schedule != null && schedule!.isNotEmpty) {
-      json['schedule'] = schedule!
-          .map<dynamic>((MedicationKnowledgeSchedule v) => v.toJson())
-          .toList();
+      json['schedule'] =
+          schedule!.map((MedicationKnowledgeSchedule v) => v.toJson()).toList();
     }
     if (maxDispense != null) {
       json['maxDispense'] = maxDispense!.toJson();
@@ -2202,43 +2693,6 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
     return json;
   }
 
-  factory MedicationKnowledgeRegulatory.fromJson(Map<String, dynamic> json) {
-    return MedicationKnowledgeRegulatory(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      regulatoryAuthority: Reference.fromJson(
-          json['regulatoryAuthority'] as Map<String, dynamic>),
-      substitution: json['substitution'] != null
-          ? (json['substitution'] as List<dynamic>)
-              .map<MedicationKnowledgeSubstitution>((dynamic v) =>
-                  MedicationKnowledgeSubstitution.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      schedule: json['schedule'] != null
-          ? (json['schedule'] as List<dynamic>)
-              .map<MedicationKnowledgeSchedule>((dynamic v) =>
-                  MedicationKnowledgeSchedule.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      maxDispense: json['maxDispense'] != null
-          ? MedicationKnowledgeMaxDispense.fromJson(
-              json['maxDispense'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   MedicationKnowledgeRegulatory clone() => throw UnimplementedError();
   @override
@@ -2273,36 +2727,22 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MedicationKnowledgeRegulatory.fromYaml(dynamic yaml) => yaml is String
-      ? MedicationKnowledgeRegulatory.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MedicationKnowledgeRegulatory.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MedicationKnowledgeRegulatory cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MedicationKnowledgeRegulatory.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MedicationKnowledgeRegulatory.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MedicationKnowledgeSubstitution] /// Specifies if changes are allowed when dispensing a medication from a
+/// [MedicationKnowledgeSubstitution]
+/// Specifies if changes are allowed when dispensing a medication from a
 /// regulatory perspective.
 class MedicationKnowledgeSubstitution extends BackboneElement {
+  /// Primary constructor for [MedicationKnowledgeSubstitution]
+
   MedicationKnowledgeSubstitution({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.type,
     required this.allowed,
+
+    /// Extensions for [allowed]
     this.allowedElement,
     super.userData,
     super.formatCommentsPre,
@@ -2312,30 +2752,94 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MedicationKnowledgeSubstitution.fromJson(Map<String, dynamic> json) {
+    return MedicationKnowledgeSubstitution(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: CodeableConcept.fromJson(
+        json['type'] as Map<String, dynamic>,
+      ),
+      allowed: FhirBoolean.fromJson(json['allowed']),
+      allowedElement: json['_allowed'] != null
+          ? Element.fromJson(
+              json['_allowed'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [MedicationKnowledgeSubstitution] from a [String] or [YamlMap] object
+  factory MedicationKnowledgeSubstitution.fromYaml(dynamic yaml) => yaml
+          is String
+      ? MedicationKnowledgeSubstitution.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MedicationKnowledgeSubstitution.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MedicationKnowledgeSubstitution cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MedicationKnowledgeSubstitution] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MedicationKnowledgeSubstitution.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicationKnowledgeSubstitution.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'MedicationKnowledgeSubstitution';
 
-  /// [type] /// Specifies the type of substitution allowed.
+  /// [type]
+  /// Specifies the type of substitution allowed.
   final CodeableConcept type;
 
-  /// [allowed] /// Specifies if regulation allows for changes in the medication when
+  /// [allowed]
+  /// Specifies if regulation allows for changes in the medication when
   /// dispensing.
   final FhirBoolean allowed;
+
+  /// Extensions for [allowed]
   final Element? allowedElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['type'] = type.toJson();
     json['allowed'] = allowed.toJson();
@@ -2345,28 +2849,6 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
     return json;
   }
 
-  factory MedicationKnowledgeSubstitution.fromJson(Map<String, dynamic> json) {
-    return MedicationKnowledgeSubstitution(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
-      allowed: FhirBoolean.fromJson(json['allowed']),
-      allowedElement: json['_allowed'] != null
-          ? Element.fromJson(json['_allowed'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   MedicationKnowledgeSubstitution clone() => throw UnimplementedError();
   @override
@@ -2399,30 +2881,13 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MedicationKnowledgeSubstitution.fromYaml(dynamic yaml) => yaml
-          is String
-      ? MedicationKnowledgeSubstitution.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MedicationKnowledgeSubstitution.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MedicationKnowledgeSubstitution cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MedicationKnowledgeSubstitution.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MedicationKnowledgeSubstitution.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MedicationKnowledgeSchedule] /// Specifies the schedule of a medication in jurisdiction.
+/// [MedicationKnowledgeSchedule]
+/// Specifies the schedule of a medication in jurisdiction.
 class MedicationKnowledgeSchedule extends BackboneElement {
+  /// Primary constructor for [MedicationKnowledgeSchedule]
+
   MedicationKnowledgeSchedule({
     super.id,
     super.extension_,
@@ -2436,49 +2901,84 @@ class MedicationKnowledgeSchedule extends BackboneElement {
     super.namedChildren,
   });
 
-  @override
-  String get fhirType => 'MedicationKnowledgeSchedule';
-
-  /// [schedule] /// Specifies the specific drug schedule.
-  final CodeableConcept schedule;
-  @override
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson();
-    }
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
-    }
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
-    }
-    json['schedule'] = schedule.toJson();
-    return json;
-  }
-
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationKnowledgeSchedule.fromJson(Map<String, dynamic> json) {
     return MedicationKnowledgeSchedule(
       id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
-      schedule:
-          CodeableConcept.fromJson(json['schedule'] as Map<String, dynamic>),
+      schedule: CodeableConcept.fromJson(
+        json['schedule'] as Map<String, dynamic>,
+      ),
     );
   }
+
+  /// Deserialize [MedicationKnowledgeSchedule] from a [String] or [YamlMap] object
+  factory MedicationKnowledgeSchedule.fromYaml(dynamic yaml) => yaml is String
+      ? MedicationKnowledgeSchedule.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MedicationKnowledgeSchedule.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MedicationKnowledgeSchedule cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MedicationKnowledgeSchedule] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MedicationKnowledgeSchedule.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicationKnowledgeSchedule.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
+  @override
+  String get fhirType => 'MedicationKnowledgeSchedule';
+
+  /// [schedule]
+  /// Specifies the specific drug schedule.
+  final CodeableConcept schedule;
+  @override
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    json['schedule'] = schedule.toJson();
+    return json;
+  }
+
   @override
   MedicationKnowledgeSchedule clone() => throw UnimplementedError();
   @override
@@ -2507,30 +3007,14 @@ class MedicationKnowledgeSchedule extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MedicationKnowledgeSchedule.fromYaml(dynamic yaml) => yaml is String
-      ? MedicationKnowledgeSchedule.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MedicationKnowledgeSchedule.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MedicationKnowledgeSchedule cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MedicationKnowledgeSchedule.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MedicationKnowledgeSchedule.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MedicationKnowledgeMaxDispense] /// The maximum number of units of the medication that can be dispensed in a
-/// period.
+/// [MedicationKnowledgeMaxDispense]
+/// The maximum number of units of the medication that can be dispensed in
+/// a period.
 class MedicationKnowledgeMaxDispense extends BackboneElement {
+  /// Primary constructor for [MedicationKnowledgeMaxDispense]
+
   MedicationKnowledgeMaxDispense({
     super.id,
     super.extension_,
@@ -2545,28 +3029,89 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MedicationKnowledgeMaxDispense.fromJson(Map<String, dynamic> json) {
+    return MedicationKnowledgeMaxDispense(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      quantity: Quantity.fromJson(
+        json['quantity'] as Map<String, dynamic>,
+      ),
+      period: json['period'] != null
+          ? FhirDuration.fromJson(
+              json['period'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [MedicationKnowledgeMaxDispense] from a [String] or [YamlMap] object
+  factory MedicationKnowledgeMaxDispense.fromYaml(dynamic yaml) => yaml
+          is String
+      ? MedicationKnowledgeMaxDispense.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MedicationKnowledgeMaxDispense.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MedicationKnowledgeMaxDispense cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MedicationKnowledgeMaxDispense] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MedicationKnowledgeMaxDispense.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicationKnowledgeMaxDispense.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'MedicationKnowledgeMaxDispense';
 
-  /// [quantity] /// The maximum number of units of the medication that can be dispensed.
+  /// [quantity]
+  /// The maximum number of units of the medication that can be dispensed.
   final Quantity quantity;
 
-  /// [period] /// The period that applies to the maximum number of units.
+  /// [period]
+  /// The period that applies to the maximum number of units.
   final FhirDuration? period;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['quantity'] = quantity.toJson();
     if (period != null) {
@@ -2575,27 +3120,6 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
     return json;
   }
 
-  factory MedicationKnowledgeMaxDispense.fromJson(Map<String, dynamic> json) {
-    return MedicationKnowledgeMaxDispense(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      quantity: Quantity.fromJson(json['quantity'] as Map<String, dynamic>),
-      period: json['period'] != null
-          ? FhirDuration.fromJson(json['period'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   MedicationKnowledgeMaxDispense clone() => throw UnimplementedError();
   @override
@@ -2626,31 +3150,14 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MedicationKnowledgeMaxDispense.fromYaml(dynamic yaml) => yaml
-          is String
-      ? MedicationKnowledgeMaxDispense.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MedicationKnowledgeMaxDispense.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MedicationKnowledgeMaxDispense cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MedicationKnowledgeMaxDispense.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MedicationKnowledgeMaxDispense.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MedicationKnowledgeKinetics] /// The time course of drug absorption, distribution, metabolism and excretion
-/// of a medication from the body.
+/// [MedicationKnowledgeKinetics]
+/// The time course of drug absorption, distribution, metabolism and
+/// excretion of a medication from the body.
 class MedicationKnowledgeKinetics extends BackboneElement {
+  /// Primary constructor for [MedicationKnowledgeKinetics]
+
   MedicationKnowledgeKinetics({
     super.id,
     super.extension_,
@@ -2666,40 +3173,116 @@ class MedicationKnowledgeKinetics extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MedicationKnowledgeKinetics.fromJson(Map<String, dynamic> json) {
+    return MedicationKnowledgeKinetics(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      areaUnderCurve: json['areaUnderCurve'] != null
+          ? (json['areaUnderCurve'] as List<dynamic>)
+              .map<Quantity>(
+                (dynamic v) => Quantity.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      lethalDose50: json['lethalDose50'] != null
+          ? (json['lethalDose50'] as List<dynamic>)
+              .map<Quantity>(
+                (dynamic v) => Quantity.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      halfLifePeriod: json['halfLifePeriod'] != null
+          ? FhirDuration.fromJson(
+              json['halfLifePeriod'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [MedicationKnowledgeKinetics] from a [String] or [YamlMap] object
+  factory MedicationKnowledgeKinetics.fromYaml(dynamic yaml) => yaml is String
+      ? MedicationKnowledgeKinetics.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MedicationKnowledgeKinetics.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MedicationKnowledgeKinetics cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MedicationKnowledgeKinetics] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MedicationKnowledgeKinetics.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MedicationKnowledgeKinetics.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'MedicationKnowledgeKinetics';
 
-  /// [areaUnderCurve] /// The drug concentration measured at certain discrete points in time.
+  /// [areaUnderCurve]
+  /// The drug concentration measured at certain discrete points in time.
   final List<Quantity>? areaUnderCurve;
 
-  /// [lethalDose50] /// The median lethal dose of a drug.
+  /// [lethalDose50]
+  /// The median lethal dose of a drug.
   final List<Quantity>? lethalDose50;
 
-  /// [halfLifePeriod] /// The time required for any specified property (e.g., the concentration of a
-  /// substance in the body) to decrease by half.
+  /// [halfLifePeriod]
+  /// The time required for any specified property (e.g., the concentration
+  /// of a substance in the body) to decrease by half.
   final FhirDuration? halfLifePeriod;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (areaUnderCurve != null && areaUnderCurve!.isNotEmpty) {
       json['areaUnderCurve'] =
-          areaUnderCurve!.map<dynamic>((Quantity v) => v.toJson()).toList();
+          areaUnderCurve!.map((Quantity v) => v.toJson()).toList();
     }
     if (lethalDose50 != null && lethalDose50!.isNotEmpty) {
       json['lethalDose50'] =
-          lethalDose50!.map<dynamic>((Quantity v) => v.toJson()).toList();
+          lethalDose50!.map((Quantity v) => v.toJson()).toList();
     }
     if (halfLifePeriod != null) {
       json['halfLifePeriod'] = halfLifePeriod!.toJson();
@@ -2707,39 +3290,6 @@ class MedicationKnowledgeKinetics extends BackboneElement {
     return json;
   }
 
-  factory MedicationKnowledgeKinetics.fromJson(Map<String, dynamic> json) {
-    return MedicationKnowledgeKinetics(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      areaUnderCurve: json['areaUnderCurve'] != null
-          ? (json['areaUnderCurve'] as List<dynamic>)
-              .map<Quantity>(
-                  (dynamic v) => Quantity.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      lethalDose50: json['lethalDose50'] != null
-          ? (json['lethalDose50'] as List<dynamic>)
-              .map<Quantity>(
-                  (dynamic v) => Quantity.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      halfLifePeriod: json['halfLifePeriod'] != null
-          ? FhirDuration.fromJson(
-              json['halfLifePeriod'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   MedicationKnowledgeKinetics clone() => throw UnimplementedError();
   @override
@@ -2771,24 +3321,5 @@ class MedicationKnowledgeKinetics extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory MedicationKnowledgeKinetics.fromYaml(dynamic yaml) => yaml is String
-      ? MedicationKnowledgeKinetics.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MedicationKnowledgeKinetics.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MedicationKnowledgeKinetics cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MedicationKnowledgeKinetics.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MedicationKnowledgeKinetics.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

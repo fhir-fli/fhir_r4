@@ -1,22 +1,32 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [FhirMeta] /// The metadata about a resource. This is content in the resource that is
-/// maintained by the infrastructure. Changes to the content might not always
-/// be associated with version changes to the resource.
+/// [FhirMeta]
+/// The metadata about a resource. This is content in the resource that is
+/// maintained by the infrastructure. Changes to the content might not
+/// always be associated with version changes to the resource.
 class FhirMeta extends DataType {
+  /// Primary constructor for [FhirMeta]
+
   FhirMeta({
     super.id,
     super.extension_,
     this.versionId,
+
+    /// Extensions for [versionId]
     this.versionIdElement,
     this.lastUpdated,
+
+    /// Extensions for [lastUpdated]
     this.lastUpdatedElement,
     this.source,
+
+    /// Extensions for [source]
     this.sourceElement,
     this.profile,
+
+    /// Extensions for [profile]
     this.profileElement,
     this.security,
     this.tag,
@@ -28,51 +38,160 @@ class FhirMeta extends DataType {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory FhirMeta.fromJson(Map<String, dynamic> json) {
+    return FhirMeta(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      versionId:
+          json['versionId'] != null ? FhirId.fromJson(json['versionId']) : null,
+      versionIdElement: json['_versionId'] != null
+          ? Element.fromJson(
+              json['_versionId'] as Map<String, dynamic>,
+            )
+          : null,
+      lastUpdated: json['lastUpdated'] != null
+          ? FhirInstant.fromJson(json['lastUpdated'])
+          : null,
+      lastUpdatedElement: json['_lastUpdated'] != null
+          ? Element.fromJson(
+              json['_lastUpdated'] as Map<String, dynamic>,
+            )
+          : null,
+      source: json['source'] != null ? FhirUri.fromJson(json['source']) : null,
+      sourceElement: json['_source'] != null
+          ? Element.fromJson(
+              json['_source'] as Map<String, dynamic>,
+            )
+          : null,
+      profile: json['profile'] != null
+          ? (json['profile'] as List<dynamic>)
+              .map<FhirCanonical>(
+                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      profileElement: json['_profile'] != null
+          ? (json['_profile'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      security: json['security'] != null
+          ? (json['security'] as List<dynamic>)
+              .map<Coding>(
+                (dynamic v) => Coding.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      tag: json['tag'] != null
+          ? (json['tag'] as List<dynamic>)
+              .map<Coding>(
+                (dynamic v) => Coding.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [FhirMeta] from a [String] or [YamlMap] object
+  factory FhirMeta.fromYaml(dynamic yaml) => yaml is String
+      ? FhirMeta.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? FhirMeta.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('FhirMeta cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [FhirMeta] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory FhirMeta.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return FhirMeta.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'FhirMeta';
 
-  /// [versionId] /// The version specific identifier, as it appears in the version portion of
-  /// the URL. This value changes when the resource is created, updated, or
-  /// deleted.
+  /// [versionId]
+  /// The version specific identifier, as it appears in the version portion
+  /// of the URL. This value changes when the resource is created, updated,
+  /// or deleted.
   final FhirId? versionId;
+
+  /// Extensions for [versionId]
   final Element? versionIdElement;
 
-  /// [lastUpdated] /// When the resource last changed - e.g. when the version changed.
+  /// [lastUpdated]
+  /// When the resource last changed - e.g. when the version changed.
   final FhirInstant? lastUpdated;
+
+  /// Extensions for [lastUpdated]
   final Element? lastUpdatedElement;
 
-  /// [source] /// A uri that identifies the source system of the resource. This provides a
-  /// minimal amount of [Provenance](provenance.html#) information that can be
-  /// used to track or differentiate the source of information in the resource.
-  /// The source may identify another FHIR server, document, message, database,
-  /// etc.
+  /// [source]
+  /// A uri that identifies the source system of the resource. This provides
+  /// a minimal amount of [Provenance](provenance.html#) information that can
+  /// be used to track or differentiate the source of information in the
+  /// resource. The source may identify another FHIR server, document,
+  /// message, database, etc.
   final FhirUri? source;
+
+  /// Extensions for [source]
   final Element? sourceElement;
 
-  /// [profile] /// A list of profiles (references to
+  /// [profile]
+  /// A list of profiles (references to
   /// [StructureDefinition](structuredefinition.html#) resources) that this
   /// resource claims to conform to. The URL is a reference to
   /// [StructureDefinition.url](structuredefinition-definitions.html#StructureDefinition.url).
   final List<FhirCanonical>? profile;
+
+  /// Extensions for [profile]
   final List<Element>? profileElement;
 
-  /// [security] /// Security labels applied to this resource. These tags connect specific
+  /// [security]
+  /// Security labels applied to this resource. These tags connect specific
   /// resources to the overall security policy and infrastructure.
   final List<Coding>? security;
 
-  /// [tag] /// Tags applied to this resource. Tags are intended to be used to identify and
-  /// relate resources to process and workflow, and applications are not required
-  /// to consider the tags when interpreting the meaning of a resource.
+  /// [tag]
+  /// Tags applied to this resource. Tags are intended to be used to identify
+  /// and relate resources to process and workflow, and applications are not
+  /// required to consider the tags when interpreting the meaning of a
+  /// resource.
   final List<Coding>? tag;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (versionId?.value != null) {
       json['versionId'] = versionId!.toJson();
@@ -100,65 +219,14 @@ class FhirMeta extends DataType {
           profileElement!.map((Element v) => v.toJson()).toList();
     }
     if (security != null && security!.isNotEmpty) {
-      json['security'] =
-          security!.map<dynamic>((Coding v) => v.toJson()).toList();
+      json['security'] = security!.map((Coding v) => v.toJson()).toList();
     }
     if (tag != null && tag!.isNotEmpty) {
-      json['tag'] = tag!.map<dynamic>((Coding v) => v.toJson()).toList();
+      json['tag'] = tag!.map((Coding v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory FhirMeta.fromJson(Map<String, dynamic> json) {
-    return FhirMeta(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      versionId:
-          json['versionId'] != null ? FhirId.fromJson(json['versionId']) : null,
-      versionIdElement: json['_versionId'] != null
-          ? Element.fromJson(json['_versionId'] as Map<String, dynamic>)
-          : null,
-      lastUpdated: json['lastUpdated'] != null
-          ? FhirInstant.fromJson(json['lastUpdated'])
-          : null,
-      lastUpdatedElement: json['_lastUpdated'] != null
-          ? Element.fromJson(json['_lastUpdated'] as Map<String, dynamic>)
-          : null,
-      source: json['source'] != null ? FhirUri.fromJson(json['source']) : null,
-      sourceElement: json['_source'] != null
-          ? Element.fromJson(json['_source'] as Map<String, dynamic>)
-          : null,
-      profile: json['profile'] != null
-          ? (json['profile'] as List<dynamic>)
-              .map<FhirCanonical>(
-                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
-              .toList()
-          : null,
-      profileElement: json['_profile'] != null
-          ? (json['_profile'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      security: json['security'] != null
-          ? (json['security'] as List<dynamic>)
-              .map<Coding>(
-                  (dynamic v) => Coding.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      tag: json['tag'] != null
-          ? (json['tag'] as List<dynamic>)
-              .map<Coding>(
-                  (dynamic v) => Coding.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   FhirMeta clone() => throw UnimplementedError();
   @override
@@ -202,24 +270,5 @@ class FhirMeta extends DataType {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory FhirMeta.fromYaml(dynamic yaml) => yaml is String
-      ? FhirMeta.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? FhirMeta.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'FhirMeta cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory FhirMeta.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return FhirMeta.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

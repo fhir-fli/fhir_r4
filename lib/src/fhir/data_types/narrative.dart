@@ -1,17 +1,23 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [Narrative] /// A human-readable summary of the resource conveying the essential clinical
-/// and business information for the resource.
+/// [Narrative]
+/// A human-readable summary of the resource conveying the essential
+/// clinical and business information for the resource.
 class Narrative extends DataType {
+  /// Primary constructor for [Narrative]
+
   Narrative({
     super.id,
     super.extension_,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     required this.div,
+
+    /// Extensions for [div]
     this.divElement,
     super.userData,
     super.formatCommentsPre,
@@ -21,27 +27,86 @@ class Narrative extends DataType {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory Narrative.fromJson(Map<String, dynamic> json) {
+    return Narrative(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      status: NarrativeStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      div: FhirXhtml.fromJson(json['div']),
+      divElement: json['_div'] != null
+          ? Element.fromJson(
+              json['_div'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [Narrative] from a [String] or [YamlMap] object
+  factory Narrative.fromYaml(dynamic yaml) => yaml is String
+      ? Narrative.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? Narrative.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('Narrative cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [Narrative] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory Narrative.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Narrative.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'Narrative';
 
-  /// [status] /// The status of the narrative - whether it's entirely generated (from just
-  /// the defined data or the extensions too), or whether a human authored it and
-  /// it may contain additional data.
+  /// [status]
+  /// The status of the narrative - whether it's entirely generated (from
+  /// just the defined data or the extensions too), or whether a human
+  /// authored it and it may contain additional data.
   final NarrativeStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [div] /// The actual narrative content, a stripped down version of XHTML.
+  /// [div]
+  /// The actual narrative content, a stripped down version of XHTML.
   final FhirXhtml div;
+
+  /// Extensions for [div]
   final Element? divElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['status'] = status.toJson();
     json['div'] = div.toJson();
@@ -51,25 +116,6 @@ class Narrative extends DataType {
     return json;
   }
 
-  factory Narrative.fromJson(Map<String, dynamic> json) {
-    return Narrative(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      status: NarrativeStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      div: FhirXhtml.fromJson(json['div']),
-      divElement: json['_div'] != null
-          ? Element.fromJson(json['_div'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   Narrative clone() => throw UnimplementedError();
   @override
@@ -101,24 +147,5 @@ class Narrative extends DataType {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory Narrative.fromYaml(dynamic yaml) => yaml is String
-      ? Narrative.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? Narrative.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'Narrative cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory Narrative.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return Narrative.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

@@ -1,28 +1,47 @@
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:xml/xml.dart';
 import 'package:yaml/yaml.dart';
-import '../../../fhir_r4.dart';
 
+/// FhirXhtml is a type of string that is used in FHIR resources
 extension FhirXhtmlExtension on String {
+  /// This method converts a Dart string to a FHIR xhtml
   FhirXhtml get toFhirXhtml => FhirXhtml(this);
 }
 
+/// This class represents the FHIR primitive type `xhtml`
 class FhirXhtml extends PrimitiveType<String> {
-  @override
-  final String value; // Store the validated XHTML value
+  /// Store the validated XHTML value
 
-  // Constructor only accepts valid XHTML string input
+  /// Constructor only accepts valid XHTML string input
   FhirXhtml(String input, [Element? element])
       : value = _validateXhtml(input)
             ? input
             : throw FormatException('Invalid XHTML String: $input'),
         super(element: element);
 
+  /// Constructor that accepts a validated XHTML string
   FhirXhtml.fromValidatedXhtml(String validatedInput, [Element? element])
       : value = validatedInput,
         super(element: element);
 
+  /// fromJson only accepts a String and validates it
+  factory FhirXhtml.fromJson(dynamic json) {
+    if (json is String && _validateXhtml(json)) {
+      return FhirXhtml.fromValidatedXhtml(json);
+    } else {
+      throw const FormatException('Invalid input for FhirXhtml');
+    }
+  }
+
+  /// fromYaml only accepts a String and validates it
+  factory FhirXhtml.fromYaml(String yaml) =>
+      FhirXhtml.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))) as String);
+  @override
+  final String value;
+
+  /// Static method to try parsing the input
   static FhirXhtml? tryParse(dynamic input) {
     if (input is String) {
       try {
@@ -37,23 +56,23 @@ class FhirXhtml extends PrimitiveType<String> {
 
   static bool _validateXhtml(String xhtml) {
     try {
-      final XmlDocument document = XmlDocument.parse(xhtml);
+      final document = XmlDocument.parse(xhtml);
 
-      final XmlElement rootElement = document.rootElement;
+      final rootElement = document.rootElement;
 
-      // Check if root element is <div>
+      /// Check if root element is <div>
       if (rootElement.name.local != 'div') {
         return false;
       }
 
-      // Check for the correct XHTML namespace
-      final String? xmlns = rootElement.getAttribute('xmlns');
+      /// Check for the correct XHTML namespace
+      final xmlns = rootElement.getAttribute('xmlns');
       if (xmlns != 'http://www.w3.org/1999/xhtml') {
         return false;
       }
 
-      // Recursively validate elements
-      final bool result = _validateElement(rootElement, isRoot: true);
+      /// Recursively validate elements
+      final result = _validateElement(rootElement, isRoot: true);
 
       return result;
     } catch (e) {
@@ -62,13 +81,13 @@ class FhirXhtml extends PrimitiveType<String> {
   }
 
   static bool _validateElement(XmlElement element, {bool isRoot = false}) {
-    // Check if the element is allowed
+    /// Check if the element is allowed
     if (!allowedElements.contains(element.name.local)) {
       return false;
     }
 
-    // Validate attributes
-    for (final XmlAttribute attribute in element.attributes) {
+    /// Validate attributes
+    for (final attribute in element.attributes) {
       if (_isValidAttribute(attribute, element.name.local, isRoot)) {
         continue;
       } else {
@@ -76,8 +95,8 @@ class FhirXhtml extends PrimitiveType<String> {
       }
     }
 
-    // Recursively validate child elements
-    for (final XmlNode child in element.children) {
+    /// Recursively validate child elements
+    for (final child in element.children) {
       if (child is XmlElement) {
         if (!_validateElement(child)) {
           return false;
@@ -85,7 +104,7 @@ class FhirXhtml extends PrimitiveType<String> {
       }
     }
 
-    // Ensure the root div has non-whitespace content
+    /// Ensure the root div has non-whitespace content
     if (element.name.local == 'div' && element.innerText.trim().isEmpty) {
       return false;
     }
@@ -95,13 +114,21 @@ class FhirXhtml extends PrimitiveType<String> {
 
 // Helper method to validate XHTML attributes
   static bool _isValidAttribute(
-      XmlAttribute attribute, String elementName, bool isRoot) {
-    // Allowed attributes
+    XmlAttribute attribute,
+    String elementName,
+    bool isRoot,
+  ) {
+    /// Allowed attributes
     if (attribute.name.local == 'style') {
       return _validateStyleAttribute(
-          attribute.value); // Only validate styles for style attribute
+        attribute.value,
+      );
+
+      /// Only validate styles for style attribute
     } else if (attribute.name.local == 'class') {
-      return true; // Class does not need style validation, just allowed as is
+      return true;
+
+      /// Class does not need style validation, just allowed as is
     } else if (attribute.name.local == 'src' &&
         attribute.value.startsWith('#')) {
       return true;
@@ -117,7 +144,7 @@ class FhirXhtml extends PrimitiveType<String> {
       return true;
     }
 
-    // Disallowed event attributes (e.g., onClick, onLoad)
+    /// Disallowed event attributes (e.g., onClick, onLoad)
     if (attribute.name.local.startsWith('on')) {
       return false;
     }
@@ -127,7 +154,7 @@ class FhirXhtml extends PrimitiveType<String> {
 
 // Method to validate allowed CSS properties in the 'style' attribute
   static bool _validateStyleAttribute(String style) {
-    final List<String> allowedStyles = <String>[
+    final allowedStyles = <String>[
       'font-weight',
       'font-style',
       'text-decoration',
@@ -139,12 +166,12 @@ class FhirXhtml extends PrimitiveType<String> {
       'list-style-type',
       'color',
       'background-color',
-      'white-space'
+      'white-space',
     ];
 
-    final List<String> styles = style.split(';');
-    for (final String styleProperty in styles) {
-      final String property = styleProperty.split(':').first.trim();
+    final styles = style.split(';');
+    for (final styleProperty in styles) {
+      final property = styleProperty.split(':').first.trim();
 
       if (!allowedStyles.contains(property)) {
         return false;
@@ -154,7 +181,7 @@ class FhirXhtml extends PrimitiveType<String> {
     return true;
   }
 
-// Allowed XHTML elements based on FHIR's specification
+  /// Allowed XHTML elements based on FHIR's specification
   static final List<String> allowedElements = <String>[
     'div',
     'p',
@@ -180,10 +207,10 @@ class FhirXhtml extends PrimitiveType<String> {
     'tbody',
     'tr',
     'th',
-    'td'
+    'td',
   ];
 
-// Prohibited elements as per FHIR's specification
+  /// Prohibited elements as per FHIR's specification
   static final List<String> prohibitedElements = <String>[
     'head',
     'body',
@@ -201,25 +228,13 @@ class FhirXhtml extends PrimitiveType<String> {
     'button',
     'select',
     'option',
-    'style'
+    'style',
   ];
-
-  // fromJson only accepts a String and validates it
-  factory FhirXhtml.fromJson(dynamic json) {
-    if (json is String && _validateXhtml(json)) {
-      return FhirXhtml.fromValidatedXhtml(json);
-    } else {
-      throw const FormatException('Invalid input for FhirXhtml');
-    }
-  }
-
-  factory FhirXhtml.fromYaml(String yaml) =>
-      FhirXhtml.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))) as String);
 
   @override
   String get fhirType => 'xhtml';
 
-  // Convert the stored XHTML back to a string for output formats
+  /// Convert the stored XHTML back to a string for output formats
   @override
   String toJson() => value;
   @override
@@ -237,23 +252,25 @@ class FhirXhtml extends PrimitiveType<String> {
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) => equals(other);
 
-  // Equality check
+  /// Equality check
   @override
   bool equals(Object other) =>
       identical(this, other) ||
       (other is FhirXhtml && other.value == value) ||
       (other is String && other == value);
 
-  // Clone the object
+  /// Clone the object
   @override
   FhirXhtml clone() =>
       FhirXhtml.fromValidatedXhtml(value, element?.clone() as Element?);
 
-  // Copy with updated elements or fields
+  /// Copy with updated elements or fields
   @override
   FhirXhtml setElement(String name, dynamic elementValue) {
     return FhirXhtml.fromValidatedXhtml(
-        value, element?.setProperty(name, elementValue));
+      value,
+      element?.setProperty(name, elementValue),
+    );
   }
 
   @override

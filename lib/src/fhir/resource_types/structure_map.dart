@@ -1,50 +1,80 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [StructureMap] /// A Map of relationships between 2 structures that can be used to transform
-/// data.
+/// [StructureMap]
+/// A Map of relationships between 2 structures that can be used to
+/// transform data.
 class StructureMap extends DomainResource {
+  /// Primary constructor for [StructureMap]
+
   StructureMap({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     required this.url,
+
+    /// Extensions for [url]
     this.urlElement,
     this.identifier,
     this.version,
+
+    /// Extensions for [version]
     this.versionElement,
     required this.name,
+
+    /// Extensions for [name]
     this.nameElement,
     this.title,
+
+    /// Extensions for [title]
     this.titleElement,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     this.experimental,
+
+    /// Extensions for [experimental]
     this.experimentalElement,
     this.date,
+
+    /// Extensions for [date]
     this.dateElement,
     this.publisher,
+
+    /// Extensions for [publisher]
     this.publisherElement,
     this.contact,
     this.description,
+
+    /// Extensions for [description]
     this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
+
+    /// Extensions for [purpose]
     this.purposeElement,
     this.copyright,
+
+    /// Extensions for [copyright]
     this.copyrightElement,
     this.structure,
     this.import_,
+
+    /// Extensions for [import]
     this.importElement,
     required this.group,
     super.userData,
@@ -53,113 +83,384 @@ class StructureMap extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.StructureMap);
+  }) : super(
+          resourceType: R4ResourceType.StructureMap,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory StructureMap.fromJson(Map<String, dynamic> json) {
+    return StructureMap(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      url: FhirUri.fromJson(json['url']),
+      urlElement: json['_url'] != null
+          ? Element.fromJson(
+              json['_url'] as Map<String, dynamic>,
+            )
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      version:
+          json['version'] != null ? FhirString.fromJson(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(
+              json['_version'] as Map<String, dynamic>,
+            )
+          : null,
+      name: FhirString.fromJson(json['name']),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(
+              json['_name'] as Map<String, dynamic>,
+            )
+          : null,
+      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
+      titleElement: json['_title'] != null
+          ? Element.fromJson(
+              json['_title'] as Map<String, dynamic>,
+            )
+          : null,
+      status: PublicationStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      experimental: json['experimental'] != null
+          ? FhirBoolean.fromJson(json['experimental'])
+          : null,
+      experimentalElement: json['_experimental'] != null
+          ? Element.fromJson(
+              json['_experimental'] as Map<String, dynamic>,
+            )
+          : null,
+      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(
+              json['_date'] as Map<String, dynamic>,
+            )
+          : null,
+      publisher: json['publisher'] != null
+          ? FhirString.fromJson(json['publisher'])
+          : null,
+      publisherElement: json['_publisher'] != null
+          ? Element.fromJson(
+              json['_publisher'] as Map<String, dynamic>,
+            )
+          : null,
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<ContactDetail>(
+                (dynamic v) => ContactDetail.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      description: json['description'] != null
+          ? FhirMarkdown.fromJson(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(
+              json['_description'] as Map<String, dynamic>,
+            )
+          : null,
+      useContext: json['useContext'] != null
+          ? (json['useContext'] as List<dynamic>)
+              .map<UsageContext>(
+                (dynamic v) => UsageContext.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      jurisdiction: json['jurisdiction'] != null
+          ? (json['jurisdiction'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      purpose: json['purpose'] != null
+          ? FhirMarkdown.fromJson(json['purpose'])
+          : null,
+      purposeElement: json['_purpose'] != null
+          ? Element.fromJson(
+              json['_purpose'] as Map<String, dynamic>,
+            )
+          : null,
+      copyright: json['copyright'] != null
+          ? FhirMarkdown.fromJson(json['copyright'])
+          : null,
+      copyrightElement: json['_copyright'] != null
+          ? Element.fromJson(
+              json['_copyright'] as Map<String, dynamic>,
+            )
+          : null,
+      structure: json['structure'] != null
+          ? (json['structure'] as List<dynamic>)
+              .map<StructureMapStructure>(
+                (dynamic v) => StructureMapStructure.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      import_: json['import'] != null
+          ? (json['import'] as List<dynamic>)
+              .map<FhirCanonical>(
+                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      importElement: json['_import'] != null
+          ? (json['_import'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      group: (json['group'] as List<dynamic>)
+          .map<StructureMapGroup>((dynamic v) =>
+              StructureMapGroup.fromJson(v as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  /// Deserialize [StructureMap] from a [String] or [YamlMap] object
+  factory StructureMap.fromYaml(dynamic yaml) => yaml is String
+      ? StructureMap.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? StructureMap.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('StructureMap cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [StructureMap] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory StructureMap.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return StructureMap.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'StructureMap';
 
-  /// [url] /// An absolute URI that is used to identify this structure map when it is
-  /// referenced in a specification, model, design or an instance; also called
-  /// its canonical identifier. This SHOULD be globally unique and SHOULD be a
-  /// literal address at which at which an authoritative instance of this
-  /// structure map is (or will be) published. This URL can be the target of a
-  /// canonical reference. It SHALL remain the same when the structure map is
-  /// stored on different servers.
+  /// [url]
+  /// An absolute URI that is used to identify this structure map when it is
+  /// referenced in a specification, model, design or an instance; also
+  /// called its canonical identifier. This SHOULD be globally unique and
+  /// SHOULD be a literal address at which at which an authoritative instance
+  /// of this structure map is (or will be) published. This URL can be the
+  /// target of a canonical reference. It SHALL remain the same when the
+  /// structure map is stored on different servers.
   final FhirUri url;
+
+  /// Extensions for [url]
   final Element? urlElement;
 
-  /// [identifier] /// A formal identifier that is used to identify this structure map when it is
-  /// represented in other formats, or referenced in a specification, model,
-  /// design or an instance.
+  /// [identifier]
+  /// A formal identifier that is used to identify this structure map when it
+  /// is represented in other formats, or referenced in a specification,
+  /// model, design or an instance.
   final List<Identifier>? identifier;
 
-  /// [version] /// The identifier that is used to identify this version of the structure map
-  /// when it is referenced in a specification, model, design or instance. This
-  /// is an arbitrary value managed by the structure map author and is not
-  /// expected to be globally unique. For example, it might be a timestamp (e.g.
-  /// yyyymmdd) if a managed version is not available. There is also no
-  /// expectation that versions can be placed in a lexicographical sequence.
+  /// [version]
+  /// The identifier that is used to identify this version of the structure
+  /// map when it is referenced in a specification, model, design or
+  /// instance. This is an arbitrary value managed by the structure map
+  /// author and is not expected to be globally unique. For example, it might
+  /// be a timestamp (e.g. yyyymmdd) if a managed version is not available.
+  /// There is also no expectation that versions can be placed in a
+  /// lexicographical sequence.
   final FhirString? version;
+
+  /// Extensions for [version]
   final Element? versionElement;
 
-  /// [name] /// A natural language name identifying the structure map. This name should be
-  /// usable as an identifier for the module by machine processing applications
-  /// such as code generation.
+  /// [name]
+  /// A natural language name identifying the structure map. This name should
+  /// be usable as an identifier for the module by machine processing
+  /// applications such as code generation.
   final FhirString name;
+
+  /// Extensions for [name]
   final Element? nameElement;
 
-  /// [title] /// A short, descriptive, user-friendly title for the structure map.
+  /// [title]
+  /// A short, descriptive, user-friendly title for the structure map.
   final FhirString? title;
+
+  /// Extensions for [title]
   final Element? titleElement;
 
-  /// [status] /// The status of this structure map. Enables tracking the life-cycle of the
-  /// content.
+  /// [status]
+  /// The status of this structure map. Enables tracking the life-cycle of
+  /// the content.
   final PublicationStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [experimental] /// A Boolean value to indicate that this structure map is authored for testing
-  /// purposes (or education/evaluation/marketing) and is not intended to be used
-  /// for genuine usage.
+  /// [experimental]
+  /// A Boolean value to indicate that this structure map is authored for
+  /// testing purposes (or education/evaluation/marketing) and is not
+  /// intended to be used for genuine usage.
   final FhirBoolean? experimental;
+
+  /// Extensions for [experimental]
   final Element? experimentalElement;
 
-  /// [date] /// The date (and optionally time) when the structure map was published. The
-  /// date must change when the business version changes and it must change if
-  /// the status code changes. In addition, it should change when the substantive
-  /// content of the structure map changes.
+  /// [date]
+  /// The date (and optionally time) when the structure map was published.
+  /// The date must change when the business version changes and it must
+  /// change if the status code changes. In addition, it should change when
+  /// the substantive content of the structure map changes.
   final FhirDateTime? date;
+
+  /// Extensions for [date]
   final Element? dateElement;
 
-  /// [publisher] /// The name of the organization or individual that published the structure
+  /// [publisher]
+  /// The name of the organization or individual that published the structure
   /// map.
   final FhirString? publisher;
+
+  /// Extensions for [publisher]
   final Element? publisherElement;
 
-  /// [contact] /// Contact details to assist a user in finding and communicating with the
+  /// [contact]
+  /// Contact details to assist a user in finding and communicating with the
   /// publisher.
   final List<ContactDetail>? contact;
 
-  /// [description] /// A free text natural language description of the structure map from a
+  /// [description]
+  /// A free text natural language description of the structure map from a
   /// consumer's perspective.
   final FhirMarkdown? description;
+
+  /// Extensions for [description]
   final Element? descriptionElement;
 
-  /// [useContext] /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These contexts may be general categories (gender,
-  /// age, ...) or may be references to specific programs (insurance plans,
-  /// studies, ...) and may be used to assist with indexing and searching for
-  /// appropriate structure map instances.
+  /// [useContext]
+  /// The content was developed with a focus and intent of supporting the
+  /// contexts that are listed. These contexts may be general categories
+  /// (gender, age, ...) or may be references to specific programs (insurance
+  /// plans, studies, ...) and may be used to assist with indexing and
+  /// searching for appropriate structure map instances.
   final List<UsageContext>? useContext;
 
-  /// [jurisdiction] /// A legal or geographic region in which the structure map is intended to be
-  /// used.
+  /// [jurisdiction]
+  /// A legal or geographic region in which the structure map is intended to
+  /// be used.
   final List<CodeableConcept>? jurisdiction;
 
-  /// [purpose] /// Explanation of why this structure map is needed and why it has been
+  /// [purpose]
+  /// Explanation of why this structure map is needed and why it has been
   /// designed as it has.
   final FhirMarkdown? purpose;
+
+  /// Extensions for [purpose]
   final Element? purposeElement;
 
-  /// [copyright] /// A copyright statement relating to the structure map and/or its contents.
-  /// Copyright statements are generally legal restrictions on the use and
-  /// publishing of the structure map.
+  /// [copyright]
+  /// A copyright statement relating to the structure map and/or its
+  /// contents. Copyright statements are generally legal restrictions on the
+  /// use and publishing of the structure map.
   final FhirMarkdown? copyright;
+
+  /// Extensions for [copyright]
   final Element? copyrightElement;
 
-  /// [structure] /// A structure definition used by this map. The structure definition may
-  /// describe instances that are converted, or the instances that are produced.
+  /// [structure]
+  /// A structure definition used by this map. The structure definition may
+  /// describe instances that are converted, or the instances that are
+  /// produced.
   final List<StructureMapStructure>? structure;
 
-  /// [import_] /// Other maps used by this map (canonical URLs).
+  /// [import_]
+  /// Other maps used by this map (canonical URLs).
   final List<FhirCanonical>? import_;
+
+  /// Extensions for [import]
   final List<Element>? importElement;
 
-  /// [group] /// Organizes the mapping into manageable chunks for human review/ease of
+  /// [group]
+  /// Organizes the mapping into manageable chunks for human review/ease of
   /// maintenance.
   final List<StructureMapGroup> group;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -180,17 +481,15 @@ class StructureMap extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['url'] = url.toJson();
     if (urlElement != null) {
@@ -198,7 +497,7 @@ class StructureMap extends DomainResource {
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (version?.value != null) {
       json['version'] = version!.toJson();
@@ -236,8 +535,7 @@ class StructureMap extends DomainResource {
       json['_publisher'] = publisherElement!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
-      json['contact'] =
-          contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+      json['contact'] = contact!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
@@ -247,12 +545,11 @@ class StructureMap extends DomainResource {
     }
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] =
-          useContext!.map<dynamic>((UsageContext v) => v.toJson()).toList();
+          useContext!.map((UsageContext v) => v.toJson()).toList();
     }
     if (jurisdiction != null && jurisdiction!.isNotEmpty) {
-      json['jurisdiction'] = jurisdiction!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['jurisdiction'] =
+          jurisdiction!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (purpose?.value != null) {
       json['purpose'] = purpose!.toJson();
@@ -267,9 +564,8 @@ class StructureMap extends DomainResource {
       json['_copyright'] = copyrightElement!.toJson();
     }
     if (structure != null && structure!.isNotEmpty) {
-      json['structure'] = structure!
-          .map<dynamic>((StructureMapStructure v) => v.toJson())
-          .toList();
+      json['structure'] =
+          structure!.map((StructureMapStructure v) => v.toJson()).toList();
     }
     if (import_ != null && import_!.isNotEmpty) {
       json['import'] = import_!.map((FhirCanonical v) => v.toJson()).toList();
@@ -282,148 +578,6 @@ class StructureMap extends DomainResource {
     return json;
   }
 
-  factory StructureMap.fromJson(Map<String, dynamic> json) {
-    return StructureMap(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      url: FhirUri.fromJson(json['url']),
-      urlElement: json['_url'] != null
-          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
-          : null,
-      name: FhirString.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
-          : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
-          : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson(json['experimental'])
-          : null,
-      experimentalElement: json['_experimental'] != null
-          ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
-          : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
-          : null,
-      publisher: json['publisher'] != null
-          ? FhirString.fromJson(json['publisher'])
-          : null,
-      publisherElement: json['_publisher'] != null
-          ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
-          : null,
-      contact: json['contact'] != null
-          ? (json['contact'] as List<dynamic>)
-              .map<ContactDetail>((dynamic v) =>
-                  ContactDetail.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
-          : null,
-      useContext: json['useContext'] != null
-          ? (json['useContext'] as List<dynamic>)
-              .map<UsageContext>((dynamic v) =>
-                  UsageContext.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      jurisdiction: json['jurisdiction'] != null
-          ? (json['jurisdiction'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      purpose: json['purpose'] != null
-          ? FhirMarkdown.fromJson(json['purpose'])
-          : null,
-      purposeElement: json['_purpose'] != null
-          ? Element.fromJson(json['_purpose'] as Map<String, dynamic>)
-          : null,
-      copyright: json['copyright'] != null
-          ? FhirMarkdown.fromJson(json['copyright'])
-          : null,
-      copyrightElement: json['_copyright'] != null
-          ? Element.fromJson(json['_copyright'] as Map<String, dynamic>)
-          : null,
-      structure: json['structure'] != null
-          ? (json['structure'] as List<dynamic>)
-              .map<StructureMapStructure>((dynamic v) =>
-                  StructureMapStructure.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      import_: json['import'] != null
-          ? (json['import'] as List<dynamic>)
-              .map<FhirCanonical>(
-                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
-              .toList()
-          : null,
-      importElement: json['_import'] != null
-          ? (json['_import'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      group: (json['group'] as List<dynamic>)
-          .map<StructureMapGroup>((dynamic v) =>
-              StructureMapGroup.fromJson(v as Map<String, dynamic>))
-          .toList(),
-    );
-  }
   @override
   StructureMap clone() => throw UnimplementedError();
   @override
@@ -524,41 +678,34 @@ class StructureMap extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory StructureMap.fromYaml(dynamic yaml) => yaml is String
-      ? StructureMap.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? StructureMap.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'StructureMap cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory StructureMap.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return StructureMap.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [StructureMapStructure] /// A structure definition used by this map. The structure definition may
-/// describe instances that are converted, or the instances that are produced.
+/// [StructureMapStructure]
+/// A structure definition used by this map. The structure definition may
+/// describe instances that are converted, or the instances that are
+/// produced.
 class StructureMapStructure extends BackboneElement {
+  /// Primary constructor for [StructureMapStructure]
+
   StructureMapStructure({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.url,
+
+    /// Extensions for [url]
     this.urlElement,
     required this.mode,
+
+    /// Extensions for [mode]
     this.modeElement,
     this.alias,
+
+    /// Extensions for [alias]
     this.aliasElement,
     this.documentation,
+
+    /// Extensions for [documentation]
     this.documentationElement,
     super.userData,
     super.formatCommentsPre,
@@ -568,38 +715,126 @@ class StructureMapStructure extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory StructureMapStructure.fromJson(Map<String, dynamic> json) {
+    return StructureMapStructure(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      url: FhirCanonical.fromJson(json['url']),
+      urlElement: json['_url'] != null
+          ? Element.fromJson(
+              json['_url'] as Map<String, dynamic>,
+            )
+          : null,
+      mode: StructureMapModelMode.fromJson(json['mode']),
+      modeElement: json['_mode'] != null
+          ? Element.fromJson(
+              json['_mode'] as Map<String, dynamic>,
+            )
+          : null,
+      alias: json['alias'] != null ? FhirString.fromJson(json['alias']) : null,
+      aliasElement: json['_alias'] != null
+          ? Element.fromJson(
+              json['_alias'] as Map<String, dynamic>,
+            )
+          : null,
+      documentation: json['documentation'] != null
+          ? FhirString.fromJson(json['documentation'])
+          : null,
+      documentationElement: json['_documentation'] != null
+          ? Element.fromJson(
+              json['_documentation'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [StructureMapStructure] from a [String] or [YamlMap] object
+  factory StructureMapStructure.fromYaml(dynamic yaml) => yaml is String
+      ? StructureMapStructure.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? StructureMapStructure.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'StructureMapStructure cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [StructureMapStructure] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory StructureMapStructure.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return StructureMapStructure.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'StructureMapStructure';
 
-  /// [url] /// The canonical reference to the structure.
+  /// [url]
+  /// The canonical reference to the structure.
   final FhirCanonical url;
+
+  /// Extensions for [url]
   final Element? urlElement;
 
-  /// [mode] /// How the referenced structure is used in this mapping.
+  /// [mode]
+  /// How the referenced structure is used in this mapping.
   final StructureMapModelMode mode;
+
+  /// Extensions for [mode]
   final Element? modeElement;
 
-  /// [alias] /// The name used for this type in the map.
+  /// [alias]
+  /// The name used for this type in the map.
   final FhirString? alias;
+
+  /// Extensions for [alias]
   final Element? aliasElement;
 
-  /// [documentation] /// Documentation that describes how the structure is used in the mapping.
+  /// [documentation]
+  /// Documentation that describes how the structure is used in the mapping.
   final FhirString? documentation;
+
+  /// Extensions for [documentation]
   final Element? documentationElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['url'] = url.toJson();
     if (urlElement != null) {
@@ -621,41 +856,6 @@ class StructureMapStructure extends BackboneElement {
     return json;
   }
 
-  factory StructureMapStructure.fromJson(Map<String, dynamic> json) {
-    return StructureMapStructure(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      url: FhirCanonical.fromJson(json['url']),
-      urlElement: json['_url'] != null
-          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
-          : null,
-      mode: StructureMapModelMode.fromJson(json['mode']),
-      modeElement: json['_mode'] != null
-          ? Element.fromJson(json['_mode'] as Map<String, dynamic>)
-          : null,
-      alias: json['alias'] != null ? FhirString.fromJson(json['alias']) : null,
-      aliasElement: json['_alias'] != null
-          ? Element.fromJson(json['_alias'] as Map<String, dynamic>)
-          : null,
-      documentation: json['documentation'] != null
-          ? FhirString.fromJson(json['documentation'])
-          : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(json['_documentation'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   StructureMapStructure clone() => throw UnimplementedError();
   @override
@@ -698,41 +898,33 @@ class StructureMapStructure extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory StructureMapStructure.fromYaml(dynamic yaml) => yaml is String
-      ? StructureMapStructure.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? StructureMapStructure.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'StructureMapStructure cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory StructureMapStructure.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return StructureMapStructure.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [StructureMapGroup] /// Organizes the mapping into manageable chunks for human review/ease of
+/// [StructureMapGroup]
+/// Organizes the mapping into manageable chunks for human review/ease of
 /// maintenance.
 class StructureMapGroup extends BackboneElement {
+  /// Primary constructor for [StructureMapGroup]
+
   StructureMapGroup({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.name,
+
+    /// Extensions for [name]
     this.nameElement,
     this.extends_,
+
+    /// Extensions for [extends]
     this.extendsElement,
     required this.typeMode,
+
+    /// Extensions for [typeMode]
     this.typeModeElement,
     this.documentation,
+
+    /// Extensions for [documentation]
     this.documentationElement,
     required this.input,
     required this.rule,
@@ -744,47 +936,146 @@ class StructureMapGroup extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory StructureMapGroup.fromJson(Map<String, dynamic> json) {
+    return StructureMapGroup(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      name: FhirId.fromJson(json['name']),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(
+              json['_name'] as Map<String, dynamic>,
+            )
+          : null,
+      extends_:
+          json['extends'] != null ? FhirId.fromJson(json['extends']) : null,
+      extendsElement: json['_extends'] != null
+          ? Element.fromJson(
+              json['_extends'] as Map<String, dynamic>,
+            )
+          : null,
+      typeMode: StructureMapGroupTypeMode.fromJson(json['typeMode']),
+      typeModeElement: json['_typeMode'] != null
+          ? Element.fromJson(
+              json['_typeMode'] as Map<String, dynamic>,
+            )
+          : null,
+      documentation: json['documentation'] != null
+          ? FhirString.fromJson(json['documentation'])
+          : null,
+      documentationElement: json['_documentation'] != null
+          ? Element.fromJson(
+              json['_documentation'] as Map<String, dynamic>,
+            )
+          : null,
+      input: (json['input'] as List<dynamic>)
+          .map<StructureMapInput>((dynamic v) =>
+              StructureMapInput.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      rule: (json['rule'] as List<dynamic>)
+          .map<StructureMapRule>((dynamic v) =>
+              StructureMapRule.fromJson(v as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  /// Deserialize [StructureMapGroup] from a [String] or [YamlMap] object
+  factory StructureMapGroup.fromYaml(dynamic yaml) => yaml is String
+      ? StructureMapGroup.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? StructureMapGroup.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'StructureMapGroup cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [StructureMapGroup] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory StructureMapGroup.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return StructureMapGroup.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'StructureMapGroup';
 
-  /// [name] /// A unique name for the group for the convenience of human readers.
+  /// [name]
+  /// A unique name for the group for the convenience of human readers.
   final FhirId name;
+
+  /// Extensions for [name]
   final Element? nameElement;
 
-  /// [extends_] /// Another group that this group adds rules to.
+  /// [extends_]
+  /// Another group that this group adds rules to.
   final FhirId? extends_;
+
+  /// Extensions for [extends]
   final Element? extendsElement;
 
-  /// [typeMode] /// If this is the default rule set to apply for the source type or this
+  /// [typeMode]
+  /// If this is the default rule set to apply for the source type or this
   /// combination of types.
   final StructureMapGroupTypeMode typeMode;
+
+  /// Extensions for [typeMode]
   final Element? typeModeElement;
 
-  /// [documentation] /// Additional supporting documentation that explains the purpose of the group
-  /// and the types of mappings within it.
+  /// [documentation]
+  /// Additional supporting documentation that explains the purpose of the
+  /// group and the types of mappings within it.
   final FhirString? documentation;
+
+  /// Extensions for [documentation]
   final Element? documentationElement;
 
-  /// [input] /// A name assigned to an instance of data. The instance must be provided when
-  /// the mapping is invoked.
+  /// [input]
+  /// A name assigned to an instance of data. The instance must be provided
+  /// when the mapping is invoked.
   final List<StructureMapInput> input;
 
-  /// [rule] /// Transform Rule from source to target.
+  /// [rule]
+  /// Transform Rule from source to target.
   final List<StructureMapRule> rule;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
     if (nameElement != null) {
@@ -810,50 +1101,6 @@ class StructureMapGroup extends BackboneElement {
     return json;
   }
 
-  factory StructureMapGroup.fromJson(Map<String, dynamic> json) {
-    return StructureMapGroup(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      name: FhirId.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
-          : null,
-      extends_:
-          json['extends'] != null ? FhirId.fromJson(json['extends']) : null,
-      extendsElement: json['_extends'] != null
-          ? Element.fromJson(json['_extends'] as Map<String, dynamic>)
-          : null,
-      typeMode: StructureMapGroupTypeMode.fromJson(json['typeMode']),
-      typeModeElement: json['_typeMode'] != null
-          ? Element.fromJson(json['_typeMode'] as Map<String, dynamic>)
-          : null,
-      documentation: json['documentation'] != null
-          ? FhirString.fromJson(json['documentation'])
-          : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(json['_documentation'] as Map<String, dynamic>)
-          : null,
-      input: (json['input'] as List<dynamic>)
-          .map<StructureMapInput>((dynamic v) =>
-              StructureMapInput.fromJson(v as Map<String, dynamic>))
-          .toList(),
-      rule: (json['rule'] as List<dynamic>)
-          .map<StructureMapRule>((dynamic v) =>
-              StructureMapRule.fromJson(v as Map<String, dynamic>))
-          .toList(),
-    );
-  }
   @override
   StructureMapGroup clone() => throw UnimplementedError();
   @override
@@ -900,41 +1147,33 @@ class StructureMapGroup extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory StructureMapGroup.fromYaml(dynamic yaml) => yaml is String
-      ? StructureMapGroup.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? StructureMapGroup.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'StructureMapGroup cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory StructureMapGroup.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return StructureMapGroup.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [StructureMapInput] /// A name assigned to an instance of data. The instance must be provided when
-/// the mapping is invoked.
+/// [StructureMapInput]
+/// A name assigned to an instance of data. The instance must be provided
+/// when the mapping is invoked.
 class StructureMapInput extends BackboneElement {
+  /// Primary constructor for [StructureMapInput]
+
   StructureMapInput({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.name,
+
+    /// Extensions for [name]
     this.nameElement,
     this.type,
+
+    /// Extensions for [type]
     this.typeElement,
     required this.mode,
+
+    /// Extensions for [mode]
     this.modeElement,
     this.documentation,
+
+    /// Extensions for [documentation]
     this.documentationElement,
     super.userData,
     super.formatCommentsPre,
@@ -944,38 +1183,126 @@ class StructureMapInput extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory StructureMapInput.fromJson(Map<String, dynamic> json) {
+    return StructureMapInput(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      name: FhirId.fromJson(json['name']),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(
+              json['_name'] as Map<String, dynamic>,
+            )
+          : null,
+      type: json['type'] != null ? FhirString.fromJson(json['type']) : null,
+      typeElement: json['_type'] != null
+          ? Element.fromJson(
+              json['_type'] as Map<String, dynamic>,
+            )
+          : null,
+      mode: StructureMapInputMode.fromJson(json['mode']),
+      modeElement: json['_mode'] != null
+          ? Element.fromJson(
+              json['_mode'] as Map<String, dynamic>,
+            )
+          : null,
+      documentation: json['documentation'] != null
+          ? FhirString.fromJson(json['documentation'])
+          : null,
+      documentationElement: json['_documentation'] != null
+          ? Element.fromJson(
+              json['_documentation'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [StructureMapInput] from a [String] or [YamlMap] object
+  factory StructureMapInput.fromYaml(dynamic yaml) => yaml is String
+      ? StructureMapInput.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? StructureMapInput.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'StructureMapInput cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [StructureMapInput] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory StructureMapInput.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return StructureMapInput.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'StructureMapInput';
 
-  /// [name] /// Name for this instance of data.
+  /// [name]
+  /// Name for this instance of data.
   final FhirId name;
+
+  /// Extensions for [name]
   final Element? nameElement;
 
-  /// [type] /// Type for this instance of data.
+  /// [type]
+  /// Type for this instance of data.
   final FhirString? type;
+
+  /// Extensions for [type]
   final Element? typeElement;
 
-  /// [mode] /// Mode for this instance of data.
+  /// [mode]
+  /// Mode for this instance of data.
   final StructureMapInputMode mode;
+
+  /// Extensions for [mode]
   final Element? modeElement;
 
-  /// [documentation] /// Documentation for this instance of data.
+  /// [documentation]
+  /// Documentation for this instance of data.
   final FhirString? documentation;
+
+  /// Extensions for [documentation]
   final Element? documentationElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
     if (nameElement != null) {
@@ -997,41 +1324,6 @@ class StructureMapInput extends BackboneElement {
     return json;
   }
 
-  factory StructureMapInput.fromJson(Map<String, dynamic> json) {
-    return StructureMapInput(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      name: FhirId.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
-          : null,
-      type: json['type'] != null ? FhirString.fromJson(json['type']) : null,
-      typeElement: json['_type'] != null
-          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
-          : null,
-      mode: StructureMapInputMode.fromJson(json['mode']),
-      modeElement: json['_mode'] != null
-          ? Element.fromJson(json['_mode'] as Map<String, dynamic>)
-          : null,
-      documentation: json['documentation'] != null
-          ? FhirString.fromJson(json['documentation'])
-          : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(json['_documentation'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   StructureMapInput clone() => throw UnimplementedError();
   @override
@@ -1074,40 +1366,28 @@ class StructureMapInput extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory StructureMapInput.fromYaml(dynamic yaml) => yaml is String
-      ? StructureMapInput.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? StructureMapInput.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'StructureMapInput cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory StructureMapInput.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return StructureMapInput.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [StructureMapRule] /// Transform Rule from source to target.
+/// [StructureMapRule]
+/// Transform Rule from source to target.
 class StructureMapRule extends BackboneElement {
+  /// Primary constructor for [StructureMapRule]
+
   StructureMapRule({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.name,
+
+    /// Extensions for [name]
     this.nameElement,
     required this.source,
     this.target,
     this.rule,
     this.dependent,
     this.documentation,
+
+    /// Extensions for [documentation]
     this.documentationElement,
     super.userData,
     super.formatCommentsPre,
@@ -1117,42 +1397,147 @@ class StructureMapRule extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory StructureMapRule.fromJson(Map<String, dynamic> json) {
+    return StructureMapRule(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      name: FhirId.fromJson(json['name']),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(
+              json['_name'] as Map<String, dynamic>,
+            )
+          : null,
+      source: (json['source'] as List<dynamic>)
+          .map<StructureMapSource>((dynamic v) =>
+              StructureMapSource.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      target: json['target'] != null
+          ? (json['target'] as List<dynamic>)
+              .map<StructureMapTarget>(
+                (dynamic v) => StructureMapTarget.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      rule: json['rule'] != null
+          ? (json['rule'] as List<dynamic>)
+              .map<StructureMapRule>(
+                (dynamic v) => StructureMapRule.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      dependent: json['dependent'] != null
+          ? (json['dependent'] as List<dynamic>)
+              .map<StructureMapDependent>(
+                (dynamic v) => StructureMapDependent.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      documentation: json['documentation'] != null
+          ? FhirString.fromJson(json['documentation'])
+          : null,
+      documentationElement: json['_documentation'] != null
+          ? Element.fromJson(
+              json['_documentation'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [StructureMapRule] from a [String] or [YamlMap] object
+  factory StructureMapRule.fromYaml(dynamic yaml) => yaml is String
+      ? StructureMapRule.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? StructureMapRule.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'StructureMapRule cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [StructureMapRule] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory StructureMapRule.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return StructureMapRule.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'StructureMapRule';
 
-  /// [name] /// Name of the rule for internal references.
+  /// [name]
+  /// Name of the rule for internal references.
   final FhirId name;
+
+  /// Extensions for [name]
   final Element? nameElement;
 
-  /// [source] /// Source inputs to the mapping.
+  /// [source]
+  /// Source inputs to the mapping.
   final List<StructureMapSource> source;
 
-  /// [target] /// Content to create because of this mapping rule.
+  /// [target]
+  /// Content to create because of this mapping rule.
   final List<StructureMapTarget>? target;
 
-  /// [rule] /// Rules contained in this rule.
+  /// [rule]
+  /// Rules contained in this rule.
   final List<StructureMapRule>? rule;
 
-  /// [dependent] /// Which other rules to apply in the context of this rule.
+  /// [dependent]
+  /// Which other rules to apply in the context of this rule.
   final List<StructureMapDependent>? dependent;
 
-  /// [documentation] /// Documentation for this instance of data.
+  /// [documentation]
+  /// Documentation for this instance of data.
   final FhirString? documentation;
+
+  /// Extensions for [documentation]
   final Element? documentationElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
     if (nameElement != null) {
@@ -1162,16 +1547,14 @@ class StructureMapRule extends BackboneElement {
         source.map<dynamic>((StructureMapSource v) => v.toJson()).toList();
     if (target != null && target!.isNotEmpty) {
       json['target'] =
-          target!.map<dynamic>((StructureMapTarget v) => v.toJson()).toList();
+          target!.map((StructureMapTarget v) => v.toJson()).toList();
     }
     if (rule != null && rule!.isNotEmpty) {
-      json['rule'] =
-          rule!.map<dynamic>((StructureMapRule v) => v.toJson()).toList();
+      json['rule'] = rule!.map((StructureMapRule v) => v.toJson()).toList();
     }
     if (dependent != null && dependent!.isNotEmpty) {
-      json['dependent'] = dependent!
-          .map<dynamic>((StructureMapDependent v) => v.toJson())
-          .toList();
+      json['dependent'] =
+          dependent!.map((StructureMapDependent v) => v.toJson()).toList();
     }
     if (documentation?.value != null) {
       json['documentation'] = documentation!.toJson();
@@ -1182,55 +1565,6 @@ class StructureMapRule extends BackboneElement {
     return json;
   }
 
-  factory StructureMapRule.fromJson(Map<String, dynamic> json) {
-    return StructureMapRule(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      name: FhirId.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
-          : null,
-      source: (json['source'] as List<dynamic>)
-          .map<StructureMapSource>((dynamic v) =>
-              StructureMapSource.fromJson(v as Map<String, dynamic>))
-          .toList(),
-      target: json['target'] != null
-          ? (json['target'] as List<dynamic>)
-              .map<StructureMapTarget>((dynamic v) =>
-                  StructureMapTarget.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      rule: json['rule'] != null
-          ? (json['rule'] as List<dynamic>)
-              .map<StructureMapRule>((dynamic v) =>
-                  StructureMapRule.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      dependent: json['dependent'] != null
-          ? (json['dependent'] as List<dynamic>)
-              .map<StructureMapDependent>((dynamic v) =>
-                  StructureMapDependent.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      documentation: json['documentation'] != null
-          ? FhirString.fromJson(json['documentation'])
-          : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(json['_documentation'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   StructureMapRule clone() => throw UnimplementedError();
   @override
@@ -1273,78 +1607,108 @@ class StructureMapRule extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory StructureMapRule.fromYaml(dynamic yaml) => yaml is String
-      ? StructureMapRule.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? StructureMapRule.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'StructureMapRule cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory StructureMapRule.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return StructureMapRule.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [StructureMapSource] /// Source inputs to the mapping.
+/// [StructureMapSource]
+/// Source inputs to the mapping.
 class StructureMapSource extends BackboneElement {
+  /// Primary constructor for [StructureMapSource]
+
   StructureMapSource({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.context,
+
+    /// Extensions for [context]
     this.contextElement,
     this.min,
+
+    /// Extensions for [min]
     this.minElement,
     this.max,
+
+    /// Extensions for [max]
     this.maxElement,
     this.type,
+
+    /// Extensions for [type]
     this.typeElement,
     this.defaultValueBase64Binary,
+
+    /// Extensions for [defaultValueBase64Binary]
     this.defaultValueBase64BinaryElement,
     this.defaultValueBoolean,
+
+    /// Extensions for [defaultValueBoolean]
     this.defaultValueBooleanElement,
     this.defaultValueCanonical,
+
+    /// Extensions for [defaultValueCanonical]
     this.defaultValueCanonicalElement,
     this.defaultValueCode,
+
+    /// Extensions for [defaultValueCode]
     this.defaultValueCodeElement,
     this.defaultValueDate,
+
+    /// Extensions for [defaultValueDate]
     this.defaultValueDateElement,
     this.defaultValueDateTime,
+
+    /// Extensions for [defaultValueDateTime]
     this.defaultValueDateTimeElement,
     this.defaultValueDecimal,
+
+    /// Extensions for [defaultValueDecimal]
     this.defaultValueDecimalElement,
     this.defaultValueId,
+
+    /// Extensions for [defaultValueId]
     this.defaultValueIdElement,
     this.defaultValueInstant,
+
+    /// Extensions for [defaultValueInstant]
     this.defaultValueInstantElement,
     this.defaultValueInteger,
+
+    /// Extensions for [defaultValueInteger]
     this.defaultValueIntegerElement,
     this.defaultValueMarkdown,
+
+    /// Extensions for [defaultValueMarkdown]
     this.defaultValueMarkdownElement,
     this.defaultValueOid,
+
+    /// Extensions for [defaultValueOid]
     this.defaultValueOidElement,
     this.defaultValuePositiveInt,
+
+    /// Extensions for [defaultValuePositiveInt]
     this.defaultValuePositiveIntElement,
     this.defaultValueString,
+
+    /// Extensions for [defaultValueString]
     this.defaultValueStringElement,
     this.defaultValueTime,
+
+    /// Extensions for [defaultValueTime]
     this.defaultValueTimeElement,
     this.defaultValueUnsignedInt,
+
+    /// Extensions for [defaultValueUnsignedInt]
     this.defaultValueUnsignedIntElement,
     this.defaultValueUri,
+
+    /// Extensions for [defaultValueUri]
     this.defaultValueUriElement,
     this.defaultValueUrl,
+
+    /// Extensions for [defaultValueUrl]
     this.defaultValueUrlElement,
     this.defaultValueUuid,
+
+    /// Extensions for [defaultValueUuid]
     this.defaultValueUuidElement,
     this.defaultValueAddress,
     this.defaultValueAge,
@@ -1378,16 +1742,28 @@ class StructureMapSource extends BackboneElement {
     this.defaultValueDosage,
     this.defaultValueMeta,
     this.element,
+
+    /// Extensions for [element]
     this.elementElement,
     this.listMode,
+
+    /// Extensions for [listMode]
     this.listModeElement,
     this.variable,
+
+    /// Extensions for [variable]
     this.variableElement,
     this.condition,
+
+    /// Extensions for [condition]
     this.conditionElement,
     this.check,
+
+    /// Extensions for [check]
     this.checkElement,
     this.logMessage,
+
+    /// Extensions for [logMessage]
     this.logMessageElement,
     super.userData,
     super.formatCommentsPre,
@@ -1397,237 +1773,783 @@ class StructureMapSource extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory StructureMapSource.fromJson(Map<String, dynamic> json) {
+    return StructureMapSource(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      context: FhirId.fromJson(json['context']),
+      contextElement: json['_context'] != null
+          ? Element.fromJson(
+              json['_context'] as Map<String, dynamic>,
+            )
+          : null,
+      min: json['min'] != null ? FhirInteger.fromJson(json['min']) : null,
+      minElement: json['_min'] != null
+          ? Element.fromJson(
+              json['_min'] as Map<String, dynamic>,
+            )
+          : null,
+      max: json['max'] != null ? FhirString.fromJson(json['max']) : null,
+      maxElement: json['_max'] != null
+          ? Element.fromJson(
+              json['_max'] as Map<String, dynamic>,
+            )
+          : null,
+      type: json['type'] != null ? FhirString.fromJson(json['type']) : null,
+      typeElement: json['_type'] != null
+          ? Element.fromJson(
+              json['_type'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueBase64Binary: json['defaultValueBase64Binary'] != null
+          ? FhirBase64Binary.fromJson(json['defaultValueBase64Binary'])
+          : null,
+      defaultValueBase64BinaryElement: json['_defaultValueBase64Binary'] != null
+          ? Element.fromJson(
+              json['_defaultValueBase64Binary'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueBoolean: json['defaultValueBoolean'] != null
+          ? FhirBoolean.fromJson(json['defaultValueBoolean'])
+          : null,
+      defaultValueBooleanElement: json['_defaultValueBoolean'] != null
+          ? Element.fromJson(
+              json['_defaultValueBoolean'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueCanonical: json['defaultValueCanonical'] != null
+          ? FhirCanonical.fromJson(json['defaultValueCanonical'])
+          : null,
+      defaultValueCanonicalElement: json['_defaultValueCanonical'] != null
+          ? Element.fromJson(
+              json['_defaultValueCanonical'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueCode: json['defaultValueCode'] != null
+          ? FhirCode.fromJson(json['defaultValueCode'])
+          : null,
+      defaultValueCodeElement: json['_defaultValueCode'] != null
+          ? Element.fromJson(
+              json['_defaultValueCode'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueDate: json['defaultValueDate'] != null
+          ? FhirDate.fromJson(json['defaultValueDate'])
+          : null,
+      defaultValueDateElement: json['_defaultValueDate'] != null
+          ? Element.fromJson(
+              json['_defaultValueDate'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueDateTime: json['defaultValueDateTime'] != null
+          ? FhirDateTime.fromJson(json['defaultValueDateTime'])
+          : null,
+      defaultValueDateTimeElement: json['_defaultValueDateTime'] != null
+          ? Element.fromJson(
+              json['_defaultValueDateTime'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueDecimal: json['defaultValueDecimal'] != null
+          ? FhirDecimal.fromJson(json['defaultValueDecimal'])
+          : null,
+      defaultValueDecimalElement: json['_defaultValueDecimal'] != null
+          ? Element.fromJson(
+              json['_defaultValueDecimal'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueId: json['defaultValueId'] != null
+          ? FhirId.fromJson(json['defaultValueId'])
+          : null,
+      defaultValueIdElement: json['_defaultValueId'] != null
+          ? Element.fromJson(
+              json['_defaultValueId'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueInstant: json['defaultValueInstant'] != null
+          ? FhirInstant.fromJson(json['defaultValueInstant'])
+          : null,
+      defaultValueInstantElement: json['_defaultValueInstant'] != null
+          ? Element.fromJson(
+              json['_defaultValueInstant'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueInteger: json['defaultValueInteger'] != null
+          ? FhirInteger.fromJson(json['defaultValueInteger'])
+          : null,
+      defaultValueIntegerElement: json['_defaultValueInteger'] != null
+          ? Element.fromJson(
+              json['_defaultValueInteger'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueMarkdown: json['defaultValueMarkdown'] != null
+          ? FhirMarkdown.fromJson(json['defaultValueMarkdown'])
+          : null,
+      defaultValueMarkdownElement: json['_defaultValueMarkdown'] != null
+          ? Element.fromJson(
+              json['_defaultValueMarkdown'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueOid: json['defaultValueOid'] != null
+          ? FhirOid.fromJson(json['defaultValueOid'])
+          : null,
+      defaultValueOidElement: json['_defaultValueOid'] != null
+          ? Element.fromJson(
+              json['_defaultValueOid'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValuePositiveInt: json['defaultValuePositiveInt'] != null
+          ? FhirPositiveInt.fromJson(json['defaultValuePositiveInt'])
+          : null,
+      defaultValuePositiveIntElement: json['_defaultValuePositiveInt'] != null
+          ? Element.fromJson(
+              json['_defaultValuePositiveInt'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueString: json['defaultValueString'] != null
+          ? FhirString.fromJson(json['defaultValueString'])
+          : null,
+      defaultValueStringElement: json['_defaultValueString'] != null
+          ? Element.fromJson(
+              json['_defaultValueString'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueTime: json['defaultValueTime'] != null
+          ? FhirTime.fromJson(json['defaultValueTime'])
+          : null,
+      defaultValueTimeElement: json['_defaultValueTime'] != null
+          ? Element.fromJson(
+              json['_defaultValueTime'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueUnsignedInt: json['defaultValueUnsignedInt'] != null
+          ? FhirUnsignedInt.fromJson(json['defaultValueUnsignedInt'])
+          : null,
+      defaultValueUnsignedIntElement: json['_defaultValueUnsignedInt'] != null
+          ? Element.fromJson(
+              json['_defaultValueUnsignedInt'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueUri: json['defaultValueUri'] != null
+          ? FhirUri.fromJson(json['defaultValueUri'])
+          : null,
+      defaultValueUriElement: json['_defaultValueUri'] != null
+          ? Element.fromJson(
+              json['_defaultValueUri'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueUrl: json['defaultValueUrl'] != null
+          ? FhirUrl.fromJson(json['defaultValueUrl'])
+          : null,
+      defaultValueUrlElement: json['_defaultValueUrl'] != null
+          ? Element.fromJson(
+              json['_defaultValueUrl'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueUuid: json['defaultValueUuid'] != null
+          ? FhirUuid.fromJson(json['defaultValueUuid'])
+          : null,
+      defaultValueUuidElement: json['_defaultValueUuid'] != null
+          ? Element.fromJson(
+              json['_defaultValueUuid'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueAddress: json['defaultValueAddress'] != null
+          ? Address.fromJson(
+              json['defaultValueAddress'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueAge: json['defaultValueAge'] != null
+          ? Age.fromJson(
+              json['defaultValueAge'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueAnnotation: json['defaultValueAnnotation'] != null
+          ? Annotation.fromJson(
+              json['defaultValueAnnotation'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueAttachment: json['defaultValueAttachment'] != null
+          ? Attachment.fromJson(
+              json['defaultValueAttachment'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueCodeableConcept: json['defaultValueCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['defaultValueCodeableConcept'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueCoding: json['defaultValueCoding'] != null
+          ? Coding.fromJson(
+              json['defaultValueCoding'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueContactPoint: json['defaultValueContactPoint'] != null
+          ? ContactPoint.fromJson(
+              json['defaultValueContactPoint'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueCount: json['defaultValueCount'] != null
+          ? Count.fromJson(
+              json['defaultValueCount'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueDistance: json['defaultValueDistance'] != null
+          ? Distance.fromJson(
+              json['defaultValueDistance'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueDuration: json['defaultValueDuration'] != null
+          ? FhirDuration.fromJson(
+              json['defaultValueDuration'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueHumanName: json['defaultValueHumanName'] != null
+          ? HumanName.fromJson(
+              json['defaultValueHumanName'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueIdentifier: json['defaultValueIdentifier'] != null
+          ? Identifier.fromJson(
+              json['defaultValueIdentifier'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueMoney: json['defaultValueMoney'] != null
+          ? Money.fromJson(
+              json['defaultValueMoney'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValuePeriod: json['defaultValuePeriod'] != null
+          ? Period.fromJson(
+              json['defaultValuePeriod'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueQuantity: json['defaultValueQuantity'] != null
+          ? Quantity.fromJson(
+              json['defaultValueQuantity'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueRange: json['defaultValueRange'] != null
+          ? Range.fromJson(
+              json['defaultValueRange'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueRatio: json['defaultValueRatio'] != null
+          ? Ratio.fromJson(
+              json['defaultValueRatio'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueReference: json['defaultValueReference'] != null
+          ? Reference.fromJson(
+              json['defaultValueReference'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueSampledData: json['defaultValueSampledData'] != null
+          ? SampledData.fromJson(
+              json['defaultValueSampledData'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueSignature: json['defaultValueSignature'] != null
+          ? Signature.fromJson(
+              json['defaultValueSignature'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueTiming: json['defaultValueTiming'] != null
+          ? Timing.fromJson(
+              json['defaultValueTiming'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueContactDetail: json['defaultValueContactDetail'] != null
+          ? ContactDetail.fromJson(
+              json['defaultValueContactDetail'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueContributor: json['defaultValueContributor'] != null
+          ? Contributor.fromJson(
+              json['defaultValueContributor'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueDataRequirement: json['defaultValueDataRequirement'] != null
+          ? DataRequirement.fromJson(
+              json['defaultValueDataRequirement'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueExpression: json['defaultValueExpression'] != null
+          ? FhirExpression.fromJson(
+              json['defaultValueExpression'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueParameterDefinition:
+          json['defaultValueParameterDefinition'] != null
+              ? ParameterDefinition.fromJson(
+                  json['defaultValueParameterDefinition']
+                      as Map<String, dynamic>,
+                )
+              : null,
+      defaultValueRelatedArtifact: json['defaultValueRelatedArtifact'] != null
+          ? RelatedArtifact.fromJson(
+              json['defaultValueRelatedArtifact'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueTriggerDefinition:
+          json['defaultValueTriggerDefinition'] != null
+              ? TriggerDefinition.fromJson(
+                  json['defaultValueTriggerDefinition'] as Map<String, dynamic>,
+                )
+              : null,
+      defaultValueUsageContext: json['defaultValueUsageContext'] != null
+          ? UsageContext.fromJson(
+              json['defaultValueUsageContext'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueDosage: json['defaultValueDosage'] != null
+          ? Dosage.fromJson(
+              json['defaultValueDosage'] as Map<String, dynamic>,
+            )
+          : null,
+      defaultValueMeta: json['defaultValueMeta'] != null
+          ? FhirMeta.fromJson(
+              json['defaultValueMeta'] as Map<String, dynamic>,
+            )
+          : null,
+      element:
+          json['element'] != null ? FhirString.fromJson(json['element']) : null,
+      elementElement: json['_element'] != null
+          ? Element.fromJson(
+              json['_element'] as Map<String, dynamic>,
+            )
+          : null,
+      listMode: json['listMode'] != null
+          ? StructureMapSourceListMode.fromJson(json['listMode'])
+          : null,
+      listModeElement: json['_listMode'] != null
+          ? Element.fromJson(
+              json['_listMode'] as Map<String, dynamic>,
+            )
+          : null,
+      variable:
+          json['variable'] != null ? FhirId.fromJson(json['variable']) : null,
+      variableElement: json['_variable'] != null
+          ? Element.fromJson(
+              json['_variable'] as Map<String, dynamic>,
+            )
+          : null,
+      condition: json['condition'] != null
+          ? FhirString.fromJson(json['condition'])
+          : null,
+      conditionElement: json['_condition'] != null
+          ? Element.fromJson(
+              json['_condition'] as Map<String, dynamic>,
+            )
+          : null,
+      check: json['check'] != null ? FhirString.fromJson(json['check']) : null,
+      checkElement: json['_check'] != null
+          ? Element.fromJson(
+              json['_check'] as Map<String, dynamic>,
+            )
+          : null,
+      logMessage: json['logMessage'] != null
+          ? FhirString.fromJson(json['logMessage'])
+          : null,
+      logMessageElement: json['_logMessage'] != null
+          ? Element.fromJson(
+              json['_logMessage'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [StructureMapSource] from a [String] or [YamlMap] object
+  factory StructureMapSource.fromYaml(dynamic yaml) => yaml is String
+      ? StructureMapSource.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? StructureMapSource.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'StructureMapSource cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [StructureMapSource] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory StructureMapSource.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return StructureMapSource.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'StructureMapSource';
 
-  /// [context] /// Type or variable this rule applies to.
+  /// [context]
+  /// Type or variable this rule applies to.
   final FhirId context;
+
+  /// Extensions for [context]
   final Element? contextElement;
 
-  /// [min] /// Specified minimum cardinality for the element. This is optional; if
+  /// [min]
+  /// Specified minimum cardinality for the element. This is optional; if
   /// present, it acts an implicit check on the input content.
   final FhirInteger? min;
+
+  /// Extensions for [min]
   final Element? minElement;
 
-  /// [max] /// Specified maximum cardinality for the element - a number or a "*". This is
-  /// optional; if present, it acts an implicit check on the input content (*
-  /// just serves as documentation; it's the default value).
+  /// [max]
+  /// Specified maximum cardinality for the element - a number or a "*". This
+  /// is optional; if present, it acts an implicit check on the input content
+  /// (* just serves as documentation; it's the default value).
   final FhirString? max;
+
+  /// Extensions for [max]
   final Element? maxElement;
 
-  /// [type] /// Specified type for the element. This works as a condition on the mapping -
-  /// use for polymorphic elements.
+  /// [type]
+  /// Specified type for the element. This works as a condition on the
+  /// mapping - use for polymorphic elements.
   final FhirString? type;
+
+  /// Extensions for [type]
   final Element? typeElement;
 
-  /// [defaultValueBase64Binary] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueBase64Binary]
+  /// A value to use if there is no existing value in the source object.
   final FhirBase64Binary? defaultValueBase64Binary;
+
+  /// Extensions for [defaultValueBase64Binary]
   final Element? defaultValueBase64BinaryElement;
 
-  /// [defaultValueBoolean] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueBoolean]
+  /// A value to use if there is no existing value in the source object.
   final FhirBoolean? defaultValueBoolean;
+
+  /// Extensions for [defaultValueBoolean]
   final Element? defaultValueBooleanElement;
 
-  /// [defaultValueCanonical] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueCanonical]
+  /// A value to use if there is no existing value in the source object.
   final FhirCanonical? defaultValueCanonical;
+
+  /// Extensions for [defaultValueCanonical]
   final Element? defaultValueCanonicalElement;
 
-  /// [defaultValueCode] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueCode]
+  /// A value to use if there is no existing value in the source object.
   final FhirCode? defaultValueCode;
+
+  /// Extensions for [defaultValueCode]
   final Element? defaultValueCodeElement;
 
-  /// [defaultValueDate] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueDate]
+  /// A value to use if there is no existing value in the source object.
   final FhirDate? defaultValueDate;
+
+  /// Extensions for [defaultValueDate]
   final Element? defaultValueDateElement;
 
-  /// [defaultValueDateTime] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueDateTime]
+  /// A value to use if there is no existing value in the source object.
   final FhirDateTime? defaultValueDateTime;
+
+  /// Extensions for [defaultValueDateTime]
   final Element? defaultValueDateTimeElement;
 
-  /// [defaultValueDecimal] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueDecimal]
+  /// A value to use if there is no existing value in the source object.
   final FhirDecimal? defaultValueDecimal;
+
+  /// Extensions for [defaultValueDecimal]
   final Element? defaultValueDecimalElement;
 
-  /// [defaultValueId] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueId]
+  /// A value to use if there is no existing value in the source object.
   final FhirId? defaultValueId;
+
+  /// Extensions for [defaultValueId]
   final Element? defaultValueIdElement;
 
-  /// [defaultValueInstant] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueInstant]
+  /// A value to use if there is no existing value in the source object.
   final FhirInstant? defaultValueInstant;
+
+  /// Extensions for [defaultValueInstant]
   final Element? defaultValueInstantElement;
 
-  /// [defaultValueInteger] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueInteger]
+  /// A value to use if there is no existing value in the source object.
   final FhirInteger? defaultValueInteger;
+
+  /// Extensions for [defaultValueInteger]
   final Element? defaultValueIntegerElement;
 
-  /// [defaultValueMarkdown] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueMarkdown]
+  /// A value to use if there is no existing value in the source object.
   final FhirMarkdown? defaultValueMarkdown;
+
+  /// Extensions for [defaultValueMarkdown]
   final Element? defaultValueMarkdownElement;
 
-  /// [defaultValueOid] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueOid]
+  /// A value to use if there is no existing value in the source object.
   final FhirOid? defaultValueOid;
+
+  /// Extensions for [defaultValueOid]
   final Element? defaultValueOidElement;
 
-  /// [defaultValuePositiveInt] /// A value to use if there is no existing value in the source object.
+  /// [defaultValuePositiveInt]
+  /// A value to use if there is no existing value in the source object.
   final FhirPositiveInt? defaultValuePositiveInt;
+
+  /// Extensions for [defaultValuePositiveInt]
   final Element? defaultValuePositiveIntElement;
 
-  /// [defaultValueString] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueString]
+  /// A value to use if there is no existing value in the source object.
   final FhirString? defaultValueString;
+
+  /// Extensions for [defaultValueString]
   final Element? defaultValueStringElement;
 
-  /// [defaultValueTime] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueTime]
+  /// A value to use if there is no existing value in the source object.
   final FhirTime? defaultValueTime;
+
+  /// Extensions for [defaultValueTime]
   final Element? defaultValueTimeElement;
 
-  /// [defaultValueUnsignedInt] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueUnsignedInt]
+  /// A value to use if there is no existing value in the source object.
   final FhirUnsignedInt? defaultValueUnsignedInt;
+
+  /// Extensions for [defaultValueUnsignedInt]
   final Element? defaultValueUnsignedIntElement;
 
-  /// [defaultValueUri] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueUri]
+  /// A value to use if there is no existing value in the source object.
   final FhirUri? defaultValueUri;
+
+  /// Extensions for [defaultValueUri]
   final Element? defaultValueUriElement;
 
-  /// [defaultValueUrl] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueUrl]
+  /// A value to use if there is no existing value in the source object.
   final FhirUrl? defaultValueUrl;
+
+  /// Extensions for [defaultValueUrl]
   final Element? defaultValueUrlElement;
 
-  /// [defaultValueUuid] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueUuid]
+  /// A value to use if there is no existing value in the source object.
   final FhirUuid? defaultValueUuid;
+
+  /// Extensions for [defaultValueUuid]
   final Element? defaultValueUuidElement;
 
-  /// [defaultValueAddress] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueAddress]
+  /// A value to use if there is no existing value in the source object.
   final Address? defaultValueAddress;
 
-  /// [defaultValueAge] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueAge]
+  /// A value to use if there is no existing value in the source object.
   final Age? defaultValueAge;
 
-  /// [defaultValueAnnotation] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueAnnotation]
+  /// A value to use if there is no existing value in the source object.
   final Annotation? defaultValueAnnotation;
 
-  /// [defaultValueAttachment] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueAttachment]
+  /// A value to use if there is no existing value in the source object.
   final Attachment? defaultValueAttachment;
 
-  /// [defaultValueCodeableConcept] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueCodeableConcept]
+  /// A value to use if there is no existing value in the source object.
   final CodeableConcept? defaultValueCodeableConcept;
 
-  /// [defaultValueCoding] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueCoding]
+  /// A value to use if there is no existing value in the source object.
   final Coding? defaultValueCoding;
 
-  /// [defaultValueContactPoint] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueContactPoint]
+  /// A value to use if there is no existing value in the source object.
   final ContactPoint? defaultValueContactPoint;
 
-  /// [defaultValueCount] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueCount]
+  /// A value to use if there is no existing value in the source object.
   final Count? defaultValueCount;
 
-  /// [defaultValueDistance] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueDistance]
+  /// A value to use if there is no existing value in the source object.
   final Distance? defaultValueDistance;
 
-  /// [defaultValueDuration] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueDuration]
+  /// A value to use if there is no existing value in the source object.
   final FhirDuration? defaultValueDuration;
 
-  /// [defaultValueHumanName] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueHumanName]
+  /// A value to use if there is no existing value in the source object.
   final HumanName? defaultValueHumanName;
 
-  /// [defaultValueIdentifier] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueIdentifier]
+  /// A value to use if there is no existing value in the source object.
   final Identifier? defaultValueIdentifier;
 
-  /// [defaultValueMoney] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueMoney]
+  /// A value to use if there is no existing value in the source object.
   final Money? defaultValueMoney;
 
-  /// [defaultValuePeriod] /// A value to use if there is no existing value in the source object.
+  /// [defaultValuePeriod]
+  /// A value to use if there is no existing value in the source object.
   final Period? defaultValuePeriod;
 
-  /// [defaultValueQuantity] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueQuantity]
+  /// A value to use if there is no existing value in the source object.
   final Quantity? defaultValueQuantity;
 
-  /// [defaultValueRange] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueRange]
+  /// A value to use if there is no existing value in the source object.
   final Range? defaultValueRange;
 
-  /// [defaultValueRatio] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueRatio]
+  /// A value to use if there is no existing value in the source object.
   final Ratio? defaultValueRatio;
 
-  /// [defaultValueReference] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueReference]
+  /// A value to use if there is no existing value in the source object.
   final Reference? defaultValueReference;
 
-  /// [defaultValueSampledData] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueSampledData]
+  /// A value to use if there is no existing value in the source object.
   final SampledData? defaultValueSampledData;
 
-  /// [defaultValueSignature] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueSignature]
+  /// A value to use if there is no existing value in the source object.
   final Signature? defaultValueSignature;
 
-  /// [defaultValueTiming] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueTiming]
+  /// A value to use if there is no existing value in the source object.
   final Timing? defaultValueTiming;
 
-  /// [defaultValueContactDetail] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueContactDetail]
+  /// A value to use if there is no existing value in the source object.
   final ContactDetail? defaultValueContactDetail;
 
-  /// [defaultValueContributor] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueContributor]
+  /// A value to use if there is no existing value in the source object.
   final Contributor? defaultValueContributor;
 
-  /// [defaultValueDataRequirement] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueDataRequirement]
+  /// A value to use if there is no existing value in the source object.
   final DataRequirement? defaultValueDataRequirement;
 
-  /// [defaultValueExpression] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueExpression]
+  /// A value to use if there is no existing value in the source object.
   final FhirExpression? defaultValueExpression;
 
-  /// [defaultValueParameterDefinition] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueParameterDefinition]
+  /// A value to use if there is no existing value in the source object.
   final ParameterDefinition? defaultValueParameterDefinition;
 
-  /// [defaultValueRelatedArtifact] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueRelatedArtifact]
+  /// A value to use if there is no existing value in the source object.
   final RelatedArtifact? defaultValueRelatedArtifact;
 
-  /// [defaultValueTriggerDefinition] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueTriggerDefinition]
+  /// A value to use if there is no existing value in the source object.
   final TriggerDefinition? defaultValueTriggerDefinition;
 
-  /// [defaultValueUsageContext] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueUsageContext]
+  /// A value to use if there is no existing value in the source object.
   final UsageContext? defaultValueUsageContext;
 
-  /// [defaultValueDosage] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueDosage]
+  /// A value to use if there is no existing value in the source object.
   final Dosage? defaultValueDosage;
 
-  /// [defaultValueMeta] /// A value to use if there is no existing value in the source object.
+  /// [defaultValueMeta]
+  /// A value to use if there is no existing value in the source object.
   final FhirMeta? defaultValueMeta;
 
-  /// [element] /// Optional field for this source.
+  /// [element]
+  /// Optional field for this source.
   final FhirString? element;
+
+  /// Extensions for [element]
   final Element? elementElement;
 
-  /// [listMode] /// How to handle the list mode for this element.
+  /// [listMode]
+  /// How to handle the list mode for this element.
   final StructureMapSourceListMode? listMode;
+
+  /// Extensions for [listMode]
   final Element? listModeElement;
 
-  /// [variable] /// Named context for field, if a field is specified.
+  /// [variable]
+  /// Named context for field, if a field is specified.
   final FhirId? variable;
+
+  /// Extensions for [variable]
   final Element? variableElement;
 
-  /// [condition] /// FHIRPath expression - must be true or the rule does not apply.
+  /// [condition]
+  /// FHIRPath expression - must be true or the rule does not apply.
   final FhirString? condition;
+
+  /// Extensions for [condition]
   final Element? conditionElement;
 
-  /// [check] /// FHIRPath expression - must be true or the mapping engine throws an error
-  /// instead of completing.
+  /// [check]
+  /// FHIRPath expression - must be true or the mapping engine throws an
+  /// error instead of completing.
   final FhirString? check;
+
+  /// Extensions for [check]
   final Element? checkElement;
 
-  /// [logMessage] /// A FHIRPath expression which specifies a message to put in the transform log
-  /// when content matching the source rule is found.
+  /// [logMessage]
+  /// A FHIRPath expression which specifies a message to put in the transform
+  /// log when content matching the source rule is found.
   final FhirString? logMessage;
+
+  /// Extensions for [logMessage]
   final Element? logMessageElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['context'] = context.toJson();
     if (contextElement != null) {
@@ -1902,313 +2824,6 @@ class StructureMapSource extends BackboneElement {
     return json;
   }
 
-  factory StructureMapSource.fromJson(Map<String, dynamic> json) {
-    return StructureMapSource(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      context: FhirId.fromJson(json['context']),
-      contextElement: json['_context'] != null
-          ? Element.fromJson(json['_context'] as Map<String, dynamic>)
-          : null,
-      min: json['min'] != null ? FhirInteger.fromJson(json['min']) : null,
-      minElement: json['_min'] != null
-          ? Element.fromJson(json['_min'] as Map<String, dynamic>)
-          : null,
-      max: json['max'] != null ? FhirString.fromJson(json['max']) : null,
-      maxElement: json['_max'] != null
-          ? Element.fromJson(json['_max'] as Map<String, dynamic>)
-          : null,
-      type: json['type'] != null ? FhirString.fromJson(json['type']) : null,
-      typeElement: json['_type'] != null
-          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
-          : null,
-      defaultValueBase64Binary: json['defaultValueBase64Binary'] != null
-          ? FhirBase64Binary.fromJson(json['defaultValueBase64Binary'])
-          : null,
-      defaultValueBase64BinaryElement: json['_defaultValueBase64Binary'] != null
-          ? Element.fromJson(
-              json['_defaultValueBase64Binary'] as Map<String, dynamic>)
-          : null,
-      defaultValueBoolean: json['defaultValueBoolean'] != null
-          ? FhirBoolean.fromJson(json['defaultValueBoolean'])
-          : null,
-      defaultValueBooleanElement: json['_defaultValueBoolean'] != null
-          ? Element.fromJson(
-              json['_defaultValueBoolean'] as Map<String, dynamic>)
-          : null,
-      defaultValueCanonical: json['defaultValueCanonical'] != null
-          ? FhirCanonical.fromJson(json['defaultValueCanonical'])
-          : null,
-      defaultValueCanonicalElement: json['_defaultValueCanonical'] != null
-          ? Element.fromJson(
-              json['_defaultValueCanonical'] as Map<String, dynamic>)
-          : null,
-      defaultValueCode: json['defaultValueCode'] != null
-          ? FhirCode.fromJson(json['defaultValueCode'])
-          : null,
-      defaultValueCodeElement: json['_defaultValueCode'] != null
-          ? Element.fromJson(json['_defaultValueCode'] as Map<String, dynamic>)
-          : null,
-      defaultValueDate: json['defaultValueDate'] != null
-          ? FhirDate.fromJson(json['defaultValueDate'])
-          : null,
-      defaultValueDateElement: json['_defaultValueDate'] != null
-          ? Element.fromJson(json['_defaultValueDate'] as Map<String, dynamic>)
-          : null,
-      defaultValueDateTime: json['defaultValueDateTime'] != null
-          ? FhirDateTime.fromJson(json['defaultValueDateTime'])
-          : null,
-      defaultValueDateTimeElement: json['_defaultValueDateTime'] != null
-          ? Element.fromJson(
-              json['_defaultValueDateTime'] as Map<String, dynamic>)
-          : null,
-      defaultValueDecimal: json['defaultValueDecimal'] != null
-          ? FhirDecimal.fromJson(json['defaultValueDecimal'])
-          : null,
-      defaultValueDecimalElement: json['_defaultValueDecimal'] != null
-          ? Element.fromJson(
-              json['_defaultValueDecimal'] as Map<String, dynamic>)
-          : null,
-      defaultValueId: json['defaultValueId'] != null
-          ? FhirId.fromJson(json['defaultValueId'])
-          : null,
-      defaultValueIdElement: json['_defaultValueId'] != null
-          ? Element.fromJson(json['_defaultValueId'] as Map<String, dynamic>)
-          : null,
-      defaultValueInstant: json['defaultValueInstant'] != null
-          ? FhirInstant.fromJson(json['defaultValueInstant'])
-          : null,
-      defaultValueInstantElement: json['_defaultValueInstant'] != null
-          ? Element.fromJson(
-              json['_defaultValueInstant'] as Map<String, dynamic>)
-          : null,
-      defaultValueInteger: json['defaultValueInteger'] != null
-          ? FhirInteger.fromJson(json['defaultValueInteger'])
-          : null,
-      defaultValueIntegerElement: json['_defaultValueInteger'] != null
-          ? Element.fromJson(
-              json['_defaultValueInteger'] as Map<String, dynamic>)
-          : null,
-      defaultValueMarkdown: json['defaultValueMarkdown'] != null
-          ? FhirMarkdown.fromJson(json['defaultValueMarkdown'])
-          : null,
-      defaultValueMarkdownElement: json['_defaultValueMarkdown'] != null
-          ? Element.fromJson(
-              json['_defaultValueMarkdown'] as Map<String, dynamic>)
-          : null,
-      defaultValueOid: json['defaultValueOid'] != null
-          ? FhirOid.fromJson(json['defaultValueOid'])
-          : null,
-      defaultValueOidElement: json['_defaultValueOid'] != null
-          ? Element.fromJson(json['_defaultValueOid'] as Map<String, dynamic>)
-          : null,
-      defaultValuePositiveInt: json['defaultValuePositiveInt'] != null
-          ? FhirPositiveInt.fromJson(json['defaultValuePositiveInt'])
-          : null,
-      defaultValuePositiveIntElement: json['_defaultValuePositiveInt'] != null
-          ? Element.fromJson(
-              json['_defaultValuePositiveInt'] as Map<String, dynamic>)
-          : null,
-      defaultValueString: json['defaultValueString'] != null
-          ? FhirString.fromJson(json['defaultValueString'])
-          : null,
-      defaultValueStringElement: json['_defaultValueString'] != null
-          ? Element.fromJson(
-              json['_defaultValueString'] as Map<String, dynamic>)
-          : null,
-      defaultValueTime: json['defaultValueTime'] != null
-          ? FhirTime.fromJson(json['defaultValueTime'])
-          : null,
-      defaultValueTimeElement: json['_defaultValueTime'] != null
-          ? Element.fromJson(json['_defaultValueTime'] as Map<String, dynamic>)
-          : null,
-      defaultValueUnsignedInt: json['defaultValueUnsignedInt'] != null
-          ? FhirUnsignedInt.fromJson(json['defaultValueUnsignedInt'])
-          : null,
-      defaultValueUnsignedIntElement: json['_defaultValueUnsignedInt'] != null
-          ? Element.fromJson(
-              json['_defaultValueUnsignedInt'] as Map<String, dynamic>)
-          : null,
-      defaultValueUri: json['defaultValueUri'] != null
-          ? FhirUri.fromJson(json['defaultValueUri'])
-          : null,
-      defaultValueUriElement: json['_defaultValueUri'] != null
-          ? Element.fromJson(json['_defaultValueUri'] as Map<String, dynamic>)
-          : null,
-      defaultValueUrl: json['defaultValueUrl'] != null
-          ? FhirUrl.fromJson(json['defaultValueUrl'])
-          : null,
-      defaultValueUrlElement: json['_defaultValueUrl'] != null
-          ? Element.fromJson(json['_defaultValueUrl'] as Map<String, dynamic>)
-          : null,
-      defaultValueUuid: json['defaultValueUuid'] != null
-          ? FhirUuid.fromJson(json['defaultValueUuid'])
-          : null,
-      defaultValueUuidElement: json['_defaultValueUuid'] != null
-          ? Element.fromJson(json['_defaultValueUuid'] as Map<String, dynamic>)
-          : null,
-      defaultValueAddress: json['defaultValueAddress'] != null
-          ? Address.fromJson(
-              json['defaultValueAddress'] as Map<String, dynamic>)
-          : null,
-      defaultValueAge: json['defaultValueAge'] != null
-          ? Age.fromJson(json['defaultValueAge'] as Map<String, dynamic>)
-          : null,
-      defaultValueAnnotation: json['defaultValueAnnotation'] != null
-          ? Annotation.fromJson(
-              json['defaultValueAnnotation'] as Map<String, dynamic>)
-          : null,
-      defaultValueAttachment: json['defaultValueAttachment'] != null
-          ? Attachment.fromJson(
-              json['defaultValueAttachment'] as Map<String, dynamic>)
-          : null,
-      defaultValueCodeableConcept: json['defaultValueCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['defaultValueCodeableConcept'] as Map<String, dynamic>)
-          : null,
-      defaultValueCoding: json['defaultValueCoding'] != null
-          ? Coding.fromJson(json['defaultValueCoding'] as Map<String, dynamic>)
-          : null,
-      defaultValueContactPoint: json['defaultValueContactPoint'] != null
-          ? ContactPoint.fromJson(
-              json['defaultValueContactPoint'] as Map<String, dynamic>)
-          : null,
-      defaultValueCount: json['defaultValueCount'] != null
-          ? Count.fromJson(json['defaultValueCount'] as Map<String, dynamic>)
-          : null,
-      defaultValueDistance: json['defaultValueDistance'] != null
-          ? Distance.fromJson(
-              json['defaultValueDistance'] as Map<String, dynamic>)
-          : null,
-      defaultValueDuration: json['defaultValueDuration'] != null
-          ? FhirDuration.fromJson(
-              json['defaultValueDuration'] as Map<String, dynamic>)
-          : null,
-      defaultValueHumanName: json['defaultValueHumanName'] != null
-          ? HumanName.fromJson(
-              json['defaultValueHumanName'] as Map<String, dynamic>)
-          : null,
-      defaultValueIdentifier: json['defaultValueIdentifier'] != null
-          ? Identifier.fromJson(
-              json['defaultValueIdentifier'] as Map<String, dynamic>)
-          : null,
-      defaultValueMoney: json['defaultValueMoney'] != null
-          ? Money.fromJson(json['defaultValueMoney'] as Map<String, dynamic>)
-          : null,
-      defaultValuePeriod: json['defaultValuePeriod'] != null
-          ? Period.fromJson(json['defaultValuePeriod'] as Map<String, dynamic>)
-          : null,
-      defaultValueQuantity: json['defaultValueQuantity'] != null
-          ? Quantity.fromJson(
-              json['defaultValueQuantity'] as Map<String, dynamic>)
-          : null,
-      defaultValueRange: json['defaultValueRange'] != null
-          ? Range.fromJson(json['defaultValueRange'] as Map<String, dynamic>)
-          : null,
-      defaultValueRatio: json['defaultValueRatio'] != null
-          ? Ratio.fromJson(json['defaultValueRatio'] as Map<String, dynamic>)
-          : null,
-      defaultValueReference: json['defaultValueReference'] != null
-          ? Reference.fromJson(
-              json['defaultValueReference'] as Map<String, dynamic>)
-          : null,
-      defaultValueSampledData: json['defaultValueSampledData'] != null
-          ? SampledData.fromJson(
-              json['defaultValueSampledData'] as Map<String, dynamic>)
-          : null,
-      defaultValueSignature: json['defaultValueSignature'] != null
-          ? Signature.fromJson(
-              json['defaultValueSignature'] as Map<String, dynamic>)
-          : null,
-      defaultValueTiming: json['defaultValueTiming'] != null
-          ? Timing.fromJson(json['defaultValueTiming'] as Map<String, dynamic>)
-          : null,
-      defaultValueContactDetail: json['defaultValueContactDetail'] != null
-          ? ContactDetail.fromJson(
-              json['defaultValueContactDetail'] as Map<String, dynamic>)
-          : null,
-      defaultValueContributor: json['defaultValueContributor'] != null
-          ? Contributor.fromJson(
-              json['defaultValueContributor'] as Map<String, dynamic>)
-          : null,
-      defaultValueDataRequirement: json['defaultValueDataRequirement'] != null
-          ? DataRequirement.fromJson(
-              json['defaultValueDataRequirement'] as Map<String, dynamic>)
-          : null,
-      defaultValueExpression: json['defaultValueExpression'] != null
-          ? FhirExpression.fromJson(
-              json['defaultValueExpression'] as Map<String, dynamic>)
-          : null,
-      defaultValueParameterDefinition:
-          json['defaultValueParameterDefinition'] != null
-              ? ParameterDefinition.fromJson(
-                  json['defaultValueParameterDefinition']
-                      as Map<String, dynamic>)
-              : null,
-      defaultValueRelatedArtifact: json['defaultValueRelatedArtifact'] != null
-          ? RelatedArtifact.fromJson(
-              json['defaultValueRelatedArtifact'] as Map<String, dynamic>)
-          : null,
-      defaultValueTriggerDefinition:
-          json['defaultValueTriggerDefinition'] != null
-              ? TriggerDefinition.fromJson(
-                  json['defaultValueTriggerDefinition'] as Map<String, dynamic>)
-              : null,
-      defaultValueUsageContext: json['defaultValueUsageContext'] != null
-          ? UsageContext.fromJson(
-              json['defaultValueUsageContext'] as Map<String, dynamic>)
-          : null,
-      defaultValueDosage: json['defaultValueDosage'] != null
-          ? Dosage.fromJson(json['defaultValueDosage'] as Map<String, dynamic>)
-          : null,
-      defaultValueMeta: json['defaultValueMeta'] != null
-          ? FhirMeta.fromJson(json['defaultValueMeta'] as Map<String, dynamic>)
-          : null,
-      element:
-          json['element'] != null ? FhirString.fromJson(json['element']) : null,
-      elementElement: json['_element'] != null
-          ? Element.fromJson(json['_element'] as Map<String, dynamic>)
-          : null,
-      listMode: json['listMode'] != null
-          ? StructureMapSourceListMode.fromJson(json['listMode'])
-          : null,
-      listModeElement: json['_listMode'] != null
-          ? Element.fromJson(json['_listMode'] as Map<String, dynamic>)
-          : null,
-      variable:
-          json['variable'] != null ? FhirId.fromJson(json['variable']) : null,
-      variableElement: json['_variable'] != null
-          ? Element.fromJson(json['_variable'] as Map<String, dynamic>)
-          : null,
-      condition: json['condition'] != null
-          ? FhirString.fromJson(json['condition'])
-          : null,
-      conditionElement: json['_condition'] != null
-          ? Element.fromJson(json['_condition'] as Map<String, dynamic>)
-          : null,
-      check: json['check'] != null ? FhirString.fromJson(json['check']) : null,
-      checkElement: json['_check'] != null
-          ? Element.fromJson(json['_check'] as Map<String, dynamic>)
-          : null,
-      logMessage: json['logMessage'] != null
-          ? FhirString.fromJson(json['logMessage'])
-          : null,
-      logMessageElement: json['_logMessage'] != null
-          ? Element.fromJson(json['_logMessage'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   StructureMapSource clone() => throw UnimplementedError();
   @override
@@ -2453,46 +3068,44 @@ class StructureMapSource extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory StructureMapSource.fromYaml(dynamic yaml) => yaml is String
-      ? StructureMapSource.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? StructureMapSource.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'StructureMapSource cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory StructureMapSource.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return StructureMapSource.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [StructureMapTarget] /// Content to create because of this mapping rule.
+/// [StructureMapTarget]
+/// Content to create because of this mapping rule.
 class StructureMapTarget extends BackboneElement {
+  /// Primary constructor for [StructureMapTarget]
+
   StructureMapTarget({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.context,
+
+    /// Extensions for [context]
     this.contextElement,
     this.contextType,
+
+    /// Extensions for [contextType]
     this.contextTypeElement,
     this.element,
+
+    /// Extensions for [element]
     this.elementElement,
     this.variable,
+
+    /// Extensions for [variable]
     this.variableElement,
     this.listMode,
+
+    /// Extensions for [listMode]
     this.listModeElement,
     this.listRuleId,
+
+    /// Extensions for [listRuleId]
     this.listRuleIdElement,
     this.transform,
+
+    /// Extensions for [transform]
     this.transformElement,
     this.parameter,
     super.userData,
@@ -2503,53 +3116,194 @@ class StructureMapTarget extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory StructureMapTarget.fromJson(Map<String, dynamic> json) {
+    return StructureMapTarget(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      context:
+          json['context'] != null ? FhirId.fromJson(json['context']) : null,
+      contextElement: json['_context'] != null
+          ? Element.fromJson(
+              json['_context'] as Map<String, dynamic>,
+            )
+          : null,
+      contextType: json['contextType'] != null
+          ? StructureMapContextType.fromJson(json['contextType'])
+          : null,
+      contextTypeElement: json['_contextType'] != null
+          ? Element.fromJson(
+              json['_contextType'] as Map<String, dynamic>,
+            )
+          : null,
+      element:
+          json['element'] != null ? FhirString.fromJson(json['element']) : null,
+      elementElement: json['_element'] != null
+          ? Element.fromJson(
+              json['_element'] as Map<String, dynamic>,
+            )
+          : null,
+      variable:
+          json['variable'] != null ? FhirId.fromJson(json['variable']) : null,
+      variableElement: json['_variable'] != null
+          ? Element.fromJson(
+              json['_variable'] as Map<String, dynamic>,
+            )
+          : null,
+      listMode: json['listMode'] != null
+          ? (json['listMode'] as List<dynamic>)
+              .map<StructureMapTargetListMode>(
+                (dynamic v) =>
+                    StructureMapTargetListMode.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      listModeElement: json['_listMode'] != null
+          ? (json['_listMode'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      listRuleId: json['listRuleId'] != null
+          ? FhirId.fromJson(json['listRuleId'])
+          : null,
+      listRuleIdElement: json['_listRuleId'] != null
+          ? Element.fromJson(
+              json['_listRuleId'] as Map<String, dynamic>,
+            )
+          : null,
+      transform: json['transform'] != null
+          ? StructureMapTransform.fromJson(json['transform'])
+          : null,
+      transformElement: json['_transform'] != null
+          ? Element.fromJson(
+              json['_transform'] as Map<String, dynamic>,
+            )
+          : null,
+      parameter: json['parameter'] != null
+          ? (json['parameter'] as List<dynamic>)
+              .map<StructureMapParameter>(
+                (dynamic v) => StructureMapParameter.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [StructureMapTarget] from a [String] or [YamlMap] object
+  factory StructureMapTarget.fromYaml(dynamic yaml) => yaml is String
+      ? StructureMapTarget.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? StructureMapTarget.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'StructureMapTarget cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [StructureMapTarget] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory StructureMapTarget.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return StructureMapTarget.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'StructureMapTarget';
 
-  /// [context] /// Type or variable this rule applies to.
+  /// [context]
+  /// Type or variable this rule applies to.
   final FhirId? context;
+
+  /// Extensions for [context]
   final Element? contextElement;
 
-  /// [contextType] /// How to interpret the context.
+  /// [contextType]
+  /// How to interpret the context.
   final StructureMapContextType? contextType;
+
+  /// Extensions for [contextType]
   final Element? contextTypeElement;
 
-  /// [element] /// Field to create in the context.
+  /// [element]
+  /// Field to create in the context.
   final FhirString? element;
+
+  /// Extensions for [element]
   final Element? elementElement;
 
-  /// [variable] /// Named context for field, if desired, and a field is specified.
+  /// [variable]
+  /// Named context for field, if desired, and a field is specified.
   final FhirId? variable;
+
+  /// Extensions for [variable]
   final Element? variableElement;
 
-  /// [listMode] /// If field is a list, how to manage the list.
+  /// [listMode]
+  /// If field is a list, how to manage the list.
   final List<StructureMapTargetListMode>? listMode;
+
+  /// Extensions for [listMode]
   final List<Element>? listModeElement;
 
-  /// [listRuleId] /// Internal rule reference for shared list items.
+  /// [listRuleId]
+  /// Internal rule reference for shared list items.
   final FhirId? listRuleId;
+
+  /// Extensions for [listRuleId]
   final Element? listRuleIdElement;
 
-  /// [transform] /// How the data is copied / created.
+  /// [transform]
+  /// How the data is copied / created.
   final StructureMapTransform? transform;
+
+  /// Extensions for [transform]
   final Element? transformElement;
 
-  /// [parameter] /// Parameters to the transform.
+  /// [parameter]
+  /// Parameters to the transform.
   final List<StructureMapParameter>? parameter;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (context?.value != null) {
       json['context'] = context!.toJson();
@@ -2573,9 +3327,8 @@ class StructureMapTarget extends BackboneElement {
       json['_variable'] = variableElement!.toJson();
     }
     if (listMode != null && listMode!.isNotEmpty) {
-      json['listMode'] = listMode!
-          .map<dynamic>((StructureMapTargetListMode v) => v.toJson())
-          .toList();
+      json['listMode'] =
+          listMode!.map((StructureMapTargetListMode v) => v.toJson()).toList();
     }
     if (listRuleId?.value != null) {
       json['listRuleId'] = listRuleId!.toJson();
@@ -2587,81 +3340,12 @@ class StructureMapTarget extends BackboneElement {
       json['transform'] = transform!.toJson();
     }
     if (parameter != null && parameter!.isNotEmpty) {
-      json['parameter'] = parameter!
-          .map<dynamic>((StructureMapParameter v) => v.toJson())
-          .toList();
+      json['parameter'] =
+          parameter!.map((StructureMapParameter v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory StructureMapTarget.fromJson(Map<String, dynamic> json) {
-    return StructureMapTarget(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      context:
-          json['context'] != null ? FhirId.fromJson(json['context']) : null,
-      contextElement: json['_context'] != null
-          ? Element.fromJson(json['_context'] as Map<String, dynamic>)
-          : null,
-      contextType: json['contextType'] != null
-          ? StructureMapContextType.fromJson(json['contextType'])
-          : null,
-      contextTypeElement: json['_contextType'] != null
-          ? Element.fromJson(json['_contextType'] as Map<String, dynamic>)
-          : null,
-      element:
-          json['element'] != null ? FhirString.fromJson(json['element']) : null,
-      elementElement: json['_element'] != null
-          ? Element.fromJson(json['_element'] as Map<String, dynamic>)
-          : null,
-      variable:
-          json['variable'] != null ? FhirId.fromJson(json['variable']) : null,
-      variableElement: json['_variable'] != null
-          ? Element.fromJson(json['_variable'] as Map<String, dynamic>)
-          : null,
-      listMode: json['listMode'] != null
-          ? (json['listMode'] as List<dynamic>)
-              .map<StructureMapTargetListMode>((dynamic v) =>
-                  StructureMapTargetListMode.fromJson(v as dynamic))
-              .toList()
-          : null,
-      listModeElement: json['_listMode'] != null
-          ? (json['_listMode'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      listRuleId: json['listRuleId'] != null
-          ? FhirId.fromJson(json['listRuleId'])
-          : null,
-      listRuleIdElement: json['_listRuleId'] != null
-          ? Element.fromJson(json['_listRuleId'] as Map<String, dynamic>)
-          : null,
-      transform: json['transform'] != null
-          ? StructureMapTransform.fromJson(json['transform'])
-          : null,
-      transformElement: json['_transform'] != null
-          ? Element.fromJson(json['_transform'] as Map<String, dynamic>)
-          : null,
-      parameter: json['parameter'] != null
-          ? (json['parameter'] as List<dynamic>)
-              .map<StructureMapParameter>((dynamic v) =>
-                  StructureMapParameter.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   StructureMapTarget clone() => throw UnimplementedError();
   @override
@@ -2718,42 +3402,36 @@ class StructureMapTarget extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory StructureMapTarget.fromYaml(dynamic yaml) => yaml is String
-      ? StructureMapTarget.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? StructureMapTarget.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'StructureMapTarget cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory StructureMapTarget.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return StructureMapTarget.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [StructureMapParameter] /// Parameters to the transform.
+/// [StructureMapParameter]
+/// Parameters to the transform.
 class StructureMapParameter extends BackboneElement {
+  /// Primary constructor for [StructureMapParameter]
+
   StructureMapParameter({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.valueId,
+
+    /// Extensions for [valueId]
     this.valueIdElement,
     this.valueString,
+
+    /// Extensions for [valueString]
     this.valueStringElement,
     this.valueBoolean,
+
+    /// Extensions for [valueBoolean]
     this.valueBooleanElement,
     this.valueInteger,
+
+    /// Extensions for [valueInteger]
     this.valueIntegerElement,
     this.valueDecimal,
+
+    /// Extensions for [valueDecimal]
     this.valueDecimalElement,
     super.userData,
     super.formatCommentsPre,
@@ -2763,42 +3441,146 @@ class StructureMapParameter extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory StructureMapParameter.fromJson(Map<String, dynamic> json) {
+    return StructureMapParameter(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      valueId:
+          json['valueId'] != null ? FhirId.fromJson(json['valueId']) : null,
+      valueIdElement: json['_valueId'] != null
+          ? Element.fromJson(
+              json['_valueId'] as Map<String, dynamic>,
+            )
+          : null,
+      valueString: json['valueString'] != null
+          ? FhirString.fromJson(json['valueString'])
+          : null,
+      valueStringElement: json['_valueString'] != null
+          ? Element.fromJson(
+              json['_valueString'] as Map<String, dynamic>,
+            )
+          : null,
+      valueBoolean: json['valueBoolean'] != null
+          ? FhirBoolean.fromJson(json['valueBoolean'])
+          : null,
+      valueBooleanElement: json['_valueBoolean'] != null
+          ? Element.fromJson(
+              json['_valueBoolean'] as Map<String, dynamic>,
+            )
+          : null,
+      valueInteger: json['valueInteger'] != null
+          ? FhirInteger.fromJson(json['valueInteger'])
+          : null,
+      valueIntegerElement: json['_valueInteger'] != null
+          ? Element.fromJson(
+              json['_valueInteger'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDecimal: json['valueDecimal'] != null
+          ? FhirDecimal.fromJson(json['valueDecimal'])
+          : null,
+      valueDecimalElement: json['_valueDecimal'] != null
+          ? Element.fromJson(
+              json['_valueDecimal'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [StructureMapParameter] from a [String] or [YamlMap] object
+  factory StructureMapParameter.fromYaml(dynamic yaml) => yaml is String
+      ? StructureMapParameter.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? StructureMapParameter.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'StructureMapParameter cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [StructureMapParameter] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory StructureMapParameter.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return StructureMapParameter.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'StructureMapParameter';
 
-  /// [valueId] /// Parameter value - variable or literal.
+  /// [valueId]
+  /// Parameter value - variable or literal.
   final FhirId? valueId;
+
+  /// Extensions for [valueId]
   final Element? valueIdElement;
 
-  /// [valueString] /// Parameter value - variable or literal.
+  /// [valueString]
+  /// Parameter value - variable or literal.
   final FhirString? valueString;
+
+  /// Extensions for [valueString]
   final Element? valueStringElement;
 
-  /// [valueBoolean] /// Parameter value - variable or literal.
+  /// [valueBoolean]
+  /// Parameter value - variable or literal.
   final FhirBoolean? valueBoolean;
+
+  /// Extensions for [valueBoolean]
   final Element? valueBooleanElement;
 
-  /// [valueInteger] /// Parameter value - variable or literal.
+  /// [valueInteger]
+  /// Parameter value - variable or literal.
   final FhirInteger? valueInteger;
+
+  /// Extensions for [valueInteger]
   final Element? valueIntegerElement;
 
-  /// [valueDecimal] /// Parameter value - variable or literal.
+  /// [valueDecimal]
+  /// Parameter value - variable or literal.
   final FhirDecimal? valueDecimal;
+
+  /// Extensions for [valueDecimal]
   final Element? valueDecimalElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (valueId?.value != null) {
       json['valueId'] = valueId!.toJson();
@@ -2833,52 +3615,6 @@ class StructureMapParameter extends BackboneElement {
     return json;
   }
 
-  factory StructureMapParameter.fromJson(Map<String, dynamic> json) {
-    return StructureMapParameter(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      valueId:
-          json['valueId'] != null ? FhirId.fromJson(json['valueId']) : null,
-      valueIdElement: json['_valueId'] != null
-          ? Element.fromJson(json['_valueId'] as Map<String, dynamic>)
-          : null,
-      valueString: json['valueString'] != null
-          ? FhirString.fromJson(json['valueString'])
-          : null,
-      valueStringElement: json['_valueString'] != null
-          ? Element.fromJson(json['_valueString'] as Map<String, dynamic>)
-          : null,
-      valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)
-          : null,
-      valueInteger: json['valueInteger'] != null
-          ? FhirInteger.fromJson(json['valueInteger'])
-          : null,
-      valueIntegerElement: json['_valueInteger'] != null
-          ? Element.fromJson(json['_valueInteger'] as Map<String, dynamic>)
-          : null,
-      valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal.fromJson(json['valueDecimal'])
-          : null,
-      valueDecimalElement: json['_valueDecimal'] != null
-          ? Element.fromJson(json['_valueDecimal'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   StructureMapParameter clone() => throw UnimplementedError();
   @override
@@ -2925,36 +3661,24 @@ class StructureMapParameter extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory StructureMapParameter.fromYaml(dynamic yaml) => yaml is String
-      ? StructureMapParameter.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? StructureMapParameter.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'StructureMapParameter cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory StructureMapParameter.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return StructureMapParameter.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [StructureMapDependent] /// Which other rules to apply in the context of this rule.
+/// [StructureMapDependent]
+/// Which other rules to apply in the context of this rule.
 class StructureMapDependent extends BackboneElement {
+  /// Primary constructor for [StructureMapDependent]
+
   StructureMapDependent({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.name,
+
+    /// Extensions for [name]
     this.nameElement,
     required this.variable,
+
+    /// Extensions for [variable]
     this.variableElement,
     super.userData,
     super.formatCommentsPre,
@@ -2964,30 +3688,102 @@ class StructureMapDependent extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory StructureMapDependent.fromJson(Map<String, dynamic> json) {
+    return StructureMapDependent(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      name: FhirId.fromJson(json['name']),
+      nameElement: json['_name'] != null
+          ? Element.fromJson(
+              json['_name'] as Map<String, dynamic>,
+            )
+          : null,
+      variable: (json['variable'] as List<dynamic>)
+          .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
+          .toList(),
+      variableElement: json['_variable'] != null
+          ? (json['_variable'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [StructureMapDependent] from a [String] or [YamlMap] object
+  factory StructureMapDependent.fromYaml(dynamic yaml) => yaml is String
+      ? StructureMapDependent.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? StructureMapDependent.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'StructureMapDependent cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [StructureMapDependent] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory StructureMapDependent.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return StructureMapDependent.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'StructureMapDependent';
 
-  /// [name] /// Name of a rule or group to apply.
+  /// [name]
+  /// Name of a rule or group to apply.
   final FhirId name;
+
+  /// Extensions for [name]
   final Element? nameElement;
 
-  /// [variable] /// Variable to pass to the rule or group.
+  /// [variable]
+  /// Variable to pass to the rule or group.
   final List<FhirString> variable;
+
+  /// Extensions for [variable]
   final List<Element>? variableElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
     if (nameElement != null) {
@@ -3001,36 +3797,6 @@ class StructureMapDependent extends BackboneElement {
     return json;
   }
 
-  factory StructureMapDependent.fromJson(Map<String, dynamic> json) {
-    return StructureMapDependent(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      name: FhirId.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
-          : null,
-      variable: (json['variable'] as List<dynamic>)
-          .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
-          .toList(),
-      variableElement: json['_variable'] != null
-          ? (json['_variable'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   StructureMapDependent clone() => throw UnimplementedError();
   @override
@@ -3064,24 +3830,5 @@ class StructureMapDependent extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory StructureMapDependent.fromYaml(dynamic yaml) => yaml is String
-      ? StructureMapDependent.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? StructureMapDependent.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'StructureMapDependent cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory StructureMapDependent.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return StructureMapDependent.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

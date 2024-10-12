@@ -1,17 +1,23 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [ResearchSubject] /// A physical entity which is the primary unit of operational and/or
+/// [ResearchSubject]
+/// A physical entity which is the primary unit of operational and/or
 /// administrative interest in a study.
 class ResearchSubject extends DomainResource {
+  /// Primary constructor for [ResearchSubject]
+
   ResearchSubject({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -19,13 +25,19 @@ class ResearchSubject extends DomainResource {
     super.modifierExtension,
     this.identifier,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     this.period,
     required this.study,
     required this.individual,
     this.assignedArm,
+
+    /// Extensions for [assignedArm]
     this.assignedArmElement,
     this.actualArm,
+
+    /// Extensions for [actualArm]
     this.actualArmElement,
     this.consent,
     super.userData,
@@ -34,42 +46,192 @@ class ResearchSubject extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.ResearchSubject);
+  }) : super(
+          resourceType: R4ResourceType.ResearchSubject,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory ResearchSubject.fromJson(Map<String, dynamic> json) {
+    return ResearchSubject(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      status: ResearchSubjectStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      period: json['period'] != null
+          ? Period.fromJson(
+              json['period'] as Map<String, dynamic>,
+            )
+          : null,
+      study: Reference.fromJson(
+        json['study'] as Map<String, dynamic>,
+      ),
+      individual: Reference.fromJson(
+        json['individual'] as Map<String, dynamic>,
+      ),
+      assignedArm: json['assignedArm'] != null
+          ? FhirString.fromJson(json['assignedArm'])
+          : null,
+      assignedArmElement: json['_assignedArm'] != null
+          ? Element.fromJson(
+              json['_assignedArm'] as Map<String, dynamic>,
+            )
+          : null,
+      actualArm: json['actualArm'] != null
+          ? FhirString.fromJson(json['actualArm'])
+          : null,
+      actualArmElement: json['_actualArm'] != null
+          ? Element.fromJson(
+              json['_actualArm'] as Map<String, dynamic>,
+            )
+          : null,
+      consent: json['consent'] != null
+          ? Reference.fromJson(
+              json['consent'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [ResearchSubject] from a [String] or [YamlMap] object
+  factory ResearchSubject.fromYaml(dynamic yaml) => yaml is String
+      ? ResearchSubject.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? ResearchSubject.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'ResearchSubject cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [ResearchSubject] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory ResearchSubject.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ResearchSubject.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'ResearchSubject';
 
-  /// [identifier] /// Identifiers assigned to this research subject for a study.
+  /// [identifier]
+  /// Identifiers assigned to this research subject for a study.
   final List<Identifier>? identifier;
 
-  /// [status] /// The current state of the subject.
+  /// [status]
+  /// The current state of the subject.
   final ResearchSubjectStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [period] /// The dates the subject began and ended their participation in the study.
+  /// [period]
+  /// The dates the subject began and ended their participation in the study.
   final Period? period;
 
-  /// [study] /// Reference to the study the subject is participating in.
+  /// [study]
+  /// Reference to the study the subject is participating in.
   final Reference study;
 
-  /// [individual] /// The record of the person or animal who is involved in the study.
+  /// [individual]
+  /// The record of the person or animal who is involved in the study.
   final Reference individual;
 
-  /// [assignedArm] /// The name of the arm in the study the subject is expected to follow as part
-  /// of this study.
+  /// [assignedArm]
+  /// The name of the arm in the study the subject is expected to follow as
+  /// part of this study.
   final FhirString? assignedArm;
+
+  /// Extensions for [assignedArm]
   final Element? assignedArmElement;
 
-  /// [actualArm] /// The name of the arm in the study the subject actually followed as part of
-  /// this study.
+  /// [actualArm]
+  /// The name of the arm in the study the subject actually followed as part
+  /// of this study.
   final FhirString? actualArm;
+
+  /// Extensions for [actualArm]
   final Element? actualArmElement;
 
-  /// [consent] /// A record of the patient's informed agreement to participate in the study.
+  /// [consent]
+  /// A record of the patient's informed agreement to participate in the
+  /// study.
   final Reference? consent;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -90,21 +252,19 @@ class ResearchSubject extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     json['status'] = status.toJson();
     if (period != null) {
@@ -130,78 +290,6 @@ class ResearchSubject extends DomainResource {
     return json;
   }
 
-  factory ResearchSubject.fromJson(Map<String, dynamic> json) {
-    return ResearchSubject(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      status: ResearchSubjectStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      period: json['period'] != null
-          ? Period.fromJson(json['period'] as Map<String, dynamic>)
-          : null,
-      study: Reference.fromJson(json['study'] as Map<String, dynamic>),
-      individual:
-          Reference.fromJson(json['individual'] as Map<String, dynamic>),
-      assignedArm: json['assignedArm'] != null
-          ? FhirString.fromJson(json['assignedArm'])
-          : null,
-      assignedArmElement: json['_assignedArm'] != null
-          ? Element.fromJson(json['_assignedArm'] as Map<String, dynamic>)
-          : null,
-      actualArm: json['actualArm'] != null
-          ? FhirString.fromJson(json['actualArm'])
-          : null,
-      actualArmElement: json['_actualArm'] != null
-          ? Element.fromJson(json['_actualArm'] as Map<String, dynamic>)
-          : null,
-      consent: json['consent'] != null
-          ? Reference.fromJson(json['consent'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   ResearchSubject clone() => throw UnimplementedError();
   @override
@@ -263,24 +351,5 @@ class ResearchSubject extends DomainResource {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory ResearchSubject.fromYaml(dynamic yaml) => yaml is String
-      ? ResearchSubject.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? ResearchSubject.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'ResearchSubject cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory ResearchSubject.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return ResearchSubject.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

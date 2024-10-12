@@ -1,17 +1,23 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [ServiceRequest] /// A record of a request for service such as diagnostic investigations,
+/// [ServiceRequest]
+/// A record of a request for service such as diagnostic investigations,
 /// treatments, or operations to be performed.
 class ServiceRequest extends DomainResource {
+  /// Primary constructor for [ServiceRequest]
+
   ServiceRequest({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -19,20 +25,32 @@ class ServiceRequest extends DomainResource {
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
+
+    /// Extensions for [instantiatesCanonical]
     this.instantiatesCanonicalElement,
     this.instantiatesUri,
+
+    /// Extensions for [instantiatesUri]
     this.instantiatesUriElement,
     this.basedOn,
     this.replaces,
     this.requisition,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     required this.intent,
+
+    /// Extensions for [intent]
     this.intentElement,
     this.category,
     this.priority,
+
+    /// Extensions for [priority]
     this.priorityElement,
     this.doNotPerform,
+
+    /// Extensions for [doNotPerform]
     this.doNotPerformElement,
     this.code,
     this.orderDetail,
@@ -42,13 +60,19 @@ class ServiceRequest extends DomainResource {
     required this.subject,
     this.encounter,
     this.occurrenceDateTime,
+
+    /// Extensions for [occurrenceDateTime]
     this.occurrenceDateTimeElement,
     this.occurrencePeriod,
     this.occurrenceTiming,
     this.asNeededBoolean,
+
+    /// Extensions for [asNeededBoolean]
     this.asNeededBooleanElement,
     this.asNeededCodeableConcept,
     this.authoredOn,
+
+    /// Extensions for [authoredOn]
     this.authoredOnElement,
     this.requester,
     this.performerType,
@@ -63,6 +87,8 @@ class ServiceRequest extends DomainResource {
     this.bodySite,
     this.note,
     this.patientInstruction,
+
+    /// Extensions for [patientInstruction]
     this.patientInstructionElement,
     this.relevantHistory,
     super.userData,
@@ -71,183 +97,622 @@ class ServiceRequest extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.ServiceRequest);
+  }) : super(
+          resourceType: R4ResourceType.ServiceRequest,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory ServiceRequest.fromJson(Map<String, dynamic> json) {
+    return ServiceRequest(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      instantiatesCanonical: json['instantiatesCanonical'] != null
+          ? (json['instantiatesCanonical'] as List<dynamic>)
+              .map<FhirCanonical>(
+                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
+          ? (json['_instantiatesCanonical'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      instantiatesUri: json['instantiatesUri'] != null
+          ? (json['instantiatesUri'] as List<dynamic>)
+              .map<FhirUri>(
+                (dynamic v) => FhirUri.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      instantiatesUriElement: json['_instantiatesUri'] != null
+          ? (json['_instantiatesUri'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      basedOn: json['basedOn'] != null
+          ? (json['basedOn'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      replaces: json['replaces'] != null
+          ? (json['replaces'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      requisition: json['requisition'] != null
+          ? Identifier.fromJson(
+              json['requisition'] as Map<String, dynamic>,
+            )
+          : null,
+      status: RequestStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      intent: RequestIntent.fromJson(json['intent']),
+      intentElement: json['_intent'] != null
+          ? Element.fromJson(
+              json['_intent'] as Map<String, dynamic>,
+            )
+          : null,
+      category: json['category'] != null
+          ? (json['category'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      priority: json['priority'] != null
+          ? RequestPriority.fromJson(json['priority'])
+          : null,
+      priorityElement: json['_priority'] != null
+          ? Element.fromJson(
+              json['_priority'] as Map<String, dynamic>,
+            )
+          : null,
+      doNotPerform: json['doNotPerform'] != null
+          ? FhirBoolean.fromJson(json['doNotPerform'])
+          : null,
+      doNotPerformElement: json['_doNotPerform'] != null
+          ? Element.fromJson(
+              json['_doNotPerform'] as Map<String, dynamic>,
+            )
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(
+              json['code'] as Map<String, dynamic>,
+            )
+          : null,
+      orderDetail: json['orderDetail'] != null
+          ? (json['orderDetail'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      quantityQuantity: json['quantityQuantity'] != null
+          ? Quantity.fromJson(
+              json['quantityQuantity'] as Map<String, dynamic>,
+            )
+          : null,
+      quantityRatio: json['quantityRatio'] != null
+          ? Ratio.fromJson(
+              json['quantityRatio'] as Map<String, dynamic>,
+            )
+          : null,
+      quantityRange: json['quantityRange'] != null
+          ? Range.fromJson(
+              json['quantityRange'] as Map<String, dynamic>,
+            )
+          : null,
+      subject: Reference.fromJson(
+        json['subject'] as Map<String, dynamic>,
+      ),
+      encounter: json['encounter'] != null
+          ? Reference.fromJson(
+              json['encounter'] as Map<String, dynamic>,
+            )
+          : null,
+      occurrenceDateTime: json['occurrenceDateTime'] != null
+          ? FhirDateTime.fromJson(json['occurrenceDateTime'])
+          : null,
+      occurrenceDateTimeElement: json['_occurrenceDateTime'] != null
+          ? Element.fromJson(
+              json['_occurrenceDateTime'] as Map<String, dynamic>,
+            )
+          : null,
+      occurrencePeriod: json['occurrencePeriod'] != null
+          ? Period.fromJson(
+              json['occurrencePeriod'] as Map<String, dynamic>,
+            )
+          : null,
+      occurrenceTiming: json['occurrenceTiming'] != null
+          ? Timing.fromJson(
+              json['occurrenceTiming'] as Map<String, dynamic>,
+            )
+          : null,
+      asNeededBoolean: json['asNeededBoolean'] != null
+          ? FhirBoolean.fromJson(json['asNeededBoolean'])
+          : null,
+      asNeededBooleanElement: json['_asNeededBoolean'] != null
+          ? Element.fromJson(
+              json['_asNeededBoolean'] as Map<String, dynamic>,
+            )
+          : null,
+      asNeededCodeableConcept: json['asNeededCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['asNeededCodeableConcept'] as Map<String, dynamic>,
+            )
+          : null,
+      authoredOn: json['authoredOn'] != null
+          ? FhirDateTime.fromJson(json['authoredOn'])
+          : null,
+      authoredOnElement: json['_authoredOn'] != null
+          ? Element.fromJson(
+              json['_authoredOn'] as Map<String, dynamic>,
+            )
+          : null,
+      requester: json['requester'] != null
+          ? Reference.fromJson(
+              json['requester'] as Map<String, dynamic>,
+            )
+          : null,
+      performerType: json['performerType'] != null
+          ? CodeableConcept.fromJson(
+              json['performerType'] as Map<String, dynamic>,
+            )
+          : null,
+      performer: json['performer'] != null
+          ? (json['performer'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      locationCode: json['locationCode'] != null
+          ? (json['locationCode'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      locationReference: json['locationReference'] != null
+          ? (json['locationReference'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      reasonCode: json['reasonCode'] != null
+          ? (json['reasonCode'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      reasonReference: json['reasonReference'] != null
+          ? (json['reasonReference'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      insurance: json['insurance'] != null
+          ? (json['insurance'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      supportingInfo: json['supportingInfo'] != null
+          ? (json['supportingInfo'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      specimen: json['specimen'] != null
+          ? (json['specimen'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      bodySite: json['bodySite'] != null
+          ? (json['bodySite'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                (dynamic v) => Annotation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      patientInstruction: json['patientInstruction'] != null
+          ? FhirString.fromJson(json['patientInstruction'])
+          : null,
+      patientInstructionElement: json['_patientInstruction'] != null
+          ? Element.fromJson(
+              json['_patientInstruction'] as Map<String, dynamic>,
+            )
+          : null,
+      relevantHistory: json['relevantHistory'] != null
+          ? (json['relevantHistory'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [ServiceRequest] from a [String] or [YamlMap] object
+  factory ServiceRequest.fromYaml(dynamic yaml) => yaml is String
+      ? ServiceRequest.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? ServiceRequest.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'ServiceRequest cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [ServiceRequest] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory ServiceRequest.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ServiceRequest.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'ServiceRequest';
 
-  /// [identifier] /// Identifiers assigned to this order instance by the orderer and/or the
+  /// [identifier]
+  /// Identifiers assigned to this order instance by the orderer and/or the
   /// receiver and/or order fulfiller.
   final List<Identifier>? identifier;
 
-  /// [instantiatesCanonical] /// The URL pointing to a FHIR-defined protocol, guideline, orderset or other
-  /// definition that is adhered to in whole or in part by this ServiceRequest.
+  /// [instantiatesCanonical]
+  /// The URL pointing to a FHIR-defined protocol, guideline, orderset or
+  /// other definition that is adhered to in whole or in part by this
+  /// ServiceRequest.
   final List<FhirCanonical>? instantiatesCanonical;
+
+  /// Extensions for [instantiatesCanonical]
   final List<Element>? instantiatesCanonicalElement;
 
-  /// [instantiatesUri] /// The URL pointing to an externally maintained protocol, guideline, orderset
-  /// or other definition that is adhered to in whole or in part by this
-  /// ServiceRequest.
+  /// [instantiatesUri]
+  /// The URL pointing to an externally maintained protocol, guideline,
+  /// orderset or other definition that is adhered to in whole or in part by
+  /// this ServiceRequest.
   final List<FhirUri>? instantiatesUri;
+
+  /// Extensions for [instantiatesUri]
   final List<Element>? instantiatesUriElement;
 
-  /// [basedOn] /// Plan/proposal/order fulfilled by this request.
+  /// [basedOn]
+  /// Plan/proposal/order fulfilled by this request.
   final List<Reference>? basedOn;
 
-  /// [replaces] /// The request takes the place of the referenced completed or terminated
+  /// [replaces]
+  /// The request takes the place of the referenced completed or terminated
   /// request(s).
   final List<Reference>? replaces;
 
-  /// [requisition] /// A shared identifier common to all service requests that were authorized
-  /// more or less simultaneously by a single author, representing the composite
-  /// or group identifier.
+  /// [requisition]
+  /// A shared identifier common to all service requests that were authorized
+  /// more or less simultaneously by a single author, representing the
+  /// composite or group identifier.
   final Identifier? requisition;
 
-  /// [status] /// The status of the order.
+  /// [status]
+  /// The status of the order.
   final RequestStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [intent] /// Whether the request is a proposal, plan, an original order or a reflex
+  /// [intent]
+  /// Whether the request is a proposal, plan, an original order or a reflex
   /// order.
   final RequestIntent intent;
+
+  /// Extensions for [intent]
   final Element? intentElement;
 
-  /// [category] /// A code that classifies the service for searching, sorting and display
+  /// [category]
+  /// A code that classifies the service for searching, sorting and display
   /// purposes (e.g. "Surgical Procedure").
   final List<CodeableConcept>? category;
 
-  /// [priority] /// Indicates how quickly the ServiceRequest should be addressed with respect
-  /// to other requests.
+  /// [priority]
+  /// Indicates how quickly the ServiceRequest should be addressed with
+  /// respect to other requests.
   final RequestPriority? priority;
+
+  /// Extensions for [priority]
   final Element? priorityElement;
 
-  /// [doNotPerform] /// Set this to true if the record is saying that the service/procedure should
-  /// NOT be performed.
+  /// [doNotPerform]
+  /// Set this to true if the record is saying that the service/procedure
+  /// should NOT be performed.
   final FhirBoolean? doNotPerform;
+
+  /// Extensions for [doNotPerform]
   final Element? doNotPerformElement;
 
-  /// [code] /// A code that identifies a particular service (i.e., procedure, diagnostic
-  /// investigation, or panel of investigations) that have been requested.
+  /// [code]
+  /// A code that identifies a particular service (i.e., procedure,
+  /// diagnostic investigation, or panel of investigations) that have been
+  /// requested.
   final CodeableConcept? code;
 
-  /// [orderDetail] /// Additional details and instructions about the how the services are to be
-  /// delivered. For example, and order for a urinary catheter may have an order
-  /// detail for an external or indwelling catheter, or an order for a bandage
-  /// may require additional instructions specifying how the bandage should be
-  /// applied.
+  /// [orderDetail]
+  /// Additional details and instructions about the how the services are to
+  /// be delivered. For example, and order for a urinary catheter may have an
+  /// order detail for an external or indwelling catheter, or an order for a
+  /// bandage may require additional instructions specifying how the bandage
+  /// should be applied.
   final List<CodeableConcept>? orderDetail;
 
-  /// [quantityQuantity] /// An amount of service being requested which can be a quantity ( for example
-  /// $1,500 home modification), a ratio ( for example, 20 half day visits per
-  /// month), or a range (2.0 to 1.8 Gy per fraction).
+  /// [quantityQuantity]
+  /// An amount of service being requested which can be a quantity ( for
+  /// example $1,500 home modification), a ratio ( for example, 20 half day
+  /// visits per month), or a range (2.0 to 1.8 Gy per fraction).
   final Quantity? quantityQuantity;
 
-  /// [quantityRatio] /// An amount of service being requested which can be a quantity ( for example
-  /// $1,500 home modification), a ratio ( for example, 20 half day visits per
-  /// month), or a range (2.0 to 1.8 Gy per fraction).
+  /// [quantityRatio]
+  /// An amount of service being requested which can be a quantity ( for
+  /// example $1,500 home modification), a ratio ( for example, 20 half day
+  /// visits per month), or a range (2.0 to 1.8 Gy per fraction).
   final Ratio? quantityRatio;
 
-  /// [quantityRange] /// An amount of service being requested which can be a quantity ( for example
-  /// $1,500 home modification), a ratio ( for example, 20 half day visits per
-  /// month), or a range (2.0 to 1.8 Gy per fraction).
+  /// [quantityRange]
+  /// An amount of service being requested which can be a quantity ( for
+  /// example $1,500 home modification), a ratio ( for example, 20 half day
+  /// visits per month), or a range (2.0 to 1.8 Gy per fraction).
   final Range? quantityRange;
 
-  /// [subject] /// On whom or what the service is to be performed. This is usually a human
-  /// patient, but can also be requested on animals, groups of humans or animals,
-  /// devices such as dialysis machines, or even locations (typically for
-  /// environmental scans).
+  /// [subject]
+  /// On whom or what the service is to be performed. This is usually a human
+  /// patient, but can also be requested on animals, groups of humans or
+  /// animals, devices such as dialysis machines, or even locations
+  /// (typically for environmental scans).
   final Reference subject;
 
-  /// [encounter] /// An encounter that provides additional information about the healthcare
+  /// [encounter]
+  /// An encounter that provides additional information about the healthcare
   /// context in which this request is made.
   final Reference? encounter;
 
-  /// [occurrenceDateTime] /// The date/time at which the requested service should occur.
+  /// [occurrenceDateTime]
+  /// The date/time at which the requested service should occur.
   final FhirDateTime? occurrenceDateTime;
+
+  /// Extensions for [occurrenceDateTime]
   final Element? occurrenceDateTimeElement;
 
-  /// [occurrencePeriod] /// The date/time at which the requested service should occur.
+  /// [occurrencePeriod]
+  /// The date/time at which the requested service should occur.
   final Period? occurrencePeriod;
 
-  /// [occurrenceTiming] /// The date/time at which the requested service should occur.
+  /// [occurrenceTiming]
+  /// The date/time at which the requested service should occur.
   final Timing? occurrenceTiming;
 
-  /// [asNeededBoolean] /// If a CodeableConcept is present, it indicates the pre-condition for
+  /// [asNeededBoolean]
+  /// If a CodeableConcept is present, it indicates the pre-condition for
   /// performing the service. For example "pain", "on flare-up", etc.
   final FhirBoolean? asNeededBoolean;
+
+  /// Extensions for [asNeededBoolean]
   final Element? asNeededBooleanElement;
 
-  /// [asNeededCodeableConcept] /// If a CodeableConcept is present, it indicates the pre-condition for
+  /// [asNeededCodeableConcept]
+  /// If a CodeableConcept is present, it indicates the pre-condition for
   /// performing the service. For example "pain", "on flare-up", etc.
   final CodeableConcept? asNeededCodeableConcept;
 
-  /// [authoredOn] /// When the request transitioned to being actionable.
+  /// [authoredOn]
+  /// When the request transitioned to being actionable.
   final FhirDateTime? authoredOn;
+
+  /// Extensions for [authoredOn]
   final Element? authoredOnElement;
 
-  /// [requester] /// The individual who initiated the request and has responsibility for its
+  /// [requester]
+  /// The individual who initiated the request and has responsibility for its
   /// activation.
   final Reference? requester;
 
-  /// [performerType] /// Desired type of performer for doing the requested service.
+  /// [performerType]
+  /// Desired type of performer for doing the requested service.
   final CodeableConcept? performerType;
 
-  /// [performer] /// The desired performer for doing the requested service. For example, the
+  /// [performer]
+  /// The desired performer for doing the requested service. For example, the
   /// surgeon, dermatopathologist, endoscopist, etc.
   final List<Reference>? performer;
 
-  /// [locationCode] /// The preferred location(s) where the procedure should actually happen in
+  /// [locationCode]
+  /// The preferred location(s) where the procedure should actually happen in
   /// coded or free text form. E.g. at home or nursing day care center.
   final List<CodeableConcept>? locationCode;
 
-  /// [locationReference] /// A reference to the the preferred location(s) where the procedure should
+  /// [locationReference]
+  /// A reference to the the preferred location(s) where the procedure should
   /// actually happen. E.g. at home or nursing day care center.
   final List<Reference>? locationReference;
 
-  /// [reasonCode] /// An explanation or justification for why this service is being requested in
-  /// coded or textual form. This is often for billing purposes. May relate to
-  /// the resources referred to in `supportingInfo`.
+  /// [reasonCode]
+  /// An explanation or justification for why this service is being requested
+  /// in coded or textual form. This is often for billing purposes. May
+  /// relate to the resources referred to in `supportingInfo`.
   final List<CodeableConcept>? reasonCode;
 
-  /// [reasonReference] /// Indicates another resource that provides a justification for why this
+  /// [reasonReference]
+  /// Indicates another resource that provides a justification for why this
   /// service is being requested. May relate to the resources referred to in
   /// `supportingInfo`.
   final List<Reference>? reasonReference;
 
-  /// [insurance] /// Insurance plans, coverage extensions, pre-authorizations and/or
-  /// pre-determinations that may be needed for delivering the requested service.
+  /// [insurance]
+  /// Insurance plans, coverage extensions, pre-authorizations and/or
+  /// pre-determinations that may be needed for delivering the requested
+  /// service.
   final List<Reference>? insurance;
 
-  /// [supportingInfo] /// Additional clinical information about the patient or specimen that may
-  /// influence the services or their interpretations. This information includes
-  /// diagnosis, clinical findings and other observations. In laboratory ordering
-  /// these are typically referred to as "ask at order entry questions (AOEs)".
-  /// This includes observations explicitly requested by the producer (filler) to
-  /// provide context or supporting information needed to complete the order. For
-  /// example, reporting the amount of inspired oxygen for blood gas
-  /// measurements.
+  /// [supportingInfo]
+  /// Additional clinical information about the patient or specimen that may
+  /// influence the services or their interpretations. This information
+  /// includes diagnosis, clinical findings and other observations. In
+  /// laboratory ordering these are typically referred to as "ask at order
+  /// entry questions (AOEs)". This includes observations explicitly
+  /// requested by the producer (filler) to provide context or supporting
+  /// information needed to complete the order. For example, reporting the
+  /// amount of inspired oxygen for blood gas measurements.
   final List<Reference>? supportingInfo;
 
-  /// [specimen] /// One or more specimens that the laboratory procedure will use.
+  /// [specimen]
+  /// One or more specimens that the laboratory procedure will use.
   final List<Reference>? specimen;
 
-  /// [bodySite] /// Anatomic location where the procedure should be performed. This is the
+  /// [bodySite]
+  /// Anatomic location where the procedure should be performed. This is the
   /// target site.
   final List<CodeableConcept>? bodySite;
 
-  /// [note] /// Any other notes and comments made about the service request. For example,
-  /// internal billing notes.
+  /// [note]
+  /// Any other notes and comments made about the service request. For
+  /// example, internal billing notes.
   final List<Annotation>? note;
 
-  /// [patientInstruction] /// Instructions in terms that are understood by the patient or consumer.
+  /// [patientInstruction]
+  /// Instructions in terms that are understood by the patient or consumer.
   final FhirString? patientInstruction;
+
+  /// Extensions for [patientInstruction]
   final Element? patientInstructionElement;
 
-  /// [relevantHistory] /// Key events in the history of the request.
+  /// [relevantHistory]
+  /// Key events in the history of the request.
   final List<Reference>? relevantHistory;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -268,21 +733,19 @@ class ServiceRequest extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
       json['instantiatesCanonical'] =
@@ -302,12 +765,10 @@ class ServiceRequest extends DomainResource {
           instantiatesUriElement!.map((Element v) => v.toJson()).toList();
     }
     if (basedOn != null && basedOn!.isNotEmpty) {
-      json['basedOn'] =
-          basedOn!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['basedOn'] = basedOn!.map((Reference v) => v.toJson()).toList();
     }
     if (replaces != null && replaces!.isNotEmpty) {
-      json['replaces'] =
-          replaces!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['replaces'] = replaces!.map((Reference v) => v.toJson()).toList();
     }
     if (requisition != null) {
       json['requisition'] = requisition!.toJson();
@@ -316,7 +777,7 @@ class ServiceRequest extends DomainResource {
     json['intent'] = intent.toJson();
     if (category != null && category!.isNotEmpty) {
       json['category'] =
-          category!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          category!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (priority != null) {
       json['priority'] = priority!.toJson();
@@ -332,7 +793,7 @@ class ServiceRequest extends DomainResource {
     }
     if (orderDetail != null && orderDetail!.isNotEmpty) {
       json['orderDetail'] =
-          orderDetail!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          orderDetail!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (quantityQuantity != null) {
       json['quantityQuantity'] = quantityQuantity!.toJson();
@@ -381,44 +842,40 @@ class ServiceRequest extends DomainResource {
       json['performerType'] = performerType!.toJson();
     }
     if (performer != null && performer!.isNotEmpty) {
-      json['performer'] =
-          performer!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['performer'] = performer!.map((Reference v) => v.toJson()).toList();
     }
     if (locationCode != null && locationCode!.isNotEmpty) {
-      json['locationCode'] = locationCode!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['locationCode'] =
+          locationCode!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (locationReference != null && locationReference!.isNotEmpty) {
       json['locationReference'] =
-          locationReference!.map<dynamic>((Reference v) => v.toJson()).toList();
+          locationReference!.map((Reference v) => v.toJson()).toList();
     }
     if (reasonCode != null && reasonCode!.isNotEmpty) {
       json['reasonCode'] =
-          reasonCode!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          reasonCode!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (reasonReference != null && reasonReference!.isNotEmpty) {
       json['reasonReference'] =
-          reasonReference!.map<dynamic>((Reference v) => v.toJson()).toList();
+          reasonReference!.map((Reference v) => v.toJson()).toList();
     }
     if (insurance != null && insurance!.isNotEmpty) {
-      json['insurance'] =
-          insurance!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['insurance'] = insurance!.map((Reference v) => v.toJson()).toList();
     }
     if (supportingInfo != null && supportingInfo!.isNotEmpty) {
       json['supportingInfo'] =
-          supportingInfo!.map<dynamic>((Reference v) => v.toJson()).toList();
+          supportingInfo!.map((Reference v) => v.toJson()).toList();
     }
     if (specimen != null && specimen!.isNotEmpty) {
-      json['specimen'] =
-          specimen!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['specimen'] = specimen!.map((Reference v) => v.toJson()).toList();
     }
     if (bodySite != null && bodySite!.isNotEmpty) {
       json['bodySite'] =
-          bodySite!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          bodySite!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (note != null && note!.isNotEmpty) {
-      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+      json['note'] = note!.map((Annotation v) => v.toJson()).toList();
     }
     if (patientInstruction?.value != null) {
       json['patientInstruction'] = patientInstruction!.toJson();
@@ -428,253 +885,11 @@ class ServiceRequest extends DomainResource {
     }
     if (relevantHistory != null && relevantHistory!.isNotEmpty) {
       json['relevantHistory'] =
-          relevantHistory!.map<dynamic>((Reference v) => v.toJson()).toList();
+          relevantHistory!.map((Reference v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory ServiceRequest.fromJson(Map<String, dynamic> json) {
-    return ServiceRequest(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      instantiatesCanonical: json['instantiatesCanonical'] != null
-          ? (json['instantiatesCanonical'] as List<dynamic>)
-              .map<FhirCanonical>(
-                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
-              .toList()
-          : null,
-      instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
-          ? (json['_instantiatesCanonical'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      instantiatesUri: json['instantiatesUri'] != null
-          ? (json['instantiatesUri'] as List<dynamic>)
-              .map<FhirUri>((dynamic v) => FhirUri.fromJson(v as dynamic))
-              .toList()
-          : null,
-      instantiatesUriElement: json['_instantiatesUri'] != null
-          ? (json['_instantiatesUri'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      basedOn: json['basedOn'] != null
-          ? (json['basedOn'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      replaces: json['replaces'] != null
-          ? (json['replaces'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      requisition: json['requisition'] != null
-          ? Identifier.fromJson(json['requisition'] as Map<String, dynamic>)
-          : null,
-      status: RequestStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      intent: RequestIntent.fromJson(json['intent']),
-      intentElement: json['_intent'] != null
-          ? Element.fromJson(json['_intent'] as Map<String, dynamic>)
-          : null,
-      category: json['category'] != null
-          ? (json['category'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      priority: json['priority'] != null
-          ? RequestPriority.fromJson(json['priority'])
-          : null,
-      priorityElement: json['_priority'] != null
-          ? Element.fromJson(json['_priority'] as Map<String, dynamic>)
-          : null,
-      doNotPerform: json['doNotPerform'] != null
-          ? FhirBoolean.fromJson(json['doNotPerform'])
-          : null,
-      doNotPerformElement: json['_doNotPerform'] != null
-          ? Element.fromJson(json['_doNotPerform'] as Map<String, dynamic>)
-          : null,
-      code: json['code'] != null
-          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
-          : null,
-      orderDetail: json['orderDetail'] != null
-          ? (json['orderDetail'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      quantityQuantity: json['quantityQuantity'] != null
-          ? Quantity.fromJson(json['quantityQuantity'] as Map<String, dynamic>)
-          : null,
-      quantityRatio: json['quantityRatio'] != null
-          ? Ratio.fromJson(json['quantityRatio'] as Map<String, dynamic>)
-          : null,
-      quantityRange: json['quantityRange'] != null
-          ? Range.fromJson(json['quantityRange'] as Map<String, dynamic>)
-          : null,
-      subject: Reference.fromJson(json['subject'] as Map<String, dynamic>),
-      encounter: json['encounter'] != null
-          ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
-          : null,
-      occurrenceDateTime: json['occurrenceDateTime'] != null
-          ? FhirDateTime.fromJson(json['occurrenceDateTime'])
-          : null,
-      occurrenceDateTimeElement: json['_occurrenceDateTime'] != null
-          ? Element.fromJson(
-              json['_occurrenceDateTime'] as Map<String, dynamic>)
-          : null,
-      occurrencePeriod: json['occurrencePeriod'] != null
-          ? Period.fromJson(json['occurrencePeriod'] as Map<String, dynamic>)
-          : null,
-      occurrenceTiming: json['occurrenceTiming'] != null
-          ? Timing.fromJson(json['occurrenceTiming'] as Map<String, dynamic>)
-          : null,
-      asNeededBoolean: json['asNeededBoolean'] != null
-          ? FhirBoolean.fromJson(json['asNeededBoolean'])
-          : null,
-      asNeededBooleanElement: json['_asNeededBoolean'] != null
-          ? Element.fromJson(json['_asNeededBoolean'] as Map<String, dynamic>)
-          : null,
-      asNeededCodeableConcept: json['asNeededCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['asNeededCodeableConcept'] as Map<String, dynamic>)
-          : null,
-      authoredOn: json['authoredOn'] != null
-          ? FhirDateTime.fromJson(json['authoredOn'])
-          : null,
-      authoredOnElement: json['_authoredOn'] != null
-          ? Element.fromJson(json['_authoredOn'] as Map<String, dynamic>)
-          : null,
-      requester: json['requester'] != null
-          ? Reference.fromJson(json['requester'] as Map<String, dynamic>)
-          : null,
-      performerType: json['performerType'] != null
-          ? CodeableConcept.fromJson(
-              json['performerType'] as Map<String, dynamic>)
-          : null,
-      performer: json['performer'] != null
-          ? (json['performer'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      locationCode: json['locationCode'] != null
-          ? (json['locationCode'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      locationReference: json['locationReference'] != null
-          ? (json['locationReference'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      reasonCode: json['reasonCode'] != null
-          ? (json['reasonCode'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      reasonReference: json['reasonReference'] != null
-          ? (json['reasonReference'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      insurance: json['insurance'] != null
-          ? (json['insurance'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      supportingInfo: json['supportingInfo'] != null
-          ? (json['supportingInfo'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      specimen: json['specimen'] != null
-          ? (json['specimen'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      bodySite: json['bodySite'] != null
-          ? (json['bodySite'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      patientInstruction: json['patientInstruction'] != null
-          ? FhirString.fromJson(json['patientInstruction'])
-          : null,
-      patientInstructionElement: json['_patientInstruction'] != null
-          ? Element.fromJson(
-              json['_patientInstruction'] as Map<String, dynamic>)
-          : null,
-      relevantHistory: json['relevantHistory'] != null
-          ? (json['relevantHistory'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   ServiceRequest clone() => throw UnimplementedError();
   @override
@@ -817,24 +1032,5 @@ class ServiceRequest extends DomainResource {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory ServiceRequest.fromYaml(dynamic yaml) => yaml is String
-      ? ServiceRequest.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? ServiceRequest.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'ServiceRequest cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory ServiceRequest.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return ServiceRequest.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

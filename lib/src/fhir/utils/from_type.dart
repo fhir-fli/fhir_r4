@@ -1,5 +1,6 @@
-import '../../../fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart';
 
+/// this allows for the conversion of a dynamic value to a FhirBase object
 FhirBase? fromType(dynamic value, String type) {
   switch (type) {
     case 'Element':

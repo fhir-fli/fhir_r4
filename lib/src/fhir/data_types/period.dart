@@ -1,16 +1,22 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [Period] /// A time period defined by a start and end date and optionally time.
+/// [Period]
+/// A time period defined by a start and end date and optionally time.
 class Period extends DataType {
+  /// Primary constructor for [Period]
+
   Period({
     super.id,
     super.extension_,
     this.start,
+
+    /// Extensions for [start]
     this.startElement,
     this.end,
+
+    /// Extensions for [end]
     this.endElement,
     super.userData,
     super.formatCommentsPre,
@@ -20,28 +26,88 @@ class Period extends DataType {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory Period.fromJson(Map<String, dynamic> json) {
+    return Period(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      start:
+          json['start'] != null ? FhirDateTime.fromJson(json['start']) : null,
+      startElement: json['_start'] != null
+          ? Element.fromJson(
+              json['_start'] as Map<String, dynamic>,
+            )
+          : null,
+      end: json['end'] != null ? FhirDateTime.fromJson(json['end']) : null,
+      endElement: json['_end'] != null
+          ? Element.fromJson(
+              json['_end'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [Period] from a [String] or [YamlMap] object
+  factory Period.fromYaml(dynamic yaml) => yaml is String
+      ? Period.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? Period.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('Period cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [Period] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory Period.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Period.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'Period';
 
-  /// [start] /// The start of the period. The boundary is inclusive.
+  /// [start]
+  /// The start of the period. The boundary is inclusive.
   final FhirDateTime? start;
+
+  /// Extensions for [start]
   final Element? startElement;
 
-  /// [end] /// The end of the period. If the end of the period is missing, it means no end
-  /// was known or planned at the time the instance was created. The start may be
-  /// in the past, and the end date in the future, which means that period is
-  /// expected/planned to end at that time.
+  /// [end]
+  /// The end of the period. If the end of the period is missing, it means no
+  /// end was known or planned at the time the instance was created. The
+  /// start may be in the past, and the end date in the future, which means
+  /// that period is expected/planned to end at that time.
   final FhirDateTime? end;
+
+  /// Extensions for [end]
   final Element? endElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (start?.value != null) {
       json['start'] = start!.toJson();
@@ -58,26 +124,6 @@ class Period extends DataType {
     return json;
   }
 
-  factory Period.fromJson(Map<String, dynamic> json) {
-    return Period(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      start:
-          json['start'] != null ? FhirDateTime.fromJson(json['start']) : null,
-      startElement: json['_start'] != null
-          ? Element.fromJson(json['_start'] as Map<String, dynamic>)
-          : null,
-      end: json['end'] != null ? FhirDateTime.fromJson(json['end']) : null,
-      endElement: json['_end'] != null
-          ? Element.fromJson(json['_end'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   Period clone() => throw UnimplementedError();
   @override
@@ -109,24 +155,5 @@ class Period extends DataType {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory Period.fromYaml(dynamic yaml) => yaml is String
-      ? Period.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? Period.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'Period cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory Period.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return Period.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

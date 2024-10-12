@@ -1,12 +1,14 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [ProdCharacteristic] /// The marketing status describes the date when a medicinal product is
+/// [ProdCharacteristic]
+/// The marketing status describes the date when a medicinal product is
 /// actually put on the market or the date as of which it is no longer
 /// available.
 class ProdCharacteristic extends BackboneType {
+  /// Primary constructor for [ProdCharacteristic]
+
   ProdCharacteristic({
     super.id,
     super.extension_,
@@ -18,10 +20,16 @@ class ProdCharacteristic extends BackboneType {
     this.nominalVolume,
     this.externalDiameter,
     this.shape,
+
+    /// Extensions for [shape]
     this.shapeElement,
     this.color,
+
+    /// Extensions for [color]
     this.colorElement,
     this.imprint,
+
+    /// Extensions for [imprint]
     this.imprintElement,
     this.image,
     this.scoring,
@@ -33,80 +41,228 @@ class ProdCharacteristic extends BackboneType {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory ProdCharacteristic.fromJson(Map<String, dynamic> json) {
+    return ProdCharacteristic(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      height: json['height'] != null
+          ? Quantity.fromJson(
+              json['height'] as Map<String, dynamic>,
+            )
+          : null,
+      width: json['width'] != null
+          ? Quantity.fromJson(
+              json['width'] as Map<String, dynamic>,
+            )
+          : null,
+      depth: json['depth'] != null
+          ? Quantity.fromJson(
+              json['depth'] as Map<String, dynamic>,
+            )
+          : null,
+      weight: json['weight'] != null
+          ? Quantity.fromJson(
+              json['weight'] as Map<String, dynamic>,
+            )
+          : null,
+      nominalVolume: json['nominalVolume'] != null
+          ? Quantity.fromJson(
+              json['nominalVolume'] as Map<String, dynamic>,
+            )
+          : null,
+      externalDiameter: json['externalDiameter'] != null
+          ? Quantity.fromJson(
+              json['externalDiameter'] as Map<String, dynamic>,
+            )
+          : null,
+      shape: json['shape'] != null ? FhirString.fromJson(json['shape']) : null,
+      shapeElement: json['_shape'] != null
+          ? Element.fromJson(
+              json['_shape'] as Map<String, dynamic>,
+            )
+          : null,
+      color: json['color'] != null
+          ? (json['color'] as List<dynamic>)
+              .map<FhirString>(
+                (dynamic v) => FhirString.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      colorElement: json['_color'] != null
+          ? (json['_color'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      imprint: json['imprint'] != null
+          ? (json['imprint'] as List<dynamic>)
+              .map<FhirString>(
+                (dynamic v) => FhirString.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      imprintElement: json['_imprint'] != null
+          ? (json['_imprint'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      image: json['image'] != null
+          ? (json['image'] as List<dynamic>)
+              .map<Attachment>(
+                (dynamic v) => Attachment.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      scoring: json['scoring'] != null
+          ? CodeableConcept.fromJson(
+              json['scoring'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [ProdCharacteristic] from a [String] or [YamlMap] object
+  factory ProdCharacteristic.fromYaml(dynamic yaml) => yaml is String
+      ? ProdCharacteristic.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? ProdCharacteristic.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'ProdCharacteristic cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [ProdCharacteristic] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory ProdCharacteristic.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ProdCharacteristic.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'ProdCharacteristic';
 
-  /// [height] /// Where applicable, the height can be specified using a numerical value and
-  /// its unit of measurement The unit of measurement shall be specified in
-  /// accordance with ISO 11240 and the resulting terminology The symbol and the
-  /// symbol identifier shall be used.
+  /// [height]
+  /// Where applicable, the height can be specified using a numerical value
+  /// and its unit of measurement The unit of measurement shall be specified
+  /// in accordance with ISO 11240 and the resulting terminology The symbol
+  /// and the symbol identifier shall be used.
   final Quantity? height;
 
-  /// [width] /// Where applicable, the width can be specified using a numerical value and
-  /// its unit of measurement The unit of measurement shall be specified in
-  /// accordance with ISO 11240 and the resulting terminology The symbol and the
-  /// symbol identifier shall be used.
+  /// [width]
+  /// Where applicable, the width can be specified using a numerical value
+  /// and its unit of measurement The unit of measurement shall be specified
+  /// in accordance with ISO 11240 and the resulting terminology The symbol
+  /// and the symbol identifier shall be used.
   final Quantity? width;
 
-  /// [depth] /// Where applicable, the depth can be specified using a numerical value and
-  /// its unit of measurement The unit of measurement shall be specified in
-  /// accordance with ISO 11240 and the resulting terminology The symbol and the
-  /// symbol identifier shall be used.
+  /// [depth]
+  /// Where applicable, the depth can be specified using a numerical value
+  /// and its unit of measurement The unit of measurement shall be specified
+  /// in accordance with ISO 11240 and the resulting terminology The symbol
+  /// and the symbol identifier shall be used.
   final Quantity? depth;
 
-  /// [weight] /// Where applicable, the weight can be specified using a numerical value and
-  /// its unit of measurement The unit of measurement shall be specified in
-  /// accordance with ISO 11240 and the resulting terminology The symbol and the
-  /// symbol identifier shall be used.
+  /// [weight]
+  /// Where applicable, the weight can be specified using a numerical value
+  /// and its unit of measurement The unit of measurement shall be specified
+  /// in accordance with ISO 11240 and the resulting terminology The symbol
+  /// and the symbol identifier shall be used.
   final Quantity? weight;
 
-  /// [nominalVolume] /// Where applicable, the nominal volume can be specified using a numerical
+  /// [nominalVolume]
+  /// Where applicable, the nominal volume can be specified using a numerical
   /// value and its unit of measurement The unit of measurement shall be
-  /// specified in accordance with ISO 11240 and the resulting terminology The
-  /// symbol and the symbol identifier shall be used.
+  /// specified in accordance with ISO 11240 and the resulting terminology
+  /// The symbol and the symbol identifier shall be used.
   final Quantity? nominalVolume;
 
-  /// [externalDiameter] /// Where applicable, the external diameter can be specified using a numerical
-  /// value and its unit of measurement The unit of measurement shall be
-  /// specified in accordance with ISO 11240 and the resulting terminology The
-  /// symbol and the symbol identifier shall be used.
+  /// [externalDiameter]
+  /// Where applicable, the external diameter can be specified using a
+  /// numerical value and its unit of measurement The unit of measurement
+  /// shall be specified in accordance with ISO 11240 and the resulting
+  /// terminology The symbol and the symbol identifier shall be used.
   final Quantity? externalDiameter;
 
-  /// [shape] /// Where applicable, the shape can be specified An appropriate controlled
-  /// vocabulary shall be used The term and the term identifier shall be used.
+  /// [shape]
+  /// Where applicable, the shape can be specified An appropriate controlled
+  /// vocabulary shall be used The term and the term identifier shall be
+  /// used.
   final FhirString? shape;
+
+  /// Extensions for [shape]
   final Element? shapeElement;
 
-  /// [color] /// Where applicable, the color can be specified An appropriate controlled
-  /// vocabulary shall be used The term and the term identifier shall be used.
+  /// [color]
+  /// Where applicable, the color can be specified An appropriate controlled
+  /// vocabulary shall be used The term and the term identifier shall be
+  /// used.
   final List<FhirString>? color;
+
+  /// Extensions for [color]
   final List<Element>? colorElement;
 
-  /// [imprint] /// Where applicable, the imprint can be specified as text.
+  /// [imprint]
+  /// Where applicable, the imprint can be specified as text.
   final List<FhirString>? imprint;
+
+  /// Extensions for [imprint]
   final List<Element>? imprintElement;
 
-  /// [image] /// Where applicable, the image can be provided The format of the image
+  /// [image]
+  /// Where applicable, the image can be provided The format of the image
   /// attachment shall be specified by regional implementations.
   final List<Attachment>? image;
 
-  /// [scoring] /// Where applicable, the scoring can be specified An appropriate controlled
-  /// vocabulary shall be used The term and the term identifier shall be used.
+  /// [scoring]
+  /// Where applicable, the scoring can be specified An appropriate
+  /// controlled vocabulary shall be used The term and the term identifier
+  /// shall be used.
   final CodeableConcept? scoring;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (height != null) {
       json['height'] = height!.toJson();
@@ -146,8 +302,7 @@ class ProdCharacteristic extends BackboneType {
           imprintElement!.map((Element v) => v.toJson()).toList();
     }
     if (image != null && image!.isNotEmpty) {
-      json['image'] =
-          image!.map<dynamic>((Attachment v) => v.toJson()).toList();
+      json['image'] = image!.map((Attachment v) => v.toJson()).toList();
     }
     if (scoring != null) {
       json['scoring'] = scoring!.toJson();
@@ -155,76 +310,6 @@ class ProdCharacteristic extends BackboneType {
     return json;
   }
 
-  factory ProdCharacteristic.fromJson(Map<String, dynamic> json) {
-    return ProdCharacteristic(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      height: json['height'] != null
-          ? Quantity.fromJson(json['height'] as Map<String, dynamic>)
-          : null,
-      width: json['width'] != null
-          ? Quantity.fromJson(json['width'] as Map<String, dynamic>)
-          : null,
-      depth: json['depth'] != null
-          ? Quantity.fromJson(json['depth'] as Map<String, dynamic>)
-          : null,
-      weight: json['weight'] != null
-          ? Quantity.fromJson(json['weight'] as Map<String, dynamic>)
-          : null,
-      nominalVolume: json['nominalVolume'] != null
-          ? Quantity.fromJson(json['nominalVolume'] as Map<String, dynamic>)
-          : null,
-      externalDiameter: json['externalDiameter'] != null
-          ? Quantity.fromJson(json['externalDiameter'] as Map<String, dynamic>)
-          : null,
-      shape: json['shape'] != null ? FhirString.fromJson(json['shape']) : null,
-      shapeElement: json['_shape'] != null
-          ? Element.fromJson(json['_shape'] as Map<String, dynamic>)
-          : null,
-      color: json['color'] != null
-          ? (json['color'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
-              .toList()
-          : null,
-      colorElement: json['_color'] != null
-          ? (json['_color'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      imprint: json['imprint'] != null
-          ? (json['imprint'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
-              .toList()
-          : null,
-      imprintElement: json['_imprint'] != null
-          ? (json['_imprint'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      image: json['image'] != null
-          ? (json['image'] as List<dynamic>)
-              .map<Attachment>(
-                  (dynamic v) => Attachment.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      scoring: json['scoring'] != null
-          ? CodeableConcept.fromJson(json['scoring'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   ProdCharacteristic clone() => throw UnimplementedError();
   @override
@@ -278,24 +363,5 @@ class ProdCharacteristic extends BackboneType {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory ProdCharacteristic.fromYaml(dynamic yaml) => yaml is String
-      ? ProdCharacteristic.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? ProdCharacteristic.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'ProdCharacteristic cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory ProdCharacteristic.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return ProdCharacteristic.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

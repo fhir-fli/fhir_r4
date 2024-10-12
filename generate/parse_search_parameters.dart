@@ -1,187 +1,226 @@
+// ignore_for_file: missing_whitespace_between_adjacent_strings
+
 import 'dart:convert';
 import 'dart:io';
 
 import 'consts.dart';
-import 'fhir_generate_extension.dart'; // Import constants
+import 'fhir_generate_extension.dart';
 
 void parseSearchParameters() {
-  final File file =
-      File(searchParametersPath); // Use the constant from consts.dart
-  final String jsonString = file.readAsStringSync();
-  final Map<String, dynamic> data =
-      jsonDecode(jsonString) as Map<String, dynamic>;
+  final file = File(searchParametersPath); // Use the constant from consts.dart
+  final jsonString = file.readAsStringSync();
+  final data = jsonDecode(jsonString) as Map<String, dynamic>;
 
-  final Map<String, List<Map<String, String>>> resourceParameters =
-      <String, List<Map<String, String>>>{};
-
-  // Parse the JSON data and extract search parameters
-  for (final dynamic entry in data['entry'] as List<dynamic>) {
-    final Map<String, dynamic> resource =
-        (entry as Map<String, dynamic>)['resource'] as Map<String, dynamic>;
-    final List<dynamic> baseList = resource['base'] as List<dynamic>;
-    final String code = resource['code'] as String;
-    final String type = resource['type'] as String;
-    final List<dynamic>? components = resource['component'] as List<dynamic>?;
-
-    for (final dynamic base in baseList) {
-      final String resourceType = base as String;
-
-      if (!resourceParameters.containsKey(resourceType)) {
-        resourceParameters[resourceType] = <Map<String, String>>[];
-      }
-
-      if (components != null && components.isNotEmpty) {
-        // If the search parameter has components, add them as part of the composite
-        for (final dynamic component in components) {
-          final Map<String, dynamic> componentDetails =
-              component as Map<String, dynamic>;
-
-          // Safely retrieve the code and type, handling null values
-          final String componentCode = componentDetails['code'] != null
-              ? componentDetails['code'] as String
-              : '';
-          final String? componentType = componentDetails['type'] as String?;
-
-          // Only add if the componentCode is valid (non-empty)
-          if (componentCode.isNotEmpty) {
-            resourceParameters[resourceType]!.add(<String, String>{
-              'code': '$code-$componentCode', // Composite name
-              if (componentType != null && componentType.isNotEmpty)
-                'type': componentType,
-            });
-          }
-        }
-      } else {
-        // Otherwise, treat it as a regular parameter
-        resourceParameters[resourceType]!
-            .add(<String, String>{'code': code, 'type': type});
-      }
-    }
-  }
+  final resourceParameters = _extractSearchParameters(data);
 
   // Create the searches directory if it doesn't exist
-  final Directory dir = Directory(searchesPath); // Use constant
+  final dir = Directory(searchesPath); // Use constant
   if (!dir.existsSync()) {
     dir.createSync();
   }
 
   // Generate Dart files for each resource type
-  for (final MapEntry<String, List<Map<String, String>>> entry
-      in resourceParameters.entries) {
-    final String resourceType = entry.key;
-    final List<Map<String, String>> parameters = entry.value;
+  _generateSearchFiles(resourceParameters);
+
+  // Update exports for searches.dart
+  _updateSearchExports();
+}
+
+// Extracts search parameters from the JSON data
+Map<String, List<Map<String, String>>> _extractSearchParameters(
+  Map<String, dynamic> data,
+) {
+  final resourceParameters = <String, List<Map<String, String>>>{};
+
+  for (final dynamic entry in data['entry'] as List<dynamic>) {
+    final resource =
+        (entry as Map<String, dynamic>)['resource'] as Map<String, dynamic>;
+    final baseList = resource['base'] as List<dynamic>;
+    final code = resource['code'] as String;
+    final type = resource['type'] as String;
+    final components = resource['component'] as List<dynamic>?;
+
+    for (final base in baseList) {
+      final resourceType = base as String;
+
+      resourceParameters.putIfAbsent(
+        resourceType,
+        () => <Map<String, String>>[],
+      );
+
+      if (components != null && components.isNotEmpty) {
+        _addCompositeParameters(
+          resourceType,
+          code,
+          components,
+          resourceParameters,
+        );
+      } else {
+        resourceParameters[resourceType]!.add(
+          <String, String>{'code': code, 'type': type},
+        );
+      }
+    }
+  }
+  return resourceParameters;
+}
+
+// Adds composite search parameters to the resource parameters
+void _addCompositeParameters(
+  String resourceType,
+  String code,
+  List<dynamic> components,
+  Map<String, List<Map<String, String>>> resourceParameters,
+) {
+  for (final component in components) {
+    final componentDetails = component as Map<String, dynamic>;
+    final componentCode = componentDetails['code'] as String? ?? '';
+    final componentType = componentDetails['type'] as String?;
+
+    if (componentCode.isNotEmpty) {
+      resourceParameters[resourceType]!.add(
+        <String, String>{
+          'code': '$code-$componentCode',
+          if (componentType != null && componentType.isNotEmpty)
+            'type': componentType,
+        },
+      );
+    }
+  }
+}
+
+// Generates search files for each resource type
+void _generateSearchFiles(
+  Map<String, List<Map<String, String>>> resourceParameters,
+) {
+  for (final entry in resourceParameters.entries) {
+    final resourceType = entry.key;
     if (resourceType != 'DomainResource') {
-      final String className = 'Search$resourceType';
+      final className = 'Search$resourceType';
+      final parameters = entry.value;
 
-      // Prepare content for the file
-      final StringBuffer buffer = StringBuffer();
-      buffer.writeln('// This file is auto-generated. Do not edit directly.');
+      final buffer = StringBuffer()
+        ..writeln('// This file is auto-generated. Do not edit directly.')
+        ..writeln("import '../../../$fhirVersion.dart';");
 
-      buffer.writeln("import '../../../$fhirVersion.dart';");
-
-      final String extendClause = resourceType == 'Resource'
+      final extendClause = resourceType == 'Resource'
           ? 'extends RestfulParameters '
           : 'extends SearchResource ';
 
       buffer.writeln('class $className $extendClause{');
 
-      for (final Map<String, String> param in parameters) {
-        final String paramCode = param['code']!.replaceAll('-', '_');
-        final String paramType = param['type']!;
-
-        // Convert the method name to PascalCase
-        final String methodName = _toPascalCase(paramCode);
-
-        switch (paramType) {
-          case 'date':
-            buffer.writeln('  $className ${_methodName(methodName)}'
-                '(FhirDateTime value, {SearchModifier? modifier}) {');
-            buffer.writeln(
-                "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = value.toString();");
-            buffer.writeln('    return this;');
-            buffer.writeln('  }\n');
-          case 'token':
-            buffer.writeln(
-                '  $className ${_methodName(methodName).resourceTypeIfResource(resourceType)}'
-                '(FhirString value, {FhirUri? system, SearchModifier? modifier}) {');
-            buffer.writeln(
-                "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = system != null ? '\$system|\$value' : '\$value';");
-            buffer.writeln('    return this;');
-            buffer.writeln('  }\n');
-          case 'string':
-            // Only allow eq, ne modifiers for string types
-            buffer.writeln(
-                '  $className ${_methodName(methodName).resourceTypeIfResource(resourceType)}'
-                '(FhirString value, {SearchModifier? modifier}) {');
-            buffer.writeln(
-                "    if (modifier != null && !<String>['eq', 'ne'].contains(modifier.toString())) {");
-            buffer.writeln(
-                r"      throw ArgumentError('Modifier $modifier not allowed for string type');");
-            buffer.writeln('    }');
-            buffer.writeln(
-                "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = value.toString();");
-            buffer.writeln('    return this;');
-            buffer.writeln('  }\n');
-          case 'number':
-          case 'quantity':
-            // Allow gt, lt, ge, le, ap modifiers for number and quantity
-            buffer.writeln('  $className ${_methodName(methodName)}'
-                '(FhirDecimal value, {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {');
-            buffer.writeln(
-                "    if (modifier != null && !<String>['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {");
-            buffer.writeln(
-                "      throw ArgumentError('Modifier \$modifier not allowed for $paramType type');");
-            buffer.writeln('    }');
-            buffer.writeln(
-                "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = '\$value|\${system?.toString() ?? ''}|\${unit?.toString() ?? ''}';");
-            buffer.writeln('    return this;');
-            buffer.writeln('  }\n');
-          case 'uri':
-            buffer.writeln(
-                '  $className ${_methodName(methodName).resourceTypeIfResource(resourceType)}'
-                '(FhirUri value, {SearchModifier? modifier}) {');
-            buffer.writeln(
-                "    parameters['\${modifier != null ? '\$modifier' : ''}$paramCode'] = value.toString();");
-            buffer.writeln('    return this;');
-            buffer.writeln('  }\n');
-          // Add more cases here as needed for other parameter types
-        }
+      // Write methods for each parameter
+      for (final param in parameters) {
+        _writeSearchParameterMethod(buffer, param, resourceType);
       }
+
       buffer.writeln('}\n');
 
       // Write to individual file in the searches directory
-      final File outputFile =
-          File('$searchesPath/search_${resourceType.toLowerCase()}.dart');
-      outputFile.writeAsStringSync(buffer.toString());
+      File(
+        '$searchesPath/search_${resourceType.toLowerCase()}.dart',
+      ).writeAsStringSync(buffer.toString());
     }
-
-    // Updating the exports
-    final Directory searchDir = Directory(searchesPath);
-    final List<String> files = searchDir
-        .listSync()
-        .whereType<File>()
-        .where((File file) => file.path.endsWith('.dart'))
-        .map((File file) => file.path.split('/').last)
-        .toList();
-
-    files.sort();
-
-    File('$searchesPath/searches.dart').writeAsStringSync(
-        files.map((String file) => "export '$file';").join('\n'));
   }
 }
 
+// Writes a search parameter method for the given parameter
+void _writeSearchParameterMethod(
+  StringBuffer buffer,
+  Map<String, String> param,
+  String resourceType,
+) {
+  final paramCode = param['code']!.replaceAll('-', '_');
+  final paramType = param['type']!;
+  final methodName = _toPascalCase(paramCode);
+  final methodSignature = '  Search$resourceType '
+      '${_methodName(methodName).resourceTypeIfResource(resourceType)}';
+
+  switch (paramType) {
+    case 'date':
+      buffer
+        ..writeln('$methodSignature(FhirDateTime value, '
+            '{SearchModifier? modifier}) {')
+        ..writeln(r"    parameters['${modifier != null ? '$modifier' : ''}"
+            "$paramCode'] = value.toString();")
+        ..writeln('    return this;')
+        ..writeln('  }\n');
+    case 'token':
+      buffer
+        ..writeln('$methodSignature(FhirString value, '
+            '{FhirUri? system, SearchModifier? modifier}) {')
+        ..writeln(r"    parameters['${modifier != null ? '$modifier' : ''}"
+            "$paramCode'] = system != null ? '\$system|\$value' : '\$value';")
+        ..writeln('    return this;')
+        ..writeln('  }\n');
+    case 'string':
+      buffer
+        ..writeln('$methodSignature(FhirString value, '
+            '{SearchModifier? modifier}) {')
+        ..writeln('    if (modifier != null && '
+            "!['eq', 'ne'].contains(modifier.toString())) {")
+        ..writeln(r"      throw ArgumentError('Modifier $modifier not allowed"
+            " for string type');")
+        ..writeln('    }')
+        ..writeln(r"    parameters['${modifier != null ? '$modifier' : ''}"
+            "$paramCode'] = value.toString();")
+        ..writeln('    return this;')
+        ..writeln('  }\n');
+    case 'number':
+    case 'quantity':
+      buffer
+        ..writeln('$methodSignature(FhirDecimal value, '
+            '{FhirString? unit, FhirUri? system, SearchModifier? modifier}) {')
+        ..writeln('    if (modifier != null && '
+            "!['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {")
+        ..writeln(r"      throw ArgumentError('Modifier $modifier not allowed "
+            "for $paramType type');")
+        ..writeln('    }')
+        ..writeln(r"    parameters['${modifier != null ? '$modifier' : ''}"
+            "$paramCode'] = '\$value|\${system?.toString() ?? ''}"
+            r"|${unit?.toString() ?? ''}';")
+        ..writeln('    return this;')
+        ..writeln('  }\n');
+    case 'uri':
+      buffer
+        ..writeln('$methodSignature(FhirUri value, '
+            '{SearchModifier? modifier}) {')
+        ..writeln(r"    parameters['${modifier != null ? '$modifier' : ''}"
+            "$paramCode'] = value.toString();")
+        ..writeln('    return this;')
+        ..writeln('  }\n');
+  }
+}
+
+// Updates the export file (searches.dart)
+void _updateSearchExports() {
+  final searchDir = Directory(searchesPath);
+  final files = searchDir
+      .listSync()
+      .whereType<File>()
+      .where((File file) => file.path.endsWith('.dart'))
+      .map((File file) => file.path.split('/').last)
+      .toList()
+    ..sort();
+
+  File('$searchesPath/searches.dart').writeAsStringSync(
+    files.map((String file) => "export '$file';").join('\n'),
+  );
+}
+
 String _methodName(String name) {
-  final List<String> reservedWords = <String>['class', 'case'];
-  name = name.substring(0, 1).toLowerCase() + name.substring(1);
-  return reservedWords.contains(name) ? '${name}_' : name;
+  final reservedWords = <String>['class', 'case'];
+  final newName = name.substring(0, 1).toLowerCase() + name.substring(1);
+  return reservedWords.contains(newName) ? '${newName}_' : newName;
 }
 
 // Helper function to convert snake_case to PascalCase
 String _toPascalCase(String text) {
   return text
       .split('_')
-      .map((String word) =>
-          word.isEmpty ? '' : word[0].toUpperCase() + word.substring(1))
+      .map(
+        (String word) =>
+            word.isEmpty ? '' : word[0].toUpperCase() + word.substring(1),
+      )
       .join();
 }

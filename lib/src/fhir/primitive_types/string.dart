@@ -1,19 +1,29 @@
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
-import '../../../fhir_r4.dart';
 
 extension FhirStringExtension on String {
   FhirString get toFhirString => FhirString(this);
 }
 
 class FhirString extends PrimitiveType<String> {
-  @override
-  final String value;
-
   FhirString(String input, [Element? element])
       : value = input,
         super(element: element);
+
+  factory FhirString.fromJson(dynamic json) {
+    if (json is String) {
+      return FhirString(json);
+    }
+    throw FormatException('Invalid input for FhirString: $json');
+  }
+
+  factory FhirString.fromYaml(dynamic yaml) => yaml is String
+      ? FhirString.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
+      : throw const FormatException('Invalid YAML format for FhirString');
+  @override
+  final String value;
 
   static FhirString? tryParse(dynamic input) {
     if (input is String) {
@@ -26,17 +36,6 @@ class FhirString extends PrimitiveType<String> {
       return null;
     }
   }
-
-  factory FhirString.fromJson(dynamic json) {
-    if (json is String) {
-      return FhirString(json);
-    }
-    throw FormatException('Invalid input for FhirString: $json');
-  }
-
-  factory FhirString.fromYaml(dynamic yaml) => yaml is String
-      ? FhirString.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : throw const FormatException('Invalid YAML format for FhirString');
 
   @override
   String get fhirType => 'string';
@@ -97,7 +96,7 @@ class FhirString extends PrimitiveType<String> {
     );
   }
 
-  // Additional string-specific methods
+  /// Additional string-specific methods
 
   int get length => value.length;
   bool get isEmptyString => value.isEmpty;

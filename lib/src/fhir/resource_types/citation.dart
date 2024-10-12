@@ -1,54 +1,86 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [Citation] /// The Citation Resource enables reference to any knowledge artifact for
-/// purposes of identification and attribution. The Citation Resource supports
-/// existing reference structures and developing publication practices such as
-/// versioning, expressing complex contributorship roles, and referencing
-/// computable resources.
+/// [Citation]
+/// The Citation Resource enables reference to any knowledge artifact for
+/// purposes of identification and attribution. The Citation Resource
+/// supports existing reference structures and developing publication
+/// practices such as versioning, expressing complex contributorship roles,
+/// and referencing computable resources.
 class Citation extends DomainResource {
+  /// Primary constructor for [Citation]
+
   Citation({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
+
+    /// Extensions for [url]
     this.urlElement,
     this.identifier,
     this.version,
+
+    /// Extensions for [version]
     this.versionElement,
     this.name,
+
+    /// Extensions for [name]
     this.nameElement,
     this.title,
+
+    /// Extensions for [title]
     this.titleElement,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     this.experimental,
+
+    /// Extensions for [experimental]
     this.experimentalElement,
     this.date,
+
+    /// Extensions for [date]
     this.dateElement,
     this.publisher,
+
+    /// Extensions for [publisher]
     this.publisherElement,
     this.contact,
     this.description,
+
+    /// Extensions for [description]
     this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
+
+    /// Extensions for [purpose]
     this.purposeElement,
     this.copyright,
+
+    /// Extensions for [copyright]
     this.copyrightElement,
     this.approvalDate,
+
+    /// Extensions for [approvalDate]
     this.approvalDateElement,
     this.lastReviewDate,
+
+    /// Extensions for [lastReviewDate]
     this.lastReviewDateElement,
     this.effectivePeriod,
     this.author,
@@ -68,144 +100,519 @@ class Citation extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.Citation);
+  }) : super(
+          resourceType: R4ResourceType.Citation,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory Citation.fromJson(Map<String, dynamic> json) {
+    return Citation(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
+      urlElement: json['_url'] != null
+          ? Element.fromJson(
+              json['_url'] as Map<String, dynamic>,
+            )
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      version:
+          json['version'] != null ? FhirString.fromJson(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(
+              json['_version'] as Map<String, dynamic>,
+            )
+          : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(
+              json['_name'] as Map<String, dynamic>,
+            )
+          : null,
+      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
+      titleElement: json['_title'] != null
+          ? Element.fromJson(
+              json['_title'] as Map<String, dynamic>,
+            )
+          : null,
+      status: PublicationStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      experimental: json['experimental'] != null
+          ? FhirBoolean.fromJson(json['experimental'])
+          : null,
+      experimentalElement: json['_experimental'] != null
+          ? Element.fromJson(
+              json['_experimental'] as Map<String, dynamic>,
+            )
+          : null,
+      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(
+              json['_date'] as Map<String, dynamic>,
+            )
+          : null,
+      publisher: json['publisher'] != null
+          ? FhirString.fromJson(json['publisher'])
+          : null,
+      publisherElement: json['_publisher'] != null
+          ? Element.fromJson(
+              json['_publisher'] as Map<String, dynamic>,
+            )
+          : null,
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<ContactDetail>(
+                (dynamic v) => ContactDetail.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      description: json['description'] != null
+          ? FhirMarkdown.fromJson(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(
+              json['_description'] as Map<String, dynamic>,
+            )
+          : null,
+      useContext: json['useContext'] != null
+          ? (json['useContext'] as List<dynamic>)
+              .map<UsageContext>(
+                (dynamic v) => UsageContext.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      jurisdiction: json['jurisdiction'] != null
+          ? (json['jurisdiction'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      purpose: json['purpose'] != null
+          ? FhirMarkdown.fromJson(json['purpose'])
+          : null,
+      purposeElement: json['_purpose'] != null
+          ? Element.fromJson(
+              json['_purpose'] as Map<String, dynamic>,
+            )
+          : null,
+      copyright: json['copyright'] != null
+          ? FhirMarkdown.fromJson(json['copyright'])
+          : null,
+      copyrightElement: json['_copyright'] != null
+          ? Element.fromJson(
+              json['_copyright'] as Map<String, dynamic>,
+            )
+          : null,
+      approvalDate: json['approvalDate'] != null
+          ? FhirDate.fromJson(json['approvalDate'])
+          : null,
+      approvalDateElement: json['_approvalDate'] != null
+          ? Element.fromJson(
+              json['_approvalDate'] as Map<String, dynamic>,
+            )
+          : null,
+      lastReviewDate: json['lastReviewDate'] != null
+          ? FhirDate.fromJson(json['lastReviewDate'])
+          : null,
+      lastReviewDateElement: json['_lastReviewDate'] != null
+          ? Element.fromJson(
+              json['_lastReviewDate'] as Map<String, dynamic>,
+            )
+          : null,
+      effectivePeriod: json['effectivePeriod'] != null
+          ? Period.fromJson(
+              json['effectivePeriod'] as Map<String, dynamic>,
+            )
+          : null,
+      author: json['author'] != null
+          ? (json['author'] as List<dynamic>)
+              .map<ContactDetail>(
+                (dynamic v) => ContactDetail.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      editor: json['editor'] != null
+          ? (json['editor'] as List<dynamic>)
+              .map<ContactDetail>(
+                (dynamic v) => ContactDetail.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      reviewer: json['reviewer'] != null
+          ? (json['reviewer'] as List<dynamic>)
+              .map<ContactDetail>(
+                (dynamic v) => ContactDetail.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      endorser: json['endorser'] != null
+          ? (json['endorser'] as List<dynamic>)
+              .map<ContactDetail>(
+                (dynamic v) => ContactDetail.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      summary: json['summary'] != null
+          ? (json['summary'] as List<dynamic>)
+              .map<CitationSummary>(
+                (dynamic v) => CitationSummary.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      classification: json['classification'] != null
+          ? (json['classification'] as List<dynamic>)
+              .map<CitationClassification>(
+                (dynamic v) => CitationClassification.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                (dynamic v) => Annotation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      currentState: json['currentState'] != null
+          ? (json['currentState'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      statusDate: json['statusDate'] != null
+          ? (json['statusDate'] as List<dynamic>)
+              .map<CitationStatusDate>(
+                (dynamic v) => CitationStatusDate.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      relatesTo: json['relatesTo'] != null
+          ? (json['relatesTo'] as List<dynamic>)
+              .map<CitationRelatesTo>(
+                (dynamic v) => CitationRelatesTo.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      citedArtifact: json['citedArtifact'] != null
+          ? CitationCitedArtifact.fromJson(
+              json['citedArtifact'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [Citation] from a [String] or [YamlMap] object
+  factory Citation.fromYaml(dynamic yaml) => yaml is String
+      ? Citation.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? Citation.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('Citation cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [Citation] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory Citation.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Citation.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'Citation';
 
-  /// [url] /// An absolute URI that is used to identify this citation when it is
-  /// referenced in a specification, model, design or an instance; also called
-  /// its canonical identifier. This SHOULD be globally unique and SHOULD be a
-  /// literal address at which at which an authoritative instance of this summary
-  /// is (or will be) published. This URL can be the target of a canonical
-  /// reference. It SHALL remain the same when the summary is stored on different
-  /// servers.
+  /// [url]
+  /// An absolute URI that is used to identify this citation when it is
+  /// referenced in a specification, model, design or an instance; also
+  /// called its canonical identifier. This SHOULD be globally unique and
+  /// SHOULD be a literal address at which at which an authoritative instance
+  /// of this summary is (or will be) published. This URL can be the target
+  /// of a canonical reference. It SHALL remain the same when the summary is
+  /// stored on different servers.
   final FhirUri? url;
+
+  /// Extensions for [url]
   final Element? urlElement;
 
-  /// [identifier] /// A formal identifier that is used to identify this citation when it is
+  /// [identifier]
+  /// A formal identifier that is used to identify this citation when it is
   /// represented in other formats, or referenced in a specification, model,
   /// design or an instance.
   final List<Identifier>? identifier;
 
-  /// [version] /// The identifier that is used to identify this version of the citation when
-  /// it is referenced in a specification, model, design or instance. This is an
-  /// arbitrary value managed by the citation author and is not expected to be
-  /// globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a
-  /// managed version is not available. There is also no expectation that
-  /// versions can be placed in a lexicographical sequence.
+  /// [version]
+  /// The identifier that is used to identify this version of the citation
+  /// when it is referenced in a specification, model, design or instance.
+  /// This is an arbitrary value managed by the citation author and is not
+  /// expected to be globally unique. For example, it might be a timestamp
+  /// (e.g. yyyymmdd) if a managed version is not available. There is also no
+  /// expectation that versions can be placed in a lexicographical sequence.
   final FhirString? version;
+
+  /// Extensions for [version]
   final Element? versionElement;
 
-  /// [name] /// A natural language name identifying the citation. This name should be
-  /// usable as an identifier for the module by machine processing applications
-  /// such as code generation.
+  /// [name]
+  /// A natural language name identifying the citation. This name should be
+  /// usable as an identifier for the module by machine processing
+  /// applications such as code generation.
   final FhirString? name;
+
+  /// Extensions for [name]
   final Element? nameElement;
 
-  /// [title] /// A short, descriptive, user-friendly title for the citation.
+  /// [title]
+  /// A short, descriptive, user-friendly title for the citation.
   final FhirString? title;
+
+  /// Extensions for [title]
   final Element? titleElement;
 
-  /// [status] /// The status of this summary. Enables tracking the life-cycle of the content.
+  /// [status]
+  /// The status of this summary. Enables tracking the life-cycle of the
+  /// content.
   final PublicationStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [experimental] /// A Boolean value to indicate that this citation is authored for testing
-  /// purposes (or education/evaluation/marketing) and is not intended to be used
-  /// for genuine usage.
+  /// [experimental]
+  /// A Boolean value to indicate that this citation is authored for testing
+  /// purposes (or education/evaluation/marketing) and is not intended to be
+  /// used for genuine usage.
   final FhirBoolean? experimental;
+
+  /// Extensions for [experimental]
   final Element? experimentalElement;
 
-  /// [date] /// The date (and optionally time) when the citation was published. The date
-  /// must change when the business version changes and it must change if the
-  /// status code changes. In addition, it should change when the substantive
-  /// content of the citation changes.
+  /// [date]
+  /// The date (and optionally time) when the citation was published. The
+  /// date must change when the business version changes and it must change
+  /// if the status code changes. In addition, it should change when the
+  /// substantive content of the citation changes.
   final FhirDateTime? date;
+
+  /// Extensions for [date]
   final Element? dateElement;
 
-  /// [publisher] /// The name of the organization or individual that published the citation.
+  /// [publisher]
+  /// The name of the organization or individual that published the citation.
   final FhirString? publisher;
+
+  /// Extensions for [publisher]
   final Element? publisherElement;
 
-  /// [contact] /// Contact details to assist a user in finding and communicating with the
+  /// [contact]
+  /// Contact details to assist a user in finding and communicating with the
   /// publisher.
   final List<ContactDetail>? contact;
 
-  /// [description] /// A free text natural language description of the citation from a consumer's
-  /// perspective.
+  /// [description]
+  /// A free text natural language description of the citation from a
+  /// consumer's perspective.
   final FhirMarkdown? description;
+
+  /// Extensions for [description]
   final Element? descriptionElement;
 
-  /// [useContext] /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These contexts may be general categories (gender,
-  /// age, ...) or may be references to specific programs (insurance plans,
-  /// studies, ...) and may be used to assist with indexing and searching for
-  /// appropriate citation instances.
+  /// [useContext]
+  /// The content was developed with a focus and intent of supporting the
+  /// contexts that are listed. These contexts may be general categories
+  /// (gender, age, ...) or may be references to specific programs (insurance
+  /// plans, studies, ...) and may be used to assist with indexing and
+  /// searching for appropriate citation instances.
   final List<UsageContext>? useContext;
 
-  /// [jurisdiction] /// A legal or geographic region in which the citation is intended to be used.
+  /// [jurisdiction]
+  /// A legal or geographic region in which the citation is intended to be
+  /// used.
   final List<CodeableConcept>? jurisdiction;
 
-  /// [purpose] /// Explanation of why this citation is needed and why it has been designed as
-  /// it has.
+  /// [purpose]
+  /// Explanation of why this citation is needed and why it has been designed
+  /// as it has.
   final FhirMarkdown? purpose;
+
+  /// Extensions for [purpose]
   final Element? purposeElement;
 
-  /// [copyright] /// Use and/or publishing restrictions for the Citation, not for the cited
+  /// [copyright]
+  /// Use and/or publishing restrictions for the Citation, not for the cited
   /// artifact.
   final FhirMarkdown? copyright;
+
+  /// Extensions for [copyright]
   final Element? copyrightElement;
 
-  /// [approvalDate] /// The date on which the resource content was approved by the publisher.
-  /// Approval happens once when the content is officially approved for usage.
+  /// [approvalDate]
+  /// The date on which the resource content was approved by the publisher.
+  /// Approval happens once when the content is officially approved for
+  /// usage.
   final FhirDate? approvalDate;
+
+  /// Extensions for [approvalDate]
   final Element? approvalDateElement;
 
-  /// [lastReviewDate] /// The date on which the resource content was last reviewed. Review happens
-  /// periodically after approval but does not change the original approval date.
+  /// [lastReviewDate]
+  /// The date on which the resource content was last reviewed. Review
+  /// happens periodically after approval but does not change the original
+  /// approval date.
   final FhirDate? lastReviewDate;
+
+  /// Extensions for [lastReviewDate]
   final Element? lastReviewDateElement;
 
-  /// [effectivePeriod] /// The period during which the citation content was or is planned to be in
+  /// [effectivePeriod]
+  /// The period during which the citation content was or is planned to be in
   /// active use.
   final Period? effectivePeriod;
 
-  /// [author] /// Who authored the Citation.
+  /// [author]
+  /// Who authored the Citation.
   final List<ContactDetail>? author;
 
-  /// [editor] /// Who edited the Citation.
+  /// [editor]
+  /// Who edited the Citation.
   final List<ContactDetail>? editor;
 
-  /// [reviewer] /// Who reviewed the Citation.
+  /// [reviewer]
+  /// Who reviewed the Citation.
   final List<ContactDetail>? reviewer;
 
-  /// [endorser] /// Who endorsed the Citation.
+  /// [endorser]
+  /// Who endorsed the Citation.
   final List<ContactDetail>? endorser;
 
-  /// [summary] /// A human-readable display of the citation.
+  /// [summary]
+  /// A human-readable display of the citation.
   final List<CitationSummary>? summary;
 
-  /// [classification] /// The assignment to an organizing scheme.
+  /// [classification]
+  /// The assignment to an organizing scheme.
   final List<CitationClassification>? classification;
 
-  /// [note] /// Used for general notes and annotations not coded elsewhere.
+  /// [note]
+  /// Used for general notes and annotations not coded elsewhere.
   final List<Annotation>? note;
 
-  /// [currentState] /// The status of the citation.
+  /// [currentState]
+  /// The status of the citation.
   final List<CodeableConcept>? currentState;
 
-  /// [statusDate] /// An effective date or period for a status of the citation.
+  /// [statusDate]
+  /// An effective date or period for a status of the citation.
   final List<CitationStatusDate>? statusDate;
 
-  /// [relatesTo] /// Artifact related to the Citation Resource.
+  /// [relatesTo]
+  /// Artifact related to the Citation Resource.
   final List<CitationRelatesTo>? relatesTo;
 
-  /// [citedArtifact] /// The article or artifact being described.
+  /// [citedArtifact]
+  /// The article or artifact being described.
   final CitationCitedArtifact? citedArtifact;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -226,17 +633,15 @@ class Citation extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (url?.value != null) {
       json['url'] = url!.toJson();
@@ -246,7 +651,7 @@ class Citation extends DomainResource {
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (version?.value != null) {
       json['version'] = version!.toJson();
@@ -286,8 +691,7 @@ class Citation extends DomainResource {
       json['_publisher'] = publisherElement!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
-      json['contact'] =
-          contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+      json['contact'] = contact!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
@@ -297,12 +701,11 @@ class Citation extends DomainResource {
     }
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] =
-          useContext!.map<dynamic>((UsageContext v) => v.toJson()).toList();
+          useContext!.map((UsageContext v) => v.toJson()).toList();
     }
     if (jurisdiction != null && jurisdiction!.isNotEmpty) {
-      json['jurisdiction'] = jurisdiction!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['jurisdiction'] =
+          jurisdiction!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (purpose?.value != null) {
       json['purpose'] = purpose!.toJson();
@@ -332,46 +735,42 @@ class Citation extends DomainResource {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
     if (author != null && author!.isNotEmpty) {
-      json['author'] =
-          author!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+      json['author'] = author!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (editor != null && editor!.isNotEmpty) {
-      json['editor'] =
-          editor!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+      json['editor'] = editor!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (reviewer != null && reviewer!.isNotEmpty) {
       json['reviewer'] =
-          reviewer!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+          reviewer!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (endorser != null && endorser!.isNotEmpty) {
       json['endorser'] =
-          endorser!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+          endorser!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (summary != null && summary!.isNotEmpty) {
       json['summary'] =
-          summary!.map<dynamic>((CitationSummary v) => v.toJson()).toList();
+          summary!.map((CitationSummary v) => v.toJson()).toList();
     }
     if (classification != null && classification!.isNotEmpty) {
       json['classification'] = classification!
-          .map<dynamic>((CitationClassification v) => v.toJson())
+          .map((CitationClassification v) => v.toJson())
           .toList();
     }
     if (note != null && note!.isNotEmpty) {
-      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+      json['note'] = note!.map((Annotation v) => v.toJson()).toList();
     }
     if (currentState != null && currentState!.isNotEmpty) {
-      json['currentState'] = currentState!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['currentState'] =
+          currentState!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (statusDate != null && statusDate!.isNotEmpty) {
-      json['statusDate'] = statusDate!
-          .map<dynamic>((CitationStatusDate v) => v.toJson())
-          .toList();
+      json['statusDate'] =
+          statusDate!.map((CitationStatusDate v) => v.toJson()).toList();
     }
     if (relatesTo != null && relatesTo!.isNotEmpty) {
       json['relatesTo'] =
-          relatesTo!.map<dynamic>((CitationRelatesTo v) => v.toJson()).toList();
+          relatesTo!.map((CitationRelatesTo v) => v.toJson()).toList();
     }
     if (citedArtifact != null) {
       json['citedArtifact'] = citedArtifact!.toJson();
@@ -379,205 +778,6 @@ class Citation extends DomainResource {
     return json;
   }
 
-  factory Citation.fromJson(Map<String, dynamic> json) {
-    return Citation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
-          : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
-          : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
-          : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson(json['experimental'])
-          : null,
-      experimentalElement: json['_experimental'] != null
-          ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
-          : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
-          : null,
-      publisher: json['publisher'] != null
-          ? FhirString.fromJson(json['publisher'])
-          : null,
-      publisherElement: json['_publisher'] != null
-          ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
-          : null,
-      contact: json['contact'] != null
-          ? (json['contact'] as List<dynamic>)
-              .map<ContactDetail>((dynamic v) =>
-                  ContactDetail.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
-          : null,
-      useContext: json['useContext'] != null
-          ? (json['useContext'] as List<dynamic>)
-              .map<UsageContext>((dynamic v) =>
-                  UsageContext.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      jurisdiction: json['jurisdiction'] != null
-          ? (json['jurisdiction'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      purpose: json['purpose'] != null
-          ? FhirMarkdown.fromJson(json['purpose'])
-          : null,
-      purposeElement: json['_purpose'] != null
-          ? Element.fromJson(json['_purpose'] as Map<String, dynamic>)
-          : null,
-      copyright: json['copyright'] != null
-          ? FhirMarkdown.fromJson(json['copyright'])
-          : null,
-      copyrightElement: json['_copyright'] != null
-          ? Element.fromJson(json['_copyright'] as Map<String, dynamic>)
-          : null,
-      approvalDate: json['approvalDate'] != null
-          ? FhirDate.fromJson(json['approvalDate'])
-          : null,
-      approvalDateElement: json['_approvalDate'] != null
-          ? Element.fromJson(json['_approvalDate'] as Map<String, dynamic>)
-          : null,
-      lastReviewDate: json['lastReviewDate'] != null
-          ? FhirDate.fromJson(json['lastReviewDate'])
-          : null,
-      lastReviewDateElement: json['_lastReviewDate'] != null
-          ? Element.fromJson(json['_lastReviewDate'] as Map<String, dynamic>)
-          : null,
-      effectivePeriod: json['effectivePeriod'] != null
-          ? Period.fromJson(json['effectivePeriod'] as Map<String, dynamic>)
-          : null,
-      author: json['author'] != null
-          ? (json['author'] as List<dynamic>)
-              .map<ContactDetail>((dynamic v) =>
-                  ContactDetail.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      editor: json['editor'] != null
-          ? (json['editor'] as List<dynamic>)
-              .map<ContactDetail>((dynamic v) =>
-                  ContactDetail.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      reviewer: json['reviewer'] != null
-          ? (json['reviewer'] as List<dynamic>)
-              .map<ContactDetail>((dynamic v) =>
-                  ContactDetail.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      endorser: json['endorser'] != null
-          ? (json['endorser'] as List<dynamic>)
-              .map<ContactDetail>((dynamic v) =>
-                  ContactDetail.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      summary: json['summary'] != null
-          ? (json['summary'] as List<dynamic>)
-              .map<CitationSummary>((dynamic v) =>
-                  CitationSummary.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      classification: json['classification'] != null
-          ? (json['classification'] as List<dynamic>)
-              .map<CitationClassification>((dynamic v) =>
-                  CitationClassification.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      currentState: json['currentState'] != null
-          ? (json['currentState'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      statusDate: json['statusDate'] != null
-          ? (json['statusDate'] as List<dynamic>)
-              .map<CitationStatusDate>((dynamic v) =>
-                  CitationStatusDate.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      relatesTo: json['relatesTo'] != null
-          ? (json['relatesTo'] as List<dynamic>)
-              .map<CitationRelatesTo>((dynamic v) =>
-                  CitationRelatesTo.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      citedArtifact: json['citedArtifact'] != null
-          ? CitationCitedArtifact.fromJson(
-              json['citedArtifact'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   Citation clone() => throw UnimplementedError();
   @override
@@ -703,35 +903,21 @@ class Citation extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory Citation.fromYaml(dynamic yaml) => yaml is String
-      ? Citation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? Citation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'Citation cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory Citation.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return Citation.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationSummary] /// A human-readable display of the citation.
+/// [CitationSummary]
+/// A human-readable display of the citation.
 class CitationSummary extends BackboneElement {
+  /// Primary constructor for [CitationSummary]
+
   CitationSummary({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.style,
     required this.text,
+
+    /// Extensions for [text]
     this.textElement,
     super.userData,
     super.formatCommentsPre,
@@ -741,29 +927,94 @@ class CitationSummary extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationSummary.fromJson(Map<String, dynamic> json) {
+    return CitationSummary(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      style: json['style'] != null
+          ? CodeableConcept.fromJson(
+              json['style'] as Map<String, dynamic>,
+            )
+          : null,
+      text: FhirMarkdown.fromJson(json['text']),
+      textElement: json['_text'] != null
+          ? Element.fromJson(
+              json['_text'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationSummary] from a [String] or [YamlMap] object
+  factory CitationSummary.fromYaml(dynamic yaml) => yaml is String
+      ? CitationSummary.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationSummary.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationSummary cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationSummary] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationSummary.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationSummary.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationSummary';
 
-  /// [style] /// Format for display of the citation.
+  /// [style]
+  /// Format for display of the citation.
   final CodeableConcept? style;
 
-  /// [text] /// The human-readable display of the citation.
+  /// [text]
+  /// The human-readable display of the citation.
   final FhirMarkdown text;
+
+  /// Extensions for [text]
   final Element? textElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (style != null) {
       json['style'] = style!.toJson();
@@ -775,30 +1026,6 @@ class CitationSummary extends BackboneElement {
     return json;
   }
 
-  factory CitationSummary.fromJson(Map<String, dynamic> json) {
-    return CitationSummary(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      style: json['style'] != null
-          ? CodeableConcept.fromJson(json['style'] as Map<String, dynamic>)
-          : null,
-      text: FhirMarkdown.fromJson(json['text']),
-      textElement: json['_text'] != null
-          ? Element.fromJson(json['_text'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CitationSummary clone() => throw UnimplementedError();
   @override
@@ -831,29 +1058,13 @@ class CitationSummary extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationSummary.fromYaml(dynamic yaml) => yaml is String
-      ? CitationSummary.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationSummary.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationSummary cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationSummary.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationSummary.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationClassification] /// The assignment to an organizing scheme.
+/// [CitationClassification]
+/// The assignment to an organizing scheme.
 class CitationClassification extends BackboneElement {
+  /// Primary constructor for [CitationClassification]
+
   CitationClassification({
     super.id,
     super.extension_,
@@ -868,65 +1079,105 @@ class CitationClassification extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationClassification.fromJson(Map<String, dynamic> json) {
+    return CitationClassification(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(
+              json['type'] as Map<String, dynamic>,
+            )
+          : null,
+      classifier: json['classifier'] != null
+          ? (json['classifier'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationClassification] from a [String] or [YamlMap] object
+  factory CitationClassification.fromYaml(dynamic yaml) => yaml is String
+      ? CitationClassification.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationClassification.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationClassification cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationClassification] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationClassification.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationClassification.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationClassification';
 
-  /// [type] /// The kind of classifier (e.g. publication type, keyword).
+  /// [type]
+  /// The kind of classifier (e.g. publication type, keyword).
   final CodeableConcept? type;
 
-  /// [classifier] /// The specific classification value.
+  /// [classifier]
+  /// The specific classification value.
   final List<CodeableConcept>? classifier;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (type != null) {
       json['type'] = type!.toJson();
     }
     if (classifier != null && classifier!.isNotEmpty) {
       json['classifier'] =
-          classifier!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          classifier!.map((CodeableConcept v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory CitationClassification.fromJson(Map<String, dynamic> json) {
-    return CitationClassification(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
-          : null,
-      classifier: json['classifier'] != null
-          ? (json['classifier'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   CitationClassification clone() => throw UnimplementedError();
   @override
@@ -957,35 +1208,21 @@ class CitationClassification extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationClassification.fromYaml(dynamic yaml) => yaml is String
-      ? CitationClassification.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationClassification.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationClassification cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationClassification.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationClassification.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationStatusDate] /// An effective date or period for a status of the citation.
+/// [CitationStatusDate]
+/// An effective date or period for a status of the citation.
 class CitationStatusDate extends BackboneElement {
+  /// Primary constructor for [CitationStatusDate]
+
   CitationStatusDate({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.activity,
     this.actual,
+
+    /// Extensions for [actual]
     this.actualElement,
     required this.period,
     super.userData,
@@ -996,32 +1233,100 @@ class CitationStatusDate extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationStatusDate.fromJson(Map<String, dynamic> json) {
+    return CitationStatusDate(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      activity: CodeableConcept.fromJson(
+        json['activity'] as Map<String, dynamic>,
+      ),
+      actual:
+          json['actual'] != null ? FhirBoolean.fromJson(json['actual']) : null,
+      actualElement: json['_actual'] != null
+          ? Element.fromJson(
+              json['_actual'] as Map<String, dynamic>,
+            )
+          : null,
+      period: Period.fromJson(
+        json['period'] as Map<String, dynamic>,
+      ),
+    );
+  }
+
+  /// Deserialize [CitationStatusDate] from a [String] or [YamlMap] object
+  factory CitationStatusDate.fromYaml(dynamic yaml) => yaml is String
+      ? CitationStatusDate.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationStatusDate.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationStatusDate cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationStatusDate] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationStatusDate.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationStatusDate.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationStatusDate';
 
-  /// [activity] /// Classification of the status.
+  /// [activity]
+  /// Classification of the status.
   final CodeableConcept activity;
 
-  /// [actual] /// Either occurred or expected.
+  /// [actual]
+  /// Either occurred or expected.
   final FhirBoolean? actual;
+
+  /// Extensions for [actual]
   final Element? actualElement;
 
-  /// [period] /// When the status started and/or ended.
+  /// [period]
+  /// When the status started and/or ended.
   final Period period;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['activity'] = activity.toJson();
     if (actual?.value != null) {
@@ -1034,31 +1339,6 @@ class CitationStatusDate extends BackboneElement {
     return json;
   }
 
-  factory CitationStatusDate.fromJson(Map<String, dynamic> json) {
-    return CitationStatusDate(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      activity:
-          CodeableConcept.fromJson(json['activity'] as Map<String, dynamic>),
-      actual:
-          json['actual'] != null ? FhirBoolean.fromJson(json['actual']) : null,
-      actualElement: json['_actual'] != null
-          ? Element.fromJson(json['_actual'] as Map<String, dynamic>)
-          : null,
-      period: Period.fromJson(json['period'] as Map<String, dynamic>),
-    );
-  }
   @override
   CitationStatusDate clone() => throw UnimplementedError();
   @override
@@ -1093,29 +1373,13 @@ class CitationStatusDate extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationStatusDate.fromYaml(dynamic yaml) => yaml is String
-      ? CitationStatusDate.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationStatusDate.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationStatusDate cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationStatusDate.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationStatusDate.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationRelatesTo] /// Artifact related to the Citation Resource.
+/// [CitationRelatesTo]
+/// Artifact related to the Citation Resource.
 class CitationRelatesTo extends BackboneElement {
+  /// Primary constructor for [CitationRelatesTo]
+
   CitationRelatesTo({
     super.id,
     super.extension_,
@@ -1123,6 +1387,8 @@ class CitationRelatesTo extends BackboneElement {
     required this.relationshipType,
     this.targetClassifier,
     this.targetUri,
+
+    /// Extensions for [targetUri]
     this.targetUriElement,
     this.targetIdentifier,
     this.targetReference,
@@ -1135,47 +1401,139 @@ class CitationRelatesTo extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationRelatesTo.fromJson(Map<String, dynamic> json) {
+    return CitationRelatesTo(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      relationshipType: CodeableConcept.fromJson(
+        json['relationshipType'] as Map<String, dynamic>,
+      ),
+      targetClassifier: json['targetClassifier'] != null
+          ? (json['targetClassifier'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      targetUri: json['targetUri'] != null
+          ? FhirUri.fromJson(json['targetUri'])
+          : null,
+      targetUriElement: json['_targetUri'] != null
+          ? Element.fromJson(
+              json['_targetUri'] as Map<String, dynamic>,
+            )
+          : null,
+      targetIdentifier: json['targetIdentifier'] != null
+          ? Identifier.fromJson(
+              json['targetIdentifier'] as Map<String, dynamic>,
+            )
+          : null,
+      targetReference: json['targetReference'] != null
+          ? Reference.fromJson(
+              json['targetReference'] as Map<String, dynamic>,
+            )
+          : null,
+      targetAttachment: json['targetAttachment'] != null
+          ? Attachment.fromJson(
+              json['targetAttachment'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationRelatesTo] from a [String] or [YamlMap] object
+  factory CitationRelatesTo.fromYaml(dynamic yaml) => yaml is String
+      ? CitationRelatesTo.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationRelatesTo.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationRelatesTo cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationRelatesTo] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationRelatesTo.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationRelatesTo.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationRelatesTo';
 
-  /// [relationshipType] /// How the Citation resource relates to the target artifact.
+  /// [relationshipType]
+  /// How the Citation resource relates to the target artifact.
   final CodeableConcept relationshipType;
 
-  /// [targetClassifier] /// The clasification of the related artifact.
+  /// [targetClassifier]
+  /// The clasification of the related artifact.
   final List<CodeableConcept>? targetClassifier;
 
-  /// [targetUri] /// The article or artifact that the Citation Resource is related to.
+  /// [targetUri]
+  /// The article or artifact that the Citation Resource is related to.
   final FhirUri? targetUri;
+
+  /// Extensions for [targetUri]
   final Element? targetUriElement;
 
-  /// [targetIdentifier] /// The article or artifact that the Citation Resource is related to.
+  /// [targetIdentifier]
+  /// The article or artifact that the Citation Resource is related to.
   final Identifier? targetIdentifier;
 
-  /// [targetReference] /// The article or artifact that the Citation Resource is related to.
+  /// [targetReference]
+  /// The article or artifact that the Citation Resource is related to.
   final Reference? targetReference;
 
-  /// [targetAttachment] /// The article or artifact that the Citation Resource is related to.
+  /// [targetAttachment]
+  /// The article or artifact that the Citation Resource is related to.
   final Attachment? targetAttachment;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['relationshipType'] = relationshipType.toJson();
     if (targetClassifier != null && targetClassifier!.isNotEmpty) {
-      json['targetClassifier'] = targetClassifier!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['targetClassifier'] =
+          targetClassifier!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (targetUri?.value != null) {
       json['targetUri'] = targetUri!.toJson();
@@ -1195,48 +1553,6 @@ class CitationRelatesTo extends BackboneElement {
     return json;
   }
 
-  factory CitationRelatesTo.fromJson(Map<String, dynamic> json) {
-    return CitationRelatesTo(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      relationshipType: CodeableConcept.fromJson(
-          json['relationshipType'] as Map<String, dynamic>),
-      targetClassifier: json['targetClassifier'] != null
-          ? (json['targetClassifier'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      targetUri: json['targetUri'] != null
-          ? FhirUri.fromJson(json['targetUri'])
-          : null,
-      targetUriElement: json['_targetUri'] != null
-          ? Element.fromJson(json['_targetUri'] as Map<String, dynamic>)
-          : null,
-      targetIdentifier: json['targetIdentifier'] != null
-          ? Identifier.fromJson(
-              json['targetIdentifier'] as Map<String, dynamic>)
-          : null,
-      targetReference: json['targetReference'] != null
-          ? Reference.fromJson(json['targetReference'] as Map<String, dynamic>)
-          : null,
-      targetAttachment: json['targetAttachment'] != null
-          ? Attachment.fromJson(
-              json['targetAttachment'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CitationRelatesTo clone() => throw UnimplementedError();
   @override
@@ -1277,29 +1593,13 @@ class CitationRelatesTo extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationRelatesTo.fromYaml(dynamic yaml) => yaml is String
-      ? CitationRelatesTo.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationRelatesTo.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationRelatesTo cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationRelatesTo.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationRelatesTo.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationCitedArtifact] /// The article or artifact being described.
+/// [CitationCitedArtifact]
+/// The article or artifact being described.
 class CitationCitedArtifact extends BackboneElement {
+  /// Primary constructor for [CitationCitedArtifact]
+
   CitationCitedArtifact({
     super.id,
     super.extension_,
@@ -1307,6 +1607,8 @@ class CitationCitedArtifact extends BackboneElement {
     this.identifier,
     this.relatedIdentifier,
     this.dateAccessed,
+
+    /// Extensions for [dateAccessed]
     this.dateAccessedElement,
     this.version,
     this.currentState,
@@ -1328,82 +1630,270 @@ class CitationCitedArtifact extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationCitedArtifact.fromJson(Map<String, dynamic> json) {
+    return CitationCitedArtifact(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      relatedIdentifier: json['relatedIdentifier'] != null
+          ? (json['relatedIdentifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      dateAccessed: json['dateAccessed'] != null
+          ? FhirDateTime.fromJson(json['dateAccessed'])
+          : null,
+      dateAccessedElement: json['_dateAccessed'] != null
+          ? Element.fromJson(
+              json['_dateAccessed'] as Map<String, dynamic>,
+            )
+          : null,
+      version: json['version'] != null
+          ? CitationVersion.fromJson(
+              json['version'] as Map<String, dynamic>,
+            )
+          : null,
+      currentState: json['currentState'] != null
+          ? (json['currentState'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      statusDate: json['statusDate'] != null
+          ? (json['statusDate'] as List<dynamic>)
+              .map<CitationStatusDate>(
+                (dynamic v) => CitationStatusDate.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      title: json['title'] != null
+          ? (json['title'] as List<dynamic>)
+              .map<CitationTitle>(
+                (dynamic v) => CitationTitle.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      abstract_: json['abstract'] != null
+          ? (json['abstract'] as List<dynamic>)
+              .map<CitationAbstract>(
+                (dynamic v) => CitationAbstract.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      part_: json['part'] != null
+          ? CitationPart.fromJson(
+              json['part'] as Map<String, dynamic>,
+            )
+          : null,
+      relatesTo: json['relatesTo'] != null
+          ? (json['relatesTo'] as List<dynamic>)
+              .map<CitationRelatesTo>(
+                (dynamic v) => CitationRelatesTo.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      publicationForm: json['publicationForm'] != null
+          ? (json['publicationForm'] as List<dynamic>)
+              .map<CitationPublicationForm>(
+                (dynamic v) => CitationPublicationForm.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      webLocation: json['webLocation'] != null
+          ? (json['webLocation'] as List<dynamic>)
+              .map<CitationWebLocation>(
+                (dynamic v) => CitationWebLocation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      classification: json['classification'] != null
+          ? (json['classification'] as List<dynamic>)
+              .map<CitationClassification>(
+                (dynamic v) => CitationClassification.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      contributorship: json['contributorship'] != null
+          ? CitationContributorship.fromJson(
+              json['contributorship'] as Map<String, dynamic>,
+            )
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                (dynamic v) => Annotation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationCitedArtifact] from a [String] or [YamlMap] object
+  factory CitationCitedArtifact.fromYaml(dynamic yaml) => yaml is String
+      ? CitationCitedArtifact.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationCitedArtifact.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationCitedArtifact cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationCitedArtifact] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationCitedArtifact.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationCitedArtifact.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationCitedArtifact';
 
-  /// [identifier] /// A formal identifier that is used to identify this citation when it is
+  /// [identifier]
+  /// A formal identifier that is used to identify this citation when it is
   /// represented in other formats, or referenced in a specification, model,
   /// design or an instance.
   final List<Identifier>? identifier;
 
-  /// [relatedIdentifier] /// A formal identifier that is used to identify things closely related to this
-  /// citation.
+  /// [relatedIdentifier]
+  /// A formal identifier that is used to identify things closely related to
+  /// this citation.
   final List<Identifier>? relatedIdentifier;
 
-  /// [dateAccessed] /// When the cited artifact was accessed.
+  /// [dateAccessed]
+  /// When the cited artifact was accessed.
   final FhirDateTime? dateAccessed;
+
+  /// Extensions for [dateAccessed]
   final Element? dateAccessedElement;
 
-  /// [version] /// The defined version of the cited artifact.
+  /// [version]
+  /// The defined version of the cited artifact.
   final CitationVersion? version;
 
-  /// [currentState] /// The status of the cited artifact.
+  /// [currentState]
+  /// The status of the cited artifact.
   final List<CodeableConcept>? currentState;
 
-  /// [statusDate] /// An effective date or period for a status of the cited artifact.
+  /// [statusDate]
+  /// An effective date or period for a status of the cited artifact.
   final List<CitationStatusDate>? statusDate;
 
-  /// [title] /// The title details of the article or artifact.
+  /// [title]
+  /// The title details of the article or artifact.
   final List<CitationTitle>? title;
 
-  /// [abstract_] /// Summary of the article or artifact.
+  /// [abstract_]
+  /// Summary of the article or artifact.
   final List<CitationAbstract>? abstract_;
 
-  /// [part_] /// The component of the article or artifact.
+  /// [part_]
+  /// The component of the article or artifact.
   final CitationPart? part_;
 
-  /// [relatesTo] /// The artifact related to the cited artifact.
+  /// [relatesTo]
+  /// The artifact related to the cited artifact.
   final List<CitationRelatesTo>? relatesTo;
 
-  /// [publicationForm] /// If multiple, used to represent alternative forms of the article that are
-  /// not separate citations.
+  /// [publicationForm]
+  /// If multiple, used to represent alternative forms of the article that
+  /// are not separate citations.
   final List<CitationPublicationForm>? publicationForm;
 
-  /// [webLocation] /// Used for any URL for the article or artifact cited.
+  /// [webLocation]
+  /// Used for any URL for the article or artifact cited.
   final List<CitationWebLocation>? webLocation;
 
-  /// [classification] /// The assignment to an organizing scheme.
+  /// [classification]
+  /// The assignment to an organizing scheme.
   final List<CitationClassification>? classification;
 
-  /// [contributorship] /// This element is used to list authors and other contributors, their contact
-  /// information, specific contributions, and summary statements.
+  /// [contributorship]
+  /// This element is used to list authors and other contributors, their
+  /// contact information, specific contributions, and summary statements.
   final CitationContributorship? contributorship;
 
-  /// [note] /// Any additional information or content for the article or artifact.
+  /// [note]
+  /// Any additional information or content for the article or artifact.
   final List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (relatedIdentifier != null && relatedIdentifier!.isNotEmpty) {
-      json['relatedIdentifier'] = relatedIdentifier!
-          .map<dynamic>((Identifier v) => v.toJson())
-          .toList();
+      json['relatedIdentifier'] =
+          relatedIdentifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (dateAccessed?.value != null) {
       json['dateAccessed'] = dateAccessed!.toJson();
@@ -1415,153 +1905,50 @@ class CitationCitedArtifact extends BackboneElement {
       json['version'] = version!.toJson();
     }
     if (currentState != null && currentState!.isNotEmpty) {
-      json['currentState'] = currentState!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['currentState'] =
+          currentState!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (statusDate != null && statusDate!.isNotEmpty) {
-      json['statusDate'] = statusDate!
-          .map<dynamic>((CitationStatusDate v) => v.toJson())
-          .toList();
+      json['statusDate'] =
+          statusDate!.map((CitationStatusDate v) => v.toJson()).toList();
     }
     if (title != null && title!.isNotEmpty) {
-      json['title'] =
-          title!.map<dynamic>((CitationTitle v) => v.toJson()).toList();
+      json['title'] = title!.map((CitationTitle v) => v.toJson()).toList();
     }
     if (abstract_ != null && abstract_!.isNotEmpty) {
       json['abstract'] =
-          abstract_!.map<dynamic>((CitationAbstract v) => v.toJson()).toList();
+          abstract_!.map((CitationAbstract v) => v.toJson()).toList();
     }
     if (part_ != null) {
       json['part'] = part_!.toJson();
     }
     if (relatesTo != null && relatesTo!.isNotEmpty) {
       json['relatesTo'] =
-          relatesTo!.map<dynamic>((CitationRelatesTo v) => v.toJson()).toList();
+          relatesTo!.map((CitationRelatesTo v) => v.toJson()).toList();
     }
     if (publicationForm != null && publicationForm!.isNotEmpty) {
       json['publicationForm'] = publicationForm!
-          .map<dynamic>((CitationPublicationForm v) => v.toJson())
+          .map((CitationPublicationForm v) => v.toJson())
           .toList();
     }
     if (webLocation != null && webLocation!.isNotEmpty) {
-      json['webLocation'] = webLocation!
-          .map<dynamic>((CitationWebLocation v) => v.toJson())
-          .toList();
+      json['webLocation'] =
+          webLocation!.map((CitationWebLocation v) => v.toJson()).toList();
     }
     if (classification != null && classification!.isNotEmpty) {
       json['classification'] = classification!
-          .map<dynamic>((CitationClassification v) => v.toJson())
+          .map((CitationClassification v) => v.toJson())
           .toList();
     }
     if (contributorship != null) {
       json['contributorship'] = contributorship!.toJson();
     }
     if (note != null && note!.isNotEmpty) {
-      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+      json['note'] = note!.map((Annotation v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory CitationCitedArtifact.fromJson(Map<String, dynamic> json) {
-    return CitationCitedArtifact(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      relatedIdentifier: json['relatedIdentifier'] != null
-          ? (json['relatedIdentifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      dateAccessed: json['dateAccessed'] != null
-          ? FhirDateTime.fromJson(json['dateAccessed'])
-          : null,
-      dateAccessedElement: json['_dateAccessed'] != null
-          ? Element.fromJson(json['_dateAccessed'] as Map<String, dynamic>)
-          : null,
-      version: json['version'] != null
-          ? CitationVersion.fromJson(json['version'] as Map<String, dynamic>)
-          : null,
-      currentState: json['currentState'] != null
-          ? (json['currentState'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      statusDate: json['statusDate'] != null
-          ? (json['statusDate'] as List<dynamic>)
-              .map<CitationStatusDate>((dynamic v) =>
-                  CitationStatusDate.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      title: json['title'] != null
-          ? (json['title'] as List<dynamic>)
-              .map<CitationTitle>((dynamic v) =>
-                  CitationTitle.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      abstract_: json['abstract'] != null
-          ? (json['abstract'] as List<dynamic>)
-              .map<CitationAbstract>((dynamic v) =>
-                  CitationAbstract.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      part_: json['part'] != null
-          ? CitationPart.fromJson(json['part'] as Map<String, dynamic>)
-          : null,
-      relatesTo: json['relatesTo'] != null
-          ? (json['relatesTo'] as List<dynamic>)
-              .map<CitationRelatesTo>((dynamic v) =>
-                  CitationRelatesTo.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      publicationForm: json['publicationForm'] != null
-          ? (json['publicationForm'] as List<dynamic>)
-              .map<CitationPublicationForm>((dynamic v) =>
-                  CitationPublicationForm.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      webLocation: json['webLocation'] != null
-          ? (json['webLocation'] as List<dynamic>)
-              .map<CitationWebLocation>((dynamic v) =>
-                  CitationWebLocation.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      classification: json['classification'] != null
-          ? (json['classification'] as List<dynamic>)
-              .map<CitationClassification>((dynamic v) =>
-                  CitationClassification.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      contributorship: json['contributorship'] != null
-          ? CitationContributorship.fromJson(
-              json['contributorship'] as Map<String, dynamic>)
-          : null,
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   CitationCitedArtifact clone() => throw UnimplementedError();
   @override
@@ -1620,34 +2007,20 @@ class CitationCitedArtifact extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationCitedArtifact.fromYaml(dynamic yaml) => yaml is String
-      ? CitationCitedArtifact.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationCitedArtifact.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationCitedArtifact cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationCitedArtifact.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationCitedArtifact.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationVersion] /// The defined version of the cited artifact.
+/// [CitationVersion]
+/// The defined version of the cited artifact.
 class CitationVersion extends BackboneElement {
+  /// Primary constructor for [CitationVersion]
+
   CitationVersion({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.value,
+
+    /// Extensions for [value]
     this.valueElement,
     this.baseCitation,
     super.userData,
@@ -1658,29 +2031,94 @@ class CitationVersion extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationVersion.fromJson(Map<String, dynamic> json) {
+    return CitationVersion(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      value: FhirString.fromJson(json['value']),
+      valueElement: json['_value'] != null
+          ? Element.fromJson(
+              json['_value'] as Map<String, dynamic>,
+            )
+          : null,
+      baseCitation: json['baseCitation'] != null
+          ? Reference.fromJson(
+              json['baseCitation'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationVersion] from a [String] or [YamlMap] object
+  factory CitationVersion.fromYaml(dynamic yaml) => yaml is String
+      ? CitationVersion.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationVersion.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationVersion cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationVersion] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationVersion.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationVersion.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationVersion';
 
-  /// [value] /// The version number or other version identifier.
+  /// [value]
+  /// The version number or other version identifier.
   final FhirString value;
+
+  /// Extensions for [value]
   final Element? valueElement;
 
-  /// [baseCitation] /// Citation for the main version of the cited artifact.
+  /// [baseCitation]
+  /// Citation for the main version of the cited artifact.
   final Reference? baseCitation;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['value'] = value.toJson();
     if (valueElement != null) {
@@ -1692,30 +2130,6 @@ class CitationVersion extends BackboneElement {
     return json;
   }
 
-  factory CitationVersion.fromJson(Map<String, dynamic> json) {
-    return CitationVersion(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      value: FhirString.fromJson(json['value']),
-      valueElement: json['_value'] != null
-          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
-          : null,
-      baseCitation: json['baseCitation'] != null
-          ? Reference.fromJson(json['baseCitation'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CitationVersion clone() => throw UnimplementedError();
   @override
@@ -1748,35 +2162,21 @@ class CitationVersion extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationVersion.fromYaml(dynamic yaml) => yaml is String
-      ? CitationVersion.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationVersion.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationVersion cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationVersion.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationVersion.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationStatusDate1] /// An effective date or period for a status of the cited artifact.
+/// [CitationStatusDate1]
+/// An effective date or period for a status of the cited artifact.
 class CitationStatusDate1 extends BackboneElement {
+  /// Primary constructor for [CitationStatusDate1]
+
   CitationStatusDate1({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.activity,
     this.actual,
+
+    /// Extensions for [actual]
     this.actualElement,
     required this.period,
     super.userData,
@@ -1787,32 +2187,100 @@ class CitationStatusDate1 extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationStatusDate1.fromJson(Map<String, dynamic> json) {
+    return CitationStatusDate1(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      activity: CodeableConcept.fromJson(
+        json['activity'] as Map<String, dynamic>,
+      ),
+      actual:
+          json['actual'] != null ? FhirBoolean.fromJson(json['actual']) : null,
+      actualElement: json['_actual'] != null
+          ? Element.fromJson(
+              json['_actual'] as Map<String, dynamic>,
+            )
+          : null,
+      period: Period.fromJson(
+        json['period'] as Map<String, dynamic>,
+      ),
+    );
+  }
+
+  /// Deserialize [CitationStatusDate1] from a [String] or [YamlMap] object
+  factory CitationStatusDate1.fromYaml(dynamic yaml) => yaml is String
+      ? CitationStatusDate1.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationStatusDate1.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationStatusDate1 cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationStatusDate1] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationStatusDate1.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationStatusDate1.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationStatusDate1';
 
-  /// [activity] /// Classification of the status.
+  /// [activity]
+  /// Classification of the status.
   final CodeableConcept activity;
 
-  /// [actual] /// Either occurred or expected.
+  /// [actual]
+  /// Either occurred or expected.
   final FhirBoolean? actual;
+
+  /// Extensions for [actual]
   final Element? actualElement;
 
-  /// [period] /// When the status started and/or ended.
+  /// [period]
+  /// When the status started and/or ended.
   final Period period;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['activity'] = activity.toJson();
     if (actual?.value != null) {
@@ -1825,31 +2293,6 @@ class CitationStatusDate1 extends BackboneElement {
     return json;
   }
 
-  factory CitationStatusDate1.fromJson(Map<String, dynamic> json) {
-    return CitationStatusDate1(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      activity:
-          CodeableConcept.fromJson(json['activity'] as Map<String, dynamic>),
-      actual:
-          json['actual'] != null ? FhirBoolean.fromJson(json['actual']) : null,
-      actualElement: json['_actual'] != null
-          ? Element.fromJson(json['_actual'] as Map<String, dynamic>)
-          : null,
-      period: Period.fromJson(json['period'] as Map<String, dynamic>),
-    );
-  }
   @override
   CitationStatusDate1 clone() => throw UnimplementedError();
   @override
@@ -1884,29 +2327,13 @@ class CitationStatusDate1 extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationStatusDate1.fromYaml(dynamic yaml) => yaml is String
-      ? CitationStatusDate1.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationStatusDate1.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationStatusDate1 cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationStatusDate1.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationStatusDate1.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationTitle] /// The title details of the article or artifact.
+/// [CitationTitle]
+/// The title details of the article or artifact.
 class CitationTitle extends BackboneElement {
+  /// Primary constructor for [CitationTitle]
+
   CitationTitle({
     super.id,
     super.extension_,
@@ -1914,6 +2341,8 @@ class CitationTitle extends BackboneElement {
     this.type,
     this.language,
     required this.text,
+
+    /// Extensions for [text]
     this.textElement,
     super.userData,
     super.formatCommentsPre,
@@ -1923,36 +2352,110 @@ class CitationTitle extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationTitle.fromJson(Map<String, dynamic> json) {
+    return CitationTitle(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? (json['type'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      language: json['language'] != null
+          ? CodeableConcept.fromJson(
+              json['language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: FhirMarkdown.fromJson(json['text']),
+      textElement: json['_text'] != null
+          ? Element.fromJson(
+              json['_text'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationTitle] from a [String] or [YamlMap] object
+  factory CitationTitle.fromYaml(dynamic yaml) => yaml is String
+      ? CitationTitle.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationTitle.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationTitle cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationTitle] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationTitle.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationTitle.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationTitle';
 
-  /// [type] /// Used to express the reason or specific aspect for the title.
+  /// [type]
+  /// Used to express the reason or specific aspect for the title.
   final List<CodeableConcept>? type;
 
-  /// [language] /// Used to express the specific language.
+  /// [language]
+  /// Used to express the specific language.
   final CodeableConcept? language;
 
-  /// [text] /// The title of the article or artifact.
+  /// [text]
+  /// The title of the article or artifact.
   final FhirMarkdown text;
+
+  /// Extensions for [text]
   final Element? textElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (type != null && type!.isNotEmpty) {
-      json['type'] =
-          type!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+      json['type'] = type!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -1964,36 +2467,6 @@ class CitationTitle extends BackboneElement {
     return json;
   }
 
-  factory CitationTitle.fromJson(Map<String, dynamic> json) {
-    return CitationTitle(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? (json['type'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      language: json['language'] != null
-          ? CodeableConcept.fromJson(json['language'] as Map<String, dynamic>)
-          : null,
-      text: FhirMarkdown.fromJson(json['text']),
-      textElement: json['_text'] != null
-          ? Element.fromJson(json['_text'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CitationTitle clone() => throw UnimplementedError();
   @override
@@ -2028,29 +2501,13 @@ class CitationTitle extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationTitle.fromYaml(dynamic yaml) => yaml is String
-      ? CitationTitle.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationTitle.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationTitle cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationTitle.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationTitle.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationAbstract] /// Summary of the article or artifact.
+/// [CitationAbstract]
+/// Summary of the article or artifact.
 class CitationAbstract extends BackboneElement {
+  /// Primary constructor for [CitationAbstract]
+
   CitationAbstract({
     super.id,
     super.extension_,
@@ -2058,8 +2515,12 @@ class CitationAbstract extends BackboneElement {
     this.type,
     this.language,
     required this.text,
+
+    /// Extensions for [text]
     this.textElement,
     this.copyright,
+
+    /// Extensions for [copyright]
     this.copyrightElement,
     super.userData,
     super.formatCommentsPre,
@@ -2069,36 +2530,118 @@ class CitationAbstract extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationAbstract.fromJson(Map<String, dynamic> json) {
+    return CitationAbstract(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(
+              json['type'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CodeableConcept.fromJson(
+              json['language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: FhirMarkdown.fromJson(json['text']),
+      textElement: json['_text'] != null
+          ? Element.fromJson(
+              json['_text'] as Map<String, dynamic>,
+            )
+          : null,
+      copyright: json['copyright'] != null
+          ? FhirMarkdown.fromJson(json['copyright'])
+          : null,
+      copyrightElement: json['_copyright'] != null
+          ? Element.fromJson(
+              json['_copyright'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationAbstract] from a [String] or [YamlMap] object
+  factory CitationAbstract.fromYaml(dynamic yaml) => yaml is String
+      ? CitationAbstract.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationAbstract.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationAbstract cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationAbstract] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationAbstract.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationAbstract.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationAbstract';
 
-  /// [type] /// Used to express the reason or specific aspect for the abstract.
+  /// [type]
+  /// Used to express the reason or specific aspect for the abstract.
   final CodeableConcept? type;
 
-  /// [language] /// Used to express the specific language.
+  /// [language]
+  /// Used to express the specific language.
   final CodeableConcept? language;
 
-  /// [text] /// Abstract content.
+  /// [text]
+  /// Abstract content.
   final FhirMarkdown text;
+
+  /// Extensions for [text]
   final Element? textElement;
 
-  /// [copyright] /// Copyright notice for the abstract.
+  /// [copyright]
+  /// Copyright notice for the abstract.
   final FhirMarkdown? copyright;
+
+  /// Extensions for [copyright]
   final Element? copyrightElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (type != null) {
       json['type'] = type!.toJson();
@@ -2119,39 +2662,6 @@ class CitationAbstract extends BackboneElement {
     return json;
   }
 
-  factory CitationAbstract.fromJson(Map<String, dynamic> json) {
-    return CitationAbstract(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CodeableConcept.fromJson(json['language'] as Map<String, dynamic>)
-          : null,
-      text: FhirMarkdown.fromJson(json['text']),
-      textElement: json['_text'] != null
-          ? Element.fromJson(json['_text'] as Map<String, dynamic>)
-          : null,
-      copyright: json['copyright'] != null
-          ? FhirMarkdown.fromJson(json['copyright'])
-          : null,
-      copyrightElement: json['_copyright'] != null
-          ? Element.fromJson(json['_copyright'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CitationAbstract clone() => throw UnimplementedError();
   @override
@@ -2190,35 +2700,21 @@ class CitationAbstract extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationAbstract.fromYaml(dynamic yaml) => yaml is String
-      ? CitationAbstract.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationAbstract.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationAbstract cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationAbstract.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationAbstract.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationPart] /// The component of the article or artifact.
+/// [CitationPart]
+/// The component of the article or artifact.
 class CitationPart extends BackboneElement {
+  /// Primary constructor for [CitationPart]
+
   CitationPart({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.type,
     this.value,
+
+    /// Extensions for [value]
     this.valueElement,
     this.baseCitation,
     super.userData,
@@ -2229,32 +2725,102 @@ class CitationPart extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationPart.fromJson(Map<String, dynamic> json) {
+    return CitationPart(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(
+              json['type'] as Map<String, dynamic>,
+            )
+          : null,
+      value: json['value'] != null ? FhirString.fromJson(json['value']) : null,
+      valueElement: json['_value'] != null
+          ? Element.fromJson(
+              json['_value'] as Map<String, dynamic>,
+            )
+          : null,
+      baseCitation: json['baseCitation'] != null
+          ? Reference.fromJson(
+              json['baseCitation'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationPart] from a [String] or [YamlMap] object
+  factory CitationPart.fromYaml(dynamic yaml) => yaml is String
+      ? CitationPart.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationPart.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('CitationPart cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationPart] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationPart.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationPart.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationPart';
 
-  /// [type] /// The kind of component.
+  /// [type]
+  /// The kind of component.
   final CodeableConcept? type;
 
-  /// [value] /// The specification of the component.
+  /// [value]
+  /// The specification of the component.
   final FhirString? value;
+
+  /// Extensions for [value]
   final Element? valueElement;
 
-  /// [baseCitation] /// The citation for the full article or artifact.
+  /// [baseCitation]
+  /// The citation for the full article or artifact.
   final Reference? baseCitation;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (type != null) {
       json['type'] = type!.toJson();
@@ -2271,33 +2837,6 @@ class CitationPart extends BackboneElement {
     return json;
   }
 
-  factory CitationPart.fromJson(Map<String, dynamic> json) {
-    return CitationPart(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
-          : null,
-      value: json['value'] != null ? FhirString.fromJson(json['value']) : null,
-      valueElement: json['_value'] != null
-          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
-          : null,
-      baseCitation: json['baseCitation'] != null
-          ? Reference.fromJson(json['baseCitation'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CitationPart clone() => throw UnimplementedError();
   @override
@@ -2332,29 +2871,13 @@ class CitationPart extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationPart.fromYaml(dynamic yaml) => yaml is String
-      ? CitationPart.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationPart.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationPart cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationPart.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationPart.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationRelatesTo1] /// The artifact related to the cited artifact.
+/// [CitationRelatesTo1]
+/// The artifact related to the cited artifact.
 class CitationRelatesTo1 extends BackboneElement {
+  /// Primary constructor for [CitationRelatesTo1]
+
   CitationRelatesTo1({
     super.id,
     super.extension_,
@@ -2362,6 +2885,8 @@ class CitationRelatesTo1 extends BackboneElement {
     required this.relationshipType,
     this.targetClassifier,
     this.targetUri,
+
+    /// Extensions for [targetUri]
     this.targetUriElement,
     this.targetIdentifier,
     this.targetReference,
@@ -2374,47 +2899,139 @@ class CitationRelatesTo1 extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationRelatesTo1.fromJson(Map<String, dynamic> json) {
+    return CitationRelatesTo1(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      relationshipType: CodeableConcept.fromJson(
+        json['relationshipType'] as Map<String, dynamic>,
+      ),
+      targetClassifier: json['targetClassifier'] != null
+          ? (json['targetClassifier'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      targetUri: json['targetUri'] != null
+          ? FhirUri.fromJson(json['targetUri'])
+          : null,
+      targetUriElement: json['_targetUri'] != null
+          ? Element.fromJson(
+              json['_targetUri'] as Map<String, dynamic>,
+            )
+          : null,
+      targetIdentifier: json['targetIdentifier'] != null
+          ? Identifier.fromJson(
+              json['targetIdentifier'] as Map<String, dynamic>,
+            )
+          : null,
+      targetReference: json['targetReference'] != null
+          ? Reference.fromJson(
+              json['targetReference'] as Map<String, dynamic>,
+            )
+          : null,
+      targetAttachment: json['targetAttachment'] != null
+          ? Attachment.fromJson(
+              json['targetAttachment'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationRelatesTo1] from a [String] or [YamlMap] object
+  factory CitationRelatesTo1.fromYaml(dynamic yaml) => yaml is String
+      ? CitationRelatesTo1.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationRelatesTo1.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationRelatesTo1 cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationRelatesTo1] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationRelatesTo1.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationRelatesTo1.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationRelatesTo1';
 
-  /// [relationshipType] /// How the cited artifact relates to the target artifact.
+  /// [relationshipType]
+  /// How the cited artifact relates to the target artifact.
   final CodeableConcept relationshipType;
 
-  /// [targetClassifier] /// The clasification of the related artifact.
+  /// [targetClassifier]
+  /// The clasification of the related artifact.
   final List<CodeableConcept>? targetClassifier;
 
-  /// [targetUri] /// The article or artifact that the cited artifact is related to.
+  /// [targetUri]
+  /// The article or artifact that the cited artifact is related to.
   final FhirUri? targetUri;
+
+  /// Extensions for [targetUri]
   final Element? targetUriElement;
 
-  /// [targetIdentifier] /// The article or artifact that the cited artifact is related to.
+  /// [targetIdentifier]
+  /// The article or artifact that the cited artifact is related to.
   final Identifier? targetIdentifier;
 
-  /// [targetReference] /// The article or artifact that the cited artifact is related to.
+  /// [targetReference]
+  /// The article or artifact that the cited artifact is related to.
   final Reference? targetReference;
 
-  /// [targetAttachment] /// The article or artifact that the cited artifact is related to.
+  /// [targetAttachment]
+  /// The article or artifact that the cited artifact is related to.
   final Attachment? targetAttachment;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['relationshipType'] = relationshipType.toJson();
     if (targetClassifier != null && targetClassifier!.isNotEmpty) {
-      json['targetClassifier'] = targetClassifier!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['targetClassifier'] =
+          targetClassifier!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (targetUri?.value != null) {
       json['targetUri'] = targetUri!.toJson();
@@ -2434,48 +3051,6 @@ class CitationRelatesTo1 extends BackboneElement {
     return json;
   }
 
-  factory CitationRelatesTo1.fromJson(Map<String, dynamic> json) {
-    return CitationRelatesTo1(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      relationshipType: CodeableConcept.fromJson(
-          json['relationshipType'] as Map<String, dynamic>),
-      targetClassifier: json['targetClassifier'] != null
-          ? (json['targetClassifier'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      targetUri: json['targetUri'] != null
-          ? FhirUri.fromJson(json['targetUri'])
-          : null,
-      targetUriElement: json['_targetUri'] != null
-          ? Element.fromJson(json['_targetUri'] as Map<String, dynamic>)
-          : null,
-      targetIdentifier: json['targetIdentifier'] != null
-          ? Identifier.fromJson(
-              json['targetIdentifier'] as Map<String, dynamic>)
-          : null,
-      targetReference: json['targetReference'] != null
-          ? Reference.fromJson(json['targetReference'] as Map<String, dynamic>)
-          : null,
-      targetAttachment: json['targetAttachment'] != null
-          ? Attachment.fromJson(
-              json['targetAttachment'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CitationRelatesTo1 clone() => throw UnimplementedError();
   @override
@@ -2516,30 +3091,14 @@ class CitationRelatesTo1 extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationRelatesTo1.fromYaml(dynamic yaml) => yaml is String
-      ? CitationRelatesTo1.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationRelatesTo1.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationRelatesTo1 cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationRelatesTo1.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationRelatesTo1.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationPublicationForm] /// If multiple, used to represent alternative forms of the article that are
-/// not separate citations.
+/// [CitationPublicationForm]
+/// If multiple, used to represent alternative forms of the article that
+/// are not separate citations.
 class CitationPublicationForm extends BackboneElement {
+  /// Primary constructor for [CitationPublicationForm]
+
   CitationPublicationForm({
     super.id,
     super.extension_,
@@ -2547,21 +3106,37 @@ class CitationPublicationForm extends BackboneElement {
     this.publishedIn,
     this.periodicRelease,
     this.articleDate,
+
+    /// Extensions for [articleDate]
     this.articleDateElement,
     this.lastRevisionDate,
+
+    /// Extensions for [lastRevisionDate]
     this.lastRevisionDateElement,
     this.language,
     this.accessionNumber,
+
+    /// Extensions for [accessionNumber]
     this.accessionNumberElement,
     this.pageString,
+
+    /// Extensions for [pageString]
     this.pageStringElement,
     this.firstPage,
+
+    /// Extensions for [firstPage]
     this.firstPageElement,
     this.lastPage,
+
+    /// Extensions for [lastPage]
     this.lastPageElement,
     this.pageCount,
+
+    /// Extensions for [pageCount]
     this.pageCountElement,
     this.copyright,
+
+    /// Extensions for [copyright]
     this.copyrightElement,
     super.userData,
     super.formatCommentsPre,
@@ -2571,64 +3146,225 @@ class CitationPublicationForm extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationPublicationForm.fromJson(Map<String, dynamic> json) {
+    return CitationPublicationForm(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      publishedIn: json['publishedIn'] != null
+          ? CitationPublishedIn.fromJson(
+              json['publishedIn'] as Map<String, dynamic>,
+            )
+          : null,
+      periodicRelease: json['periodicRelease'] != null
+          ? CitationPeriodicRelease.fromJson(
+              json['periodicRelease'] as Map<String, dynamic>,
+            )
+          : null,
+      articleDate: json['articleDate'] != null
+          ? FhirDateTime.fromJson(json['articleDate'])
+          : null,
+      articleDateElement: json['_articleDate'] != null
+          ? Element.fromJson(
+              json['_articleDate'] as Map<String, dynamic>,
+            )
+          : null,
+      lastRevisionDate: json['lastRevisionDate'] != null
+          ? FhirDateTime.fromJson(json['lastRevisionDate'])
+          : null,
+      lastRevisionDateElement: json['_lastRevisionDate'] != null
+          ? Element.fromJson(
+              json['_lastRevisionDate'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? (json['language'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      accessionNumber: json['accessionNumber'] != null
+          ? FhirString.fromJson(json['accessionNumber'])
+          : null,
+      accessionNumberElement: json['_accessionNumber'] != null
+          ? Element.fromJson(
+              json['_accessionNumber'] as Map<String, dynamic>,
+            )
+          : null,
+      pageString: json['pageString'] != null
+          ? FhirString.fromJson(json['pageString'])
+          : null,
+      pageStringElement: json['_pageString'] != null
+          ? Element.fromJson(
+              json['_pageString'] as Map<String, dynamic>,
+            )
+          : null,
+      firstPage: json['firstPage'] != null
+          ? FhirString.fromJson(json['firstPage'])
+          : null,
+      firstPageElement: json['_firstPage'] != null
+          ? Element.fromJson(
+              json['_firstPage'] as Map<String, dynamic>,
+            )
+          : null,
+      lastPage: json['lastPage'] != null
+          ? FhirString.fromJson(json['lastPage'])
+          : null,
+      lastPageElement: json['_lastPage'] != null
+          ? Element.fromJson(
+              json['_lastPage'] as Map<String, dynamic>,
+            )
+          : null,
+      pageCount: json['pageCount'] != null
+          ? FhirString.fromJson(json['pageCount'])
+          : null,
+      pageCountElement: json['_pageCount'] != null
+          ? Element.fromJson(
+              json['_pageCount'] as Map<String, dynamic>,
+            )
+          : null,
+      copyright: json['copyright'] != null
+          ? FhirMarkdown.fromJson(json['copyright'])
+          : null,
+      copyrightElement: json['_copyright'] != null
+          ? Element.fromJson(
+              json['_copyright'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationPublicationForm] from a [String] or [YamlMap] object
+  factory CitationPublicationForm.fromYaml(dynamic yaml) => yaml is String
+      ? CitationPublicationForm.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationPublicationForm.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationPublicationForm cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationPublicationForm] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationPublicationForm.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationPublicationForm.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationPublicationForm';
 
-  /// [publishedIn] /// The collection the cited article or artifact is published in.
+  /// [publishedIn]
+  /// The collection the cited article or artifact is published in.
   final CitationPublishedIn? publishedIn;
 
-  /// [periodicRelease] /// The specific issue in which the cited article resides.
+  /// [periodicRelease]
+  /// The specific issue in which the cited article resides.
   final CitationPeriodicRelease? periodicRelease;
 
-  /// [articleDate] /// The date the article was added to the database, or the date the article was
-  /// released (which may differ from the journal issue publication date).
+  /// [articleDate]
+  /// The date the article was added to the database, or the date the article
+  /// was released (which may differ from the journal issue publication
+  /// date).
   final FhirDateTime? articleDate;
+
+  /// Extensions for [articleDate]
   final Element? articleDateElement;
 
-  /// [lastRevisionDate] /// The date the article was last revised or updated in the database.
+  /// [lastRevisionDate]
+  /// The date the article was last revised or updated in the database.
   final FhirDateTime? lastRevisionDate;
+
+  /// Extensions for [lastRevisionDate]
   final Element? lastRevisionDateElement;
 
-  /// [language] /// Language in which this form of the article is published.
+  /// [language]
+  /// Language in which this form of the article is published.
   final List<CodeableConcept>? language;
 
-  /// [accessionNumber] /// Entry number or identifier for inclusion in a database.
+  /// [accessionNumber]
+  /// Entry number or identifier for inclusion in a database.
   final FhirString? accessionNumber;
+
+  /// Extensions for [accessionNumber]
   final Element? accessionNumberElement;
 
-  /// [pageString] /// Used for full display of pagination.
+  /// [pageString]
+  /// Used for full display of pagination.
   final FhirString? pageString;
+
+  /// Extensions for [pageString]
   final Element? pageStringElement;
 
-  /// [firstPage] /// Used for isolated representation of first page.
+  /// [firstPage]
+  /// Used for isolated representation of first page.
   final FhirString? firstPage;
+
+  /// Extensions for [firstPage]
   final Element? firstPageElement;
 
-  /// [lastPage] /// Used for isolated representation of last page.
+  /// [lastPage]
+  /// Used for isolated representation of last page.
   final FhirString? lastPage;
+
+  /// Extensions for [lastPage]
   final Element? lastPageElement;
 
-  /// [pageCount] /// Actual or approximate number of pages or screens.
+  /// [pageCount]
+  /// Actual or approximate number of pages or screens.
   final FhirString? pageCount;
+
+  /// Extensions for [pageCount]
   final Element? pageCountElement;
 
-  /// [copyright] /// Copyright notice for the full article or artifact.
+  /// [copyright]
+  /// Copyright notice for the full article or artifact.
   final FhirMarkdown? copyright;
+
+  /// Extensions for [copyright]
   final Element? copyrightElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (publishedIn != null) {
       json['publishedIn'] = publishedIn!.toJson();
@@ -2650,7 +3386,7 @@ class CitationPublicationForm extends BackboneElement {
     }
     if (language != null && language!.isNotEmpty) {
       json['language'] =
-          language!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          language!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (accessionNumber?.value != null) {
       json['accessionNumber'] = accessionNumber!.toJson();
@@ -2691,85 +3427,6 @@ class CitationPublicationForm extends BackboneElement {
     return json;
   }
 
-  factory CitationPublicationForm.fromJson(Map<String, dynamic> json) {
-    return CitationPublicationForm(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      publishedIn: json['publishedIn'] != null
-          ? CitationPublishedIn.fromJson(
-              json['publishedIn'] as Map<String, dynamic>)
-          : null,
-      periodicRelease: json['periodicRelease'] != null
-          ? CitationPeriodicRelease.fromJson(
-              json['periodicRelease'] as Map<String, dynamic>)
-          : null,
-      articleDate: json['articleDate'] != null
-          ? FhirDateTime.fromJson(json['articleDate'])
-          : null,
-      articleDateElement: json['_articleDate'] != null
-          ? Element.fromJson(json['_articleDate'] as Map<String, dynamic>)
-          : null,
-      lastRevisionDate: json['lastRevisionDate'] != null
-          ? FhirDateTime.fromJson(json['lastRevisionDate'])
-          : null,
-      lastRevisionDateElement: json['_lastRevisionDate'] != null
-          ? Element.fromJson(json['_lastRevisionDate'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? (json['language'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      accessionNumber: json['accessionNumber'] != null
-          ? FhirString.fromJson(json['accessionNumber'])
-          : null,
-      accessionNumberElement: json['_accessionNumber'] != null
-          ? Element.fromJson(json['_accessionNumber'] as Map<String, dynamic>)
-          : null,
-      pageString: json['pageString'] != null
-          ? FhirString.fromJson(json['pageString'])
-          : null,
-      pageStringElement: json['_pageString'] != null
-          ? Element.fromJson(json['_pageString'] as Map<String, dynamic>)
-          : null,
-      firstPage: json['firstPage'] != null
-          ? FhirString.fromJson(json['firstPage'])
-          : null,
-      firstPageElement: json['_firstPage'] != null
-          ? Element.fromJson(json['_firstPage'] as Map<String, dynamic>)
-          : null,
-      lastPage: json['lastPage'] != null
-          ? FhirString.fromJson(json['lastPage'])
-          : null,
-      lastPageElement: json['_lastPage'] != null
-          ? Element.fromJson(json['_lastPage'] as Map<String, dynamic>)
-          : null,
-      pageCount: json['pageCount'] != null
-          ? FhirString.fromJson(json['pageCount'])
-          : null,
-      pageCountElement: json['_pageCount'] != null
-          ? Element.fromJson(json['_pageCount'] as Map<String, dynamic>)
-          : null,
-      copyright: json['copyright'] != null
-          ? FhirMarkdown.fromJson(json['copyright'])
-          : null,
-      copyrightElement: json['_copyright'] != null
-          ? Element.fromJson(json['_copyright'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CitationPublicationForm clone() => throw UnimplementedError();
   @override
@@ -2836,29 +3493,13 @@ class CitationPublicationForm extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationPublicationForm.fromYaml(dynamic yaml) => yaml is String
-      ? CitationPublicationForm.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationPublicationForm.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationPublicationForm cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationPublicationForm.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationPublicationForm.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationPublishedIn] /// The collection the cited article or artifact is published in.
+/// [CitationPublishedIn]
+/// The collection the cited article or artifact is published in.
 class CitationPublishedIn extends BackboneElement {
+  /// Primary constructor for [CitationPublishedIn]
+
   CitationPublishedIn({
     super.id,
     super.extension_,
@@ -2866,9 +3507,13 @@ class CitationPublishedIn extends BackboneElement {
     this.type,
     this.identifier,
     this.title,
+
+    /// Extensions for [title]
     this.titleElement,
     this.publisher,
     this.publisherLocation,
+
+    /// Extensions for [publisherLocation]
     this.publisherLocationElement,
     super.userData,
     super.formatCommentsPre,
@@ -2878,47 +3523,139 @@ class CitationPublishedIn extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationPublishedIn.fromJson(Map<String, dynamic> json) {
+    return CitationPublishedIn(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(
+              json['type'] as Map<String, dynamic>,
+            )
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
+      titleElement: json['_title'] != null
+          ? Element.fromJson(
+              json['_title'] as Map<String, dynamic>,
+            )
+          : null,
+      publisher: json['publisher'] != null
+          ? Reference.fromJson(
+              json['publisher'] as Map<String, dynamic>,
+            )
+          : null,
+      publisherLocation: json['publisherLocation'] != null
+          ? FhirString.fromJson(json['publisherLocation'])
+          : null,
+      publisherLocationElement: json['_publisherLocation'] != null
+          ? Element.fromJson(
+              json['_publisherLocation'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationPublishedIn] from a [String] or [YamlMap] object
+  factory CitationPublishedIn.fromYaml(dynamic yaml) => yaml is String
+      ? CitationPublishedIn.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationPublishedIn.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationPublishedIn cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationPublishedIn] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationPublishedIn.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationPublishedIn.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationPublishedIn';
 
-  /// [type] /// Kind of container (e.g. Periodical, database, or book).
+  /// [type]
+  /// Kind of container (e.g. Periodical, database, or book).
   final CodeableConcept? type;
 
-  /// [identifier] /// Journal identifiers include ISSN, ISO Abbreviation and NLMuniqueID; Book
-  /// identifiers include ISBN.
+  /// [identifier]
+  /// Journal identifiers include ISSN, ISO Abbreviation and NLMuniqueID;
+  /// Book identifiers include ISBN.
   final List<Identifier>? identifier;
 
-  /// [title] /// Name of the database or title of the book or journal.
+  /// [title]
+  /// Name of the database or title of the book or journal.
   final FhirString? title;
+
+  /// Extensions for [title]
   final Element? titleElement;
 
-  /// [publisher] /// Name of the publisher.
+  /// [publisher]
+  /// Name of the publisher.
   final Reference? publisher;
 
-  /// [publisherLocation] /// Geographic location of the publisher.
+  /// [publisherLocation]
+  /// Geographic location of the publisher.
   final FhirString? publisherLocation;
+
+  /// Extensions for [publisherLocation]
   final Element? publisherLocationElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (type != null) {
       json['type'] = type!.toJson();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (title?.value != null) {
       json['title'] = title!.toJson();
@@ -2938,45 +3675,6 @@ class CitationPublishedIn extends BackboneElement {
     return json;
   }
 
-  factory CitationPublishedIn.fromJson(Map<String, dynamic> json) {
-    return CitationPublishedIn(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
-          : null,
-      publisher: json['publisher'] != null
-          ? Reference.fromJson(json['publisher'] as Map<String, dynamic>)
-          : null,
-      publisherLocation: json['publisherLocation'] != null
-          ? FhirString.fromJson(json['publisherLocation'])
-          : null,
-      publisherLocationElement: json['_publisherLocation'] != null
-          ? Element.fromJson(json['_publisherLocation'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CitationPublishedIn clone() => throw UnimplementedError();
   @override
@@ -3018,37 +3716,25 @@ class CitationPublishedIn extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationPublishedIn.fromYaml(dynamic yaml) => yaml is String
-      ? CitationPublishedIn.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationPublishedIn.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationPublishedIn cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationPublishedIn.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationPublishedIn.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationPeriodicRelease] /// The specific issue in which the cited article resides.
+/// [CitationPeriodicRelease]
+/// The specific issue in which the cited article resides.
 class CitationPeriodicRelease extends BackboneElement {
+  /// Primary constructor for [CitationPeriodicRelease]
+
   CitationPeriodicRelease({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.citedMedium,
     this.volume,
+
+    /// Extensions for [volume]
     this.volumeElement,
     this.issue,
+
+    /// Extensions for [issue]
     this.issueElement,
     this.dateOfPublication,
     super.userData,
@@ -3059,37 +3745,118 @@ class CitationPeriodicRelease extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationPeriodicRelease.fromJson(Map<String, dynamic> json) {
+    return CitationPeriodicRelease(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      citedMedium: json['citedMedium'] != null
+          ? CodeableConcept.fromJson(
+              json['citedMedium'] as Map<String, dynamic>,
+            )
+          : null,
+      volume:
+          json['volume'] != null ? FhirString.fromJson(json['volume']) : null,
+      volumeElement: json['_volume'] != null
+          ? Element.fromJson(
+              json['_volume'] as Map<String, dynamic>,
+            )
+          : null,
+      issue: json['issue'] != null ? FhirString.fromJson(json['issue']) : null,
+      issueElement: json['_issue'] != null
+          ? Element.fromJson(
+              json['_issue'] as Map<String, dynamic>,
+            )
+          : null,
+      dateOfPublication: json['dateOfPublication'] != null
+          ? CitationDateOfPublication.fromJson(
+              json['dateOfPublication'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationPeriodicRelease] from a [String] or [YamlMap] object
+  factory CitationPeriodicRelease.fromYaml(dynamic yaml) => yaml is String
+      ? CitationPeriodicRelease.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationPeriodicRelease.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationPeriodicRelease cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationPeriodicRelease] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationPeriodicRelease.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationPeriodicRelease.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationPeriodicRelease';
 
-  /// [citedMedium] /// Describes the form of the medium cited. Common codes are "Internet" or
+  /// [citedMedium]
+  /// Describes the form of the medium cited. Common codes are "Internet" or
   /// "Print".
   final CodeableConcept? citedMedium;
 
-  /// [volume] /// Volume number of journal in which the article is published.
+  /// [volume]
+  /// Volume number of journal in which the article is published.
   final FhirString? volume;
+
+  /// Extensions for [volume]
   final Element? volumeElement;
 
-  /// [issue] /// Issue, part or supplement of journal in which the article is published.
+  /// [issue]
+  /// Issue, part or supplement of journal in which the article is published.
   final FhirString? issue;
+
+  /// Extensions for [issue]
   final Element? issueElement;
 
-  /// [dateOfPublication] /// Defining the date on which the issue of the journal was published.
+  /// [dateOfPublication]
+  /// Defining the date on which the issue of the journal was published.
   final CitationDateOfPublication? dateOfPublication;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (citedMedium != null) {
       json['citedMedium'] = citedMedium!.toJson();
@@ -3112,40 +3879,6 @@ class CitationPeriodicRelease extends BackboneElement {
     return json;
   }
 
-  factory CitationPeriodicRelease.fromJson(Map<String, dynamic> json) {
-    return CitationPeriodicRelease(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      citedMedium: json['citedMedium'] != null
-          ? CodeableConcept.fromJson(
-              json['citedMedium'] as Map<String, dynamic>)
-          : null,
-      volume:
-          json['volume'] != null ? FhirString.fromJson(json['volume']) : null,
-      volumeElement: json['_volume'] != null
-          ? Element.fromJson(json['_volume'] as Map<String, dynamic>)
-          : null,
-      issue: json['issue'] != null ? FhirString.fromJson(json['issue']) : null,
-      issueElement: json['_issue'] != null
-          ? Element.fromJson(json['_issue'] as Map<String, dynamic>)
-          : null,
-      dateOfPublication: json['dateOfPublication'] != null
-          ? CitationDateOfPublication.fromJson(
-              json['dateOfPublication'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CitationPeriodicRelease clone() => throw UnimplementedError();
   @override
@@ -3184,44 +3917,40 @@ class CitationPeriodicRelease extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationPeriodicRelease.fromYaml(dynamic yaml) => yaml is String
-      ? CitationPeriodicRelease.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationPeriodicRelease.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationPeriodicRelease cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationPeriodicRelease.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationPeriodicRelease.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationDateOfPublication] /// Defining the date on which the issue of the journal was published.
+/// [CitationDateOfPublication]
+/// Defining the date on which the issue of the journal was published.
 class CitationDateOfPublication extends BackboneElement {
+  /// Primary constructor for [CitationDateOfPublication]
+
   CitationDateOfPublication({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.date,
+
+    /// Extensions for [date]
     this.dateElement,
     this.year,
+
+    /// Extensions for [year]
     this.yearElement,
     this.month,
+
+    /// Extensions for [month]
     this.monthElement,
     this.day,
+
+    /// Extensions for [day]
     this.dayElement,
     this.season,
+
+    /// Extensions for [season]
     this.seasonElement,
     this.text,
+
+    /// Extensions for [text]
     this.textElement,
     super.userData,
     super.formatCommentsPre,
@@ -3231,47 +3960,152 @@ class CitationDateOfPublication extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationDateOfPublication.fromJson(Map<String, dynamic> json) {
+    return CitationDateOfPublication(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      date: json['date'] != null ? FhirDate.fromJson(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(
+              json['_date'] as Map<String, dynamic>,
+            )
+          : null,
+      year: json['year'] != null ? FhirString.fromJson(json['year']) : null,
+      yearElement: json['_year'] != null
+          ? Element.fromJson(
+              json['_year'] as Map<String, dynamic>,
+            )
+          : null,
+      month: json['month'] != null ? FhirString.fromJson(json['month']) : null,
+      monthElement: json['_month'] != null
+          ? Element.fromJson(
+              json['_month'] as Map<String, dynamic>,
+            )
+          : null,
+      day: json['day'] != null ? FhirString.fromJson(json['day']) : null,
+      dayElement: json['_day'] != null
+          ? Element.fromJson(
+              json['_day'] as Map<String, dynamic>,
+            )
+          : null,
+      season:
+          json['season'] != null ? FhirString.fromJson(json['season']) : null,
+      seasonElement: json['_season'] != null
+          ? Element.fromJson(
+              json['_season'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
+      textElement: json['_text'] != null
+          ? Element.fromJson(
+              json['_text'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationDateOfPublication] from a [String] or [YamlMap] object
+  factory CitationDateOfPublication.fromYaml(dynamic yaml) => yaml is String
+      ? CitationDateOfPublication.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationDateOfPublication.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationDateOfPublication cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationDateOfPublication] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationDateOfPublication.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationDateOfPublication.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationDateOfPublication';
 
-  /// [date] /// Date on which the issue of the journal was published.
+  /// [date]
+  /// Date on which the issue of the journal was published.
   final FhirDate? date;
+
+  /// Extensions for [date]
   final Element? dateElement;
 
-  /// [year] /// Year on which the issue of the journal was published.
+  /// [year]
+  /// Year on which the issue of the journal was published.
   final FhirString? year;
+
+  /// Extensions for [year]
   final Element? yearElement;
 
-  /// [month] /// Month on which the issue of the journal was published.
+  /// [month]
+  /// Month on which the issue of the journal was published.
   final FhirString? month;
+
+  /// Extensions for [month]
   final Element? monthElement;
 
-  /// [day] /// Day on which the issue of the journal was published.
+  /// [day]
+  /// Day on which the issue of the journal was published.
   final FhirString? day;
+
+  /// Extensions for [day]
   final Element? dayElement;
 
-  /// [season] /// Spring, Summer, Fall/Autumn, Winter.
+  /// [season]
+  /// Spring, Summer, Fall/Autumn, Winter.
   final FhirString? season;
+
+  /// Extensions for [season]
   final Element? seasonElement;
 
-  /// [text] /// Text representation of the date of which the issue of the journal was
+  /// [text]
+  /// Text representation of the date of which the issue of the journal was
   /// published.
   final FhirString? text;
+
+  /// Extensions for [text]
   final Element? textElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (date?.value != null) {
       json['date'] = date!.toJson();
@@ -3312,48 +4146,6 @@ class CitationDateOfPublication extends BackboneElement {
     return json;
   }
 
-  factory CitationDateOfPublication.fromJson(Map<String, dynamic> json) {
-    return CitationDateOfPublication(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      date: json['date'] != null ? FhirDate.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
-          : null,
-      year: json['year'] != null ? FhirString.fromJson(json['year']) : null,
-      yearElement: json['_year'] != null
-          ? Element.fromJson(json['_year'] as Map<String, dynamic>)
-          : null,
-      month: json['month'] != null ? FhirString.fromJson(json['month']) : null,
-      monthElement: json['_month'] != null
-          ? Element.fromJson(json['_month'] as Map<String, dynamic>)
-          : null,
-      day: json['day'] != null ? FhirString.fromJson(json['day']) : null,
-      dayElement: json['_day'] != null
-          ? Element.fromJson(json['_day'] as Map<String, dynamic>)
-          : null,
-      season:
-          json['season'] != null ? FhirString.fromJson(json['season']) : null,
-      seasonElement: json['_season'] != null
-          ? Element.fromJson(json['_season'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
-      textElement: json['_text'] != null
-          ? Element.fromJson(json['_text'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CitationDateOfPublication clone() => throw UnimplementedError();
   @override
@@ -3404,35 +4196,21 @@ class CitationDateOfPublication extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationDateOfPublication.fromYaml(dynamic yaml) => yaml is String
-      ? CitationDateOfPublication.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationDateOfPublication.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationDateOfPublication cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationDateOfPublication.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationDateOfPublication.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationWebLocation] /// Used for any URL for the article or artifact cited.
+/// [CitationWebLocation]
+/// Used for any URL for the article or artifact cited.
 class CitationWebLocation extends BackboneElement {
+  /// Primary constructor for [CitationWebLocation]
+
   CitationWebLocation({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.type,
     this.url,
+
+    /// Extensions for [url]
     this.urlElement,
     super.userData,
     super.formatCommentsPre,
@@ -3442,29 +4220,94 @@ class CitationWebLocation extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationWebLocation.fromJson(Map<String, dynamic> json) {
+    return CitationWebLocation(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(
+              json['type'] as Map<String, dynamic>,
+            )
+          : null,
+      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
+      urlElement: json['_url'] != null
+          ? Element.fromJson(
+              json['_url'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationWebLocation] from a [String] or [YamlMap] object
+  factory CitationWebLocation.fromYaml(dynamic yaml) => yaml is String
+      ? CitationWebLocation.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationWebLocation.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationWebLocation cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationWebLocation] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationWebLocation.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationWebLocation.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationWebLocation';
 
-  /// [type] /// Code the reason for different URLs, e.g. abstract and full-text.
+  /// [type]
+  /// Code the reason for different URLs, e.g. abstract and full-text.
   final CodeableConcept? type;
 
-  /// [url] /// The specific URL.
+  /// [url]
+  /// The specific URL.
   final FhirUri? url;
+
+  /// Extensions for [url]
   final Element? urlElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (type != null) {
       json['type'] = type!.toJson();
@@ -3478,30 +4321,6 @@ class CitationWebLocation extends BackboneElement {
     return json;
   }
 
-  factory CitationWebLocation.fromJson(Map<String, dynamic> json) {
-    return CitationWebLocation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
-          : null,
-      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CitationWebLocation clone() => throw UnimplementedError();
   @override
@@ -3534,29 +4353,13 @@ class CitationWebLocation extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationWebLocation.fromYaml(dynamic yaml) => yaml is String
-      ? CitationWebLocation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationWebLocation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationWebLocation cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationWebLocation.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationWebLocation.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationClassification1] /// The assignment to an organizing scheme.
+/// [CitationClassification1]
+/// The assignment to an organizing scheme.
 class CitationClassification1 extends BackboneElement {
+  /// Primary constructor for [CitationClassification1]
+
   CitationClassification1({
     super.id,
     super.extension_,
@@ -3572,38 +4375,110 @@ class CitationClassification1 extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationClassification1.fromJson(Map<String, dynamic> json) {
+    return CitationClassification1(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(
+              json['type'] as Map<String, dynamic>,
+            )
+          : null,
+      classifier: json['classifier'] != null
+          ? (json['classifier'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      whoClassified: json['whoClassified'] != null
+          ? CitationWhoClassified.fromJson(
+              json['whoClassified'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationClassification1] from a [String] or [YamlMap] object
+  factory CitationClassification1.fromYaml(dynamic yaml) => yaml is String
+      ? CitationClassification1.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationClassification1.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationClassification1 cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationClassification1] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationClassification1.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationClassification1.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationClassification1';
 
-  /// [type] /// The kind of classifier (e.g. publication type, keyword).
+  /// [type]
+  /// The kind of classifier (e.g. publication type, keyword).
   final CodeableConcept? type;
 
-  /// [classifier] /// The specific classification value.
+  /// [classifier]
+  /// The specific classification value.
   final List<CodeableConcept>? classifier;
 
-  /// [whoClassified] /// Provenance and copyright of classification.
+  /// [whoClassified]
+  /// Provenance and copyright of classification.
   final CitationWhoClassified? whoClassified;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (type != null) {
       json['type'] = type!.toJson();
     }
     if (classifier != null && classifier!.isNotEmpty) {
       json['classifier'] =
-          classifier!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          classifier!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (whoClassified != null) {
       json['whoClassified'] = whoClassified!.toJson();
@@ -3611,36 +4486,6 @@ class CitationClassification1 extends BackboneElement {
     return json;
   }
 
-  factory CitationClassification1.fromJson(Map<String, dynamic> json) {
-    return CitationClassification1(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
-          : null,
-      classifier: json['classifier'] != null
-          ? (json['classifier'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      whoClassified: json['whoClassified'] != null
-          ? CitationWhoClassified.fromJson(
-              json['whoClassified'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CitationClassification1 clone() => throw UnimplementedError();
   @override
@@ -3673,29 +4518,13 @@ class CitationClassification1 extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationClassification1.fromYaml(dynamic yaml) => yaml is String
-      ? CitationClassification1.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationClassification1.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationClassification1 cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationClassification1.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationClassification1.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationWhoClassified] /// Provenance and copyright of classification.
+/// [CitationWhoClassified]
+/// Provenance and copyright of classification.
 class CitationWhoClassified extends BackboneElement {
+  /// Primary constructor for [CitationWhoClassified]
+
   CitationWhoClassified({
     super.id,
     super.extension_,
@@ -3704,8 +4533,12 @@ class CitationWhoClassified extends BackboneElement {
     this.organization,
     this.publisher,
     this.classifierCopyright,
+
+    /// Extensions for [classifierCopyright]
     this.classifierCopyrightElement,
     this.freeToShare,
+
+    /// Extensions for [freeToShare]
     this.freeToShareElement,
     super.userData,
     super.formatCommentsPre,
@@ -3715,40 +4548,130 @@ class CitationWhoClassified extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationWhoClassified.fromJson(Map<String, dynamic> json) {
+    return CitationWhoClassified(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      person: json['person'] != null
+          ? Reference.fromJson(
+              json['person'] as Map<String, dynamic>,
+            )
+          : null,
+      organization: json['organization'] != null
+          ? Reference.fromJson(
+              json['organization'] as Map<String, dynamic>,
+            )
+          : null,
+      publisher: json['publisher'] != null
+          ? Reference.fromJson(
+              json['publisher'] as Map<String, dynamic>,
+            )
+          : null,
+      classifierCopyright: json['classifierCopyright'] != null
+          ? FhirString.fromJson(json['classifierCopyright'])
+          : null,
+      classifierCopyrightElement: json['_classifierCopyright'] != null
+          ? Element.fromJson(
+              json['_classifierCopyright'] as Map<String, dynamic>,
+            )
+          : null,
+      freeToShare: json['freeToShare'] != null
+          ? FhirBoolean.fromJson(json['freeToShare'])
+          : null,
+      freeToShareElement: json['_freeToShare'] != null
+          ? Element.fromJson(
+              json['_freeToShare'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationWhoClassified] from a [String] or [YamlMap] object
+  factory CitationWhoClassified.fromYaml(dynamic yaml) => yaml is String
+      ? CitationWhoClassified.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationWhoClassified.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationWhoClassified cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationWhoClassified] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationWhoClassified.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationWhoClassified.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationWhoClassified';
 
-  /// [person] /// Person who created the classification.
+  /// [person]
+  /// Person who created the classification.
   final Reference? person;
 
-  /// [organization] /// Organization who created the classification.
+  /// [organization]
+  /// Organization who created the classification.
   final Reference? organization;
 
-  /// [publisher] /// The publisher of the classification, not the publisher of the article or
-  /// artifact being cited.
+  /// [publisher]
+  /// The publisher of the classification, not the publisher of the article
+  /// or artifact being cited.
   final Reference? publisher;
 
-  /// [classifierCopyright] /// Rights management statement for the classification.
+  /// [classifierCopyright]
+  /// Rights management statement for the classification.
   final FhirString? classifierCopyright;
+
+  /// Extensions for [classifierCopyright]
   final Element? classifierCopyrightElement;
 
-  /// [freeToShare] /// Acceptable to re-use the classification.
+  /// [freeToShare]
+  /// Acceptable to re-use the classification.
   final FhirBoolean? freeToShare;
+
+  /// Extensions for [freeToShare]
   final Element? freeToShareElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (person != null) {
       json['person'] = person!.toJson();
@@ -3774,45 +4697,6 @@ class CitationWhoClassified extends BackboneElement {
     return json;
   }
 
-  factory CitationWhoClassified.fromJson(Map<String, dynamic> json) {
-    return CitationWhoClassified(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      person: json['person'] != null
-          ? Reference.fromJson(json['person'] as Map<String, dynamic>)
-          : null,
-      organization: json['organization'] != null
-          ? Reference.fromJson(json['organization'] as Map<String, dynamic>)
-          : null,
-      publisher: json['publisher'] != null
-          ? Reference.fromJson(json['publisher'] as Map<String, dynamic>)
-          : null,
-      classifierCopyright: json['classifierCopyright'] != null
-          ? FhirString.fromJson(json['classifierCopyright'])
-          : null,
-      classifierCopyrightElement: json['_classifierCopyright'] != null
-          ? Element.fromJson(
-              json['_classifierCopyright'] as Map<String, dynamic>)
-          : null,
-      freeToShare: json['freeToShare'] != null
-          ? FhirBoolean.fromJson(json['freeToShare'])
-          : null,
-      freeToShareElement: json['_freeToShare'] != null
-          ? Element.fromJson(json['_freeToShare'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CitationWhoClassified clone() => throw UnimplementedError();
   @override
@@ -3854,35 +4738,21 @@ class CitationWhoClassified extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationWhoClassified.fromYaml(dynamic yaml) => yaml is String
-      ? CitationWhoClassified.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationWhoClassified.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationWhoClassified cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationWhoClassified.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationWhoClassified.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationContributorship] /// This element is used to list authors and other contributors, their contact
-/// information, specific contributions, and summary statements.
+/// [CitationContributorship]
+/// This element is used to list authors and other contributors, their
+/// contact information, specific contributions, and summary statements.
 class CitationContributorship extends BackboneElement {
+  /// Primary constructor for [CitationContributorship]
+
   CitationContributorship({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.complete,
+
+    /// Extensions for [complete]
     this.completeElement,
     this.entry,
     this.summary,
@@ -3894,33 +4764,114 @@ class CitationContributorship extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationContributorship.fromJson(Map<String, dynamic> json) {
+    return CitationContributorship(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      complete: json['complete'] != null
+          ? FhirBoolean.fromJson(json['complete'])
+          : null,
+      completeElement: json['_complete'] != null
+          ? Element.fromJson(
+              json['_complete'] as Map<String, dynamic>,
+            )
+          : null,
+      entry: json['entry'] != null
+          ? (json['entry'] as List<dynamic>)
+              .map<CitationEntry>(
+                (dynamic v) => CitationEntry.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      summary: json['summary'] != null
+          ? (json['summary'] as List<dynamic>)
+              .map<CitationSummary>(
+                (dynamic v) => CitationSummary.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationContributorship] from a [String] or [YamlMap] object
+  factory CitationContributorship.fromYaml(dynamic yaml) => yaml is String
+      ? CitationContributorship.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationContributorship.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationContributorship cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationContributorship] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationContributorship.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationContributorship.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationContributorship';
 
-  /// [complete] /// Indicates if the list includes all authors and/or contributors.
+  /// [complete]
+  /// Indicates if the list includes all authors and/or contributors.
   final FhirBoolean? complete;
+
+  /// Extensions for [complete]
   final Element? completeElement;
 
-  /// [entry] /// An individual entity named in the author list or contributor list.
+  /// [entry]
+  /// An individual entity named in the author list or contributor list.
   final List<CitationEntry>? entry;
 
-  /// [summary] /// Used to record a display of the author/contributor list without separate
-  /// coding for each list member.
+  /// [summary]
+  /// Used to record a display of the author/contributor list without
+  /// separate coding for each list member.
   final List<CitationSummary>? summary;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (complete?.value != null) {
       json['complete'] = complete!.toJson();
@@ -3929,51 +4880,15 @@ class CitationContributorship extends BackboneElement {
       json['_complete'] = completeElement!.toJson();
     }
     if (entry != null && entry!.isNotEmpty) {
-      json['entry'] =
-          entry!.map<dynamic>((CitationEntry v) => v.toJson()).toList();
+      json['entry'] = entry!.map((CitationEntry v) => v.toJson()).toList();
     }
     if (summary != null && summary!.isNotEmpty) {
       json['summary'] =
-          summary!.map<dynamic>((CitationSummary v) => v.toJson()).toList();
+          summary!.map((CitationSummary v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory CitationContributorship.fromJson(Map<String, dynamic> json) {
-    return CitationContributorship(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      complete: json['complete'] != null
-          ? FhirBoolean.fromJson(json['complete'])
-          : null,
-      completeElement: json['_complete'] != null
-          ? Element.fromJson(json['_complete'] as Map<String, dynamic>)
-          : null,
-      entry: json['entry'] != null
-          ? (json['entry'] as List<dynamic>)
-              .map<CitationEntry>((dynamic v) =>
-                  CitationEntry.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      summary: json['summary'] != null
-          ? (json['summary'] as List<dynamic>)
-              .map<CitationSummary>((dynamic v) =>
-                  CitationSummary.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   CitationContributorship clone() => throw UnimplementedError();
   @override
@@ -4008,37 +4923,25 @@ class CitationContributorship extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationContributorship.fromYaml(dynamic yaml) => yaml is String
-      ? CitationContributorship.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationContributorship.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationContributorship cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationContributorship.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationContributorship.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationEntry] /// An individual entity named in the author list or contributor list.
+/// [CitationEntry]
+/// An individual entity named in the author list or contributor list.
 class CitationEntry extends BackboneElement {
+  /// Primary constructor for [CitationEntry]
+
   CitationEntry({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.name,
     this.initials,
+
+    /// Extensions for [initials]
     this.initialsElement,
     this.collectiveName,
+
+    /// Extensions for [collectiveName]
     this.collectiveNameElement,
     this.identifier,
     this.affiliationInfo,
@@ -4048,8 +4951,12 @@ class CitationEntry extends BackboneElement {
     this.role,
     this.contributionInstance,
     this.correspondingContact,
+
+    /// Extensions for [correspondingContact]
     this.correspondingContactElement,
     this.listOrder,
+
+    /// Extensions for [listOrder]
     this.listOrderElement,
     super.userData,
     super.formatCommentsPre,
@@ -4059,64 +4966,230 @@ class CitationEntry extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationEntry.fromJson(Map<String, dynamic> json) {
+    return CitationEntry(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      name: json['name'] != null
+          ? HumanName.fromJson(
+              json['name'] as Map<String, dynamic>,
+            )
+          : null,
+      initials: json['initials'] != null
+          ? FhirString.fromJson(json['initials'])
+          : null,
+      initialsElement: json['_initials'] != null
+          ? Element.fromJson(
+              json['_initials'] as Map<String, dynamic>,
+            )
+          : null,
+      collectiveName: json['collectiveName'] != null
+          ? FhirString.fromJson(json['collectiveName'])
+          : null,
+      collectiveNameElement: json['_collectiveName'] != null
+          ? Element.fromJson(
+              json['_collectiveName'] as Map<String, dynamic>,
+            )
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      affiliationInfo: json['affiliationInfo'] != null
+          ? (json['affiliationInfo'] as List<dynamic>)
+              .map<CitationAffiliationInfo>(
+                (dynamic v) => CitationAffiliationInfo.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      address: json['address'] != null
+          ? (json['address'] as List<dynamic>)
+              .map<Address>(
+                (dynamic v) => Address.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      telecom: json['telecom'] != null
+          ? (json['telecom'] as List<dynamic>)
+              .map<ContactPoint>(
+                (dynamic v) => ContactPoint.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      contributionType: json['contributionType'] != null
+          ? (json['contributionType'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      role: json['role'] != null
+          ? CodeableConcept.fromJson(
+              json['role'] as Map<String, dynamic>,
+            )
+          : null,
+      contributionInstance: json['contributionInstance'] != null
+          ? (json['contributionInstance'] as List<dynamic>)
+              .map<CitationContributionInstance>(
+                (dynamic v) => CitationContributionInstance.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      correspondingContact: json['correspondingContact'] != null
+          ? FhirBoolean.fromJson(json['correspondingContact'])
+          : null,
+      correspondingContactElement: json['_correspondingContact'] != null
+          ? Element.fromJson(
+              json['_correspondingContact'] as Map<String, dynamic>,
+            )
+          : null,
+      listOrder: json['listOrder'] != null
+          ? FhirPositiveInt.fromJson(json['listOrder'])
+          : null,
+      listOrderElement: json['_listOrder'] != null
+          ? Element.fromJson(
+              json['_listOrder'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationEntry] from a [String] or [YamlMap] object
+  factory CitationEntry.fromYaml(dynamic yaml) => yaml is String
+      ? CitationEntry.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationEntry.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationEntry cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationEntry] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationEntry.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationEntry.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationEntry';
 
-  /// [name] /// A name associated with the individual.
+  /// [name]
+  /// A name associated with the individual.
   final HumanName? name;
 
-  /// [initials] /// Initials for forename.
+  /// [initials]
+  /// Initials for forename.
   final FhirString? initials;
+
+  /// Extensions for [initials]
   final Element? initialsElement;
 
-  /// [collectiveName] /// Used for collective or corporate name as an author.
+  /// [collectiveName]
+  /// Used for collective or corporate name as an author.
   final FhirString? collectiveName;
+
+  /// Extensions for [collectiveName]
   final Element? collectiveNameElement;
 
-  /// [identifier] /// Unique person identifier.
+  /// [identifier]
+  /// Unique person identifier.
   final List<Identifier>? identifier;
 
-  /// [affiliationInfo] /// Organization affiliated with the entity.
+  /// [affiliationInfo]
+  /// Organization affiliated with the entity.
   final List<CitationAffiliationInfo>? affiliationInfo;
 
-  /// [address] /// Physical mailing address for the author or contributor.
+  /// [address]
+  /// Physical mailing address for the author or contributor.
   final List<Address>? address;
 
-  /// [telecom] /// Email or telephone contact methods for the author or contributor.
+  /// [telecom]
+  /// Email or telephone contact methods for the author or contributor.
   final List<ContactPoint>? telecom;
 
-  /// [contributionType] /// This element identifies the specific nature of an individual’s contribution
-  /// with respect to the cited work.
+  /// [contributionType]
+  /// This element identifies the specific nature of an individual’s
+  /// contribution with respect to the cited work.
   final List<CodeableConcept>? contributionType;
 
-  /// [role] /// The role of the contributor (e.g. author, editor, reviewer).
+  /// [role]
+  /// The role of the contributor (e.g. author, editor, reviewer).
   final CodeableConcept? role;
 
-  /// [contributionInstance] /// Contributions with accounting for time or number.
+  /// [contributionInstance]
+  /// Contributions with accounting for time or number.
   final List<CitationContributionInstance>? contributionInstance;
 
-  /// [correspondingContact] /// Indication of which contributor is the corresponding contributor for the
-  /// role.
+  /// [correspondingContact]
+  /// Indication of which contributor is the corresponding contributor for
+  /// the role.
   final FhirBoolean? correspondingContact;
+
+  /// Extensions for [correspondingContact]
   final Element? correspondingContactElement;
 
-  /// [listOrder] /// Used to code order of authors.
+  /// [listOrder]
+  /// Used to code order of authors.
   final FhirPositiveInt? listOrder;
+
+  /// Extensions for [listOrder]
   final Element? listOrderElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (name != null) {
       json['name'] = name!.toJson();
@@ -4135,32 +5208,29 @@ class CitationEntry extends BackboneElement {
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (affiliationInfo != null && affiliationInfo!.isNotEmpty) {
       json['affiliationInfo'] = affiliationInfo!
-          .map<dynamic>((CitationAffiliationInfo v) => v.toJson())
+          .map((CitationAffiliationInfo v) => v.toJson())
           .toList();
     }
     if (address != null && address!.isNotEmpty) {
-      json['address'] =
-          address!.map<dynamic>((Address v) => v.toJson()).toList();
+      json['address'] = address!.map((Address v) => v.toJson()).toList();
     }
     if (telecom != null && telecom!.isNotEmpty) {
-      json['telecom'] =
-          telecom!.map<dynamic>((ContactPoint v) => v.toJson()).toList();
+      json['telecom'] = telecom!.map((ContactPoint v) => v.toJson()).toList();
     }
     if (contributionType != null && contributionType!.isNotEmpty) {
-      json['contributionType'] = contributionType!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['contributionType'] =
+          contributionType!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (role != null) {
       json['role'] = role!.toJson();
     }
     if (contributionInstance != null && contributionInstance!.isNotEmpty) {
       json['contributionInstance'] = contributionInstance!
-          .map<dynamic>((CitationContributionInstance v) => v.toJson())
+          .map((CitationContributionInstance v) => v.toJson())
           .toList();
     }
     if (correspondingContact?.value != null) {
@@ -4178,91 +5248,6 @@ class CitationEntry extends BackboneElement {
     return json;
   }
 
-  factory CitationEntry.fromJson(Map<String, dynamic> json) {
-    return CitationEntry(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      name: json['name'] != null
-          ? HumanName.fromJson(json['name'] as Map<String, dynamic>)
-          : null,
-      initials: json['initials'] != null
-          ? FhirString.fromJson(json['initials'])
-          : null,
-      initialsElement: json['_initials'] != null
-          ? Element.fromJson(json['_initials'] as Map<String, dynamic>)
-          : null,
-      collectiveName: json['collectiveName'] != null
-          ? FhirString.fromJson(json['collectiveName'])
-          : null,
-      collectiveNameElement: json['_collectiveName'] != null
-          ? Element.fromJson(json['_collectiveName'] as Map<String, dynamic>)
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      affiliationInfo: json['affiliationInfo'] != null
-          ? (json['affiliationInfo'] as List<dynamic>)
-              .map<CitationAffiliationInfo>((dynamic v) =>
-                  CitationAffiliationInfo.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      address: json['address'] != null
-          ? (json['address'] as List<dynamic>)
-              .map<Address>(
-                  (dynamic v) => Address.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      telecom: json['telecom'] != null
-          ? (json['telecom'] as List<dynamic>)
-              .map<ContactPoint>((dynamic v) =>
-                  ContactPoint.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      contributionType: json['contributionType'] != null
-          ? (json['contributionType'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      role: json['role'] != null
-          ? CodeableConcept.fromJson(json['role'] as Map<String, dynamic>)
-          : null,
-      contributionInstance: json['contributionInstance'] != null
-          ? (json['contributionInstance'] as List<dynamic>)
-              .map<CitationContributionInstance>((dynamic v) =>
-                  CitationContributionInstance.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      correspondingContact: json['correspondingContact'] != null
-          ? FhirBoolean.fromJson(json['correspondingContact'])
-          : null,
-      correspondingContactElement: json['_correspondingContact'] != null
-          ? Element.fromJson(
-              json['_correspondingContact'] as Map<String, dynamic>)
-          : null,
-      listOrder: json['listOrder'] != null
-          ? FhirPositiveInt.fromJson(json['listOrder'])
-          : null,
-      listOrderElement: json['_listOrder'] != null
-          ? Element.fromJson(json['_listOrder'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CitationEntry clone() => throw UnimplementedError();
   @override
@@ -4323,36 +5308,24 @@ class CitationEntry extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationEntry.fromYaml(dynamic yaml) => yaml is String
-      ? CitationEntry.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationEntry.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationEntry cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationEntry.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationEntry.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationAffiliationInfo] /// Organization affiliated with the entity.
+/// [CitationAffiliationInfo]
+/// Organization affiliated with the entity.
 class CitationAffiliationInfo extends BackboneElement {
+  /// Primary constructor for [CitationAffiliationInfo]
+
   CitationAffiliationInfo({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.affiliation,
+
+    /// Extensions for [affiliation]
     this.affiliationElement,
     this.role,
+
+    /// Extensions for [role]
     this.roleElement,
     this.identifier,
     super.userData,
@@ -4363,33 +5336,113 @@ class CitationAffiliationInfo extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationAffiliationInfo.fromJson(Map<String, dynamic> json) {
+    return CitationAffiliationInfo(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      affiliation: json['affiliation'] != null
+          ? FhirString.fromJson(json['affiliation'])
+          : null,
+      affiliationElement: json['_affiliation'] != null
+          ? Element.fromJson(
+              json['_affiliation'] as Map<String, dynamic>,
+            )
+          : null,
+      role: json['role'] != null ? FhirString.fromJson(json['role']) : null,
+      roleElement: json['_role'] != null
+          ? Element.fromJson(
+              json['_role'] as Map<String, dynamic>,
+            )
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationAffiliationInfo] from a [String] or [YamlMap] object
+  factory CitationAffiliationInfo.fromYaml(dynamic yaml) => yaml is String
+      ? CitationAffiliationInfo.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationAffiliationInfo.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationAffiliationInfo cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationAffiliationInfo] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationAffiliationInfo.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationAffiliationInfo.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationAffiliationInfo';
 
-  /// [affiliation] /// Display for the organization.
+  /// [affiliation]
+  /// Display for the organization.
   final FhirString? affiliation;
+
+  /// Extensions for [affiliation]
   final Element? affiliationElement;
 
-  /// [role] /// Role within the organization, such as professional title.
+  /// [role]
+  /// Role within the organization, such as professional title.
   final FhirString? role;
+
+  /// Extensions for [role]
   final Element? roleElement;
 
-  /// [identifier] /// Identifier for the organization.
+  /// [identifier]
+  /// Identifier for the organization.
   final List<Identifier>? identifier;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (affiliation?.value != null) {
       json['affiliation'] = affiliation!.toJson();
@@ -4405,44 +5458,11 @@ class CitationAffiliationInfo extends BackboneElement {
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory CitationAffiliationInfo.fromJson(Map<String, dynamic> json) {
-    return CitationAffiliationInfo(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      affiliation: json['affiliation'] != null
-          ? FhirString.fromJson(json['affiliation'])
-          : null,
-      affiliationElement: json['_affiliation'] != null
-          ? Element.fromJson(json['_affiliation'] as Map<String, dynamic>)
-          : null,
-      role: json['role'] != null ? FhirString.fromJson(json['role']) : null,
-      roleElement: json['_role'] != null
-          ? Element.fromJson(json['_role'] as Map<String, dynamic>)
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   CitationAffiliationInfo clone() => throw UnimplementedError();
   @override
@@ -4479,35 +5499,21 @@ class CitationAffiliationInfo extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationAffiliationInfo.fromYaml(dynamic yaml) => yaml is String
-      ? CitationAffiliationInfo.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationAffiliationInfo.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationAffiliationInfo cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationAffiliationInfo.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationAffiliationInfo.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationContributionInstance] /// Contributions with accounting for time or number.
+/// [CitationContributionInstance]
+/// Contributions with accounting for time or number.
 class CitationContributionInstance extends BackboneElement {
+  /// Primary constructor for [CitationContributionInstance]
+
   CitationContributionInstance({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.type,
     this.time,
+
+    /// Extensions for [time]
     this.timeElement,
     super.userData,
     super.formatCommentsPre,
@@ -4517,29 +5523,92 @@ class CitationContributionInstance extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationContributionInstance.fromJson(Map<String, dynamic> json) {
+    return CitationContributionInstance(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: CodeableConcept.fromJson(
+        json['type'] as Map<String, dynamic>,
+      ),
+      time: json['time'] != null ? FhirDateTime.fromJson(json['time']) : null,
+      timeElement: json['_time'] != null
+          ? Element.fromJson(
+              json['_time'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationContributionInstance] from a [String] or [YamlMap] object
+  factory CitationContributionInstance.fromYaml(dynamic yaml) => yaml is String
+      ? CitationContributionInstance.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationContributionInstance.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationContributionInstance cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationContributionInstance] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationContributionInstance.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationContributionInstance.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationContributionInstance';
 
-  /// [type] /// The specific contribution.
+  /// [type]
+  /// The specific contribution.
   final CodeableConcept type;
 
-  /// [time] /// The time that the contribution was made.
+  /// [time]
+  /// The time that the contribution was made.
   final FhirDateTime? time;
+
+  /// Extensions for [time]
   final Element? timeElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['type'] = type.toJson();
     if (time?.value != null) {
@@ -4551,28 +5620,6 @@ class CitationContributionInstance extends BackboneElement {
     return json;
   }
 
-  factory CitationContributionInstance.fromJson(Map<String, dynamic> json) {
-    return CitationContributionInstance(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
-      time: json['time'] != null ? FhirDateTime.fromJson(json['time']) : null,
-      timeElement: json['_time'] != null
-          ? Element.fromJson(json['_time'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CitationContributionInstance clone() => throw UnimplementedError();
   @override
@@ -4605,30 +5652,14 @@ class CitationContributionInstance extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CitationContributionInstance.fromYaml(dynamic yaml) => yaml is String
-      ? CitationContributionInstance.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationContributionInstance.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationContributionInstance cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationContributionInstance.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationContributionInstance.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CitationSummary1] /// Used to record a display of the author/contributor list without separate
-/// coding for each list member.
+/// [CitationSummary1]
+/// Used to record a display of the author/contributor list without
+/// separate coding for each list member.
 class CitationSummary1 extends BackboneElement {
+  /// Primary constructor for [CitationSummary1]
+
   CitationSummary1({
     super.id,
     super.extension_,
@@ -4637,6 +5668,8 @@ class CitationSummary1 extends BackboneElement {
     this.style,
     this.source,
     required this.value,
+
+    /// Extensions for [value]
     this.valueElement,
     super.userData,
     super.formatCommentsPre,
@@ -4646,37 +5679,114 @@ class CitationSummary1 extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CitationSummary1.fromJson(Map<String, dynamic> json) {
+    return CitationSummary1(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(
+              json['type'] as Map<String, dynamic>,
+            )
+          : null,
+      style: json['style'] != null
+          ? CodeableConcept.fromJson(
+              json['style'] as Map<String, dynamic>,
+            )
+          : null,
+      source: json['source'] != null
+          ? CodeableConcept.fromJson(
+              json['source'] as Map<String, dynamic>,
+            )
+          : null,
+      value: FhirMarkdown.fromJson(json['value']),
+      valueElement: json['_value'] != null
+          ? Element.fromJson(
+              json['_value'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CitationSummary1] from a [String] or [YamlMap] object
+  factory CitationSummary1.fromYaml(dynamic yaml) => yaml is String
+      ? CitationSummary1.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CitationSummary1.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CitationSummary1 cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CitationSummary1] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CitationSummary1.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CitationSummary1.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CitationSummary1';
 
-  /// [type] /// Used most commonly to express an author list or a contributorship
+  /// [type]
+  /// Used most commonly to express an author list or a contributorship
   /// statement.
   final CodeableConcept? type;
 
-  /// [style] /// The format for the display string.
+  /// [style]
+  /// The format for the display string.
   final CodeableConcept? style;
 
-  /// [source] /// Used to code the producer or rule for creating the display string.
+  /// [source]
+  /// Used to code the producer or rule for creating the display string.
   final CodeableConcept? source;
 
-  /// [value] /// The display string for the author list, contributor list, or
+  /// [value]
+  /// The display string for the author list, contributor list, or
   /// contributorship statement.
   final FhirMarkdown value;
+
+  /// Extensions for [value]
   final Element? valueElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (type != null) {
       json['type'] = type!.toJson();
@@ -4694,36 +5804,6 @@ class CitationSummary1 extends BackboneElement {
     return json;
   }
 
-  factory CitationSummary1.fromJson(Map<String, dynamic> json) {
-    return CitationSummary1(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
-          : null,
-      style: json['style'] != null
-          ? CodeableConcept.fromJson(json['style'] as Map<String, dynamic>)
-          : null,
-      source: json['source'] != null
-          ? CodeableConcept.fromJson(json['source'] as Map<String, dynamic>)
-          : null,
-      value: FhirMarkdown.fromJson(json['value']),
-      valueElement: json['_value'] != null
-          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CitationSummary1 clone() => throw UnimplementedError();
   @override
@@ -4759,24 +5839,5 @@ class CitationSummary1 extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory CitationSummary1.fromYaml(dynamic yaml) => yaml is String
-      ? CitationSummary1.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CitationSummary1.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CitationSummary1 cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CitationSummary1.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CitationSummary1.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

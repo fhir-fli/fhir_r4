@@ -1,22 +1,34 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [FhirDuration] /// A length of time.
+/// [FhirDuration]
+/// A length of time.
 class FhirDuration extends Quantity {
+  /// Primary constructor for [FhirDuration]
+
   FhirDuration({
     super.id,
     super.extension_,
     super.value,
+
+    /// Extensions for [value]
     super.valueElement,
     super.comparator,
+
+    /// Extensions for [comparator]
     super.comparatorElement,
     super.unit,
+
+    /// Extensions for [unit]
     super.unitElement,
     super.system,
+
+    /// Extensions for [system]
     super.systemElement,
     super.code,
+
+    /// Extensions for [code]
     super.codeElement,
     super.userData,
     super.formatCommentsPre,
@@ -26,18 +38,91 @@ class FhirDuration extends Quantity {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory FhirDuration.fromJson(Map<String, dynamic> json) {
+    return FhirDuration(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      value: json['value'] != null ? FhirDecimal.fromJson(json['value']) : null,
+      valueElement: json['_value'] != null
+          ? Element.fromJson(
+              json['_value'] as Map<String, dynamic>,
+            )
+          : null,
+      comparator: json['comparator'] != null
+          ? QuantityComparator.fromJson(json['comparator'])
+          : null,
+      comparatorElement: json['_comparator'] != null
+          ? Element.fromJson(
+              json['_comparator'] as Map<String, dynamic>,
+            )
+          : null,
+      unit: json['unit'] != null ? FhirString.fromJson(json['unit']) : null,
+      unitElement: json['_unit'] != null
+          ? Element.fromJson(
+              json['_unit'] as Map<String, dynamic>,
+            )
+          : null,
+      system: json['system'] != null ? FhirUri.fromJson(json['system']) : null,
+      systemElement: json['_system'] != null
+          ? Element.fromJson(
+              json['_system'] as Map<String, dynamic>,
+            )
+          : null,
+      code: json['code'] != null ? FhirCode.fromJson(json['code']) : null,
+      codeElement: json['_code'] != null
+          ? Element.fromJson(
+              json['_code'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [FhirDuration] from a [String] or [YamlMap] object
+  factory FhirDuration.fromYaml(dynamic yaml) => yaml is String
+      ? FhirDuration.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? FhirDuration.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('FhirDuration cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [FhirDuration] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory FhirDuration.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return FhirDuration.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'FhirDuration';
 
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (value?.value != null) {
       json['value'] = value!.toJson();
@@ -69,39 +154,6 @@ class FhirDuration extends Quantity {
     return json;
   }
 
-  factory FhirDuration.fromJson(Map<String, dynamic> json) {
-    return FhirDuration(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      value: json['value'] != null ? FhirDecimal.fromJson(json['value']) : null,
-      valueElement: json['_value'] != null
-          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
-          : null,
-      comparator: json['comparator'] != null
-          ? QuantityComparator.fromJson(json['comparator'])
-          : null,
-      comparatorElement: json['_comparator'] != null
-          ? Element.fromJson(json['_comparator'] as Map<String, dynamic>)
-          : null,
-      unit: json['unit'] != null ? FhirString.fromJson(json['unit']) : null,
-      unitElement: json['_unit'] != null
-          ? Element.fromJson(json['_unit'] as Map<String, dynamic>)
-          : null,
-      system: json['system'] != null ? FhirUri.fromJson(json['system']) : null,
-      systemElement: json['_system'] != null
-          ? Element.fromJson(json['_system'] as Map<String, dynamic>)
-          : null,
-      code: json['code'] != null ? FhirCode.fromJson(json['code']) : null,
-      codeElement: json['_code'] != null
-          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   FhirDuration clone() => throw UnimplementedError();
   @override
@@ -145,24 +197,5 @@ class FhirDuration extends Quantity {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory FhirDuration.fromYaml(dynamic yaml) => yaml is String
-      ? FhirDuration.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? FhirDuration.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'FhirDuration cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory FhirDuration.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return FhirDuration.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

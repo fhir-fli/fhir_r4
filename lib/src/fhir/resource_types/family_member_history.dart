@@ -1,17 +1,23 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [FamilyMemberHistory] /// Significant health conditions for a person related to the patient relevant
-/// in the context of care for the patient.
+/// [FamilyMemberHistory]
+/// Significant health conditions for a person related to the patient
+/// relevant in the context of care for the patient.
 class FamilyMemberHistory extends DomainResource {
+  /// Primary constructor for [FamilyMemberHistory]
+
   FamilyMemberHistory({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -19,37 +25,61 @@ class FamilyMemberHistory extends DomainResource {
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
+
+    /// Extensions for [instantiatesCanonical]
     this.instantiatesCanonicalElement,
     this.instantiatesUri,
+
+    /// Extensions for [instantiatesUri]
     this.instantiatesUriElement,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     this.dataAbsentReason,
     required this.patient,
     this.date,
+
+    /// Extensions for [date]
     this.dateElement,
     this.name,
+
+    /// Extensions for [name]
     this.nameElement,
     required this.relationship,
     this.sex,
     this.bornPeriod,
     this.bornDate,
+
+    /// Extensions for [bornDate]
     this.bornDateElement,
     this.bornString,
+
+    /// Extensions for [bornString]
     this.bornStringElement,
     this.ageAge,
     this.ageRange,
     this.ageString,
+
+    /// Extensions for [ageString]
     this.ageStringElement,
     this.estimatedAge,
+
+    /// Extensions for [estimatedAge]
     this.estimatedAgeElement,
     this.deceasedBoolean,
+
+    /// Extensions for [deceasedBoolean]
     this.deceasedBooleanElement,
     this.deceasedAge,
     this.deceasedRange,
     this.deceasedDate,
+
+    /// Extensions for [deceasedDate]
     this.deceasedDateElement,
     this.deceasedString,
+
+    /// Extensions for [deceasedString]
     this.deceasedStringElement,
     this.reasonCode,
     this.reasonReference,
@@ -61,124 +91,453 @@ class FamilyMemberHistory extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.FamilyMemberHistory);
+  }) : super(
+          resourceType: R4ResourceType.FamilyMemberHistory,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory FamilyMemberHistory.fromJson(Map<String, dynamic> json) {
+    return FamilyMemberHistory(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      instantiatesCanonical: json['instantiatesCanonical'] != null
+          ? (json['instantiatesCanonical'] as List<dynamic>)
+              .map<FhirCanonical>(
+                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
+          ? (json['_instantiatesCanonical'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      instantiatesUri: json['instantiatesUri'] != null
+          ? (json['instantiatesUri'] as List<dynamic>)
+              .map<FhirUri>(
+                (dynamic v) => FhirUri.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      instantiatesUriElement: json['_instantiatesUri'] != null
+          ? (json['_instantiatesUri'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      status: FamilyHistoryStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      dataAbsentReason: json['dataAbsentReason'] != null
+          ? CodeableConcept.fromJson(
+              json['dataAbsentReason'] as Map<String, dynamic>,
+            )
+          : null,
+      patient: Reference.fromJson(
+        json['patient'] as Map<String, dynamic>,
+      ),
+      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(
+              json['_date'] as Map<String, dynamic>,
+            )
+          : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(
+              json['_name'] as Map<String, dynamic>,
+            )
+          : null,
+      relationship: CodeableConcept.fromJson(
+        json['relationship'] as Map<String, dynamic>,
+      ),
+      sex: json['sex'] != null
+          ? CodeableConcept.fromJson(
+              json['sex'] as Map<String, dynamic>,
+            )
+          : null,
+      bornPeriod: json['bornPeriod'] != null
+          ? Period.fromJson(
+              json['bornPeriod'] as Map<String, dynamic>,
+            )
+          : null,
+      bornDate:
+          json['bornDate'] != null ? FhirDate.fromJson(json['bornDate']) : null,
+      bornDateElement: json['_bornDate'] != null
+          ? Element.fromJson(
+              json['_bornDate'] as Map<String, dynamic>,
+            )
+          : null,
+      bornString: json['bornString'] != null
+          ? FhirString.fromJson(json['bornString'])
+          : null,
+      bornStringElement: json['_bornString'] != null
+          ? Element.fromJson(
+              json['_bornString'] as Map<String, dynamic>,
+            )
+          : null,
+      ageAge: json['ageAge'] != null
+          ? Age.fromJson(
+              json['ageAge'] as Map<String, dynamic>,
+            )
+          : null,
+      ageRange: json['ageRange'] != null
+          ? Range.fromJson(
+              json['ageRange'] as Map<String, dynamic>,
+            )
+          : null,
+      ageString: json['ageString'] != null
+          ? FhirString.fromJson(json['ageString'])
+          : null,
+      ageStringElement: json['_ageString'] != null
+          ? Element.fromJson(
+              json['_ageString'] as Map<String, dynamic>,
+            )
+          : null,
+      estimatedAge: json['estimatedAge'] != null
+          ? FhirBoolean.fromJson(json['estimatedAge'])
+          : null,
+      estimatedAgeElement: json['_estimatedAge'] != null
+          ? Element.fromJson(
+              json['_estimatedAge'] as Map<String, dynamic>,
+            )
+          : null,
+      deceasedBoolean: json['deceasedBoolean'] != null
+          ? FhirBoolean.fromJson(json['deceasedBoolean'])
+          : null,
+      deceasedBooleanElement: json['_deceasedBoolean'] != null
+          ? Element.fromJson(
+              json['_deceasedBoolean'] as Map<String, dynamic>,
+            )
+          : null,
+      deceasedAge: json['deceasedAge'] != null
+          ? Age.fromJson(
+              json['deceasedAge'] as Map<String, dynamic>,
+            )
+          : null,
+      deceasedRange: json['deceasedRange'] != null
+          ? Range.fromJson(
+              json['deceasedRange'] as Map<String, dynamic>,
+            )
+          : null,
+      deceasedDate: json['deceasedDate'] != null
+          ? FhirDate.fromJson(json['deceasedDate'])
+          : null,
+      deceasedDateElement: json['_deceasedDate'] != null
+          ? Element.fromJson(
+              json['_deceasedDate'] as Map<String, dynamic>,
+            )
+          : null,
+      deceasedString: json['deceasedString'] != null
+          ? FhirString.fromJson(json['deceasedString'])
+          : null,
+      deceasedStringElement: json['_deceasedString'] != null
+          ? Element.fromJson(
+              json['_deceasedString'] as Map<String, dynamic>,
+            )
+          : null,
+      reasonCode: json['reasonCode'] != null
+          ? (json['reasonCode'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      reasonReference: json['reasonReference'] != null
+          ? (json['reasonReference'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                (dynamic v) => Annotation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      condition: json['condition'] != null
+          ? (json['condition'] as List<dynamic>)
+              .map<FamilyMemberHistoryCondition>(
+                (dynamic v) => FamilyMemberHistoryCondition.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [FamilyMemberHistory] from a [String] or [YamlMap] object
+  factory FamilyMemberHistory.fromYaml(dynamic yaml) => yaml is String
+      ? FamilyMemberHistory.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? FamilyMemberHistory.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'FamilyMemberHistory cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [FamilyMemberHistory] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory FamilyMemberHistory.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return FamilyMemberHistory.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'FamilyMemberHistory';
 
-  /// [identifier] /// Business identifiers assigned to this family member history by the
-  /// performer or other systems which remain constant as the resource is updated
-  /// and propagates from server to server.
+  /// [identifier]
+  /// Business identifiers assigned to this family member history by the
+  /// performer or other systems which remain constant as the resource is
+  /// updated and propagates from server to server.
   final List<Identifier>? identifier;
 
-  /// [instantiatesCanonical] /// The URL pointing to a FHIR-defined protocol, guideline, orderset or other
-  /// definition that is adhered to in whole or in part by this
+  /// [instantiatesCanonical]
+  /// The URL pointing to a FHIR-defined protocol, guideline, orderset or
+  /// other definition that is adhered to in whole or in part by this
   /// FamilyMemberHistory.
   final List<FhirCanonical>? instantiatesCanonical;
+
+  /// Extensions for [instantiatesCanonical]
   final List<Element>? instantiatesCanonicalElement;
 
-  /// [instantiatesUri] /// The URL pointing to an externally maintained protocol, guideline, orderset
-  /// or other definition that is adhered to in whole or in part by this
-  /// FamilyMemberHistory.
+  /// [instantiatesUri]
+  /// The URL pointing to an externally maintained protocol, guideline,
+  /// orderset or other definition that is adhered to in whole or in part by
+  /// this FamilyMemberHistory.
   final List<FhirUri>? instantiatesUri;
+
+  /// Extensions for [instantiatesUri]
   final List<Element>? instantiatesUriElement;
 
-  /// [status] /// A code specifying the status of the record of the family history of a
+  /// [status]
+  /// A code specifying the status of the record of the family history of a
   /// specific family member.
   final FamilyHistoryStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [dataAbsentReason] /// Describes why the family member's history is not available.
+  /// [dataAbsentReason]
+  /// Describes why the family member's history is not available.
   final CodeableConcept? dataAbsentReason;
 
-  /// [patient] /// The person who this history concerns.
+  /// [patient]
+  /// The person who this history concerns.
   final Reference patient;
 
-  /// [date] /// The date (and possibly time) when the family member history was recorded or
-  /// last updated.
+  /// [date]
+  /// The date (and possibly time) when the family member history was
+  /// recorded or last updated.
   final FhirDateTime? date;
+
+  /// Extensions for [date]
   final Element? dateElement;
 
-  /// [name] /// This will either be a name or a description; e.g. "Aunt Susan", "my cousin
-  /// with the red hair".
+  /// [name]
+  /// This will either be a name or a description; e.g. "Aunt Susan", "my
+  /// cousin with the red hair".
   final FhirString? name;
+
+  /// Extensions for [name]
   final Element? nameElement;
 
-  /// [relationship] /// The type of relationship this person has to the patient (father, mother,
-  /// brother etc.).
+  /// [relationship]
+  /// The type of relationship this person has to the patient (father,
+  /// mother, brother etc.).
   final CodeableConcept relationship;
 
-  /// [sex] /// The birth sex of the family member.
+  /// [sex]
+  /// The birth sex of the family member.
   final CodeableConcept? sex;
 
-  /// [bornPeriod] /// The actual or approximate date of birth of the relative.
+  /// [bornPeriod]
+  /// The actual or approximate date of birth of the relative.
   final Period? bornPeriod;
 
-  /// [bornDate] /// The actual or approximate date of birth of the relative.
+  /// [bornDate]
+  /// The actual or approximate date of birth of the relative.
   final FhirDate? bornDate;
+
+  /// Extensions for [bornDate]
   final Element? bornDateElement;
 
-  /// [bornString] /// The actual or approximate date of birth of the relative.
+  /// [bornString]
+  /// The actual or approximate date of birth of the relative.
   final FhirString? bornString;
+
+  /// Extensions for [bornString]
   final Element? bornStringElement;
 
-  /// [ageAge] /// The age of the relative at the time the family member history is recorded.
+  /// [ageAge]
+  /// The age of the relative at the time the family member history is
+  /// recorded.
   final Age? ageAge;
 
-  /// [ageRange] /// The age of the relative at the time the family member history is recorded.
+  /// [ageRange]
+  /// The age of the relative at the time the family member history is
+  /// recorded.
   final Range? ageRange;
 
-  /// [ageString] /// The age of the relative at the time the family member history is recorded.
+  /// [ageString]
+  /// The age of the relative at the time the family member history is
+  /// recorded.
   final FhirString? ageString;
+
+  /// Extensions for [ageString]
   final Element? ageStringElement;
 
-  /// [estimatedAge] /// If true, indicates that the age value specified is an estimated value.
+  /// [estimatedAge]
+  /// If true, indicates that the age value specified is an estimated value.
   final FhirBoolean? estimatedAge;
+
+  /// Extensions for [estimatedAge]
   final Element? estimatedAgeElement;
 
-  /// [deceasedBoolean] /// Deceased flag or the actual or approximate age of the relative at the time
-  /// of death for the family member history record.
+  /// [deceasedBoolean]
+  /// Deceased flag or the actual or approximate age of the relative at the
+  /// time of death for the family member history record.
   final FhirBoolean? deceasedBoolean;
+
+  /// Extensions for [deceasedBoolean]
   final Element? deceasedBooleanElement;
 
-  /// [deceasedAge] /// Deceased flag or the actual or approximate age of the relative at the time
-  /// of death for the family member history record.
+  /// [deceasedAge]
+  /// Deceased flag or the actual or approximate age of the relative at the
+  /// time of death for the family member history record.
   final Age? deceasedAge;
 
-  /// [deceasedRange] /// Deceased flag or the actual or approximate age of the relative at the time
-  /// of death for the family member history record.
+  /// [deceasedRange]
+  /// Deceased flag or the actual or approximate age of the relative at the
+  /// time of death for the family member history record.
   final Range? deceasedRange;
 
-  /// [deceasedDate] /// Deceased flag or the actual or approximate age of the relative at the time
-  /// of death for the family member history record.
+  /// [deceasedDate]
+  /// Deceased flag or the actual or approximate age of the relative at the
+  /// time of death for the family member history record.
   final FhirDate? deceasedDate;
+
+  /// Extensions for [deceasedDate]
   final Element? deceasedDateElement;
 
-  /// [deceasedString] /// Deceased flag or the actual or approximate age of the relative at the time
-  /// of death for the family member history record.
+  /// [deceasedString]
+  /// Deceased flag or the actual or approximate age of the relative at the
+  /// time of death for the family member history record.
   final FhirString? deceasedString;
+
+  /// Extensions for [deceasedString]
   final Element? deceasedStringElement;
 
-  /// [reasonCode] /// Describes why the family member history occurred in coded or textual form.
+  /// [reasonCode]
+  /// Describes why the family member history occurred in coded or textual
+  /// form.
   final List<CodeableConcept>? reasonCode;
 
-  /// [reasonReference] /// Indicates a Condition, Observation, AllergyIntolerance, or
+  /// [reasonReference]
+  /// Indicates a Condition, Observation, AllergyIntolerance, or
   /// QuestionnaireResponse that justifies this family member history event.
   final List<Reference>? reasonReference;
 
-  /// [note] /// This property allows a non condition-specific note to the made about the
-  /// related person. Ideally, the note would be in the condition property, but
-  /// this is not always possible.
+  /// [note]
+  /// This property allows a non condition-specific note to the made about
+  /// the related person. Ideally, the note would be in the condition
+  /// property, but this is not always possible.
   final List<Annotation>? note;
 
-  /// [condition] /// The significant Conditions (or condition) that the family member had. This
-  /// is a repeating section to allow a system to represent more than one
-  /// condition per resource, though there is nothing stopping multiple resources
-  /// - one per condition.
+  /// [condition]
+  /// The significant Conditions (or condition) that the family member had.
+  /// This is a repeating section to allow a system to represent more than
+  /// one condition per resource, though there is nothing stopping multiple
+  /// resources - one per condition.
   final List<FamilyMemberHistoryCondition>? condition;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -199,21 +558,19 @@ class FamilyMemberHistory extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
       json['instantiatesCanonical'] =
@@ -312,196 +669,23 @@ class FamilyMemberHistory extends DomainResource {
     }
     if (reasonCode != null && reasonCode!.isNotEmpty) {
       json['reasonCode'] =
-          reasonCode!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          reasonCode!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (reasonReference != null && reasonReference!.isNotEmpty) {
       json['reasonReference'] =
-          reasonReference!.map<dynamic>((Reference v) => v.toJson()).toList();
+          reasonReference!.map((Reference v) => v.toJson()).toList();
     }
     if (note != null && note!.isNotEmpty) {
-      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+      json['note'] = note!.map((Annotation v) => v.toJson()).toList();
     }
     if (condition != null && condition!.isNotEmpty) {
       json['condition'] = condition!
-          .map<dynamic>((FamilyMemberHistoryCondition v) => v.toJson())
+          .map((FamilyMemberHistoryCondition v) => v.toJson())
           .toList();
     }
     return json;
   }
 
-  factory FamilyMemberHistory.fromJson(Map<String, dynamic> json) {
-    return FamilyMemberHistory(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      instantiatesCanonical: json['instantiatesCanonical'] != null
-          ? (json['instantiatesCanonical'] as List<dynamic>)
-              .map<FhirCanonical>(
-                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
-              .toList()
-          : null,
-      instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
-          ? (json['_instantiatesCanonical'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      instantiatesUri: json['instantiatesUri'] != null
-          ? (json['instantiatesUri'] as List<dynamic>)
-              .map<FhirUri>((dynamic v) => FhirUri.fromJson(v as dynamic))
-              .toList()
-          : null,
-      instantiatesUriElement: json['_instantiatesUri'] != null
-          ? (json['_instantiatesUri'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      status: FamilyHistoryStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      dataAbsentReason: json['dataAbsentReason'] != null
-          ? CodeableConcept.fromJson(
-              json['dataAbsentReason'] as Map<String, dynamic>)
-          : null,
-      patient: Reference.fromJson(json['patient'] as Map<String, dynamic>),
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
-          : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
-          : null,
-      relationship: CodeableConcept.fromJson(
-          json['relationship'] as Map<String, dynamic>),
-      sex: json['sex'] != null
-          ? CodeableConcept.fromJson(json['sex'] as Map<String, dynamic>)
-          : null,
-      bornPeriod: json['bornPeriod'] != null
-          ? Period.fromJson(json['bornPeriod'] as Map<String, dynamic>)
-          : null,
-      bornDate:
-          json['bornDate'] != null ? FhirDate.fromJson(json['bornDate']) : null,
-      bornDateElement: json['_bornDate'] != null
-          ? Element.fromJson(json['_bornDate'] as Map<String, dynamic>)
-          : null,
-      bornString: json['bornString'] != null
-          ? FhirString.fromJson(json['bornString'])
-          : null,
-      bornStringElement: json['_bornString'] != null
-          ? Element.fromJson(json['_bornString'] as Map<String, dynamic>)
-          : null,
-      ageAge: json['ageAge'] != null
-          ? Age.fromJson(json['ageAge'] as Map<String, dynamic>)
-          : null,
-      ageRange: json['ageRange'] != null
-          ? Range.fromJson(json['ageRange'] as Map<String, dynamic>)
-          : null,
-      ageString: json['ageString'] != null
-          ? FhirString.fromJson(json['ageString'])
-          : null,
-      ageStringElement: json['_ageString'] != null
-          ? Element.fromJson(json['_ageString'] as Map<String, dynamic>)
-          : null,
-      estimatedAge: json['estimatedAge'] != null
-          ? FhirBoolean.fromJson(json['estimatedAge'])
-          : null,
-      estimatedAgeElement: json['_estimatedAge'] != null
-          ? Element.fromJson(json['_estimatedAge'] as Map<String, dynamic>)
-          : null,
-      deceasedBoolean: json['deceasedBoolean'] != null
-          ? FhirBoolean.fromJson(json['deceasedBoolean'])
-          : null,
-      deceasedBooleanElement: json['_deceasedBoolean'] != null
-          ? Element.fromJson(json['_deceasedBoolean'] as Map<String, dynamic>)
-          : null,
-      deceasedAge: json['deceasedAge'] != null
-          ? Age.fromJson(json['deceasedAge'] as Map<String, dynamic>)
-          : null,
-      deceasedRange: json['deceasedRange'] != null
-          ? Range.fromJson(json['deceasedRange'] as Map<String, dynamic>)
-          : null,
-      deceasedDate: json['deceasedDate'] != null
-          ? FhirDate.fromJson(json['deceasedDate'])
-          : null,
-      deceasedDateElement: json['_deceasedDate'] != null
-          ? Element.fromJson(json['_deceasedDate'] as Map<String, dynamic>)
-          : null,
-      deceasedString: json['deceasedString'] != null
-          ? FhirString.fromJson(json['deceasedString'])
-          : null,
-      deceasedStringElement: json['_deceasedString'] != null
-          ? Element.fromJson(json['_deceasedString'] as Map<String, dynamic>)
-          : null,
-      reasonCode: json['reasonCode'] != null
-          ? (json['reasonCode'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      reasonReference: json['reasonReference'] != null
-          ? (json['reasonReference'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      condition: json['condition'] != null
-          ? (json['condition'] as List<dynamic>)
-              .map<FamilyMemberHistoryCondition>((dynamic v) =>
-                  FamilyMemberHistoryCondition.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   FamilyMemberHistory clone() => throw UnimplementedError();
   @override
@@ -623,32 +807,16 @@ class FamilyMemberHistory extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory FamilyMemberHistory.fromYaml(dynamic yaml) => yaml is String
-      ? FamilyMemberHistory.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? FamilyMemberHistory.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'FamilyMemberHistory cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory FamilyMemberHistory.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return FamilyMemberHistory.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [FamilyMemberHistoryCondition] /// The significant Conditions (or condition) that the family member had. This
-/// is a repeating section to allow a system to represent more than one
-/// condition per resource, though there is nothing stopping multiple resources
-/// - one per condition.
+/// [FamilyMemberHistoryCondition]
+/// The significant Conditions (or condition) that the family member had.
+/// This is a repeating section to allow a system to represent more than
+/// one condition per resource, though there is nothing stopping multiple
+/// resources - one per condition.
 class FamilyMemberHistoryCondition extends BackboneElement {
+  /// Primary constructor for [FamilyMemberHistoryCondition]
+
   FamilyMemberHistoryCondition({
     super.id,
     super.extension_,
@@ -656,11 +824,15 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     required this.code,
     this.outcome,
     this.contributedToDeath,
+
+    /// Extensions for [contributedToDeath]
     this.contributedToDeathElement,
     this.onsetAge,
     this.onsetRange,
     this.onsetPeriod,
     this.onsetString,
+
+    /// Extensions for [onsetString]
     this.onsetStringElement,
     this.note,
     super.userData,
@@ -671,60 +843,172 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory FamilyMemberHistoryCondition.fromJson(Map<String, dynamic> json) {
+    return FamilyMemberHistoryCondition(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      code: CodeableConcept.fromJson(
+        json['code'] as Map<String, dynamic>,
+      ),
+      outcome: json['outcome'] != null
+          ? CodeableConcept.fromJson(
+              json['outcome'] as Map<String, dynamic>,
+            )
+          : null,
+      contributedToDeath: json['contributedToDeath'] != null
+          ? FhirBoolean.fromJson(json['contributedToDeath'])
+          : null,
+      contributedToDeathElement: json['_contributedToDeath'] != null
+          ? Element.fromJson(
+              json['_contributedToDeath'] as Map<String, dynamic>,
+            )
+          : null,
+      onsetAge: json['onsetAge'] != null
+          ? Age.fromJson(
+              json['onsetAge'] as Map<String, dynamic>,
+            )
+          : null,
+      onsetRange: json['onsetRange'] != null
+          ? Range.fromJson(
+              json['onsetRange'] as Map<String, dynamic>,
+            )
+          : null,
+      onsetPeriod: json['onsetPeriod'] != null
+          ? Period.fromJson(
+              json['onsetPeriod'] as Map<String, dynamic>,
+            )
+          : null,
+      onsetString: json['onsetString'] != null
+          ? FhirString.fromJson(json['onsetString'])
+          : null,
+      onsetStringElement: json['_onsetString'] != null
+          ? Element.fromJson(
+              json['_onsetString'] as Map<String, dynamic>,
+            )
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                (dynamic v) => Annotation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [FamilyMemberHistoryCondition] from a [String] or [YamlMap] object
+  factory FamilyMemberHistoryCondition.fromYaml(dynamic yaml) => yaml is String
+      ? FamilyMemberHistoryCondition.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? FamilyMemberHistoryCondition.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'FamilyMemberHistoryCondition cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [FamilyMemberHistoryCondition] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory FamilyMemberHistoryCondition.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return FamilyMemberHistoryCondition.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'FamilyMemberHistoryCondition';
 
-  /// [code] /// The actual condition specified. Could be a coded condition (like MI or
-  /// Diabetes) or a less specific string like 'cancer' depending on how much is
-  /// known about the condition and the capabilities of the creating system.
+  /// [code]
+  /// The actual condition specified. Could be a coded condition (like MI or
+  /// Diabetes) or a less specific string like 'cancer' depending on how much
+  /// is known about the condition and the capabilities of the creating
+  /// system.
   final CodeableConcept code;
 
-  /// [outcome] /// Indicates what happened following the condition. If the condition resulted
-  /// in death, deceased date is captured on the relation.
+  /// [outcome]
+  /// Indicates what happened following the condition. If the condition
+  /// resulted in death, deceased date is captured on the relation.
   final CodeableConcept? outcome;
 
-  /// [contributedToDeath] /// This condition contributed to the cause of death of the related person. If
-  /// contributedToDeath is not populated, then it is unknown.
+  /// [contributedToDeath]
+  /// This condition contributed to the cause of death of the related person.
+  /// If contributedToDeath is not populated, then it is unknown.
   final FhirBoolean? contributedToDeath;
+
+  /// Extensions for [contributedToDeath]
   final Element? contributedToDeathElement;
 
-  /// [onsetAge] /// Either the age of onset, range of approximate age or descriptive string can
-  /// be recorded. For conditions with multiple occurrences, this describes the
-  /// first known occurrence.
+  /// [onsetAge]
+  /// Either the age of onset, range of approximate age or descriptive string
+  /// can be recorded. For conditions with multiple occurrences, this
+  /// describes the first known occurrence.
   final Age? onsetAge;
 
-  /// [onsetRange] /// Either the age of onset, range of approximate age or descriptive string can
-  /// be recorded. For conditions with multiple occurrences, this describes the
-  /// first known occurrence.
+  /// [onsetRange]
+  /// Either the age of onset, range of approximate age or descriptive string
+  /// can be recorded. For conditions with multiple occurrences, this
+  /// describes the first known occurrence.
   final Range? onsetRange;
 
-  /// [onsetPeriod] /// Either the age of onset, range of approximate age or descriptive string can
-  /// be recorded. For conditions with multiple occurrences, this describes the
-  /// first known occurrence.
+  /// [onsetPeriod]
+  /// Either the age of onset, range of approximate age or descriptive string
+  /// can be recorded. For conditions with multiple occurrences, this
+  /// describes the first known occurrence.
   final Period? onsetPeriod;
 
-  /// [onsetString] /// Either the age of onset, range of approximate age or descriptive string can
-  /// be recorded. For conditions with multiple occurrences, this describes the
-  /// first known occurrence.
+  /// [onsetString]
+  /// Either the age of onset, range of approximate age or descriptive string
+  /// can be recorded. For conditions with multiple occurrences, this
+  /// describes the first known occurrence.
   final FhirString? onsetString;
+
+  /// Extensions for [onsetString]
   final Element? onsetStringElement;
 
-  /// [note] /// An area where general notes can be placed about this specific condition.
+  /// [note]
+  /// An area where general notes can be placed about this specific
+  /// condition.
   final List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['code'] = code.toJson();
     if (outcome != null) {
@@ -752,60 +1036,11 @@ class FamilyMemberHistoryCondition extends BackboneElement {
       json['_onsetString'] = onsetStringElement!.toJson();
     }
     if (note != null && note!.isNotEmpty) {
-      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+      json['note'] = note!.map((Annotation v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory FamilyMemberHistoryCondition.fromJson(Map<String, dynamic> json) {
-    return FamilyMemberHistoryCondition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      code: CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
-      outcome: json['outcome'] != null
-          ? CodeableConcept.fromJson(json['outcome'] as Map<String, dynamic>)
-          : null,
-      contributedToDeath: json['contributedToDeath'] != null
-          ? FhirBoolean.fromJson(json['contributedToDeath'])
-          : null,
-      contributedToDeathElement: json['_contributedToDeath'] != null
-          ? Element.fromJson(
-              json['_contributedToDeath'] as Map<String, dynamic>)
-          : null,
-      onsetAge: json['onsetAge'] != null
-          ? Age.fromJson(json['onsetAge'] as Map<String, dynamic>)
-          : null,
-      onsetRange: json['onsetRange'] != null
-          ? Range.fromJson(json['onsetRange'] as Map<String, dynamic>)
-          : null,
-      onsetPeriod: json['onsetPeriod'] != null
-          ? Period.fromJson(json['onsetPeriod'] as Map<String, dynamic>)
-          : null,
-      onsetString: json['onsetString'] != null
-          ? FhirString.fromJson(json['onsetString'])
-          : null,
-      onsetStringElement: json['_onsetString'] != null
-          ? Element.fromJson(json['_onsetString'] as Map<String, dynamic>)
-          : null,
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   FamilyMemberHistoryCondition clone() => throw UnimplementedError();
   @override
@@ -852,24 +1087,5 @@ class FamilyMemberHistoryCondition extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory FamilyMemberHistoryCondition.fromYaml(dynamic yaml) => yaml is String
-      ? FamilyMemberHistoryCondition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? FamilyMemberHistoryCondition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'FamilyMemberHistoryCondition cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory FamilyMemberHistoryCondition.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return FamilyMemberHistoryCondition.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

@@ -9,20 +9,20 @@ import 'writable_class.dart';
 int numberOfResources = 0;
 
 void prepareObjectBox() {
-  final Directory objectBoxDir = Directory('$fhirDirectory/object_box');
+  final objectBoxDir = Directory('$fhirDirectory/object_box');
   if (!objectBoxDir.existsSync()) {
     objectBoxDir.createSync();
   } else {
-    objectBoxDir.deleteSync(recursive: true);
-    objectBoxDir.createSync();
+    objectBoxDir
+      ..deleteSync(recursive: true)
+      ..createSync();
   }
-  final Directory dataTypes = Directory('$fhirDirectory/object_box/data_types');
+  final dataTypes = Directory('$fhirDirectory/object_box/data_types');
   if (!dataTypes.existsSync()) {
     dataTypes.createSync();
   }
 
-  final Directory resourceTypes =
-      Directory('$fhirDirectory/object_box/resource_types');
+  final resourceTypes = Directory('$fhirDirectory/object_box/resource_types');
   if (!resourceTypes.existsSync()) {
     resourceTypes.createSync();
   }
@@ -55,22 +55,21 @@ class Element {
 }
 
 void exportObjectBoxFiles() {
-  final List<String> exportFiles = <String>[];
-  final Directory dataTypes = Directory('$fhirDirectory/object_box/data_types');
-  final List<FileSystemEntity> files = dataTypes.listSync();
-  for (final FileSystemEntity file in files) {
-    final String fileName = file.path.split('/').last;
+  final exportFiles = <String>[];
+  final dataTypes = Directory('$fhirDirectory/object_box/data_types');
+  final files = dataTypes.listSync();
+  for (final file in files) {
+    final fileName = file.path.split('/').last;
     exportFiles.add("export 'data_types/$fileName';\n");
   }
   exportFiles.sort();
   File('$fhirDirectory/object_box/data_types.dart')
       .writeAsStringSync(exportFiles.join());
   exportFiles.clear();
-  final Directory resourceTypes =
-      Directory('$fhirDirectory/object_box/resource_types');
-  final List<FileSystemEntity> resourceFiles = resourceTypes.listSync();
-  for (final FileSystemEntity file in resourceFiles) {
-    final String fileName = file.path.split('/').last;
+  final resourceTypes = Directory('$fhirDirectory/object_box/resource_types');
+  final resourceFiles = resourceTypes.listSync();
+  for (final file in resourceFiles) {
+    final fileName = file.path.split('/').last;
     exportFiles.add("export 'resource_types/$fileName';\n");
   }
   exportFiles.sort();
@@ -85,23 +84,22 @@ export 'resource_types.dart';
 }
 
 void generateObjectBoxClasses(Map<String, WritableClass> classes) {
-  final Set<String> exportFile = <String>{};
+  final exportFile = <String>{};
 
   classes.forEach((String className, WritableClass writableClass) {
-    final StringBuffer buffer = StringBuffer();
-    final String officialClassName = writableClass.className.fhirToDartTypes;
-    final String extended =
-        officialClassName.isResource ? 'extends Resource' : '';
+    final buffer = StringBuffer();
+    final officialClassName = writableClass.className.fhirToDartTypes;
+    final extended = officialClassName.isResource ? 'extends Resource' : '';
 
     // Write class header
-    buffer.writeln('@Entity()');
-    buffer.writeln('class $officialClassName $extended {');
-
-    buffer.writeln('\n  $officialClassName({');
+    buffer
+      ..writeln('@Entity()')
+      ..writeln('class $officialClassName $extended {')
+      ..writeln('\n  $officialClassName({');
 
     // Loop through the fields and add them to the constructor
-    for (final Field field in writableClass.fields) {
-      final String actualFieldName = field.name.fhirFieldToDartName;
+    for (final field in writableClass.fields) {
+      final actualFieldName = field.name.fhirFieldToDartName;
       if (field.isRequired) {
         buffer.writeln('    required this.$actualFieldName,');
       } else {
@@ -110,17 +108,18 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
       if ((field.isEnum || field.type.isPrimitiveType) &&
           (actualFieldName != 'id')) {
         buffer.writeln(
-            '    this.${actualFieldName.endsWith('_') ? actualFieldName.substring(0, actualFieldName.length - 1) : actualFieldName}Element,');
+          '    this.${actualFieldName.endsWith('_') ? actualFieldName.substring(0, actualFieldName.length - 1) : actualFieldName}Element,',
+        );
       }
     }
 
-    buffer.writeln('  });\n');
-
-    buffer.writeln('  @Id() int? dbId;');
+    buffer
+      ..writeln('  });\n')
+      ..writeln('  @Id() int? dbId;');
 
     // Loop through the fields and add them as class variables
-    for (final Field field in writableClass.fields) {
-      String objectBoxType =
+    for (final field in writableClass.fields) {
+      var objectBoxType =
           field.isEnum ? 'String' : field.type.fhirToObjectBoxTypes;
       objectBoxType = objectBoxType == 'EvidenceVariable'
           ? 'Evidencevariable'
@@ -130,29 +129,35 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
       if (!field.type.isPrimitiveType && !field.isEnum) {
         if (field.isList) {
           buffer.writeln(
-              '  ToMany<$objectBoxType>${field.isRequired ? '' : '?'} ${field.name.fhirFieldToDartName} = ToMany<$objectBoxType>();');
+            '  ToMany<$objectBoxType>${field.isRequired ? '' : '?'} '
+            '${field.name.fhirFieldToDartName} = ToMany<$objectBoxType>();',
+          );
         } else {
           buffer.writeln(
-              '  ToOne<$objectBoxType>${field.isRequired ? '' : '?'} ${field.name.fhirFieldToDartName} = ToOne<$objectBoxType>();');
+            '  ToOne<$objectBoxType>${field.isRequired ? '' : '?'} '
+            '${field.name.fhirFieldToDartName} = ToOne<$objectBoxType>();',
+          );
         }
       } else {
         // Handle primitive types or enums
-        final String fieldType =
-            field.isList ? 'List<$objectBoxType>' : objectBoxType;
-        final String actualFieldName = field.name.fhirFieldToDartName;
+        final fieldType = field.isList ? 'List<$objectBoxType>' : objectBoxType;
+        final actualFieldName = field.name.fhirFieldToDartName;
         buffer.writeln(
-            '  $fieldType${field.isRequired ? '' : '?'} $actualFieldName;');
+          '  $fieldType${field.isRequired ? '' : '?'} $actualFieldName;',
+        );
 
-        final String finalFieldName = actualFieldName.endsWith('_')
+        final finalFieldName = actualFieldName.endsWith('_')
             ? actualFieldName.substring(0, actualFieldName.length - 1)
             : actualFieldName;
 
         if (field.isList) {
           buffer.writeln(
-              '  ToMany<Element>? ${finalFieldName}Element = ToMany<Element>();');
+            '  ToMany<Element>? ${finalFieldName}Element = ToMany<Element>();',
+          );
         } else {
           buffer.writeln(
-              '  ToOne<Element>? ${finalFieldName}Element = ToOne<Element>();');
+            '  ToOne<Element>? ${finalFieldName}Element = ToOne<Element>();',
+          );
         }
       }
     }
@@ -161,7 +166,7 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
     buffer.writeln('}');
 
     // Write to a separate file per class
-    final String fileName = _writeToFile(buffer, className, 'object_box');
+    final fileName = _writeToFile(buffer, className, 'object_box');
     if (fileName.isNotEmpty) {
       exportFile.add("export '$fileName';\n");
     }
@@ -169,19 +174,24 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
 }
 
 String _writeToFile(
-    StringBuffer buffer, String className, String targetDirectory,
-    {Map<String, String>? nameMap}) {
-  final String? writeFileName = nameMap != null
+  StringBuffer buffer,
+  String className,
+  String targetDirectory, {
+  Map<String, String>? nameMap,
+}) {
+  final writeFileName = nameMap != null
       ? className.fileNameFromClassName(nameMap)
       : className.toLowerCase();
 
   if (writeFileName == null) {
     print(
-        'Warning: Skipping file generation for class $className, invalid file name.');
+      'Warning: Skipping file generation for class $className, '
+      'invalid file name.',
+    );
     return '';
   }
 
-  final String baseFilePath = writeFileName.properFileName.split('.').first;
+  final baseFilePath = writeFileName.properFileName.split('.').first;
 
   // if (baseFilePath.isResource) {
   //   return '';
@@ -189,18 +199,17 @@ String _writeToFile(
 
   numberOfResources++;
 
-  final String filePath =
-      baseFilePath.isResource || baseFilePath.isDomainResource
-          ? '$fhirDirectory/$targetDirectory/resource_types/$baseFilePath.dart'
-          : baseFilePath.isDataType ||
-                  baseFilePath.isQuantity ||
-                  baseFilePath.isBackboneType
-              ? '$fhirDirectory/$targetDirectory/data_types/$baseFilePath.dart'
-              : '$fhirDirectory/$targetDirectory/$baseFilePath.dart';
+  final filePath = baseFilePath.isResource || baseFilePath.isDomainResource
+      ? '$fhirDirectory/$targetDirectory/resource_types/$baseFilePath.dart'
+      : baseFilePath.isDataType ||
+              baseFilePath.isQuantity ||
+              baseFilePath.isBackboneType
+          ? '$fhirDirectory/$targetDirectory/data_types/$baseFilePath.dart'
+          : '$fhirDirectory/$targetDirectory/$baseFilePath.dart';
 
-  final File fileToWrite = File(filePath);
+  final fileToWrite = File(filePath);
 
-  String fileContent = '';
+  var fileContent = '';
 
   if (!fileToWrite.existsSync()) {
     try {

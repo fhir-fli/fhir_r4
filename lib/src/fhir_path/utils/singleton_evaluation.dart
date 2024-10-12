@@ -1,8 +1,7 @@
 // ignore_for_file: avoid_classes_with_only_static_members, avoid_dynamic_calls
 
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:ucum/ucum.dart';
-
-import '../../../fhir_r4.dart';
 
 /// Implements rule http://hl7.org/fhirpath/#singleton-evaluation-of-collections
 class SingletonEvaluation {
@@ -24,10 +23,11 @@ class SingletonEvaluation {
 
     if (input.length > 1) {
       throw FhirPathEvaluationException(
-          'The $name is required to be '
-          'either an empty value, or a single value. Instead it evaluated to: $input.',
-          operation: operation,
-          collection: collection);
+        'The $name is required to be '
+        'either an empty value, or a single value. Instead it evaluated to: $input.',
+        operation: operation,
+        collection: collection,
+      );
     }
 
     final dynamic item = input.first;
@@ -35,9 +35,11 @@ class SingletonEvaluation {
       if (item['value'] != null && item['unit'] != null) {
         return <dynamic>[
           ValidatedQuantity(
-              value: UcumDecimal.fromString(
-                  (item['value'].value ?? double.nan).toString()),
-              unit: item['unit'] as String)
+            value: UcumDecimal.fromString(
+              (item['value'].value ?? double.nan).toString(),
+            ),
+            unit: item['unit'] as String,
+          ),
         ];
       }
     }
@@ -60,10 +62,11 @@ class SingletonEvaluation {
 
     if (input.length > 1) {
       throw FhirPathEvaluationException(
-          'The $name is required to be '
-          'either an empty value, or a single value. Instead it evaluated to: $input.',
-          operation: operation,
-          collection: collection);
+        'The $name is required to be '
+        'either an empty value, or a single value. Instead it evaluated to: $input.',
+        operation: operation,
+        collection: collection,
+      );
     }
 
     if (input.first is bool) {

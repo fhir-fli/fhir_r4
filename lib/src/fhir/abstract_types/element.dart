@@ -1,11 +1,11 @@
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
+/// [Element] Base definition for all FHIR elements.
 class Element extends FhirBase {
-  // Constructor for Element with optional id and extension_s
+  /// Constructor for Element with optional id and extensions
   Element({
     this.id,
     this.extension_,
@@ -17,16 +17,58 @@ class Element extends FhirBase {
     super.namedChildren,
   });
 
+  /// Factory constructor for [Element] that takes in a [YamlMap] and returns
+  /// a [Element]
+  factory Element.fromYaml(dynamic yaml) => yaml is String
+      ? Element.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? Element.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'Element cannot be constructed from input provided,'
+              ' it is neither a yaml string nor a yaml map.');
+
+  /// FromJson Factory Constructor for [Element]
+  factory Element.fromJson(Map<String, Object?> json) {
+    return Element(
+      id: (json['id'] as String?)?.toFhirString,
+      extension_: json['extension'] == null
+          ? <FhirExtension>[]
+          : List<FhirExtension>.from(
+              (json['extension']! as List<dynamic>).map(
+                (dynamic e) =>
+                    FhirExtension.fromJson(e as Map<String, Object?>),
+              ),
+            ),
+    );
+  }
+
+  /// Factory constructor for [Element] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory Element.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Element.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String,dynamic>.');
+    }
+  }
+
   @override
   String get fhirType => 'Element';
 
-  // Unique id for the element within a resource
+  /// Unique id for the element within a resource
   final FhirString? id;
 
-  // List of extensions for additional information
+  /// List of extensions for additional information
   final List<FhirExtension>? extension_;
 
-  // Method to copy the current Element with modifications
+  /// Method to copy the current Element with modifications
   @override
   Element copyWith({
     FhirString? id,
@@ -50,18 +92,20 @@ class Element extends FhirBase {
     );
   }
 
-  // Getter for checking if the element has an id
+  /// Getter for checking if the element has an id
   bool get hasId => id != null && (id!.value.isNotEmpty);
 
-  // Extension handling methods
+  /// Extension handling methods
   bool hasExtension() => extension_?.isNotEmpty ?? false;
 
+  /// Getter for the first extension
   FhirExtension getExtensionFirstRep() {
     return (extension_?.isEmpty ?? false)
         ? FhirExtension(url: FhirString('fhirfli.dev'))
         : extension_!.first;
   }
 
+  /// Getter for the first extension by url
   List<FhirExtension> getExtensionsByUrl(String url) {
     return extension_
             ?.where((FhirExtension ext) => ext.url.equals(url))
@@ -69,19 +113,22 @@ class Element extends FhirBase {
         <FhirExtension>[];
   }
 
+  /// Method to check if an extension exists by url
   bool hasExtensionByUrl(String url) {
     return extension_?.any((FhirExtension ext) => ext.url.equals(url)) ?? false;
   }
 
+  /// Method to add an extension
   void addExtension(FhirExtension ext) {
     extension_?.add(ext);
   }
 
+  /// Method to remove an extension by url
   void removeExtension(String url) {
     extension_?.removeWhere((FhirExtension ext) => ext.url.equals(url));
   }
 
-  // Implementing the getProperty method
+  /// Implementing the getProperty method
   dynamic getProperty(String name) {
     switch (name) {
       case 'id':
@@ -93,7 +140,7 @@ class Element extends FhirBase {
     }
   }
 
-  // Optionally, if we want to use hashes like in Java:
+  /// Optionally, if we want to use hashes like in Java:
   dynamic getPropertyByHash(int hash) {
     switch (hash) {
       case 3355: // hash for 'id'
@@ -105,7 +152,7 @@ class Element extends FhirBase {
     }
   }
 
-  // Implementing the setProperty method
+  /// Implementing the setProperty method
   Element setProperty(String name, dynamic value) {
     switch (name) {
       case 'id':
@@ -119,14 +166,15 @@ class Element extends FhirBase {
           return Element(id: id, extension_: value);
         } else {
           throw ArgumentError(
-              'Invalid type for extension. Expected List<FhirExtension>.');
+            'Invalid type for extension. Expected List<FhirExtension>.',
+          );
         }
       default:
         throw ArgumentError('Unknown property name: $name');
     }
   }
 
-  // Optionally, if we want to use hashes like in Java:
+  /// Optionally, if we want to use hashes like in Java:
   Element setPropertyByHash(int hash, dynamic value) {
     switch (hash) {
       case 3355: // hash for 'id'
@@ -140,7 +188,8 @@ class Element extends FhirBase {
           return Element(id: id, extension_: value);
         } else {
           throw ArgumentError(
-              'Invalid type for extension. Expected List<FhirExtension>.');
+            'Invalid type for extension. Expected List<FhirExtension>.',
+          );
         }
       default:
         throw ArgumentError('Unknown property hash: $hash');
@@ -156,7 +205,7 @@ class Element extends FhirBase {
     return id == other.id && compareDeepLists(extension_, other.extension_);
   }
 
-  // Method to compare shallow equality of two elements
+  /// Method to compare shallow equality of two elements
   bool equalsShallow(Element other) {
     return id == other.id;
   }
@@ -166,21 +215,22 @@ class Element extends FhirBase {
     return super.isEmpty() && (extension_?.isEmpty ?? true);
   }
 
-  // Method to copy the current element
+  /// Method to copy the current element
   Element copy() {
-    final Element copiedElement = Element(
+    final copiedElement = Element(
       id: id,
       extension_: extension_ == null
           ? null
           : List<FhirExtension>.from(
-              extension_!.map((FhirExtension ext) => ext.copy())),
+              extension_!.map((FhirExtension ext) => ext.copy()),
+            ),
     );
     return copiedElement;
   }
 
   @override
   Map<String, Object?> toJson() {
-    final Map<String, Object?> json = <String, Object?>{};
+    final json = <String, Object?>{};
     if (id?.value != null) {
       json['id'] = id?.value;
     }
@@ -189,37 +239,6 @@ class Element extends FhirBase {
           extension_!.map((FhirExtension e) => e.toJson()).toList();
     }
     return json;
-  }
-
-  factory Element.fromYaml(dynamic yaml) => yaml is String
-      ? Element.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? Element.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'Element cannot be constructed from input provided,'
-              ' it is neither a yaml string nor a yaml map.');
-
-  factory Element.fromJson(Map<String, Object?> json) {
-    return Element(
-      id: (json['id'] as String?)?.toFhirString,
-      extension_: json['extension'] == null
-          ? <FhirExtension>[]
-          : List<FhirExtension>.from((json['extension']! as List<dynamic>).map(
-              (dynamic e) =>
-                  FhirExtension.fromJson(e as Map<String, Object?>))),
-    );
-  }
-
-  factory Element.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return Element.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String,dynamic>.');
-    }
   }
 
   @override

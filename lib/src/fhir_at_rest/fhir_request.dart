@@ -1,19 +1,19 @@
 import 'dart:convert';
+
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:http/http.dart' as http;
-import '../../fhir_r4.dart';
 
 abstract class FhirRequest {
-  final Uri base;
-  final Map<String, String> headers;
-  final http.Client client;
-  final Summary summary;
-
   FhirRequest({
     required this.base,
     required this.headers,
     this.summary = Summary.none,
     http.Client? client,
   }) : client = client ?? http.Client();
+  final Uri base;
+  final Map<String, String> headers;
+  final http.Client client;
+  final Summary summary;
 
   Future<http.Response> sendRequest();
 
@@ -29,7 +29,7 @@ abstract class FhirRequest {
 
   /// Function to add summary query if necessary
   Map<String, dynamic> buildQueryParams() {
-    final Map<String, dynamic> queryParams = <String, dynamic>{};
+    final queryParams = <String, dynamic>{};
     if (summary != Summary.none) {
       queryParams['_summary'] = summary.toString();
     }
@@ -46,9 +46,7 @@ abstract class FhirRequest {
 
 // 1. Read Request (GET)
 class FhirReadRequest extends FhirRequest {
-  final String id;
-  final String resourceType;
-
+  /// Main constructor for [FhirReadRequest ]
   FhirReadRequest({
     required super.base,
     required this.resourceType,
@@ -57,11 +55,13 @@ class FhirReadRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+  final String id;
+  final String resourceType;
 
   @override
   Uri buildUri() {
-    final Uri baseUri = Uri.parse('$base/$resourceType/$id');
-    final Map<String, dynamic> queryParams = buildQueryParams();
+    final baseUri = Uri.parse('$base/$resourceType/$id');
+    final queryParams = buildQueryParams();
     return buildUriWithParams(baseUri, queryParams);
   }
 
@@ -76,10 +76,7 @@ class FhirReadRequest extends FhirRequest {
 
 // 2. vRead Request (GET specific version)
 class FhirVReadRequest extends FhirRequest {
-  final String id;
-  final String vid;
-  final String resourceType;
-
+  /// Main constructor for [FhirVReadRequest ]
   FhirVReadRequest({
     required super.base,
     required this.resourceType,
@@ -89,11 +86,14 @@ class FhirVReadRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+  final String id;
+  final String vid;
+  final String resourceType;
 
   @override
   Uri buildUri() {
-    final Uri baseUri = Uri.parse('$base/$resourceType/$id/_history/$vid');
-    final Map<String, dynamic> queryParams = buildQueryParams();
+    final baseUri = Uri.parse('$base/$resourceType/$id/_history/$vid');
+    final queryParams = buildQueryParams();
     return buildUriWithParams(baseUri, queryParams);
   }
 
@@ -108,10 +108,7 @@ class FhirVReadRequest extends FhirRequest {
 
 // 3. Update Request (PUT)
 class FhirUpdateRequest extends FhirRequest {
-  final String resourceType;
-  final String id;
-  final Map<String, dynamic> resource;
-
+  /// Main constructor for [FhirUpdateRequest ]
   FhirUpdateRequest({
     required super.base,
     required this.resourceType,
@@ -121,11 +118,14 @@ class FhirUpdateRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+  final String resourceType;
+  final String id;
+  final Map<String, dynamic> resource;
 
   @override
   Uri buildUri() {
-    final Uri baseUri = Uri.parse('$base/$resourceType/$id');
-    final Map<String, dynamic> queryParams = buildQueryParams();
+    final baseUri = Uri.parse('$base/$resourceType/$id');
+    final queryParams = buildQueryParams();
     return buildUriWithParams(baseUri, queryParams);
   }
 
@@ -140,10 +140,7 @@ class FhirUpdateRequest extends FhirRequest {
 
 // 4. Patch Request (PATCH)
 class FhirPatchRequest extends FhirRequest {
-  final String resourceType;
-  final String id;
-  final Map<String, dynamic> patchBody;
-
+  /// Main constructor for [FhirPatchRequest ]
   FhirPatchRequest({
     required super.base,
     required this.resourceType,
@@ -153,11 +150,14 @@ class FhirPatchRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+  final String resourceType;
+  final String id;
+  final Map<String, dynamic> patchBody;
 
   @override
   Uri buildUri() {
-    final Uri baseUri = Uri.parse('$base/$resourceType/$id');
-    final Map<String, dynamic> queryParams = buildQueryParams();
+    final baseUri = Uri.parse('$base/$resourceType/$id');
+    final queryParams = buildQueryParams();
     return buildUriWithParams(baseUri, queryParams);
   }
 
@@ -172,9 +172,7 @@ class FhirPatchRequest extends FhirRequest {
 
 // 5. Delete Request (DELETE)
 class FhirDeleteRequest extends FhirRequest {
-  final String resourceType;
-  final String id;
-
+  /// Main constructor for [FhirDeleteRequest ]
   FhirDeleteRequest({
     required super.base,
     required this.resourceType,
@@ -183,11 +181,13 @@ class FhirDeleteRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+  final String resourceType;
+  final String id;
 
   @override
   Uri buildUri() {
-    final Uri baseUri = Uri.parse('$base/$resourceType/$id');
-    final Map<String, dynamic> queryParams = buildQueryParams();
+    final baseUri = Uri.parse('$base/$resourceType/$id');
+    final queryParams = buildQueryParams();
     return buildUriWithParams(baseUri, queryParams);
   }
 
@@ -202,9 +202,7 @@ class FhirDeleteRequest extends FhirRequest {
 
 // 6. Create Request (POST)
 class FhirCreateRequest extends FhirRequest {
-  final String resourceType;
-  final Map<String, dynamic> resource;
-
+  /// Main constructor for [FhirCreateRequest ]
   FhirCreateRequest({
     required super.base,
     required this.resourceType,
@@ -213,11 +211,13 @@ class FhirCreateRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+  final String resourceType;
+  final Map<String, dynamic> resource;
 
   @override
   Uri buildUri() {
-    final Uri baseUri = Uri.parse('$base/$resourceType');
-    final Map<String, dynamic> queryParams = buildQueryParams();
+    final baseUri = Uri.parse('$base/$resourceType');
+    final queryParams = buildQueryParams();
     return buildUriWithParams(baseUri, queryParams);
   }
 
@@ -232,10 +232,7 @@ class FhirCreateRequest extends FhirRequest {
 
 // 7. Search Request (GET or POST)
 class FhirSearchRequest extends FhirRequest {
-  final String resourceType;
-  final SearchResource search; // Holds search parameters
-  final bool usePost;
-
+  /// Main constructor for [FhirSearchRequest ]
   FhirSearchRequest({
     required super.base,
     required this.resourceType,
@@ -245,12 +242,15 @@ class FhirSearchRequest extends FhirRequest {
     super.summary,
     super.client,
   }) : search = search ?? SearchResource();
+  final String resourceType;
+  final SearchResource search; // Holds search parameters
+  final bool usePost;
 
   @override
   Uri buildUri() {
-    final Uri baseUri = Uri.parse('$base/$resourceType');
-    final Map<String, dynamic> queryParams = <String, dynamic>{
-      ...Uri.splitQueryString(search.buildQuery())
+    final baseUri = Uri.parse('$base/$resourceType');
+    final queryParams = <String, dynamic>{
+      ...Uri.splitQueryString(search.buildQuery()),
     };
     queryParams
         .addAll(buildQueryParams()); // Include summary query if applicable
@@ -261,7 +261,8 @@ class FhirSearchRequest extends FhirRequest {
   String? buildBody() {
     if (usePost) {
       return jsonEncode(
-          search.parameters); // Use search parameters for POST body
+        search.parameters,
+      ); // Use search parameters for POST body
     }
     return null;
   }
@@ -269,8 +270,11 @@ class FhirSearchRequest extends FhirRequest {
   @override
   Future<http.Response> sendRequest() {
     if (usePost) {
-      return client.post(buildUri(),
-          headers: buildHeaders(), body: buildBody());
+      return client.post(
+        buildUri(),
+        headers: buildHeaders(),
+        body: buildBody(),
+      );
     } else {
       return client.get(buildUri(), headers: buildHeaders());
     }
@@ -279,9 +283,7 @@ class FhirSearchRequest extends FhirRequest {
 
 // 8. History Request (GET)
 class FhirHistoryRequest extends FhirRequest {
-  final String resourceType;
-  final String id;
-
+  /// Main constructor for [FhirHistoryRequest ]
   FhirHistoryRequest({
     required super.base,
     required this.resourceType,
@@ -290,11 +292,13 @@ class FhirHistoryRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+  final String resourceType;
+  final String id;
 
   @override
   Uri buildUri() {
-    final Uri baseUri = Uri.parse('$base/$resourceType/$id/_history');
-    final Map<String, dynamic> queryParams = buildQueryParams();
+    final baseUri = Uri.parse('$base/$resourceType/$id/_history');
+    final queryParams = buildQueryParams();
     return buildUriWithParams(baseUri, queryParams);
   }
 
@@ -309,6 +313,7 @@ class FhirHistoryRequest extends FhirRequest {
 
 // 9. History All (GET)
 class FhirHistoryAllRequest extends FhirRequest {
+  /// Main constructor for [FhirHistoryAllRequest ]
   FhirHistoryAllRequest({
     required super.base,
     super.headers = const <String, String>{},
@@ -318,8 +323,8 @@ class FhirHistoryAllRequest extends FhirRequest {
 
   @override
   Uri buildUri() {
-    final Uri baseUri = Uri.parse('$base/_history');
-    final Map<String, dynamic> queryParams = buildQueryParams();
+    final baseUri = Uri.parse('$base/_history');
+    final queryParams = buildQueryParams();
     return buildUriWithParams(baseUri, queryParams);
   }
 
@@ -334,7 +339,7 @@ class FhirHistoryAllRequest extends FhirRequest {
 
 // 10. Capabilities Request (GET)
 class FhirCapabilitiesRequest extends FhirRequest {
-  final Mode? mode; // Optional Mode parameter
+  // Optional Mode parameter
 
   FhirCapabilitiesRequest({
     required super.base,
@@ -343,11 +348,12 @@ class FhirCapabilitiesRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+  final Mode? mode;
 
   @override
   Uri buildUri() {
-    final Uri baseUri = Uri.parse('$base/metadata');
-    final Map<String, dynamic> queryParams = buildQueryParams();
+    final baseUri = Uri.parse('$base/metadata');
+    final queryParams = buildQueryParams();
 
     // Add mode to query parameters if provided
     if (mode != null) {
@@ -368,8 +374,7 @@ class FhirCapabilitiesRequest extends FhirRequest {
 
 // 11. Transaction Request (POST)
 class FhirTransactionRequest extends FhirRequest {
-  final Map<String, dynamic> bundle;
-
+  /// Main constructor for [FhirTransactionRequest ]
   FhirTransactionRequest({
     required super.base,
     required this.bundle,
@@ -377,11 +382,12 @@ class FhirTransactionRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+  final Map<String, dynamic> bundle;
 
   @override
   Uri buildUri() {
-    final Uri baseUri = Uri.parse('$base');
-    final Map<String, dynamic> queryParams = buildQueryParams();
+    final baseUri = Uri.parse('$base');
+    final queryParams = buildQueryParams();
     return buildUriWithParams(baseUri, queryParams);
   }
 
@@ -396,8 +402,7 @@ class FhirTransactionRequest extends FhirRequest {
 
 // 12. Batch Request (POST)
 class FhirBatchRequest extends FhirRequest {
-  final Map<String, dynamic> bundle;
-
+  /// Main constructor for [FhirBatchRequest ]
   FhirBatchRequest({
     required super.base,
     required this.bundle,
@@ -405,11 +410,12 @@ class FhirBatchRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+  final Map<String, dynamic> bundle;
 
   @override
   Uri buildUri() {
-    final Uri baseUri = Uri.parse('$base');
-    final Map<String, dynamic> queryParams = buildQueryParams();
+    final baseUri = Uri.parse('$base');
+    final queryParams = buildQueryParams();
     return buildUriWithParams(baseUri, queryParams);
   }
 
@@ -424,12 +430,7 @@ class FhirBatchRequest extends FhirRequest {
 
 // 13. Operation Request (POST or GET)
 class FhirOperationRequest extends FhirRequest {
-  final String operation;
-  final RestfulParameters? parameters;
-  final String? id;
-  final String? resourceType;
-  final bool usePost;
-
+  /// Main constructor for [FhirOperationRequest ]
   FhirOperationRequest({
     required super.base,
     required this.operation,
@@ -441,14 +442,19 @@ class FhirOperationRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+  final String operation;
+  final RestfulParameters? parameters;
+  final String? id;
+  final String? resourceType;
+  final bool usePost;
 
   @override
   Uri buildUri() {
-    final String operationPath =
+    final operationPath =
         resourceType != null ? '/$resourceType/$operation' : '/$operation';
-    final String idPath = id != null ? '/$id' : '';
-    final Uri baseUri = Uri.parse('$base$idPath$operationPath');
-    final Map<String, dynamic> queryParams = buildQueryParams();
+    final idPath = id != null ? '/$id' : '';
+    final baseUri = Uri.parse('$base$idPath$operationPath');
+    final queryParams = buildQueryParams();
     return buildUriWithParams(baseUri, queryParams);
   }
 
@@ -463,8 +469,11 @@ class FhirOperationRequest extends FhirRequest {
   @override
   Future<http.Response> sendRequest() {
     if (usePost) {
-      return client.post(buildUri(),
-          headers: buildHeaders(), body: buildBody());
+      return client.post(
+        buildUri(),
+        headers: buildHeaders(),
+        body: buildBody(),
+      );
     } else {
       return client.get(buildUri(), headers: buildHeaders());
     }

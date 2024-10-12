@@ -1,18 +1,24 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [RelatedPerson] /// Information about a person that is involved in the care for a patient, but
-/// who is not the target of healthcare, nor has a formal responsibility in the
-/// care process.
+/// [RelatedPerson]
+/// Information about a person that is involved in the care for a patient,
+/// but who is not the target of healthcare, nor has a formal
+/// responsibility in the care process.
 class RelatedPerson extends DomainResource {
+  /// Primary constructor for [RelatedPerson]
+
   RelatedPerson({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -20,14 +26,20 @@ class RelatedPerson extends DomainResource {
     super.modifierExtension,
     this.identifier,
     this.active,
+
+    /// Extensions for [active]
     this.activeElement,
     required this.patient,
     this.relationship,
     this.name,
     this.telecom,
     this.gender,
+
+    /// Extensions for [gender]
     this.genderElement,
     this.birthDate,
+
+    /// Extensions for [birthDate]
     this.birthDateElement,
     this.address,
     this.photo,
@@ -39,56 +51,257 @@ class RelatedPerson extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.RelatedPerson);
+  }) : super(
+          resourceType: R4ResourceType.RelatedPerson,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory RelatedPerson.fromJson(Map<String, dynamic> json) {
+    return RelatedPerson(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      active:
+          json['active'] != null ? FhirBoolean.fromJson(json['active']) : null,
+      activeElement: json['_active'] != null
+          ? Element.fromJson(
+              json['_active'] as Map<String, dynamic>,
+            )
+          : null,
+      patient: Reference.fromJson(
+        json['patient'] as Map<String, dynamic>,
+      ),
+      relationship: json['relationship'] != null
+          ? (json['relationship'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      name: json['name'] != null
+          ? (json['name'] as List<dynamic>)
+              .map<HumanName>(
+                (dynamic v) => HumanName.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      telecom: json['telecom'] != null
+          ? (json['telecom'] as List<dynamic>)
+              .map<ContactPoint>(
+                (dynamic v) => ContactPoint.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      gender: json['gender'] != null
+          ? AdministrativeGender.fromJson(json['gender'])
+          : null,
+      genderElement: json['_gender'] != null
+          ? Element.fromJson(
+              json['_gender'] as Map<String, dynamic>,
+            )
+          : null,
+      birthDate: json['birthDate'] != null
+          ? FhirDate.fromJson(json['birthDate'])
+          : null,
+      birthDateElement: json['_birthDate'] != null
+          ? Element.fromJson(
+              json['_birthDate'] as Map<String, dynamic>,
+            )
+          : null,
+      address: json['address'] != null
+          ? (json['address'] as List<dynamic>)
+              .map<Address>(
+                (dynamic v) => Address.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      photo: json['photo'] != null
+          ? (json['photo'] as List<dynamic>)
+              .map<Attachment>(
+                (dynamic v) => Attachment.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      period: json['period'] != null
+          ? Period.fromJson(
+              json['period'] as Map<String, dynamic>,
+            )
+          : null,
+      communication: json['communication'] != null
+          ? (json['communication'] as List<dynamic>)
+              .map<RelatedPersonCommunication>(
+                (dynamic v) => RelatedPersonCommunication.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [RelatedPerson] from a [String] or [YamlMap] object
+  factory RelatedPerson.fromYaml(dynamic yaml) => yaml is String
+      ? RelatedPerson.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? RelatedPerson.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'RelatedPerson cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [RelatedPerson] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory RelatedPerson.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return RelatedPerson.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'RelatedPerson';
 
-  /// [identifier] /// Identifier for a person within a particular scope.
+  /// [identifier]
+  /// Identifier for a person within a particular scope.
   final List<Identifier>? identifier;
 
-  /// [active] /// Whether this related person record is in active use.
+  /// [active]
+  /// Whether this related person record is in active use.
   final FhirBoolean? active;
+
+  /// Extensions for [active]
   final Element? activeElement;
 
-  /// [patient] /// The patient this person is related to.
+  /// [patient]
+  /// The patient this person is related to.
   final Reference patient;
 
-  /// [relationship] /// The nature of the relationship between a patient and the related person.
+  /// [relationship]
+  /// The nature of the relationship between a patient and the related
+  /// person.
   final List<CodeableConcept>? relationship;
 
-  /// [name] /// A name associated with the person.
+  /// [name]
+  /// A name associated with the person.
   final List<HumanName>? name;
 
-  /// [telecom] /// A contact detail for the person, e.g. a telephone number or an email
+  /// [telecom]
+  /// A contact detail for the person, e.g. a telephone number or an email
   /// address.
   final List<ContactPoint>? telecom;
 
-  /// [gender] /// Administrative Gender - the gender that the person is considered to have
-  /// for administration and record keeping purposes.
+  /// [gender]
+  /// Administrative Gender - the gender that the person is considered to
+  /// have for administration and record keeping purposes.
   final AdministrativeGender? gender;
+
+  /// Extensions for [gender]
   final Element? genderElement;
 
-  /// [birthDate] /// The date on which the related person was born.
+  /// [birthDate]
+  /// The date on which the related person was born.
   final FhirDate? birthDate;
+
+  /// Extensions for [birthDate]
   final Element? birthDateElement;
 
-  /// [address] /// Address where the related person can be contacted or visited.
+  /// [address]
+  /// Address where the related person can be contacted or visited.
   final List<Address>? address;
 
-  /// [photo] /// Image of the person.
+  /// [photo]
+  /// Image of the person.
   final List<Attachment>? photo;
 
-  /// [period] /// The period of time during which this relationship is or was active. If
+  /// [period]
+  /// The period of time during which this relationship is or was active. If
   /// there are no dates defined, then the interval is unknown.
   final Period? period;
 
-  /// [communication] /// A language which may be used to communicate with about the patient's
+  /// [communication]
+  /// A language which may be used to communicate with about the patient's
   /// health.
   final List<RelatedPersonCommunication>? communication;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -109,21 +322,19 @@ class RelatedPerson extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (active?.value != null) {
       json['active'] = active!.toJson();
@@ -133,16 +344,14 @@ class RelatedPerson extends DomainResource {
     }
     json['patient'] = patient.toJson();
     if (relationship != null && relationship!.isNotEmpty) {
-      json['relationship'] = relationship!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['relationship'] =
+          relationship!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (name != null && name!.isNotEmpty) {
-      json['name'] = name!.map<dynamic>((HumanName v) => v.toJson()).toList();
+      json['name'] = name!.map((HumanName v) => v.toJson()).toList();
     }
     if (telecom != null && telecom!.isNotEmpty) {
-      json['telecom'] =
-          telecom!.map<dynamic>((ContactPoint v) => v.toJson()).toList();
+      json['telecom'] = telecom!.map((ContactPoint v) => v.toJson()).toList();
     }
     if (gender != null) {
       json['gender'] = gender!.toJson();
@@ -154,129 +363,22 @@ class RelatedPerson extends DomainResource {
       json['_birthDate'] = birthDateElement!.toJson();
     }
     if (address != null && address!.isNotEmpty) {
-      json['address'] =
-          address!.map<dynamic>((Address v) => v.toJson()).toList();
+      json['address'] = address!.map((Address v) => v.toJson()).toList();
     }
     if (photo != null && photo!.isNotEmpty) {
-      json['photo'] =
-          photo!.map<dynamic>((Attachment v) => v.toJson()).toList();
+      json['photo'] = photo!.map((Attachment v) => v.toJson()).toList();
     }
     if (period != null) {
       json['period'] = period!.toJson();
     }
     if (communication != null && communication!.isNotEmpty) {
       json['communication'] = communication!
-          .map<dynamic>((RelatedPersonCommunication v) => v.toJson())
+          .map((RelatedPersonCommunication v) => v.toJson())
           .toList();
     }
     return json;
   }
 
-  factory RelatedPerson.fromJson(Map<String, dynamic> json) {
-    return RelatedPerson(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      active:
-          json['active'] != null ? FhirBoolean.fromJson(json['active']) : null,
-      activeElement: json['_active'] != null
-          ? Element.fromJson(json['_active'] as Map<String, dynamic>)
-          : null,
-      patient: Reference.fromJson(json['patient'] as Map<String, dynamic>),
-      relationship: json['relationship'] != null
-          ? (json['relationship'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      name: json['name'] != null
-          ? (json['name'] as List<dynamic>)
-              .map<HumanName>(
-                  (dynamic v) => HumanName.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      telecom: json['telecom'] != null
-          ? (json['telecom'] as List<dynamic>)
-              .map<ContactPoint>((dynamic v) =>
-                  ContactPoint.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      gender: json['gender'] != null
-          ? AdministrativeGender.fromJson(json['gender'])
-          : null,
-      genderElement: json['_gender'] != null
-          ? Element.fromJson(json['_gender'] as Map<String, dynamic>)
-          : null,
-      birthDate: json['birthDate'] != null
-          ? FhirDate.fromJson(json['birthDate'])
-          : null,
-      birthDateElement: json['_birthDate'] != null
-          ? Element.fromJson(json['_birthDate'] as Map<String, dynamic>)
-          : null,
-      address: json['address'] != null
-          ? (json['address'] as List<dynamic>)
-              .map<Address>(
-                  (dynamic v) => Address.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      photo: json['photo'] != null
-          ? (json['photo'] as List<dynamic>)
-              .map<Attachment>(
-                  (dynamic v) => Attachment.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      period: json['period'] != null
-          ? Period.fromJson(json['period'] as Map<String, dynamic>)
-          : null,
-      communication: json['communication'] != null
-          ? (json['communication'] as List<dynamic>)
-              .map<RelatedPersonCommunication>((dynamic v) =>
-                  RelatedPersonCommunication.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   RelatedPerson clone() => throw UnimplementedError();
   @override
@@ -347,36 +449,22 @@ class RelatedPerson extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory RelatedPerson.fromYaml(dynamic yaml) => yaml is String
-      ? RelatedPerson.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? RelatedPerson.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'RelatedPerson cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory RelatedPerson.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return RelatedPerson.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [RelatedPersonCommunication] /// A language which may be used to communicate with about the patient's
+/// [RelatedPersonCommunication]
+/// A language which may be used to communicate with about the patient's
 /// health.
 class RelatedPersonCommunication extends BackboneElement {
+  /// Primary constructor for [RelatedPersonCommunication]
+
   RelatedPersonCommunication({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.language,
     this.preferred,
+
+    /// Extensions for [preferred]
     this.preferredElement,
     super.userData,
     super.formatCommentsPre,
@@ -386,33 +474,98 @@ class RelatedPersonCommunication extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory RelatedPersonCommunication.fromJson(Map<String, dynamic> json) {
+    return RelatedPersonCommunication(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      language: CodeableConcept.fromJson(
+        json['language'] as Map<String, dynamic>,
+      ),
+      preferred: json['preferred'] != null
+          ? FhirBoolean.fromJson(json['preferred'])
+          : null,
+      preferredElement: json['_preferred'] != null
+          ? Element.fromJson(
+              json['_preferred'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [RelatedPersonCommunication] from a [String] or [YamlMap] object
+  factory RelatedPersonCommunication.fromYaml(dynamic yaml) => yaml is String
+      ? RelatedPersonCommunication.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? RelatedPersonCommunication.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'RelatedPersonCommunication cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [RelatedPersonCommunication] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory RelatedPersonCommunication.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return RelatedPersonCommunication.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'RelatedPersonCommunication';
 
-  /// [language] /// The ISO-639-1 alpha 2 code in lower case for the language, optionally
+  /// [language]
+  /// The ISO-639-1 alpha 2 code in lower case for the language, optionally
   /// followed by a hyphen and the ISO-3166-1 alpha 2 code for the region in
-  /// upper case; e.g. "en" for English, or "en-US" for American English versus
-  /// "en-EN" for England English.
+  /// upper case; e.g. "en" for English, or "en-US" for American English
+  /// versus "en-EN" for England English.
   final CodeableConcept language;
 
-  /// [preferred] /// Indicates whether or not the patient prefers this language (over other
+  /// [preferred]
+  /// Indicates whether or not the patient prefers this language (over other
   /// languages he masters up a certain level).
   final FhirBoolean? preferred;
+
+  /// Extensions for [preferred]
   final Element? preferredElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['language'] = language.toJson();
     if (preferred?.value != null) {
@@ -424,31 +577,6 @@ class RelatedPersonCommunication extends BackboneElement {
     return json;
   }
 
-  factory RelatedPersonCommunication.fromJson(Map<String, dynamic> json) {
-    return RelatedPersonCommunication(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      language:
-          CodeableConcept.fromJson(json['language'] as Map<String, dynamic>),
-      preferred: json['preferred'] != null
-          ? FhirBoolean.fromJson(json['preferred'])
-          : null,
-      preferredElement: json['_preferred'] != null
-          ? Element.fromJson(json['_preferred'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   RelatedPersonCommunication clone() => throw UnimplementedError();
   @override
@@ -480,24 +608,5 @@ class RelatedPersonCommunication extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory RelatedPersonCommunication.fromYaml(dynamic yaml) => yaml is String
-      ? RelatedPersonCommunication.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? RelatedPersonCommunication.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'RelatedPersonCommunication cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory RelatedPersonCommunication.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return RelatedPersonCommunication.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

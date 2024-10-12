@@ -1,8 +1,7 @@
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
-
-import '../../../fhir_r4.dart';
 
 /// Base class for all reusable types defined as part of the FHIR specification.
 abstract class DataType extends Element {
@@ -18,12 +17,17 @@ abstract class DataType extends Element {
     super.namedChildren,
   });
 
+  /// FromJson Factory Constructor for [DataType]
+  factory DataType.fromJson(Map<String, Object?> json) {
+    throw UnimplementedError('DataType.fromJson $json');
+  }
+
   @override
   String get fhirType => 'DataType';
 
   @override
   Map<String, Object?> toJson() {
-    final Map<String, Object?> json = <String, Object?>{};
+    final json = <String, Object?>{};
     if (id?.value != null) {
       json['id'] = id?.value;
     }
@@ -34,19 +38,19 @@ abstract class DataType extends Element {
     return json;
   }
 
+  /// Factory constructor for [DataType] that takes in a [YamlMap] and returns
+  /// a [DataType]
   static DataType fromYaml(dynamic yaml) => yaml is String
       ? DataType.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
       : yaml is YamlMap
           ? DataType.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
           : throw ArgumentError(
               'DataType cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
-
-  factory DataType.fromJson(Map<String, Object?> json) {
-    throw UnimplementedError('DataType.fromJson $json');
-  }
 
   @override
   DataType copyWith({

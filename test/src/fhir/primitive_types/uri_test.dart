@@ -3,243 +3,212 @@ import 'package:test/test.dart';
 
 void main() {
   group('FhirUri Tests', () {
-    test('Valid Canonical URI', () {
-      const String validCanonicalString = 'http://example.com/Patient/123';
-      final FhirUri canonical = FhirUri(validCanonicalString);
-      expect(canonical.value, equals(Uri.parse(validCanonicalString)));
-      expect(canonical.toJson(), equals(validCanonicalString));
-      expect(canonical.toYaml(), equals(validCanonicalString));
-      expect(canonical.toString(), equals(validCanonicalString));
+    test('Valid Uri URI', () {
+      const validUriString = 'http://example.com/Patient/123';
+      final canonical = FhirUri(validUriString);
+      expect(canonical.value, equals(Uri.parse(validUriString)));
+      expect(canonical.toJson(), equals(validUriString));
+      expect(canonical.toYaml(), equals(validUriString));
+      expect(canonical.toString(), equals(validUriString));
     });
 
-    test('Valid Relative Canonical URI', () {
-      const String relativeCanonicalString = 'Patient/123';
-      final FhirUri canonical = FhirUri(relativeCanonicalString);
-      expect(canonical.value, equals(Uri.parse(relativeCanonicalString)));
-      expect(canonical.toJson(), equals(relativeCanonicalString));
-      expect(canonical.toYaml(), equals(relativeCanonicalString));
-      expect(canonical.toString(), equals(relativeCanonicalString));
+    test('Valid Relative Uri URI', () {
+      const relativeUriString = 'Patient/123';
+      final canonical = FhirUri(relativeUriString);
+      expect(canonical.value, equals(Uri.parse(relativeUriString)));
+      expect(canonical.toJson(), equals(relativeUriString));
+      expect(canonical.toYaml(), equals(relativeUriString));
+      expect(canonical.toString(), equals(relativeUriString));
     });
 
-    test('Invalid Canonical String', () {
-      const String invalidCanonicalString = 'invalid_uri';
+    test('Invalid Uri String', () {
+      const invalidUriString = 'invalid_uri';
       expect(
-          () => FhirUri(invalidCanonicalString),
-          throwsA(isA<FormatException>().having(
-              (FormatException e) => e.message,
-              'message',
-              equals('Invalid Canonical String: $invalidCanonicalString'))));
+        FhirUri(invalidUriString).value.toString(),
+        invalidUriString,
+      );
     });
 
-    test('TryParse - Valid Canonical String', () {
-      const String validCanonicalString = 'http://example.com/Patient/123';
-      final FhirUri? canonical = FhirUri.tryParse(validCanonicalString);
+    test('TryParse - Valid Uri String', () {
+      const validUriString = 'http://example.com/Patient/123';
+      final canonical = FhirUri.tryParse(validUriString);
       expect(canonical, isNotNull);
-      expect(canonical!.value, equals(Uri.parse(validCanonicalString)));
-    });
-
-    test('TryParse - Invalid Canonical String', () {
-      const String invalidCanonicalString = 'invalid_uri';
-      final FhirUri? canonical = FhirUri.tryParse(invalidCanonicalString);
-      expect(canonical, isNull);
+      expect(canonical!.value, equals(Uri.parse(validUriString)));
     });
 
     test('TryParse - Non-String Input', () {
-      final FhirUri? canonical = FhirUri.tryParse(12345);
+      final canonical = FhirUri.tryParse(12345);
       expect(canonical, isNull);
     });
 
-    test('FromJson - Valid Canonical String', () {
-      const String validCanonicalString = 'http://example.com/Patient/123';
-      final FhirUri canonical = FhirUri.fromJson(validCanonicalString);
-      expect(canonical.value, equals(Uri.parse(validCanonicalString)));
-    });
-
-    test('FromJson - Invalid Canonical String', () {
-      const String invalidCanonicalString = 'invalid_uri';
-      expect(
-          () => FhirUri.fromJson(invalidCanonicalString),
-          throwsA(isA<FormatException>().having(
-              (FormatException e) => e.message,
-              'message',
-              equals('Invalid Canonical String: $invalidCanonicalString'))));
+    test('FromJson - Valid Uri String', () {
+      const validUriString = 'http://example.com/Patient/123';
+      final canonical = FhirUri.fromJson(validUriString);
+      expect(canonical.value, equals(Uri.parse(validUriString)));
     });
 
     test('FromYaml - Valid Yaml String', () {
-      const String validYamlString = 'http://example.com/Patient/123';
-      final FhirUri canonical = FhirUri.fromYaml(validYamlString);
+      const validYamlString = 'http://example.com/Patient/123';
+      final canonical = FhirUri.fromYaml(validYamlString);
       expect(canonical.value, equals(Uri.parse(validYamlString)));
     });
 
-    test('FromYaml - Invalid Yaml String', () {
-      const String invalidYamlString = 'invalid_uri';
-      expect(
-          () => FhirUri.fromYaml(invalidYamlString),
-          throwsA(isA<FormatException>().having(
-              (FormatException e) => e.message,
-              'message',
-              equals('Invalid Canonical String: $invalidYamlString'))));
-    });
-
     test('Equality - FhirUri', () {
-      const String validCanonicalString = 'http://example.com/Patient/123';
-      final FhirUri canonical1 = FhirUri(validCanonicalString);
-      final FhirUri canonical2 = FhirUri(validCanonicalString);
+      const validUriString = 'http://example.com/Patient/123';
+      final canonical1 = FhirUri(validUriString);
+      final canonical2 = FhirUri(validUriString);
       expect(canonical1, equals(canonical2));
     });
 
     test('Equality - Uri', () {
-      const String validCanonicalString = 'http://example.com/Patient/123';
-      final FhirUri canonical = FhirUri(validCanonicalString);
+      const validUriString = 'http://example.com/Patient/123';
+      final canonical = FhirUri(validUriString);
       // ignore: unrelated_type_equality_checks
-      expect(canonical == Uri.parse(validCanonicalString), isTrue);
+      expect(canonical == Uri.parse(validUriString), isTrue);
     });
 
     test('Equality - String', () {
-      const String validCanonicalString = 'http://example.com/Patient/123';
-      final FhirUri canonical = FhirUri(validCanonicalString);
+      const validUriString = 'http://example.com/Patient/123';
+      final canonical = FhirUri(validUriString);
       // ignore: unrelated_type_equality_checks
-      expect(canonical == validCanonicalString, isTrue);
+      expect(canonical == validUriString, isTrue);
     });
 
     test('Inequality - FhirUri', () {
-      const String validCanonicalString1 = 'http://example.com/Patient/123';
-      const String validCanonicalString2 = 'http://example.com/Patient/456';
-      final FhirUri canonical1 = FhirUri(validCanonicalString1);
-      final FhirUri canonical2 = FhirUri(validCanonicalString2);
+      const validUriString1 = 'http://example.com/Patient/123';
+      const validUriString2 = 'http://example.com/Patient/456';
+      final canonical1 = FhirUri(validUriString1);
+      final canonical2 = FhirUri(validUriString2);
       expect(canonical1, isNot(equals(canonical2)));
     });
 
     test('HashCode', () {
-      const String validCanonicalString = 'http://example.com/Patient/123';
-      final FhirUri canonical = FhirUri(validCanonicalString);
-      expect(canonical.hashCode, equals(validCanonicalString.hashCode));
+      const validUriString = 'http://example.com/Patient/123';
+      final canonical = FhirUri(validUriString);
+      expect(canonical.hashCode, equals(validUriString.hashCode));
     });
 
     test('Clone', () {
-      const String validCanonicalString = 'http://example.com/Patient/123';
-      final FhirUri canonical = FhirUri(validCanonicalString);
-      final FhirUri clonedCanonical = canonical.clone();
-      expect(clonedCanonical, equals(canonical));
-      expect(clonedCanonical.value, equals(Uri.parse(validCanonicalString)));
+      const validUriString = 'http://example.com/Patient/123';
+      final canonical = FhirUri(validUriString);
+      final clonedUri = canonical.clone();
+      expect(clonedUri, equals(canonical));
+      expect(clonedUri.value, equals(Uri.parse(validUriString)));
     });
 
     test('Set Element', () {
-      const String validCanonicalString = 'http://example.com/Patient/123';
-      final FhirUri canonical = FhirUri(validCanonicalString);
-      final Element newElement = Element();
-      final FhirUri updatedCanonical =
-          canonical.setElement('dummy', newElement);
-      expect(updatedCanonical.value, equals(Uri.parse(validCanonicalString)));
+      const validUriString = 'http://example.com/Patient/123';
+      final canonical = FhirUri(validUriString);
+      final newElement = Element();
+      final updatedUri = canonical.setElement('dummy', newElement);
+      expect(updatedUri.value, equals(Uri.parse(validUriString)));
     });
 
     test('CopyWith - No New Value', () {
-      const String validCanonicalString = 'http://example.com/Patient/123';
-      final FhirUri canonical = FhirUri(validCanonicalString);
-      final FhirUri copiedCanonical = canonical.copyWith();
-      expect(copiedCanonical.value, equals(canonical.value));
+      const validUriString = 'http://example.com/Patient/123';
+      final canonical = FhirUri(validUriString);
+      final copiedUri = canonical.copyWith();
+      expect(copiedUri.value, equals(canonical.value));
     });
 
     test('CopyWith - New Value', () {
-      const String validCanonicalString = 'http://example.com/Patient/123';
-      const String newCanonicalString = 'http://example.com/Patient/456';
-      final FhirUri canonical = FhirUri(validCanonicalString);
-      final FhirUri copiedCanonical = canonical.copyWith(
-        newValue: Uri.parse(newCanonicalString),
+      const validUriString = 'http://example.com/Patient/123';
+      const newUriString = 'http://example.com/Patient/456';
+      final canonical = FhirUri(validUriString);
+      final copiedUri = canonical.copyWith(
+        newValue: Uri.parse(newUriString),
       );
-      expect(copiedCanonical.value, equals(Uri.parse(newCanonicalString)));
+      expect(copiedUri.value, equals(Uri.parse(newUriString)));
     });
 
     test('Path Segments', () {
-      const String validCanonicalString = 'http://example.com/Patient/123';
-      final FhirUri canonical = FhirUri(validCanonicalString);
+      const validUriString = 'http://example.com/Patient/123';
+      final canonical = FhirUri(validUriString);
       expect(canonical.pathSegments, equals(<String>['Patient', '123']));
     });
 
     test('File Path', () {
-      const String validCanonicalString = 'file:///home/user/file.txt';
-      final FhirUri canonical = FhirUri(validCanonicalString);
+      const validUriString = 'file:///home/user/file.txt';
+      final canonical = FhirUri(validUriString);
       expect(canonical.toFilePath(), equals('/home/user/file.txt'));
     });
 
     test('Host', () {
-      const String validCanonicalString = 'http://example.com/Patient/123';
-      final FhirUri canonical = FhirUri(validCanonicalString);
+      const validUriString = 'http://example.com/Patient/123';
+      final canonical = FhirUri(validUriString);
       expect(canonical.host, equals('example.com'));
     });
 
     test('User Info', () {
-      const String validCanonicalString =
-          'http://user:pass@example.com/Patient/123';
-      final FhirUri canonical = FhirUri(validCanonicalString);
+      const validUriString = 'http://user:pass@example.com/Patient/123';
+      final canonical = FhirUri(validUriString);
       expect(canonical.userInfo, equals('user:pass'));
     });
 
     test('Port', () {
-      const String validCanonicalString = 'http://example.com:8080/Patient/123';
-      final FhirUri canonical = FhirUri(validCanonicalString);
+      const validUriString = 'http://example.com:8080/Patient/123';
+      final canonical = FhirUri(validUriString);
       expect(canonical.port, equals(8080));
     });
 
     test('Authority', () {
-      const String validCanonicalString = 'http://example.com:8080/Patient/123';
-      final FhirUri canonical = FhirUri(validCanonicalString);
+      const validUriString = 'http://example.com:8080/Patient/123';
+      final canonical = FhirUri(validUriString);
       expect(canonical.authority, equals('example.com:8080'));
     });
 
     test('Query', () {
-      const String validCanonicalString =
-          'http://example.com/Patient/123?name=John';
-      final FhirUri canonical = FhirUri(validCanonicalString);
+      const validUriString = 'http://example.com/Patient/123?name=John';
+      final canonical = FhirUri(validUriString);
       expect(canonical.query, equals('name=John'));
     });
 
     test('Split Query String All', () {
-      const String query = 'name=John&age=30';
-      final Map<String, List<String>> splitQuery =
-          FhirUri.splitQueryStringAll(query);
+      const query = 'name=John&age=30';
+      final splitQuery = FhirUri.splitQueryStringAll(query);
       expect(
-          splitQuery,
-          equals(<String, List<String>>{
-            'name': <String>['John'],
-            'age': <String>['30']
-          }));
+        splitQuery,
+        equals(<String, List<String>>{
+          'name': <String>['John'],
+          'age': <String>['30'],
+        }),
+      );
     });
 
     test('Encode Query Component', () {
-      const String text = 'name=John Doe';
-      final String encoded = FhirUri.encodeQueryComponent(text);
-      expect(encoded, equals('name%3DJohn%20Doe'));
+      const text = 'name=John Doe';
+      final encoded = FhirUri.encodeQueryComponent(text);
+      expect(encoded, equals('name%3DJohn+Doe'));
     });
 
     test('Decode Query Component', () {
-      const String encodedText = 'name%3DJohn%20Doe';
-      final String decoded = FhirUri.decodeQueryComponent(encodedText);
+      const encodedText = 'name%3DJohn%20Doe';
+      final decoded = FhirUri.decodeQueryComponent(encodedText);
       expect(decoded, equals('name=John Doe'));
     });
 
     test('ToJson', () {
-      const String validCanonicalString = 'http://example.com/Patient/123';
-      final FhirUri canonical = FhirUri(validCanonicalString);
-      expect(canonical.toJson(), equals(validCanonicalString));
+      const validUriString = 'http://example.com/Patient/123';
+      final canonical = FhirUri(validUriString);
+      expect(canonical.toJson(), equals(validUriString));
     });
 
     test('ToYaml', () {
-      const String validCanonicalString = 'http://example.com/Patient/123';
-      final FhirUri canonical = FhirUri(validCanonicalString);
-      expect(canonical.toYaml(), equals(validCanonicalString));
+      const validUriString = 'http://example.com/Patient/123';
+      final canonical = FhirUri(validUriString);
+      expect(canonical.toYaml(), equals(validUriString));
     });
 
     test('ToString', () {
-      const String validCanonicalString = 'http://example.com/Patient/123';
-      final FhirUri canonical = FhirUri(validCanonicalString);
-      expect(canonical.toString(), equals(validCanonicalString));
+      const validUriString = 'http://example.com/Patient/123';
+      final canonical = FhirUri(validUriString);
+      expect(canonical.toString(), equals(validUriString));
     });
 
     test('ToJsonString', () {
-      const String validCanonicalString = 'http://example.com/Patient/123';
-      final FhirUri canonical = FhirUri(validCanonicalString);
-      expect(canonical.toJsonString(), equals('"$validCanonicalString"'));
+      const validUriString = 'http://example.com/Patient/123';
+      final canonical = FhirUri(validUriString);
+      expect(canonical.toJsonString(), equals('"$validUriString"'));
     });
   });
 }

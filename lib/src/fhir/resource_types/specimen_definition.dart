@@ -1,16 +1,22 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [SpecimenDefinition] /// A kind of specimen with associated set of requirements.
+/// [SpecimenDefinition]
+/// A kind of specimen with associated set of requirements.
 class SpecimenDefinition extends DomainResource {
+  /// Primary constructor for [SpecimenDefinition]
+
   SpecimenDefinition({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -20,6 +26,8 @@ class SpecimenDefinition extends DomainResource {
     this.typeCollected,
     this.patientPreparation,
     this.timeAspect,
+
+    /// Extensions for [timeAspect]
     this.timeAspectElement,
     this.collection,
     this.typeTested,
@@ -29,32 +37,174 @@ class SpecimenDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.SpecimenDefinition);
+  }) : super(
+          resourceType: R4ResourceType.SpecimenDefinition,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory SpecimenDefinition.fromJson(Map<String, dynamic> json) {
+    return SpecimenDefinition(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? Identifier.fromJson(
+              json['identifier'] as Map<String, dynamic>,
+            )
+          : null,
+      typeCollected: json['typeCollected'] != null
+          ? CodeableConcept.fromJson(
+              json['typeCollected'] as Map<String, dynamic>,
+            )
+          : null,
+      patientPreparation: json['patientPreparation'] != null
+          ? (json['patientPreparation'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      timeAspect: json['timeAspect'] != null
+          ? FhirString.fromJson(json['timeAspect'])
+          : null,
+      timeAspectElement: json['_timeAspect'] != null
+          ? Element.fromJson(
+              json['_timeAspect'] as Map<String, dynamic>,
+            )
+          : null,
+      collection: json['collection'] != null
+          ? (json['collection'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      typeTested: json['typeTested'] != null
+          ? (json['typeTested'] as List<dynamic>)
+              .map<SpecimenDefinitionTypeTested>(
+                (dynamic v) => SpecimenDefinitionTypeTested.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [SpecimenDefinition] from a [String] or [YamlMap] object
+  factory SpecimenDefinition.fromYaml(dynamic yaml) => yaml is String
+      ? SpecimenDefinition.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? SpecimenDefinition.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'SpecimenDefinition cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [SpecimenDefinition] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory SpecimenDefinition.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return SpecimenDefinition.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'SpecimenDefinition';
 
-  /// [identifier] /// A business identifier associated with the kind of specimen.
+  /// [identifier]
+  /// A business identifier associated with the kind of specimen.
   final Identifier? identifier;
 
-  /// [typeCollected] /// The kind of material to be collected.
+  /// [typeCollected]
+  /// The kind of material to be collected.
   final CodeableConcept? typeCollected;
 
-  /// [patientPreparation] /// Preparation of the patient for specimen collection.
+  /// [patientPreparation]
+  /// Preparation of the patient for specimen collection.
   final List<CodeableConcept>? patientPreparation;
 
-  /// [timeAspect] /// Time aspect of specimen collection (duration or offset).
+  /// [timeAspect]
+  /// Time aspect of specimen collection (duration or offset).
   final FhirString? timeAspect;
+
+  /// Extensions for [timeAspect]
   final Element? timeAspectElement;
 
-  /// [collection] /// The action to be performed for collecting the specimen.
+  /// [collection]
+  /// The action to be performed for collecting the specimen.
   final List<CodeableConcept>? collection;
 
-  /// [typeTested] /// Specimen conditioned in a container as expected by the testing laboratory.
+  /// [typeTested]
+  /// Specimen conditioned in a container as expected by the testing
+  /// laboratory.
   final List<SpecimenDefinitionTypeTested>? typeTested;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -75,17 +225,15 @@ class SpecimenDefinition extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null) {
       json['identifier'] = identifier!.toJson();
@@ -94,9 +242,8 @@ class SpecimenDefinition extends DomainResource {
       json['typeCollected'] = typeCollected!.toJson();
     }
     if (patientPreparation != null && patientPreparation!.isNotEmpty) {
-      json['patientPreparation'] = patientPreparation!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['patientPreparation'] =
+          patientPreparation!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (timeAspect?.value != null) {
       json['timeAspect'] = timeAspect!.toJson();
@@ -106,89 +253,16 @@ class SpecimenDefinition extends DomainResource {
     }
     if (collection != null && collection!.isNotEmpty) {
       json['collection'] =
-          collection!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          collection!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (typeTested != null && typeTested!.isNotEmpty) {
       json['typeTested'] = typeTested!
-          .map<dynamic>((SpecimenDefinitionTypeTested v) => v.toJson())
+          .map((SpecimenDefinitionTypeTested v) => v.toJson())
           .toList();
     }
     return json;
   }
 
-  factory SpecimenDefinition.fromJson(Map<String, dynamic> json) {
-    return SpecimenDefinition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
-          : null,
-      typeCollected: json['typeCollected'] != null
-          ? CodeableConcept.fromJson(
-              json['typeCollected'] as Map<String, dynamic>)
-          : null,
-      patientPreparation: json['patientPreparation'] != null
-          ? (json['patientPreparation'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      timeAspect: json['timeAspect'] != null
-          ? FhirString.fromJson(json['timeAspect'])
-          : null,
-      timeAspectElement: json['_timeAspect'] != null
-          ? Element.fromJson(json['_timeAspect'] as Map<String, dynamic>)
-          : null,
-      collection: json['collection'] != null
-          ? (json['collection'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      typeTested: json['typeTested'] != null
-          ? (json['typeTested'] as List<dynamic>)
-              .map<SpecimenDefinitionTypeTested>((dynamic v) =>
-                  SpecimenDefinitionTypeTested.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   SpecimenDefinition clone() => throw UnimplementedError();
   @override
@@ -243,40 +317,31 @@ class SpecimenDefinition extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory SpecimenDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? SpecimenDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? SpecimenDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'SpecimenDefinition cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory SpecimenDefinition.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return SpecimenDefinition.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [SpecimenDefinitionTypeTested] /// Specimen conditioned in a container as expected by the testing laboratory.
+/// [SpecimenDefinitionTypeTested]
+/// Specimen conditioned in a container as expected by the testing
+/// laboratory.
 class SpecimenDefinitionTypeTested extends BackboneElement {
+  /// Primary constructor for [SpecimenDefinitionTypeTested]
+
   SpecimenDefinitionTypeTested({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.isDerived,
+
+    /// Extensions for [isDerived]
     this.isDerivedElement,
     this.type,
     required this.preference,
+
+    /// Extensions for [preference]
     this.preferenceElement,
     this.container,
     this.requirement,
+
+    /// Extensions for [requirement]
     this.requirementElement,
     this.retentionTime,
     this.rejectionCriterion,
@@ -289,52 +354,172 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory SpecimenDefinitionTypeTested.fromJson(Map<String, dynamic> json) {
+    return SpecimenDefinitionTypeTested(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      isDerived: json['isDerived'] != null
+          ? FhirBoolean.fromJson(json['isDerived'])
+          : null,
+      isDerivedElement: json['_isDerived'] != null
+          ? Element.fromJson(
+              json['_isDerived'] as Map<String, dynamic>,
+            )
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(
+              json['type'] as Map<String, dynamic>,
+            )
+          : null,
+      preference: SpecimenContainedPreference.fromJson(json['preference']),
+      preferenceElement: json['_preference'] != null
+          ? Element.fromJson(
+              json['_preference'] as Map<String, dynamic>,
+            )
+          : null,
+      container: json['container'] != null
+          ? SpecimenDefinitionContainer.fromJson(
+              json['container'] as Map<String, dynamic>,
+            )
+          : null,
+      requirement: json['requirement'] != null
+          ? FhirString.fromJson(json['requirement'])
+          : null,
+      requirementElement: json['_requirement'] != null
+          ? Element.fromJson(
+              json['_requirement'] as Map<String, dynamic>,
+            )
+          : null,
+      retentionTime: json['retentionTime'] != null
+          ? FhirDuration.fromJson(
+              json['retentionTime'] as Map<String, dynamic>,
+            )
+          : null,
+      rejectionCriterion: json['rejectionCriterion'] != null
+          ? (json['rejectionCriterion'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      handling: json['handling'] != null
+          ? (json['handling'] as List<dynamic>)
+              .map<SpecimenDefinitionHandling>(
+                (dynamic v) => SpecimenDefinitionHandling.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [SpecimenDefinitionTypeTested] from a [String] or [YamlMap] object
+  factory SpecimenDefinitionTypeTested.fromYaml(dynamic yaml) => yaml is String
+      ? SpecimenDefinitionTypeTested.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? SpecimenDefinitionTypeTested.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'SpecimenDefinitionTypeTested cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [SpecimenDefinitionTypeTested] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory SpecimenDefinitionTypeTested.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return SpecimenDefinitionTypeTested.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'SpecimenDefinitionTypeTested';
 
-  /// [isDerived] /// Primary of secondary specimen.
+  /// [isDerived]
+  /// Primary of secondary specimen.
   final FhirBoolean? isDerived;
+
+  /// Extensions for [isDerived]
   final Element? isDerivedElement;
 
-  /// [type] /// The kind of specimen conditioned for testing expected by lab.
+  /// [type]
+  /// The kind of specimen conditioned for testing expected by lab.
   final CodeableConcept? type;
 
-  /// [preference] /// The preference for this type of conditioned specimen.
+  /// [preference]
+  /// The preference for this type of conditioned specimen.
   final SpecimenContainedPreference preference;
+
+  /// Extensions for [preference]
   final Element? preferenceElement;
 
-  /// [container] /// The specimen's container.
+  /// [container]
+  /// The specimen's container.
   final SpecimenDefinitionContainer? container;
 
-  /// [requirement] /// Requirements for delivery and special handling of this kind of conditioned
-  /// specimen.
+  /// [requirement]
+  /// Requirements for delivery and special handling of this kind of
+  /// conditioned specimen.
   final FhirString? requirement;
+
+  /// Extensions for [requirement]
   final Element? requirementElement;
 
-  /// [retentionTime] /// The usual time that a specimen of this kind is retained after the ordered
-  /// tests are completed, for the purpose of additional testing.
+  /// [retentionTime]
+  /// The usual time that a specimen of this kind is retained after the
+  /// ordered tests are completed, for the purpose of additional testing.
   final FhirDuration? retentionTime;
 
-  /// [rejectionCriterion] /// Criterion for rejection of the specimen in its container by the laboratory.
+  /// [rejectionCriterion]
+  /// Criterion for rejection of the specimen in its container by the
+  /// laboratory.
   final List<CodeableConcept>? rejectionCriterion;
 
-  /// [handling] /// Set of instructions for preservation/transport of the specimen at a defined
-  /// temperature interval, prior the testing process.
+  /// [handling]
+  /// Set of instructions for preservation/transport of the specimen at a
+  /// defined temperature interval, prior the testing process.
   final List<SpecimenDefinitionHandling>? handling;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (isDerived?.value != null) {
       json['isDerived'] = isDerived!.toJson();
@@ -359,74 +544,16 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
       json['retentionTime'] = retentionTime!.toJson();
     }
     if (rejectionCriterion != null && rejectionCriterion!.isNotEmpty) {
-      json['rejectionCriterion'] = rejectionCriterion!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['rejectionCriterion'] =
+          rejectionCriterion!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (handling != null && handling!.isNotEmpty) {
-      json['handling'] = handling!
-          .map<dynamic>((SpecimenDefinitionHandling v) => v.toJson())
-          .toList();
+      json['handling'] =
+          handling!.map((SpecimenDefinitionHandling v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory SpecimenDefinitionTypeTested.fromJson(Map<String, dynamic> json) {
-    return SpecimenDefinitionTypeTested(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      isDerived: json['isDerived'] != null
-          ? FhirBoolean.fromJson(json['isDerived'])
-          : null,
-      isDerivedElement: json['_isDerived'] != null
-          ? Element.fromJson(json['_isDerived'] as Map<String, dynamic>)
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
-          : null,
-      preference: SpecimenContainedPreference.fromJson(json['preference']),
-      preferenceElement: json['_preference'] != null
-          ? Element.fromJson(json['_preference'] as Map<String, dynamic>)
-          : null,
-      container: json['container'] != null
-          ? SpecimenDefinitionContainer.fromJson(
-              json['container'] as Map<String, dynamic>)
-          : null,
-      requirement: json['requirement'] != null
-          ? FhirString.fromJson(json['requirement'])
-          : null,
-      requirementElement: json['_requirement'] != null
-          ? Element.fromJson(json['_requirement'] as Map<String, dynamic>)
-          : null,
-      retentionTime: json['retentionTime'] != null
-          ? FhirDuration.fromJson(json['retentionTime'] as Map<String, dynamic>)
-          : null,
-      rejectionCriterion: json['rejectionCriterion'] != null
-          ? (json['rejectionCriterion'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      handling: json['handling'] != null
-          ? (json['handling'] as List<dynamic>)
-              .map<SpecimenDefinitionHandling>((dynamic v) =>
-                  SpecimenDefinitionHandling.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   SpecimenDefinitionTypeTested clone() => throw UnimplementedError();
   @override
@@ -475,29 +602,13 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory SpecimenDefinitionTypeTested.fromYaml(dynamic yaml) => yaml is String
-      ? SpecimenDefinitionTypeTested.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? SpecimenDefinitionTypeTested.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'SpecimenDefinitionTypeTested cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory SpecimenDefinitionTypeTested.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return SpecimenDefinitionTypeTested.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [SpecimenDefinitionContainer] /// The specimen's container.
+/// [SpecimenDefinitionContainer]
+/// The specimen's container.
 class SpecimenDefinitionContainer extends BackboneElement {
+  /// Primary constructor for [SpecimenDefinitionContainer]
+
   SpecimenDefinitionContainer({
     super.id,
     super.extension_,
@@ -506,13 +617,19 @@ class SpecimenDefinitionContainer extends BackboneElement {
     this.type,
     this.cap,
     this.description,
+
+    /// Extensions for [description]
     this.descriptionElement,
     this.capacity,
     this.minimumVolumeQuantity,
     this.minimumVolumeString,
+
+    /// Extensions for [minimumVolumeString]
     this.minimumVolumeStringElement,
     this.additive,
     this.preparation,
+
+    /// Extensions for [preparation]
     this.preparationElement,
     super.userData,
     super.formatCommentsPre,
@@ -522,54 +639,177 @@ class SpecimenDefinitionContainer extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory SpecimenDefinitionContainer.fromJson(Map<String, dynamic> json) {
+    return SpecimenDefinitionContainer(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      material: json['material'] != null
+          ? CodeableConcept.fromJson(
+              json['material'] as Map<String, dynamic>,
+            )
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(
+              json['type'] as Map<String, dynamic>,
+            )
+          : null,
+      cap: json['cap'] != null
+          ? CodeableConcept.fromJson(
+              json['cap'] as Map<String, dynamic>,
+            )
+          : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(
+              json['_description'] as Map<String, dynamic>,
+            )
+          : null,
+      capacity: json['capacity'] != null
+          ? Quantity.fromJson(
+              json['capacity'] as Map<String, dynamic>,
+            )
+          : null,
+      minimumVolumeQuantity: json['minimumVolumeQuantity'] != null
+          ? Quantity.fromJson(
+              json['minimumVolumeQuantity'] as Map<String, dynamic>,
+            )
+          : null,
+      minimumVolumeString: json['minimumVolumeString'] != null
+          ? FhirString.fromJson(json['minimumVolumeString'])
+          : null,
+      minimumVolumeStringElement: json['_minimumVolumeString'] != null
+          ? Element.fromJson(
+              json['_minimumVolumeString'] as Map<String, dynamic>,
+            )
+          : null,
+      additive: json['additive'] != null
+          ? (json['additive'] as List<dynamic>)
+              .map<SpecimenDefinitionAdditive>(
+                (dynamic v) => SpecimenDefinitionAdditive.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      preparation: json['preparation'] != null
+          ? FhirString.fromJson(json['preparation'])
+          : null,
+      preparationElement: json['_preparation'] != null
+          ? Element.fromJson(
+              json['_preparation'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [SpecimenDefinitionContainer] from a [String] or [YamlMap] object
+  factory SpecimenDefinitionContainer.fromYaml(dynamic yaml) => yaml is String
+      ? SpecimenDefinitionContainer.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? SpecimenDefinitionContainer.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'SpecimenDefinitionContainer cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [SpecimenDefinitionContainer] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory SpecimenDefinitionContainer.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return SpecimenDefinitionContainer.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'SpecimenDefinitionContainer';
 
-  /// [material] /// The type of material of the container.
+  /// [material]
+  /// The type of material of the container.
   final CodeableConcept? material;
 
-  /// [type] /// The type of container used to contain this kind of specimen.
+  /// [type]
+  /// The type of container used to contain this kind of specimen.
   final CodeableConcept? type;
 
-  /// [cap] /// Color of container cap.
+  /// [cap]
+  /// Color of container cap.
   final CodeableConcept? cap;
 
-  /// [description] /// The textual description of the kind of container.
+  /// [description]
+  /// The textual description of the kind of container.
   final FhirString? description;
+
+  /// Extensions for [description]
   final Element? descriptionElement;
 
-  /// [capacity] /// The capacity (volume or other measure) of this kind of container.
+  /// [capacity]
+  /// The capacity (volume or other measure) of this kind of container.
   final Quantity? capacity;
 
-  /// [minimumVolumeQuantity] /// The minimum volume to be conditioned in the container.
+  /// [minimumVolumeQuantity]
+  /// The minimum volume to be conditioned in the container.
   final Quantity? minimumVolumeQuantity;
 
-  /// [minimumVolumeString] /// The minimum volume to be conditioned in the container.
+  /// [minimumVolumeString]
+  /// The minimum volume to be conditioned in the container.
   final FhirString? minimumVolumeString;
+
+  /// Extensions for [minimumVolumeString]
   final Element? minimumVolumeStringElement;
 
-  /// [additive] /// Substance introduced in the kind of container to preserve, maintain or
+  /// [additive]
+  /// Substance introduced in the kind of container to preserve, maintain or
   /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
   final List<SpecimenDefinitionAdditive>? additive;
 
-  /// [preparation] /// Special processing that should be applied to the container for this kind of
-  /// specimen.
+  /// [preparation]
+  /// Special processing that should be applied to the container for this
+  /// kind of specimen.
   final FhirString? preparation;
+
+  /// Extensions for [preparation]
   final Element? preparationElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (material != null) {
       json['material'] = material!.toJson();
@@ -599,9 +839,8 @@ class SpecimenDefinitionContainer extends BackboneElement {
       json['_minimumVolumeString'] = minimumVolumeStringElement!.toJson();
     }
     if (additive != null && additive!.isNotEmpty) {
-      json['additive'] = additive!
-          .map<dynamic>((SpecimenDefinitionAdditive v) => v.toJson())
-          .toList();
+      json['additive'] =
+          additive!.map((SpecimenDefinitionAdditive v) => v.toJson()).toList();
     }
     if (preparation?.value != null) {
       json['preparation'] = preparation!.toJson();
@@ -612,65 +851,6 @@ class SpecimenDefinitionContainer extends BackboneElement {
     return json;
   }
 
-  factory SpecimenDefinitionContainer.fromJson(Map<String, dynamic> json) {
-    return SpecimenDefinitionContainer(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      material: json['material'] != null
-          ? CodeableConcept.fromJson(json['material'] as Map<String, dynamic>)
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
-          : null,
-      cap: json['cap'] != null
-          ? CodeableConcept.fromJson(json['cap'] as Map<String, dynamic>)
-          : null,
-      description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
-          : null,
-      capacity: json['capacity'] != null
-          ? Quantity.fromJson(json['capacity'] as Map<String, dynamic>)
-          : null,
-      minimumVolumeQuantity: json['minimumVolumeQuantity'] != null
-          ? Quantity.fromJson(
-              json['minimumVolumeQuantity'] as Map<String, dynamic>)
-          : null,
-      minimumVolumeString: json['minimumVolumeString'] != null
-          ? FhirString.fromJson(json['minimumVolumeString'])
-          : null,
-      minimumVolumeStringElement: json['_minimumVolumeString'] != null
-          ? Element.fromJson(
-              json['_minimumVolumeString'] as Map<String, dynamic>)
-          : null,
-      additive: json['additive'] != null
-          ? (json['additive'] as List<dynamic>)
-              .map<SpecimenDefinitionAdditive>((dynamic v) =>
-                  SpecimenDefinitionAdditive.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      preparation: json['preparation'] != null
-          ? FhirString.fromJson(json['preparation'])
-          : null,
-      preparationElement: json['_preparation'] != null
-          ? Element.fromJson(json['_preparation'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   SpecimenDefinitionContainer clone() => throw UnimplementedError();
   @override
@@ -723,30 +903,14 @@ class SpecimenDefinitionContainer extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory SpecimenDefinitionContainer.fromYaml(dynamic yaml) => yaml is String
-      ? SpecimenDefinitionContainer.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? SpecimenDefinitionContainer.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'SpecimenDefinitionContainer cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory SpecimenDefinitionContainer.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return SpecimenDefinitionContainer.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [SpecimenDefinitionAdditive] /// Substance introduced in the kind of container to preserve, maintain or
+/// [SpecimenDefinitionAdditive]
+/// Substance introduced in the kind of container to preserve, maintain or
 /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
 class SpecimenDefinitionAdditive extends BackboneElement {
+  /// Primary constructor for [SpecimenDefinitionAdditive]
+
   SpecimenDefinitionAdditive({
     super.id,
     super.extension_,
@@ -761,30 +925,92 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory SpecimenDefinitionAdditive.fromJson(Map<String, dynamic> json) {
+    return SpecimenDefinitionAdditive(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      additiveCodeableConcept: json['additiveCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['additiveCodeableConcept'] as Map<String, dynamic>,
+            )
+          : null,
+      additiveReference: json['additiveReference'] != null
+          ? Reference.fromJson(
+              json['additiveReference'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [SpecimenDefinitionAdditive] from a [String] or [YamlMap] object
+  factory SpecimenDefinitionAdditive.fromYaml(dynamic yaml) => yaml is String
+      ? SpecimenDefinitionAdditive.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? SpecimenDefinitionAdditive.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'SpecimenDefinitionAdditive cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [SpecimenDefinitionAdditive] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory SpecimenDefinitionAdditive.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return SpecimenDefinitionAdditive.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'SpecimenDefinitionAdditive';
 
-  /// [additiveCodeableConcept] /// Substance introduced in the kind of container to preserve, maintain or
+  /// [additiveCodeableConcept]
+  /// Substance introduced in the kind of container to preserve, maintain or
   /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
   final CodeableConcept? additiveCodeableConcept;
 
-  /// [additiveReference] /// Substance introduced in the kind of container to preserve, maintain or
+  /// [additiveReference]
+  /// Substance introduced in the kind of container to preserve, maintain or
   /// enhance the specimen. Examples: Formalin, Citrate, EDTA.
   final Reference? additiveReference;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (additiveCodeableConcept != null) {
       json['additiveCodeableConcept'] = additiveCodeableConcept!.toJson();
@@ -795,31 +1021,6 @@ class SpecimenDefinitionAdditive extends BackboneElement {
     return json;
   }
 
-  factory SpecimenDefinitionAdditive.fromJson(Map<String, dynamic> json) {
-    return SpecimenDefinitionAdditive(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      additiveCodeableConcept: json['additiveCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['additiveCodeableConcept'] as Map<String, dynamic>)
-          : null,
-      additiveReference: json['additiveReference'] != null
-          ? Reference.fromJson(
-              json['additiveReference'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   SpecimenDefinitionAdditive clone() => throw UnimplementedError();
   @override
@@ -851,30 +1052,14 @@ class SpecimenDefinitionAdditive extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory SpecimenDefinitionAdditive.fromYaml(dynamic yaml) => yaml is String
-      ? SpecimenDefinitionAdditive.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? SpecimenDefinitionAdditive.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'SpecimenDefinitionAdditive cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory SpecimenDefinitionAdditive.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return SpecimenDefinitionAdditive.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [SpecimenDefinitionHandling] /// Set of instructions for preservation/transport of the specimen at a defined
-/// temperature interval, prior the testing process.
+/// [SpecimenDefinitionHandling]
+/// Set of instructions for preservation/transport of the specimen at a
+/// defined temperature interval, prior the testing process.
 class SpecimenDefinitionHandling extends BackboneElement {
+  /// Primary constructor for [SpecimenDefinitionHandling]
+
   SpecimenDefinitionHandling({
     super.id,
     super.extension_,
@@ -883,6 +1068,8 @@ class SpecimenDefinitionHandling extends BackboneElement {
     this.temperatureRange,
     this.maxDuration,
     this.instruction,
+
+    /// Extensions for [instruction]
     this.instructionElement,
     super.userData,
     super.formatCommentsPre,
@@ -892,39 +1079,118 @@ class SpecimenDefinitionHandling extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory SpecimenDefinitionHandling.fromJson(Map<String, dynamic> json) {
+    return SpecimenDefinitionHandling(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      temperatureQualifier: json['temperatureQualifier'] != null
+          ? CodeableConcept.fromJson(
+              json['temperatureQualifier'] as Map<String, dynamic>,
+            )
+          : null,
+      temperatureRange: json['temperatureRange'] != null
+          ? Range.fromJson(
+              json['temperatureRange'] as Map<String, dynamic>,
+            )
+          : null,
+      maxDuration: json['maxDuration'] != null
+          ? FhirDuration.fromJson(
+              json['maxDuration'] as Map<String, dynamic>,
+            )
+          : null,
+      instruction: json['instruction'] != null
+          ? FhirString.fromJson(json['instruction'])
+          : null,
+      instructionElement: json['_instruction'] != null
+          ? Element.fromJson(
+              json['_instruction'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [SpecimenDefinitionHandling] from a [String] or [YamlMap] object
+  factory SpecimenDefinitionHandling.fromYaml(dynamic yaml) => yaml is String
+      ? SpecimenDefinitionHandling.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? SpecimenDefinitionHandling.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'SpecimenDefinitionHandling cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [SpecimenDefinitionHandling] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory SpecimenDefinitionHandling.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return SpecimenDefinitionHandling.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'SpecimenDefinitionHandling';
 
-  /// [temperatureQualifier] /// It qualifies the interval of temperature, which characterizes an occurrence
-  /// of handling. Conditions that are not related to temperature may be handled
-  /// in the instruction element.
+  /// [temperatureQualifier]
+  /// It qualifies the interval of temperature, which characterizes an
+  /// occurrence of handling. Conditions that are not related to temperature
+  /// may be handled in the instruction element.
   final CodeableConcept? temperatureQualifier;
 
-  /// [temperatureRange] /// The temperature interval for this set of handling instructions.
+  /// [temperatureRange]
+  /// The temperature interval for this set of handling instructions.
   final Range? temperatureRange;
 
-  /// [maxDuration] /// The maximum time interval of preservation of the specimen with these
+  /// [maxDuration]
+  /// The maximum time interval of preservation of the specimen with these
   /// conditions.
   final FhirDuration? maxDuration;
 
-  /// [instruction] /// Additional textual instructions for the preservation or transport of the
-  /// specimen. For instance, 'Protect from light exposure'.
+  /// [instruction]
+  /// Additional textual instructions for the preservation or transport of
+  /// the specimen. For instance, 'Protect from light exposure'.
   final FhirString? instruction;
+
+  /// Extensions for [instruction]
   final Element? instructionElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (temperatureQualifier != null) {
       json['temperatureQualifier'] = temperatureQualifier!.toJson();
@@ -944,39 +1210,6 @@ class SpecimenDefinitionHandling extends BackboneElement {
     return json;
   }
 
-  factory SpecimenDefinitionHandling.fromJson(Map<String, dynamic> json) {
-    return SpecimenDefinitionHandling(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      temperatureQualifier: json['temperatureQualifier'] != null
-          ? CodeableConcept.fromJson(
-              json['temperatureQualifier'] as Map<String, dynamic>)
-          : null,
-      temperatureRange: json['temperatureRange'] != null
-          ? Range.fromJson(json['temperatureRange'] as Map<String, dynamic>)
-          : null,
-      maxDuration: json['maxDuration'] != null
-          ? FhirDuration.fromJson(json['maxDuration'] as Map<String, dynamic>)
-          : null,
-      instruction: json['instruction'] != null
-          ? FhirString.fromJson(json['instruction'])
-          : null,
-      instructionElement: json['_instruction'] != null
-          ? Element.fromJson(json['_instruction'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   SpecimenDefinitionHandling clone() => throw UnimplementedError();
   @override
@@ -1012,24 +1245,5 @@ class SpecimenDefinitionHandling extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory SpecimenDefinitionHandling.fromYaml(dynamic yaml) => yaml is String
-      ? SpecimenDefinitionHandling.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? SpecimenDefinitionHandling.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'SpecimenDefinitionHandling cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory SpecimenDefinitionHandling.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return SpecimenDefinitionHandling.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

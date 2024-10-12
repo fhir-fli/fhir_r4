@@ -1,28 +1,46 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [Attachment] /// For referring to data content defined in other formats.
+/// [Attachment]
+/// For referring to data content defined in other formats.
 class Attachment extends DataType {
+  /// Primary constructor for [Attachment]
+
   Attachment({
     super.id,
     super.extension_,
     this.contentType,
+
+    /// Extensions for [contentType]
     this.contentTypeElement,
     this.language,
+
+    /// Extensions for [language]
     this.languageElement,
     this.data,
+
+    /// Extensions for [data]
     this.dataElement,
     this.url,
+
+    /// Extensions for [url]
     this.urlElement,
     this.size,
+
+    /// Extensions for [size]
     this.sizeElement,
     this.hash,
+
+    /// Extensions for [hash]
     this.hashElement,
     this.title,
+
+    /// Extensions for [title]
     this.titleElement,
     this.creation,
+
+    /// Extensions for [creation]
     this.creationElement,
     super.userData,
     super.formatCommentsPre,
@@ -32,53 +50,176 @@ class Attachment extends DataType {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory Attachment.fromJson(Map<String, dynamic> json) {
+    return Attachment(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      contentType: json['contentType'] != null
+          ? FhirCode.fromJson(json['contentType'])
+          : null,
+      contentTypeElement: json['_contentType'] != null
+          ? Element.fromJson(
+              json['_contentType'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      data:
+          json['data'] != null ? FhirBase64Binary.fromJson(json['data']) : null,
+      dataElement: json['_data'] != null
+          ? Element.fromJson(
+              json['_data'] as Map<String, dynamic>,
+            )
+          : null,
+      url: json['url'] != null ? FhirUrl.fromJson(json['url']) : null,
+      urlElement: json['_url'] != null
+          ? Element.fromJson(
+              json['_url'] as Map<String, dynamic>,
+            )
+          : null,
+      size:
+          json['size'] != null ? FhirUnsignedInt.fromJson(json['size']) : null,
+      sizeElement: json['_size'] != null
+          ? Element.fromJson(
+              json['_size'] as Map<String, dynamic>,
+            )
+          : null,
+      hash:
+          json['hash'] != null ? FhirBase64Binary.fromJson(json['hash']) : null,
+      hashElement: json['_hash'] != null
+          ? Element.fromJson(
+              json['_hash'] as Map<String, dynamic>,
+            )
+          : null,
+      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
+      titleElement: json['_title'] != null
+          ? Element.fromJson(
+              json['_title'] as Map<String, dynamic>,
+            )
+          : null,
+      creation: json['creation'] != null
+          ? FhirDateTime.fromJson(json['creation'])
+          : null,
+      creationElement: json['_creation'] != null
+          ? Element.fromJson(
+              json['_creation'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [Attachment] from a [String] or [YamlMap] object
+  factory Attachment.fromYaml(dynamic yaml) => yaml is String
+      ? Attachment.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? Attachment.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('Attachment cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [Attachment] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory Attachment.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Attachment.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'Attachment';
 
-  /// [contentType] /// Identifies the type of the data in the attachment and allows a method to be
-  /// chosen to interpret or render the data. Includes mime type parameters such
-  /// as charset where appropriate.
+  /// [contentType]
+  /// Identifies the type of the data in the attachment and allows a method
+  /// to be chosen to interpret or render the data. Includes mime type
+  /// parameters such as charset where appropriate.
   final FhirCode? contentType;
+
+  /// Extensions for [contentType]
   final Element? contentTypeElement;
 
-  /// [language] /// The human language of the content. The value can be any valid value
+  /// [language]
+  /// The human language of the content. The value can be any valid value
   /// according to BCP 47.
   final CommonLanguages? language;
+
+  /// Extensions for [language]
   final Element? languageElement;
 
-  /// [data] /// The actual data of the attachment - a sequence of bytes, base64 encoded.
+  /// [data]
+  /// The actual data of the attachment - a sequence of bytes, base64
+  /// encoded.
   final FhirBase64Binary? data;
+
+  /// Extensions for [data]
   final Element? dataElement;
 
-  /// [url] /// A location where the data can be accessed.
+  /// [url]
+  /// A location where the data can be accessed.
   final FhirUrl? url;
+
+  /// Extensions for [url]
   final Element? urlElement;
 
-  /// [size] /// The number of bytes of data that make up this attachment (before base64
+  /// [size]
+  /// The number of bytes of data that make up this attachment (before base64
   /// encoding, if that is done).
   final FhirUnsignedInt? size;
+
+  /// Extensions for [size]
   final Element? sizeElement;
 
-  /// [hash] /// The calculated hash of the data using SHA-1. Represented using base64.
+  /// [hash]
+  /// The calculated hash of the data using SHA-1. Represented using base64.
   final FhirBase64Binary? hash;
+
+  /// Extensions for [hash]
   final Element? hashElement;
 
-  /// [title] /// A label or set of text to display in place of the data.
+  /// [title]
+  /// A label or set of text to display in place of the data.
   final FhirString? title;
+
+  /// Extensions for [title]
   final Element? titleElement;
 
-  /// [creation] /// The date that the attachment was first created.
+  /// [creation]
+  /// The date that the attachment was first created.
   final FhirDateTime? creation;
+
+  /// Extensions for [creation]
   final Element? creationElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (contentType?.value != null) {
       json['contentType'] = contentType!.toJson();
@@ -128,58 +269,6 @@ class Attachment extends DataType {
     return json;
   }
 
-  factory Attachment.fromJson(Map<String, dynamic> json) {
-    return Attachment(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      contentType: json['contentType'] != null
-          ? FhirCode.fromJson(json['contentType'])
-          : null,
-      contentTypeElement: json['_contentType'] != null
-          ? Element.fromJson(json['_contentType'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      data:
-          json['data'] != null ? FhirBase64Binary.fromJson(json['data']) : null,
-      dataElement: json['_data'] != null
-          ? Element.fromJson(json['_data'] as Map<String, dynamic>)
-          : null,
-      url: json['url'] != null ? FhirUrl.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
-          : null,
-      size:
-          json['size'] != null ? FhirUnsignedInt.fromJson(json['size']) : null,
-      sizeElement: json['_size'] != null
-          ? Element.fromJson(json['_size'] as Map<String, dynamic>)
-          : null,
-      hash:
-          json['hash'] != null ? FhirBase64Binary.fromJson(json['hash']) : null,
-      hashElement: json['_hash'] != null
-          ? Element.fromJson(json['_hash'] as Map<String, dynamic>)
-          : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
-          : null,
-      creation: json['creation'] != null
-          ? FhirDateTime.fromJson(json['creation'])
-          : null,
-      creationElement: json['_creation'] != null
-          ? Element.fromJson(json['_creation'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   Attachment clone() => throw UnimplementedError();
   @override
@@ -235,24 +324,5 @@ class Attachment extends DataType {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory Attachment.fromYaml(dynamic yaml) => yaml is String
-      ? Attachment.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? Attachment.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'Attachment cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory Attachment.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return Attachment.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

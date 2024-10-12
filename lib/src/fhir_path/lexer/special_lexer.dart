@@ -1,6 +1,5 @@
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:petitparser/petitparser.dart';
-
-import '../../../fhir_r4.dart';
 
 /******************************************************************************
  * These are some special operators with some unique functionality, I may

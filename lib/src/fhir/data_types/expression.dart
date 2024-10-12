@@ -1,24 +1,37 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [FhirExpression] /// A expression that is evaluated in a specified context and returns a value.
-/// The context of use of the expression must specify the context in which the
-/// expression is evaluated, and how the result of the expression is used.
+/// [FhirExpression]
+/// A expression that is evaluated in a specified context and returns a
+/// value. The context of use of the expression must specify the context in
+/// which the expression is evaluated, and how the result of the expression
+/// is used.
 class FhirExpression extends DataType {
+  /// Primary constructor for [FhirExpression]
+
   FhirExpression({
     super.id,
     super.extension_,
     this.description,
+
+    /// Extensions for [description]
     this.descriptionElement,
     this.name,
+
+    /// Extensions for [name]
     this.nameElement,
     required this.language,
+
+    /// Extensions for [language]
     this.languageElement,
     this.expression,
+
+    /// Extensions for [expression]
     this.expressionElement,
     this.reference,
+
+    /// Extensions for [reference]
     this.referenceElement,
     super.userData,
     super.formatCommentsPre,
@@ -28,39 +41,132 @@ class FhirExpression extends DataType {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory FhirExpression.fromJson(Map<String, dynamic> json) {
+    return FhirExpression(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(
+              json['_description'] as Map<String, dynamic>,
+            )
+          : null,
+      name: json['name'] != null ? FhirId.fromJson(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(
+              json['_name'] as Map<String, dynamic>,
+            )
+          : null,
+      language: ExpressionLanguage.fromJson(json['language']),
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      expression: json['expression'] != null
+          ? FhirString.fromJson(json['expression'])
+          : null,
+      expressionElement: json['_expression'] != null
+          ? Element.fromJson(
+              json['_expression'] as Map<String, dynamic>,
+            )
+          : null,
+      reference: json['reference'] != null
+          ? FhirUri.fromJson(json['reference'])
+          : null,
+      referenceElement: json['_reference'] != null
+          ? Element.fromJson(
+              json['_reference'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [FhirExpression] from a [String] or [YamlMap] object
+  factory FhirExpression.fromYaml(dynamic yaml) => yaml is String
+      ? FhirExpression.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? FhirExpression.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'FhirExpression cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [FhirExpression] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory FhirExpression.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return FhirExpression.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'FhirExpression';
 
-  /// [description] /// A brief, natural language description of the condition that effectively
+  /// [description]
+  /// A brief, natural language description of the condition that effectively
   /// communicates the intended semantics.
   final FhirString? description;
+
+  /// Extensions for [description]
   final Element? descriptionElement;
 
-  /// [name] /// A short name assigned to the expression to allow for multiple reuse of the
-  /// expression in the context where it is defined.
+  /// [name]
+  /// A short name assigned to the expression to allow for multiple reuse of
+  /// the expression in the context where it is defined.
   final FhirId? name;
+
+  /// Extensions for [name]
   final Element? nameElement;
 
-  /// [language] /// The media type of the language for the expression.
+  /// [language]
+  /// The media type of the language for the expression.
   final ExpressionLanguage language;
+
+  /// Extensions for [language]
   final Element? languageElement;
 
-  /// [expression] /// An expression in the specified language that returns a value.
+  /// [expression]
+  /// An expression in the specified language that returns a value.
   final FhirString? expression;
+
+  /// Extensions for [expression]
   final Element? expressionElement;
 
-  /// [reference] /// A URI that defines where the expression is found.
+  /// [reference]
+  /// A URI that defines where the expression is found.
   final FhirUri? reference;
+
+  /// Extensions for [reference]
   final Element? referenceElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
@@ -90,43 +196,6 @@ class FhirExpression extends DataType {
     return json;
   }
 
-  factory FhirExpression.fromJson(Map<String, dynamic> json) {
-    return FhirExpression(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
-          : null,
-      name: json['name'] != null ? FhirId.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
-          : null,
-      language: ExpressionLanguage.fromJson(json['language']),
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      expression: json['expression'] != null
-          ? FhirString.fromJson(json['expression'])
-          : null,
-      expressionElement: json['_expression'] != null
-          ? Element.fromJson(json['_expression'] as Map<String, dynamic>)
-          : null,
-      reference: json['reference'] != null
-          ? FhirUri.fromJson(json['reference'])
-          : null,
-      referenceElement: json['_reference'] != null
-          ? Element.fromJson(json['_reference'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   FhirExpression clone() => throw UnimplementedError();
   @override
@@ -170,24 +239,5 @@ class FhirExpression extends DataType {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory FhirExpression.fromYaml(dynamic yaml) => yaml is String
-      ? FhirExpression.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? FhirExpression.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'FhirExpression cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory FhirExpression.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return FhirExpression.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

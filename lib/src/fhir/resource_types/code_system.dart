@@ -1,64 +1,108 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [CodeSystem] /// The CodeSystem resource is used to declare the existence of and describe a
-/// code system or code system supplement and its key properties, and
-/// optionally define a part or all of its content.
+/// [CodeSystem]
+/// The CodeSystem resource is used to declare the existence of and
+/// describe a code system or code system supplement and its key
+/// properties, and optionally define a part or all of its content.
 class CodeSystem extends DomainResource {
+  /// Primary constructor for [CodeSystem]
+
   CodeSystem({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
     super.extension_,
     super.modifierExtension,
     this.url,
+
+    /// Extensions for [url]
     this.urlElement,
     this.identifier,
     this.version,
+
+    /// Extensions for [version]
     this.versionElement,
     this.name,
+
+    /// Extensions for [name]
     this.nameElement,
     this.title,
+
+    /// Extensions for [title]
     this.titleElement,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     this.experimental,
+
+    /// Extensions for [experimental]
     this.experimentalElement,
     this.date,
+
+    /// Extensions for [date]
     this.dateElement,
     this.publisher,
+
+    /// Extensions for [publisher]
     this.publisherElement,
     this.contact,
     this.description,
+
+    /// Extensions for [description]
     this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
+
+    /// Extensions for [purpose]
     this.purposeElement,
     this.copyright,
+
+    /// Extensions for [copyright]
     this.copyrightElement,
     this.caseSensitive,
+
+    /// Extensions for [caseSensitive]
     this.caseSensitiveElement,
     this.valueSet,
+
+    /// Extensions for [valueSet]
     this.valueSetElement,
     this.hierarchyMeaning,
+
+    /// Extensions for [hierarchyMeaning]
     this.hierarchyMeaningElement,
     this.compositional,
+
+    /// Extensions for [compositional]
     this.compositionalElement,
     this.versionNeeded,
+
+    /// Extensions for [versionNeeded]
     this.versionNeededElement,
     required this.content,
+
+    /// Extensions for [content]
     this.contentElement,
     this.supplements,
+
+    /// Extensions for [supplements]
     this.supplementsElement,
     this.count,
+
+    /// Extensions for [count]
     this.countElement,
     this.filter,
     this.property,
@@ -69,153 +113,510 @@ class CodeSystem extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.CodeSystem);
+  }) : super(
+          resourceType: R4ResourceType.CodeSystem,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CodeSystem.fromJson(Map<String, dynamic> json) {
+    return CodeSystem(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
+      urlElement: json['_url'] != null
+          ? Element.fromJson(
+              json['_url'] as Map<String, dynamic>,
+            )
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      version:
+          json['version'] != null ? FhirString.fromJson(json['version']) : null,
+      versionElement: json['_version'] != null
+          ? Element.fromJson(
+              json['_version'] as Map<String, dynamic>,
+            )
+          : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(
+              json['_name'] as Map<String, dynamic>,
+            )
+          : null,
+      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
+      titleElement: json['_title'] != null
+          ? Element.fromJson(
+              json['_title'] as Map<String, dynamic>,
+            )
+          : null,
+      status: PublicationStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      experimental: json['experimental'] != null
+          ? FhirBoolean.fromJson(json['experimental'])
+          : null,
+      experimentalElement: json['_experimental'] != null
+          ? Element.fromJson(
+              json['_experimental'] as Map<String, dynamic>,
+            )
+          : null,
+      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(
+              json['_date'] as Map<String, dynamic>,
+            )
+          : null,
+      publisher: json['publisher'] != null
+          ? FhirString.fromJson(json['publisher'])
+          : null,
+      publisherElement: json['_publisher'] != null
+          ? Element.fromJson(
+              json['_publisher'] as Map<String, dynamic>,
+            )
+          : null,
+      contact: json['contact'] != null
+          ? (json['contact'] as List<dynamic>)
+              .map<ContactDetail>(
+                (dynamic v) => ContactDetail.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      description: json['description'] != null
+          ? FhirMarkdown.fromJson(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(
+              json['_description'] as Map<String, dynamic>,
+            )
+          : null,
+      useContext: json['useContext'] != null
+          ? (json['useContext'] as List<dynamic>)
+              .map<UsageContext>(
+                (dynamic v) => UsageContext.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      jurisdiction: json['jurisdiction'] != null
+          ? (json['jurisdiction'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      purpose: json['purpose'] != null
+          ? FhirMarkdown.fromJson(json['purpose'])
+          : null,
+      purposeElement: json['_purpose'] != null
+          ? Element.fromJson(
+              json['_purpose'] as Map<String, dynamic>,
+            )
+          : null,
+      copyright: json['copyright'] != null
+          ? FhirMarkdown.fromJson(json['copyright'])
+          : null,
+      copyrightElement: json['_copyright'] != null
+          ? Element.fromJson(
+              json['_copyright'] as Map<String, dynamic>,
+            )
+          : null,
+      caseSensitive: json['caseSensitive'] != null
+          ? FhirBoolean.fromJson(json['caseSensitive'])
+          : null,
+      caseSensitiveElement: json['_caseSensitive'] != null
+          ? Element.fromJson(
+              json['_caseSensitive'] as Map<String, dynamic>,
+            )
+          : null,
+      valueSet: json['valueSet'] != null
+          ? FhirCanonical.fromJson(json['valueSet'])
+          : null,
+      valueSetElement: json['_valueSet'] != null
+          ? Element.fromJson(
+              json['_valueSet'] as Map<String, dynamic>,
+            )
+          : null,
+      hierarchyMeaning: json['hierarchyMeaning'] != null
+          ? CodeSystemHierarchyMeaning.fromJson(json['hierarchyMeaning'])
+          : null,
+      hierarchyMeaningElement: json['_hierarchyMeaning'] != null
+          ? Element.fromJson(
+              json['_hierarchyMeaning'] as Map<String, dynamic>,
+            )
+          : null,
+      compositional: json['compositional'] != null
+          ? FhirBoolean.fromJson(json['compositional'])
+          : null,
+      compositionalElement: json['_compositional'] != null
+          ? Element.fromJson(
+              json['_compositional'] as Map<String, dynamic>,
+            )
+          : null,
+      versionNeeded: json['versionNeeded'] != null
+          ? FhirBoolean.fromJson(json['versionNeeded'])
+          : null,
+      versionNeededElement: json['_versionNeeded'] != null
+          ? Element.fromJson(
+              json['_versionNeeded'] as Map<String, dynamic>,
+            )
+          : null,
+      content: CodeSystemContentMode.fromJson(json['content']),
+      contentElement: json['_content'] != null
+          ? Element.fromJson(
+              json['_content'] as Map<String, dynamic>,
+            )
+          : null,
+      supplements: json['supplements'] != null
+          ? FhirCanonical.fromJson(json['supplements'])
+          : null,
+      supplementsElement: json['_supplements'] != null
+          ? Element.fromJson(
+              json['_supplements'] as Map<String, dynamic>,
+            )
+          : null,
+      count: json['count'] != null
+          ? FhirUnsignedInt.fromJson(json['count'])
+          : null,
+      countElement: json['_count'] != null
+          ? Element.fromJson(
+              json['_count'] as Map<String, dynamic>,
+            )
+          : null,
+      filter: json['filter'] != null
+          ? (json['filter'] as List<dynamic>)
+              .map<CodeSystemFilter>(
+                (dynamic v) => CodeSystemFilter.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      property: json['property'] != null
+          ? (json['property'] as List<dynamic>)
+              .map<CodeSystemProperty>(
+                (dynamic v) => CodeSystemProperty.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      concept: json['concept'] != null
+          ? (json['concept'] as List<dynamic>)
+              .map<CodeSystemConcept>(
+                (dynamic v) => CodeSystemConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [CodeSystem] from a [String] or [YamlMap] object
+  factory CodeSystem.fromYaml(dynamic yaml) => yaml is String
+      ? CodeSystem.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CodeSystem.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('CodeSystem cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CodeSystem] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CodeSystem.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CodeSystem.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'CodeSystem';
 
-  /// [url] /// An absolute URI that is used to identify this code system when it is
-  /// referenced in a specification, model, design or an instance; also called
-  /// its canonical identifier. This SHOULD be globally unique and SHOULD be a
-  /// literal address at which at which an authoritative instance of this code
-  /// system is (or will be) published. This URL can be the target of a canonical
-  /// reference. It SHALL remain the same when the code system is stored on
-  /// different servers. This is used in [Coding](datatypes.html#Coding).system.
+  /// [url]
+  /// An absolute URI that is used to identify this code system when it is
+  /// referenced in a specification, model, design or an instance; also
+  /// called its canonical identifier. This SHOULD be globally unique and
+  /// SHOULD be a literal address at which at which an authoritative instance
+  /// of this code system is (or will be) published. This URL can be the
+  /// target of a canonical reference. It SHALL remain the same when the code
+  /// system is stored on different servers. This is used in
+  /// [Coding](datatypes.html#Coding).system.
   final FhirUri? url;
+
+  /// Extensions for [url]
   final Element? urlElement;
 
-  /// [identifier] /// A formal identifier that is used to identify this code system when it is
-  /// represented in other formats, or referenced in a specification, model,
-  /// design or an instance.
+  /// [identifier]
+  /// A formal identifier that is used to identify this code system when it
+  /// is represented in other formats, or referenced in a specification,
+  /// model, design or an instance.
   final List<Identifier>? identifier;
 
-  /// [version] /// The identifier that is used to identify this version of the code system
-  /// when it is referenced in a specification, model, design or instance. This
-  /// is an arbitrary value managed by the code system author and is not expected
-  /// to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd)
-  /// if a managed version is not available. There is also no expectation that
-  /// versions can be placed in a lexicographical sequence. This is used in
-  /// [Coding](datatypes.html#Coding).version.
+  /// [version]
+  /// The identifier that is used to identify this version of the code system
+  /// when it is referenced in a specification, model, design or instance.
+  /// This is an arbitrary value managed by the code system author and is not
+  /// expected to be globally unique. For example, it might be a timestamp
+  /// (e.g. yyyymmdd) if a managed version is not available. There is also no
+  /// expectation that versions can be placed in a lexicographical sequence.
+  /// This is used in [Coding](datatypes.html#Coding).version.
   final FhirString? version;
+
+  /// Extensions for [version]
   final Element? versionElement;
 
-  /// [name] /// A natural language name identifying the code system. This name should be
-  /// usable as an identifier for the module by machine processing applications
-  /// such as code generation.
+  /// [name]
+  /// A natural language name identifying the code system. This name should
+  /// be usable as an identifier for the module by machine processing
+  /// applications such as code generation.
   final FhirString? name;
+
+  /// Extensions for [name]
   final Element? nameElement;
 
-  /// [title] /// A short, descriptive, user-friendly title for the code system.
+  /// [title]
+  /// A short, descriptive, user-friendly title for the code system.
   final FhirString? title;
+
+  /// Extensions for [title]
   final Element? titleElement;
 
-  /// [status] /// The date (and optionally time) when the code system resource was created or
-  /// revised.
+  /// [status]
+  /// The date (and optionally time) when the code system resource was
+  /// created or revised.
   final PublicationStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [experimental] /// A Boolean value to indicate that this code system is authored for testing
-  /// purposes (or education/evaluation/marketing) and is not intended to be used
-  /// for genuine usage.
+  /// [experimental]
+  /// A Boolean value to indicate that this code system is authored for
+  /// testing purposes (or education/evaluation/marketing) and is not
+  /// intended to be used for genuine usage.
   final FhirBoolean? experimental;
+
+  /// Extensions for [experimental]
   final Element? experimentalElement;
 
-  /// [date] /// The date (and optionally time) when the code system was published. The date
-  /// must change when the business version changes and it must change if the
-  /// status code changes. In addition, it should change when the substantive
-  /// content of the code system changes.
+  /// [date]
+  /// The date (and optionally time) when the code system was published. The
+  /// date must change when the business version changes and it must change
+  /// if the status code changes. In addition, it should change when the
+  /// substantive content of the code system changes.
   final FhirDateTime? date;
+
+  /// Extensions for [date]
   final Element? dateElement;
 
-  /// [publisher] /// The name of the organization or individual that published the code system.
+  /// [publisher]
+  /// The name of the organization or individual that published the code
+  /// system.
   final FhirString? publisher;
+
+  /// Extensions for [publisher]
   final Element? publisherElement;
 
-  /// [contact] /// Contact details to assist a user in finding and communicating with the
+  /// [contact]
+  /// Contact details to assist a user in finding and communicating with the
   /// publisher.
   final List<ContactDetail>? contact;
 
-  /// [description] /// A free text natural language description of the code system from a
+  /// [description]
+  /// A free text natural language description of the code system from a
   /// consumer's perspective.
   final FhirMarkdown? description;
+
+  /// Extensions for [description]
   final Element? descriptionElement;
 
-  /// [useContext] /// The content was developed with a focus and intent of supporting the
-  /// contexts that are listed. These contexts may be general categories (gender,
-  /// age, ...) or may be references to specific programs (insurance plans,
-  /// studies, ...) and may be used to assist with indexing and searching for
-  /// appropriate code system instances.
+  /// [useContext]
+  /// The content was developed with a focus and intent of supporting the
+  /// contexts that are listed. These contexts may be general categories
+  /// (gender, age, ...) or may be references to specific programs (insurance
+  /// plans, studies, ...) and may be used to assist with indexing and
+  /// searching for appropriate code system instances.
   final List<UsageContext>? useContext;
 
-  /// [jurisdiction] /// A legal or geographic region in which the code system is intended to be
+  /// [jurisdiction]
+  /// A legal or geographic region in which the code system is intended to be
   /// used.
   final List<CodeableConcept>? jurisdiction;
 
-  /// [purpose] /// Explanation of why this code system is needed and why it has been designed
-  /// as it has.
+  /// [purpose]
+  /// Explanation of why this code system is needed and why it has been
+  /// designed as it has.
   final FhirMarkdown? purpose;
+
+  /// Extensions for [purpose]
   final Element? purposeElement;
 
-  /// [copyright] /// A copyright statement relating to the code system and/or its contents.
+  /// [copyright]
+  /// A copyright statement relating to the code system and/or its contents.
   /// Copyright statements are generally legal restrictions on the use and
   /// publishing of the code system.
   final FhirMarkdown? copyright;
+
+  /// Extensions for [copyright]
   final Element? copyrightElement;
 
-  /// [caseSensitive] /// If code comparison is case sensitive when codes within this system are
+  /// [caseSensitive]
+  /// If code comparison is case sensitive when codes within this system are
   /// compared to each other.
   final FhirBoolean? caseSensitive;
+
+  /// Extensions for [caseSensitive]
   final Element? caseSensitiveElement;
 
-  /// [valueSet] /// Canonical reference to the value set that contains the entire code system.
+  /// [valueSet]
+  /// Canonical reference to the value set that contains the entire code
+  /// system.
   final FhirCanonical? valueSet;
+
+  /// Extensions for [valueSet]
   final Element? valueSetElement;
 
-  /// [hierarchyMeaning] /// The meaning of the hierarchy of concepts as represented in this resource.
+  /// [hierarchyMeaning]
+  /// The meaning of the hierarchy of concepts as represented in this
+  /// resource.
   final CodeSystemHierarchyMeaning? hierarchyMeaning;
+
+  /// Extensions for [hierarchyMeaning]
   final Element? hierarchyMeaningElement;
 
-  /// [compositional] /// The code system defines a compositional (post-coordination) grammar.
+  /// [compositional]
+  /// The code system defines a compositional (post-coordination) grammar.
   final FhirBoolean? compositional;
+
+  /// Extensions for [compositional]
   final Element? compositionalElement;
 
-  /// [versionNeeded] /// This flag is used to signify that the code system does not commit to
-  /// concept permanence across versions. If true, a version must be specified
-  /// when referencing this code system.
+  /// [versionNeeded]
+  /// This flag is used to signify that the code system does not commit to
+  /// concept permanence across versions. If true, a version must be
+  /// specified when referencing this code system.
   final FhirBoolean? versionNeeded;
+
+  /// Extensions for [versionNeeded]
   final Element? versionNeededElement;
 
-  /// [content] /// The extent of the content of the code system (the concepts and codes it
+  /// [content]
+  /// The extent of the content of the code system (the concepts and codes it
   /// defines) are represented in this resource instance.
   final CodeSystemContentMode content;
+
+  /// Extensions for [content]
   final Element? contentElement;
 
-  /// [supplements] /// The canonical URL of the code system that this code system supplement is
-  /// adding designations and properties to.
+  /// [supplements]
+  /// The canonical URL of the code system that this code system supplement
+  /// is adding designations and properties to.
   final FhirCanonical? supplements;
+
+  /// Extensions for [supplements]
   final Element? supplementsElement;
 
-  /// [count] /// The total number of concepts defined by the code system. Where the code
-  /// system has a compositional grammar, the basis of this count is defined by
-  /// the system steward.
+  /// [count]
+  /// The total number of concepts defined by the code system. Where the code
+  /// system has a compositional grammar, the basis of this count is defined
+  /// by the system steward.
   final FhirUnsignedInt? count;
+
+  /// Extensions for [count]
   final Element? countElement;
 
-  /// [filter] /// A filter that can be used in a value set compose statement when selecting
-  /// concepts using a filter.
+  /// [filter]
+  /// A filter that can be used in a value set compose statement when
+  /// selecting concepts using a filter.
   final List<CodeSystemFilter>? filter;
 
-  /// [property] /// A property defines an additional slot through which additional information
-  /// can be provided about a concept.
+  /// [property]
+  /// A property defines an additional slot through which additional
+  /// information can be provided about a concept.
   final List<CodeSystemProperty>? property;
 
-  /// [concept] /// Concepts that are in the code system. The concept definitions are
-  /// inherently hierarchical, but the definitions must be consulted to determine
-  /// what the meanings of the hierarchical relationships are.
+  /// [concept]
+  /// Concepts that are in the code system. The concept definitions are
+  /// inherently hierarchical, but the definitions must be consulted to
+  /// determine what the meanings of the hierarchical relationships are.
   final List<CodeSystemConcept>? concept;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -236,17 +637,15 @@ class CodeSystem extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (url?.value != null) {
       json['url'] = url!.toJson();
@@ -256,7 +655,7 @@ class CodeSystem extends DomainResource {
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (version?.value != null) {
       json['version'] = version!.toJson();
@@ -296,8 +695,7 @@ class CodeSystem extends DomainResource {
       json['_publisher'] = publisherElement!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
-      json['contact'] =
-          contact!.map<dynamic>((ContactDetail v) => v.toJson()).toList();
+      json['contact'] = contact!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
@@ -307,12 +705,11 @@ class CodeSystem extends DomainResource {
     }
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] =
-          useContext!.map<dynamic>((UsageContext v) => v.toJson()).toList();
+          useContext!.map((UsageContext v) => v.toJson()).toList();
     }
     if (jurisdiction != null && jurisdiction!.isNotEmpty) {
-      json['jurisdiction'] = jurisdiction!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['jurisdiction'] =
+          jurisdiction!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (purpose?.value != null) {
       json['purpose'] = purpose!.toJson();
@@ -367,204 +764,19 @@ class CodeSystem extends DomainResource {
       json['_count'] = countElement!.toJson();
     }
     if (filter != null && filter!.isNotEmpty) {
-      json['filter'] =
-          filter!.map<dynamic>((CodeSystemFilter v) => v.toJson()).toList();
+      json['filter'] = filter!.map((CodeSystemFilter v) => v.toJson()).toList();
     }
     if (property != null && property!.isNotEmpty) {
       json['property'] =
-          property!.map<dynamic>((CodeSystemProperty v) => v.toJson()).toList();
+          property!.map((CodeSystemProperty v) => v.toJson()).toList();
     }
     if (concept != null && concept!.isNotEmpty) {
       json['concept'] =
-          concept!.map<dynamic>((CodeSystemConcept v) => v.toJson()).toList();
+          concept!.map((CodeSystemConcept v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory CodeSystem.fromJson(Map<String, dynamic> json) {
-    return CodeSystem(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(json['_url'] as Map<String, dynamic>)
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(json['_version'] as Map<String, dynamic>)
-          : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
-          : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
-          : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson(json['experimental'])
-          : null,
-      experimentalElement: json['_experimental'] != null
-          ? Element.fromJson(json['_experimental'] as Map<String, dynamic>)
-          : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
-          : null,
-      publisher: json['publisher'] != null
-          ? FhirString.fromJson(json['publisher'])
-          : null,
-      publisherElement: json['_publisher'] != null
-          ? Element.fromJson(json['_publisher'] as Map<String, dynamic>)
-          : null,
-      contact: json['contact'] != null
-          ? (json['contact'] as List<dynamic>)
-              .map<ContactDetail>((dynamic v) =>
-                  ContactDetail.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
-          : null,
-      useContext: json['useContext'] != null
-          ? (json['useContext'] as List<dynamic>)
-              .map<UsageContext>((dynamic v) =>
-                  UsageContext.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      jurisdiction: json['jurisdiction'] != null
-          ? (json['jurisdiction'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      purpose: json['purpose'] != null
-          ? FhirMarkdown.fromJson(json['purpose'])
-          : null,
-      purposeElement: json['_purpose'] != null
-          ? Element.fromJson(json['_purpose'] as Map<String, dynamic>)
-          : null,
-      copyright: json['copyright'] != null
-          ? FhirMarkdown.fromJson(json['copyright'])
-          : null,
-      copyrightElement: json['_copyright'] != null
-          ? Element.fromJson(json['_copyright'] as Map<String, dynamic>)
-          : null,
-      caseSensitive: json['caseSensitive'] != null
-          ? FhirBoolean.fromJson(json['caseSensitive'])
-          : null,
-      caseSensitiveElement: json['_caseSensitive'] != null
-          ? Element.fromJson(json['_caseSensitive'] as Map<String, dynamic>)
-          : null,
-      valueSet: json['valueSet'] != null
-          ? FhirCanonical.fromJson(json['valueSet'])
-          : null,
-      valueSetElement: json['_valueSet'] != null
-          ? Element.fromJson(json['_valueSet'] as Map<String, dynamic>)
-          : null,
-      hierarchyMeaning: json['hierarchyMeaning'] != null
-          ? CodeSystemHierarchyMeaning.fromJson(json['hierarchyMeaning'])
-          : null,
-      hierarchyMeaningElement: json['_hierarchyMeaning'] != null
-          ? Element.fromJson(json['_hierarchyMeaning'] as Map<String, dynamic>)
-          : null,
-      compositional: json['compositional'] != null
-          ? FhirBoolean.fromJson(json['compositional'])
-          : null,
-      compositionalElement: json['_compositional'] != null
-          ? Element.fromJson(json['_compositional'] as Map<String, dynamic>)
-          : null,
-      versionNeeded: json['versionNeeded'] != null
-          ? FhirBoolean.fromJson(json['versionNeeded'])
-          : null,
-      versionNeededElement: json['_versionNeeded'] != null
-          ? Element.fromJson(json['_versionNeeded'] as Map<String, dynamic>)
-          : null,
-      content: CodeSystemContentMode.fromJson(json['content']),
-      contentElement: json['_content'] != null
-          ? Element.fromJson(json['_content'] as Map<String, dynamic>)
-          : null,
-      supplements: json['supplements'] != null
-          ? FhirCanonical.fromJson(json['supplements'])
-          : null,
-      supplementsElement: json['_supplements'] != null
-          ? Element.fromJson(json['_supplements'] as Map<String, dynamic>)
-          : null,
-      count: json['count'] != null
-          ? FhirUnsignedInt.fromJson(json['count'])
-          : null,
-      countElement: json['_count'] != null
-          ? Element.fromJson(json['_count'] as Map<String, dynamic>)
-          : null,
-      filter: json['filter'] != null
-          ? (json['filter'] as List<dynamic>)
-              .map<CodeSystemFilter>((dynamic v) =>
-                  CodeSystemFilter.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      property: json['property'] != null
-          ? (json['property'] as List<dynamic>)
-              .map<CodeSystemProperty>((dynamic v) =>
-                  CodeSystemProperty.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      concept: json['concept'] != null
-          ? (json['concept'] as List<dynamic>)
-              .map<CodeSystemConcept>((dynamic v) =>
-                  CodeSystemConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   CodeSystem clone() => throw UnimplementedError();
   @override
@@ -696,41 +908,33 @@ class CodeSystem extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CodeSystem.fromYaml(dynamic yaml) => yaml is String
-      ? CodeSystem.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CodeSystem.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CodeSystem cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CodeSystem.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CodeSystem.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CodeSystemFilter] /// A filter that can be used in a value set compose statement when selecting
-/// concepts using a filter.
+/// [CodeSystemFilter]
+/// A filter that can be used in a value set compose statement when
+/// selecting concepts using a filter.
 class CodeSystemFilter extends BackboneElement {
+  /// Primary constructor for [CodeSystemFilter]
+
   CodeSystemFilter({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.code,
+
+    /// Extensions for [code]
     this.codeElement,
     this.description,
+
+    /// Extensions for [description]
     this.descriptionElement,
     required this.operator_,
+
+    /// Extensions for [operator]
     this.operatorElement,
     required this.value,
+
+    /// Extensions for [value]
     this.valueElement,
     super.userData,
     super.formatCommentsPre,
@@ -740,39 +944,132 @@ class CodeSystemFilter extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CodeSystemFilter.fromJson(Map<String, dynamic> json) {
+    return CodeSystemFilter(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      code: FhirCode.fromJson(json['code']),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(
+              json['_code'] as Map<String, dynamic>,
+            )
+          : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(
+              json['_description'] as Map<String, dynamic>,
+            )
+          : null,
+      operator_: (json['operator'] as List<dynamic>)
+          .map<FilterOperator>(
+              (dynamic v) => FilterOperator.fromJson(v as dynamic))
+          .toList(),
+      operatorElement: json['_operator'] != null
+          ? (json['_operator'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      value: FhirString.fromJson(json['value']),
+      valueElement: json['_value'] != null
+          ? Element.fromJson(
+              json['_value'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CodeSystemFilter] from a [String] or [YamlMap] object
+  factory CodeSystemFilter.fromYaml(dynamic yaml) => yaml is String
+      ? CodeSystemFilter.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CodeSystemFilter.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CodeSystemFilter cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CodeSystemFilter] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CodeSystemFilter.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CodeSystemFilter.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CodeSystemFilter';
 
-  /// [code] /// The code that identifies this filter when it is used as a filter in
+  /// [code]
+  /// The code that identifies this filter when it is used as a filter in
   /// [ValueSet](valueset.html#).compose.include.filter.
   final FhirCode code;
+
+  /// Extensions for [code]
   final Element? codeElement;
 
-  /// [description] /// A description of how or why the filter is used.
+  /// [description]
+  /// A description of how or why the filter is used.
   final FhirString? description;
+
+  /// Extensions for [description]
   final Element? descriptionElement;
 
-  /// [operator_] /// A list of operators that can be used with the filter.
+  /// [operator_]
+  /// A list of operators that can be used with the filter.
   final List<FilterOperator> operator_;
+
+  /// Extensions for [operator]
   final List<Element>? operatorElement;
 
-  /// [value] /// A description of what the value for the filter should be.
+  /// [value]
+  /// A description of what the value for the filter should be.
   final FhirString value;
+
+  /// Extensions for [value]
   final Element? valueElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['code'] = code.toJson();
     if (codeElement != null) {
@@ -793,47 +1090,6 @@ class CodeSystemFilter extends BackboneElement {
     return json;
   }
 
-  factory CodeSystemFilter.fromJson(Map<String, dynamic> json) {
-    return CodeSystemFilter(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      code: FhirCode.fromJson(json['code']),
-      codeElement: json['_code'] != null
-          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
-          : null,
-      description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
-          : null,
-      operator_: (json['operator'] as List<dynamic>)
-          .map<FilterOperator>(
-              (dynamic v) => FilterOperator.fromJson(v as dynamic))
-          .toList(),
-      operatorElement: json['_operator'] != null
-          ? (json['_operator'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      value: FhirString.fromJson(json['value']),
-      valueElement: json['_value'] != null
-          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CodeSystemFilter clone() => throw UnimplementedError();
   @override
@@ -876,41 +1132,33 @@ class CodeSystemFilter extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CodeSystemFilter.fromYaml(dynamic yaml) => yaml is String
-      ? CodeSystemFilter.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CodeSystemFilter.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CodeSystemFilter cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CodeSystemFilter.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CodeSystemFilter.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CodeSystemProperty] /// A property defines an additional slot through which additional information
-/// can be provided about a concept.
+/// [CodeSystemProperty]
+/// A property defines an additional slot through which additional
+/// information can be provided about a concept.
 class CodeSystemProperty extends BackboneElement {
+  /// Primary constructor for [CodeSystemProperty]
+
   CodeSystemProperty({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.code,
+
+    /// Extensions for [code]
     this.codeElement,
     this.uri,
+
+    /// Extensions for [uri]
     this.uriElement,
     this.description,
+
+    /// Extensions for [description]
     this.descriptionElement,
     required this.type,
+
+    /// Extensions for [type]
     this.typeElement,
     super.userData,
     super.formatCommentsPre,
@@ -920,44 +1168,133 @@ class CodeSystemProperty extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CodeSystemProperty.fromJson(Map<String, dynamic> json) {
+    return CodeSystemProperty(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      code: FhirCode.fromJson(json['code']),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(
+              json['_code'] as Map<String, dynamic>,
+            )
+          : null,
+      uri: json['uri'] != null ? FhirUri.fromJson(json['uri']) : null,
+      uriElement: json['_uri'] != null
+          ? Element.fromJson(
+              json['_uri'] as Map<String, dynamic>,
+            )
+          : null,
+      description: json['description'] != null
+          ? FhirString.fromJson(json['description'])
+          : null,
+      descriptionElement: json['_description'] != null
+          ? Element.fromJson(
+              json['_description'] as Map<String, dynamic>,
+            )
+          : null,
+      type: PropertyTypeEnum.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(
+              json['_type'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CodeSystemProperty] from a [String] or [YamlMap] object
+  factory CodeSystemProperty.fromYaml(dynamic yaml) => yaml is String
+      ? CodeSystemProperty.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CodeSystemProperty.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CodeSystemProperty cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CodeSystemProperty] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CodeSystemProperty.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CodeSystemProperty.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CodeSystemProperty';
 
-  /// [code] /// A code that is used to identify the property. The code is used internally
-  /// (in CodeSystem.concept.property.code) and also externally, such as in
-  /// property filters.
+  /// [code]
+  /// A code that is used to identify the property. The code is used
+  /// internally (in CodeSystem.concept.property.code) and also externally,
+  /// such as in property filters.
   final FhirCode code;
+
+  /// Extensions for [code]
   final Element? codeElement;
 
-  /// [uri] /// Reference to the formal meaning of the property. One possible source of
+  /// [uri]
+  /// Reference to the formal meaning of the property. One possible source of
   /// meaning is the [Concept Properties](codesystem-concept-properties.html)
   /// code system.
   final FhirUri? uri;
+
+  /// Extensions for [uri]
   final Element? uriElement;
 
-  /// [description] /// A description of the property- why it is defined, and how its value might
-  /// be used.
+  /// [description]
+  /// A description of the property- why it is defined, and how its value
+  /// might be used.
   final FhirString? description;
+
+  /// Extensions for [description]
   final Element? descriptionElement;
 
-  /// [type] /// The type of the property value. Properties of type "code" contain a code
-  /// defined by the code system (e.g. a reference to another defined concept).
+  /// [type]
+  /// The type of the property value. Properties of type "code" contain a
+  /// code defined by the code system (e.g. a reference to another defined
+  /// concept).
   final PropertyTypeEnum type;
+
+  /// Extensions for [type]
   final Element? typeElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['code'] = code.toJson();
     if (codeElement != null) {
@@ -979,41 +1316,6 @@ class CodeSystemProperty extends BackboneElement {
     return json;
   }
 
-  factory CodeSystemProperty.fromJson(Map<String, dynamic> json) {
-    return CodeSystemProperty(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      code: FhirCode.fromJson(json['code']),
-      codeElement: json['_code'] != null
-          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
-          : null,
-      uri: json['uri'] != null ? FhirUri.fromJson(json['uri']) : null,
-      uriElement: json['_uri'] != null
-          ? Element.fromJson(json['_uri'] as Map<String, dynamic>)
-          : null,
-      description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(json['_description'] as Map<String, dynamic>)
-          : null,
-      type: PropertyTypeEnum.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CodeSystemProperty clone() => throw UnimplementedError();
   @override
@@ -1056,40 +1358,30 @@ class CodeSystemProperty extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CodeSystemProperty.fromYaml(dynamic yaml) => yaml is String
-      ? CodeSystemProperty.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CodeSystemProperty.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CodeSystemProperty cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CodeSystemProperty.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CodeSystemProperty.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CodeSystemConcept] /// Concepts that are in the code system. The concept definitions are
-/// inherently hierarchical, but the definitions must be consulted to determine
-/// what the meanings of the hierarchical relationships are.
+/// [CodeSystemConcept]
+/// Concepts that are in the code system. The concept definitions are
+/// inherently hierarchical, but the definitions must be consulted to
+/// determine what the meanings of the hierarchical relationships are.
 class CodeSystemConcept extends BackboneElement {
+  /// Primary constructor for [CodeSystemConcept]
+
   CodeSystemConcept({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.code,
+
+    /// Extensions for [code]
     this.codeElement,
     this.display,
+
+    /// Extensions for [display]
     this.displayElement,
     this.definition,
+
+    /// Extensions for [definition]
     this.definitionElement,
     this.designation,
     this.property,
@@ -1102,51 +1394,161 @@ class CodeSystemConcept extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CodeSystemConcept.fromJson(Map<String, dynamic> json) {
+    return CodeSystemConcept(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      code: FhirCode.fromJson(json['code']),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(
+              json['_code'] as Map<String, dynamic>,
+            )
+          : null,
+      display:
+          json['display'] != null ? FhirString.fromJson(json['display']) : null,
+      displayElement: json['_display'] != null
+          ? Element.fromJson(
+              json['_display'] as Map<String, dynamic>,
+            )
+          : null,
+      definition: json['definition'] != null
+          ? FhirString.fromJson(json['definition'])
+          : null,
+      definitionElement: json['_definition'] != null
+          ? Element.fromJson(
+              json['_definition'] as Map<String, dynamic>,
+            )
+          : null,
+      designation: json['designation'] != null
+          ? (json['designation'] as List<dynamic>)
+              .map<CodeSystemDesignation>(
+                (dynamic v) => CodeSystemDesignation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      property: json['property'] != null
+          ? (json['property'] as List<dynamic>)
+              .map<CodeSystemProperty>(
+                (dynamic v) => CodeSystemProperty.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      concept: json['concept'] != null
+          ? (json['concept'] as List<dynamic>)
+              .map<CodeSystemConcept>(
+                (dynamic v) => CodeSystemConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [CodeSystemConcept] from a [String] or [YamlMap] object
+  factory CodeSystemConcept.fromYaml(dynamic yaml) => yaml is String
+      ? CodeSystemConcept.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CodeSystemConcept.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CodeSystemConcept cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CodeSystemConcept] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CodeSystemConcept.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CodeSystemConcept.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CodeSystemConcept';
 
-  /// [code] /// A code - a text symbol - that uniquely identifies the concept within the
-  /// code system.
+  /// [code]
+  /// A code - a text symbol - that uniquely identifies the concept within
+  /// the code system.
   final FhirCode code;
+
+  /// Extensions for [code]
   final Element? codeElement;
 
-  /// [display] /// A human readable string that is the recommended default way to present this
-  /// concept to a user.
+  /// [display]
+  /// A human readable string that is the recommended default way to present
+  /// this concept to a user.
   final FhirString? display;
+
+  /// Extensions for [display]
   final Element? displayElement;
 
-  /// [definition] /// The formal definition of the concept. The code system resource does not
+  /// [definition]
+  /// The formal definition of the concept. The code system resource does not
   /// make formal definitions required, because of the prevalence of legacy
-  /// systems. However, they are highly recommended, as without them there is no
-  /// formal meaning associated with the concept.
+  /// systems. However, they are highly recommended, as without them there is
+  /// no formal meaning associated with the concept.
   final FhirString? definition;
+
+  /// Extensions for [definition]
   final Element? definitionElement;
 
-  /// [designation] /// Additional representations for the concept - other languages, aliases,
+  /// [designation]
+  /// Additional representations for the concept - other languages, aliases,
   /// specialized purposes, used for particular purposes, etc.
   final List<CodeSystemDesignation>? designation;
 
-  /// [property] /// A property value for this concept.
+  /// [property]
+  /// A property value for this concept.
   final List<CodeSystemProperty>? property;
 
-  /// [concept] /// Defines children of a concept to produce a hierarchy of concepts. The
-  /// nature of the relationships is variable (is-a/contains/categorizes) - see
-  /// hierarchyMeaning.
+  /// [concept]
+  /// Defines children of a concept to produce a hierarchy of concepts. The
+  /// nature of the relationships is variable (is-a/contains/categorizes) -
+  /// see hierarchyMeaning.
   final List<CodeSystemConcept>? concept;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['code'] = code.toJson();
     if (codeElement != null) {
@@ -1165,71 +1567,20 @@ class CodeSystemConcept extends BackboneElement {
       json['_definition'] = definitionElement!.toJson();
     }
     if (designation != null && designation!.isNotEmpty) {
-      json['designation'] = designation!
-          .map<dynamic>((CodeSystemDesignation v) => v.toJson())
-          .toList();
+      json['designation'] =
+          designation!.map((CodeSystemDesignation v) => v.toJson()).toList();
     }
     if (property != null && property!.isNotEmpty) {
       json['property'] =
-          property!.map<dynamic>((CodeSystemProperty v) => v.toJson()).toList();
+          property!.map((CodeSystemProperty v) => v.toJson()).toList();
     }
     if (concept != null && concept!.isNotEmpty) {
       json['concept'] =
-          concept!.map<dynamic>((CodeSystemConcept v) => v.toJson()).toList();
+          concept!.map((CodeSystemConcept v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory CodeSystemConcept.fromJson(Map<String, dynamic> json) {
-    return CodeSystemConcept(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      code: FhirCode.fromJson(json['code']),
-      codeElement: json['_code'] != null
-          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
-          : null,
-      display:
-          json['display'] != null ? FhirString.fromJson(json['display']) : null,
-      displayElement: json['_display'] != null
-          ? Element.fromJson(json['_display'] as Map<String, dynamic>)
-          : null,
-      definition: json['definition'] != null
-          ? FhirString.fromJson(json['definition'])
-          : null,
-      definitionElement: json['_definition'] != null
-          ? Element.fromJson(json['_definition'] as Map<String, dynamic>)
-          : null,
-      designation: json['designation'] != null
-          ? (json['designation'] as List<dynamic>)
-              .map<CodeSystemDesignation>((dynamic v) =>
-                  CodeSystemDesignation.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      property: json['property'] != null
-          ? (json['property'] as List<dynamic>)
-              .map<CodeSystemProperty>((dynamic v) =>
-                  CodeSystemProperty.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      concept: json['concept'] != null
-          ? (json['concept'] as List<dynamic>)
-              .map<CodeSystemConcept>((dynamic v) =>
-                  CodeSystemConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   CodeSystemConcept clone() => throw UnimplementedError();
   @override
@@ -1274,38 +1625,26 @@ class CodeSystemConcept extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CodeSystemConcept.fromYaml(dynamic yaml) => yaml is String
-      ? CodeSystemConcept.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CodeSystemConcept.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CodeSystemConcept cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CodeSystemConcept.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CodeSystemConcept.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CodeSystemDesignation] /// Additional representations for the concept - other languages, aliases,
+/// [CodeSystemDesignation]
+/// Additional representations for the concept - other languages, aliases,
 /// specialized purposes, used for particular purposes, etc.
 class CodeSystemDesignation extends BackboneElement {
+  /// Primary constructor for [CodeSystemDesignation]
+
   CodeSystemDesignation({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.language,
+
+    /// Extensions for [language]
     this.languageElement,
     this.use,
     required this.value,
+
+    /// Extensions for [value]
     this.valueElement,
     super.userData,
     super.formatCommentsPre,
@@ -1315,33 +1654,109 @@ class CodeSystemDesignation extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CodeSystemDesignation.fromJson(Map<String, dynamic> json) {
+    return CodeSystemDesignation(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      use: json['use'] != null
+          ? Coding.fromJson(
+              json['use'] as Map<String, dynamic>,
+            )
+          : null,
+      value: FhirString.fromJson(json['value']),
+      valueElement: json['_value'] != null
+          ? Element.fromJson(
+              json['_value'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CodeSystemDesignation] from a [String] or [YamlMap] object
+  factory CodeSystemDesignation.fromYaml(dynamic yaml) => yaml is String
+      ? CodeSystemDesignation.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CodeSystemDesignation.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CodeSystemDesignation cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CodeSystemDesignation] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CodeSystemDesignation.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CodeSystemDesignation.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CodeSystemDesignation';
 
-  /// [language] /// The language this designation is defined for.
+  /// [language]
+  /// The language this designation is defined for.
   final CommonLanguages? language;
+
+  /// Extensions for [language]
   final Element? languageElement;
 
-  /// [use] /// A code that details how this designation would be used.
+  /// [use]
+  /// A code that details how this designation would be used.
   final Coding? use;
 
-  /// [value] /// The text value for this designation.
+  /// [value]
+  /// The text value for this designation.
   final FhirString value;
+
+  /// Extensions for [value]
   final Element? valueElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -1356,36 +1771,6 @@ class CodeSystemDesignation extends BackboneElement {
     return json;
   }
 
-  factory CodeSystemDesignation.fromJson(Map<String, dynamic> json) {
-    return CodeSystemDesignation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      use: json['use'] != null
-          ? Coding.fromJson(json['use'] as Map<String, dynamic>)
-          : null,
-      value: FhirString.fromJson(json['value']),
-      valueElement: json['_value'] != null
-          ? Element.fromJson(json['_value'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CodeSystemDesignation clone() => throw UnimplementedError();
   @override
@@ -1422,47 +1807,45 @@ class CodeSystemDesignation extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CodeSystemDesignation.fromYaml(dynamic yaml) => yaml is String
-      ? CodeSystemDesignation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CodeSystemDesignation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CodeSystemDesignation cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CodeSystemDesignation.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CodeSystemDesignation.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CodeSystemProperty1] /// A property value for this concept.
+/// [CodeSystemProperty1]
+/// A property value for this concept.
 class CodeSystemProperty1 extends BackboneElement {
+  /// Primary constructor for [CodeSystemProperty1]
+
   CodeSystemProperty1({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.code,
+
+    /// Extensions for [code]
     this.codeElement,
     this.valueCode,
+
+    /// Extensions for [valueCode]
     this.valueCodeElement,
     this.valueCoding,
     this.valueString,
+
+    /// Extensions for [valueString]
     this.valueStringElement,
     this.valueInteger,
+
+    /// Extensions for [valueInteger]
     this.valueIntegerElement,
     this.valueBoolean,
+
+    /// Extensions for [valueBoolean]
     this.valueBooleanElement,
     this.valueDateTime,
+
+    /// Extensions for [valueDateTime]
     this.valueDateTimeElement,
     this.valueDecimal,
+
+    /// Extensions for [valueDecimal]
     this.valueDecimalElement,
     super.userData,
     super.formatCommentsPre,
@@ -1472,53 +1855,184 @@ class CodeSystemProperty1 extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CodeSystemProperty1.fromJson(Map<String, dynamic> json) {
+    return CodeSystemProperty1(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      code: FhirCode.fromJson(json['code']),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(
+              json['_code'] as Map<String, dynamic>,
+            )
+          : null,
+      valueCode: json['valueCode'] != null
+          ? FhirCode.fromJson(json['valueCode'])
+          : null,
+      valueCodeElement: json['_valueCode'] != null
+          ? Element.fromJson(
+              json['_valueCode'] as Map<String, dynamic>,
+            )
+          : null,
+      valueCoding: json['valueCoding'] != null
+          ? Coding.fromJson(
+              json['valueCoding'] as Map<String, dynamic>,
+            )
+          : null,
+      valueString: json['valueString'] != null
+          ? FhirString.fromJson(json['valueString'])
+          : null,
+      valueStringElement: json['_valueString'] != null
+          ? Element.fromJson(
+              json['_valueString'] as Map<String, dynamic>,
+            )
+          : null,
+      valueInteger: json['valueInteger'] != null
+          ? FhirInteger.fromJson(json['valueInteger'])
+          : null,
+      valueIntegerElement: json['_valueInteger'] != null
+          ? Element.fromJson(
+              json['_valueInteger'] as Map<String, dynamic>,
+            )
+          : null,
+      valueBoolean: json['valueBoolean'] != null
+          ? FhirBoolean.fromJson(json['valueBoolean'])
+          : null,
+      valueBooleanElement: json['_valueBoolean'] != null
+          ? Element.fromJson(
+              json['_valueBoolean'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDateTime: json['valueDateTime'] != null
+          ? FhirDateTime.fromJson(json['valueDateTime'])
+          : null,
+      valueDateTimeElement: json['_valueDateTime'] != null
+          ? Element.fromJson(
+              json['_valueDateTime'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDecimal: json['valueDecimal'] != null
+          ? FhirDecimal.fromJson(json['valueDecimal'])
+          : null,
+      valueDecimalElement: json['_valueDecimal'] != null
+          ? Element.fromJson(
+              json['_valueDecimal'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CodeSystemProperty1] from a [String] or [YamlMap] object
+  factory CodeSystemProperty1.fromYaml(dynamic yaml) => yaml is String
+      ? CodeSystemProperty1.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CodeSystemProperty1.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CodeSystemProperty1 cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CodeSystemProperty1] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CodeSystemProperty1.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CodeSystemProperty1.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CodeSystemProperty1';
 
-  /// [code] /// A code that is a reference to CodeSystem.property.code.
+  /// [code]
+  /// A code that is a reference to CodeSystem.property.code.
   final FhirCode code;
+
+  /// Extensions for [code]
   final Element? codeElement;
 
-  /// [valueCode] /// The value of this property.
+  /// [valueCode]
+  /// The value of this property.
   final FhirCode? valueCode;
+
+  /// Extensions for [valueCode]
   final Element? valueCodeElement;
 
-  /// [valueCoding] /// The value of this property.
+  /// [valueCoding]
+  /// The value of this property.
   final Coding? valueCoding;
 
-  /// [valueString] /// The value of this property.
+  /// [valueString]
+  /// The value of this property.
   final FhirString? valueString;
+
+  /// Extensions for [valueString]
   final Element? valueStringElement;
 
-  /// [valueInteger] /// The value of this property.
+  /// [valueInteger]
+  /// The value of this property.
   final FhirInteger? valueInteger;
+
+  /// Extensions for [valueInteger]
   final Element? valueIntegerElement;
 
-  /// [valueBoolean] /// The value of this property.
+  /// [valueBoolean]
+  /// The value of this property.
   final FhirBoolean? valueBoolean;
+
+  /// Extensions for [valueBoolean]
   final Element? valueBooleanElement;
 
-  /// [valueDateTime] /// The value of this property.
+  /// [valueDateTime]
+  /// The value of this property.
   final FhirDateTime? valueDateTime;
+
+  /// Extensions for [valueDateTime]
   final Element? valueDateTimeElement;
 
-  /// [valueDecimal] /// The value of this property.
+  /// [valueDecimal]
+  /// The value of this property.
   final FhirDecimal? valueDecimal;
+
+  /// Extensions for [valueDecimal]
   final Element? valueDecimalElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['code'] = code.toJson();
     if (codeElement != null) {
@@ -1566,66 +2080,6 @@ class CodeSystemProperty1 extends BackboneElement {
     return json;
   }
 
-  factory CodeSystemProperty1.fromJson(Map<String, dynamic> json) {
-    return CodeSystemProperty1(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      code: FhirCode.fromJson(json['code']),
-      codeElement: json['_code'] != null
-          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
-          : null,
-      valueCode: json['valueCode'] != null
-          ? FhirCode.fromJson(json['valueCode'])
-          : null,
-      valueCodeElement: json['_valueCode'] != null
-          ? Element.fromJson(json['_valueCode'] as Map<String, dynamic>)
-          : null,
-      valueCoding: json['valueCoding'] != null
-          ? Coding.fromJson(json['valueCoding'] as Map<String, dynamic>)
-          : null,
-      valueString: json['valueString'] != null
-          ? FhirString.fromJson(json['valueString'])
-          : null,
-      valueStringElement: json['_valueString'] != null
-          ? Element.fromJson(json['_valueString'] as Map<String, dynamic>)
-          : null,
-      valueInteger: json['valueInteger'] != null
-          ? FhirInteger.fromJson(json['valueInteger'])
-          : null,
-      valueIntegerElement: json['_valueInteger'] != null
-          ? Element.fromJson(json['_valueInteger'] as Map<String, dynamic>)
-          : null,
-      valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)
-          : null,
-      valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime.fromJson(json['valueDateTime'])
-          : null,
-      valueDateTimeElement: json['_valueDateTime'] != null
-          ? Element.fromJson(json['_valueDateTime'] as Map<String, dynamic>)
-          : null,
-      valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal.fromJson(json['valueDecimal'])
-          : null,
-      valueDecimalElement: json['_valueDecimal'] != null
-          ? Element.fromJson(json['_valueDecimal'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CodeSystemProperty1 clone() => throw UnimplementedError();
   @override
@@ -1681,24 +2135,5 @@ class CodeSystemProperty1 extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory CodeSystemProperty1.fromYaml(dynamic yaml) => yaml is String
-      ? CodeSystemProperty1.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CodeSystemProperty1.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CodeSystemProperty1 cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CodeSystemProperty1.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CodeSystemProperty1.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

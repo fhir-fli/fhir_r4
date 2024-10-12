@@ -63,17 +63,24 @@ void testPaths() {
           '{unit: inches}]');
     });
     test('Patient Address Period Extension ValueCount Unit', () {
-      expect(walkPath('address.period.extension.valueCount.unit'),
-          '[Mg, mL, Kg, Km, Feet, inches]');
+      expect(
+        walkPath('address.period.extension.valueCount.unit'),
+        '[Mg, mL, Kg, Km, Feet, inches]',
+      );
     });
     test('Sample Patient', () {
       expect(
-          walkFhirPath(
-              context: patient.toJson(), pathExpression: 'Patient.text.status'),
-          ['generated']);
+        walkFhirPath(
+          context: patient.toJson(),
+          pathExpression: 'Patient.text.status',
+        ),
+        ['generated'],
+      );
       expect(
           walkFhirPath(
-              context: patient.toJson(), pathExpression: 'Patient.text.div'),
+            context: patient.toJson(),
+            pathExpression: 'Patient.text.div',
+          ),
           [
             '<div xmlns="http://www.w3.org/1999/xhtml">\n'
                 '\t\t\t<table>\n'
@@ -110,7 +117,7 @@ final patient = Patient.fromJson({
   "text": {
     "status": "generated",
     "div":
-        "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\t\t\t<table>\n\t\t\t\t<tbody>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Name</td>\n\t\t\t\t\t\t<td>Peter James \n              <b>Chalmers</b> (&quot;Jim&quot;)\n            </td>\n\t\t\t\t\t</tr>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Address</td>\n\t\t\t\t\t\t<td>534 Erewhon, Pleasantville, Vic, 3999</td>\n\t\t\t\t\t</tr>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Contacts</td>\n\t\t\t\t\t\t<td>Home: unknown. Work: (03) 5555 6473</td>\n\t\t\t\t\t</tr>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Id</td>\n\t\t\t\t\t\t<td>MRN: 12345 (Acme Healthcare)</td>\n\t\t\t\t\t</tr>\n\t\t\t\t</tbody>\n\t\t\t</table>\n\t\t</div>"
+        "<div xmlns=\"http://www.w3.org/1999/xhtml\">\n\t\t\t<table>\n\t\t\t\t<tbody>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Name</td>\n\t\t\t\t\t\t<td>Peter James \n              <b>Chalmers</b> (&quot;Jim&quot;)\n            </td>\n\t\t\t\t\t</tr>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Address</td>\n\t\t\t\t\t\t<td>534 Erewhon, Pleasantville, Vic, 3999</td>\n\t\t\t\t\t</tr>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Contacts</td>\n\t\t\t\t\t\t<td>Home: unknown. Work: (03) 5555 6473</td>\n\t\t\t\t\t</tr>\n\t\t\t\t\t<tr>\n\t\t\t\t\t\t<td>Id</td>\n\t\t\t\t\t\t<td>MRN: 12345 (Acme Healthcare)</td>\n\t\t\t\t\t</tr>\n\t\t\t\t</tbody>\n\t\t\t</table>\n\t\t</div>",
   },
   "identifier": [
     {
@@ -119,14 +126,14 @@ final patient = Patient.fromJson({
         "coding": [
           {
             "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
-            "code": "MR"
+            "code": "MR",
           }
-        ]
+        ],
       },
       "system": "urn:oid:1.2.36.146.595.217.0.1",
       "value": "12345",
       "period": {"start": "2001-05-06"},
-      "assigner": {"display": "Acme Healthcare"}
+      "assigner": {"display": "Acme Healthcare"},
     }
   ],
   "active": true,
@@ -134,17 +141,17 @@ final patient = Patient.fromJson({
     {
       "use": "official",
       "family": "Chalmers",
-      "given": ["Peter", "James"]
+      "given": ["Peter", "James"],
     },
     {
       "use": "usual",
-      "given": ["Jim"]
+      "given": ["Jim"],
     },
     {
       "use": "maiden",
       "family": "Windsor",
       "given": ["Peter", "James"],
-      "period": {"end": "2002"}
+      "period": {"end": "2002"},
     }
   ],
   "telecom": [
@@ -155,7 +162,7 @@ final patient = Patient.fromJson({
       "system": "phone",
       "value": "(03) 5555 8834",
       "use": "old",
-      "period": {"end": "2014"}
+      "period": {"end": "2014"},
     }
   ],
   "gender": "male",
@@ -164,9 +171,9 @@ final patient = Patient.fromJson({
     "extension": [
       {
         "url": "http://hl7.org/fhir/StructureDefinition/patient-birthTime",
-        "valueDateTime": "1974-12-25T14:35:45-05:00"
+        "valueDateTime": "1974-12-25T14:35:45-05:00",
       }
-    ]
+    ],
   },
   "deceasedBoolean": false,
   "address": [
@@ -179,7 +186,7 @@ final patient = Patient.fromJson({
       "district": "Rainbow",
       "state": "Vic",
       "postalCode": "3999",
-      "period": {"start": "1974-12-25"}
+      "period": {"start": "1974-12-25"},
     }
   ],
   "contact": [
@@ -189,9 +196,9 @@ final patient = Patient.fromJson({
           "coding": [
             {
               "system": "http://terminology.hl7.org/CodeSystem/v2-0131",
-              "code": "N"
+              "code": "N",
             }
-          ]
+          ],
         }
       ],
       "name": {
@@ -201,14 +208,14 @@ final patient = Patient.fromJson({
             {
               "url":
                   "http://hl7.org/fhir/StructureDefinition/humanname-own-prefix",
-              "valueString": "VV"
+              "valueString": "VV",
             }
-          ]
+          ],
         },
-        "given": ["Bénédicte"]
+        "given": ["Bénédicte"],
       },
       "telecom": [
-        {"system": "phone", "value": "+33 (237) 998327"}
+        {"system": "phone", "value": "+33 (237) 998327"},
       ],
       "address": {
         "use": "home",
@@ -218,13 +225,13 @@ final patient = Patient.fromJson({
         "district": "Rainbow",
         "state": "Vic",
         "postalCode": "3999",
-        "period": {"start": "1974-12-25"}
+        "period": {"start": "1974-12-25"},
       },
       "gender": "female",
-      "period": {"start": "2012"}
+      "period": {"start": "2012"},
     }
   ],
-  "managingOrganization": {"reference": "Organization/1"}
+  "managingOrganization": {"reference": "Organization/1"},
 });
 
 final resource = Patient(

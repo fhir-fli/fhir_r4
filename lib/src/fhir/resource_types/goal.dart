@@ -1,19 +1,25 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [Goal] /// Describes the intended objective(s) for a patient, group or organization
-/// care, for example, weight loss, restoring an activity of daily living,
-/// obtaining herd immunity via immunization, meeting a process improvement
-/// objective, etc.
+/// [Goal]
+/// Describes the intended objective(s) for a patient, group or
+/// organization care, for example, weight loss, restoring an activity of
+/// daily living, obtaining herd immunity via immunization, meeting a
+/// process improvement objective, etc.
 class Goal extends DomainResource {
+  /// Primary constructor for [Goal]
+
   Goal({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -21,6 +27,8 @@ class Goal extends DomainResource {
     super.modifierExtension,
     this.identifier,
     required this.lifecycleStatus,
+
+    /// Extensions for [lifecycleStatus]
     this.lifecycleStatusElement,
     this.achievementStatus,
     this.category,
@@ -28,12 +36,18 @@ class Goal extends DomainResource {
     required this.description,
     required this.subject,
     this.startDate,
+
+    /// Extensions for [startDate]
     this.startDateElement,
     this.startCodeableConcept,
     this.target,
     this.statusDate,
+
+    /// Extensions for [statusDate]
     this.statusDateElement,
     this.statusReason,
+
+    /// Extensions for [statusReason]
     this.statusReasonElement,
     this.expressedBy,
     this.addresses,
@@ -46,78 +60,309 @@ class Goal extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.Goal);
+  }) : super(
+          resourceType: R4ResourceType.Goal,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory Goal.fromJson(Map<String, dynamic> json) {
+    return Goal(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      lifecycleStatus: GoalLifecycleStatus.fromJson(json['lifecycleStatus']),
+      lifecycleStatusElement: json['_lifecycleStatus'] != null
+          ? Element.fromJson(
+              json['_lifecycleStatus'] as Map<String, dynamic>,
+            )
+          : null,
+      achievementStatus: json['achievementStatus'] != null
+          ? CodeableConcept.fromJson(
+              json['achievementStatus'] as Map<String, dynamic>,
+            )
+          : null,
+      category: json['category'] != null
+          ? (json['category'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      priority: json['priority'] != null
+          ? CodeableConcept.fromJson(
+              json['priority'] as Map<String, dynamic>,
+            )
+          : null,
+      description: CodeableConcept.fromJson(
+        json['description'] as Map<String, dynamic>,
+      ),
+      subject: Reference.fromJson(
+        json['subject'] as Map<String, dynamic>,
+      ),
+      startDate: json['startDate'] != null
+          ? GoalStartEvent.fromJson(json['startDate'])
+          : null,
+      startDateElement: json['_startDate'] != null
+          ? Element.fromJson(
+              json['_startDate'] as Map<String, dynamic>,
+            )
+          : null,
+      startCodeableConcept: json['startCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['startCodeableConcept'] as Map<String, dynamic>,
+            )
+          : null,
+      target: json['target'] != null
+          ? (json['target'] as List<dynamic>)
+              .map<GoalTarget>(
+                (dynamic v) => GoalTarget.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      statusDate: json['statusDate'] != null
+          ? FhirDate.fromJson(json['statusDate'])
+          : null,
+      statusDateElement: json['_statusDate'] != null
+          ? Element.fromJson(
+              json['_statusDate'] as Map<String, dynamic>,
+            )
+          : null,
+      statusReason: json['statusReason'] != null
+          ? FhirString.fromJson(json['statusReason'])
+          : null,
+      statusReasonElement: json['_statusReason'] != null
+          ? Element.fromJson(
+              json['_statusReason'] as Map<String, dynamic>,
+            )
+          : null,
+      expressedBy: json['expressedBy'] != null
+          ? Reference.fromJson(
+              json['expressedBy'] as Map<String, dynamic>,
+            )
+          : null,
+      addresses: json['addresses'] != null
+          ? (json['addresses'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                (dynamic v) => Annotation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      outcomeCode: json['outcomeCode'] != null
+          ? (json['outcomeCode'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      outcomeReference: json['outcomeReference'] != null
+          ? (json['outcomeReference'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [Goal] from a [String] or [YamlMap] object
+  factory Goal.fromYaml(dynamic yaml) => yaml is String
+      ? Goal.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? Goal.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('Goal cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [Goal] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory Goal.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Goal.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'Goal';
 
-  /// [identifier] /// Business identifiers assigned to this goal by the performer or other
+  /// [identifier]
+  /// Business identifiers assigned to this goal by the performer or other
   /// systems which remain constant as the resource is updated and propagates
   /// from server to server.
   final List<Identifier>? identifier;
 
-  /// [lifecycleStatus] /// The state of the goal throughout its lifecycle.
+  /// [lifecycleStatus]
+  /// The state of the goal throughout its lifecycle.
   final GoalLifecycleStatus lifecycleStatus;
+
+  /// Extensions for [lifecycleStatus]
   final Element? lifecycleStatusElement;
 
-  /// [achievementStatus] /// Describes the progression, or lack thereof, towards the goal against the
-  /// target.
+  /// [achievementStatus]
+  /// Describes the progression, or lack thereof, towards the goal against
+  /// the target.
   final CodeableConcept? achievementStatus;
 
-  /// [category] /// Indicates a category the goal falls within.
+  /// [category]
+  /// Indicates a category the goal falls within.
   final List<CodeableConcept>? category;
 
-  /// [priority] /// Identifies the mutually agreed level of importance associated with
+  /// [priority]
+  /// Identifies the mutually agreed level of importance associated with
   /// reaching/sustaining the goal.
   final CodeableConcept? priority;
 
-  /// [description] /// Human-readable and/or coded description of a specific desired objective of
-  /// care, such as "control blood pressure" or "negotiate an obstacle course" or
-  /// "dance with child at wedding".
+  /// [description]
+  /// Human-readable and/or coded description of a specific desired objective
+  /// of care, such as "control blood pressure" or "negotiate an obstacle
+  /// course" or "dance with child at wedding".
   final CodeableConcept description;
 
-  /// [subject] /// Identifies the patient, group or organization for whom the goal is being
-  /// established.
+  /// [subject]
+  /// Identifies the patient, group or organization for whom the goal is
+  /// being established.
   final Reference subject;
 
-  /// [startDate] /// The date or event after which the goal should begin being pursued.
+  /// [startDate]
+  /// The date or event after which the goal should begin being pursued.
   final GoalStartEvent? startDate;
+
+  /// Extensions for [startDate]
   final Element? startDateElement;
 
-  /// [startCodeableConcept] /// The date or event after which the goal should begin being pursued.
+  /// [startCodeableConcept]
+  /// The date or event after which the goal should begin being pursued.
   final CodeableConcept? startCodeableConcept;
 
-  /// [target] /// Indicates what should be done by when.
+  /// [target]
+  /// Indicates what should be done by when.
   final List<GoalTarget>? target;
 
-  /// [statusDate] /// Identifies when the current status. I.e. When initially created, when
+  /// [statusDate]
+  /// Identifies when the current status. I.e. When initially created, when
   /// achieved, when cancelled, etc.
   final FhirDate? statusDate;
+
+  /// Extensions for [statusDate]
   final Element? statusDateElement;
 
-  /// [statusReason] /// Captures the reason for the current status.
+  /// [statusReason]
+  /// Captures the reason for the current status.
   final FhirString? statusReason;
+
+  /// Extensions for [statusReason]
   final Element? statusReasonElement;
 
-  /// [expressedBy] /// Indicates whose goal this is - patient goal, practitioner goal, etc.
+  /// [expressedBy]
+  /// Indicates whose goal this is - patient goal, practitioner goal, etc.
   final Reference? expressedBy;
 
-  /// [addresses] /// The identified conditions and other health record elements that are
+  /// [addresses]
+  /// The identified conditions and other health record elements that are
   /// intended to be addressed by the goal.
   final List<Reference>? addresses;
 
-  /// [note] /// Any comments related to the goal.
+  /// [note]
+  /// Any comments related to the goal.
   final List<Annotation>? note;
 
-  /// [outcomeCode] /// Identifies the change (or lack of change) at the point when the status of
-  /// the goal is assessed.
+  /// [outcomeCode]
+  /// Identifies the change (or lack of change) at the point when the status
+  /// of the goal is assessed.
   final List<CodeableConcept>? outcomeCode;
 
-  /// [outcomeReference] /// Details of what's changed (or not changed).
+  /// [outcomeReference]
+  /// Details of what's changed (or not changed).
   final List<Reference>? outcomeReference;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -138,21 +383,19 @@ class Goal extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     json['lifecycleStatus'] = lifecycleStatus.toJson();
     if (achievementStatus != null) {
@@ -160,7 +403,7 @@ class Goal extends DomainResource {
     }
     if (category != null && category!.isNotEmpty) {
       json['category'] =
-          category!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          category!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (priority != null) {
       json['priority'] = priority!.toJson();
@@ -174,8 +417,7 @@ class Goal extends DomainResource {
       json['startCodeableConcept'] = startCodeableConcept!.toJson();
     }
     if (target != null && target!.isNotEmpty) {
-      json['target'] =
-          target!.map<dynamic>((GoalTarget v) => v.toJson()).toList();
+      json['target'] = target!.map((GoalTarget v) => v.toJson()).toList();
     }
     if (statusDate?.value != null) {
       json['statusDate'] = statusDate!.toJson();
@@ -193,145 +435,22 @@ class Goal extends DomainResource {
       json['expressedBy'] = expressedBy!.toJson();
     }
     if (addresses != null && addresses!.isNotEmpty) {
-      json['addresses'] =
-          addresses!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['addresses'] = addresses!.map((Reference v) => v.toJson()).toList();
     }
     if (note != null && note!.isNotEmpty) {
-      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+      json['note'] = note!.map((Annotation v) => v.toJson()).toList();
     }
     if (outcomeCode != null && outcomeCode!.isNotEmpty) {
       json['outcomeCode'] =
-          outcomeCode!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          outcomeCode!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (outcomeReference != null && outcomeReference!.isNotEmpty) {
       json['outcomeReference'] =
-          outcomeReference!.map<dynamic>((Reference v) => v.toJson()).toList();
+          outcomeReference!.map((Reference v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory Goal.fromJson(Map<String, dynamic> json) {
-    return Goal(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      lifecycleStatus: GoalLifecycleStatus.fromJson(json['lifecycleStatus']),
-      lifecycleStatusElement: json['_lifecycleStatus'] != null
-          ? Element.fromJson(json['_lifecycleStatus'] as Map<String, dynamic>)
-          : null,
-      achievementStatus: json['achievementStatus'] != null
-          ? CodeableConcept.fromJson(
-              json['achievementStatus'] as Map<String, dynamic>)
-          : null,
-      category: json['category'] != null
-          ? (json['category'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      priority: json['priority'] != null
-          ? CodeableConcept.fromJson(json['priority'] as Map<String, dynamic>)
-          : null,
-      description:
-          CodeableConcept.fromJson(json['description'] as Map<String, dynamic>),
-      subject: Reference.fromJson(json['subject'] as Map<String, dynamic>),
-      startDate: json['startDate'] != null
-          ? GoalStartEvent.fromJson(json['startDate'])
-          : null,
-      startDateElement: json['_startDate'] != null
-          ? Element.fromJson(json['_startDate'] as Map<String, dynamic>)
-          : null,
-      startCodeableConcept: json['startCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['startCodeableConcept'] as Map<String, dynamic>)
-          : null,
-      target: json['target'] != null
-          ? (json['target'] as List<dynamic>)
-              .map<GoalTarget>(
-                  (dynamic v) => GoalTarget.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      statusDate: json['statusDate'] != null
-          ? FhirDate.fromJson(json['statusDate'])
-          : null,
-      statusDateElement: json['_statusDate'] != null
-          ? Element.fromJson(json['_statusDate'] as Map<String, dynamic>)
-          : null,
-      statusReason: json['statusReason'] != null
-          ? FhirString.fromJson(json['statusReason'])
-          : null,
-      statusReasonElement: json['_statusReason'] != null
-          ? Element.fromJson(json['_statusReason'] as Map<String, dynamic>)
-          : null,
-      expressedBy: json['expressedBy'] != null
-          ? Reference.fromJson(json['expressedBy'] as Map<String, dynamic>)
-          : null,
-      addresses: json['addresses'] != null
-          ? (json['addresses'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      outcomeCode: json['outcomeCode'] != null
-          ? (json['outcomeCode'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      outcomeReference: json['outcomeReference'] != null
-          ? (json['outcomeReference'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   Goal clone() => throw UnimplementedError();
   @override
@@ -415,28 +534,13 @@ class Goal extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory Goal.fromYaml(dynamic yaml) => yaml is String
-      ? Goal.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? Goal.fromJson(jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'Goal cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory Goal.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return Goal.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [GoalTarget] /// Indicates what should be done by when.
+/// [GoalTarget]
+/// Indicates what should be done by when.
 class GoalTarget extends BackboneElement {
+  /// Primary constructor for [GoalTarget]
+
   GoalTarget({
     super.id,
     super.extension_,
@@ -446,13 +550,21 @@ class GoalTarget extends BackboneElement {
     this.detailRange,
     this.detailCodeableConcept,
     this.detailString,
+
+    /// Extensions for [detailString]
     this.detailStringElement,
     this.detailBoolean,
+
+    /// Extensions for [detailBoolean]
     this.detailBooleanElement,
     this.detailInteger,
+
+    /// Extensions for [detailInteger]
     this.detailIntegerElement,
     this.detailRatio,
     this.dueDate,
+
+    /// Extensions for [dueDate]
     this.dueDateElement,
     this.dueDuration,
     super.userData,
@@ -463,94 +575,222 @@ class GoalTarget extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory GoalTarget.fromJson(Map<String, dynamic> json) {
+    return GoalTarget(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      measure: json['measure'] != null
+          ? CodeableConcept.fromJson(
+              json['measure'] as Map<String, dynamic>,
+            )
+          : null,
+      detailQuantity: json['detailQuantity'] != null
+          ? Quantity.fromJson(
+              json['detailQuantity'] as Map<String, dynamic>,
+            )
+          : null,
+      detailRange: json['detailRange'] != null
+          ? Range.fromJson(
+              json['detailRange'] as Map<String, dynamic>,
+            )
+          : null,
+      detailCodeableConcept: json['detailCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['detailCodeableConcept'] as Map<String, dynamic>,
+            )
+          : null,
+      detailString: json['detailString'] != null
+          ? FhirString.fromJson(json['detailString'])
+          : null,
+      detailStringElement: json['_detailString'] != null
+          ? Element.fromJson(
+              json['_detailString'] as Map<String, dynamic>,
+            )
+          : null,
+      detailBoolean: json['detailBoolean'] != null
+          ? FhirBoolean.fromJson(json['detailBoolean'])
+          : null,
+      detailBooleanElement: json['_detailBoolean'] != null
+          ? Element.fromJson(
+              json['_detailBoolean'] as Map<String, dynamic>,
+            )
+          : null,
+      detailInteger: json['detailInteger'] != null
+          ? FhirInteger.fromJson(json['detailInteger'])
+          : null,
+      detailIntegerElement: json['_detailInteger'] != null
+          ? Element.fromJson(
+              json['_detailInteger'] as Map<String, dynamic>,
+            )
+          : null,
+      detailRatio: json['detailRatio'] != null
+          ? Ratio.fromJson(
+              json['detailRatio'] as Map<String, dynamic>,
+            )
+          : null,
+      dueDate:
+          json['dueDate'] != null ? FhirDate.fromJson(json['dueDate']) : null,
+      dueDateElement: json['_dueDate'] != null
+          ? Element.fromJson(
+              json['_dueDate'] as Map<String, dynamic>,
+            )
+          : null,
+      dueDuration: json['dueDuration'] != null
+          ? FhirDuration.fromJson(
+              json['dueDuration'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [GoalTarget] from a [String] or [YamlMap] object
+  factory GoalTarget.fromYaml(dynamic yaml) => yaml is String
+      ? GoalTarget.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? GoalTarget.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('GoalTarget cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [GoalTarget] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory GoalTarget.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return GoalTarget.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'GoalTarget';
 
-  /// [measure] /// The parameter whose value is being tracked, e.g. body weight, blood
+  /// [measure]
+  /// The parameter whose value is being tracked, e.g. body weight, blood
   /// pressure, or hemoglobin A1c level.
   final CodeableConcept? measure;
 
-  /// [detailQuantity] /// The target value of the focus to be achieved to signify the fulfillment of
-  /// the goal, e.g. 150 pounds, 7.0%. Either the high or low or both values of
-  /// the range can be specified. When a low value is missing, it indicates that
-  /// the goal is achieved at any focus value at or below the high value.
-  /// Similarly, if the high value is missing, it indicates that the goal is
-  /// achieved at any focus value at or above the low value.
+  /// [detailQuantity]
+  /// The target value of the focus to be achieved to signify the fulfillment
+  /// of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both
+  /// values of the range can be specified. When a low value is missing, it
+  /// indicates that the goal is achieved at any focus value at or below the
+  /// high value. Similarly, if the high value is missing, it indicates that
+  /// the goal is achieved at any focus value at or above the low value.
   final Quantity? detailQuantity;
 
-  /// [detailRange] /// The target value of the focus to be achieved to signify the fulfillment of
-  /// the goal, e.g. 150 pounds, 7.0%. Either the high or low or both values of
-  /// the range can be specified. When a low value is missing, it indicates that
-  /// the goal is achieved at any focus value at or below the high value.
-  /// Similarly, if the high value is missing, it indicates that the goal is
-  /// achieved at any focus value at or above the low value.
+  /// [detailRange]
+  /// The target value of the focus to be achieved to signify the fulfillment
+  /// of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both
+  /// values of the range can be specified. When a low value is missing, it
+  /// indicates that the goal is achieved at any focus value at or below the
+  /// high value. Similarly, if the high value is missing, it indicates that
+  /// the goal is achieved at any focus value at or above the low value.
   final Range? detailRange;
 
-  /// [detailCodeableConcept] /// The target value of the focus to be achieved to signify the fulfillment of
-  /// the goal, e.g. 150 pounds, 7.0%. Either the high or low or both values of
-  /// the range can be specified. When a low value is missing, it indicates that
-  /// the goal is achieved at any focus value at or below the high value.
-  /// Similarly, if the high value is missing, it indicates that the goal is
-  /// achieved at any focus value at or above the low value.
+  /// [detailCodeableConcept]
+  /// The target value of the focus to be achieved to signify the fulfillment
+  /// of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both
+  /// values of the range can be specified. When a low value is missing, it
+  /// indicates that the goal is achieved at any focus value at or below the
+  /// high value. Similarly, if the high value is missing, it indicates that
+  /// the goal is achieved at any focus value at or above the low value.
   final CodeableConcept? detailCodeableConcept;
 
-  /// [detailString] /// The target value of the focus to be achieved to signify the fulfillment of
-  /// the goal, e.g. 150 pounds, 7.0%. Either the high or low or both values of
-  /// the range can be specified. When a low value is missing, it indicates that
-  /// the goal is achieved at any focus value at or below the high value.
-  /// Similarly, if the high value is missing, it indicates that the goal is
-  /// achieved at any focus value at or above the low value.
+  /// [detailString]
+  /// The target value of the focus to be achieved to signify the fulfillment
+  /// of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both
+  /// values of the range can be specified. When a low value is missing, it
+  /// indicates that the goal is achieved at any focus value at or below the
+  /// high value. Similarly, if the high value is missing, it indicates that
+  /// the goal is achieved at any focus value at or above the low value.
   final FhirString? detailString;
+
+  /// Extensions for [detailString]
   final Element? detailStringElement;
 
-  /// [detailBoolean] /// The target value of the focus to be achieved to signify the fulfillment of
-  /// the goal, e.g. 150 pounds, 7.0%. Either the high or low or both values of
-  /// the range can be specified. When a low value is missing, it indicates that
-  /// the goal is achieved at any focus value at or below the high value.
-  /// Similarly, if the high value is missing, it indicates that the goal is
-  /// achieved at any focus value at or above the low value.
+  /// [detailBoolean]
+  /// The target value of the focus to be achieved to signify the fulfillment
+  /// of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both
+  /// values of the range can be specified. When a low value is missing, it
+  /// indicates that the goal is achieved at any focus value at or below the
+  /// high value. Similarly, if the high value is missing, it indicates that
+  /// the goal is achieved at any focus value at or above the low value.
   final FhirBoolean? detailBoolean;
+
+  /// Extensions for [detailBoolean]
   final Element? detailBooleanElement;
 
-  /// [detailInteger] /// The target value of the focus to be achieved to signify the fulfillment of
-  /// the goal, e.g. 150 pounds, 7.0%. Either the high or low or both values of
-  /// the range can be specified. When a low value is missing, it indicates that
-  /// the goal is achieved at any focus value at or below the high value.
-  /// Similarly, if the high value is missing, it indicates that the goal is
-  /// achieved at any focus value at or above the low value.
+  /// [detailInteger]
+  /// The target value of the focus to be achieved to signify the fulfillment
+  /// of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both
+  /// values of the range can be specified. When a low value is missing, it
+  /// indicates that the goal is achieved at any focus value at or below the
+  /// high value. Similarly, if the high value is missing, it indicates that
+  /// the goal is achieved at any focus value at or above the low value.
   final FhirInteger? detailInteger;
+
+  /// Extensions for [detailInteger]
   final Element? detailIntegerElement;
 
-  /// [detailRatio] /// The target value of the focus to be achieved to signify the fulfillment of
-  /// the goal, e.g. 150 pounds, 7.0%. Either the high or low or both values of
-  /// the range can be specified. When a low value is missing, it indicates that
-  /// the goal is achieved at any focus value at or below the high value.
-  /// Similarly, if the high value is missing, it indicates that the goal is
-  /// achieved at any focus value at or above the low value.
+  /// [detailRatio]
+  /// The target value of the focus to be achieved to signify the fulfillment
+  /// of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both
+  /// values of the range can be specified. When a low value is missing, it
+  /// indicates that the goal is achieved at any focus value at or below the
+  /// high value. Similarly, if the high value is missing, it indicates that
+  /// the goal is achieved at any focus value at or above the low value.
   final Ratio? detailRatio;
 
-  /// [dueDate] /// Indicates either the date or the duration after start by which the goal
+  /// [dueDate]
+  /// Indicates either the date or the duration after start by which the goal
   /// should be met.
   final FhirDate? dueDate;
+
+  /// Extensions for [dueDate]
   final Element? dueDateElement;
 
-  /// [dueDuration] /// Indicates either the date or the duration after start by which the goal
+  /// [dueDuration]
+  /// Indicates either the date or the duration after start by which the goal
   /// should be met.
   final FhirDuration? dueDuration;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (measure != null) {
       json['measure'] = measure!.toJson();
@@ -597,65 +837,6 @@ class GoalTarget extends BackboneElement {
     return json;
   }
 
-  factory GoalTarget.fromJson(Map<String, dynamic> json) {
-    return GoalTarget(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      measure: json['measure'] != null
-          ? CodeableConcept.fromJson(json['measure'] as Map<String, dynamic>)
-          : null,
-      detailQuantity: json['detailQuantity'] != null
-          ? Quantity.fromJson(json['detailQuantity'] as Map<String, dynamic>)
-          : null,
-      detailRange: json['detailRange'] != null
-          ? Range.fromJson(json['detailRange'] as Map<String, dynamic>)
-          : null,
-      detailCodeableConcept: json['detailCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['detailCodeableConcept'] as Map<String, dynamic>)
-          : null,
-      detailString: json['detailString'] != null
-          ? FhirString.fromJson(json['detailString'])
-          : null,
-      detailStringElement: json['_detailString'] != null
-          ? Element.fromJson(json['_detailString'] as Map<String, dynamic>)
-          : null,
-      detailBoolean: json['detailBoolean'] != null
-          ? FhirBoolean.fromJson(json['detailBoolean'])
-          : null,
-      detailBooleanElement: json['_detailBoolean'] != null
-          ? Element.fromJson(json['_detailBoolean'] as Map<String, dynamic>)
-          : null,
-      detailInteger: json['detailInteger'] != null
-          ? FhirInteger.fromJson(json['detailInteger'])
-          : null,
-      detailIntegerElement: json['_detailInteger'] != null
-          ? Element.fromJson(json['_detailInteger'] as Map<String, dynamic>)
-          : null,
-      detailRatio: json['detailRatio'] != null
-          ? Ratio.fromJson(json['detailRatio'] as Map<String, dynamic>)
-          : null,
-      dueDate:
-          json['dueDate'] != null ? FhirDate.fromJson(json['dueDate']) : null,
-      dueDateElement: json['_dueDate'] != null
-          ? Element.fromJson(json['_dueDate'] as Map<String, dynamic>)
-          : null,
-      dueDuration: json['dueDuration'] != null
-          ? FhirDuration.fromJson(json['dueDuration'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   GoalTarget clone() => throw UnimplementedError();
   @override
@@ -710,24 +891,5 @@ class GoalTarget extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory GoalTarget.fromYaml(dynamic yaml) => yaml is String
-      ? GoalTarget.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? GoalTarget.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'GoalTarget cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory GoalTarget.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return GoalTarget.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

@@ -1,18 +1,25 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [Consent] /// A record of a healthcare consumer’s choices, which permits or denies
-/// identified recipient(s) or recipient role(s) to perform one or more actions
-/// within a given policy context, for specific purposes and periods of time.
+/// [Consent]
+/// A record of a healthcare consumer’s choices, which permits or denies
+/// identified recipient(s) or recipient role(s) to perform one or more
+/// actions within a given policy context, for specific purposes and
+/// periods of time.
 class Consent extends DomainResource {
+  /// Primary constructor for [Consent]
+
   Consent({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -20,11 +27,15 @@ class Consent extends DomainResource {
     super.modifierExtension,
     this.identifier,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     required this.scope,
     required this.category,
     this.patient,
     this.dateTime,
+
+    /// Extensions for [dateTime]
     this.dateTimeElement,
     this.performer,
     this.organization,
@@ -39,71 +50,262 @@ class Consent extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.Consent);
+  }) : super(
+          resourceType: R4ResourceType.Consent,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory Consent.fromJson(Map<String, dynamic> json) {
+    return Consent(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      status: ConsentState.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      scope: CodeableConcept.fromJson(
+        json['scope'] as Map<String, dynamic>,
+      ),
+      category: (json['category'] as List<dynamic>)
+          .map<CodeableConcept>((dynamic v) =>
+              CodeableConcept.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      patient: json['patient'] != null
+          ? Reference.fromJson(
+              json['patient'] as Map<String, dynamic>,
+            )
+          : null,
+      dateTime: json['dateTime'] != null
+          ? FhirDateTime.fromJson(json['dateTime'])
+          : null,
+      dateTimeElement: json['_dateTime'] != null
+          ? Element.fromJson(
+              json['_dateTime'] as Map<String, dynamic>,
+            )
+          : null,
+      performer: json['performer'] != null
+          ? (json['performer'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      organization: json['organization'] != null
+          ? (json['organization'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      sourceAttachment: json['sourceAttachment'] != null
+          ? Attachment.fromJson(
+              json['sourceAttachment'] as Map<String, dynamic>,
+            )
+          : null,
+      sourceReference: json['sourceReference'] != null
+          ? Reference.fromJson(
+              json['sourceReference'] as Map<String, dynamic>,
+            )
+          : null,
+      policy: json['policy'] != null
+          ? (json['policy'] as List<dynamic>)
+              .map<ConsentPolicy>(
+                (dynamic v) => ConsentPolicy.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      verification: json['verification'] != null
+          ? (json['verification'] as List<dynamic>)
+              .map<ConsentVerification>(
+                (dynamic v) => ConsentVerification.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      provision: json['provision'] != null
+          ? ConsentProvision.fromJson(
+              json['provision'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [Consent] from a [String] or [YamlMap] object
+  factory Consent.fromYaml(dynamic yaml) => yaml is String
+      ? Consent.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? Consent.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('Consent cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [Consent] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory Consent.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Consent.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'Consent';
 
-  /// [identifier] /// Unique identifier for this copy of the Consent Statement.
+  /// [identifier]
+  /// Unique identifier for this copy of the Consent Statement.
   final List<Identifier>? identifier;
 
-  /// [status] /// Indicates the current state of this consent.
+  /// [status]
+  /// Indicates the current state of this consent.
   final ConsentState status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [scope] /// A selector of the type of consent being presented: ADR, Privacy, Treatment,
-  /// Research. This list is now extensible.
+  /// [scope]
+  /// A selector of the type of consent being presented: ADR, Privacy,
+  /// Treatment, Research. This list is now extensible.
   final CodeableConcept scope;
 
-  /// [category] /// A classification of the type of consents found in the statement. This
+  /// [category]
+  /// A classification of the type of consents found in the statement. This
   /// element supports indexing and retrieval of consent statements.
   final List<CodeableConcept> category;
 
-  /// [patient] /// The patient/healthcare consumer to whom this consent applies.
+  /// [patient]
+  /// The patient/healthcare consumer to whom this consent applies.
   final Reference? patient;
 
-  /// [dateTime] /// When this Consent was issued / created / indexed.
+  /// [dateTime]
+  /// When this Consent was issued / created / indexed.
   final FhirDateTime? dateTime;
+
+  /// Extensions for [dateTime]
   final Element? dateTimeElement;
 
-  /// [performer] /// Either the Grantor, which is the entity responsible for granting the rights
-  /// listed in a Consent Directive or the Grantee, which is the entity
-  /// responsible for complying with the Consent Directive, including any
-  /// obligations or limitations on authorizations and enforcement of
+  /// [performer]
+  /// Either the Grantor, which is the entity responsible for granting the
+  /// rights listed in a Consent Directive or the Grantee, which is the
+  /// entity responsible for complying with the Consent Directive, including
+  /// any obligations or limitations on authorizations and enforcement of
   /// prohibitions.
   final List<Reference>? performer;
 
-  /// [organization] /// The organization that manages the consent, and the framework within which
-  /// it is executed.
+  /// [organization]
+  /// The organization that manages the consent, and the framework within
+  /// which it is executed.
   final List<Reference>? organization;
 
-  /// [sourceAttachment] /// The source on which this consent statement is based. The source might be a
-  /// scanned original paper form, or a reference to a consent that links back to
-  /// such a source, a reference to a document repository (e.g. XDS) that stores
-  /// the original consent document.
+  /// [sourceAttachment]
+  /// The source on which this consent statement is based. The source might
+  /// be a scanned original paper form, or a reference to a consent that
+  /// links back to such a source, a reference to a document repository (e.g.
+  /// XDS) that stores the original consent document.
   final Attachment? sourceAttachment;
 
-  /// [sourceReference] /// The source on which this consent statement is based. The source might be a
-  /// scanned original paper form, or a reference to a consent that links back to
-  /// such a source, a reference to a document repository (e.g. XDS) that stores
-  /// the original consent document.
+  /// [sourceReference]
+  /// The source on which this consent statement is based. The source might
+  /// be a scanned original paper form, or a reference to a consent that
+  /// links back to such a source, a reference to a document repository (e.g.
+  /// XDS) that stores the original consent document.
   final Reference? sourceReference;
 
-  /// [policy] /// The references to the policies that are included in this consent scope.
-  /// Policies may be organizational, but are often defined jurisdictionally, or
-  /// in law.
+  /// [policy]
+  /// The references to the policies that are included in this consent scope.
+  /// Policies may be organizational, but are often defined jurisdictionally,
+  /// or in law.
   final List<ConsentPolicy>? policy;
 
-  /// [verification] /// Whether a treatment instruction (e.g. artificial respiration yes or no) was
-  /// verified with the patient, his/her family or another authorized person.
+  /// [verification]
+  /// Whether a treatment instruction (e.g. artificial respiration yes or no)
+  /// was verified with the patient, his/her family or another authorized
+  /// person.
   final List<ConsentVerification>? verification;
 
-  /// [provision] /// An exception to the base policy of this consent. An exception can be an
+  /// [provision]
+  /// An exception to the base policy of this consent. An exception can be an
   /// addition or removal of access permissions.
   final ConsentProvision? provision;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -124,21 +326,19 @@ class Consent extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     json['status'] = status.toJson();
     json['scope'] = scope.toJson();
@@ -154,12 +354,11 @@ class Consent extends DomainResource {
       json['_dateTime'] = dateTimeElement!.toJson();
     }
     if (performer != null && performer!.isNotEmpty) {
-      json['performer'] =
-          performer!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['performer'] = performer!.map((Reference v) => v.toJson()).toList();
     }
     if (organization != null && organization!.isNotEmpty) {
       json['organization'] =
-          organization!.map<dynamic>((Reference v) => v.toJson()).toList();
+          organization!.map((Reference v) => v.toJson()).toList();
     }
     if (sourceAttachment != null) {
       json['sourceAttachment'] = sourceAttachment!.toJson();
@@ -168,13 +367,11 @@ class Consent extends DomainResource {
       json['sourceReference'] = sourceReference!.toJson();
     }
     if (policy != null && policy!.isNotEmpty) {
-      json['policy'] =
-          policy!.map<dynamic>((ConsentPolicy v) => v.toJson()).toList();
+      json['policy'] = policy!.map((ConsentPolicy v) => v.toJson()).toList();
     }
     if (verification != null && verification!.isNotEmpty) {
-      json['verification'] = verification!
-          .map<dynamic>((ConsentVerification v) => v.toJson())
-          .toList();
+      json['verification'] =
+          verification!.map((ConsentVerification v) => v.toJson()).toList();
     }
     if (provision != null) {
       json['provision'] = provision!.toJson();
@@ -182,105 +379,6 @@ class Consent extends DomainResource {
     return json;
   }
 
-  factory Consent.fromJson(Map<String, dynamic> json) {
-    return Consent(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      status: ConsentState.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      scope: CodeableConcept.fromJson(json['scope'] as Map<String, dynamic>),
-      category: (json['category'] as List<dynamic>)
-          .map<CodeableConcept>((dynamic v) =>
-              CodeableConcept.fromJson(v as Map<String, dynamic>))
-          .toList(),
-      patient: json['patient'] != null
-          ? Reference.fromJson(json['patient'] as Map<String, dynamic>)
-          : null,
-      dateTime: json['dateTime'] != null
-          ? FhirDateTime.fromJson(json['dateTime'])
-          : null,
-      dateTimeElement: json['_dateTime'] != null
-          ? Element.fromJson(json['_dateTime'] as Map<String, dynamic>)
-          : null,
-      performer: json['performer'] != null
-          ? (json['performer'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      organization: json['organization'] != null
-          ? (json['organization'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      sourceAttachment: json['sourceAttachment'] != null
-          ? Attachment.fromJson(
-              json['sourceAttachment'] as Map<String, dynamic>)
-          : null,
-      sourceReference: json['sourceReference'] != null
-          ? Reference.fromJson(json['sourceReference'] as Map<String, dynamic>)
-          : null,
-      policy: json['policy'] != null
-          ? (json['policy'] as List<dynamic>)
-              .map<ConsentPolicy>((dynamic v) =>
-                  ConsentPolicy.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      verification: json['verification'] != null
-          ? (json['verification'] as List<dynamic>)
-              .map<ConsentVerification>((dynamic v) =>
-                  ConsentVerification.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      provision: json['provision'] != null
-          ? ConsentProvision.fromJson(json['provision'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   Consent clone() => throw UnimplementedError();
   @override
@@ -351,38 +449,26 @@ class Consent extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory Consent.fromYaml(dynamic yaml) => yaml is String
-      ? Consent.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? Consent.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'Consent cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory Consent.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return Consent.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [ConsentPolicy] /// The references to the policies that are included in this consent scope.
-/// Policies may be organizational, but are often defined jurisdictionally, or
-/// in law.
+/// [ConsentPolicy]
+/// The references to the policies that are included in this consent scope.
+/// Policies may be organizational, but are often defined jurisdictionally,
+/// or in law.
 class ConsentPolicy extends BackboneElement {
+  /// Primary constructor for [ConsentPolicy]
+
   ConsentPolicy({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.authority,
+
+    /// Extensions for [authority]
     this.authorityElement,
     this.uri,
+
+    /// Extensions for [uri]
     this.uriElement,
     this.policyRule,
     super.userData,
@@ -393,36 +479,112 @@ class ConsentPolicy extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory ConsentPolicy.fromJson(Map<String, dynamic> json) {
+    return ConsentPolicy(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      authority: json['authority'] != null
+          ? FhirUri.fromJson(json['authority'])
+          : null,
+      authorityElement: json['_authority'] != null
+          ? Element.fromJson(
+              json['_authority'] as Map<String, dynamic>,
+            )
+          : null,
+      uri: json['uri'] != null ? FhirUri.fromJson(json['uri']) : null,
+      uriElement: json['_uri'] != null
+          ? Element.fromJson(
+              json['_uri'] as Map<String, dynamic>,
+            )
+          : null,
+      policyRule: json['policyRule'] != null
+          ? CodeableConcept.fromJson(
+              json['policyRule'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [ConsentPolicy] from a [String] or [YamlMap] object
+  factory ConsentPolicy.fromYaml(dynamic yaml) => yaml is String
+      ? ConsentPolicy.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? ConsentPolicy.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'ConsentPolicy cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [ConsentPolicy] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory ConsentPolicy.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ConsentPolicy.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'ConsentPolicy';
 
-  /// [authority] /// Entity or Organization having regulatory jurisdiction or accountability for
-  /// enforcing policies pertaining to Consent Directives.
+  /// [authority]
+  /// Entity or Organization having regulatory jurisdiction or accountability
+  /// for enforcing policies pertaining to Consent Directives.
   final FhirUri? authority;
+
+  /// Extensions for [authority]
   final Element? authorityElement;
 
-  /// [uri] /// The references to the policies that are included in this consent scope.
-  /// Policies may be organizational, but are often defined jurisdictionally, or
-  /// in law.
+  /// [uri]
+  /// The references to the policies that are included in this consent scope.
+  /// Policies may be organizational, but are often defined jurisdictionally,
+  /// or in law.
   final FhirUri? uri;
+
+  /// Extensions for [uri]
   final Element? uriElement;
 
-  /// [policyRule] /// A reference to the specific base computable regulation or policy.
+  /// [policyRule]
+  /// A reference to the specific base computable regulation or policy.
   final CodeableConcept? policyRule;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (authority?.value != null) {
       json['authority'] = authority!.toJson();
@@ -442,36 +604,6 @@ class ConsentPolicy extends BackboneElement {
     return json;
   }
 
-  factory ConsentPolicy.fromJson(Map<String, dynamic> json) {
-    return ConsentPolicy(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      authority: json['authority'] != null
-          ? FhirUri.fromJson(json['authority'])
-          : null,
-      authorityElement: json['_authority'] != null
-          ? Element.fromJson(json['_authority'] as Map<String, dynamic>)
-          : null,
-      uri: json['uri'] != null ? FhirUri.fromJson(json['uri']) : null,
-      uriElement: json['_uri'] != null
-          ? Element.fromJson(json['_uri'] as Map<String, dynamic>)
-          : null,
-      policyRule: json['policyRule'] != null
-          ? CodeableConcept.fromJson(json['policyRule'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   ConsentPolicy clone() => throw UnimplementedError();
   @override
@@ -508,38 +640,27 @@ class ConsentPolicy extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory ConsentPolicy.fromYaml(dynamic yaml) => yaml is String
-      ? ConsentPolicy.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? ConsentPolicy.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'ConsentPolicy cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory ConsentPolicy.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return ConsentPolicy.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [ConsentVerification] /// Whether a treatment instruction (e.g. artificial respiration yes or no) was
-/// verified with the patient, his/her family or another authorized person.
+/// [ConsentVerification]
+/// Whether a treatment instruction (e.g. artificial respiration yes or no)
+/// was verified with the patient, his/her family or another authorized
+/// person.
 class ConsentVerification extends BackboneElement {
+  /// Primary constructor for [ConsentVerification]
+
   ConsentVerification({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.verified,
+
+    /// Extensions for [verified]
     this.verifiedElement,
     this.verifiedWith,
     this.verificationDate,
+
+    /// Extensions for [verificationDate]
     this.verificationDateElement,
     super.userData,
     super.formatCommentsPre,
@@ -549,34 +670,110 @@ class ConsentVerification extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory ConsentVerification.fromJson(Map<String, dynamic> json) {
+    return ConsentVerification(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      verified: FhirBoolean.fromJson(json['verified']),
+      verifiedElement: json['_verified'] != null
+          ? Element.fromJson(
+              json['_verified'] as Map<String, dynamic>,
+            )
+          : null,
+      verifiedWith: json['verifiedWith'] != null
+          ? Reference.fromJson(
+              json['verifiedWith'] as Map<String, dynamic>,
+            )
+          : null,
+      verificationDate: json['verificationDate'] != null
+          ? FhirDateTime.fromJson(json['verificationDate'])
+          : null,
+      verificationDateElement: json['_verificationDate'] != null
+          ? Element.fromJson(
+              json['_verificationDate'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [ConsentVerification] from a [String] or [YamlMap] object
+  factory ConsentVerification.fromYaml(dynamic yaml) => yaml is String
+      ? ConsentVerification.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? ConsentVerification.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'ConsentVerification cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [ConsentVerification] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory ConsentVerification.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ConsentVerification.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'ConsentVerification';
 
-  /// [verified] /// Has the instruction been verified.
+  /// [verified]
+  /// Has the instruction been verified.
   final FhirBoolean verified;
+
+  /// Extensions for [verified]
   final Element? verifiedElement;
 
-  /// [verifiedWith] /// Who verified the instruction (Patient, Relative or other Authorized
+  /// [verifiedWith]
+  /// Who verified the instruction (Patient, Relative or other Authorized
   /// Person).
   final Reference? verifiedWith;
 
-  /// [verificationDate] /// Date verification was collected.
+  /// [verificationDate]
+  /// Date verification was collected.
   final FhirDateTime? verificationDate;
+
+  /// Extensions for [verificationDate]
   final Element? verificationDateElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['verified'] = verified.toJson();
     if (verifiedElement != null) {
@@ -594,36 +791,6 @@ class ConsentVerification extends BackboneElement {
     return json;
   }
 
-  factory ConsentVerification.fromJson(Map<String, dynamic> json) {
-    return ConsentVerification(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      verified: FhirBoolean.fromJson(json['verified']),
-      verifiedElement: json['_verified'] != null
-          ? Element.fromJson(json['_verified'] as Map<String, dynamic>)
-          : null,
-      verifiedWith: json['verifiedWith'] != null
-          ? Reference.fromJson(json['verifiedWith'] as Map<String, dynamic>)
-          : null,
-      verificationDate: json['verificationDate'] != null
-          ? FhirDateTime.fromJson(json['verificationDate'])
-          : null,
-      verificationDateElement: json['_verificationDate'] != null
-          ? Element.fromJson(json['_verificationDate'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   ConsentVerification clone() => throw UnimplementedError();
   @override
@@ -661,35 +828,21 @@ class ConsentVerification extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory ConsentVerification.fromYaml(dynamic yaml) => yaml is String
-      ? ConsentVerification.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? ConsentVerification.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'ConsentVerification cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory ConsentVerification.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return ConsentVerification.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [ConsentProvision] /// An exception to the base policy of this consent. An exception can be an
+/// [ConsentProvision]
+/// An exception to the base policy of this consent. An exception can be an
 /// addition or removal of access permissions.
 class ConsentProvision extends BackboneElement {
+  /// Primary constructor for [ConsentProvision]
+
   ConsentProvision({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.type,
+
+    /// Extensions for [type]
     this.typeElement,
     this.period,
     this.actor,
@@ -709,63 +862,217 @@ class ConsentProvision extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory ConsentProvision.fromJson(Map<String, dynamic> json) {
+    return ConsentProvision(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? ConsentProvisionType.fromJson(json['type'])
+          : null,
+      typeElement: json['_type'] != null
+          ? Element.fromJson(
+              json['_type'] as Map<String, dynamic>,
+            )
+          : null,
+      period: json['period'] != null
+          ? Period.fromJson(
+              json['period'] as Map<String, dynamic>,
+            )
+          : null,
+      actor: json['actor'] != null
+          ? (json['actor'] as List<dynamic>)
+              .map<ConsentActor>(
+                (dynamic v) => ConsentActor.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      action: json['action'] != null
+          ? (json['action'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      securityLabel: json['securityLabel'] != null
+          ? (json['securityLabel'] as List<dynamic>)
+              .map<Coding>(
+                (dynamic v) => Coding.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      purpose: json['purpose'] != null
+          ? (json['purpose'] as List<dynamic>)
+              .map<Coding>(
+                (dynamic v) => Coding.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      class_: json['class'] != null
+          ? (json['class'] as List<dynamic>)
+              .map<Coding>(
+                (dynamic v) => Coding.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      code: json['code'] != null
+          ? (json['code'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      dataPeriod: json['dataPeriod'] != null
+          ? Period.fromJson(
+              json['dataPeriod'] as Map<String, dynamic>,
+            )
+          : null,
+      data: json['data'] != null
+          ? (json['data'] as List<dynamic>)
+              .map<ConsentData>(
+                (dynamic v) => ConsentData.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      provision: json['provision'] != null
+          ? (json['provision'] as List<dynamic>)
+              .map<ConsentProvision>(
+                (dynamic v) => ConsentProvision.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [ConsentProvision] from a [String] or [YamlMap] object
+  factory ConsentProvision.fromYaml(dynamic yaml) => yaml is String
+      ? ConsentProvision.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? ConsentProvision.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'ConsentProvision cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [ConsentProvision] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory ConsentProvision.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ConsentProvision.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'ConsentProvision';
 
-  /// [type] /// Action to take - permit or deny - when the rule conditions are met. Not
+  /// [type]
+  /// Action to take - permit or deny - when the rule conditions are met. Not
   /// permitted in root rule, required in all nested rules.
   final ConsentProvisionType? type;
+
+  /// Extensions for [type]
   final Element? typeElement;
 
-  /// [period] /// The timeframe in this rule is valid.
+  /// [period]
+  /// The timeframe in this rule is valid.
   final Period? period;
 
-  /// [actor] /// Who or what is controlled by this rule. Use group to identify a set of
+  /// [actor]
+  /// Who or what is controlled by this rule. Use group to identify a set of
   /// actors by some property they share (e.g. 'admitting officers').
   final List<ConsentActor>? actor;
 
-  /// [action] /// Actions controlled by this Rule.
+  /// [action]
+  /// Actions controlled by this Rule.
   final List<CodeableConcept>? action;
 
-  /// [securityLabel] /// A security label, comprised of 0..* security label fields (Privacy tags),
-  /// which define which resources are controlled by this exception.
+  /// [securityLabel]
+  /// A security label, comprised of 0..* security label fields (Privacy
+  /// tags), which define which resources are controlled by this exception.
   final List<Coding>? securityLabel;
 
-  /// [purpose] /// The context of the activities a user is taking - why the user is accessing
-  /// the data - that are controlled by this rule.
+  /// [purpose]
+  /// The context of the activities a user is taking - why the user is
+  /// accessing the data - that are controlled by this rule.
   final List<Coding>? purpose;
 
-  /// [class_] /// The class of information covered by this rule. The type can be a FHIR
-  /// resource type, a profile on a type, or a CDA document, or some other type
-  /// that indicates what sort of information the consent relates to.
+  /// [class_]
+  /// The class of information covered by this rule. The type can be a FHIR
+  /// resource type, a profile on a type, or a CDA document, or some other
+  /// type that indicates what sort of information the consent relates to.
   final List<Coding>? class_;
 
-  /// [code] /// If this code is found in an instance, then the rule applies.
+  /// [code]
+  /// If this code is found in an instance, then the rule applies.
   final List<CodeableConcept>? code;
 
-  /// [dataPeriod] /// Clinical or Operational Relevant period of time that bounds the data
+  /// [dataPeriod]
+  /// Clinical or Operational Relevant period of time that bounds the data
   /// controlled by this rule.
   final Period? dataPeriod;
 
-  /// [data] /// The resources controlled by this rule if specific resources are referenced.
+  /// [data]
+  /// The resources controlled by this rule if specific resources are
+  /// referenced.
   final List<ConsentData>? data;
 
-  /// [provision] /// Rules which provide exceptions to the base rule or subrules.
+  /// [provision]
+  /// Rules which provide exceptions to the base rule or subrules.
   final List<ConsentProvision>? provision;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (type != null) {
       json['type'] = type!.toJson();
@@ -774,118 +1081,37 @@ class ConsentProvision extends BackboneElement {
       json['period'] = period!.toJson();
     }
     if (actor != null && actor!.isNotEmpty) {
-      json['actor'] =
-          actor!.map<dynamic>((ConsentActor v) => v.toJson()).toList();
+      json['actor'] = actor!.map((ConsentActor v) => v.toJson()).toList();
     }
     if (action != null && action!.isNotEmpty) {
-      json['action'] =
-          action!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+      json['action'] = action!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (securityLabel != null && securityLabel!.isNotEmpty) {
       json['securityLabel'] =
-          securityLabel!.map<dynamic>((Coding v) => v.toJson()).toList();
+          securityLabel!.map((Coding v) => v.toJson()).toList();
     }
     if (purpose != null && purpose!.isNotEmpty) {
-      json['purpose'] =
-          purpose!.map<dynamic>((Coding v) => v.toJson()).toList();
+      json['purpose'] = purpose!.map((Coding v) => v.toJson()).toList();
     }
     if (class_ != null && class_!.isNotEmpty) {
-      json['class'] = class_!.map<dynamic>((Coding v) => v.toJson()).toList();
+      json['class'] = class_!.map((Coding v) => v.toJson()).toList();
     }
     if (code != null && code!.isNotEmpty) {
-      json['code'] =
-          code!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+      json['code'] = code!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (dataPeriod != null) {
       json['dataPeriod'] = dataPeriod!.toJson();
     }
     if (data != null && data!.isNotEmpty) {
-      json['data'] = data!.map<dynamic>((ConsentData v) => v.toJson()).toList();
+      json['data'] = data!.map((ConsentData v) => v.toJson()).toList();
     }
     if (provision != null && provision!.isNotEmpty) {
       json['provision'] =
-          provision!.map<dynamic>((ConsentProvision v) => v.toJson()).toList();
+          provision!.map((ConsentProvision v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory ConsentProvision.fromJson(Map<String, dynamic> json) {
-    return ConsentProvision(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? ConsentProvisionType.fromJson(json['type'])
-          : null,
-      typeElement: json['_type'] != null
-          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
-          : null,
-      period: json['period'] != null
-          ? Period.fromJson(json['period'] as Map<String, dynamic>)
-          : null,
-      actor: json['actor'] != null
-          ? (json['actor'] as List<dynamic>)
-              .map<ConsentActor>((dynamic v) =>
-                  ConsentActor.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      action: json['action'] != null
-          ? (json['action'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      securityLabel: json['securityLabel'] != null
-          ? (json['securityLabel'] as List<dynamic>)
-              .map<Coding>(
-                  (dynamic v) => Coding.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      purpose: json['purpose'] != null
-          ? (json['purpose'] as List<dynamic>)
-              .map<Coding>(
-                  (dynamic v) => Coding.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      class_: json['class'] != null
-          ? (json['class'] as List<dynamic>)
-              .map<Coding>(
-                  (dynamic v) => Coding.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      code: json['code'] != null
-          ? (json['code'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      dataPeriod: json['dataPeriod'] != null
-          ? Period.fromJson(json['dataPeriod'] as Map<String, dynamic>)
-          : null,
-      data: json['data'] != null
-          ? (json['data'] as List<dynamic>)
-              .map<ConsentData>((dynamic v) =>
-                  ConsentData.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      provision: json['provision'] != null
-          ? (json['provision'] as List<dynamic>)
-              .map<ConsentProvision>((dynamic v) =>
-                  ConsentProvision.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   ConsentProvision clone() => throw UnimplementedError();
   @override
@@ -936,30 +1162,14 @@ class ConsentProvision extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory ConsentProvision.fromYaml(dynamic yaml) => yaml is String
-      ? ConsentProvision.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? ConsentProvision.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'ConsentProvision cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory ConsentProvision.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return ConsentProvision.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [ConsentActor] /// Who or what is controlled by this rule. Use group to identify a set of
+/// [ConsentActor]
+/// Who or what is controlled by this rule. Use group to identify a set of
 /// actors by some property they share (e.g. 'admitting officers').
 class ConsentActor extends BackboneElement {
+  /// Primary constructor for [ConsentActor]
+
   ConsentActor({
     super.id,
     super.extension_,
@@ -974,56 +1184,94 @@ class ConsentActor extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory ConsentActor.fromJson(Map<String, dynamic> json) {
+    return ConsentActor(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      role: CodeableConcept.fromJson(
+        json['role'] as Map<String, dynamic>,
+      ),
+      reference: Reference.fromJson(
+        json['reference'] as Map<String, dynamic>,
+      ),
+    );
+  }
+
+  /// Deserialize [ConsentActor] from a [String] or [YamlMap] object
+  factory ConsentActor.fromYaml(dynamic yaml) => yaml is String
+      ? ConsentActor.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? ConsentActor.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('ConsentActor cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [ConsentActor] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory ConsentActor.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ConsentActor.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'ConsentActor';
 
-  /// [role] /// How the individual is involved in the resources content that is described
-  /// in the exception.
+  /// [role]
+  /// How the individual is involved in the resources content that is
+  /// described in the exception.
   final CodeableConcept role;
 
-  /// [reference] /// The resource that identifies the actor. To identify actors by type, use
+  /// [reference]
+  /// The resource that identifies the actor. To identify actors by type, use
   /// group to identify a set of actors by some property they share (e.g.
   /// 'admitting officers').
   final Reference reference;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['role'] = role.toJson();
     json['reference'] = reference.toJson();
     return json;
   }
 
-  factory ConsentActor.fromJson(Map<String, dynamic> json) {
-    return ConsentActor(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      role: CodeableConcept.fromJson(json['role'] as Map<String, dynamic>),
-      reference: Reference.fromJson(json['reference'] as Map<String, dynamic>),
-    );
-  }
   @override
   ConsentActor clone() => throw UnimplementedError();
   @override
@@ -1054,34 +1302,21 @@ class ConsentActor extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory ConsentActor.fromYaml(dynamic yaml) => yaml is String
-      ? ConsentActor.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? ConsentActor.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'ConsentActor cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory ConsentActor.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return ConsentActor.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [ConsentData] /// The resources controlled by this rule if specific resources are referenced.
+/// [ConsentData]
+/// The resources controlled by this rule if specific resources are
+/// referenced.
 class ConsentData extends BackboneElement {
+  /// Primary constructor for [ConsentData]
+
   ConsentData({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.meaning,
+
+    /// Extensions for [meaning]
     this.meaningElement,
     required this.reference,
     super.userData,
@@ -1092,59 +1327,99 @@ class ConsentData extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory ConsentData.fromJson(Map<String, dynamic> json) {
+    return ConsentData(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      meaning: ConsentDataMeaning.fromJson(json['meaning']),
+      meaningElement: json['_meaning'] != null
+          ? Element.fromJson(
+              json['_meaning'] as Map<String, dynamic>,
+            )
+          : null,
+      reference: Reference.fromJson(
+        json['reference'] as Map<String, dynamic>,
+      ),
+    );
+  }
+
+  /// Deserialize [ConsentData] from a [String] or [YamlMap] object
+  factory ConsentData.fromYaml(dynamic yaml) => yaml is String
+      ? ConsentData.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? ConsentData.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('ConsentData cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [ConsentData] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory ConsentData.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ConsentData.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'ConsentData';
 
-  /// [meaning] /// How the resource reference is interpreted when testing consent
+  /// [meaning]
+  /// How the resource reference is interpreted when testing consent
   /// restrictions.
   final ConsentDataMeaning meaning;
+
+  /// Extensions for [meaning]
   final Element? meaningElement;
 
-  /// [reference] /// A reference to a specific resource that defines which resources are covered
-  /// by this consent.
+  /// [reference]
+  /// A reference to a specific resource that defines which resources are
+  /// covered by this consent.
   final Reference reference;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['meaning'] = meaning.toJson();
     json['reference'] = reference.toJson();
     return json;
   }
 
-  factory ConsentData.fromJson(Map<String, dynamic> json) {
-    return ConsentData(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      meaning: ConsentDataMeaning.fromJson(json['meaning']),
-      meaningElement: json['_meaning'] != null
-          ? Element.fromJson(json['_meaning'] as Map<String, dynamic>)
-          : null,
-      reference: Reference.fromJson(json['reference'] as Map<String, dynamic>),
-    );
-  }
   @override
   ConsentData clone() => throw UnimplementedError();
   @override
@@ -1176,24 +1451,5 @@ class ConsentData extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory ConsentData.fromYaml(dynamic yaml) => yaml is String
-      ? ConsentData.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? ConsentData.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'ConsentData cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory ConsentData.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return ConsentData.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

@@ -1,24 +1,31 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [Composition] /// A set of healthcare-related information that is assembled together into a
-/// single logical package that provides a single coherent statement of
-/// meaning, establishes its own context and that has clinical attestation with
-/// regard to who is making the statement. A Composition defines the structure
-/// and narrative content necessary for a document. However, a Composition
-/// alone does not constitute a document. Rather, the Composition must be the
-/// first entry in a Bundle where Bundle.type=document, and any other resources
-/// referenced from Composition must be included as subsequent entries in the
-/// Bundle (for example Patient, Practitioner, Encounter, etc.).
+/// [Composition]
+/// A set of healthcare-related information that is assembled together into
+/// a single logical package that provides a single coherent statement of
+/// meaning, establishes its own context and that has clinical attestation
+/// with regard to who is making the statement. A Composition defines the
+/// structure and narrative content necessary for a document. However, a
+/// Composition alone does not constitute a document. Rather, the
+/// Composition must be the first entry in a Bundle where
+/// Bundle.type=document, and any other resources referenced from
+/// Composition must be included as subsequent entries in the Bundle (for
+/// example Patient, Practitioner, Encounter, etc.).
 class Composition extends DomainResource {
+  /// Primary constructor for [Composition]
+
   Composition({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -26,17 +33,25 @@ class Composition extends DomainResource {
     super.modifierExtension,
     this.identifier,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     required this.type,
     this.category,
     this.subject,
     this.encounter,
     required this.date,
+
+    /// Extensions for [date]
     this.dateElement,
     required this.author,
     required this.title,
+
+    /// Extensions for [title]
     this.titleElement,
     this.confidentiality,
+
+    /// Extensions for [confidentiality]
     this.confidentialityElement,
     this.attester,
     this.custodian,
@@ -49,77 +64,286 @@ class Composition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.Composition);
+  }) : super(
+          resourceType: R4ResourceType.Composition,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory Composition.fromJson(Map<String, dynamic> json) {
+    return Composition(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? Identifier.fromJson(
+              json['identifier'] as Map<String, dynamic>,
+            )
+          : null,
+      status: CompositionStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      type: CodeableConcept.fromJson(
+        json['type'] as Map<String, dynamic>,
+      ),
+      category: json['category'] != null
+          ? (json['category'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      subject: json['subject'] != null
+          ? Reference.fromJson(
+              json['subject'] as Map<String, dynamic>,
+            )
+          : null,
+      encounter: json['encounter'] != null
+          ? Reference.fromJson(
+              json['encounter'] as Map<String, dynamic>,
+            )
+          : null,
+      date: FhirDateTime.fromJson(json['date']),
+      dateElement: json['_date'] != null
+          ? Element.fromJson(
+              json['_date'] as Map<String, dynamic>,
+            )
+          : null,
+      author: (json['author'] as List<dynamic>)
+          .map<Reference>(
+              (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+          .toList(),
+      title: FhirString.fromJson(json['title']),
+      titleElement: json['_title'] != null
+          ? Element.fromJson(
+              json['_title'] as Map<String, dynamic>,
+            )
+          : null,
+      confidentiality: json['confidentiality'] != null
+          ? FhirCode.fromJson(json['confidentiality'])
+          : null,
+      confidentialityElement: json['_confidentiality'] != null
+          ? Element.fromJson(
+              json['_confidentiality'] as Map<String, dynamic>,
+            )
+          : null,
+      attester: json['attester'] != null
+          ? (json['attester'] as List<dynamic>)
+              .map<CompositionAttester>(
+                (dynamic v) => CompositionAttester.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      custodian: json['custodian'] != null
+          ? Reference.fromJson(
+              json['custodian'] as Map<String, dynamic>,
+            )
+          : null,
+      relatesTo: json['relatesTo'] != null
+          ? (json['relatesTo'] as List<dynamic>)
+              .map<CompositionRelatesTo>(
+                (dynamic v) => CompositionRelatesTo.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      event: json['event'] != null
+          ? (json['event'] as List<dynamic>)
+              .map<CompositionEvent>(
+                (dynamic v) => CompositionEvent.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      section: json['section'] != null
+          ? (json['section'] as List<dynamic>)
+              .map<CompositionSection>(
+                (dynamic v) => CompositionSection.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [Composition] from a [String] or [YamlMap] object
+  factory Composition.fromYaml(dynamic yaml) => yaml is String
+      ? Composition.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? Composition.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('Composition cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [Composition] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory Composition.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Composition.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'Composition';
 
-  /// [identifier] /// A version-independent identifier for the Composition. This identifier stays
-  /// constant as the composition is changed over time.
+  /// [identifier]
+  /// A version-independent identifier for the Composition. This identifier
+  /// stays constant as the composition is changed over time.
   final Identifier? identifier;
 
-  /// [status] /// The workflow/clinical status of this composition. The status is a marker
-  /// for the clinical standing of the document.
+  /// [status]
+  /// The workflow/clinical status of this composition. The status is a
+  /// marker for the clinical standing of the document.
   final CompositionStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [type] /// Specifies the particular kind of composition (e.g. History and Physical,
-  /// Discharge Summary, Progress Note). This usually equates to the purpose of
-  /// making the composition.
+  /// [type]
+  /// Specifies the particular kind of composition (e.g. History and
+  /// Physical, Discharge Summary, Progress Note). This usually equates to
+  /// the purpose of making the composition.
   final CodeableConcept type;
 
-  /// [category] /// A categorization for the type of the composition - helps for indexing and
-  /// searching. This may be implied by or derived from the code specified in the
-  /// Composition Type.
+  /// [category]
+  /// A categorization for the type of the composition - helps for indexing
+  /// and searching. This may be implied by or derived from the code
+  /// specified in the Composition Type.
   final List<CodeableConcept>? category;
 
-  /// [subject] /// Who or what the composition is about. The composition can be about a
-  /// person, (patient or healthcare practitioner), a device (e.g. a machine) or
-  /// even a group of subjects (such as a document about a herd of livestock, or
-  /// a set of patients that share a common exposure).
+  /// [subject]
+  /// Who or what the composition is about. The composition can be about a
+  /// person, (patient or healthcare practitioner), a device (e.g. a machine)
+  /// or even a group of subjects (such as a document about a herd of
+  /// livestock, or a set of patients that share a common exposure).
   final Reference? subject;
 
-  /// [encounter] /// Describes the clinical encounter or type of care this documentation is
+  /// [encounter]
+  /// Describes the clinical encounter or type of care this documentation is
   /// associated with.
   final Reference? encounter;
 
-  /// [date] /// The composition editing time, when the composition was last logically
+  /// [date]
+  /// The composition editing time, when the composition was last logically
   /// changed by the author.
   final FhirDateTime date;
+
+  /// Extensions for [date]
   final Element? dateElement;
 
-  /// [author] /// Identifies who is responsible for the information in the composition, not
-  /// necessarily who typed it in.
+  /// [author]
+  /// Identifies who is responsible for the information in the composition,
+  /// not necessarily who typed it in.
   final List<Reference> author;
 
-  /// [title] /// Official human-readable label for the composition.
+  /// [title]
+  /// Official human-readable label for the composition.
   final FhirString title;
+
+  /// Extensions for [title]
   final Element? titleElement;
 
-  /// [confidentiality] /// The code specifying the level of confidentiality of the Composition.
+  /// [confidentiality]
+  /// The code specifying the level of confidentiality of the Composition.
   final FhirCode? confidentiality;
+
+  /// Extensions for [confidentiality]
   final Element? confidentialityElement;
 
-  /// [attester] /// A participant who has attested to the accuracy of the composition/document.
+  /// [attester]
+  /// A participant who has attested to the accuracy of the
+  /// composition/document.
   final List<CompositionAttester>? attester;
 
-  /// [custodian] /// Identifies the organization or group who is responsible for ongoing
+  /// [custodian]
+  /// Identifies the organization or group who is responsible for ongoing
   /// maintenance of and access to the composition/document information.
   final Reference? custodian;
 
-  /// [relatesTo] /// Relationships that this composition has with other compositions or
+  /// [relatesTo]
+  /// Relationships that this composition has with other compositions or
   /// documents that already exist.
   final List<CompositionRelatesTo>? relatesTo;
 
-  /// [event] /// The clinical service, such as a colonoscopy or an appendectomy, being
+  /// [event]
+  /// The clinical service, such as a colonoscopy or an appendectomy, being
   /// documented.
   final List<CompositionEvent>? event;
 
-  /// [section] /// The root of the sections that make up the composition.
+  /// [section]
+  /// The root of the sections that make up the composition.
   final List<CompositionSection>? section;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -140,17 +364,15 @@ class Composition extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null) {
       json['identifier'] = identifier!.toJson();
@@ -159,7 +381,7 @@ class Composition extends DomainResource {
     json['type'] = type.toJson();
     if (category != null && category!.isNotEmpty) {
       json['category'] =
-          category!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          category!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (subject != null) {
       json['subject'] = subject!.toJson();
@@ -183,135 +405,26 @@ class Composition extends DomainResource {
       json['_confidentiality'] = confidentialityElement!.toJson();
     }
     if (attester != null && attester!.isNotEmpty) {
-      json['attester'] = attester!
-          .map<dynamic>((CompositionAttester v) => v.toJson())
-          .toList();
+      json['attester'] =
+          attester!.map((CompositionAttester v) => v.toJson()).toList();
     }
     if (custodian != null) {
       json['custodian'] = custodian!.toJson();
     }
     if (relatesTo != null && relatesTo!.isNotEmpty) {
-      json['relatesTo'] = relatesTo!
-          .map<dynamic>((CompositionRelatesTo v) => v.toJson())
-          .toList();
+      json['relatesTo'] =
+          relatesTo!.map((CompositionRelatesTo v) => v.toJson()).toList();
     }
     if (event != null && event!.isNotEmpty) {
-      json['event'] =
-          event!.map<dynamic>((CompositionEvent v) => v.toJson()).toList();
+      json['event'] = event!.map((CompositionEvent v) => v.toJson()).toList();
     }
     if (section != null && section!.isNotEmpty) {
       json['section'] =
-          section!.map<dynamic>((CompositionSection v) => v.toJson()).toList();
+          section!.map((CompositionSection v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory Composition.fromJson(Map<String, dynamic> json) {
-    return Composition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
-          : null,
-      status: CompositionStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
-      category: json['category'] != null
-          ? (json['category'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      subject: json['subject'] != null
-          ? Reference.fromJson(json['subject'] as Map<String, dynamic>)
-          : null,
-      encounter: json['encounter'] != null
-          ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
-          : null,
-      date: FhirDateTime.fromJson(json['date']),
-      dateElement: json['_date'] != null
-          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
-          : null,
-      author: (json['author'] as List<dynamic>)
-          .map<Reference>(
-              (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-          .toList(),
-      title: FhirString.fromJson(json['title']),
-      titleElement: json['_title'] != null
-          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
-          : null,
-      confidentiality: json['confidentiality'] != null
-          ? FhirCode.fromJson(json['confidentiality'])
-          : null,
-      confidentialityElement: json['_confidentiality'] != null
-          ? Element.fromJson(json['_confidentiality'] as Map<String, dynamic>)
-          : null,
-      attester: json['attester'] != null
-          ? (json['attester'] as List<dynamic>)
-              .map<CompositionAttester>((dynamic v) =>
-                  CompositionAttester.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      custodian: json['custodian'] != null
-          ? Reference.fromJson(json['custodian'] as Map<String, dynamic>)
-          : null,
-      relatesTo: json['relatesTo'] != null
-          ? (json['relatesTo'] as List<dynamic>)
-              .map<CompositionRelatesTo>((dynamic v) =>
-                  CompositionRelatesTo.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      event: json['event'] != null
-          ? (json['event'] as List<dynamic>)
-              .map<CompositionEvent>((dynamic v) =>
-                  CompositionEvent.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      section: json['section'] != null
-          ? (json['section'] as List<dynamic>)
-              .map<CompositionSection>((dynamic v) =>
-                  CompositionSection.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   Composition clone() => throw UnimplementedError();
   @override
@@ -391,36 +504,25 @@ class Composition extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory Composition.fromYaml(dynamic yaml) => yaml is String
-      ? Composition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? Composition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'Composition cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory Composition.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return Composition.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CompositionAttester] /// A participant who has attested to the accuracy of the composition/document.
+/// [CompositionAttester]
+/// A participant who has attested to the accuracy of the
+/// composition/document.
 class CompositionAttester extends BackboneElement {
+  /// Primary constructor for [CompositionAttester]
+
   CompositionAttester({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.mode,
+
+    /// Extensions for [mode]
     this.modeElement,
     this.time,
+
+    /// Extensions for [time]
     this.timeElement,
     this.party,
     super.userData,
@@ -431,33 +533,107 @@ class CompositionAttester extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CompositionAttester.fromJson(Map<String, dynamic> json) {
+    return CompositionAttester(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      mode: CompositionAttestationMode.fromJson(json['mode']),
+      modeElement: json['_mode'] != null
+          ? Element.fromJson(
+              json['_mode'] as Map<String, dynamic>,
+            )
+          : null,
+      time: json['time'] != null ? FhirDateTime.fromJson(json['time']) : null,
+      timeElement: json['_time'] != null
+          ? Element.fromJson(
+              json['_time'] as Map<String, dynamic>,
+            )
+          : null,
+      party: json['party'] != null
+          ? Reference.fromJson(
+              json['party'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CompositionAttester] from a [String] or [YamlMap] object
+  factory CompositionAttester.fromYaml(dynamic yaml) => yaml is String
+      ? CompositionAttester.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CompositionAttester.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CompositionAttester cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CompositionAttester] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CompositionAttester.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CompositionAttester.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CompositionAttester';
 
-  /// [mode] /// The type of attestation the authenticator offers.
+  /// [mode]
+  /// The type of attestation the authenticator offers.
   final CompositionAttestationMode mode;
+
+  /// Extensions for [mode]
   final Element? modeElement;
 
-  /// [time] /// When the composition was attested by the party.
+  /// [time]
+  /// When the composition was attested by the party.
   final FhirDateTime? time;
+
+  /// Extensions for [time]
   final Element? timeElement;
 
-  /// [party] /// Who attested the composition in the specified way.
+  /// [party]
+  /// Who attested the composition in the specified way.
   final Reference? party;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['mode'] = mode.toJson();
     if (time?.value != null) {
@@ -472,34 +648,6 @@ class CompositionAttester extends BackboneElement {
     return json;
   }
 
-  factory CompositionAttester.fromJson(Map<String, dynamic> json) {
-    return CompositionAttester(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      mode: CompositionAttestationMode.fromJson(json['mode']),
-      modeElement: json['_mode'] != null
-          ? Element.fromJson(json['_mode'] as Map<String, dynamic>)
-          : null,
-      time: json['time'] != null ? FhirDateTime.fromJson(json['time']) : null,
-      timeElement: json['_time'] != null
-          ? Element.fromJson(json['_time'] as Map<String, dynamic>)
-          : null,
-      party: json['party'] != null
-          ? Reference.fromJson(json['party'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CompositionAttester clone() => throw UnimplementedError();
   @override
@@ -536,35 +684,21 @@ class CompositionAttester extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CompositionAttester.fromYaml(dynamic yaml) => yaml is String
-      ? CompositionAttester.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CompositionAttester.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CompositionAttester cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CompositionAttester.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CompositionAttester.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CompositionRelatesTo] /// Relationships that this composition has with other compositions or
+/// [CompositionRelatesTo]
+/// Relationships that this composition has with other compositions or
 /// documents that already exist.
 class CompositionRelatesTo extends BackboneElement {
+  /// Primary constructor for [CompositionRelatesTo]
+
   CompositionRelatesTo({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.code,
+
+    /// Extensions for [code]
     this.codeElement,
     this.targetIdentifier,
     this.targetReference,
@@ -576,33 +710,104 @@ class CompositionRelatesTo extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CompositionRelatesTo.fromJson(Map<String, dynamic> json) {
+    return CompositionRelatesTo(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      code: DocumentRelationshipType.fromJson(json['code']),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(
+              json['_code'] as Map<String, dynamic>,
+            )
+          : null,
+      targetIdentifier: json['targetIdentifier'] != null
+          ? Identifier.fromJson(
+              json['targetIdentifier'] as Map<String, dynamic>,
+            )
+          : null,
+      targetReference: json['targetReference'] != null
+          ? Reference.fromJson(
+              json['targetReference'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [CompositionRelatesTo] from a [String] or [YamlMap] object
+  factory CompositionRelatesTo.fromYaml(dynamic yaml) => yaml is String
+      ? CompositionRelatesTo.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CompositionRelatesTo.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CompositionRelatesTo cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CompositionRelatesTo] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CompositionRelatesTo.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CompositionRelatesTo.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CompositionRelatesTo';
 
-  /// [code] /// The type of relationship that this composition has with anther composition
-  /// or document.
+  /// [code]
+  /// The type of relationship that this composition has with anther
+  /// composition or document.
   final DocumentRelationshipType code;
+
+  /// Extensions for [code]
   final Element? codeElement;
 
-  /// [targetIdentifier] /// The target composition/document of this relationship.
+  /// [targetIdentifier]
+  /// The target composition/document of this relationship.
   final Identifier? targetIdentifier;
 
-  /// [targetReference] /// The target composition/document of this relationship.
+  /// [targetReference]
+  /// The target composition/document of this relationship.
   final Reference? targetReference;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['code'] = code.toJson();
     if (targetIdentifier != null) {
@@ -614,34 +819,6 @@ class CompositionRelatesTo extends BackboneElement {
     return json;
   }
 
-  factory CompositionRelatesTo.fromJson(Map<String, dynamic> json) {
-    return CompositionRelatesTo(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      code: DocumentRelationshipType.fromJson(json['code']),
-      codeElement: json['_code'] != null
-          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
-          : null,
-      targetIdentifier: json['targetIdentifier'] != null
-          ? Identifier.fromJson(
-              json['targetIdentifier'] as Map<String, dynamic>)
-          : null,
-      targetReference: json['targetReference'] != null
-          ? Reference.fromJson(json['targetReference'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   CompositionRelatesTo clone() => throw UnimplementedError();
   @override
@@ -676,30 +853,14 @@ class CompositionRelatesTo extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CompositionRelatesTo.fromYaml(dynamic yaml) => yaml is String
-      ? CompositionRelatesTo.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CompositionRelatesTo.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CompositionRelatesTo cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CompositionRelatesTo.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CompositionRelatesTo.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CompositionEvent] /// The clinical service, such as a colonoscopy or an appendectomy, being
+/// [CompositionEvent]
+/// The clinical service, such as a colonoscopy or an appendectomy, being
 /// documented.
 class CompositionEvent extends BackboneElement {
+  /// Primary constructor for [CompositionEvent]
+
   CompositionEvent({
     super.id,
     super.extension_,
@@ -715,85 +876,128 @@ class CompositionEvent extends BackboneElement {
     super.namedChildren,
   });
 
-  @override
-  String get fhirType => 'CompositionEvent';
-
-  /// [code] /// This list of codes represents the main clinical acts, such as a colonoscopy
-  /// or an appendectomy, being documented. In some cases, the event is inherent
-  /// in the typeCode, such as a "History and Physical Report" in which the
-  /// procedure being documented is necessarily a "History and Physical" act.
-  final List<CodeableConcept>? code;
-
-  /// [period] /// The period of time covered by the documentation. There is no assertion that
-  /// the documentation is a complete representation for this period, only that
-  /// it documents events during this time.
-  final Period? period;
-
-  /// [detail] /// The description and/or reference of the event(s) being documented. For
-  /// example, this could be used to document such a colonoscopy or an
-  /// appendectomy.
-  final List<Reference>? detail;
-  @override
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson();
-    }
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
-    }
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
-    }
-    if (code != null && code!.isNotEmpty) {
-      json['code'] =
-          code!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
-    }
-    if (period != null) {
-      json['period'] = period!.toJson();
-    }
-    if (detail != null && detail!.isNotEmpty) {
-      json['detail'] =
-          detail!.map<dynamic>((Reference v) => v.toJson()).toList();
-    }
-    return json;
-  }
-
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CompositionEvent.fromJson(Map<String, dynamic> json) {
     return CompositionEvent(
       id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       code: json['code'] != null
           ? (json['code'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       period: json['period'] != null
-          ? Period.fromJson(json['period'] as Map<String, dynamic>)
+          ? Period.fromJson(
+              json['period'] as Map<String, dynamic>,
+            )
           : null,
       detail: json['detail'] != null
           ? (json['detail'] as List<dynamic>)
               .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
     );
   }
+
+  /// Deserialize [CompositionEvent] from a [String] or [YamlMap] object
+  factory CompositionEvent.fromYaml(dynamic yaml) => yaml is String
+      ? CompositionEvent.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CompositionEvent.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CompositionEvent cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CompositionEvent] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CompositionEvent.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CompositionEvent.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
+  @override
+  String get fhirType => 'CompositionEvent';
+
+  /// [code]
+  /// This list of codes represents the main clinical acts, such as a
+  /// colonoscopy or an appendectomy, being documented. In some cases, the
+  /// event is inherent in the typeCode, such as a "History and Physical
+  /// Report" in which the procedure being documented is necessarily a
+  /// "History and Physical" act.
+  final List<CodeableConcept>? code;
+
+  /// [period]
+  /// The period of time covered by the documentation. There is no assertion
+  /// that the documentation is a complete representation for this period,
+  /// only that it documents events during this time.
+  final Period? period;
+
+  /// [detail]
+  /// The description and/or reference of the event(s) being documented. For
+  /// example, this could be used to document such a colonoscopy or an
+  /// appendectomy.
+  final List<Reference>? detail;
+  @override
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    if (code != null && code!.isNotEmpty) {
+      json['code'] = code!.map((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (period != null) {
+      json['period'] = period!.toJson();
+    }
+    if (detail != null && detail!.isNotEmpty) {
+      json['detail'] = detail!.map((Reference v) => v.toJson()).toList();
+    }
+    return json;
+  }
+
   @override
   CompositionEvent clone() => throw UnimplementedError();
   @override
@@ -826,40 +1030,28 @@ class CompositionEvent extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CompositionEvent.fromYaml(dynamic yaml) => yaml is String
-      ? CompositionEvent.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CompositionEvent.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CompositionEvent cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CompositionEvent.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CompositionEvent.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CompositionSection] /// The root of the sections that make up the composition.
+/// [CompositionSection]
+/// The root of the sections that make up the composition.
 class CompositionSection extends BackboneElement {
+  /// Primary constructor for [CompositionSection]
+
   CompositionSection({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.title,
+
+    /// Extensions for [title]
     this.titleElement,
     this.code,
     this.author,
     this.focus,
     this.text,
     this.mode,
+
+    /// Extensions for [mode]
     this.modeElement,
     this.orderedBy,
     this.entry,
@@ -873,73 +1065,203 @@ class CompositionSection extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CompositionSection.fromJson(Map<String, dynamic> json) {
+    return CompositionSection(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
+      titleElement: json['_title'] != null
+          ? Element.fromJson(
+              json['_title'] as Map<String, dynamic>,
+            )
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(
+              json['code'] as Map<String, dynamic>,
+            )
+          : null,
+      author: json['author'] != null
+          ? (json['author'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      focus: json['focus'] != null
+          ? Reference.fromJson(
+              json['focus'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      mode: json['mode'] != null ? ListMode.fromJson(json['mode']) : null,
+      modeElement: json['_mode'] != null
+          ? Element.fromJson(
+              json['_mode'] as Map<String, dynamic>,
+            )
+          : null,
+      orderedBy: json['orderedBy'] != null
+          ? CodeableConcept.fromJson(
+              json['orderedBy'] as Map<String, dynamic>,
+            )
+          : null,
+      entry: json['entry'] != null
+          ? (json['entry'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      emptyReason: json['emptyReason'] != null
+          ? CodeableConcept.fromJson(
+              json['emptyReason'] as Map<String, dynamic>,
+            )
+          : null,
+      section: json['section'] != null
+          ? (json['section'] as List<dynamic>)
+              .map<CompositionSection>(
+                (dynamic v) => CompositionSection.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [CompositionSection] from a [String] or [YamlMap] object
+  factory CompositionSection.fromYaml(dynamic yaml) => yaml is String
+      ? CompositionSection.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CompositionSection.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CompositionSection cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CompositionSection] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CompositionSection.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CompositionSection.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CompositionSection';
 
-  /// [title] /// The label for this particular section. This will be part of the rendered
-  /// content for the document, and is often used to build a table of contents.
+  /// [title]
+  /// The label for this particular section. This will be part of the
+  /// rendered content for the document, and is often used to build a table
+  /// of contents.
   final FhirString? title;
+
+  /// Extensions for [title]
   final Element? titleElement;
 
-  /// [code] /// A code identifying the kind of content contained within the section. This
-  /// must be consistent with the section title.
+  /// [code]
+  /// A code identifying the kind of content contained within the section.
+  /// This must be consistent with the section title.
   final CodeableConcept? code;
 
-  /// [author] /// Identifies who is responsible for the information in this section, not
+  /// [author]
+  /// Identifies who is responsible for the information in this section, not
   /// necessarily who typed it in.
   final List<Reference>? author;
 
-  /// [focus] /// The actual focus of the section when it is not the subject of the
-  /// composition, but instead represents something or someone associated with
-  /// the subject such as (for a patient subject) a spouse, parent, fetus, or
-  /// donor. If not focus is specified, the focus is assumed to be focus of the
-  /// parent section, or, for a section in the Composition itself, the subject of
-  /// the composition. Sections with a focus SHALL only include resources where
-  /// the logical subject (patient, subject, focus, etc.) matches the section
-  /// focus, or the resources have no logical subject (few resources).
+  /// [focus]
+  /// The actual focus of the section when it is not the subject of the
+  /// composition, but instead represents something or someone associated
+  /// with the subject such as (for a patient subject) a spouse, parent,
+  /// fetus, or donor. If not focus is specified, the focus is assumed to be
+  /// focus of the parent section, or, for a section in the Composition
+  /// itself, the subject of the composition. Sections with a focus SHALL
+  /// only include resources where the logical subject (patient, subject,
+  /// focus, etc.) matches the section focus, or the resources have no
+  /// logical subject (few resources).
   final Reference? focus;
 
-  /// [text] /// A human-readable narrative that contains the attested content of the
+  /// [text]
+  /// A human-readable narrative that contains the attested content of the
   /// section, used to represent the content of the resource to a human. The
   /// narrative need not encode all the structured data, but is required to
-  /// contain sufficient detail to make it "clinically safe" for a human to just
-  /// read the narrative.
+  /// contain sufficient detail to make it "clinically safe" for a human to
+  /// just read the narrative.
   final Narrative? text;
 
-  /// [mode] /// How the entry list was prepared - whether it is a working list that is
-  /// suitable for being maintained on an ongoing basis, or if it represents a
-  /// snapshot of a list of items from another source, or whether it is a
+  /// [mode]
+  /// How the entry list was prepared - whether it is a working list that is
+  /// suitable for being maintained on an ongoing basis, or if it represents
+  /// a snapshot of a list of items from another source, or whether it is a
   /// prepared list where items may be marked as added, modified or deleted.
   final ListMode? mode;
+
+  /// Extensions for [mode]
   final Element? modeElement;
 
-  /// [orderedBy] /// Specifies the order applied to the items in the section entries.
+  /// [orderedBy]
+  /// Specifies the order applied to the items in the section entries.
   final CodeableConcept? orderedBy;
 
-  /// [entry] /// A reference to the actual resource from which the narrative in the section
-  /// is derived.
+  /// [entry]
+  /// A reference to the actual resource from which the narrative in the
+  /// section is derived.
   final List<Reference>? entry;
 
-  /// [emptyReason] /// If the section is empty, why the list is empty. An empty section typically
-  /// has some text explaining the empty reason.
+  /// [emptyReason]
+  /// If the section is empty, why the list is empty. An empty section
+  /// typically has some text explaining the empty reason.
   final CodeableConcept? emptyReason;
 
-  /// [section] /// A nested sub-section within this section.
+  /// [section]
+  /// A nested sub-section within this section.
   final List<CompositionSection>? section;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (title?.value != null) {
       json['title'] = title!.toJson();
@@ -951,8 +1273,7 @@ class CompositionSection extends BackboneElement {
       json['code'] = code!.toJson();
     }
     if (author != null && author!.isNotEmpty) {
-      json['author'] =
-          author!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['author'] = author!.map((Reference v) => v.toJson()).toList();
     }
     if (focus != null) {
       json['focus'] = focus!.toJson();
@@ -967,77 +1288,18 @@ class CompositionSection extends BackboneElement {
       json['orderedBy'] = orderedBy!.toJson();
     }
     if (entry != null && entry!.isNotEmpty) {
-      json['entry'] = entry!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['entry'] = entry!.map((Reference v) => v.toJson()).toList();
     }
     if (emptyReason != null) {
       json['emptyReason'] = emptyReason!.toJson();
     }
     if (section != null && section!.isNotEmpty) {
       json['section'] =
-          section!.map<dynamic>((CompositionSection v) => v.toJson()).toList();
+          section!.map((CompositionSection v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory CompositionSection.fromJson(Map<String, dynamic> json) {
-    return CompositionSection(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(json['_title'] as Map<String, dynamic>)
-          : null,
-      code: json['code'] != null
-          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
-          : null,
-      author: json['author'] != null
-          ? (json['author'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      focus: json['focus'] != null
-          ? Reference.fromJson(json['focus'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      mode: json['mode'] != null ? ListMode.fromJson(json['mode']) : null,
-      modeElement: json['_mode'] != null
-          ? Element.fromJson(json['_mode'] as Map<String, dynamic>)
-          : null,
-      orderedBy: json['orderedBy'] != null
-          ? CodeableConcept.fromJson(json['orderedBy'] as Map<String, dynamic>)
-          : null,
-      entry: json['entry'] != null
-          ? (json['entry'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      emptyReason: json['emptyReason'] != null
-          ? CodeableConcept.fromJson(
-              json['emptyReason'] as Map<String, dynamic>)
-          : null,
-      section: json['section'] != null
-          ? (json['section'] as List<dynamic>)
-              .map<CompositionSection>((dynamic v) =>
-                  CompositionSection.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   CompositionSection clone() => throw UnimplementedError();
   @override
@@ -1087,24 +1349,5 @@ class CompositionSection extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory CompositionSection.fromYaml(dynamic yaml) => yaml is String
-      ? CompositionSection.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CompositionSection.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CompositionSection cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CompositionSection.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CompositionSection.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

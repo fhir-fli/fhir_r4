@@ -1,17 +1,23 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [Condition] /// A clinical condition, problem, diagnosis, or other event, situation, issue,
-/// or clinical concept that has risen to a level of concern.
+/// [Condition]
+/// A clinical condition, problem, diagnosis, or other event, situation,
+/// issue, or clinical concept that has risen to a level of concern.
 class Condition extends DomainResource {
+  /// Primary constructor for [Condition]
+
   Condition({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -27,20 +33,30 @@ class Condition extends DomainResource {
     required this.subject,
     this.encounter,
     this.onsetDateTime,
+
+    /// Extensions for [onsetDateTime]
     this.onsetDateTimeElement,
     this.onsetAge,
     this.onsetPeriod,
     this.onsetRange,
     this.onsetString,
+
+    /// Extensions for [onsetString]
     this.onsetStringElement,
     this.abatementDateTime,
+
+    /// Extensions for [abatementDateTime]
     this.abatementDateTimeElement,
     this.abatementAge,
     this.abatementPeriod,
     this.abatementRange,
     this.abatementString,
+
+    /// Extensions for [abatementString]
     this.abatementStringElement,
     this.recordedDate,
+
+    /// Extensions for [recordedDate]
     this.recordedDateElement,
     this.recorder,
     this.asserter,
@@ -53,124 +69,410 @@ class Condition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.Condition);
+  }) : super(
+          resourceType: R4ResourceType.Condition,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory Condition.fromJson(Map<String, dynamic> json) {
+    return Condition(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      clinicalStatus: json['clinicalStatus'] != null
+          ? CodeableConcept.fromJson(
+              json['clinicalStatus'] as Map<String, dynamic>,
+            )
+          : null,
+      verificationStatus: json['verificationStatus'] != null
+          ? CodeableConcept.fromJson(
+              json['verificationStatus'] as Map<String, dynamic>,
+            )
+          : null,
+      category: json['category'] != null
+          ? (json['category'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      severity: json['severity'] != null
+          ? CodeableConcept.fromJson(
+              json['severity'] as Map<String, dynamic>,
+            )
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(
+              json['code'] as Map<String, dynamic>,
+            )
+          : null,
+      bodySite: json['bodySite'] != null
+          ? (json['bodySite'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      subject: Reference.fromJson(
+        json['subject'] as Map<String, dynamic>,
+      ),
+      encounter: json['encounter'] != null
+          ? Reference.fromJson(
+              json['encounter'] as Map<String, dynamic>,
+            )
+          : null,
+      onsetDateTime: json['onsetDateTime'] != null
+          ? FhirDateTime.fromJson(json['onsetDateTime'])
+          : null,
+      onsetDateTimeElement: json['_onsetDateTime'] != null
+          ? Element.fromJson(
+              json['_onsetDateTime'] as Map<String, dynamic>,
+            )
+          : null,
+      onsetAge: json['onsetAge'] != null
+          ? Age.fromJson(
+              json['onsetAge'] as Map<String, dynamic>,
+            )
+          : null,
+      onsetPeriod: json['onsetPeriod'] != null
+          ? Period.fromJson(
+              json['onsetPeriod'] as Map<String, dynamic>,
+            )
+          : null,
+      onsetRange: json['onsetRange'] != null
+          ? Range.fromJson(
+              json['onsetRange'] as Map<String, dynamic>,
+            )
+          : null,
+      onsetString: json['onsetString'] != null
+          ? FhirString.fromJson(json['onsetString'])
+          : null,
+      onsetStringElement: json['_onsetString'] != null
+          ? Element.fromJson(
+              json['_onsetString'] as Map<String, dynamic>,
+            )
+          : null,
+      abatementDateTime: json['abatementDateTime'] != null
+          ? FhirDateTime.fromJson(json['abatementDateTime'])
+          : null,
+      abatementDateTimeElement: json['_abatementDateTime'] != null
+          ? Element.fromJson(
+              json['_abatementDateTime'] as Map<String, dynamic>,
+            )
+          : null,
+      abatementAge: json['abatementAge'] != null
+          ? Age.fromJson(
+              json['abatementAge'] as Map<String, dynamic>,
+            )
+          : null,
+      abatementPeriod: json['abatementPeriod'] != null
+          ? Period.fromJson(
+              json['abatementPeriod'] as Map<String, dynamic>,
+            )
+          : null,
+      abatementRange: json['abatementRange'] != null
+          ? Range.fromJson(
+              json['abatementRange'] as Map<String, dynamic>,
+            )
+          : null,
+      abatementString: json['abatementString'] != null
+          ? FhirString.fromJson(json['abatementString'])
+          : null,
+      abatementStringElement: json['_abatementString'] != null
+          ? Element.fromJson(
+              json['_abatementString'] as Map<String, dynamic>,
+            )
+          : null,
+      recordedDate: json['recordedDate'] != null
+          ? FhirDateTime.fromJson(json['recordedDate'])
+          : null,
+      recordedDateElement: json['_recordedDate'] != null
+          ? Element.fromJson(
+              json['_recordedDate'] as Map<String, dynamic>,
+            )
+          : null,
+      recorder: json['recorder'] != null
+          ? Reference.fromJson(
+              json['recorder'] as Map<String, dynamic>,
+            )
+          : null,
+      asserter: json['asserter'] != null
+          ? Reference.fromJson(
+              json['asserter'] as Map<String, dynamic>,
+            )
+          : null,
+      stage: json['stage'] != null
+          ? (json['stage'] as List<dynamic>)
+              .map<ConditionStage>(
+                (dynamic v) => ConditionStage.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      evidence: json['evidence'] != null
+          ? (json['evidence'] as List<dynamic>)
+              .map<ConditionEvidence>(
+                (dynamic v) => ConditionEvidence.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                (dynamic v) => Annotation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [Condition] from a [String] or [YamlMap] object
+  factory Condition.fromYaml(dynamic yaml) => yaml is String
+      ? Condition.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? Condition.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('Condition cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [Condition] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory Condition.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Condition.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'Condition';
 
-  /// [identifier] /// Business identifiers assigned to this condition by the performer or other
-  /// systems which remain constant as the resource is updated and propagates
-  /// from server to server.
+  /// [identifier]
+  /// Business identifiers assigned to this condition by the performer or
+  /// other systems which remain constant as the resource is updated and
+  /// propagates from server to server.
   final List<Identifier>? identifier;
 
-  /// [clinicalStatus] /// The clinical status of the condition.
+  /// [clinicalStatus]
+  /// The clinical status of the condition.
   final CodeableConcept? clinicalStatus;
 
-  /// [verificationStatus] /// The verification status to support the clinical status of the condition.
+  /// [verificationStatus]
+  /// The verification status to support the clinical status of the
+  /// condition.
   final CodeableConcept? verificationStatus;
 
-  /// [category] /// A category assigned to the condition.
+  /// [category]
+  /// A category assigned to the condition.
   final List<CodeableConcept>? category;
 
-  /// [severity] /// A subjective assessment of the severity of the condition as evaluated by
-  /// the clinician.
+  /// [severity]
+  /// A subjective assessment of the severity of the condition as evaluated
+  /// by the clinician.
   final CodeableConcept? severity;
 
-  /// [code] /// Identification of the condition, problem or diagnosis.
+  /// [code]
+  /// Identification of the condition, problem or diagnosis.
   final CodeableConcept? code;
 
-  /// [bodySite] /// The anatomical location where this condition manifests itself.
+  /// [bodySite]
+  /// The anatomical location where this condition manifests itself.
   final List<CodeableConcept>? bodySite;
 
-  /// [subject] /// Indicates the patient or group who the condition record is associated with.
+  /// [subject]
+  /// Indicates the patient or group who the condition record is associated
+  /// with.
   final Reference subject;
 
-  /// [encounter] /// The Encounter during which this Condition was created or to which the
+  /// [encounter]
+  /// The Encounter during which this Condition was created or to which the
   /// creation of this record is tightly associated.
   final Reference? encounter;
 
-  /// [onsetDateTime] /// Estimated or actual date or date-time the condition began, in the opinion
-  /// of the clinician.
+  /// [onsetDateTime]
+  /// Estimated or actual date or date-time the condition began, in the
+  /// opinion of the clinician.
   final FhirDateTime? onsetDateTime;
+
+  /// Extensions for [onsetDateTime]
   final Element? onsetDateTimeElement;
 
-  /// [onsetAge] /// Estimated or actual date or date-time the condition began, in the opinion
-  /// of the clinician.
+  /// [onsetAge]
+  /// Estimated or actual date or date-time the condition began, in the
+  /// opinion of the clinician.
   final Age? onsetAge;
 
-  /// [onsetPeriod] /// Estimated or actual date or date-time the condition began, in the opinion
-  /// of the clinician.
+  /// [onsetPeriod]
+  /// Estimated or actual date or date-time the condition began, in the
+  /// opinion of the clinician.
   final Period? onsetPeriod;
 
-  /// [onsetRange] /// Estimated or actual date or date-time the condition began, in the opinion
-  /// of the clinician.
+  /// [onsetRange]
+  /// Estimated or actual date or date-time the condition began, in the
+  /// opinion of the clinician.
   final Range? onsetRange;
 
-  /// [onsetString] /// Estimated or actual date or date-time the condition began, in the opinion
-  /// of the clinician.
+  /// [onsetString]
+  /// Estimated or actual date or date-time the condition began, in the
+  /// opinion of the clinician.
   final FhirString? onsetString;
+
+  /// Extensions for [onsetString]
   final Element? onsetStringElement;
 
-  /// [abatementDateTime] /// The date or estimated date that the condition resolved or went into
+  /// [abatementDateTime]
+  /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
-  /// connotations associated with "remission" or "resolution" - Conditions are
-  /// never really resolved, but they can abate.
+  /// connotations associated with "remission" or "resolution" - Conditions
+  /// are never really resolved, but they can abate.
   final FhirDateTime? abatementDateTime;
+
+  /// Extensions for [abatementDateTime]
   final Element? abatementDateTimeElement;
 
-  /// [abatementAge] /// The date or estimated date that the condition resolved or went into
+  /// [abatementAge]
+  /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
-  /// connotations associated with "remission" or "resolution" - Conditions are
-  /// never really resolved, but they can abate.
+  /// connotations associated with "remission" or "resolution" - Conditions
+  /// are never really resolved, but they can abate.
   final Age? abatementAge;
 
-  /// [abatementPeriod] /// The date or estimated date that the condition resolved or went into
+  /// [abatementPeriod]
+  /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
-  /// connotations associated with "remission" or "resolution" - Conditions are
-  /// never really resolved, but they can abate.
+  /// connotations associated with "remission" or "resolution" - Conditions
+  /// are never really resolved, but they can abate.
   final Period? abatementPeriod;
 
-  /// [abatementRange] /// The date or estimated date that the condition resolved or went into
+  /// [abatementRange]
+  /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
-  /// connotations associated with "remission" or "resolution" - Conditions are
-  /// never really resolved, but they can abate.
+  /// connotations associated with "remission" or "resolution" - Conditions
+  /// are never really resolved, but they can abate.
   final Range? abatementRange;
 
-  /// [abatementString] /// The date or estimated date that the condition resolved or went into
+  /// [abatementString]
+  /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
-  /// connotations associated with "remission" or "resolution" - Conditions are
-  /// never really resolved, but they can abate.
+  /// connotations associated with "remission" or "resolution" - Conditions
+  /// are never really resolved, but they can abate.
   final FhirString? abatementString;
+
+  /// Extensions for [abatementString]
   final Element? abatementStringElement;
 
-  /// [recordedDate] /// The recordedDate represents when this particular Condition record was
+  /// [recordedDate]
+  /// The recordedDate represents when this particular Condition record was
   /// created in the system, which is often a system-generated date.
   final FhirDateTime? recordedDate;
+
+  /// Extensions for [recordedDate]
   final Element? recordedDateElement;
 
-  /// [recorder] /// Individual who recorded the record and takes responsibility for its
+  /// [recorder]
+  /// Individual who recorded the record and takes responsibility for its
   /// content.
   final Reference? recorder;
 
-  /// [asserter] /// Individual who is making the condition statement.
+  /// [asserter]
+  /// Individual who is making the condition statement.
   final Reference? asserter;
 
-  /// [stage] /// Clinical stage or grade of a condition. May include formal severity
+  /// [stage]
+  /// Clinical stage or grade of a condition. May include formal severity
   /// assessments.
   final List<ConditionStage>? stage;
 
-  /// [evidence] /// Supporting evidence / manifestations that are the basis of the Condition's
-  /// verification status, such as evidence that confirmed or refuted the
-  /// condition.
+  /// [evidence]
+  /// Supporting evidence / manifestations that are the basis of the
+  /// Condition's verification status, such as evidence that confirmed or
+  /// refuted the condition.
   final List<ConditionEvidence>? evidence;
 
-  /// [note] /// Additional information about the Condition. This is a general
-  /// notes/comments entry for description of the Condition, its diagnosis and
-  /// prognosis.
+  /// [note]
+  /// Additional information about the Condition. This is a general
+  /// notes/comments entry for description of the Condition, its diagnosis
+  /// and prognosis.
   final List<Annotation>? note;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -191,21 +493,19 @@ class Condition extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (clinicalStatus != null) {
       json['clinicalStatus'] = clinicalStatus!.toJson();
@@ -215,7 +515,7 @@ class Condition extends DomainResource {
     }
     if (category != null && category!.isNotEmpty) {
       json['category'] =
-          category!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          category!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (severity != null) {
       json['severity'] = severity!.toJson();
@@ -225,7 +525,7 @@ class Condition extends DomainResource {
     }
     if (bodySite != null && bodySite!.isNotEmpty) {
       json['bodySite'] =
-          bodySite!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          bodySite!.map((CodeableConcept v) => v.toJson()).toList();
     }
     json['subject'] = subject.toJson();
     if (encounter != null) {
@@ -286,168 +586,18 @@ class Condition extends DomainResource {
       json['asserter'] = asserter!.toJson();
     }
     if (stage != null && stage!.isNotEmpty) {
-      json['stage'] =
-          stage!.map<dynamic>((ConditionStage v) => v.toJson()).toList();
+      json['stage'] = stage!.map((ConditionStage v) => v.toJson()).toList();
     }
     if (evidence != null && evidence!.isNotEmpty) {
       json['evidence'] =
-          evidence!.map<dynamic>((ConditionEvidence v) => v.toJson()).toList();
+          evidence!.map((ConditionEvidence v) => v.toJson()).toList();
     }
     if (note != null && note!.isNotEmpty) {
-      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+      json['note'] = note!.map((Annotation v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory Condition.fromJson(Map<String, dynamic> json) {
-    return Condition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      clinicalStatus: json['clinicalStatus'] != null
-          ? CodeableConcept.fromJson(
-              json['clinicalStatus'] as Map<String, dynamic>)
-          : null,
-      verificationStatus: json['verificationStatus'] != null
-          ? CodeableConcept.fromJson(
-              json['verificationStatus'] as Map<String, dynamic>)
-          : null,
-      category: json['category'] != null
-          ? (json['category'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      severity: json['severity'] != null
-          ? CodeableConcept.fromJson(json['severity'] as Map<String, dynamic>)
-          : null,
-      code: json['code'] != null
-          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
-          : null,
-      bodySite: json['bodySite'] != null
-          ? (json['bodySite'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      subject: Reference.fromJson(json['subject'] as Map<String, dynamic>),
-      encounter: json['encounter'] != null
-          ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
-          : null,
-      onsetDateTime: json['onsetDateTime'] != null
-          ? FhirDateTime.fromJson(json['onsetDateTime'])
-          : null,
-      onsetDateTimeElement: json['_onsetDateTime'] != null
-          ? Element.fromJson(json['_onsetDateTime'] as Map<String, dynamic>)
-          : null,
-      onsetAge: json['onsetAge'] != null
-          ? Age.fromJson(json['onsetAge'] as Map<String, dynamic>)
-          : null,
-      onsetPeriod: json['onsetPeriod'] != null
-          ? Period.fromJson(json['onsetPeriod'] as Map<String, dynamic>)
-          : null,
-      onsetRange: json['onsetRange'] != null
-          ? Range.fromJson(json['onsetRange'] as Map<String, dynamic>)
-          : null,
-      onsetString: json['onsetString'] != null
-          ? FhirString.fromJson(json['onsetString'])
-          : null,
-      onsetStringElement: json['_onsetString'] != null
-          ? Element.fromJson(json['_onsetString'] as Map<String, dynamic>)
-          : null,
-      abatementDateTime: json['abatementDateTime'] != null
-          ? FhirDateTime.fromJson(json['abatementDateTime'])
-          : null,
-      abatementDateTimeElement: json['_abatementDateTime'] != null
-          ? Element.fromJson(json['_abatementDateTime'] as Map<String, dynamic>)
-          : null,
-      abatementAge: json['abatementAge'] != null
-          ? Age.fromJson(json['abatementAge'] as Map<String, dynamic>)
-          : null,
-      abatementPeriod: json['abatementPeriod'] != null
-          ? Period.fromJson(json['abatementPeriod'] as Map<String, dynamic>)
-          : null,
-      abatementRange: json['abatementRange'] != null
-          ? Range.fromJson(json['abatementRange'] as Map<String, dynamic>)
-          : null,
-      abatementString: json['abatementString'] != null
-          ? FhirString.fromJson(json['abatementString'])
-          : null,
-      abatementStringElement: json['_abatementString'] != null
-          ? Element.fromJson(json['_abatementString'] as Map<String, dynamic>)
-          : null,
-      recordedDate: json['recordedDate'] != null
-          ? FhirDateTime.fromJson(json['recordedDate'])
-          : null,
-      recordedDateElement: json['_recordedDate'] != null
-          ? Element.fromJson(json['_recordedDate'] as Map<String, dynamic>)
-          : null,
-      recorder: json['recorder'] != null
-          ? Reference.fromJson(json['recorder'] as Map<String, dynamic>)
-          : null,
-      asserter: json['asserter'] != null
-          ? Reference.fromJson(json['asserter'] as Map<String, dynamic>)
-          : null,
-      stage: json['stage'] != null
-          ? (json['stage'] as List<dynamic>)
-              .map<ConditionStage>((dynamic v) =>
-                  ConditionStage.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      evidence: json['evidence'] != null
-          ? (json['evidence'] as List<dynamic>)
-              .map<ConditionEvidence>((dynamic v) =>
-                  ConditionEvidence.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   Condition clone() => throw UnimplementedError();
   @override
@@ -550,30 +700,14 @@ class Condition extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory Condition.fromYaml(dynamic yaml) => yaml is String
-      ? Condition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? Condition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'Condition cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory Condition.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return Condition.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [ConditionStage] /// Clinical stage or grade of a condition. May include formal severity
+/// [ConditionStage]
+/// Clinical stage or grade of a condition. May include formal severity
 /// assessments.
 class ConditionStage extends BackboneElement {
+  /// Primary constructor for [ConditionStage]
+
   ConditionStage({
     super.id,
     super.extension_,
@@ -589,40 +723,112 @@ class ConditionStage extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory ConditionStage.fromJson(Map<String, dynamic> json) {
+    return ConditionStage(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      summary: json['summary'] != null
+          ? CodeableConcept.fromJson(
+              json['summary'] as Map<String, dynamic>,
+            )
+          : null,
+      assessment: json['assessment'] != null
+          ? (json['assessment'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(
+              json['type'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [ConditionStage] from a [String] or [YamlMap] object
+  factory ConditionStage.fromYaml(dynamic yaml) => yaml is String
+      ? ConditionStage.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? ConditionStage.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'ConditionStage cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [ConditionStage] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory ConditionStage.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ConditionStage.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'ConditionStage';
 
-  /// [summary] /// A simple summary of the stage such as "Stage 3". The determination of the
-  /// stage is disease-specific.
+  /// [summary]
+  /// A simple summary of the stage such as "Stage 3". The determination of
+  /// the stage is disease-specific.
   final CodeableConcept? summary;
 
-  /// [assessment] /// Reference to a formal record of the evidence on which the staging
+  /// [assessment]
+  /// Reference to a formal record of the evidence on which the staging
   /// assessment is based.
   final List<Reference>? assessment;
 
-  /// [type] /// The kind of staging, such as pathological or clinical staging.
+  /// [type]
+  /// The kind of staging, such as pathological or clinical staging.
   final CodeableConcept? type;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (summary != null) {
       json['summary'] = summary!.toJson();
     }
     if (assessment != null && assessment!.isNotEmpty) {
       json['assessment'] =
-          assessment!.map<dynamic>((Reference v) => v.toJson()).toList();
+          assessment!.map((Reference v) => v.toJson()).toList();
     }
     if (type != null) {
       json['type'] = type!.toJson();
@@ -630,35 +836,6 @@ class ConditionStage extends BackboneElement {
     return json;
   }
 
-  factory ConditionStage.fromJson(Map<String, dynamic> json) {
-    return ConditionStage(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      summary: json['summary'] != null
-          ? CodeableConcept.fromJson(json['summary'] as Map<String, dynamic>)
-          : null,
-      assessment: json['assessment'] != null
-          ? (json['assessment'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   ConditionStage clone() => throw UnimplementedError();
   @override
@@ -691,31 +868,15 @@ class ConditionStage extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory ConditionStage.fromYaml(dynamic yaml) => yaml is String
-      ? ConditionStage.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? ConditionStage.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'ConditionStage cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory ConditionStage.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return ConditionStage.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [ConditionEvidence] /// Supporting evidence / manifestations that are the basis of the Condition's
-/// verification status, such as evidence that confirmed or refuted the
-/// condition.
+/// [ConditionEvidence]
+/// Supporting evidence / manifestations that are the basis of the
+/// Condition's verification status, such as evidence that confirmed or
+/// refuted the condition.
 class ConditionEvidence extends BackboneElement {
+  /// Primary constructor for [ConditionEvidence]
+
   ConditionEvidence({
     super.id,
     super.extension_,
@@ -730,69 +891,108 @@ class ConditionEvidence extends BackboneElement {
     super.namedChildren,
   });
 
-  @override
-  String get fhirType => 'ConditionEvidence';
-
-  /// [code] /// A manifestation or symptom that led to the recording of this condition.
-  final List<CodeableConcept>? code;
-
-  /// [detail] /// Links to other relevant information, including pathology reports.
-  final List<Reference>? detail;
-  @override
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson();
-    }
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
-    }
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
-    }
-    if (code != null && code!.isNotEmpty) {
-      json['code'] =
-          code!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
-    }
-    if (detail != null && detail!.isNotEmpty) {
-      json['detail'] =
-          detail!.map<dynamic>((Reference v) => v.toJson()).toList();
-    }
-    return json;
-  }
-
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConditionEvidence.fromJson(Map<String, dynamic> json) {
     return ConditionEvidence(
       id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       code: json['code'] != null
           ? (json['code'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       detail: json['detail'] != null
           ? (json['detail'] as List<dynamic>)
               .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
     );
   }
+
+  /// Deserialize [ConditionEvidence] from a [String] or [YamlMap] object
+  factory ConditionEvidence.fromYaml(dynamic yaml) => yaml is String
+      ? ConditionEvidence.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? ConditionEvidence.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'ConditionEvidence cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [ConditionEvidence] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory ConditionEvidence.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ConditionEvidence.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
+  @override
+  String get fhirType => 'ConditionEvidence';
+
+  /// [code]
+  /// A manifestation or symptom that led to the recording of this condition.
+  final List<CodeableConcept>? code;
+
+  /// [detail]
+  /// Links to other relevant information, including pathology reports.
+  final List<Reference>? detail;
+  @override
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    if (code != null && code!.isNotEmpty) {
+      json['code'] = code!.map((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (detail != null && detail!.isNotEmpty) {
+      json['detail'] = detail!.map((Reference v) => v.toJson()).toList();
+    }
+    return json;
+  }
+
   @override
   ConditionEvidence clone() => throw UnimplementedError();
   @override
@@ -822,24 +1022,5 @@ class ConditionEvidence extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory ConditionEvidence.fromYaml(dynamic yaml) => yaml is String
-      ? ConditionEvidence.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? ConditionEvidence.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'ConditionEvidence cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory ConditionEvidence.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return ConditionEvidence.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

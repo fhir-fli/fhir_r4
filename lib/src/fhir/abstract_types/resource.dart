@@ -1,11 +1,12 @@
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/src/fhir/r4.dart';
 import 'package:yaml/yaml.dart';
-
-import '../../../fhir_r4.dart';
 
 /// [Resource] Base definition for all FHIR elements.
 abstract class Resource extends FhirBase {
+  /// Main constructor for [Resource ]
   Resource({
     required this.resourceType,
     this.id,
@@ -22,21 +23,41 @@ abstract class Resource extends FhirBase {
     super.namedChildren,
   });
 
-  @override
-  String get fhirType => 'Resource';
-
-  final R4ResourceType resourceType;
-  final FhirString? id;
-  final FhirMeta? meta;
-  final FhirUri? implicitRules;
-  final Element? implicitRulesElement;
-  final CommonLanguages? language;
-  final Element? languageElement;
-
   /// Acts like a constructor, returns a [Resource], accepts a
   /// [Map<String, Object?>] as an argument
   factory Resource.fromJson(Map<String, Object?> json) =>
       resourceFromJson(json);
+
+  @override
+  String get fhirType => 'Resource';
+
+  /// The type of resource
+  final R4ResourceType resourceType;
+
+  /// The logical id of the resource, as used in the URL for the resource.
+  final FhirString? id;
+
+  /// The metadata about the resource. This is content that is maintained by the
+  /// infrastructure. Changes to the content might not always be associated with
+  /// version changes to the resource.
+  final FhirMeta? meta;
+
+  /// A reference to a set of rules that were followed when the resource was
+  /// constructed, and which must be understood when processing the content.
+  /// Often, this is a reference to an implementation guide that defines the
+  /// special rules along with other profiles etc.
+  final FhirUri? implicitRules;
+
+  /// Extensions for implicitRules
+  final Element? implicitRulesElement;
+
+  /// The base language in which the resource is written.
+  /// This should be the language of the text value in the content element
+  /// when a text value is present.
+  final CommonLanguages? language;
+
+  /// Extensions for language
+  final Element? languageElement;
 
   /// Acts like a constructor, returns a [Resource], accepts a
   /// [String] as an argument, mostly because I got tired of typing it out
@@ -53,10 +74,12 @@ abstract class Resource extends FhirBase {
   /// Returns a Resource, accepts a [String] in YAML format as an argument
   static T fromYaml<T extends Resource>(dynamic yaml) => yaml is String
       ? Resource.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>) as T
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        ) as T
       : yaml is YamlMap
           ? Resource.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>) as T
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            ) as T
           : throw ArgumentError(
               'Resource cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
@@ -64,7 +87,7 @@ abstract class Resource extends FhirBase {
   /// Returns a [Map<String, Object?>] of the [Resource]
   @override
   Map<String, Object?> toJson() {
-    final Map<String, Object?> val = <String, Object?>{};
+    final val = <String, Object?>{};
 
     void writeNotNull(String key, dynamic value) {
       if (value != null) {
@@ -107,9 +130,11 @@ abstract class Resource extends FhirBase {
       throw UnimplementedError();
   // _updateMeta(this, meta: oldMeta, versionIdAsTime: versionIdAsTime);
 
+  /// Returns a [R4ResourceType] from a [String]
   static R4ResourceType? resourceTypeFromString(String type) =>
       R4ResourceType.fromString(type);
 
+  /// Returns a [String] from a [R4ResourceType]
   static String resourceTypeToString(R4ResourceType type) => type.toString();
 
   @override

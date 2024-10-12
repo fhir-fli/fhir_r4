@@ -1,9 +1,10 @@
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
-import '../../../fhir_r4.dart';
 
-/// Base class for the few data types that are allowed to carry modifier extensions.
+/// Base class for the few data types that are allowed to carry modifier
+/// extensions.
 abstract class BackboneType extends DataType {
   /// Constructor for BackboneType
   BackboneType({
@@ -17,6 +18,11 @@ abstract class BackboneType extends DataType {
     super.children,
     super.namedChildren,
   });
+
+  /// FromJson Factory Constructor for [BackboneType]
+  factory BackboneType.fromJson(Map<String, Object?> json) {
+    throw UnimplementedError('BackboneType.fromJson $json');
+  }
 
   @override
   String get fhirType => 'BackboneType';
@@ -68,7 +74,7 @@ abstract class BackboneType extends DataType {
 
   @override
   Map<String, Object?> toJson() {
-    final Map<String, Object?> json = <String, Object?>{};
+    final json = <String, Object?>{};
     if (id?.value != null) {
       json['id'] = id?.value;
     }
@@ -83,20 +89,22 @@ abstract class BackboneType extends DataType {
     return json;
   }
 
+  /// Factory constructor for [BackboneType] that takes in a [YamlMap]
   static BackboneType fromYaml(dynamic yaml) => yaml is String
       ? BackboneType.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
       : yaml is YamlMap
           ? BackboneType.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
           : throw ArgumentError(
               'BackboneType cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
 
-  factory BackboneType.fromJson(Map<String, Object?> json) {
-    throw UnimplementedError('BackboneType.fromJson $json');
-  }
-
+  /// Factory constructor for [BackboneType] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
   static BackboneType fromJsonString(String source) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {

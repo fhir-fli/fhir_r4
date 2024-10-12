@@ -1,12 +1,15 @@
 import 'dart:math';
+
+import 'package:fhir_r4/src/fhir/r4.dart';
 import 'package:uuid/uuid.dart';
 
-import '../r4.dart';
-
+/// Generates a new UUID string
 String generateNewUuidString() => const Uuid().v4();
 
+/// Generates a new [FhirId] from a new UUID string
 FhirString generateNewUuidFhirString() => generateNewUuidString().toFhirString;
 
+/// Generates a random ID string
 String generateRandomId({
   int length = 16,
   bool includeLetters = true,
@@ -15,13 +18,13 @@ String generateRandomId({
   bool includeUppercase = true,
   bool includeSpecialCharacters = false,
 }) {
-  final Random random = Random();
-  const String lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
-  const String uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const String numbers = '0123456789';
-  const String specialCharacters = '!@#\$%^&*()_+-=[]{}|;:\'",.<>?/';
+  final random = Random();
+  const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+  const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const numbers = '0123456789';
+  const specialCharacters = '!@#\$%^&*()_+-=[]{}|;:\'",.<>?/';
 
-  String characterPool = '';
+  var characterPool = '';
 
   if (includeLetters) {
     if (includeLowercase) {
@@ -45,6 +48,7 @@ String generateRandomId({
   }
 
   return List<String>.generate(
-          length, (_) => characterPool[random.nextInt(characterPool.length)])
-      .join();
+    length,
+    (_) => characterPool[random.nextInt(characterPool.length)],
+  ).join();
 }

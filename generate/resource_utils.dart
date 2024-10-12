@@ -7,33 +7,44 @@ import 'consts.dart';
 
 void generateResourceUtils() {
   // Parse the schema and get the resource types
-  final List<String> resourceTypes = extractResourceTypes();
+  final resourceTypes = extractResourceTypes();
   ignoredClasses.forEach(resourceTypes.remove);
   resourceTypes
-      .removeWhere((String element) => classNamesAdjusted.contains(element));
-  resourceTypes.addAll(classNamesAdjusted.map((String e) => 'Fhir$e'));
-  resourceTypes.sort();
+    ..removeWhere((String element) => classNamesAdjusted.contains(element))
+    ..addAll(classNamesAdjusted.map((String e) => 'Fhir$e'))
+    ..sort();
 
   // Generate the various files
-  generateResourceFromJson(resourceTypes);
-  generateResourceNewId(resourceTypes);
-  generateResourceNewVersion(resourceTypes);
-  generateResourceTypesEnum(resourceTypes);
+  _generateFile(
+    resourceTypes,
+    _buildResourceFromJson,
+    'resource_from_json.dart',
+  );
+  _generateFile(resourceTypes, _buildResourceNewId, 'resource_new_id.dart');
+  _generateFile(
+    resourceTypes,
+    _buildResourceNewVersion,
+    'resource_new_version.dart',
+  );
+  _generateFile(
+    resourceTypes,
+    _buildResourceTypesEnum,
+    'resource_types_enum.dart',
+  );
 
   print('Files generated successfully.');
 }
 
 // Function to parse the fhir.schema.json and extract all resource types
 List<String> extractResourceTypes() {
-  final File schemaFile = File(fhirSchemaPath);
-  final Map<String, dynamic> schema =
+  final schemaFile = File(fhirSchemaPath);
+  final schema =
       jsonDecode(schemaFile.readAsStringSync()) as Map<String, dynamic>;
+  final definitions = schema['definitions'] as Map<String, dynamic>;
 
-  final Map<String, dynamic> definitions =
-      schema['definitions'] as Map<String, dynamic>;
-
-  // Extract resource types by checking if 'resourceType' exists in the structure definitions
-  final List<String> resourceTypes = <String>[];
+  // Extract resource types by checking if 'resourceType' exists in the
+  //structure definitions
+  final resourceTypes = <String>[];
   definitions.forEach((String key, dynamic value) {
     if (value is Map<String, dynamic> &&
         value['properties'] != null &&
@@ -45,144 +56,165 @@ List<String> extractResourceTypes() {
   return resourceTypes;
 }
 
-// Function to generate resource_from_json.dart
-void generateResourceFromJson(List<String> resourceTypes) {
-  final StringBuffer buffer = StringBuffer();
-  buffer.writeln("import '../../../$fhirVersion.dart';");
+// Function to avoid duplication when generating files
+void _generateFile(
+  List<String> resourceTypes,
+  String Function(List<String>) builder,
+  String fileName,
+) {
+  final content = builder(resourceTypes);
+  File('$fhirDirectory/utils/$fileName').writeAsStringSync(content);
+}
+
+// Build content for resource_from_json.dart
+String _buildResourceFromJson(List<String> resourceTypes) {
+  final buffer = StringBuffer()
+    ..writeln("import 'package:$fhirVersion/$fhirVersion.dart';")
+    ..writeln('/// Acts like a constructor, returns a [Resource], accepts a')
+    ..writeln('/// [Map<String, Dynamic>] as an argument')
+    ..writeln('Resource resourceFromJson(Map<String, dynamic> json) {')
+    ..writeln("  final dynamic resourceType = json['resourceType'];")
+    ..writeln('  switch (resourceType) {');
+
+  for (final resourceType in resourceTypes) {
+    buffer
+      ..writeln("    case '${resourceType.replaceAll('Fhir', '')}':")
+      ..writeln('      return $resourceType.fromJson(json);');
+  }
+
   buffer
-      .writeln('/// Acts like a constructor, returns a [Resource], accepts a');
-  buffer.writeln('/// [Map<String, Dynamic>] as an argument');
-  buffer.writeln('Resource resourceFromJson(Map<String, dynamic> json) {');
-  buffer.writeln("  final dynamic resourceType = json['resourceType'];");
-  buffer.writeln('  switch (resourceType) {');
+    ..writeln('    default:')
+    ..writeln('      throw UnsupportedError(')
+    ..writeln(
+        "      'You have passed Resource.fromJson a type which does not exist "
+        "or is '\n 'null. In this case, the resourceType is \$resourceType.');")
+    ..writeln('  }')
+    ..writeln('}');
 
-  for (final String resourceType in resourceTypes) {
-    buffer.writeln("    case '${resourceType.replaceAll('Fhir', '')}':");
-    buffer.writeln('      return $resourceType.fromJson(json);');
-  }
-
-  buffer.writeln('    default:');
-  buffer.writeln('      throw UnsupportedError(');
-  buffer.writeln(
-      "      'You have passed Resource.fromJson a type which does not exist or is null. '");
-  buffer.writeln(r"      'In this case, the resourceType is $resourceType.');");
-
-  buffer.writeln('  }');
-  buffer.writeln('}');
-
-  File('$fhirDirectory/utils/resource_from_json.dart')
-      .writeAsStringSync(buffer.toString());
+  return buffer.toString();
 }
 
-// Function to generate resource_new_id.dart
-void generateResourceNewId(List<String> resourceTypes) {
-  final StringBuffer buffer = StringBuffer();
-  buffer.writeln("import '../../../$fhirVersion.dart';");
-  buffer.writeln("/// Creates a new [id] for the Resources that's passed");
-  buffer.writeln('Resource newId(Resource resource) {');
-  buffer.writeln('  final FhirString newId = generateNewUuidFhirString();');
-  buffer.writeln('  switch (resource.resourceType) {');
+// Build content for resource_new_id.dart
+String _buildResourceNewId(List<String> resourceTypes) {
+  final buffer = StringBuffer()
+    ..writeln("import 'package:$fhirVersion/$fhirVersion.dart';")
+    ..writeln("/// Creates a new [id] for the Resources that's passed")
+    ..writeln('Resource newId(Resource resource) {')
+    ..writeln('  final newId = generateNewUuidFhirString();')
+    ..writeln('  switch (resource.resourceType) {');
 
-  for (final String resourceType in resourceTypes) {
-    buffer.writeln('    case $fhirResourceType.$resourceType:');
-    buffer.writeln(
-        '      return (resource as $resourceType).copyWith(id: newId);');
+  for (final resourceType in resourceTypes) {
+    buffer
+      ..writeln('    case $fhirResourceType.$resourceType:')
+      ..writeln(
+        '      return (resource as $resourceType).copyWith(id: newId);',
+      );
   }
 
-  buffer.writeln('  }');
-  buffer.writeln('}');
+  buffer
+    ..writeln('  }')
+    ..writeln('}');
 
-  File('$fhirDirectory/utils/resource_new_id.dart')
-      .writeAsStringSync(buffer.toString());
+  return buffer.toString();
 }
 
-// Function to generate resource_new_version.dart
-void generateResourceNewVersion(List<String> resourceTypes) {
-  final StringBuffer buffer = StringBuffer();
-  buffer.writeln("import '../../../$fhirVersion.dart';");
-  buffer.writeln(updatedMeta);
-  buffer.writeln(
-      'Resource updateMeta(Resource resource, {FhirMeta? meta, bool versionIdAsTime = false}) {');
-  buffer.writeln(
-      '  final FhirMeta newMeta = updateFhirMetaVersion(meta ?? resource.meta, versionIdAsTime);');
-  buffer.writeln('  switch (resource.resourceType) {');
+// Build content for resource_new_version.dart
+String _buildResourceNewVersion(List<String> resourceTypes) {
+  final buffer = StringBuffer()..writeln(updatedMeta);
 
-  for (final String resourceType in resourceTypes) {
-    buffer.writeln('    case $fhirResourceType.$resourceType:');
-    buffer.writeln(
-        '      return (resource as $resourceType).copyWith(meta: newMeta);');
+  for (final resourceType in resourceTypes) {
+    buffer
+      ..writeln('    case $fhirResourceType.$resourceType:')
+      ..writeln(
+        '      return (resource as $resourceType).copyWith(meta: newMeta);',
+      );
   }
 
-  buffer.writeln('  }');
-  buffer.writeln('}');
+  buffer
+    ..writeln('  }')
+    ..writeln('}');
 
-  File('$fhirDirectory/utils/resource_new_version.dart')
-      .writeAsStringSync(buffer.toString());
+  return buffer.toString();
 }
 
-// Function to generate resource_types_enum.dart
-void generateResourceTypesEnum(List<String> resourceTypes) {
-  final StringBuffer buffer = StringBuffer();
-  // buffer.writeln("import 'package:json_annotation/json_annotation.dart';");
-  buffer.writeln('enum $fhirResourceType {');
+// Build content for resource_types_enum.dart
+String _buildResourceTypesEnum(List<String> resourceTypes) {
+  final buffer = StringBuffer()
+    ..writeln('// ignore_for_file: constant_identifier_names\n')
+    ..writeln('/// An enum representing the different FHIR resource types.')
+    ..writeln('enum $fhirResourceType {');
 
   // Write the enum values
-  for (final String resourceType in resourceTypes) {
-    // buffer.writeln("  @JsonValue('${resourceType.replaceAll('Fhir', '')}')");
-    buffer.writeln('  $resourceType,');
+  for (final resourceType in resourceTypes) {
+    buffer
+      ..writeln(' /// $resourceType')
+      ..writeln(' $resourceType,');
   }
 
-  buffer.writeln(';');
+  buffer
+    ..writeln(';')
+    ..writeln('  @override')
+    ..writeln('  String toString() {')
+    ..writeln('    switch (this) {');
 
-  // Add the helper methods
-  buffer.writeln('  @override');
-  buffer.writeln('  String toString() {');
-  buffer.writeln('    switch (this) {');
-  for (final String resourceType in resourceTypes) {
-    buffer.writeln('      case $fhirResourceType.$resourceType:');
-    buffer.writeln("        return '${resourceType.replaceAll('Fhir', '')}';");
+  for (final resourceType in resourceTypes) {
+    buffer
+      ..writeln('      case $fhirResourceType.$resourceType:')
+      ..writeln("        return '${resourceType.replaceAll('Fhir', '')}';");
   }
-  buffer.writeln('    }');
-  buffer.writeln('  }');
 
-  buffer.writeln('  String toJson() => toString();');
+  buffer
+    ..writeln('    }')
+    ..writeln('  }')
+    ..writeln(' /// Returns the [R4ResourceType] as a [String].')
+    ..writeln('  String toJson() => toString();\n')
+    ..writeln(' /// Returns the [R4ResourceType] from a [String].')
+    ..writeln('  static $fhirResourceType? fromString(String string) {')
+    ..writeln('    switch (string) {');
 
-  buffer.writeln('  static $fhirResourceType? fromString(String string) {');
-  buffer.writeln('    switch (string) {');
-  for (final String resourceType in resourceTypes) {
-    buffer.writeln("      case '${resourceType.replaceAll('Fhir', '')}':");
-    buffer.writeln('        return $fhirResourceType.$resourceType;');
+  for (final resourceType in resourceTypes) {
+    buffer
+      ..writeln("      case '${resourceType.replaceAll('Fhir', '')}':")
+      ..writeln('        return $fhirResourceType.$resourceType;');
   }
-  buffer.writeln('      default:');
-  buffer.writeln('        return null;');
-  buffer.writeln('    }');
-  buffer.writeln('  }');
 
-  buffer.writeln('  static $fhirResourceType? fromJson(dynamic json) {');
-  buffer.writeln('    if (json is String) {');
-  buffer.writeln('      return fromString(json);');
-  buffer.writeln('    }');
-  buffer.writeln('    return null;');
-  buffer.writeln('  }');
+  buffer
+    ..writeln('      default:')
+    ..writeln('        return null;')
+    ..writeln('    }')
+    ..writeln('  }')
+    ..writeln(
+      ' /// Returns a list of [R4ResourceType] from a [dynamic] object.',
+    )
+    ..writeln('  static $fhirResourceType? fromJson(dynamic json) {')
+    ..writeln('    if (json is String) {')
+    ..writeln('      return fromString(json);')
+    ..writeln('    }')
+    ..writeln('    return null;')
+    ..writeln('  }')
+    ..writeln(' /// Returns a list of [R4ResourceType] as [String]s.')
+    ..writeln('  static List<String> get typesAsStrings => <String>[');
 
-  buffer.writeln('  static List<String> get typesAsStrings => <String>[');
-  for (final String resourceType in resourceTypes) {
+  for (final resourceType in resourceTypes) {
     buffer.writeln("    '${resourceType.replaceAll('Fhir', '')}',");
   }
-  buffer.writeln('  ];');
 
-  buffer.writeln('}');
+  buffer.writeln('  ];}');
 
-  File('$fhirDirectory/utils/resource_types_enum.dart')
-      .writeAsStringSync(buffer.toString());
+  return buffer.toString();
 }
 
 const String updatedMeta = '''
+import 'package:$fhirVersion/$fhirVersion.dart';
+
 /// Returns a [FhirMeta] object, creates a new one if none is passed, otherwise
 /// updates the [lastUpdated] and increases the [version] by 1
-FhirMeta updateFhirMetaVersion(FhirMeta? oldFhirMeta,
-    [bool versionIdAsTime = false]) {
-  final DateTime now = DateTime.now().toUtc();
+FhirMeta updateFhirMetaVersion(
+  FhirMeta? oldFhirMeta, [
+  // ignore: avoid_positional_boolean_parameters
+  bool versionIdAsTime = false,
+]) {
+  final now = DateTime.now().toUtc();
   if (versionIdAsTime) {
     if (oldFhirMeta == null) {
       return FhirMeta(
@@ -196,7 +228,7 @@ FhirMeta updateFhirMetaVersion(FhirMeta? oldFhirMeta,
       );
     }
   }
-  final int version = oldFhirMeta == null
+  final version = oldFhirMeta == null
       ? 1
       : oldFhirMeta.versionId == null
           ? 1
@@ -217,4 +249,11 @@ FhirMeta updateFhirMetaVersion(FhirMeta? oldFhirMeta,
 /// Updates the [meta] field of this Resource, updates the meta.lastUpdated
 /// field, adds 1 to the version number and adds an [Id] if there is not already
 /// one, accepts [meta] as an argument and will update that field, otherwise
-/// will try and update the [meta] field already in the resource''';
+/// will try and update the [meta] field already in the resource
+Resource updateMeta(
+  Resource resource, {
+  FhirMeta? meta,
+  bool versionIdAsTime = false,
+}) {
+  final newMeta = updateFhirMetaVersion(meta ?? resource.meta, versionIdAsTime);
+  switch (resource.resourceType) {''';

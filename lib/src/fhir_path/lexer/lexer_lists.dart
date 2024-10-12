@@ -1,6 +1,5 @@
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:petitparser/petitparser.dart';
-
-import '../../../fhir_r4.dart';
 
 /// Lexers for identifying special items
 final ChoiceParser<dynamic> specialLexer = bracketsIndexLexer |

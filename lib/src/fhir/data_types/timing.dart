@@ -1,19 +1,24 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [Timing] /// Specifies an event that may occur multiple times. Timing schedules are used
-/// to record when things are planned, expected or requested to occur. The most
-/// common usage is in dosage instructions for medications. They are also used
-/// when planning care of various kinds, and may be used for reporting the
-/// schedule to which past regular activities were carried out.
+/// [Timing]
+/// Specifies an event that may occur multiple times. Timing schedules are
+/// used to record when things are planned, expected or requested to occur.
+/// The most common usage is in dosage instructions for medications. They
+/// are also used when planning care of various kinds, and may be used for
+/// reporting the schedule to which past regular activities were carried
+/// out.
 class Timing extends BackboneType {
+  /// Primary constructor for [Timing]
+
   Timing({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.event,
+
+    /// Extensions for [event]
     this.eventElement,
     this.repeat,
     this.code,
@@ -25,38 +30,116 @@ class Timing extends BackboneType {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory Timing.fromJson(Map<String, dynamic> json) {
+    return Timing(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      event: json['event'] != null
+          ? (json['event'] as List<dynamic>)
+              .map<FhirDateTime>(
+                (dynamic v) => FhirDateTime.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      eventElement: json['_event'] != null
+          ? (json['_event'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      repeat: json['repeat'] != null
+          ? TimingRepeat.fromJson(
+              json['repeat'] as Map<String, dynamic>,
+            )
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(
+              json['code'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [Timing] from a [String] or [YamlMap] object
+  factory Timing.fromYaml(dynamic yaml) => yaml is String
+      ? Timing.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? Timing.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('Timing cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [Timing] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory Timing.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Timing.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'Timing';
 
-  /// [event] /// Identifies specific times when the event occurs.
+  /// [event]
+  /// Identifies specific times when the event occurs.
   final List<FhirDateTime>? event;
+
+  /// Extensions for [event]
   final List<Element>? eventElement;
 
-  /// [repeat] /// A set of rules that describe when the event is scheduled.
+  /// [repeat]
+  /// A set of rules that describe when the event is scheduled.
   final TimingRepeat? repeat;
 
-  /// [code] /// A code for the timing schedule (or just text in code.text). Some codes such
-  /// as BID are ubiquitous, but many institutions define their own additional
-  /// codes. If a code is provided, the code is understood to be a complete
-  /// statement of whatever is specified in the structured timing data, and
-  /// either the code or the data may be used to interpret the Timing, with the
-  /// exception that .repeat.bounds still applies over the code (and is not
-  /// contained in the code).
+  /// [code]
+  /// A code for the timing schedule (or just text in code.text). Some codes
+  /// such as BID are ubiquitous, but many institutions define their own
+  /// additional codes. If a code is provided, the code is understood to be a
+  /// complete statement of whatever is specified in the structured timing
+  /// data, and either the code or the data may be used to interpret the
+  /// Timing, with the exception that .repeat.bounds still applies over the
+  /// code (and is not contained in the code).
   final CodeableConcept? code;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (event != null && event!.isNotEmpty) {
       json['event'] = event!.map((FhirDateTime v) => v.toJson()).toList();
@@ -73,41 +156,6 @@ class Timing extends BackboneType {
     return json;
   }
 
-  factory Timing.fromJson(Map<String, dynamic> json) {
-    return Timing(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      event: json['event'] != null
-          ? (json['event'] as List<dynamic>)
-              .map<FhirDateTime>(
-                  (dynamic v) => FhirDateTime.fromJson(v as dynamic))
-              .toList()
-          : null,
-      eventElement: json['_event'] != null
-          ? (json['_event'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      repeat: json['repeat'] != null
-          ? TimingRepeat.fromJson(json['repeat'] as Map<String, dynamic>)
-          : null,
-      code: json['code'] != null
-          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   Timing clone() => throw UnimplementedError();
   @override
@@ -142,29 +190,13 @@ class Timing extends BackboneType {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory Timing.fromYaml(dynamic yaml) => yaml is String
-      ? Timing.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? Timing.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'Timing cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory Timing.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return Timing.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [TimingRepeat] /// A set of rules that describe when the event is scheduled.
+/// [TimingRepeat]
+/// A set of rules that describe when the event is scheduled.
 class TimingRepeat extends Element {
+  /// Primary constructor for [TimingRepeat]
+
   TimingRepeat({
     super.id,
     super.extension_,
@@ -172,32 +204,60 @@ class TimingRepeat extends Element {
     this.boundsRange,
     this.boundsPeriod,
     this.count,
+
+    /// Extensions for [count]
     this.countElement,
     this.countMax,
+
+    /// Extensions for [countMax]
     this.countMaxElement,
     this.duration,
+
+    /// Extensions for [duration]
     this.durationElement,
     this.durationMax,
+
+    /// Extensions for [durationMax]
     this.durationMaxElement,
     this.durationUnit,
+
+    /// Extensions for [durationUnit]
     this.durationUnitElement,
     this.frequency,
+
+    /// Extensions for [frequency]
     this.frequencyElement,
     this.frequencyMax,
+
+    /// Extensions for [frequencyMax]
     this.frequencyMaxElement,
     this.period,
+
+    /// Extensions for [period]
     this.periodElement,
     this.periodMax,
+
+    /// Extensions for [periodMax]
     this.periodMaxElement,
     this.periodUnit,
+
+    /// Extensions for [periodUnit]
     this.periodUnitElement,
     this.dayOfWeek,
+
+    /// Extensions for [dayOfWeek]
     this.dayOfWeekElement,
     this.timeOfDay,
+
+    /// Extensions for [timeOfDay]
     this.timeOfDayElement,
     this.when,
+
+    /// Extensions for [when]
     this.whenElement,
     this.offset,
+
+    /// Extensions for [offset]
     this.offsetElement,
     super.userData,
     super.formatCommentsPre,
@@ -207,106 +267,337 @@ class TimingRepeat extends Element {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory TimingRepeat.fromJson(Map<String, dynamic> json) {
+    return TimingRepeat(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      boundsDuration: json['boundsDuration'] != null
+          ? FhirDuration.fromJson(
+              json['boundsDuration'] as Map<String, dynamic>,
+            )
+          : null,
+      boundsRange: json['boundsRange'] != null
+          ? Range.fromJson(
+              json['boundsRange'] as Map<String, dynamic>,
+            )
+          : null,
+      boundsPeriod: json['boundsPeriod'] != null
+          ? Period.fromJson(
+              json['boundsPeriod'] as Map<String, dynamic>,
+            )
+          : null,
+      count: json['count'] != null
+          ? FhirPositiveInt.fromJson(json['count'])
+          : null,
+      countElement: json['_count'] != null
+          ? Element.fromJson(
+              json['_count'] as Map<String, dynamic>,
+            )
+          : null,
+      countMax: json['countMax'] != null
+          ? FhirPositiveInt.fromJson(json['countMax'])
+          : null,
+      countMaxElement: json['_countMax'] != null
+          ? Element.fromJson(
+              json['_countMax'] as Map<String, dynamic>,
+            )
+          : null,
+      duration: json['duration'] != null
+          ? FhirDecimal.fromJson(json['duration'])
+          : null,
+      durationElement: json['_duration'] != null
+          ? Element.fromJson(
+              json['_duration'] as Map<String, dynamic>,
+            )
+          : null,
+      durationMax: json['durationMax'] != null
+          ? FhirDecimal.fromJson(json['durationMax'])
+          : null,
+      durationMaxElement: json['_durationMax'] != null
+          ? Element.fromJson(
+              json['_durationMax'] as Map<String, dynamic>,
+            )
+          : null,
+      durationUnit: json['durationUnit'] != null
+          ? UnitsOfTime.fromJson(json['durationUnit'])
+          : null,
+      durationUnitElement: json['_durationUnit'] != null
+          ? Element.fromJson(
+              json['_durationUnit'] as Map<String, dynamic>,
+            )
+          : null,
+      frequency: json['frequency'] != null
+          ? FhirPositiveInt.fromJson(json['frequency'])
+          : null,
+      frequencyElement: json['_frequency'] != null
+          ? Element.fromJson(
+              json['_frequency'] as Map<String, dynamic>,
+            )
+          : null,
+      frequencyMax: json['frequencyMax'] != null
+          ? FhirPositiveInt.fromJson(json['frequencyMax'])
+          : null,
+      frequencyMaxElement: json['_frequencyMax'] != null
+          ? Element.fromJson(
+              json['_frequencyMax'] as Map<String, dynamic>,
+            )
+          : null,
+      period:
+          json['period'] != null ? FhirDecimal.fromJson(json['period']) : null,
+      periodElement: json['_period'] != null
+          ? Element.fromJson(
+              json['_period'] as Map<String, dynamic>,
+            )
+          : null,
+      periodMax: json['periodMax'] != null
+          ? FhirDecimal.fromJson(json['periodMax'])
+          : null,
+      periodMaxElement: json['_periodMax'] != null
+          ? Element.fromJson(
+              json['_periodMax'] as Map<String, dynamic>,
+            )
+          : null,
+      periodUnit: json['periodUnit'] != null
+          ? UnitsOfTime.fromJson(json['periodUnit'])
+          : null,
+      periodUnitElement: json['_periodUnit'] != null
+          ? Element.fromJson(
+              json['_periodUnit'] as Map<String, dynamic>,
+            )
+          : null,
+      dayOfWeek: json['dayOfWeek'] != null
+          ? (json['dayOfWeek'] as List<dynamic>)
+              .map<DaysOfWeek>(
+                (dynamic v) => DaysOfWeek.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      dayOfWeekElement: json['_dayOfWeek'] != null
+          ? (json['_dayOfWeek'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      timeOfDay: json['timeOfDay'] != null
+          ? (json['timeOfDay'] as List<dynamic>)
+              .map<FhirTime>(
+                (dynamic v) => FhirTime.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      timeOfDayElement: json['_timeOfDay'] != null
+          ? (json['_timeOfDay'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      when: json['when'] != null
+          ? (json['when'] as List<dynamic>)
+              .map<EventTiming>(
+                (dynamic v) => EventTiming.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      whenElement: json['_when'] != null
+          ? (json['_when'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      offset: json['offset'] != null
+          ? FhirUnsignedInt.fromJson(json['offset'])
+          : null,
+      offsetElement: json['_offset'] != null
+          ? Element.fromJson(
+              json['_offset'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [TimingRepeat] from a [String] or [YamlMap] object
+  factory TimingRepeat.fromYaml(dynamic yaml) => yaml is String
+      ? TimingRepeat.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? TimingRepeat.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('TimingRepeat cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [TimingRepeat] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory TimingRepeat.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return TimingRepeat.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'TimingRepeat';
 
-  /// [boundsDuration] /// Either a duration for the length of the timing schedule, a range of
-  /// possible length, or outer bounds for start and/or end limits of the timing
-  /// schedule.
+  /// [boundsDuration]
+  /// Either a duration for the length of the timing schedule, a range of
+  /// possible length, or outer bounds for start and/or end limits of the
+  /// timing schedule.
   final FhirDuration? boundsDuration;
 
-  /// [boundsRange] /// Either a duration for the length of the timing schedule, a range of
-  /// possible length, or outer bounds for start and/or end limits of the timing
-  /// schedule.
+  /// [boundsRange]
+  /// Either a duration for the length of the timing schedule, a range of
+  /// possible length, or outer bounds for start and/or end limits of the
+  /// timing schedule.
   final Range? boundsRange;
 
-  /// [boundsPeriod] /// Either a duration for the length of the timing schedule, a range of
-  /// possible length, or outer bounds for start and/or end limits of the timing
-  /// schedule.
+  /// [boundsPeriod]
+  /// Either a duration for the length of the timing schedule, a range of
+  /// possible length, or outer bounds for start and/or end limits of the
+  /// timing schedule.
   final Period? boundsPeriod;
 
-  /// [count] /// A total count of the desired number of repetitions across the duration of
-  /// the entire timing specification. If countMax is present, this element
-  /// indicates the lower bound of the allowed range of count values.
+  /// [count]
+  /// A total count of the desired number of repetitions across the duration
+  /// of the entire timing specification. If countMax is present, this
+  /// element indicates the lower bound of the allowed range of count values.
   final FhirPositiveInt? count;
+
+  /// Extensions for [count]
   final Element? countElement;
 
-  /// [countMax] /// If present, indicates that the count is a range - so to perform the action
-  /// between [count] and [countMax] times.
+  /// [countMax]
+  /// If present, indicates that the count is a range - so to perform the
+  /// action between [count] and [countMax] times.
   final FhirPositiveInt? countMax;
+
+  /// Extensions for [countMax]
   final Element? countMaxElement;
 
-  /// [duration] /// How long this thing happens for when it happens. If durationMax is present,
-  /// this element indicates the lower bound of the allowed range of the
-  /// duration.
+  /// [duration]
+  /// How long this thing happens for when it happens. If durationMax is
+  /// present, this element indicates the lower bound of the allowed range of
+  /// the duration.
   final FhirDecimal? duration;
+
+  /// Extensions for [duration]
   final Element? durationElement;
 
-  /// [durationMax] /// If present, indicates that the duration is a range - so to perform the
+  /// [durationMax]
+  /// If present, indicates that the duration is a range - so to perform the
   /// action between [duration] and [durationMax] time length.
   final FhirDecimal? durationMax;
+
+  /// Extensions for [durationMax]
   final Element? durationMaxElement;
 
-  /// [durationUnit] /// The units of time for the duration, in UCUM units.
+  /// [durationUnit]
+  /// The units of time for the duration, in UCUM units.
   final UnitsOfTime? durationUnit;
+
+  /// Extensions for [durationUnit]
   final Element? durationUnitElement;
 
-  /// [frequency] /// The number of times to repeat the action within the specified period. If
-  /// frequencyMax is present, this element indicates the lower bound of the
-  /// allowed range of the frequency.
+  /// [frequency]
+  /// The number of times to repeat the action within the specified period.
+  /// If frequencyMax is present, this element indicates the lower bound of
+  /// the allowed range of the frequency.
   final FhirPositiveInt? frequency;
+
+  /// Extensions for [frequency]
   final Element? frequencyElement;
 
-  /// [frequencyMax] /// If present, indicates that the frequency is a range - so to repeat between
-  /// [frequency] and [frequencyMax] times within the period or period range.
+  /// [frequencyMax]
+  /// If present, indicates that the frequency is a range - so to repeat
+  /// between [frequency] and [frequencyMax] times within the period or
+  /// period range.
   final FhirPositiveInt? frequencyMax;
+
+  /// Extensions for [frequencyMax]
   final Element? frequencyMaxElement;
 
-  /// [period] /// Indicates the duration of time over which repetitions are to occur; e.g. to
-  /// express "3 times per day", 3 would be the frequency and "1 day" would be
-  /// the period. If periodMax is present, this element indicates the lower bound
-  /// of the allowed range of the period length.
+  /// [period]
+  /// Indicates the duration of time over which repetitions are to occur;
+  /// e.g. to express "3 times per day", 3 would be the frequency and "1 day"
+  /// would be the period. If periodMax is present, this element indicates
+  /// the lower bound of the allowed range of the period length.
   final FhirDecimal? period;
+
+  /// Extensions for [period]
   final Element? periodElement;
 
-  /// [periodMax] /// If present, indicates that the period is a range from [period] to
-  /// [periodMax], allowing expressing concepts such as "do this once every 3-5
-  /// days.
+  /// [periodMax]
+  /// If present, indicates that the period is a range from [period] to
+  /// [periodMax], allowing expressing concepts such as "do this once every
+  /// 3-5 days.
   final FhirDecimal? periodMax;
+
+  /// Extensions for [periodMax]
   final Element? periodMaxElement;
 
-  /// [periodUnit] /// The units of time for the period in UCUM units.
+  /// [periodUnit]
+  /// The units of time for the period in UCUM units.
   final UnitsOfTime? periodUnit;
+
+  /// Extensions for [periodUnit]
   final Element? periodUnitElement;
 
-  /// [dayOfWeek] /// If one or more days of week is provided, then the action happens only on
-  /// the specified day(s).
+  /// [dayOfWeek]
+  /// If one or more days of week is provided, then the action happens only
+  /// on the specified day(s).
   final List<DaysOfWeek>? dayOfWeek;
+
+  /// Extensions for [dayOfWeek]
   final List<Element>? dayOfWeekElement;
 
-  /// [timeOfDay] /// Specified time of day for action to take place.
+  /// [timeOfDay]
+  /// Specified time of day for action to take place.
   final List<FhirTime>? timeOfDay;
+
+  /// Extensions for [timeOfDay]
   final List<Element>? timeOfDayElement;
 
-  /// [when] /// An approximate time period during the day, potentially linked to an event
-  /// of daily living that indicates when the action should occur.
+  /// [when]
+  /// An approximate time period during the day, potentially linked to an
+  /// event of daily living that indicates when the action should occur.
   final List<EventTiming>? when;
+
+  /// Extensions for [when]
   final List<Element>? whenElement;
 
-  /// [offset] /// The number of minutes from the event. If the event code does not indicate
-  /// whether the minutes is before or after the event, then the offset is
-  /// assumed to be after the event.
+  /// [offset]
+  /// The number of minutes from the event. If the event code does not
+  /// indicate whether the minutes is before or after the event, then the
+  /// offset is assumed to be after the event.
   final FhirUnsignedInt? offset;
+
+  /// Extensions for [offset]
   final Element? offsetElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (boundsDuration != null) {
       json['boundsDuration'] = boundsDuration!.toJson();
@@ -372,8 +663,7 @@ class TimingRepeat extends Element {
       json['periodUnit'] = periodUnit!.toJson();
     }
     if (dayOfWeek != null && dayOfWeek!.isNotEmpty) {
-      json['dayOfWeek'] =
-          dayOfWeek!.map<dynamic>((DaysOfWeek v) => v.toJson()).toList();
+      json['dayOfWeek'] = dayOfWeek!.map((DaysOfWeek v) => v.toJson()).toList();
     }
     if (timeOfDay != null && timeOfDay!.isNotEmpty) {
       json['timeOfDay'] = timeOfDay!.map((FhirTime v) => v.toJson()).toList();
@@ -383,7 +673,7 @@ class TimingRepeat extends Element {
           timeOfDayElement!.map((Element v) => v.toJson()).toList();
     }
     if (when != null && when!.isNotEmpty) {
-      json['when'] = when!.map<dynamic>((EventTiming v) => v.toJson()).toList();
+      json['when'] = when!.map((EventTiming v) => v.toJson()).toList();
     }
     if (offset?.value != null) {
       json['offset'] = offset!.toJson();
@@ -394,126 +684,6 @@ class TimingRepeat extends Element {
     return json;
   }
 
-  factory TimingRepeat.fromJson(Map<String, dynamic> json) {
-    return TimingRepeat(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      boundsDuration: json['boundsDuration'] != null
-          ? FhirDuration.fromJson(
-              json['boundsDuration'] as Map<String, dynamic>)
-          : null,
-      boundsRange: json['boundsRange'] != null
-          ? Range.fromJson(json['boundsRange'] as Map<String, dynamic>)
-          : null,
-      boundsPeriod: json['boundsPeriod'] != null
-          ? Period.fromJson(json['boundsPeriod'] as Map<String, dynamic>)
-          : null,
-      count: json['count'] != null
-          ? FhirPositiveInt.fromJson(json['count'])
-          : null,
-      countElement: json['_count'] != null
-          ? Element.fromJson(json['_count'] as Map<String, dynamic>)
-          : null,
-      countMax: json['countMax'] != null
-          ? FhirPositiveInt.fromJson(json['countMax'])
-          : null,
-      countMaxElement: json['_countMax'] != null
-          ? Element.fromJson(json['_countMax'] as Map<String, dynamic>)
-          : null,
-      duration: json['duration'] != null
-          ? FhirDecimal.fromJson(json['duration'])
-          : null,
-      durationElement: json['_duration'] != null
-          ? Element.fromJson(json['_duration'] as Map<String, dynamic>)
-          : null,
-      durationMax: json['durationMax'] != null
-          ? FhirDecimal.fromJson(json['durationMax'])
-          : null,
-      durationMaxElement: json['_durationMax'] != null
-          ? Element.fromJson(json['_durationMax'] as Map<String, dynamic>)
-          : null,
-      durationUnit: json['durationUnit'] != null
-          ? UnitsOfTime.fromJson(json['durationUnit'])
-          : null,
-      durationUnitElement: json['_durationUnit'] != null
-          ? Element.fromJson(json['_durationUnit'] as Map<String, dynamic>)
-          : null,
-      frequency: json['frequency'] != null
-          ? FhirPositiveInt.fromJson(json['frequency'])
-          : null,
-      frequencyElement: json['_frequency'] != null
-          ? Element.fromJson(json['_frequency'] as Map<String, dynamic>)
-          : null,
-      frequencyMax: json['frequencyMax'] != null
-          ? FhirPositiveInt.fromJson(json['frequencyMax'])
-          : null,
-      frequencyMaxElement: json['_frequencyMax'] != null
-          ? Element.fromJson(json['_frequencyMax'] as Map<String, dynamic>)
-          : null,
-      period:
-          json['period'] != null ? FhirDecimal.fromJson(json['period']) : null,
-      periodElement: json['_period'] != null
-          ? Element.fromJson(json['_period'] as Map<String, dynamic>)
-          : null,
-      periodMax: json['periodMax'] != null
-          ? FhirDecimal.fromJson(json['periodMax'])
-          : null,
-      periodMaxElement: json['_periodMax'] != null
-          ? Element.fromJson(json['_periodMax'] as Map<String, dynamic>)
-          : null,
-      periodUnit: json['periodUnit'] != null
-          ? UnitsOfTime.fromJson(json['periodUnit'])
-          : null,
-      periodUnitElement: json['_periodUnit'] != null
-          ? Element.fromJson(json['_periodUnit'] as Map<String, dynamic>)
-          : null,
-      dayOfWeek: json['dayOfWeek'] != null
-          ? (json['dayOfWeek'] as List<dynamic>)
-              .map<DaysOfWeek>((dynamic v) => DaysOfWeek.fromJson(v as dynamic))
-              .toList()
-          : null,
-      dayOfWeekElement: json['_dayOfWeek'] != null
-          ? (json['_dayOfWeek'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      timeOfDay: json['timeOfDay'] != null
-          ? (json['timeOfDay'] as List<dynamic>)
-              .map<FhirTime>((dynamic v) => FhirTime.fromJson(v as dynamic))
-              .toList()
-          : null,
-      timeOfDayElement: json['_timeOfDay'] != null
-          ? (json['_timeOfDay'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      when: json['when'] != null
-          ? (json['when'] as List<dynamic>)
-              .map<EventTiming>(
-                  (dynamic v) => EventTiming.fromJson(v as dynamic))
-              .toList()
-          : null,
-      whenElement: json['_when'] != null
-          ? (json['_when'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      offset: json['offset'] != null
-          ? FhirUnsignedInt.fromJson(json['offset'])
-          : null,
-      offsetElement: json['_offset'] != null
-          ? Element.fromJson(json['_offset'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   TimingRepeat clone() => throw UnimplementedError();
   @override
@@ -599,24 +769,5 @@ class TimingRepeat extends Element {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory TimingRepeat.fromYaml(dynamic yaml) => yaml is String
-      ? TimingRepeat.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? TimingRepeat.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'TimingRepeat cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory TimingRepeat.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return TimingRepeat.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

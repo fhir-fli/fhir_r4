@@ -20,46 +20,45 @@ Future<void> _extractFilesToDisk() async {
   await extractFileToDisk(schemaPathZip, definitionsPath);
 }
 
-void _moveJsonExamples() {
-  final Directory examplesJsonDirectory = Directory(examplesPath);
-  final List<FileSystemEntity> examplesJson = examplesJsonDirectory.listSync();
-  for (final FileSystemEntity file in examplesJson) {
-    if (file is File) {
-      file.copySync(file.path.replaceAll(examplesPath, testPath));
-    }
-  }
-}
+// void _moveJsonExamples() {
+//   final examplesJsonDirectory = Directory(examplesPath);
+//   final examplesJson = examplesJsonDirectory.listSync();
+//   for (final file in examplesJson) {
+//     if (file is File) {
+//       file.copySync(file.path.replaceAll(examplesPath, testPath));
+//     }
+//   }
+// }
 
-void _moveNdJsonExamples() {
-  final Directory examplesJsonDirectory = Directory(ndJsonExamplesPath);
-  final List<FileSystemEntity> examplesJson = examplesJsonDirectory.listSync();
-  for (final FileSystemEntity file in examplesJson) {
-    if (file is File) {
-      final String titleString = file.path.split('/').last.split('.').first;
-      final String fileString = file.readAsStringSync();
-      final List<String> lines = fileString.split('\n');
-      for (int i = 0; i < lines.length; i++) {
-        final String line = lines[i];
-        if (line.isNotEmpty) {
-          final String partialPath = file.path
-              .replaceAll(ndJsonExamplesPath, testPath)
-              .replaceAll('.ndjson', '.json')
-              .replaceAll(titleString, '$titleString$i');
-          final File newFile = File(partialPath);
-          newFile.writeAsStringSync(line);
-        }
-      }
-    }
-  }
-}
+// void _moveNdJsonExamples() {
+//   final examplesJsonDirectory = Directory(ndJsonExamplesPath);
+//   final examplesJson = examplesJsonDirectory.listSync();
+//   for (final file in examplesJson) {
+//     if (file is File) {
+//       final titleString = file.path.split('/').last.split('.').first;
+//       final fileString = file.readAsStringSync();
+//       final lines = fileString.split('\n');
+//       for (var i = 0; i < lines.length; i++) {
+//         final line = lines[i];
+//         if (line.isNotEmpty) {
+//           final partialPath = file.path
+//               .replaceAll(ndJsonExamplesPath, testPath)
+//               .replaceAll('.ndjson', '.json')
+//               .replaceAll(titleString, '$titleString$i');
+//           File(partialPath).writeAsStringSync(line);
+//         }
+//       }
+//     }
+//   }
+// }
 
 void exportFiles() {
-  for (final String dir in directories) {
-    final List<String> exportFile = <String>[];
-    final Directory directory = Directory('$fhirDirectory/$dir');
-    final List<FileSystemEntity> files = directory.listSync();
-    for (final FileSystemEntity file in files) {
-      final String fileName = file.path.split('/').last;
+  for (final dir in directories) {
+    final exportFile = <String>[];
+    final directory = Directory('$fhirDirectory/$dir');
+    final files = directory.listSync();
+    for (final file in files) {
+      final fileName = file.path.split('/').last;
       if (fileName.endsWith('.dart') &&
           !fileName.endsWith('$dir.dart') &&
           !fileName.contains('.g.')) {
@@ -73,10 +72,10 @@ void exportFiles() {
 }
 
 void writeEnumToFile(String enumName, String enumString) {
-  final String enumFileName = '${enumName.snakeCase}.dart';
-  final String filePath = '$fhirDirectory/enums/$enumFileName';
+  final enumFileName = '${enumName.snakeCase}.dart';
+  final filePath = '$fhirDirectory/enums/$enumFileName';
 
-  final File enumFile = File(filePath);
+  final enumFile = File(filePath);
   if (!enumFile.existsSync()) {
     enumFile.createSync(recursive: true);
   }
@@ -85,15 +84,15 @@ void writeEnumToFile(String enumName, String enumString) {
 }
 
 void deleteDirectories() {
-  final List<String> directories = <String>[
+  final directories = <String>[
     '__MACOSX',
     definitionsPath,
     examplesPath,
     ndJsonExamplesPath,
   ];
 
-  for (final String dir in directories) {
-    final Directory directory = Directory('./$dir');
+  for (final dir in directories) {
+    final directory = Directory('./$dir');
     if (directory.existsSync()) {
       try {
         directory.deleteSync(recursive: true);

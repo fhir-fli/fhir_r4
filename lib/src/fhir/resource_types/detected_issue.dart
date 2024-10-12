@@ -1,19 +1,25 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [DetectedIssue] /// Indicates an actual or potential clinical issue with or between one or more
-/// active or proposed clinical actions for a patient; e.g. Drug-drug
-/// interaction, Ineffective treatment frequency, Procedure-condition conflict,
-/// etc.
+/// [DetectedIssue]
+/// Indicates an actual or potential clinical issue with or between one or
+/// more active or proposed clinical actions for a patient; e.g. Drug-drug
+/// interaction, Ineffective treatment frequency, Procedure-condition
+/// conflict, etc.
 class DetectedIssue extends DomainResource {
+  /// Primary constructor for [DetectedIssue]
+
   DetectedIssue({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -21,20 +27,30 @@ class DetectedIssue extends DomainResource {
     super.modifierExtension,
     this.identifier,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     this.code,
     this.severity,
+
+    /// Extensions for [severity]
     this.severityElement,
     this.patient,
     this.identifiedDateTime,
+
+    /// Extensions for [identifiedDateTime]
     this.identifiedDateTimeElement,
     this.identifiedPeriod,
     this.author,
     this.implicated,
     this.evidence,
     this.detail,
+
+    /// Extensions for [detail]
     this.detailElement,
     this.reference,
+
+    /// Extensions for [reference]
     this.referenceElement,
     this.mitigation,
     super.userData,
@@ -43,66 +59,272 @@ class DetectedIssue extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.DetectedIssue);
+  }) : super(
+          resourceType: R4ResourceType.DetectedIssue,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory DetectedIssue.fromJson(Map<String, dynamic> json) {
+    return DetectedIssue(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      status: ObservationStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(
+              json['code'] as Map<String, dynamic>,
+            )
+          : null,
+      severity: json['severity'] != null
+          ? DetectedIssueSeverity.fromJson(json['severity'])
+          : null,
+      severityElement: json['_severity'] != null
+          ? Element.fromJson(
+              json['_severity'] as Map<String, dynamic>,
+            )
+          : null,
+      patient: json['patient'] != null
+          ? Reference.fromJson(
+              json['patient'] as Map<String, dynamic>,
+            )
+          : null,
+      identifiedDateTime: json['identifiedDateTime'] != null
+          ? FhirDateTime.fromJson(json['identifiedDateTime'])
+          : null,
+      identifiedDateTimeElement: json['_identifiedDateTime'] != null
+          ? Element.fromJson(
+              json['_identifiedDateTime'] as Map<String, dynamic>,
+            )
+          : null,
+      identifiedPeriod: json['identifiedPeriod'] != null
+          ? Period.fromJson(
+              json['identifiedPeriod'] as Map<String, dynamic>,
+            )
+          : null,
+      author: json['author'] != null
+          ? Reference.fromJson(
+              json['author'] as Map<String, dynamic>,
+            )
+          : null,
+      implicated: json['implicated'] != null
+          ? (json['implicated'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      evidence: json['evidence'] != null
+          ? (json['evidence'] as List<dynamic>)
+              .map<DetectedIssueEvidence>(
+                (dynamic v) => DetectedIssueEvidence.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      detail:
+          json['detail'] != null ? FhirString.fromJson(json['detail']) : null,
+      detailElement: json['_detail'] != null
+          ? Element.fromJson(
+              json['_detail'] as Map<String, dynamic>,
+            )
+          : null,
+      reference: json['reference'] != null
+          ? FhirUri.fromJson(json['reference'])
+          : null,
+      referenceElement: json['_reference'] != null
+          ? Element.fromJson(
+              json['_reference'] as Map<String, dynamic>,
+            )
+          : null,
+      mitigation: json['mitigation'] != null
+          ? (json['mitigation'] as List<dynamic>)
+              .map<DetectedIssueMitigation>(
+                (dynamic v) => DetectedIssueMitigation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [DetectedIssue] from a [String] or [YamlMap] object
+  factory DetectedIssue.fromYaml(dynamic yaml) => yaml is String
+      ? DetectedIssue.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? DetectedIssue.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'DetectedIssue cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [DetectedIssue] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory DetectedIssue.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DetectedIssue.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'DetectedIssue';
 
-  /// [identifier] /// Business identifier associated with the detected issue record.
+  /// [identifier]
+  /// Business identifier associated with the detected issue record.
   final List<Identifier>? identifier;
 
-  /// [status] /// Indicates the status of the detected issue.
+  /// [status]
+  /// Indicates the status of the detected issue.
   final ObservationStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [code] /// Identifies the general type of issue identified.
+  /// [code]
+  /// Identifies the general type of issue identified.
   final CodeableConcept? code;
 
-  /// [severity] /// Indicates the degree of importance associated with the identified issue
+  /// [severity]
+  /// Indicates the degree of importance associated with the identified issue
   /// based on the potential impact on the patient.
   final DetectedIssueSeverity? severity;
+
+  /// Extensions for [severity]
   final Element? severityElement;
 
-  /// [patient] /// Indicates the patient whose record the detected issue is associated with.
+  /// [patient]
+  /// Indicates the patient whose record the detected issue is associated
+  /// with.
   final Reference? patient;
 
-  /// [identifiedDateTime] /// The date or period when the detected issue was initially identified.
+  /// [identifiedDateTime]
+  /// The date or period when the detected issue was initially identified.
   final FhirDateTime? identifiedDateTime;
+
+  /// Extensions for [identifiedDateTime]
   final Element? identifiedDateTimeElement;
 
-  /// [identifiedPeriod] /// The date or period when the detected issue was initially identified.
+  /// [identifiedPeriod]
+  /// The date or period when the detected issue was initially identified.
   final Period? identifiedPeriod;
 
-  /// [author] /// Individual or device responsible for the issue being raised. For example, a
-  /// decision support application or a pharmacist conducting a medication
-  /// review.
+  /// [author]
+  /// Individual or device responsible for the issue being raised. For
+  /// example, a decision support application or a pharmacist conducting a
+  /// medication review.
   final Reference? author;
 
-  /// [implicated] /// Indicates the resource representing the current activity or proposed
+  /// [implicated]
+  /// Indicates the resource representing the current activity or proposed
   /// activity that is potentially problematic.
   final List<Reference>? implicated;
 
-  /// [evidence] /// Supporting evidence or manifestations that provide the basis for
-  /// identifying the detected issue such as a GuidanceResponse or MeasureReport.
+  /// [evidence]
+  /// Supporting evidence or manifestations that provide the basis for
+  /// identifying the detected issue such as a GuidanceResponse or
+  /// MeasureReport.
   final List<DetectedIssueEvidence>? evidence;
 
-  /// [detail] /// A textual explanation of the detected issue.
+  /// [detail]
+  /// A textual explanation of the detected issue.
   final FhirString? detail;
+
+  /// Extensions for [detail]
   final Element? detailElement;
 
-  /// [reference] /// The literature, knowledge-base or similar reference that describes the
+  /// [reference]
+  /// The literature, knowledge-base or similar reference that describes the
   /// propensity for the detected issue identified.
   final FhirUri? reference;
+
+  /// Extensions for [reference]
   final Element? referenceElement;
 
-  /// [mitigation] /// Indicates an action that has been taken or is committed to reduce or
-  /// eliminate the likelihood of the risk identified by the detected issue from
-  /// manifesting. Can also reflect an observation of known mitigating factors
-  /// that may reduce/eliminate the need for any action.
+  /// [mitigation]
+  /// Indicates an action that has been taken or is committed to reduce or
+  /// eliminate the likelihood of the risk identified by the detected issue
+  /// from manifesting. Can also reflect an observation of known mitigating
+  /// factors that may reduce/eliminate the need for any action.
   final List<DetectedIssueMitigation>? mitigation;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -123,21 +345,19 @@ class DetectedIssue extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     json['status'] = status.toJson();
     if (code != null) {
@@ -163,12 +383,11 @@ class DetectedIssue extends DomainResource {
     }
     if (implicated != null && implicated!.isNotEmpty) {
       json['implicated'] =
-          implicated!.map<dynamic>((Reference v) => v.toJson()).toList();
+          implicated!.map((Reference v) => v.toJson()).toList();
     }
     if (evidence != null && evidence!.isNotEmpty) {
-      json['evidence'] = evidence!
-          .map<dynamic>((DetectedIssueEvidence v) => v.toJson())
-          .toList();
+      json['evidence'] =
+          evidence!.map((DetectedIssueEvidence v) => v.toJson()).toList();
     }
     if (detail?.value != null) {
       json['detail'] = detail!.toJson();
@@ -183,118 +402,12 @@ class DetectedIssue extends DomainResource {
       json['_reference'] = referenceElement!.toJson();
     }
     if (mitigation != null && mitigation!.isNotEmpty) {
-      json['mitigation'] = mitigation!
-          .map<dynamic>((DetectedIssueMitigation v) => v.toJson())
-          .toList();
+      json['mitigation'] =
+          mitigation!.map((DetectedIssueMitigation v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory DetectedIssue.fromJson(Map<String, dynamic> json) {
-    return DetectedIssue(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      status: ObservationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      code: json['code'] != null
-          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
-          : null,
-      severity: json['severity'] != null
-          ? DetectedIssueSeverity.fromJson(json['severity'])
-          : null,
-      severityElement: json['_severity'] != null
-          ? Element.fromJson(json['_severity'] as Map<String, dynamic>)
-          : null,
-      patient: json['patient'] != null
-          ? Reference.fromJson(json['patient'] as Map<String, dynamic>)
-          : null,
-      identifiedDateTime: json['identifiedDateTime'] != null
-          ? FhirDateTime.fromJson(json['identifiedDateTime'])
-          : null,
-      identifiedDateTimeElement: json['_identifiedDateTime'] != null
-          ? Element.fromJson(
-              json['_identifiedDateTime'] as Map<String, dynamic>)
-          : null,
-      identifiedPeriod: json['identifiedPeriod'] != null
-          ? Period.fromJson(json['identifiedPeriod'] as Map<String, dynamic>)
-          : null,
-      author: json['author'] != null
-          ? Reference.fromJson(json['author'] as Map<String, dynamic>)
-          : null,
-      implicated: json['implicated'] != null
-          ? (json['implicated'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      evidence: json['evidence'] != null
-          ? (json['evidence'] as List<dynamic>)
-              .map<DetectedIssueEvidence>((dynamic v) =>
-                  DetectedIssueEvidence.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      detail:
-          json['detail'] != null ? FhirString.fromJson(json['detail']) : null,
-      detailElement: json['_detail'] != null
-          ? Element.fromJson(json['_detail'] as Map<String, dynamic>)
-          : null,
-      reference: json['reference'] != null
-          ? FhirUri.fromJson(json['reference'])
-          : null,
-      referenceElement: json['_reference'] != null
-          ? Element.fromJson(json['_reference'] as Map<String, dynamic>)
-          : null,
-      mitigation: json['mitigation'] != null
-          ? (json['mitigation'] as List<dynamic>)
-              .map<DetectedIssueMitigation>((dynamic v) =>
-                  DetectedIssueMitigation.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   DetectedIssue clone() => throw UnimplementedError();
   @override
@@ -372,30 +485,15 @@ class DetectedIssue extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory DetectedIssue.fromYaml(dynamic yaml) => yaml is String
-      ? DetectedIssue.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? DetectedIssue.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'DetectedIssue cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory DetectedIssue.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return DetectedIssue.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [DetectedIssueEvidence] /// Supporting evidence or manifestations that provide the basis for
-/// identifying the detected issue such as a GuidanceResponse or MeasureReport.
+/// [DetectedIssueEvidence]
+/// Supporting evidence or manifestations that provide the basis for
+/// identifying the detected issue such as a GuidanceResponse or
+/// MeasureReport.
 class DetectedIssueEvidence extends BackboneElement {
+  /// Primary constructor for [DetectedIssueEvidence]
+
   DetectedIssueEvidence({
     super.id,
     super.extension_,
@@ -410,70 +508,109 @@ class DetectedIssueEvidence extends BackboneElement {
     super.namedChildren,
   });
 
-  @override
-  String get fhirType => 'DetectedIssueEvidence';
-
-  /// [code] /// A manifestation that led to the recording of this detected issue.
-  final List<CodeableConcept>? code;
-
-  /// [detail] /// Links to resources that constitute evidence for the detected issue such as
-  /// a GuidanceResponse or MeasureReport.
-  final List<Reference>? detail;
-  @override
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson();
-    }
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
-    }
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
-    }
-    if (code != null && code!.isNotEmpty) {
-      json['code'] =
-          code!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
-    }
-    if (detail != null && detail!.isNotEmpty) {
-      json['detail'] =
-          detail!.map<dynamic>((Reference v) => v.toJson()).toList();
-    }
-    return json;
-  }
-
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DetectedIssueEvidence.fromJson(Map<String, dynamic> json) {
     return DetectedIssueEvidence(
       id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       code: json['code'] != null
           ? (json['code'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       detail: json['detail'] != null
           ? (json['detail'] as List<dynamic>)
               .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
     );
   }
+
+  /// Deserialize [DetectedIssueEvidence] from a [String] or [YamlMap] object
+  factory DetectedIssueEvidence.fromYaml(dynamic yaml) => yaml is String
+      ? DetectedIssueEvidence.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? DetectedIssueEvidence.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'DetectedIssueEvidence cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [DetectedIssueEvidence] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory DetectedIssueEvidence.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DetectedIssueEvidence.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
+  @override
+  String get fhirType => 'DetectedIssueEvidence';
+
+  /// [code]
+  /// A manifestation that led to the recording of this detected issue.
+  final List<CodeableConcept>? code;
+
+  /// [detail]
+  /// Links to resources that constitute evidence for the detected issue such
+  /// as a GuidanceResponse or MeasureReport.
+  final List<Reference>? detail;
+  @override
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    if (code != null && code!.isNotEmpty) {
+      json['code'] = code!.map((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (detail != null && detail!.isNotEmpty) {
+      json['detail'] = detail!.map((Reference v) => v.toJson()).toList();
+    }
+    return json;
+  }
+
   @override
   DetectedIssueEvidence clone() => throw UnimplementedError();
   @override
@@ -504,38 +641,24 @@ class DetectedIssueEvidence extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory DetectedIssueEvidence.fromYaml(dynamic yaml) => yaml is String
-      ? DetectedIssueEvidence.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? DetectedIssueEvidence.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'DetectedIssueEvidence cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory DetectedIssueEvidence.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return DetectedIssueEvidence.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [DetectedIssueMitigation] /// Indicates an action that has been taken or is committed to reduce or
-/// eliminate the likelihood of the risk identified by the detected issue from
-/// manifesting. Can also reflect an observation of known mitigating factors
-/// that may reduce/eliminate the need for any action.
+/// [DetectedIssueMitigation]
+/// Indicates an action that has been taken or is committed to reduce or
+/// eliminate the likelihood of the risk identified by the detected issue
+/// from manifesting. Can also reflect an observation of known mitigating
+/// factors that may reduce/eliminate the need for any action.
 class DetectedIssueMitigation extends BackboneElement {
+  /// Primary constructor for [DetectedIssueMitigation]
+
   DetectedIssueMitigation({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.action,
     this.date,
+
+    /// Extensions for [date]
     this.dateElement,
     this.author,
     super.userData,
@@ -546,34 +669,103 @@ class DetectedIssueMitigation extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory DetectedIssueMitigation.fromJson(Map<String, dynamic> json) {
+    return DetectedIssueMitigation(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      action: CodeableConcept.fromJson(
+        json['action'] as Map<String, dynamic>,
+      ),
+      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(
+              json['_date'] as Map<String, dynamic>,
+            )
+          : null,
+      author: json['author'] != null
+          ? Reference.fromJson(
+              json['author'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [DetectedIssueMitigation] from a [String] or [YamlMap] object
+  factory DetectedIssueMitigation.fromYaml(dynamic yaml) => yaml is String
+      ? DetectedIssueMitigation.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? DetectedIssueMitigation.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'DetectedIssueMitigation cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [DetectedIssueMitigation] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory DetectedIssueMitigation.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DetectedIssueMitigation.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'DetectedIssueMitigation';
 
-  /// [action] /// Describes the action that was taken or the observation that was made that
-  /// reduces/eliminates the risk associated with the identified issue.
+  /// [action]
+  /// Describes the action that was taken or the observation that was made
+  /// that reduces/eliminates the risk associated with the identified issue.
   final CodeableConcept action;
 
-  /// [date] /// Indicates when the mitigating action was documented.
+  /// [date]
+  /// Indicates when the mitigating action was documented.
   final FhirDateTime? date;
+
+  /// Extensions for [date]
   final Element? dateElement;
 
-  /// [author] /// Identifies the practitioner who determined the mitigation and takes
+  /// [author]
+  /// Identifies the practitioner who determined the mitigation and takes
   /// responsibility for the mitigation step occurring.
   final Reference? author;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['action'] = action.toJson();
     if (date?.value != null) {
@@ -588,31 +780,6 @@ class DetectedIssueMitigation extends BackboneElement {
     return json;
   }
 
-  factory DetectedIssueMitigation.fromJson(Map<String, dynamic> json) {
-    return DetectedIssueMitigation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      action: CodeableConcept.fromJson(json['action'] as Map<String, dynamic>),
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
-          : null,
-      author: json['author'] != null
-          ? Reference.fromJson(json['author'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   DetectedIssueMitigation clone() => throw UnimplementedError();
   @override
@@ -646,24 +813,5 @@ class DetectedIssueMitigation extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory DetectedIssueMitigation.fromYaml(dynamic yaml) => yaml is String
-      ? DetectedIssueMitigation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? DetectedIssueMitigation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'DetectedIssueMitigation cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory DetectedIssueMitigation.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return DetectedIssueMitigation.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
-import '../../../fhir_r4.dart';
 
+/// FhirInteger is a type of integer that is used in FHIR resources
 extension FhirIntegerExtension on num {
+  /// This method converts a Dart integer to a FHIR integer
   FhirInteger get toFhirInteger => this is int
       ? FhirInteger(this as int)
       : int.tryParse(toString()) != null
@@ -11,13 +13,31 @@ extension FhirIntegerExtension on num {
           : throw FormatException('Invalid input for FhirInteger: $this');
 }
 
+/// This class represents the FHIR primitive type `integer`
 class FhirInteger extends FhirNumber {
+  /// Constructor enforces valid input
+  FhirInteger(int super.input, {super.element}) : value = input;
+
+  /// fromJson accepts dynamic input and validates
+  factory FhirInteger.fromJson(dynamic json) {
+    if (json is int) {
+      return FhirInteger(json);
+    } else if (json is num) {
+      return FhirInteger(json.toInt());
+    }
+    throw FormatException('Invalid input for FhirInteger: $json');
+  }
+
+  /// fromYaml accepts dynamic input and validates
+  factory FhirInteger.fromYaml(dynamic yaml) => yaml is String
+      ? FhirInteger.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
+      : yaml is YamlMap
+          ? FhirInteger.fromJson(jsonDecode(jsonEncode(yaml)))
+          : throw const FormatException('Invalid Yaml format for FhirInteger');
   @override
   final int value;
 
-  // Constructor enforces valid input
-  FhirInteger(int super.input, {super.element}) : value = input;
-
+  /// This method tries to parse a dynamic input into a FHIR integer
   static FhirInteger? tryParse(dynamic input) {
     if (input is int) {
       try {
@@ -29,23 +49,6 @@ class FhirInteger extends FhirNumber {
       return null;
     }
   }
-
-  // fromJson accepts dynamic input and validates
-  factory FhirInteger.fromJson(dynamic json) {
-    if (json is int) {
-      return FhirInteger(json);
-    } else if (json is num) {
-      return FhirInteger(json.toInt());
-    }
-    throw FormatException('Invalid input for FhirInteger: $json');
-  }
-
-  // fromYaml accepts dynamic input and validates
-  factory FhirInteger.fromYaml(dynamic yaml) => yaml is String
-      ? FhirInteger.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : yaml is YamlMap
-          ? FhirInteger.fromJson(jsonDecode(jsonEncode(yaml)))
-          : throw const FormatException('Invalid Yaml format for FhirInteger');
 
   @override
   String get fhirType => 'integer';
@@ -82,8 +85,10 @@ class FhirInteger extends FhirNumber {
 
   @override
   FhirInteger setElement(String name, dynamic elementValue) {
-    return FhirInteger(value,
-        element: element?.setProperty(name, elementValue));
+    return FhirInteger(
+      value,
+      element: element?.setProperty(name, elementValue),
+    );
   }
 
   @override

@@ -2,9 +2,11 @@ import 'dart:convert';
 
 import 'package:collection/collection.dart';
 
-import '../../../fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart';
 
+/// Base class for all FHIR elements.
 abstract class FhirBase {
+  /// Main constructor for [FhirBase]
   FhirBase({
     this.userData,
     this.formatCommentsPre,
@@ -14,22 +16,43 @@ abstract class FhirBase {
     this.namedChildren,
   });
 
+  /// Factory constructor for [FhirBase] that takes in a [dynamic]
+  factory FhirBase.fromJson(dynamic json) =>
+      throw UnimplementedError('FhirBase.fromJson $json');
+
+  /// Returns a [String] representation of the type of the object
   String get fhirType => 'FhirBase';
+
+  /// User data map for storing additional information
   final Map<String, Object?>? userData;
+
+  /// List of comments to be added before the element
   final List<String>? formatCommentsPre;
+
+  /// List of comments to be added after the element
   final List<String>? formatCommentsPost;
+
+  /// List of annotations for additional, non-core information
   final List<dynamic>? annotations;
+
+  /// List of children for the element
   final List<FhirBase>? children;
+
+  /// Map of named children for the element
   final Map<String, FhirBase>? namedChildren;
 
+  /// Returns a [Map] representation of the object, usually. As
+  /// [PrimitiveType]s also override this method, it says returning a dynamic,
+  /// but it's usually a [Map] representation.
   dynamic toJson() {
-    final Map<String, Object?> json = <String, Object?>{};
+    final json = <String, Object?>{};
     namedChildren?.forEach((String key, FhirBase child) {
       json[key] = child.toJson();
     });
     return json;
   }
 
+  /// Returns a [Map] representation of the object with the type
   dynamic toJsonWithType() {
     final dynamic json = toJson();
     if (json is Map<String, Object?>) {
@@ -48,23 +71,23 @@ abstract class FhirBase {
     }
   }
 
-  factory FhirBase.fromJson(dynamic json) =>
-      throw UnimplementedError('FhirBase.fromJson $json');
-
+  /// Produces a Json formatted String version of the object
   String toJsonString() => jsonEncode(toJson());
 
-  // User Data Methods
+  /// User Data Methods
   dynamic getUserData(String name) => userData?[name];
 
+  /// User Data Methods
   FhirBase setUserData(String name, dynamic value) {
-    final Map<String, Object?>? updatedUserData =
+    final updatedUserData =
         userData == null ? null : Map<String, Object?>.from(userData!);
     updatedUserData?[name] = value;
     return copyWith(userData: updatedUserData);
   }
 
+  /// User Data Methods
   FhirBase clearUserData(String name) {
-    final Map<String, Object?>? updatedUserData =
+    final updatedUserData =
         userData == null ? null : Map<String, Object?>.from(userData!);
     if (updatedUserData != null) {
       updatedUserData.remove(name);
@@ -72,9 +95,9 @@ abstract class FhirBase {
     return copyWith(userData: updatedUserData);
   }
 
-  // Annotations Methods
+  /// Annotations Methods
   FhirBase addAnnotation(dynamic annotation) {
-    final List<dynamic>? updatedAnnotations =
+    final updatedAnnotations =
         annotations == null ? null : List<dynamic>.from(annotations!);
     if (annotations != null) {
       updatedAnnotations!.add(annotation);
@@ -83,8 +106,9 @@ abstract class FhirBase {
     return copyWith(annotations: updatedAnnotations);
   }
 
+  /// Annotations Methods
   FhirBase removeAnnotations(Type type) {
-    final List<dynamic>? updatedAnnotations =
+    final updatedAnnotations =
         annotations == null ? null : List<dynamic>.from(annotations!);
     if (updatedAnnotations != null) {
       updatedAnnotations
@@ -93,9 +117,9 @@ abstract class FhirBase {
     return copyWith(annotations: updatedAnnotations);
   }
 
-  // Child Management Methods
+  /// Child Management Methods
   FhirBase addChild(FhirBase child) {
-    final List<FhirBase>? updatedChildren =
+    final updatedChildren =
         children == null ? null : List<FhirBase>.from(children!);
     if (children != null) {
       children!.add(child);
@@ -103,40 +127,50 @@ abstract class FhirBase {
     return copyWith(children: updatedChildren);
   }
 
+  /// Child Management Methods
   FhirBase addNamedChild(String name, FhirBase child) {
-    final Map<String, FhirBase> updatedNamedChildren = namedChildren == null
+    final updatedNamedChildren = namedChildren == null
         ? <String, FhirBase>{}
         : Map<String, FhirBase>.from(namedChildren!);
     updatedNamedChildren[name] = child;
     return copyWith(namedChildren: updatedNamedChildren);
   }
 
+  /// Child Management Methods
   bool isEmpty() =>
       (userData?.isEmpty ?? true) &&
       (annotations?.isEmpty ?? true) &&
       (children?.isEmpty ?? true);
 
+  /// User Data Methods
   bool hasUserData(String name) => userData?.containsKey(name) ?? false;
 
+  /// User Data Methods
   String? getUserString(String name) {
     final dynamic data = getUserData(name);
     return data?.toString();
   }
 
+  /// User Data Methods
   int getUserInt(String name) {
     final dynamic data = getUserData(name);
     return data is int ? data : 0;
   }
 
+  /// User Data Methods
   bool hasFormatComment() =>
       (formatCommentsPre?.isNotEmpty ?? false) ||
       (formatCommentsPost?.isNotEmpty ?? false);
 
-  static bool compareDeep(FhirBase? e1, FhirBase? e2,
-      {bool allowNull = false}) {
+  /// User Data Methods
+  static bool compareDeep(
+    FhirBase? e1,
+    FhirBase? e2, {
+    bool allowNull = false,
+  }) {
     if (allowNull) {
-      final bool noLeft = e1 == null || e1.isEmpty();
-      final bool noRight = e2 == null || e2.isEmpty();
+      final noLeft = e1 == null || e1.isEmpty();
+      final noRight = e2 == null || e2.isEmpty();
       if (noLeft && noRight) {
         return true;
       }
@@ -149,6 +183,7 @@ abstract class FhirBase {
     return e1.equalsDeep(e2);
   }
 
+  /// User Data Methods
   bool compareDeepLists<T extends FhirBase>(List<T>? list1, List<T>? list2) {
     if (list1 == null && list2 == null) {
       return true;
@@ -157,7 +192,7 @@ abstract class FhirBase {
       return false;
     }
 
-    for (int i = 0; i < list1.length; i++) {
+    for (var i = 0; i < list1.length; i++) {
       if (!list1[i].equalsDeep(list2[i])) {
         return false;
       }
@@ -166,24 +201,33 @@ abstract class FhirBase {
     return true;
   }
 
+  /// User Data Methods
   bool equalsDeep(FhirBase? other) {
     return const DeepCollectionEquality().equals(toJson(), other?.toJson());
   }
 
+  /// User Data Methods
   bool isExactly(FhirBase other) => other.runtimeType == runtimeType;
 
+  /// User Data Methods
   bool matches(FhirBase other) => other.runtimeType == runtimeType;
 
+  /// User Data Methods
   FhirBase? getChildByName(String name) => namedChildren?[name];
 
+  /// User Data Methods
   bool tryGetValue(String key, dynamic value) => false;
 
+  /// User Data Methods
   List<String> validate() => <String>[];
 
+  /// User Data Methods
   bool get isPrimitive => false;
 
+  /// User Data Methods
   String? primitiveValue() => null;
 
+  /// User Data Methods
   FhirBase copyWith({
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -193,6 +237,6 @@ abstract class FhirBase {
     Map<String, FhirBase>? namedChildren,
   });
 
-  // Subclasses must implement clone
+  /// Subclasses must implement clone
   FhirBase clone();
 }

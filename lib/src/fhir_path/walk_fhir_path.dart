@@ -1,6 +1,5 @@
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:petitparser/core.dart';
-
-import '../../fhir_r4.dart';
 
 /// Start here! This is where the fun begins. This is a bit confusing, so we'll
 /// explain the arguments that can be passed.
@@ -64,7 +63,7 @@ List<dynamic> walkFhirPath({
   Map<String, dynamic>? rootResource,
   Map<String, dynamic>? environment,
 }) {
-  final ParserList ast = parseFhirPath(pathExpression);
+  final ast = parseFhirPath(pathExpression);
   return executeFhirPath(
     context: context,
     parsedFhirPath: ast,
@@ -78,7 +77,7 @@ List<dynamic> walkFhirPath({
 /// Parse a FHIRPath for repeated use with different inputs later.
 ParserList parseFhirPath(String pathExpression) {
   try {
-    final FhirPathParser ast = lexer().parse(pathExpression).value;
+    final ast = lexer().parse(pathExpression).value;
     if (ast is ParserList) {
       if (ast.isEmpty) {
         return ast;
@@ -86,14 +85,14 @@ ParserList parseFhirPath(String pathExpression) {
         // Check for combination of IdentifierParser followed by ParenthesisParser
         // This indicates invalid function name
         if (ast.value.length > 1) {
-          for (int i = 0; i < ast.value.length - 1; i++) {
+          for (var i = 0; i < ast.value.length - 1; i++) {
             if ((ast.value[i] is IdentifierParser) &&
                 (ast.value[i + 1] is ParenthesesParser)) {
-              final String functionName =
-                  (ast.value[i] as IdentifierParser).value;
+              final functionName = (ast.value[i] as IdentifierParser).value;
               throw FhirPathInvalidExpressionException(
-                  'Unknown function: $functionName',
-                  pathExpression: pathExpression);
+                'Unknown function: $functionName',
+                pathExpression: pathExpression,
+              );
             }
           }
         }
@@ -102,8 +101,9 @@ ParserList parseFhirPath(String pathExpression) {
       }
     } else {
       throw FhirPathInvalidExpressionException(
-          'Parsing did not result in ParserList',
-          pathExpression: pathExpression);
+        'Parsing did not result in ParserList',
+        pathExpression: pathExpression,
+      );
     }
   } catch (error) {
     if (error is ParserException) {
@@ -135,7 +135,7 @@ List<dynamic> executeFhirPath({
 }) {
   // Use passed-in environment as the starting point.
   // It will later be amended/overridden by explicitly passed resources.
-  final Map<String, dynamic> passedEnvironment =
+  final passedEnvironment =
       Map<String, dynamic>.from(environment ?? <String, dynamic>{});
 
   // Explicitly passed context overrides context that might have been passed
@@ -159,8 +159,9 @@ List<dynamic> executeFhirPath({
       return <dynamic>[];
     } else {
       return parsedFhirPath.execute(
-          context is List ? <dynamic>[...context] : <dynamic>[context],
-          passedEnvironment);
+        context is List ? <dynamic>[...context] : <dynamic>[context],
+        passedEnvironment,
+      );
     }
   } catch (error) {
     if (error is FhirPathException) {

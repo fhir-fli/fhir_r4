@@ -1,6 +1,15 @@
+// ignore_for_file: require_trailing_commas
+
+/// FHIR Field
 class FhirField {
+  /// Constructor
+  // ignore: avoid_positional_boolean_parameters
   const FhirField(this.isList, this.type);
+
+  /// Whether the field is a list
   final bool isList;
+
+  /// The type of the field
   final String type;
 }
 

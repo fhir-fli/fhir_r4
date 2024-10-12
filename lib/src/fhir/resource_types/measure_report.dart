@@ -1,18 +1,24 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [MeasureReport] /// The MeasureReport resource contains the results of the calculation of a
+/// [MeasureReport]
+/// The MeasureReport resource contains the results of the calculation of a
 /// measure; and optionally a reference to the resources involved in that
 /// calculation.
 class MeasureReport extends DomainResource {
+  /// Primary constructor for [MeasureReport]
+
   MeasureReport({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -20,13 +26,21 @@ class MeasureReport extends DomainResource {
     super.modifierExtension,
     this.identifier,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     required this.type,
+
+    /// Extensions for [type]
     this.typeElement,
     required this.measure,
+
+    /// Extensions for [measure]
     this.measureElement,
     this.subject,
     this.date,
+
+    /// Extensions for [date]
     this.dateElement,
     this.reporter,
     required this.period,
@@ -39,63 +53,239 @@ class MeasureReport extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.MeasureReport);
+  }) : super(
+          resourceType: R4ResourceType.MeasureReport,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MeasureReport.fromJson(Map<String, dynamic> json) {
+    return MeasureReport(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      status: MeasureReportStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      type: MeasureReportType.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(
+              json['_type'] as Map<String, dynamic>,
+            )
+          : null,
+      measure: FhirCanonical.fromJson(json['measure']),
+      measureElement: json['_measure'] != null
+          ? Element.fromJson(
+              json['_measure'] as Map<String, dynamic>,
+            )
+          : null,
+      subject: json['subject'] != null
+          ? Reference.fromJson(
+              json['subject'] as Map<String, dynamic>,
+            )
+          : null,
+      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
+      dateElement: json['_date'] != null
+          ? Element.fromJson(
+              json['_date'] as Map<String, dynamic>,
+            )
+          : null,
+      reporter: json['reporter'] != null
+          ? Reference.fromJson(
+              json['reporter'] as Map<String, dynamic>,
+            )
+          : null,
+      period: Period.fromJson(
+        json['period'] as Map<String, dynamic>,
+      ),
+      improvementNotation: json['improvementNotation'] != null
+          ? CodeableConcept.fromJson(
+              json['improvementNotation'] as Map<String, dynamic>,
+            )
+          : null,
+      group: json['group'] != null
+          ? (json['group'] as List<dynamic>)
+              .map<MeasureReportGroup>(
+                (dynamic v) => MeasureReportGroup.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      evaluatedResource: json['evaluatedResource'] != null
+          ? (json['evaluatedResource'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [MeasureReport] from a [String] or [YamlMap] object
+  factory MeasureReport.fromYaml(dynamic yaml) => yaml is String
+      ? MeasureReport.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MeasureReport.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MeasureReport cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MeasureReport] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MeasureReport.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MeasureReport.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'MeasureReport';
 
-  /// [identifier] /// A formal identifier that is used to identify this MeasureReport when it is
-  /// represented in other formats or referenced in a specification, model,
-  /// design or an instance.
+  /// [identifier]
+  /// A formal identifier that is used to identify this MeasureReport when it
+  /// is represented in other formats or referenced in a specification,
+  /// model, design or an instance.
   final List<Identifier>? identifier;
 
-  /// [status] /// The MeasureReport status. No data will be available until the MeasureReport
-  /// status is complete.
+  /// [status]
+  /// The MeasureReport status. No data will be available until the
+  /// MeasureReport status is complete.
   final MeasureReportStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [type] /// The type of measure report. This may be an individual report, which
+  /// [type]
+  /// The type of measure report. This may be an individual report, which
   /// provides the score for the measure for an individual member of the
-  /// population; a subject-listing, which returns the list of members that meet
-  /// the various criteria in the measure; a summary report, which returns a
-  /// population count for each of the criteria in the measure; or a
-  /// data-collection, which enables the MeasureReport to be used to exchange the
-  /// data-of-interest for a quality measure.
+  /// population; a subject-listing, which returns the list of members that
+  /// meet the various criteria in the measure; a summary report, which
+  /// returns a population count for each of the criteria in the measure; or
+  /// a data-collection, which enables the MeasureReport to be used to
+  /// exchange the data-of-interest for a quality measure.
   final MeasureReportType type;
+
+  /// Extensions for [type]
   final Element? typeElement;
 
-  /// [measure] /// A reference to the Measure that was calculated to produce this report.
+  /// [measure]
+  /// A reference to the Measure that was calculated to produce this report.
   final FhirCanonical measure;
+
+  /// Extensions for [measure]
   final Element? measureElement;
 
-  /// [subject] /// Optional subject identifying the individual or individuals the report is
-  /// for.
+  /// [subject]
+  /// Optional subject identifying the individual or individuals the report
+  /// is for.
   final Reference? subject;
 
-  /// [date] /// The date this measure report was generated.
+  /// [date]
+  /// The date this measure report was generated.
   final FhirDateTime? date;
+
+  /// Extensions for [date]
   final Element? dateElement;
 
-  /// [reporter] /// The individual, location, or organization that is reporting the data.
+  /// [reporter]
+  /// The individual, location, or organization that is reporting the data.
   final Reference? reporter;
 
-  /// [period] /// The reporting period for which the report was calculated.
+  /// [period]
+  /// The reporting period for which the report was calculated.
   final Period period;
 
-  /// [improvementNotation] /// Whether improvement in the measure is noted by an increase or decrease in
-  /// the measure score.
+  /// [improvementNotation]
+  /// Whether improvement in the measure is noted by an increase or decrease
+  /// in the measure score.
   final CodeableConcept? improvementNotation;
 
-  /// [group] /// The results of the calculation, one for each population group in the
+  /// [group]
+  /// The results of the calculation, one for each population group in the
   /// measure.
   final List<MeasureReportGroup>? group;
 
-  /// [evaluatedResource] /// A reference to a Bundle containing the Resources that were used in the
+  /// [evaluatedResource]
+  /// A reference to a Bundle containing the Resources that were used in the
   /// calculation of this measure.
   final List<Reference>? evaluatedResource;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -116,21 +306,19 @@ class MeasureReport extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     json['status'] = status.toJson();
     json['type'] = type.toJson();
@@ -155,102 +343,15 @@ class MeasureReport extends DomainResource {
       json['improvementNotation'] = improvementNotation!.toJson();
     }
     if (group != null && group!.isNotEmpty) {
-      json['group'] =
-          group!.map<dynamic>((MeasureReportGroup v) => v.toJson()).toList();
+      json['group'] = group!.map((MeasureReportGroup v) => v.toJson()).toList();
     }
     if (evaluatedResource != null && evaluatedResource!.isNotEmpty) {
       json['evaluatedResource'] =
-          evaluatedResource!.map<dynamic>((Reference v) => v.toJson()).toList();
+          evaluatedResource!.map((Reference v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory MeasureReport.fromJson(Map<String, dynamic> json) {
-    return MeasureReport(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      status: MeasureReportStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      type: MeasureReportType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
-          : null,
-      measure: FhirCanonical.fromJson(json['measure']),
-      measureElement: json['_measure'] != null
-          ? Element.fromJson(json['_measure'] as Map<String, dynamic>)
-          : null,
-      subject: json['subject'] != null
-          ? Reference.fromJson(json['subject'] as Map<String, dynamic>)
-          : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(json['_date'] as Map<String, dynamic>)
-          : null,
-      reporter: json['reporter'] != null
-          ? Reference.fromJson(json['reporter'] as Map<String, dynamic>)
-          : null,
-      period: Period.fromJson(json['period'] as Map<String, dynamic>),
-      improvementNotation: json['improvementNotation'] != null
-          ? CodeableConcept.fromJson(
-              json['improvementNotation'] as Map<String, dynamic>)
-          : null,
-      group: json['group'] != null
-          ? (json['group'] as List<dynamic>)
-              .map<MeasureReportGroup>((dynamic v) =>
-                  MeasureReportGroup.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      evaluatedResource: json['evaluatedResource'] != null
-          ? (json['evaluatedResource'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   MeasureReport clone() => throw UnimplementedError();
   @override
@@ -321,30 +422,14 @@ class MeasureReport extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MeasureReport.fromYaml(dynamic yaml) => yaml is String
-      ? MeasureReport.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MeasureReport.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MeasureReport cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MeasureReport.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MeasureReport.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MeasureReportGroup] /// The results of the calculation, one for each population group in the
+/// [MeasureReportGroup]
+/// The results of the calculation, one for each population group in the
 /// measure.
 class MeasureReportGroup extends BackboneElement {
+  /// Primary constructor for [MeasureReportGroup]
+
   MeasureReportGroup({
     super.id,
     super.extension_,
@@ -361,93 +446,139 @@ class MeasureReportGroup extends BackboneElement {
     super.namedChildren,
   });
 
-  @override
-  String get fhirType => 'MeasureReportGroup';
-
-  /// [code] /// The meaning of the population group as defined in the measure definition.
-  final CodeableConcept? code;
-
-  /// [population] /// The populations that make up the population group, one for each type of
-  /// population appropriate for the measure.
-  final List<MeasureReportPopulation>? population;
-
-  /// [measureScore] /// The measure score for this population group, calculated as appropriate for
-  /// the measure type and scoring method, and based on the contents of the
-  /// populations defined in the group.
-  final Quantity? measureScore;
-
-  /// [stratifier] /// When a measure includes multiple stratifiers, there will be a stratifier
-  /// group for each stratifier defined by the measure.
-  final List<MeasureReportStratifier>? stratifier;
-  @override
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson();
-    }
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
-    }
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
-    }
-    if (code != null) {
-      json['code'] = code!.toJson();
-    }
-    if (population != null && population!.isNotEmpty) {
-      json['population'] = population!
-          .map<dynamic>((MeasureReportPopulation v) => v.toJson())
-          .toList();
-    }
-    if (measureScore != null) {
-      json['measureScore'] = measureScore!.toJson();
-    }
-    if (stratifier != null && stratifier!.isNotEmpty) {
-      json['stratifier'] = stratifier!
-          .map<dynamic>((MeasureReportStratifier v) => v.toJson())
-          .toList();
-    }
-    return json;
-  }
-
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureReportGroup.fromJson(Map<String, dynamic> json) {
     return MeasureReportGroup(
       id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       code: json['code'] != null
-          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
+          ? CodeableConcept.fromJson(
+              json['code'] as Map<String, dynamic>,
+            )
           : null,
       population: json['population'] != null
           ? (json['population'] as List<dynamic>)
-              .map<MeasureReportPopulation>((dynamic v) =>
-                  MeasureReportPopulation.fromJson(v as Map<String, dynamic>))
+              .map<MeasureReportPopulation>(
+                (dynamic v) => MeasureReportPopulation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       measureScore: json['measureScore'] != null
-          ? Quantity.fromJson(json['measureScore'] as Map<String, dynamic>)
+          ? Quantity.fromJson(
+              json['measureScore'] as Map<String, dynamic>,
+            )
           : null,
       stratifier: json['stratifier'] != null
           ? (json['stratifier'] as List<dynamic>)
-              .map<MeasureReportStratifier>((dynamic v) =>
-                  MeasureReportStratifier.fromJson(v as Map<String, dynamic>))
+              .map<MeasureReportStratifier>(
+                (dynamic v) => MeasureReportStratifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
     );
   }
+
+  /// Deserialize [MeasureReportGroup] from a [String] or [YamlMap] object
+  factory MeasureReportGroup.fromYaml(dynamic yaml) => yaml is String
+      ? MeasureReportGroup.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MeasureReportGroup.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MeasureReportGroup cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MeasureReportGroup] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MeasureReportGroup.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MeasureReportGroup.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
+  @override
+  String get fhirType => 'MeasureReportGroup';
+
+  /// [code]
+  /// The meaning of the population group as defined in the measure
+  /// definition.
+  final CodeableConcept? code;
+
+  /// [population]
+  /// The populations that make up the population group, one for each type of
+  /// population appropriate for the measure.
+  final List<MeasureReportPopulation>? population;
+
+  /// [measureScore]
+  /// The measure score for this population group, calculated as appropriate
+  /// for the measure type and scoring method, and based on the contents of
+  /// the populations defined in the group.
+  final Quantity? measureScore;
+
+  /// [stratifier]
+  /// When a measure includes multiple stratifiers, there will be a
+  /// stratifier group for each stratifier defined by the measure.
+  final List<MeasureReportStratifier>? stratifier;
+  @override
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    if (code != null) {
+      json['code'] = code!.toJson();
+    }
+    if (population != null && population!.isNotEmpty) {
+      json['population'] =
+          population!.map((MeasureReportPopulation v) => v.toJson()).toList();
+    }
+    if (measureScore != null) {
+      json['measureScore'] = measureScore!.toJson();
+    }
+    if (stratifier != null && stratifier!.isNotEmpty) {
+      json['stratifier'] =
+          stratifier!.map((MeasureReportStratifier v) => v.toJson()).toList();
+    }
+    return json;
+  }
+
   @override
   MeasureReportGroup clone() => throw UnimplementedError();
   @override
@@ -482,36 +613,22 @@ class MeasureReportGroup extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MeasureReportGroup.fromYaml(dynamic yaml) => yaml is String
-      ? MeasureReportGroup.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MeasureReportGroup.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MeasureReportGroup cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MeasureReportGroup.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MeasureReportGroup.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MeasureReportPopulation] /// The populations that make up the population group, one for each type of
+/// [MeasureReportPopulation]
+/// The populations that make up the population group, one for each type of
 /// population appropriate for the measure.
 class MeasureReportPopulation extends BackboneElement {
+  /// Primary constructor for [MeasureReportPopulation]
+
   MeasureReportPopulation({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.code,
     this.count,
+
+    /// Extensions for [count]
     this.countElement,
     this.subjectResults,
     super.userData,
@@ -522,33 +639,104 @@ class MeasureReportPopulation extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MeasureReportPopulation.fromJson(Map<String, dynamic> json) {
+    return MeasureReportPopulation(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(
+              json['code'] as Map<String, dynamic>,
+            )
+          : null,
+      count: json['count'] != null ? FhirInteger.fromJson(json['count']) : null,
+      countElement: json['_count'] != null
+          ? Element.fromJson(
+              json['_count'] as Map<String, dynamic>,
+            )
+          : null,
+      subjectResults: json['subjectResults'] != null
+          ? Reference.fromJson(
+              json['subjectResults'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [MeasureReportPopulation] from a [String] or [YamlMap] object
+  factory MeasureReportPopulation.fromYaml(dynamic yaml) => yaml is String
+      ? MeasureReportPopulation.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MeasureReportPopulation.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MeasureReportPopulation cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MeasureReportPopulation] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MeasureReportPopulation.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MeasureReportPopulation.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'MeasureReportPopulation';
 
-  /// [code] /// The type of the population.
+  /// [code]
+  /// The type of the population.
   final CodeableConcept? code;
 
-  /// [count] /// The number of members of the population.
+  /// [count]
+  /// The number of members of the population.
   final FhirInteger? count;
+
+  /// Extensions for [count]
   final Element? countElement;
 
-  /// [subjectResults] /// This element refers to a List of subject level MeasureReport resources, one
-  /// for each subject in this population.
+  /// [subjectResults]
+  /// This element refers to a List of subject level MeasureReport resources,
+  /// one for each subject in this population.
   final Reference? subjectResults;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (code != null) {
       json['code'] = code!.toJson();
@@ -565,33 +753,6 @@ class MeasureReportPopulation extends BackboneElement {
     return json;
   }
 
-  factory MeasureReportPopulation.fromJson(Map<String, dynamic> json) {
-    return MeasureReportPopulation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      code: json['code'] != null
-          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
-          : null,
-      count: json['count'] != null ? FhirInteger.fromJson(json['count']) : null,
-      countElement: json['_count'] != null
-          ? Element.fromJson(json['_count'] as Map<String, dynamic>)
-          : null,
-      subjectResults: json['subjectResults'] != null
-          ? Reference.fromJson(json['subjectResults'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   MeasureReportPopulation clone() => throw UnimplementedError();
   @override
@@ -626,30 +787,14 @@ class MeasureReportPopulation extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MeasureReportPopulation.fromYaml(dynamic yaml) => yaml is String
-      ? MeasureReportPopulation.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MeasureReportPopulation.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MeasureReportPopulation cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MeasureReportPopulation.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MeasureReportPopulation.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MeasureReportStratifier] /// When a measure includes multiple stratifiers, there will be a stratifier
-/// group for each stratifier defined by the measure.
+/// [MeasureReportStratifier]
+/// When a measure includes multiple stratifiers, there will be a
+/// stratifier group for each stratifier defined by the measure.
 class MeasureReportStratifier extends BackboneElement {
+  /// Primary constructor for [MeasureReportStratifier]
+
   MeasureReportStratifier({
     super.id,
     super.extension_,
@@ -664,72 +809,111 @@ class MeasureReportStratifier extends BackboneElement {
     super.namedChildren,
   });
 
-  @override
-  String get fhirType => 'MeasureReportStratifier';
-
-  /// [code] /// The meaning of this stratifier, as defined in the measure definition.
-  final List<CodeableConcept>? code;
-
-  /// [stratum] /// This element contains the results for a single stratum within the
-  /// stratifier. For example, when stratifying on administrative gender, there
-  /// will be four strata, one for each possible gender value.
-  final List<MeasureReportStratum>? stratum;
-  @override
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
-    if (id != null) {
-      json['id'] = id!.toJson();
-    }
-    if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
-    }
-    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
-    }
-    if (code != null && code!.isNotEmpty) {
-      json['code'] =
-          code!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
-    }
-    if (stratum != null && stratum!.isNotEmpty) {
-      json['stratum'] = stratum!
-          .map<dynamic>((MeasureReportStratum v) => v.toJson())
-          .toList();
-    }
-    return json;
-  }
-
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureReportStratifier.fromJson(Map<String, dynamic> json) {
     return MeasureReportStratifier(
       id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       code: json['code'] != null
           ? (json['code'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
       stratum: json['stratum'] != null
           ? (json['stratum'] as List<dynamic>)
-              .map<MeasureReportStratum>((dynamic v) =>
-                  MeasureReportStratum.fromJson(v as Map<String, dynamic>))
+              .map<MeasureReportStratum>(
+                (dynamic v) => MeasureReportStratum.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
               .toList()
           : null,
     );
   }
+
+  /// Deserialize [MeasureReportStratifier] from a [String] or [YamlMap] object
+  factory MeasureReportStratifier.fromYaml(dynamic yaml) => yaml is String
+      ? MeasureReportStratifier.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MeasureReportStratifier.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MeasureReportStratifier cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MeasureReportStratifier] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MeasureReportStratifier.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MeasureReportStratifier.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
+  @override
+  String get fhirType => 'MeasureReportStratifier';
+
+  /// [code]
+  /// The meaning of this stratifier, as defined in the measure definition.
+  final List<CodeableConcept>? code;
+
+  /// [stratum]
+  /// This element contains the results for a single stratum within the
+  /// stratifier. For example, when stratifying on administrative gender,
+  /// there will be four strata, one for each possible gender value.
+  final List<MeasureReportStratum>? stratum;
+  @override
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{};
+    if (id != null) {
+      json['id'] = id!.toJson();
+    }
+    if (extension_ != null && extension_!.isNotEmpty) {
+      json['extension'] =
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    if (modifierExtension != null && modifierExtension!.isNotEmpty) {
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+    }
+    if (code != null && code!.isNotEmpty) {
+      json['code'] = code!.map((CodeableConcept v) => v.toJson()).toList();
+    }
+    if (stratum != null && stratum!.isNotEmpty) {
+      json['stratum'] =
+          stratum!.map((MeasureReportStratum v) => v.toJson()).toList();
+    }
+    return json;
+  }
+
   @override
   MeasureReportStratifier clone() => throw UnimplementedError();
   @override
@@ -760,31 +944,15 @@ class MeasureReportStratifier extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MeasureReportStratifier.fromYaml(dynamic yaml) => yaml is String
-      ? MeasureReportStratifier.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MeasureReportStratifier.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MeasureReportStratifier cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MeasureReportStratifier.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MeasureReportStratifier.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MeasureReportStratum] /// This element contains the results for a single stratum within the
-/// stratifier. For example, when stratifying on administrative gender, there
-/// will be four strata, one for each possible gender value.
+/// [MeasureReportStratum]
+/// This element contains the results for a single stratum within the
+/// stratifier. For example, when stratifying on administrative gender,
+/// there will be four strata, one for each possible gender value.
 class MeasureReportStratum extends BackboneElement {
+  /// Primary constructor for [MeasureReportStratum]
+
   MeasureReportStratum({
     super.id,
     super.extension_,
@@ -801,52 +969,132 @@ class MeasureReportStratum extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MeasureReportStratum.fromJson(Map<String, dynamic> json) {
+    return MeasureReportStratum(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      value: json['value'] != null
+          ? CodeableConcept.fromJson(
+              json['value'] as Map<String, dynamic>,
+            )
+          : null,
+      component: json['component'] != null
+          ? (json['component'] as List<dynamic>)
+              .map<MeasureReportComponent>(
+                (dynamic v) => MeasureReportComponent.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      population: json['population'] != null
+          ? (json['population'] as List<dynamic>)
+              .map<MeasureReportPopulation>(
+                (dynamic v) => MeasureReportPopulation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      measureScore: json['measureScore'] != null
+          ? Quantity.fromJson(
+              json['measureScore'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [MeasureReportStratum] from a [String] or [YamlMap] object
+  factory MeasureReportStratum.fromYaml(dynamic yaml) => yaml is String
+      ? MeasureReportStratum.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MeasureReportStratum.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MeasureReportStratum cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MeasureReportStratum] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MeasureReportStratum.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MeasureReportStratum.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'MeasureReportStratum';
 
-  /// [value] /// The value for this stratum, expressed as a CodeableConcept. When defining
-  /// stratifiers on complex values, the value must be rendered such that the
-  /// value for each stratum within the stratifier is unique.
+  /// [value]
+  /// The value for this stratum, expressed as a CodeableConcept. When
+  /// defining stratifiers on complex values, the value must be rendered such
+  /// that the value for each stratum within the stratifier is unique.
   final CodeableConcept? value;
 
-  /// [component] /// A stratifier component value.
+  /// [component]
+  /// A stratifier component value.
   final List<MeasureReportComponent>? component;
 
-  /// [population] /// The populations that make up the stratum, one for each type of population
-  /// appropriate to the measure.
+  /// [population]
+  /// The populations that make up the stratum, one for each type of
+  /// population appropriate to the measure.
   final List<MeasureReportPopulation>? population;
 
-  /// [measureScore] /// The measure score for this stratum, calculated as appropriate for the
+  /// [measureScore]
+  /// The measure score for this stratum, calculated as appropriate for the
   /// measure type and scoring method, and based on only the members of this
   /// stratum.
   final Quantity? measureScore;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (value != null) {
       json['value'] = value!.toJson();
     }
     if (component != null && component!.isNotEmpty) {
-      json['component'] = component!
-          .map<dynamic>((MeasureReportComponent v) => v.toJson())
-          .toList();
+      json['component'] =
+          component!.map((MeasureReportComponent v) => v.toJson()).toList();
     }
     if (population != null && population!.isNotEmpty) {
-      json['population'] = population!
-          .map<dynamic>((MeasureReportPopulation v) => v.toJson())
-          .toList();
+      json['population'] =
+          population!.map((MeasureReportPopulation v) => v.toJson()).toList();
     }
     if (measureScore != null) {
       json['measureScore'] = measureScore!.toJson();
@@ -854,41 +1102,6 @@ class MeasureReportStratum extends BackboneElement {
     return json;
   }
 
-  factory MeasureReportStratum.fromJson(Map<String, dynamic> json) {
-    return MeasureReportStratum(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      value: json['value'] != null
-          ? CodeableConcept.fromJson(json['value'] as Map<String, dynamic>)
-          : null,
-      component: json['component'] != null
-          ? (json['component'] as List<dynamic>)
-              .map<MeasureReportComponent>((dynamic v) =>
-                  MeasureReportComponent.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      population: json['population'] != null
-          ? (json['population'] as List<dynamic>)
-              .map<MeasureReportPopulation>((dynamic v) =>
-                  MeasureReportPopulation.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      measureScore: json['measureScore'] != null
-          ? Quantity.fromJson(json['measureScore'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   MeasureReportStratum clone() => throw UnimplementedError();
   @override
@@ -923,29 +1136,13 @@ class MeasureReportStratum extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MeasureReportStratum.fromYaml(dynamic yaml) => yaml is String
-      ? MeasureReportStratum.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MeasureReportStratum.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MeasureReportStratum cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MeasureReportStratum.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MeasureReportStratum.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MeasureReportComponent] /// A stratifier component value.
+/// [MeasureReportComponent]
+/// A stratifier component value.
 class MeasureReportComponent extends BackboneElement {
+  /// Primary constructor for [MeasureReportComponent]
+
   MeasureReportComponent({
     super.id,
     super.extension_,
@@ -960,53 +1157,92 @@ class MeasureReportComponent extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MeasureReportComponent.fromJson(Map<String, dynamic> json) {
+    return MeasureReportComponent(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      code: CodeableConcept.fromJson(
+        json['code'] as Map<String, dynamic>,
+      ),
+      value: CodeableConcept.fromJson(
+        json['value'] as Map<String, dynamic>,
+      ),
+    );
+  }
+
+  /// Deserialize [MeasureReportComponent] from a [String] or [YamlMap] object
+  factory MeasureReportComponent.fromYaml(dynamic yaml) => yaml is String
+      ? MeasureReportComponent.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MeasureReportComponent.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MeasureReportComponent cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MeasureReportComponent] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MeasureReportComponent.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MeasureReportComponent.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'MeasureReportComponent';
 
-  /// [code] /// The code for the stratum component value.
+  /// [code]
+  /// The code for the stratum component value.
   final CodeableConcept code;
 
-  /// [value] /// The stratum component value.
+  /// [value]
+  /// The stratum component value.
   final CodeableConcept value;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['code'] = code.toJson();
     json['value'] = value.toJson();
     return json;
   }
 
-  factory MeasureReportComponent.fromJson(Map<String, dynamic> json) {
-    return MeasureReportComponent(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      code: CodeableConcept.fromJson(json['code'] as Map<String, dynamic>),
-      value: CodeableConcept.fromJson(json['value'] as Map<String, dynamic>),
-    );
-  }
   @override
   MeasureReportComponent clone() => throw UnimplementedError();
   @override
@@ -1037,36 +1273,22 @@ class MeasureReportComponent extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory MeasureReportComponent.fromYaml(dynamic yaml) => yaml is String
-      ? MeasureReportComponent.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MeasureReportComponent.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MeasureReportComponent cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MeasureReportComponent.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MeasureReportComponent.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [MeasureReportPopulation1] /// The populations that make up the stratum, one for each type of population
-/// appropriate to the measure.
+/// [MeasureReportPopulation1]
+/// The populations that make up the stratum, one for each type of
+/// population appropriate to the measure.
 class MeasureReportPopulation1 extends BackboneElement {
+  /// Primary constructor for [MeasureReportPopulation1]
+
   MeasureReportPopulation1({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.code,
     this.count,
+
+    /// Extensions for [count]
     this.countElement,
     this.subjectResults,
     super.userData,
@@ -1077,33 +1299,104 @@ class MeasureReportPopulation1 extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory MeasureReportPopulation1.fromJson(Map<String, dynamic> json) {
+    return MeasureReportPopulation1(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(
+              json['code'] as Map<String, dynamic>,
+            )
+          : null,
+      count: json['count'] != null ? FhirInteger.fromJson(json['count']) : null,
+      countElement: json['_count'] != null
+          ? Element.fromJson(
+              json['_count'] as Map<String, dynamic>,
+            )
+          : null,
+      subjectResults: json['subjectResults'] != null
+          ? Reference.fromJson(
+              json['subjectResults'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [MeasureReportPopulation1] from a [String] or [YamlMap] object
+  factory MeasureReportPopulation1.fromYaml(dynamic yaml) => yaml is String
+      ? MeasureReportPopulation1.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? MeasureReportPopulation1.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'MeasureReportPopulation1 cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [MeasureReportPopulation1] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory MeasureReportPopulation1.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return MeasureReportPopulation1.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'MeasureReportPopulation1';
 
-  /// [code] /// The type of the population.
+  /// [code]
+  /// The type of the population.
   final CodeableConcept? code;
 
-  /// [count] /// The number of members of the population in this stratum.
+  /// [count]
+  /// The number of members of the population in this stratum.
   final FhirInteger? count;
+
+  /// Extensions for [count]
   final Element? countElement;
 
-  /// [subjectResults] /// This element refers to a List of subject level MeasureReport resources, one
-  /// for each subject in this population in this stratum.
+  /// [subjectResults]
+  /// This element refers to a List of subject level MeasureReport resources,
+  /// one for each subject in this population in this stratum.
   final Reference? subjectResults;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (code != null) {
       json['code'] = code!.toJson();
@@ -1120,33 +1413,6 @@ class MeasureReportPopulation1 extends BackboneElement {
     return json;
   }
 
-  factory MeasureReportPopulation1.fromJson(Map<String, dynamic> json) {
-    return MeasureReportPopulation1(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      code: json['code'] != null
-          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
-          : null,
-      count: json['count'] != null ? FhirInteger.fromJson(json['count']) : null,
-      countElement: json['_count'] != null
-          ? Element.fromJson(json['_count'] as Map<String, dynamic>)
-          : null,
-      subjectResults: json['subjectResults'] != null
-          ? Reference.fromJson(json['subjectResults'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   MeasureReportPopulation1 clone() => throw UnimplementedError();
   @override
@@ -1180,24 +1446,5 @@ class MeasureReportPopulation1 extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory MeasureReportPopulation1.fromYaml(dynamic yaml) => yaml is String
-      ? MeasureReportPopulation1.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? MeasureReportPopulation1.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'MeasureReportPopulation1 cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory MeasureReportPopulation1.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return MeasureReportPopulation1.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

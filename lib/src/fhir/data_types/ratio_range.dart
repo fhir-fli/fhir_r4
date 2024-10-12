@@ -1,10 +1,13 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [RatioRange] /// A range of ratios expressed as a low and high numerator and a denominator.
+/// [RatioRange]
+/// A range of ratios expressed as a low and high numerator and a
+/// denominator.
 class RatioRange extends DataType {
+  /// Primary constructor for [RatioRange]
+
   RatioRange({
     super.id,
     super.extension_,
@@ -19,26 +22,85 @@ class RatioRange extends DataType {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory RatioRange.fromJson(Map<String, dynamic> json) {
+    return RatioRange(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      lowNumerator: json['lowNumerator'] != null
+          ? Quantity.fromJson(
+              json['lowNumerator'] as Map<String, dynamic>,
+            )
+          : null,
+      highNumerator: json['highNumerator'] != null
+          ? Quantity.fromJson(
+              json['highNumerator'] as Map<String, dynamic>,
+            )
+          : null,
+      denominator: json['denominator'] != null
+          ? Quantity.fromJson(
+              json['denominator'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [RatioRange] from a [String] or [YamlMap] object
+  factory RatioRange.fromYaml(dynamic yaml) => yaml is String
+      ? RatioRange.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? RatioRange.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('RatioRange cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [RatioRange] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory RatioRange.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return RatioRange.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'RatioRange';
 
-  /// [lowNumerator] /// The value of the low limit numerator.
+  /// [lowNumerator]
+  /// The value of the low limit numerator.
   final Quantity? lowNumerator;
 
-  /// [highNumerator] /// The value of the high limit numerator.
+  /// [highNumerator]
+  /// The value of the high limit numerator.
   final Quantity? highNumerator;
 
-  /// [denominator] /// The value of the denominator.
+  /// [denominator]
+  /// The value of the denominator.
   final Quantity? denominator;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (lowNumerator != null) {
       json['lowNumerator'] = lowNumerator!.toJson();
@@ -52,26 +114,6 @@ class RatioRange extends DataType {
     return json;
   }
 
-  factory RatioRange.fromJson(Map<String, dynamic> json) {
-    return RatioRange(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      lowNumerator: json['lowNumerator'] != null
-          ? Quantity.fromJson(json['lowNumerator'] as Map<String, dynamic>)
-          : null,
-      highNumerator: json['highNumerator'] != null
-          ? Quantity.fromJson(json['highNumerator'] as Map<String, dynamic>)
-          : null,
-      denominator: json['denominator'] != null
-          ? Quantity.fromJson(json['denominator'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   RatioRange clone() => throw UnimplementedError();
   @override
@@ -101,24 +143,5 @@ class RatioRange extends DataType {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory RatioRange.fromYaml(dynamic yaml) => yaml is String
-      ? RatioRange.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? RatioRange.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'RatioRange cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory RatioRange.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return RatioRange.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

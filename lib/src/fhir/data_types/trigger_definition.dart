@@ -1,23 +1,33 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [TriggerDefinition] /// A description of a triggering event. Triggering events can be named events,
-/// data events, or periodic, as determined by the type element.
+/// [TriggerDefinition]
+/// A description of a triggering event. Triggering events can be named
+/// events, data events, or periodic, as determined by the type element.
 class TriggerDefinition extends DataType {
+  /// Primary constructor for [TriggerDefinition]
+
   TriggerDefinition({
     super.id,
     super.extension_,
     required this.type,
+
+    /// Extensions for [type]
     this.typeElement,
     this.name,
+
+    /// Extensions for [name]
     this.nameElement,
     this.timingTiming,
     this.timingReference,
     this.timingDate,
+
+    /// Extensions for [timingDate]
     this.timingDateElement,
     this.timingDateTime,
+
+    /// Extensions for [timingDateTime]
     this.timingDateTimeElement,
     this.data,
     this.condition,
@@ -29,51 +39,161 @@ class TriggerDefinition extends DataType {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory TriggerDefinition.fromJson(Map<String, dynamic> json) {
+    return TriggerDefinition(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: TriggerType.fromJson(json['type']),
+      typeElement: json['_type'] != null
+          ? Element.fromJson(
+              json['_type'] as Map<String, dynamic>,
+            )
+          : null,
+      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
+      nameElement: json['_name'] != null
+          ? Element.fromJson(
+              json['_name'] as Map<String, dynamic>,
+            )
+          : null,
+      timingTiming: json['timingTiming'] != null
+          ? Timing.fromJson(
+              json['timingTiming'] as Map<String, dynamic>,
+            )
+          : null,
+      timingReference: json['timingReference'] != null
+          ? Reference.fromJson(
+              json['timingReference'] as Map<String, dynamic>,
+            )
+          : null,
+      timingDate: json['timingDate'] != null
+          ? FhirDate.fromJson(json['timingDate'])
+          : null,
+      timingDateElement: json['_timingDate'] != null
+          ? Element.fromJson(
+              json['_timingDate'] as Map<String, dynamic>,
+            )
+          : null,
+      timingDateTime: json['timingDateTime'] != null
+          ? FhirDateTime.fromJson(json['timingDateTime'])
+          : null,
+      timingDateTimeElement: json['_timingDateTime'] != null
+          ? Element.fromJson(
+              json['_timingDateTime'] as Map<String, dynamic>,
+            )
+          : null,
+      data: json['data'] != null
+          ? (json['data'] as List<dynamic>)
+              .map<DataRequirement>(
+                (dynamic v) => DataRequirement.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      condition: json['condition'] != null
+          ? FhirExpression.fromJson(
+              json['condition'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [TriggerDefinition] from a [String] or [YamlMap] object
+  factory TriggerDefinition.fromYaml(dynamic yaml) => yaml is String
+      ? TriggerDefinition.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? TriggerDefinition.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'TriggerDefinition cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [TriggerDefinition] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory TriggerDefinition.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return TriggerDefinition.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'TriggerDefinition';
 
-  /// [type] /// The type of triggering event.
+  /// [type]
+  /// The type of triggering event.
   final TriggerType type;
+
+  /// Extensions for [type]
   final Element? typeElement;
 
-  /// [name] /// A formal name for the event. This may be an absolute URI that identifies
-  /// the event formally (e.g. from a trigger registry), or a simple relative URI
-  /// that identifies the event in a local context.
+  /// [name]
+  /// A formal name for the event. This may be an absolute URI that
+  /// identifies the event formally (e.g. from a trigger registry), or a
+  /// simple relative URI that identifies the event in a local context.
   final FhirString? name;
+
+  /// Extensions for [name]
   final Element? nameElement;
 
-  /// [timingTiming] /// The timing of the event (if this is a periodic trigger).
+  /// [timingTiming]
+  /// The timing of the event (if this is a periodic trigger).
   final Timing? timingTiming;
 
-  /// [timingReference] /// The timing of the event (if this is a periodic trigger).
+  /// [timingReference]
+  /// The timing of the event (if this is a periodic trigger).
   final Reference? timingReference;
 
-  /// [timingDate] /// The timing of the event (if this is a periodic trigger).
+  /// [timingDate]
+  /// The timing of the event (if this is a periodic trigger).
   final FhirDate? timingDate;
+
+  /// Extensions for [timingDate]
   final Element? timingDateElement;
 
-  /// [timingDateTime] /// The timing of the event (if this is a periodic trigger).
+  /// [timingDateTime]
+  /// The timing of the event (if this is a periodic trigger).
   final FhirDateTime? timingDateTime;
+
+  /// Extensions for [timingDateTime]
   final Element? timingDateTimeElement;
 
-  /// [data] /// The triggering data of the event (if this is a data trigger). If more than
-  /// one data is requirement is specified, then all the data requirements must
-  /// be true.
+  /// [data]
+  /// The triggering data of the event (if this is a data trigger). If more
+  /// than one data is requirement is specified, then all the data
+  /// requirements must be true.
   final List<DataRequirement>? data;
 
-  /// [condition] /// A boolean-valued expression that is evaluated in the context of the
-  /// container of the trigger definition and returns whether or not the trigger
-  /// fires.
+  /// [condition]
+  /// A boolean-valued expression that is evaluated in the context of the
+  /// container of the trigger definition and returns whether or not the
+  /// trigger fires.
   final FhirExpression? condition;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['type'] = type.toJson();
     if (name?.value != null) {
@@ -101,8 +221,7 @@ class TriggerDefinition extends DataType {
       json['_timingDateTime'] = timingDateTimeElement!.toJson();
     }
     if (data != null && data!.isNotEmpty) {
-      json['data'] =
-          data!.map<dynamic>((DataRequirement v) => v.toJson()).toList();
+      json['data'] = data!.map((DataRequirement v) => v.toJson()).toList();
     }
     if (condition != null) {
       json['condition'] = condition!.toJson();
@@ -110,52 +229,6 @@ class TriggerDefinition extends DataType {
     return json;
   }
 
-  factory TriggerDefinition.fromJson(Map<String, dynamic> json) {
-    return TriggerDefinition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: TriggerType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(json['_type'] as Map<String, dynamic>)
-          : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(json['_name'] as Map<String, dynamic>)
-          : null,
-      timingTiming: json['timingTiming'] != null
-          ? Timing.fromJson(json['timingTiming'] as Map<String, dynamic>)
-          : null,
-      timingReference: json['timingReference'] != null
-          ? Reference.fromJson(json['timingReference'] as Map<String, dynamic>)
-          : null,
-      timingDate: json['timingDate'] != null
-          ? FhirDate.fromJson(json['timingDate'])
-          : null,
-      timingDateElement: json['_timingDate'] != null
-          ? Element.fromJson(json['_timingDate'] as Map<String, dynamic>)
-          : null,
-      timingDateTime: json['timingDateTime'] != null
-          ? FhirDateTime.fromJson(json['timingDateTime'])
-          : null,
-      timingDateTimeElement: json['_timingDateTime'] != null
-          ? Element.fromJson(json['_timingDateTime'] as Map<String, dynamic>)
-          : null,
-      data: json['data'] != null
-          ? (json['data'] as List<dynamic>)
-              .map<DataRequirement>((dynamic v) =>
-                  DataRequirement.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      condition: json['condition'] != null
-          ? FhirExpression.fromJson(json['condition'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   TriggerDefinition clone() => throw UnimplementedError();
   @override
@@ -204,24 +277,5 @@ class TriggerDefinition extends DataType {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory TriggerDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? TriggerDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? TriggerDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'TriggerDefinition cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory TriggerDefinition.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return TriggerDefinition.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

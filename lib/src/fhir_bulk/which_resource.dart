@@ -1,4 +1,4 @@
-import '../../fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart';
 
 /// Simple class defining the resourceType and the ID of the resource being requested
 class WhichResource {

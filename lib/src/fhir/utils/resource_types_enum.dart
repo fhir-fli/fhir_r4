@@ -1,144 +1,428 @@
+// ignore_for_file: constant_identifier_names
+
+/// An enum representing the different FHIR resource types.
 enum R4ResourceType {
+  /// Account
   Account,
+
+  /// ActivityDefinition
   ActivityDefinition,
+
+  /// AdministrableProductDefinition
   AdministrableProductDefinition,
+
+  /// AdverseEvent
   AdverseEvent,
+
+  /// AllergyIntolerance
   AllergyIntolerance,
+
+  /// Appointment
   Appointment,
+
+  /// AppointmentResponse
   AppointmentResponse,
+
+  /// AuditEvent
   AuditEvent,
+
+  /// Basic
   Basic,
+
+  /// Binary
   Binary,
+
+  /// BiologicallyDerivedProduct
   BiologicallyDerivedProduct,
+
+  /// BodyStructure
   BodyStructure,
+
+  /// Bundle
   Bundle,
+
+  /// CapabilityStatement
   CapabilityStatement,
+
+  /// CarePlan
   CarePlan,
+
+  /// CareTeam
   CareTeam,
+
+  /// CatalogEntry
   CatalogEntry,
+
+  /// ChargeItem
   ChargeItem,
+
+  /// ChargeItemDefinition
   ChargeItemDefinition,
+
+  /// Citation
   Citation,
+
+  /// Claim
   Claim,
+
+  /// ClaimResponse
   ClaimResponse,
+
+  /// ClinicalImpression
   ClinicalImpression,
+
+  /// ClinicalUseDefinition
   ClinicalUseDefinition,
+
+  /// CodeSystem
   CodeSystem,
+
+  /// Communication
   Communication,
+
+  /// CommunicationRequest
   CommunicationRequest,
+
+  /// CompartmentDefinition
   CompartmentDefinition,
+
+  /// Composition
   Composition,
+
+  /// ConceptMap
   ConceptMap,
+
+  /// Condition
   Condition,
+
+  /// Consent
   Consent,
+
+  /// Contract
   Contract,
+
+  /// Coverage
   Coverage,
+
+  /// CoverageEligibilityRequest
   CoverageEligibilityRequest,
+
+  /// CoverageEligibilityResponse
   CoverageEligibilityResponse,
+
+  /// DetectedIssue
   DetectedIssue,
+
+  /// Device
   Device,
+
+  /// DeviceDefinition
   DeviceDefinition,
+
+  /// DeviceMetric
   DeviceMetric,
+
+  /// DeviceRequest
   DeviceRequest,
+
+  /// DeviceUseStatement
   DeviceUseStatement,
+
+  /// DiagnosticReport
   DiagnosticReport,
+
+  /// DocumentManifest
   DocumentManifest,
+
+  /// DocumentReference
   DocumentReference,
+
+  /// Encounter
   Encounter,
+
+  /// EnrollmentRequest
   EnrollmentRequest,
+
+  /// EnrollmentResponse
   EnrollmentResponse,
+
+  /// EpisodeOfCare
   EpisodeOfCare,
+
+  /// EventDefinition
   EventDefinition,
+
+  /// Evidence
   Evidence,
+
+  /// EvidenceReport
   EvidenceReport,
+
+  /// EvidenceVariable
   EvidenceVariable,
+
+  /// ExampleScenario
   ExampleScenario,
+
+  /// ExplanationOfBenefit
   ExplanationOfBenefit,
+
+  /// FamilyMemberHistory
   FamilyMemberHistory,
+
+  /// FhirEndpoint
   FhirEndpoint,
+
+  /// FhirGroup
   FhirGroup,
+
+  /// FhirList
   FhirList,
+
+  /// Flag
   Flag,
+
+  /// Goal
   Goal,
+
+  /// GraphDefinition
   GraphDefinition,
+
+  /// GuidanceResponse
   GuidanceResponse,
+
+  /// HealthcareService
   HealthcareService,
+
+  /// ImagingStudy
   ImagingStudy,
+
+  /// Immunization
   Immunization,
+
+  /// ImmunizationEvaluation
   ImmunizationEvaluation,
+
+  /// ImmunizationRecommendation
   ImmunizationRecommendation,
+
+  /// ImplementationGuide
   ImplementationGuide,
+
+  /// Ingredient
   Ingredient,
+
+  /// InsurancePlan
   InsurancePlan,
+
+  /// Invoice
   Invoice,
+
+  /// Library
   Library,
+
+  /// Linkage
   Linkage,
+
+  /// Location
   Location,
+
+  /// ManufacturedItemDefinition
   ManufacturedItemDefinition,
+
+  /// Measure
   Measure,
+
+  /// MeasureReport
   MeasureReport,
+
+  /// Media
   Media,
+
+  /// Medication
   Medication,
+
+  /// MedicationAdministration
   MedicationAdministration,
+
+  /// MedicationDispense
   MedicationDispense,
+
+  /// MedicationKnowledge
   MedicationKnowledge,
+
+  /// MedicationRequest
   MedicationRequest,
+
+  /// MedicationStatement
   MedicationStatement,
+
+  /// MedicinalProductDefinition
   MedicinalProductDefinition,
+
+  /// MessageDefinition
   MessageDefinition,
+
+  /// MessageHeader
   MessageHeader,
+
+  /// MolecularSequence
   MolecularSequence,
+
+  /// NamingSystem
   NamingSystem,
+
+  /// NutritionOrder
   NutritionOrder,
+
+  /// NutritionProduct
   NutritionProduct,
+
+  /// Observation
   Observation,
+
+  /// ObservationDefinition
   ObservationDefinition,
+
+  /// OperationDefinition
   OperationDefinition,
+
+  /// OperationOutcome
   OperationOutcome,
+
+  /// Organization
   Organization,
+
+  /// OrganizationAffiliation
   OrganizationAffiliation,
+
+  /// PackagedProductDefinition
   PackagedProductDefinition,
+
+  /// Parameters
   Parameters,
+
+  /// Patient
   Patient,
+
+  /// PaymentNotice
   PaymentNotice,
+
+  /// PaymentReconciliation
   PaymentReconciliation,
+
+  /// Person
   Person,
+
+  /// PlanDefinition
   PlanDefinition,
+
+  /// Practitioner
   Practitioner,
+
+  /// PractitionerRole
   PractitionerRole,
+
+  /// Procedure
   Procedure,
+
+  /// Provenance
   Provenance,
+
+  /// Questionnaire
   Questionnaire,
+
+  /// QuestionnaireResponse
   QuestionnaireResponse,
+
+  /// RegulatedAuthorization
   RegulatedAuthorization,
+
+  /// RelatedPerson
   RelatedPerson,
+
+  /// RequestGroup
   RequestGroup,
+
+  /// ResearchDefinition
   ResearchDefinition,
+
+  /// ResearchElementDefinition
   ResearchElementDefinition,
+
+  /// ResearchStudy
   ResearchStudy,
+
+  /// ResearchSubject
   ResearchSubject,
+
+  /// RiskAssessment
   RiskAssessment,
+
+  /// Schedule
   Schedule,
+
+  /// SearchParameter
   SearchParameter,
+
+  /// ServiceRequest
   ServiceRequest,
+
+  /// Slot
   Slot,
+
+  /// Specimen
   Specimen,
+
+  /// SpecimenDefinition
   SpecimenDefinition,
+
+  /// StructureDefinition
   StructureDefinition,
+
+  /// StructureMap
   StructureMap,
+
+  /// Subscription
   Subscription,
+
+  /// SubscriptionStatus
   SubscriptionStatus,
+
+  /// SubscriptionTopic
   SubscriptionTopic,
+
+  /// Substance
   Substance,
+
+  /// SubstanceDefinition
   SubstanceDefinition,
+
+  /// SupplyDelivery
   SupplyDelivery,
+
+  /// SupplyRequest
   SupplyRequest,
+
+  /// Task
   Task,
+
+  /// TerminologyCapabilities
   TerminologyCapabilities,
+
+  /// TestReport
   TestReport,
+
+  /// TestScript
   TestScript,
+
+  /// ValueSet
   ValueSet,
+
+  /// VerificationResult
   VerificationResult,
+
+  /// VisionPrescription
   VisionPrescription,
   ;
 
@@ -430,7 +714,10 @@ enum R4ResourceType {
     }
   }
 
+  /// Returns the [R4ResourceType] as a [String].
   String toJson() => toString();
+
+  /// Returns the [R4ResourceType] from a [String].
   static R4ResourceType? fromString(String string) {
     switch (string) {
       case 'Account':
@@ -720,6 +1007,7 @@ enum R4ResourceType {
     }
   }
 
+  /// Returns a list of [R4ResourceType] from a [dynamic] object.
   static R4ResourceType? fromJson(dynamic json) {
     if (json is String) {
       return fromString(json);
@@ -727,6 +1015,7 @@ enum R4ResourceType {
     return null;
   }
 
+  /// Returns a list of [R4ResourceType] as [String]s.
   static List<String> get typesAsStrings => <String>[
         'Account',
         'ActivityDefinition',

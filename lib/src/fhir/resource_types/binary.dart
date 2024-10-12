@@ -1,23 +1,33 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [Binary] /// A resource that represents the data of a single raw artifact as digital
-/// content accessible in its native format. A Binary resource can contain any
-/// content, whether text, image, pdf, zip archive, etc.
+/// [Binary]
+/// A resource that represents the data of a single raw artifact as digital
+/// content accessible in its native format. A Binary resource can contain
+/// any content, whether text, image, pdf, zip archive, etc.
 class Binary extends Resource {
+  /// Primary constructor for [Binary]
+
   Binary({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     required this.contentType,
+
+    /// Extensions for [contentType]
     this.contentTypeElement,
     this.securityContext,
     this.data,
+
+    /// Extensions for [data]
     this.dataElement,
     super.userData,
     super.formatCommentsPre,
@@ -25,33 +35,115 @@ class Binary extends Resource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.Binary);
+  }) : super(
+          resourceType: R4ResourceType.Binary,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory Binary.fromJson(Map<String, dynamic> json) {
+    return Binary(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      contentType: FhirCode.fromJson(json['contentType']),
+      contentTypeElement: json['_contentType'] != null
+          ? Element.fromJson(
+              json['_contentType'] as Map<String, dynamic>,
+            )
+          : null,
+      securityContext: json['securityContext'] != null
+          ? Reference.fromJson(
+              json['securityContext'] as Map<String, dynamic>,
+            )
+          : null,
+      data:
+          json['data'] != null ? FhirBase64Binary.fromJson(json['data']) : null,
+      dataElement: json['_data'] != null
+          ? Element.fromJson(
+              json['_data'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [Binary] from a [String] or [YamlMap] object
+  factory Binary.fromYaml(dynamic yaml) => yaml is String
+      ? Binary.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? Binary.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('Binary cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [Binary] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory Binary.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return Binary.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'Binary';
 
-  /// [contentType] /// MimeType of the binary content represented as a standard MimeType (BCP 13).
+  /// [contentType]
+  /// MimeType of the binary content represented as a standard MimeType (BCP
+  /// 13).
   final FhirCode contentType;
+
+  /// Extensions for [contentType]
   final Element? contentTypeElement;
 
-  /// [securityContext] /// This element identifies another resource that can be used as a proxy of the
-  /// security sensitivity to use when deciding and enforcing access control
-  /// rules for the Binary resource. Given that the Binary resource contains very
-  /// few elements that can be used to determine the sensitivity of the data and
-  /// relationships to individuals, the referenced resource stands in as a proxy
-  /// equivalent for this purpose. This referenced resource may be related to the
-  /// Binary (e.g. Media, DocumentReference), or may be some non-related Resource
-  /// purely as a security proxy. E.g. to identify that the binary resource
-  /// relates to a patient, and access should only be granted to applications
-  /// that have access to the patient.
+  /// [securityContext]
+  /// This element identifies another resource that can be used as a proxy of
+  /// the security sensitivity to use when deciding and enforcing access
+  /// control rules for the Binary resource. Given that the Binary resource
+  /// contains very few elements that can be used to determine the
+  /// sensitivity of the data and relationships to individuals, the
+  /// referenced resource stands in as a proxy equivalent for this purpose.
+  /// This referenced resource may be related to the Binary (e.g. Media,
+  /// DocumentReference), or may be some non-related Resource purely as a
+  /// security proxy. E.g. to identify that the binary resource relates to a
+  /// patient, and access should only be granted to applications that have
+  /// access to the patient.
   final Reference? securityContext;
 
-  /// [data] /// The actual content, base64 encoded.
+  /// [data]
+  /// The actual content, base64 encoded.
   final FhirBase64Binary? data;
+
+  /// Extensions for [data]
   final Element? dataElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -84,38 +176,6 @@ class Binary extends Resource {
     return json;
   }
 
-  factory Binary.fromJson(Map<String, dynamic> json) {
-    return Binary(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      contentType: FhirCode.fromJson(json['contentType']),
-      contentTypeElement: json['_contentType'] != null
-          ? Element.fromJson(json['_contentType'] as Map<String, dynamic>)
-          : null,
-      securityContext: json['securityContext'] != null
-          ? Reference.fromJson(json['securityContext'] as Map<String, dynamic>)
-          : null,
-      data:
-          json['data'] != null ? FhirBase64Binary.fromJson(json['data']) : null,
-      dataElement: json['_data'] != null
-          ? Element.fromJson(json['_data'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   Binary clone() => throw UnimplementedError();
   @override
@@ -157,24 +217,5 @@ class Binary extends Resource {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory Binary.fromYaml(dynamic yaml) => yaml is String
-      ? Binary.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? Binary.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'Binary cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory Binary.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return Binary.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

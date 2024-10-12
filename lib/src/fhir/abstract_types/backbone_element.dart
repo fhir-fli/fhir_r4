@@ -1,7 +1,7 @@
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
-import '../../../fhir_r4.dart';
 
 /// Base class for elements inside a resource but not those in a data type.
 abstract class BackboneElement extends DataType {
@@ -17,6 +17,11 @@ abstract class BackboneElement extends DataType {
     super.children,
     super.namedChildren,
   });
+
+  /// FromJson Factory Constructor for [BackboneElement]
+  factory BackboneElement.fromJson(Map<String, Object?> json) {
+    throw UnimplementedError('BackboneElement.fromJson $json');
+  }
 
   @override
   String get fhirType => 'BackboneElement';
@@ -59,7 +64,9 @@ abstract class BackboneElement extends DataType {
     }
     return super.equalsDeep(other) &&
         compareDeepLists<FhirExtension>(
-            modifierExtension, other.modifierExtension);
+          modifierExtension,
+          other.modifierExtension,
+        );
   }
 
   @override
@@ -69,7 +76,7 @@ abstract class BackboneElement extends DataType {
 
   @override
   Map<String, Object?> toJson() {
-    final Map<String, Object?> json = <String, Object?>{};
+    final json = <String, Object?>{};
     if (id?.value != null) {
       json['id'] = id?.value;
     }
@@ -84,20 +91,22 @@ abstract class BackboneElement extends DataType {
     return json;
   }
 
+  /// Factory constructor for [BackboneElement] that takes in a [dynamic]
   static BackboneElement fromYaml(dynamic yaml) => yaml is String
       ? BackboneElement.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
       : yaml is YamlMap
           ? BackboneElement.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
           : throw ArgumentError(
               'BackboneElement cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
 
-  factory BackboneElement.fromJson(Map<String, Object?> json) {
-    throw UnimplementedError('BackboneElement.fromJson $json');
-  }
-
+  /// Factory constructor for [BackboneElement] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
   static BackboneElement fromJsonString(String source) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {

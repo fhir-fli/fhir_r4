@@ -1,17 +1,23 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [CatalogEntry] /// Catalog entries are wrappers that contextualize items included in a
+/// [CatalogEntry]
+/// Catalog entries are wrappers that contextualize items included in a
 /// catalog.
 class CatalogEntry extends DomainResource {
+  /// Primary constructor for [CatalogEntry]
+
   CatalogEntry({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -20,16 +26,24 @@ class CatalogEntry extends DomainResource {
     this.identifier,
     this.type,
     required this.orderable,
+
+    /// Extensions for [orderable]
     this.orderableElement,
     required this.referencedItem,
     this.additionalIdentifier,
     this.classification,
     this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     this.validityPeriod,
     this.validTo,
+
+    /// Extensions for [validTo]
     this.validToElement,
     this.lastUpdated,
+
+    /// Extensions for [lastUpdated]
     this.lastUpdatedElement,
     this.additionalCharacteristic,
     this.additionalClassification,
@@ -40,60 +54,265 @@ class CatalogEntry extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.CatalogEntry);
+  }) : super(
+          resourceType: R4ResourceType.CatalogEntry,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CatalogEntry.fromJson(Map<String, dynamic> json) {
+    return CatalogEntry(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: json['type'] != null
+          ? CodeableConcept.fromJson(
+              json['type'] as Map<String, dynamic>,
+            )
+          : null,
+      orderable: FhirBoolean.fromJson(json['orderable']),
+      orderableElement: json['_orderable'] != null
+          ? Element.fromJson(
+              json['_orderable'] as Map<String, dynamic>,
+            )
+          : null,
+      referencedItem: Reference.fromJson(
+        json['referencedItem'] as Map<String, dynamic>,
+      ),
+      additionalIdentifier: json['additionalIdentifier'] != null
+          ? (json['additionalIdentifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      classification: json['classification'] != null
+          ? (json['classification'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      status: json['status'] != null
+          ? PublicationStatus.fromJson(json['status'])
+          : null,
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      validityPeriod: json['validityPeriod'] != null
+          ? Period.fromJson(
+              json['validityPeriod'] as Map<String, dynamic>,
+            )
+          : null,
+      validTo: json['validTo'] != null
+          ? FhirDateTime.fromJson(json['validTo'])
+          : null,
+      validToElement: json['_validTo'] != null
+          ? Element.fromJson(
+              json['_validTo'] as Map<String, dynamic>,
+            )
+          : null,
+      lastUpdated: json['lastUpdated'] != null
+          ? FhirDateTime.fromJson(json['lastUpdated'])
+          : null,
+      lastUpdatedElement: json['_lastUpdated'] != null
+          ? Element.fromJson(
+              json['_lastUpdated'] as Map<String, dynamic>,
+            )
+          : null,
+      additionalCharacteristic: json['additionalCharacteristic'] != null
+          ? (json['additionalCharacteristic'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      additionalClassification: json['additionalClassification'] != null
+          ? (json['additionalClassification'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      relatedEntry: json['relatedEntry'] != null
+          ? (json['relatedEntry'] as List<dynamic>)
+              .map<CatalogEntryRelatedEntry>(
+                (dynamic v) => CatalogEntryRelatedEntry.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [CatalogEntry] from a [String] or [YamlMap] object
+  factory CatalogEntry.fromYaml(dynamic yaml) => yaml is String
+      ? CatalogEntry.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CatalogEntry.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError('CatalogEntry cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CatalogEntry] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CatalogEntry.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CatalogEntry.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'CatalogEntry';
 
-  /// [identifier] /// Used in supporting different identifiers for the same product, e.g.
+  /// [identifier]
+  /// Used in supporting different identifiers for the same product, e.g.
   /// manufacturer code and retailer code.
   final List<Identifier>? identifier;
 
-  /// [type] /// The type of item - medication, device, service, protocol or other.
+  /// [type]
+  /// The type of item - medication, device, service, protocol or other.
   final CodeableConcept? type;
 
-  /// [orderable] /// Whether the entry represents an orderable item.
+  /// [orderable]
+  /// Whether the entry represents an orderable item.
   final FhirBoolean orderable;
+
+  /// Extensions for [orderable]
   final Element? orderableElement;
 
-  /// [referencedItem] /// The item in a catalog or definition.
+  /// [referencedItem]
+  /// The item in a catalog or definition.
   final Reference referencedItem;
 
-  /// [additionalIdentifier] /// Used in supporting related concepts, e.g. NDC to RxNorm.
+  /// [additionalIdentifier]
+  /// Used in supporting related concepts, e.g. NDC to RxNorm.
   final List<Identifier>? additionalIdentifier;
 
-  /// [classification] /// Classes of devices, or ATC for medication.
+  /// [classification]
+  /// Classes of devices, or ATC for medication.
   final List<CodeableConcept>? classification;
 
-  /// [status] /// Used to support catalog exchange even for unsupported products, e.g.
+  /// [status]
+  /// Used to support catalog exchange even for unsupported products, e.g.
   /// getting list of medications even if not prescribable.
   final PublicationStatus? status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [validityPeriod] /// The time period in which this catalog entry is expected to be active.
+  /// [validityPeriod]
+  /// The time period in which this catalog entry is expected to be active.
   final Period? validityPeriod;
 
-  /// [validTo] /// The date until which this catalog entry is expected to be active.
+  /// [validTo]
+  /// The date until which this catalog entry is expected to be active.
   final FhirDateTime? validTo;
+
+  /// Extensions for [validTo]
   final Element? validToElement;
 
-  /// [lastUpdated] /// Typically date of issue is different from the beginning of the validity.
-  /// This can be used to see when an item was last updated.
+  /// [lastUpdated]
+  /// Typically date of issue is different from the beginning of the
+  /// validity. This can be used to see when an item was last updated.
   final FhirDateTime? lastUpdated;
+
+  /// Extensions for [lastUpdated]
   final Element? lastUpdatedElement;
 
-  /// [additionalCharacteristic] /// Used for examplefor Out of Formulary, or any specifics.
+  /// [additionalCharacteristic]
+  /// Used for examplefor Out of Formulary, or any specifics.
   final List<CodeableConcept>? additionalCharacteristic;
 
-  /// [additionalClassification] /// User for example for ATC classification, or.
+  /// [additionalClassification]
+  /// User for example for ATC classification, or.
   final List<CodeableConcept>? additionalClassification;
 
-  /// [relatedEntry] /// Used for example, to point to a substance, or to a device used to
+  /// [relatedEntry]
+  /// Used for example, to point to a substance, or to a device used to
   /// administer a medication.
   final List<CatalogEntryRelatedEntry>? relatedEntry;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -114,21 +333,19 @@ class CatalogEntry extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (type != null) {
       json['type'] = type!.toJson();
@@ -139,14 +356,12 @@ class CatalogEntry extends DomainResource {
     }
     json['referencedItem'] = referencedItem.toJson();
     if (additionalIdentifier != null && additionalIdentifier!.isNotEmpty) {
-      json['additionalIdentifier'] = additionalIdentifier!
-          .map<dynamic>((Identifier v) => v.toJson())
-          .toList();
+      json['additionalIdentifier'] =
+          additionalIdentifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (classification != null && classification!.isNotEmpty) {
-      json['classification'] = classification!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
-          .toList();
+      json['classification'] =
+          classification!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (status != null) {
       json['status'] = status!.toJson();
@@ -169,130 +384,23 @@ class CatalogEntry extends DomainResource {
     if (additionalCharacteristic != null &&
         additionalCharacteristic!.isNotEmpty) {
       json['additionalCharacteristic'] = additionalCharacteristic!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .map((CodeableConcept v) => v.toJson())
           .toList();
     }
     if (additionalClassification != null &&
         additionalClassification!.isNotEmpty) {
       json['additionalClassification'] = additionalClassification!
-          .map<dynamic>((CodeableConcept v) => v.toJson())
+          .map((CodeableConcept v) => v.toJson())
           .toList();
     }
     if (relatedEntry != null && relatedEntry!.isNotEmpty) {
       json['relatedEntry'] = relatedEntry!
-          .map<dynamic>((CatalogEntryRelatedEntry v) => v.toJson())
+          .map((CatalogEntryRelatedEntry v) => v.toJson())
           .toList();
     }
     return json;
   }
 
-  factory CatalogEntry.fromJson(Map<String, dynamic> json) {
-    return CatalogEntry(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: json['type'] != null
-          ? CodeableConcept.fromJson(json['type'] as Map<String, dynamic>)
-          : null,
-      orderable: FhirBoolean.fromJson(json['orderable']),
-      orderableElement: json['_orderable'] != null
-          ? Element.fromJson(json['_orderable'] as Map<String, dynamic>)
-          : null,
-      referencedItem:
-          Reference.fromJson(json['referencedItem'] as Map<String, dynamic>),
-      additionalIdentifier: json['additionalIdentifier'] != null
-          ? (json['additionalIdentifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      classification: json['classification'] != null
-          ? (json['classification'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      status: json['status'] != null
-          ? PublicationStatus.fromJson(json['status'])
-          : null,
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      validityPeriod: json['validityPeriod'] != null
-          ? Period.fromJson(json['validityPeriod'] as Map<String, dynamic>)
-          : null,
-      validTo: json['validTo'] != null
-          ? FhirDateTime.fromJson(json['validTo'])
-          : null,
-      validToElement: json['_validTo'] != null
-          ? Element.fromJson(json['_validTo'] as Map<String, dynamic>)
-          : null,
-      lastUpdated: json['lastUpdated'] != null
-          ? FhirDateTime.fromJson(json['lastUpdated'])
-          : null,
-      lastUpdatedElement: json['_lastUpdated'] != null
-          ? Element.fromJson(json['_lastUpdated'] as Map<String, dynamic>)
-          : null,
-      additionalCharacteristic: json['additionalCharacteristic'] != null
-          ? (json['additionalCharacteristic'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      additionalClassification: json['additionalClassification'] != null
-          ? (json['additionalClassification'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      relatedEntry: json['relatedEntry'] != null
-          ? (json['relatedEntry'] as List<dynamic>)
-              .map<CatalogEntryRelatedEntry>((dynamic v) =>
-                  CatalogEntryRelatedEntry.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   CatalogEntry clone() => throw UnimplementedError();
   @override
@@ -369,35 +477,21 @@ class CatalogEntry extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory CatalogEntry.fromYaml(dynamic yaml) => yaml is String
-      ? CatalogEntry.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CatalogEntry.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CatalogEntry cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CatalogEntry.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CatalogEntry.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [CatalogEntryRelatedEntry] /// Used for example, to point to a substance, or to a device used to
+/// [CatalogEntryRelatedEntry]
+/// Used for example, to point to a substance, or to a device used to
 /// administer a medication.
 class CatalogEntryRelatedEntry extends BackboneElement {
+  /// Primary constructor for [CatalogEntryRelatedEntry]
+
   CatalogEntryRelatedEntry({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.relationtype,
+
+    /// Extensions for [relationtype]
     this.relationtypeElement,
     required this.item,
     super.userData,
@@ -408,58 +502,99 @@ class CatalogEntryRelatedEntry extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory CatalogEntryRelatedEntry.fromJson(Map<String, dynamic> json) {
+    return CatalogEntryRelatedEntry(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      relationtype: CatalogEntryRelationType.fromJson(json['relationtype']),
+      relationtypeElement: json['_relationtype'] != null
+          ? Element.fromJson(
+              json['_relationtype'] as Map<String, dynamic>,
+            )
+          : null,
+      item: Reference.fromJson(
+        json['item'] as Map<String, dynamic>,
+      ),
+    );
+  }
+
+  /// Deserialize [CatalogEntryRelatedEntry] from a [String] or [YamlMap] object
+  factory CatalogEntryRelatedEntry.fromYaml(dynamic yaml) => yaml is String
+      ? CatalogEntryRelatedEntry.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? CatalogEntryRelatedEntry.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'CatalogEntryRelatedEntry cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [CatalogEntryRelatedEntry] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory CatalogEntryRelatedEntry.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return CatalogEntryRelatedEntry.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'CatalogEntryRelatedEntry';
 
-  /// [relationtype] /// The type of relation to the related item: child, parent, packageContent,
-  /// containerPackage, usedIn, uses, requires, etc.
+  /// [relationtype]
+  /// The type of relation to the related item: child, parent,
+  /// packageContent, containerPackage, usedIn, uses, requires, etc.
   final CatalogEntryRelationType relationtype;
+
+  /// Extensions for [relationtype]
   final Element? relationtypeElement;
 
-  /// [item] /// The reference to the related item.
+  /// [item]
+  /// The reference to the related item.
   final Reference item;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['relationtype'] = relationtype.toJson();
     json['item'] = item.toJson();
     return json;
   }
 
-  factory CatalogEntryRelatedEntry.fromJson(Map<String, dynamic> json) {
-    return CatalogEntryRelatedEntry(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      relationtype: CatalogEntryRelationType.fromJson(json['relationtype']),
-      relationtypeElement: json['_relationtype'] != null
-          ? Element.fromJson(json['_relationtype'] as Map<String, dynamic>)
-          : null,
-      item: Reference.fromJson(json['item'] as Map<String, dynamic>),
-    );
-  }
   @override
   CatalogEntryRelatedEntry clone() => throw UnimplementedError();
   @override
@@ -491,24 +626,5 @@ class CatalogEntryRelatedEntry extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory CatalogEntryRelatedEntry.fromYaml(dynamic yaml) => yaml is String
-      ? CatalogEntryRelatedEntry.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? CatalogEntryRelatedEntry.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'CatalogEntryRelatedEntry cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory CatalogEntryRelatedEntry.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return CatalogEntryRelatedEntry.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

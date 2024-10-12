@@ -1,17 +1,23 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [OperationOutcome] /// A collection of error, warning, or information messages that result from a
-/// system action.
+/// [OperationOutcome]
+/// A collection of error, warning, or information messages that result
+/// from a system action.
 class OperationOutcome extends DomainResource {
+  /// Primary constructor for [OperationOutcome]
+
   OperationOutcome({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -24,17 +30,110 @@ class OperationOutcome extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.OperationOutcome);
+  }) : super(
+          resourceType: R4ResourceType.OperationOutcome,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory OperationOutcome.fromJson(Map<String, dynamic> json) {
+    return OperationOutcome(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      issue: (json['issue'] as List<dynamic>)
+          .map<OperationOutcomeIssue>((dynamic v) =>
+              OperationOutcomeIssue.fromJson(v as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+
+  /// Deserialize [OperationOutcome] from a [String] or [YamlMap] object
+  factory OperationOutcome.fromYaml(dynamic yaml) => yaml is String
+      ? OperationOutcome.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? OperationOutcome.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'OperationOutcome cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [OperationOutcome] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory OperationOutcome.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return OperationOutcome.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'OperationOutcome';
 
-  /// [issue] /// An error, warning, or information message that results from a system
+  /// [issue]
+  /// An error, warning, or information message that results from a system
   /// action.
   final List<OperationOutcomeIssue> issue;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -55,68 +154,21 @@ class OperationOutcome extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['issue'] =
         issue.map<dynamic>((OperationOutcomeIssue v) => v.toJson()).toList();
     return json;
   }
 
-  factory OperationOutcome.fromJson(Map<String, dynamic> json) {
-    return OperationOutcome(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      issue: (json['issue'] as List<dynamic>)
-          .map<OperationOutcomeIssue>((dynamic v) =>
-              OperationOutcomeIssue.fromJson(v as Map<String, dynamic>))
-          .toList(),
-    );
-  }
   @override
   OperationOutcome clone() => throw UnimplementedError();
   @override
@@ -159,44 +211,38 @@ class OperationOutcome extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory OperationOutcome.fromYaml(dynamic yaml) => yaml is String
-      ? OperationOutcome.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? OperationOutcome.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'OperationOutcome cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory OperationOutcome.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return OperationOutcome.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [OperationOutcomeIssue] /// An error, warning, or information message that results from a system
+/// [OperationOutcomeIssue]
+/// An error, warning, or information message that results from a system
 /// action.
 class OperationOutcomeIssue extends BackboneElement {
+  /// Primary constructor for [OperationOutcomeIssue]
+
   OperationOutcomeIssue({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.severity,
+
+    /// Extensions for [severity]
     this.severityElement,
     required this.code,
+
+    /// Extensions for [code]
     this.codeElement,
     this.details,
     this.diagnostics,
+
+    /// Extensions for [diagnostics]
     this.diagnosticsElement,
     this.location,
+
+    /// Extensions for [location]
     this.locationElement,
     this.expression,
+
+    /// Extensions for [expression]
     this.expressionElement,
     super.userData,
     super.formatCommentsPre,
@@ -206,58 +252,179 @@ class OperationOutcomeIssue extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory OperationOutcomeIssue.fromJson(Map<String, dynamic> json) {
+    return OperationOutcomeIssue(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      severity: IssueSeverity.fromJson(json['severity']),
+      severityElement: json['_severity'] != null
+          ? Element.fromJson(
+              json['_severity'] as Map<String, dynamic>,
+            )
+          : null,
+      code: IssueType.fromJson(json['code']),
+      codeElement: json['_code'] != null
+          ? Element.fromJson(
+              json['_code'] as Map<String, dynamic>,
+            )
+          : null,
+      details: json['details'] != null
+          ? CodeableConcept.fromJson(
+              json['details'] as Map<String, dynamic>,
+            )
+          : null,
+      diagnostics: json['diagnostics'] != null
+          ? FhirString.fromJson(json['diagnostics'])
+          : null,
+      diagnosticsElement: json['_diagnostics'] != null
+          ? Element.fromJson(
+              json['_diagnostics'] as Map<String, dynamic>,
+            )
+          : null,
+      location: json['location'] != null
+          ? (json['location'] as List<dynamic>)
+              .map<FhirString>(
+                (dynamic v) => FhirString.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      locationElement: json['_location'] != null
+          ? (json['_location'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      expression: json['expression'] != null
+          ? (json['expression'] as List<dynamic>)
+              .map<FhirString>(
+                (dynamic v) => FhirString.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      expressionElement: json['_expression'] != null
+          ? (json['_expression'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [OperationOutcomeIssue] from a [String] or [YamlMap] object
+  factory OperationOutcomeIssue.fromYaml(dynamic yaml) => yaml is String
+      ? OperationOutcomeIssue.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? OperationOutcomeIssue.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'OperationOutcomeIssue cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [OperationOutcomeIssue] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory OperationOutcomeIssue.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return OperationOutcomeIssue.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'OperationOutcomeIssue';
 
-  /// [severity] /// Indicates whether the issue indicates a variation from successful
+  /// [severity]
+  /// Indicates whether the issue indicates a variation from successful
   /// processing.
   final IssueSeverity severity;
+
+  /// Extensions for [severity]
   final Element? severityElement;
 
-  /// [code] /// Describes the type of the issue. The system that creates an
-  /// OperationOutcome SHALL choose the most applicable code from the IssueType
-  /// value set, and may additional provide its own code for the error in the
-  /// details element.
+  /// [code]
+  /// Describes the type of the issue. The system that creates an
+  /// OperationOutcome SHALL choose the most applicable code from the
+  /// IssueType value set, and may additional provide its own code for the
+  /// error in the details element.
   final IssueType code;
+
+  /// Extensions for [code]
   final Element? codeElement;
 
-  /// [details] /// Additional details about the error. This may be a text description of the
-  /// error or a system code that identifies the error.
+  /// [details]
+  /// Additional details about the error. This may be a text description of
+  /// the error or a system code that identifies the error.
   final CodeableConcept? details;
 
-  /// [diagnostics] /// Additional diagnostic information about the issue.
+  /// [diagnostics]
+  /// Additional diagnostic information about the issue.
   final FhirString? diagnostics;
+
+  /// Extensions for [diagnostics]
   final Element? diagnosticsElement;
 
-  /// [location] /// This element is deprecated because it is XML specific. It is replaced by
-  /// issue.expression, which is format independent, and simpler to parse.
+  /// [location]
+  /// This element is deprecated because it is XML specific. It is replaced
+  /// by issue.expression, which is format independent, and simpler to parse.
   ///
-  /// For resource issues, this will be a simple XPath limited to element names,
-  /// repetition indicators and the default child accessor that identifies one of
-  /// the elements in the resource that caused this issue to be raised. For HTTP
-  /// errors, will be "http." + the parameter name.
+  ///
+  /// For resource issues, this will be a simple XPath limited to element
+  /// names, repetition indicators and the default child accessor that
+  /// identifies one of the elements in the resource that caused this issue
+  /// to be raised. For HTTP errors, will be "http." + the parameter name.
   final List<FhirString>? location;
+
+  /// Extensions for [location]
   final List<Element>? locationElement;
 
-  /// [expression] /// A [simple subset of FHIRPath](fhirpath.html#simple) limited to element
-  /// names, repetition indicators and the default child accessor that identifies
-  /// one of the elements in the resource that caused this issue to be raised.
+  /// [expression]
+  /// A [simple subset of FHIRPath](fhirpath.html#simple) limited to element
+  /// names, repetition indicators and the default child accessor that
+  /// identifies one of the elements in the resource that caused this issue
+  /// to be raised.
   final List<FhirString>? expression;
+
+  /// Extensions for [expression]
   final List<Element>? expressionElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['severity'] = severity.toJson();
     json['code'] = code.toJson();
@@ -288,62 +455,6 @@ class OperationOutcomeIssue extends BackboneElement {
     return json;
   }
 
-  factory OperationOutcomeIssue.fromJson(Map<String, dynamic> json) {
-    return OperationOutcomeIssue(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      severity: IssueSeverity.fromJson(json['severity']),
-      severityElement: json['_severity'] != null
-          ? Element.fromJson(json['_severity'] as Map<String, dynamic>)
-          : null,
-      code: IssueType.fromJson(json['code']),
-      codeElement: json['_code'] != null
-          ? Element.fromJson(json['_code'] as Map<String, dynamic>)
-          : null,
-      details: json['details'] != null
-          ? CodeableConcept.fromJson(json['details'] as Map<String, dynamic>)
-          : null,
-      diagnostics: json['diagnostics'] != null
-          ? FhirString.fromJson(json['diagnostics'])
-          : null,
-      diagnosticsElement: json['_diagnostics'] != null
-          ? Element.fromJson(json['_diagnostics'] as Map<String, dynamic>)
-          : null,
-      location: json['location'] != null
-          ? (json['location'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
-              .toList()
-          : null,
-      locationElement: json['_location'] != null
-          ? (json['_location'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      expression: json['expression'] != null
-          ? (json['expression'] as List<dynamic>)
-              .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
-              .toList()
-          : null,
-      expressionElement: json['_expression'] != null
-          ? (json['_expression'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   OperationOutcomeIssue clone() => throw UnimplementedError();
   @override
@@ -391,24 +502,5 @@ class OperationOutcomeIssue extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory OperationOutcomeIssue.fromYaml(dynamic yaml) => yaml is String
-      ? OperationOutcomeIssue.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? OperationOutcomeIssue.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'OperationOutcomeIssue cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory OperationOutcomeIssue.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return OperationOutcomeIssue.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

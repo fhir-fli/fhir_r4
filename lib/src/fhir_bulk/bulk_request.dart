@@ -3,29 +3,37 @@
 // Dart imports:
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:http/http.dart';
 
-import '../../fhir_r4.dart';
-
 class BulkRequestPatient extends BulkRequest {
-  const BulkRequestPatient(
-      {required super.base, super.since, super.types, super.client});
+  const BulkRequestPatient({
+    required super.base,
+    super.since,
+    super.types,
+    super.client,
+  });
 }
 
 class BulkRequestGroup extends BulkRequest {
-  const BulkRequestGroup(
-      {required super.base,
-      required this.id,
-      super.since,
-      super.types,
-      super.client});
+  const BulkRequestGroup({
+    required super.base,
+    required this.id,
+    super.since,
+    super.types,
+    super.client,
+  });
 
   final FhirId id;
 }
 
 class BulkRequestSystem extends BulkRequest {
-  const BulkRequestSystem(
-      {required super.base, super.since, super.types, super.client});
+  const BulkRequestSystem({
+    required super.base,
+    super.since,
+    super.types,
+    super.client,
+  });
 }
 
 abstract class BulkRequest {
@@ -43,7 +51,7 @@ abstract class BulkRequest {
 
   /// Actually perform the request by type
   Future<List<Resource?>> request() async {
-    final Map<String, String> headers = <String, String>{};
+    final headers = <String, String>{};
     headers['accept'] = 'application/fhir+json';
     headers['prefer'] = 'respond-async';
     String baseUrl;
@@ -63,14 +71,14 @@ abstract class BulkRequest {
     FhirDateTime? since,
     List<WhichResource>? types,
   ) {
-    String sinceString = '';
-    String typeString = '';
+    var sinceString = '';
+    var typeString = '';
     if (since != null) {
       sinceString = '?_since=$since';
     }
     if (types != null) {
       typeString = sinceString.isEmpty ? '?' : '&';
-      for (final WhichResource type in types) {
+      for (final type in types) {
         if (type.resourceType != null) {
           typeString += typeString.length == 1 ? '_type=' : ',';
           typeString +=
@@ -88,7 +96,7 @@ abstract class BulkRequest {
     Client? client,
   ) async {
     client ??= Client();
-    final List<Resource?> returnList = <Resource?>[];
+    final returnList = <Resource?>[];
     String? currentLocation;
 
     if (kTestMode) {
@@ -96,57 +104,61 @@ abstract class BulkRequest {
     }
 
     try {
-      final Response resultWithLocation =
+      final resultWithLocation =
           await client.get(Uri.parse(uri), headers: headers);
       if (_errorCodes.keys.contains(resultWithLocation.statusCode)) {
         return _failedHttp(resultWithLocation.statusCode, resultWithLocation);
       }
       currentLocation = resultWithLocation.headers['content-location'];
     } catch (e) {
-      return _operationOutcome('Failed to initiate a Bulk request',
-          diagnostics: 'Exception: $e');
+      return _operationOutcome(
+        'Failed to initiate a Bulk request',
+        diagnostics: 'Exception: $e',
+      );
     }
 
-    int retryAfter = 1;
-    Response responseLinks = Response('{}', 422);
+    var retryAfter = 1;
+    var responseLinks = Response('{}', 422);
     while (retryAfter > 0) {
-      if (currentLocation == null) {
-        throw Exception('"content-location" was null for bulk request');
-      } else {
-        try {
+      try {
+        if (currentLocation != null) {
           responseLinks =
               await client.get(Uri.parse(currentLocation), headers: headers);
           retryAfter =
               int.tryParse(responseLinks.headers['retry-after'] ?? '-1') ?? -1;
-        } catch (e) {
-          return _operationOutcome('Failed to wait for a Bulk request',
-              diagnostics: 'Exception: $e');
         }
-        if (retryAfter > 0) {
-          await Future<dynamic>.delayed(Duration(seconds: retryAfter));
-        }
+      } catch (e) {
+        return _operationOutcome(
+          'Failed to wait for a Bulk request',
+          diagnostics: 'Exception: $e',
+        );
+      }
+      if (retryAfter > 0) {
+        await Future<dynamic>.delayed(Duration(seconds: retryAfter));
       }
     }
 
-    final List<dynamic> resourceLinks =
+    final resourceLinks =
         jsonDecode(responseLinks.body)['output'] as List<dynamic>? ??
             <dynamic>[];
 
     for (final dynamic link in resourceLinks) {
-      final Uri? newLink = Uri.tryParse(link['url'].toString());
+      final newLink = Uri.tryParse(link['url'].toString());
       if (newLink == null) {
-        returnList
-            .add(_operationOutcome('Failed to download, url specified as: '
-                    '${link["url"]} is not a Uri')
-                .first);
+        returnList.add(
+          _operationOutcome('Failed to download, url specified as: '
+                  '${link["url"]} is not a Uri')
+              .first,
+        );
       } else {
         try {
-          final Response ndjsonList =
-              await client.get(newLink, headers: headers);
+          final ndjsonList = await client.get(newLink, headers: headers);
           returnList.addAll(FhirBulk.fromNdJson(ndjsonList.body));
         } catch (e) {
-          return _operationOutcome('Failed to download from ${link['url']}',
-              diagnostics: 'Exception: $e');
+          return _operationOutcome(
+            'Failed to download from ${link['url']}',
+            diagnostics: 'Exception: $e',
+          );
         }
       }
     }
@@ -162,7 +174,8 @@ abstract class BulkRequest {
             severity: IssueSeverity.error,
             code: IssueType.invalid,
             details: CodeableConcept(
-                text: FhirString('Failed to make restful request')),
+              text: FhirString('Failed to make restful request'),
+            ),
             diagnostics: FhirString('\nStatus Code: $statusCode -'
                 ' ${_errorCodes[statusCode]}'
                 '\nResult headers: ${result.headers}'

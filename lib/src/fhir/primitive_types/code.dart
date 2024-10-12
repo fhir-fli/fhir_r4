@@ -1,21 +1,38 @@
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
-import '../../../fhir_r4.dart';
 
+/// Extension to add `toFhirCode` method on all [String] instances
 extension FhirCodeExtension on String {
+  /// Returns a [FhirCode] object
   FhirCode get toFhirCode => FhirCode(this);
 }
 
+/// FHIR primitive type `code`
 class FhirCode extends PrimitiveType<String> {
-  @override
-  final String value;
-
-  // Constructor enforces valid input
+  /// Constructor enforces valid input
   FhirCode(String input, [Element? element])
       : value = _validateCode(input),
         super(element: element);
 
+  /// fromJson accepts dynamic input and validates
+  factory FhirCode.fromJson(dynamic json) {
+    if (json is String) {
+      return FhirCode(json);
+    } else {
+      throw const FormatException('Invalid input for FhirCode');
+    }
+  }
+
+  /// fromYaml accepts dynamic input and validates
+  factory FhirCode.fromYaml(dynamic yaml) => yaml is String
+      ? FhirCode.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
+      : throw const FormatException('Invalid Yaml format for FhirCode');
+  @override
+  final String value;
+
+  /// Static method to try parsing the input
   static FhirCode? tryParse(dynamic input) {
     if (input is String) {
       try {
@@ -28,28 +45,15 @@ class FhirCode extends PrimitiveType<String> {
     }
   }
 
-  // Validation method for the FHIR Code format
+  /// Validation method for the FHIR Code format
   static String _validateCode(String input) {
-    final RegExp regex = RegExp(r'^[^\s]+(\s[^\s]+)*$');
+    final regex = RegExp(r'^[^\s]+(\s[^\s]+)*$');
     if (regex.hasMatch(input)) {
       return input;
     } else {
       throw const FormatException('Invalid FHIR Code');
     }
   }
-
-  // fromJson accepts dynamic input and validates
-  factory FhirCode.fromJson(dynamic json) {
-    if (json is String) {
-      return FhirCode(json);
-    } else {
-      throw const FormatException('Invalid input for FhirCode');
-    }
-  }
-
-  factory FhirCode.fromYaml(dynamic yaml) => yaml is String
-      ? FhirCode.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : throw const FormatException('Invalid Yaml format for FhirCode');
 
   @override
   String get fhirType => 'code';

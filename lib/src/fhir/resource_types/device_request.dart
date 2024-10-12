@@ -1,18 +1,24 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [DeviceRequest] /// Represents a request for a patient to employ a medical device. The device
-/// may be an implantable device, or an external assistive device, such as a
-/// walker.
+/// [DeviceRequest]
+/// Represents a request for a patient to employ a medical device. The
+/// device may be an implantable device, or an external assistive device,
+/// such as a walker.
 class DeviceRequest extends DomainResource {
+  /// Primary constructor for [DeviceRequest]
+
   DeviceRequest({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -20,17 +26,27 @@ class DeviceRequest extends DomainResource {
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
+
+    /// Extensions for [instantiatesCanonical]
     this.instantiatesCanonicalElement,
     this.instantiatesUri,
+
+    /// Extensions for [instantiatesUri]
     this.instantiatesUriElement,
     this.basedOn,
     this.priorRequest,
     this.groupIdentifier,
     this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     required this.intent,
+
+    /// Extensions for [intent]
     this.intentElement,
     this.priority,
+
+    /// Extensions for [priority]
     this.priorityElement,
     this.codeReference,
     this.codeCodeableConcept,
@@ -38,10 +54,14 @@ class DeviceRequest extends DomainResource {
     required this.subject,
     this.encounter,
     this.occurrenceDateTime,
+
+    /// Extensions for [occurrenceDateTime]
     this.occurrenceDateTimeElement,
     this.occurrencePeriod,
     this.occurrenceTiming,
     this.authoredOn,
+
+    /// Extensions for [authoredOn]
     this.authoredOnElement,
     this.requester,
     this.performerType,
@@ -58,125 +78,460 @@ class DeviceRequest extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.DeviceRequest);
+  }) : super(
+          resourceType: R4ResourceType.DeviceRequest,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory DeviceRequest.fromJson(Map<String, dynamic> json) {
+    return DeviceRequest(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      instantiatesCanonical: json['instantiatesCanonical'] != null
+          ? (json['instantiatesCanonical'] as List<dynamic>)
+              .map<FhirCanonical>(
+                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
+          ? (json['_instantiatesCanonical'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      instantiatesUri: json['instantiatesUri'] != null
+          ? (json['instantiatesUri'] as List<dynamic>)
+              .map<FhirUri>(
+                (dynamic v) => FhirUri.fromJson(v as dynamic),
+              )
+              .toList()
+          : null,
+      instantiatesUriElement: json['_instantiatesUri'] != null
+          ? (json['_instantiatesUri'] as List<dynamic>)
+              .map<Element>(
+                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
+              )
+              .toList()
+          : null,
+      basedOn: json['basedOn'] != null
+          ? (json['basedOn'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      priorRequest: json['priorRequest'] != null
+          ? (json['priorRequest'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      groupIdentifier: json['groupIdentifier'] != null
+          ? Identifier.fromJson(
+              json['groupIdentifier'] as Map<String, dynamic>,
+            )
+          : null,
+      status: json['status'] != null
+          ? RequestStatus.fromJson(json['status'])
+          : null,
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      intent: RequestIntent.fromJson(json['intent']),
+      intentElement: json['_intent'] != null
+          ? Element.fromJson(
+              json['_intent'] as Map<String, dynamic>,
+            )
+          : null,
+      priority: json['priority'] != null
+          ? RequestPriority.fromJson(json['priority'])
+          : null,
+      priorityElement: json['_priority'] != null
+          ? Element.fromJson(
+              json['_priority'] as Map<String, dynamic>,
+            )
+          : null,
+      codeReference: json['codeReference'] != null
+          ? Reference.fromJson(
+              json['codeReference'] as Map<String, dynamic>,
+            )
+          : null,
+      codeCodeableConcept: json['codeCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['codeCodeableConcept'] as Map<String, dynamic>,
+            )
+          : null,
+      parameter: json['parameter'] != null
+          ? (json['parameter'] as List<dynamic>)
+              .map<DeviceRequestParameter>(
+                (dynamic v) => DeviceRequestParameter.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      subject: Reference.fromJson(
+        json['subject'] as Map<String, dynamic>,
+      ),
+      encounter: json['encounter'] != null
+          ? Reference.fromJson(
+              json['encounter'] as Map<String, dynamic>,
+            )
+          : null,
+      occurrenceDateTime: json['occurrenceDateTime'] != null
+          ? FhirDateTime.fromJson(json['occurrenceDateTime'])
+          : null,
+      occurrenceDateTimeElement: json['_occurrenceDateTime'] != null
+          ? Element.fromJson(
+              json['_occurrenceDateTime'] as Map<String, dynamic>,
+            )
+          : null,
+      occurrencePeriod: json['occurrencePeriod'] != null
+          ? Period.fromJson(
+              json['occurrencePeriod'] as Map<String, dynamic>,
+            )
+          : null,
+      occurrenceTiming: json['occurrenceTiming'] != null
+          ? Timing.fromJson(
+              json['occurrenceTiming'] as Map<String, dynamic>,
+            )
+          : null,
+      authoredOn: json['authoredOn'] != null
+          ? FhirDateTime.fromJson(json['authoredOn'])
+          : null,
+      authoredOnElement: json['_authoredOn'] != null
+          ? Element.fromJson(
+              json['_authoredOn'] as Map<String, dynamic>,
+            )
+          : null,
+      requester: json['requester'] != null
+          ? Reference.fromJson(
+              json['requester'] as Map<String, dynamic>,
+            )
+          : null,
+      performerType: json['performerType'] != null
+          ? CodeableConcept.fromJson(
+              json['performerType'] as Map<String, dynamic>,
+            )
+          : null,
+      performer: json['performer'] != null
+          ? Reference.fromJson(
+              json['performer'] as Map<String, dynamic>,
+            )
+          : null,
+      reasonCode: json['reasonCode'] != null
+          ? (json['reasonCode'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      reasonReference: json['reasonReference'] != null
+          ? (json['reasonReference'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      insurance: json['insurance'] != null
+          ? (json['insurance'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      supportingInfo: json['supportingInfo'] != null
+          ? (json['supportingInfo'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      note: json['note'] != null
+          ? (json['note'] as List<dynamic>)
+              .map<Annotation>(
+                (dynamic v) => Annotation.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      relevantHistory: json['relevantHistory'] != null
+          ? (json['relevantHistory'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [DeviceRequest] from a [String] or [YamlMap] object
+  factory DeviceRequest.fromYaml(dynamic yaml) => yaml is String
+      ? DeviceRequest.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? DeviceRequest.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'DeviceRequest cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [DeviceRequest] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory DeviceRequest.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DeviceRequest.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'DeviceRequest';
 
-  /// [identifier] /// Identifiers assigned to this order by the orderer or by the receiver.
+  /// [identifier]
+  /// Identifiers assigned to this order by the orderer or by the receiver.
   final List<Identifier>? identifier;
 
-  /// [instantiatesCanonical] /// The URL pointing to a FHIR-defined protocol, guideline, orderset or other
-  /// definition that is adhered to in whole or in part by this DeviceRequest.
+  /// [instantiatesCanonical]
+  /// The URL pointing to a FHIR-defined protocol, guideline, orderset or
+  /// other definition that is adhered to in whole or in part by this
+  /// DeviceRequest.
   final List<FhirCanonical>? instantiatesCanonical;
+
+  /// Extensions for [instantiatesCanonical]
   final List<Element>? instantiatesCanonicalElement;
 
-  /// [instantiatesUri] /// The URL pointing to an externally maintained protocol, guideline, orderset
-  /// or other definition that is adhered to in whole or in part by this
-  /// DeviceRequest.
+  /// [instantiatesUri]
+  /// The URL pointing to an externally maintained protocol, guideline,
+  /// orderset or other definition that is adhered to in whole or in part by
+  /// this DeviceRequest.
   final List<FhirUri>? instantiatesUri;
+
+  /// Extensions for [instantiatesUri]
   final List<Element>? instantiatesUriElement;
 
-  /// [basedOn] /// Plan/proposal/order fulfilled by this request.
+  /// [basedOn]
+  /// Plan/proposal/order fulfilled by this request.
   final List<Reference>? basedOn;
 
-  /// [priorRequest] /// The request takes the place of the referenced completed or terminated
+  /// [priorRequest]
+  /// The request takes the place of the referenced completed or terminated
   /// request(s).
   final List<Reference>? priorRequest;
 
-  /// [groupIdentifier] /// Composite request this is part of.
+  /// [groupIdentifier]
+  /// Composite request this is part of.
   final Identifier? groupIdentifier;
 
-  /// [status] /// The status of the request.
+  /// [status]
+  /// The status of the request.
   final RequestStatus? status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [intent] /// Whether the request is a proposal, plan, an original order or a reflex
+  /// [intent]
+  /// Whether the request is a proposal, plan, an original order or a reflex
   /// order.
   final RequestIntent intent;
+
+  /// Extensions for [intent]
   final Element? intentElement;
 
-  /// [priority] /// Indicates how quickly the {{title}} should be addressed with respect to
+  /// [priority]
+  /// Indicates how quickly the {{title}} should be addressed with respect to
   /// other requests.
   final RequestPriority? priority;
+
+  /// Extensions for [priority]
   final Element? priorityElement;
 
-  /// [codeReference] /// The details of the device to be used.
+  /// [codeReference]
+  /// The details of the device to be used.
   final Reference? codeReference;
 
-  /// [codeCodeableConcept] /// The details of the device to be used.
+  /// [codeCodeableConcept]
+  /// The details of the device to be used.
   final CodeableConcept? codeCodeableConcept;
 
-  /// [parameter] /// Specific parameters for the ordered item. For example, the prism value for
-  /// lenses.
+  /// [parameter]
+  /// Specific parameters for the ordered item. For example, the prism value
+  /// for lenses.
   final List<DeviceRequestParameter>? parameter;
 
-  /// [subject] /// The patient who will use the device.
+  /// [subject]
+  /// The patient who will use the device.
   final Reference subject;
 
-  /// [encounter] /// An encounter that provides additional context in which this request is
+  /// [encounter]
+  /// An encounter that provides additional context in which this request is
   /// made.
   final Reference? encounter;
 
-  /// [occurrenceDateTime] /// The timing schedule for the use of the device. The Schedule data type
+  /// [occurrenceDateTime]
+  /// The timing schedule for the use of the device. The Schedule data type
   /// allows many different expressions, for example. "Every 8 hours"; "Three
-  /// times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec 2011:";
-  /// "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013".
+  /// times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec
+  /// 2011:"; "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013".
   final FhirDateTime? occurrenceDateTime;
+
+  /// Extensions for [occurrenceDateTime]
   final Element? occurrenceDateTimeElement;
 
-  /// [occurrencePeriod] /// The timing schedule for the use of the device. The Schedule data type
+  /// [occurrencePeriod]
+  /// The timing schedule for the use of the device. The Schedule data type
   /// allows many different expressions, for example. "Every 8 hours"; "Three
-  /// times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec 2011:";
-  /// "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013".
+  /// times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec
+  /// 2011:"; "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013".
   final Period? occurrencePeriod;
 
-  /// [occurrenceTiming] /// The timing schedule for the use of the device. The Schedule data type
+  /// [occurrenceTiming]
+  /// The timing schedule for the use of the device. The Schedule data type
   /// allows many different expressions, for example. "Every 8 hours"; "Three
-  /// times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec 2011:";
-  /// "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013".
+  /// times a day"; "1/2 an hour before breakfast for 10 days from 23-Dec
+  /// 2011:"; "15 Oct 2013, 17 Oct 2013 and 1 Nov 2013".
   final Timing? occurrenceTiming;
 
-  /// [authoredOn] /// When the request transitioned to being actionable.
+  /// [authoredOn]
+  /// When the request transitioned to being actionable.
   final FhirDateTime? authoredOn;
+
+  /// Extensions for [authoredOn]
   final Element? authoredOnElement;
 
-  /// [requester] /// The individual who initiated the request and has responsibility for its
+  /// [requester]
+  /// The individual who initiated the request and has responsibility for its
   /// activation.
   final Reference? requester;
 
-  /// [performerType] /// Desired type of performer for doing the diagnostic testing.
+  /// [performerType]
+  /// Desired type of performer for doing the diagnostic testing.
   final CodeableConcept? performerType;
 
-  /// [performer] /// The desired performer for doing the diagnostic testing.
+  /// [performer]
+  /// The desired performer for doing the diagnostic testing.
   final Reference? performer;
 
-  /// [reasonCode] /// Reason or justification for the use of this device.
+  /// [reasonCode]
+  /// Reason or justification for the use of this device.
   final List<CodeableConcept>? reasonCode;
 
-  /// [reasonReference] /// Reason or justification for the use of this device.
+  /// [reasonReference]
+  /// Reason or justification for the use of this device.
   final List<Reference>? reasonReference;
 
-  /// [insurance] /// Insurance plans, coverage extensions, pre-authorizations and/or
+  /// [insurance]
+  /// Insurance plans, coverage extensions, pre-authorizations and/or
   /// pre-determinations that may be required for delivering the requested
   /// service.
   final List<Reference>? insurance;
 
-  /// [supportingInfo] /// Additional clinical information about the patient that may influence the
-  /// request fulfilment. For example, this may include where on the subject's
-  /// body the device will be used (i.e. the target site).
+  /// [supportingInfo]
+  /// Additional clinical information about the patient that may influence
+  /// the request fulfilment. For example, this may include where on the
+  /// subject's body the device will be used (i.e. the target site).
   final List<Reference>? supportingInfo;
 
-  /// [note] /// Details about this request that were not represented at all or sufficiently
-  /// in one of the attributes provided in a class. These may include for example
-  /// a comment, an instruction, or a note associated with the statement.
+  /// [note]
+  /// Details about this request that were not represented at all or
+  /// sufficiently in one of the attributes provided in a class. These may
+  /// include for example a comment, an instruction, or a note associated
+  /// with the statement.
   final List<Annotation>? note;
 
-  /// [relevantHistory] /// Key events in the history of the request.
+  /// [relevantHistory]
+  /// Key events in the history of the request.
   final List<Reference>? relevantHistory;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -197,21 +552,19 @@ class DeviceRequest extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     if (instantiatesCanonical != null && instantiatesCanonical!.isNotEmpty) {
       json['instantiatesCanonical'] =
@@ -231,12 +584,11 @@ class DeviceRequest extends DomainResource {
           instantiatesUriElement!.map((Element v) => v.toJson()).toList();
     }
     if (basedOn != null && basedOn!.isNotEmpty) {
-      json['basedOn'] =
-          basedOn!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['basedOn'] = basedOn!.map((Reference v) => v.toJson()).toList();
     }
     if (priorRequest != null && priorRequest!.isNotEmpty) {
       json['priorRequest'] =
-          priorRequest!.map<dynamic>((Reference v) => v.toJson()).toList();
+          priorRequest!.map((Reference v) => v.toJson()).toList();
     }
     if (groupIdentifier != null) {
       json['groupIdentifier'] = groupIdentifier!.toJson();
@@ -255,9 +607,8 @@ class DeviceRequest extends DomainResource {
       json['codeCodeableConcept'] = codeCodeableConcept!.toJson();
     }
     if (parameter != null && parameter!.isNotEmpty) {
-      json['parameter'] = parameter!
-          .map<dynamic>((DeviceRequestParameter v) => v.toJson())
-          .toList();
+      json['parameter'] =
+          parameter!.map((DeviceRequestParameter v) => v.toJson()).toList();
     }
     json['subject'] = subject.toJson();
     if (encounter != null) {
@@ -292,213 +643,29 @@ class DeviceRequest extends DomainResource {
     }
     if (reasonCode != null && reasonCode!.isNotEmpty) {
       json['reasonCode'] =
-          reasonCode!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          reasonCode!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (reasonReference != null && reasonReference!.isNotEmpty) {
       json['reasonReference'] =
-          reasonReference!.map<dynamic>((Reference v) => v.toJson()).toList();
+          reasonReference!.map((Reference v) => v.toJson()).toList();
     }
     if (insurance != null && insurance!.isNotEmpty) {
-      json['insurance'] =
-          insurance!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['insurance'] = insurance!.map((Reference v) => v.toJson()).toList();
     }
     if (supportingInfo != null && supportingInfo!.isNotEmpty) {
       json['supportingInfo'] =
-          supportingInfo!.map<dynamic>((Reference v) => v.toJson()).toList();
+          supportingInfo!.map((Reference v) => v.toJson()).toList();
     }
     if (note != null && note!.isNotEmpty) {
-      json['note'] = note!.map<dynamic>((Annotation v) => v.toJson()).toList();
+      json['note'] = note!.map((Annotation v) => v.toJson()).toList();
     }
     if (relevantHistory != null && relevantHistory!.isNotEmpty) {
       json['relevantHistory'] =
-          relevantHistory!.map<dynamic>((Reference v) => v.toJson()).toList();
+          relevantHistory!.map((Reference v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory DeviceRequest.fromJson(Map<String, dynamic> json) {
-    return DeviceRequest(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      instantiatesCanonical: json['instantiatesCanonical'] != null
-          ? (json['instantiatesCanonical'] as List<dynamic>)
-              .map<FhirCanonical>(
-                  (dynamic v) => FhirCanonical.fromJson(v as dynamic))
-              .toList()
-          : null,
-      instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
-          ? (json['_instantiatesCanonical'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      instantiatesUri: json['instantiatesUri'] != null
-          ? (json['instantiatesUri'] as List<dynamic>)
-              .map<FhirUri>((dynamic v) => FhirUri.fromJson(v as dynamic))
-              .toList()
-          : null,
-      instantiatesUriElement: json['_instantiatesUri'] != null
-          ? (json['_instantiatesUri'] as List<dynamic>)
-              .map<Element>(
-                  (dynamic v) => Element.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      basedOn: json['basedOn'] != null
-          ? (json['basedOn'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      priorRequest: json['priorRequest'] != null
-          ? (json['priorRequest'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      groupIdentifier: json['groupIdentifier'] != null
-          ? Identifier.fromJson(json['groupIdentifier'] as Map<String, dynamic>)
-          : null,
-      status: json['status'] != null
-          ? RequestStatus.fromJson(json['status'])
-          : null,
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      intent: RequestIntent.fromJson(json['intent']),
-      intentElement: json['_intent'] != null
-          ? Element.fromJson(json['_intent'] as Map<String, dynamic>)
-          : null,
-      priority: json['priority'] != null
-          ? RequestPriority.fromJson(json['priority'])
-          : null,
-      priorityElement: json['_priority'] != null
-          ? Element.fromJson(json['_priority'] as Map<String, dynamic>)
-          : null,
-      codeReference: json['codeReference'] != null
-          ? Reference.fromJson(json['codeReference'] as Map<String, dynamic>)
-          : null,
-      codeCodeableConcept: json['codeCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['codeCodeableConcept'] as Map<String, dynamic>)
-          : null,
-      parameter: json['parameter'] != null
-          ? (json['parameter'] as List<dynamic>)
-              .map<DeviceRequestParameter>((dynamic v) =>
-                  DeviceRequestParameter.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      subject: Reference.fromJson(json['subject'] as Map<String, dynamic>),
-      encounter: json['encounter'] != null
-          ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
-          : null,
-      occurrenceDateTime: json['occurrenceDateTime'] != null
-          ? FhirDateTime.fromJson(json['occurrenceDateTime'])
-          : null,
-      occurrenceDateTimeElement: json['_occurrenceDateTime'] != null
-          ? Element.fromJson(
-              json['_occurrenceDateTime'] as Map<String, dynamic>)
-          : null,
-      occurrencePeriod: json['occurrencePeriod'] != null
-          ? Period.fromJson(json['occurrencePeriod'] as Map<String, dynamic>)
-          : null,
-      occurrenceTiming: json['occurrenceTiming'] != null
-          ? Timing.fromJson(json['occurrenceTiming'] as Map<String, dynamic>)
-          : null,
-      authoredOn: json['authoredOn'] != null
-          ? FhirDateTime.fromJson(json['authoredOn'])
-          : null,
-      authoredOnElement: json['_authoredOn'] != null
-          ? Element.fromJson(json['_authoredOn'] as Map<String, dynamic>)
-          : null,
-      requester: json['requester'] != null
-          ? Reference.fromJson(json['requester'] as Map<String, dynamic>)
-          : null,
-      performerType: json['performerType'] != null
-          ? CodeableConcept.fromJson(
-              json['performerType'] as Map<String, dynamic>)
-          : null,
-      performer: json['performer'] != null
-          ? Reference.fromJson(json['performer'] as Map<String, dynamic>)
-          : null,
-      reasonCode: json['reasonCode'] != null
-          ? (json['reasonCode'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      reasonReference: json['reasonReference'] != null
-          ? (json['reasonReference'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      insurance: json['insurance'] != null
-          ? (json['insurance'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      supportingInfo: json['supportingInfo'] != null
-          ? (json['supportingInfo'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      note: json['note'] != null
-          ? (json['note'] as List<dynamic>)
-              .map<Annotation>(
-                  (dynamic v) => Annotation.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      relevantHistory: json['relevantHistory'] != null
-          ? (json['relevantHistory'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   DeviceRequest clone() => throw UnimplementedError();
   @override
@@ -611,30 +778,14 @@ class DeviceRequest extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory DeviceRequest.fromYaml(dynamic yaml) => yaml is String
-      ? DeviceRequest.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? DeviceRequest.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'DeviceRequest cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory DeviceRequest.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return DeviceRequest.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [DeviceRequestParameter] /// Specific parameters for the ordered item. For example, the prism value for
-/// lenses.
+/// [DeviceRequestParameter]
+/// Specific parameters for the ordered item. For example, the prism value
+/// for lenses.
 class DeviceRequestParameter extends BackboneElement {
+  /// Primary constructor for [DeviceRequestParameter]
+
   DeviceRequestParameter({
     super.id,
     super.extension_,
@@ -644,6 +795,8 @@ class DeviceRequestParameter extends BackboneElement {
     this.valueQuantity,
     this.valueRange,
     this.valueBoolean,
+
+    /// Extensions for [valueBoolean]
     this.valueBooleanElement,
     super.userData,
     super.formatCommentsPre,
@@ -653,38 +806,123 @@ class DeviceRequestParameter extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory DeviceRequestParameter.fromJson(Map<String, dynamic> json) {
+    return DeviceRequestParameter(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      code: json['code'] != null
+          ? CodeableConcept.fromJson(
+              json['code'] as Map<String, dynamic>,
+            )
+          : null,
+      valueCodeableConcept: json['valueCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['valueCodeableConcept'] as Map<String, dynamic>,
+            )
+          : null,
+      valueQuantity: json['valueQuantity'] != null
+          ? Quantity.fromJson(
+              json['valueQuantity'] as Map<String, dynamic>,
+            )
+          : null,
+      valueRange: json['valueRange'] != null
+          ? Range.fromJson(
+              json['valueRange'] as Map<String, dynamic>,
+            )
+          : null,
+      valueBoolean: json['valueBoolean'] != null
+          ? FhirBoolean.fromJson(json['valueBoolean'])
+          : null,
+      valueBooleanElement: json['_valueBoolean'] != null
+          ? Element.fromJson(
+              json['_valueBoolean'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [DeviceRequestParameter] from a [String] or [YamlMap] object
+  factory DeviceRequestParameter.fromYaml(dynamic yaml) => yaml is String
+      ? DeviceRequestParameter.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? DeviceRequestParameter.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'DeviceRequestParameter cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [DeviceRequestParameter] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory DeviceRequestParameter.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return DeviceRequestParameter.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'DeviceRequestParameter';
 
-  /// [code] /// A code or string that identifies the device detail being asserted.
+  /// [code]
+  /// A code or string that identifies the device detail being asserted.
   final CodeableConcept? code;
 
-  /// [valueCodeableConcept] /// The value of the device detail.
+  /// [valueCodeableConcept]
+  /// The value of the device detail.
   final CodeableConcept? valueCodeableConcept;
 
-  /// [valueQuantity] /// The value of the device detail.
+  /// [valueQuantity]
+  /// The value of the device detail.
   final Quantity? valueQuantity;
 
-  /// [valueRange] /// The value of the device detail.
+  /// [valueRange]
+  /// The value of the device detail.
   final Range? valueRange;
 
-  /// [valueBoolean] /// The value of the device detail.
+  /// [valueBoolean]
+  /// The value of the device detail.
   final FhirBoolean? valueBoolean;
+
+  /// Extensions for [valueBoolean]
   final Element? valueBooleanElement;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (code != null) {
       json['code'] = code!.toJson();
@@ -707,42 +945,6 @@ class DeviceRequestParameter extends BackboneElement {
     return json;
   }
 
-  factory DeviceRequestParameter.fromJson(Map<String, dynamic> json) {
-    return DeviceRequestParameter(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      code: json['code'] != null
-          ? CodeableConcept.fromJson(json['code'] as Map<String, dynamic>)
-          : null,
-      valueCodeableConcept: json['valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['valueCodeableConcept'] as Map<String, dynamic>)
-          : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>)
-          : null,
-      valueRange: json['valueRange'] != null
-          ? Range.fromJson(json['valueRange'] as Map<String, dynamic>)
-          : null,
-      valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   DeviceRequestParameter clone() => throw UnimplementedError();
   @override
@@ -780,24 +982,5 @@ class DeviceRequestParameter extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory DeviceRequestParameter.fromYaml(dynamic yaml) => yaml is String
-      ? DeviceRequestParameter.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? DeviceRequestParameter.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'DeviceRequestParameter cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory DeviceRequestParameter.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return DeviceRequestParameter.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

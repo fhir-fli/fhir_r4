@@ -1,29 +1,31 @@
 import 'dart:convert';
-
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
-import '../../../fhir_r4.dart';
 
+/// Extension on String to convert a String to [FhirTime].
 extension FhirTimeExtension on String {
+  /// Converts a String to a [FhirTime] object.
   FhirTime get toFhirTime => FhirTime(this);
 }
 
+/// Class to handle FHIR time values.
+/// Inherits from [PrimitiveType] and implements [Comparable].
 class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
-  @override
-  final String value; // Single field to store the validated time string
-
-  // Constructor to validate and store the time string
+  /// Constructor that accepts a valid [String] input representing a time and
+  /// validates the input. Optionally takes an [Element].
   FhirTime(String input, [Element? element])
       : value = _validateTime(input),
         super(element: element);
 
-  // Factory method for constructing time from units
+  /// Factory method to construct [FhirTime] from time units (hour, minute,
+  /// second, millisecond).
   factory FhirTime.fromUnits({
     int? hour,
     int? minute,
     int? second,
     int? millisecond,
   }) {
-    String timeString = hour?.toString().padLeft(2, '0') ?? '';
+    var timeString = hour?.toString().padLeft(2, '0') ?? '';
     if (minute != null) {
       timeString += ':${minute.toString().padLeft(2, '0')}';
       if (second != null) {
@@ -36,6 +38,26 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
     return FhirTime(timeString);
   }
 
+  /// Factory method to construct [FhirTime] from JSON input. Validates the input
+  /// and throws a [FormatException] if the input is not a valid String.
+  factory FhirTime.fromJson(dynamic json) {
+    if (json is String) {
+      return FhirTime(json);
+    } else {
+      throw const FormatException('Invalid input for FhirTime');
+    }
+  }
+
+  /// Factory method to construct [FhirTime] from YAML input.
+  factory FhirTime.fromYaml(String yaml) =>
+      FhirTime.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))) as String);
+
+  /// Final String field to store the validated time value.
+  @override
+  final String value;
+
+  /// Method to attempt parsing the input into a [FhirTime]. Returns [null] if
+  /// parsing fails.
   static FhirTime? tryParse(dynamic input) {
     if (input is String) {
       try {
@@ -48,10 +70,12 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
     }
   }
 
-  // Validation function using regex
+  /// Validates the time input using a regular expression. Throws a
+  /// [FormatException] if the input is not valid.
   static String _validateTime(String input) {
-    final RegExp timeRegex = RegExp(
-        r'^([01][0-9]|2[0-3])(:([0-5][0-9])(:([0-5][0-9]|60)(\.[0-9]+)?)?)?$');
+    final timeRegex = RegExp(
+      r'^([01][0-9]|2[0-3])(:([0-5][0-9])(:([0-5][0-9]|60)(\.[0-9]+)?)?)?$',
+    );
     if (timeRegex.hasMatch(input)) {
       return input;
     } else {
@@ -59,47 +83,40 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
     }
   }
 
-  // Factory methods for JSON and YAML
-  factory FhirTime.fromJson(dynamic json) {
-    if (json is String) {
-      return FhirTime(json);
-    } else {
-      throw const FormatException('Invalid input for FhirTime');
-    }
-  }
-
-  factory FhirTime.fromYaml(String yaml) =>
-      FhirTime.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))) as String);
-
+  /// Returns the FHIR type, which is 'time' for this class.
   @override
   String get fhirType => 'time';
 
-  // Time component getters (hour, minute, second, millisecond)
+  /// Getter for the hour component of the time.
   int? get hour => int.tryParse(value.split(':')[0]);
 
+  /// Getter for the minute component of the time.
   int? get minute =>
       (value.split(':').length > 1) ? int.tryParse(value.split(':')[1]) : null;
 
+  /// Getter for the second component of the time.
   int? get second => (value.split(':').length > 2)
       ? int.tryParse(value.split(':')[2].split('.')[0])
       : null;
 
+  /// Getter for the millisecond component of the time.
   int? get millisecond =>
       (value.split('.').length > 1) ? int.tryParse(value.split('.')[1]) : null;
 
-  // Arithmetic methods: Plus and Subtract
+  /// Adds the given time units (hours, minutes, seconds, milliseconds) to the
+  /// current [FhirTime] and returns a new [FhirTime] with the updated value.
   FhirTime plus({
     int hours = 0,
     int minutes = 0,
     int seconds = 0,
     int milliseconds = 0,
   }) {
-    int newMilliseconds = (millisecond ?? 0) + milliseconds;
-    int newSeconds = (second ?? 0) + seconds + (newMilliseconds ~/ 1000);
+    var newMilliseconds = (millisecond ?? 0) + milliseconds;
+    var newSeconds = (second ?? 0) + seconds + (newMilliseconds ~/ 1000);
     newMilliseconds = newMilliseconds % 1000;
-    int newMinutes = (minute ?? 0) + minutes + (newSeconds ~/ 60);
+    var newMinutes = (minute ?? 0) + minutes + (newSeconds ~/ 60);
     newSeconds = newSeconds % 60;
-    int newHours = (hour ?? 0) + hours + (newMinutes ~/ 60);
+    var newHours = (hour ?? 0) + hours + (newMinutes ~/ 60);
     newMinutes = newMinutes % 60;
     newHours = newHours % 24;
     return FhirTime.fromUnits(
@@ -110,6 +127,9 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
     );
   }
 
+  /// Subtracts the given time units (hours, minutes, seconds, milliseconds)
+  /// from the current [FhirTime] and returns a new [FhirTime] with the updated
+  /// value.
   FhirTime subtract({
     int? hours,
     int? minutes,
@@ -146,9 +166,10 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
     );
   }
 
-  // Comparisons (>, >=, <, <=) using helper method
+  /// Private method to compare this [FhirTime] with another [FhirTime] or
+  /// [String] using a specified [Comparator].
   bool? _compare(Comparator comparator, Object other) {
-    final FhirTime? rhs = other is FhirTime
+    final rhs = other is FhirTime
         ? other
         : other is String
             ? FhirTime(other)
@@ -158,12 +179,12 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
       return false;
     }
 
-    final List<String> lhsParts = value.split(':');
-    final List<String> rhsParts = rhs.value.split(':');
+    final lhsParts = value.split(':');
+    final rhsParts = rhs.value.split(':');
 
-    for (int i = 0; i < lhsParts.length; i++) {
-      final int lhs = int.parse(lhsParts[i]);
-      final int rhsValue = int.parse(rhsParts[i]);
+    for (var i = 0; i < lhsParts.length; i++) {
+      final lhs = int.parse(lhsParts[i]);
+      final rhsValue = int.parse(rhsParts[i]);
 
       switch (comparator) {
         case Comparator.eq:
@@ -199,25 +220,33 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
     return comparator == Comparator.eq;
   }
 
+  /// Hash code for the [FhirTime] based on the value.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode => value.hashCode;
 
+  /// Equality operator for comparing two [FhirTime] objects.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(Object other) => _compare(Comparator.eq, other) ?? false;
 
+  /// Checks equality between this [FhirTime] and another [FhirTime].
   @override
   bool equals(Object other) => _compare(Comparator.eq, other) ?? false;
 
+  /// Greater-than comparison operator for comparing two [FhirTime] objects.
   bool? operator >(Object other) => _compare(Comparator.gt, other);
 
+  /// Greater-than-or-equal comparison operator for two [FhirTime] objects.
   bool? operator >=(Object other) => _compare(Comparator.gte, other);
 
+  /// Less-than comparison operator for comparing two [FhirTime] objects.
   bool? operator <(Object other) => _compare(Comparator.lt, other);
 
+  /// Less-than-or-equal comparison operator for two [FhirTime] objects.
   bool? operator <=(Object other) => _compare(Comparator.lte, other);
 
+  /// Comparison method to compare this [FhirTime] with another [FhirTime].
   @override
   int compareTo(FhirTime other) => (this > other ?? false)
       ? 1
@@ -225,25 +254,23 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
           ? -1
           : 0;
 
-  // Serialization methods
+  /// Converts [FhirTime] to a String.
   @override
   String toString() => value;
+
+  /// Converts [FhirTime] to a JSON string.
   @override
   String toJson() => value;
+
+  /// Converts [FhirTime] to a YAML string.
   @override
   String toYaml() => value;
+
+  /// Converts [FhirTime] to a JSON-encoded string.
   @override
   String toJsonString() => jsonEncode(toJson());
 
-  // Clone and copyWith methods
-  @override
-  FhirTime clone() => FhirTime(value, element?.clone() as Element?);
-
-  @override
-  FhirTime setElement(String name, dynamic elementValue) {
-    return FhirTime(value, element?.setProperty(name, elementValue));
-  }
-
+  /// Creates a copy of the current [FhirTime] with optional new properties.
   @override
   FhirTime copyWith({
     String? newValue,
@@ -267,5 +294,15 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
         namedChildren: namedChildren,
       ),
     );
+  }
+
+  /// Creates a clone of the current [FhirTime].
+  @override
+  FhirTime clone() => FhirTime(value, element?.clone() as Element?);
+
+  /// Sets an element on the [FhirTime] object.
+  @override
+  FhirTime setElement(String name, dynamic elementValue) {
+    return FhirTime(value, element?.setProperty(name, elementValue));
   }
 }

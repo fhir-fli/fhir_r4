@@ -1,17 +1,24 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [ManufacturedItemDefinition] /// The definition and characteristics of a medicinal manufactured item, such
-/// as a tablet or capsule, as contained in a packaged medicinal product.
+/// [ManufacturedItemDefinition]
+/// The definition and characteristics of a medicinal manufactured item,
+/// such as a tablet or capsule, as contained in a packaged medicinal
+/// product.
 class ManufacturedItemDefinition extends DomainResource {
+  /// Primary constructor for [ManufacturedItemDefinition]
+
   ManufacturedItemDefinition({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -19,6 +26,8 @@ class ManufacturedItemDefinition extends DomainResource {
     super.modifierExtension,
     this.identifier,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     required this.manufacturedDoseForm,
     this.unitOfPresentation,
@@ -31,40 +40,188 @@ class ManufacturedItemDefinition extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.ManufacturedItemDefinition);
+  }) : super(
+          resourceType: R4ResourceType.ManufacturedItemDefinition,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory ManufacturedItemDefinition.fromJson(Map<String, dynamic> json) {
+    return ManufacturedItemDefinition(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? (json['identifier'] as List<dynamic>)
+              .map<Identifier>(
+                (dynamic v) => Identifier.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      status: PublicationStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      manufacturedDoseForm: CodeableConcept.fromJson(
+        json['manufacturedDoseForm'] as Map<String, dynamic>,
+      ),
+      unitOfPresentation: json['unitOfPresentation'] != null
+          ? CodeableConcept.fromJson(
+              json['unitOfPresentation'] as Map<String, dynamic>,
+            )
+          : null,
+      manufacturer: json['manufacturer'] != null
+          ? (json['manufacturer'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      ingredient: json['ingredient'] != null
+          ? (json['ingredient'] as List<dynamic>)
+              .map<CodeableConcept>(
+                (dynamic v) => CodeableConcept.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      property: json['property'] != null
+          ? (json['property'] as List<dynamic>)
+              .map<ManufacturedItemDefinitionProperty>(
+                (dynamic v) => ManufacturedItemDefinitionProperty.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [ManufacturedItemDefinition] from a [String] or [YamlMap] object
+  factory ManufacturedItemDefinition.fromYaml(dynamic yaml) => yaml is String
+      ? ManufacturedItemDefinition.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? ManufacturedItemDefinition.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'ManufacturedItemDefinition cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [ManufacturedItemDefinition] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory ManufacturedItemDefinition.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ManufacturedItemDefinition.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'ManufacturedItemDefinition';
 
-  /// [identifier] /// Unique identifier.
+  /// [identifier]
+  /// Unique identifier.
   final List<Identifier>? identifier;
 
-  /// [status] /// The status of this item. Enables tracking the life-cycle of the content.
+  /// [status]
+  /// The status of this item. Enables tracking the life-cycle of the
+  /// content.
   final PublicationStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [manufacturedDoseForm] /// Dose form as manufactured and before any transformation into the
+  /// [manufacturedDoseForm]
+  /// Dose form as manufactured and before any transformation into the
   /// pharmaceutical product.
   final CodeableConcept manufacturedDoseForm;
 
-  /// [unitOfPresentation] /// The “real world” units in which the quantity of the manufactured item is
-  /// described.
+  /// [unitOfPresentation]
+  /// The “real world” units in which the quantity of the manufactured item
+  /// is described.
   final CodeableConcept? unitOfPresentation;
 
-  /// [manufacturer] /// Manufacturer of the item (Note that this should be named "manufacturer" but
-  /// it currently causes technical issues).
+  /// [manufacturer]
+  /// Manufacturer of the item (Note that this should be named "manufacturer"
+  /// but it currently causes technical issues).
   final List<Reference>? manufacturer;
 
-  /// [ingredient] /// The ingredients of this manufactured item. This is only needed if the
-  /// ingredients are not specified by incoming references from the Ingredient
-  /// resource.
+  /// [ingredient]
+  /// The ingredients of this manufactured item. This is only needed if the
+  /// ingredients are not specified by incoming references from the
+  /// Ingredient resource.
   final List<CodeableConcept>? ingredient;
 
-  /// [property] /// General characteristics of this item.
+  /// [property]
+  /// General characteristics of this item.
   final List<ManufacturedItemDefinitionProperty>? property;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -85,21 +242,19 @@ class ManufacturedItemDefinition extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
-          identifier!.map<dynamic>((Identifier v) => v.toJson()).toList();
+          identifier!.map((Identifier v) => v.toJson()).toList();
     }
     json['status'] = status.toJson();
     json['manufacturedDoseForm'] = manufacturedDoseForm.toJson();
@@ -108,96 +263,20 @@ class ManufacturedItemDefinition extends DomainResource {
     }
     if (manufacturer != null && manufacturer!.isNotEmpty) {
       json['manufacturer'] =
-          manufacturer!.map<dynamic>((Reference v) => v.toJson()).toList();
+          manufacturer!.map((Reference v) => v.toJson()).toList();
     }
     if (ingredient != null && ingredient!.isNotEmpty) {
       json['ingredient'] =
-          ingredient!.map<dynamic>((CodeableConcept v) => v.toJson()).toList();
+          ingredient!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (property != null && property!.isNotEmpty) {
       json['property'] = property!
-          .map<dynamic>((ManufacturedItemDefinitionProperty v) => v.toJson())
+          .map((ManufacturedItemDefinitionProperty v) => v.toJson())
           .toList();
     }
     return json;
   }
 
-  factory ManufacturedItemDefinition.fromJson(Map<String, dynamic> json) {
-    return ManufacturedItemDefinition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? (json['identifier'] as List<dynamic>)
-              .map<Identifier>(
-                  (dynamic v) => Identifier.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      manufacturedDoseForm: CodeableConcept.fromJson(
-          json['manufacturedDoseForm'] as Map<String, dynamic>),
-      unitOfPresentation: json['unitOfPresentation'] != null
-          ? CodeableConcept.fromJson(
-              json['unitOfPresentation'] as Map<String, dynamic>)
-          : null,
-      manufacturer: json['manufacturer'] != null
-          ? (json['manufacturer'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      ingredient: json['ingredient'] != null
-          ? (json['ingredient'] as List<dynamic>)
-              .map<CodeableConcept>((dynamic v) =>
-                  CodeableConcept.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      property: json['property'] != null
-          ? (json['property'] as List<dynamic>)
-              .map<ManufacturedItemDefinitionProperty>((dynamic v) =>
-                  ManufacturedItemDefinitionProperty.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   ManufacturedItemDefinition clone() => throw UnimplementedError();
   @override
@@ -254,29 +333,13 @@ class ManufacturedItemDefinition extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory ManufacturedItemDefinition.fromYaml(dynamic yaml) => yaml is String
-      ? ManufacturedItemDefinition.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? ManufacturedItemDefinition.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'ManufacturedItemDefinition cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory ManufacturedItemDefinition.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return ManufacturedItemDefinition.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [ManufacturedItemDefinitionProperty] /// General characteristics of this item.
+/// [ManufacturedItemDefinitionProperty]
+/// General characteristics of this item.
 class ManufacturedItemDefinitionProperty extends BackboneElement {
+  /// Primary constructor for [ManufacturedItemDefinitionProperty]
+
   ManufacturedItemDefinitionProperty({
     super.id,
     super.extension_,
@@ -285,8 +348,12 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     this.valueCodeableConcept,
     this.valueQuantity,
     this.valueDate,
+
+    /// Extensions for [valueDate]
     this.valueDateElement,
     this.valueBoolean,
+
+    /// Extensions for [valueBoolean]
     this.valueBooleanElement,
     this.valueAttachment,
     super.userData,
@@ -297,42 +364,138 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory ManufacturedItemDefinitionProperty.fromJson(
+      Map<String, dynamic> json) {
+    return ManufacturedItemDefinitionProperty(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      type: CodeableConcept.fromJson(
+        json['type'] as Map<String, dynamic>,
+      ),
+      valueCodeableConcept: json['valueCodeableConcept'] != null
+          ? CodeableConcept.fromJson(
+              json['valueCodeableConcept'] as Map<String, dynamic>,
+            )
+          : null,
+      valueQuantity: json['valueQuantity'] != null
+          ? Quantity.fromJson(
+              json['valueQuantity'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDate: json['valueDate'] != null
+          ? FhirDate.fromJson(json['valueDate'])
+          : null,
+      valueDateElement: json['_valueDate'] != null
+          ? Element.fromJson(
+              json['_valueDate'] as Map<String, dynamic>,
+            )
+          : null,
+      valueBoolean: json['valueBoolean'] != null
+          ? FhirBoolean.fromJson(json['valueBoolean'])
+          : null,
+      valueBooleanElement: json['_valueBoolean'] != null
+          ? Element.fromJson(
+              json['_valueBoolean'] as Map<String, dynamic>,
+            )
+          : null,
+      valueAttachment: json['valueAttachment'] != null
+          ? Attachment.fromJson(
+              json['valueAttachment'] as Map<String, dynamic>,
+            )
+          : null,
+    );
+  }
+
+  /// Deserialize [ManufacturedItemDefinitionProperty] from a [String] or [YamlMap] object
+  factory ManufacturedItemDefinitionProperty.fromYaml(dynamic yaml) => yaml
+          is String
+      ? ManufacturedItemDefinitionProperty.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? ManufacturedItemDefinitionProperty.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'ManufacturedItemDefinitionProperty cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [ManufacturedItemDefinitionProperty] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory ManufacturedItemDefinitionProperty.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return ManufacturedItemDefinitionProperty.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'ManufacturedItemDefinitionProperty';
 
-  /// [type] /// A code expressing the type of characteristic.
+  /// [type]
+  /// A code expressing the type of characteristic.
   final CodeableConcept type;
 
-  /// [valueCodeableConcept] /// A value for the characteristic.
+  /// [valueCodeableConcept]
+  /// A value for the characteristic.
   final CodeableConcept? valueCodeableConcept;
 
-  /// [valueQuantity] /// A value for the characteristic.
+  /// [valueQuantity]
+  /// A value for the characteristic.
   final Quantity? valueQuantity;
 
-  /// [valueDate] /// A value for the characteristic.
+  /// [valueDate]
+  /// A value for the characteristic.
   final FhirDate? valueDate;
+
+  /// Extensions for [valueDate]
   final Element? valueDateElement;
 
-  /// [valueBoolean] /// A value for the characteristic.
+  /// [valueBoolean]
+  /// A value for the characteristic.
   final FhirBoolean? valueBoolean;
+
+  /// Extensions for [valueBoolean]
   final Element? valueBooleanElement;
 
-  /// [valueAttachment] /// A value for the characteristic.
+  /// [valueAttachment]
+  /// A value for the characteristic.
   final Attachment? valueAttachment;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['type'] = type.toJson();
     if (valueCodeableConcept != null) {
@@ -359,47 +522,6 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     return json;
   }
 
-  factory ManufacturedItemDefinitionProperty.fromJson(
-      Map<String, dynamic> json) {
-    return ManufacturedItemDefinitionProperty(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      type: CodeableConcept.fromJson(json['type'] as Map<String, dynamic>),
-      valueCodeableConcept: json['valueCodeableConcept'] != null
-          ? CodeableConcept.fromJson(
-              json['valueCodeableConcept'] as Map<String, dynamic>)
-          : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>)
-          : null,
-      valueDate: json['valueDate'] != null
-          ? FhirDate.fromJson(json['valueDate'])
-          : null,
-      valueDateElement: json['_valueDate'] != null
-          ? Element.fromJson(json['_valueDate'] as Map<String, dynamic>)
-          : null,
-      valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)
-          : null,
-      valueAttachment: json['valueAttachment'] != null
-          ? Attachment.fromJson(json['valueAttachment'] as Map<String, dynamic>)
-          : null,
-    );
-  }
   @override
   ManufacturedItemDefinitionProperty clone() => throw UnimplementedError();
   @override
@@ -441,25 +563,5 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory ManufacturedItemDefinitionProperty.fromYaml(dynamic yaml) => yaml
-          is String
-      ? ManufacturedItemDefinitionProperty.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? ManufacturedItemDefinitionProperty.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'ManufacturedItemDefinitionProperty cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory ManufacturedItemDefinitionProperty.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return ManufacturedItemDefinitionProperty.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }

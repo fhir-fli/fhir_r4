@@ -1,20 +1,37 @@
 import 'dart:convert';
 
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
-import '../../../fhir_r4.dart';
 
+/// FhirMarkdown is a type of string that is used in FHIR resources
 extension FhirMarkdownExtension on String {
+  /// This method converts a Dart string to a FHIR markdown
   FhirMarkdown get toFhirMarkdown => FhirMarkdown(this);
 }
 
+/// This class represents the FHIR primitive type `markdown`
 class FhirMarkdown extends PrimitiveType<String> {
-  @override
-  final String value;
-
+  /// Constructor enforces valid input
   FhirMarkdown(String input, [Element? element])
       : value = _validateMarkdown(input),
         super(element: element);
 
+  /// fromJson accepts dynamic input and validates
+  factory FhirMarkdown.fromJson(dynamic json) {
+    if (json is String) {
+      return FhirMarkdown(json);
+    }
+    throw FormatException('Invalid input for FhirMarkdown: $json');
+  }
+
+  /// fromYaml accepts dynamic input and validates
+  factory FhirMarkdown.fromYaml(dynamic yaml) => yaml is String
+      ? FhirMarkdown.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
+      : throw const FormatException('Invalid YAML format for FhirMarkdown');
+  @override
+  final String value;
+
+  /// Static method to try parsing the input
   static FhirMarkdown? tryParse(dynamic input) {
     if (input is String) {
       try {
@@ -33,17 +50,6 @@ class FhirMarkdown extends PrimitiveType<String> {
     }
     throw FormatException('Invalid FhirMarkdown: $input');
   }
-
-  factory FhirMarkdown.fromJson(dynamic json) {
-    if (json is String) {
-      return FhirMarkdown(json);
-    }
-    throw FormatException('Invalid input for FhirMarkdown: $json');
-  }
-
-  factory FhirMarkdown.fromYaml(dynamic yaml) => yaml is String
-      ? FhirMarkdown.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : throw const FormatException('Invalid YAML format for FhirMarkdown');
 
   @override
   String get fhirType => 'markdown';

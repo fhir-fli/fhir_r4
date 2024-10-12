@@ -1,6 +1,5 @@
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:petitparser/petitparser.dart';
-
-import '../../../fhir_r4.dart';
 
 /// These lexers help identify parts of an expression that are no longer
 /// supported. When the expression is applied to an object, it will throw

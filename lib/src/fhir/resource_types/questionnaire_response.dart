@@ -1,18 +1,24 @@
 import 'dart:convert';
+import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-import '../../../fhir_r4.dart';
-
-/// [QuestionnaireResponse] /// A structured set of questions and their answers. The questions are ordered
-/// and grouped into coherent subsets, corresponding to the structure of the
-/// grouping of the questionnaire being responded to.
+/// [QuestionnaireResponse]
+/// A structured set of questions and their answers. The questions are
+/// ordered and grouped into coherent subsets, corresponding to the
+/// structure of the grouping of the questionnaire being responded to.
 class QuestionnaireResponse extends DomainResource {
+  /// Primary constructor for [QuestionnaireResponse]
+
   QuestionnaireResponse({
     super.id,
     super.meta,
     super.implicitRules,
+
+    /// Extensions for [implicitRules]
     super.implicitRulesElement,
     super.language,
+
+    /// Extensions for [language]
     super.languageElement,
     super.text,
     super.contained,
@@ -22,12 +28,18 @@ class QuestionnaireResponse extends DomainResource {
     this.basedOn,
     this.partOf,
     this.questionnaire,
+
+    /// Extensions for [questionnaire]
     this.questionnaireElement,
     required this.status,
+
+    /// Extensions for [status]
     this.statusElement,
     this.subject,
     this.encounter,
     this.authored,
+
+    /// Extensions for [authored]
     this.authoredElement,
     this.author,
     this.source,
@@ -38,61 +50,241 @@ class QuestionnaireResponse extends DomainResource {
     super.annotations,
     super.children,
     super.namedChildren,
-  }) : super(resourceType: R4ResourceType.QuestionnaireResponse);
+  }) : super(
+          resourceType: R4ResourceType.QuestionnaireResponse,
+        );
+
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory QuestionnaireResponse.fromJson(Map<String, dynamic> json) {
+    return QuestionnaireResponse(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      meta: json['meta'] != null
+          ? FhirMeta.fromJson(
+              json['meta'] as Map<String, dynamic>,
+            )
+          : null,
+      implicitRules: json['implicitRules'] != null
+          ? FhirUri.fromJson(json['implicitRules'])
+          : null,
+      implicitRulesElement: json['_implicitRules'] != null
+          ? Element.fromJson(
+              json['_implicitRules'] as Map<String, dynamic>,
+            )
+          : null,
+      language: json['language'] != null
+          ? CommonLanguages.fromJson(json['language'])
+          : null,
+      languageElement: json['_language'] != null
+          ? Element.fromJson(
+              json['_language'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null
+          ? Narrative.fromJson(
+              json['text'] as Map<String, dynamic>,
+            )
+          : null,
+      contained: json['contained'] != null
+          ? (json['contained'] as List<dynamic>)
+              .map<Resource>(
+                (dynamic v) => Resource.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      identifier: json['identifier'] != null
+          ? Identifier.fromJson(
+              json['identifier'] as Map<String, dynamic>,
+            )
+          : null,
+      basedOn: json['basedOn'] != null
+          ? (json['basedOn'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      partOf: json['partOf'] != null
+          ? (json['partOf'] as List<dynamic>)
+              .map<Reference>(
+                (dynamic v) => Reference.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      questionnaire: json['questionnaire'] != null
+          ? FhirCanonical.fromJson(json['questionnaire'])
+          : null,
+      questionnaireElement: json['_questionnaire'] != null
+          ? Element.fromJson(
+              json['_questionnaire'] as Map<String, dynamic>,
+            )
+          : null,
+      status: QuestionnaireResponseStatus.fromJson(json['status']),
+      statusElement: json['_status'] != null
+          ? Element.fromJson(
+              json['_status'] as Map<String, dynamic>,
+            )
+          : null,
+      subject: json['subject'] != null
+          ? Reference.fromJson(
+              json['subject'] as Map<String, dynamic>,
+            )
+          : null,
+      encounter: json['encounter'] != null
+          ? Reference.fromJson(
+              json['encounter'] as Map<String, dynamic>,
+            )
+          : null,
+      authored: json['authored'] != null
+          ? FhirDateTime.fromJson(json['authored'])
+          : null,
+      authoredElement: json['_authored'] != null
+          ? Element.fromJson(
+              json['_authored'] as Map<String, dynamic>,
+            )
+          : null,
+      author: json['author'] != null
+          ? Reference.fromJson(
+              json['author'] as Map<String, dynamic>,
+            )
+          : null,
+      source: json['source'] != null
+          ? Reference.fromJson(
+              json['source'] as Map<String, dynamic>,
+            )
+          : null,
+      item: json['item'] != null
+          ? (json['item'] as List<dynamic>)
+              .map<QuestionnaireResponseItem>(
+                (dynamic v) => QuestionnaireResponseItem.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [QuestionnaireResponse] from a [String] or [YamlMap] object
+  factory QuestionnaireResponse.fromYaml(dynamic yaml) => yaml is String
+      ? QuestionnaireResponse.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? QuestionnaireResponse.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'QuestionnaireResponse cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [QuestionnaireResponse] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory QuestionnaireResponse.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return QuestionnaireResponse.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
 
   @override
   String get fhirType => 'QuestionnaireResponse';
 
-  /// [identifier] /// A business identifier assigned to a particular completed (or partially
+  /// [identifier]
+  /// A business identifier assigned to a particular completed (or partially
   /// completed) questionnaire.
   final Identifier? identifier;
 
-  /// [basedOn] /// The order, proposal or plan that is fulfilled in whole or in part by this
-  /// QuestionnaireResponse. For example, a ServiceRequest seeking an intake
-  /// assessment or a decision support recommendation to assess for post-partum
-  /// depression.
+  /// [basedOn]
+  /// The order, proposal or plan that is fulfilled in whole or in part by
+  /// this QuestionnaireResponse. For example, a ServiceRequest seeking an
+  /// intake assessment or a decision support recommendation to assess for
+  /// post-partum depression.
   final List<Reference>? basedOn;
 
-  /// [partOf] /// A procedure or observation that this questionnaire was performed as part of
-  /// the execution of. For example, the surgery a checklist was executed as part
-  /// of.
+  /// [partOf]
+  /// A procedure or observation that this questionnaire was performed as
+  /// part of the execution of. For example, the surgery a checklist was
+  /// executed as part of.
   final List<Reference>? partOf;
 
-  /// [questionnaire] /// The Questionnaire that defines and organizes the questions for which
+  /// [questionnaire]
+  /// The Questionnaire that defines and organizes the questions for which
   /// answers are being provided.
   final FhirCanonical? questionnaire;
+
+  /// Extensions for [questionnaire]
   final Element? questionnaireElement;
 
-  /// [status] /// The position of the questionnaire response within its overall lifecycle.
+  /// [status]
+  /// The position of the questionnaire response within its overall
+  /// lifecycle.
   final QuestionnaireResponseStatus status;
+
+  /// Extensions for [status]
   final Element? statusElement;
 
-  /// [subject] /// The subject of the questionnaire response. This could be a patient,
-  /// organization, practitioner, device, etc. This is who/what the answers apply
-  /// to, but is not necessarily the source of information.
+  /// [subject]
+  /// The subject of the questionnaire response. This could be a patient,
+  /// organization, practitioner, device, etc. This is who/what the answers
+  /// apply to, but is not necessarily the source of information.
   final Reference? subject;
 
-  /// [encounter] /// The Encounter during which this questionnaire response was created or to
-  /// which the creation of this record is tightly associated.
+  /// [encounter]
+  /// The Encounter during which this questionnaire response was created or
+  /// to which the creation of this record is tightly associated.
   final Reference? encounter;
 
-  /// [authored] /// The date and/or time that this set of answers were last changed.
+  /// [authored]
+  /// The date and/or time that this set of answers were last changed.
   final FhirDateTime? authored;
+
+  /// Extensions for [authored]
   final Element? authoredElement;
 
-  /// [author] /// Person who received the answers to the questions in the
+  /// [author]
+  /// Person who received the answers to the questions in the
   /// QuestionnaireResponse and recorded them in the system.
   final Reference? author;
 
-  /// [source] /// The person who answered the questions about the subject.
+  /// [source]
+  /// The person who answered the questions about the subject.
   final Reference? source;
 
-  /// [item] /// A group or question item from the original questionnaire for which answers
-  /// are provided.
+  /// [item]
+  /// A group or question item from the original questionnaire for which
+  /// answers are provided.
   final List<QuestionnaireResponseItem>? item;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
       json['id'] = id!.toJson();
@@ -113,28 +305,24 @@ class QuestionnaireResponse extends DomainResource {
       json['text'] = text!.toJson();
     }
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] =
-          contained!.map<dynamic>((Resource v) => v.toJson()).toList();
+      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (identifier != null) {
       json['identifier'] = identifier!.toJson();
     }
     if (basedOn != null && basedOn!.isNotEmpty) {
-      json['basedOn'] =
-          basedOn!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['basedOn'] = basedOn!.map((Reference v) => v.toJson()).toList();
     }
     if (partOf != null && partOf!.isNotEmpty) {
-      json['partOf'] =
-          partOf!.map<dynamic>((Reference v) => v.toJson()).toList();
+      json['partOf'] = partOf!.map((Reference v) => v.toJson()).toList();
     }
     if (questionnaire?.value != null) {
       json['questionnaire'] = questionnaire!.toJson();
@@ -162,103 +350,12 @@ class QuestionnaireResponse extends DomainResource {
       json['source'] = source!.toJson();
     }
     if (item != null && item!.isNotEmpty) {
-      json['item'] = item!
-          .map<dynamic>((QuestionnaireResponseItem v) => v.toJson())
-          .toList();
+      json['item'] =
+          item!.map((QuestionnaireResponseItem v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory QuestionnaireResponse.fromJson(Map<String, dynamic> json) {
-    return QuestionnaireResponse(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      meta: json['meta'] != null
-          ? FhirMeta.fromJson(json['meta'] as Map<String, dynamic>)
-          : null,
-      implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(json['_implicitRules'] as Map<String, dynamic>)
-          : null,
-      language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(json['_language'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null
-          ? Narrative.fromJson(json['text'] as Map<String, dynamic>)
-          : null,
-      contained: json['contained'] != null
-          ? (json['contained'] as List<dynamic>)
-              .map<Resource>(
-                  (dynamic v) => Resource.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      identifier: json['identifier'] != null
-          ? Identifier.fromJson(json['identifier'] as Map<String, dynamic>)
-          : null,
-      basedOn: json['basedOn'] != null
-          ? (json['basedOn'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      partOf: json['partOf'] != null
-          ? (json['partOf'] as List<dynamic>)
-              .map<Reference>(
-                  (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      questionnaire: json['questionnaire'] != null
-          ? FhirCanonical.fromJson(json['questionnaire'])
-          : null,
-      questionnaireElement: json['_questionnaire'] != null
-          ? Element.fromJson(json['_questionnaire'] as Map<String, dynamic>)
-          : null,
-      status: QuestionnaireResponseStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(json['_status'] as Map<String, dynamic>)
-          : null,
-      subject: json['subject'] != null
-          ? Reference.fromJson(json['subject'] as Map<String, dynamic>)
-          : null,
-      encounter: json['encounter'] != null
-          ? Reference.fromJson(json['encounter'] as Map<String, dynamic>)
-          : null,
-      authored: json['authored'] != null
-          ? FhirDateTime.fromJson(json['authored'])
-          : null,
-      authoredElement: json['_authored'] != null
-          ? Element.fromJson(json['_authored'] as Map<String, dynamic>)
-          : null,
-      author: json['author'] != null
-          ? Reference.fromJson(json['author'] as Map<String, dynamic>)
-          : null,
-      source: json['source'] != null
-          ? Reference.fromJson(json['source'] as Map<String, dynamic>)
-          : null,
-      item: json['item'] != null
-          ? (json['item'] as List<dynamic>)
-              .map<QuestionnaireResponseItem>((dynamic v) =>
-                  QuestionnaireResponseItem.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   QuestionnaireResponse clone() => throw UnimplementedError();
   @override
@@ -327,39 +424,29 @@ class QuestionnaireResponse extends DomainResource {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory QuestionnaireResponse.fromYaml(dynamic yaml) => yaml is String
-      ? QuestionnaireResponse.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? QuestionnaireResponse.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'QuestionnaireResponse cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory QuestionnaireResponse.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return QuestionnaireResponse.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [QuestionnaireResponseItem] /// A group or question item from the original questionnaire for which answers
-/// are provided.
+/// [QuestionnaireResponseItem]
+/// A group or question item from the original questionnaire for which
+/// answers are provided.
 class QuestionnaireResponseItem extends BackboneElement {
+  /// Primary constructor for [QuestionnaireResponseItem]
+
   QuestionnaireResponseItem({
     super.id,
     super.extension_,
     super.modifierExtension,
     required this.linkId,
+
+    /// Extensions for [linkId]
     this.linkIdElement,
     this.definition,
+
+    /// Extensions for [definition]
     this.definitionElement,
     this.text,
+
+    /// Extensions for [text]
     this.textElement,
     this.answer,
     this.item,
@@ -371,43 +458,142 @@ class QuestionnaireResponseItem extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory QuestionnaireResponseItem.fromJson(Map<String, dynamic> json) {
+    return QuestionnaireResponseItem(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      linkId: FhirString.fromJson(json['linkId']),
+      linkIdElement: json['_linkId'] != null
+          ? Element.fromJson(
+              json['_linkId'] as Map<String, dynamic>,
+            )
+          : null,
+      definition: json['definition'] != null
+          ? FhirUri.fromJson(json['definition'])
+          : null,
+      definitionElement: json['_definition'] != null
+          ? Element.fromJson(
+              json['_definition'] as Map<String, dynamic>,
+            )
+          : null,
+      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
+      textElement: json['_text'] != null
+          ? Element.fromJson(
+              json['_text'] as Map<String, dynamic>,
+            )
+          : null,
+      answer: json['answer'] != null
+          ? (json['answer'] as List<dynamic>)
+              .map<QuestionnaireResponseAnswer>(
+                (dynamic v) => QuestionnaireResponseAnswer.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      item: json['item'] != null
+          ? (json['item'] as List<dynamic>)
+              .map<QuestionnaireResponseItem>(
+                (dynamic v) => QuestionnaireResponseItem.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [QuestionnaireResponseItem] from a [String] or [YamlMap] object
+  factory QuestionnaireResponseItem.fromYaml(dynamic yaml) => yaml is String
+      ? QuestionnaireResponseItem.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? QuestionnaireResponseItem.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'QuestionnaireResponseItem cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [QuestionnaireResponseItem] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory QuestionnaireResponseItem.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return QuestionnaireResponseItem.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'QuestionnaireResponseItem';
 
-  /// [linkId] /// The item from the Questionnaire that corresponds to this item in the
+  /// [linkId]
+  /// The item from the Questionnaire that corresponds to this item in the
   /// QuestionnaireResponse resource.
   final FhirString linkId;
+
+  /// Extensions for [linkId]
   final Element? linkIdElement;
 
-  /// [definition] /// A reference to an [ElementDefinition](elementdefinition.html) that provides
-  /// the details for the item.
+  /// [definition]
+  /// A reference to an [ElementDefinition](elementdefinition.html) that
+  /// provides the details for the item.
   final FhirUri? definition;
+
+  /// Extensions for [definition]
   final Element? definitionElement;
 
-  /// [text] /// Text that is displayed above the contents of the group or as the text of
-  /// the question being answered.
+  /// [text]
+  /// Text that is displayed above the contents of the group or as the text
+  /// of the question being answered.
   final FhirString? text;
+
+  /// Extensions for [text]
   final Element? textElement;
 
-  /// [answer] /// The respondent's answer(s) to the question.
+  /// [answer]
+  /// The respondent's answer(s) to the question.
   final List<QuestionnaireResponseAnswer>? answer;
 
-  /// [item] /// Questions or sub-groups nested beneath a question or group.
+  /// [item]
+  /// Questions or sub-groups nested beneath a question or group.
   final List<QuestionnaireResponseItem>? item;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['linkId'] = linkId.toJson();
     if (linkIdElement != null) {
@@ -426,62 +612,16 @@ class QuestionnaireResponseItem extends BackboneElement {
       json['_text'] = textElement!.toJson();
     }
     if (answer != null && answer!.isNotEmpty) {
-      json['answer'] = answer!
-          .map<dynamic>((QuestionnaireResponseAnswer v) => v.toJson())
-          .toList();
+      json['answer'] =
+          answer!.map((QuestionnaireResponseAnswer v) => v.toJson()).toList();
     }
     if (item != null && item!.isNotEmpty) {
-      json['item'] = item!
-          .map<dynamic>((QuestionnaireResponseItem v) => v.toJson())
-          .toList();
+      json['item'] =
+          item!.map((QuestionnaireResponseItem v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory QuestionnaireResponseItem.fromJson(Map<String, dynamic> json) {
-    return QuestionnaireResponseItem(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      linkId: FhirString.fromJson(json['linkId']),
-      linkIdElement: json['_linkId'] != null
-          ? Element.fromJson(json['_linkId'] as Map<String, dynamic>)
-          : null,
-      definition: json['definition'] != null
-          ? FhirUri.fromJson(json['definition'])
-          : null,
-      definitionElement: json['_definition'] != null
-          ? Element.fromJson(json['_definition'] as Map<String, dynamic>)
-          : null,
-      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
-      textElement: json['_text'] != null
-          ? Element.fromJson(json['_text'] as Map<String, dynamic>)
-          : null,
-      answer: json['answer'] != null
-          ? (json['answer'] as List<dynamic>)
-              .map<QuestionnaireResponseAnswer>((dynamic v) =>
-                  QuestionnaireResponseAnswer.fromJson(
-                      v as Map<String, dynamic>))
-              .toList()
-          : null,
-      item: json['item'] != null
-          ? (json['item'] as List<dynamic>)
-              .map<QuestionnaireResponseItem>((dynamic v) =>
-                  QuestionnaireResponseItem.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   QuestionnaireResponseItem clone() => throw UnimplementedError();
   @override
@@ -524,48 +664,48 @@ class QuestionnaireResponseItem extends BackboneElement {
       namedChildren: namedChildren ?? this.namedChildren,
     );
   }
-
-  factory QuestionnaireResponseItem.fromYaml(dynamic yaml) => yaml is String
-      ? QuestionnaireResponseItem.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? QuestionnaireResponseItem.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'QuestionnaireResponseItem cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory QuestionnaireResponseItem.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return QuestionnaireResponseItem.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
-  }
 }
 
-/// [QuestionnaireResponseAnswer] /// The respondent's answer(s) to the question.
+/// [QuestionnaireResponseAnswer]
+/// The respondent's answer(s) to the question.
 class QuestionnaireResponseAnswer extends BackboneElement {
+  /// Primary constructor for [QuestionnaireResponseAnswer]
+
   QuestionnaireResponseAnswer({
     super.id,
     super.extension_,
     super.modifierExtension,
     this.valueBoolean,
+
+    /// Extensions for [valueBoolean]
     this.valueBooleanElement,
     this.valueDecimal,
+
+    /// Extensions for [valueDecimal]
     this.valueDecimalElement,
     this.valueInteger,
+
+    /// Extensions for [valueInteger]
     this.valueIntegerElement,
     this.valueDate,
+
+    /// Extensions for [valueDate]
     this.valueDateElement,
     this.valueDateTime,
+
+    /// Extensions for [valueDateTime]
     this.valueDateTimeElement,
     this.valueTime,
+
+    /// Extensions for [valueTime]
     this.valueTimeElement,
     this.valueString,
+
+    /// Extensions for [valueString]
     this.valueStringElement,
     this.valueUri,
+
+    /// Extensions for [valueUri]
     this.valueUriElement,
     this.valueAttachment,
     this.valueCoding,
@@ -580,81 +720,252 @@ class QuestionnaireResponseAnswer extends BackboneElement {
     super.namedChildren,
   });
 
+  /// Factory constructor that accepts [Map<String, dynamic>] as an argument
+  factory QuestionnaireResponseAnswer.fromJson(Map<String, dynamic> json) {
+    return QuestionnaireResponseAnswer(
+      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      extension_: json['extension'] != null
+          ? (json['extension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      modifierExtension: json['modifierExtension'] != null
+          ? (json['modifierExtension'] as List<dynamic>)
+              .map<FhirExtension>(
+                (dynamic v) => FhirExtension.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+      valueBoolean: json['valueBoolean'] != null
+          ? FhirBoolean.fromJson(json['valueBoolean'])
+          : null,
+      valueBooleanElement: json['_valueBoolean'] != null
+          ? Element.fromJson(
+              json['_valueBoolean'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDecimal: json['valueDecimal'] != null
+          ? FhirDecimal.fromJson(json['valueDecimal'])
+          : null,
+      valueDecimalElement: json['_valueDecimal'] != null
+          ? Element.fromJson(
+              json['_valueDecimal'] as Map<String, dynamic>,
+            )
+          : null,
+      valueInteger: json['valueInteger'] != null
+          ? FhirInteger.fromJson(json['valueInteger'])
+          : null,
+      valueIntegerElement: json['_valueInteger'] != null
+          ? Element.fromJson(
+              json['_valueInteger'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDate: json['valueDate'] != null
+          ? FhirDate.fromJson(json['valueDate'])
+          : null,
+      valueDateElement: json['_valueDate'] != null
+          ? Element.fromJson(
+              json['_valueDate'] as Map<String, dynamic>,
+            )
+          : null,
+      valueDateTime: json['valueDateTime'] != null
+          ? FhirDateTime.fromJson(json['valueDateTime'])
+          : null,
+      valueDateTimeElement: json['_valueDateTime'] != null
+          ? Element.fromJson(
+              json['_valueDateTime'] as Map<String, dynamic>,
+            )
+          : null,
+      valueTime: json['valueTime'] != null
+          ? FhirTime.fromJson(json['valueTime'])
+          : null,
+      valueTimeElement: json['_valueTime'] != null
+          ? Element.fromJson(
+              json['_valueTime'] as Map<String, dynamic>,
+            )
+          : null,
+      valueString: json['valueString'] != null
+          ? FhirString.fromJson(json['valueString'])
+          : null,
+      valueStringElement: json['_valueString'] != null
+          ? Element.fromJson(
+              json['_valueString'] as Map<String, dynamic>,
+            )
+          : null,
+      valueUri:
+          json['valueUri'] != null ? FhirUri.fromJson(json['valueUri']) : null,
+      valueUriElement: json['_valueUri'] != null
+          ? Element.fromJson(
+              json['_valueUri'] as Map<String, dynamic>,
+            )
+          : null,
+      valueAttachment: json['valueAttachment'] != null
+          ? Attachment.fromJson(
+              json['valueAttachment'] as Map<String, dynamic>,
+            )
+          : null,
+      valueCoding: json['valueCoding'] != null
+          ? Coding.fromJson(
+              json['valueCoding'] as Map<String, dynamic>,
+            )
+          : null,
+      valueQuantity: json['valueQuantity'] != null
+          ? Quantity.fromJson(
+              json['valueQuantity'] as Map<String, dynamic>,
+            )
+          : null,
+      valueReference: json['valueReference'] != null
+          ? Reference.fromJson(
+              json['valueReference'] as Map<String, dynamic>,
+            )
+          : null,
+      item: json['item'] != null
+          ? (json['item'] as List<dynamic>)
+              .map<QuestionnaireResponseItem>(
+                (dynamic v) => QuestionnaireResponseItem.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()
+          : null,
+    );
+  }
+
+  /// Deserialize [QuestionnaireResponseAnswer] from a [String] or [YamlMap] object
+  factory QuestionnaireResponseAnswer.fromYaml(dynamic yaml) => yaml is String
+      ? QuestionnaireResponseAnswer.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
+        )
+      : yaml is YamlMap
+          ? QuestionnaireResponseAnswer.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
+            )
+          : throw ArgumentError(
+              'QuestionnaireResponseAnswer cannot be constructed from input '
+              'provided, it is neither a yaml string nor a yaml map.');
+
+  /// Factory constructor for [QuestionnaireResponseAnswer] that takes in a [String]
+  /// Convenience method to avoid the json Encoding/Decoding normally required
+  /// to get data from a [String]
+  factory QuestionnaireResponseAnswer.fromJsonString(String source) {
+    final dynamic json = jsonDecode(source);
+    if (json is Map<String, Object?>) {
+      return QuestionnaireResponseAnswer.fromJson(json);
+    } else {
+      throw FormatException('FormatException: You passed $json '
+          'This does not properly decode to a Map<String, Object?>.');
+    }
+  }
+
   @override
   String get fhirType => 'QuestionnaireResponseAnswer';
 
-  /// [valueBoolean] /// The answer (or one of the answers) provided by the respondent to the
+  /// [valueBoolean]
+  /// The answer (or one of the answers) provided by the respondent to the
   /// question.
   final FhirBoolean? valueBoolean;
+
+  /// Extensions for [valueBoolean]
   final Element? valueBooleanElement;
 
-  /// [valueDecimal] /// The answer (or one of the answers) provided by the respondent to the
+  /// [valueDecimal]
+  /// The answer (or one of the answers) provided by the respondent to the
   /// question.
   final FhirDecimal? valueDecimal;
+
+  /// Extensions for [valueDecimal]
   final Element? valueDecimalElement;
 
-  /// [valueInteger] /// The answer (or one of the answers) provided by the respondent to the
+  /// [valueInteger]
+  /// The answer (or one of the answers) provided by the respondent to the
   /// question.
   final FhirInteger? valueInteger;
+
+  /// Extensions for [valueInteger]
   final Element? valueIntegerElement;
 
-  /// [valueDate] /// The answer (or one of the answers) provided by the respondent to the
+  /// [valueDate]
+  /// The answer (or one of the answers) provided by the respondent to the
   /// question.
   final FhirDate? valueDate;
+
+  /// Extensions for [valueDate]
   final Element? valueDateElement;
 
-  /// [valueDateTime] /// The answer (or one of the answers) provided by the respondent to the
+  /// [valueDateTime]
+  /// The answer (or one of the answers) provided by the respondent to the
   /// question.
   final FhirDateTime? valueDateTime;
+
+  /// Extensions for [valueDateTime]
   final Element? valueDateTimeElement;
 
-  /// [valueTime] /// The answer (or one of the answers) provided by the respondent to the
+  /// [valueTime]
+  /// The answer (or one of the answers) provided by the respondent to the
   /// question.
   final FhirTime? valueTime;
+
+  /// Extensions for [valueTime]
   final Element? valueTimeElement;
 
-  /// [valueString] /// The answer (or one of the answers) provided by the respondent to the
+  /// [valueString]
+  /// The answer (or one of the answers) provided by the respondent to the
   /// question.
   final FhirString? valueString;
+
+  /// Extensions for [valueString]
   final Element? valueStringElement;
 
-  /// [valueUri] /// The answer (or one of the answers) provided by the respondent to the
+  /// [valueUri]
+  /// The answer (or one of the answers) provided by the respondent to the
   /// question.
   final FhirUri? valueUri;
+
+  /// Extensions for [valueUri]
   final Element? valueUriElement;
 
-  /// [valueAttachment] /// The answer (or one of the answers) provided by the respondent to the
+  /// [valueAttachment]
+  /// The answer (or one of the answers) provided by the respondent to the
   /// question.
   final Attachment? valueAttachment;
 
-  /// [valueCoding] /// The answer (or one of the answers) provided by the respondent to the
+  /// [valueCoding]
+  /// The answer (or one of the answers) provided by the respondent to the
   /// question.
   final Coding? valueCoding;
 
-  /// [valueQuantity] /// The answer (or one of the answers) provided by the respondent to the
+  /// [valueQuantity]
+  /// The answer (or one of the answers) provided by the respondent to the
   /// question.
   final Quantity? valueQuantity;
 
-  /// [valueReference] /// The answer (or one of the answers) provided by the respondent to the
+  /// [valueReference]
+  /// The answer (or one of the answers) provided by the respondent to the
   /// question.
   final Reference? valueReference;
 
-  /// [item] /// Nested groups and/or questions found within this particular answer.
+  /// [item]
+  /// Nested groups and/or questions found within this particular answer.
   final List<QuestionnaireResponseItem>? item;
   @override
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> json = <String, dynamic>{};
+    final json = <String, dynamic>{};
     if (id != null) {
       json['id'] = id!.toJson();
     }
     if (extension_ != null && extension_!.isNotEmpty) {
       json['extension'] =
-          extension_!.map<dynamic>((FhirExtension v) => v.toJson()).toList();
+          extension_!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] = modifierExtension!
-          .map<dynamic>((FhirExtension v) => v.toJson())
-          .toList();
+      json['modifierExtension'] =
+          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     if (valueBoolean?.value != null) {
       json['valueBoolean'] = valueBoolean!.toJson();
@@ -717,95 +1028,12 @@ class QuestionnaireResponseAnswer extends BackboneElement {
       json['valueReference'] = valueReference!.toJson();
     }
     if (item != null && item!.isNotEmpty) {
-      json['item'] = item!
-          .map<dynamic>((QuestionnaireResponseItem v) => v.toJson())
-          .toList();
+      json['item'] =
+          item!.map((QuestionnaireResponseItem v) => v.toJson()).toList();
     }
     return json;
   }
 
-  factory QuestionnaireResponseAnswer.fromJson(Map<String, dynamic> json) {
-    return QuestionnaireResponseAnswer(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
-      extension_: json['extension'] != null
-          ? (json['extension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      modifierExtension: json['modifierExtension'] != null
-          ? (json['modifierExtension'] as List<dynamic>)
-              .map<FhirExtension>((dynamic v) =>
-                  FhirExtension.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-      valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(json['_valueBoolean'] as Map<String, dynamic>)
-          : null,
-      valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal.fromJson(json['valueDecimal'])
-          : null,
-      valueDecimalElement: json['_valueDecimal'] != null
-          ? Element.fromJson(json['_valueDecimal'] as Map<String, dynamic>)
-          : null,
-      valueInteger: json['valueInteger'] != null
-          ? FhirInteger.fromJson(json['valueInteger'])
-          : null,
-      valueIntegerElement: json['_valueInteger'] != null
-          ? Element.fromJson(json['_valueInteger'] as Map<String, dynamic>)
-          : null,
-      valueDate: json['valueDate'] != null
-          ? FhirDate.fromJson(json['valueDate'])
-          : null,
-      valueDateElement: json['_valueDate'] != null
-          ? Element.fromJson(json['_valueDate'] as Map<String, dynamic>)
-          : null,
-      valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime.fromJson(json['valueDateTime'])
-          : null,
-      valueDateTimeElement: json['_valueDateTime'] != null
-          ? Element.fromJson(json['_valueDateTime'] as Map<String, dynamic>)
-          : null,
-      valueTime: json['valueTime'] != null
-          ? FhirTime.fromJson(json['valueTime'])
-          : null,
-      valueTimeElement: json['_valueTime'] != null
-          ? Element.fromJson(json['_valueTime'] as Map<String, dynamic>)
-          : null,
-      valueString: json['valueString'] != null
-          ? FhirString.fromJson(json['valueString'])
-          : null,
-      valueStringElement: json['_valueString'] != null
-          ? Element.fromJson(json['_valueString'] as Map<String, dynamic>)
-          : null,
-      valueUri:
-          json['valueUri'] != null ? FhirUri.fromJson(json['valueUri']) : null,
-      valueUriElement: json['_valueUri'] != null
-          ? Element.fromJson(json['_valueUri'] as Map<String, dynamic>)
-          : null,
-      valueAttachment: json['valueAttachment'] != null
-          ? Attachment.fromJson(json['valueAttachment'] as Map<String, dynamic>)
-          : null,
-      valueCoding: json['valueCoding'] != null
-          ? Coding.fromJson(json['valueCoding'] as Map<String, dynamic>)
-          : null,
-      valueQuantity: json['valueQuantity'] != null
-          ? Quantity.fromJson(json['valueQuantity'] as Map<String, dynamic>)
-          : null,
-      valueReference: json['valueReference'] != null
-          ? Reference.fromJson(json['valueReference'] as Map<String, dynamic>)
-          : null,
-      item: json['item'] != null
-          ? (json['item'] as List<dynamic>)
-              .map<QuestionnaireResponseItem>((dynamic v) =>
-                  QuestionnaireResponseItem.fromJson(v as Map<String, dynamic>))
-              .toList()
-          : null,
-    );
-  }
   @override
   QuestionnaireResponseAnswer clone() => throw UnimplementedError();
   @override
@@ -873,24 +1101,5 @@ class QuestionnaireResponseAnswer extends BackboneElement {
       children: children ?? this.children,
       namedChildren: namedChildren ?? this.namedChildren,
     );
-  }
-
-  factory QuestionnaireResponseAnswer.fromYaml(dynamic yaml) => yaml is String
-      ? QuestionnaireResponseAnswer.fromJson(
-          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>)
-      : yaml is YamlMap
-          ? QuestionnaireResponseAnswer.fromJson(
-              jsonDecode(jsonEncode(yaml)) as Map<String, Object?>)
-          : throw ArgumentError(
-              'QuestionnaireResponseAnswer cannot be constructed from input provided, it is neither a yaml string nor a yaml map.');
-
-  factory QuestionnaireResponseAnswer.fromJsonString(String source) {
-    final dynamic json = jsonDecode(source);
-    if (json is Map<String, Object?>) {
-      return QuestionnaireResponseAnswer.fromJson(json);
-    } else {
-      throw FormatException('FormatException: You passed $json '
-          'This does not properly decode to a Map<String, Object?>.');
-    }
   }
 }
