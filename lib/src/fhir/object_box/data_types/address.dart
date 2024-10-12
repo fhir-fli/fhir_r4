@@ -7,6 +7,7 @@ import 'package:objectbox/objectbox.dart';
 class ObjectBoxAddress {
   ObjectBoxAddress({
     this.id,
+    this.extension_,
     this.use,
     this.useElement,
     this.type,
@@ -25,11 +26,13 @@ class ObjectBoxAddress {
     this.postalCodeElement,
     this.country,
     this.countryElement,
+    this.period,
   });
 
   @Id()
   int? dbId;
   ToOne<String>? id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
   String? use;
   ToOne<ObjectBoxElement>? useElement = ToOne<ObjectBoxElement>();
   String? type;
@@ -48,4 +51,5 @@ class ObjectBoxAddress {
   ToOne<ObjectBoxElement>? postalCodeElement = ToOne<ObjectBoxElement>();
   String? country;
   ToOne<ObjectBoxElement>? countryElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod>? period = ToOne<ObjectBoxPeriod>();
 }

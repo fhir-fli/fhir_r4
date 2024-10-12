@@ -127,7 +127,7 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
       var objectBoxType =
           field.isEnum ? 'String' : field.type.fhirToObjectBoxTypes;
       objectBoxType = objectBoxType == 'ObjectBoxEvidenceVariable'
-          ? 'ObjectBoxEvidencevariable'
+          ? 'ObjectBoxEvidenceModelCharacteristicVariable'
           : objectBoxType;
 
       // Handle complex types (ToOne or ToMany relations)

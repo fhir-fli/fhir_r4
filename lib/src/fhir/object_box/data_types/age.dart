@@ -7,6 +7,7 @@ import 'package:objectbox/objectbox.dart';
 class ObjectBoxAge {
   ObjectBoxAge({
     this.id,
+    this.extension_,
     this.value,
     this.valueElement,
     this.comparator,
@@ -22,6 +23,7 @@ class ObjectBoxAge {
   @Id()
   int? dbId;
   ToOne<String>? id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
   double? value;
   ToOne<ObjectBoxElement>? valueElement = ToOne<ObjectBoxElement>();
   String? comparator;

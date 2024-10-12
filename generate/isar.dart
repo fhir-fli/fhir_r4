@@ -136,7 +136,7 @@ void generateIsarClasses(Map<String, WritableClass> classes) {
               ? field.type.fhirToIsarTypes
               : 'Isar${field.type.fhirToDartTypes}';
       isarType = isarType == 'IsarEvidenceVariable'
-          ? 'IsarEvidencevariable'
+          ? 'IsarEvidenceModelCharacteristicVariable'
           : isarType;
 
       // Handle complex types (IsarLinks or IsarLists)

@@ -46,22 +46,36 @@ abstract class FhirRequest {
 
 // 1. Read Request (GET)
 class FhirReadRequest extends FhirRequest {
-  /// Main constructor for [FhirReadRequest ]
+  /// Main constructor for [FhirReadRequest]
   FhirReadRequest({
     required super.base,
     required this.resourceType,
     required this.id,
     super.headers = const <String, String>{},
     super.summary,
+    this.pretty = false,
+    this.elements = const <String>[],
     super.client,
   });
+
   final String id;
   final String resourceType;
+  final bool pretty; // New pretty parameter
+  final List<String> elements; // New elements parameter
 
   @override
   Uri buildUri() {
     final baseUri = Uri.parse('$base/$resourceType/$id');
     final queryParams = buildQueryParams();
+
+    /// Add 'pretty' and 'elements' to query params if provided
+    if (pretty) {
+      queryParams['_pretty'] = 'true';
+    }
+    if (elements.isNotEmpty) {
+      queryParams['_elements'] = elements.join(',');
+    }
+
     return buildUriWithParams(baseUri, queryParams);
   }
 
@@ -339,7 +353,7 @@ class FhirHistoryAllRequest extends FhirRequest {
 
 // 10. Capabilities Request (GET)
 class FhirCapabilitiesRequest extends FhirRequest {
-  // Optional Mode parameter
+  /// Optional Mode parameter
 
   FhirCapabilitiesRequest({
     required super.base,

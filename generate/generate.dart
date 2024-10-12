@@ -365,8 +365,9 @@ void _generateBackboneOrElementTypeClass(
 
   // Create the new class for BackboneElement or Element
   classes[path] = WritableClass(
-    className:
-        newClassName == 'EvidenceVariable' ? 'Evidencevariable' : newClassName,
+    className: newClassName == 'EvidenceVariable'
+        ? 'EvidenceModelCharacteristicVariable'
+        : newClassName,
     classPath: path,
     comment: element['definition'] as String? ?? '',
     isBackboneElement: isBackboneElement,
