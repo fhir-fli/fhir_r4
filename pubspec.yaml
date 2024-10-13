@@ -30,7 +30,6 @@ dependencies:
     version: *isar_version
     hosted: https://pub.isar-community.dev/
   mime: ^1.0.6
-  objectbox: ^1.7.0
   petitparser: ^6.0.2
   rxdart: ^0.28.0
   ucum: ^0.5.0
@@ -45,6 +44,5 @@ dev_dependencies:
     version: *isar_version
     hosted: https://pub.isar-community.dev/
   mocktail: ^1.0.4
-  objectbox_generator: ^1.7.0
   test: ^1.25.8
   very_good_analysis: ^6.0.0
