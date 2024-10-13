@@ -100,14 +100,19 @@ void _generateSearchFiles(
       final parameters = entry.value;
 
       final buffer = StringBuffer()
-        ..writeln('// This file is auto-generated. Do not edit directly.')
-        ..writeln("import '../../../$fhirVersion.dart';");
+        ..writeln('// This file is auto-generated. Do not edit directly.\n\n')
+        ..writeln('// ignore_for_file: avoid_returning_this\n')
+        ..writeln("import 'package:$fhirVersion/$fhirVersion.dart';");
 
       final extendClause = resourceType == 'Resource'
           ? 'extends RestfulParameters '
           : 'extends SearchResource ';
 
-      buffer.writeln('class $className $extendClause{');
+      buffer
+        ..writeln('/// A class to build query parameters for RESTful '
+            'requests for the ${className.replaceFirst('Search', '')} '
+            'resource.')
+        ..writeln('class $className $extendClause{');
 
       // Write methods for each parameter
       for (final param in parameters) {
@@ -133,30 +138,40 @@ void _writeSearchParameterMethod(
   final paramCode = param['code']!.replaceAll('-', '_');
   final paramType = param['type']!;
   final methodName = _toPascalCase(paramCode);
-  final methodSignature = '  Search$resourceType '
-      '${_methodName(methodName).resourceTypeIfResource(resourceType)}';
+  final functionName =
+      _methodName(methodName).resourceTypeIfResource(resourceType);
+  final methodSignature = '  Search$resourceType $functionName';
 
   switch (paramType) {
     case 'date':
       buffer
+        ..writeln(
+          '/// a date search for [$functionName] in the reosurce $resourceType',
+        )
         ..writeln('$methodSignature(FhirDateTime value, '
-            '{SearchModifier? modifier}) {')
+            '{SearchModifier? modifier,}) {')
         ..writeln(r"    parameters['${modifier != null ? '$modifier' : ''}"
             "$paramCode'] = value.toString();")
         ..writeln('    return this;')
         ..writeln('  }\n');
     case 'token':
       buffer
+        ..writeln(
+          '/// a token search for [$functionName] in the reosurce $resourceType',
+        )
         ..writeln('$methodSignature(FhirString value, '
-            '{FhirUri? system, SearchModifier? modifier}) {')
+            '{FhirUri? system, SearchModifier? modifier,}) {')
         ..writeln(r"    parameters['${modifier != null ? '$modifier' : ''}"
             "$paramCode'] = system != null ? '\$system|\$value' : '\$value';")
         ..writeln('    return this;')
         ..writeln('  }\n');
     case 'string':
       buffer
+        ..writeln(
+          '/// a string search for [$functionName] in the reosurce $resourceType',
+        )
         ..writeln('$methodSignature(FhirString value, '
-            '{SearchModifier? modifier}) {')
+            '{SearchModifier? modifier,}) {')
         ..writeln('    if (modifier != null && '
             "!['eq', 'ne'].contains(modifier.toString())) {")
         ..writeln(r"      throw ArgumentError('Modifier $modifier not allowed"
@@ -167,10 +182,30 @@ void _writeSearchParameterMethod(
         ..writeln('    return this;')
         ..writeln('  }\n');
     case 'number':
+      buffer
+        ..writeln(
+          '/// a numerical search for [$functionName] in the reosurce $resourceType',
+        )
+        ..writeln('$methodSignature(FhirDecimal value, '
+            '{FhirString? unit, FhirUri? system, SearchModifier? modifier,}) {')
+        ..writeln('    if (modifier != null && '
+            "!['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {")
+        ..writeln(r"      throw ArgumentError('Modifier $modifier not allowed "
+            "for $paramType type');")
+        ..writeln('    }')
+        ..writeln(r"    parameters['${modifier != null ? '$modifier' : ''}"
+            "$paramCode'] = '\$value|\${system?.toString() ?? ''}"
+            r"|${unit?.toString() ?? ''}';")
+        ..writeln('    return this;')
+        ..writeln('  }\n');
+
     case 'quantity':
       buffer
+        ..writeln(
+          '/// a quantity search for [$functionName] in the reosurce $resourceType',
+        )
         ..writeln('$methodSignature(FhirDecimal value, '
-            '{FhirString? unit, FhirUri? system, SearchModifier? modifier}) {')
+            '{FhirString? unit, FhirUri? system, SearchModifier? modifier,}) {')
         ..writeln('    if (modifier != null && '
             "!['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {")
         ..writeln(r"      throw ArgumentError('Modifier $modifier not allowed "
@@ -183,6 +218,9 @@ void _writeSearchParameterMethod(
         ..writeln('  }\n');
     case 'uri':
       buffer
+        ..writeln(
+          '/// a uri search for [$functionName] in the reosurce $resourceType',
+        )
         ..writeln('$methodSignature(FhirUri value, '
             '{SearchModifier? modifier}) {')
         ..writeln(r"    parameters['${modifier != null ? '$modifier' : ''}"

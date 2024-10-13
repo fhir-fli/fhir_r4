@@ -1,15 +1,26 @@
 // This file is auto-generated. Do not edit directly.
-import '../../../fhir_r4.dart';
 
+// ignore_for_file: avoid_returning_this
+
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// A class to build query parameters for RESTful requests for the ClaimResponse resource.
 class SearchClaimResponse extends SearchResource {
-  SearchClaimResponse created(FhirDateTime value, {SearchModifier? modifier}) {
+  /// a date search for [created] in the reosurce ClaimResponse
+  SearchClaimResponse created(
+    FhirDateTime value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}created'] =
         value.toString();
     return this;
   }
 
-  SearchClaimResponse disposition(FhirString value,
-      {SearchModifier? modifier}) {
+  /// a string search for [disposition] in the reosurce ClaimResponse
+  SearchClaimResponse disposition(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -18,36 +29,55 @@ class SearchClaimResponse extends SearchResource {
     return this;
   }
 
-  SearchClaimResponse identifier(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [identifier] in the reosurce ClaimResponse
+  SearchClaimResponse identifier(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}identifier'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchClaimResponse outcome(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [outcome] in the reosurce ClaimResponse
+  SearchClaimResponse outcome(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}outcome'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchClaimResponse paymentDate(FhirDateTime value,
-      {SearchModifier? modifier}) {
+  /// a date search for [paymentDate] in the reosurce ClaimResponse
+  SearchClaimResponse paymentDate(
+    FhirDateTime value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}payment_date'] =
         value.toString();
     return this;
   }
 
-  SearchClaimResponse status(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [status] in the reosurce ClaimResponse
+  SearchClaimResponse status(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}status'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchClaimResponse use(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [use] in the reosurce ClaimResponse
+  SearchClaimResponse use(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}use'] =
         system != null ? '$system|$value' : '$value';
     return this;

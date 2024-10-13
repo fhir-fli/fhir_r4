@@ -1,36 +1,60 @@
 // This file is auto-generated. Do not edit directly.
-import '../../../fhir_r4.dart';
 
+// ignore_for_file: avoid_returning_this
+
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// A class to build query parameters for RESTful requests for the Claim resource.
 class SearchClaim extends SearchResource {
-  SearchClaim created(FhirDateTime value, {SearchModifier? modifier}) {
+  /// a date search for [created] in the reosurce Claim
+  SearchClaim created(
+    FhirDateTime value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}created'] =
         value.toString();
     return this;
   }
 
-  SearchClaim identifier(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [identifier] in the reosurce Claim
+  SearchClaim identifier(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}identifier'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchClaim priority(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [priority] in the reosurce Claim
+  SearchClaim priority(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}priority'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchClaim status(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [status] in the reosurce Claim
+  SearchClaim status(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}status'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchClaim use(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [use] in the reosurce Claim
+  SearchClaim use(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}use'] =
         system != null ? '$system|$value' : '$value';
     return this;

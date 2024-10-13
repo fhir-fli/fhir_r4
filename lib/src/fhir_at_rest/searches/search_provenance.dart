@@ -1,35 +1,59 @@
 // This file is auto-generated. Do not edit directly.
-import '../../../fhir_r4.dart';
 
+// ignore_for_file: avoid_returning_this
+
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// A class to build query parameters for RESTful requests for the Provenance resource.
 class SearchProvenance extends SearchResource {
-  SearchProvenance agentRole(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [agentRole] in the reosurce Provenance
+  SearchProvenance agentRole(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}agent_role'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchProvenance agentType(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [agentType] in the reosurce Provenance
+  SearchProvenance agentType(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}agent_type'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchProvenance recorded(FhirDateTime value, {SearchModifier? modifier}) {
+  /// a date search for [recorded] in the reosurce Provenance
+  SearchProvenance recorded(
+    FhirDateTime value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}recorded'] =
         value.toString();
     return this;
   }
 
-  SearchProvenance signatureType(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [signatureType] in the reosurce Provenance
+  SearchProvenance signatureType(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}signature_type'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchProvenance when(FhirDateTime value, {SearchModifier? modifier}) {
+  /// a date search for [when] in the reosurce Provenance
+  SearchProvenance when(
+    FhirDateTime value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}when'] = value.toString();
     return this;
   }

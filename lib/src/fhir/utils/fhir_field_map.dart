@@ -4103,7 +4103,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'variable': const FhirField(true, 'EvidenceVariable'),
     'attributeEstimate': const FhirField(true, 'EvidenceAttributeEstimate'),
   },
-  'Evidencevariable': <String, FhirField>{
+  'EvidenceModelCharacteristicVariable': <String, FhirField>{
     'id': const FhirField(false, 'FhirString'),
     'extension': const FhirField(true, 'FhirExtension'),
     'modifierExtension': const FhirField(true, 'FhirExtension'),

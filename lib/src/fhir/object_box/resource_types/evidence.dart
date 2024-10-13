@@ -281,15 +281,15 @@ class ObjectBoxEvidenceModelCharacteristic {
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxCodeableConcept> code = ToOne<ObjectBoxCodeableConcept>();
   ToOne<ObjectBoxQuantity>? value = ToOne<ObjectBoxQuantity>();
-  ToMany<ObjectBoxEvidencevariable>? variable =
-      ToMany<ObjectBoxEvidencevariable>();
+  ToMany<ObjectBoxEvidenceModelCharacteristicVariable>? variable =
+      ToMany<ObjectBoxEvidenceModelCharacteristicVariable>();
   ToMany<ObjectBoxEvidenceAttributeEstimate>? attributeEstimate =
       ToMany<ObjectBoxEvidenceAttributeEstimate>();
 }
 
 @Entity()
-class ObjectBoxEvidencevariable {
-  ObjectBoxEvidencevariable({
+class ObjectBoxEvidenceModelCharacteristicVariable {
+  ObjectBoxEvidenceModelCharacteristicVariable({
     this.id,
     this.extension_,
     this.modifierExtension,

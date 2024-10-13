@@ -1,16 +1,29 @@
 // This file is auto-generated. Do not edit directly.
-import '../../../fhir_r4.dart';
 
+// ignore_for_file: avoid_returning_this
+
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// A class to build query parameters for RESTful requests for the MessageDefinition resource.
 class SearchMessageDefinition extends SearchResource {
-  SearchMessageDefinition context(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [context] in the reosurce MessageDefinition
+  SearchMessageDefinition context(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}context'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchMessageDefinition contextQuantity(FhirDecimal value,
-      {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {
+  /// a quantity search for [contextQuantity] in the reosurce MessageDefinition
+  SearchMessageDefinition contextQuantity(
+    FhirDecimal value, {
+    FhirString? unit,
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     if (modifier != null &&
         !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
@@ -20,20 +33,31 @@ class SearchMessageDefinition extends SearchResource {
     return this;
   }
 
-  SearchMessageDefinition contextType(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [contextType] in the reosurce MessageDefinition
+  SearchMessageDefinition contextType(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}context_type'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchMessageDefinition date(FhirDateTime value, {SearchModifier? modifier}) {
+  /// a date search for [date] in the reosurce MessageDefinition
+  SearchMessageDefinition date(
+    FhirDateTime value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}date'] = value.toString();
     return this;
   }
 
-  SearchMessageDefinition description(FhirString value,
-      {SearchModifier? modifier}) {
+  /// a string search for [description] in the reosurce MessageDefinition
+  SearchMessageDefinition description(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -42,14 +66,22 @@ class SearchMessageDefinition extends SearchResource {
     return this;
   }
 
-  SearchMessageDefinition jurisdiction(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [jurisdiction] in the reosurce MessageDefinition
+  SearchMessageDefinition jurisdiction(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}jurisdiction'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchMessageDefinition name(FhirString value, {SearchModifier? modifier}) {
+  /// a string search for [name] in the reosurce MessageDefinition
+  SearchMessageDefinition name(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -57,8 +89,11 @@ class SearchMessageDefinition extends SearchResource {
     return this;
   }
 
-  SearchMessageDefinition publisher(FhirString value,
-      {SearchModifier? modifier}) {
+  /// a string search for [publisher] in the reosurce MessageDefinition
+  SearchMessageDefinition publisher(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -67,14 +102,22 @@ class SearchMessageDefinition extends SearchResource {
     return this;
   }
 
-  SearchMessageDefinition status(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [status] in the reosurce MessageDefinition
+  SearchMessageDefinition status(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}status'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchMessageDefinition title(FhirString value, {SearchModifier? modifier}) {
+  /// a string search for [title] in the reosurce MessageDefinition
+  SearchMessageDefinition title(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -83,41 +126,62 @@ class SearchMessageDefinition extends SearchResource {
     return this;
   }
 
+  /// a uri search for [url] in the reosurce MessageDefinition
   SearchMessageDefinition url(FhirUri value, {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  SearchMessageDefinition version(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [version] in the reosurce MessageDefinition
+  SearchMessageDefinition version(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}version'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchMessageDefinition identifier(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [identifier] in the reosurce MessageDefinition
+  SearchMessageDefinition identifier(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}identifier'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchMessageDefinition category(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [category] in the reosurce MessageDefinition
+  SearchMessageDefinition category(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}category'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchMessageDefinition event(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [event] in the reosurce MessageDefinition
+  SearchMessageDefinition event(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}event'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchMessageDefinition focus(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [focus] in the reosurce MessageDefinition
+  SearchMessageDefinition focus(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}focus'] =
         system != null ? '$system|$value' : '$value';
     return this;

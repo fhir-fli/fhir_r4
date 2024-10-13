@@ -1,16 +1,29 @@
 // This file is auto-generated. Do not edit directly.
-import '../../../fhir_r4.dart';
 
+// ignore_for_file: avoid_returning_this
+
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// A class to build query parameters for RESTful requests for the StructureDefinition resource.
 class SearchStructureDefinition extends SearchResource {
-  SearchStructureDefinition context(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [context] in the reosurce StructureDefinition
+  SearchStructureDefinition context(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}context'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchStructureDefinition contextQuantity(FhirDecimal value,
-      {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {
+  /// a quantity search for [contextQuantity] in the reosurce StructureDefinition
+  SearchStructureDefinition contextQuantity(
+    FhirDecimal value, {
+    FhirString? unit,
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     if (modifier != null &&
         !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
@@ -20,21 +33,31 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  SearchStructureDefinition contextType(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [contextType] in the reosurce StructureDefinition
+  SearchStructureDefinition contextType(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}context_type'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchStructureDefinition date(FhirDateTime value,
-      {SearchModifier? modifier}) {
+  /// a date search for [date] in the reosurce StructureDefinition
+  SearchStructureDefinition date(
+    FhirDateTime value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}date'] = value.toString();
     return this;
   }
 
-  SearchStructureDefinition description(FhirString value,
-      {SearchModifier? modifier}) {
+  /// a string search for [description] in the reosurce StructureDefinition
+  SearchStructureDefinition description(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -43,14 +66,22 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  SearchStructureDefinition jurisdiction(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [jurisdiction] in the reosurce StructureDefinition
+  SearchStructureDefinition jurisdiction(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}jurisdiction'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchStructureDefinition name(FhirString value, {SearchModifier? modifier}) {
+  /// a string search for [name] in the reosurce StructureDefinition
+  SearchStructureDefinition name(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -58,8 +89,11 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  SearchStructureDefinition publisher(FhirString value,
-      {SearchModifier? modifier}) {
+  /// a string search for [publisher] in the reosurce StructureDefinition
+  SearchStructureDefinition publisher(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -68,15 +102,22 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
-  SearchStructureDefinition status(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [status] in the reosurce StructureDefinition
+  SearchStructureDefinition status(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}status'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchStructureDefinition title(FhirString value,
-      {SearchModifier? modifier}) {
+  /// a string search for [title] in the reosurce StructureDefinition
+  SearchStructureDefinition title(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -85,81 +126,123 @@ class SearchStructureDefinition extends SearchResource {
     return this;
   }
 
+  /// a uri search for [url] in the reosurce StructureDefinition
   SearchStructureDefinition url(FhirUri value, {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  SearchStructureDefinition version(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [version] in the reosurce StructureDefinition
+  SearchStructureDefinition version(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}version'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchStructureDefinition identifier(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [identifier] in the reosurce StructureDefinition
+  SearchStructureDefinition identifier(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}identifier'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchStructureDefinition abstract(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [abstract] in the reosurce StructureDefinition
+  SearchStructureDefinition abstract(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}abstract'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchStructureDefinition basePath(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [basePath] in the reosurce StructureDefinition
+  SearchStructureDefinition basePath(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}base_path'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchStructureDefinition derivation(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [derivation] in the reosurce StructureDefinition
+  SearchStructureDefinition derivation(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}derivation'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchStructureDefinition experimental(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [experimental] in the reosurce StructureDefinition
+  SearchStructureDefinition experimental(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}experimental'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchStructureDefinition extContext(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [extContext] in the reosurce StructureDefinition
+  SearchStructureDefinition extContext(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}ext_context'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchStructureDefinition keyword(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [keyword] in the reosurce StructureDefinition
+  SearchStructureDefinition keyword(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}keyword'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchStructureDefinition kind(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [kind] in the reosurce StructureDefinition
+  SearchStructureDefinition kind(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}kind'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchStructureDefinition path(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [path] in the reosurce StructureDefinition
+  SearchStructureDefinition path(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}path'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
+  /// a uri search for [type] in the reosurce StructureDefinition
   SearchStructureDefinition type(FhirUri value, {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}type'] = value.toString();
     return this;

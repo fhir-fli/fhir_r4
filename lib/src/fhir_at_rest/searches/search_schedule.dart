@@ -1,42 +1,70 @@
 // This file is auto-generated. Do not edit directly.
-import '../../../fhir_r4.dart';
 
+// ignore_for_file: avoid_returning_this
+
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// A class to build query parameters for RESTful requests for the Schedule resource.
 class SearchSchedule extends SearchResource {
-  SearchSchedule active(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [active] in the reosurce Schedule
+  SearchSchedule active(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}active'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchSchedule date(FhirDateTime value, {SearchModifier? modifier}) {
+  /// a date search for [date] in the reosurce Schedule
+  SearchSchedule date(
+    FhirDateTime value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}date'] = value.toString();
     return this;
   }
 
-  SearchSchedule identifier(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [identifier] in the reosurce Schedule
+  SearchSchedule identifier(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}identifier'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchSchedule serviceCategory(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [serviceCategory] in the reosurce Schedule
+  SearchSchedule serviceCategory(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}service_category'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchSchedule serviceType(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [serviceType] in the reosurce Schedule
+  SearchSchedule serviceType(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}service_type'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchSchedule specialty(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [specialty] in the reosurce Schedule
+  SearchSchedule specialty(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}specialty'] =
         system != null ? '$system|$value' : '$value';
     return this;

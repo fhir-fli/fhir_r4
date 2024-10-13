@@ -1,16 +1,29 @@
 // This file is auto-generated. Do not edit directly.
-import '../../../fhir_r4.dart';
 
+// ignore_for_file: avoid_returning_this
+
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// A class to build query parameters for RESTful requests for the Measure resource.
 class SearchMeasure extends SearchResource {
-  SearchMeasure context(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [context] in the reosurce Measure
+  SearchMeasure context(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}context'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchMeasure contextQuantity(FhirDecimal value,
-      {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {
+  /// a quantity search for [contextQuantity] in the reosurce Measure
+  SearchMeasure contextQuantity(
+    FhirDecimal value, {
+    FhirString? unit,
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     if (modifier != null &&
         !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
@@ -20,19 +33,31 @@ class SearchMeasure extends SearchResource {
     return this;
   }
 
-  SearchMeasure contextType(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [contextType] in the reosurce Measure
+  SearchMeasure contextType(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}context_type'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchMeasure date(FhirDateTime value, {SearchModifier? modifier}) {
+  /// a date search for [date] in the reosurce Measure
+  SearchMeasure date(
+    FhirDateTime value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}date'] = value.toString();
     return this;
   }
 
-  SearchMeasure description(FhirString value, {SearchModifier? modifier}) {
+  /// a string search for [description] in the reosurce Measure
+  SearchMeasure description(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -41,27 +66,43 @@ class SearchMeasure extends SearchResource {
     return this;
   }
 
-  SearchMeasure effective(FhirDateTime value, {SearchModifier? modifier}) {
+  /// a date search for [effective] in the reosurce Measure
+  SearchMeasure effective(
+    FhirDateTime value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}effective'] =
         value.toString();
     return this;
   }
 
-  SearchMeasure identifier(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [identifier] in the reosurce Measure
+  SearchMeasure identifier(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}identifier'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchMeasure jurisdiction(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [jurisdiction] in the reosurce Measure
+  SearchMeasure jurisdiction(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}jurisdiction'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchMeasure name(FhirString value, {SearchModifier? modifier}) {
+  /// a string search for [name] in the reosurce Measure
+  SearchMeasure name(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -69,7 +110,11 @@ class SearchMeasure extends SearchResource {
     return this;
   }
 
-  SearchMeasure publisher(FhirString value, {SearchModifier? modifier}) {
+  /// a string search for [publisher] in the reosurce Measure
+  SearchMeasure publisher(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -78,14 +123,22 @@ class SearchMeasure extends SearchResource {
     return this;
   }
 
-  SearchMeasure status(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [status] in the reosurce Measure
+  SearchMeasure status(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}status'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchMeasure title(FhirString value, {SearchModifier? modifier}) {
+  /// a string search for [title] in the reosurce Measure
+  SearchMeasure title(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -94,20 +147,29 @@ class SearchMeasure extends SearchResource {
     return this;
   }
 
-  SearchMeasure topic(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [topic] in the reosurce Measure
+  SearchMeasure topic(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}topic'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
+  /// a uri search for [url] in the reosurce Measure
   SearchMeasure url(FhirUri value, {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  SearchMeasure version(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [version] in the reosurce Measure
+  SearchMeasure version(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}version'] =
         system != null ? '$system|$value' : '$value';
     return this;

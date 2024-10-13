@@ -1,16 +1,29 @@
 // This file is auto-generated. Do not edit directly.
-import '../../../fhir_r4.dart';
 
+// ignore_for_file: avoid_returning_this
+
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// A class to build query parameters for RESTful requests for the ExampleScenario resource.
 class SearchExampleScenario extends SearchResource {
-  SearchExampleScenario context(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [context] in the reosurce ExampleScenario
+  SearchExampleScenario context(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}context'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchExampleScenario contextQuantity(FhirDecimal value,
-      {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {
+  /// a quantity search for [contextQuantity] in the reosurce ExampleScenario
+  SearchExampleScenario contextQuantity(
+    FhirDecimal value, {
+    FhirString? unit,
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     if (modifier != null &&
         !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
@@ -20,33 +33,53 @@ class SearchExampleScenario extends SearchResource {
     return this;
   }
 
-  SearchExampleScenario contextType(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [contextType] in the reosurce ExampleScenario
+  SearchExampleScenario contextType(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}context_type'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchExampleScenario date(FhirDateTime value, {SearchModifier? modifier}) {
+  /// a date search for [date] in the reosurce ExampleScenario
+  SearchExampleScenario date(
+    FhirDateTime value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}date'] = value.toString();
     return this;
   }
 
-  SearchExampleScenario identifier(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [identifier] in the reosurce ExampleScenario
+  SearchExampleScenario identifier(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}identifier'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchExampleScenario jurisdiction(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [jurisdiction] in the reosurce ExampleScenario
+  SearchExampleScenario jurisdiction(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}jurisdiction'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchExampleScenario name(FhirString value, {SearchModifier? modifier}) {
+  /// a string search for [name] in the reosurce ExampleScenario
+  SearchExampleScenario name(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -54,8 +87,11 @@ class SearchExampleScenario extends SearchResource {
     return this;
   }
 
-  SearchExampleScenario publisher(FhirString value,
-      {SearchModifier? modifier}) {
+  /// a string search for [publisher] in the reosurce ExampleScenario
+  SearchExampleScenario publisher(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -64,20 +100,29 @@ class SearchExampleScenario extends SearchResource {
     return this;
   }
 
-  SearchExampleScenario status(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [status] in the reosurce ExampleScenario
+  SearchExampleScenario status(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}status'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
+  /// a uri search for [url] in the reosurce ExampleScenario
   SearchExampleScenario url(FhirUri value, {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  SearchExampleScenario version(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [version] in the reosurce ExampleScenario
+  SearchExampleScenario version(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}version'] =
         system != null ? '$system|$value' : '$value';
     return this;

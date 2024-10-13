@@ -1,16 +1,29 @@
 // This file is auto-generated. Do not edit directly.
-import '../../../fhir_r4.dart';
 
+// ignore_for_file: avoid_returning_this
+
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// A class to build query parameters for RESTful requests for the ResearchElementDefinition resource.
 class SearchResearchElementDefinition extends SearchResource {
-  SearchResearchElementDefinition context(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [context] in the reosurce ResearchElementDefinition
+  SearchResearchElementDefinition context(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}context'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchResearchElementDefinition contextQuantity(FhirDecimal value,
-      {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {
+  /// a quantity search for [contextQuantity] in the reosurce ResearchElementDefinition
+  SearchResearchElementDefinition contextQuantity(
+    FhirDecimal value, {
+    FhirString? unit,
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     if (modifier != null &&
         !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
@@ -20,21 +33,31 @@ class SearchResearchElementDefinition extends SearchResource {
     return this;
   }
 
-  SearchResearchElementDefinition contextType(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [contextType] in the reosurce ResearchElementDefinition
+  SearchResearchElementDefinition contextType(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}context_type'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchResearchElementDefinition date(FhirDateTime value,
-      {SearchModifier? modifier}) {
+  /// a date search for [date] in the reosurce ResearchElementDefinition
+  SearchResearchElementDefinition date(
+    FhirDateTime value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}date'] = value.toString();
     return this;
   }
 
-  SearchResearchElementDefinition description(FhirString value,
-      {SearchModifier? modifier}) {
+  /// a string search for [description] in the reosurce ResearchElementDefinition
+  SearchResearchElementDefinition description(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -43,29 +66,43 @@ class SearchResearchElementDefinition extends SearchResource {
     return this;
   }
 
-  SearchResearchElementDefinition effective(FhirDateTime value,
-      {SearchModifier? modifier}) {
+  /// a date search for [effective] in the reosurce ResearchElementDefinition
+  SearchResearchElementDefinition effective(
+    FhirDateTime value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}effective'] =
         value.toString();
     return this;
   }
 
-  SearchResearchElementDefinition identifier(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [identifier] in the reosurce ResearchElementDefinition
+  SearchResearchElementDefinition identifier(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}identifier'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchResearchElementDefinition jurisdiction(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [jurisdiction] in the reosurce ResearchElementDefinition
+  SearchResearchElementDefinition jurisdiction(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}jurisdiction'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchResearchElementDefinition name(FhirString value,
-      {SearchModifier? modifier}) {
+  /// a string search for [name] in the reosurce ResearchElementDefinition
+  SearchResearchElementDefinition name(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -73,8 +110,11 @@ class SearchResearchElementDefinition extends SearchResource {
     return this;
   }
 
-  SearchResearchElementDefinition publisher(FhirString value,
-      {SearchModifier? modifier}) {
+  /// a string search for [publisher] in the reosurce ResearchElementDefinition
+  SearchResearchElementDefinition publisher(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -83,15 +123,22 @@ class SearchResearchElementDefinition extends SearchResource {
     return this;
   }
 
-  SearchResearchElementDefinition status(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [status] in the reosurce ResearchElementDefinition
+  SearchResearchElementDefinition status(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}status'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchResearchElementDefinition title(FhirString value,
-      {SearchModifier? modifier}) {
+  /// a string search for [title] in the reosurce ResearchElementDefinition
+  SearchResearchElementDefinition title(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -100,21 +147,30 @@ class SearchResearchElementDefinition extends SearchResource {
     return this;
   }
 
-  SearchResearchElementDefinition topic(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [topic] in the reosurce ResearchElementDefinition
+  SearchResearchElementDefinition topic(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}topic'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
+  /// a uri search for [url] in the reosurce ResearchElementDefinition
   SearchResearchElementDefinition url(FhirUri value,
       {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  SearchResearchElementDefinition version(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [version] in the reosurce ResearchElementDefinition
+  SearchResearchElementDefinition version(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}version'] =
         system != null ? '$system|$value' : '$value';
     return this;

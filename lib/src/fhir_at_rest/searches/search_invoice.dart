@@ -1,35 +1,60 @@
 // This file is auto-generated. Do not edit directly.
-import '../../../fhir_r4.dart';
 
+// ignore_for_file: avoid_returning_this
+
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// A class to build query parameters for RESTful requests for the Invoice resource.
 class SearchInvoice extends SearchResource {
-  SearchInvoice date(FhirDateTime value, {SearchModifier? modifier}) {
+  /// a date search for [date] in the reosurce Invoice
+  SearchInvoice date(
+    FhirDateTime value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}date'] = value.toString();
     return this;
   }
 
-  SearchInvoice identifier(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [identifier] in the reosurce Invoice
+  SearchInvoice identifier(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}identifier'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchInvoice participantRole(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [participantRole] in the reosurce Invoice
+  SearchInvoice participantRole(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}participant_role'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchInvoice status(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [status] in the reosurce Invoice
+  SearchInvoice status(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}status'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchInvoice totalgross(FhirDecimal value,
-      {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {
+  /// a quantity search for [totalgross] in the reosurce Invoice
+  SearchInvoice totalgross(
+    FhirDecimal value, {
+    FhirString? unit,
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     if (modifier != null &&
         !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
@@ -39,8 +64,13 @@ class SearchInvoice extends SearchResource {
     return this;
   }
 
-  SearchInvoice totalnet(FhirDecimal value,
-      {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {
+  /// a quantity search for [totalnet] in the reosurce Invoice
+  SearchInvoice totalnet(
+    FhirDecimal value, {
+    FhirString? unit,
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     if (modifier != null &&
         !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
@@ -50,8 +80,12 @@ class SearchInvoice extends SearchResource {
     return this;
   }
 
-  SearchInvoice type(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [type] in the reosurce Invoice
+  SearchInvoice type(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}type'] =
         system != null ? '$system|$value' : '$value';
     return this;

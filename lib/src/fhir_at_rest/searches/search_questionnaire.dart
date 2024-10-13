@@ -1,23 +1,40 @@
 // This file is auto-generated. Do not edit directly.
-import '../../../fhir_r4.dart';
 
+// ignore_for_file: avoid_returning_this
+
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// A class to build query parameters for RESTful requests for the Questionnaire resource.
 class SearchQuestionnaire extends SearchResource {
-  SearchQuestionnaire code(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [code] in the reosurce Questionnaire
+  SearchQuestionnaire code(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}code'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchQuestionnaire context(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [context] in the reosurce Questionnaire
+  SearchQuestionnaire context(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}context'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchQuestionnaire contextQuantity(FhirDecimal value,
-      {FhirString? unit, FhirUri? system, SearchModifier? modifier}) {
+  /// a quantity search for [contextQuantity] in the reosurce Questionnaire
+  SearchQuestionnaire contextQuantity(
+    FhirDecimal value, {
+    FhirString? unit,
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     if (modifier != null &&
         !['gt', 'lt', 'ge', 'le', 'ap'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for quantity type');
@@ -27,26 +44,38 @@ class SearchQuestionnaire extends SearchResource {
     return this;
   }
 
-  SearchQuestionnaire contextType(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [contextType] in the reosurce Questionnaire
+  SearchQuestionnaire contextType(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}context_type'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchQuestionnaire date(FhirDateTime value, {SearchModifier? modifier}) {
+  /// a date search for [date] in the reosurce Questionnaire
+  SearchQuestionnaire date(
+    FhirDateTime value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}date'] = value.toString();
     return this;
   }
 
+  /// a uri search for [definition] in the reosurce Questionnaire
   SearchQuestionnaire definition(FhirUri value, {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}definition'] =
         value.toString();
     return this;
   }
 
-  SearchQuestionnaire description(FhirString value,
-      {SearchModifier? modifier}) {
+  /// a string search for [description] in the reosurce Questionnaire
+  SearchQuestionnaire description(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -55,28 +84,43 @@ class SearchQuestionnaire extends SearchResource {
     return this;
   }
 
-  SearchQuestionnaire effective(FhirDateTime value,
-      {SearchModifier? modifier}) {
+  /// a date search for [effective] in the reosurce Questionnaire
+  SearchQuestionnaire effective(
+    FhirDateTime value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}effective'] =
         value.toString();
     return this;
   }
 
-  SearchQuestionnaire identifier(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [identifier] in the reosurce Questionnaire
+  SearchQuestionnaire identifier(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}identifier'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchQuestionnaire jurisdiction(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [jurisdiction] in the reosurce Questionnaire
+  SearchQuestionnaire jurisdiction(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}jurisdiction'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchQuestionnaire name(FhirString value, {SearchModifier? modifier}) {
+  /// a string search for [name] in the reosurce Questionnaire
+  SearchQuestionnaire name(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -84,7 +128,11 @@ class SearchQuestionnaire extends SearchResource {
     return this;
   }
 
-  SearchQuestionnaire publisher(FhirString value, {SearchModifier? modifier}) {
+  /// a string search for [publisher] in the reosurce Questionnaire
+  SearchQuestionnaire publisher(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -93,21 +141,33 @@ class SearchQuestionnaire extends SearchResource {
     return this;
   }
 
-  SearchQuestionnaire status(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [status] in the reosurce Questionnaire
+  SearchQuestionnaire status(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}status'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchQuestionnaire subjectType(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [subjectType] in the reosurce Questionnaire
+  SearchQuestionnaire subjectType(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}subject_type'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchQuestionnaire title(FhirString value, {SearchModifier? modifier}) {
+  /// a string search for [title] in the reosurce Questionnaire
+  SearchQuestionnaire title(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -116,13 +176,18 @@ class SearchQuestionnaire extends SearchResource {
     return this;
   }
 
+  /// a uri search for [url] in the reosurce Questionnaire
   SearchQuestionnaire url(FhirUri value, {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;
   }
 
-  SearchQuestionnaire version(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [version] in the reosurce Questionnaire
+  SearchQuestionnaire version(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}version'] =
         system != null ? '$system|$value' : '$value';
     return this;

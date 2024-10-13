@@ -1,15 +1,27 @@
 // This file is auto-generated. Do not edit directly.
-import '../../../fhir_r4.dart';
 
+// ignore_for_file: avoid_returning_this
+
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// A class to build query parameters for RESTful requests for the Subscription resource.
 class SearchSubscription extends SearchResource {
-  SearchSubscription contact(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [contact] in the reosurce Subscription
+  SearchSubscription contact(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}contact'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchSubscription criteria(FhirString value, {SearchModifier? modifier}) {
+  /// a string search for [criteria] in the reosurce Subscription
+  SearchSubscription criteria(
+    FhirString value, {
+    SearchModifier? modifier,
+  }) {
     if (modifier != null && !['eq', 'ne'].contains(modifier.toString())) {
       throw ArgumentError('Modifier $modifier not allowed for string type');
     }
@@ -18,27 +30,40 @@ class SearchSubscription extends SearchResource {
     return this;
   }
 
-  SearchSubscription payload(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [payload] in the reosurce Subscription
+  SearchSubscription payload(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}payload'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchSubscription status(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [status] in the reosurce Subscription
+  SearchSubscription status(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}status'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchSubscription type(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [type] in the reosurce Subscription
+  SearchSubscription type(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}type'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
+  /// a uri search for [url] in the reosurce Subscription
   SearchSubscription url(FhirUri value, {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}url'] = value.toString();
     return this;

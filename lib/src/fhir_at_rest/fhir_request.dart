@@ -3,24 +3,38 @@ import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:http/http.dart' as http;
 
+/// Enum to represent the summary parameter
 abstract class FhirRequest {
+  /// Main constructor for [FhirRequest]
   FhirRequest({
     required this.base,
     required this.headers,
     this.summary = Summary.none,
     http.Client? client,
   }) : client = client ?? http.Client();
+
+  /// Base URL for the FHIR server
   final Uri base;
+
+  /// Headers to include in the request
   final Map<String, String> headers;
+
+  /// Summary parameter to include in the request
   final http.Client client;
+
+  /// Summary parameter to include in the request
   final Summary summary;
 
+  /// Function to send the request
   Future<http.Response> sendRequest();
 
+  /// Function to build the URI
   Uri buildUri();
 
+  /// Function to build the body
   String? buildBody();
 
+  /// Function to build the headers
   Map<String, String> buildHeaders() => <String, String>{
         'Content-Type': 'application/fhir+json',
         'Accept': 'application/fhir+json',
@@ -44,7 +58,7 @@ abstract class FhirRequest {
   }
 }
 
-// 1. Read Request (GET)
+/// 1. Read Request (GET)
 class FhirReadRequest extends FhirRequest {
   /// Main constructor for [FhirReadRequest]
   FhirReadRequest({
@@ -58,10 +72,17 @@ class FhirReadRequest extends FhirRequest {
     super.client,
   });
 
+  /// Resource type to read
   final String id;
+
+  /// ID of the resource to read
   final String resourceType;
-  final bool pretty; // New pretty parameter
-  final List<String> elements; // New elements parameter
+
+  /// New pretty parameter
+  final bool pretty;
+
+  /// New elements parameter
+  final List<String> elements;
 
   @override
   Uri buildUri() {
@@ -88,7 +109,7 @@ class FhirReadRequest extends FhirRequest {
   }
 }
 
-// 2. vRead Request (GET specific version)
+/// 2. vRead Request (GET specific version)
 class FhirVReadRequest extends FhirRequest {
   /// Main constructor for [FhirVReadRequest ]
   FhirVReadRequest({
@@ -100,8 +121,14 @@ class FhirVReadRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+
+  /// Id of the resource to read
   final String id;
+
+  /// Version ID of the resource to read
   final String vid;
+
+  /// Version ID of the resource to read
   final String resourceType;
 
   @override
@@ -120,7 +147,7 @@ class FhirVReadRequest extends FhirRequest {
   }
 }
 
-// 3. Update Request (PUT)
+/// 3. Update Request (PUT)
 class FhirUpdateRequest extends FhirRequest {
   /// Main constructor for [FhirUpdateRequest ]
   FhirUpdateRequest({
@@ -132,8 +159,14 @@ class FhirUpdateRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+
+  /// Resource type to update
   final String resourceType;
+
+  /// ID of the resource to update
   final String id;
+
+  /// Resource to update
   final Map<String, dynamic> resource;
 
   @override
@@ -152,7 +185,7 @@ class FhirUpdateRequest extends FhirRequest {
   }
 }
 
-// 4. Patch Request (PATCH)
+/// 4. Patch Request (PATCH)
 class FhirPatchRequest extends FhirRequest {
   /// Main constructor for [FhirPatchRequest ]
   FhirPatchRequest({
@@ -164,8 +197,14 @@ class FhirPatchRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+
+  /// Resource type to patch
   final String resourceType;
+
+  /// ID of the resource to patch
   final String id;
+
+  /// Patch body
   final Map<String, dynamic> patchBody;
 
   @override
@@ -184,7 +223,7 @@ class FhirPatchRequest extends FhirRequest {
   }
 }
 
-// 5. Delete Request (DELETE)
+/// 5. Delete Request (DELETE)
 class FhirDeleteRequest extends FhirRequest {
   /// Main constructor for [FhirDeleteRequest ]
   FhirDeleteRequest({
@@ -195,7 +234,11 @@ class FhirDeleteRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+
+  /// Resource type to delete
   final String resourceType;
+
+  /// ID of the resource to delete
   final String id;
 
   @override
@@ -214,7 +257,7 @@ class FhirDeleteRequest extends FhirRequest {
   }
 }
 
-// 6. Create Request (POST)
+/// 6. Create Request (POST)
 class FhirCreateRequest extends FhirRequest {
   /// Main constructor for [FhirCreateRequest ]
   FhirCreateRequest({
@@ -225,7 +268,11 @@ class FhirCreateRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+
+  /// Resource type to create
   final String resourceType;
+
+  /// Resource to create
   final Map<String, dynamic> resource;
 
   @override
@@ -244,7 +291,7 @@ class FhirCreateRequest extends FhirRequest {
   }
 }
 
-// 7. Search Request (GET or POST)
+/// 7. Search Request (GET or POST)
 class FhirSearchRequest extends FhirRequest {
   /// Main constructor for [FhirSearchRequest ]
   FhirSearchRequest({
@@ -256,8 +303,14 @@ class FhirSearchRequest extends FhirRequest {
     super.summary,
     super.client,
   }) : search = search ?? SearchResource();
+
+  /// Resource type to search
   final String resourceType;
-  final SearchResource search; // Holds search parameters
+
+  /// Holds search parameters
+  final SearchResource search;
+
+  /// Use POST request
   final bool usePost;
 
   @override
@@ -265,9 +318,7 @@ class FhirSearchRequest extends FhirRequest {
     final baseUri = Uri.parse('$base/$resourceType');
     final queryParams = <String, dynamic>{
       ...Uri.splitQueryString(search.buildQuery()),
-    };
-    queryParams
-        .addAll(buildQueryParams()); // Include summary query if applicable
+    }..addAll(buildQueryParams()); // Include summary query if applicable
     return buildUriWithParams(baseUri, queryParams);
   }
 
@@ -295,7 +346,7 @@ class FhirSearchRequest extends FhirRequest {
   }
 }
 
-// 8. History Request (GET)
+/// 8. History Request (GET)
 class FhirHistoryRequest extends FhirRequest {
   /// Main constructor for [FhirHistoryRequest ]
   FhirHistoryRequest({
@@ -306,7 +357,11 @@ class FhirHistoryRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+
+  /// Resource type to get history for
   final String resourceType;
+
+  /// ID of the resource to get history for
   final String id;
 
   @override
@@ -325,7 +380,7 @@ class FhirHistoryRequest extends FhirRequest {
   }
 }
 
-// 9. History All (GET)
+/// 9. History All (GET)
 class FhirHistoryAllRequest extends FhirRequest {
   /// Main constructor for [FhirHistoryAllRequest ]
   FhirHistoryAllRequest({
@@ -351,7 +406,7 @@ class FhirHistoryAllRequest extends FhirRequest {
   }
 }
 
-// 10. Capabilities Request (GET)
+/// 10. Capabilities Request (GET)
 class FhirCapabilitiesRequest extends FhirRequest {
   /// Optional Mode parameter
 
@@ -362,6 +417,8 @@ class FhirCapabilitiesRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+
+  /// Mode parameter
   final Mode? mode;
 
   @override
@@ -386,7 +443,7 @@ class FhirCapabilitiesRequest extends FhirRequest {
   }
 }
 
-// 11. Transaction Request (POST)
+/// 11. Transaction Request (POST)
 class FhirTransactionRequest extends FhirRequest {
   /// Main constructor for [FhirTransactionRequest ]
   FhirTransactionRequest({
@@ -396,6 +453,8 @@ class FhirTransactionRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+
+  /// Bundle to send in the transaction
   final Map<String, dynamic> bundle;
 
   @override
@@ -414,7 +473,7 @@ class FhirTransactionRequest extends FhirRequest {
   }
 }
 
-// 12. Batch Request (POST)
+/// 12. Batch Request (POST)
 class FhirBatchRequest extends FhirRequest {
   /// Main constructor for [FhirBatchRequest ]
   FhirBatchRequest({
@@ -424,6 +483,8 @@ class FhirBatchRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+
+  /// Bundle to send in the batch
   final Map<String, dynamic> bundle;
 
   @override
@@ -442,7 +503,7 @@ class FhirBatchRequest extends FhirRequest {
   }
 }
 
-// 13. Operation Request (POST or GET)
+/// 13. Operation Request (POST or GET)
 class FhirOperationRequest extends FhirRequest {
   /// Main constructor for [FhirOperationRequest ]
   FhirOperationRequest({
@@ -456,10 +517,20 @@ class FhirOperationRequest extends FhirRequest {
     super.summary,
     super.client,
   });
+
+  /// Operation to perform
   final String operation;
+
+  /// Parameters for the operation
   final RestfulParameters? parameters;
+
+  /// ID of the resource to perform the operation on
   final String? id;
+
+  /// Resource type to perform the operation on
   final String? resourceType;
+
+  /// Use POST request
   final bool usePost;
 
   @override

@@ -2063,12 +2063,12 @@ class EvidenceModelCharacteristic extends BackboneElement {
   }
 }
 
-/// [Evidencevariable]
+/// [EvidenceModelCharacteristicVariable]
 /// A variable adjusted for in the adjusted analysis.
-class Evidencevariable extends BackboneElement {
-  /// Primary constructor for [Evidencevariable]
+class EvidenceModelCharacteristicVariable extends BackboneElement {
+  /// Primary constructor for [EvidenceModelCharacteristicVariable]
 
-  Evidencevariable({
+  EvidenceModelCharacteristicVariable({
     super.id,
     super.extension_,
     super.modifierExtension,
@@ -2089,8 +2089,9 @@ class Evidencevariable extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Evidencevariable.fromJson(Map<String, dynamic> json) {
-    return Evidencevariable(
+  factory EvidenceModelCharacteristicVariable.fromJson(
+      Map<String, dynamic> json) {
+    return EvidenceModelCharacteristicVariable(
       id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
@@ -2151,26 +2152,27 @@ class Evidencevariable extends BackboneElement {
     );
   }
 
-  /// Deserialize [Evidencevariable] from a [String] or [YamlMap] object
-  factory Evidencevariable.fromYaml(dynamic yaml) => yaml is String
-      ? Evidencevariable.fromJson(
+  /// Deserialize [EvidenceModelCharacteristicVariable] from a [String] or [YamlMap] object
+  factory EvidenceModelCharacteristicVariable.fromYaml(dynamic yaml) => yaml
+          is String
+      ? EvidenceModelCharacteristicVariable.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
         )
       : yaml is YamlMap
-          ? Evidencevariable.fromJson(
+          ? EvidenceModelCharacteristicVariable.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'Evidencevariable cannot be constructed from input '
+              'EvidenceModelCharacteristicVariable cannot be constructed from input '
               'provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Evidencevariable] that takes in a [String]
+  /// Factory constructor for [EvidenceModelCharacteristicVariable] that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
-  factory Evidencevariable.fromJsonString(String source) {
+  factory EvidenceModelCharacteristicVariable.fromJsonString(String source) {
     final dynamic json = jsonDecode(source);
     if (json is Map<String, Object?>) {
-      return Evidencevariable.fromJson(json);
+      return EvidenceModelCharacteristicVariable.fromJson(json);
     } else {
       throw FormatException('FormatException: You passed $json '
           'This does not properly decode to a Map<String, Object?>.');
@@ -2178,7 +2180,7 @@ class Evidencevariable extends BackboneElement {
   }
 
   @override
-  String get fhirType => 'Evidencevariable';
+  String get fhirType => 'EvidenceModelCharacteristicVariable';
 
   /// [variableDefinition]
   /// Description of the variable.
@@ -2235,9 +2237,9 @@ class Evidencevariable extends BackboneElement {
   }
 
   @override
-  Evidencevariable clone() => throw UnimplementedError();
+  EvidenceModelCharacteristicVariable clone() => throw UnimplementedError();
   @override
-  Evidencevariable copyWith({
+  EvidenceModelCharacteristicVariable copyWith({
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
@@ -2254,7 +2256,7 @@ class Evidencevariable extends BackboneElement {
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
   }) {
-    return Evidencevariable(
+    return EvidenceModelCharacteristicVariable(
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,

@@ -1,35 +1,55 @@
 // This file is auto-generated. Do not edit directly.
-import '../../../fhir_r4.dart';
 
+// ignore_for_file: avoid_returning_this
+
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// A class to build query parameters for RESTful requests for the NutritionOrder resource.
 class SearchNutritionOrder extends SearchResource {
-  SearchNutritionOrder identifier(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [identifier] in the reosurce NutritionOrder
+  SearchNutritionOrder identifier(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}identifier'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchNutritionOrder additive(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [additive] in the reosurce NutritionOrder
+  SearchNutritionOrder additive(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}additive'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchNutritionOrder datetime(FhirDateTime value,
-      {SearchModifier? modifier}) {
+  /// a date search for [datetime] in the reosurce NutritionOrder
+  SearchNutritionOrder datetime(
+    FhirDateTime value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}datetime'] =
         value.toString();
     return this;
   }
 
-  SearchNutritionOrder formula(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [formula] in the reosurce NutritionOrder
+  SearchNutritionOrder formula(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}formula'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
+  /// a uri search for [instantiatesUri] in the reosurce NutritionOrder
   SearchNutritionOrder instantiatesUri(FhirUri value,
       {SearchModifier? modifier}) {
     parameters['${modifier != null ? '$modifier' : ''}instantiates_uri'] =
@@ -37,22 +57,34 @@ class SearchNutritionOrder extends SearchResource {
     return this;
   }
 
-  SearchNutritionOrder oraldiet(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [oraldiet] in the reosurce NutritionOrder
+  SearchNutritionOrder oraldiet(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}oraldiet'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchNutritionOrder status(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [status] in the reosurce NutritionOrder
+  SearchNutritionOrder status(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}status'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchNutritionOrder supplement(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [supplement] in the reosurce NutritionOrder
+  SearchNutritionOrder supplement(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}supplement'] =
         system != null ? '$system|$value' : '$value';
     return this;

@@ -1,14 +1,31 @@
-// Define an enum for search modifiers
+/// Define an enum for search modifiers
 enum SearchModifier {
-  eq, // Equal
-  ne, // Not equal
-  gt, // Greater than
-  lt, // Less than
-  ge, // Greater than or equal
-  le, // Less than or equal
-  sa, // Starts after (for date/time)
-  eb, // Ends before (for date/time)
-  ap, // Approximately (for date/time)
+  /// Equal
+  eq,
+
+  /// Not equal
+  ne,
+
+  /// Greater than
+  gt,
+
+  /// Less than
+  lt,
+
+  /// Greater than or equal
+  ge,
+
+  /// Less than or equal
+  le,
+
+  /// Starts after (for date/time)
+  sa,
+
+  /// Ends before (for date/time)
+  eb,
+
+  /// Approximately (for date/time)
+  ap,
   ;
 
   @override

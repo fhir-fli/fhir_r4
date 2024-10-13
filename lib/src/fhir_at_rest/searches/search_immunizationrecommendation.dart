@@ -1,36 +1,59 @@
 // This file is auto-generated. Do not edit directly.
-import '../../../fhir_r4.dart';
 
+// ignore_for_file: avoid_returning_this
+
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// A class to build query parameters for RESTful requests for the ImmunizationRecommendation resource.
 class SearchImmunizationRecommendation extends SearchResource {
-  SearchImmunizationRecommendation date(FhirDateTime value,
-      {SearchModifier? modifier}) {
+  /// a date search for [date] in the reosurce ImmunizationRecommendation
+  SearchImmunizationRecommendation date(
+    FhirDateTime value, {
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}date'] = value.toString();
     return this;
   }
 
-  SearchImmunizationRecommendation identifier(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [identifier] in the reosurce ImmunizationRecommendation
+  SearchImmunizationRecommendation identifier(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}identifier'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchImmunizationRecommendation status(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [status] in the reosurce ImmunizationRecommendation
+  SearchImmunizationRecommendation status(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}status'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchImmunizationRecommendation targetDisease(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [targetDisease] in the reosurce ImmunizationRecommendation
+  SearchImmunizationRecommendation targetDisease(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}target_disease'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchImmunizationRecommendation vaccineType(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [vaccineType] in the reosurce ImmunizationRecommendation
+  SearchImmunizationRecommendation vaccineType(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}vaccine_type'] =
         system != null ? '$system|$value' : '$value';
     return this;

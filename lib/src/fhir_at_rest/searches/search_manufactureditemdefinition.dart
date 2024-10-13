@@ -1,23 +1,39 @@
 // This file is auto-generated. Do not edit directly.
-import '../../../fhir_r4.dart';
 
+// ignore_for_file: avoid_returning_this
+
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// A class to build query parameters for RESTful requests for the ManufacturedItemDefinition resource.
 class SearchManufacturedItemDefinition extends SearchResource {
-  SearchManufacturedItemDefinition doseForm(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [doseForm] in the reosurce ManufacturedItemDefinition
+  SearchManufacturedItemDefinition doseForm(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}dose_form'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchManufacturedItemDefinition identifier(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [identifier] in the reosurce ManufacturedItemDefinition
+  SearchManufacturedItemDefinition identifier(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}identifier'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchManufacturedItemDefinition ingredient(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [ingredient] in the reosurce ManufacturedItemDefinition
+  SearchManufacturedItemDefinition ingredient(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}ingredient'] =
         system != null ? '$system|$value' : '$value';
     return this;

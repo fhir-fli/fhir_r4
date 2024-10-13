@@ -1,23 +1,39 @@
 // This file is auto-generated. Do not edit directly.
-import '../../../fhir_r4.dart';
 
+// ignore_for_file: avoid_returning_this
+
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// A class to build query parameters for RESTful requests for the BodyStructure resource.
 class SearchBodyStructure extends SearchResource {
-  SearchBodyStructure identifier(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [identifier] in the reosurce BodyStructure
+  SearchBodyStructure identifier(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}identifier'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchBodyStructure location(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [location] in the reosurce BodyStructure
+  SearchBodyStructure location(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}location'] =
         system != null ? '$system|$value' : '$value';
     return this;
   }
 
-  SearchBodyStructure morphology(FhirString value,
-      {FhirUri? system, SearchModifier? modifier}) {
+  /// a token search for [morphology] in the reosurce BodyStructure
+  SearchBodyStructure morphology(
+    FhirString value, {
+    FhirUri? system,
+    SearchModifier? modifier,
+  }) {
     parameters['${modifier != null ? '$modifier' : ''}morphology'] =
         system != null ? '$system|$value' : '$value';
     return this;
