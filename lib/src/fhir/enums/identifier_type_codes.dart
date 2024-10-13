@@ -62,7 +62,10 @@ enum IdentifierTypeCodes {
     }
   }
 
+  /// Returns a [String] from a [IdentifierTypeCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [IdentifierTypeCodes] from a [String] enum.
   static IdentifierTypeCodes fromString(String str) {
     switch (str) {
       case 'DL':
@@ -106,6 +109,7 @@ enum IdentifierTypeCodes {
     }
   }
 
+  /// Returns a [IdentifierTypeCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static IdentifierTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -19013,7 +19013,10 @@ enum AuditEventSubType {
     }
   }
 
+  /// Returns a [String] from a [AuditEventSubType] enum.
   String toJson() => toString();
+
+  /// Returns a [AuditEventSubType] from a [String] enum.
   static AuditEventSubType fromString(String str) {
     switch (str) {
       case 'ARCHIVE':
@@ -25367,6 +25370,7 @@ enum AuditEventSubType {
     }
   }
 
+  /// Returns a [AuditEventSubType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AuditEventSubType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

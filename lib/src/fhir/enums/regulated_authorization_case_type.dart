@@ -117,7 +117,10 @@ enum RegulatedAuthorizationCaseType {
     }
   }
 
+  /// Returns a [String] from a [RegulatedAuthorizationCaseType] enum.
   String toJson() => toString();
+
+  /// Returns a [RegulatedAuthorizationCaseType] from a [String] enum.
   static RegulatedAuthorizationCaseType fromString(String str) {
     switch (str) {
       case 'InitialMAA':
@@ -169,6 +172,7 @@ enum RegulatedAuthorizationCaseType {
     }
   }
 
+  /// Returns a [RegulatedAuthorizationCaseType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static RegulatedAuthorizationCaseType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -37,7 +37,10 @@ enum TestReportStatus {
     }
   }
 
+  /// Returns a [String] from a [TestReportStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [TestReportStatus] from a [String] enum.
   static TestReportStatus fromString(String str) {
     switch (str) {
       case 'completed':
@@ -55,6 +58,7 @@ enum TestReportStatus {
     }
   }
 
+  /// Returns a [TestReportStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static TestReportStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

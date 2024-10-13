@@ -22,7 +22,10 @@ enum SourceMaterialGenus {
     }
   }
 
+  /// Returns a [String] from a [SourceMaterialGenus] enum.
   String toJson() => toString();
+
+  /// Returns a [SourceMaterialGenus] from a [String] enum.
   static SourceMaterialGenus fromString(String str) {
     switch (str) {
       case 'Mycobacterium':
@@ -36,6 +39,7 @@ enum SourceMaterialGenus {
     }
   }
 
+  /// Returns a [SourceMaterialGenus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SourceMaterialGenus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

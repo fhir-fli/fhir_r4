@@ -31,7 +31,10 @@ enum FamilyHistoryStatus {
     }
   }
 
+  /// Returns a [String] from a [FamilyHistoryStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [FamilyHistoryStatus] from a [String] enum.
   static FamilyHistoryStatus fromString(String str) {
     switch (str) {
       case 'partial':
@@ -47,6 +50,7 @@ enum FamilyHistoryStatus {
     }
   }
 
+  /// Returns a [FamilyHistoryStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static FamilyHistoryStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

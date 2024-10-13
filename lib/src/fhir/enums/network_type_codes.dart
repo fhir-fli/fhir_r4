@@ -19,7 +19,10 @@ enum NetworkTypeCodes {
     }
   }
 
+  /// Returns a [String] from a [NetworkTypeCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [NetworkTypeCodes] from a [String] enum.
   static NetworkTypeCodes fromString(String str) {
     switch (str) {
       case 'in':
@@ -31,6 +34,7 @@ enum NetworkTypeCodes {
     }
   }
 
+  /// Returns a [NetworkTypeCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static NetworkTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

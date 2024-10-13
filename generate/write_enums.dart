@@ -233,8 +233,10 @@ String _buildEnumStringWithComments(
 
   buffer
     ..writeln('    }')
-    ..writeln('  }')
-    ..writeln('String toJson() => toString();')
+    ..writeln('  }\n')
+    ..writeln('  /// Returns a [String] from a [$enumName] enum.')
+    ..writeln('String toJson() => toString();\n')
+    ..writeln('  /// Returns a [$enumName] from a [String] enum.')
     ..writeln('static $enumName fromString(String str) {')
     ..writeln('    switch(str) {');
 
@@ -245,7 +247,10 @@ String _buildEnumStringWithComments(
   buffer
     ..writeln(r"    default: throw ArgumentError('Unknown enum value: $str');")
     ..writeln('    }')
-    ..writeln('  }')
+    ..writeln('  }\n')
+    ..writeln('  /// Returns a [$enumName] from a json [String] (although it '
+        'will accept any dynamic and throw an error if it is not a String due '
+        'to requirements for serializing/deserializing')
     ..writeln('static $enumName fromJson(dynamic jsonValue) {')
     ..writeln('    if (jsonValue is String) {')
     ..writeln('      return fromString(jsonValue);')

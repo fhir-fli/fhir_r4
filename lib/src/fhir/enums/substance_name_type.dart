@@ -22,7 +22,10 @@ enum SubstanceNameType {
     }
   }
 
+  /// Returns a [String] from a [SubstanceNameType] enum.
   String toJson() => toString();
+
+  /// Returns a [SubstanceNameType] from a [String] enum.
   static SubstanceNameType fromString(String str) {
     switch (str) {
       case 'Systematic':
@@ -36,6 +39,7 @@ enum SubstanceNameType {
     }
   }
 
+  /// Returns a [SubstanceNameType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SubstanceNameType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

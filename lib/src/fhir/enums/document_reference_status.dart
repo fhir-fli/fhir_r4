@@ -25,7 +25,10 @@ enum DocumentReferenceStatus {
     }
   }
 
+  /// Returns a [String] from a [DocumentReferenceStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [DocumentReferenceStatus] from a [String] enum.
   static DocumentReferenceStatus fromString(String str) {
     switch (str) {
       case 'current':
@@ -39,6 +42,7 @@ enum DocumentReferenceStatus {
     }
   }
 
+  /// Returns a [DocumentReferenceStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static DocumentReferenceStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

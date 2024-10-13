@@ -27,7 +27,10 @@ enum InteractionType {
     }
   }
 
+  /// Returns a [String] from a [InteractionType] enum.
   String toJson() => toString();
+
+  /// Returns a [InteractionType] from a [String] enum.
   static InteractionType fromString(String str) {
     switch (str) {
       case 'drug-drug':
@@ -43,6 +46,7 @@ enum InteractionType {
     }
   }
 
+  /// Returns a [InteractionType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static InteractionType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

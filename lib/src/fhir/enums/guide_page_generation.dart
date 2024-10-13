@@ -31,7 +31,10 @@ enum GuidePageGeneration {
     }
   }
 
+  /// Returns a [String] from a [GuidePageGeneration] enum.
   String toJson() => toString();
+
+  /// Returns a [GuidePageGeneration] from a [String] enum.
   static GuidePageGeneration fromString(String str) {
     switch (str) {
       case 'html':
@@ -47,6 +50,7 @@ enum GuidePageGeneration {
     }
   }
 
+  /// Returns a [GuidePageGeneration] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static GuidePageGeneration fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

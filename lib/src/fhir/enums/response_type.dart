@@ -25,7 +25,10 @@ enum ResponseType {
     }
   }
 
+  /// Returns a [String] from a [ResponseType] enum.
   String toJson() => toString();
+
+  /// Returns a [ResponseType] from a [String] enum.
   static ResponseType fromString(String str) {
     switch (str) {
       case 'ok':
@@ -39,6 +42,7 @@ enum ResponseType {
     }
   }
 
+  /// Returns a [ResponseType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ResponseType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

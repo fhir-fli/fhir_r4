@@ -42,7 +42,10 @@ enum SubstanceRepresentationFormat {
     }
   }
 
+  /// Returns a [String] from a [SubstanceRepresentationFormat] enum.
   String toJson() => toString();
+
+  /// Returns a [SubstanceRepresentationFormat] from a [String] enum.
   static SubstanceRepresentationFormat fromString(String str) {
     switch (str) {
       case 'InChI':
@@ -64,6 +67,7 @@ enum SubstanceRepresentationFormat {
     }
   }
 
+  /// Returns a [SubstanceRepresentationFormat] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SubstanceRepresentationFormat fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

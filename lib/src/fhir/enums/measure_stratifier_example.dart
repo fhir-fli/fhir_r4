@@ -25,7 +25,10 @@ enum MeasureStratifierExample {
     }
   }
 
+  /// Returns a [String] from a [MeasureStratifierExample] enum.
   String toJson() => toString();
+
+  /// Returns a [MeasureStratifierExample] from a [String] enum.
   static MeasureStratifierExample fromString(String str) {
     switch (str) {
       case 'age':
@@ -39,6 +42,7 @@ enum MeasureStratifierExample {
     }
   }
 
+  /// Returns a [MeasureStratifierExample] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static MeasureStratifierExample fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

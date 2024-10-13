@@ -19,7 +19,10 @@ enum DoseAndRateType {
     }
   }
 
+  /// Returns a [String] from a [DoseAndRateType] enum.
   String toJson() => toString();
+
+  /// Returns a [DoseAndRateType] from a [String] enum.
   static DoseAndRateType fromString(String str) {
     switch (str) {
       case 'calculated':
@@ -31,6 +34,7 @@ enum DoseAndRateType {
     }
   }
 
+  /// Returns a [DoseAndRateType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static DoseAndRateType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

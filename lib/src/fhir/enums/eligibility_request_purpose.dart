@@ -31,7 +31,10 @@ enum EligibilityRequestPurpose {
     }
   }
 
+  /// Returns a [String] from a [EligibilityRequestPurpose] enum.
   String toJson() => toString();
+
+  /// Returns a [EligibilityRequestPurpose] from a [String] enum.
   static EligibilityRequestPurpose fromString(String str) {
     switch (str) {
       case 'auth-requirements':
@@ -47,6 +50,7 @@ enum EligibilityRequestPurpose {
     }
   }
 
+  /// Returns a [EligibilityRequestPurpose] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static EligibilityRequestPurpose fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

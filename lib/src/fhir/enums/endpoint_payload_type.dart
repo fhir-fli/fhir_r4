@@ -374,7 +374,10 @@ enum EndpointPayloadType {
     }
   }
 
+  /// Returns a [String] from a [EndpointPayloadType] enum.
   String toJson() => toString();
+
+  /// Returns a [EndpointPayloadType] from a [String] enum.
   static EndpointPayloadType fromString(String str) {
     switch (str) {
       case 'any':
@@ -530,6 +533,7 @@ enum EndpointPayloadType {
     }
   }
 
+  /// Returns a [EndpointPayloadType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static EndpointPayloadType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

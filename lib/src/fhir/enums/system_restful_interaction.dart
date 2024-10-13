@@ -109,7 +109,10 @@ enum SystemRestfulInteraction {
     }
   }
 
+  /// Returns a [String] from a [SystemRestfulInteraction] enum.
   String toJson() => toString();
+
+  /// Returns a [SystemRestfulInteraction] from a [String] enum.
   static SystemRestfulInteraction fromString(String str) {
     switch (str) {
       case 'read':
@@ -151,6 +154,7 @@ enum SystemRestfulInteraction {
     }
   }
 
+  /// Returns a [SystemRestfulInteraction] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SystemRestfulInteraction fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

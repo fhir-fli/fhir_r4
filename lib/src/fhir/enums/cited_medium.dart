@@ -43,7 +43,10 @@ enum CitedMedium {
     }
   }
 
+  /// Returns a [String] from a [CitedMedium] enum.
   String toJson() => toString();
+
+  /// Returns a [CitedMedium] from a [String] enum.
   static CitedMedium fromString(String str) {
     switch (str) {
       case 'internet':
@@ -63,6 +66,7 @@ enum CitedMedium {
     }
   }
 
+  /// Returns a [CitedMedium] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CitedMedium fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

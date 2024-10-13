@@ -57,7 +57,10 @@ enum SpecimenCollectionEnum {
     }
   }
 
+  /// Returns a [String] from a [SpecimenCollectionEnum] enum.
   String toJson() => toString();
+
+  /// Returns a [SpecimenCollectionEnum] from a [String] enum.
   static SpecimenCollectionEnum fromString(String str) {
     switch (str) {
       case '129316008':
@@ -85,6 +88,7 @@ enum SpecimenCollectionEnum {
     }
   }
 
+  /// Returns a [SpecimenCollectionEnum] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SpecimenCollectionEnum fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

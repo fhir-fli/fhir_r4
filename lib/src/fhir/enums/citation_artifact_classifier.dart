@@ -151,7 +151,10 @@ enum CitationArtifactClassifier {
     }
   }
 
+  /// Returns a [String] from a [CitationArtifactClassifier] enum.
   String toJson() => toString();
+
+  /// Returns a [CitationArtifactClassifier] from a [String] enum.
   static CitationArtifactClassifier fromString(String str) {
     switch (str) {
       case 'webpage':
@@ -207,6 +210,7 @@ enum CitationArtifactClassifier {
     }
   }
 
+  /// Returns a [CitationArtifactClassifier] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CitationArtifactClassifier fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

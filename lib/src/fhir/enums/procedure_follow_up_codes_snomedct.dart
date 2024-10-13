@@ -38,7 +38,10 @@ enum ProcedureFollowUpCodesSNOMEDCT {
     }
   }
 
+  /// Returns a [String] from a [ProcedureFollowUpCodesSNOMEDCT] enum.
   String toJson() => toString();
+
+  /// Returns a [ProcedureFollowUpCodesSNOMEDCT] from a [String] enum.
   static ProcedureFollowUpCodesSNOMEDCT fromString(String str) {
     switch (str) {
       case '18949003':
@@ -66,6 +69,7 @@ enum ProcedureFollowUpCodesSNOMEDCT {
     }
   }
 
+  /// Returns a [ProcedureFollowUpCodesSNOMEDCT] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ProcedureFollowUpCodesSNOMEDCT fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

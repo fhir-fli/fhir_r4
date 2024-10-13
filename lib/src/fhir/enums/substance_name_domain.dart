@@ -17,7 +17,10 @@ enum SubstanceNameDomain {
     }
   }
 
+  /// Returns a [String] from a [SubstanceNameDomain] enum.
   String toJson() => toString();
+
+  /// Returns a [SubstanceNameDomain] from a [String] enum.
   static SubstanceNameDomain fromString(String str) {
     switch (str) {
       case 'ActiveIngredient':
@@ -29,6 +32,7 @@ enum SubstanceNameDomain {
     }
   }
 
+  /// Returns a [SubstanceNameDomain] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SubstanceNameDomain fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

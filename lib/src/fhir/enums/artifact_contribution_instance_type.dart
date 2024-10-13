@@ -25,7 +25,10 @@ enum ArtifactContributionInstanceType {
     }
   }
 
+  /// Returns a [String] from a [ArtifactContributionInstanceType] enum.
   String toJson() => toString();
+
+  /// Returns a [ArtifactContributionInstanceType] from a [String] enum.
   static ArtifactContributionInstanceType fromString(String str) {
     switch (str) {
       case 'reviewed':
@@ -39,6 +42,7 @@ enum ArtifactContributionInstanceType {
     }
   }
 
+  /// Returns a [ArtifactContributionInstanceType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ArtifactContributionInstanceType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

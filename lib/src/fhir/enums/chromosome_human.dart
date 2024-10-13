@@ -151,7 +151,10 @@ enum ChromosomeHuman {
     }
   }
 
+  /// Returns a [String] from a [ChromosomeHuman] enum.
   String toJson() => toString();
+
+  /// Returns a [ChromosomeHuman] from a [String] enum.
   static ChromosomeHuman fromString(String str) {
     switch (str) {
       case '1':
@@ -207,6 +210,7 @@ enum ChromosomeHuman {
     }
   }
 
+  /// Returns a [ChromosomeHuman] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ChromosomeHuman fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

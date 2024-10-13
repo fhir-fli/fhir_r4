@@ -17,7 +17,10 @@ enum ConditionDiagnosisSeverity {
     }
   }
 
+  /// Returns a [String] from a [ConditionDiagnosisSeverity] enum.
   String toJson() => toString();
+
+  /// Returns a [ConditionDiagnosisSeverity] from a [String] enum.
   static ConditionDiagnosisSeverity fromString(String str) {
     switch (str) {
       case '24484000':
@@ -31,6 +34,7 @@ enum ConditionDiagnosisSeverity {
     }
   }
 
+  /// Returns a [ConditionDiagnosisSeverity] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ConditionDiagnosisSeverity fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

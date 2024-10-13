@@ -43,7 +43,10 @@ enum ListEmptyReasons {
     }
   }
 
+  /// Returns a [String] from a [ListEmptyReasons] enum.
   String toJson() => toString();
+
+  /// Returns a [ListEmptyReasons] from a [String] enum.
   static ListEmptyReasons fromString(String str) {
     switch (str) {
       case 'nilknown':
@@ -63,6 +66,7 @@ enum ListEmptyReasons {
     }
   }
 
+  /// Returns a [ListEmptyReasons] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ListEmptyReasons fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

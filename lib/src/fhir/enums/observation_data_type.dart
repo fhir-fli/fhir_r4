@@ -73,7 +73,10 @@ enum ObservationDataType {
     }
   }
 
+  /// Returns a [String] from a [ObservationDataType] enum.
   String toJson() => toString();
+
+  /// Returns a [ObservationDataType] from a [String] enum.
   static ObservationDataType fromString(String str) {
     switch (str) {
       case 'Quantity':
@@ -103,6 +106,7 @@ enum ObservationDataType {
     }
   }
 
+  /// Returns a [ObservationDataType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ObservationDataType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

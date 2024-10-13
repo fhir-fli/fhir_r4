@@ -19,7 +19,10 @@ enum SupplyRequestReason {
     }
   }
 
+  /// Returns a [String] from a [SupplyRequestReason] enum.
   String toJson() => toString();
+
+  /// Returns a [SupplyRequestReason] from a [String] enum.
   static SupplyRequestReason fromString(String str) {
     switch (str) {
       case 'patient-care':
@@ -31,6 +34,7 @@ enum SupplyRequestReason {
     }
   }
 
+  /// Returns a [SupplyRequestReason] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SupplyRequestReason fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

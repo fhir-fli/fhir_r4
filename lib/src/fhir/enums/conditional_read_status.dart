@@ -31,7 +31,10 @@ enum ConditionalReadStatus {
     }
   }
 
+  /// Returns a [String] from a [ConditionalReadStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [ConditionalReadStatus] from a [String] enum.
   static ConditionalReadStatus fromString(String str) {
     switch (str) {
       case 'not-supported':
@@ -47,6 +50,7 @@ enum ConditionalReadStatus {
     }
   }
 
+  /// Returns a [ConditionalReadStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ConditionalReadStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -169,7 +169,10 @@ enum FHIRVersion {
     }
   }
 
+  /// Returns a [String] from a [FHIRVersion] enum.
   String toJson() => toString();
+
+  /// Returns a [FHIRVersion] from a [String] enum.
   static FHIRVersion fromString(String str) {
     switch (str) {
       case '0.01':
@@ -231,6 +234,7 @@ enum FHIRVersion {
     }
   }
 
+  /// Returns a [FHIRVersion] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static FHIRVersion fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

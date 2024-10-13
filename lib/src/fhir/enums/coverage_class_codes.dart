@@ -73,7 +73,10 @@ enum CoverageClassCodes {
     }
   }
 
+  /// Returns a [String] from a [CoverageClassCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [CoverageClassCodes] from a [String] enum.
   static CoverageClassCodes fromString(String str) {
     switch (str) {
       case 'group':
@@ -103,6 +106,7 @@ enum CoverageClassCodes {
     }
   }
 
+  /// Returns a [CoverageClassCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CoverageClassCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

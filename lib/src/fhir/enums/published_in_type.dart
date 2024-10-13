@@ -31,7 +31,10 @@ enum PublishedInType {
     }
   }
 
+  /// Returns a [String] from a [PublishedInType] enum.
   String toJson() => toString();
+
+  /// Returns a [PublishedInType] from a [String] enum.
   static PublishedInType fromString(String str) {
     switch (str) {
       case 'D020492':
@@ -47,6 +50,7 @@ enum PublishedInType {
     }
   }
 
+  /// Returns a [PublishedInType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static PublishedInType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

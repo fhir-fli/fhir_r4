@@ -37,7 +37,10 @@ enum RiskProbability {
     }
   }
 
+  /// Returns a [String] from a [RiskProbability] enum.
   String toJson() => toString();
+
+  /// Returns a [RiskProbability] from a [String] enum.
   static RiskProbability fromString(String str) {
     switch (str) {
       case 'negligible':
@@ -55,6 +58,7 @@ enum RiskProbability {
     }
   }
 
+  /// Returns a [RiskProbability] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static RiskProbability fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

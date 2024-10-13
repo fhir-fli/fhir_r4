@@ -61,7 +61,10 @@ enum TherapyRelationshipType {
     }
   }
 
+  /// Returns a [String] from a [TherapyRelationshipType] enum.
   String toJson() => toString();
+
+  /// Returns a [TherapyRelationshipType] from a [String] enum.
   static TherapyRelationshipType fromString(String str) {
     switch (str) {
       case 'contraindicated-only-with':
@@ -87,6 +90,7 @@ enum TherapyRelationshipType {
     }
   }
 
+  /// Returns a [TherapyRelationshipType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static TherapyRelationshipType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -37,7 +37,10 @@ enum PropertyRepresentation {
     }
   }
 
+  /// Returns a [String] from a [PropertyRepresentation] enum.
   String toJson() => toString();
+
+  /// Returns a [PropertyRepresentation] from a [String] enum.
   static PropertyRepresentation fromString(String str) {
     switch (str) {
       case 'xmlAttr':
@@ -55,6 +58,7 @@ enum PropertyRepresentation {
     }
   }
 
+  /// Returns a [PropertyRepresentation] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static PropertyRepresentation fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

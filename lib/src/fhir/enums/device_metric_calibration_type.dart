@@ -31,7 +31,10 @@ enum DeviceMetricCalibrationType {
     }
   }
 
+  /// Returns a [String] from a [DeviceMetricCalibrationType] enum.
   String toJson() => toString();
+
+  /// Returns a [DeviceMetricCalibrationType] from a [String] enum.
   static DeviceMetricCalibrationType fromString(String str) {
     switch (str) {
       case 'unspecified':
@@ -47,6 +50,7 @@ enum DeviceMetricCalibrationType {
     }
   }
 
+  /// Returns a [DeviceMetricCalibrationType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static DeviceMetricCalibrationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -232,7 +232,10 @@ enum SupplementTypeCodes {
     }
   }
 
+  /// Returns a [String] from a [SupplementTypeCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [SupplementTypeCodes] from a [String] enum.
   static SupplementTypeCodes fromString(String str) {
     switch (str) {
       case '442901000124106':
@@ -330,6 +333,7 @@ enum SupplementTypeCodes {
     }
   }
 
+  /// Returns a [SupplementTypeCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SupplementTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

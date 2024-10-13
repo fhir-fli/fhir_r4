@@ -43,7 +43,10 @@ enum RestfulSecurityService {
     }
   }
 
+  /// Returns a [String] from a [RestfulSecurityService] enum.
   String toJson() => toString();
+
+  /// Returns a [RestfulSecurityService] from a [String] enum.
   static RestfulSecurityService fromString(String str) {
     switch (str) {
       case 'OAuth':
@@ -63,6 +66,7 @@ enum RestfulSecurityService {
     }
   }
 
+  /// Returns a [RestfulSecurityService] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static RestfulSecurityService fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

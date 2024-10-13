@@ -43,7 +43,10 @@ enum ActionSelectionBehavior {
     }
   }
 
+  /// Returns a [String] from a [ActionSelectionBehavior] enum.
   String toJson() => toString();
+
+  /// Returns a [ActionSelectionBehavior] from a [String] enum.
   static ActionSelectionBehavior fromString(String str) {
     switch (str) {
       case 'any':
@@ -63,6 +66,7 @@ enum ActionSelectionBehavior {
     }
   }
 
+  /// Returns a [ActionSelectionBehavior] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ActionSelectionBehavior fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

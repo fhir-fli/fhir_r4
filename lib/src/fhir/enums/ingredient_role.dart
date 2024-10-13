@@ -52,7 +52,10 @@ enum IngredientRole {
     }
   }
 
+  /// Returns a [String] from a [IngredientRole] enum.
   String toJson() => toString();
+
+  /// Returns a [IngredientRole] from a [String] enum.
   static IngredientRole fromString(String str) {
     switch (str) {
       case '100000072072':
@@ -78,6 +81,7 @@ enum IngredientRole {
     }
   }
 
+  /// Returns a [IngredientRole] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static IngredientRole fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

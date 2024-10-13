@@ -24,7 +24,7 @@ final Set<String> _valueSets = <String>{};
 
 Future<void> main() async {
   await extract();
-  prepareObjectBox();
+  // prepareObjectBox();
   // prepareIsar();
   _codesAndVS.addAll(codesAndValueSets(valueSetPath, examplesPath));
   _nameMap.addAll(populateNameMap(fhirSchemaPath));
@@ -33,7 +33,7 @@ Future<void> main() async {
   writeEnums(_valueSets, _codesAndVS, _nameMap);
   generateResourceUtils();
   parseSearchParameters();
-  exportObjectBoxFiles();
+  // exportObjectBoxFiles();
   // exportIsarFiles();
   deleteDirectories();
   // _moveTests();
@@ -161,7 +161,7 @@ void _generateFromSd(Map<String, dynamic> sd, StringBuffer fhirFieldMapBuffer) {
     return;
   }
   final classes = _buildWritableClasses(sd, className);
-  generateObjectBoxClasses(classes);
+  // generateObjectBoxClasses(classes);
   // generateIsarClasses(classes);
   final buffer = generateClassBuffer(classes, fhirFieldMapBuffer);
 

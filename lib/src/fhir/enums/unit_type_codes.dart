@@ -19,7 +19,10 @@ enum UnitTypeCodes {
     }
   }
 
+  /// Returns a [String] from a [UnitTypeCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [UnitTypeCodes] from a [String] enum.
   static UnitTypeCodes fromString(String str) {
     switch (str) {
       case 'individual':
@@ -31,6 +34,7 @@ enum UnitTypeCodes {
     }
   }
 
+  /// Returns a [UnitTypeCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static UnitTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

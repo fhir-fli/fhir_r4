@@ -67,7 +67,10 @@ enum TaskIntent {
     }
   }
 
+  /// Returns a [String] from a [TaskIntent] enum.
   String toJson() => toString();
+
+  /// Returns a [TaskIntent] from a [String] enum.
   static TaskIntent fromString(String str) {
     switch (str) {
       case 'unknown':
@@ -95,6 +98,7 @@ enum TaskIntent {
     }
   }
 
+  /// Returns a [TaskIntent] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static TaskIntent fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -25,7 +25,10 @@ enum ParticipantRequired {
     }
   }
 
+  /// Returns a [String] from a [ParticipantRequired] enum.
   String toJson() => toString();
+
+  /// Returns a [ParticipantRequired] from a [String] enum.
   static ParticipantRequired fromString(String str) {
     switch (str) {
       case 'required':
@@ -39,6 +42,7 @@ enum ParticipantRequired {
     }
   }
 
+  /// Returns a [ParticipantRequired] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ParticipantRequired fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

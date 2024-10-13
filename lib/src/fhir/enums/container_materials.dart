@@ -22,7 +22,10 @@ enum ContainerMaterials {
     }
   }
 
+  /// Returns a [String] from a [ContainerMaterials] enum.
   String toJson() => toString();
+
+  /// Returns a [ContainerMaterials] from a [String] enum.
   static ContainerMaterials fromString(String str) {
     switch (str) {
       case '32039001':
@@ -36,6 +39,7 @@ enum ContainerMaterials {
     }
   }
 
+  /// Returns a [ContainerMaterials] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ContainerMaterials fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

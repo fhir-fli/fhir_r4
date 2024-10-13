@@ -31,7 +31,10 @@ enum TestScriptProfileDestinationType {
     }
   }
 
+  /// Returns a [String] from a [TestScriptProfileDestinationType] enum.
   String toJson() => toString();
+
+  /// Returns a [TestScriptProfileDestinationType] from a [String] enum.
   static TestScriptProfileDestinationType fromString(String str) {
     switch (str) {
       case 'FHIR-Server':
@@ -47,6 +50,7 @@ enum TestScriptProfileDestinationType {
     }
   }
 
+  /// Returns a [TestScriptProfileDestinationType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static TestScriptProfileDestinationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

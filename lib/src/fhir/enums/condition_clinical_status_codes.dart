@@ -43,7 +43,10 @@ enum ConditionClinicalStatusCodes {
     }
   }
 
+  /// Returns a [String] from a [ConditionClinicalStatusCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ConditionClinicalStatusCodes] from a [String] enum.
   static ConditionClinicalStatusCodes fromString(String str) {
     switch (str) {
       case 'active':
@@ -63,6 +66,7 @@ enum ConditionClinicalStatusCodes {
     }
   }
 
+  /// Returns a [ConditionClinicalStatusCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ConditionClinicalStatusCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

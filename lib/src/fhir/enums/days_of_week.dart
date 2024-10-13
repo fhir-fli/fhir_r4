@@ -49,7 +49,10 @@ enum DaysOfWeek {
     }
   }
 
+  /// Returns a [String] from a [DaysOfWeek] enum.
   String toJson() => toString();
+
+  /// Returns a [DaysOfWeek] from a [String] enum.
   static DaysOfWeek fromString(String str) {
     switch (str) {
       case 'mon':
@@ -71,6 +74,7 @@ enum DaysOfWeek {
     }
   }
 
+  /// Returns a [DaysOfWeek] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static DaysOfWeek fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

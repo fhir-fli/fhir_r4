@@ -31,7 +31,10 @@ enum ExplanationOfBenefitStatus {
     }
   }
 
+  /// Returns a [String] from a [ExplanationOfBenefitStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [ExplanationOfBenefitStatus] from a [String] enum.
   static ExplanationOfBenefitStatus fromString(String str) {
     switch (str) {
       case 'active':
@@ -47,6 +50,7 @@ enum ExplanationOfBenefitStatus {
     }
   }
 
+  /// Returns a [ExplanationOfBenefitStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ExplanationOfBenefitStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

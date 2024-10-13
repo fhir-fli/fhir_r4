@@ -31,7 +31,10 @@ enum MissingToothReasonCodes {
     }
   }
 
+  /// Returns a [String] from a [MissingToothReasonCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [MissingToothReasonCodes] from a [String] enum.
   static MissingToothReasonCodes fromString(String str) {
     switch (str) {
       case 'e':
@@ -47,6 +50,7 @@ enum MissingToothReasonCodes {
     }
   }
 
+  /// Returns a [MissingToothReasonCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static MissingToothReasonCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

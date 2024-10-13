@@ -19,7 +19,10 @@ enum SupplyItemType {
     }
   }
 
+  /// Returns a [String] from a [SupplyItemType] enum.
   String toJson() => toString();
+
+  /// Returns a [SupplyItemType] from a [String] enum.
   static SupplyItemType fromString(String str) {
     switch (str) {
       case 'medication':
@@ -31,6 +34,7 @@ enum SupplyItemType {
     }
   }
 
+  /// Returns a [SupplyItemType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SupplyItemType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

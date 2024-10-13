@@ -25,7 +25,10 @@ enum BiologicallyDerivedProductStorageScale {
     }
   }
 
+  /// Returns a [String] from a [BiologicallyDerivedProductStorageScale] enum.
   String toJson() => toString();
+
+  /// Returns a [BiologicallyDerivedProductStorageScale] from a [String] enum.
   static BiologicallyDerivedProductStorageScale fromString(String str) {
     switch (str) {
       case 'farenheit':
@@ -39,6 +42,7 @@ enum BiologicallyDerivedProductStorageScale {
     }
   }
 
+  /// Returns a [BiologicallyDerivedProductStorageScale] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static BiologicallyDerivedProductStorageScale fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

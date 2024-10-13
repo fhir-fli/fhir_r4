@@ -31,7 +31,10 @@ enum ResearchStudyReasonStopped {
     }
   }
 
+  /// Returns a [String] from a [ResearchStudyReasonStopped] enum.
   String toJson() => toString();
+
+  /// Returns a [ResearchStudyReasonStopped] from a [String] enum.
   static ResearchStudyReasonStopped fromString(String str) {
     switch (str) {
       case 'accrual-goal-met':
@@ -47,6 +50,7 @@ enum ResearchStudyReasonStopped {
     }
   }
 
+  /// Returns a [ResearchStudyReasonStopped] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ResearchStudyReasonStopped fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

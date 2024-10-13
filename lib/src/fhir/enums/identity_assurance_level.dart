@@ -31,7 +31,10 @@ enum IdentityAssuranceLevel {
     }
   }
 
+  /// Returns a [String] from a [IdentityAssuranceLevel] enum.
   String toJson() => toString();
+
+  /// Returns a [IdentityAssuranceLevel] from a [String] enum.
   static IdentityAssuranceLevel fromString(String str) {
     switch (str) {
       case 'level1':
@@ -47,6 +50,7 @@ enum IdentityAssuranceLevel {
     }
   }
 
+  /// Returns a [IdentityAssuranceLevel] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static IdentityAssuranceLevel fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

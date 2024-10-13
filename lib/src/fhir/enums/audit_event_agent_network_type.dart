@@ -37,7 +37,10 @@ enum AuditEventAgentNetworkType {
     }
   }
 
+  /// Returns a [String] from a [AuditEventAgentNetworkType] enum.
   String toJson() => toString();
+
+  /// Returns a [AuditEventAgentNetworkType] from a [String] enum.
   static AuditEventAgentNetworkType fromString(String str) {
     switch (str) {
       case '1':
@@ -55,6 +58,7 @@ enum AuditEventAgentNetworkType {
     }
   }
 
+  /// Returns a [AuditEventAgentNetworkType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AuditEventAgentNetworkType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

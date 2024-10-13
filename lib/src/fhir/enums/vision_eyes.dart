@@ -19,7 +19,10 @@ enum VisionEyes {
     }
   }
 
+  /// Returns a [String] from a [VisionEyes] enum.
   String toJson() => toString();
+
+  /// Returns a [VisionEyes] from a [String] enum.
   static VisionEyes fromString(String str) {
     switch (str) {
       case 'right':
@@ -31,6 +34,7 @@ enum VisionEyes {
     }
   }
 
+  /// Returns a [VisionEyes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static VisionEyes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

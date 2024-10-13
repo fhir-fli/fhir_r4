@@ -31,7 +31,10 @@ enum EvidenceVariableHandling {
     }
   }
 
+  /// Returns a [String] from a [EvidenceVariableHandling] enum.
   String toJson() => toString();
+
+  /// Returns a [EvidenceVariableHandling] from a [String] enum.
   static EvidenceVariableHandling fromString(String str) {
     switch (str) {
       case 'continuous':
@@ -47,6 +50,7 @@ enum EvidenceVariableHandling {
     }
   }
 
+  /// Returns a [EvidenceVariableHandling] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static EvidenceVariableHandling fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

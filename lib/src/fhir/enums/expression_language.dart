@@ -37,7 +37,10 @@ enum ExpressionLanguage {
     }
   }
 
+  /// Returns a [String] from a [ExpressionLanguage] enum.
   String toJson() => toString();
+
+  /// Returns a [ExpressionLanguage] from a [String] enum.
   static ExpressionLanguage fromString(String str) {
     switch (str) {
       case 'text/cql':
@@ -55,6 +58,7 @@ enum ExpressionLanguage {
     }
   }
 
+  /// Returns a [ExpressionLanguage] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ExpressionLanguage fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

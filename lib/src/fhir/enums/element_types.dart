@@ -42,7 +42,10 @@ enum ElementTypes {
     }
   }
 
+  /// Returns a [String] from a [ElementTypes] enum.
   String toJson() => toString();
+
+  /// Returns a [ElementTypes] from a [String] enum.
   static ElementTypes fromString(String str) {
     switch (str) {
       case 'http://hl7.org/fhirpath/System.String':
@@ -64,6 +67,7 @@ enum ElementTypes {
     }
   }
 
+  /// Returns a [ElementTypes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ElementTypes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

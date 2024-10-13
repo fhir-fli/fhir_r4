@@ -55,7 +55,10 @@ enum AdjudicationValueCodes {
     }
   }
 
+  /// Returns a [String] from a [AdjudicationValueCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [AdjudicationValueCodes] from a [String] enum.
   static AdjudicationValueCodes fromString(String str) {
     switch (str) {
       case 'submitted':
@@ -79,6 +82,7 @@ enum AdjudicationValueCodes {
     }
   }
 
+  /// Returns a [AdjudicationValueCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AdjudicationValueCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

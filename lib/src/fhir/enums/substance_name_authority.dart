@@ -82,7 +82,10 @@ enum SubstanceNameAuthority {
     }
   }
 
+  /// Returns a [String] from a [SubstanceNameAuthority] enum.
   String toJson() => toString();
+
+  /// Returns a [SubstanceNameAuthority] from a [String] enum.
   static SubstanceNameAuthority fromString(String str) {
     switch (str) {
       case 'BAN':
@@ -120,6 +123,7 @@ enum SubstanceNameAuthority {
     }
   }
 
+  /// Returns a [SubstanceNameAuthority] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SubstanceNameAuthority fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

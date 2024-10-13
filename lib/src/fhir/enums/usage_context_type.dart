@@ -61,7 +61,10 @@ enum UsageContextType {
     }
   }
 
+  /// Returns a [String] from a [UsageContextType] enum.
   String toJson() => toString();
+
+  /// Returns a [UsageContextType] from a [String] enum.
   static UsageContextType fromString(String str) {
     switch (str) {
       case 'gender':
@@ -87,6 +90,7 @@ enum UsageContextType {
     }
   }
 
+  /// Returns a [UsageContextType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static UsageContextType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

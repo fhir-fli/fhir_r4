@@ -61,7 +61,10 @@ enum MeasurePopulationType {
     }
   }
 
+  /// Returns a [String] from a [MeasurePopulationType] enum.
   String toJson() => toString();
+
+  /// Returns a [MeasurePopulationType] from a [String] enum.
   static MeasurePopulationType fromString(String str) {
     switch (str) {
       case 'initial-population':
@@ -87,6 +90,7 @@ enum MeasurePopulationType {
     }
   }
 
+  /// Returns a [MeasurePopulationType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static MeasurePopulationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

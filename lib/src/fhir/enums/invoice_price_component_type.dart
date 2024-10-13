@@ -43,7 +43,10 @@ enum InvoicePriceComponentType {
     }
   }
 
+  /// Returns a [String] from a [InvoicePriceComponentType] enum.
   String toJson() => toString();
+
+  /// Returns a [InvoicePriceComponentType] from a [String] enum.
   static InvoicePriceComponentType fromString(String str) {
     switch (str) {
       case 'base':
@@ -63,6 +66,7 @@ enum InvoicePriceComponentType {
     }
   }
 
+  /// Returns a [InvoicePriceComponentType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static InvoicePriceComponentType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

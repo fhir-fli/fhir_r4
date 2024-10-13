@@ -97,7 +97,10 @@ enum RequestResourceType {
     }
   }
 
+  /// Returns a [String] from a [RequestResourceType] enum.
   String toJson() => toString();
+
+  /// Returns a [RequestResourceType] from a [String] enum.
   static RequestResourceType fromString(String str) {
     switch (str) {
       case 'Appointment':
@@ -135,6 +138,7 @@ enum RequestResourceType {
     }
   }
 
+  /// Returns a [RequestResourceType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static RequestResourceType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -163,7 +163,10 @@ enum ConsentPolicyRuleCodes {
     }
   }
 
+  /// Returns a [String] from a [ConsentPolicyRuleCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ConsentPolicyRuleCodes] from a [String] enum.
   static ConsentPolicyRuleCodes fromString(String str) {
     switch (str) {
       case 'cric':
@@ -223,6 +226,7 @@ enum ConsentPolicyRuleCodes {
     }
   }
 
+  /// Returns a [ConsentPolicyRuleCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ConsentPolicyRuleCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

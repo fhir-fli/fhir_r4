@@ -55,7 +55,10 @@ enum ReportRelationshipType {
     }
   }
 
+  /// Returns a [String] from a [ReportRelationshipType] enum.
   String toJson() => toString();
+
+  /// Returns a [ReportRelationshipType] from a [String] enum.
   static ReportRelationshipType fromString(String str) {
     switch (str) {
       case 'replaces':
@@ -79,6 +82,7 @@ enum ReportRelationshipType {
     }
   }
 
+  /// Returns a [ReportRelationshipType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ReportRelationshipType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

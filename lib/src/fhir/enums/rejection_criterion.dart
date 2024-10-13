@@ -37,7 +37,10 @@ enum RejectionCriterion {
     }
   }
 
+  /// Returns a [String] from a [RejectionCriterion] enum.
   String toJson() => toString();
+
+  /// Returns a [RejectionCriterion] from a [String] enum.
   static RejectionCriterion fromString(String str) {
     switch (str) {
       case 'hemolized':
@@ -55,6 +58,7 @@ enum RejectionCriterion {
     }
   }
 
+  /// Returns a [RejectionCriterion] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static RejectionCriterion fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -37,7 +37,10 @@ enum RepositoryType {
     }
   }
 
+  /// Returns a [String] from a [RepositoryType] enum.
   String toJson() => toString();
+
+  /// Returns a [RepositoryType] from a [String] enum.
   static RepositoryType fromString(String str) {
     switch (str) {
       case 'directlink':
@@ -55,6 +58,7 @@ enum RepositoryType {
     }
   }
 
+  /// Returns a [RepositoryType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static RepositoryType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

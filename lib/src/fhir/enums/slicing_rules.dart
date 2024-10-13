@@ -25,7 +25,10 @@ enum SlicingRules {
     }
   }
 
+  /// Returns a [String] from a [SlicingRules] enum.
   String toJson() => toString();
+
+  /// Returns a [SlicingRules] from a [String] enum.
   static SlicingRules fromString(String str) {
     switch (str) {
       case 'closed':
@@ -39,6 +42,7 @@ enum SlicingRules {
     }
   }
 
+  /// Returns a [SlicingRules] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SlicingRules fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

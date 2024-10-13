@@ -61,7 +61,10 @@ enum GoalAchievementStatus {
     }
   }
 
+  /// Returns a [String] from a [GoalAchievementStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [GoalAchievementStatus] from a [String] enum.
   static GoalAchievementStatus fromString(String str) {
     switch (str) {
       case 'in-progress':
@@ -87,6 +90,7 @@ enum GoalAchievementStatus {
     }
   }
 
+  /// Returns a [GoalAchievementStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static GoalAchievementStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

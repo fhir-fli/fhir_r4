@@ -37,7 +37,10 @@ enum ReferenceHandlingPolicy {
     }
   }
 
+  /// Returns a [String] from a [ReferenceHandlingPolicy] enum.
   String toJson() => toString();
+
+  /// Returns a [ReferenceHandlingPolicy] from a [String] enum.
   static ReferenceHandlingPolicy fromString(String str) {
     switch (str) {
       case 'literal':
@@ -55,6 +58,7 @@ enum ReferenceHandlingPolicy {
     }
   }
 
+  /// Returns a [ReferenceHandlingPolicy] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ReferenceHandlingPolicy fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

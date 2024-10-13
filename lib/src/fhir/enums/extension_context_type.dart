@@ -25,7 +25,10 @@ enum ExtensionContextType {
     }
   }
 
+  /// Returns a [String] from a [ExtensionContextType] enum.
   String toJson() => toString();
+
+  /// Returns a [ExtensionContextType] from a [String] enum.
   static ExtensionContextType fromString(String str) {
     switch (str) {
       case 'fhirpath':
@@ -39,6 +42,7 @@ enum ExtensionContextType {
     }
   }
 
+  /// Returns a [ExtensionContextType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ExtensionContextType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

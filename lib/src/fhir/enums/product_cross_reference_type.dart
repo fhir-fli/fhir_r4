@@ -43,7 +43,10 @@ enum ProductCrossReferenceType {
     }
   }
 
+  /// Returns a [String] from a [ProductCrossReferenceType] enum.
   String toJson() => toString();
+
+  /// Returns a [ProductCrossReferenceType] from a [String] enum.
   static ProductCrossReferenceType fromString(String str) {
     switch (str) {
       case 'InvestigationalProduct':
@@ -63,6 +66,7 @@ enum ProductCrossReferenceType {
     }
   }
 
+  /// Returns a [ProductCrossReferenceType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ProductCrossReferenceType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

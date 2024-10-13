@@ -31,7 +31,10 @@ enum SpecimenStatus {
     }
   }
 
+  /// Returns a [String] from a [SpecimenStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [SpecimenStatus] from a [String] enum.
   static SpecimenStatus fromString(String str) {
     switch (str) {
       case 'available':
@@ -47,6 +50,7 @@ enum SpecimenStatus {
     }
   }
 
+  /// Returns a [SpecimenStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SpecimenStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -25,7 +25,10 @@ enum ActionGroupingBehavior {
     }
   }
 
+  /// Returns a [String] from a [ActionGroupingBehavior] enum.
   String toJson() => toString();
+
+  /// Returns a [ActionGroupingBehavior] from a [String] enum.
   static ActionGroupingBehavior fromString(String str) {
     switch (str) {
       case 'visual-group':
@@ -39,6 +42,7 @@ enum ActionGroupingBehavior {
     }
   }
 
+  /// Returns a [ActionGroupingBehavior] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ActionGroupingBehavior fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

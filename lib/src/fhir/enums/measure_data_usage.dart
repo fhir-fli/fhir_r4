@@ -19,7 +19,10 @@ enum MeasureDataUsage {
     }
   }
 
+  /// Returns a [String] from a [MeasureDataUsage] enum.
   String toJson() => toString();
+
+  /// Returns a [MeasureDataUsage] from a [String] enum.
   static MeasureDataUsage fromString(String str) {
     switch (str) {
       case 'supplemental-data':
@@ -31,6 +34,7 @@ enum MeasureDataUsage {
     }
   }
 
+  /// Returns a [MeasureDataUsage] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static MeasureDataUsage fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

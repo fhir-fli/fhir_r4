@@ -32,7 +32,10 @@ enum SubstanceRelationshipType {
     }
   }
 
+  /// Returns a [String] from a [SubstanceRelationshipType] enum.
   String toJson() => toString();
+
+  /// Returns a [SubstanceRelationshipType] from a [String] enum.
   static SubstanceRelationshipType fromString(String str) {
     switch (str) {
       case 'Salt':
@@ -50,6 +53,7 @@ enum SubstanceRelationshipType {
     }
   }
 
+  /// Returns a [SubstanceRelationshipType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SubstanceRelationshipType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

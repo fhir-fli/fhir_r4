@@ -277,7 +277,10 @@ enum TestScriptOperationCode {
     }
   }
 
+  /// Returns a [String] from a [TestScriptOperationCode] enum.
   String toJson() => toString();
+
+  /// Returns a [TestScriptOperationCode] from a [String] enum.
   static TestScriptOperationCode fromString(String str) {
     switch (str) {
       case 'read':
@@ -375,6 +378,7 @@ enum TestScriptOperationCode {
     }
   }
 
+  /// Returns a [TestScriptOperationCode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static TestScriptOperationCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

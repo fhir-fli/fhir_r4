@@ -97,7 +97,10 @@ enum DataAbsentReason {
     }
   }
 
+  /// Returns a [String] from a [DataAbsentReason] enum.
   String toJson() => toString();
+
+  /// Returns a [DataAbsentReason] from a [String] enum.
   static DataAbsentReason fromString(String str) {
     switch (str) {
       case 'unknown':
@@ -135,6 +138,7 @@ enum DataAbsentReason {
     }
   }
 
+  /// Returns a [DataAbsentReason] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static DataAbsentReason fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -19,7 +19,10 @@ enum ActionCardinalityBehavior {
     }
   }
 
+  /// Returns a [String] from a [ActionCardinalityBehavior] enum.
   String toJson() => toString();
+
+  /// Returns a [ActionCardinalityBehavior] from a [String] enum.
   static ActionCardinalityBehavior fromString(String str) {
     switch (str) {
       case 'single':
@@ -31,6 +34,7 @@ enum ActionCardinalityBehavior {
     }
   }
 
+  /// Returns a [ActionCardinalityBehavior] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ActionCardinalityBehavior fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

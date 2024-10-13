@@ -43,7 +43,10 @@ enum UDIEntryType {
     }
   }
 
+  /// Returns a [String] from a [UDIEntryType] enum.
   String toJson() => toString();
+
+  /// Returns a [UDIEntryType] from a [String] enum.
   static UDIEntryType fromString(String str) {
     switch (str) {
       case 'barcode':
@@ -63,6 +66,7 @@ enum UDIEntryType {
     }
   }
 
+  /// Returns a [UDIEntryType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static UDIEntryType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

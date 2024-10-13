@@ -13,7 +13,10 @@ enum CommonTags {
     }
   }
 
+  /// Returns a [String] from a [CommonTags] enum.
   String toJson() => toString();
+
+  /// Returns a [CommonTags] from a [String] enum.
   static CommonTags fromString(String str) {
     switch (str) {
       case 'actionable':
@@ -23,6 +26,7 @@ enum CommonTags {
     }
   }
 
+  /// Returns a [CommonTags] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CommonTags fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

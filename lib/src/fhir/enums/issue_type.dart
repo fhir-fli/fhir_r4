@@ -193,7 +193,10 @@ enum IssueType {
     }
   }
 
+  /// Returns a [String] from a [IssueType] enum.
   String toJson() => toString();
+
+  /// Returns a [IssueType] from a [String] enum.
   static IssueType fromString(String str) {
     switch (str) {
       case 'invalid':
@@ -263,6 +266,7 @@ enum IssueType {
     }
   }
 
+  /// Returns a [IssueType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static IssueType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

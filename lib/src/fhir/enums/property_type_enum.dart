@@ -49,7 +49,10 @@ enum PropertyTypeEnum {
     }
   }
 
+  /// Returns a [String] from a [PropertyTypeEnum] enum.
   String toJson() => toString();
+
+  /// Returns a [PropertyTypeEnum] from a [String] enum.
   static PropertyTypeEnum fromString(String str) {
     switch (str) {
       case 'code':
@@ -71,6 +74,7 @@ enum PropertyTypeEnum {
     }
   }
 
+  /// Returns a [PropertyTypeEnum] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static PropertyTypeEnum fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

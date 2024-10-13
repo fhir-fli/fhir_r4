@@ -19,7 +19,10 @@ enum LocationMode {
     }
   }
 
+  /// Returns a [String] from a [LocationMode] enum.
   String toJson() => toString();
+
+  /// Returns a [LocationMode] from a [String] enum.
   static LocationMode fromString(String str) {
     switch (str) {
       case 'instance':
@@ -31,6 +34,7 @@ enum LocationMode {
     }
   }
 
+  /// Returns a [LocationMode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static LocationMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -31,7 +31,10 @@ enum CommunicationCategory {
     }
   }
 
+  /// Returns a [String] from a [CommunicationCategory] enum.
   String toJson() => toString();
+
+  /// Returns a [CommunicationCategory] from a [String] enum.
   static CommunicationCategory fromString(String str) {
     switch (str) {
       case 'alert':
@@ -47,6 +50,7 @@ enum CommunicationCategory {
     }
   }
 
+  /// Returns a [CommunicationCategory] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CommunicationCategory fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

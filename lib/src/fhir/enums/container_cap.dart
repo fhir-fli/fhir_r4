@@ -79,7 +79,10 @@ enum ContainerCap {
     }
   }
 
+  /// Returns a [String] from a [ContainerCap] enum.
   String toJson() => toString();
+
+  /// Returns a [ContainerCap] from a [String] enum.
   static ContainerCap fromString(String str) {
     switch (str) {
       case 'red':
@@ -111,6 +114,7 @@ enum ContainerCap {
     }
   }
 
+  /// Returns a [ContainerCap] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ContainerCap fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

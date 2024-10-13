@@ -31,7 +31,10 @@ enum QuantityComparator {
     }
   }
 
+  /// Returns a [String] from a [QuantityComparator] enum.
   String toJson() => toString();
+
+  /// Returns a [QuantityComparator] from a [String] enum.
   static QuantityComparator fromString(String str) {
     switch (str) {
       case '<':
@@ -47,6 +50,7 @@ enum QuantityComparator {
     }
   }
 
+  /// Returns a [QuantityComparator] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static QuantityComparator fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

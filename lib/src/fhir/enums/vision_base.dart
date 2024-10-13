@@ -31,7 +31,10 @@ enum VisionBase {
     }
   }
 
+  /// Returns a [String] from a [VisionBase] enum.
   String toJson() => toString();
+
+  /// Returns a [VisionBase] from a [String] enum.
   static VisionBase fromString(String str) {
     switch (str) {
       case 'up':
@@ -47,6 +50,7 @@ enum VisionBase {
     }
   }
 
+  /// Returns a [VisionBase] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static VisionBase fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -61,7 +61,10 @@ enum ActionCode {
     }
   }
 
+  /// Returns a [String] from a [ActionCode] enum.
   String toJson() => toString();
+
+  /// Returns a [ActionCode] from a [String] enum.
   static ActionCode fromString(String str) {
     switch (str) {
       case 'send-message':
@@ -87,6 +90,7 @@ enum ActionCode {
     }
   }
 
+  /// Returns a [ActionCode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ActionCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

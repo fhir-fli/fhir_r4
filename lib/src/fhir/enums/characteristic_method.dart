@@ -13,7 +13,10 @@ enum CharacteristicMethod {
     }
   }
 
+  /// Returns a [String] from a [CharacteristicMethod] enum.
   String toJson() => toString();
+
+  /// Returns a [CharacteristicMethod] from a [String] enum.
   static CharacteristicMethod fromString(String str) {
     switch (str) {
       case 'Default':
@@ -23,6 +26,7 @@ enum CharacteristicMethod {
     }
   }
 
+  /// Returns a [CharacteristicMethod] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CharacteristicMethod fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

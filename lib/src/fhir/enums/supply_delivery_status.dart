@@ -31,7 +31,10 @@ enum SupplyDeliveryStatus {
     }
   }
 
+  /// Returns a [String] from a [SupplyDeliveryStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [SupplyDeliveryStatus] from a [String] enum.
   static SupplyDeliveryStatus fromString(String str) {
     switch (str) {
       case 'in-progress':
@@ -47,6 +50,7 @@ enum SupplyDeliveryStatus {
     }
   }
 
+  /// Returns a [SupplyDeliveryStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SupplyDeliveryStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

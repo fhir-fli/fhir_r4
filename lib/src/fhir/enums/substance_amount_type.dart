@@ -27,7 +27,10 @@ enum SubstanceAmountType {
     }
   }
 
+  /// Returns a [String] from a [SubstanceAmountType] enum.
   String toJson() => toString();
+
+  /// Returns a [SubstanceAmountType] from a [String] enum.
   static SubstanceAmountType fromString(String str) {
     switch (str) {
       case 'Average':
@@ -43,6 +46,7 @@ enum SubstanceAmountType {
     }
   }
 
+  /// Returns a [SubstanceAmountType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SubstanceAmountType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

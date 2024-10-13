@@ -22,7 +22,10 @@ enum SubstanceRepresentationType {
     }
   }
 
+  /// Returns a [String] from a [SubstanceRepresentationType] enum.
   String toJson() => toString();
+
+  /// Returns a [SubstanceRepresentationType] from a [String] enum.
   static SubstanceRepresentationType fromString(String str) {
     switch (str) {
       case 'Systematic':
@@ -36,6 +39,7 @@ enum SubstanceRepresentationType {
     }
   }
 
+  /// Returns a [SubstanceRepresentationType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SubstanceRepresentationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

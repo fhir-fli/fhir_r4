@@ -31,7 +31,10 @@ enum FamilyHistoryAbsentReason {
     }
   }
 
+  /// Returns a [String] from a [FamilyHistoryAbsentReason] enum.
   String toJson() => toString();
+
+  /// Returns a [FamilyHistoryAbsentReason] from a [String] enum.
   static FamilyHistoryAbsentReason fromString(String str) {
     switch (str) {
       case 'subject-unknown':
@@ -47,6 +50,7 @@ enum FamilyHistoryAbsentReason {
     }
   }
 
+  /// Returns a [FamilyHistoryAbsentReason] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static FamilyHistoryAbsentReason fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

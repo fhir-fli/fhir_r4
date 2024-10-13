@@ -31,7 +31,10 @@ enum ContributorType {
     }
   }
 
+  /// Returns a [String] from a [ContributorType] enum.
   String toJson() => toString();
+
+  /// Returns a [ContributorType] from a [String] enum.
   static ContributorType fromString(String str) {
     switch (str) {
       case 'author':
@@ -47,6 +50,7 @@ enum ContributorType {
     }
   }
 
+  /// Returns a [ContributorType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ContributorType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -25,7 +25,10 @@ enum StructureMapGroupTypeMode {
     }
   }
 
+  /// Returns a [String] from a [StructureMapGroupTypeMode] enum.
   String toJson() => toString();
+
+  /// Returns a [StructureMapGroupTypeMode] from a [String] enum.
   static StructureMapGroupTypeMode fromString(String str) {
     switch (str) {
       case 'none':
@@ -39,6 +42,7 @@ enum StructureMapGroupTypeMode {
     }
   }
 
+  /// Returns a [StructureMapGroupTypeMode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static StructureMapGroupTypeMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

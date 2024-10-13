@@ -61,7 +61,10 @@ enum CarePlanActivityStatus {
     }
   }
 
+  /// Returns a [String] from a [CarePlanActivityStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [CarePlanActivityStatus] from a [String] enum.
   static CarePlanActivityStatus fromString(String str) {
     switch (str) {
       case 'not-started':
@@ -87,6 +90,7 @@ enum CarePlanActivityStatus {
     }
   }
 
+  /// Returns a [CarePlanActivityStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CarePlanActivityStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

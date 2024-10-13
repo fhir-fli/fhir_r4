@@ -865,7 +865,10 @@ enum CarePlanActivityKind {
     }
   }
 
+  /// Returns a [String] from a [CarePlanActivityKind] enum.
   String toJson() => toString();
+
+  /// Returns a [CarePlanActivityKind] from a [String] enum.
   static CarePlanActivityKind fromString(String str) {
     switch (str) {
       case 'Resource':
@@ -1159,6 +1162,7 @@ enum CarePlanActivityKind {
     }
   }
 
+  /// Returns a [CarePlanActivityKind] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CarePlanActivityKind fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

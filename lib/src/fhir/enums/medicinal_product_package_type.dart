@@ -67,7 +67,10 @@ enum MedicinalProductPackageType {
     }
   }
 
+  /// Returns a [String] from a [MedicinalProductPackageType] enum.
   String toJson() => toString();
+
+  /// Returns a [MedicinalProductPackageType] from a [String] enum.
   static MedicinalProductPackageType fromString(String str) {
     switch (str) {
       case '100000073490':
@@ -99,6 +102,7 @@ enum MedicinalProductPackageType {
     }
   }
 
+  /// Returns a [MedicinalProductPackageType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static MedicinalProductPackageType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

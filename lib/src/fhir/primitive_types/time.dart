@@ -38,8 +38,8 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
     return FhirTime(timeString);
   }
 
-  /// Factory method to construct [FhirTime] from JSON input. Validates the input
-  /// and throws a [FormatException] if the input is not a valid String.
+  /// Factory method to construct [FhirTime] from JSON input. Validates the
+  /// input and throws a [FormatException] if the input is not a valid String.
   factory FhirTime.fromJson(dynamic json) {
     if (json is String) {
       return FhirTime(json);

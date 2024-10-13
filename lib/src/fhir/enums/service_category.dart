@@ -235,7 +235,10 @@ enum ServiceCategory {
     }
   }
 
+  /// Returns a [String] from a [ServiceCategory] enum.
   String toJson() => toString();
+
+  /// Returns a [ServiceCategory] from a [String] enum.
   static ServiceCategory fromString(String str) {
     switch (str) {
       case '1':
@@ -319,6 +322,7 @@ enum ServiceCategory {
     }
   }
 
+  /// Returns a [ServiceCategory] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ServiceCategory fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

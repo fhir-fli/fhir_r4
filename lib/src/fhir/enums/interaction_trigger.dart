@@ -109,7 +109,10 @@ enum InteractionTrigger {
     }
   }
 
+  /// Returns a [String] from a [InteractionTrigger] enum.
   String toJson() => toString();
+
+  /// Returns a [InteractionTrigger] from a [String] enum.
   static InteractionTrigger fromString(String str) {
     switch (str) {
       case 'read':
@@ -151,6 +154,7 @@ enum InteractionTrigger {
     }
   }
 
+  /// Returns a [InteractionTrigger] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static InteractionTrigger fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

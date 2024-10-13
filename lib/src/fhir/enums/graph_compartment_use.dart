@@ -19,7 +19,10 @@ enum GraphCompartmentUse {
     }
   }
 
+  /// Returns a [String] from a [GraphCompartmentUse] enum.
   String toJson() => toString();
+
+  /// Returns a [GraphCompartmentUse] from a [String] enum.
   static GraphCompartmentUse fromString(String str) {
     switch (str) {
       case 'condition':
@@ -31,6 +34,7 @@ enum GraphCompartmentUse {
     }
   }
 
+  /// Returns a [GraphCompartmentUse] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static GraphCompartmentUse fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

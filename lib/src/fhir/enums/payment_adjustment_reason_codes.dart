@@ -19,7 +19,10 @@ enum PaymentAdjustmentReasonCodes {
     }
   }
 
+  /// Returns a [String] from a [PaymentAdjustmentReasonCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [PaymentAdjustmentReasonCodes] from a [String] enum.
   static PaymentAdjustmentReasonCodes fromString(String str) {
     switch (str) {
       case 'a001':
@@ -31,6 +34,7 @@ enum PaymentAdjustmentReasonCodes {
     }
   }
 
+  /// Returns a [PaymentAdjustmentReasonCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static PaymentAdjustmentReasonCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

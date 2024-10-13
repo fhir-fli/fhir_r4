@@ -2083,7 +2083,10 @@ enum SPDXLicense {
     }
   }
 
+  /// Returns a [String] from a [SPDXLicense] enum.
   String toJson() => toString();
+
+  /// Returns a [SPDXLicense] from a [String] enum.
   static SPDXLicense fromString(String str) {
     switch (str) {
       case 'not-open-source':
@@ -2783,6 +2786,7 @@ enum SPDXLicense {
     }
   }
 
+  /// Returns a [SPDXLicense] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SPDXLicense fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

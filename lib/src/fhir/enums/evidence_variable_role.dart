@@ -43,7 +43,10 @@ enum EvidenceVariableRole {
     }
   }
 
+  /// Returns a [String] from a [EvidenceVariableRole] enum.
   String toJson() => toString();
+
+  /// Returns a [EvidenceVariableRole] from a [String] enum.
   static EvidenceVariableRole fromString(String str) {
     switch (str) {
       case 'population':
@@ -63,6 +66,7 @@ enum EvidenceVariableRole {
     }
   }
 
+  /// Returns a [EvidenceVariableRole] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static EvidenceVariableRole fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

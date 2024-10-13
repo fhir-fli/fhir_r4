@@ -31,7 +31,10 @@ enum CompositionStatus {
     }
   }
 
+  /// Returns a [String] from a [CompositionStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [CompositionStatus] from a [String] enum.
   static CompositionStatus fromString(String str) {
     switch (str) {
       case 'preliminary':
@@ -47,6 +50,7 @@ enum CompositionStatus {
     }
   }
 
+  /// Returns a [CompositionStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CompositionStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

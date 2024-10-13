@@ -43,7 +43,10 @@ enum ModifierTypeCodes {
     }
   }
 
+  /// Returns a [String] from a [ModifierTypeCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ModifierTypeCodes] from a [String] enum.
   static ModifierTypeCodes fromString(String str) {
     switch (str) {
       case 'a':
@@ -63,6 +66,7 @@ enum ModifierTypeCodes {
     }
   }
 
+  /// Returns a [ModifierTypeCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ModifierTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

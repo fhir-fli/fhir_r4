@@ -232,7 +232,10 @@ enum DocumentClassValueSet {
     }
   }
 
+  /// Returns a [String] from a [DocumentClassValueSet] enum.
   String toJson() => toString();
+
+  /// Returns a [DocumentClassValueSet] from a [String] enum.
   static DocumentClassValueSet fromString(String str) {
     switch (str) {
       case '11369-6':
@@ -330,6 +333,7 @@ enum DocumentClassValueSet {
     }
   }
 
+  /// Returns a [DocumentClassValueSet] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static DocumentClassValueSet fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

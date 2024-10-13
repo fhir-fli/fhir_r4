@@ -31,7 +31,10 @@ enum DeviceMetricOperationalStatus {
     }
   }
 
+  /// Returns a [String] from a [DeviceMetricOperationalStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [DeviceMetricOperationalStatus] from a [String] enum.
   static DeviceMetricOperationalStatus fromString(String str) {
     switch (str) {
       case 'on':
@@ -47,6 +50,7 @@ enum DeviceMetricOperationalStatus {
     }
   }
 
+  /// Returns a [DeviceMetricOperationalStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static DeviceMetricOperationalStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

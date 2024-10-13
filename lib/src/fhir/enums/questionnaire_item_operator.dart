@@ -49,7 +49,10 @@ enum QuestionnaireItemOperator {
     }
   }
 
+  /// Returns a [String] from a [QuestionnaireItemOperator] enum.
   String toJson() => toString();
+
+  /// Returns a [QuestionnaireItemOperator] from a [String] enum.
   static QuestionnaireItemOperator fromString(String str) {
     switch (str) {
       case 'exists':
@@ -71,6 +74,7 @@ enum QuestionnaireItemOperator {
     }
   }
 
+  /// Returns a [QuestionnaireItemOperator] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static QuestionnaireItemOperator fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

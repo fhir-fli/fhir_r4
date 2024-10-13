@@ -61,7 +61,10 @@ enum FilterOperator {
     }
   }
 
+  /// Returns a [String] from a [FilterOperator] enum.
   String toJson() => toString();
+
+  /// Returns a [FilterOperator] from a [String] enum.
   static FilterOperator fromString(String str) {
     switch (str) {
       case '=':
@@ -87,6 +90,7 @@ enum FilterOperator {
     }
   }
 
+  /// Returns a [FilterOperator] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static FilterOperator fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

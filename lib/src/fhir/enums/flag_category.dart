@@ -67,7 +67,10 @@ enum FlagCategory {
     }
   }
 
+  /// Returns a [String] from a [FlagCategory] enum.
   String toJson() => toString();
+
+  /// Returns a [FlagCategory] from a [String] enum.
   static FlagCategory fromString(String str) {
     switch (str) {
       case 'diet':
@@ -95,6 +98,7 @@ enum FlagCategory {
     }
   }
 
+  /// Returns a [FlagCategory] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static FlagCategory fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -19,7 +19,10 @@ enum CatalogEntryRelationType {
     }
   }
 
+  /// Returns a [String] from a [CatalogEntryRelationType] enum.
   String toJson() => toString();
+
+  /// Returns a [CatalogEntryRelationType] from a [String] enum.
   static CatalogEntryRelationType fromString(String str) {
     switch (str) {
       case 'triggers':
@@ -31,6 +34,7 @@ enum CatalogEntryRelationType {
     }
   }
 
+  /// Returns a [CatalogEntryRelationType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CatalogEntryRelationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -97,7 +97,10 @@ enum ContractResourceStatusCodes {
     }
   }
 
+  /// Returns a [String] from a [ContractResourceStatusCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ContractResourceStatusCodes] from a [String] enum.
   static ContractResourceStatusCodes fromString(String str) {
     switch (str) {
       case 'amended':
@@ -135,6 +138,7 @@ enum ContractResourceStatusCodes {
     }
   }
 
+  /// Returns a [ContractResourceStatusCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ContractResourceStatusCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

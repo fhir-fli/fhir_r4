@@ -13,7 +13,10 @@ enum ContractResourceDefinitionSubtypeCodes {
     }
   }
 
+  /// Returns a [String] from a [ContractResourceDefinitionSubtypeCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ContractResourceDefinitionSubtypeCodes] from a [String] enum.
   static ContractResourceDefinitionSubtypeCodes fromString(String str) {
     switch (str) {
       case 'temp':
@@ -23,6 +26,7 @@ enum ContractResourceDefinitionSubtypeCodes {
     }
   }
 
+  /// Returns a [ContractResourceDefinitionSubtypeCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ContractResourceDefinitionSubtypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

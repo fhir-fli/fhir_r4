@@ -19,7 +19,10 @@ enum DocumentMode {
     }
   }
 
+  /// Returns a [String] from a [DocumentMode] enum.
   String toJson() => toString();
+
+  /// Returns a [DocumentMode] from a [String] enum.
   static DocumentMode fromString(String str) {
     switch (str) {
       case 'producer':
@@ -31,6 +34,7 @@ enum DocumentMode {
     }
   }
 
+  /// Returns a [DocumentMode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static DocumentMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

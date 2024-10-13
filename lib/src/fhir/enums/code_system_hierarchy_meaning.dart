@@ -31,7 +31,10 @@ enum CodeSystemHierarchyMeaning {
     }
   }
 
+  /// Returns a [String] from a [CodeSystemHierarchyMeaning] enum.
   String toJson() => toString();
+
+  /// Returns a [CodeSystemHierarchyMeaning] from a [String] enum.
   static CodeSystemHierarchyMeaning fromString(String str) {
     switch (str) {
       case 'grouped-by':
@@ -47,6 +50,7 @@ enum CodeSystemHierarchyMeaning {
     }
   }
 
+  /// Returns a [CodeSystemHierarchyMeaning] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CodeSystemHierarchyMeaning fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

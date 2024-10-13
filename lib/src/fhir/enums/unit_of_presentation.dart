@@ -287,7 +287,10 @@ enum UnitOfPresentation {
     }
   }
 
+  /// Returns a [String] from a [UnitOfPresentation] enum.
   String toJson() => toString();
+
+  /// Returns a [UnitOfPresentation] from a [String] enum.
   static UnitOfPresentation fromString(String str) {
     switch (str) {
       case '200000002108':
@@ -407,6 +410,7 @@ enum UnitOfPresentation {
     }
   }
 
+  /// Returns a [UnitOfPresentation] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static UnitOfPresentation fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

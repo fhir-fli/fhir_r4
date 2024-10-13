@@ -91,7 +91,10 @@ enum AdverseEventCategory {
     }
   }
 
+  /// Returns a [String] from a [AdverseEventCategory] enum.
   String toJson() => toString();
+
+  /// Returns a [AdverseEventCategory] from a [String] enum.
   static AdverseEventCategory fromString(String str) {
     switch (str) {
       case 'product-problem':
@@ -127,6 +130,7 @@ enum AdverseEventCategory {
     }
   }
 
+  /// Returns a [AdverseEventCategory] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AdverseEventCategory fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

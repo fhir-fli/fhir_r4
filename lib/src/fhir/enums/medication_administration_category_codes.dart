@@ -25,7 +25,10 @@ enum MedicationAdministrationCategoryCodes {
     }
   }
 
+  /// Returns a [String] from a [MedicationAdministrationCategoryCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [MedicationAdministrationCategoryCodes] from a [String] enum.
   static MedicationAdministrationCategoryCodes fromString(String str) {
     switch (str) {
       case 'inpatient':
@@ -39,6 +42,7 @@ enum MedicationAdministrationCategoryCodes {
     }
   }
 
+  /// Returns a [MedicationAdministrationCategoryCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static MedicationAdministrationCategoryCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

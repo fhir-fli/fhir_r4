@@ -49,7 +49,10 @@ enum ContributorSummaryType {
     }
   }
 
+  /// Returns a [String] from a [ContributorSummaryType] enum.
   String toJson() => toString();
+
+  /// Returns a [ContributorSummaryType] from a [String] enum.
   static ContributorSummaryType fromString(String str) {
     switch (str) {
       case 'author-string':
@@ -71,6 +74,7 @@ enum ContributorSummaryType {
     }
   }
 
+  /// Returns a [ContributorSummaryType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ContributorSummaryType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

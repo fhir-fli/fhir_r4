@@ -31,7 +31,10 @@ enum NamingSystemIdentifierType {
     }
   }
 
+  /// Returns a [String] from a [NamingSystemIdentifierType] enum.
   String toJson() => toString();
+
+  /// Returns a [NamingSystemIdentifierType] from a [String] enum.
   static NamingSystemIdentifierType fromString(String str) {
     switch (str) {
       case 'oid':
@@ -47,6 +50,7 @@ enum NamingSystemIdentifierType {
     }
   }
 
+  /// Returns a [NamingSystemIdentifierType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static NamingSystemIdentifierType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

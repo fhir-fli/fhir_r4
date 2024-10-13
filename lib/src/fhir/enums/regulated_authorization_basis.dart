@@ -57,7 +57,10 @@ enum RegulatedAuthorizationBasis {
     }
   }
 
+  /// Returns a [String] from a [RegulatedAuthorizationBasis] enum.
   String toJson() => toString();
+
+  /// Returns a [RegulatedAuthorizationBasis] from a [String] enum.
   static RegulatedAuthorizationBasis fromString(String str) {
     switch (str) {
       case 'Full':
@@ -85,6 +88,7 @@ enum RegulatedAuthorizationBasis {
     }
   }
 
+  /// Returns a [RegulatedAuthorizationBasis] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static RegulatedAuthorizationBasis fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

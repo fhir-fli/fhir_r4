@@ -109,7 +109,10 @@ enum StructureMapTransform {
     }
   }
 
+  /// Returns a [String] from a [StructureMapTransform] enum.
   String toJson() => toString();
+
+  /// Returns a [StructureMapTransform] from a [String] enum.
   static StructureMapTransform fromString(String str) {
     switch (str) {
       case 'create':
@@ -151,6 +154,7 @@ enum StructureMapTransform {
     }
   }
 
+  /// Returns a [StructureMapTransform] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static StructureMapTransform fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

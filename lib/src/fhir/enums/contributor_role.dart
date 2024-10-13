@@ -49,7 +49,10 @@ enum ContributorRole {
     }
   }
 
+  /// Returns a [String] from a [ContributorRole] enum.
   String toJson() => toString();
+
+  /// Returns a [ContributorRole] from a [String] enum.
   static ContributorRole fromString(String str) {
     switch (str) {
       case 'publisher':
@@ -71,6 +74,7 @@ enum ContributorRole {
     }
   }
 
+  /// Returns a [ContributorRole] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ContributorRole fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

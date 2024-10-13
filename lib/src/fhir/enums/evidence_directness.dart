@@ -31,7 +31,10 @@ enum EvidenceDirectness {
     }
   }
 
+  /// Returns a [String] from a [EvidenceDirectness] enum.
   String toJson() => toString();
+
+  /// Returns a [EvidenceDirectness] from a [String] enum.
   static EvidenceDirectness fromString(String str) {
     switch (str) {
       case 'low':
@@ -47,6 +50,7 @@ enum EvidenceDirectness {
     }
   }
 
+  /// Returns a [EvidenceDirectness] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static EvidenceDirectness fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

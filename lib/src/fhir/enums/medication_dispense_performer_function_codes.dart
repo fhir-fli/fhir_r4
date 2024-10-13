@@ -31,7 +31,10 @@ enum MedicationDispensePerformerFunctionCodes {
     }
   }
 
+  /// Returns a [String] from a [MedicationDispensePerformerFunctionCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [MedicationDispensePerformerFunctionCodes] from a [String] enum.
   static MedicationDispensePerformerFunctionCodes fromString(String str) {
     switch (str) {
       case 'dataenterer':
@@ -47,6 +50,7 @@ enum MedicationDispensePerformerFunctionCodes {
     }
   }
 
+  /// Returns a [MedicationDispensePerformerFunctionCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static MedicationDispensePerformerFunctionCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -77,7 +77,10 @@ enum TextureModifierCodes {
     }
   }
 
+  /// Returns a [String] from a [TextureModifierCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [TextureModifierCodes] from a [String] enum.
   static TextureModifierCodes fromString(String str) {
     switch (str) {
       case '228053002':
@@ -113,6 +116,7 @@ enum TextureModifierCodes {
     }
   }
 
+  /// Returns a [TextureModifierCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static TextureModifierCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

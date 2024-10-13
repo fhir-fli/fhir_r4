@@ -103,7 +103,10 @@ enum ContributorSummaryStyle {
     }
   }
 
+  /// Returns a [String] from a [ContributorSummaryStyle] enum.
   String toJson() => toString();
+
+  /// Returns a [ContributorSummaryStyle] from a [String] enum.
   static ContributorSummaryStyle fromString(String str) {
     switch (str) {
       case 'a1full':
@@ -143,6 +146,7 @@ enum ContributorSummaryStyle {
     }
   }
 
+  /// Returns a [ContributorSummaryStyle] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ContributorSummaryStyle fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

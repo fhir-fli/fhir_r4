@@ -22,7 +22,10 @@ enum UndesirablEffectFrequency {
     }
   }
 
+  /// Returns a [String] from a [UndesirablEffectFrequency] enum.
   String toJson() => toString();
+
+  /// Returns a [UndesirablEffectFrequency] from a [String] enum.
   static UndesirablEffectFrequency fromString(String str) {
     switch (str) {
       case 'Common':
@@ -36,6 +39,7 @@ enum UndesirablEffectFrequency {
     }
   }
 
+  /// Returns a [UndesirablEffectFrequency] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static UndesirablEffectFrequency fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

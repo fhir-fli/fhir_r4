@@ -19,7 +19,10 @@ enum ExamplePaymentTypeCodes {
     }
   }
 
+  /// Returns a [String] from a [ExamplePaymentTypeCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ExamplePaymentTypeCodes] from a [String] enum.
   static ExamplePaymentTypeCodes fromString(String str) {
     switch (str) {
       case 'complete':
@@ -31,6 +34,7 @@ enum ExamplePaymentTypeCodes {
     }
   }
 
+  /// Returns a [ExamplePaymentTypeCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ExamplePaymentTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -37,7 +37,10 @@ enum BiologicallyDerivedProductCategory {
     }
   }
 
+  /// Returns a [String] from a [BiologicallyDerivedProductCategory] enum.
   String toJson() => toString();
+
+  /// Returns a [BiologicallyDerivedProductCategory] from a [String] enum.
   static BiologicallyDerivedProductCategory fromString(String str) {
     switch (str) {
       case 'organ':
@@ -55,6 +58,7 @@ enum BiologicallyDerivedProductCategory {
     }
   }
 
+  /// Returns a [BiologicallyDerivedProductCategory] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static BiologicallyDerivedProductCategory fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

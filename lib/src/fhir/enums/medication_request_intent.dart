@@ -55,7 +55,10 @@ enum MedicationRequestIntent {
     }
   }
 
+  /// Returns a [String] from a [MedicationRequestIntent] enum.
   String toJson() => toString();
+
+  /// Returns a [MedicationRequestIntent] from a [String] enum.
   static MedicationRequestIntent fromString(String str) {
     switch (str) {
       case 'proposal':
@@ -79,6 +82,7 @@ enum MedicationRequestIntent {
     }
   }
 
+  /// Returns a [MedicationRequestIntent] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static MedicationRequestIntent fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

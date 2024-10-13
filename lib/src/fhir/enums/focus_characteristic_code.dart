@@ -55,7 +55,10 @@ enum FocusCharacteristicCode {
     }
   }
 
+  /// Returns a [String] from a [FocusCharacteristicCode] enum.
   String toJson() => toString();
+
+  /// Returns a [FocusCharacteristicCode] from a [String] enum.
   static FocusCharacteristicCode fromString(String str) {
     switch (str) {
       case 'citation':
@@ -79,6 +82,7 @@ enum FocusCharacteristicCode {
     }
   }
 
+  /// Returns a [FocusCharacteristicCode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static FocusCharacteristicCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

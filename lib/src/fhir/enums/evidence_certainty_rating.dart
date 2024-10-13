@@ -103,7 +103,10 @@ enum EvidenceCertaintyRating {
     }
   }
 
+  /// Returns a [String] from a [EvidenceCertaintyRating] enum.
   String toJson() => toString();
+
+  /// Returns a [EvidenceCertaintyRating] from a [String] enum.
   static EvidenceCertaintyRating fromString(String str) {
     switch (str) {
       case 'high':
@@ -143,6 +146,7 @@ enum EvidenceCertaintyRating {
     }
   }
 
+  /// Returns a [EvidenceCertaintyRating] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static EvidenceCertaintyRating fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

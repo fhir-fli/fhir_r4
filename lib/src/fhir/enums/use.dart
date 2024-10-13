@@ -25,7 +25,10 @@ enum Use {
     }
   }
 
+  /// Returns a [String] from a [Use] enum.
   String toJson() => toString();
+
+  /// Returns a [Use] from a [String] enum.
   static Use fromString(String str) {
     switch (str) {
       case 'claim':
@@ -39,6 +42,7 @@ enum Use {
     }
   }
 
+  /// Returns a [Use] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static Use fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

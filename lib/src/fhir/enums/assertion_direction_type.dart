@@ -19,7 +19,10 @@ enum AssertionDirectionType {
     }
   }
 
+  /// Returns a [String] from a [AssertionDirectionType] enum.
   String toJson() => toString();
+
+  /// Returns a [AssertionDirectionType] from a [String] enum.
   static AssertionDirectionType fromString(String str) {
     switch (str) {
       case 'response':
@@ -31,6 +34,7 @@ enum AssertionDirectionType {
     }
   }
 
+  /// Returns a [AssertionDirectionType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AssertionDirectionType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

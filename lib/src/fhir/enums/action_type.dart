@@ -31,7 +31,10 @@ enum ActionType {
     }
   }
 
+  /// Returns a [String] from a [ActionType] enum.
   String toJson() => toString();
+
+  /// Returns a [ActionType] from a [String] enum.
   static ActionType fromString(String str) {
     switch (str) {
       case 'create':
@@ -47,6 +50,7 @@ enum ActionType {
     }
   }
 
+  /// Returns a [ActionType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ActionType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

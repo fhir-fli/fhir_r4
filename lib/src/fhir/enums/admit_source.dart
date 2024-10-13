@@ -67,7 +67,10 @@ enum AdmitSource {
     }
   }
 
+  /// Returns a [String] from a [AdmitSource] enum.
   String toJson() => toString();
+
+  /// Returns a [AdmitSource] from a [String] enum.
   static AdmitSource fromString(String str) {
     switch (str) {
       case 'hosp-trans':
@@ -95,6 +98,7 @@ enum AdmitSource {
     }
   }
 
+  /// Returns a [AdmitSource] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AdmitSource fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

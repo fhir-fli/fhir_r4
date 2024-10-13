@@ -37,7 +37,10 @@ enum ProductContactType {
     }
   }
 
+  /// Returns a [String] from a [ProductContactType] enum.
   String toJson() => toString();
+
+  /// Returns a [ProductContactType] from a [String] enum.
   static ProductContactType fromString(String str) {
     switch (str) {
       case 'ProposedMAH':
@@ -55,6 +58,7 @@ enum ProductContactType {
     }
   }
 
+  /// Returns a [ProductContactType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ProductContactType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -19,7 +19,10 @@ enum CriteriaNotExistsBehavior {
     }
   }
 
+  /// Returns a [String] from a [CriteriaNotExistsBehavior] enum.
   String toJson() => toString();
+
+  /// Returns a [CriteriaNotExistsBehavior] from a [String] enum.
   static CriteriaNotExistsBehavior fromString(String str) {
     switch (str) {
       case 'test-passes':
@@ -31,6 +34,7 @@ enum CriteriaNotExistsBehavior {
     }
   }
 
+  /// Returns a [CriteriaNotExistsBehavior] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CriteriaNotExistsBehavior fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

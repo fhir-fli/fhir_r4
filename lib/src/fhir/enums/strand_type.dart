@@ -19,7 +19,10 @@ enum StrandType {
     }
   }
 
+  /// Returns a [String] from a [StrandType] enum.
   String toJson() => toString();
+
+  /// Returns a [StrandType] from a [String] enum.
   static StrandType fromString(String str) {
     switch (str) {
       case 'watson':
@@ -31,6 +34,7 @@ enum StrandType {
     }
   }
 
+  /// Returns a [StrandType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static StrandType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

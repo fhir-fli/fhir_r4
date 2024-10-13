@@ -22,7 +22,10 @@ enum SourceMaterialPart {
     }
   }
 
+  /// Returns a [String] from a [SourceMaterialPart] enum.
   String toJson() => toString();
+
+  /// Returns a [SourceMaterialPart] from a [String] enum.
   static SourceMaterialPart fromString(String str) {
     switch (str) {
       case 'Animal':
@@ -36,6 +39,7 @@ enum SourceMaterialPart {
     }
   }
 
+  /// Returns a [SourceMaterialPart] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SourceMaterialPart fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

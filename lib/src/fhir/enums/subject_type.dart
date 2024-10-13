@@ -865,7 +865,10 @@ enum SubjectType {
     }
   }
 
+  /// Returns a [String] from a [SubjectType] enum.
   String toJson() => toString();
+
+  /// Returns a [SubjectType] from a [String] enum.
   static SubjectType fromString(String str) {
     switch (str) {
       case 'Resource':
@@ -1159,6 +1162,7 @@ enum SubjectType {
     }
   }
 
+  /// Returns a [SubjectType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SubjectType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -43,7 +43,10 @@ enum ContactEntityType {
     }
   }
 
+  /// Returns a [String] from a [ContactEntityType] enum.
   String toJson() => toString();
+
+  /// Returns a [ContactEntityType] from a [String] enum.
   static ContactEntityType fromString(String str) {
     switch (str) {
       case 'BILL':
@@ -63,6 +66,7 @@ enum ContactEntityType {
     }
   }
 
+  /// Returns a [ContactEntityType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ContactEntityType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -25,7 +25,10 @@ enum CitationClassificationType {
     }
   }
 
+  /// Returns a [String] from a [CitationClassificationType] enum.
   String toJson() => toString();
+
+  /// Returns a [CitationClassificationType] from a [String] enum.
   static CitationClassificationType fromString(String str) {
     switch (str) {
       case 'citation-source':
@@ -39,6 +42,7 @@ enum CitationClassificationType {
     }
   }
 
+  /// Returns a [CitationClassificationType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CitationClassificationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

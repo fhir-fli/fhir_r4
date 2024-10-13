@@ -61,7 +61,10 @@ enum SearchParamType {
     }
   }
 
+  /// Returns a [String] from a [SearchParamType] enum.
   String toJson() => toString();
+
+  /// Returns a [SearchParamType] from a [String] enum.
   static SearchParamType fromString(String str) {
     switch (str) {
       case 'number':
@@ -87,6 +90,7 @@ enum SearchParamType {
     }
   }
 
+  /// Returns a [SearchParamType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SearchParamType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

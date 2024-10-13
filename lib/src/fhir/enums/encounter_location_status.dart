@@ -31,7 +31,10 @@ enum EncounterLocationStatus {
     }
   }
 
+  /// Returns a [String] from a [EncounterLocationStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [EncounterLocationStatus] from a [String] enum.
   static EncounterLocationStatus fromString(String str) {
     switch (str) {
       case 'planned':
@@ -47,6 +50,7 @@ enum EncounterLocationStatus {
     }
   }
 
+  /// Returns a [EncounterLocationStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static EncounterLocationStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

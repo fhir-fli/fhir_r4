@@ -79,7 +79,10 @@ enum TaskStatus {
     }
   }
 
+  /// Returns a [String] from a [TaskStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [TaskStatus] from a [String] enum.
   static TaskStatus fromString(String str) {
     switch (str) {
       case 'draft':
@@ -111,6 +114,7 @@ enum TaskStatus {
     }
   }
 
+  /// Returns a [TaskStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static TaskStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

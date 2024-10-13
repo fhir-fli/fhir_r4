@@ -25,7 +25,10 @@ enum ImmunizationSubpotentReason {
     }
   }
 
+  /// Returns a [String] from a [ImmunizationSubpotentReason] enum.
   String toJson() => toString();
+
+  /// Returns a [ImmunizationSubpotentReason] from a [String] enum.
   static ImmunizationSubpotentReason fromString(String str) {
     switch (str) {
       case 'partial':
@@ -39,6 +42,7 @@ enum ImmunizationSubpotentReason {
     }
   }
 
+  /// Returns a [ImmunizationSubpotentReason] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ImmunizationSubpotentReason fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

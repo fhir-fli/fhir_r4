@@ -31,7 +31,10 @@ enum AdministrativeGender {
     }
   }
 
+  /// Returns a [String] from a [AdministrativeGender] enum.
   String toJson() => toString();
+
+  /// Returns a [AdministrativeGender] from a [String] enum.
   static AdministrativeGender fromString(String str) {
     switch (str) {
       case 'male':
@@ -47,6 +50,7 @@ enum AdministrativeGender {
     }
   }
 
+  /// Returns a [AdministrativeGender] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AdministrativeGender fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

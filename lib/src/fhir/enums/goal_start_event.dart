@@ -27,7 +27,10 @@ enum GoalStartEvent {
     }
   }
 
+  /// Returns a [String] from a [GoalStartEvent] enum.
   String toJson() => toString();
+
+  /// Returns a [GoalStartEvent] from a [String] enum.
   static GoalStartEvent fromString(String str) {
     switch (str) {
       case '32485007':
@@ -43,6 +46,7 @@ enum GoalStartEvent {
     }
   }
 
+  /// Returns a [GoalStartEvent] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static GoalStartEvent fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

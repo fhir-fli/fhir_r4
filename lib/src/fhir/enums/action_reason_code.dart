@@ -37,7 +37,10 @@ enum ActionReasonCode {
     }
   }
 
+  /// Returns a [String] from a [ActionReasonCode] enum.
   String toJson() => toString();
+
+  /// Returns a [ActionReasonCode] from a [String] enum.
   static ActionReasonCode fromString(String str) {
     switch (str) {
       case 'off-pathway':
@@ -55,6 +58,7 @@ enum ActionReasonCode {
     }
   }
 
+  /// Returns a [ActionReasonCode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ActionReasonCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

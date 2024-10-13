@@ -31,7 +31,10 @@ enum GraphCompartmentRule {
     }
   }
 
+  /// Returns a [String] from a [GraphCompartmentRule] enum.
   String toJson() => toString();
+
+  /// Returns a [GraphCompartmentRule] from a [String] enum.
   static GraphCompartmentRule fromString(String str) {
     switch (str) {
       case 'identical':
@@ -47,6 +50,7 @@ enum GraphCompartmentRule {
     }
   }
 
+  /// Returns a [GraphCompartmentRule] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static GraphCompartmentRule fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -25,7 +25,10 @@ enum MessageSignificanceCategory {
     }
   }
 
+  /// Returns a [String] from a [MessageSignificanceCategory] enum.
   String toJson() => toString();
+
+  /// Returns a [MessageSignificanceCategory] from a [String] enum.
   static MessageSignificanceCategory fromString(String str) {
     switch (str) {
       case 'consequence':
@@ -39,6 +42,7 @@ enum MessageSignificanceCategory {
     }
   }
 
+  /// Returns a [MessageSignificanceCategory] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static MessageSignificanceCategory fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

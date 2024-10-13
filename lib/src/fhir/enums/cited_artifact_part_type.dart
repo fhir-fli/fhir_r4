@@ -61,7 +61,10 @@ enum CitedArtifactPartType {
     }
   }
 
+  /// Returns a [String] from a [CitedArtifactPartType] enum.
   String toJson() => toString();
+
+  /// Returns a [CitedArtifactPartType] from a [String] enum.
   static CitedArtifactPartType fromString(String str) {
     switch (str) {
       case 'pages':
@@ -87,6 +90,7 @@ enum CitedArtifactPartType {
     }
   }
 
+  /// Returns a [CitedArtifactPartType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CitedArtifactPartType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

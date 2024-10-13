@@ -73,7 +73,10 @@ enum AssertionOperatorType {
     }
   }
 
+  /// Returns a [String] from a [AssertionOperatorType] enum.
   String toJson() => toString();
+
+  /// Returns a [AssertionOperatorType] from a [String] enum.
   static AssertionOperatorType fromString(String str) {
     switch (str) {
       case 'equals':
@@ -103,6 +106,7 @@ enum AssertionOperatorType {
     }
   }
 
+  /// Returns a [AssertionOperatorType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AssertionOperatorType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

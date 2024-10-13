@@ -25,7 +25,10 @@ enum DetectedIssueSeverity {
     }
   }
 
+  /// Returns a [String] from a [DetectedIssueSeverity] enum.
   String toJson() => toString();
+
+  /// Returns a [DetectedIssueSeverity] from a [String] enum.
   static DetectedIssueSeverity fromString(String str) {
     switch (str) {
       case 'high':
@@ -39,6 +42,7 @@ enum DetectedIssueSeverity {
     }
   }
 
+  /// Returns a [DetectedIssueSeverity] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static DetectedIssueSeverity fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

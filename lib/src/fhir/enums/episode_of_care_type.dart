@@ -32,7 +32,10 @@ enum EpisodeOfCareType {
     }
   }
 
+  /// Returns a [String] from a [EpisodeOfCareType] enum.
   String toJson() => toString();
+
+  /// Returns a [EpisodeOfCareType] from a [String] enum.
   static EpisodeOfCareType fromString(String str) {
     switch (str) {
       case 'hacc':
@@ -50,6 +53,7 @@ enum EpisodeOfCareType {
     }
   }
 
+  /// Returns a [EpisodeOfCareType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static EpisodeOfCareType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

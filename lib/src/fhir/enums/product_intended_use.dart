@@ -32,7 +32,10 @@ enum ProductIntendedUse {
     }
   }
 
+  /// Returns a [String] from a [ProductIntendedUse] enum.
   String toJson() => toString();
+
+  /// Returns a [ProductIntendedUse] from a [String] enum.
   static ProductIntendedUse fromString(String str) {
     switch (str) {
       case 'Prevention':
@@ -50,6 +53,7 @@ enum ProductIntendedUse {
     }
   }
 
+  /// Returns a [ProductIntendedUse] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ProductIntendedUse fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

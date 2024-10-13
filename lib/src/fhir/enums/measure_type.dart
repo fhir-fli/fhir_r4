@@ -37,7 +37,10 @@ enum MeasureType {
     }
   }
 
+  /// Returns a [String] from a [MeasureType] enum.
   String toJson() => toString();
+
+  /// Returns a [MeasureType] from a [String] enum.
   static MeasureType fromString(String str) {
     switch (str) {
       case 'process':
@@ -55,6 +58,7 @@ enum MeasureType {
     }
   }
 
+  /// Returns a [MeasureType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static MeasureType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

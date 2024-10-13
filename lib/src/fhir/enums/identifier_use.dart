@@ -37,7 +37,10 @@ enum IdentifierUse {
     }
   }
 
+  /// Returns a [String] from a [IdentifierUse] enum.
   String toJson() => toString();
+
+  /// Returns a [IdentifierUse] from a [String] enum.
   static IdentifierUse fromString(String str) {
     switch (str) {
       case 'usual':
@@ -55,6 +58,7 @@ enum IdentifierUse {
     }
   }
 
+  /// Returns a [IdentifierUse] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static IdentifierUse fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

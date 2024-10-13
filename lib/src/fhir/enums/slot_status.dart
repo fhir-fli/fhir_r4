@@ -37,7 +37,10 @@ enum SlotStatus {
     }
   }
 
+  /// Returns a [String] from a [SlotStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [SlotStatus] from a [String] enum.
   static SlotStatus fromString(String str) {
     switch (str) {
       case 'busy':
@@ -55,6 +58,7 @@ enum SlotStatus {
     }
   }
 
+  /// Returns a [SlotStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SlotStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

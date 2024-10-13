@@ -31,7 +31,10 @@ enum StructureDefinitionKind {
     }
   }
 
+  /// Returns a [String] from a [StructureDefinitionKind] enum.
   String toJson() => toString();
+
+  /// Returns a [StructureDefinitionKind] from a [String] enum.
   static StructureDefinitionKind fromString(String str) {
     switch (str) {
       case 'primitive-type':
@@ -47,6 +50,7 @@ enum StructureDefinitionKind {
     }
   }
 
+  /// Returns a [StructureDefinitionKind] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static StructureDefinitionKind fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -222,7 +222,10 @@ enum PackageMaterial {
     }
   }
 
+  /// Returns a [String] from a [PackageMaterial] enum.
   String toJson() => toString();
+
+  /// Returns a [PackageMaterial] from a [String] enum.
   static PackageMaterial fromString(String str) {
     switch (str) {
       case '200000003200':
@@ -316,6 +319,7 @@ enum PackageMaterial {
     }
   }
 
+  /// Returns a [PackageMaterial] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static PackageMaterial fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

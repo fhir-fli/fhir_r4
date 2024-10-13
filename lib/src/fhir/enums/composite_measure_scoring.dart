@@ -31,7 +31,10 @@ enum CompositeMeasureScoring {
     }
   }
 
+  /// Returns a [String] from a [CompositeMeasureScoring] enum.
   String toJson() => toString();
+
+  /// Returns a [CompositeMeasureScoring] from a [String] enum.
   static CompositeMeasureScoring fromString(String str) {
     switch (str) {
       case 'opportunity':
@@ -47,6 +50,7 @@ enum CompositeMeasureScoring {
     }
   }
 
+  /// Returns a [CompositeMeasureScoring] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CompositeMeasureScoring fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

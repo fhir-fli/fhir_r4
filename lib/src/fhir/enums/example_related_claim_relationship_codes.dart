@@ -19,7 +19,10 @@ enum ExampleRelatedClaimRelationshipCodes {
     }
   }
 
+  /// Returns a [String] from a [ExampleRelatedClaimRelationshipCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ExampleRelatedClaimRelationshipCodes] from a [String] enum.
   static ExampleRelatedClaimRelationshipCodes fromString(String str) {
     switch (str) {
       case 'prior':
@@ -31,6 +34,7 @@ enum ExampleRelatedClaimRelationshipCodes {
     }
   }
 
+  /// Returns a [ExampleRelatedClaimRelationshipCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ExampleRelatedClaimRelationshipCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -55,7 +55,10 @@ enum DeviceMetricColor {
     }
   }
 
+  /// Returns a [String] from a [DeviceMetricColor] enum.
   String toJson() => toString();
+
+  /// Returns a [DeviceMetricColor] from a [String] enum.
   static DeviceMetricColor fromString(String str) {
     switch (str) {
       case 'black':
@@ -79,6 +82,7 @@ enum DeviceMetricColor {
     }
   }
 
+  /// Returns a [DeviceMetricColor] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static DeviceMetricColor fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

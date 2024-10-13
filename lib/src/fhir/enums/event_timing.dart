@@ -121,7 +121,10 @@ enum EventTiming {
     }
   }
 
+  /// Returns a [String] from a [EventTiming] enum.
   String toJson() => toString();
+
+  /// Returns a [EventTiming] from a [String] enum.
   static EventTiming fromString(String str) {
     switch (str) {
       case 'MORN':
@@ -181,6 +184,7 @@ enum EventTiming {
     }
   }
 
+  /// Returns a [EventTiming] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static EventTiming fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

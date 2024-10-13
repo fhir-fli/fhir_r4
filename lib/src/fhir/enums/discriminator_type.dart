@@ -37,7 +37,10 @@ enum DiscriminatorType {
     }
   }
 
+  /// Returns a [String] from a [DiscriminatorType] enum.
   String toJson() => toString();
+
+  /// Returns a [DiscriminatorType] from a [String] enum.
   static DiscriminatorType fromString(String str) {
     switch (str) {
       case 'value':
@@ -55,6 +58,7 @@ enum DiscriminatorType {
     }
   }
 
+  /// Returns a [DiscriminatorType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static DiscriminatorType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

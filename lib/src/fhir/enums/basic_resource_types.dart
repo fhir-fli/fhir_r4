@@ -103,7 +103,10 @@ enum BasicResourceTypes {
     }
   }
 
+  /// Returns a [String] from a [BasicResourceTypes] enum.
   String toJson() => toString();
+
+  /// Returns a [BasicResourceTypes] from a [String] enum.
   static BasicResourceTypes fromString(String str) {
     switch (str) {
       case 'consent':
@@ -143,6 +146,7 @@ enum BasicResourceTypes {
     }
   }
 
+  /// Returns a [BasicResourceTypes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static BasicResourceTypes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

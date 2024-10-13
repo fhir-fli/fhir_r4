@@ -55,7 +55,10 @@ enum TriggerType {
     }
   }
 
+  /// Returns a [String] from a [TriggerType] enum.
   String toJson() => toString();
+
+  /// Returns a [TriggerType] from a [String] enum.
   static TriggerType fromString(String str) {
     switch (str) {
       case 'named-event':
@@ -79,6 +82,7 @@ enum TriggerType {
     }
   }
 
+  /// Returns a [TriggerType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static TriggerType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

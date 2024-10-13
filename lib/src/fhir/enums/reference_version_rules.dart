@@ -25,7 +25,10 @@ enum ReferenceVersionRules {
     }
   }
 
+  /// Returns a [String] from a [ReferenceVersionRules] enum.
   String toJson() => toString();
+
+  /// Returns a [ReferenceVersionRules] from a [String] enum.
   static ReferenceVersionRules fromString(String str) {
     switch (str) {
       case 'either':
@@ -39,6 +42,7 @@ enum ReferenceVersionRules {
     }
   }
 
+  /// Returns a [ReferenceVersionRules] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ReferenceVersionRules fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

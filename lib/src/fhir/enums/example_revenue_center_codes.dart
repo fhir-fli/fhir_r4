@@ -61,7 +61,10 @@ enum ExampleRevenueCenterCodes {
     }
   }
 
+  /// Returns a [String] from a [ExampleRevenueCenterCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ExampleRevenueCenterCodes] from a [String] enum.
   static ExampleRevenueCenterCodes fromString(String str) {
     switch (str) {
       case '0370':
@@ -87,6 +90,7 @@ enum ExampleRevenueCenterCodes {
     }
   }
 
+  /// Returns a [ExampleRevenueCenterCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ExampleRevenueCenterCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

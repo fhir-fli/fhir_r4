@@ -151,7 +151,10 @@ enum ArtifactRelationshipType {
     }
   }
 
+  /// Returns a [String] from a [ArtifactRelationshipType] enum.
   String toJson() => toString();
+
+  /// Returns a [ArtifactRelationshipType] from a [String] enum.
   static ArtifactRelationshipType fromString(String str) {
     switch (str) {
       case 'replaces':
@@ -207,6 +210,7 @@ enum ArtifactRelationshipType {
     }
   }
 
+  /// Returns a [ArtifactRelationshipType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ArtifactRelationshipType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

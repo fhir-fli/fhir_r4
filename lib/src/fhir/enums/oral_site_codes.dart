@@ -253,7 +253,10 @@ enum OralSiteCodes {
     }
   }
 
+  /// Returns a [String] from a [OralSiteCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [OralSiteCodes] from a [String] enum.
   static OralSiteCodes fromString(String str) {
     switch (str) {
       case '0':
@@ -343,6 +346,7 @@ enum OralSiteCodes {
     }
   }
 
+  /// Returns a [OralSiteCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static OralSiteCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

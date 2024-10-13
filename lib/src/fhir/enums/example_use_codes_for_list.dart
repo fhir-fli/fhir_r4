@@ -61,7 +61,10 @@ enum ExampleUseCodesForList {
     }
   }
 
+  /// Returns a [String] from a [ExampleUseCodesForList] enum.
   String toJson() => toString();
+
+  /// Returns a [ExampleUseCodesForList] from a [String] enum.
   static ExampleUseCodesForList fromString(String str) {
     switch (str) {
       case 'alerts':
@@ -87,6 +90,7 @@ enum ExampleUseCodesForList {
     }
   }
 
+  /// Returns a [ExampleUseCodesForList] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ExampleUseCodesForList fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

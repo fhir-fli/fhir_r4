@@ -31,7 +31,10 @@ enum RemittanceOutcome {
     }
   }
 
+  /// Returns a [String] from a [RemittanceOutcome] enum.
   String toJson() => toString();
+
+  /// Returns a [RemittanceOutcome] from a [String] enum.
   static RemittanceOutcome fromString(String str) {
     switch (str) {
       case 'queued':
@@ -47,6 +50,7 @@ enum RemittanceOutcome {
     }
   }
 
+  /// Returns a [RemittanceOutcome] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static RemittanceOutcome fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

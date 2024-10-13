@@ -18911,7 +18911,10 @@ enum MediaTypeCode {
     }
   }
 
+  /// Returns a [String] from a [MediaTypeCode] enum.
   String toJson() => toString();
+
+  /// Returns a [MediaTypeCode] from a [String] enum.
   static MediaTypeCode fromString(String str) {
     switch (str) {
       case 'ARCHIVE':
@@ -25231,6 +25234,7 @@ enum MediaTypeCode {
     }
   }
 
+  /// Returns a [MediaTypeCode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static MediaTypeCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

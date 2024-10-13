@@ -25,7 +25,10 @@ enum ChargeItemCode {
     }
   }
 
+  /// Returns a [String] from a [ChargeItemCode] enum.
   String toJson() => toString();
+
+  /// Returns a [ChargeItemCode] from a [String] enum.
   static ChargeItemCode fromString(String str) {
     switch (str) {
       case '1100':
@@ -39,6 +42,7 @@ enum ChargeItemCode {
     }
   }
 
+  /// Returns a [ChargeItemCode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ChargeItemCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

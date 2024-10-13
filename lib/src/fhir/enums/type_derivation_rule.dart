@@ -19,7 +19,10 @@ enum TypeDerivationRule {
     }
   }
 
+  /// Returns a [String] from a [TypeDerivationRule] enum.
   String toJson() => toString();
+
+  /// Returns a [TypeDerivationRule] from a [String] enum.
   static TypeDerivationRule fromString(String str) {
     switch (str) {
       case 'specialization':
@@ -31,6 +34,7 @@ enum TypeDerivationRule {
     }
   }
 
+  /// Returns a [TypeDerivationRule] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static TypeDerivationRule fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

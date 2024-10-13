@@ -43,7 +43,10 @@ enum AdverseEventCausalityAssessment {
     }
   }
 
+  /// Returns a [String] from a [AdverseEventCausalityAssessment] enum.
   String toJson() => toString();
+
+  /// Returns a [AdverseEventCausalityAssessment] from a [String] enum.
   static AdverseEventCausalityAssessment fromString(String str) {
     switch (str) {
       case 'Certain':
@@ -63,6 +66,7 @@ enum AdverseEventCausalityAssessment {
     }
   }
 
+  /// Returns a [AdverseEventCausalityAssessment] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AdverseEventCausalityAssessment fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

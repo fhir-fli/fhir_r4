@@ -25,7 +25,10 @@ enum ICD10ProcedureCodes {
     }
   }
 
+  /// Returns a [String] from a [ICD10ProcedureCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ICD10ProcedureCodes] from a [String] enum.
   static ICD10ProcedureCodes fromString(String str) {
     switch (str) {
       case '123001':
@@ -39,6 +42,7 @@ enum ICD10ProcedureCodes {
     }
   }
 
+  /// Returns a [ICD10ProcedureCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ICD10ProcedureCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

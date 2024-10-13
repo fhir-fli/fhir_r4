@@ -115,7 +115,10 @@ enum SignatureTypeCodes {
     }
   }
 
+  /// Returns a [String] from a [SignatureTypeCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [SignatureTypeCodes] from a [String] enum.
   static SignatureTypeCodes fromString(String str) {
     switch (str) {
       case '1.2.840.10065.1.12.1.1':
@@ -159,6 +162,7 @@ enum SignatureTypeCodes {
     }
   }
 
+  /// Returns a [SignatureTypeCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SignatureTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

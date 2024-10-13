@@ -17,7 +17,10 @@ enum ConditionStageType {
     }
   }
 
+  /// Returns a [String] from a [ConditionStageType] enum.
   String toJson() => toString();
+
+  /// Returns a [ConditionStageType] from a [String] enum.
   static ConditionStageType fromString(String str) {
     switch (str) {
       case '261023001':
@@ -29,6 +32,7 @@ enum ConditionStageType {
     }
   }
 
+  /// Returns a [ConditionStageType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ConditionStageType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

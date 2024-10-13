@@ -37,7 +37,10 @@ enum EnteralFormulaAdditiveTypeCode {
     }
   }
 
+  /// Returns a [String] from a [EnteralFormulaAdditiveTypeCode] enum.
   String toJson() => toString();
+
+  /// Returns a [EnteralFormulaAdditiveTypeCode] from a [String] enum.
   static EnteralFormulaAdditiveTypeCode fromString(String str) {
     switch (str) {
       case 'lipid':
@@ -55,6 +58,7 @@ enum EnteralFormulaAdditiveTypeCode {
     }
   }
 
+  /// Returns a [EnteralFormulaAdditiveTypeCode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static EnteralFormulaAdditiveTypeCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

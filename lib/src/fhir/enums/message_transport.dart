@@ -25,7 +25,10 @@ enum MessageTransport {
     }
   }
 
+  /// Returns a [String] from a [MessageTransport] enum.
   String toJson() => toString();
+
+  /// Returns a [MessageTransport] from a [String] enum.
   static MessageTransport fromString(String str) {
     switch (str) {
       case 'http':
@@ -39,6 +42,7 @@ enum MessageTransport {
     }
   }
 
+  /// Returns a [MessageTransport] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static MessageTransport fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

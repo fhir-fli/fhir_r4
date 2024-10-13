@@ -57,7 +57,10 @@ enum FHIRSpecimenCollectionMethod {
     }
   }
 
+  /// Returns a [String] from a [FHIRSpecimenCollectionMethod] enum.
   String toJson() => toString();
+
+  /// Returns a [FHIRSpecimenCollectionMethod] from a [String] enum.
   static FHIRSpecimenCollectionMethod fromString(String str) {
     switch (str) {
       case '129316008':
@@ -85,6 +88,7 @@ enum FHIRSpecimenCollectionMethod {
     }
   }
 
+  /// Returns a [FHIRSpecimenCollectionMethod] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static FHIRSpecimenCollectionMethod fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

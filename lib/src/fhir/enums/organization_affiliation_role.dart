@@ -54,7 +54,10 @@ enum OrganizationAffiliationRole {
     }
   }
 
+  /// Returns a [String] from a [OrganizationAffiliationRole] enum.
   String toJson() => toString();
+
+  /// Returns a [OrganizationAffiliationRole] from a [String] enum.
   static OrganizationAffiliationRole fromString(String str) {
     switch (str) {
       case 'provider':
@@ -78,6 +81,7 @@ enum OrganizationAffiliationRole {
     }
   }
 
+  /// Returns a [OrganizationAffiliationRole] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static OrganizationAffiliationRole fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

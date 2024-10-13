@@ -19,7 +19,10 @@ enum ConsentProvisionType {
     }
   }
 
+  /// Returns a [String] from a [ConsentProvisionType] enum.
   String toJson() => toString();
+
+  /// Returns a [ConsentProvisionType] from a [String] enum.
   static ConsentProvisionType fromString(String str) {
     switch (str) {
       case 'deny':
@@ -31,6 +34,7 @@ enum ConsentProvisionType {
     }
   }
 
+  /// Returns a [ConsentProvisionType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ConsentProvisionType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

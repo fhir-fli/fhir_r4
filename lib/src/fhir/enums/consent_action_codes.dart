@@ -37,7 +37,10 @@ enum ConsentActionCodes {
     }
   }
 
+  /// Returns a [String] from a [ConsentActionCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ConsentActionCodes] from a [String] enum.
   static ConsentActionCodes fromString(String str) {
     switch (str) {
       case 'collect':
@@ -55,6 +58,7 @@ enum ConsentActionCodes {
     }
   }
 
+  /// Returns a [ConsentActionCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ConsentActionCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -31,7 +31,10 @@ enum StructureMapModelMode {
     }
   }
 
+  /// Returns a [String] from a [StructureMapModelMode] enum.
   String toJson() => toString();
+
+  /// Returns a [StructureMapModelMode] from a [String] enum.
   static StructureMapModelMode fromString(String str) {
     switch (str) {
       case 'source':
@@ -47,6 +50,7 @@ enum StructureMapModelMode {
     }
   }
 
+  /// Returns a [StructureMapModelMode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static StructureMapModelMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

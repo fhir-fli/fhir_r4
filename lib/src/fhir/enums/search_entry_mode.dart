@@ -25,7 +25,10 @@ enum SearchEntryMode {
     }
   }
 
+  /// Returns a [String] from a [SearchEntryMode] enum.
   String toJson() => toString();
+
+  /// Returns a [SearchEntryMode] from a [String] enum.
   static SearchEntryMode fromString(String str) {
     switch (str) {
       case 'match':
@@ -39,6 +42,7 @@ enum SearchEntryMode {
     }
   }
 
+  /// Returns a [SearchEntryMode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SearchEntryMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -582,7 +582,10 @@ enum PracticeSettingCodeValueSet {
     }
   }
 
+  /// Returns a [String] from a [PracticeSettingCodeValueSet] enum.
   String toJson() => toString();
+
+  /// Returns a [PracticeSettingCodeValueSet] from a [String] enum.
   static PracticeSettingCodeValueSet fromString(String str) {
     switch (str) {
       case '408467006':
@@ -820,6 +823,7 @@ enum PracticeSettingCodeValueSet {
     }
   }
 
+  /// Returns a [PracticeSettingCodeValueSet] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static PracticeSettingCodeValueSet fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

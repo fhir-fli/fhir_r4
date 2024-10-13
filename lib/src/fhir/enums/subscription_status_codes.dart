@@ -31,7 +31,10 @@ enum SubscriptionStatusCodes {
     }
   }
 
+  /// Returns a [String] from a [SubscriptionStatusCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [SubscriptionStatusCodes] from a [String] enum.
   static SubscriptionStatusCodes fromString(String str) {
     switch (str) {
       case 'requested':
@@ -47,6 +50,7 @@ enum SubscriptionStatusCodes {
     }
   }
 
+  /// Returns a [SubscriptionStatusCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SubscriptionStatusCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

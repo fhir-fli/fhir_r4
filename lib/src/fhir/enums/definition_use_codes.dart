@@ -43,7 +43,10 @@ enum DefinitionUseCodes {
     }
   }
 
+  /// Returns a [String] from a [DefinitionUseCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [DefinitionUseCodes] from a [String] enum.
   static DefinitionUseCodes fromString(String str) {
     switch (str) {
       case 'fhir-structure':
@@ -63,6 +66,7 @@ enum DefinitionUseCodes {
     }
   }
 
+  /// Returns a [DefinitionUseCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static DefinitionUseCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

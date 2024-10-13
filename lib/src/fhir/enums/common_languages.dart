@@ -287,7 +287,10 @@ enum CommonLanguages {
     }
   }
 
+  /// Returns a [String] from a [CommonLanguages] enum.
   String toJson() => toString();
+
+  /// Returns a [CommonLanguages] from a [String] enum.
   static CommonLanguages fromString(String str) {
     switch (str) {
       case 'ar':
@@ -407,6 +410,7 @@ enum CommonLanguages {
     }
   }
 
+  /// Returns a [CommonLanguages] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CommonLanguages fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

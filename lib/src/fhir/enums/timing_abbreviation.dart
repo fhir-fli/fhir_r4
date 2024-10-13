@@ -87,7 +87,10 @@ enum TimingAbbreviation {
     }
   }
 
+  /// Returns a [String] from a [TimingAbbreviation] enum.
   String toJson() => toString();
+
+  /// Returns a [TimingAbbreviation] from a [String] enum.
   static TimingAbbreviation fromString(String str) {
     switch (str) {
       case 'BID':
@@ -127,6 +130,7 @@ enum TimingAbbreviation {
     }
   }
 
+  /// Returns a [TimingAbbreviation] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static TimingAbbreviation fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

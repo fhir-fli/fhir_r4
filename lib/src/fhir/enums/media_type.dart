@@ -25,7 +25,10 @@ enum MediaType {
     }
   }
 
+  /// Returns a [String] from a [MediaType] enum.
   String toJson() => toString();
+
+  /// Returns a [MediaType] from a [String] enum.
   static MediaType fromString(String str) {
     switch (str) {
       case 'image':
@@ -39,6 +42,7 @@ enum MediaType {
     }
   }
 
+  /// Returns a [MediaType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static MediaType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

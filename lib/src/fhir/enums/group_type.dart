@@ -43,7 +43,10 @@ enum GroupType {
     }
   }
 
+  /// Returns a [String] from a [GroupType] enum.
   String toJson() => toString();
+
+  /// Returns a [GroupType] from a [String] enum.
   static GroupType fromString(String str) {
     switch (str) {
       case 'person':
@@ -63,6 +66,7 @@ enum GroupType {
     }
   }
 
+  /// Returns a [GroupType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static GroupType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

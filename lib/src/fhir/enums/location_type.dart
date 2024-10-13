@@ -91,7 +91,10 @@ enum LocationType {
     }
   }
 
+  /// Returns a [String] from a [LocationType] enum.
   String toJson() => toString();
+
+  /// Returns a [LocationType] from a [String] enum.
   static LocationType fromString(String str) {
     switch (str) {
       case 'si':
@@ -127,6 +130,7 @@ enum LocationType {
     }
   }
 
+  /// Returns a [LocationType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static LocationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

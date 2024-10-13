@@ -81,7 +81,10 @@ enum ConsentCategoryCodes {
     }
   }
 
+  /// Returns a [String] from a [ConsentCategoryCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ConsentCategoryCodes] from a [String] enum.
   static ConsentCategoryCodes fromString(String str) {
     switch (str) {
       case 'acd':
@@ -115,6 +118,7 @@ enum ConsentCategoryCodes {
     }
   }
 
+  /// Returns a [ConsentCategoryCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ConsentCategoryCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

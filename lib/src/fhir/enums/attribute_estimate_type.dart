@@ -73,7 +73,10 @@ enum AttributeEstimateType {
     }
   }
 
+  /// Returns a [String] from a [AttributeEstimateType] enum.
   String toJson() => toString();
+
+  /// Returns a [AttributeEstimateType] from a [String] enum.
   static AttributeEstimateType fromString(String str) {
     switch (str) {
       case '0000419':
@@ -103,6 +106,7 @@ enum AttributeEstimateType {
     }
   }
 
+  /// Returns a [AttributeEstimateType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AttributeEstimateType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -55,7 +55,10 @@ enum FHIRDeviceStatusReason {
     }
   }
 
+  /// Returns a [String] from a [FHIRDeviceStatusReason] enum.
   String toJson() => toString();
+
+  /// Returns a [FHIRDeviceStatusReason] from a [String] enum.
   static FHIRDeviceStatusReason fromString(String str) {
     switch (str) {
       case 'online':
@@ -79,6 +82,7 @@ enum FHIRDeviceStatusReason {
     }
   }
 
+  /// Returns a [FHIRDeviceStatusReason] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static FHIRDeviceStatusReason fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

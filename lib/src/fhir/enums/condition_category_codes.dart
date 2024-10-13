@@ -19,7 +19,10 @@ enum ConditionCategoryCodes {
     }
   }
 
+  /// Returns a [String] from a [ConditionCategoryCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ConditionCategoryCodes] from a [String] enum.
   static ConditionCategoryCodes fromString(String str) {
     switch (str) {
       case 'problem-list-item':
@@ -31,6 +34,7 @@ enum ConditionCategoryCodes {
     }
   }
 
+  /// Returns a [ConditionCategoryCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ConditionCategoryCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

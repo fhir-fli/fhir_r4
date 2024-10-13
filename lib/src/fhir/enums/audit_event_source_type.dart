@@ -61,7 +61,10 @@ enum AuditEventSourceType {
     }
   }
 
+  /// Returns a [String] from a [AuditEventSourceType] enum.
   String toJson() => toString();
+
+  /// Returns a [AuditEventSourceType] from a [String] enum.
   static AuditEventSourceType fromString(String str) {
     switch (str) {
       case '1':
@@ -87,6 +90,7 @@ enum AuditEventSourceType {
     }
   }
 
+  /// Returns a [AuditEventSourceType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AuditEventSourceType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

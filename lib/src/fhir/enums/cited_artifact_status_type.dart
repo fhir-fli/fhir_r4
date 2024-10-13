@@ -97,7 +97,10 @@ enum CitedArtifactStatusType {
     }
   }
 
+  /// Returns a [String] from a [CitedArtifactStatusType] enum.
   String toJson() => toString();
+
+  /// Returns a [CitedArtifactStatusType] from a [String] enum.
   static CitedArtifactStatusType fromString(String str) {
     switch (str) {
       case 'created':
@@ -135,6 +138,7 @@ enum CitedArtifactStatusType {
     }
   }
 
+  /// Returns a [CitedArtifactStatusType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CitedArtifactStatusType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

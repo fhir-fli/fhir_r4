@@ -73,7 +73,10 @@ enum DischargeDisposition {
     }
   }
 
+  /// Returns a [String] from a [DischargeDisposition] enum.
   String toJson() => toString();
+
+  /// Returns a [DischargeDisposition] from a [String] enum.
   static DischargeDisposition fromString(String str) {
     switch (str) {
       case 'home':
@@ -103,6 +106,7 @@ enum DischargeDisposition {
     }
   }
 
+  /// Returns a [DischargeDisposition] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static DischargeDisposition fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

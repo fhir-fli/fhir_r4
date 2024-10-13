@@ -22,7 +22,10 @@ enum ClinicalUseDefinitionCategory {
     }
   }
 
+  /// Returns a [String] from a [ClinicalUseDefinitionCategory] enum.
   String toJson() => toString();
+
+  /// Returns a [ClinicalUseDefinitionCategory] from a [String] enum.
   static ClinicalUseDefinitionCategory fromString(String str) {
     switch (str) {
       case 'Pregnancy':
@@ -36,6 +39,7 @@ enum ClinicalUseDefinitionCategory {
     }
   }
 
+  /// Returns a [ClinicalUseDefinitionCategory] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ClinicalUseDefinitionCategory fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -481,7 +481,10 @@ enum StatisticModelCode {
     }
   }
 
+  /// Returns a [String] from a [StatisticModelCode] enum.
   String toJson() => toString();
+
+  /// Returns a [StatisticModelCode] from a [String] enum.
   static StatisticModelCode fromString(String str) {
     switch (str) {
       case 'oneTailedTest':
@@ -647,6 +650,7 @@ enum StatisticModelCode {
     }
   }
 
+  /// Returns a [StatisticModelCode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static StatisticModelCode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

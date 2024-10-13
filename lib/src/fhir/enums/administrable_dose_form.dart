@@ -1012,7 +1012,10 @@ enum AdministrableDoseForm {
     }
   }
 
+  /// Returns a [String] from a [AdministrableDoseForm] enum.
   String toJson() => toString();
+
+  /// Returns a [AdministrableDoseForm] from a [String] enum.
   static AdministrableDoseForm fromString(String str) {
     switch (str) {
       case '100000073362':
@@ -1422,6 +1425,7 @@ enum AdministrableDoseForm {
     }
   }
 
+  /// Returns a [AdministrableDoseForm] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AdministrableDoseForm fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -31,7 +31,10 @@ enum NarrativeStatus {
     }
   }
 
+  /// Returns a [String] from a [NarrativeStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [NarrativeStatus] from a [String] enum.
   static NarrativeStatus fromString(String str) {
     switch (str) {
       case 'generated':
@@ -47,6 +50,7 @@ enum NarrativeStatus {
     }
   }
 
+  /// Returns a [NarrativeStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static NarrativeStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

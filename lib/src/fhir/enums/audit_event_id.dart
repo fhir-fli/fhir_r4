@@ -19079,7 +19079,10 @@ enum AuditEventID {
     }
   }
 
+  /// Returns a [String] from a [AuditEventID] enum.
   String toJson() => toString();
+
+  /// Returns a [AuditEventID] from a [String] enum.
   static AuditEventID fromString(String str) {
     switch (str) {
       case 'ARCHIVE':
@@ -25455,6 +25458,7 @@ enum AuditEventID {
     }
   }
 
+  /// Returns a [AuditEventID] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AuditEventID fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

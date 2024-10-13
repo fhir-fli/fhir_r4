@@ -25,7 +25,10 @@ enum AggregationMode {
     }
   }
 
+  /// Returns a [String] from a [AggregationMode] enum.
   String toJson() => toString();
+
+  /// Returns a [AggregationMode] from a [String] enum.
   static AggregationMode fromString(String str) {
     switch (str) {
       case 'contained':
@@ -39,6 +42,7 @@ enum AggregationMode {
     }
   }
 
+  /// Returns a [AggregationMode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AggregationMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

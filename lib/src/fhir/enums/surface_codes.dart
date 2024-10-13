@@ -73,7 +73,10 @@ enum SurfaceCodes {
     }
   }
 
+  /// Returns a [String] from a [SurfaceCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [SurfaceCodes] from a [String] enum.
   static SurfaceCodes fromString(String str) {
     switch (str) {
       case 'M':
@@ -103,6 +106,7 @@ enum SurfaceCodes {
     }
   }
 
+  /// Returns a [SurfaceCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SurfaceCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

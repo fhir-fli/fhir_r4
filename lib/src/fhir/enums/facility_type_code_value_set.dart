@@ -402,7 +402,10 @@ enum FacilityTypeCodeValueSet {
     }
   }
 
+  /// Returns a [String] from a [FacilityTypeCodeValueSet] enum.
   String toJson() => toString();
+
+  /// Returns a [FacilityTypeCodeValueSet] from a [String] enum.
   static FacilityTypeCodeValueSet fromString(String str) {
     switch (str) {
       case '82242000':
@@ -568,6 +571,7 @@ enum FacilityTypeCodeValueSet {
     }
   }
 
+  /// Returns a [FacilityTypeCodeValueSet] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static FacilityTypeCodeValueSet fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

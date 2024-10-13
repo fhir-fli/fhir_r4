@@ -25,7 +25,10 @@ enum ResourceVersionPolicy {
     }
   }
 
+  /// Returns a [String] from a [ResourceVersionPolicy] enum.
   String toJson() => toString();
+
+  /// Returns a [ResourceVersionPolicy] from a [String] enum.
   static ResourceVersionPolicy fromString(String str) {
     switch (str) {
       case 'no-version':
@@ -39,6 +42,7 @@ enum ResourceVersionPolicy {
     }
   }
 
+  /// Returns a [ResourceVersionPolicy] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ResourceVersionPolicy fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

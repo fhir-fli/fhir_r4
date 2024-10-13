@@ -19,7 +19,10 @@ enum ExampleCoverageFinancialExceptionCodes {
     }
   }
 
+  /// Returns a [String] from a [ExampleCoverageFinancialExceptionCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ExampleCoverageFinancialExceptionCodes] from a [String] enum.
   static ExampleCoverageFinancialExceptionCodes fromString(String str) {
     switch (str) {
       case 'retired':
@@ -31,6 +34,7 @@ enum ExampleCoverageFinancialExceptionCodes {
     }
   }
 
+  /// Returns a [ExampleCoverageFinancialExceptionCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ExampleCoverageFinancialExceptionCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

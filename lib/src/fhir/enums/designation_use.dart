@@ -14,7 +14,10 @@ enum DesignationUse {
     }
   }
 
+  /// Returns a [String] from a [DesignationUse] enum.
   String toJson() => toString();
+
+  /// Returns a [DesignationUse] from a [String] enum.
   static DesignationUse fromString(String str) {
     switch (str) {
       case '900000000000003001':
@@ -26,6 +29,7 @@ enum DesignationUse {
     }
   }
 
+  /// Returns a [DesignationUse] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static DesignationUse fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

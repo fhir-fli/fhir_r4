@@ -31,7 +31,10 @@ enum LibraryType {
     }
   }
 
+  /// Returns a [String] from a [LibraryType] enum.
   String toJson() => toString();
+
+  /// Returns a [LibraryType] from a [String] enum.
   static LibraryType fromString(String str) {
     switch (str) {
       case 'logic-library':
@@ -47,6 +50,7 @@ enum LibraryType {
     }
   }
 
+  /// Returns a [LibraryType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static LibraryType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -19,7 +19,10 @@ enum ProductConfidentiality {
     }
   }
 
+  /// Returns a [String] from a [ProductConfidentiality] enum.
   String toJson() => toString();
+
+  /// Returns a [ProductConfidentiality] from a [String] enum.
   static ProductConfidentiality fromString(String str) {
     switch (str) {
       case 'CommerciallySensitive':
@@ -31,6 +34,7 @@ enum ProductConfidentiality {
     }
   }
 
+  /// Returns a [ProductConfidentiality] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ProductConfidentiality fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

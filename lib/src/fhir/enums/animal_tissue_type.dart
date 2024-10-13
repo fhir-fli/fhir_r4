@@ -952,7 +952,10 @@ enum AnimalTissueType {
     }
   }
 
+  /// Returns a [String] from a [AnimalTissueType] enum.
   String toJson() => toString();
+
+  /// Returns a [AnimalTissueType] from a [String] enum.
   static AnimalTissueType fromString(String str) {
     switch (str) {
       case '100000072091':
@@ -1338,6 +1341,7 @@ enum AnimalTissueType {
     }
   }
 
+  /// Returns a [AnimalTissueType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AnimalTissueType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

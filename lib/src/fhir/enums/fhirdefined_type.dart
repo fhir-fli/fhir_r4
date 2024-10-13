@@ -1247,7 +1247,10 @@ enum FHIRDefinedType {
     }
   }
 
+  /// Returns a [String] from a [FHIRDefinedType] enum.
   String toJson() => toString();
+
+  /// Returns a [FHIRDefinedType] from a [String] enum.
   static FHIRDefinedType fromString(String str) {
     switch (str) {
       case 'Address':
@@ -1669,6 +1672,7 @@ enum FHIRDefinedType {
     }
   }
 
+  /// Returns a [FHIRDefinedType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static FHIRDefinedType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

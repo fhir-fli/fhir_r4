@@ -91,7 +91,10 @@ enum EndpointConnectionType {
     }
   }
 
+  /// Returns a [String] from a [EndpointConnectionType] enum.
   String toJson() => toString();
+
+  /// Returns a [EndpointConnectionType] from a [String] enum.
   static EndpointConnectionType fromString(String str) {
     switch (str) {
       case 'ihe-xcpd':
@@ -127,6 +130,7 @@ enum EndpointConnectionType {
     }
   }
 
+  /// Returns a [EndpointConnectionType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static EndpointConnectionType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

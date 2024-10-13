@@ -25,7 +25,10 @@ enum ListMode {
     }
   }
 
+  /// Returns a [String] from a [ListMode] enum.
   String toJson() => toString();
+
+  /// Returns a [ListMode] from a [String] enum.
   static ListMode fromString(String str) {
     switch (str) {
       case 'working':
@@ -39,6 +42,7 @@ enum ListMode {
     }
   }
 
+  /// Returns a [ListMode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ListMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

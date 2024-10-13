@@ -174,7 +174,10 @@ enum ReportSectionType {
     }
   }
 
+  /// Returns a [String] from a [ReportSectionType] enum.
   String toJson() => toString();
+
+  /// Returns a [ReportSectionType] from a [String] enum.
   static ReportSectionType fromString(String str) {
     switch (str) {
       case 'Evidence':
@@ -238,6 +241,7 @@ enum ReportSectionType {
     }
   }
 
+  /// Returns a [ReportSectionType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ReportSectionType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

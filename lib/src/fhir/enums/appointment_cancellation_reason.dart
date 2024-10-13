@@ -167,7 +167,10 @@ enum AppointmentCancellationReason {
     }
   }
 
+  /// Returns a [String] from a [AppointmentCancellationReason] enum.
   String toJson() => toString();
+
+  /// Returns a [AppointmentCancellationReason] from a [String] enum.
   static AppointmentCancellationReason fromString(String str) {
     switch (str) {
       case 'pat':
@@ -239,6 +242,7 @@ enum AppointmentCancellationReason {
     }
   }
 
+  /// Returns a [AppointmentCancellationReason] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AppointmentCancellationReason fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

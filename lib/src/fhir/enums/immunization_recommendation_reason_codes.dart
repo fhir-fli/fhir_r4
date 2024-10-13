@@ -14,7 +14,10 @@ enum ImmunizationRecommendationReasonCodes {
     }
   }
 
+  /// Returns a [String] from a [ImmunizationRecommendationReasonCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ImmunizationRecommendationReasonCodes] from a [String] enum.
   static ImmunizationRecommendationReasonCodes fromString(String str) {
     switch (str) {
       case '77176002':
@@ -26,6 +29,7 @@ enum ImmunizationRecommendationReasonCodes {
     }
   }
 
+  /// Returns a [ImmunizationRecommendationReasonCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ImmunizationRecommendationReasonCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

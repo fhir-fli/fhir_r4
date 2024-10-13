@@ -169,7 +169,10 @@ enum CitationStatusType {
     }
   }
 
+  /// Returns a [String] from a [CitationStatusType] enum.
   String toJson() => toString();
+
+  /// Returns a [CitationStatusType] from a [String] enum.
   static CitationStatusType fromString(String str) {
     switch (str) {
       case 'pubmed-pubstatus-received':
@@ -231,6 +234,7 @@ enum CitationStatusType {
     }
   }
 
+  /// Returns a [CitationStatusType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CitationStatusType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

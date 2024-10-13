@@ -47,7 +47,10 @@ enum CommonUCUMCodesForDuration {
     }
   }
 
+  /// Returns a [String] from a [CommonUCUMCodesForDuration] enum.
   String toJson() => toString();
+
+  /// Returns a [CommonUCUMCodesForDuration] from a [String] enum.
   static CommonUCUMCodesForDuration fromString(String str) {
     switch (str) {
       case 'ms':
@@ -71,6 +74,7 @@ enum CommonUCUMCodesForDuration {
     }
   }
 
+  /// Returns a [CommonUCUMCodesForDuration] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CommonUCUMCodesForDuration fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

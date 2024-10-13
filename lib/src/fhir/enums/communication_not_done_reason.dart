@@ -43,7 +43,10 @@ enum CommunicationNotDoneReason {
     }
   }
 
+  /// Returns a [String] from a [CommunicationNotDoneReason] enum.
   String toJson() => toString();
+
+  /// Returns a [CommunicationNotDoneReason] from a [String] enum.
   static CommunicationNotDoneReason fromString(String str) {
     switch (str) {
       case 'unknown':
@@ -63,6 +66,7 @@ enum CommunicationNotDoneReason {
     }
   }
 
+  /// Returns a [CommunicationNotDoneReason] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static CommunicationNotDoneReason fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

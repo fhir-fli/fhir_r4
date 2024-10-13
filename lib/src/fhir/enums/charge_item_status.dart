@@ -49,7 +49,10 @@ enum ChargeItemStatus {
     }
   }
 
+  /// Returns a [String] from a [ChargeItemStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [ChargeItemStatus] from a [String] enum.
   static ChargeItemStatus fromString(String str) {
     switch (str) {
       case 'planned':
@@ -71,6 +74,7 @@ enum ChargeItemStatus {
     }
   }
 
+  /// Returns a [ChargeItemStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ChargeItemStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

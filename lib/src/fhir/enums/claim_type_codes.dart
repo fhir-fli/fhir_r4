@@ -37,7 +37,10 @@ enum ClaimTypeCodes {
     }
   }
 
+  /// Returns a [String] from a [ClaimTypeCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ClaimTypeCodes] from a [String] enum.
   static ClaimTypeCodes fromString(String str) {
     switch (str) {
       case 'institutional':
@@ -55,6 +58,7 @@ enum ClaimTypeCodes {
     }
   }
 
+  /// Returns a [ClaimTypeCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ClaimTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

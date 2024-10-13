@@ -103,7 +103,10 @@ enum ArticleUrlType {
     }
   }
 
+  /// Returns a [String] from a [ArticleUrlType] enum.
   String toJson() => toString();
+
+  /// Returns a [ArticleUrlType] from a [String] enum.
   static ArticleUrlType fromString(String str) {
     switch (str) {
       case 'abstract':
@@ -143,6 +146,7 @@ enum ArticleUrlType {
     }
   }
 
+  /// Returns a [ArticleUrlType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ArticleUrlType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -19110,7 +19110,10 @@ enum ParticipationRoleType {
     }
   }
 
+  /// Returns a [String] from a [ParticipationRoleType] enum.
   String toJson() => toString();
+
+  /// Returns a [ParticipationRoleType] from a [String] enum.
   static ParticipationRoleType fromString(String str) {
     switch (str) {
       case 'AMENDER':
@@ -25552,6 +25555,7 @@ enum ParticipationRoleType {
     }
   }
 
+  /// Returns a [ParticipationRoleType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ParticipationRoleType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

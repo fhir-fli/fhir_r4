@@ -19,7 +19,10 @@ enum OperationParameterUse {
     }
   }
 
+  /// Returns a [String] from a [OperationParameterUse] enum.
   String toJson() => toString();
+
+  /// Returns a [OperationParameterUse] from a [String] enum.
   static OperationParameterUse fromString(String str) {
     switch (str) {
       case 'in':
@@ -31,6 +34,7 @@ enum OperationParameterUse {
     }
   }
 
+  /// Returns a [OperationParameterUse] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static OperationParameterUse fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

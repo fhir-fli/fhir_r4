@@ -29,7 +29,10 @@ enum ParticipantType {
     }
   }
 
+  /// Returns a [String] from a [ParticipantType] enum.
   String toJson() => toString();
+
+  /// Returns a [ParticipantType] from a [String] enum.
   static ParticipantType fromString(String str) {
     switch (str) {
       case 'SPRF':
@@ -47,6 +50,7 @@ enum ParticipantType {
     }
   }
 
+  /// Returns a [ParticipantType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ParticipantType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

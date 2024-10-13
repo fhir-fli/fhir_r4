@@ -67,7 +67,10 @@ enum ConceptMapEquivalence {
     }
   }
 
+  /// Returns a [String] from a [ConceptMapEquivalence] enum.
   String toJson() => toString();
+
+  /// Returns a [ConceptMapEquivalence] from a [String] enum.
   static ConceptMapEquivalence fromString(String str) {
     switch (str) {
       case 'relatedto':
@@ -95,6 +98,7 @@ enum ConceptMapEquivalence {
     }
   }
 
+  /// Returns a [ConceptMapEquivalence] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ConceptMapEquivalence fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

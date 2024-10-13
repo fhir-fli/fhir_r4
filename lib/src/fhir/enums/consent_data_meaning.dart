@@ -31,7 +31,10 @@ enum ConsentDataMeaning {
     }
   }
 
+  /// Returns a [String] from a [ConsentDataMeaning] enum.
   String toJson() => toString();
+
+  /// Returns a [ConsentDataMeaning] from a [String] enum.
   static ConsentDataMeaning fromString(String str) {
     switch (str) {
       case 'instance':
@@ -47,6 +50,7 @@ enum ConsentDataMeaning {
     }
   }
 
+  /// Returns a [ConsentDataMeaning] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ConsentDataMeaning fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

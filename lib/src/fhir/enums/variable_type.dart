@@ -25,7 +25,10 @@ enum VariableType {
     }
   }
 
+  /// Returns a [String] from a [VariableType] enum.
   String toJson() => toString();
+
+  /// Returns a [VariableType] from a [String] enum.
   static VariableType fromString(String str) {
     switch (str) {
       case 'dichotomous':
@@ -39,6 +42,7 @@ enum VariableType {
     }
   }
 
+  /// Returns a [VariableType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static VariableType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

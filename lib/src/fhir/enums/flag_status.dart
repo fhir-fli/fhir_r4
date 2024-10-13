@@ -25,7 +25,10 @@ enum FlagStatus {
     }
   }
 
+  /// Returns a [String] from a [FlagStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [FlagStatus] from a [String] enum.
   static FlagStatus fromString(String str) {
     switch (str) {
       case 'active':
@@ -39,6 +42,7 @@ enum FlagStatus {
     }
   }
 
+  /// Returns a [FlagStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static FlagStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

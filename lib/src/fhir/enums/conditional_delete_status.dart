@@ -25,7 +25,10 @@ enum ConditionalDeleteStatus {
     }
   }
 
+  /// Returns a [String] from a [ConditionalDeleteStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [ConditionalDeleteStatus] from a [String] enum.
   static ConditionalDeleteStatus fromString(String str) {
     switch (str) {
       case 'not-supported':
@@ -39,6 +42,7 @@ enum ConditionalDeleteStatus {
     }
   }
 
+  /// Returns a [ConditionalDeleteStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ConditionalDeleteStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

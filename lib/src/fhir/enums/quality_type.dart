@@ -25,7 +25,10 @@ enum QualityType {
     }
   }
 
+  /// Returns a [String] from a [QualityType] enum.
   String toJson() => toString();
+
+  /// Returns a [QualityType] from a [String] enum.
   static QualityType fromString(String str) {
     switch (str) {
       case 'indel':
@@ -39,6 +42,7 @@ enum QualityType {
     }
   }
 
+  /// Returns a [QualityType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static QualityType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

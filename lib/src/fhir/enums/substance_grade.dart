@@ -32,7 +32,10 @@ enum SubstanceGrade {
     }
   }
 
+  /// Returns a [String] from a [SubstanceGrade] enum.
   String toJson() => toString();
+
+  /// Returns a [SubstanceGrade] from a [String] enum.
   static SubstanceGrade fromString(String str) {
     switch (str) {
       case 'USP-NF':
@@ -50,6 +53,7 @@ enum SubstanceGrade {
     }
   }
 
+  /// Returns a [SubstanceGrade] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SubstanceGrade fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

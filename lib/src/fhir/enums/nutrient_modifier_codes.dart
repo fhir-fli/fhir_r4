@@ -22,7 +22,10 @@ enum NutrientModifierCodes {
     }
   }
 
+  /// Returns a [String] from a [NutrientModifierCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [NutrientModifierCodes] from a [String] enum.
   static NutrientModifierCodes fromString(String str) {
     switch (str) {
       case '33463005':
@@ -36,6 +39,7 @@ enum NutrientModifierCodes {
     }
   }
 
+  /// Returns a [NutrientModifierCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static NutrientModifierCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

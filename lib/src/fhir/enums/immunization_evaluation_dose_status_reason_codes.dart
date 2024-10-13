@@ -37,7 +37,10 @@ enum ImmunizationEvaluationDoseStatusReasonCodes {
     }
   }
 
+  /// Returns a [String] from a [ImmunizationEvaluationDoseStatusReasonCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ImmunizationEvaluationDoseStatusReasonCodes] from a [String] enum.
   static ImmunizationEvaluationDoseStatusReasonCodes fromString(String str) {
     switch (str) {
       case 'advstorage':
@@ -55,6 +58,7 @@ enum ImmunizationEvaluationDoseStatusReasonCodes {
     }
   }
 
+  /// Returns a [ImmunizationEvaluationDoseStatusReasonCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ImmunizationEvaluationDoseStatusReasonCodes fromJson(
       dynamic jsonValue) {
     if (jsonValue is String) {

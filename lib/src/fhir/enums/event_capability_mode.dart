@@ -19,7 +19,10 @@ enum EventCapabilityMode {
     }
   }
 
+  /// Returns a [String] from a [EventCapabilityMode] enum.
   String toJson() => toString();
+
+  /// Returns a [EventCapabilityMode] from a [String] enum.
   static EventCapabilityMode fromString(String str) {
     switch (str) {
       case 'sender':
@@ -31,6 +34,7 @@ enum EventCapabilityMode {
     }
   }
 
+  /// Returns a [EventCapabilityMode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static EventCapabilityMode fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

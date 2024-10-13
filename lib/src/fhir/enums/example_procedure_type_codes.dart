@@ -19,7 +19,10 @@ enum ExampleProcedureTypeCodes {
     }
   }
 
+  /// Returns a [String] from a [ExampleProcedureTypeCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ExampleProcedureTypeCodes] from a [String] enum.
   static ExampleProcedureTypeCodes fromString(String str) {
     switch (str) {
       case 'primary':
@@ -31,6 +34,7 @@ enum ExampleProcedureTypeCodes {
     }
   }
 
+  /// Returns a [ExampleProcedureTypeCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ExampleProcedureTypeCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

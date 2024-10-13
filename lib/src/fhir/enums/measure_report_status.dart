@@ -25,7 +25,10 @@ enum MeasureReportStatus {
     }
   }
 
+  /// Returns a [String] from a [MeasureReportStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [MeasureReportStatus] from a [String] enum.
   static MeasureReportStatus fromString(String str) {
     switch (str) {
       case 'complete':
@@ -39,6 +42,7 @@ enum MeasureReportStatus {
     }
   }
 
+  /// Returns a [MeasureReportStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static MeasureReportStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

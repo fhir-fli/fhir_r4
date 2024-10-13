@@ -31,7 +31,10 @@ enum ActionParticipantType {
     }
   }
 
+  /// Returns a [String] from a [ActionParticipantType] enum.
   String toJson() => toString();
+
+  /// Returns a [ActionParticipantType] from a [String] enum.
   static ActionParticipantType fromString(String str) {
     switch (str) {
       case 'patient':
@@ -47,6 +50,7 @@ enum ActionParticipantType {
     }
   }
 
+  /// Returns a [ActionParticipantType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ActionParticipantType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

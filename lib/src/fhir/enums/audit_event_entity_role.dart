@@ -151,7 +151,10 @@ enum AuditEventEntityRole {
     }
   }
 
+  /// Returns a [String] from a [AuditEventEntityRole] enum.
   String toJson() => toString();
+
+  /// Returns a [AuditEventEntityRole] from a [String] enum.
   static AuditEventEntityRole fromString(String str) {
     switch (str) {
       case '1':
@@ -207,6 +210,7 @@ enum AuditEventEntityRole {
     }
   }
 
+  /// Returns a [AuditEventEntityRole] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AuditEventEntityRole fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

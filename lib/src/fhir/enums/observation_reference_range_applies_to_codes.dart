@@ -17,7 +17,10 @@ enum ObservationReferenceRangeAppliesToCodes {
     }
   }
 
+  /// Returns a [String] from a [ObservationReferenceRangeAppliesToCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ObservationReferenceRangeAppliesToCodes] from a [String] enum.
   static ObservationReferenceRangeAppliesToCodes fromString(String str) {
     switch (str) {
       case '248153007':
@@ -31,6 +34,7 @@ enum ObservationReferenceRangeAppliesToCodes {
     }
   }
 
+  /// Returns a [ObservationReferenceRangeAppliesToCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ObservationReferenceRangeAppliesToCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

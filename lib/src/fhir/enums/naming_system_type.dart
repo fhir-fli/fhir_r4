@@ -25,7 +25,10 @@ enum NamingSystemType {
     }
   }
 
+  /// Returns a [String] from a [NamingSystemType] enum.
   String toJson() => toString();
+
+  /// Returns a [NamingSystemType] from a [String] enum.
   static NamingSystemType fromString(String str) {
     switch (str) {
       case 'codesystem':
@@ -39,6 +42,7 @@ enum NamingSystemType {
     }
   }
 
+  /// Returns a [NamingSystemType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static NamingSystemType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

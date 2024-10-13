@@ -13,7 +13,10 @@ enum SpecialMeasures {
     }
   }
 
+  /// Returns a [String] from a [SpecialMeasures] enum.
   String toJson() => toString();
+
+  /// Returns a [SpecialMeasures] from a [String] enum.
   static SpecialMeasures fromString(String str) {
     switch (str) {
       case 'Post-authorisationStudies':
@@ -23,6 +26,7 @@ enum SpecialMeasures {
     }
   }
 
+  /// Returns a [SpecialMeasures] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SpecialMeasures fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -61,7 +61,10 @@ enum GoalLifecycleStatus {
     }
   }
 
+  /// Returns a [String] from a [GoalLifecycleStatus] enum.
   String toJson() => toString();
+
+  /// Returns a [GoalLifecycleStatus] from a [String] enum.
   static GoalLifecycleStatus fromString(String str) {
     switch (str) {
       case 'proposed':
@@ -87,6 +90,7 @@ enum GoalLifecycleStatus {
     }
   }
 
+  /// Returns a [GoalLifecycleStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static GoalLifecycleStatus fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

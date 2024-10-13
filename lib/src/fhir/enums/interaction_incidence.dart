@@ -17,7 +17,10 @@ enum InteractionIncidence {
     }
   }
 
+  /// Returns a [String] from a [InteractionIncidence] enum.
   String toJson() => toString();
+
+  /// Returns a [InteractionIncidence] from a [String] enum.
   static InteractionIncidence fromString(String str) {
     switch (str) {
       case 'Theoretical':
@@ -29,6 +32,7 @@ enum InteractionIncidence {
     }
   }
 
+  /// Returns a [InteractionIncidence] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static InteractionIncidence fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

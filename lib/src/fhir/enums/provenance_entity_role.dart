@@ -37,7 +37,10 @@ enum ProvenanceEntityRole {
     }
   }
 
+  /// Returns a [String] from a [ProvenanceEntityRole] enum.
   String toJson() => toString();
+
+  /// Returns a [ProvenanceEntityRole] from a [String] enum.
   static ProvenanceEntityRole fromString(String str) {
     switch (str) {
       case 'derivation':
@@ -55,6 +58,7 @@ enum ProvenanceEntityRole {
     }
   }
 
+  /// Returns a [ProvenanceEntityRole] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ProvenanceEntityRole fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

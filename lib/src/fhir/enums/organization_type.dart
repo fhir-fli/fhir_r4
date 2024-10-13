@@ -79,7 +79,10 @@ enum OrganizationType {
     }
   }
 
+  /// Returns a [String] from a [OrganizationType] enum.
   String toJson() => toString();
+
+  /// Returns a [OrganizationType] from a [String] enum.
   static OrganizationType fromString(String str) {
     switch (str) {
       case 'prov':
@@ -111,6 +114,7 @@ enum OrganizationType {
     }
   }
 
+  /// Returns a [OrganizationType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static OrganizationType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

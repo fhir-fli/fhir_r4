@@ -19,7 +19,10 @@ enum ConstraintSeverity {
     }
   }
 
+  /// Returns a [String] from a [ConstraintSeverity] enum.
   String toJson() => toString();
+
+  /// Returns a [ConstraintSeverity] from a [String] enum.
   static ConstraintSeverity fromString(String str) {
     switch (str) {
       case 'error':
@@ -31,6 +34,7 @@ enum ConstraintSeverity {
     }
   }
 
+  /// Returns a [ConstraintSeverity] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ConstraintSeverity fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

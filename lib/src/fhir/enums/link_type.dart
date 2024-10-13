@@ -31,7 +31,10 @@ enum LinkType {
     }
   }
 
+  /// Returns a [String] from a [LinkType] enum.
   String toJson() => toString();
+
+  /// Returns a [LinkType] from a [String] enum.
   static LinkType fromString(String str) {
     switch (str) {
       case 'replaced-by':
@@ -47,6 +50,7 @@ enum LinkType {
     }
   }
 
+  /// Returns a [LinkType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static LinkType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

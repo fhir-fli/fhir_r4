@@ -25,7 +25,10 @@ enum AddressType {
     }
   }
 
+  /// Returns a [String] from a [AddressType] enum.
   String toJson() => toString();
+
+  /// Returns a [AddressType] from a [String] enum.
   static AddressType fromString(String str) {
     switch (str) {
       case 'postal':
@@ -39,6 +42,7 @@ enum AddressType {
     }
   }
 
+  /// Returns a [AddressType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AddressType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

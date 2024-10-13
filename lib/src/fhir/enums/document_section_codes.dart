@@ -173,7 +173,10 @@ enum DocumentSectionCodes {
     }
   }
 
+  /// Returns a [String] from a [DocumentSectionCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [DocumentSectionCodes] from a [String] enum.
   static DocumentSectionCodes fromString(String str) {
     switch (str) {
       case '10154-3':
@@ -291,6 +294,7 @@ enum DocumentSectionCodes {
     }
   }
 
+  /// Returns a [DocumentSectionCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static DocumentSectionCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

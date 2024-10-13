@@ -25,7 +25,10 @@ enum ResearchElementType {
     }
   }
 
+  /// Returns a [String] from a [ResearchElementType] enum.
   String toJson() => toString();
+
+  /// Returns a [ResearchElementType] from a [String] enum.
   static ResearchElementType fromString(String str) {
     switch (str) {
       case 'population':
@@ -39,6 +42,7 @@ enum ResearchElementType {
     }
   }
 
+  /// Returns a [ResearchElementType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ResearchElementType fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

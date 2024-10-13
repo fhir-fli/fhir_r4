@@ -31,7 +31,10 @@ enum ExampleProgramReasonCodes {
     }
   }
 
+  /// Returns a [String] from a [ExampleProgramReasonCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ExampleProgramReasonCodes] from a [String] enum.
   static ExampleProgramReasonCodes fromString(String str) {
     switch (str) {
       case 'as':
@@ -47,6 +50,7 @@ enum ExampleProgramReasonCodes {
     }
   }
 
+  /// Returns a [ExampleProgramReasonCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ExampleProgramReasonCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

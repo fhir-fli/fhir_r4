@@ -19,7 +19,10 @@ enum AdverseEventActuality {
     }
   }
 
+  /// Returns a [String] from a [AdverseEventActuality] enum.
   String toJson() => toString();
+
+  /// Returns a [AdverseEventActuality] from a [String] enum.
   static AdverseEventActuality fromString(String str) {
     switch (str) {
       case 'actual':
@@ -31,6 +34,7 @@ enum AdverseEventActuality {
     }
   }
 
+  /// Returns a [AdverseEventActuality] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AdverseEventActuality fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

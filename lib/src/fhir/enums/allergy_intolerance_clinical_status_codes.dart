@@ -25,7 +25,10 @@ enum AllergyIntoleranceClinicalStatusCodes {
     }
   }
 
+  /// Returns a [String] from a [AllergyIntoleranceClinicalStatusCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [AllergyIntoleranceClinicalStatusCodes] from a [String] enum.
   static AllergyIntoleranceClinicalStatusCodes fromString(String str) {
     switch (str) {
       case 'active':
@@ -39,6 +42,7 @@ enum AllergyIntoleranceClinicalStatusCodes {
     }
   }
 
+  /// Returns a [AllergyIntoleranceClinicalStatusCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static AllergyIntoleranceClinicalStatusCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

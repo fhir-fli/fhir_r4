@@ -43,7 +43,10 @@ enum PatientMedicineChangeTypes {
     }
   }
 
+  /// Returns a [String] from a [PatientMedicineChangeTypes] enum.
   String toJson() => toString();
+
+  /// Returns a [PatientMedicineChangeTypes] from a [String] enum.
   static PatientMedicineChangeTypes fromString(String str) {
     switch (str) {
       case '01':
@@ -63,6 +66,7 @@ enum PatientMedicineChangeTypes {
     }
   }
 
+  /// Returns a [PatientMedicineChangeTypes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static PatientMedicineChangeTypes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

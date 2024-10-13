@@ -25,7 +25,10 @@ enum GoalPriority {
     }
   }
 
+  /// Returns a [String] from a [GoalPriority] enum.
   String toJson() => toString();
+
+  /// Returns a [GoalPriority] from a [String] enum.
   static GoalPriority fromString(String str) {
     switch (str) {
       case 'high-priority':
@@ -39,6 +42,7 @@ enum GoalPriority {
     }
   }
 
+  /// Returns a [GoalPriority] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static GoalPriority fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

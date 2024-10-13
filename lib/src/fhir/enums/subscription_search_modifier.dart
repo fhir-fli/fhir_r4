@@ -97,7 +97,10 @@ enum SubscriptionSearchModifier {
     }
   }
 
+  /// Returns a [String] from a [SubscriptionSearchModifier] enum.
   String toJson() => toString();
+
+  /// Returns a [SubscriptionSearchModifier] from a [String] enum.
   static SubscriptionSearchModifier fromString(String str) {
     switch (str) {
       case '=':
@@ -135,6 +138,7 @@ enum SubscriptionSearchModifier {
     }
   }
 
+  /// Returns a [SubscriptionSearchModifier] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SubscriptionSearchModifier fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

@@ -61,7 +61,10 @@ enum ObservationCategoryCodes {
     }
   }
 
+  /// Returns a [String] from a [ObservationCategoryCodes] enum.
   String toJson() => toString();
+
+  /// Returns a [ObservationCategoryCodes] from a [String] enum.
   static ObservationCategoryCodes fromString(String str) {
     switch (str) {
       case 'social-history':
@@ -87,6 +90,7 @@ enum ObservationCategoryCodes {
     }
   }
 
+  /// Returns a [ObservationCategoryCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ObservationCategoryCodes fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);

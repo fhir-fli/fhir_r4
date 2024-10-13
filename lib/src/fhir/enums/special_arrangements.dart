@@ -37,7 +37,10 @@ enum SpecialArrangements {
     }
   }
 
+  /// Returns a [String] from a [SpecialArrangements] enum.
   String toJson() => toString();
+
+  /// Returns a [SpecialArrangements] from a [String] enum.
   static SpecialArrangements fromString(String str) {
     switch (str) {
       case 'wheel':
@@ -55,6 +58,7 @@ enum SpecialArrangements {
     }
   }
 
+  /// Returns a [SpecialArrangements] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static SpecialArrangements fromJson(dynamic jsonValue) {
     if (jsonValue is String) {
       return fromString(jsonValue);
