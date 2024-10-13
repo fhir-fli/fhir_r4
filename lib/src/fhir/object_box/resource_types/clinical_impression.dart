@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxClinicalImpression {
   ObjectBoxClinicalImpression({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -44,7 +44,6 @@ class ObjectBoxClinicalImpression {
     List<ObjectBoxReference>? supportingInfo,
     List<ObjectBoxAnnotation>? note,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -77,7 +76,8 @@ class ObjectBoxClinicalImpression {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -124,13 +124,12 @@ class ObjectBoxClinicalImpression {
 @Entity()
 class ObjectBoxClinicalImpressionInvestigation {
   ObjectBoxClinicalImpressionInvestigation({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? code,
     List<ObjectBoxReference>? item,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.code.target = code;
@@ -139,7 +138,8 @@ class ObjectBoxClinicalImpressionInvestigation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -150,7 +150,7 @@ class ObjectBoxClinicalImpressionInvestigation {
 @Entity()
 class ObjectBoxClinicalImpressionFinding {
   ObjectBoxClinicalImpressionFinding({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? itemCodeableConcept,
@@ -158,7 +158,6 @@ class ObjectBoxClinicalImpressionFinding {
     this.basis,
     ObjectBoxElement? basisElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.itemCodeableConcept.target = itemCodeableConcept;
@@ -168,7 +167,8 @@ class ObjectBoxClinicalImpressionFinding {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

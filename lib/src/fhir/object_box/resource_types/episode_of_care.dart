@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxEpisodeOfCare {
   ObjectBoxEpisodeOfCare({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -30,7 +30,6 @@ class ObjectBoxEpisodeOfCare {
     List<ObjectBoxReference>? team,
     List<ObjectBoxReference>? account,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -54,7 +53,8 @@ class ObjectBoxEpisodeOfCare {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -85,14 +85,13 @@ class ObjectBoxEpisodeOfCare {
 @Entity()
 class ObjectBoxEpisodeOfCareStatusHistory {
   ObjectBoxEpisodeOfCareStatusHistory({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.status,
     ObjectBoxElement? statusElement,
     ObjectBoxPeriod? period,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.statusElement.target = statusElement;
@@ -101,7 +100,8 @@ class ObjectBoxEpisodeOfCareStatusHistory {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -113,7 +113,7 @@ class ObjectBoxEpisodeOfCareStatusHistory {
 @Entity()
 class ObjectBoxEpisodeOfCareDiagnosis {
   ObjectBoxEpisodeOfCareDiagnosis({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxReference? condition,
@@ -121,7 +121,6 @@ class ObjectBoxEpisodeOfCareDiagnosis {
     this.rank,
     ObjectBoxElement? rankElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.condition.target = condition;
@@ -131,7 +130,8 @@ class ObjectBoxEpisodeOfCareDiagnosis {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

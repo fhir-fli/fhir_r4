@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxCarePlan {
   ObjectBoxCarePlan({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -47,7 +47,6 @@ class ObjectBoxCarePlan {
     List<ObjectBoxCarePlanActivity>? activity,
     List<ObjectBoxAnnotation>? note,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -84,7 +83,8 @@ class ObjectBoxCarePlan {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -133,7 +133,7 @@ class ObjectBoxCarePlan {
 @Entity()
 class ObjectBoxCarePlanActivity {
   ObjectBoxCarePlanActivity({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxCodeableConcept>? outcomeCodeableConcept,
@@ -142,7 +142,6 @@ class ObjectBoxCarePlanActivity {
     ObjectBoxReference? reference,
     ObjectBoxCarePlanDetail? detail,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.outcomeCodeableConcept.addAll(outcomeCodeableConcept ?? []);
@@ -154,7 +153,8 @@ class ObjectBoxCarePlanActivity {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -169,7 +169,7 @@ class ObjectBoxCarePlanActivity {
 @Entity()
 class ObjectBoxCarePlanDetail {
   ObjectBoxCarePlanDetail({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.kind,
@@ -200,7 +200,6 @@ class ObjectBoxCarePlanDetail {
     this.description,
     ObjectBoxElement? descriptionElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.kindElement.target = kindElement;
@@ -229,7 +228,8 @@ class ObjectBoxCarePlanDetail {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

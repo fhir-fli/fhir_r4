@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxBiologicallyDerivedProduct {
   ObjectBoxBiologicallyDerivedProduct({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -31,7 +31,6 @@ class ObjectBoxBiologicallyDerivedProduct {
     ObjectBoxBiologicallyDerivedProductManipulation? manipulation,
     List<ObjectBoxBiologicallyDerivedProductStorage>? storage,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -54,7 +53,8 @@ class ObjectBoxBiologicallyDerivedProduct {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -89,7 +89,7 @@ class ObjectBoxBiologicallyDerivedProduct {
 @Entity()
 class ObjectBoxBiologicallyDerivedProductCollection {
   ObjectBoxBiologicallyDerivedProductCollection({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxReference? collector,
@@ -98,7 +98,6 @@ class ObjectBoxBiologicallyDerivedProductCollection {
     ObjectBoxElement? collectedDateTimeElement,
     ObjectBoxPeriod? collectedPeriod,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.collector.target = collector;
@@ -109,7 +108,8 @@ class ObjectBoxBiologicallyDerivedProductCollection {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -123,7 +123,7 @@ class ObjectBoxBiologicallyDerivedProductCollection {
 @Entity()
 class ObjectBoxBiologicallyDerivedProductProcessing {
   ObjectBoxBiologicallyDerivedProductProcessing({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.description,
@@ -134,7 +134,6 @@ class ObjectBoxBiologicallyDerivedProductProcessing {
     ObjectBoxElement? timeDateTimeElement,
     ObjectBoxPeriod? timePeriod,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.descriptionElement.target = descriptionElement;
@@ -146,7 +145,8 @@ class ObjectBoxBiologicallyDerivedProductProcessing {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -162,7 +162,7 @@ class ObjectBoxBiologicallyDerivedProductProcessing {
 @Entity()
 class ObjectBoxBiologicallyDerivedProductManipulation {
   ObjectBoxBiologicallyDerivedProductManipulation({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.description,
@@ -171,7 +171,6 @@ class ObjectBoxBiologicallyDerivedProductManipulation {
     ObjectBoxElement? timeDateTimeElement,
     ObjectBoxPeriod? timePeriod,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.descriptionElement.target = descriptionElement;
@@ -181,7 +180,8 @@ class ObjectBoxBiologicallyDerivedProductManipulation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -195,7 +195,7 @@ class ObjectBoxBiologicallyDerivedProductManipulation {
 @Entity()
 class ObjectBoxBiologicallyDerivedProductStorage {
   ObjectBoxBiologicallyDerivedProductStorage({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.description,
@@ -206,7 +206,6 @@ class ObjectBoxBiologicallyDerivedProductStorage {
     ObjectBoxElement? scaleElement,
     ObjectBoxPeriod? duration,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.descriptionElement.target = descriptionElement;
@@ -217,7 +216,8 @@ class ObjectBoxBiologicallyDerivedProductStorage {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

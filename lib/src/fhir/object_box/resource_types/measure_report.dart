@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxMeasureReport {
   ObjectBoxMeasureReport({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -32,7 +32,6 @@ class ObjectBoxMeasureReport {
     List<ObjectBoxMeasureReportGroup>? group,
     List<ObjectBoxReference>? evaluatedResource,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -55,7 +54,8 @@ class ObjectBoxMeasureReport {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -88,7 +88,7 @@ class ObjectBoxMeasureReport {
 @Entity()
 class ObjectBoxMeasureReportGroup {
   ObjectBoxMeasureReportGroup({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? code,
@@ -96,7 +96,6 @@ class ObjectBoxMeasureReportGroup {
     ObjectBoxQuantity? measureScore,
     List<ObjectBoxMeasureReportStratifier>? stratifier,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.code.target = code;
@@ -107,7 +106,8 @@ class ObjectBoxMeasureReportGroup {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -122,7 +122,7 @@ class ObjectBoxMeasureReportGroup {
 @Entity()
 class ObjectBoxMeasureReportPopulation {
   ObjectBoxMeasureReportPopulation({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? code,
@@ -130,7 +130,6 @@ class ObjectBoxMeasureReportPopulation {
     ObjectBoxElement? countElement,
     ObjectBoxReference? subjectResults,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.code.target = code;
@@ -140,7 +139,8 @@ class ObjectBoxMeasureReportPopulation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -153,13 +153,12 @@ class ObjectBoxMeasureReportPopulation {
 @Entity()
 class ObjectBoxMeasureReportStratifier {
   ObjectBoxMeasureReportStratifier({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxCodeableConcept>? code,
     List<ObjectBoxMeasureReportStratum>? stratum,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.code.addAll(code ?? []);
@@ -168,7 +167,8 @@ class ObjectBoxMeasureReportStratifier {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -180,7 +180,7 @@ class ObjectBoxMeasureReportStratifier {
 @Entity()
 class ObjectBoxMeasureReportStratum {
   ObjectBoxMeasureReportStratum({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? value,
@@ -188,7 +188,6 @@ class ObjectBoxMeasureReportStratum {
     List<ObjectBoxMeasureReportPopulation>? population,
     ObjectBoxQuantity? measureScore,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.value.target = value;
@@ -199,7 +198,8 @@ class ObjectBoxMeasureReportStratum {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -214,13 +214,12 @@ class ObjectBoxMeasureReportStratum {
 @Entity()
 class ObjectBoxMeasureReportComponent {
   ObjectBoxMeasureReportComponent({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? code,
     ObjectBoxCodeableConcept? value,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.code.target = code;
@@ -229,7 +228,8 @@ class ObjectBoxMeasureReportComponent {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -240,7 +240,7 @@ class ObjectBoxMeasureReportComponent {
 @Entity()
 class ObjectBoxMeasureReportPopulation1 {
   ObjectBoxMeasureReportPopulation1({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? code,
@@ -248,7 +248,6 @@ class ObjectBoxMeasureReportPopulation1 {
     ObjectBoxElement? countElement,
     ObjectBoxReference? subjectResults,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.code.target = code;
@@ -258,7 +257,8 @@ class ObjectBoxMeasureReportPopulation1 {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

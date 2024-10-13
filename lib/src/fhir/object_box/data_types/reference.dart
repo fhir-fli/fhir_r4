@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxReference {
   ObjectBoxReference({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     this.reference,
     ObjectBoxElement? referenceElement,
@@ -16,7 +16,6 @@ class ObjectBoxReference {
     this.display,
     ObjectBoxElement? displayElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.referenceElement.target = referenceElement;
     this.typeElement.target = typeElement;
@@ -26,7 +25,8 @@ class ObjectBoxReference {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String? reference;
   ToOne<ObjectBoxElement> referenceElement = ToOne<ObjectBoxElement>();

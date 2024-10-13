@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxLocation {
   ObjectBoxLocation({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -40,7 +40,6 @@ class ObjectBoxLocation {
     ObjectBoxElement? availabilityExceptionsElement,
     List<ObjectBoxReference>? endpoint,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -69,7 +68,8 @@ class ObjectBoxLocation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -112,7 +112,7 @@ class ObjectBoxLocation {
 @Entity()
 class ObjectBoxLocationPosition {
   ObjectBoxLocationPosition({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.longitude,
@@ -122,7 +122,6 @@ class ObjectBoxLocationPosition {
     this.altitude,
     ObjectBoxElement? altitudeElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.longitudeElement.target = longitudeElement;
@@ -132,7 +131,8 @@ class ObjectBoxLocationPosition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -147,7 +147,7 @@ class ObjectBoxLocationPosition {
 @Entity()
 class ObjectBoxLocationHoursOfOperation {
   ObjectBoxLocationHoursOfOperation({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.daysOfWeek,
@@ -159,7 +159,6 @@ class ObjectBoxLocationHoursOfOperation {
     this.closingTime,
     ObjectBoxElement? closingTimeElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.daysOfWeekElement.addAll(daysOfWeekElement ?? []);
@@ -170,7 +169,8 @@ class ObjectBoxLocationHoursOfOperation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

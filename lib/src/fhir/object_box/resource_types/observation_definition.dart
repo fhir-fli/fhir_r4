@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxObservationDefinition {
   ObjectBoxObservationDefinition({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -33,7 +33,6 @@ class ObjectBoxObservationDefinition {
     ObjectBoxReference? abnormalCodedValueSet,
     ObjectBoxReference? criticalCodedValueSet,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -58,7 +57,8 @@ class ObjectBoxObservationDefinition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -96,7 +96,7 @@ class ObjectBoxObservationDefinition {
 @Entity()
 class ObjectBoxObservationDefinitionQuantitativeDetails {
   ObjectBoxObservationDefinitionQuantitativeDetails({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? customaryUnit,
@@ -106,7 +106,6 @@ class ObjectBoxObservationDefinitionQuantitativeDetails {
     this.decimalPrecision,
     ObjectBoxElement? decimalPrecisionElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.customaryUnit.target = customaryUnit;
@@ -117,7 +116,8 @@ class ObjectBoxObservationDefinitionQuantitativeDetails {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -133,7 +133,7 @@ class ObjectBoxObservationDefinitionQuantitativeDetails {
 @Entity()
 class ObjectBoxObservationDefinitionQualifiedInterval {
   ObjectBoxObservationDefinitionQualifiedInterval({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.category,
@@ -148,7 +148,6 @@ class ObjectBoxObservationDefinitionQualifiedInterval {
     this.condition,
     ObjectBoxElement? conditionElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.categoryElement.target = categoryElement;
@@ -163,7 +162,8 @@ class ObjectBoxObservationDefinitionQualifiedInterval {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

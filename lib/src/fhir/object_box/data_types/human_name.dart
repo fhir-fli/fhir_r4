@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxHumanName {
   ObjectBoxHumanName({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     this.use,
     ObjectBoxElement? useElement,
@@ -22,7 +22,6 @@ class ObjectBoxHumanName {
     List<ObjectBoxElement>? suffixElement,
     ObjectBoxPeriod? period,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.useElement.target = useElement;
     this.textElement.target = textElement;
@@ -35,7 +34,8 @@ class ObjectBoxHumanName {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String? use;
   ToOne<ObjectBoxElement> useElement = ToOne<ObjectBoxElement>();

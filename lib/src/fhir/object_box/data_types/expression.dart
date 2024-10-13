@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxFhirExpression {
   ObjectBoxFhirExpression({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     this.description,
     ObjectBoxElement? descriptionElement,
@@ -19,7 +19,6 @@ class ObjectBoxFhirExpression {
     this.reference,
     ObjectBoxElement? referenceElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.descriptionElement.target = descriptionElement;
     this.nameElement.target = nameElement;
@@ -30,7 +29,8 @@ class ObjectBoxFhirExpression {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String? description;
   ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();

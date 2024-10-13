@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxStructureMap {
   ObjectBoxStructureMap({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -47,7 +47,6 @@ class ObjectBoxStructureMap {
     List<ObjectBoxElement>? importElement,
     List<ObjectBoxStructureMapGroup>? group,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -77,7 +76,8 @@ class ObjectBoxStructureMap {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -126,7 +126,7 @@ class ObjectBoxStructureMap {
 @Entity()
 class ObjectBoxStructureMapStructure {
   ObjectBoxStructureMapStructure({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.url,
@@ -138,7 +138,6 @@ class ObjectBoxStructureMapStructure {
     this.documentation,
     ObjectBoxElement? documentationElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.urlElement.target = urlElement;
@@ -149,7 +148,8 @@ class ObjectBoxStructureMapStructure {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -166,7 +166,7 @@ class ObjectBoxStructureMapStructure {
 @Entity()
 class ObjectBoxStructureMapGroup {
   ObjectBoxStructureMapGroup({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
@@ -180,7 +180,6 @@ class ObjectBoxStructureMapGroup {
     List<ObjectBoxStructureMapInput>? input,
     List<ObjectBoxStructureMapRule>? rule,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.nameElement.target = nameElement;
@@ -193,7 +192,8 @@ class ObjectBoxStructureMapGroup {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -213,7 +213,7 @@ class ObjectBoxStructureMapGroup {
 @Entity()
 class ObjectBoxStructureMapInput {
   ObjectBoxStructureMapInput({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
@@ -225,7 +225,6 @@ class ObjectBoxStructureMapInput {
     this.documentation,
     ObjectBoxElement? documentationElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.nameElement.target = nameElement;
@@ -236,7 +235,8 @@ class ObjectBoxStructureMapInput {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -253,7 +253,7 @@ class ObjectBoxStructureMapInput {
 @Entity()
 class ObjectBoxStructureMapRule {
   ObjectBoxStructureMapRule({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
@@ -265,7 +265,6 @@ class ObjectBoxStructureMapRule {
     this.documentation,
     ObjectBoxElement? documentationElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.nameElement.target = nameElement;
@@ -278,7 +277,8 @@ class ObjectBoxStructureMapRule {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -298,7 +298,7 @@ class ObjectBoxStructureMapRule {
 @Entity()
 class ObjectBoxStructureMapSource {
   ObjectBoxStructureMapSource({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.context,
@@ -391,7 +391,6 @@ class ObjectBoxStructureMapSource {
     this.logMessage,
     ObjectBoxElement? logMessageElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.contextElement.target = contextElement;
@@ -460,7 +459,8 @@ class ObjectBoxStructureMapSource {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -583,7 +583,7 @@ class ObjectBoxStructureMapSource {
 @Entity()
 class ObjectBoxStructureMapTarget {
   ObjectBoxStructureMapTarget({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.context,
@@ -602,7 +602,6 @@ class ObjectBoxStructureMapTarget {
     ObjectBoxElement? transformElement,
     List<ObjectBoxStructureMapParameter>? parameter,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.contextElement.target = contextElement;
@@ -617,7 +616,8 @@ class ObjectBoxStructureMapTarget {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -642,7 +642,7 @@ class ObjectBoxStructureMapTarget {
 @Entity()
 class ObjectBoxStructureMapParameter {
   ObjectBoxStructureMapParameter({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.valueId,
@@ -656,7 +656,6 @@ class ObjectBoxStructureMapParameter {
     this.valueDecimal,
     ObjectBoxElement? valueDecimalElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.valueIdElement.target = valueIdElement;
@@ -668,7 +667,8 @@ class ObjectBoxStructureMapParameter {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -687,7 +687,7 @@ class ObjectBoxStructureMapParameter {
 @Entity()
 class ObjectBoxStructureMapDependent {
   ObjectBoxStructureMapDependent({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
@@ -695,7 +695,6 @@ class ObjectBoxStructureMapDependent {
     required this.variable,
     List<ObjectBoxElement>? variableElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.nameElement.target = nameElement;
@@ -704,7 +703,8 @@ class ObjectBoxStructureMapDependent {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

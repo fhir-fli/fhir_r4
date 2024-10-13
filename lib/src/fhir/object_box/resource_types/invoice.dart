@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxInvoice {
   ObjectBoxInvoice({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -37,7 +37,6 @@ class ObjectBoxInvoice {
     ObjectBoxElement? paymentTermsElement,
     List<ObjectBoxAnnotation>? note,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -65,7 +64,8 @@ class ObjectBoxInvoice {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -104,13 +104,12 @@ class ObjectBoxInvoice {
 @Entity()
 class ObjectBoxInvoiceParticipant {
   ObjectBoxInvoiceParticipant({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? role,
     ObjectBoxReference? actor,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.role.target = role;
@@ -119,7 +118,8 @@ class ObjectBoxInvoiceParticipant {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -130,7 +130,7 @@ class ObjectBoxInvoiceParticipant {
 @Entity()
 class ObjectBoxInvoiceLineItem {
   ObjectBoxInvoiceLineItem({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.sequence,
@@ -139,7 +139,6 @@ class ObjectBoxInvoiceLineItem {
     ObjectBoxCodeableConcept? chargeItemCodeableConcept,
     List<ObjectBoxInvoicePriceComponent>? priceComponent,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sequenceElement.target = sequenceElement;
@@ -150,7 +149,8 @@ class ObjectBoxInvoiceLineItem {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -166,7 +166,7 @@ class ObjectBoxInvoiceLineItem {
 @Entity()
 class ObjectBoxInvoicePriceComponent {
   ObjectBoxInvoicePriceComponent({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.type,
@@ -176,7 +176,6 @@ class ObjectBoxInvoicePriceComponent {
     ObjectBoxElement? factorElement,
     ObjectBoxMoney? amount,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.typeElement.target = typeElement;
@@ -187,7 +186,8 @@ class ObjectBoxInvoicePriceComponent {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

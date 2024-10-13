@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxSampledData {
   ObjectBoxSampledData({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     ObjectBoxQuantity? origin,
     required this.period,
@@ -22,7 +22,6 @@ class ObjectBoxSampledData {
     this.data,
     ObjectBoxElement? dataElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.origin.target = origin;
     this.periodElement.target = periodElement;
@@ -35,7 +34,8 @@ class ObjectBoxSampledData {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxQuantity> origin = ToOne<ObjectBoxQuantity>();
   double period;

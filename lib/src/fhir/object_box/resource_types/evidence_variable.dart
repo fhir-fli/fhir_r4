@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxEvidenceVariable {
   ObjectBoxEvidenceVariable({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -54,7 +54,6 @@ class ObjectBoxEvidenceVariable {
     ObjectBoxElement? handlingElement,
     List<ObjectBoxEvidenceVariableCategory>? category,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -91,7 +90,8 @@ class ObjectBoxEvidenceVariable {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -148,7 +148,7 @@ class ObjectBoxEvidenceVariable {
 @Entity()
 class ObjectBoxEvidenceVariableCharacteristic {
   ObjectBoxEvidenceVariableCharacteristic({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.description,
@@ -166,7 +166,6 @@ class ObjectBoxEvidenceVariableCharacteristic {
     this.groupMeasure,
     ObjectBoxElement? groupMeasureElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.descriptionElement.target = descriptionElement;
@@ -183,7 +182,8 @@ class ObjectBoxEvidenceVariableCharacteristic {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -210,7 +210,7 @@ class ObjectBoxEvidenceVariableCharacteristic {
 @Entity()
 class ObjectBoxEvidenceVariableTimeFromStart {
   ObjectBoxEvidenceVariableTimeFromStart({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.description,
@@ -219,7 +219,6 @@ class ObjectBoxEvidenceVariableTimeFromStart {
     ObjectBoxRange? range,
     List<ObjectBoxAnnotation>? note,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.descriptionElement.target = descriptionElement;
@@ -230,7 +229,8 @@ class ObjectBoxEvidenceVariableTimeFromStart {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -244,7 +244,7 @@ class ObjectBoxEvidenceVariableTimeFromStart {
 @Entity()
 class ObjectBoxEvidenceVariableCategory {
   ObjectBoxEvidenceVariableCategory({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.name,
@@ -253,7 +253,6 @@ class ObjectBoxEvidenceVariableCategory {
     ObjectBoxQuantity? valueQuantity,
     ObjectBoxRange? valueRange,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.nameElement.target = nameElement;
@@ -264,7 +263,8 @@ class ObjectBoxEvidenceVariableCategory {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

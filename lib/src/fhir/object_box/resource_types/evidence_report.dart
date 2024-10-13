@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxEvidenceReport {
   ObjectBoxEvidenceReport({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -40,7 +40,6 @@ class ObjectBoxEvidenceReport {
     List<ObjectBoxEvidenceReportRelatesTo>? relatesTo,
     List<ObjectBoxEvidenceReportSection>? section,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -71,7 +70,8 @@ class ObjectBoxEvidenceReport {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -114,13 +114,12 @@ class ObjectBoxEvidenceReport {
 @Entity()
 class ObjectBoxEvidenceReportSubject {
   ObjectBoxEvidenceReportSubject({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxEvidenceReportCharacteristic>? characteristic,
     List<ObjectBoxAnnotation>? note,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.characteristic.addAll(characteristic ?? []);
@@ -129,7 +128,8 @@ class ObjectBoxEvidenceReportSubject {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -141,7 +141,7 @@ class ObjectBoxEvidenceReportSubject {
 @Entity()
 class ObjectBoxEvidenceReportCharacteristic {
   ObjectBoxEvidenceReportCharacteristic({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? code,
@@ -155,7 +155,6 @@ class ObjectBoxEvidenceReportCharacteristic {
     ObjectBoxElement? excludeElement,
     ObjectBoxPeriod? period,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.code.target = code;
@@ -170,7 +169,8 @@ class ObjectBoxEvidenceReportCharacteristic {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -190,7 +190,7 @@ class ObjectBoxEvidenceReportCharacteristic {
 @Entity()
 class ObjectBoxEvidenceReportRelatesTo {
   ObjectBoxEvidenceReportRelatesTo({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.code,
@@ -198,7 +198,6 @@ class ObjectBoxEvidenceReportRelatesTo {
     ObjectBoxIdentifier? targetIdentifier,
     ObjectBoxReference? targetReference,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.codeElement.target = codeElement;
@@ -208,7 +207,8 @@ class ObjectBoxEvidenceReportRelatesTo {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -221,7 +221,7 @@ class ObjectBoxEvidenceReportRelatesTo {
 @Entity()
 class ObjectBoxEvidenceReportSection {
   ObjectBoxEvidenceReportSection({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.title,
@@ -239,7 +239,6 @@ class ObjectBoxEvidenceReportSection {
     ObjectBoxCodeableConcept? emptyReason,
     List<ObjectBoxEvidenceReportSection>? section,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.titleElement.target = titleElement;
@@ -258,7 +257,8 @@ class ObjectBoxEvidenceReportSection {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

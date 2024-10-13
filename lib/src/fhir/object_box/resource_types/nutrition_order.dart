@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxNutritionOrder {
   ObjectBoxNutritionOrder({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -40,7 +40,6 @@ class ObjectBoxNutritionOrder {
     ObjectBoxNutritionOrderEnteralFormula? enteralFormula,
     List<ObjectBoxAnnotation>? note,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -71,7 +70,8 @@ class ObjectBoxNutritionOrder {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -116,7 +116,7 @@ class ObjectBoxNutritionOrder {
 @Entity()
 class ObjectBoxNutritionOrderOralDiet {
   ObjectBoxNutritionOrderOralDiet({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxCodeableConcept>? type,
@@ -127,7 +127,6 @@ class ObjectBoxNutritionOrderOralDiet {
     this.instruction,
     ObjectBoxElement? instructionElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.addAll(type ?? []);
@@ -140,7 +139,8 @@ class ObjectBoxNutritionOrderOralDiet {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -159,13 +159,12 @@ class ObjectBoxNutritionOrderOralDiet {
 @Entity()
 class ObjectBoxNutritionOrderNutrient {
   ObjectBoxNutritionOrderNutrient({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? modifier,
     ObjectBoxQuantity? amount,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.modifier.target = modifier;
@@ -174,7 +173,8 @@ class ObjectBoxNutritionOrderNutrient {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -185,13 +185,12 @@ class ObjectBoxNutritionOrderNutrient {
 @Entity()
 class ObjectBoxNutritionOrderTexture {
   ObjectBoxNutritionOrderTexture({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? modifier,
     ObjectBoxCodeableConcept? foodType,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.modifier.target = modifier;
@@ -200,7 +199,8 @@ class ObjectBoxNutritionOrderTexture {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -211,7 +211,7 @@ class ObjectBoxNutritionOrderTexture {
 @Entity()
 class ObjectBoxNutritionOrderSupplement {
   ObjectBoxNutritionOrderSupplement({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -222,7 +222,6 @@ class ObjectBoxNutritionOrderSupplement {
     this.instruction,
     ObjectBoxElement? instructionElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -234,7 +233,8 @@ class ObjectBoxNutritionOrderSupplement {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -250,7 +250,7 @@ class ObjectBoxNutritionOrderSupplement {
 @Entity()
 class ObjectBoxNutritionOrderEnteralFormula {
   ObjectBoxNutritionOrderEnteralFormula({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? baseFormulaType,
@@ -264,7 +264,6 @@ class ObjectBoxNutritionOrderEnteralFormula {
     List<ObjectBoxNutritionOrderAdministration>? administration,
     ObjectBoxQuantity? maxVolumeToDeliver,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.baseFormulaType.target = baseFormulaType;
@@ -279,7 +278,8 @@ class ObjectBoxNutritionOrderEnteralFormula {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -304,7 +304,7 @@ class ObjectBoxNutritionOrderEnteralFormula {
 @Entity()
 class ObjectBoxNutritionOrderAdministration {
   ObjectBoxNutritionOrderAdministration({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxTiming? schedule,
@@ -314,7 +314,6 @@ class ObjectBoxNutritionOrderAdministration {
     this.administrationInstruction,
     ObjectBoxElement? administrationInstructionElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.schedule.target = schedule;
@@ -327,7 +326,8 @@ class ObjectBoxNutritionOrderAdministration {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

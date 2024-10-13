@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxIdentifier {
   ObjectBoxIdentifier({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     this.use,
     ObjectBoxElement? useElement,
@@ -18,7 +18,6 @@ class ObjectBoxIdentifier {
     ObjectBoxPeriod? period,
     ObjectBoxReference? assigner,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.useElement.target = useElement;
     this.type.target = type;
@@ -30,7 +29,8 @@ class ObjectBoxIdentifier {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String? use;
   ToOne<ObjectBoxElement> useElement = ToOne<ObjectBoxElement>();

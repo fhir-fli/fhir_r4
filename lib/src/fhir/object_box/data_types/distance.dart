@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxDistance {
   ObjectBoxDistance({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     this.value,
     ObjectBoxElement? valueElement,
@@ -19,7 +19,6 @@ class ObjectBoxDistance {
     this.code,
     ObjectBoxElement? codeElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.valueElement.target = valueElement;
     this.comparatorElement.target = comparatorElement;
@@ -30,7 +29,8 @@ class ObjectBoxDistance {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   double? value;
   ToOne<ObjectBoxElement> valueElement = ToOne<ObjectBoxElement>();

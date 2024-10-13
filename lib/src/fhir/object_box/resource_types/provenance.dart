@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxProvenance {
   ObjectBoxProvenance({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -31,7 +31,6 @@ class ObjectBoxProvenance {
     List<ObjectBoxProvenanceEntity>? entity,
     List<ObjectBoxSignature>? signature,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -54,7 +53,8 @@ class ObjectBoxProvenance {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -85,7 +85,7 @@ class ObjectBoxProvenance {
 @Entity()
 class ObjectBoxProvenanceAgent {
   ObjectBoxProvenanceAgent({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -93,7 +93,6 @@ class ObjectBoxProvenanceAgent {
     ObjectBoxReference? who,
     ObjectBoxReference? onBehalfOf,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -104,7 +103,8 @@ class ObjectBoxProvenanceAgent {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -117,7 +117,7 @@ class ObjectBoxProvenanceAgent {
 @Entity()
 class ObjectBoxProvenanceEntity {
   ObjectBoxProvenanceEntity({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.role,
@@ -125,7 +125,6 @@ class ObjectBoxProvenanceEntity {
     ObjectBoxReference? what,
     List<ObjectBoxProvenanceAgent>? agent,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.roleElement.target = roleElement;
@@ -135,7 +134,8 @@ class ObjectBoxProvenanceEntity {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

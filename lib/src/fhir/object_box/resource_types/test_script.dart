@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxTestScript {
   ObjectBoxTestScript({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -52,7 +52,6 @@ class ObjectBoxTestScript {
     List<ObjectBoxTestScriptTest>? test,
     ObjectBoxTestScriptTeardown? teardown,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -88,7 +87,8 @@ class ObjectBoxTestScript {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -146,14 +146,13 @@ class ObjectBoxTestScript {
 @Entity()
 class ObjectBoxTestScriptOrigin {
   ObjectBoxTestScriptOrigin({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.index,
     ObjectBoxElement? indexElement,
     ObjectBoxCoding? profile,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.indexElement.target = indexElement;
@@ -162,7 +161,8 @@ class ObjectBoxTestScriptOrigin {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -174,14 +174,13 @@ class ObjectBoxTestScriptOrigin {
 @Entity()
 class ObjectBoxTestScriptDestination {
   ObjectBoxTestScriptDestination({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.index,
     ObjectBoxElement? indexElement,
     ObjectBoxCoding? profile,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.indexElement.target = indexElement;
@@ -190,7 +189,8 @@ class ObjectBoxTestScriptDestination {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -202,13 +202,12 @@ class ObjectBoxTestScriptDestination {
 @Entity()
 class ObjectBoxTestScriptMetadata {
   ObjectBoxTestScriptMetadata({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxTestScriptLink>? link,
     List<ObjectBoxTestScriptCapability>? capability,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.link.addAll(link ?? []);
@@ -217,7 +216,8 @@ class ObjectBoxTestScriptMetadata {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -229,7 +229,7 @@ class ObjectBoxTestScriptMetadata {
 @Entity()
 class ObjectBoxTestScriptLink {
   ObjectBoxTestScriptLink({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.url,
@@ -237,7 +237,6 @@ class ObjectBoxTestScriptLink {
     this.description,
     ObjectBoxElement? descriptionElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.urlElement.target = urlElement;
@@ -246,7 +245,8 @@ class ObjectBoxTestScriptLink {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -259,7 +259,7 @@ class ObjectBoxTestScriptLink {
 @Entity()
 class ObjectBoxTestScriptCapability {
   ObjectBoxTestScriptCapability({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.required_,
@@ -277,7 +277,6 @@ class ObjectBoxTestScriptCapability {
     required this.capabilities,
     ObjectBoxElement? capabilitiesElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.requiredElement.target = requiredElement;
@@ -291,7 +290,8 @@ class ObjectBoxTestScriptCapability {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -314,7 +314,7 @@ class ObjectBoxTestScriptCapability {
 @Entity()
 class ObjectBoxTestScriptFixture {
   ObjectBoxTestScriptFixture({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.autocreate,
@@ -323,7 +323,6 @@ class ObjectBoxTestScriptFixture {
     ObjectBoxElement? autodeleteElement,
     ObjectBoxReference? resource,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.autocreateElement.target = autocreateElement;
@@ -333,7 +332,8 @@ class ObjectBoxTestScriptFixture {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -347,7 +347,7 @@ class ObjectBoxTestScriptFixture {
 @Entity()
 class ObjectBoxTestScriptVariable {
   ObjectBoxTestScriptVariable({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
@@ -367,7 +367,6 @@ class ObjectBoxTestScriptVariable {
     this.sourceId,
     ObjectBoxElement? sourceIdElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.nameElement.target = nameElement;
@@ -382,7 +381,8 @@ class ObjectBoxTestScriptVariable {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -407,12 +407,11 @@ class ObjectBoxTestScriptVariable {
 @Entity()
 class ObjectBoxTestScriptSetup {
   ObjectBoxTestScriptSetup({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxTestScriptAction>? action,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.action.addAll(action ?? []);
@@ -420,7 +419,8 @@ class ObjectBoxTestScriptSetup {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -431,13 +431,12 @@ class ObjectBoxTestScriptSetup {
 @Entity()
 class ObjectBoxTestScriptAction {
   ObjectBoxTestScriptAction({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxTestScriptOperation? operation,
     ObjectBoxTestScriptAssert? assert_,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.operation.target = operation;
@@ -446,7 +445,8 @@ class ObjectBoxTestScriptAction {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -458,7 +458,7 @@ class ObjectBoxTestScriptAction {
 @Entity()
 class ObjectBoxTestScriptOperation {
   ObjectBoxTestScriptOperation({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCoding? type,
@@ -494,7 +494,6 @@ class ObjectBoxTestScriptOperation {
     this.url,
     ObjectBoxElement? urlElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -518,7 +517,8 @@ class ObjectBoxTestScriptOperation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -560,7 +560,7 @@ class ObjectBoxTestScriptOperation {
 @Entity()
 class ObjectBoxTestScriptRequestHeader {
   ObjectBoxTestScriptRequestHeader({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.field,
@@ -568,7 +568,6 @@ class ObjectBoxTestScriptRequestHeader {
     required this.value,
     ObjectBoxElement? valueElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.fieldElement.target = fieldElement;
@@ -577,7 +576,8 @@ class ObjectBoxTestScriptRequestHeader {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -590,7 +590,7 @@ class ObjectBoxTestScriptRequestHeader {
 @Entity()
 class ObjectBoxTestScriptAssert {
   ObjectBoxTestScriptAssert({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.label,
@@ -638,7 +638,6 @@ class ObjectBoxTestScriptAssert {
     required this.warningOnly,
     ObjectBoxElement? warningOnlyElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.labelElement.target = labelElement;
@@ -668,7 +667,8 @@ class ObjectBoxTestScriptAssert {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -723,7 +723,7 @@ class ObjectBoxTestScriptAssert {
 @Entity()
 class ObjectBoxTestScriptTest {
   ObjectBoxTestScriptTest({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.name,
@@ -732,7 +732,6 @@ class ObjectBoxTestScriptTest {
     ObjectBoxElement? descriptionElement,
     List<ObjectBoxTestScriptAction>? action,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.nameElement.target = nameElement;
@@ -742,7 +741,8 @@ class ObjectBoxTestScriptTest {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -757,13 +757,12 @@ class ObjectBoxTestScriptTest {
 @Entity()
 class ObjectBoxTestScriptAction1 {
   ObjectBoxTestScriptAction1({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxTestScriptOperation? operation,
     ObjectBoxTestScriptAssert? assert_,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.operation.target = operation;
@@ -772,7 +771,8 @@ class ObjectBoxTestScriptAction1 {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -784,12 +784,11 @@ class ObjectBoxTestScriptAction1 {
 @Entity()
 class ObjectBoxTestScriptTeardown {
   ObjectBoxTestScriptTeardown({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxTestScriptAction>? action,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.action.addAll(action ?? []);
@@ -797,7 +796,8 @@ class ObjectBoxTestScriptTeardown {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -808,12 +808,11 @@ class ObjectBoxTestScriptTeardown {
 @Entity()
 class ObjectBoxTestScriptAction2 {
   ObjectBoxTestScriptAction2({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxTestScriptOperation? operation,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.operation.target = operation;
@@ -821,7 +820,8 @@ class ObjectBoxTestScriptAction2 {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

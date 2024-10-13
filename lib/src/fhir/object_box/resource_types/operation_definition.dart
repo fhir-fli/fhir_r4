@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxOperationDefinition {
   ObjectBoxOperationDefinition({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -64,7 +64,6 @@ class ObjectBoxOperationDefinition {
     List<ObjectBoxOperationDefinitionParameter>? parameter,
     List<ObjectBoxOperationDefinitionOverload>? overload,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -102,7 +101,8 @@ class ObjectBoxOperationDefinition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -168,7 +168,7 @@ class ObjectBoxOperationDefinition {
 @Entity()
 class ObjectBoxOperationDefinitionParameter {
   ObjectBoxOperationDefinitionParameter({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
@@ -191,7 +191,6 @@ class ObjectBoxOperationDefinitionParameter {
     List<ObjectBoxOperationDefinitionReferencedFrom>? referencedFrom,
     List<ObjectBoxOperationDefinitionParameter>? part_,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.nameElement.target = nameElement;
@@ -209,7 +208,8 @@ class ObjectBoxOperationDefinitionParameter {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -240,7 +240,7 @@ class ObjectBoxOperationDefinitionParameter {
 @Entity()
 class ObjectBoxOperationDefinitionBinding {
   ObjectBoxOperationDefinitionBinding({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.strength,
@@ -248,7 +248,6 @@ class ObjectBoxOperationDefinitionBinding {
     required this.valueSet,
     ObjectBoxElement? valueSetElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.strengthElement.target = strengthElement;
@@ -257,7 +256,8 @@ class ObjectBoxOperationDefinitionBinding {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -270,7 +270,7 @@ class ObjectBoxOperationDefinitionBinding {
 @Entity()
 class ObjectBoxOperationDefinitionReferencedFrom {
   ObjectBoxOperationDefinitionReferencedFrom({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.source,
@@ -278,7 +278,6 @@ class ObjectBoxOperationDefinitionReferencedFrom {
     this.sourceId,
     ObjectBoxElement? sourceIdElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sourceElement.target = sourceElement;
@@ -287,7 +286,8 @@ class ObjectBoxOperationDefinitionReferencedFrom {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -300,7 +300,7 @@ class ObjectBoxOperationDefinitionReferencedFrom {
 @Entity()
 class ObjectBoxOperationDefinitionOverload {
   ObjectBoxOperationDefinitionOverload({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.parameterName,
@@ -308,7 +308,6 @@ class ObjectBoxOperationDefinitionOverload {
     this.comment,
     ObjectBoxElement? commentElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.parameterNameElement.addAll(parameterNameElement ?? []);
@@ -317,7 +316,8 @@ class ObjectBoxOperationDefinitionOverload {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

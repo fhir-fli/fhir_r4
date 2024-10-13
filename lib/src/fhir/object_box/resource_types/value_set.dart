@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxValueSet {
   ObjectBoxValueSet({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -47,7 +47,6 @@ class ObjectBoxValueSet {
     ObjectBoxValueSetCompose? compose,
     ObjectBoxValueSetExpansion? expansion,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -77,7 +76,8 @@ class ObjectBoxValueSet {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -125,7 +125,7 @@ class ObjectBoxValueSet {
 @Entity()
 class ObjectBoxValueSetCompose {
   ObjectBoxValueSetCompose({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.lockedDate,
@@ -135,7 +135,6 @@ class ObjectBoxValueSetCompose {
     List<ObjectBoxValueSetInclude>? include,
     List<ObjectBoxValueSetInclude>? exclude,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.lockedDateElement.target = lockedDateElement;
@@ -146,7 +145,8 @@ class ObjectBoxValueSetCompose {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -161,7 +161,7 @@ class ObjectBoxValueSetCompose {
 @Entity()
 class ObjectBoxValueSetInclude {
   ObjectBoxValueSetInclude({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.system,
@@ -173,7 +173,6 @@ class ObjectBoxValueSetInclude {
     this.valueSet,
     List<ObjectBoxElement>? valueSetElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.systemElement.target = systemElement;
@@ -185,7 +184,8 @@ class ObjectBoxValueSetInclude {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -202,7 +202,7 @@ class ObjectBoxValueSetInclude {
 @Entity()
 class ObjectBoxValueSetConcept {
   ObjectBoxValueSetConcept({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.code,
@@ -211,7 +211,6 @@ class ObjectBoxValueSetConcept {
     ObjectBoxElement? displayElement,
     List<ObjectBoxValueSetDesignation>? designation,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.codeElement.target = codeElement;
@@ -221,7 +220,8 @@ class ObjectBoxValueSetConcept {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -236,7 +236,7 @@ class ObjectBoxValueSetConcept {
 @Entity()
 class ObjectBoxValueSetDesignation {
   ObjectBoxValueSetDesignation({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.language,
@@ -245,7 +245,6 @@ class ObjectBoxValueSetDesignation {
     required this.value,
     ObjectBoxElement? valueElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.languageElement.target = languageElement;
@@ -255,7 +254,8 @@ class ObjectBoxValueSetDesignation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -269,7 +269,7 @@ class ObjectBoxValueSetDesignation {
 @Entity()
 class ObjectBoxValueSetFilter {
   ObjectBoxValueSetFilter({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.property,
@@ -279,7 +279,6 @@ class ObjectBoxValueSetFilter {
     required this.value,
     ObjectBoxElement? valueElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.propertyElement.target = propertyElement;
@@ -289,7 +288,8 @@ class ObjectBoxValueSetFilter {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -304,7 +304,7 @@ class ObjectBoxValueSetFilter {
 @Entity()
 class ObjectBoxValueSetExpansion {
   ObjectBoxValueSetExpansion({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.identifier,
@@ -318,7 +318,6 @@ class ObjectBoxValueSetExpansion {
     List<ObjectBoxValueSetParameter>? parameter,
     List<ObjectBoxValueSetContains>? contains,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.identifierElement.target = identifierElement;
@@ -331,7 +330,8 @@ class ObjectBoxValueSetExpansion {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -352,7 +352,7 @@ class ObjectBoxValueSetExpansion {
 @Entity()
 class ObjectBoxValueSetParameter {
   ObjectBoxValueSetParameter({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
@@ -372,7 +372,6 @@ class ObjectBoxValueSetParameter {
     this.valueDateTime,
     ObjectBoxElement? valueDateTimeElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.nameElement.target = nameElement;
@@ -387,7 +386,8 @@ class ObjectBoxValueSetParameter {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -412,7 +412,7 @@ class ObjectBoxValueSetParameter {
 @Entity()
 class ObjectBoxValueSetContains {
   ObjectBoxValueSetContains({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.system,
@@ -430,7 +430,6 @@ class ObjectBoxValueSetContains {
     List<ObjectBoxValueSetDesignation>? designation,
     List<ObjectBoxValueSetContains>? contains,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.systemElement.target = systemElement;
@@ -445,7 +444,8 @@ class ObjectBoxValueSetContains {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxRelatedArtifact {
   ObjectBoxRelatedArtifact({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     required this.type,
     ObjectBoxElement? typeElement,
@@ -22,7 +22,6 @@ class ObjectBoxRelatedArtifact {
     this.resource,
     ObjectBoxElement? resourceElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.typeElement.target = typeElement;
     this.labelElement.target = labelElement;
@@ -35,7 +34,8 @@ class ObjectBoxRelatedArtifact {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String type;
   ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();

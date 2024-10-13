@@ -6,14 +6,13 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxMoney {
   ObjectBoxMoney({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     this.value,
     ObjectBoxElement? valueElement,
     this.currency,
     ObjectBoxElement? currencyElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.valueElement.target = valueElement;
     this.currencyElement.target = currencyElement;
@@ -21,7 +20,8 @@ class ObjectBoxMoney {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   double? value;
   ToOne<ObjectBoxElement> valueElement = ToOne<ObjectBoxElement>();

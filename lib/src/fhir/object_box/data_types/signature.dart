@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxSignature {
   ObjectBoxSignature({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxCoding>? type,
     required this.when,
@@ -20,7 +20,6 @@ class ObjectBoxSignature {
     this.data,
     ObjectBoxElement? dataElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.type.addAll(type ?? []);
     this.whenElement.target = whenElement;
@@ -33,7 +32,8 @@ class ObjectBoxSignature {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxCoding> type = ToMany<ObjectBoxCoding>();
   String when;

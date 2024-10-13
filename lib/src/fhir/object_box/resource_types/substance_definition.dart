@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxSubstanceDefinition {
   ObjectBoxSubstanceDefinition({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -38,7 +38,6 @@ class ObjectBoxSubstanceDefinition {
     List<ObjectBoxSubstanceDefinitionRelationship>? relationship,
     ObjectBoxSubstanceDefinitionSourceMaterial? sourceMaterial,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -69,7 +68,8 @@ class ObjectBoxSubstanceDefinition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -115,7 +115,7 @@ class ObjectBoxSubstanceDefinition {
 @Entity()
 class ObjectBoxSubstanceDefinitionMoiety {
   ObjectBoxSubstanceDefinitionMoiety({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? role,
@@ -131,7 +131,6 @@ class ObjectBoxSubstanceDefinitionMoiety {
     ObjectBoxElement? amountStringElement,
     ObjectBoxCodeableConcept? measurementType,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.role.target = role;
@@ -147,7 +146,8 @@ class ObjectBoxSubstanceDefinitionMoiety {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -171,7 +171,7 @@ class ObjectBoxSubstanceDefinitionMoiety {
 @Entity()
 class ObjectBoxSubstanceDefinitionProperty {
   ObjectBoxSubstanceDefinitionProperty({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -183,7 +183,6 @@ class ObjectBoxSubstanceDefinitionProperty {
     ObjectBoxElement? valueBooleanElement,
     ObjectBoxAttachment? valueAttachment,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -196,7 +195,8 @@ class ObjectBoxSubstanceDefinitionProperty {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -214,14 +214,13 @@ class ObjectBoxSubstanceDefinitionProperty {
 @Entity()
 class ObjectBoxSubstanceDefinitionMolecularWeight {
   ObjectBoxSubstanceDefinitionMolecularWeight({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? method,
     ObjectBoxCodeableConcept? type,
     ObjectBoxQuantity? amount,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.method.target = method;
@@ -231,7 +230,8 @@ class ObjectBoxSubstanceDefinitionMolecularWeight {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -243,7 +243,7 @@ class ObjectBoxSubstanceDefinitionMolecularWeight {
 @Entity()
 class ObjectBoxSubstanceDefinitionStructure {
   ObjectBoxSubstanceDefinitionStructure({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? stereochemistry,
@@ -257,7 +257,6 @@ class ObjectBoxSubstanceDefinitionStructure {
     List<ObjectBoxReference>? sourceDocument,
     List<ObjectBoxSubstanceDefinitionRepresentation>? representation,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.stereochemistry.target = stereochemistry;
@@ -273,7 +272,8 @@ class ObjectBoxSubstanceDefinitionStructure {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -298,7 +298,7 @@ class ObjectBoxSubstanceDefinitionStructure {
 @Entity()
 class ObjectBoxSubstanceDefinitionRepresentation {
   ObjectBoxSubstanceDefinitionRepresentation({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -307,7 +307,6 @@ class ObjectBoxSubstanceDefinitionRepresentation {
     ObjectBoxCodeableConcept? format,
     ObjectBoxReference? document,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -318,7 +317,8 @@ class ObjectBoxSubstanceDefinitionRepresentation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -332,7 +332,7 @@ class ObjectBoxSubstanceDefinitionRepresentation {
 @Entity()
 class ObjectBoxSubstanceDefinitionCode {
   ObjectBoxSubstanceDefinitionCode({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? code,
@@ -342,7 +342,6 @@ class ObjectBoxSubstanceDefinitionCode {
     List<ObjectBoxAnnotation>? note,
     List<ObjectBoxReference>? source,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.code.target = code;
@@ -354,7 +353,8 @@ class ObjectBoxSubstanceDefinitionCode {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -369,7 +369,7 @@ class ObjectBoxSubstanceDefinitionCode {
 @Entity()
 class ObjectBoxSubstanceDefinitionName {
   ObjectBoxSubstanceDefinitionName({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
@@ -386,7 +386,6 @@ class ObjectBoxSubstanceDefinitionName {
     List<ObjectBoxSubstanceDefinitionOfficial>? official,
     List<ObjectBoxReference>? source,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.nameElement.target = nameElement;
@@ -404,7 +403,8 @@ class ObjectBoxSubstanceDefinitionName {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -431,7 +431,7 @@ class ObjectBoxSubstanceDefinitionName {
 @Entity()
 class ObjectBoxSubstanceDefinitionOfficial {
   ObjectBoxSubstanceDefinitionOfficial({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? authority,
@@ -439,7 +439,6 @@ class ObjectBoxSubstanceDefinitionOfficial {
     this.date,
     ObjectBoxElement? dateElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.authority.target = authority;
@@ -449,7 +448,8 @@ class ObjectBoxSubstanceDefinitionOfficial {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -462,7 +462,7 @@ class ObjectBoxSubstanceDefinitionOfficial {
 @Entity()
 class ObjectBoxSubstanceDefinitionRelationship {
   ObjectBoxSubstanceDefinitionRelationship({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxReference? substanceDefinitionReference,
@@ -478,7 +478,6 @@ class ObjectBoxSubstanceDefinitionRelationship {
     ObjectBoxCodeableConcept? comparator,
     List<ObjectBoxReference>? source,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.substanceDefinitionReference.target = substanceDefinitionReference;
@@ -496,7 +495,8 @@ class ObjectBoxSubstanceDefinitionRelationship {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -520,7 +520,7 @@ class ObjectBoxSubstanceDefinitionRelationship {
 @Entity()
 class ObjectBoxSubstanceDefinitionSourceMaterial {
   ObjectBoxSubstanceDefinitionSourceMaterial({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -529,7 +529,6 @@ class ObjectBoxSubstanceDefinitionSourceMaterial {
     ObjectBoxCodeableConcept? part_,
     List<ObjectBoxCodeableConcept>? countryOfOrigin,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -541,7 +540,8 @@ class ObjectBoxSubstanceDefinitionSourceMaterial {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

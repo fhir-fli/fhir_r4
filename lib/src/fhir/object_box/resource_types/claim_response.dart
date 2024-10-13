@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxClaimResponse {
   ObjectBoxClaimResponse({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -50,7 +50,6 @@ class ObjectBoxClaimResponse {
     List<ObjectBoxClaimResponseInsurance>? insurance,
     List<ObjectBoxClaimResponseError>? error,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -89,7 +88,8 @@ class ObjectBoxClaimResponse {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -148,7 +148,7 @@ class ObjectBoxClaimResponse {
 @Entity()
 class ObjectBoxClaimResponseItem {
   ObjectBoxClaimResponseItem({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.itemSequence,
@@ -158,7 +158,6 @@ class ObjectBoxClaimResponseItem {
     List<ObjectBoxClaimResponseAdjudication>? adjudication,
     List<ObjectBoxClaimResponseDetail>? detail,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.itemSequenceElement.target = itemSequenceElement;
@@ -169,7 +168,8 @@ class ObjectBoxClaimResponseItem {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -186,7 +186,7 @@ class ObjectBoxClaimResponseItem {
 @Entity()
 class ObjectBoxClaimResponseAdjudication {
   ObjectBoxClaimResponseAdjudication({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? category,
@@ -195,7 +195,6 @@ class ObjectBoxClaimResponseAdjudication {
     this.value,
     ObjectBoxElement? valueElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.category.target = category;
@@ -206,7 +205,8 @@ class ObjectBoxClaimResponseAdjudication {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -220,7 +220,7 @@ class ObjectBoxClaimResponseAdjudication {
 @Entity()
 class ObjectBoxClaimResponseDetail {
   ObjectBoxClaimResponseDetail({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.detailSequence,
@@ -230,7 +230,6 @@ class ObjectBoxClaimResponseDetail {
     List<ObjectBoxClaimResponseAdjudication>? adjudication,
     List<ObjectBoxClaimResponseSubDetail>? subDetail,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.detailSequenceElement.target = detailSequenceElement;
@@ -241,7 +240,8 @@ class ObjectBoxClaimResponseDetail {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -258,7 +258,7 @@ class ObjectBoxClaimResponseDetail {
 @Entity()
 class ObjectBoxClaimResponseSubDetail {
   ObjectBoxClaimResponseSubDetail({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.subDetailSequence,
@@ -267,7 +267,6 @@ class ObjectBoxClaimResponseSubDetail {
     List<ObjectBoxElement>? noteNumberElement,
     List<ObjectBoxClaimResponseAdjudication>? adjudication,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.subDetailSequenceElement.target = subDetailSequenceElement;
@@ -277,7 +276,8 @@ class ObjectBoxClaimResponseSubDetail {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -292,7 +292,7 @@ class ObjectBoxClaimResponseSubDetail {
 @Entity()
 class ObjectBoxClaimResponseAddItem {
   ObjectBoxClaimResponseAddItem({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.itemSequence,
@@ -323,7 +323,6 @@ class ObjectBoxClaimResponseAddItem {
     List<ObjectBoxClaimResponseAdjudication>? adjudication,
     List<ObjectBoxClaimResponseDetail>? detail,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.itemSequenceElement.addAll(itemSequenceElement ?? []);
@@ -351,7 +350,8 @@ class ObjectBoxClaimResponseAddItem {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -394,7 +394,7 @@ class ObjectBoxClaimResponseAddItem {
 @Entity()
 class ObjectBoxClaimResponseDetail1 {
   ObjectBoxClaimResponseDetail1({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? productOrService,
@@ -409,7 +409,6 @@ class ObjectBoxClaimResponseDetail1 {
     List<ObjectBoxClaimResponseAdjudication>? adjudication,
     List<ObjectBoxClaimResponseSubDetail>? subDetail,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.productOrService.target = productOrService;
@@ -425,7 +424,8 @@ class ObjectBoxClaimResponseDetail1 {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -449,7 +449,7 @@ class ObjectBoxClaimResponseDetail1 {
 @Entity()
 class ObjectBoxClaimResponseSubDetail1 {
   ObjectBoxClaimResponseSubDetail1({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? productOrService,
@@ -463,7 +463,6 @@ class ObjectBoxClaimResponseSubDetail1 {
     List<ObjectBoxElement>? noteNumberElement,
     List<ObjectBoxClaimResponseAdjudication>? adjudication,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.productOrService.target = productOrService;
@@ -478,7 +477,8 @@ class ObjectBoxClaimResponseSubDetail1 {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -500,13 +500,12 @@ class ObjectBoxClaimResponseSubDetail1 {
 @Entity()
 class ObjectBoxClaimResponseTotal {
   ObjectBoxClaimResponseTotal({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? category,
     ObjectBoxMoney? amount,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.category.target = category;
@@ -515,7 +514,8 @@ class ObjectBoxClaimResponseTotal {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -526,7 +526,7 @@ class ObjectBoxClaimResponseTotal {
 @Entity()
 class ObjectBoxClaimResponsePayment {
   ObjectBoxClaimResponsePayment({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -537,7 +537,6 @@ class ObjectBoxClaimResponsePayment {
     ObjectBoxMoney? amount,
     ObjectBoxIdentifier? identifier,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -550,7 +549,8 @@ class ObjectBoxClaimResponsePayment {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -567,7 +567,7 @@ class ObjectBoxClaimResponsePayment {
 @Entity()
 class ObjectBoxClaimResponseProcessNote {
   ObjectBoxClaimResponseProcessNote({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.number,
@@ -578,7 +578,6 @@ class ObjectBoxClaimResponseProcessNote {
     ObjectBoxElement? textElement,
     ObjectBoxCodeableConcept? language,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.numberElement.target = numberElement;
@@ -589,7 +588,8 @@ class ObjectBoxClaimResponseProcessNote {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -605,7 +605,7 @@ class ObjectBoxClaimResponseProcessNote {
 @Entity()
 class ObjectBoxClaimResponseInsurance {
   ObjectBoxClaimResponseInsurance({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.sequence,
@@ -617,7 +617,6 @@ class ObjectBoxClaimResponseInsurance {
     ObjectBoxElement? businessArrangementElement,
     ObjectBoxReference? claimResponse,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sequenceElement.target = sequenceElement;
@@ -629,7 +628,8 @@ class ObjectBoxClaimResponseInsurance {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -647,7 +647,7 @@ class ObjectBoxClaimResponseInsurance {
 @Entity()
 class ObjectBoxClaimResponseError {
   ObjectBoxClaimResponseError({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.itemSequence,
@@ -658,7 +658,6 @@ class ObjectBoxClaimResponseError {
     ObjectBoxElement? subDetailSequenceElement,
     ObjectBoxCodeableConcept? code,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.itemSequenceElement.target = itemSequenceElement;
@@ -669,7 +668,8 @@ class ObjectBoxClaimResponseError {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxUsageContext {
   ObjectBoxUsageContext({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     ObjectBoxCoding? code,
     ObjectBoxCodeableConcept? valueCodeableConcept,
@@ -14,7 +14,6 @@ class ObjectBoxUsageContext {
     ObjectBoxRange? valueRange,
     ObjectBoxReference? valueReference,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.code.target = code;
     this.valueCodeableConcept.target = valueCodeableConcept;
@@ -25,7 +24,8 @@ class ObjectBoxUsageContext {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxCoding> code = ToOne<ObjectBoxCoding>();
   ToOne<ObjectBoxCodeableConcept> valueCodeableConcept =

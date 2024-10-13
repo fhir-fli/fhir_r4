@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxTiming {
   ObjectBoxTiming({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.event,
@@ -14,7 +14,6 @@ class ObjectBoxTiming {
     ObjectBoxTimingRepeat? repeat,
     ObjectBoxCodeableConcept? code,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.eventElement.addAll(eventElement ?? []);
@@ -24,7 +23,8 @@ class ObjectBoxTiming {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -37,7 +37,7 @@ class ObjectBoxTiming {
 @Entity()
 class ObjectBoxTimingRepeat {
   ObjectBoxTimingRepeat({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     ObjectBoxFhirDuration? boundsDuration,
     ObjectBoxRange? boundsRange,
@@ -71,7 +71,6 @@ class ObjectBoxTimingRepeat {
     this.offset,
     ObjectBoxElement? offsetElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.boundsDuration.target = boundsDuration;
     this.boundsRange.target = boundsRange;
@@ -94,7 +93,8 @@ class ObjectBoxTimingRepeat {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxFhirDuration> boundsDuration = ToOne<ObjectBoxFhirDuration>();
   ToOne<ObjectBoxRange> boundsRange = ToOne<ObjectBoxRange>();

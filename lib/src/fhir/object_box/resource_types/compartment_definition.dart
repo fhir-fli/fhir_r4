@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxCompartmentDefinition {
   ObjectBoxCompartmentDefinition({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -42,7 +42,6 @@ class ObjectBoxCompartmentDefinition {
     ObjectBoxElement? searchElement,
     List<ObjectBoxCompartmentDefinitionResource>? resource,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -68,7 +67,8 @@ class ObjectBoxCompartmentDefinition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -110,7 +110,7 @@ class ObjectBoxCompartmentDefinition {
 @Entity()
 class ObjectBoxCompartmentDefinitionResource {
   ObjectBoxCompartmentDefinitionResource({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.code,
@@ -120,7 +120,6 @@ class ObjectBoxCompartmentDefinitionResource {
     this.documentation,
     ObjectBoxElement? documentationElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.codeElement.target = codeElement;
@@ -130,7 +129,8 @@ class ObjectBoxCompartmentDefinitionResource {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

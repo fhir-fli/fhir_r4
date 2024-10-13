@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxDocumentReference {
   ObjectBoxDocumentReference({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -37,7 +37,6 @@ class ObjectBoxDocumentReference {
     List<ObjectBoxDocumentReferenceContent>? content,
     ObjectBoxDocumentReferenceContext? context,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -65,7 +64,8 @@ class ObjectBoxDocumentReference {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -106,14 +106,13 @@ class ObjectBoxDocumentReference {
 @Entity()
 class ObjectBoxDocumentReferenceRelatesTo {
   ObjectBoxDocumentReferenceRelatesTo({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.code,
     ObjectBoxElement? codeElement,
     ObjectBoxReference? target,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.codeElement.target = codeElement;
@@ -122,7 +121,8 @@ class ObjectBoxDocumentReferenceRelatesTo {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -134,13 +134,12 @@ class ObjectBoxDocumentReferenceRelatesTo {
 @Entity()
 class ObjectBoxDocumentReferenceContent {
   ObjectBoxDocumentReferenceContent({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxAttachment? attachment,
     ObjectBoxCoding? format,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.attachment.target = attachment;
@@ -149,7 +148,8 @@ class ObjectBoxDocumentReferenceContent {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -160,7 +160,7 @@ class ObjectBoxDocumentReferenceContent {
 @Entity()
 class ObjectBoxDocumentReferenceContext {
   ObjectBoxDocumentReferenceContext({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxReference>? encounter,
@@ -171,7 +171,6 @@ class ObjectBoxDocumentReferenceContext {
     ObjectBoxReference? sourcePatientInfo,
     List<ObjectBoxReference>? related,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.encounter.addAll(encounter ?? []);
@@ -185,7 +184,8 @@ class ObjectBoxDocumentReferenceContext {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

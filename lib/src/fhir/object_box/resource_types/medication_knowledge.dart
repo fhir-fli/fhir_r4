@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxMedicationKnowledge {
   ObjectBoxMedicationKnowledge({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -45,7 +45,6 @@ class ObjectBoxMedicationKnowledge {
     List<ObjectBoxMedicationKnowledgeRegulatory>? regulatory,
     List<ObjectBoxMedicationKnowledgeKinetics>? kinetics,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -79,7 +78,8 @@ class ObjectBoxMedicationKnowledge {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -138,13 +138,12 @@ class ObjectBoxMedicationKnowledge {
 @Entity()
 class ObjectBoxMedicationKnowledgeRelatedMedicationKnowledge {
   ObjectBoxMedicationKnowledgeRelatedMedicationKnowledge({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
     List<ObjectBoxReference>? reference,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -153,7 +152,8 @@ class ObjectBoxMedicationKnowledgeRelatedMedicationKnowledge {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -164,13 +164,12 @@ class ObjectBoxMedicationKnowledgeRelatedMedicationKnowledge {
 @Entity()
 class ObjectBoxMedicationKnowledgeMonograph {
   ObjectBoxMedicationKnowledgeMonograph({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
     ObjectBoxReference? source,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -179,7 +178,8 @@ class ObjectBoxMedicationKnowledgeMonograph {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -190,7 +190,7 @@ class ObjectBoxMedicationKnowledgeMonograph {
 @Entity()
 class ObjectBoxMedicationKnowledgeIngredient {
   ObjectBoxMedicationKnowledgeIngredient({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? itemCodeableConcept,
@@ -199,7 +199,6 @@ class ObjectBoxMedicationKnowledgeIngredient {
     ObjectBoxElement? isActiveElement,
     ObjectBoxRatio? strength,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.itemCodeableConcept.target = itemCodeableConcept;
@@ -210,7 +209,8 @@ class ObjectBoxMedicationKnowledgeIngredient {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -225,7 +225,7 @@ class ObjectBoxMedicationKnowledgeIngredient {
 @Entity()
 class ObjectBoxMedicationKnowledgeCost {
   ObjectBoxMedicationKnowledgeCost({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -233,7 +233,6 @@ class ObjectBoxMedicationKnowledgeCost {
     ObjectBoxElement? sourceElement,
     ObjectBoxMoney? cost,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -243,7 +242,8 @@ class ObjectBoxMedicationKnowledgeCost {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -256,14 +256,13 @@ class ObjectBoxMedicationKnowledgeCost {
 @Entity()
 class ObjectBoxMedicationKnowledgeMonitoringProgram {
   ObjectBoxMedicationKnowledgeMonitoringProgram({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
     this.name,
     ObjectBoxElement? nameElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -272,7 +271,8 @@ class ObjectBoxMedicationKnowledgeMonitoringProgram {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -284,7 +284,7 @@ class ObjectBoxMedicationKnowledgeMonitoringProgram {
 @Entity()
 class ObjectBoxMedicationKnowledgeAdministrationGuidelines {
   ObjectBoxMedicationKnowledgeAdministrationGuidelines({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxMedicationKnowledgeDosage>? dosage,
@@ -293,7 +293,6 @@ class ObjectBoxMedicationKnowledgeAdministrationGuidelines {
     List<ObjectBoxMedicationKnowledgePatientCharacteristics>?
         patientCharacteristics,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.dosage.addAll(dosage ?? []);
@@ -304,7 +303,8 @@ class ObjectBoxMedicationKnowledgeAdministrationGuidelines {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -321,13 +321,12 @@ class ObjectBoxMedicationKnowledgeAdministrationGuidelines {
 @Entity()
 class ObjectBoxMedicationKnowledgeDosage {
   ObjectBoxMedicationKnowledgeDosage({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
     List<ObjectBoxDosage>? dosage,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -336,7 +335,8 @@ class ObjectBoxMedicationKnowledgeDosage {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -347,7 +347,7 @@ class ObjectBoxMedicationKnowledgeDosage {
 @Entity()
 class ObjectBoxMedicationKnowledgePatientCharacteristics {
   ObjectBoxMedicationKnowledgePatientCharacteristics({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? characteristicCodeableConcept,
@@ -355,7 +355,6 @@ class ObjectBoxMedicationKnowledgePatientCharacteristics {
     this.value,
     List<ObjectBoxElement>? valueElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.characteristicCodeableConcept.target = characteristicCodeableConcept;
@@ -365,7 +364,8 @@ class ObjectBoxMedicationKnowledgePatientCharacteristics {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -379,13 +379,12 @@ class ObjectBoxMedicationKnowledgePatientCharacteristics {
 @Entity()
 class ObjectBoxMedicationKnowledgeMedicineClassification {
   ObjectBoxMedicationKnowledgeMedicineClassification({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
     List<ObjectBoxCodeableConcept>? classification,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -394,7 +393,8 @@ class ObjectBoxMedicationKnowledgeMedicineClassification {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -406,13 +406,12 @@ class ObjectBoxMedicationKnowledgeMedicineClassification {
 @Entity()
 class ObjectBoxMedicationKnowledgePackaging {
   ObjectBoxMedicationKnowledgePackaging({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
     ObjectBoxQuantity? quantity,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -421,7 +420,8 @@ class ObjectBoxMedicationKnowledgePackaging {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -432,7 +432,7 @@ class ObjectBoxMedicationKnowledgePackaging {
 @Entity()
 class ObjectBoxMedicationKnowledgeDrugCharacteristic {
   ObjectBoxMedicationKnowledgeDrugCharacteristic({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -443,7 +443,6 @@ class ObjectBoxMedicationKnowledgeDrugCharacteristic {
     this.valueBase64Binary,
     ObjectBoxElement? valueBase64BinaryElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -455,7 +454,8 @@ class ObjectBoxMedicationKnowledgeDrugCharacteristic {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -472,7 +472,7 @@ class ObjectBoxMedicationKnowledgeDrugCharacteristic {
 @Entity()
 class ObjectBoxMedicationKnowledgeRegulatory {
   ObjectBoxMedicationKnowledgeRegulatory({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxReference? regulatoryAuthority,
@@ -480,7 +480,6 @@ class ObjectBoxMedicationKnowledgeRegulatory {
     List<ObjectBoxMedicationKnowledgeSchedule>? schedule,
     ObjectBoxMedicationKnowledgeMaxDispense? maxDispense,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.regulatoryAuthority.target = regulatoryAuthority;
@@ -491,7 +490,8 @@ class ObjectBoxMedicationKnowledgeRegulatory {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -507,14 +507,13 @@ class ObjectBoxMedicationKnowledgeRegulatory {
 @Entity()
 class ObjectBoxMedicationKnowledgeSubstitution {
   ObjectBoxMedicationKnowledgeSubstitution({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
     required this.allowed,
     ObjectBoxElement? allowedElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -523,7 +522,8 @@ class ObjectBoxMedicationKnowledgeSubstitution {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -535,12 +535,11 @@ class ObjectBoxMedicationKnowledgeSubstitution {
 @Entity()
 class ObjectBoxMedicationKnowledgeSchedule {
   ObjectBoxMedicationKnowledgeSchedule({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? schedule,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.schedule.target = schedule;
@@ -548,7 +547,8 @@ class ObjectBoxMedicationKnowledgeSchedule {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -558,13 +558,12 @@ class ObjectBoxMedicationKnowledgeSchedule {
 @Entity()
 class ObjectBoxMedicationKnowledgeMaxDispense {
   ObjectBoxMedicationKnowledgeMaxDispense({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxQuantity? quantity,
     ObjectBoxFhirDuration? period,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.quantity.target = quantity;
@@ -573,7 +572,8 @@ class ObjectBoxMedicationKnowledgeMaxDispense {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -584,14 +584,13 @@ class ObjectBoxMedicationKnowledgeMaxDispense {
 @Entity()
 class ObjectBoxMedicationKnowledgeKinetics {
   ObjectBoxMedicationKnowledgeKinetics({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxQuantity>? areaUnderCurve,
     List<ObjectBoxQuantity>? lethalDose50,
     ObjectBoxFhirDuration? halfLifePeriod,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.areaUnderCurve.addAll(areaUnderCurve ?? []);
@@ -601,7 +600,8 @@ class ObjectBoxMedicationKnowledgeKinetics {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

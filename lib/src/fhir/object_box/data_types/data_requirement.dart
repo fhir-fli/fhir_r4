@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxDataRequirement {
   ObjectBoxDataRequirement({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     required this.type,
     ObjectBoxElement? typeElement,
@@ -22,7 +22,6 @@ class ObjectBoxDataRequirement {
     ObjectBoxElement? limitElement,
     List<ObjectBoxDataRequirementSort>? sort,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.typeElement.target = typeElement;
     this.profileElement.addAll(profileElement ?? []);
@@ -37,7 +36,8 @@ class ObjectBoxDataRequirement {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String type;
   ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
@@ -61,7 +61,7 @@ class ObjectBoxDataRequirement {
 @Entity()
 class ObjectBoxDataRequirementCodeFilter {
   ObjectBoxDataRequirementCodeFilter({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     this.path,
     ObjectBoxElement? pathElement,
@@ -71,7 +71,6 @@ class ObjectBoxDataRequirementCodeFilter {
     ObjectBoxElement? valueSetElement,
     List<ObjectBoxCoding>? code,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.pathElement.target = pathElement;
     this.searchParamElement.target = searchParamElement;
@@ -81,7 +80,8 @@ class ObjectBoxDataRequirementCodeFilter {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String? path;
   ToOne<ObjectBoxElement> pathElement = ToOne<ObjectBoxElement>();
@@ -95,7 +95,7 @@ class ObjectBoxDataRequirementCodeFilter {
 @Entity()
 class ObjectBoxDataRequirementDateFilter {
   ObjectBoxDataRequirementDateFilter({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     this.path,
     ObjectBoxElement? pathElement,
@@ -106,7 +106,6 @@ class ObjectBoxDataRequirementDateFilter {
     ObjectBoxPeriod? valuePeriod,
     ObjectBoxFhirDuration? valueDuration,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.pathElement.target = pathElement;
     this.searchParamElement.target = searchParamElement;
@@ -117,7 +116,8 @@ class ObjectBoxDataRequirementDateFilter {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String? path;
   ToOne<ObjectBoxElement> pathElement = ToOne<ObjectBoxElement>();
@@ -132,14 +132,13 @@ class ObjectBoxDataRequirementDateFilter {
 @Entity()
 class ObjectBoxDataRequirementSort {
   ObjectBoxDataRequirementSort({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     required this.path,
     ObjectBoxElement? pathElement,
     required this.direction,
     ObjectBoxElement? directionElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.pathElement.target = pathElement;
     this.directionElement.target = directionElement;
@@ -147,7 +146,8 @@ class ObjectBoxDataRequirementSort {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String path;
   ToOne<ObjectBoxElement> pathElement = ToOne<ObjectBoxElement>();

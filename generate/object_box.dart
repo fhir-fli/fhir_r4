@@ -33,7 +33,7 @@ void prepareObjectBox() {
 import 'package:objectbox/objectbox.dart';
 
 @Entity()
-abstract class ObjectBoxResource {
+class ObjectBoxResource {
   @Id()
   int? dbId;
 }""");
@@ -48,13 +48,15 @@ import 'package:objectbox/objectbox.dart';
 class ObjectBoxElement {
   ObjectBoxElement({
     this.id,
-    this.extension_,
-    });
+    List<ObjectBoxFhirExtension>? extension_,
+    }){
+    this.extension_.addAll(extension_ ?? []);
+    }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
+  String? id;
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   }''');
 }
 
@@ -114,7 +116,7 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
           : objectBoxType;
 
       // Handle ToOne or ToMany relationships (complex types)
-      if (!field.type.isPrimitiveType && !field.isEnum) {
+      if (!field.type.isPrimitiveType && !field.isEnum && field.name != 'id') {
         final fieldType =
             field.isList ? 'List<$objectBoxType>?' : '$objectBoxType?';
         buffer.writeln('    $fieldType $actualFieldName,');
@@ -152,7 +154,10 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
         );
       }
       // Handle ToOne relationships
-      else if (!field.type.isPrimitiveType && !field.isEnum && !field.isList) {
+      else if (!field.type.isPrimitiveType &&
+          !field.isEnum &&
+          !field.isList &&
+          field.name != 'id') {
         buffer.writeln('    this.$actualFieldName.target = $actualFieldName;');
       }
 
@@ -186,7 +191,7 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
           : objectBoxType;
 
       // Handle complex types (ToOne or ToMany relations)
-      if (!field.type.isPrimitiveType && !field.isEnum) {
+      if (!field.type.isPrimitiveType && !field.isEnum && field.name != 'id') {
         if (field.isList) {
           buffer.writeln(
             '  ToMany<$objectBoxType> '

@@ -7,11 +7,13 @@ import 'package:objectbox/objectbox.dart';
 class ObjectBoxElement {
   ObjectBoxElement({
     this.id,
-    this.extension_,
-  });
+    List<ObjectBoxFhirExtension>? extension_,
+  }) {
+    this.extension_.addAll(extension_ ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
+  String? id;
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
 }

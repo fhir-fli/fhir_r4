@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxChargeItemDefinition {
   ObjectBoxChargeItemDefinition({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -54,7 +54,6 @@ class ObjectBoxChargeItemDefinition {
     List<ObjectBoxChargeItemDefinitionApplicability>? applicability,
     List<ObjectBoxChargeItemDefinitionPropertyGroup>? propertyGroup,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -89,7 +88,8 @@ class ObjectBoxChargeItemDefinition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -145,7 +145,7 @@ class ObjectBoxChargeItemDefinition {
 @Entity()
 class ObjectBoxChargeItemDefinitionApplicability {
   ObjectBoxChargeItemDefinitionApplicability({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.description,
@@ -155,7 +155,6 @@ class ObjectBoxChargeItemDefinitionApplicability {
     this.expression,
     ObjectBoxElement? expressionElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.descriptionElement.target = descriptionElement;
@@ -165,7 +164,8 @@ class ObjectBoxChargeItemDefinitionApplicability {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -180,13 +180,12 @@ class ObjectBoxChargeItemDefinitionApplicability {
 @Entity()
 class ObjectBoxChargeItemDefinitionPropertyGroup {
   ObjectBoxChargeItemDefinitionPropertyGroup({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxChargeItemDefinitionApplicability>? applicability,
     List<ObjectBoxChargeItemDefinitionPriceComponent>? priceComponent,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.applicability.addAll(applicability ?? []);
@@ -195,7 +194,8 @@ class ObjectBoxChargeItemDefinitionPropertyGroup {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -208,7 +208,7 @@ class ObjectBoxChargeItemDefinitionPropertyGroup {
 @Entity()
 class ObjectBoxChargeItemDefinitionPriceComponent {
   ObjectBoxChargeItemDefinitionPriceComponent({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.type,
@@ -218,7 +218,6 @@ class ObjectBoxChargeItemDefinitionPriceComponent {
     ObjectBoxElement? factorElement,
     ObjectBoxMoney? amount,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.typeElement.target = typeElement;
@@ -229,7 +228,8 @@ class ObjectBoxChargeItemDefinitionPriceComponent {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

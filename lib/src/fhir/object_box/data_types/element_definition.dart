@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxElementDefinition {
   ObjectBoxElementDefinition({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.path,
@@ -304,7 +304,6 @@ class ObjectBoxElementDefinition {
     ObjectBoxElementDefinitionBinding? binding,
     List<ObjectBoxElementDefinitionMapping>? mapping,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.pathElement.target = pathElement;
@@ -513,7 +512,8 @@ class ObjectBoxElementDefinition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -878,7 +878,7 @@ class ObjectBoxElementDefinition {
 @Entity()
 class ObjectBoxElementDefinitionSlicing {
   ObjectBoxElementDefinitionSlicing({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxElementDefinitionDiscriminator>? discriminator,
     this.description,
@@ -888,7 +888,6 @@ class ObjectBoxElementDefinitionSlicing {
     required this.rules,
     ObjectBoxElement? rulesElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.discriminator.addAll(discriminator ?? []);
     this.descriptionElement.target = descriptionElement;
@@ -898,7 +897,8 @@ class ObjectBoxElementDefinitionSlicing {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxElementDefinitionDiscriminator> discriminator =
       ToMany<ObjectBoxElementDefinitionDiscriminator>();
@@ -913,14 +913,13 @@ class ObjectBoxElementDefinitionSlicing {
 @Entity()
 class ObjectBoxElementDefinitionDiscriminator {
   ObjectBoxElementDefinitionDiscriminator({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     required this.type,
     ObjectBoxElement? typeElement,
     required this.path,
     ObjectBoxElement? pathElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.typeElement.target = typeElement;
     this.pathElement.target = pathElement;
@@ -928,7 +927,8 @@ class ObjectBoxElementDefinitionDiscriminator {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String type;
   ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
@@ -939,7 +939,7 @@ class ObjectBoxElementDefinitionDiscriminator {
 @Entity()
 class ObjectBoxElementDefinitionBase {
   ObjectBoxElementDefinitionBase({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     required this.path,
     ObjectBoxElement? pathElement,
@@ -948,7 +948,6 @@ class ObjectBoxElementDefinitionBase {
     required this.max,
     ObjectBoxElement? maxElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.pathElement.target = pathElement;
     this.minElement.target = minElement;
@@ -957,7 +956,8 @@ class ObjectBoxElementDefinitionBase {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String path;
   ToOne<ObjectBoxElement> pathElement = ToOne<ObjectBoxElement>();
@@ -970,7 +970,7 @@ class ObjectBoxElementDefinitionBase {
 @Entity()
 class ObjectBoxElementDefinitionType {
   ObjectBoxElementDefinitionType({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     required this.code,
     ObjectBoxElement? codeElement,
@@ -983,7 +983,6 @@ class ObjectBoxElementDefinitionType {
     this.versioning,
     ObjectBoxElement? versioningElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.codeElement.target = codeElement;
     this.profileElement.addAll(profileElement ?? []);
@@ -994,7 +993,8 @@ class ObjectBoxElementDefinitionType {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String code;
   ToOne<ObjectBoxElement> codeElement = ToOne<ObjectBoxElement>();
@@ -1011,7 +1011,7 @@ class ObjectBoxElementDefinitionType {
 @Entity()
 class ObjectBoxElementDefinitionExample {
   ObjectBoxElementDefinitionExample({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     required this.label,
     ObjectBoxElement? labelElement,
@@ -1086,7 +1086,6 @@ class ObjectBoxElementDefinitionExample {
     ObjectBoxUsageContext? valueUsageContext,
     ObjectBoxDosage? valueDosage,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.labelElement.target = labelElement;
     this.valueBase64BinaryElement.target = valueBase64BinaryElement;
@@ -1144,7 +1143,8 @@ class ObjectBoxElementDefinitionExample {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String label;
   ToOne<ObjectBoxElement> labelElement = ToOne<ObjectBoxElement>();
@@ -1233,7 +1233,7 @@ class ObjectBoxElementDefinitionExample {
 @Entity()
 class ObjectBoxElementDefinitionConstraint {
   ObjectBoxElementDefinitionConstraint({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     required this.key,
     ObjectBoxElement? keyElement,
@@ -1250,7 +1250,6 @@ class ObjectBoxElementDefinitionConstraint {
     this.source,
     ObjectBoxElement? sourceElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.keyElement.target = keyElement;
     this.requirementsElement.target = requirementsElement;
@@ -1263,7 +1262,8 @@ class ObjectBoxElementDefinitionConstraint {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String key;
   ToOne<ObjectBoxElement> keyElement = ToOne<ObjectBoxElement>();
@@ -1284,7 +1284,7 @@ class ObjectBoxElementDefinitionConstraint {
 @Entity()
 class ObjectBoxElementDefinitionBinding {
   ObjectBoxElementDefinitionBinding({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     required this.strength,
     ObjectBoxElement? strengthElement,
@@ -1293,7 +1293,6 @@ class ObjectBoxElementDefinitionBinding {
     this.valueSet,
     ObjectBoxElement? valueSetElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.strengthElement.target = strengthElement;
     this.descriptionElement.target = descriptionElement;
@@ -1302,7 +1301,8 @@ class ObjectBoxElementDefinitionBinding {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String strength;
   ToOne<ObjectBoxElement> strengthElement = ToOne<ObjectBoxElement>();
@@ -1315,7 +1315,7 @@ class ObjectBoxElementDefinitionBinding {
 @Entity()
 class ObjectBoxElementDefinitionMapping {
   ObjectBoxElementDefinitionMapping({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     required this.identity,
     ObjectBoxElement? identityElement,
@@ -1326,7 +1326,6 @@ class ObjectBoxElementDefinitionMapping {
     this.comment,
     ObjectBoxElement? commentElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.identityElement.target = identityElement;
     this.languageElement.target = languageElement;
@@ -1336,7 +1335,8 @@ class ObjectBoxElementDefinitionMapping {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String identity;
   ToOne<ObjectBoxElement> identityElement = ToOne<ObjectBoxElement>();

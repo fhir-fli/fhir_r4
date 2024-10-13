@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxHealthcareService {
   ObjectBoxHealthcareService({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -47,7 +47,6 @@ class ObjectBoxHealthcareService {
     ObjectBoxElement? availabilityExceptionsElement,
     List<ObjectBoxReference>? endpoint,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -83,7 +82,8 @@ class ObjectBoxHealthcareService {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -140,14 +140,13 @@ class ObjectBoxHealthcareService {
 @Entity()
 class ObjectBoxHealthcareServiceEligibility {
   ObjectBoxHealthcareServiceEligibility({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? code,
     this.comment,
     ObjectBoxElement? commentElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.code.target = code;
@@ -156,7 +155,8 @@ class ObjectBoxHealthcareServiceEligibility {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -168,7 +168,7 @@ class ObjectBoxHealthcareServiceEligibility {
 @Entity()
 class ObjectBoxHealthcareServiceAvailableTime {
   ObjectBoxHealthcareServiceAvailableTime({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.daysOfWeek,
@@ -180,7 +180,6 @@ class ObjectBoxHealthcareServiceAvailableTime {
     this.availableEndTime,
     ObjectBoxElement? availableEndTimeElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.daysOfWeekElement.addAll(daysOfWeekElement ?? []);
@@ -191,7 +190,8 @@ class ObjectBoxHealthcareServiceAvailableTime {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -208,14 +208,13 @@ class ObjectBoxHealthcareServiceAvailableTime {
 @Entity()
 class ObjectBoxHealthcareServiceNotAvailable {
   ObjectBoxHealthcareServiceNotAvailable({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.description,
     ObjectBoxElement? descriptionElement,
     ObjectBoxPeriod? during,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.descriptionElement.target = descriptionElement;
@@ -224,7 +223,8 @@ class ObjectBoxHealthcareServiceNotAvailable {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxMessageDefinition {
   ObjectBoxMessageDefinition({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -60,7 +60,6 @@ class ObjectBoxMessageDefinition {
     this.graph,
     List<ObjectBoxElement>? graphElement,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -97,7 +96,8 @@ class ObjectBoxMessageDefinition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -159,7 +159,7 @@ class ObjectBoxMessageDefinition {
 @Entity()
 class ObjectBoxMessageDefinitionFocus {
   ObjectBoxMessageDefinitionFocus({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.code,
@@ -171,7 +171,6 @@ class ObjectBoxMessageDefinitionFocus {
     this.max,
     ObjectBoxElement? maxElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.codeElement.target = codeElement;
@@ -182,7 +181,8 @@ class ObjectBoxMessageDefinitionFocus {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -199,7 +199,7 @@ class ObjectBoxMessageDefinitionFocus {
 @Entity()
 class ObjectBoxMessageDefinitionAllowedResponse {
   ObjectBoxMessageDefinitionAllowedResponse({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.message,
@@ -207,7 +207,6 @@ class ObjectBoxMessageDefinitionAllowedResponse {
     this.situation,
     ObjectBoxElement? situationElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.messageElement.target = messageElement;
@@ -216,7 +215,8 @@ class ObjectBoxMessageDefinitionAllowedResponse {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

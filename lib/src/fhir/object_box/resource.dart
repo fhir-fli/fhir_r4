@@ -3,7 +3,7 @@
 import 'package:objectbox/objectbox.dart';
 
 @Entity()
-abstract class ObjectBoxResource {
+class ObjectBoxResource {
   @Id()
   int? dbId;
 }

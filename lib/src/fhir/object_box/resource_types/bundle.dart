@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxBundle {
   ObjectBoxBundle({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -23,7 +23,6 @@ class ObjectBoxBundle {
     List<ObjectBoxBundleEntry>? entry,
     ObjectBoxSignature? signature,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -38,7 +37,8 @@ class ObjectBoxBundle {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -59,7 +59,7 @@ class ObjectBoxBundle {
 @Entity()
 class ObjectBoxBundleLink {
   ObjectBoxBundleLink({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.relation,
@@ -67,7 +67,6 @@ class ObjectBoxBundleLink {
     required this.url,
     ObjectBoxElement? urlElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.relationElement.target = relationElement;
@@ -76,7 +75,8 @@ class ObjectBoxBundleLink {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -89,7 +89,7 @@ class ObjectBoxBundleLink {
 @Entity()
 class ObjectBoxBundleEntry {
   ObjectBoxBundleEntry({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxBundleLink>? link,
@@ -100,7 +100,6 @@ class ObjectBoxBundleEntry {
     ObjectBoxBundleRequest? request,
     ObjectBoxBundleResponse? response,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.link.addAll(link ?? []);
@@ -113,7 +112,8 @@ class ObjectBoxBundleEntry {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -129,7 +129,7 @@ class ObjectBoxBundleEntry {
 @Entity()
 class ObjectBoxBundleSearch {
   ObjectBoxBundleSearch({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.mode,
@@ -137,7 +137,6 @@ class ObjectBoxBundleSearch {
     this.score,
     ObjectBoxElement? scoreElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.modeElement.target = modeElement;
@@ -146,7 +145,8 @@ class ObjectBoxBundleSearch {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -159,7 +159,7 @@ class ObjectBoxBundleSearch {
 @Entity()
 class ObjectBoxBundleRequest {
   ObjectBoxBundleRequest({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.method,
@@ -175,7 +175,6 @@ class ObjectBoxBundleRequest {
     this.ifNoneExist,
     ObjectBoxElement? ifNoneExistElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.methodElement.target = methodElement;
@@ -188,7 +187,8 @@ class ObjectBoxBundleRequest {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -209,7 +209,7 @@ class ObjectBoxBundleRequest {
 @Entity()
 class ObjectBoxBundleResponse {
   ObjectBoxBundleResponse({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.status,
@@ -222,7 +222,6 @@ class ObjectBoxBundleResponse {
     ObjectBoxElement? lastModifiedElement,
     ObjectBoxResource? outcome,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.statusElement.target = statusElement;
@@ -234,7 +233,8 @@ class ObjectBoxBundleResponse {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

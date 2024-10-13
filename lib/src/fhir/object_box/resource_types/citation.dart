@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxCitation {
   ObjectBoxCitation({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -59,7 +59,6 @@ class ObjectBoxCitation {
     List<ObjectBoxCitationRelatesTo>? relatesTo,
     ObjectBoxCitationCitedArtifact? citedArtifact,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -100,7 +99,8 @@ class ObjectBoxCitation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -164,14 +164,13 @@ class ObjectBoxCitation {
 @Entity()
 class ObjectBoxCitationSummary {
   ObjectBoxCitationSummary({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? style,
     required this.text,
     ObjectBoxElement? textElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.style.target = style;
@@ -180,7 +179,8 @@ class ObjectBoxCitationSummary {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -192,13 +192,12 @@ class ObjectBoxCitationSummary {
 @Entity()
 class ObjectBoxCitationClassification {
   ObjectBoxCitationClassification({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
     List<ObjectBoxCodeableConcept>? classifier,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -207,7 +206,8 @@ class ObjectBoxCitationClassification {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -219,7 +219,7 @@ class ObjectBoxCitationClassification {
 @Entity()
 class ObjectBoxCitationStatusDate {
   ObjectBoxCitationStatusDate({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? activity,
@@ -227,7 +227,6 @@ class ObjectBoxCitationStatusDate {
     ObjectBoxElement? actualElement,
     ObjectBoxPeriod? period,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.activity.target = activity;
@@ -237,7 +236,8 @@ class ObjectBoxCitationStatusDate {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -250,7 +250,7 @@ class ObjectBoxCitationStatusDate {
 @Entity()
 class ObjectBoxCitationRelatesTo {
   ObjectBoxCitationRelatesTo({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? relationshipType,
@@ -261,7 +261,6 @@ class ObjectBoxCitationRelatesTo {
     ObjectBoxReference? targetReference,
     ObjectBoxAttachment? targetAttachment,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.relationshipType.target = relationshipType;
@@ -274,7 +273,8 @@ class ObjectBoxCitationRelatesTo {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -292,7 +292,7 @@ class ObjectBoxCitationRelatesTo {
 @Entity()
 class ObjectBoxCitationCitedArtifact {
   ObjectBoxCitationCitedArtifact({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxIdentifier>? identifier,
@@ -312,7 +312,6 @@ class ObjectBoxCitationCitedArtifact {
     ObjectBoxCitationContributorship? contributorship,
     List<ObjectBoxAnnotation>? note,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.identifier.addAll(identifier ?? []);
@@ -334,7 +333,8 @@ class ObjectBoxCitationCitedArtifact {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -367,14 +367,13 @@ class ObjectBoxCitationCitedArtifact {
 @Entity()
 class ObjectBoxCitationVersion {
   ObjectBoxCitationVersion({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.value,
     ObjectBoxElement? valueElement,
     ObjectBoxReference? baseCitation,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.valueElement.target = valueElement;
@@ -383,7 +382,8 @@ class ObjectBoxCitationVersion {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -395,7 +395,7 @@ class ObjectBoxCitationVersion {
 @Entity()
 class ObjectBoxCitationStatusDate1 {
   ObjectBoxCitationStatusDate1({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? activity,
@@ -403,7 +403,6 @@ class ObjectBoxCitationStatusDate1 {
     ObjectBoxElement? actualElement,
     ObjectBoxPeriod? period,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.activity.target = activity;
@@ -413,7 +412,8 @@ class ObjectBoxCitationStatusDate1 {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -426,7 +426,7 @@ class ObjectBoxCitationStatusDate1 {
 @Entity()
 class ObjectBoxCitationTitle {
   ObjectBoxCitationTitle({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxCodeableConcept>? type,
@@ -434,7 +434,6 @@ class ObjectBoxCitationTitle {
     required this.text,
     ObjectBoxElement? textElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.addAll(type ?? []);
@@ -444,7 +443,8 @@ class ObjectBoxCitationTitle {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -457,7 +457,7 @@ class ObjectBoxCitationTitle {
 @Entity()
 class ObjectBoxCitationAbstract {
   ObjectBoxCitationAbstract({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -467,7 +467,6 @@ class ObjectBoxCitationAbstract {
     this.copyright,
     ObjectBoxElement? copyrightElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -478,7 +477,8 @@ class ObjectBoxCitationAbstract {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -493,7 +493,7 @@ class ObjectBoxCitationAbstract {
 @Entity()
 class ObjectBoxCitationPart {
   ObjectBoxCitationPart({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -501,7 +501,6 @@ class ObjectBoxCitationPart {
     ObjectBoxElement? valueElement,
     ObjectBoxReference? baseCitation,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -511,7 +510,8 @@ class ObjectBoxCitationPart {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -524,7 +524,7 @@ class ObjectBoxCitationPart {
 @Entity()
 class ObjectBoxCitationRelatesTo1 {
   ObjectBoxCitationRelatesTo1({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? relationshipType,
@@ -535,7 +535,6 @@ class ObjectBoxCitationRelatesTo1 {
     ObjectBoxReference? targetReference,
     ObjectBoxAttachment? targetAttachment,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.relationshipType.target = relationshipType;
@@ -548,7 +547,8 @@ class ObjectBoxCitationRelatesTo1 {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -566,7 +566,7 @@ class ObjectBoxCitationRelatesTo1 {
 @Entity()
 class ObjectBoxCitationPublicationForm {
   ObjectBoxCitationPublicationForm({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCitationPublishedIn? publishedIn,
@@ -589,7 +589,6 @@ class ObjectBoxCitationPublicationForm {
     this.copyright,
     ObjectBoxElement? copyrightElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.publishedIn.target = publishedIn;
@@ -607,7 +606,8 @@ class ObjectBoxCitationPublicationForm {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -638,7 +638,7 @@ class ObjectBoxCitationPublicationForm {
 @Entity()
 class ObjectBoxCitationPublishedIn {
   ObjectBoxCitationPublishedIn({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -649,7 +649,6 @@ class ObjectBoxCitationPublishedIn {
     this.publisherLocation,
     ObjectBoxElement? publisherLocationElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -661,7 +660,8 @@ class ObjectBoxCitationPublishedIn {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -677,7 +677,7 @@ class ObjectBoxCitationPublishedIn {
 @Entity()
 class ObjectBoxCitationPeriodicRelease {
   ObjectBoxCitationPeriodicRelease({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? citedMedium,
@@ -687,7 +687,6 @@ class ObjectBoxCitationPeriodicRelease {
     ObjectBoxElement? issueElement,
     ObjectBoxCitationDateOfPublication? dateOfPublication,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.citedMedium.target = citedMedium;
@@ -698,7 +697,8 @@ class ObjectBoxCitationPeriodicRelease {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -715,7 +715,7 @@ class ObjectBoxCitationPeriodicRelease {
 @Entity()
 class ObjectBoxCitationDateOfPublication {
   ObjectBoxCitationDateOfPublication({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.date,
@@ -731,7 +731,6 @@ class ObjectBoxCitationDateOfPublication {
     this.text,
     ObjectBoxElement? textElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.dateElement.target = dateElement;
@@ -744,7 +743,8 @@ class ObjectBoxCitationDateOfPublication {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -765,14 +765,13 @@ class ObjectBoxCitationDateOfPublication {
 @Entity()
 class ObjectBoxCitationWebLocation {
   ObjectBoxCitationWebLocation({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
     this.url,
     ObjectBoxElement? urlElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -781,7 +780,8 @@ class ObjectBoxCitationWebLocation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -793,14 +793,13 @@ class ObjectBoxCitationWebLocation {
 @Entity()
 class ObjectBoxCitationClassification1 {
   ObjectBoxCitationClassification1({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
     List<ObjectBoxCodeableConcept>? classifier,
     ObjectBoxCitationWhoClassified? whoClassified,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -810,7 +809,8 @@ class ObjectBoxCitationClassification1 {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -824,7 +824,7 @@ class ObjectBoxCitationClassification1 {
 @Entity()
 class ObjectBoxCitationWhoClassified {
   ObjectBoxCitationWhoClassified({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxReference? person,
@@ -835,7 +835,6 @@ class ObjectBoxCitationWhoClassified {
     this.freeToShare,
     ObjectBoxElement? freeToShareElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.person.target = person;
@@ -847,7 +846,8 @@ class ObjectBoxCitationWhoClassified {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -864,7 +864,7 @@ class ObjectBoxCitationWhoClassified {
 @Entity()
 class ObjectBoxCitationContributorship {
   ObjectBoxCitationContributorship({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.complete,
@@ -872,7 +872,6 @@ class ObjectBoxCitationContributorship {
     List<ObjectBoxCitationEntry>? entry,
     List<ObjectBoxCitationSummary>? summary,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.completeElement.target = completeElement;
@@ -882,7 +881,8 @@ class ObjectBoxCitationContributorship {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -895,7 +895,7 @@ class ObjectBoxCitationContributorship {
 @Entity()
 class ObjectBoxCitationEntry {
   ObjectBoxCitationEntry({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxHumanName? name,
@@ -915,7 +915,6 @@ class ObjectBoxCitationEntry {
     this.listOrder,
     ObjectBoxElement? listOrderElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.name.target = name;
@@ -934,7 +933,8 @@ class ObjectBoxCitationEntry {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -963,7 +963,7 @@ class ObjectBoxCitationEntry {
 @Entity()
 class ObjectBoxCitationAffiliationInfo {
   ObjectBoxCitationAffiliationInfo({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.affiliation,
@@ -972,7 +972,6 @@ class ObjectBoxCitationAffiliationInfo {
     ObjectBoxElement? roleElement,
     List<ObjectBoxIdentifier>? identifier,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.affiliationElement.target = affiliationElement;
@@ -982,7 +981,8 @@ class ObjectBoxCitationAffiliationInfo {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -996,14 +996,13 @@ class ObjectBoxCitationAffiliationInfo {
 @Entity()
 class ObjectBoxCitationContributionInstance {
   ObjectBoxCitationContributionInstance({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
     this.time,
     ObjectBoxElement? timeElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -1012,7 +1011,8 @@ class ObjectBoxCitationContributionInstance {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -1024,7 +1024,7 @@ class ObjectBoxCitationContributionInstance {
 @Entity()
 class ObjectBoxCitationSummary1 {
   ObjectBoxCitationSummary1({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -1033,7 +1033,6 @@ class ObjectBoxCitationSummary1 {
     required this.value,
     ObjectBoxElement? valueElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -1044,7 +1043,8 @@ class ObjectBoxCitationSummary1 {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

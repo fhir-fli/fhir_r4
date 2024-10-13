@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxPractitionerRole {
   ObjectBoxPractitionerRole({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -33,7 +33,6 @@ class ObjectBoxPractitionerRole {
     ObjectBoxElement? availabilityExceptionsElement,
     List<ObjectBoxReference>? endpoint,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -59,7 +58,8 @@ class ObjectBoxPractitionerRole {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -95,7 +95,7 @@ class ObjectBoxPractitionerRole {
 @Entity()
 class ObjectBoxPractitionerRoleAvailableTime {
   ObjectBoxPractitionerRoleAvailableTime({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.daysOfWeek,
@@ -107,7 +107,6 @@ class ObjectBoxPractitionerRoleAvailableTime {
     this.availableEndTime,
     ObjectBoxElement? availableEndTimeElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.daysOfWeekElement.addAll(daysOfWeekElement ?? []);
@@ -118,7 +117,8 @@ class ObjectBoxPractitionerRoleAvailableTime {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -135,14 +135,13 @@ class ObjectBoxPractitionerRoleAvailableTime {
 @Entity()
 class ObjectBoxPractitionerRoleNotAvailable {
   ObjectBoxPractitionerRoleNotAvailable({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.description,
     ObjectBoxElement? descriptionElement,
     ObjectBoxPeriod? during,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.descriptionElement.target = descriptionElement;
@@ -151,7 +150,8 @@ class ObjectBoxPractitionerRoleNotAvailable {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

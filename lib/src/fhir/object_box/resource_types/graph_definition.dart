@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxGraphDefinition {
   ObjectBoxGraphDefinition({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -43,7 +43,6 @@ class ObjectBoxGraphDefinition {
     ObjectBoxElement? profileElement,
     List<ObjectBoxGraphDefinitionLink>? link,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -70,7 +69,8 @@ class ObjectBoxGraphDefinition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -114,7 +114,7 @@ class ObjectBoxGraphDefinition {
 @Entity()
 class ObjectBoxGraphDefinitionLink {
   ObjectBoxGraphDefinitionLink({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.path,
@@ -129,7 +129,6 @@ class ObjectBoxGraphDefinitionLink {
     ObjectBoxElement? descriptionElement,
     List<ObjectBoxGraphDefinitionTarget>? target,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.pathElement.target = pathElement;
@@ -142,7 +141,8 @@ class ObjectBoxGraphDefinitionLink {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -163,7 +163,7 @@ class ObjectBoxGraphDefinitionLink {
 @Entity()
 class ObjectBoxGraphDefinitionTarget {
   ObjectBoxGraphDefinitionTarget({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.type,
@@ -175,7 +175,6 @@ class ObjectBoxGraphDefinitionTarget {
     List<ObjectBoxGraphDefinitionCompartment>? compartment,
     List<ObjectBoxGraphDefinitionLink>? link,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.typeElement.target = typeElement;
@@ -187,7 +186,8 @@ class ObjectBoxGraphDefinitionTarget {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -206,7 +206,7 @@ class ObjectBoxGraphDefinitionTarget {
 @Entity()
 class ObjectBoxGraphDefinitionCompartment {
   ObjectBoxGraphDefinitionCompartment({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.use,
@@ -220,7 +220,6 @@ class ObjectBoxGraphDefinitionCompartment {
     this.description,
     ObjectBoxElement? descriptionElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.useElement.target = useElement;
@@ -232,7 +231,8 @@ class ObjectBoxGraphDefinitionCompartment {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

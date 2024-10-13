@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxAllergyIntolerance {
   ObjectBoxAllergyIntolerance({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -44,7 +44,6 @@ class ObjectBoxAllergyIntolerance {
     List<ObjectBoxAnnotation>? note,
     List<ObjectBoxAllergyIntoleranceReaction>? reaction,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -76,7 +75,8 @@ class ObjectBoxAllergyIntolerance {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -122,7 +122,7 @@ class ObjectBoxAllergyIntolerance {
 @Entity()
 class ObjectBoxAllergyIntoleranceReaction {
   ObjectBoxAllergyIntoleranceReaction({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? substance,
@@ -136,7 +136,6 @@ class ObjectBoxAllergyIntoleranceReaction {
     ObjectBoxCodeableConcept? exposureRoute,
     List<ObjectBoxAnnotation>? note,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.substance.target = substance;
@@ -150,7 +149,8 @@ class ObjectBoxAllergyIntoleranceReaction {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxAuditEvent {
   ObjectBoxAuditEvent({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -32,7 +32,6 @@ class ObjectBoxAuditEvent {
     ObjectBoxAuditEventSource? source,
     List<ObjectBoxAuditEventEntity>? entity,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -55,7 +54,8 @@ class ObjectBoxAuditEvent {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -88,7 +88,7 @@ class ObjectBoxAuditEvent {
 @Entity()
 class ObjectBoxAuditEventAgent {
   ObjectBoxAuditEventAgent({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -107,7 +107,6 @@ class ObjectBoxAuditEventAgent {
     ObjectBoxAuditEventNetwork? network,
     List<ObjectBoxCodeableConcept>? purposeOfUse,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -125,7 +124,8 @@ class ObjectBoxAuditEventAgent {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -151,7 +151,7 @@ class ObjectBoxAuditEventAgent {
 @Entity()
 class ObjectBoxAuditEventNetwork {
   ObjectBoxAuditEventNetwork({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.address,
@@ -159,7 +159,6 @@ class ObjectBoxAuditEventNetwork {
     this.type,
     ObjectBoxElement? typeElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.addressElement.target = addressElement;
@@ -168,7 +167,8 @@ class ObjectBoxAuditEventNetwork {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -181,7 +181,7 @@ class ObjectBoxAuditEventNetwork {
 @Entity()
 class ObjectBoxAuditEventSource {
   ObjectBoxAuditEventSource({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.site,
@@ -189,7 +189,6 @@ class ObjectBoxAuditEventSource {
     ObjectBoxReference? observer,
     List<ObjectBoxCoding>? type,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.siteElement.target = siteElement;
@@ -199,7 +198,8 @@ class ObjectBoxAuditEventSource {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -212,7 +212,7 @@ class ObjectBoxAuditEventSource {
 @Entity()
 class ObjectBoxAuditEventEntity {
   ObjectBoxAuditEventEntity({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxReference? what,
@@ -228,7 +228,6 @@ class ObjectBoxAuditEventEntity {
     ObjectBoxElement? queryElement,
     List<ObjectBoxAuditEventDetail>? detail,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.what.target = what;
@@ -244,7 +243,8 @@ class ObjectBoxAuditEventEntity {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -266,7 +266,7 @@ class ObjectBoxAuditEventEntity {
 @Entity()
 class ObjectBoxAuditEventDetail {
   ObjectBoxAuditEventDetail({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.type,
@@ -276,7 +276,6 @@ class ObjectBoxAuditEventDetail {
     this.valueBase64Binary,
     ObjectBoxElement? valueBase64BinaryElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.typeElement.target = typeElement;
@@ -286,7 +285,8 @@ class ObjectBoxAuditEventDetail {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

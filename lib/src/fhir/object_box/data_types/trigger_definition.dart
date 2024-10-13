@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxTriggerDefinition {
   ObjectBoxTriggerDefinition({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     required this.type,
     ObjectBoxElement? typeElement,
@@ -21,7 +21,6 @@ class ObjectBoxTriggerDefinition {
     List<ObjectBoxDataRequirement>? data,
     ObjectBoxFhirExpression? condition,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.typeElement.target = typeElement;
     this.nameElement.target = nameElement;
@@ -35,7 +34,8 @@ class ObjectBoxTriggerDefinition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String type;
   ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();

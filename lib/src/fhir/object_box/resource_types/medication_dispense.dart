@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxMedicationDispense {
   ObjectBoxMedicationDispense({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -46,7 +46,6 @@ class ObjectBoxMedicationDispense {
     List<ObjectBoxReference>? detectedIssue,
     List<ObjectBoxReference>? eventHistory,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -84,7 +83,8 @@ class ObjectBoxMedicationDispense {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -135,13 +135,12 @@ class ObjectBoxMedicationDispense {
 @Entity()
 class ObjectBoxMedicationDispensePerformer {
   ObjectBoxMedicationDispensePerformer({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? function_,
     ObjectBoxReference? actor,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.function_.target = function_;
@@ -150,7 +149,8 @@ class ObjectBoxMedicationDispensePerformer {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -161,7 +161,7 @@ class ObjectBoxMedicationDispensePerformer {
 @Entity()
 class ObjectBoxMedicationDispenseSubstitution {
   ObjectBoxMedicationDispenseSubstitution({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.wasSubstituted,
@@ -170,7 +170,6 @@ class ObjectBoxMedicationDispenseSubstitution {
     List<ObjectBoxCodeableConcept>? reason,
     List<ObjectBoxReference>? responsibleParty,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.wasSubstitutedElement.target = wasSubstitutedElement;
@@ -181,7 +180,8 @@ class ObjectBoxMedicationDispenseSubstitution {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

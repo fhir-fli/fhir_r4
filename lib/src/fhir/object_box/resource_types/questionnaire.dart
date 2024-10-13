@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxQuestionnaire {
   ObjectBoxQuestionnaire({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -54,7 +54,6 @@ class ObjectBoxQuestionnaire {
     List<ObjectBoxCoding>? code,
     List<ObjectBoxQuestionnaireItem>? item,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -88,7 +87,8 @@ class ObjectBoxQuestionnaire {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -143,7 +143,7 @@ class ObjectBoxQuestionnaire {
 @Entity()
 class ObjectBoxQuestionnaireItem {
   ObjectBoxQuestionnaireItem({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.linkId,
@@ -174,7 +174,6 @@ class ObjectBoxQuestionnaireItem {
     List<ObjectBoxQuestionnaireInitial>? initial,
     List<ObjectBoxQuestionnaireItem>? item,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.linkIdElement.target = linkIdElement;
@@ -197,7 +196,8 @@ class ObjectBoxQuestionnaireItem {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -237,7 +237,7 @@ class ObjectBoxQuestionnaireItem {
 @Entity()
 class ObjectBoxQuestionnaireEnableWhen {
   ObjectBoxQuestionnaireEnableWhen({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.question,
@@ -262,7 +262,6 @@ class ObjectBoxQuestionnaireEnableWhen {
     ObjectBoxQuantity? answerQuantity,
     ObjectBoxReference? answerReference,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.questionElement.target = questionElement;
@@ -281,7 +280,8 @@ class ObjectBoxQuestionnaireEnableWhen {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -311,7 +311,7 @@ class ObjectBoxQuestionnaireEnableWhen {
 @Entity()
 class ObjectBoxQuestionnaireAnswerOption {
   ObjectBoxQuestionnaireAnswerOption({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.valueInteger,
@@ -327,7 +327,6 @@ class ObjectBoxQuestionnaireAnswerOption {
     this.initialSelected,
     ObjectBoxElement? initialSelectedElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.valueIntegerElement.target = valueIntegerElement;
@@ -341,7 +340,8 @@ class ObjectBoxQuestionnaireAnswerOption {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -362,7 +362,7 @@ class ObjectBoxQuestionnaireAnswerOption {
 @Entity()
 class ObjectBoxQuestionnaireInitial {
   ObjectBoxQuestionnaireInitial({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.valueBoolean,
@@ -386,7 +386,6 @@ class ObjectBoxQuestionnaireInitial {
     ObjectBoxQuantity? valueQuantity,
     ObjectBoxReference? valueReference,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.valueBooleanElement.target = valueBooleanElement;
@@ -405,7 +404,8 @@ class ObjectBoxQuestionnaireInitial {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

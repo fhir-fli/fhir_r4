@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxSpecimen {
   ObjectBoxSpecimen({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -32,7 +32,6 @@ class ObjectBoxSpecimen {
     List<ObjectBoxCodeableConcept>? condition,
     List<ObjectBoxAnnotation>? note,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -57,7 +56,8 @@ class ObjectBoxSpecimen {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -92,7 +92,7 @@ class ObjectBoxSpecimen {
 @Entity()
 class ObjectBoxSpecimenCollection {
   ObjectBoxSpecimenCollection({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxReference? collector,
@@ -106,7 +106,6 @@ class ObjectBoxSpecimenCollection {
     ObjectBoxCodeableConcept? fastingStatusCodeableConcept,
     ObjectBoxFhirDuration? fastingStatusDuration,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.collector.target = collector;
@@ -122,7 +121,8 @@ class ObjectBoxSpecimenCollection {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -143,7 +143,7 @@ class ObjectBoxSpecimenCollection {
 @Entity()
 class ObjectBoxSpecimenProcessing {
   ObjectBoxSpecimenProcessing({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.description,
@@ -154,7 +154,6 @@ class ObjectBoxSpecimenProcessing {
     ObjectBoxElement? timeDateTimeElement,
     ObjectBoxPeriod? timePeriod,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.descriptionElement.target = descriptionElement;
@@ -166,7 +165,8 @@ class ObjectBoxSpecimenProcessing {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -182,7 +182,7 @@ class ObjectBoxSpecimenProcessing {
 @Entity()
 class ObjectBoxSpecimenContainer {
   ObjectBoxSpecimenContainer({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxIdentifier>? identifier,
@@ -194,7 +194,6 @@ class ObjectBoxSpecimenContainer {
     ObjectBoxCodeableConcept? additiveCodeableConcept,
     ObjectBoxReference? additiveReference,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.identifier.addAll(identifier ?? []);
@@ -208,7 +207,8 @@ class ObjectBoxSpecimenContainer {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

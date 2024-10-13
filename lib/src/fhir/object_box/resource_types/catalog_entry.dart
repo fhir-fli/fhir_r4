@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxCatalogEntry {
   ObjectBoxCatalogEntry({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -34,7 +34,6 @@ class ObjectBoxCatalogEntry {
     List<ObjectBoxCodeableConcept>? additionalClassification,
     List<ObjectBoxCatalogEntryRelatedEntry>? relatedEntry,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -59,7 +58,8 @@ class ObjectBoxCatalogEntry {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -97,14 +97,13 @@ class ObjectBoxCatalogEntry {
 @Entity()
 class ObjectBoxCatalogEntryRelatedEntry {
   ObjectBoxCatalogEntryRelatedEntry({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.relationtype,
     ObjectBoxElement? relationtypeElement,
     ObjectBoxReference? item,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.relationtypeElement.target = relationtypeElement;
@@ -113,7 +112,8 @@ class ObjectBoxCatalogEntryRelatedEntry {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

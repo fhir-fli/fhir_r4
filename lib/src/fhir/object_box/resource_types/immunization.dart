@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxImmunization {
   ObjectBoxImmunization({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -54,7 +54,6 @@ class ObjectBoxImmunization {
     List<ObjectBoxImmunizationReaction>? reaction,
     List<ObjectBoxImmunizationProtocolApplied>? protocolApplied,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -95,7 +94,8 @@ class ObjectBoxImmunization {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -159,13 +159,12 @@ class ObjectBoxImmunization {
 @Entity()
 class ObjectBoxImmunizationPerformer {
   ObjectBoxImmunizationPerformer({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? function_,
     ObjectBoxReference? actor,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.function_.target = function_;
@@ -174,7 +173,8 @@ class ObjectBoxImmunizationPerformer {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -185,7 +185,7 @@ class ObjectBoxImmunizationPerformer {
 @Entity()
 class ObjectBoxImmunizationEducation {
   ObjectBoxImmunizationEducation({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.documentType,
@@ -197,7 +197,6 @@ class ObjectBoxImmunizationEducation {
     this.presentationDate,
     ObjectBoxElement? presentationDateElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.documentTypeElement.target = documentTypeElement;
@@ -208,7 +207,8 @@ class ObjectBoxImmunizationEducation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -225,7 +225,7 @@ class ObjectBoxImmunizationEducation {
 @Entity()
 class ObjectBoxImmunizationReaction {
   ObjectBoxImmunizationReaction({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.date,
@@ -234,7 +234,6 @@ class ObjectBoxImmunizationReaction {
     this.reported,
     ObjectBoxElement? reportedElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.dateElement.target = dateElement;
@@ -244,7 +243,8 @@ class ObjectBoxImmunizationReaction {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -258,7 +258,7 @@ class ObjectBoxImmunizationReaction {
 @Entity()
 class ObjectBoxImmunizationProtocolApplied {
   ObjectBoxImmunizationProtocolApplied({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.series,
@@ -274,7 +274,6 @@ class ObjectBoxImmunizationProtocolApplied {
     this.seriesDosesString,
     ObjectBoxElement? seriesDosesStringElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.seriesElement.target = seriesElement;
@@ -288,7 +287,8 @@ class ObjectBoxImmunizationProtocolApplied {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

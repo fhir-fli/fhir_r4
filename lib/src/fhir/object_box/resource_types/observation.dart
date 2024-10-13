@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxObservation {
   ObjectBoxObservation({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -63,7 +63,6 @@ class ObjectBoxObservation {
     List<ObjectBoxReference>? derivedFrom,
     List<ObjectBoxObservationComponent>? component,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -112,7 +111,8 @@ class ObjectBoxObservation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -180,7 +180,7 @@ class ObjectBoxObservation {
 @Entity()
 class ObjectBoxObservationReferenceRange {
   ObjectBoxObservationReferenceRange({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxQuantity? low,
@@ -191,7 +191,6 @@ class ObjectBoxObservationReferenceRange {
     this.text,
     ObjectBoxElement? textElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.low.target = low;
@@ -204,7 +203,8 @@ class ObjectBoxObservationReferenceRange {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -221,7 +221,7 @@ class ObjectBoxObservationReferenceRange {
 @Entity()
 class ObjectBoxObservationComponent {
   ObjectBoxObservationComponent({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? code,
@@ -245,7 +245,6 @@ class ObjectBoxObservationComponent {
     List<ObjectBoxCodeableConcept>? interpretation,
     List<ObjectBoxObservationReferenceRange>? referenceRange,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.code.target = code;
@@ -267,7 +266,8 @@ class ObjectBoxObservationComponent {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

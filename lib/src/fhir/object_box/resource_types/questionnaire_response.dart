@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxQuestionnaireResponse {
   ObjectBoxQuestionnaireResponse({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -31,7 +31,6 @@ class ObjectBoxQuestionnaireResponse {
     ObjectBoxReference? source,
     List<ObjectBoxQuestionnaireResponseItem>? item,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -54,7 +53,8 @@ class ObjectBoxQuestionnaireResponse {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -85,7 +85,7 @@ class ObjectBoxQuestionnaireResponse {
 @Entity()
 class ObjectBoxQuestionnaireResponseItem {
   ObjectBoxQuestionnaireResponseItem({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.linkId,
@@ -97,7 +97,6 @@ class ObjectBoxQuestionnaireResponseItem {
     List<ObjectBoxQuestionnaireResponseAnswer>? answer,
     List<ObjectBoxQuestionnaireResponseItem>? item,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.linkIdElement.target = linkIdElement;
@@ -109,7 +108,8 @@ class ObjectBoxQuestionnaireResponseItem {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -128,7 +128,7 @@ class ObjectBoxQuestionnaireResponseItem {
 @Entity()
 class ObjectBoxQuestionnaireResponseAnswer {
   ObjectBoxQuestionnaireResponseAnswer({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.valueBoolean,
@@ -153,7 +153,6 @@ class ObjectBoxQuestionnaireResponseAnswer {
     ObjectBoxReference? valueReference,
     List<ObjectBoxQuestionnaireResponseItem>? item,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.valueBooleanElement.target = valueBooleanElement;
@@ -173,7 +172,8 @@ class ObjectBoxQuestionnaireResponseAnswer {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

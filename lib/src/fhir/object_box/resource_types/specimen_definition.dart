@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxSpecimenDefinition {
   ObjectBoxSpecimenDefinition({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -24,7 +24,6 @@ class ObjectBoxSpecimenDefinition {
     List<ObjectBoxCodeableConcept>? collection,
     List<ObjectBoxSpecimenDefinitionTypeTested>? typeTested,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -42,7 +41,8 @@ class ObjectBoxSpecimenDefinition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -69,7 +69,7 @@ class ObjectBoxSpecimenDefinition {
 @Entity()
 class ObjectBoxSpecimenDefinitionTypeTested {
   ObjectBoxSpecimenDefinitionTypeTested({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.isDerived,
@@ -84,7 +84,6 @@ class ObjectBoxSpecimenDefinitionTypeTested {
     List<ObjectBoxCodeableConcept>? rejectionCriterion,
     List<ObjectBoxSpecimenDefinitionHandling>? handling,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.isDerivedElement.target = isDerivedElement;
@@ -99,7 +98,8 @@ class ObjectBoxSpecimenDefinitionTypeTested {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -122,7 +122,7 @@ class ObjectBoxSpecimenDefinitionTypeTested {
 @Entity()
 class ObjectBoxSpecimenDefinitionContainer {
   ObjectBoxSpecimenDefinitionContainer({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? material,
@@ -138,7 +138,6 @@ class ObjectBoxSpecimenDefinitionContainer {
     this.preparation,
     ObjectBoxElement? preparationElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.material.target = material;
@@ -154,7 +153,8 @@ class ObjectBoxSpecimenDefinitionContainer {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -177,13 +177,12 @@ class ObjectBoxSpecimenDefinitionContainer {
 @Entity()
 class ObjectBoxSpecimenDefinitionAdditive {
   ObjectBoxSpecimenDefinitionAdditive({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? additiveCodeableConcept,
     ObjectBoxReference? additiveReference,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.additiveCodeableConcept.target = additiveCodeableConcept;
@@ -192,7 +191,8 @@ class ObjectBoxSpecimenDefinitionAdditive {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -204,7 +204,7 @@ class ObjectBoxSpecimenDefinitionAdditive {
 @Entity()
 class ObjectBoxSpecimenDefinitionHandling {
   ObjectBoxSpecimenDefinitionHandling({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? temperatureQualifier,
@@ -213,7 +213,6 @@ class ObjectBoxSpecimenDefinitionHandling {
     this.instruction,
     ObjectBoxElement? instructionElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.temperatureQualifier.target = temperatureQualifier;
@@ -224,7 +223,8 @@ class ObjectBoxSpecimenDefinitionHandling {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

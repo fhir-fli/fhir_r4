@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxPlanDefinition {
   ObjectBoxPlanDefinition({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -67,7 +67,6 @@ class ObjectBoxPlanDefinition {
     List<ObjectBoxPlanDefinitionGoal>? goal,
     List<ObjectBoxPlanDefinitionAction>? action,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -112,7 +111,8 @@ class ObjectBoxPlanDefinition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -183,7 +183,7 @@ class ObjectBoxPlanDefinition {
 @Entity()
 class ObjectBoxPlanDefinitionGoal {
   ObjectBoxPlanDefinitionGoal({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? category,
@@ -194,7 +194,6 @@ class ObjectBoxPlanDefinitionGoal {
     List<ObjectBoxRelatedArtifact>? documentation,
     List<ObjectBoxPlanDefinitionTarget>? target,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.category.target = category;
@@ -208,7 +207,8 @@ class ObjectBoxPlanDefinitionGoal {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -228,7 +228,7 @@ class ObjectBoxPlanDefinitionGoal {
 @Entity()
 class ObjectBoxPlanDefinitionTarget {
   ObjectBoxPlanDefinitionTarget({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? measure,
@@ -237,7 +237,6 @@ class ObjectBoxPlanDefinitionTarget {
     ObjectBoxCodeableConcept? detailCodeableConcept,
     ObjectBoxFhirDuration? due,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.measure.target = measure;
@@ -249,7 +248,8 @@ class ObjectBoxPlanDefinitionTarget {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -264,7 +264,7 @@ class ObjectBoxPlanDefinitionTarget {
 @Entity()
 class ObjectBoxPlanDefinitionAction {
   ObjectBoxPlanDefinitionAction({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.prefix,
@@ -319,7 +319,6 @@ class ObjectBoxPlanDefinitionAction {
     List<ObjectBoxPlanDefinitionDynamicValue>? dynamicValue,
     List<ObjectBoxPlanDefinitionAction>? action,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.prefixElement.target = prefixElement;
@@ -361,7 +360,8 @@ class ObjectBoxPlanDefinitionAction {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -431,14 +431,13 @@ class ObjectBoxPlanDefinitionAction {
 @Entity()
 class ObjectBoxPlanDefinitionCondition {
   ObjectBoxPlanDefinitionCondition({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.kind,
     ObjectBoxElement? kindElement,
     ObjectBoxFhirExpression? expression,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.kindElement.target = kindElement;
@@ -447,7 +446,8 @@ class ObjectBoxPlanDefinitionCondition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -459,7 +459,7 @@ class ObjectBoxPlanDefinitionCondition {
 @Entity()
 class ObjectBoxPlanDefinitionRelatedAction {
   ObjectBoxPlanDefinitionRelatedAction({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.actionId,
@@ -469,7 +469,6 @@ class ObjectBoxPlanDefinitionRelatedAction {
     ObjectBoxFhirDuration? offsetDuration,
     ObjectBoxRange? offsetRange,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.actionIdElement.target = actionIdElement;
@@ -480,7 +479,8 @@ class ObjectBoxPlanDefinitionRelatedAction {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -495,14 +495,13 @@ class ObjectBoxPlanDefinitionRelatedAction {
 @Entity()
 class ObjectBoxPlanDefinitionParticipant {
   ObjectBoxPlanDefinitionParticipant({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.type,
     ObjectBoxElement? typeElement,
     ObjectBoxCodeableConcept? role,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.typeElement.target = typeElement;
@@ -511,7 +510,8 @@ class ObjectBoxPlanDefinitionParticipant {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -523,14 +523,13 @@ class ObjectBoxPlanDefinitionParticipant {
 @Entity()
 class ObjectBoxPlanDefinitionDynamicValue {
   ObjectBoxPlanDefinitionDynamicValue({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.path,
     ObjectBoxElement? pathElement,
     ObjectBoxFhirExpression? expression,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.pathElement.target = pathElement;
@@ -539,7 +538,8 @@ class ObjectBoxPlanDefinitionDynamicValue {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

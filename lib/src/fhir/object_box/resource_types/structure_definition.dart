@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxStructureDefinition {
   ObjectBoxStructureDefinition({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -60,7 +60,6 @@ class ObjectBoxStructureDefinition {
     ObjectBoxStructureDefinitionSnapshot? snapshot,
     ObjectBoxStructureDefinitionDifferential? differential,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -98,7 +97,8 @@ class ObjectBoxStructureDefinition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -162,7 +162,7 @@ class ObjectBoxStructureDefinition {
 @Entity()
 class ObjectBoxStructureDefinitionMapping {
   ObjectBoxStructureDefinitionMapping({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.identity,
@@ -174,7 +174,6 @@ class ObjectBoxStructureDefinitionMapping {
     this.comment,
     ObjectBoxElement? commentElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.identityElement.target = identityElement;
@@ -185,7 +184,8 @@ class ObjectBoxStructureDefinitionMapping {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -202,7 +202,7 @@ class ObjectBoxStructureDefinitionMapping {
 @Entity()
 class ObjectBoxStructureDefinitionContext {
   ObjectBoxStructureDefinitionContext({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.type,
@@ -212,7 +212,6 @@ class ObjectBoxStructureDefinitionContext {
     this.contextInvariant,
     List<ObjectBoxElement>? contextInvariantElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.typeElement.target = typeElement;
@@ -222,7 +221,8 @@ class ObjectBoxStructureDefinitionContext {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -237,12 +237,11 @@ class ObjectBoxStructureDefinitionContext {
 @Entity()
 class ObjectBoxStructureDefinitionSnapshot {
   ObjectBoxStructureDefinitionSnapshot({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxElementDefinition>? element,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.element.addAll(element ?? []);
@@ -250,7 +249,8 @@ class ObjectBoxStructureDefinitionSnapshot {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -261,12 +261,11 @@ class ObjectBoxStructureDefinitionSnapshot {
 @Entity()
 class ObjectBoxStructureDefinitionDifferential {
   ObjectBoxStructureDefinitionDifferential({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxElementDefinition>? element,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.element.addAll(element ?? []);
@@ -274,7 +273,8 @@ class ObjectBoxStructureDefinitionDifferential {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

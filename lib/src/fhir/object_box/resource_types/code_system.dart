@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxCodeSystem {
   ObjectBoxCodeSystem({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -62,7 +62,6 @@ class ObjectBoxCodeSystem {
     List<ObjectBoxCodeSystemProperty>? property,
     List<ObjectBoxCodeSystemConcept>? concept,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -100,7 +99,8 @@ class ObjectBoxCodeSystem {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -165,7 +165,7 @@ class ObjectBoxCodeSystem {
 @Entity()
 class ObjectBoxCodeSystemFilter {
   ObjectBoxCodeSystemFilter({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.code,
@@ -177,7 +177,6 @@ class ObjectBoxCodeSystemFilter {
     required this.value,
     ObjectBoxElement? valueElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.codeElement.target = codeElement;
@@ -188,7 +187,8 @@ class ObjectBoxCodeSystemFilter {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -205,7 +205,7 @@ class ObjectBoxCodeSystemFilter {
 @Entity()
 class ObjectBoxCodeSystemProperty {
   ObjectBoxCodeSystemProperty({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.code,
@@ -217,7 +217,6 @@ class ObjectBoxCodeSystemProperty {
     required this.type,
     ObjectBoxElement? typeElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.codeElement.target = codeElement;
@@ -228,7 +227,8 @@ class ObjectBoxCodeSystemProperty {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -245,7 +245,7 @@ class ObjectBoxCodeSystemProperty {
 @Entity()
 class ObjectBoxCodeSystemConcept {
   ObjectBoxCodeSystemConcept({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.code,
@@ -258,7 +258,6 @@ class ObjectBoxCodeSystemConcept {
     List<ObjectBoxCodeSystemProperty>? property,
     List<ObjectBoxCodeSystemConcept>? concept,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.codeElement.target = codeElement;
@@ -271,7 +270,8 @@ class ObjectBoxCodeSystemConcept {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -292,7 +292,7 @@ class ObjectBoxCodeSystemConcept {
 @Entity()
 class ObjectBoxCodeSystemDesignation {
   ObjectBoxCodeSystemDesignation({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.language,
@@ -301,7 +301,6 @@ class ObjectBoxCodeSystemDesignation {
     required this.value,
     ObjectBoxElement? valueElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.languageElement.target = languageElement;
@@ -311,7 +310,8 @@ class ObjectBoxCodeSystemDesignation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -325,7 +325,7 @@ class ObjectBoxCodeSystemDesignation {
 @Entity()
 class ObjectBoxCodeSystemProperty1 {
   ObjectBoxCodeSystemProperty1({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.code,
@@ -344,7 +344,6 @@ class ObjectBoxCodeSystemProperty1 {
     this.valueDecimal,
     ObjectBoxElement? valueDecimalElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.codeElement.target = codeElement;
@@ -359,7 +358,8 @@ class ObjectBoxCodeSystemProperty1 {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

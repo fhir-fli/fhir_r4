@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxFhirExtension {
   ObjectBoxFhirExtension({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     String? url,
     this.valueBase64Binary,
@@ -80,7 +80,6 @@ class ObjectBoxFhirExtension {
     ObjectBoxUsageContext? valueUsageContext,
     ObjectBoxDosage? valueDosage,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.url.target = url;
     this.valueBase64BinaryElement.target = valueBase64BinaryElement;
@@ -138,7 +137,8 @@ class ObjectBoxFhirExtension {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToOne<String> url = ToOne<String>();
   String? valueBase64Binary;

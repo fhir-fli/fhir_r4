@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxAnnotation {
   ObjectBoxAnnotation({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     ObjectBoxReference? authorReference,
     this.authorString,
@@ -16,7 +16,6 @@ class ObjectBoxAnnotation {
     required this.text,
     ObjectBoxElement? textElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.authorReference.target = authorReference;
     this.authorStringElement.target = authorStringElement;
@@ -26,7 +25,8 @@ class ObjectBoxAnnotation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxReference> authorReference = ToOne<ObjectBoxReference>();
   String? authorString;

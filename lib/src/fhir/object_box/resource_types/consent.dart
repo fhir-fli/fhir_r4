@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxConsent {
   ObjectBoxConsent({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -32,7 +32,6 @@ class ObjectBoxConsent {
     List<ObjectBoxConsentVerification>? verification,
     ObjectBoxConsentProvision? provision,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -57,7 +56,8 @@ class ObjectBoxConsent {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -91,7 +91,7 @@ class ObjectBoxConsent {
 @Entity()
 class ObjectBoxConsentPolicy {
   ObjectBoxConsentPolicy({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.authority,
@@ -100,7 +100,6 @@ class ObjectBoxConsentPolicy {
     ObjectBoxElement? uriElement,
     ObjectBoxCodeableConcept? policyRule,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.authorityElement.target = authorityElement;
@@ -110,7 +109,8 @@ class ObjectBoxConsentPolicy {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -125,7 +125,7 @@ class ObjectBoxConsentPolicy {
 @Entity()
 class ObjectBoxConsentVerification {
   ObjectBoxConsentVerification({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.verified,
@@ -134,7 +134,6 @@ class ObjectBoxConsentVerification {
     this.verificationDate,
     ObjectBoxElement? verificationDateElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.verifiedElement.target = verifiedElement;
@@ -144,7 +143,8 @@ class ObjectBoxConsentVerification {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -158,7 +158,7 @@ class ObjectBoxConsentVerification {
 @Entity()
 class ObjectBoxConsentProvision {
   ObjectBoxConsentProvision({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.type,
@@ -174,7 +174,6 @@ class ObjectBoxConsentProvision {
     List<ObjectBoxConsentData>? data,
     List<ObjectBoxConsentProvision>? provision,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.typeElement.target = typeElement;
@@ -192,7 +191,8 @@ class ObjectBoxConsentProvision {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -214,13 +214,12 @@ class ObjectBoxConsentProvision {
 @Entity()
 class ObjectBoxConsentActor {
   ObjectBoxConsentActor({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? role,
     ObjectBoxReference? reference,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.role.target = role;
@@ -229,7 +228,8 @@ class ObjectBoxConsentActor {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -240,14 +240,13 @@ class ObjectBoxConsentActor {
 @Entity()
 class ObjectBoxConsentData {
   ObjectBoxConsentData({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.meaning,
     ObjectBoxElement? meaningElement,
     ObjectBoxReference? reference,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.meaningElement.target = meaningElement;
@@ -256,7 +255,8 @@ class ObjectBoxConsentData {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

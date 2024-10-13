@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxClinicalUseDefinition {
   ObjectBoxClinicalUseDefinition({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -29,7 +29,6 @@ class ObjectBoxClinicalUseDefinition {
     ObjectBoxClinicalUseDefinitionUndesirableEffect? undesirableEffect,
     ObjectBoxClinicalUseDefinitionWarning? warning,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -52,7 +51,8 @@ class ObjectBoxClinicalUseDefinition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -86,7 +86,7 @@ class ObjectBoxClinicalUseDefinition {
 @Entity()
 class ObjectBoxClinicalUseDefinitionContraindication {
   ObjectBoxClinicalUseDefinitionContraindication({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableReference? diseaseSymptomProcedure,
@@ -95,7 +95,6 @@ class ObjectBoxClinicalUseDefinitionContraindication {
     List<ObjectBoxReference>? indication,
     List<ObjectBoxClinicalUseDefinitionOtherTherapy>? otherTherapy,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.diseaseSymptomProcedure.target = diseaseSymptomProcedure;
@@ -107,7 +106,8 @@ class ObjectBoxClinicalUseDefinitionContraindication {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -125,13 +125,12 @@ class ObjectBoxClinicalUseDefinitionContraindication {
 @Entity()
 class ObjectBoxClinicalUseDefinitionOtherTherapy {
   ObjectBoxClinicalUseDefinitionOtherTherapy({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? relationshipType,
     ObjectBoxCodeableReference? therapy,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.relationshipType.target = relationshipType;
@@ -140,7 +139,8 @@ class ObjectBoxClinicalUseDefinitionOtherTherapy {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -153,7 +153,7 @@ class ObjectBoxClinicalUseDefinitionOtherTherapy {
 @Entity()
 class ObjectBoxClinicalUseDefinitionIndication {
   ObjectBoxClinicalUseDefinitionIndication({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableReference? diseaseSymptomProcedure,
@@ -166,7 +166,6 @@ class ObjectBoxClinicalUseDefinitionIndication {
     List<ObjectBoxReference>? undesirableEffect,
     List<ObjectBoxClinicalUseDefinitionOtherTherapy>? otherTherapy,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.diseaseSymptomProcedure.target = diseaseSymptomProcedure;
@@ -181,7 +180,8 @@ class ObjectBoxClinicalUseDefinitionIndication {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -204,7 +204,7 @@ class ObjectBoxClinicalUseDefinitionIndication {
 @Entity()
 class ObjectBoxClinicalUseDefinitionInteraction {
   ObjectBoxClinicalUseDefinitionInteraction({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxClinicalUseDefinitionInteractant>? interactant,
@@ -213,7 +213,6 @@ class ObjectBoxClinicalUseDefinitionInteraction {
     ObjectBoxCodeableConcept? incidence,
     List<ObjectBoxCodeableConcept>? management,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.interactant.addAll(interactant ?? []);
@@ -225,7 +224,8 @@ class ObjectBoxClinicalUseDefinitionInteraction {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -242,13 +242,12 @@ class ObjectBoxClinicalUseDefinitionInteraction {
 @Entity()
 class ObjectBoxClinicalUseDefinitionInteractant {
   ObjectBoxClinicalUseDefinitionInteractant({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxReference? itemReference,
     ObjectBoxCodeableConcept? itemCodeableConcept,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.itemReference.target = itemReference;
@@ -257,7 +256,8 @@ class ObjectBoxClinicalUseDefinitionInteractant {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -269,14 +269,13 @@ class ObjectBoxClinicalUseDefinitionInteractant {
 @Entity()
 class ObjectBoxClinicalUseDefinitionUndesirableEffect {
   ObjectBoxClinicalUseDefinitionUndesirableEffect({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableReference? symptomConditionEffect,
     ObjectBoxCodeableConcept? classification,
     ObjectBoxCodeableConcept? frequencyOfOccurrence,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.symptomConditionEffect.target = symptomConditionEffect;
@@ -286,7 +285,8 @@ class ObjectBoxClinicalUseDefinitionUndesirableEffect {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -301,14 +301,13 @@ class ObjectBoxClinicalUseDefinitionUndesirableEffect {
 @Entity()
 class ObjectBoxClinicalUseDefinitionWarning {
   ObjectBoxClinicalUseDefinitionWarning({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.description,
     ObjectBoxElement? descriptionElement,
     ObjectBoxCodeableConcept? code,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.descriptionElement.target = descriptionElement;
@@ -317,7 +316,8 @@ class ObjectBoxClinicalUseDefinitionWarning {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

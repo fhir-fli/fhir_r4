@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxContactPoint {
   ObjectBoxContactPoint({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     this.system,
     ObjectBoxElement? systemElement,
@@ -18,7 +18,6 @@ class ObjectBoxContactPoint {
     ObjectBoxElement? rankElement,
     ObjectBoxPeriod? period,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.systemElement.target = systemElement;
     this.valueElement.target = valueElement;
@@ -29,7 +28,8 @@ class ObjectBoxContactPoint {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String? system;
   ToOne<ObjectBoxElement> systemElement = ToOne<ObjectBoxElement>();

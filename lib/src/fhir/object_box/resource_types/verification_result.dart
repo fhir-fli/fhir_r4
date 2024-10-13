@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxVerificationResult {
   ObjectBoxVerificationResult({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -36,7 +36,6 @@ class ObjectBoxVerificationResult {
     ObjectBoxVerificationResultAttestation? attestation,
     List<ObjectBoxVerificationResultValidator>? validator,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -62,7 +61,8 @@ class ObjectBoxVerificationResult {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -103,7 +103,7 @@ class ObjectBoxVerificationResult {
 @Entity()
 class ObjectBoxVerificationResultPrimarySource {
   ObjectBoxVerificationResultPrimarySource({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxReference? who,
@@ -115,7 +115,6 @@ class ObjectBoxVerificationResultPrimarySource {
     ObjectBoxCodeableConcept? canPushUpdates,
     List<ObjectBoxCodeableConcept>? pushTypeAvailable,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.who.target = who;
@@ -129,7 +128,8 @@ class ObjectBoxVerificationResultPrimarySource {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -150,7 +150,7 @@ class ObjectBoxVerificationResultPrimarySource {
 @Entity()
 class ObjectBoxVerificationResultAttestation {
   ObjectBoxVerificationResultAttestation({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxReference? who,
@@ -165,7 +165,6 @@ class ObjectBoxVerificationResultAttestation {
     ObjectBoxSignature? proxySignature,
     ObjectBoxSignature? sourceSignature,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.who.target = who;
@@ -182,7 +181,8 @@ class ObjectBoxVerificationResultAttestation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -205,7 +205,7 @@ class ObjectBoxVerificationResultAttestation {
 @Entity()
 class ObjectBoxVerificationResultValidator {
   ObjectBoxVerificationResultValidator({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxReference? organization,
@@ -213,7 +213,6 @@ class ObjectBoxVerificationResultValidator {
     ObjectBoxElement? identityCertificateElement,
     ObjectBoxSignature? attestationSignature,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.organization.target = organization;
@@ -223,7 +222,8 @@ class ObjectBoxVerificationResultValidator {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

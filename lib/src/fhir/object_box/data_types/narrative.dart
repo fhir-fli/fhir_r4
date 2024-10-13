@@ -6,14 +6,13 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxNarrative {
   ObjectBoxNarrative({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     required this.status,
     ObjectBoxElement? statusElement,
     required this.div,
     ObjectBoxElement? divElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.statusElement.target = statusElement;
     this.divElement.target = divElement;
@@ -21,7 +20,8 @@ class ObjectBoxNarrative {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String status;
   ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();

@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxImplementationGuide {
   ObjectBoxImplementationGuide({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -50,7 +50,6 @@ class ObjectBoxImplementationGuide {
     ObjectBoxImplementationGuideDefinition? definition,
     ObjectBoxImplementationGuideManifest? manifest,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -82,7 +81,8 @@ class ObjectBoxImplementationGuide {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -136,7 +136,7 @@ class ObjectBoxImplementationGuide {
 @Entity()
 class ObjectBoxImplementationGuideDependsOn {
   ObjectBoxImplementationGuideDependsOn({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.uri,
@@ -146,7 +146,6 @@ class ObjectBoxImplementationGuideDependsOn {
     this.version,
     ObjectBoxElement? versionElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.uriElement.target = uriElement;
@@ -156,7 +155,8 @@ class ObjectBoxImplementationGuideDependsOn {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -171,7 +171,7 @@ class ObjectBoxImplementationGuideDependsOn {
 @Entity()
 class ObjectBoxImplementationGuideGlobal {
   ObjectBoxImplementationGuideGlobal({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.type,
@@ -179,7 +179,6 @@ class ObjectBoxImplementationGuideGlobal {
     required this.profile,
     ObjectBoxElement? profileElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.typeElement.target = typeElement;
@@ -188,7 +187,8 @@ class ObjectBoxImplementationGuideGlobal {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -201,7 +201,7 @@ class ObjectBoxImplementationGuideGlobal {
 @Entity()
 class ObjectBoxImplementationGuideDefinition {
   ObjectBoxImplementationGuideDefinition({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxImplementationGuideGrouping>? grouping,
@@ -210,7 +210,6 @@ class ObjectBoxImplementationGuideDefinition {
     List<ObjectBoxImplementationGuideParameter>? parameter,
     List<ObjectBoxImplementationGuideTemplate>? template,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.grouping.addAll(grouping ?? []);
@@ -222,7 +221,8 @@ class ObjectBoxImplementationGuideDefinition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -241,7 +241,7 @@ class ObjectBoxImplementationGuideDefinition {
 @Entity()
 class ObjectBoxImplementationGuideGrouping {
   ObjectBoxImplementationGuideGrouping({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
@@ -249,7 +249,6 @@ class ObjectBoxImplementationGuideGrouping {
     this.description,
     ObjectBoxElement? descriptionElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.nameElement.target = nameElement;
@@ -258,7 +257,8 @@ class ObjectBoxImplementationGuideGrouping {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -271,7 +271,7 @@ class ObjectBoxImplementationGuideGrouping {
 @Entity()
 class ObjectBoxImplementationGuideResource {
   ObjectBoxImplementationGuideResource({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxReference? reference,
@@ -288,7 +288,6 @@ class ObjectBoxImplementationGuideResource {
     this.groupingId,
     ObjectBoxElement? groupingIdElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.reference.target = reference;
@@ -302,7 +301,8 @@ class ObjectBoxImplementationGuideResource {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -324,7 +324,7 @@ class ObjectBoxImplementationGuideResource {
 @Entity()
 class ObjectBoxImplementationGuidePage {
   ObjectBoxImplementationGuidePage({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.nameUrl,
@@ -336,7 +336,6 @@ class ObjectBoxImplementationGuidePage {
     ObjectBoxElement? generationElement,
     List<ObjectBoxImplementationGuidePage>? page,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.nameUrlElement.target = nameUrlElement;
@@ -348,7 +347,8 @@ class ObjectBoxImplementationGuidePage {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -366,7 +366,7 @@ class ObjectBoxImplementationGuidePage {
 @Entity()
 class ObjectBoxImplementationGuideParameter {
   ObjectBoxImplementationGuideParameter({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.code,
@@ -374,7 +374,6 @@ class ObjectBoxImplementationGuideParameter {
     required this.value,
     ObjectBoxElement? valueElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.codeElement.target = codeElement;
@@ -383,7 +382,8 @@ class ObjectBoxImplementationGuideParameter {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -396,7 +396,7 @@ class ObjectBoxImplementationGuideParameter {
 @Entity()
 class ObjectBoxImplementationGuideTemplate {
   ObjectBoxImplementationGuideTemplate({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.code,
@@ -406,7 +406,6 @@ class ObjectBoxImplementationGuideTemplate {
     this.scope,
     ObjectBoxElement? scopeElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.codeElement.target = codeElement;
@@ -416,7 +415,8 @@ class ObjectBoxImplementationGuideTemplate {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -431,7 +431,7 @@ class ObjectBoxImplementationGuideTemplate {
 @Entity()
 class ObjectBoxImplementationGuideManifest {
   ObjectBoxImplementationGuideManifest({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.rendering,
@@ -443,7 +443,6 @@ class ObjectBoxImplementationGuideManifest {
     this.other,
     List<ObjectBoxElement>? otherElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.renderingElement.target = renderingElement;
@@ -455,7 +454,8 @@ class ObjectBoxImplementationGuideManifest {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -474,7 +474,7 @@ class ObjectBoxImplementationGuideManifest {
 @Entity()
 class ObjectBoxImplementationGuideResource1 {
   ObjectBoxImplementationGuideResource1({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxReference? reference,
@@ -485,7 +485,6 @@ class ObjectBoxImplementationGuideResource1 {
     this.relativePath,
     ObjectBoxElement? relativePathElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.reference.target = reference;
@@ -496,7 +495,8 @@ class ObjectBoxImplementationGuideResource1 {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -512,7 +512,7 @@ class ObjectBoxImplementationGuideResource1 {
 @Entity()
 class ObjectBoxImplementationGuidePage1 {
   ObjectBoxImplementationGuidePage1({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
@@ -522,7 +522,6 @@ class ObjectBoxImplementationGuidePage1 {
     this.anchor,
     List<ObjectBoxElement>? anchorElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.nameElement.target = nameElement;
@@ -532,7 +531,8 @@ class ObjectBoxImplementationGuidePage1 {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

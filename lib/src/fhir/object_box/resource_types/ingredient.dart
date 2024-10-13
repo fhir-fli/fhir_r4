@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxIngredient {
   ObjectBoxIngredient({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -27,7 +27,6 @@ class ObjectBoxIngredient {
     List<ObjectBoxIngredientManufacturer>? manufacturer,
     ObjectBoxIngredientSubstance? substance,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -47,7 +46,8 @@ class ObjectBoxIngredient {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -77,14 +77,13 @@ class ObjectBoxIngredient {
 @Entity()
 class ObjectBoxIngredientManufacturer {
   ObjectBoxIngredientManufacturer({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.role,
     ObjectBoxElement? roleElement,
     ObjectBoxReference? manufacturer,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.roleElement.target = roleElement;
@@ -93,7 +92,8 @@ class ObjectBoxIngredientManufacturer {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -105,13 +105,12 @@ class ObjectBoxIngredientManufacturer {
 @Entity()
 class ObjectBoxIngredientSubstance {
   ObjectBoxIngredientSubstance({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableReference? code,
     List<ObjectBoxIngredientStrength>? strength,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.code.target = code;
@@ -120,7 +119,8 @@ class ObjectBoxIngredientSubstance {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -132,7 +132,7 @@ class ObjectBoxIngredientSubstance {
 @Entity()
 class ObjectBoxIngredientStrength {
   ObjectBoxIngredientStrength({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxRatio? presentationRatio,
@@ -148,7 +148,6 @@ class ObjectBoxIngredientStrength {
     List<ObjectBoxCodeableConcept>? country,
     List<ObjectBoxIngredientReferenceStrength>? referenceStrength,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.presentationRatio.target = presentationRatio;
@@ -164,7 +163,8 @@ class ObjectBoxIngredientStrength {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -188,7 +188,7 @@ class ObjectBoxIngredientStrength {
 @Entity()
 class ObjectBoxIngredientReferenceStrength {
   ObjectBoxIngredientReferenceStrength({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableReference? substance,
@@ -198,7 +198,6 @@ class ObjectBoxIngredientReferenceStrength {
     ObjectBoxElement? measurementPointElement,
     List<ObjectBoxCodeableConcept>? country,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.substance.target = substance;
@@ -210,7 +209,8 @@ class ObjectBoxIngredientReferenceStrength {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

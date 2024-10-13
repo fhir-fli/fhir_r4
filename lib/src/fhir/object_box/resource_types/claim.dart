@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxClaim {
   ObjectBoxClaim({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -47,7 +47,6 @@ class ObjectBoxClaim {
     List<ObjectBoxClaimItem>? item,
     ObjectBoxMoney? total,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -86,7 +85,8 @@ class ObjectBoxClaim {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -134,14 +134,13 @@ class ObjectBoxClaim {
 @Entity()
 class ObjectBoxClaimRelated {
   ObjectBoxClaimRelated({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxReference? claim,
     ObjectBoxCodeableConcept? relationship,
     ObjectBoxIdentifier? reference,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.claim.target = claim;
@@ -151,7 +150,8 @@ class ObjectBoxClaimRelated {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -164,13 +164,12 @@ class ObjectBoxClaimRelated {
 @Entity()
 class ObjectBoxClaimPayee {
   ObjectBoxClaimPayee({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
     ObjectBoxReference? party,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -179,7 +178,8 @@ class ObjectBoxClaimPayee {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -190,7 +190,7 @@ class ObjectBoxClaimPayee {
 @Entity()
 class ObjectBoxClaimCareTeam {
   ObjectBoxClaimCareTeam({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.sequence,
@@ -201,7 +201,6 @@ class ObjectBoxClaimCareTeam {
     ObjectBoxCodeableConcept? role,
     ObjectBoxCodeableConcept? qualification,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sequenceElement.target = sequenceElement;
@@ -213,7 +212,8 @@ class ObjectBoxClaimCareTeam {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -230,7 +230,7 @@ class ObjectBoxClaimCareTeam {
 @Entity()
 class ObjectBoxClaimSupportingInfo {
   ObjectBoxClaimSupportingInfo({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.sequence,
@@ -249,7 +249,6 @@ class ObjectBoxClaimSupportingInfo {
     ObjectBoxReference? valueReference,
     ObjectBoxCodeableConcept? reason,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sequenceElement.target = sequenceElement;
@@ -267,7 +266,8 @@ class ObjectBoxClaimSupportingInfo {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -291,7 +291,7 @@ class ObjectBoxClaimSupportingInfo {
 @Entity()
 class ObjectBoxClaimDiagnosis {
   ObjectBoxClaimDiagnosis({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.sequence,
@@ -302,7 +302,6 @@ class ObjectBoxClaimDiagnosis {
     ObjectBoxCodeableConcept? onAdmission,
     ObjectBoxCodeableConcept? packageCode,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sequenceElement.target = sequenceElement;
@@ -315,7 +314,8 @@ class ObjectBoxClaimDiagnosis {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -334,7 +334,7 @@ class ObjectBoxClaimDiagnosis {
 @Entity()
 class ObjectBoxClaimProcedure {
   ObjectBoxClaimProcedure({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.sequence,
@@ -346,7 +346,6 @@ class ObjectBoxClaimProcedure {
     ObjectBoxReference? procedureReference,
     List<ObjectBoxReference>? udi,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sequenceElement.target = sequenceElement;
@@ -359,7 +358,8 @@ class ObjectBoxClaimProcedure {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -377,7 +377,7 @@ class ObjectBoxClaimProcedure {
 @Entity()
 class ObjectBoxClaimInsurance {
   ObjectBoxClaimInsurance({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.sequence,
@@ -392,7 +392,6 @@ class ObjectBoxClaimInsurance {
     List<ObjectBoxElement>? preAuthRefElement,
     ObjectBoxReference? claimResponse,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sequenceElement.target = sequenceElement;
@@ -406,7 +405,8 @@ class ObjectBoxClaimInsurance {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -427,7 +427,7 @@ class ObjectBoxClaimInsurance {
 @Entity()
 class ObjectBoxClaimAccident {
   ObjectBoxClaimAccident({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.date,
@@ -436,7 +436,6 @@ class ObjectBoxClaimAccident {
     ObjectBoxAddress? locationAddress,
     ObjectBoxReference? locationReference,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.dateElement.target = dateElement;
@@ -447,7 +446,8 @@ class ObjectBoxClaimAccident {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -461,7 +461,7 @@ class ObjectBoxClaimAccident {
 @Entity()
 class ObjectBoxClaimItem {
   ObjectBoxClaimItem({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.sequence,
@@ -496,7 +496,6 @@ class ObjectBoxClaimItem {
     List<ObjectBoxReference>? encounter,
     List<ObjectBoxClaimDetail>? detail,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sequenceElement.target = sequenceElement;
@@ -527,7 +526,8 @@ class ObjectBoxClaimItem {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -574,7 +574,7 @@ class ObjectBoxClaimItem {
 @Entity()
 class ObjectBoxClaimDetail {
   ObjectBoxClaimDetail({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.sequence,
@@ -592,7 +592,6 @@ class ObjectBoxClaimDetail {
     List<ObjectBoxReference>? udi,
     List<ObjectBoxClaimSubDetail>? subDetail,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sequenceElement.target = sequenceElement;
@@ -611,7 +610,8 @@ class ObjectBoxClaimDetail {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -637,7 +637,7 @@ class ObjectBoxClaimDetail {
 @Entity()
 class ObjectBoxClaimSubDetail {
   ObjectBoxClaimSubDetail({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.sequence,
@@ -654,7 +654,6 @@ class ObjectBoxClaimSubDetail {
     ObjectBoxMoney? net,
     List<ObjectBoxReference>? udi,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sequenceElement.target = sequenceElement;
@@ -672,7 +671,8 @@ class ObjectBoxClaimSubDetail {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

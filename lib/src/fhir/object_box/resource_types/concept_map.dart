@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxConceptMap {
   ObjectBoxConceptMap({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -52,7 +52,6 @@ class ObjectBoxConceptMap {
     ObjectBoxElement? targetCanonicalElement,
     List<ObjectBoxConceptMapGroup>? group,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -84,7 +83,8 @@ class ObjectBoxConceptMap {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -136,7 +136,7 @@ class ObjectBoxConceptMap {
 @Entity()
 class ObjectBoxConceptMapGroup {
   ObjectBoxConceptMapGroup({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.source,
@@ -150,7 +150,6 @@ class ObjectBoxConceptMapGroup {
     List<ObjectBoxConceptMapElement>? element,
     ObjectBoxConceptMapUnmapped? unmapped,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sourceElement.target = sourceElement;
@@ -163,7 +162,8 @@ class ObjectBoxConceptMapGroup {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -184,7 +184,7 @@ class ObjectBoxConceptMapGroup {
 @Entity()
 class ObjectBoxConceptMapElement {
   ObjectBoxConceptMapElement({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.code,
@@ -193,7 +193,6 @@ class ObjectBoxConceptMapElement {
     ObjectBoxElement? displayElement,
     List<ObjectBoxConceptMapTarget>? target,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.codeElement.target = codeElement;
@@ -203,7 +202,8 @@ class ObjectBoxConceptMapElement {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -218,7 +218,7 @@ class ObjectBoxConceptMapElement {
 @Entity()
 class ObjectBoxConceptMapTarget {
   ObjectBoxConceptMapTarget({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.code,
@@ -232,7 +232,6 @@ class ObjectBoxConceptMapTarget {
     List<ObjectBoxConceptMapDependsOn>? dependsOn,
     List<ObjectBoxConceptMapDependsOn>? product,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.codeElement.target = codeElement;
@@ -245,7 +244,8 @@ class ObjectBoxConceptMapTarget {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -266,7 +266,7 @@ class ObjectBoxConceptMapTarget {
 @Entity()
 class ObjectBoxConceptMapDependsOn {
   ObjectBoxConceptMapDependsOn({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.property,
@@ -278,7 +278,6 @@ class ObjectBoxConceptMapDependsOn {
     this.display,
     ObjectBoxElement? displayElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.propertyElement.target = propertyElement;
@@ -289,7 +288,8 @@ class ObjectBoxConceptMapDependsOn {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -306,7 +306,7 @@ class ObjectBoxConceptMapDependsOn {
 @Entity()
 class ObjectBoxConceptMapUnmapped {
   ObjectBoxConceptMapUnmapped({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.mode,
@@ -318,7 +318,6 @@ class ObjectBoxConceptMapUnmapped {
     this.url,
     ObjectBoxElement? urlElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.modeElement.target = modeElement;
@@ -329,7 +328,8 @@ class ObjectBoxConceptMapUnmapped {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

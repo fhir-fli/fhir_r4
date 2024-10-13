@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxExplanationOfBenefit {
   ObjectBoxExplanationOfBenefit({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -67,7 +67,6 @@ class ObjectBoxExplanationOfBenefit {
     ObjectBoxPeriod? benefitPeriod,
     List<ObjectBoxExplanationOfBenefitBenefitBalance>? benefitBalance,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -122,7 +121,8 @@ class ObjectBoxExplanationOfBenefit {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -205,14 +205,13 @@ class ObjectBoxExplanationOfBenefit {
 @Entity()
 class ObjectBoxExplanationOfBenefitRelated {
   ObjectBoxExplanationOfBenefitRelated({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxReference? claim,
     ObjectBoxCodeableConcept? relationship,
     ObjectBoxIdentifier? reference,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.claim.target = claim;
@@ -222,7 +221,8 @@ class ObjectBoxExplanationOfBenefitRelated {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -235,13 +235,12 @@ class ObjectBoxExplanationOfBenefitRelated {
 @Entity()
 class ObjectBoxExplanationOfBenefitPayee {
   ObjectBoxExplanationOfBenefitPayee({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
     ObjectBoxReference? party,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -250,7 +249,8 @@ class ObjectBoxExplanationOfBenefitPayee {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -261,7 +261,7 @@ class ObjectBoxExplanationOfBenefitPayee {
 @Entity()
 class ObjectBoxExplanationOfBenefitCareTeam {
   ObjectBoxExplanationOfBenefitCareTeam({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.sequence,
@@ -272,7 +272,6 @@ class ObjectBoxExplanationOfBenefitCareTeam {
     ObjectBoxCodeableConcept? role,
     ObjectBoxCodeableConcept? qualification,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sequenceElement.target = sequenceElement;
@@ -284,7 +283,8 @@ class ObjectBoxExplanationOfBenefitCareTeam {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -301,7 +301,7 @@ class ObjectBoxExplanationOfBenefitCareTeam {
 @Entity()
 class ObjectBoxExplanationOfBenefitSupportingInfo {
   ObjectBoxExplanationOfBenefitSupportingInfo({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.sequence,
@@ -320,7 +320,6 @@ class ObjectBoxExplanationOfBenefitSupportingInfo {
     ObjectBoxReference? valueReference,
     ObjectBoxCoding? reason,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sequenceElement.target = sequenceElement;
@@ -338,7 +337,8 @@ class ObjectBoxExplanationOfBenefitSupportingInfo {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -362,7 +362,7 @@ class ObjectBoxExplanationOfBenefitSupportingInfo {
 @Entity()
 class ObjectBoxExplanationOfBenefitDiagnosis {
   ObjectBoxExplanationOfBenefitDiagnosis({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.sequence,
@@ -373,7 +373,6 @@ class ObjectBoxExplanationOfBenefitDiagnosis {
     ObjectBoxCodeableConcept? onAdmission,
     ObjectBoxCodeableConcept? packageCode,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sequenceElement.target = sequenceElement;
@@ -386,7 +385,8 @@ class ObjectBoxExplanationOfBenefitDiagnosis {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -405,7 +405,7 @@ class ObjectBoxExplanationOfBenefitDiagnosis {
 @Entity()
 class ObjectBoxExplanationOfBenefitProcedure {
   ObjectBoxExplanationOfBenefitProcedure({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.sequence,
@@ -417,7 +417,6 @@ class ObjectBoxExplanationOfBenefitProcedure {
     ObjectBoxReference? procedureReference,
     List<ObjectBoxReference>? udi,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sequenceElement.target = sequenceElement;
@@ -430,7 +429,8 @@ class ObjectBoxExplanationOfBenefitProcedure {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -448,7 +448,7 @@ class ObjectBoxExplanationOfBenefitProcedure {
 @Entity()
 class ObjectBoxExplanationOfBenefitInsurance {
   ObjectBoxExplanationOfBenefitInsurance({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.focal,
@@ -457,7 +457,6 @@ class ObjectBoxExplanationOfBenefitInsurance {
     this.preAuthRef,
     List<ObjectBoxElement>? preAuthRefElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.focalElement.target = focalElement;
@@ -467,7 +466,8 @@ class ObjectBoxExplanationOfBenefitInsurance {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -481,7 +481,7 @@ class ObjectBoxExplanationOfBenefitInsurance {
 @Entity()
 class ObjectBoxExplanationOfBenefitAccident {
   ObjectBoxExplanationOfBenefitAccident({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.date,
@@ -490,7 +490,6 @@ class ObjectBoxExplanationOfBenefitAccident {
     ObjectBoxAddress? locationAddress,
     ObjectBoxReference? locationReference,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.dateElement.target = dateElement;
@@ -501,7 +500,8 @@ class ObjectBoxExplanationOfBenefitAccident {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -515,7 +515,7 @@ class ObjectBoxExplanationOfBenefitAccident {
 @Entity()
 class ObjectBoxExplanationOfBenefitItem {
   ObjectBoxExplanationOfBenefitItem({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.sequence,
@@ -553,7 +553,6 @@ class ObjectBoxExplanationOfBenefitItem {
     List<ObjectBoxExplanationOfBenefitAdjudication>? adjudication,
     List<ObjectBoxExplanationOfBenefitDetail>? detail,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sequenceElement.target = sequenceElement;
@@ -586,7 +585,8 @@ class ObjectBoxExplanationOfBenefitItem {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -638,7 +638,7 @@ class ObjectBoxExplanationOfBenefitItem {
 @Entity()
 class ObjectBoxExplanationOfBenefitAdjudication {
   ObjectBoxExplanationOfBenefitAdjudication({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? category,
@@ -647,7 +647,6 @@ class ObjectBoxExplanationOfBenefitAdjudication {
     this.value,
     ObjectBoxElement? valueElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.category.target = category;
@@ -658,7 +657,8 @@ class ObjectBoxExplanationOfBenefitAdjudication {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -672,7 +672,7 @@ class ObjectBoxExplanationOfBenefitAdjudication {
 @Entity()
 class ObjectBoxExplanationOfBenefitDetail {
   ObjectBoxExplanationOfBenefitDetail({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.sequence,
@@ -693,7 +693,6 @@ class ObjectBoxExplanationOfBenefitDetail {
     List<ObjectBoxExplanationOfBenefitAdjudication>? adjudication,
     List<ObjectBoxExplanationOfBenefitSubDetail>? subDetail,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sequenceElement.target = sequenceElement;
@@ -714,7 +713,8 @@ class ObjectBoxExplanationOfBenefitDetail {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -745,7 +745,7 @@ class ObjectBoxExplanationOfBenefitDetail {
 @Entity()
 class ObjectBoxExplanationOfBenefitSubDetail {
   ObjectBoxExplanationOfBenefitSubDetail({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.sequence,
@@ -765,7 +765,6 @@ class ObjectBoxExplanationOfBenefitSubDetail {
     List<ObjectBoxElement>? noteNumberElement,
     List<ObjectBoxExplanationOfBenefitAdjudication>? adjudication,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sequenceElement.target = sequenceElement;
@@ -785,7 +784,8 @@ class ObjectBoxExplanationOfBenefitSubDetail {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -814,7 +814,7 @@ class ObjectBoxExplanationOfBenefitSubDetail {
 @Entity()
 class ObjectBoxExplanationOfBenefitAddItem {
   ObjectBoxExplanationOfBenefitAddItem({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.itemSequence,
@@ -845,7 +845,6 @@ class ObjectBoxExplanationOfBenefitAddItem {
     List<ObjectBoxExplanationOfBenefitAdjudication>? adjudication,
     List<ObjectBoxExplanationOfBenefitDetail>? detail,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.itemSequenceElement.addAll(itemSequenceElement ?? []);
@@ -873,7 +872,8 @@ class ObjectBoxExplanationOfBenefitAddItem {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -916,7 +916,7 @@ class ObjectBoxExplanationOfBenefitAddItem {
 @Entity()
 class ObjectBoxExplanationOfBenefitDetail1 {
   ObjectBoxExplanationOfBenefitDetail1({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? productOrService,
@@ -931,7 +931,6 @@ class ObjectBoxExplanationOfBenefitDetail1 {
     List<ObjectBoxExplanationOfBenefitAdjudication>? adjudication,
     List<ObjectBoxExplanationOfBenefitSubDetail>? subDetail,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.productOrService.target = productOrService;
@@ -947,7 +946,8 @@ class ObjectBoxExplanationOfBenefitDetail1 {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -971,7 +971,7 @@ class ObjectBoxExplanationOfBenefitDetail1 {
 @Entity()
 class ObjectBoxExplanationOfBenefitSubDetail1 {
   ObjectBoxExplanationOfBenefitSubDetail1({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? productOrService,
@@ -985,7 +985,6 @@ class ObjectBoxExplanationOfBenefitSubDetail1 {
     List<ObjectBoxElement>? noteNumberElement,
     List<ObjectBoxExplanationOfBenefitAdjudication>? adjudication,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.productOrService.target = productOrService;
@@ -1000,7 +999,8 @@ class ObjectBoxExplanationOfBenefitSubDetail1 {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -1022,13 +1022,12 @@ class ObjectBoxExplanationOfBenefitSubDetail1 {
 @Entity()
 class ObjectBoxExplanationOfBenefitTotal {
   ObjectBoxExplanationOfBenefitTotal({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? category,
     ObjectBoxMoney? amount,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.category.target = category;
@@ -1037,7 +1036,8 @@ class ObjectBoxExplanationOfBenefitTotal {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -1048,7 +1048,7 @@ class ObjectBoxExplanationOfBenefitTotal {
 @Entity()
 class ObjectBoxExplanationOfBenefitPayment {
   ObjectBoxExplanationOfBenefitPayment({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -1059,7 +1059,6 @@ class ObjectBoxExplanationOfBenefitPayment {
     ObjectBoxMoney? amount,
     ObjectBoxIdentifier? identifier,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -1072,7 +1071,8 @@ class ObjectBoxExplanationOfBenefitPayment {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -1089,7 +1089,7 @@ class ObjectBoxExplanationOfBenefitPayment {
 @Entity()
 class ObjectBoxExplanationOfBenefitProcessNote {
   ObjectBoxExplanationOfBenefitProcessNote({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.number,
@@ -1100,7 +1100,6 @@ class ObjectBoxExplanationOfBenefitProcessNote {
     ObjectBoxElement? textElement,
     ObjectBoxCodeableConcept? language,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.numberElement.target = numberElement;
@@ -1111,7 +1110,8 @@ class ObjectBoxExplanationOfBenefitProcessNote {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -1127,7 +1127,7 @@ class ObjectBoxExplanationOfBenefitProcessNote {
 @Entity()
 class ObjectBoxExplanationOfBenefitBenefitBalance {
   ObjectBoxExplanationOfBenefitBenefitBalance({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? category,
@@ -1142,7 +1142,6 @@ class ObjectBoxExplanationOfBenefitBenefitBalance {
     ObjectBoxCodeableConcept? term,
     List<ObjectBoxExplanationOfBenefitFinancial>? financial,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.category.target = category;
@@ -1157,7 +1156,8 @@ class ObjectBoxExplanationOfBenefitBenefitBalance {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -1178,7 +1178,7 @@ class ObjectBoxExplanationOfBenefitBenefitBalance {
 @Entity()
 class ObjectBoxExplanationOfBenefitFinancial {
   ObjectBoxExplanationOfBenefitFinancial({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -1191,7 +1191,6 @@ class ObjectBoxExplanationOfBenefitFinancial {
     ObjectBoxElement? usedUnsignedIntElement,
     ObjectBoxMoney? usedMoney,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -1204,7 +1203,8 @@ class ObjectBoxExplanationOfBenefitFinancial {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

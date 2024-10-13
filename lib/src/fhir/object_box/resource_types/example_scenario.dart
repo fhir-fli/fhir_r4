@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxExampleScenario {
   ObjectBoxExampleScenario({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -44,7 +44,6 @@ class ObjectBoxExampleScenario {
     this.workflow,
     List<ObjectBoxElement>? workflowElement,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -73,7 +72,8 @@ class ObjectBoxExampleScenario {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -120,7 +120,7 @@ class ObjectBoxExampleScenario {
 @Entity()
 class ObjectBoxExampleScenarioActor {
   ObjectBoxExampleScenarioActor({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.actorId,
@@ -132,7 +132,6 @@ class ObjectBoxExampleScenarioActor {
     this.description,
     ObjectBoxElement? descriptionElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.actorIdElement.target = actorIdElement;
@@ -143,7 +142,8 @@ class ObjectBoxExampleScenarioActor {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -160,7 +160,7 @@ class ObjectBoxExampleScenarioActor {
 @Entity()
 class ObjectBoxExampleScenarioInstance {
   ObjectBoxExampleScenarioInstance({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.resourceId,
@@ -174,7 +174,6 @@ class ObjectBoxExampleScenarioInstance {
     List<ObjectBoxExampleScenarioVersion>? version,
     List<ObjectBoxExampleScenarioContainedInstance>? containedInstance,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.resourceIdElement.target = resourceIdElement;
@@ -187,7 +186,8 @@ class ObjectBoxExampleScenarioInstance {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -208,7 +208,7 @@ class ObjectBoxExampleScenarioInstance {
 @Entity()
 class ObjectBoxExampleScenarioVersion {
   ObjectBoxExampleScenarioVersion({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.versionId,
@@ -216,7 +216,6 @@ class ObjectBoxExampleScenarioVersion {
     required this.description,
     ObjectBoxElement? descriptionElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.versionIdElement.target = versionIdElement;
@@ -225,7 +224,8 @@ class ObjectBoxExampleScenarioVersion {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -238,7 +238,7 @@ class ObjectBoxExampleScenarioVersion {
 @Entity()
 class ObjectBoxExampleScenarioContainedInstance {
   ObjectBoxExampleScenarioContainedInstance({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.resourceId,
@@ -246,7 +246,6 @@ class ObjectBoxExampleScenarioContainedInstance {
     this.versionId,
     ObjectBoxElement? versionIdElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.resourceIdElement.target = resourceIdElement;
@@ -255,7 +254,8 @@ class ObjectBoxExampleScenarioContainedInstance {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -268,7 +268,7 @@ class ObjectBoxExampleScenarioContainedInstance {
 @Entity()
 class ObjectBoxExampleScenarioProcess {
   ObjectBoxExampleScenarioProcess({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.title,
@@ -281,7 +281,6 @@ class ObjectBoxExampleScenarioProcess {
     ObjectBoxElement? postConditionsElement,
     List<ObjectBoxExampleScenarioStep>? step,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.titleElement.target = titleElement;
@@ -293,7 +292,8 @@ class ObjectBoxExampleScenarioProcess {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -312,7 +312,7 @@ class ObjectBoxExampleScenarioProcess {
 @Entity()
 class ObjectBoxExampleScenarioStep {
   ObjectBoxExampleScenarioStep({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxExampleScenarioProcess>? process,
@@ -321,7 +321,6 @@ class ObjectBoxExampleScenarioStep {
     ObjectBoxExampleScenarioOperation? operation,
     List<ObjectBoxExampleScenarioAlternative>? alternative,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.process.addAll(process ?? []);
@@ -332,7 +331,8 @@ class ObjectBoxExampleScenarioStep {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -349,7 +349,7 @@ class ObjectBoxExampleScenarioStep {
 @Entity()
 class ObjectBoxExampleScenarioOperation {
   ObjectBoxExampleScenarioOperation({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.number,
@@ -371,7 +371,6 @@ class ObjectBoxExampleScenarioOperation {
     ObjectBoxExampleScenarioContainedInstance? request,
     ObjectBoxExampleScenarioContainedInstance? response,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.numberElement.target = numberElement;
@@ -388,7 +387,8 @@ class ObjectBoxExampleScenarioOperation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -417,7 +417,7 @@ class ObjectBoxExampleScenarioOperation {
 @Entity()
 class ObjectBoxExampleScenarioAlternative {
   ObjectBoxExampleScenarioAlternative({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.title,
@@ -426,7 +426,6 @@ class ObjectBoxExampleScenarioAlternative {
     ObjectBoxElement? descriptionElement,
     List<ObjectBoxExampleScenarioStep>? step,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.titleElement.target = titleElement;
@@ -436,7 +435,8 @@ class ObjectBoxExampleScenarioAlternative {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

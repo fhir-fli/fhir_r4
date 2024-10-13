@@ -6,13 +6,12 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxCodeableConcept {
   ObjectBoxCodeableConcept({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxCoding>? coding,
     this.text,
     ObjectBoxElement? textElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.coding.addAll(coding ?? []);
     this.textElement.target = textElement;
@@ -20,7 +19,8 @@ class ObjectBoxCodeableConcept {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxCoding> coding = ToMany<ObjectBoxCoding>();
   String? text;

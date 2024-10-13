@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxCoverageEligibilityRequest {
   ObjectBoxCoverageEligibilityRequest({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -36,7 +36,6 @@ class ObjectBoxCoverageEligibilityRequest {
     List<ObjectBoxCoverageEligibilityRequestInsurance>? insurance,
     List<ObjectBoxCoverageEligibilityRequestItem>? item,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -63,7 +62,8 @@ class ObjectBoxCoverageEligibilityRequest {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -101,7 +101,7 @@ class ObjectBoxCoverageEligibilityRequest {
 @Entity()
 class ObjectBoxCoverageEligibilityRequestSupportingInfo {
   ObjectBoxCoverageEligibilityRequestSupportingInfo({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.sequence,
@@ -110,7 +110,6 @@ class ObjectBoxCoverageEligibilityRequestSupportingInfo {
     this.appliesToAll,
     ObjectBoxElement? appliesToAllElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sequenceElement.target = sequenceElement;
@@ -120,7 +119,8 @@ class ObjectBoxCoverageEligibilityRequestSupportingInfo {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -134,7 +134,7 @@ class ObjectBoxCoverageEligibilityRequestSupportingInfo {
 @Entity()
 class ObjectBoxCoverageEligibilityRequestInsurance {
   ObjectBoxCoverageEligibilityRequestInsurance({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.focal,
@@ -143,7 +143,6 @@ class ObjectBoxCoverageEligibilityRequestInsurance {
     this.businessArrangement,
     ObjectBoxElement? businessArrangementElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.focalElement.target = focalElement;
@@ -153,7 +152,8 @@ class ObjectBoxCoverageEligibilityRequestInsurance {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -168,7 +168,7 @@ class ObjectBoxCoverageEligibilityRequestInsurance {
 @Entity()
 class ObjectBoxCoverageEligibilityRequestItem {
   ObjectBoxCoverageEligibilityRequestItem({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.supportingInfoSequence,
@@ -183,7 +183,6 @@ class ObjectBoxCoverageEligibilityRequestItem {
     List<ObjectBoxCoverageEligibilityRequestDiagnosis>? diagnosis,
     List<ObjectBoxReference>? detail,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this
@@ -202,7 +201,8 @@ class ObjectBoxCoverageEligibilityRequestItem {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -226,13 +226,12 @@ class ObjectBoxCoverageEligibilityRequestItem {
 @Entity()
 class ObjectBoxCoverageEligibilityRequestDiagnosis {
   ObjectBoxCoverageEligibilityRequestDiagnosis({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? diagnosisCodeableConcept,
     ObjectBoxReference? diagnosisReference,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.diagnosisCodeableConcept.target = diagnosisCodeableConcept;
@@ -241,7 +240,8 @@ class ObjectBoxCoverageEligibilityRequestDiagnosis {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxCoding {
   ObjectBoxCoding({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     this.system,
     ObjectBoxElement? systemElement,
@@ -19,7 +19,6 @@ class ObjectBoxCoding {
     this.userSelected,
     ObjectBoxElement? userSelectedElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.systemElement.target = systemElement;
     this.versionElement.target = versionElement;
@@ -30,7 +29,8 @@ class ObjectBoxCoding {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String? system;
   ToOne<ObjectBoxElement> systemElement = ToOne<ObjectBoxElement>();

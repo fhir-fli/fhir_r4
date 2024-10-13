@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxEncounter {
   ObjectBoxEncounter({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -41,7 +41,6 @@ class ObjectBoxEncounter {
     ObjectBoxReference? serviceProvider,
     ObjectBoxReference? partOf,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -76,7 +75,8 @@ class ObjectBoxEncounter {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -124,14 +124,13 @@ class ObjectBoxEncounter {
 @Entity()
 class ObjectBoxEncounterStatusHistory {
   ObjectBoxEncounterStatusHistory({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.status,
     ObjectBoxElement? statusElement,
     ObjectBoxPeriod? period,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.statusElement.target = statusElement;
@@ -140,7 +139,8 @@ class ObjectBoxEncounterStatusHistory {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -152,13 +152,12 @@ class ObjectBoxEncounterStatusHistory {
 @Entity()
 class ObjectBoxEncounterClassHistory {
   ObjectBoxEncounterClassHistory({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCoding? class_,
     ObjectBoxPeriod? period,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.class_.target = class_;
@@ -167,7 +166,8 @@ class ObjectBoxEncounterClassHistory {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -178,14 +178,13 @@ class ObjectBoxEncounterClassHistory {
 @Entity()
 class ObjectBoxEncounterParticipant {
   ObjectBoxEncounterParticipant({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxCodeableConcept>? type,
     ObjectBoxPeriod? period,
     ObjectBoxReference? individual,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.addAll(type ?? []);
@@ -195,7 +194,8 @@ class ObjectBoxEncounterParticipant {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -207,7 +207,7 @@ class ObjectBoxEncounterParticipant {
 @Entity()
 class ObjectBoxEncounterDiagnosis {
   ObjectBoxEncounterDiagnosis({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxReference? condition,
@@ -215,7 +215,6 @@ class ObjectBoxEncounterDiagnosis {
     this.rank,
     ObjectBoxElement? rankElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.condition.target = condition;
@@ -225,7 +224,8 @@ class ObjectBoxEncounterDiagnosis {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -238,7 +238,7 @@ class ObjectBoxEncounterDiagnosis {
 @Entity()
 class ObjectBoxEncounterHospitalization {
   ObjectBoxEncounterHospitalization({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxIdentifier? preAdmissionIdentifier,
@@ -251,7 +251,6 @@ class ObjectBoxEncounterHospitalization {
     ObjectBoxReference? destination,
     ObjectBoxCodeableConcept? dischargeDisposition,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.preAdmissionIdentifier.target = preAdmissionIdentifier;
@@ -267,7 +266,8 @@ class ObjectBoxEncounterHospitalization {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -292,7 +292,7 @@ class ObjectBoxEncounterHospitalization {
 @Entity()
 class ObjectBoxEncounterLocation {
   ObjectBoxEncounterLocation({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxReference? location,
@@ -301,7 +301,6 @@ class ObjectBoxEncounterLocation {
     ObjectBoxCodeableConcept? physicalType,
     ObjectBoxPeriod? period,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.location.target = location;
@@ -312,7 +311,8 @@ class ObjectBoxEncounterLocation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

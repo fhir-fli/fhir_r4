@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxPackagedProductDefinition {
   ObjectBoxPackagedProductDefinition({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -36,7 +36,6 @@ class ObjectBoxPackagedProductDefinition {
     List<ObjectBoxReference>? manufacturer,
     ObjectBoxPackagedProductDefinitionPackage? package,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -62,7 +61,8 @@ class ObjectBoxPackagedProductDefinition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -102,13 +102,12 @@ class ObjectBoxPackagedProductDefinition {
 @Entity()
 class ObjectBoxPackagedProductDefinitionLegalStatusOfSupply {
   ObjectBoxPackagedProductDefinitionLegalStatusOfSupply({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? code,
     ObjectBoxCodeableConcept? jurisdiction,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.code.target = code;
@@ -117,7 +116,8 @@ class ObjectBoxPackagedProductDefinitionLegalStatusOfSupply {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -129,7 +129,7 @@ class ObjectBoxPackagedProductDefinitionLegalStatusOfSupply {
 @Entity()
 class ObjectBoxPackagedProductDefinitionPackage {
   ObjectBoxPackagedProductDefinitionPackage({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxIdentifier>? identifier,
@@ -144,7 +144,6 @@ class ObjectBoxPackagedProductDefinitionPackage {
     List<ObjectBoxPackagedProductDefinitionContainedItem>? containedItem,
     List<ObjectBoxPackagedProductDefinitionPackage>? package,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.identifier.addAll(identifier ?? []);
@@ -161,7 +160,8 @@ class ObjectBoxPackagedProductDefinitionPackage {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -187,7 +187,7 @@ class ObjectBoxPackagedProductDefinitionPackage {
 @Entity()
 class ObjectBoxPackagedProductDefinitionShelfLifeStorage {
   ObjectBoxPackagedProductDefinitionShelfLifeStorage({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -196,7 +196,6 @@ class ObjectBoxPackagedProductDefinitionShelfLifeStorage {
     ObjectBoxElement? periodStringElement,
     List<ObjectBoxCodeableConcept>? specialPrecautionsForStorage,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -209,7 +208,8 @@ class ObjectBoxPackagedProductDefinitionShelfLifeStorage {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -224,7 +224,7 @@ class ObjectBoxPackagedProductDefinitionShelfLifeStorage {
 @Entity()
 class ObjectBoxPackagedProductDefinitionProperty {
   ObjectBoxPackagedProductDefinitionProperty({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -236,7 +236,6 @@ class ObjectBoxPackagedProductDefinitionProperty {
     ObjectBoxElement? valueBooleanElement,
     ObjectBoxAttachment? valueAttachment,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -249,7 +248,8 @@ class ObjectBoxPackagedProductDefinitionProperty {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -267,13 +267,12 @@ class ObjectBoxPackagedProductDefinitionProperty {
 @Entity()
 class ObjectBoxPackagedProductDefinitionContainedItem {
   ObjectBoxPackagedProductDefinitionContainedItem({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableReference? item,
     ObjectBoxQuantity? amount,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.item.target = item;
@@ -282,7 +281,8 @@ class ObjectBoxPackagedProductDefinitionContainedItem {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

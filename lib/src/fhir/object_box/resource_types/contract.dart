@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxContract {
   ObjectBoxContract({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -59,7 +59,6 @@ class ObjectBoxContract {
     List<ObjectBoxContractLegal>? legal,
     List<ObjectBoxContractRule>? rule,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -104,7 +103,8 @@ class ObjectBoxContract {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -168,7 +168,7 @@ class ObjectBoxContract {
 @Entity()
 class ObjectBoxContractContentDefinition {
   ObjectBoxContractContentDefinition({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -181,7 +181,6 @@ class ObjectBoxContractContentDefinition {
     this.copyright,
     ObjectBoxElement? copyrightElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -194,7 +193,8 @@ class ObjectBoxContractContentDefinition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -212,7 +212,7 @@ class ObjectBoxContractContentDefinition {
 @Entity()
 class ObjectBoxContractTerm {
   ObjectBoxContractTerm({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxIdentifier? identifier,
@@ -231,7 +231,6 @@ class ObjectBoxContractTerm {
     List<ObjectBoxContractAction>? action,
     List<ObjectBoxContractTerm>? group,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.identifier.target = identifier;
@@ -251,7 +250,8 @@ class ObjectBoxContractTerm {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -277,7 +277,7 @@ class ObjectBoxContractTerm {
 @Entity()
 class ObjectBoxContractSecurityLabel {
   ObjectBoxContractSecurityLabel({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.number,
@@ -286,7 +286,6 @@ class ObjectBoxContractSecurityLabel {
     List<ObjectBoxCoding>? category,
     List<ObjectBoxCoding>? control,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.numberElement.addAll(numberElement ?? []);
@@ -297,7 +296,8 @@ class ObjectBoxContractSecurityLabel {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -311,7 +311,7 @@ class ObjectBoxContractSecurityLabel {
 @Entity()
 class ObjectBoxContractOffer {
   ObjectBoxContractOffer({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxIdentifier>? identifier,
@@ -328,7 +328,6 @@ class ObjectBoxContractOffer {
     this.securityLabelNumber,
     List<ObjectBoxElement>? securityLabelNumberElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.identifier.addAll(identifier ?? []);
@@ -345,7 +344,8 @@ class ObjectBoxContractOffer {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -369,13 +369,12 @@ class ObjectBoxContractOffer {
 @Entity()
 class ObjectBoxContractParty {
   ObjectBoxContractParty({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxReference>? reference,
     ObjectBoxCodeableConcept? role,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.reference.addAll(reference ?? []);
@@ -384,7 +383,8 @@ class ObjectBoxContractParty {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -395,7 +395,7 @@ class ObjectBoxContractParty {
 @Entity()
 class ObjectBoxContractAnswer {
   ObjectBoxContractAnswer({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.valueBoolean,
@@ -419,7 +419,6 @@ class ObjectBoxContractAnswer {
     ObjectBoxQuantity? valueQuantity,
     ObjectBoxReference? valueReference,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.valueBooleanElement.target = valueBooleanElement;
@@ -438,7 +437,8 @@ class ObjectBoxContractAnswer {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -467,7 +467,7 @@ class ObjectBoxContractAnswer {
 @Entity()
 class ObjectBoxContractAsset {
   ObjectBoxContractAsset({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? scope,
@@ -490,7 +490,6 @@ class ObjectBoxContractAsset {
     List<ObjectBoxElement>? securityLabelNumberElement,
     List<ObjectBoxContractValuedItem>? valuedItem,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.scope.target = scope;
@@ -512,7 +511,8 @@ class ObjectBoxContractAsset {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -543,7 +543,7 @@ class ObjectBoxContractAsset {
 @Entity()
 class ObjectBoxContractContext {
   ObjectBoxContractContext({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxReference? reference,
@@ -551,7 +551,6 @@ class ObjectBoxContractContext {
     this.text,
     ObjectBoxElement? textElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.reference.target = reference;
@@ -561,7 +560,8 @@ class ObjectBoxContractContext {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -574,7 +574,7 @@ class ObjectBoxContractContext {
 @Entity()
 class ObjectBoxContractValuedItem {
   ObjectBoxContractValuedItem({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? entityCodeableConcept,
@@ -600,7 +600,6 @@ class ObjectBoxContractValuedItem {
     this.securityLabelNumber,
     List<ObjectBoxElement>? securityLabelNumberElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.entityCodeableConcept.target = entityCodeableConcept;
@@ -622,7 +621,8 @@ class ObjectBoxContractValuedItem {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -655,7 +655,7 @@ class ObjectBoxContractValuedItem {
 @Entity()
 class ObjectBoxContractAction {
   ObjectBoxContractAction({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.doNotPerform,
@@ -691,7 +691,6 @@ class ObjectBoxContractAction {
     this.securityLabelNumber,
     List<ObjectBoxElement>? securityLabelNumberElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.doNotPerformElement.target = doNotPerformElement;
@@ -721,7 +720,8 @@ class ObjectBoxContractAction {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -766,13 +766,12 @@ class ObjectBoxContractAction {
 @Entity()
 class ObjectBoxContractSubject {
   ObjectBoxContractSubject({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxReference>? reference,
     ObjectBoxCodeableConcept? role,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.reference.addAll(reference ?? []);
@@ -781,7 +780,8 @@ class ObjectBoxContractSubject {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -792,14 +792,13 @@ class ObjectBoxContractSubject {
 @Entity()
 class ObjectBoxContractSigner {
   ObjectBoxContractSigner({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCoding? type,
     ObjectBoxReference? party,
     List<ObjectBoxSignature>? signature,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -809,7 +808,8 @@ class ObjectBoxContractSigner {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -821,13 +821,12 @@ class ObjectBoxContractSigner {
 @Entity()
 class ObjectBoxContractFriendly {
   ObjectBoxContractFriendly({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxAttachment? contentAttachment,
     ObjectBoxReference? contentReference,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.contentAttachment.target = contentAttachment;
@@ -836,7 +835,8 @@ class ObjectBoxContractFriendly {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -847,7 +847,7 @@ class ObjectBoxContractFriendly {
 @Entity()
 class ObjectBoxContractLegal {
   ObjectBoxContractLegal({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxAttachment? contentAttachment,
@@ -855,7 +855,6 @@ class ObjectBoxContractLegal {
     ObjectBoxAttachment? legallyBindingAttachment,
     ObjectBoxReference? legallyBindingReference,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.contentAttachment.target = contentAttachment;
@@ -866,7 +865,8 @@ class ObjectBoxContractLegal {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -881,13 +881,12 @@ class ObjectBoxContractLegal {
 @Entity()
 class ObjectBoxContractRule {
   ObjectBoxContractRule({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxAttachment? contentAttachment,
     ObjectBoxReference? contentReference,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.contentAttachment.target = contentAttachment;
@@ -896,7 +895,8 @@ class ObjectBoxContractRule {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

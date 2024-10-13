@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxCapabilityStatement {
   ObjectBoxCapabilityStatement({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -59,7 +59,6 @@ class ObjectBoxCapabilityStatement {
     List<ObjectBoxCapabilityStatementMessaging>? messaging,
     List<ObjectBoxCapabilityStatementDocument>? document,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -96,7 +95,8 @@ class ObjectBoxCapabilityStatement {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -160,7 +160,7 @@ class ObjectBoxCapabilityStatement {
 @Entity()
 class ObjectBoxCapabilityStatementSoftware {
   ObjectBoxCapabilityStatementSoftware({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
@@ -170,7 +170,6 @@ class ObjectBoxCapabilityStatementSoftware {
     this.releaseDate,
     ObjectBoxElement? releaseDateElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.nameElement.target = nameElement;
@@ -180,7 +179,8 @@ class ObjectBoxCapabilityStatementSoftware {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -195,7 +195,7 @@ class ObjectBoxCapabilityStatementSoftware {
 @Entity()
 class ObjectBoxCapabilityStatementImplementation {
   ObjectBoxCapabilityStatementImplementation({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.description,
@@ -206,7 +206,6 @@ class ObjectBoxCapabilityStatementImplementation {
     this.implementationGuide,
     List<ObjectBoxElement>? implementationGuideElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.descriptionElement.target = descriptionElement;
@@ -217,7 +216,8 @@ class ObjectBoxCapabilityStatementImplementation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -234,7 +234,7 @@ class ObjectBoxCapabilityStatementImplementation {
 @Entity()
 class ObjectBoxCapabilityStatementRest {
   ObjectBoxCapabilityStatementRest({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.mode,
@@ -249,7 +249,6 @@ class ObjectBoxCapabilityStatementRest {
     this.compartment,
     List<ObjectBoxElement>? compartmentElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.modeElement.target = modeElement;
@@ -264,7 +263,8 @@ class ObjectBoxCapabilityStatementRest {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -289,7 +289,7 @@ class ObjectBoxCapabilityStatementRest {
 @Entity()
 class ObjectBoxCapabilityStatementSecurity {
   ObjectBoxCapabilityStatementSecurity({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.cors,
@@ -298,7 +298,6 @@ class ObjectBoxCapabilityStatementSecurity {
     this.description,
     ObjectBoxElement? descriptionElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.corsElement.target = corsElement;
@@ -308,7 +307,8 @@ class ObjectBoxCapabilityStatementSecurity {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -322,7 +322,7 @@ class ObjectBoxCapabilityStatementSecurity {
 @Entity()
 class ObjectBoxCapabilityStatementResource {
   ObjectBoxCapabilityStatementResource({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.type,
@@ -357,7 +357,6 @@ class ObjectBoxCapabilityStatementResource {
     List<ObjectBoxCapabilityStatementSearchParam>? searchParam,
     List<ObjectBoxCapabilityStatementOperation>? operation,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.typeElement.target = typeElement;
@@ -381,7 +380,8 @@ class ObjectBoxCapabilityStatementResource {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -424,7 +424,7 @@ class ObjectBoxCapabilityStatementResource {
 @Entity()
 class ObjectBoxCapabilityStatementInteraction {
   ObjectBoxCapabilityStatementInteraction({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.code,
@@ -432,7 +432,6 @@ class ObjectBoxCapabilityStatementInteraction {
     this.documentation,
     ObjectBoxElement? documentationElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.codeElement.target = codeElement;
@@ -441,7 +440,8 @@ class ObjectBoxCapabilityStatementInteraction {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -454,7 +454,7 @@ class ObjectBoxCapabilityStatementInteraction {
 @Entity()
 class ObjectBoxCapabilityStatementSearchParam {
   ObjectBoxCapabilityStatementSearchParam({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
@@ -466,7 +466,6 @@ class ObjectBoxCapabilityStatementSearchParam {
     this.documentation,
     ObjectBoxElement? documentationElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.nameElement.target = nameElement;
@@ -477,7 +476,8 @@ class ObjectBoxCapabilityStatementSearchParam {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -494,7 +494,7 @@ class ObjectBoxCapabilityStatementSearchParam {
 @Entity()
 class ObjectBoxCapabilityStatementOperation {
   ObjectBoxCapabilityStatementOperation({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
@@ -504,7 +504,6 @@ class ObjectBoxCapabilityStatementOperation {
     this.documentation,
     ObjectBoxElement? documentationElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.nameElement.target = nameElement;
@@ -514,7 +513,8 @@ class ObjectBoxCapabilityStatementOperation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -529,7 +529,7 @@ class ObjectBoxCapabilityStatementOperation {
 @Entity()
 class ObjectBoxCapabilityStatementInteraction1 {
   ObjectBoxCapabilityStatementInteraction1({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.code,
@@ -537,7 +537,6 @@ class ObjectBoxCapabilityStatementInteraction1 {
     this.documentation,
     ObjectBoxElement? documentationElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.codeElement.target = codeElement;
@@ -546,7 +545,8 @@ class ObjectBoxCapabilityStatementInteraction1 {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -559,7 +559,7 @@ class ObjectBoxCapabilityStatementInteraction1 {
 @Entity()
 class ObjectBoxCapabilityStatementMessaging {
   ObjectBoxCapabilityStatementMessaging({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxCapabilityStatementEndpoint>? endpoint,
@@ -569,7 +569,6 @@ class ObjectBoxCapabilityStatementMessaging {
     ObjectBoxElement? documentationElement,
     List<ObjectBoxCapabilityStatementSupportedMessage>? supportedMessage,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.endpoint.addAll(endpoint ?? []);
@@ -580,7 +579,8 @@ class ObjectBoxCapabilityStatementMessaging {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -597,14 +597,13 @@ class ObjectBoxCapabilityStatementMessaging {
 @Entity()
 class ObjectBoxCapabilityStatementEndpoint {
   ObjectBoxCapabilityStatementEndpoint({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCoding? protocol,
     required this.address,
     ObjectBoxElement? addressElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.protocol.target = protocol;
@@ -613,7 +612,8 @@ class ObjectBoxCapabilityStatementEndpoint {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -625,7 +625,7 @@ class ObjectBoxCapabilityStatementEndpoint {
 @Entity()
 class ObjectBoxCapabilityStatementSupportedMessage {
   ObjectBoxCapabilityStatementSupportedMessage({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.mode,
@@ -633,7 +633,6 @@ class ObjectBoxCapabilityStatementSupportedMessage {
     required this.definition,
     ObjectBoxElement? definitionElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.modeElement.target = modeElement;
@@ -642,7 +641,8 @@ class ObjectBoxCapabilityStatementSupportedMessage {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -655,7 +655,7 @@ class ObjectBoxCapabilityStatementSupportedMessage {
 @Entity()
 class ObjectBoxCapabilityStatementDocument {
   ObjectBoxCapabilityStatementDocument({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.mode,
@@ -665,7 +665,6 @@ class ObjectBoxCapabilityStatementDocument {
     required this.profile,
     ObjectBoxElement? profileElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.modeElement.target = modeElement;
@@ -675,7 +674,8 @@ class ObjectBoxCapabilityStatementDocument {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

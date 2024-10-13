@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxImagingStudy {
   ObjectBoxImagingStudy({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -42,7 +42,6 @@ class ObjectBoxImagingStudy {
     ObjectBoxElement? descriptionElement,
     List<ObjectBoxImagingStudySeries>? series,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -74,7 +73,8 @@ class ObjectBoxImagingStudy {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -118,7 +118,7 @@ class ObjectBoxImagingStudy {
 @Entity()
 class ObjectBoxImagingStudySeries {
   ObjectBoxImagingStudySeries({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.uid,
@@ -139,7 +139,6 @@ class ObjectBoxImagingStudySeries {
     List<ObjectBoxImagingStudyPerformer>? performer,
     List<ObjectBoxImagingStudyInstance>? instance,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.uidElement.target = uidElement;
@@ -158,7 +157,8 @@ class ObjectBoxImagingStudySeries {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -186,13 +186,12 @@ class ObjectBoxImagingStudySeries {
 @Entity()
 class ObjectBoxImagingStudyPerformer {
   ObjectBoxImagingStudyPerformer({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? function_,
     ObjectBoxReference? actor,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.function_.target = function_;
@@ -201,7 +200,8 @@ class ObjectBoxImagingStudyPerformer {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -212,7 +212,7 @@ class ObjectBoxImagingStudyPerformer {
 @Entity()
 class ObjectBoxImagingStudyInstance {
   ObjectBoxImagingStudyInstance({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.uid,
@@ -223,7 +223,6 @@ class ObjectBoxImagingStudyInstance {
     this.title,
     ObjectBoxElement? titleElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.uidElement.target = uidElement;
@@ -234,7 +233,8 @@ class ObjectBoxImagingStudyInstance {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

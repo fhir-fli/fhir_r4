@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxSubscriptionTopic {
   ObjectBoxSubscriptionTopic({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -52,7 +52,6 @@ class ObjectBoxSubscriptionTopic {
     List<ObjectBoxSubscriptionTopicCanFilterBy>? canFilterBy,
     List<ObjectBoxSubscriptionTopicNotificationShape>? notificationShape,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -86,7 +85,8 @@ class ObjectBoxSubscriptionTopic {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -142,7 +142,7 @@ class ObjectBoxSubscriptionTopic {
 @Entity()
 class ObjectBoxSubscriptionTopicResourceTrigger {
   ObjectBoxSubscriptionTopicResourceTrigger({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.description,
@@ -155,7 +155,6 @@ class ObjectBoxSubscriptionTopicResourceTrigger {
     this.fhirPathCriteria,
     ObjectBoxElement? fhirPathCriteriaElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.descriptionElement.target = descriptionElement;
@@ -167,7 +166,8 @@ class ObjectBoxSubscriptionTopicResourceTrigger {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -187,7 +187,7 @@ class ObjectBoxSubscriptionTopicResourceTrigger {
 @Entity()
 class ObjectBoxSubscriptionTopicQueryCriteria {
   ObjectBoxSubscriptionTopicQueryCriteria({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.previous,
@@ -201,7 +201,6 @@ class ObjectBoxSubscriptionTopicQueryCriteria {
     this.requireBoth,
     ObjectBoxElement? requireBothElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.previousElement.target = previousElement;
@@ -213,7 +212,8 @@ class ObjectBoxSubscriptionTopicQueryCriteria {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -232,7 +232,7 @@ class ObjectBoxSubscriptionTopicQueryCriteria {
 @Entity()
 class ObjectBoxSubscriptionTopicEventTrigger {
   ObjectBoxSubscriptionTopicEventTrigger({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.description,
@@ -241,7 +241,6 @@ class ObjectBoxSubscriptionTopicEventTrigger {
     required this.resource,
     ObjectBoxElement? resourceElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.descriptionElement.target = descriptionElement;
@@ -251,7 +250,8 @@ class ObjectBoxSubscriptionTopicEventTrigger {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -265,7 +265,7 @@ class ObjectBoxSubscriptionTopicEventTrigger {
 @Entity()
 class ObjectBoxSubscriptionTopicCanFilterBy {
   ObjectBoxSubscriptionTopicCanFilterBy({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.description,
@@ -279,7 +279,6 @@ class ObjectBoxSubscriptionTopicCanFilterBy {
     this.modifier,
     List<ObjectBoxElement>? modifierElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.descriptionElement.target = descriptionElement;
@@ -291,7 +290,8 @@ class ObjectBoxSubscriptionTopicCanFilterBy {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -310,7 +310,7 @@ class ObjectBoxSubscriptionTopicCanFilterBy {
 @Entity()
 class ObjectBoxSubscriptionTopicNotificationShape {
   ObjectBoxSubscriptionTopicNotificationShape({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.resource,
@@ -320,7 +320,6 @@ class ObjectBoxSubscriptionTopicNotificationShape {
     this.revInclude,
     List<ObjectBoxElement>? revIncludeElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.resourceElement.target = resourceElement;
@@ -330,7 +329,8 @@ class ObjectBoxSubscriptionTopicNotificationShape {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

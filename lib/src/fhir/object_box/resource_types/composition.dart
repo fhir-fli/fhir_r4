@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxComposition {
   ObjectBoxComposition({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -36,7 +36,6 @@ class ObjectBoxComposition {
     List<ObjectBoxCompositionEvent>? event,
     List<ObjectBoxCompositionSection>? section,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -63,7 +62,8 @@ class ObjectBoxComposition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -102,7 +102,7 @@ class ObjectBoxComposition {
 @Entity()
 class ObjectBoxCompositionAttester {
   ObjectBoxCompositionAttester({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.mode,
@@ -111,7 +111,6 @@ class ObjectBoxCompositionAttester {
     ObjectBoxElement? timeElement,
     ObjectBoxReference? party,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.modeElement.target = modeElement;
@@ -121,7 +120,8 @@ class ObjectBoxCompositionAttester {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -135,7 +135,7 @@ class ObjectBoxCompositionAttester {
 @Entity()
 class ObjectBoxCompositionRelatesTo {
   ObjectBoxCompositionRelatesTo({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.code,
@@ -143,7 +143,6 @@ class ObjectBoxCompositionRelatesTo {
     ObjectBoxIdentifier? targetIdentifier,
     ObjectBoxReference? targetReference,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.codeElement.target = codeElement;
@@ -153,7 +152,8 @@ class ObjectBoxCompositionRelatesTo {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -166,14 +166,13 @@ class ObjectBoxCompositionRelatesTo {
 @Entity()
 class ObjectBoxCompositionEvent {
   ObjectBoxCompositionEvent({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     List<ObjectBoxCodeableConcept>? code,
     ObjectBoxPeriod? period,
     List<ObjectBoxReference>? detail,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.code.addAll(code ?? []);
@@ -183,7 +182,8 @@ class ObjectBoxCompositionEvent {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -195,7 +195,7 @@ class ObjectBoxCompositionEvent {
 @Entity()
 class ObjectBoxCompositionSection {
   ObjectBoxCompositionSection({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.title,
@@ -211,7 +211,6 @@ class ObjectBoxCompositionSection {
     ObjectBoxCodeableConcept? emptyReason,
     List<ObjectBoxCompositionSection>? section,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.titleElement.target = titleElement;
@@ -228,7 +227,8 @@ class ObjectBoxCompositionSection {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

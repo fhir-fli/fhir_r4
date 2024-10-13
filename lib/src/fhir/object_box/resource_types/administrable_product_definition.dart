@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxAdministrableProductDefinition {
   ObjectBoxAdministrableProductDefinition({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -29,7 +29,6 @@ class ObjectBoxAdministrableProductDefinition {
     List<ObjectBoxAdministrableProductDefinitionRouteOfAdministration>?
         routeOfAdministration,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -51,7 +50,8 @@ class ObjectBoxAdministrableProductDefinition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -84,7 +84,7 @@ class ObjectBoxAdministrableProductDefinition {
 @Entity()
 class ObjectBoxAdministrableProductDefinitionProperty {
   ObjectBoxAdministrableProductDefinitionProperty({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -97,7 +97,6 @@ class ObjectBoxAdministrableProductDefinitionProperty {
     ObjectBoxAttachment? valueAttachment,
     ObjectBoxCodeableConcept? status,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -111,7 +110,8 @@ class ObjectBoxAdministrableProductDefinitionProperty {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -130,7 +130,7 @@ class ObjectBoxAdministrableProductDefinitionProperty {
 @Entity()
 class ObjectBoxAdministrableProductDefinitionRouteOfAdministration {
   ObjectBoxAdministrableProductDefinitionRouteOfAdministration({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? code,
@@ -141,7 +141,6 @@ class ObjectBoxAdministrableProductDefinitionRouteOfAdministration {
     ObjectBoxFhirDuration? maxTreatmentPeriod,
     List<ObjectBoxAdministrableProductDefinitionTargetSpecies>? targetSpecies,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.code.target = code;
@@ -155,7 +154,8 @@ class ObjectBoxAdministrableProductDefinitionRouteOfAdministration {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -173,14 +173,13 @@ class ObjectBoxAdministrableProductDefinitionRouteOfAdministration {
 @Entity()
 class ObjectBoxAdministrableProductDefinitionTargetSpecies {
   ObjectBoxAdministrableProductDefinitionTargetSpecies({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? code,
     List<ObjectBoxAdministrableProductDefinitionWithdrawalPeriod>?
         withdrawalPeriod,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.code.target = code;
@@ -189,7 +188,8 @@ class ObjectBoxAdministrableProductDefinitionTargetSpecies {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -202,7 +202,7 @@ class ObjectBoxAdministrableProductDefinitionTargetSpecies {
 @Entity()
 class ObjectBoxAdministrableProductDefinitionWithdrawalPeriod {
   ObjectBoxAdministrableProductDefinitionWithdrawalPeriod({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? tissue,
@@ -210,7 +210,6 @@ class ObjectBoxAdministrableProductDefinitionWithdrawalPeriod {
     this.supportingInformation,
     ObjectBoxElement? supportingInformationElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.tissue.target = tissue;
@@ -220,7 +219,8 @@ class ObjectBoxAdministrableProductDefinitionWithdrawalPeriod {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

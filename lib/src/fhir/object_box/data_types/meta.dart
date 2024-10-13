@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxFhirMeta {
   ObjectBoxFhirMeta({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     this.versionId,
     ObjectBoxElement? versionIdElement,
@@ -19,7 +19,6 @@ class ObjectBoxFhirMeta {
     List<ObjectBoxCoding>? security,
     List<ObjectBoxCoding>? tag,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.versionIdElement.target = versionIdElement;
     this.lastUpdatedElement.target = lastUpdatedElement;
@@ -31,7 +30,8 @@ class ObjectBoxFhirMeta {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String? versionId;
   ToOne<ObjectBoxElement> versionIdElement = ToOne<ObjectBoxElement>();

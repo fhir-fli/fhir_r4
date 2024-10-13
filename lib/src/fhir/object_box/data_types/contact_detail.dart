@@ -6,13 +6,12 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxContactDetail {
   ObjectBoxContactDetail({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     this.name,
     ObjectBoxElement? nameElement,
     List<ObjectBoxContactPoint>? telecom,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.nameElement.target = nameElement;
     this.telecom.addAll(telecom ?? []);
@@ -20,7 +19,8 @@ class ObjectBoxContactDetail {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String? name;
   ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();

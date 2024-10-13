@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxMedication {
   ObjectBoxMedication({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -26,7 +26,6 @@ class ObjectBoxMedication {
     List<ObjectBoxMedicationIngredient>? ingredient,
     ObjectBoxMedicationBatch? batch,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -46,7 +45,8 @@ class ObjectBoxMedication {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -72,7 +72,7 @@ class ObjectBoxMedication {
 @Entity()
 class ObjectBoxMedicationIngredient {
   ObjectBoxMedicationIngredient({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? itemCodeableConcept,
@@ -81,7 +81,6 @@ class ObjectBoxMedicationIngredient {
     ObjectBoxElement? isActiveElement,
     ObjectBoxRatio? strength,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.itemCodeableConcept.target = itemCodeableConcept;
@@ -92,7 +91,8 @@ class ObjectBoxMedicationIngredient {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -107,7 +107,7 @@ class ObjectBoxMedicationIngredient {
 @Entity()
 class ObjectBoxMedicationBatch {
   ObjectBoxMedicationBatch({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.lotNumber,
@@ -115,7 +115,6 @@ class ObjectBoxMedicationBatch {
     this.expirationDate,
     ObjectBoxElement? expirationDateElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.lotNumberElement.target = lotNumberElement;
@@ -124,7 +123,8 @@ class ObjectBoxMedicationBatch {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

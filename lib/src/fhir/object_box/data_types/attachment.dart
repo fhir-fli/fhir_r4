@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxAttachment {
   ObjectBoxAttachment({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     this.contentType,
     ObjectBoxElement? contentTypeElement,
@@ -25,7 +25,6 @@ class ObjectBoxAttachment {
     this.creation,
     ObjectBoxElement? creationElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.contentTypeElement.target = contentTypeElement;
     this.languageElement.target = languageElement;
@@ -39,7 +38,8 @@ class ObjectBoxAttachment {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String? contentType;
   ToOne<ObjectBoxElement> contentTypeElement = ToOne<ObjectBoxElement>();

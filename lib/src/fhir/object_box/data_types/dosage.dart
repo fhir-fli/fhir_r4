@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxDosage {
   ObjectBoxDosage({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.sequence,
@@ -28,7 +28,6 @@ class ObjectBoxDosage {
     ObjectBoxQuantity? maxDosePerAdministration,
     ObjectBoxQuantity? maxDosePerLifetime,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.sequenceElement.target = sequenceElement;
@@ -49,7 +48,8 @@ class ObjectBoxDosage {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -80,7 +80,7 @@ class ObjectBoxDosage {
 @Entity()
 class ObjectBoxDosageDoseAndRate {
   ObjectBoxDosageDoseAndRate({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     ObjectBoxCodeableConcept? type,
     ObjectBoxRange? doseRange,
@@ -89,7 +89,6 @@ class ObjectBoxDosageDoseAndRate {
     ObjectBoxRange? rateRange,
     ObjectBoxQuantity? rateQuantity,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.type.target = type;
     this.doseRange.target = doseRange;
@@ -101,7 +100,8 @@ class ObjectBoxDosageDoseAndRate {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxCodeableConcept> type = ToOne<ObjectBoxCodeableConcept>();
   ToOne<ObjectBoxRange> doseRange = ToOne<ObjectBoxRange>();

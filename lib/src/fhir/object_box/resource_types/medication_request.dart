@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxMedicationRequest {
   ObjectBoxMedicationRequest({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -59,7 +59,6 @@ class ObjectBoxMedicationRequest {
     List<ObjectBoxReference>? detectedIssue,
     List<ObjectBoxReference>? eventHistory,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -107,7 +106,8 @@ class ObjectBoxMedicationRequest {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -175,7 +175,7 @@ class ObjectBoxMedicationRequest {
 @Entity()
 class ObjectBoxMedicationRequestDispenseRequest {
   ObjectBoxMedicationRequestDispenseRequest({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxMedicationRequestInitialFill? initialFill,
@@ -187,7 +187,6 @@ class ObjectBoxMedicationRequestDispenseRequest {
     ObjectBoxFhirDuration? expectedSupplyDuration,
     ObjectBoxReference? performer,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.initialFill.target = initialFill;
@@ -201,7 +200,8 @@ class ObjectBoxMedicationRequestDispenseRequest {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -222,13 +222,12 @@ class ObjectBoxMedicationRequestDispenseRequest {
 @Entity()
 class ObjectBoxMedicationRequestInitialFill {
   ObjectBoxMedicationRequestInitialFill({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxQuantity? quantity,
     ObjectBoxFhirDuration? duration,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.quantity.target = quantity;
@@ -237,7 +236,8 @@ class ObjectBoxMedicationRequestInitialFill {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -248,7 +248,7 @@ class ObjectBoxMedicationRequestInitialFill {
 @Entity()
 class ObjectBoxMedicationRequestSubstitution {
   ObjectBoxMedicationRequestSubstitution({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.allowedBoolean,
@@ -256,7 +256,6 @@ class ObjectBoxMedicationRequestSubstitution {
     ObjectBoxCodeableConcept? allowedCodeableConcept,
     ObjectBoxCodeableConcept? reason,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.allowedBooleanElement.target = allowedBooleanElement;
@@ -266,7 +265,8 @@ class ObjectBoxMedicationRequestSubstitution {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

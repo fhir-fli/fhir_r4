@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxMolecularSequence {
   ObjectBoxMolecularSequence({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -37,7 +37,6 @@ class ObjectBoxMolecularSequence {
     List<ObjectBoxReference>? pointer,
     List<ObjectBoxMolecularSequenceStructureVariant>? structureVariant,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -65,7 +64,8 @@ class ObjectBoxMolecularSequence {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -106,7 +106,7 @@ class ObjectBoxMolecularSequence {
 @Entity()
 class ObjectBoxMolecularSequenceReferenceSeq {
   ObjectBoxMolecularSequenceReferenceSeq({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? chromosome,
@@ -125,7 +125,6 @@ class ObjectBoxMolecularSequenceReferenceSeq {
     this.windowEnd,
     ObjectBoxElement? windowEndElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.chromosome.target = chromosome;
@@ -141,7 +140,8 @@ class ObjectBoxMolecularSequenceReferenceSeq {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -167,7 +167,7 @@ class ObjectBoxMolecularSequenceReferenceSeq {
 @Entity()
 class ObjectBoxMolecularSequenceVariant {
   ObjectBoxMolecularSequenceVariant({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.start,
@@ -182,7 +182,6 @@ class ObjectBoxMolecularSequenceVariant {
     ObjectBoxElement? cigarElement,
     ObjectBoxReference? variantPointer,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.startElement.target = startElement;
@@ -195,7 +194,8 @@ class ObjectBoxMolecularSequenceVariant {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -215,7 +215,7 @@ class ObjectBoxMolecularSequenceVariant {
 @Entity()
 class ObjectBoxMolecularSequenceQuality {
   ObjectBoxMolecularSequenceQuality({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.type,
@@ -245,7 +245,6 @@ class ObjectBoxMolecularSequenceQuality {
     ObjectBoxElement? fScoreElement,
     ObjectBoxMolecularSequenceRoc? roc,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.typeElement.target = typeElement;
@@ -267,7 +266,8 @@ class ObjectBoxMolecularSequenceQuality {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -304,7 +304,7 @@ class ObjectBoxMolecularSequenceQuality {
 @Entity()
 class ObjectBoxMolecularSequenceRoc {
   ObjectBoxMolecularSequenceRoc({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.score,
@@ -322,7 +322,6 @@ class ObjectBoxMolecularSequenceRoc {
     this.fMeasure,
     List<ObjectBoxElement>? fMeasureElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.scoreElement.addAll(scoreElement ?? []);
@@ -336,7 +335,8 @@ class ObjectBoxMolecularSequenceRoc {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -359,7 +359,7 @@ class ObjectBoxMolecularSequenceRoc {
 @Entity()
 class ObjectBoxMolecularSequenceRepository {
   ObjectBoxMolecularSequenceRepository({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.type,
@@ -375,7 +375,6 @@ class ObjectBoxMolecularSequenceRepository {
     this.readsetId,
     ObjectBoxElement? readsetIdElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.typeElement.target = typeElement;
@@ -388,7 +387,8 @@ class ObjectBoxMolecularSequenceRepository {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -409,7 +409,7 @@ class ObjectBoxMolecularSequenceRepository {
 @Entity()
 class ObjectBoxMolecularSequenceStructureVariant {
   ObjectBoxMolecularSequenceStructureVariant({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? variantType,
@@ -420,7 +420,6 @@ class ObjectBoxMolecularSequenceStructureVariant {
     ObjectBoxMolecularSequenceOuter? outer,
     ObjectBoxMolecularSequenceInner? inner,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.variantType.target = variantType;
@@ -432,7 +431,8 @@ class ObjectBoxMolecularSequenceStructureVariant {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -451,7 +451,7 @@ class ObjectBoxMolecularSequenceStructureVariant {
 @Entity()
 class ObjectBoxMolecularSequenceOuter {
   ObjectBoxMolecularSequenceOuter({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.start,
@@ -459,7 +459,6 @@ class ObjectBoxMolecularSequenceOuter {
     this.end,
     ObjectBoxElement? endElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.startElement.target = startElement;
@@ -468,7 +467,8 @@ class ObjectBoxMolecularSequenceOuter {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -481,7 +481,7 @@ class ObjectBoxMolecularSequenceOuter {
 @Entity()
 class ObjectBoxMolecularSequenceInner {
   ObjectBoxMolecularSequenceInner({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     this.start,
@@ -489,7 +489,6 @@ class ObjectBoxMolecularSequenceInner {
     this.end,
     ObjectBoxElement? endElement,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.startElement.target = startElement;
@@ -498,7 +497,8 @@ class ObjectBoxMolecularSequenceInner {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();

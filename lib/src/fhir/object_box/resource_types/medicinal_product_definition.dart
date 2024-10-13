@@ -6,7 +6,7 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxMedicinalProductDefinition {
   ObjectBoxMedicinalProductDefinition({
-    String? id,
+    this.id,
     ObjectBoxFhirMeta? meta,
     this.implicitRules,
     ObjectBoxElement? implicitRulesElement,
@@ -49,7 +49,6 @@ class ObjectBoxMedicinalProductDefinition {
     List<ObjectBoxMedicinalProductDefinitionOperation>? operation,
     List<ObjectBoxMedicinalProductDefinitionCharacteristic>? characteristic,
   }) {
-    this.id.target = id;
     this.meta.target = meta;
     this.implicitRulesElement.target = implicitRulesElement;
     this.languageElement.target = languageElement;
@@ -89,7 +88,8 @@ class ObjectBoxMedicinalProductDefinition {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
   ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
@@ -152,13 +152,12 @@ class ObjectBoxMedicinalProductDefinition {
 @Entity()
 class ObjectBoxMedicinalProductDefinitionContact {
   ObjectBoxMedicinalProductDefinitionContact({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
     ObjectBoxReference? contact,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -167,7 +166,8 @@ class ObjectBoxMedicinalProductDefinitionContact {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -178,7 +178,7 @@ class ObjectBoxMedicinalProductDefinitionContact {
 @Entity()
 class ObjectBoxMedicinalProductDefinitionName {
   ObjectBoxMedicinalProductDefinitionName({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.productName,
@@ -187,7 +187,6 @@ class ObjectBoxMedicinalProductDefinitionName {
     List<ObjectBoxMedicinalProductDefinitionNamePart>? namePart,
     List<ObjectBoxMedicinalProductDefinitionCountryLanguage>? countryLanguage,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.productNameElement.target = productNameElement;
@@ -198,7 +197,8 @@ class ObjectBoxMedicinalProductDefinitionName {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -214,14 +214,13 @@ class ObjectBoxMedicinalProductDefinitionName {
 @Entity()
 class ObjectBoxMedicinalProductDefinitionNamePart {
   ObjectBoxMedicinalProductDefinitionNamePart({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     required this.part_,
     ObjectBoxElement? partElement,
     ObjectBoxCodeableConcept? type,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.partElement.target = partElement;
@@ -230,7 +229,8 @@ class ObjectBoxMedicinalProductDefinitionNamePart {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -242,14 +242,13 @@ class ObjectBoxMedicinalProductDefinitionNamePart {
 @Entity()
 class ObjectBoxMedicinalProductDefinitionCountryLanguage {
   ObjectBoxMedicinalProductDefinitionCountryLanguage({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? country,
     ObjectBoxCodeableConcept? jurisdiction,
     ObjectBoxCodeableConcept? language,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.country.target = country;
@@ -259,7 +258,8 @@ class ObjectBoxMedicinalProductDefinitionCountryLanguage {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -272,13 +272,12 @@ class ObjectBoxMedicinalProductDefinitionCountryLanguage {
 @Entity()
 class ObjectBoxMedicinalProductDefinitionCrossReference {
   ObjectBoxMedicinalProductDefinitionCrossReference({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableReference? product,
     ObjectBoxCodeableConcept? type,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.product.target = product;
@@ -287,7 +286,8 @@ class ObjectBoxMedicinalProductDefinitionCrossReference {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -299,7 +299,7 @@ class ObjectBoxMedicinalProductDefinitionCrossReference {
 @Entity()
 class ObjectBoxMedicinalProductDefinitionOperation {
   ObjectBoxMedicinalProductDefinitionOperation({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableReference? type,
@@ -307,7 +307,6 @@ class ObjectBoxMedicinalProductDefinitionOperation {
     List<ObjectBoxReference>? organization,
     ObjectBoxCodeableConcept? confidentialityIndicator,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -318,7 +317,8 @@ class ObjectBoxMedicinalProductDefinitionOperation {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
@@ -332,7 +332,7 @@ class ObjectBoxMedicinalProductDefinitionOperation {
 @Entity()
 class ObjectBoxMedicinalProductDefinitionCharacteristic {
   ObjectBoxMedicinalProductDefinitionCharacteristic({
-    String? id,
+    this.id,
     List<ObjectBoxFhirExtension>? extension_,
     List<ObjectBoxFhirExtension>? modifierExtension,
     ObjectBoxCodeableConcept? type,
@@ -344,7 +344,6 @@ class ObjectBoxMedicinalProductDefinitionCharacteristic {
     ObjectBoxElement? valueBooleanElement,
     ObjectBoxAttachment? valueAttachment,
   }) {
-    this.id.target = id;
     this.extension_.addAll(extension_ ?? []);
     this.modifierExtension.addAll(modifierExtension ?? []);
     this.type.target = type;
@@ -357,7 +356,8 @@ class ObjectBoxMedicinalProductDefinitionCharacteristic {
 
   @Id()
   int? dbId;
-  ToOne<String> id = ToOne<String>();
+  String? id;
+  ToOne<ObjectBoxElement> idElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
