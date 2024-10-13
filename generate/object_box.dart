@@ -104,7 +104,7 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
       ..writeln('class $officialClassName $extended {')
       ..writeln('\n  $officialClassName({');
 
-// Loop through the fields and add them to the constructor
+    // Loop through the fields and add them to the constructor
     for (final field in writableClass.fields) {
       final actualFieldName = field.name.fhirFieldToDartName;
       final elementFieldName = _normalizeElementFieldName(actualFieldName);
@@ -116,7 +116,10 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
           : objectBoxType;
 
       // Handle ToOne or ToMany relationships (complex types)
-      if (!field.type.isPrimitiveType && !field.isEnum && field.name != 'id') {
+      if (!field.type.isPrimitiveType &&
+          !field.isEnum &&
+          field.name != 'id' &&
+          objectBoxType != 'String') {
         final fieldType =
             field.isList ? 'List<$objectBoxType>?' : '$objectBoxType?';
         buffer.writeln('    $fieldType $actualFieldName,');
@@ -157,12 +160,15 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
       else if (!field.type.isPrimitiveType &&
           !field.isEnum &&
           !field.isList &&
-          field.name != 'id') {
+          field.name != 'id' &&
+          field.type.fhirToObjectBoxTypes != 'String') {
         buffer.writeln('    this.$actualFieldName.target = $actualFieldName;');
       }
 
       // Handle matching element fields for primitive values
-      if ((field.isEnum || field.type.isPrimitiveType) &&
+      if ((field.isEnum ||
+              field.type.isPrimitiveType ||
+              field.type.fhirToObjectBoxTypes == 'String') &&
           actualFieldName != 'id') {
         if (field.isList) {
           buffer.writeln(
@@ -191,7 +197,10 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
           : objectBoxType;
 
       // Handle complex types (ToOne or ToMany relations)
-      if (!field.type.isPrimitiveType && !field.isEnum && field.name != 'id') {
+      if (!field.type.isPrimitiveType &&
+          !field.isEnum &&
+          field.name != 'id' &&
+          objectBoxType != 'String') {
         if (field.isList) {
           buffer.writeln(
             '  ToMany<$objectBoxType> '
