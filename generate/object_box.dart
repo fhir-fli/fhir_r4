@@ -102,25 +102,80 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
       ..writeln('class $officialClassName $extended {')
       ..writeln('\n  $officialClassName({');
 
-    // Loop through the fields and add them to the constructor
+// Loop through the fields and add them to the constructor
     for (final field in writableClass.fields) {
       final actualFieldName = field.name.fhirFieldToDartName;
-      if (field.isRequired) {
-        buffer.writeln('    required this.$actualFieldName,');
-      } else {
-        buffer.writeln('    this.$actualFieldName,');
+      final elementFieldName = _normalizeElementFieldName(actualFieldName);
+      var objectBoxType =
+          field.isEnum ? 'String' : field.type.fhirToObjectBoxTypes;
+
+      objectBoxType = objectBoxType == 'ObjectBoxEvidenceVariable'
+          ? 'ObjectBoxEvidenceModelCharacteristicVariable'
+          : objectBoxType;
+
+      // Handle ToOne or ToMany relationships (complex types)
+      if (!field.type.isPrimitiveType && !field.isEnum) {
+        final fieldType =
+            field.isList ? 'List<$objectBoxType>?' : '$objectBoxType?';
+        buffer.writeln('    $fieldType $actualFieldName,');
       }
-      if ((field.isEnum || field.type.isPrimitiveType) &&
-          (actualFieldName != 'id')) {
-        buffer.writeln(
-          '    this.${actualFieldName.endsWith('_') ? actualFieldName.substring(0, actualFieldName.length - 1) : actualFieldName}Element,',
-        );
+      // Handle primitive or enum fields
+      else {
+        // Add the field to the constructor with required if necessary
+        if (field.isRequired) {
+          buffer.writeln('    required this.$actualFieldName,');
+        } else {
+          buffer.writeln('    this.$actualFieldName,');
+        }
+
+        // For primitive fields (except 'id'), add a matching element field
+        if (actualFieldName != 'id') {
+          final elementType =
+              field.isList ? 'List<ObjectBoxElement>?' : 'ObjectBoxElement?';
+          buffer.writeln('    $elementType ${elementFieldName}Element,');
+        }
       }
     }
 
-    buffer
-      ..writeln('  });\n')
-      ..writeln('  @Id() int? dbId;');
+// Close the constructor and begin the assignment logic
+    buffer.writeln('  }) {');
+
+// After-constructor assignments for ToOne and ToMany relationships
+    for (final field in writableClass.fields) {
+      final actualFieldName = field.name.fhirFieldToDartName;
+      final elementFieldName = _normalizeElementFieldName(actualFieldName);
+
+      // Handle ToMany relationships
+      if (!field.type.isPrimitiveType && field.isList) {
+        buffer.writeln(
+          '    this.$actualFieldName.addAll($actualFieldName ?? []);',
+        );
+      }
+      // Handle ToOne relationships
+      else if (!field.type.isPrimitiveType && !field.isList) {
+        buffer.writeln('    this.$actualFieldName.target = $actualFieldName;');
+      }
+
+      // Handle matching element fields for primitive values
+      if ((field.isEnum || field.type.isPrimitiveType) &&
+          actualFieldName != 'id') {
+        if (field.isList) {
+          buffer.writeln(
+            '    this.${elementFieldName}Element.addAll(${elementFieldName}Element ?? []);',
+          );
+        } else {
+          buffer.writeln(
+            '    this.${elementFieldName}Element.target = ${elementFieldName}Element;',
+          );
+        }
+      }
+    }
+
+// Finalize the constructor
+    buffer.writeln('  }\n');
+
+// Add the @Id annotation for the ObjectBox class
+    buffer.writeln('  @Id() int? dbId;');
 
     // Loop through the fields and add them as class variables
     for (final field in writableClass.fields) {
@@ -134,12 +189,12 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
       if (!field.type.isPrimitiveType && !field.isEnum) {
         if (field.isList) {
           buffer.writeln(
-            '  ToMany<$objectBoxType>${field.isRequired ? '' : '?'} '
+            '  ToMany<$objectBoxType> '
             '${field.name.fhirFieldToDartName} = ToMany<$objectBoxType>();',
           );
         } else {
           buffer.writeln(
-            '  ToOne<$objectBoxType>${field.isRequired ? '' : '?'} '
+            '  ToOne<$objectBoxType> '
             '${field.name.fhirFieldToDartName} = ToOne<$objectBoxType>();',
           );
         }
@@ -157,11 +212,11 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
 
         if (field.isList) {
           buffer.writeln(
-            '  ToMany<ObjectBoxElement>? ${finalFieldName}Element = ToMany<ObjectBoxElement>();',
+            '  ToMany<ObjectBoxElement> ${finalFieldName}Element = ToMany<ObjectBoxElement>();',
           );
         } else {
           buffer.writeln(
-            '  ToOne<ObjectBoxElement>? ${finalFieldName}Element = ToOne<ObjectBoxElement>();',
+            '  ToOne<ObjectBoxElement> ${finalFieldName}Element = ToOne<ObjectBoxElement>();',
           );
         }
       }
@@ -176,6 +231,16 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
       exportFile.add("export '$fileName';\n");
     }
   });
+}
+
+/// Normalizes the field name to generate the corresponding element field name.
+///
+/// If the field name ends with '_', remove it to form the element field name.
+/// Otherwise, return the field name as-is.
+String _normalizeElementFieldName(String fieldName) {
+  return fieldName.endsWith('_')
+      ? fieldName.substring(0, fieldName.length - 1)
+      : fieldName;
 }
 
 String _writeToFile(
