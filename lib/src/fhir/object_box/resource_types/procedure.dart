@@ -6,155 +6,210 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxProcedure {
   ObjectBoxProcedure({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     this.instantiatesCanonical,
-    this.instantiatesCanonicalElement,
+    List<ObjectBoxElement>? instantiatesCanonicalElement,
     this.instantiatesUri,
-    this.instantiatesUriElement,
-    this.basedOn,
-    this.partOf,
+    List<ObjectBoxElement>? instantiatesUriElement,
+    List<ObjectBoxReference>? basedOn,
+    List<ObjectBoxReference>? partOf,
     required this.status,
-    this.statusElement,
-    this.statusReason,
-    this.category,
-    this.code,
-    required this.subject,
-    this.encounter,
+    ObjectBoxElement? statusElement,
+    ObjectBoxCodeableConcept? statusReason,
+    ObjectBoxCodeableConcept? category,
+    ObjectBoxCodeableConcept? code,
+    ObjectBoxReference? subject,
+    ObjectBoxReference? encounter,
     this.performedDateTime,
-    this.performedDateTimeElement,
-    this.performedPeriod,
+    ObjectBoxElement? performedDateTimeElement,
+    ObjectBoxPeriod? performedPeriod,
     this.performedString,
-    this.performedStringElement,
-    this.performedAge,
-    this.performedRange,
-    this.recorder,
-    this.asserter,
-    this.performer,
-    this.location,
-    this.reasonCode,
-    this.reasonReference,
-    this.bodySite,
-    this.outcome,
-    this.report,
-    this.complication,
-    this.complicationDetail,
-    this.followUp,
-    this.note,
-    this.focalDevice,
-    this.usedReference,
-    this.usedCode,
-  });
+    ObjectBoxElement? performedStringElement,
+    ObjectBoxAge? performedAge,
+    ObjectBoxRange? performedRange,
+    ObjectBoxReference? recorder,
+    ObjectBoxReference? asserter,
+    List<ObjectBoxProcedurePerformer>? performer,
+    ObjectBoxReference? location,
+    List<ObjectBoxCodeableConcept>? reasonCode,
+    List<ObjectBoxReference>? reasonReference,
+    List<ObjectBoxCodeableConcept>? bodySite,
+    ObjectBoxCodeableConcept? outcome,
+    List<ObjectBoxReference>? report,
+    List<ObjectBoxCodeableConcept>? complication,
+    List<ObjectBoxReference>? complicationDetail,
+    List<ObjectBoxCodeableConcept>? followUp,
+    List<ObjectBoxAnnotation>? note,
+    List<ObjectBoxProcedureFocalDevice>? focalDevice,
+    List<ObjectBoxReference>? usedReference,
+    List<ObjectBoxCodeableConcept>? usedCode,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this
+        .instantiatesCanonicalElement
+        .addAll(instantiatesCanonicalElement ?? []);
+    this.instantiatesUriElement.addAll(instantiatesUriElement ?? []);
+    this.basedOn.addAll(basedOn ?? []);
+    this.partOf.addAll(partOf ?? []);
+    this.statusElement.target = statusElement;
+    this.statusReason.target = statusReason;
+    this.category.target = category;
+    this.code.target = code;
+    this.subject.target = subject;
+    this.encounter.target = encounter;
+    this.performedDateTimeElement.target = performedDateTimeElement;
+    this.performedPeriod.target = performedPeriod;
+    this.performedStringElement.target = performedStringElement;
+    this.performedAge.target = performedAge;
+    this.performedRange.target = performedRange;
+    this.recorder.target = recorder;
+    this.asserter.target = asserter;
+    this.performer.addAll(performer ?? []);
+    this.location.target = location;
+    this.reasonCode.addAll(reasonCode ?? []);
+    this.reasonReference.addAll(reasonReference ?? []);
+    this.bodySite.addAll(bodySite ?? []);
+    this.outcome.target = outcome;
+    this.report.addAll(report ?? []);
+    this.complication.addAll(complication ?? []);
+    this.complicationDetail.addAll(complicationDetail ?? []);
+    this.followUp.addAll(followUp ?? []);
+    this.note.addAll(note ?? []);
+    this.focalDevice.addAll(focalDevice ?? []);
+    this.usedReference.addAll(usedReference ?? []);
+    this.usedCode.addAll(usedCode ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   List<String>? instantiatesCanonical;
-  ToMany<ObjectBoxElement>? instantiatesCanonicalElement =
+  ToMany<ObjectBoxElement> instantiatesCanonicalElement =
       ToMany<ObjectBoxElement>();
   List<String>? instantiatesUri;
-  ToMany<ObjectBoxElement>? instantiatesUriElement = ToMany<ObjectBoxElement>();
-  ToMany<ObjectBoxReference>? basedOn = ToMany<ObjectBoxReference>();
-  ToMany<ObjectBoxReference>? partOf = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxElement> instantiatesUriElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxReference> basedOn = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxReference> partOf = ToMany<ObjectBoxReference>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxCodeableConcept>? statusReason =
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxCodeableConcept> statusReason =
       ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? category = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? code = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxCodeableConcept> category = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxCodeableConcept> code = ToOne<ObjectBoxCodeableConcept>();
   ToOne<ObjectBoxReference> subject = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? encounter = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> encounter = ToOne<ObjectBoxReference>();
   String? performedDateTime;
-  ToOne<ObjectBoxElement>? performedDateTimeElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? performedPeriod = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxElement> performedDateTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> performedPeriod = ToOne<ObjectBoxPeriod>();
   String? performedString;
-  ToOne<ObjectBoxElement>? performedStringElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxAge>? performedAge = ToOne<ObjectBoxAge>();
-  ToOne<ObjectBoxRange>? performedRange = ToOne<ObjectBoxRange>();
-  ToOne<ObjectBoxReference>? recorder = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? asserter = ToOne<ObjectBoxReference>();
-  ToMany<ObjectBoxProcedurePerformer>? performer =
+  ToOne<ObjectBoxElement> performedStringElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxAge> performedAge = ToOne<ObjectBoxAge>();
+  ToOne<ObjectBoxRange> performedRange = ToOne<ObjectBoxRange>();
+  ToOne<ObjectBoxReference> recorder = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> asserter = ToOne<ObjectBoxReference>();
+  ToMany<ObjectBoxProcedurePerformer> performer =
       ToMany<ObjectBoxProcedurePerformer>();
-  ToOne<ObjectBoxReference>? location = ToOne<ObjectBoxReference>();
-  ToMany<ObjectBoxCodeableConcept>? reasonCode =
+  ToOne<ObjectBoxReference> location = ToOne<ObjectBoxReference>();
+  ToMany<ObjectBoxCodeableConcept> reasonCode =
       ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxReference>? reasonReference = ToMany<ObjectBoxReference>();
-  ToMany<ObjectBoxCodeableConcept>? bodySite =
+  ToMany<ObjectBoxReference> reasonReference = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxCodeableConcept> bodySite =
       ToMany<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? outcome = ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxReference>? report = ToMany<ObjectBoxReference>();
-  ToMany<ObjectBoxCodeableConcept>? complication =
+  ToOne<ObjectBoxCodeableConcept> outcome = ToOne<ObjectBoxCodeableConcept>();
+  ToMany<ObjectBoxReference> report = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxCodeableConcept> complication =
       ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxReference>? complicationDetail = ToMany<ObjectBoxReference>();
-  ToMany<ObjectBoxCodeableConcept>? followUp =
+  ToMany<ObjectBoxReference> complicationDetail = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxCodeableConcept> followUp =
       ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxAnnotation>? note = ToMany<ObjectBoxAnnotation>();
-  ToMany<ObjectBoxProcedureFocalDevice>? focalDevice =
+  ToMany<ObjectBoxAnnotation> note = ToMany<ObjectBoxAnnotation>();
+  ToMany<ObjectBoxProcedureFocalDevice> focalDevice =
       ToMany<ObjectBoxProcedureFocalDevice>();
-  ToMany<ObjectBoxReference>? usedReference = ToMany<ObjectBoxReference>();
-  ToMany<ObjectBoxCodeableConcept>? usedCode =
+  ToMany<ObjectBoxReference> usedReference = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxCodeableConcept> usedCode =
       ToMany<ObjectBoxCodeableConcept>();
 }
 
 @Entity()
 class ObjectBoxProcedurePerformer {
   ObjectBoxProcedurePerformer({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.function_,
-    required this.actor,
-    this.onBehalfOf,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? function_,
+    ObjectBoxReference? actor,
+    ObjectBoxReference? onBehalfOf,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.function_.target = function_;
+    this.actor.target = actor;
+    this.onBehalfOf.target = onBehalfOf;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxCodeableConcept>? function_ =
-      ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxCodeableConcept> function_ = ToOne<ObjectBoxCodeableConcept>();
   ToOne<ObjectBoxReference> actor = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? onBehalfOf = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> onBehalfOf = ToOne<ObjectBoxReference>();
 }
 
 @Entity()
 class ObjectBoxProcedureFocalDevice {
   ObjectBoxProcedureFocalDevice({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.action,
-    required this.manipulated,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? action,
+    ObjectBoxReference? manipulated,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.action.target = action;
+    this.manipulated.target = manipulated;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxCodeableConcept>? action = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxCodeableConcept> action = ToOne<ObjectBoxCodeableConcept>();
   ToOne<ObjectBoxReference> manipulated = ToOne<ObjectBoxReference>();
 }

@@ -6,54 +6,70 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxSubscription {
   ObjectBoxSubscription({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.status,
-    this.statusElement,
-    this.contact,
+    ObjectBoxElement? statusElement,
+    List<ObjectBoxContactPoint>? contact,
     this.end,
-    this.endElement,
+    ObjectBoxElement? endElement,
     required this.reason,
-    this.reasonElement,
+    ObjectBoxElement? reasonElement,
     required this.criteria,
-    this.criteriaElement,
+    ObjectBoxElement? criteriaElement,
     this.error,
-    this.errorElement,
-    required this.channel,
-  });
+    ObjectBoxElement? errorElement,
+    ObjectBoxSubscriptionChannel? channel,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.statusElement.target = statusElement;
+    this.contact.addAll(contact ?? []);
+    this.endElement.target = endElement;
+    this.reasonElement.target = reasonElement;
+    this.criteriaElement.target = criteriaElement;
+    this.errorElement.target = errorElement;
+    this.channel.target = channel;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxContactPoint>? contact = ToMany<ObjectBoxContactPoint>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxContactPoint> contact = ToMany<ObjectBoxContactPoint>();
   String? end;
-  ToOne<ObjectBoxElement>? endElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> endElement = ToOne<ObjectBoxElement>();
   String reason;
-  ToOne<ObjectBoxElement>? reasonElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> reasonElement = ToOne<ObjectBoxElement>();
   String criteria;
-  ToOne<ObjectBoxElement>? criteriaElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> criteriaElement = ToOne<ObjectBoxElement>();
   String? error;
-  ToOne<ObjectBoxElement>? errorElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> errorElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxSubscriptionChannel> channel =
       ToOne<ObjectBoxSubscriptionChannel>();
 }
@@ -61,31 +77,39 @@ class ObjectBoxSubscription {
 @Entity()
 class ObjectBoxSubscriptionChannel {
   ObjectBoxSubscriptionChannel({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.type,
-    this.typeElement,
+    ObjectBoxElement? typeElement,
     this.endpoint,
-    this.endpointElement,
+    ObjectBoxElement? endpointElement,
     this.payload,
-    this.payloadElement,
+    ObjectBoxElement? payloadElement,
     this.header,
-    this.headerElement,
-  });
+    List<ObjectBoxElement>? headerElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.typeElement.target = typeElement;
+    this.endpointElement.target = endpointElement;
+    this.payloadElement.target = payloadElement;
+    this.headerElement.addAll(headerElement ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
   String? endpoint;
-  ToOne<ObjectBoxElement>? endpointElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> endpointElement = ToOne<ObjectBoxElement>();
   String? payload;
-  ToOne<ObjectBoxElement>? payloadElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> payloadElement = ToOne<ObjectBoxElement>();
   List<String>? header;
-  ToMany<ObjectBoxElement>? headerElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> headerElement = ToMany<ObjectBoxElement>();
 }

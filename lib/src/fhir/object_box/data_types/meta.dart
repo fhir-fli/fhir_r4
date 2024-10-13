@@ -6,32 +6,41 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxFhirMeta {
   ObjectBoxFhirMeta({
-    this.id,
-    this.extension_,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
     this.versionId,
-    this.versionIdElement,
+    ObjectBoxElement? versionIdElement,
     this.lastUpdated,
-    this.lastUpdatedElement,
+    ObjectBoxElement? lastUpdatedElement,
     this.source,
-    this.sourceElement,
+    ObjectBoxElement? sourceElement,
     this.profile,
-    this.profileElement,
-    this.security,
-    this.tag,
-  });
+    List<ObjectBoxElement>? profileElement,
+    List<ObjectBoxCoding>? security,
+    List<ObjectBoxCoding>? tag,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.versionIdElement.target = versionIdElement;
+    this.lastUpdatedElement.target = lastUpdatedElement;
+    this.sourceElement.target = sourceElement;
+    this.profileElement.addAll(profileElement ?? []);
+    this.security.addAll(security ?? []);
+    this.tag.addAll(tag ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String? versionId;
-  ToOne<ObjectBoxElement>? versionIdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> versionIdElement = ToOne<ObjectBoxElement>();
   String? lastUpdated;
-  ToOne<ObjectBoxElement>? lastUpdatedElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> lastUpdatedElement = ToOne<ObjectBoxElement>();
   String? source;
-  ToOne<ObjectBoxElement>? sourceElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> sourceElement = ToOne<ObjectBoxElement>();
   List<String>? profile;
-  ToMany<ObjectBoxElement>? profileElement = ToMany<ObjectBoxElement>();
-  ToMany<ObjectBoxCoding>? security = ToMany<ObjectBoxCoding>();
-  ToMany<ObjectBoxCoding>? tag = ToMany<ObjectBoxCoding>();
+  ToMany<ObjectBoxElement> profileElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxCoding> security = ToMany<ObjectBoxCoding>();
+  ToMany<ObjectBoxCoding> tag = ToMany<ObjectBoxCoding>();
 }

@@ -6,40 +6,50 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxParameterDefinition {
   ObjectBoxParameterDefinition({
-    this.id,
-    this.extension_,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
     this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     required this.use,
-    this.useElement,
+    ObjectBoxElement? useElement,
     this.min,
-    this.minElement,
+    ObjectBoxElement? minElement,
     this.max,
-    this.maxElement,
+    ObjectBoxElement? maxElement,
     this.documentation,
-    this.documentationElement,
+    ObjectBoxElement? documentationElement,
     required this.type,
-    this.typeElement,
+    ObjectBoxElement? typeElement,
     this.profile,
-    this.profileElement,
-  });
+    ObjectBoxElement? profileElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.nameElement.target = nameElement;
+    this.useElement.target = useElement;
+    this.minElement.target = minElement;
+    this.maxElement.target = maxElement;
+    this.documentationElement.target = documentationElement;
+    this.typeElement.target = typeElement;
+    this.profileElement.target = profileElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String? name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String use;
-  ToOne<ObjectBoxElement>? useElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> useElement = ToOne<ObjectBoxElement>();
   int? min;
-  ToOne<ObjectBoxElement>? minElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> minElement = ToOne<ObjectBoxElement>();
   String? max;
-  ToOne<ObjectBoxElement>? maxElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> maxElement = ToOne<ObjectBoxElement>();
   String? documentation;
-  ToOne<ObjectBoxElement>? documentationElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> documentationElement = ToOne<ObjectBoxElement>();
   String type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
   String? profile;
-  ToOne<ObjectBoxElement>? profileElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> profileElement = ToOne<ObjectBoxElement>();
 }

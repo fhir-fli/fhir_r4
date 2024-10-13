@@ -6,370 +6,468 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxTerminologyCapabilities {
   ObjectBoxTerminologyCapabilities({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.url,
-    this.urlElement,
+    ObjectBoxElement? urlElement,
     this.version,
-    this.versionElement,
+    ObjectBoxElement? versionElement,
     this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     this.title,
-    this.titleElement,
+    ObjectBoxElement? titleElement,
     required this.status,
-    this.statusElement,
+    ObjectBoxElement? statusElement,
     this.experimental,
-    this.experimentalElement,
+    ObjectBoxElement? experimentalElement,
     required this.date,
-    this.dateElement,
+    ObjectBoxElement? dateElement,
     this.publisher,
-    this.publisherElement,
-    this.contact,
+    ObjectBoxElement? publisherElement,
+    List<ObjectBoxContactDetail>? contact,
     this.description,
-    this.descriptionElement,
-    this.useContext,
-    this.jurisdiction,
+    ObjectBoxElement? descriptionElement,
+    List<ObjectBoxUsageContext>? useContext,
+    List<ObjectBoxCodeableConcept>? jurisdiction,
     this.purpose,
-    this.purposeElement,
+    ObjectBoxElement? purposeElement,
     this.copyright,
-    this.copyrightElement,
+    ObjectBoxElement? copyrightElement,
     required this.kind,
-    this.kindElement,
-    this.software,
-    this.implementation,
+    ObjectBoxElement? kindElement,
+    ObjectBoxTerminologyCapabilitiesSoftware? software,
+    ObjectBoxTerminologyCapabilitiesImplementation? implementation,
     this.lockedDate,
-    this.lockedDateElement,
-    this.codeSystem,
-    this.expansion,
+    ObjectBoxElement? lockedDateElement,
+    List<ObjectBoxTerminologyCapabilitiesCodeSystem>? codeSystem,
+    ObjectBoxTerminologyCapabilitiesExpansion? expansion,
     this.codeSearch,
-    this.codeSearchElement,
-    this.validateCode,
-    this.translation,
-    this.closure,
-  });
+    ObjectBoxElement? codeSearchElement,
+    ObjectBoxTerminologyCapabilitiesValidateCode? validateCode,
+    ObjectBoxTerminologyCapabilitiesTranslation? translation,
+    ObjectBoxTerminologyCapabilitiesClosure? closure,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.urlElement.target = urlElement;
+    this.versionElement.target = versionElement;
+    this.nameElement.target = nameElement;
+    this.titleElement.target = titleElement;
+    this.statusElement.target = statusElement;
+    this.experimentalElement.target = experimentalElement;
+    this.dateElement.target = dateElement;
+    this.publisherElement.target = publisherElement;
+    this.contact.addAll(contact ?? []);
+    this.descriptionElement.target = descriptionElement;
+    this.useContext.addAll(useContext ?? []);
+    this.jurisdiction.addAll(jurisdiction ?? []);
+    this.purposeElement.target = purposeElement;
+    this.copyrightElement.target = copyrightElement;
+    this.kindElement.target = kindElement;
+    this.software.target = software;
+    this.implementation.target = implementation;
+    this.lockedDateElement.target = lockedDateElement;
+    this.codeSystem.addAll(codeSystem ?? []);
+    this.expansion.target = expansion;
+    this.codeSearchElement.target = codeSearchElement;
+    this.validateCode.target = validateCode;
+    this.translation.target = translation;
+    this.closure.target = closure;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? url;
-  ToOne<ObjectBoxElement>? urlElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> urlElement = ToOne<ObjectBoxElement>();
   String? version;
-  ToOne<ObjectBoxElement>? versionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> versionElement = ToOne<ObjectBoxElement>();
   String? name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String? title;
-  ToOne<ObjectBoxElement>? titleElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> titleElement = ToOne<ObjectBoxElement>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
   bool? experimental;
-  ToOne<ObjectBoxElement>? experimentalElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> experimentalElement = ToOne<ObjectBoxElement>();
   String date;
-  ToOne<ObjectBoxElement>? dateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> dateElement = ToOne<ObjectBoxElement>();
   String? publisher;
-  ToOne<ObjectBoxElement>? publisherElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxContactDetail>? contact = ToMany<ObjectBoxContactDetail>();
+  ToOne<ObjectBoxElement> publisherElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxContactDetail> contact = ToMany<ObjectBoxContactDetail>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxUsageContext>? useContext = ToMany<ObjectBoxUsageContext>();
-  ToMany<ObjectBoxCodeableConcept>? jurisdiction =
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxUsageContext> useContext = ToMany<ObjectBoxUsageContext>();
+  ToMany<ObjectBoxCodeableConcept> jurisdiction =
       ToMany<ObjectBoxCodeableConcept>();
   String? purpose;
-  ToOne<ObjectBoxElement>? purposeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> purposeElement = ToOne<ObjectBoxElement>();
   String? copyright;
-  ToOne<ObjectBoxElement>? copyrightElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> copyrightElement = ToOne<ObjectBoxElement>();
   String kind;
-  ToOne<ObjectBoxElement>? kindElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxTerminologyCapabilitiesSoftware>? software =
+  ToOne<ObjectBoxElement> kindElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxTerminologyCapabilitiesSoftware> software =
       ToOne<ObjectBoxTerminologyCapabilitiesSoftware>();
-  ToOne<ObjectBoxTerminologyCapabilitiesImplementation>? implementation =
+  ToOne<ObjectBoxTerminologyCapabilitiesImplementation> implementation =
       ToOne<ObjectBoxTerminologyCapabilitiesImplementation>();
   bool? lockedDate;
-  ToOne<ObjectBoxElement>? lockedDateElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxTerminologyCapabilitiesCodeSystem>? codeSystem =
+  ToOne<ObjectBoxElement> lockedDateElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxTerminologyCapabilitiesCodeSystem> codeSystem =
       ToMany<ObjectBoxTerminologyCapabilitiesCodeSystem>();
-  ToOne<ObjectBoxTerminologyCapabilitiesExpansion>? expansion =
+  ToOne<ObjectBoxTerminologyCapabilitiesExpansion> expansion =
       ToOne<ObjectBoxTerminologyCapabilitiesExpansion>();
   String? codeSearch;
-  ToOne<ObjectBoxElement>? codeSearchElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxTerminologyCapabilitiesValidateCode>? validateCode =
+  ToOne<ObjectBoxElement> codeSearchElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxTerminologyCapabilitiesValidateCode> validateCode =
       ToOne<ObjectBoxTerminologyCapabilitiesValidateCode>();
-  ToOne<ObjectBoxTerminologyCapabilitiesTranslation>? translation =
+  ToOne<ObjectBoxTerminologyCapabilitiesTranslation> translation =
       ToOne<ObjectBoxTerminologyCapabilitiesTranslation>();
-  ToOne<ObjectBoxTerminologyCapabilitiesClosure>? closure =
+  ToOne<ObjectBoxTerminologyCapabilitiesClosure> closure =
       ToOne<ObjectBoxTerminologyCapabilitiesClosure>();
 }
 
 @Entity()
 class ObjectBoxTerminologyCapabilitiesSoftware {
   ObjectBoxTerminologyCapabilitiesSoftware({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     this.version,
-    this.versionElement,
-  });
+    ObjectBoxElement? versionElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.nameElement.target = nameElement;
+    this.versionElement.target = versionElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String? version;
-  ToOne<ObjectBoxElement>? versionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> versionElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxTerminologyCapabilitiesImplementation {
   ObjectBoxTerminologyCapabilitiesImplementation({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.description,
-    this.descriptionElement,
+    ObjectBoxElement? descriptionElement,
     this.url,
-    this.urlElement,
-  });
+    ObjectBoxElement? urlElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.descriptionElement.target = descriptionElement;
+    this.urlElement.target = urlElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
   String? url;
-  ToOne<ObjectBoxElement>? urlElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> urlElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxTerminologyCapabilitiesCodeSystem {
   ObjectBoxTerminologyCapabilitiesCodeSystem({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.uri,
-    this.uriElement,
-    this.version,
+    ObjectBoxElement? uriElement,
+    List<ObjectBoxTerminologyCapabilitiesVersion>? version,
     this.subsumption,
-    this.subsumptionElement,
-  });
+    ObjectBoxElement? subsumptionElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.uriElement.target = uriElement;
+    this.version.addAll(version ?? []);
+    this.subsumptionElement.target = subsumptionElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? uri;
-  ToOne<ObjectBoxElement>? uriElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxTerminologyCapabilitiesVersion>? version =
+  ToOne<ObjectBoxElement> uriElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxTerminologyCapabilitiesVersion> version =
       ToMany<ObjectBoxTerminologyCapabilitiesVersion>();
   bool? subsumption;
-  ToOne<ObjectBoxElement>? subsumptionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> subsumptionElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxTerminologyCapabilitiesVersion {
   ObjectBoxTerminologyCapabilitiesVersion({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.code,
-    this.codeElement,
+    ObjectBoxElement? codeElement,
     this.isDefault,
-    this.isDefaultElement,
+    ObjectBoxElement? isDefaultElement,
     this.compositional,
-    this.compositionalElement,
+    ObjectBoxElement? compositionalElement,
     this.language,
-    this.languageElement,
-    this.filter,
+    List<ObjectBoxElement>? languageElement,
+    List<ObjectBoxTerminologyCapabilitiesFilter>? filter,
     this.property,
-    this.propertyElement,
-  });
+    List<ObjectBoxElement>? propertyElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.codeElement.target = codeElement;
+    this.isDefaultElement.target = isDefaultElement;
+    this.compositionalElement.target = compositionalElement;
+    this.languageElement.addAll(languageElement ?? []);
+    this.filter.addAll(filter ?? []);
+    this.propertyElement.addAll(propertyElement ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? code;
-  ToOne<ObjectBoxElement>? codeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> codeElement = ToOne<ObjectBoxElement>();
   bool? isDefault;
-  ToOne<ObjectBoxElement>? isDefaultElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> isDefaultElement = ToOne<ObjectBoxElement>();
   bool? compositional;
-  ToOne<ObjectBoxElement>? compositionalElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> compositionalElement = ToOne<ObjectBoxElement>();
   List<String>? language;
-  ToMany<ObjectBoxElement>? languageElement = ToMany<ObjectBoxElement>();
-  ToMany<ObjectBoxTerminologyCapabilitiesFilter>? filter =
+  ToMany<ObjectBoxElement> languageElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxTerminologyCapabilitiesFilter> filter =
       ToMany<ObjectBoxTerminologyCapabilitiesFilter>();
   List<String>? property;
-  ToMany<ObjectBoxElement>? propertyElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> propertyElement = ToMany<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxTerminologyCapabilitiesFilter {
   ObjectBoxTerminologyCapabilitiesFilter({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.code,
-    this.codeElement,
+    ObjectBoxElement? codeElement,
     required this.op,
-    this.opElement,
-  });
+    List<ObjectBoxElement>? opElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.codeElement.target = codeElement;
+    this.opElement.addAll(opElement ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String code;
-  ToOne<ObjectBoxElement>? codeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> codeElement = ToOne<ObjectBoxElement>();
   List<String> op;
-  ToMany<ObjectBoxElement>? opElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> opElement = ToMany<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxTerminologyCapabilitiesExpansion {
   ObjectBoxTerminologyCapabilitiesExpansion({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.hierarchical,
-    this.hierarchicalElement,
+    ObjectBoxElement? hierarchicalElement,
     this.paging,
-    this.pagingElement,
+    ObjectBoxElement? pagingElement,
     this.incomplete,
-    this.incompleteElement,
-    this.parameter,
+    ObjectBoxElement? incompleteElement,
+    List<ObjectBoxTerminologyCapabilitiesParameter>? parameter,
     this.textFilter,
-    this.textFilterElement,
-  });
+    ObjectBoxElement? textFilterElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.hierarchicalElement.target = hierarchicalElement;
+    this.pagingElement.target = pagingElement;
+    this.incompleteElement.target = incompleteElement;
+    this.parameter.addAll(parameter ?? []);
+    this.textFilterElement.target = textFilterElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   bool? hierarchical;
-  ToOne<ObjectBoxElement>? hierarchicalElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> hierarchicalElement = ToOne<ObjectBoxElement>();
   bool? paging;
-  ToOne<ObjectBoxElement>? pagingElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> pagingElement = ToOne<ObjectBoxElement>();
   bool? incomplete;
-  ToOne<ObjectBoxElement>? incompleteElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxTerminologyCapabilitiesParameter>? parameter =
+  ToOne<ObjectBoxElement> incompleteElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxTerminologyCapabilitiesParameter> parameter =
       ToMany<ObjectBoxTerminologyCapabilitiesParameter>();
   String? textFilter;
-  ToOne<ObjectBoxElement>? textFilterElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> textFilterElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxTerminologyCapabilitiesParameter {
   ObjectBoxTerminologyCapabilitiesParameter({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     this.documentation,
-    this.documentationElement,
-  });
+    ObjectBoxElement? documentationElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.nameElement.target = nameElement;
+    this.documentationElement.target = documentationElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String? documentation;
-  ToOne<ObjectBoxElement>? documentationElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> documentationElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxTerminologyCapabilitiesValidateCode {
   ObjectBoxTerminologyCapabilitiesValidateCode({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.translations,
-    this.translationsElement,
-  });
+    ObjectBoxElement? translationsElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.translationsElement.target = translationsElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   bool translations;
-  ToOne<ObjectBoxElement>? translationsElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> translationsElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxTerminologyCapabilitiesTranslation {
   ObjectBoxTerminologyCapabilitiesTranslation({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.needsMap,
-    this.needsMapElement,
-  });
+    ObjectBoxElement? needsMapElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.needsMapElement.target = needsMapElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   bool needsMap;
-  ToOne<ObjectBoxElement>? needsMapElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> needsMapElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxTerminologyCapabilitiesClosure {
   ObjectBoxTerminologyCapabilitiesClosure({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.translation,
-    this.translationElement,
-  });
+    ObjectBoxElement? translationElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.translationElement.target = translationElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   bool? translation;
-  ToOne<ObjectBoxElement>? translationElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> translationElement = ToOne<ObjectBoxElement>();
 }

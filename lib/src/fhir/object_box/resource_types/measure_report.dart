@@ -6,177 +6,232 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxMeasureReport {
   ObjectBoxMeasureReport({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     required this.status,
-    this.statusElement,
+    ObjectBoxElement? statusElement,
     required this.type,
-    this.typeElement,
+    ObjectBoxElement? typeElement,
     required this.measure,
-    this.measureElement,
-    this.subject,
+    ObjectBoxElement? measureElement,
+    ObjectBoxReference? subject,
     this.date,
-    this.dateElement,
-    this.reporter,
-    required this.period,
-    this.improvementNotation,
-    this.group,
-    this.evaluatedResource,
-  });
+    ObjectBoxElement? dateElement,
+    ObjectBoxReference? reporter,
+    ObjectBoxPeriod? period,
+    ObjectBoxCodeableConcept? improvementNotation,
+    List<ObjectBoxMeasureReportGroup>? group,
+    List<ObjectBoxReference>? evaluatedResource,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.statusElement.target = statusElement;
+    this.typeElement.target = typeElement;
+    this.measureElement.target = measureElement;
+    this.subject.target = subject;
+    this.dateElement.target = dateElement;
+    this.reporter.target = reporter;
+    this.period.target = period;
+    this.improvementNotation.target = improvementNotation;
+    this.group.addAll(group ?? []);
+    this.evaluatedResource.addAll(evaluatedResource ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
   String type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
   String measure;
-  ToOne<ObjectBoxElement>? measureElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? subject = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> measureElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> subject = ToOne<ObjectBoxReference>();
   String? date;
-  ToOne<ObjectBoxElement>? dateElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? reporter = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> dateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> reporter = ToOne<ObjectBoxReference>();
   ToOne<ObjectBoxPeriod> period = ToOne<ObjectBoxPeriod>();
-  ToOne<ObjectBoxCodeableConcept>? improvementNotation =
+  ToOne<ObjectBoxCodeableConcept> improvementNotation =
       ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxMeasureReportGroup>? group =
+  ToMany<ObjectBoxMeasureReportGroup> group =
       ToMany<ObjectBoxMeasureReportGroup>();
-  ToMany<ObjectBoxReference>? evaluatedResource = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxReference> evaluatedResource = ToMany<ObjectBoxReference>();
 }
 
 @Entity()
 class ObjectBoxMeasureReportGroup {
   ObjectBoxMeasureReportGroup({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.code,
-    this.population,
-    this.measureScore,
-    this.stratifier,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? code,
+    List<ObjectBoxMeasureReportPopulation>? population,
+    ObjectBoxQuantity? measureScore,
+    List<ObjectBoxMeasureReportStratifier>? stratifier,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.code.target = code;
+    this.population.addAll(population ?? []);
+    this.measureScore.target = measureScore;
+    this.stratifier.addAll(stratifier ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxCodeableConcept>? code = ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxMeasureReportPopulation>? population =
+  ToOne<ObjectBoxCodeableConcept> code = ToOne<ObjectBoxCodeableConcept>();
+  ToMany<ObjectBoxMeasureReportPopulation> population =
       ToMany<ObjectBoxMeasureReportPopulation>();
-  ToOne<ObjectBoxQuantity>? measureScore = ToOne<ObjectBoxQuantity>();
-  ToMany<ObjectBoxMeasureReportStratifier>? stratifier =
+  ToOne<ObjectBoxQuantity> measureScore = ToOne<ObjectBoxQuantity>();
+  ToMany<ObjectBoxMeasureReportStratifier> stratifier =
       ToMany<ObjectBoxMeasureReportStratifier>();
 }
 
 @Entity()
 class ObjectBoxMeasureReportPopulation {
   ObjectBoxMeasureReportPopulation({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.code,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? code,
     this.count,
-    this.countElement,
-    this.subjectResults,
-  });
+    ObjectBoxElement? countElement,
+    ObjectBoxReference? subjectResults,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.code.target = code;
+    this.countElement.target = countElement;
+    this.subjectResults.target = subjectResults;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxCodeableConcept>? code = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxCodeableConcept> code = ToOne<ObjectBoxCodeableConcept>();
   int? count;
-  ToOne<ObjectBoxElement>? countElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? subjectResults = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> countElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> subjectResults = ToOne<ObjectBoxReference>();
 }
 
 @Entity()
 class ObjectBoxMeasureReportStratifier {
   ObjectBoxMeasureReportStratifier({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.code,
-    this.stratum,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxCodeableConcept>? code,
+    List<ObjectBoxMeasureReportStratum>? stratum,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.code.addAll(code ?? []);
+    this.stratum.addAll(stratum ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxCodeableConcept>? code = ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxMeasureReportStratum>? stratum =
+  ToMany<ObjectBoxCodeableConcept> code = ToMany<ObjectBoxCodeableConcept>();
+  ToMany<ObjectBoxMeasureReportStratum> stratum =
       ToMany<ObjectBoxMeasureReportStratum>();
 }
 
 @Entity()
 class ObjectBoxMeasureReportStratum {
   ObjectBoxMeasureReportStratum({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.value,
-    this.component,
-    this.population,
-    this.measureScore,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? value,
+    List<ObjectBoxMeasureReportComponent>? component,
+    List<ObjectBoxMeasureReportPopulation>? population,
+    ObjectBoxQuantity? measureScore,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.value.target = value;
+    this.component.addAll(component ?? []);
+    this.population.addAll(population ?? []);
+    this.measureScore.target = measureScore;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxCodeableConcept>? value = ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxMeasureReportComponent>? component =
+  ToOne<ObjectBoxCodeableConcept> value = ToOne<ObjectBoxCodeableConcept>();
+  ToMany<ObjectBoxMeasureReportComponent> component =
       ToMany<ObjectBoxMeasureReportComponent>();
-  ToMany<ObjectBoxMeasureReportPopulation>? population =
+  ToMany<ObjectBoxMeasureReportPopulation> population =
       ToMany<ObjectBoxMeasureReportPopulation>();
-  ToOne<ObjectBoxQuantity>? measureScore = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxQuantity> measureScore = ToOne<ObjectBoxQuantity>();
 }
 
 @Entity()
 class ObjectBoxMeasureReportComponent {
   ObjectBoxMeasureReportComponent({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.code,
-    required this.value,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? code,
+    ObjectBoxCodeableConcept? value,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.code.target = code;
+    this.value.target = value;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxCodeableConcept> code = ToOne<ObjectBoxCodeableConcept>();
   ToOne<ObjectBoxCodeableConcept> value = ToOne<ObjectBoxCodeableConcept>();
@@ -185,23 +240,30 @@ class ObjectBoxMeasureReportComponent {
 @Entity()
 class ObjectBoxMeasureReportPopulation1 {
   ObjectBoxMeasureReportPopulation1({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.code,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? code,
     this.count,
-    this.countElement,
-    this.subjectResults,
-  });
+    ObjectBoxElement? countElement,
+    ObjectBoxReference? subjectResults,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.code.target = code;
+    this.countElement.target = countElement;
+    this.subjectResults.target = subjectResults;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxCodeableConcept>? code = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxCodeableConcept> code = ToOne<ObjectBoxCodeableConcept>();
   int? count;
-  ToOne<ObjectBoxElement>? countElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? subjectResults = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> countElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> subjectResults = ToOne<ObjectBoxReference>();
 }

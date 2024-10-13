@@ -6,42 +6,56 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxImmunizationRecommendation {
   ObjectBoxImmunizationRecommendation({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
-    required this.patient,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
+    ObjectBoxReference? patient,
     required this.date,
-    this.dateElement,
-    this.authority,
-    required this.recommendation,
-  });
+    ObjectBoxElement? dateElement,
+    ObjectBoxReference? authority,
+    List<ObjectBoxImmunizationRecommendationRecommendation>? recommendation,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.patient.target = patient;
+    this.dateElement.target = dateElement;
+    this.authority.target = authority;
+    this.recommendation.addAll(recommendation ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   ToOne<ObjectBoxReference> patient = ToOne<ObjectBoxReference>();
   String date;
-  ToOne<ObjectBoxElement>? dateElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? authority = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> dateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> authority = ToOne<ObjectBoxReference>();
   ToMany<ObjectBoxImmunizationRecommendationRecommendation> recommendation =
       ToMany<ObjectBoxImmunizationRecommendationRecommendation>();
 }
@@ -49,87 +63,113 @@ class ObjectBoxImmunizationRecommendation {
 @Entity()
 class ObjectBoxImmunizationRecommendationRecommendation {
   ObjectBoxImmunizationRecommendationRecommendation({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.vaccineCode,
-    this.targetDisease,
-    this.contraindicatedVaccineCode,
-    required this.forecastStatus,
-    this.forecastReason,
-    this.dateCriterion,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxCodeableConcept>? vaccineCode,
+    ObjectBoxCodeableConcept? targetDisease,
+    List<ObjectBoxCodeableConcept>? contraindicatedVaccineCode,
+    ObjectBoxCodeableConcept? forecastStatus,
+    List<ObjectBoxCodeableConcept>? forecastReason,
+    List<ObjectBoxImmunizationRecommendationDateCriterion>? dateCriterion,
     this.description,
-    this.descriptionElement,
+    ObjectBoxElement? descriptionElement,
     this.series,
-    this.seriesElement,
+    ObjectBoxElement? seriesElement,
     this.doseNumberPositiveInt,
-    this.doseNumberPositiveIntElement,
+    ObjectBoxElement? doseNumberPositiveIntElement,
     this.doseNumberString,
-    this.doseNumberStringElement,
+    ObjectBoxElement? doseNumberStringElement,
     this.seriesDosesPositiveInt,
-    this.seriesDosesPositiveIntElement,
+    ObjectBoxElement? seriesDosesPositiveIntElement,
     this.seriesDosesString,
-    this.seriesDosesStringElement,
-    this.supportingImmunization,
-    this.supportingPatientInformation,
-  });
+    ObjectBoxElement? seriesDosesStringElement,
+    List<ObjectBoxReference>? supportingImmunization,
+    List<ObjectBoxReference>? supportingPatientInformation,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.vaccineCode.addAll(vaccineCode ?? []);
+    this.targetDisease.target = targetDisease;
+    this.contraindicatedVaccineCode.addAll(contraindicatedVaccineCode ?? []);
+    this.forecastStatus.target = forecastStatus;
+    this.forecastReason.addAll(forecastReason ?? []);
+    this.dateCriterion.addAll(dateCriterion ?? []);
+    this.descriptionElement.target = descriptionElement;
+    this.seriesElement.target = seriesElement;
+    this.doseNumberPositiveIntElement.target = doseNumberPositiveIntElement;
+    this.doseNumberStringElement.target = doseNumberStringElement;
+    this.seriesDosesPositiveIntElement.target = seriesDosesPositiveIntElement;
+    this.seriesDosesStringElement.target = seriesDosesStringElement;
+    this.supportingImmunization.addAll(supportingImmunization ?? []);
+    this
+        .supportingPatientInformation
+        .addAll(supportingPatientInformation ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxCodeableConcept>? vaccineCode =
+  ToMany<ObjectBoxCodeableConcept> vaccineCode =
       ToMany<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? targetDisease =
+  ToOne<ObjectBoxCodeableConcept> targetDisease =
       ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCodeableConcept>? contraindicatedVaccineCode =
+  ToMany<ObjectBoxCodeableConcept> contraindicatedVaccineCode =
       ToMany<ObjectBoxCodeableConcept>();
   ToOne<ObjectBoxCodeableConcept> forecastStatus =
       ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCodeableConcept>? forecastReason =
+  ToMany<ObjectBoxCodeableConcept> forecastReason =
       ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxImmunizationRecommendationDateCriterion>? dateCriterion =
+  ToMany<ObjectBoxImmunizationRecommendationDateCriterion> dateCriterion =
       ToMany<ObjectBoxImmunizationRecommendationDateCriterion>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
   String? series;
-  ToOne<ObjectBoxElement>? seriesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> seriesElement = ToOne<ObjectBoxElement>();
   int? doseNumberPositiveInt;
-  ToOne<ObjectBoxElement>? doseNumberPositiveIntElement =
+  ToOne<ObjectBoxElement> doseNumberPositiveIntElement =
       ToOne<ObjectBoxElement>();
   String? doseNumberString;
-  ToOne<ObjectBoxElement>? doseNumberStringElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> doseNumberStringElement = ToOne<ObjectBoxElement>();
   int? seriesDosesPositiveInt;
-  ToOne<ObjectBoxElement>? seriesDosesPositiveIntElement =
+  ToOne<ObjectBoxElement> seriesDosesPositiveIntElement =
       ToOne<ObjectBoxElement>();
   String? seriesDosesString;
-  ToOne<ObjectBoxElement>? seriesDosesStringElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxReference>? supportingImmunization =
+  ToOne<ObjectBoxElement> seriesDosesStringElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxReference> supportingImmunization =
       ToMany<ObjectBoxReference>();
-  ToMany<ObjectBoxReference>? supportingPatientInformation =
+  ToMany<ObjectBoxReference> supportingPatientInformation =
       ToMany<ObjectBoxReference>();
 }
 
 @Entity()
 class ObjectBoxImmunizationRecommendationDateCriterion {
   ObjectBoxImmunizationRecommendationDateCriterion({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.code,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? code,
     required this.value,
-    this.valueElement,
-  });
+    ObjectBoxElement? valueElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.code.target = code;
+    this.valueElement.target = valueElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxCodeableConcept> code = ToOne<ObjectBoxCodeableConcept>();
   String value;
-  ToOne<ObjectBoxElement>? valueElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueElement = ToOne<ObjectBoxElement>();
 }

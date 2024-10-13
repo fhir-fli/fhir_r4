@@ -6,20 +6,25 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxNarrative {
   ObjectBoxNarrative({
-    this.id,
-    this.extension_,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
     required this.status,
-    this.statusElement,
+    ObjectBoxElement? statusElement,
     required this.div,
-    this.divElement,
-  });
+    ObjectBoxElement? divElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.statusElement.target = statusElement;
+    this.divElement.target = divElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
   String div;
-  ToOne<ObjectBoxElement>? divElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> divElement = ToOne<ObjectBoxElement>();
 }

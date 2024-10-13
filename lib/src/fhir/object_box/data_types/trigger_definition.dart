@@ -6,36 +6,47 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxTriggerDefinition {
   ObjectBoxTriggerDefinition({
-    this.id,
-    this.extension_,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
     required this.type,
-    this.typeElement,
+    ObjectBoxElement? typeElement,
     this.name,
-    this.nameElement,
-    this.timingTiming,
-    this.timingReference,
+    ObjectBoxElement? nameElement,
+    ObjectBoxTiming? timingTiming,
+    ObjectBoxReference? timingReference,
     this.timingDate,
-    this.timingDateElement,
+    ObjectBoxElement? timingDateElement,
     this.timingDateTime,
-    this.timingDateTimeElement,
-    this.data,
-    this.condition,
-  });
+    ObjectBoxElement? timingDateTimeElement,
+    List<ObjectBoxDataRequirement>? data,
+    ObjectBoxFhirExpression? condition,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.typeElement.target = typeElement;
+    this.nameElement.target = nameElement;
+    this.timingTiming.target = timingTiming;
+    this.timingReference.target = timingReference;
+    this.timingDateElement.target = timingDateElement;
+    this.timingDateTimeElement.target = timingDateTimeElement;
+    this.data.addAll(data ?? []);
+    this.condition.target = condition;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
   String? name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxTiming>? timingTiming = ToOne<ObjectBoxTiming>();
-  ToOne<ObjectBoxReference>? timingReference = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxTiming> timingTiming = ToOne<ObjectBoxTiming>();
+  ToOne<ObjectBoxReference> timingReference = ToOne<ObjectBoxReference>();
   String? timingDate;
-  ToOne<ObjectBoxElement>? timingDateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> timingDateElement = ToOne<ObjectBoxElement>();
   String? timingDateTime;
-  ToOne<ObjectBoxElement>? timingDateTimeElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxDataRequirement>? data = ToMany<ObjectBoxDataRequirement>();
-  ToOne<ObjectBoxFhirExpression>? condition = ToOne<ObjectBoxFhirExpression>();
+  ToOne<ObjectBoxElement> timingDateTimeElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxDataRequirement> data = ToMany<ObjectBoxDataRequirement>();
+  ToOne<ObjectBoxFhirExpression> condition = ToOne<ObjectBoxFhirExpression>();
 }

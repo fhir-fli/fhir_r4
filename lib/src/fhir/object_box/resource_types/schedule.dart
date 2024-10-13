@@ -6,52 +6,69 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxSchedule {
   ObjectBoxSchedule({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     this.active,
-    this.activeElement,
-    this.serviceCategory,
-    this.serviceType,
-    this.specialty,
-    required this.actor,
-    this.planningHorizon,
+    ObjectBoxElement? activeElement,
+    List<ObjectBoxCodeableConcept>? serviceCategory,
+    List<ObjectBoxCodeableConcept>? serviceType,
+    List<ObjectBoxCodeableConcept>? specialty,
+    List<ObjectBoxReference>? actor,
+    ObjectBoxPeriod? planningHorizon,
     this.comment,
-    this.commentElement,
-  });
+    ObjectBoxElement? commentElement,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.activeElement.target = activeElement;
+    this.serviceCategory.addAll(serviceCategory ?? []);
+    this.serviceType.addAll(serviceType ?? []);
+    this.specialty.addAll(specialty ?? []);
+    this.actor.addAll(actor ?? []);
+    this.planningHorizon.target = planningHorizon;
+    this.commentElement.target = commentElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   bool? active;
-  ToOne<ObjectBoxElement>? activeElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxCodeableConcept>? serviceCategory =
+  ToOne<ObjectBoxElement> activeElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxCodeableConcept> serviceCategory =
       ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCodeableConcept>? serviceType =
+  ToMany<ObjectBoxCodeableConcept> serviceType =
       ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCodeableConcept>? specialty =
+  ToMany<ObjectBoxCodeableConcept> specialty =
       ToMany<ObjectBoxCodeableConcept>();
   ToMany<ObjectBoxReference> actor = ToMany<ObjectBoxReference>();
-  ToOne<ObjectBoxPeriod>? planningHorizon = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxPeriod> planningHorizon = ToOne<ObjectBoxPeriod>();
   String? comment;
-  ToOne<ObjectBoxElement>? commentElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> commentElement = ToOne<ObjectBoxElement>();
 }

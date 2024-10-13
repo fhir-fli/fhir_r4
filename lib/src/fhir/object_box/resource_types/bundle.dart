@@ -6,192 +6,245 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxBundle {
   ObjectBoxBundle({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxIdentifier? identifier,
     required this.type,
-    this.typeElement,
+    ObjectBoxElement? typeElement,
     this.timestamp,
-    this.timestampElement,
+    ObjectBoxElement? timestampElement,
     this.total,
-    this.totalElement,
-    this.link,
-    this.entry,
-    this.signature,
-  });
+    ObjectBoxElement? totalElement,
+    List<ObjectBoxBundleLink>? link,
+    List<ObjectBoxBundleEntry>? entry,
+    ObjectBoxSignature? signature,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.identifier.target = identifier;
+    this.typeElement.target = typeElement;
+    this.timestampElement.target = timestampElement;
+    this.totalElement.target = totalElement;
+    this.link.addAll(link ?? []);
+    this.entry.addAll(entry ?? []);
+    this.signature.target = signature;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxIdentifier>? identifier = ToOne<ObjectBoxIdentifier>();
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxIdentifier> identifier = ToOne<ObjectBoxIdentifier>();
   String type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
   String? timestamp;
-  ToOne<ObjectBoxElement>? timestampElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> timestampElement = ToOne<ObjectBoxElement>();
   int? total;
-  ToOne<ObjectBoxElement>? totalElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxBundleLink>? link = ToMany<ObjectBoxBundleLink>();
-  ToMany<ObjectBoxBundleEntry>? entry = ToMany<ObjectBoxBundleEntry>();
-  ToOne<ObjectBoxSignature>? signature = ToOne<ObjectBoxSignature>();
+  ToOne<ObjectBoxElement> totalElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxBundleLink> link = ToMany<ObjectBoxBundleLink>();
+  ToMany<ObjectBoxBundleEntry> entry = ToMany<ObjectBoxBundleEntry>();
+  ToOne<ObjectBoxSignature> signature = ToOne<ObjectBoxSignature>();
 }
 
 @Entity()
 class ObjectBoxBundleLink {
   ObjectBoxBundleLink({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.relation,
-    this.relationElement,
+    ObjectBoxElement? relationElement,
     required this.url,
-    this.urlElement,
-  });
+    ObjectBoxElement? urlElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.relationElement.target = relationElement;
+    this.urlElement.target = urlElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String relation;
-  ToOne<ObjectBoxElement>? relationElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> relationElement = ToOne<ObjectBoxElement>();
   String url;
-  ToOne<ObjectBoxElement>? urlElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> urlElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxBundleEntry {
   ObjectBoxBundleEntry({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.link,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxBundleLink>? link,
     this.fullUrl,
-    this.fullUrlElement,
-    this.resource,
-    this.search,
-    this.request,
-    this.response,
-  });
+    ObjectBoxElement? fullUrlElement,
+    ObjectBoxResource? resource,
+    ObjectBoxBundleSearch? search,
+    ObjectBoxBundleRequest? request,
+    ObjectBoxBundleResponse? response,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.link.addAll(link ?? []);
+    this.fullUrlElement.target = fullUrlElement;
+    this.resource.target = resource;
+    this.search.target = search;
+    this.request.target = request;
+    this.response.target = response;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxBundleLink>? link = ToMany<ObjectBoxBundleLink>();
+  ToMany<ObjectBoxBundleLink> link = ToMany<ObjectBoxBundleLink>();
   String? fullUrl;
-  ToOne<ObjectBoxElement>? fullUrlElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxResource>? resource = ToOne<ObjectBoxResource>();
-  ToOne<ObjectBoxBundleSearch>? search = ToOne<ObjectBoxBundleSearch>();
-  ToOne<ObjectBoxBundleRequest>? request = ToOne<ObjectBoxBundleRequest>();
-  ToOne<ObjectBoxBundleResponse>? response = ToOne<ObjectBoxBundleResponse>();
+  ToOne<ObjectBoxElement> fullUrlElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxResource> resource = ToOne<ObjectBoxResource>();
+  ToOne<ObjectBoxBundleSearch> search = ToOne<ObjectBoxBundleSearch>();
+  ToOne<ObjectBoxBundleRequest> request = ToOne<ObjectBoxBundleRequest>();
+  ToOne<ObjectBoxBundleResponse> response = ToOne<ObjectBoxBundleResponse>();
 }
 
 @Entity()
 class ObjectBoxBundleSearch {
   ObjectBoxBundleSearch({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.mode,
-    this.modeElement,
+    ObjectBoxElement? modeElement,
     this.score,
-    this.scoreElement,
-  });
+    ObjectBoxElement? scoreElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.modeElement.target = modeElement;
+    this.scoreElement.target = scoreElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? mode;
-  ToOne<ObjectBoxElement>? modeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> modeElement = ToOne<ObjectBoxElement>();
   double? score;
-  ToOne<ObjectBoxElement>? scoreElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> scoreElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxBundleRequest {
   ObjectBoxBundleRequest({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.method,
-    this.methodElement,
+    ObjectBoxElement? methodElement,
     required this.url,
-    this.urlElement,
+    ObjectBoxElement? urlElement,
     this.ifNoneMatch,
-    this.ifNoneMatchElement,
+    ObjectBoxElement? ifNoneMatchElement,
     this.ifModifiedSince,
-    this.ifModifiedSinceElement,
+    ObjectBoxElement? ifModifiedSinceElement,
     this.ifMatch,
-    this.ifMatchElement,
+    ObjectBoxElement? ifMatchElement,
     this.ifNoneExist,
-    this.ifNoneExistElement,
-  });
+    ObjectBoxElement? ifNoneExistElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.methodElement.target = methodElement;
+    this.urlElement.target = urlElement;
+    this.ifNoneMatchElement.target = ifNoneMatchElement;
+    this.ifModifiedSinceElement.target = ifModifiedSinceElement;
+    this.ifMatchElement.target = ifMatchElement;
+    this.ifNoneExistElement.target = ifNoneExistElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String method;
-  ToOne<ObjectBoxElement>? methodElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> methodElement = ToOne<ObjectBoxElement>();
   String url;
-  ToOne<ObjectBoxElement>? urlElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> urlElement = ToOne<ObjectBoxElement>();
   String? ifNoneMatch;
-  ToOne<ObjectBoxElement>? ifNoneMatchElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> ifNoneMatchElement = ToOne<ObjectBoxElement>();
   String? ifModifiedSince;
-  ToOne<ObjectBoxElement>? ifModifiedSinceElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> ifModifiedSinceElement = ToOne<ObjectBoxElement>();
   String? ifMatch;
-  ToOne<ObjectBoxElement>? ifMatchElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> ifMatchElement = ToOne<ObjectBoxElement>();
   String? ifNoneExist;
-  ToOne<ObjectBoxElement>? ifNoneExistElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> ifNoneExistElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxBundleResponse {
   ObjectBoxBundleResponse({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.status,
-    this.statusElement,
+    ObjectBoxElement? statusElement,
     this.location,
-    this.locationElement,
+    ObjectBoxElement? locationElement,
     this.etag,
-    this.etagElement,
+    ObjectBoxElement? etagElement,
     this.lastModified,
-    this.lastModifiedElement,
-    this.outcome,
-  });
+    ObjectBoxElement? lastModifiedElement,
+    ObjectBoxResource? outcome,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.statusElement.target = statusElement;
+    this.locationElement.target = locationElement;
+    this.etagElement.target = etagElement;
+    this.lastModifiedElement.target = lastModifiedElement;
+    this.outcome.target = outcome;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
   String? location;
-  ToOne<ObjectBoxElement>? locationElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> locationElement = ToOne<ObjectBoxElement>();
   String? etag;
-  ToOne<ObjectBoxElement>? etagElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> etagElement = ToOne<ObjectBoxElement>();
   String? lastModified;
-  ToOne<ObjectBoxElement>? lastModifiedElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxResource>? outcome = ToOne<ObjectBoxResource>();
+  ToOne<ObjectBoxElement> lastModifiedElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxResource> outcome = ToOne<ObjectBoxResource>();
 }

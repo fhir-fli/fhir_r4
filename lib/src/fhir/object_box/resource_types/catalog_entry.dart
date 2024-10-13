@@ -6,90 +6,118 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxCatalogEntry {
   ObjectBoxCatalogEntry({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
-    this.type,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
+    ObjectBoxCodeableConcept? type,
     required this.orderable,
-    this.orderableElement,
-    required this.referencedItem,
-    this.additionalIdentifier,
-    this.classification,
+    ObjectBoxElement? orderableElement,
+    ObjectBoxReference? referencedItem,
+    List<ObjectBoxIdentifier>? additionalIdentifier,
+    List<ObjectBoxCodeableConcept>? classification,
     this.status,
-    this.statusElement,
-    this.validityPeriod,
+    ObjectBoxElement? statusElement,
+    ObjectBoxPeriod? validityPeriod,
     this.validTo,
-    this.validToElement,
+    ObjectBoxElement? validToElement,
     this.lastUpdated,
-    this.lastUpdatedElement,
-    this.additionalCharacteristic,
-    this.additionalClassification,
-    this.relatedEntry,
-  });
+    ObjectBoxElement? lastUpdatedElement,
+    List<ObjectBoxCodeableConcept>? additionalCharacteristic,
+    List<ObjectBoxCodeableConcept>? additionalClassification,
+    List<ObjectBoxCatalogEntryRelatedEntry>? relatedEntry,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.type.target = type;
+    this.orderableElement.target = orderableElement;
+    this.referencedItem.target = referencedItem;
+    this.additionalIdentifier.addAll(additionalIdentifier ?? []);
+    this.classification.addAll(classification ?? []);
+    this.statusElement.target = statusElement;
+    this.validityPeriod.target = validityPeriod;
+    this.validToElement.target = validToElement;
+    this.lastUpdatedElement.target = lastUpdatedElement;
+    this.additionalCharacteristic.addAll(additionalCharacteristic ?? []);
+    this.additionalClassification.addAll(additionalClassification ?? []);
+    this.relatedEntry.addAll(relatedEntry ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
-  ToOne<ObjectBoxCodeableConcept>? type = ToOne<ObjectBoxCodeableConcept>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
+  ToOne<ObjectBoxCodeableConcept> type = ToOne<ObjectBoxCodeableConcept>();
   bool orderable;
-  ToOne<ObjectBoxElement>? orderableElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> orderableElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxReference> referencedItem = ToOne<ObjectBoxReference>();
-  ToMany<ObjectBoxIdentifier>? additionalIdentifier =
+  ToMany<ObjectBoxIdentifier> additionalIdentifier =
       ToMany<ObjectBoxIdentifier>();
-  ToMany<ObjectBoxCodeableConcept>? classification =
+  ToMany<ObjectBoxCodeableConcept> classification =
       ToMany<ObjectBoxCodeableConcept>();
   String? status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? validityPeriod = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> validityPeriod = ToOne<ObjectBoxPeriod>();
   String? validTo;
-  ToOne<ObjectBoxElement>? validToElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> validToElement = ToOne<ObjectBoxElement>();
   String? lastUpdated;
-  ToOne<ObjectBoxElement>? lastUpdatedElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxCodeableConcept>? additionalCharacteristic =
+  ToOne<ObjectBoxElement> lastUpdatedElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxCodeableConcept> additionalCharacteristic =
       ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCodeableConcept>? additionalClassification =
+  ToMany<ObjectBoxCodeableConcept> additionalClassification =
       ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCatalogEntryRelatedEntry>? relatedEntry =
+  ToMany<ObjectBoxCatalogEntryRelatedEntry> relatedEntry =
       ToMany<ObjectBoxCatalogEntryRelatedEntry>();
 }
 
 @Entity()
 class ObjectBoxCatalogEntryRelatedEntry {
   ObjectBoxCatalogEntryRelatedEntry({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.relationtype,
-    this.relationtypeElement,
-    required this.item,
-  });
+    ObjectBoxElement? relationtypeElement,
+    ObjectBoxReference? item,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.relationtypeElement.target = relationtypeElement;
+    this.item.target = item;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String relationtype;
-  ToOne<ObjectBoxElement>? relationtypeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> relationtypeElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxReference> item = ToOne<ObjectBoxReference>();
 }

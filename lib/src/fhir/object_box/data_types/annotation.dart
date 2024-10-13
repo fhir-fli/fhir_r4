@@ -6,26 +6,33 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxAnnotation {
   ObjectBoxAnnotation({
-    this.id,
-    this.extension_,
-    this.authorReference,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    ObjectBoxReference? authorReference,
     this.authorString,
-    this.authorStringElement,
+    ObjectBoxElement? authorStringElement,
     this.time,
-    this.timeElement,
+    ObjectBoxElement? timeElement,
     required this.text,
-    this.textElement,
-  });
+    ObjectBoxElement? textElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.authorReference.target = authorReference;
+    this.authorStringElement.target = authorStringElement;
+    this.timeElement.target = timeElement;
+    this.textElement.target = textElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxReference>? authorReference = ToOne<ObjectBoxReference>();
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToOne<ObjectBoxReference> authorReference = ToOne<ObjectBoxReference>();
   String? authorString;
-  ToOne<ObjectBoxElement>? authorStringElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> authorStringElement = ToOne<ObjectBoxElement>();
   String? time;
-  ToOne<ObjectBoxElement>? timeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> timeElement = ToOne<ObjectBoxElement>();
   String text;
-  ToOne<ObjectBoxElement>? textElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> textElement = ToOne<ObjectBoxElement>();
 }

@@ -6,97 +6,127 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxSubstance {
   ObjectBoxSubstance({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     this.status,
-    this.statusElement,
-    this.category,
-    required this.code,
+    ObjectBoxElement? statusElement,
+    List<ObjectBoxCodeableConcept>? category,
+    ObjectBoxCodeableConcept? code,
     this.description,
-    this.descriptionElement,
-    this.instance,
-    this.ingredient,
-  });
+    ObjectBoxElement? descriptionElement,
+    List<ObjectBoxSubstanceInstance>? instance,
+    List<ObjectBoxSubstanceIngredient>? ingredient,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.statusElement.target = statusElement;
+    this.category.addAll(category ?? []);
+    this.code.target = code;
+    this.descriptionElement.target = descriptionElement;
+    this.instance.addAll(instance ?? []);
+    this.ingredient.addAll(ingredient ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   String? status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxCodeableConcept>? category =
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxCodeableConcept> category =
       ToMany<ObjectBoxCodeableConcept>();
   ToOne<ObjectBoxCodeableConcept> code = ToOne<ObjectBoxCodeableConcept>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxSubstanceInstance>? instance =
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxSubstanceInstance> instance =
       ToMany<ObjectBoxSubstanceInstance>();
-  ToMany<ObjectBoxSubstanceIngredient>? ingredient =
+  ToMany<ObjectBoxSubstanceIngredient> ingredient =
       ToMany<ObjectBoxSubstanceIngredient>();
 }
 
 @Entity()
 class ObjectBoxSubstanceInstance {
   ObjectBoxSubstanceInstance({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxIdentifier? identifier,
     this.expiry,
-    this.expiryElement,
-    this.quantity,
-  });
+    ObjectBoxElement? expiryElement,
+    ObjectBoxQuantity? quantity,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.target = identifier;
+    this.expiryElement.target = expiryElement;
+    this.quantity.target = quantity;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxIdentifier>? identifier = ToOne<ObjectBoxIdentifier>();
+  ToOne<ObjectBoxIdentifier> identifier = ToOne<ObjectBoxIdentifier>();
   String? expiry;
-  ToOne<ObjectBoxElement>? expiryElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxQuantity>? quantity = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxElement> expiryElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxQuantity> quantity = ToOne<ObjectBoxQuantity>();
 }
 
 @Entity()
 class ObjectBoxSubstanceIngredient {
   ObjectBoxSubstanceIngredient({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.quantity,
-    this.substanceCodeableConcept,
-    this.substanceReference,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxRatio? quantity,
+    ObjectBoxCodeableConcept? substanceCodeableConcept,
+    ObjectBoxReference? substanceReference,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.quantity.target = quantity;
+    this.substanceCodeableConcept.target = substanceCodeableConcept;
+    this.substanceReference.target = substanceReference;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxRatio>? quantity = ToOne<ObjectBoxRatio>();
-  ToOne<ObjectBoxCodeableConcept>? substanceCodeableConcept =
+  ToOne<ObjectBoxRatio> quantity = ToOne<ObjectBoxRatio>();
+  ToOne<ObjectBoxCodeableConcept> substanceCodeableConcept =
       ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxReference>? substanceReference = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> substanceReference = ToOne<ObjectBoxReference>();
 }

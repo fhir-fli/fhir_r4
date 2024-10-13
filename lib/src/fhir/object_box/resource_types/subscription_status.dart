@@ -6,81 +6,106 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxSubscriptionStatus {
   ObjectBoxSubscriptionStatus({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.status,
-    this.statusElement,
+    ObjectBoxElement? statusElement,
     required this.type,
-    this.typeElement,
+    ObjectBoxElement? typeElement,
     this.eventsSinceSubscriptionStart,
-    this.eventsSinceSubscriptionStartElement,
-    this.notificationEvent,
-    required this.subscription,
+    ObjectBoxElement? eventsSinceSubscriptionStartElement,
+    List<ObjectBoxSubscriptionStatusNotificationEvent>? notificationEvent,
+    ObjectBoxReference? subscription,
     this.topic,
-    this.topicElement,
-    this.error,
-  });
+    ObjectBoxElement? topicElement,
+    List<ObjectBoxCodeableConcept>? error,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.statusElement.target = statusElement;
+    this.typeElement.target = typeElement;
+    this.eventsSinceSubscriptionStartElement.target =
+        eventsSinceSubscriptionStartElement;
+    this.notificationEvent.addAll(notificationEvent ?? []);
+    this.subscription.target = subscription;
+    this.topicElement.target = topicElement;
+    this.error.addAll(error ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
   String type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
   String? eventsSinceSubscriptionStart;
-  ToOne<ObjectBoxElement>? eventsSinceSubscriptionStartElement =
+  ToOne<ObjectBoxElement> eventsSinceSubscriptionStartElement =
       ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxSubscriptionStatusNotificationEvent>? notificationEvent =
+  ToMany<ObjectBoxSubscriptionStatusNotificationEvent> notificationEvent =
       ToMany<ObjectBoxSubscriptionStatusNotificationEvent>();
   ToOne<ObjectBoxReference> subscription = ToOne<ObjectBoxReference>();
   String? topic;
-  ToOne<ObjectBoxElement>? topicElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxCodeableConcept>? error = ToMany<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxElement> topicElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxCodeableConcept> error = ToMany<ObjectBoxCodeableConcept>();
 }
 
 @Entity()
 class ObjectBoxSubscriptionStatusNotificationEvent {
   ObjectBoxSubscriptionStatusNotificationEvent({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.eventNumber,
-    this.eventNumberElement,
+    ObjectBoxElement? eventNumberElement,
     this.timestamp,
-    this.timestampElement,
-    this.focus,
-    this.additionalContext,
-  });
+    ObjectBoxElement? timestampElement,
+    ObjectBoxReference? focus,
+    List<ObjectBoxReference>? additionalContext,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.eventNumberElement.target = eventNumberElement;
+    this.timestampElement.target = timestampElement;
+    this.focus.target = focus;
+    this.additionalContext.addAll(additionalContext ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String eventNumber;
-  ToOne<ObjectBoxElement>? eventNumberElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> eventNumberElement = ToOne<ObjectBoxElement>();
   String? timestamp;
-  ToOne<ObjectBoxElement>? timestampElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? focus = ToOne<ObjectBoxReference>();
-  ToMany<ObjectBoxReference>? additionalContext = ToMany<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> timestampElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> focus = ToOne<ObjectBoxReference>();
+  ToMany<ObjectBoxReference> additionalContext = ToMany<ObjectBoxReference>();
 }

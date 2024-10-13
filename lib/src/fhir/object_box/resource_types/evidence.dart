@@ -6,345 +6,450 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxEvidence {
   ObjectBoxEvidence({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.url,
-    this.urlElement,
-    this.identifier,
+    ObjectBoxElement? urlElement,
+    List<ObjectBoxIdentifier>? identifier,
     this.version,
-    this.versionElement,
+    ObjectBoxElement? versionElement,
     this.title,
-    this.titleElement,
-    this.citeAsReference,
+    ObjectBoxElement? titleElement,
+    ObjectBoxReference? citeAsReference,
     this.citeAsMarkdown,
-    this.citeAsMarkdownElement,
+    ObjectBoxElement? citeAsMarkdownElement,
     required this.status,
-    this.statusElement,
+    ObjectBoxElement? statusElement,
     this.date,
-    this.dateElement,
-    this.useContext,
+    ObjectBoxElement? dateElement,
+    List<ObjectBoxUsageContext>? useContext,
     this.approvalDate,
-    this.approvalDateElement,
+    ObjectBoxElement? approvalDateElement,
     this.lastReviewDate,
-    this.lastReviewDateElement,
+    ObjectBoxElement? lastReviewDateElement,
     this.publisher,
-    this.publisherElement,
-    this.contact,
-    this.author,
-    this.editor,
-    this.reviewer,
-    this.endorser,
-    this.relatedArtifact,
+    ObjectBoxElement? publisherElement,
+    List<ObjectBoxContactDetail>? contact,
+    List<ObjectBoxContactDetail>? author,
+    List<ObjectBoxContactDetail>? editor,
+    List<ObjectBoxContactDetail>? reviewer,
+    List<ObjectBoxContactDetail>? endorser,
+    List<ObjectBoxRelatedArtifact>? relatedArtifact,
     this.description,
-    this.descriptionElement,
+    ObjectBoxElement? descriptionElement,
     this.assertion,
-    this.assertionElement,
-    this.note,
-    required this.variableDefinition,
-    this.synthesisType,
-    this.studyType,
-    this.statistic,
-    this.certainty,
-  });
+    ObjectBoxElement? assertionElement,
+    List<ObjectBoxAnnotation>? note,
+    List<ObjectBoxEvidenceVariableDefinition>? variableDefinition,
+    ObjectBoxCodeableConcept? synthesisType,
+    ObjectBoxCodeableConcept? studyType,
+    List<ObjectBoxEvidenceStatistic>? statistic,
+    List<ObjectBoxEvidenceCertainty>? certainty,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.urlElement.target = urlElement;
+    this.identifier.addAll(identifier ?? []);
+    this.versionElement.target = versionElement;
+    this.titleElement.target = titleElement;
+    this.citeAsReference.target = citeAsReference;
+    this.citeAsMarkdownElement.target = citeAsMarkdownElement;
+    this.statusElement.target = statusElement;
+    this.dateElement.target = dateElement;
+    this.useContext.addAll(useContext ?? []);
+    this.approvalDateElement.target = approvalDateElement;
+    this.lastReviewDateElement.target = lastReviewDateElement;
+    this.publisherElement.target = publisherElement;
+    this.contact.addAll(contact ?? []);
+    this.author.addAll(author ?? []);
+    this.editor.addAll(editor ?? []);
+    this.reviewer.addAll(reviewer ?? []);
+    this.endorser.addAll(endorser ?? []);
+    this.relatedArtifact.addAll(relatedArtifact ?? []);
+    this.descriptionElement.target = descriptionElement;
+    this.assertionElement.target = assertionElement;
+    this.note.addAll(note ?? []);
+    this.variableDefinition.addAll(variableDefinition ?? []);
+    this.synthesisType.target = synthesisType;
+    this.studyType.target = studyType;
+    this.statistic.addAll(statistic ?? []);
+    this.certainty.addAll(certainty ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? url;
-  ToOne<ObjectBoxElement>? urlElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToOne<ObjectBoxElement> urlElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   String? version;
-  ToOne<ObjectBoxElement>? versionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> versionElement = ToOne<ObjectBoxElement>();
   String? title;
-  ToOne<ObjectBoxElement>? titleElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? citeAsReference = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> titleElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> citeAsReference = ToOne<ObjectBoxReference>();
   String? citeAsMarkdown;
-  ToOne<ObjectBoxElement>? citeAsMarkdownElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> citeAsMarkdownElement = ToOne<ObjectBoxElement>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
   String? date;
-  ToOne<ObjectBoxElement>? dateElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxUsageContext>? useContext = ToMany<ObjectBoxUsageContext>();
+  ToOne<ObjectBoxElement> dateElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxUsageContext> useContext = ToMany<ObjectBoxUsageContext>();
   String? approvalDate;
-  ToOne<ObjectBoxElement>? approvalDateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> approvalDateElement = ToOne<ObjectBoxElement>();
   String? lastReviewDate;
-  ToOne<ObjectBoxElement>? lastReviewDateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> lastReviewDateElement = ToOne<ObjectBoxElement>();
   String? publisher;
-  ToOne<ObjectBoxElement>? publisherElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxContactDetail>? contact = ToMany<ObjectBoxContactDetail>();
-  ToMany<ObjectBoxContactDetail>? author = ToMany<ObjectBoxContactDetail>();
-  ToMany<ObjectBoxContactDetail>? editor = ToMany<ObjectBoxContactDetail>();
-  ToMany<ObjectBoxContactDetail>? reviewer = ToMany<ObjectBoxContactDetail>();
-  ToMany<ObjectBoxContactDetail>? endorser = ToMany<ObjectBoxContactDetail>();
-  ToMany<ObjectBoxRelatedArtifact>? relatedArtifact =
+  ToOne<ObjectBoxElement> publisherElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxContactDetail> contact = ToMany<ObjectBoxContactDetail>();
+  ToMany<ObjectBoxContactDetail> author = ToMany<ObjectBoxContactDetail>();
+  ToMany<ObjectBoxContactDetail> editor = ToMany<ObjectBoxContactDetail>();
+  ToMany<ObjectBoxContactDetail> reviewer = ToMany<ObjectBoxContactDetail>();
+  ToMany<ObjectBoxContactDetail> endorser = ToMany<ObjectBoxContactDetail>();
+  ToMany<ObjectBoxRelatedArtifact> relatedArtifact =
       ToMany<ObjectBoxRelatedArtifact>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
   String? assertion;
-  ToOne<ObjectBoxElement>? assertionElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxAnnotation>? note = ToMany<ObjectBoxAnnotation>();
+  ToOne<ObjectBoxElement> assertionElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxAnnotation> note = ToMany<ObjectBoxAnnotation>();
   ToMany<ObjectBoxEvidenceVariableDefinition> variableDefinition =
       ToMany<ObjectBoxEvidenceVariableDefinition>();
-  ToOne<ObjectBoxCodeableConcept>? synthesisType =
+  ToOne<ObjectBoxCodeableConcept> synthesisType =
       ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? studyType =
-      ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxEvidenceStatistic>? statistic =
+  ToOne<ObjectBoxCodeableConcept> studyType = ToOne<ObjectBoxCodeableConcept>();
+  ToMany<ObjectBoxEvidenceStatistic> statistic =
       ToMany<ObjectBoxEvidenceStatistic>();
-  ToMany<ObjectBoxEvidenceCertainty>? certainty =
+  ToMany<ObjectBoxEvidenceCertainty> certainty =
       ToMany<ObjectBoxEvidenceCertainty>();
 }
 
 @Entity()
 class ObjectBoxEvidenceVariableDefinition {
   ObjectBoxEvidenceVariableDefinition({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.description,
-    this.descriptionElement,
-    this.note,
-    required this.variableRole,
-    this.observed,
-    this.intended,
-    this.directnessMatch,
-  });
+    ObjectBoxElement? descriptionElement,
+    List<ObjectBoxAnnotation>? note,
+    ObjectBoxCodeableConcept? variableRole,
+    ObjectBoxReference? observed,
+    ObjectBoxReference? intended,
+    ObjectBoxCodeableConcept? directnessMatch,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.descriptionElement.target = descriptionElement;
+    this.note.addAll(note ?? []);
+    this.variableRole.target = variableRole;
+    this.observed.target = observed;
+    this.intended.target = intended;
+    this.directnessMatch.target = directnessMatch;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxAnnotation>? note = ToMany<ObjectBoxAnnotation>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxAnnotation> note = ToMany<ObjectBoxAnnotation>();
   ToOne<ObjectBoxCodeableConcept> variableRole =
       ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxReference>? observed = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? intended = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxCodeableConcept>? directnessMatch =
+  ToOne<ObjectBoxReference> observed = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> intended = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxCodeableConcept> directnessMatch =
       ToOne<ObjectBoxCodeableConcept>();
 }
 
 @Entity()
 class ObjectBoxEvidenceStatistic {
   ObjectBoxEvidenceStatistic({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.description,
-    this.descriptionElement,
-    this.note,
-    this.statisticType,
-    this.category,
-    this.quantity,
+    ObjectBoxElement? descriptionElement,
+    List<ObjectBoxAnnotation>? note,
+    ObjectBoxCodeableConcept? statisticType,
+    ObjectBoxCodeableConcept? category,
+    ObjectBoxQuantity? quantity,
     this.numberOfEvents,
-    this.numberOfEventsElement,
+    ObjectBoxElement? numberOfEventsElement,
     this.numberAffected,
-    this.numberAffectedElement,
-    this.sampleSize,
-    this.attributeEstimate,
-    this.modelCharacteristic,
-  });
+    ObjectBoxElement? numberAffectedElement,
+    ObjectBoxEvidenceSampleSize? sampleSize,
+    List<ObjectBoxEvidenceAttributeEstimate>? attributeEstimate,
+    List<ObjectBoxEvidenceModelCharacteristic>? modelCharacteristic,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.descriptionElement.target = descriptionElement;
+    this.note.addAll(note ?? []);
+    this.statisticType.target = statisticType;
+    this.category.target = category;
+    this.quantity.target = quantity;
+    this.numberOfEventsElement.target = numberOfEventsElement;
+    this.numberAffectedElement.target = numberAffectedElement;
+    this.sampleSize.target = sampleSize;
+    this.attributeEstimate.addAll(attributeEstimate ?? []);
+    this.modelCharacteristic.addAll(modelCharacteristic ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxAnnotation>? note = ToMany<ObjectBoxAnnotation>();
-  ToOne<ObjectBoxCodeableConcept>? statisticType =
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxAnnotation> note = ToMany<ObjectBoxAnnotation>();
+  ToOne<ObjectBoxCodeableConcept> statisticType =
       ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? category = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxQuantity>? quantity = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxCodeableConcept> category = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxQuantity> quantity = ToOne<ObjectBoxQuantity>();
   int? numberOfEvents;
-  ToOne<ObjectBoxElement>? numberOfEventsElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> numberOfEventsElement = ToOne<ObjectBoxElement>();
   int? numberAffected;
-  ToOne<ObjectBoxElement>? numberAffectedElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxEvidenceSampleSize>? sampleSize =
+  ToOne<ObjectBoxElement> numberAffectedElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxEvidenceSampleSize> sampleSize =
       ToOne<ObjectBoxEvidenceSampleSize>();
-  ToMany<ObjectBoxEvidenceAttributeEstimate>? attributeEstimate =
+  ToMany<ObjectBoxEvidenceAttributeEstimate> attributeEstimate =
       ToMany<ObjectBoxEvidenceAttributeEstimate>();
-  ToMany<ObjectBoxEvidenceModelCharacteristic>? modelCharacteristic =
+  ToMany<ObjectBoxEvidenceModelCharacteristic> modelCharacteristic =
       ToMany<ObjectBoxEvidenceModelCharacteristic>();
 }
 
 @Entity()
 class ObjectBoxEvidenceSampleSize {
   ObjectBoxEvidenceSampleSize({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.description,
-    this.descriptionElement,
-    this.note,
+    ObjectBoxElement? descriptionElement,
+    List<ObjectBoxAnnotation>? note,
     this.numberOfStudies,
-    this.numberOfStudiesElement,
+    ObjectBoxElement? numberOfStudiesElement,
     this.numberOfParticipants,
-    this.numberOfParticipantsElement,
+    ObjectBoxElement? numberOfParticipantsElement,
     this.knownDataCount,
-    this.knownDataCountElement,
-  });
+    ObjectBoxElement? knownDataCountElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.descriptionElement.target = descriptionElement;
+    this.note.addAll(note ?? []);
+    this.numberOfStudiesElement.target = numberOfStudiesElement;
+    this.numberOfParticipantsElement.target = numberOfParticipantsElement;
+    this.knownDataCountElement.target = knownDataCountElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxAnnotation>? note = ToMany<ObjectBoxAnnotation>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxAnnotation> note = ToMany<ObjectBoxAnnotation>();
   int? numberOfStudies;
-  ToOne<ObjectBoxElement>? numberOfStudiesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> numberOfStudiesElement = ToOne<ObjectBoxElement>();
   int? numberOfParticipants;
-  ToOne<ObjectBoxElement>? numberOfParticipantsElement =
+  ToOne<ObjectBoxElement> numberOfParticipantsElement =
       ToOne<ObjectBoxElement>();
   int? knownDataCount;
-  ToOne<ObjectBoxElement>? knownDataCountElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> knownDataCountElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxEvidenceAttributeEstimate {
   ObjectBoxEvidenceAttributeEstimate({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.description,
-    this.descriptionElement,
-    this.note,
-    this.type,
-    this.quantity,
+    ObjectBoxElement? descriptionElement,
+    List<ObjectBoxAnnotation>? note,
+    ObjectBoxCodeableConcept? type,
+    ObjectBoxQuantity? quantity,
     this.level,
-    this.levelElement,
-    this.range,
-    this.attributeEstimate,
-  });
+    ObjectBoxElement? levelElement,
+    ObjectBoxRange? range,
+    List<ObjectBoxEvidenceAttributeEstimate>? attributeEstimate,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.descriptionElement.target = descriptionElement;
+    this.note.addAll(note ?? []);
+    this.type.target = type;
+    this.quantity.target = quantity;
+    this.levelElement.target = levelElement;
+    this.range.target = range;
+    this.attributeEstimate.addAll(attributeEstimate ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxAnnotation>? note = ToMany<ObjectBoxAnnotation>();
-  ToOne<ObjectBoxCodeableConcept>? type = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxQuantity>? quantity = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxAnnotation> note = ToMany<ObjectBoxAnnotation>();
+  ToOne<ObjectBoxCodeableConcept> type = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxQuantity> quantity = ToOne<ObjectBoxQuantity>();
   double? level;
-  ToOne<ObjectBoxElement>? levelElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxRange>? range = ToOne<ObjectBoxRange>();
-  ToMany<ObjectBoxEvidenceAttributeEstimate>? attributeEstimate =
+  ToOne<ObjectBoxElement> levelElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxRange> range = ToOne<ObjectBoxRange>();
+  ToMany<ObjectBoxEvidenceAttributeEstimate> attributeEstimate =
       ToMany<ObjectBoxEvidenceAttributeEstimate>();
 }
 
 @Entity()
 class ObjectBoxEvidenceModelCharacteristic {
   ObjectBoxEvidenceModelCharacteristic({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.code,
-    this.value,
-    this.variable,
-    this.attributeEstimate,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? code,
+    ObjectBoxQuantity? value,
+    List<ObjectBoxEvidenceModelCharacteristicVariable>? variable,
+    List<ObjectBoxEvidenceAttributeEstimate>? attributeEstimate,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.code.target = code;
+    this.value.target = value;
+    this.variable.addAll(variable ?? []);
+    this.attributeEstimate.addAll(attributeEstimate ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxCodeableConcept> code = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxQuantity>? value = ToOne<ObjectBoxQuantity>();
-  ToMany<ObjectBoxEvidenceModelCharacteristicVariable>? variable =
+  ToOne<ObjectBoxQuantity> value = ToOne<ObjectBoxQuantity>();
+  ToMany<ObjectBoxEvidenceModelCharacteristicVariable> variable =
       ToMany<ObjectBoxEvidenceModelCharacteristicVariable>();
-  ToMany<ObjectBoxEvidenceAttributeEstimate>? attributeEstimate =
+  ToMany<ObjectBoxEvidenceAttributeEstimate> attributeEstimate =
       ToMany<ObjectBoxEvidenceAttributeEstimate>();
 }
 
 @Entity()
 class ObjectBoxEvidenceModelCharacteristicVariable {
   ObjectBoxEvidenceModelCharacteristicVariable({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.variableDefinition,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxReference? variableDefinition,
     this.handling,
-    this.handlingElement,
-    this.valueCategory,
-    this.valueQuantity,
-    this.valueRange,
-  });
+    ObjectBoxElement? handlingElement,
+    List<ObjectBoxCodeableConcept>? valueCategory,
+    List<ObjectBoxQuantity>? valueQuantity,
+    List<ObjectBoxRange>? valueRange,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.variableDefinition.target = variableDefinition;
+    this.handlingElement.target = handlingElement;
+    this.valueCategory.addAll(valueCategory ?? []);
+    this.valueQuantity.addAll(valueQuantity ?? []);
+    this.valueRange.addAll(valueRange ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxReference> variableDefinition = ToOne<ObjectBoxReference>();
   String? handling;
-  ToOne<ObjectBoxElement>? handlingElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxCodeableConcept>? valueCategory =
+  ToOne<ObjectBoxElement> handlingElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxCodeableConcept> valueCategory =
       ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxQuantity>? valueQuantity = ToMany<ObjectBoxQuantity>();
-  ToMany<ObjectBoxRange>? valueRange = ToMany<ObjectBoxRange>();
+  ToMany<ObjectBoxQuantity> valueQuantity = ToMany<ObjectBoxQuantity>();
+  ToMany<ObjectBoxRange> valueRange = ToMany<ObjectBoxRange>();
 }
 
 @Entity()
 class ObjectBoxEvidenceCertainty {
   ObjectBoxEvidenceCertainty({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.description,
-    this.descriptionElement,
-    this.note,
-    this.type,
-    this.rating,
+    ObjectBoxElement? descriptionElement,
+    List<ObjectBoxAnnotation>? note,
+    ObjectBoxCodeableConcept? type,
+    ObjectBoxCodeableConcept? rating,
     this.rater,
-    this.raterElement,
-    this.subcomponent,
-  });
+    ObjectBoxElement? raterElement,
+    List<ObjectBoxEvidenceCertainty>? subcomponent,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.descriptionElement.target = descriptionElement;
+    this.note.addAll(note ?? []);
+    this.type.target = type;
+    this.rating.target = rating;
+    this.raterElement.target = raterElement;
+    this.subcomponent.addAll(subcomponent ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxAnnotation>? note = ToMany<ObjectBoxAnnotation>();
-  ToOne<ObjectBoxCodeableConcept>? type = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? rating = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxAnnotation> note = ToMany<ObjectBoxAnnotation>();
+  ToOne<ObjectBoxCodeableConcept> type = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxCodeableConcept> rating = ToOne<ObjectBoxCodeableConcept>();
   String? rater;
-  ToOne<ObjectBoxElement>? raterElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxEvidenceCertainty>? subcomponent =
+  ToOne<ObjectBoxElement> raterElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxEvidenceCertainty> subcomponent =
       ToMany<ObjectBoxEvidenceCertainty>();
 }

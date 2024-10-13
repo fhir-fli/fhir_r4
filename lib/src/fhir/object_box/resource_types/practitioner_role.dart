@@ -6,120 +6,156 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxPractitionerRole {
   ObjectBoxPractitionerRole({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     this.active,
-    this.activeElement,
-    this.period,
-    this.practitioner,
-    this.organization,
-    this.code,
-    this.specialty,
-    this.location,
-    this.healthcareService,
-    this.telecom,
-    this.availableTime,
-    this.notAvailable,
+    ObjectBoxElement? activeElement,
+    ObjectBoxPeriod? period,
+    ObjectBoxReference? practitioner,
+    ObjectBoxReference? organization,
+    List<ObjectBoxCodeableConcept>? code,
+    List<ObjectBoxCodeableConcept>? specialty,
+    List<ObjectBoxReference>? location,
+    List<ObjectBoxReference>? healthcareService,
+    List<ObjectBoxContactPoint>? telecom,
+    List<ObjectBoxPractitionerRoleAvailableTime>? availableTime,
+    List<ObjectBoxPractitionerRoleNotAvailable>? notAvailable,
     this.availabilityExceptions,
-    this.availabilityExceptionsElement,
-    this.endpoint,
-  });
+    ObjectBoxElement? availabilityExceptionsElement,
+    List<ObjectBoxReference>? endpoint,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.activeElement.target = activeElement;
+    this.period.target = period;
+    this.practitioner.target = practitioner;
+    this.organization.target = organization;
+    this.code.addAll(code ?? []);
+    this.specialty.addAll(specialty ?? []);
+    this.location.addAll(location ?? []);
+    this.healthcareService.addAll(healthcareService ?? []);
+    this.telecom.addAll(telecom ?? []);
+    this.availableTime.addAll(availableTime ?? []);
+    this.notAvailable.addAll(notAvailable ?? []);
+    this.availabilityExceptionsElement.target = availabilityExceptionsElement;
+    this.endpoint.addAll(endpoint ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   bool? active;
-  ToOne<ObjectBoxElement>? activeElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? period = ToOne<ObjectBoxPeriod>();
-  ToOne<ObjectBoxReference>? practitioner = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? organization = ToOne<ObjectBoxReference>();
-  ToMany<ObjectBoxCodeableConcept>? code = ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCodeableConcept>? specialty =
+  ToOne<ObjectBoxElement> activeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> period = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxReference> practitioner = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> organization = ToOne<ObjectBoxReference>();
+  ToMany<ObjectBoxCodeableConcept> code = ToMany<ObjectBoxCodeableConcept>();
+  ToMany<ObjectBoxCodeableConcept> specialty =
       ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxReference>? location = ToMany<ObjectBoxReference>();
-  ToMany<ObjectBoxReference>? healthcareService = ToMany<ObjectBoxReference>();
-  ToMany<ObjectBoxContactPoint>? telecom = ToMany<ObjectBoxContactPoint>();
-  ToMany<ObjectBoxPractitionerRoleAvailableTime>? availableTime =
+  ToMany<ObjectBoxReference> location = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxReference> healthcareService = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxContactPoint> telecom = ToMany<ObjectBoxContactPoint>();
+  ToMany<ObjectBoxPractitionerRoleAvailableTime> availableTime =
       ToMany<ObjectBoxPractitionerRoleAvailableTime>();
-  ToMany<ObjectBoxPractitionerRoleNotAvailable>? notAvailable =
+  ToMany<ObjectBoxPractitionerRoleNotAvailable> notAvailable =
       ToMany<ObjectBoxPractitionerRoleNotAvailable>();
   String? availabilityExceptions;
-  ToOne<ObjectBoxElement>? availabilityExceptionsElement =
+  ToOne<ObjectBoxElement> availabilityExceptionsElement =
       ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxReference>? endpoint = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxReference> endpoint = ToMany<ObjectBoxReference>();
 }
 
 @Entity()
 class ObjectBoxPractitionerRoleAvailableTime {
   ObjectBoxPractitionerRoleAvailableTime({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.daysOfWeek,
-    this.daysOfWeekElement,
+    List<ObjectBoxElement>? daysOfWeekElement,
     this.allDay,
-    this.allDayElement,
+    ObjectBoxElement? allDayElement,
     this.availableStartTime,
-    this.availableStartTimeElement,
+    ObjectBoxElement? availableStartTimeElement,
     this.availableEndTime,
-    this.availableEndTimeElement,
-  });
+    ObjectBoxElement? availableEndTimeElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.daysOfWeekElement.addAll(daysOfWeekElement ?? []);
+    this.allDayElement.target = allDayElement;
+    this.availableStartTimeElement.target = availableStartTimeElement;
+    this.availableEndTimeElement.target = availableEndTimeElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   List<String>? daysOfWeek;
-  ToMany<ObjectBoxElement>? daysOfWeekElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> daysOfWeekElement = ToMany<ObjectBoxElement>();
   bool? allDay;
-  ToOne<ObjectBoxElement>? allDayElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> allDayElement = ToOne<ObjectBoxElement>();
   String? availableStartTime;
-  ToOne<ObjectBoxElement>? availableStartTimeElement =
-      ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> availableStartTimeElement = ToOne<ObjectBoxElement>();
   String? availableEndTime;
-  ToOne<ObjectBoxElement>? availableEndTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> availableEndTimeElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxPractitionerRoleNotAvailable {
   ObjectBoxPractitionerRoleNotAvailable({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.description,
-    this.descriptionElement,
-    this.during,
-  });
+    ObjectBoxElement? descriptionElement,
+    ObjectBoxPeriod? during,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.descriptionElement.target = descriptionElement;
+    this.during.target = during;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? during = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> during = ToOne<ObjectBoxPeriod>();
 }

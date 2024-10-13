@@ -6,22 +6,28 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxContributor {
   ObjectBoxContributor({
-    this.id,
-    this.extension_,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
     required this.type,
-    this.typeElement,
+    ObjectBoxElement? typeElement,
     required this.name,
-    this.nameElement,
-    this.contact,
-  });
+    ObjectBoxElement? nameElement,
+    List<ObjectBoxContactDetail>? contact,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.typeElement.target = typeElement;
+    this.nameElement.target = nameElement;
+    this.contact.addAll(contact ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
   String name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxContactDetail>? contact = ToMany<ObjectBoxContactDetail>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxContactDetail> contact = ToMany<ObjectBoxContactDetail>();
 }

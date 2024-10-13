@@ -6,28 +6,37 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxMarketingStatus {
   ObjectBoxMarketingStatus({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.country,
-    this.jurisdiction,
-    required this.status,
-    this.dateRange,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? country,
+    ObjectBoxCodeableConcept? jurisdiction,
+    ObjectBoxCodeableConcept? status,
+    ObjectBoxPeriod? dateRange,
     this.restoreDate,
-    this.restoreDateElement,
-  });
+    ObjectBoxElement? restoreDateElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.country.target = country;
+    this.jurisdiction.target = jurisdiction;
+    this.status.target = status;
+    this.dateRange.target = dateRange;
+    this.restoreDateElement.target = restoreDateElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxCodeableConcept>? country = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? jurisdiction =
+  ToOne<ObjectBoxCodeableConcept> country = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxCodeableConcept> jurisdiction =
       ToOne<ObjectBoxCodeableConcept>();
   ToOne<ObjectBoxCodeableConcept> status = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxPeriod>? dateRange = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxPeriod> dateRange = ToOne<ObjectBoxPeriod>();
   String? restoreDate;
-  ToOne<ObjectBoxElement>? restoreDateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> restoreDateElement = ToOne<ObjectBoxElement>();
 }

@@ -137,22 +137,22 @@ void generateObjectBoxClasses(Map<String, WritableClass> classes) {
       }
     }
 
-// Close the constructor and begin the assignment logic
+    // Close the constructor and begin the assignment logic
     buffer.writeln('  }) {');
 
-// After-constructor assignments for ToOne and ToMany relationships
+    // After-constructor assignments for ToOne and ToMany relationships
     for (final field in writableClass.fields) {
       final actualFieldName = field.name.fhirFieldToDartName;
       final elementFieldName = _normalizeElementFieldName(actualFieldName);
 
       // Handle ToMany relationships
-      if (!field.type.isPrimitiveType && field.isList) {
+      if (!field.type.isPrimitiveType && !field.isEnum && field.isList) {
         buffer.writeln(
           '    this.$actualFieldName.addAll($actualFieldName ?? []);',
         );
       }
       // Handle ToOne relationships
-      else if (!field.type.isPrimitiveType && !field.isList) {
+      else if (!field.type.isPrimitiveType && !field.isEnum && !field.isList) {
         buffer.writeln('    this.$actualFieldName.target = $actualFieldName;');
       }
 

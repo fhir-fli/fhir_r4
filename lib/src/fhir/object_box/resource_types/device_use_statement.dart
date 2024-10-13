@@ -6,66 +6,90 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxDeviceUseStatement {
   ObjectBoxDeviceUseStatement({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
-    this.basedOn,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
+    List<ObjectBoxReference>? basedOn,
     required this.status,
-    this.statusElement,
-    required this.subject,
-    this.derivedFrom,
-    this.timingTiming,
-    this.timingPeriod,
+    ObjectBoxElement? statusElement,
+    ObjectBoxReference? subject,
+    List<ObjectBoxReference>? derivedFrom,
+    ObjectBoxTiming? timingTiming,
+    ObjectBoxPeriod? timingPeriod,
     this.timingDateTime,
-    this.timingDateTimeElement,
+    ObjectBoxElement? timingDateTimeElement,
     this.recordedOn,
-    this.recordedOnElement,
-    this.source,
-    required this.device,
-    this.reasonCode,
-    this.reasonReference,
-    this.bodySite,
-    this.note,
-  });
+    ObjectBoxElement? recordedOnElement,
+    ObjectBoxReference? source,
+    ObjectBoxReference? device,
+    List<ObjectBoxCodeableConcept>? reasonCode,
+    List<ObjectBoxReference>? reasonReference,
+    ObjectBoxCodeableConcept? bodySite,
+    List<ObjectBoxAnnotation>? note,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.basedOn.addAll(basedOn ?? []);
+    this.statusElement.target = statusElement;
+    this.subject.target = subject;
+    this.derivedFrom.addAll(derivedFrom ?? []);
+    this.timingTiming.target = timingTiming;
+    this.timingPeriod.target = timingPeriod;
+    this.timingDateTimeElement.target = timingDateTimeElement;
+    this.recordedOnElement.target = recordedOnElement;
+    this.source.target = source;
+    this.device.target = device;
+    this.reasonCode.addAll(reasonCode ?? []);
+    this.reasonReference.addAll(reasonReference ?? []);
+    this.bodySite.target = bodySite;
+    this.note.addAll(note ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
-  ToMany<ObjectBoxReference>? basedOn = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxReference> basedOn = ToMany<ObjectBoxReference>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxReference> subject = ToOne<ObjectBoxReference>();
-  ToMany<ObjectBoxReference>? derivedFrom = ToMany<ObjectBoxReference>();
-  ToOne<ObjectBoxTiming>? timingTiming = ToOne<ObjectBoxTiming>();
-  ToOne<ObjectBoxPeriod>? timingPeriod = ToOne<ObjectBoxPeriod>();
+  ToMany<ObjectBoxReference> derivedFrom = ToMany<ObjectBoxReference>();
+  ToOne<ObjectBoxTiming> timingTiming = ToOne<ObjectBoxTiming>();
+  ToOne<ObjectBoxPeriod> timingPeriod = ToOne<ObjectBoxPeriod>();
   String? timingDateTime;
-  ToOne<ObjectBoxElement>? timingDateTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> timingDateTimeElement = ToOne<ObjectBoxElement>();
   String? recordedOn;
-  ToOne<ObjectBoxElement>? recordedOnElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? source = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> recordedOnElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> source = ToOne<ObjectBoxReference>();
   ToOne<ObjectBoxReference> device = ToOne<ObjectBoxReference>();
-  ToMany<ObjectBoxCodeableConcept>? reasonCode =
+  ToMany<ObjectBoxCodeableConcept> reasonCode =
       ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxReference>? reasonReference = ToMany<ObjectBoxReference>();
-  ToOne<ObjectBoxCodeableConcept>? bodySite = ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxAnnotation>? note = ToMany<ObjectBoxAnnotation>();
+  ToMany<ObjectBoxReference> reasonReference = ToMany<ObjectBoxReference>();
+  ToOne<ObjectBoxCodeableConcept> bodySite = ToOne<ObjectBoxCodeableConcept>();
+  ToMany<ObjectBoxAnnotation> note = ToMany<ObjectBoxAnnotation>();
 }

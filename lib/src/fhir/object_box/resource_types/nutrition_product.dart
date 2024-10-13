@@ -6,167 +6,217 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxNutritionProduct {
   ObjectBoxNutritionProduct({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.status,
-    this.statusElement,
-    this.category,
-    this.code,
-    this.manufacturer,
-    this.nutrient,
-    this.ingredient,
-    this.knownAllergen,
-    this.productCharacteristic,
-    this.instance,
-    this.note,
-  });
+    ObjectBoxElement? statusElement,
+    List<ObjectBoxCodeableConcept>? category,
+    ObjectBoxCodeableConcept? code,
+    List<ObjectBoxReference>? manufacturer,
+    List<ObjectBoxNutritionProductNutrient>? nutrient,
+    List<ObjectBoxNutritionProductIngredient>? ingredient,
+    List<ObjectBoxCodeableReference>? knownAllergen,
+    List<ObjectBoxNutritionProductProductCharacteristic>? productCharacteristic,
+    ObjectBoxNutritionProductInstance? instance,
+    List<ObjectBoxAnnotation>? note,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.statusElement.target = statusElement;
+    this.category.addAll(category ?? []);
+    this.code.target = code;
+    this.manufacturer.addAll(manufacturer ?? []);
+    this.nutrient.addAll(nutrient ?? []);
+    this.ingredient.addAll(ingredient ?? []);
+    this.knownAllergen.addAll(knownAllergen ?? []);
+    this.productCharacteristic.addAll(productCharacteristic ?? []);
+    this.instance.target = instance;
+    this.note.addAll(note ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxCodeableConcept>? category =
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxCodeableConcept> category =
       ToMany<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? code = ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxReference>? manufacturer = ToMany<ObjectBoxReference>();
-  ToMany<ObjectBoxNutritionProductNutrient>? nutrient =
+  ToOne<ObjectBoxCodeableConcept> code = ToOne<ObjectBoxCodeableConcept>();
+  ToMany<ObjectBoxReference> manufacturer = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxNutritionProductNutrient> nutrient =
       ToMany<ObjectBoxNutritionProductNutrient>();
-  ToMany<ObjectBoxNutritionProductIngredient>? ingredient =
+  ToMany<ObjectBoxNutritionProductIngredient> ingredient =
       ToMany<ObjectBoxNutritionProductIngredient>();
-  ToMany<ObjectBoxCodeableReference>? knownAllergen =
+  ToMany<ObjectBoxCodeableReference> knownAllergen =
       ToMany<ObjectBoxCodeableReference>();
-  ToMany<ObjectBoxNutritionProductProductCharacteristic>?
-      productCharacteristic =
+  ToMany<ObjectBoxNutritionProductProductCharacteristic> productCharacteristic =
       ToMany<ObjectBoxNutritionProductProductCharacteristic>();
-  ToOne<ObjectBoxNutritionProductInstance>? instance =
+  ToOne<ObjectBoxNutritionProductInstance> instance =
       ToOne<ObjectBoxNutritionProductInstance>();
-  ToMany<ObjectBoxAnnotation>? note = ToMany<ObjectBoxAnnotation>();
+  ToMany<ObjectBoxAnnotation> note = ToMany<ObjectBoxAnnotation>();
 }
 
 @Entity()
 class ObjectBoxNutritionProductNutrient {
   ObjectBoxNutritionProductNutrient({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.item,
-    this.amount,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableReference? item,
+    List<ObjectBoxRatio>? amount,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.item.target = item;
+    this.amount.addAll(amount ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxCodeableReference>? item = ToOne<ObjectBoxCodeableReference>();
-  ToMany<ObjectBoxRatio>? amount = ToMany<ObjectBoxRatio>();
+  ToOne<ObjectBoxCodeableReference> item = ToOne<ObjectBoxCodeableReference>();
+  ToMany<ObjectBoxRatio> amount = ToMany<ObjectBoxRatio>();
 }
 
 @Entity()
 class ObjectBoxNutritionProductIngredient {
   ObjectBoxNutritionProductIngredient({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.item,
-    this.amount,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableReference? item,
+    List<ObjectBoxRatio>? amount,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.item.target = item;
+    this.amount.addAll(amount ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxCodeableReference> item = ToOne<ObjectBoxCodeableReference>();
-  ToMany<ObjectBoxRatio>? amount = ToMany<ObjectBoxRatio>();
+  ToMany<ObjectBoxRatio> amount = ToMany<ObjectBoxRatio>();
 }
 
 @Entity()
 class ObjectBoxNutritionProductProductCharacteristic {
   ObjectBoxNutritionProductProductCharacteristic({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.type,
-    this.valueCodeableConcept,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? type,
+    ObjectBoxCodeableConcept? valueCodeableConcept,
     this.valueString,
-    this.valueStringElement,
-    this.valueQuantity,
+    ObjectBoxElement? valueStringElement,
+    ObjectBoxQuantity? valueQuantity,
     this.valueBase64Binary,
-    this.valueBase64BinaryElement,
-    this.valueAttachment,
+    ObjectBoxElement? valueBase64BinaryElement,
+    ObjectBoxAttachment? valueAttachment,
     this.valueBoolean,
-    this.valueBooleanElement,
-  });
+    ObjectBoxElement? valueBooleanElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.type.target = type;
+    this.valueCodeableConcept.target = valueCodeableConcept;
+    this.valueStringElement.target = valueStringElement;
+    this.valueQuantity.target = valueQuantity;
+    this.valueBase64BinaryElement.target = valueBase64BinaryElement;
+    this.valueAttachment.target = valueAttachment;
+    this.valueBooleanElement.target = valueBooleanElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxCodeableConcept> type = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? valueCodeableConcept =
+  ToOne<ObjectBoxCodeableConcept> valueCodeableConcept =
       ToOne<ObjectBoxCodeableConcept>();
   String? valueString;
-  ToOne<ObjectBoxElement>? valueStringElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxQuantity>? valueQuantity = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxElement> valueStringElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxQuantity> valueQuantity = ToOne<ObjectBoxQuantity>();
   String? valueBase64Binary;
-  ToOne<ObjectBoxElement>? valueBase64BinaryElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxAttachment>? valueAttachment = ToOne<ObjectBoxAttachment>();
+  ToOne<ObjectBoxElement> valueBase64BinaryElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxAttachment> valueAttachment = ToOne<ObjectBoxAttachment>();
   bool? valueBoolean;
-  ToOne<ObjectBoxElement>? valueBooleanElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueBooleanElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxNutritionProductInstance {
   ObjectBoxNutritionProductInstance({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.quantity,
-    this.identifier,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxQuantity? quantity,
+    List<ObjectBoxIdentifier>? identifier,
     this.lotNumber,
-    this.lotNumberElement,
+    ObjectBoxElement? lotNumberElement,
     this.expiry,
-    this.expiryElement,
+    ObjectBoxElement? expiryElement,
     this.useBy,
-    this.useByElement,
-  });
+    ObjectBoxElement? useByElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.quantity.target = quantity;
+    this.identifier.addAll(identifier ?? []);
+    this.lotNumberElement.target = lotNumberElement;
+    this.expiryElement.target = expiryElement;
+    this.useByElement.target = useByElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxQuantity>? quantity = ToOne<ObjectBoxQuantity>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToOne<ObjectBoxQuantity> quantity = ToOne<ObjectBoxQuantity>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   String? lotNumber;
-  ToOne<ObjectBoxElement>? lotNumberElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> lotNumberElement = ToOne<ObjectBoxElement>();
   String? expiry;
-  ToOne<ObjectBoxElement>? expiryElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> expiryElement = ToOne<ObjectBoxElement>();
   String? useBy;
-  ToOne<ObjectBoxElement>? useByElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> useByElement = ToOne<ObjectBoxElement>();
 }

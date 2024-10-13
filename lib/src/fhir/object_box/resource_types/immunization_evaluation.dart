@@ -6,80 +6,104 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxImmunizationEvaluation {
   ObjectBoxImmunizationEvaluation({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     required this.status,
-    this.statusElement,
-    required this.patient,
+    ObjectBoxElement? statusElement,
+    ObjectBoxReference? patient,
     this.date,
-    this.dateElement,
-    this.authority,
-    required this.targetDisease,
-    required this.immunizationEvent,
-    required this.doseStatus,
-    this.doseStatusReason,
+    ObjectBoxElement? dateElement,
+    ObjectBoxReference? authority,
+    ObjectBoxCodeableConcept? targetDisease,
+    ObjectBoxReference? immunizationEvent,
+    ObjectBoxCodeableConcept? doseStatus,
+    List<ObjectBoxCodeableConcept>? doseStatusReason,
     this.description,
-    this.descriptionElement,
+    ObjectBoxElement? descriptionElement,
     this.series,
-    this.seriesElement,
+    ObjectBoxElement? seriesElement,
     this.doseNumberPositiveInt,
-    this.doseNumberPositiveIntElement,
+    ObjectBoxElement? doseNumberPositiveIntElement,
     this.doseNumberString,
-    this.doseNumberStringElement,
+    ObjectBoxElement? doseNumberStringElement,
     this.seriesDosesPositiveInt,
-    this.seriesDosesPositiveIntElement,
+    ObjectBoxElement? seriesDosesPositiveIntElement,
     this.seriesDosesString,
-    this.seriesDosesStringElement,
-  });
+    ObjectBoxElement? seriesDosesStringElement,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.statusElement.target = statusElement;
+    this.patient.target = patient;
+    this.dateElement.target = dateElement;
+    this.authority.target = authority;
+    this.targetDisease.target = targetDisease;
+    this.immunizationEvent.target = immunizationEvent;
+    this.doseStatus.target = doseStatus;
+    this.doseStatusReason.addAll(doseStatusReason ?? []);
+    this.descriptionElement.target = descriptionElement;
+    this.seriesElement.target = seriesElement;
+    this.doseNumberPositiveIntElement.target = doseNumberPositiveIntElement;
+    this.doseNumberStringElement.target = doseNumberStringElement;
+    this.seriesDosesPositiveIntElement.target = seriesDosesPositiveIntElement;
+    this.seriesDosesStringElement.target = seriesDosesStringElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxReference> patient = ToOne<ObjectBoxReference>();
   String? date;
-  ToOne<ObjectBoxElement>? dateElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? authority = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> dateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> authority = ToOne<ObjectBoxReference>();
   ToOne<ObjectBoxCodeableConcept> targetDisease =
       ToOne<ObjectBoxCodeableConcept>();
   ToOne<ObjectBoxReference> immunizationEvent = ToOne<ObjectBoxReference>();
   ToOne<ObjectBoxCodeableConcept> doseStatus =
       ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCodeableConcept>? doseStatusReason =
+  ToMany<ObjectBoxCodeableConcept> doseStatusReason =
       ToMany<ObjectBoxCodeableConcept>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
   String? series;
-  ToOne<ObjectBoxElement>? seriesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> seriesElement = ToOne<ObjectBoxElement>();
   int? doseNumberPositiveInt;
-  ToOne<ObjectBoxElement>? doseNumberPositiveIntElement =
+  ToOne<ObjectBoxElement> doseNumberPositiveIntElement =
       ToOne<ObjectBoxElement>();
   String? doseNumberString;
-  ToOne<ObjectBoxElement>? doseNumberStringElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> doseNumberStringElement = ToOne<ObjectBoxElement>();
   int? seriesDosesPositiveInt;
-  ToOne<ObjectBoxElement>? seriesDosesPositiveIntElement =
+  ToOne<ObjectBoxElement> seriesDosesPositiveIntElement =
       ToOne<ObjectBoxElement>();
   String? seriesDosesString;
-  ToOne<ObjectBoxElement>? seriesDosesStringElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> seriesDosesStringElement = ToOne<ObjectBoxElement>();
 }

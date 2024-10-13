@@ -6,34 +6,44 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxSignature {
   ObjectBoxSignature({
-    this.id,
-    this.extension_,
-    required this.type,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxCoding>? type,
     required this.when,
-    this.whenElement,
-    required this.who,
-    this.onBehalfOf,
+    ObjectBoxElement? whenElement,
+    ObjectBoxReference? who,
+    ObjectBoxReference? onBehalfOf,
     this.targetFormat,
-    this.targetFormatElement,
+    ObjectBoxElement? targetFormatElement,
     this.sigFormat,
-    this.sigFormatElement,
+    ObjectBoxElement? sigFormatElement,
     this.data,
-    this.dataElement,
-  });
+    ObjectBoxElement? dataElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.type.addAll(type ?? []);
+    this.whenElement.target = whenElement;
+    this.who.target = who;
+    this.onBehalfOf.target = onBehalfOf;
+    this.targetFormatElement.target = targetFormatElement;
+    this.sigFormatElement.target = sigFormatElement;
+    this.dataElement.target = dataElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToMany<ObjectBoxCoding> type = ToMany<ObjectBoxCoding>();
   String when;
-  ToOne<ObjectBoxElement>? whenElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> whenElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxReference> who = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? onBehalfOf = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> onBehalfOf = ToOne<ObjectBoxReference>();
   String? targetFormat;
-  ToOne<ObjectBoxElement>? targetFormatElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> targetFormatElement = ToOne<ObjectBoxElement>();
   String? sigFormat;
-  ToOne<ObjectBoxElement>? sigFormatElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> sigFormatElement = ToOne<ObjectBoxElement>();
   String? data;
-  ToOne<ObjectBoxElement>? dataElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> dataElement = ToOne<ObjectBoxElement>();
 }

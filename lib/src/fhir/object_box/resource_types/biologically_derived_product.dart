@@ -6,175 +6,226 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxBiologicallyDerivedProduct {
   ObjectBoxBiologicallyDerivedProduct({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     this.productCategory,
-    this.productCategoryElement,
-    this.productCode,
+    ObjectBoxElement? productCategoryElement,
+    ObjectBoxCodeableConcept? productCode,
     this.status,
-    this.statusElement,
-    this.request,
+    ObjectBoxElement? statusElement,
+    List<ObjectBoxReference>? request,
     this.quantity,
-    this.quantityElement,
-    this.parent,
-    this.collection,
-    this.processing,
-    this.manipulation,
-    this.storage,
-  });
+    ObjectBoxElement? quantityElement,
+    List<ObjectBoxReference>? parent,
+    ObjectBoxBiologicallyDerivedProductCollection? collection,
+    List<ObjectBoxBiologicallyDerivedProductProcessing>? processing,
+    ObjectBoxBiologicallyDerivedProductManipulation? manipulation,
+    List<ObjectBoxBiologicallyDerivedProductStorage>? storage,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.productCategoryElement.target = productCategoryElement;
+    this.productCode.target = productCode;
+    this.statusElement.target = statusElement;
+    this.request.addAll(request ?? []);
+    this.quantityElement.target = quantityElement;
+    this.parent.addAll(parent ?? []);
+    this.collection.target = collection;
+    this.processing.addAll(processing ?? []);
+    this.manipulation.target = manipulation;
+    this.storage.addAll(storage ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   String? productCategory;
-  ToOne<ObjectBoxElement>? productCategoryElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxCodeableConcept>? productCode =
+  ToOne<ObjectBoxElement> productCategoryElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxCodeableConcept> productCode =
       ToOne<ObjectBoxCodeableConcept>();
   String? status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxReference>? request = ToMany<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxReference> request = ToMany<ObjectBoxReference>();
   int? quantity;
-  ToOne<ObjectBoxElement>? quantityElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxReference>? parent = ToMany<ObjectBoxReference>();
-  ToOne<ObjectBoxBiologicallyDerivedProductCollection>? collection =
+  ToOne<ObjectBoxElement> quantityElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxReference> parent = ToMany<ObjectBoxReference>();
+  ToOne<ObjectBoxBiologicallyDerivedProductCollection> collection =
       ToOne<ObjectBoxBiologicallyDerivedProductCollection>();
-  ToMany<ObjectBoxBiologicallyDerivedProductProcessing>? processing =
+  ToMany<ObjectBoxBiologicallyDerivedProductProcessing> processing =
       ToMany<ObjectBoxBiologicallyDerivedProductProcessing>();
-  ToOne<ObjectBoxBiologicallyDerivedProductManipulation>? manipulation =
+  ToOne<ObjectBoxBiologicallyDerivedProductManipulation> manipulation =
       ToOne<ObjectBoxBiologicallyDerivedProductManipulation>();
-  ToMany<ObjectBoxBiologicallyDerivedProductStorage>? storage =
+  ToMany<ObjectBoxBiologicallyDerivedProductStorage> storage =
       ToMany<ObjectBoxBiologicallyDerivedProductStorage>();
 }
 
 @Entity()
 class ObjectBoxBiologicallyDerivedProductCollection {
   ObjectBoxBiologicallyDerivedProductCollection({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.collector,
-    this.source,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxReference? collector,
+    ObjectBoxReference? source,
     this.collectedDateTime,
-    this.collectedDateTimeElement,
-    this.collectedPeriod,
-  });
+    ObjectBoxElement? collectedDateTimeElement,
+    ObjectBoxPeriod? collectedPeriod,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.collector.target = collector;
+    this.source.target = source;
+    this.collectedDateTimeElement.target = collectedDateTimeElement;
+    this.collectedPeriod.target = collectedPeriod;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxReference>? collector = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? source = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> collector = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> source = ToOne<ObjectBoxReference>();
   String? collectedDateTime;
-  ToOne<ObjectBoxElement>? collectedDateTimeElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? collectedPeriod = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxElement> collectedDateTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> collectedPeriod = ToOne<ObjectBoxPeriod>();
 }
 
 @Entity()
 class ObjectBoxBiologicallyDerivedProductProcessing {
   ObjectBoxBiologicallyDerivedProductProcessing({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.description,
-    this.descriptionElement,
-    this.procedure,
-    this.additive,
+    ObjectBoxElement? descriptionElement,
+    ObjectBoxCodeableConcept? procedure,
+    ObjectBoxReference? additive,
     this.timeDateTime,
-    this.timeDateTimeElement,
-    this.timePeriod,
-  });
+    ObjectBoxElement? timeDateTimeElement,
+    ObjectBoxPeriod? timePeriod,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.descriptionElement.target = descriptionElement;
+    this.procedure.target = procedure;
+    this.additive.target = additive;
+    this.timeDateTimeElement.target = timeDateTimeElement;
+    this.timePeriod.target = timePeriod;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxCodeableConcept>? procedure =
-      ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxReference>? additive = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxCodeableConcept> procedure = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxReference> additive = ToOne<ObjectBoxReference>();
   String? timeDateTime;
-  ToOne<ObjectBoxElement>? timeDateTimeElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? timePeriod = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxElement> timeDateTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> timePeriod = ToOne<ObjectBoxPeriod>();
 }
 
 @Entity()
 class ObjectBoxBiologicallyDerivedProductManipulation {
   ObjectBoxBiologicallyDerivedProductManipulation({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.description,
-    this.descriptionElement,
+    ObjectBoxElement? descriptionElement,
     this.timeDateTime,
-    this.timeDateTimeElement,
-    this.timePeriod,
-  });
+    ObjectBoxElement? timeDateTimeElement,
+    ObjectBoxPeriod? timePeriod,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.descriptionElement.target = descriptionElement;
+    this.timeDateTimeElement.target = timeDateTimeElement;
+    this.timePeriod.target = timePeriod;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
   String? timeDateTime;
-  ToOne<ObjectBoxElement>? timeDateTimeElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? timePeriod = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxElement> timeDateTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> timePeriod = ToOne<ObjectBoxPeriod>();
 }
 
 @Entity()
 class ObjectBoxBiologicallyDerivedProductStorage {
   ObjectBoxBiologicallyDerivedProductStorage({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.description,
-    this.descriptionElement,
+    ObjectBoxElement? descriptionElement,
     this.temperature,
-    this.temperatureElement,
+    ObjectBoxElement? temperatureElement,
     this.scale,
-    this.scaleElement,
-    this.duration,
-  });
+    ObjectBoxElement? scaleElement,
+    ObjectBoxPeriod? duration,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.descriptionElement.target = descriptionElement;
+    this.temperatureElement.target = temperatureElement;
+    this.scaleElement.target = scaleElement;
+    this.duration.target = duration;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
   double? temperature;
-  ToOne<ObjectBoxElement>? temperatureElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> temperatureElement = ToOne<ObjectBoxElement>();
   String? scale;
-  ToOne<ObjectBoxElement>? scaleElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? duration = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxElement> scaleElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> duration = ToOne<ObjectBoxPeriod>();
 }

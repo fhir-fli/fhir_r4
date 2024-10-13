@@ -6,44 +6,55 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxAttachment {
   ObjectBoxAttachment({
-    this.id,
-    this.extension_,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
     this.contentType,
-    this.contentTypeElement,
+    ObjectBoxElement? contentTypeElement,
     this.language,
-    this.languageElement,
+    ObjectBoxElement? languageElement,
     this.data,
-    this.dataElement,
+    ObjectBoxElement? dataElement,
     this.url,
-    this.urlElement,
+    ObjectBoxElement? urlElement,
     this.size,
-    this.sizeElement,
+    ObjectBoxElement? sizeElement,
     this.hash,
-    this.hashElement,
+    ObjectBoxElement? hashElement,
     this.title,
-    this.titleElement,
+    ObjectBoxElement? titleElement,
     this.creation,
-    this.creationElement,
-  });
+    ObjectBoxElement? creationElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.contentTypeElement.target = contentTypeElement;
+    this.languageElement.target = languageElement;
+    this.dataElement.target = dataElement;
+    this.urlElement.target = urlElement;
+    this.sizeElement.target = sizeElement;
+    this.hashElement.target = hashElement;
+    this.titleElement.target = titleElement;
+    this.creationElement.target = creationElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String? contentType;
-  ToOne<ObjectBoxElement>? contentTypeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> contentTypeElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
   String? data;
-  ToOne<ObjectBoxElement>? dataElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> dataElement = ToOne<ObjectBoxElement>();
   String? url;
-  ToOne<ObjectBoxElement>? urlElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> urlElement = ToOne<ObjectBoxElement>();
   int? size;
-  ToOne<ObjectBoxElement>? sizeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> sizeElement = ToOne<ObjectBoxElement>();
   String? hash;
-  ToOne<ObjectBoxElement>? hashElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> hashElement = ToOne<ObjectBoxElement>();
   String? title;
-  ToOne<ObjectBoxElement>? titleElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> titleElement = ToOne<ObjectBoxElement>();
   String? creation;
-  ToOne<ObjectBoxElement>? creationElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> creationElement = ToOne<ObjectBoxElement>();
 }

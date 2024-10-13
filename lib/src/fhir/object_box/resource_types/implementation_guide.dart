@@ -6,426 +6,540 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxImplementationGuide {
   ObjectBoxImplementationGuide({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.url,
-    this.urlElement,
+    ObjectBoxElement? urlElement,
     this.version,
-    this.versionElement,
+    ObjectBoxElement? versionElement,
     required this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     this.title,
-    this.titleElement,
+    ObjectBoxElement? titleElement,
     required this.status,
-    this.statusElement,
+    ObjectBoxElement? statusElement,
     this.experimental,
-    this.experimentalElement,
+    ObjectBoxElement? experimentalElement,
     this.date,
-    this.dateElement,
+    ObjectBoxElement? dateElement,
     this.publisher,
-    this.publisherElement,
-    this.contact,
+    ObjectBoxElement? publisherElement,
+    List<ObjectBoxContactDetail>? contact,
     this.description,
-    this.descriptionElement,
-    this.useContext,
-    this.jurisdiction,
+    ObjectBoxElement? descriptionElement,
+    List<ObjectBoxUsageContext>? useContext,
+    List<ObjectBoxCodeableConcept>? jurisdiction,
     this.copyright,
-    this.copyrightElement,
+    ObjectBoxElement? copyrightElement,
     required this.packageId,
-    this.packageIdElement,
+    ObjectBoxElement? packageIdElement,
     this.license,
-    this.licenseElement,
+    ObjectBoxElement? licenseElement,
     required this.fhirVersion,
-    this.fhirVersionElement,
-    this.dependsOn,
-    this.global,
-    this.definition,
-    this.manifest,
-  });
+    List<ObjectBoxElement>? fhirVersionElement,
+    List<ObjectBoxImplementationGuideDependsOn>? dependsOn,
+    List<ObjectBoxImplementationGuideGlobal>? global,
+    ObjectBoxImplementationGuideDefinition? definition,
+    ObjectBoxImplementationGuideManifest? manifest,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.urlElement.target = urlElement;
+    this.versionElement.target = versionElement;
+    this.nameElement.target = nameElement;
+    this.titleElement.target = titleElement;
+    this.statusElement.target = statusElement;
+    this.experimentalElement.target = experimentalElement;
+    this.dateElement.target = dateElement;
+    this.publisherElement.target = publisherElement;
+    this.contact.addAll(contact ?? []);
+    this.descriptionElement.target = descriptionElement;
+    this.useContext.addAll(useContext ?? []);
+    this.jurisdiction.addAll(jurisdiction ?? []);
+    this.copyrightElement.target = copyrightElement;
+    this.packageIdElement.target = packageIdElement;
+    this.licenseElement.target = licenseElement;
+    this.fhirVersionElement.addAll(fhirVersionElement ?? []);
+    this.dependsOn.addAll(dependsOn ?? []);
+    this.global.addAll(global ?? []);
+    this.definition.target = definition;
+    this.manifest.target = manifest;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String url;
-  ToOne<ObjectBoxElement>? urlElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> urlElement = ToOne<ObjectBoxElement>();
   String? version;
-  ToOne<ObjectBoxElement>? versionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> versionElement = ToOne<ObjectBoxElement>();
   String name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String? title;
-  ToOne<ObjectBoxElement>? titleElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> titleElement = ToOne<ObjectBoxElement>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
   bool? experimental;
-  ToOne<ObjectBoxElement>? experimentalElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> experimentalElement = ToOne<ObjectBoxElement>();
   String? date;
-  ToOne<ObjectBoxElement>? dateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> dateElement = ToOne<ObjectBoxElement>();
   String? publisher;
-  ToOne<ObjectBoxElement>? publisherElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxContactDetail>? contact = ToMany<ObjectBoxContactDetail>();
+  ToOne<ObjectBoxElement> publisherElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxContactDetail> contact = ToMany<ObjectBoxContactDetail>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxUsageContext>? useContext = ToMany<ObjectBoxUsageContext>();
-  ToMany<ObjectBoxCodeableConcept>? jurisdiction =
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxUsageContext> useContext = ToMany<ObjectBoxUsageContext>();
+  ToMany<ObjectBoxCodeableConcept> jurisdiction =
       ToMany<ObjectBoxCodeableConcept>();
   String? copyright;
-  ToOne<ObjectBoxElement>? copyrightElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> copyrightElement = ToOne<ObjectBoxElement>();
   String packageId;
-  ToOne<ObjectBoxElement>? packageIdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> packageIdElement = ToOne<ObjectBoxElement>();
   String? license;
-  ToOne<ObjectBoxElement>? licenseElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> licenseElement = ToOne<ObjectBoxElement>();
   List<String> fhirVersion;
-  ToMany<ObjectBoxElement>? fhirVersionElement = ToMany<ObjectBoxElement>();
-  ToMany<ObjectBoxImplementationGuideDependsOn>? dependsOn =
+  ToMany<ObjectBoxElement> fhirVersionElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxImplementationGuideDependsOn> dependsOn =
       ToMany<ObjectBoxImplementationGuideDependsOn>();
-  ToMany<ObjectBoxImplementationGuideGlobal>? global =
+  ToMany<ObjectBoxImplementationGuideGlobal> global =
       ToMany<ObjectBoxImplementationGuideGlobal>();
-  ToOne<ObjectBoxImplementationGuideDefinition>? definition =
+  ToOne<ObjectBoxImplementationGuideDefinition> definition =
       ToOne<ObjectBoxImplementationGuideDefinition>();
-  ToOne<ObjectBoxImplementationGuideManifest>? manifest =
+  ToOne<ObjectBoxImplementationGuideManifest> manifest =
       ToOne<ObjectBoxImplementationGuideManifest>();
 }
 
 @Entity()
 class ObjectBoxImplementationGuideDependsOn {
   ObjectBoxImplementationGuideDependsOn({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.uri,
-    this.uriElement,
+    ObjectBoxElement? uriElement,
     this.packageId,
-    this.packageIdElement,
+    ObjectBoxElement? packageIdElement,
     this.version,
-    this.versionElement,
-  });
+    ObjectBoxElement? versionElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.uriElement.target = uriElement;
+    this.packageIdElement.target = packageIdElement;
+    this.versionElement.target = versionElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String uri;
-  ToOne<ObjectBoxElement>? uriElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> uriElement = ToOne<ObjectBoxElement>();
   String? packageId;
-  ToOne<ObjectBoxElement>? packageIdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> packageIdElement = ToOne<ObjectBoxElement>();
   String? version;
-  ToOne<ObjectBoxElement>? versionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> versionElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxImplementationGuideGlobal {
   ObjectBoxImplementationGuideGlobal({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.type,
-    this.typeElement,
+    ObjectBoxElement? typeElement,
     required this.profile,
-    this.profileElement,
-  });
+    ObjectBoxElement? profileElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.typeElement.target = typeElement;
+    this.profileElement.target = profileElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
   String profile;
-  ToOne<ObjectBoxElement>? profileElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> profileElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxImplementationGuideDefinition {
   ObjectBoxImplementationGuideDefinition({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.grouping,
-    required this.resource,
-    this.page,
-    this.parameter,
-    this.template,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxImplementationGuideGrouping>? grouping,
+    List<ObjectBoxImplementationGuideResource>? resource,
+    ObjectBoxImplementationGuidePage? page,
+    List<ObjectBoxImplementationGuideParameter>? parameter,
+    List<ObjectBoxImplementationGuideTemplate>? template,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.grouping.addAll(grouping ?? []);
+    this.resource.addAll(resource ?? []);
+    this.page.target = page;
+    this.parameter.addAll(parameter ?? []);
+    this.template.addAll(template ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxImplementationGuideGrouping>? grouping =
+  ToMany<ObjectBoxImplementationGuideGrouping> grouping =
       ToMany<ObjectBoxImplementationGuideGrouping>();
   ToMany<ObjectBoxImplementationGuideResource> resource =
       ToMany<ObjectBoxImplementationGuideResource>();
-  ToOne<ObjectBoxImplementationGuidePage>? page =
+  ToOne<ObjectBoxImplementationGuidePage> page =
       ToOne<ObjectBoxImplementationGuidePage>();
-  ToMany<ObjectBoxImplementationGuideParameter>? parameter =
+  ToMany<ObjectBoxImplementationGuideParameter> parameter =
       ToMany<ObjectBoxImplementationGuideParameter>();
-  ToMany<ObjectBoxImplementationGuideTemplate>? template =
+  ToMany<ObjectBoxImplementationGuideTemplate> template =
       ToMany<ObjectBoxImplementationGuideTemplate>();
 }
 
 @Entity()
 class ObjectBoxImplementationGuideGrouping {
   ObjectBoxImplementationGuideGrouping({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     this.description,
-    this.descriptionElement,
-  });
+    ObjectBoxElement? descriptionElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.nameElement.target = nameElement;
+    this.descriptionElement.target = descriptionElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxImplementationGuideResource {
   ObjectBoxImplementationGuideResource({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.reference,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxReference? reference,
     this.fhirVersion,
-    this.fhirVersionElement,
+    List<ObjectBoxElement>? fhirVersionElement,
     this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     this.description,
-    this.descriptionElement,
+    ObjectBoxElement? descriptionElement,
     this.exampleBoolean,
-    this.exampleBooleanElement,
+    ObjectBoxElement? exampleBooleanElement,
     this.exampleCanonical,
-    this.exampleCanonicalElement,
+    ObjectBoxElement? exampleCanonicalElement,
     this.groupingId,
-    this.groupingIdElement,
-  });
+    ObjectBoxElement? groupingIdElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.reference.target = reference;
+    this.fhirVersionElement.addAll(fhirVersionElement ?? []);
+    this.nameElement.target = nameElement;
+    this.descriptionElement.target = descriptionElement;
+    this.exampleBooleanElement.target = exampleBooleanElement;
+    this.exampleCanonicalElement.target = exampleCanonicalElement;
+    this.groupingIdElement.target = groupingIdElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxReference> reference = ToOne<ObjectBoxReference>();
   List<String>? fhirVersion;
-  ToMany<ObjectBoxElement>? fhirVersionElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> fhirVersionElement = ToMany<ObjectBoxElement>();
   String? name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
   bool? exampleBoolean;
-  ToOne<ObjectBoxElement>? exampleBooleanElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> exampleBooleanElement = ToOne<ObjectBoxElement>();
   String? exampleCanonical;
-  ToOne<ObjectBoxElement>? exampleCanonicalElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> exampleCanonicalElement = ToOne<ObjectBoxElement>();
   String? groupingId;
-  ToOne<ObjectBoxElement>? groupingIdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> groupingIdElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxImplementationGuidePage {
   ObjectBoxImplementationGuidePage({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.nameUrl,
-    this.nameUrlElement,
-    this.nameReference,
+    ObjectBoxElement? nameUrlElement,
+    ObjectBoxReference? nameReference,
     required this.title,
-    this.titleElement,
+    ObjectBoxElement? titleElement,
     required this.generation,
-    this.generationElement,
-    this.page,
-  });
+    ObjectBoxElement? generationElement,
+    List<ObjectBoxImplementationGuidePage>? page,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.nameUrlElement.target = nameUrlElement;
+    this.nameReference.target = nameReference;
+    this.titleElement.target = titleElement;
+    this.generationElement.target = generationElement;
+    this.page.addAll(page ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? nameUrl;
-  ToOne<ObjectBoxElement>? nameUrlElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? nameReference = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> nameUrlElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> nameReference = ToOne<ObjectBoxReference>();
   String title;
-  ToOne<ObjectBoxElement>? titleElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> titleElement = ToOne<ObjectBoxElement>();
   String generation;
-  ToOne<ObjectBoxElement>? generationElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxImplementationGuidePage>? page =
+  ToOne<ObjectBoxElement> generationElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxImplementationGuidePage> page =
       ToMany<ObjectBoxImplementationGuidePage>();
 }
 
 @Entity()
 class ObjectBoxImplementationGuideParameter {
   ObjectBoxImplementationGuideParameter({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.code,
-    this.codeElement,
+    ObjectBoxElement? codeElement,
     required this.value,
-    this.valueElement,
-  });
+    ObjectBoxElement? valueElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.codeElement.target = codeElement;
+    this.valueElement.target = valueElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String code;
-  ToOne<ObjectBoxElement>? codeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> codeElement = ToOne<ObjectBoxElement>();
   String value;
-  ToOne<ObjectBoxElement>? valueElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxImplementationGuideTemplate {
   ObjectBoxImplementationGuideTemplate({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.code,
-    this.codeElement,
+    ObjectBoxElement? codeElement,
     required this.source,
-    this.sourceElement,
+    ObjectBoxElement? sourceElement,
     this.scope,
-    this.scopeElement,
-  });
+    ObjectBoxElement? scopeElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.codeElement.target = codeElement;
+    this.sourceElement.target = sourceElement;
+    this.scopeElement.target = scopeElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String code;
-  ToOne<ObjectBoxElement>? codeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> codeElement = ToOne<ObjectBoxElement>();
   String source;
-  ToOne<ObjectBoxElement>? sourceElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> sourceElement = ToOne<ObjectBoxElement>();
   String? scope;
-  ToOne<ObjectBoxElement>? scopeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> scopeElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxImplementationGuideManifest {
   ObjectBoxImplementationGuideManifest({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.rendering,
-    this.renderingElement,
-    required this.resource,
-    this.page,
+    ObjectBoxElement? renderingElement,
+    List<ObjectBoxImplementationGuideResource>? resource,
+    List<ObjectBoxImplementationGuidePage>? page,
     this.image,
-    this.imageElement,
+    List<ObjectBoxElement>? imageElement,
     this.other,
-    this.otherElement,
-  });
+    List<ObjectBoxElement>? otherElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.renderingElement.target = renderingElement;
+    this.resource.addAll(resource ?? []);
+    this.page.addAll(page ?? []);
+    this.imageElement.addAll(imageElement ?? []);
+    this.otherElement.addAll(otherElement ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? rendering;
-  ToOne<ObjectBoxElement>? renderingElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> renderingElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxImplementationGuideResource> resource =
       ToMany<ObjectBoxImplementationGuideResource>();
-  ToMany<ObjectBoxImplementationGuidePage>? page =
+  ToMany<ObjectBoxImplementationGuidePage> page =
       ToMany<ObjectBoxImplementationGuidePage>();
   List<String>? image;
-  ToMany<ObjectBoxElement>? imageElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> imageElement = ToMany<ObjectBoxElement>();
   List<String>? other;
-  ToMany<ObjectBoxElement>? otherElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> otherElement = ToMany<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxImplementationGuideResource1 {
   ObjectBoxImplementationGuideResource1({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.reference,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxReference? reference,
     this.exampleBoolean,
-    this.exampleBooleanElement,
+    ObjectBoxElement? exampleBooleanElement,
     this.exampleCanonical,
-    this.exampleCanonicalElement,
+    ObjectBoxElement? exampleCanonicalElement,
     this.relativePath,
-    this.relativePathElement,
-  });
+    ObjectBoxElement? relativePathElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.reference.target = reference;
+    this.exampleBooleanElement.target = exampleBooleanElement;
+    this.exampleCanonicalElement.target = exampleCanonicalElement;
+    this.relativePathElement.target = relativePathElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxReference> reference = ToOne<ObjectBoxReference>();
   bool? exampleBoolean;
-  ToOne<ObjectBoxElement>? exampleBooleanElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> exampleBooleanElement = ToOne<ObjectBoxElement>();
   String? exampleCanonical;
-  ToOne<ObjectBoxElement>? exampleCanonicalElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> exampleCanonicalElement = ToOne<ObjectBoxElement>();
   String? relativePath;
-  ToOne<ObjectBoxElement>? relativePathElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> relativePathElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxImplementationGuidePage1 {
   ObjectBoxImplementationGuidePage1({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     this.title,
-    this.titleElement,
+    ObjectBoxElement? titleElement,
     this.anchor,
-    this.anchorElement,
-  });
+    List<ObjectBoxElement>? anchorElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.nameElement.target = nameElement;
+    this.titleElement.target = titleElement;
+    this.anchorElement.addAll(anchorElement ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String? title;
-  ToOne<ObjectBoxElement>? titleElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> titleElement = ToOne<ObjectBoxElement>();
   List<String>? anchor;
-  ToMany<ObjectBoxElement>? anchorElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> anchorElement = ToMany<ObjectBoxElement>();
 }

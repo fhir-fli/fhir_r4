@@ -6,32 +6,40 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxCoding {
   ObjectBoxCoding({
-    this.id,
-    this.extension_,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
     this.system,
-    this.systemElement,
+    ObjectBoxElement? systemElement,
     this.version,
-    this.versionElement,
+    ObjectBoxElement? versionElement,
     this.code,
-    this.codeElement,
+    ObjectBoxElement? codeElement,
     this.display,
-    this.displayElement,
+    ObjectBoxElement? displayElement,
     this.userSelected,
-    this.userSelectedElement,
-  });
+    ObjectBoxElement? userSelectedElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.systemElement.target = systemElement;
+    this.versionElement.target = versionElement;
+    this.codeElement.target = codeElement;
+    this.displayElement.target = displayElement;
+    this.userSelectedElement.target = userSelectedElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String? system;
-  ToOne<ObjectBoxElement>? systemElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> systemElement = ToOne<ObjectBoxElement>();
   String? version;
-  ToOne<ObjectBoxElement>? versionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> versionElement = ToOne<ObjectBoxElement>();
   String? code;
-  ToOne<ObjectBoxElement>? codeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> codeElement = ToOne<ObjectBoxElement>();
   String? display;
-  ToOne<ObjectBoxElement>? displayElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> displayElement = ToOne<ObjectBoxElement>();
   bool? userSelected;
-  ToOne<ObjectBoxElement>? userSelectedElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> userSelectedElement = ToOne<ObjectBoxElement>();
 }

@@ -6,18 +6,24 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxRatioRange {
   ObjectBoxRatioRange({
-    this.id,
-    this.extension_,
-    this.lowNumerator,
-    this.highNumerator,
-    this.denominator,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    ObjectBoxQuantity? lowNumerator,
+    ObjectBoxQuantity? highNumerator,
+    ObjectBoxQuantity? denominator,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.lowNumerator.target = lowNumerator;
+    this.highNumerator.target = highNumerator;
+    this.denominator.target = denominator;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxQuantity>? lowNumerator = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxQuantity>? highNumerator = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxQuantity>? denominator = ToOne<ObjectBoxQuantity>();
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToOne<ObjectBoxQuantity> lowNumerator = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxQuantity> highNumerator = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxQuantity> denominator = ToOne<ObjectBoxQuantity>();
 }

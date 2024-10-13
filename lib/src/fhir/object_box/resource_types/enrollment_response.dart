@@ -6,53 +6,70 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxEnrollmentResponse {
   ObjectBoxEnrollmentResponse({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     this.status,
-    this.statusElement,
-    this.request,
+    ObjectBoxElement? statusElement,
+    ObjectBoxReference? request,
     this.outcome,
-    this.outcomeElement,
+    ObjectBoxElement? outcomeElement,
     this.disposition,
-    this.dispositionElement,
+    ObjectBoxElement? dispositionElement,
     this.created,
-    this.createdElement,
-    this.organization,
-    this.requestProvider,
-  });
+    ObjectBoxElement? createdElement,
+    ObjectBoxReference? organization,
+    ObjectBoxReference? requestProvider,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.statusElement.target = statusElement;
+    this.request.target = request;
+    this.outcomeElement.target = outcomeElement;
+    this.dispositionElement.target = dispositionElement;
+    this.createdElement.target = createdElement;
+    this.organization.target = organization;
+    this.requestProvider.target = requestProvider;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   String? status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? request = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> request = ToOne<ObjectBoxReference>();
   String? outcome;
-  ToOne<ObjectBoxElement>? outcomeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> outcomeElement = ToOne<ObjectBoxElement>();
   String? disposition;
-  ToOne<ObjectBoxElement>? dispositionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> dispositionElement = ToOne<ObjectBoxElement>();
   String? created;
-  ToOne<ObjectBoxElement>? createdElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? organization = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? requestProvider = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> createdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> organization = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> requestProvider = ToOne<ObjectBoxReference>();
 }

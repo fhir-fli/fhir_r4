@@ -6,92 +6,119 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxStructureMap {
   ObjectBoxStructureMap({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.url,
-    this.urlElement,
-    this.identifier,
+    ObjectBoxElement? urlElement,
+    List<ObjectBoxIdentifier>? identifier,
     this.version,
-    this.versionElement,
+    ObjectBoxElement? versionElement,
     required this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     this.title,
-    this.titleElement,
+    ObjectBoxElement? titleElement,
     required this.status,
-    this.statusElement,
+    ObjectBoxElement? statusElement,
     this.experimental,
-    this.experimentalElement,
+    ObjectBoxElement? experimentalElement,
     this.date,
-    this.dateElement,
+    ObjectBoxElement? dateElement,
     this.publisher,
-    this.publisherElement,
-    this.contact,
+    ObjectBoxElement? publisherElement,
+    List<ObjectBoxContactDetail>? contact,
     this.description,
-    this.descriptionElement,
-    this.useContext,
-    this.jurisdiction,
+    ObjectBoxElement? descriptionElement,
+    List<ObjectBoxUsageContext>? useContext,
+    List<ObjectBoxCodeableConcept>? jurisdiction,
     this.purpose,
-    this.purposeElement,
+    ObjectBoxElement? purposeElement,
     this.copyright,
-    this.copyrightElement,
-    this.structure,
+    ObjectBoxElement? copyrightElement,
+    List<ObjectBoxStructureMapStructure>? structure,
     this.import_,
-    this.importElement,
-    required this.group,
-  });
+    List<ObjectBoxElement>? importElement,
+    List<ObjectBoxStructureMapGroup>? group,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.urlElement.target = urlElement;
+    this.identifier.addAll(identifier ?? []);
+    this.versionElement.target = versionElement;
+    this.nameElement.target = nameElement;
+    this.titleElement.target = titleElement;
+    this.statusElement.target = statusElement;
+    this.experimentalElement.target = experimentalElement;
+    this.dateElement.target = dateElement;
+    this.publisherElement.target = publisherElement;
+    this.contact.addAll(contact ?? []);
+    this.descriptionElement.target = descriptionElement;
+    this.useContext.addAll(useContext ?? []);
+    this.jurisdiction.addAll(jurisdiction ?? []);
+    this.purposeElement.target = purposeElement;
+    this.copyrightElement.target = copyrightElement;
+    this.structure.addAll(structure ?? []);
+    this.importElement.addAll(importElement ?? []);
+    this.group.addAll(group ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String url;
-  ToOne<ObjectBoxElement>? urlElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToOne<ObjectBoxElement> urlElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   String? version;
-  ToOne<ObjectBoxElement>? versionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> versionElement = ToOne<ObjectBoxElement>();
   String name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String? title;
-  ToOne<ObjectBoxElement>? titleElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> titleElement = ToOne<ObjectBoxElement>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
   bool? experimental;
-  ToOne<ObjectBoxElement>? experimentalElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> experimentalElement = ToOne<ObjectBoxElement>();
   String? date;
-  ToOne<ObjectBoxElement>? dateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> dateElement = ToOne<ObjectBoxElement>();
   String? publisher;
-  ToOne<ObjectBoxElement>? publisherElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxContactDetail>? contact = ToMany<ObjectBoxContactDetail>();
+  ToOne<ObjectBoxElement> publisherElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxContactDetail> contact = ToMany<ObjectBoxContactDetail>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxUsageContext>? useContext = ToMany<ObjectBoxUsageContext>();
-  ToMany<ObjectBoxCodeableConcept>? jurisdiction =
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxUsageContext> useContext = ToMany<ObjectBoxUsageContext>();
+  ToMany<ObjectBoxCodeableConcept> jurisdiction =
       ToMany<ObjectBoxCodeableConcept>();
   String? purpose;
-  ToOne<ObjectBoxElement>? purposeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> purposeElement = ToOne<ObjectBoxElement>();
   String? copyright;
-  ToOne<ObjectBoxElement>? copyrightElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxStructureMapStructure>? structure =
+  ToOne<ObjectBoxElement> copyrightElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxStructureMapStructure> structure =
       ToMany<ObjectBoxStructureMapStructure>();
   List<String>? import_;
-  ToMany<ObjectBoxElement>? importElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> importElement = ToMany<ObjectBoxElement>();
   ToMany<ObjectBoxStructureMapGroup> group =
       ToMany<ObjectBoxStructureMapGroup>();
 }
@@ -99,67 +126,85 @@ class ObjectBoxStructureMap {
 @Entity()
 class ObjectBoxStructureMapStructure {
   ObjectBoxStructureMapStructure({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.url,
-    this.urlElement,
+    ObjectBoxElement? urlElement,
     required this.mode,
-    this.modeElement,
+    ObjectBoxElement? modeElement,
     this.alias,
-    this.aliasElement,
+    ObjectBoxElement? aliasElement,
     this.documentation,
-    this.documentationElement,
-  });
+    ObjectBoxElement? documentationElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.urlElement.target = urlElement;
+    this.modeElement.target = modeElement;
+    this.aliasElement.target = aliasElement;
+    this.documentationElement.target = documentationElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String url;
-  ToOne<ObjectBoxElement>? urlElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> urlElement = ToOne<ObjectBoxElement>();
   String mode;
-  ToOne<ObjectBoxElement>? modeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> modeElement = ToOne<ObjectBoxElement>();
   String? alias;
-  ToOne<ObjectBoxElement>? aliasElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> aliasElement = ToOne<ObjectBoxElement>();
   String? documentation;
-  ToOne<ObjectBoxElement>? documentationElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> documentationElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxStructureMapGroup {
   ObjectBoxStructureMapGroup({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     this.extends_,
-    this.extendsElement,
+    ObjectBoxElement? extendsElement,
     required this.typeMode,
-    this.typeModeElement,
+    ObjectBoxElement? typeModeElement,
     this.documentation,
-    this.documentationElement,
-    required this.input,
-    required this.rule,
-  });
+    ObjectBoxElement? documentationElement,
+    List<ObjectBoxStructureMapInput>? input,
+    List<ObjectBoxStructureMapRule>? rule,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.nameElement.target = nameElement;
+    this.extendsElement.target = extendsElement;
+    this.typeModeElement.target = typeModeElement;
+    this.documentationElement.target = documentationElement;
+    this.input.addAll(input ?? []);
+    this.rule.addAll(rule ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String? extends_;
-  ToOne<ObjectBoxElement>? extendsElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> extendsElement = ToOne<ObjectBoxElement>();
   String typeMode;
-  ToOne<ObjectBoxElement>? typeModeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> typeModeElement = ToOne<ObjectBoxElement>();
   String? documentation;
-  ToOne<ObjectBoxElement>? documentationElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> documentationElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxStructureMapInput> input =
       ToMany<ObjectBoxStructureMapInput>();
   ToMany<ObjectBoxStructureMapRule> rule = ToMany<ObjectBoxStructureMapRule>();
@@ -168,396 +213,503 @@ class ObjectBoxStructureMapGroup {
 @Entity()
 class ObjectBoxStructureMapInput {
   ObjectBoxStructureMapInput({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     this.type,
-    this.typeElement,
+    ObjectBoxElement? typeElement,
     required this.mode,
-    this.modeElement,
+    ObjectBoxElement? modeElement,
     this.documentation,
-    this.documentationElement,
-  });
+    ObjectBoxElement? documentationElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.nameElement.target = nameElement;
+    this.typeElement.target = typeElement;
+    this.modeElement.target = modeElement;
+    this.documentationElement.target = documentationElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String? type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
   String mode;
-  ToOne<ObjectBoxElement>? modeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> modeElement = ToOne<ObjectBoxElement>();
   String? documentation;
-  ToOne<ObjectBoxElement>? documentationElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> documentationElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxStructureMapRule {
   ObjectBoxStructureMapRule({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
-    this.nameElement,
-    required this.source,
-    this.target,
-    this.rule,
-    this.dependent,
+    ObjectBoxElement? nameElement,
+    List<ObjectBoxStructureMapSource>? source,
+    List<ObjectBoxStructureMapTarget>? target,
+    List<ObjectBoxStructureMapRule>? rule,
+    List<ObjectBoxStructureMapDependent>? dependent,
     this.documentation,
-    this.documentationElement,
-  });
+    ObjectBoxElement? documentationElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.nameElement.target = nameElement;
+    this.source.addAll(source ?? []);
+    this.target.addAll(target ?? []);
+    this.rule.addAll(rule ?? []);
+    this.dependent.addAll(dependent ?? []);
+    this.documentationElement.target = documentationElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxStructureMapSource> source =
       ToMany<ObjectBoxStructureMapSource>();
-  ToMany<ObjectBoxStructureMapTarget>? target =
+  ToMany<ObjectBoxStructureMapTarget> target =
       ToMany<ObjectBoxStructureMapTarget>();
-  ToMany<ObjectBoxStructureMapRule>? rule = ToMany<ObjectBoxStructureMapRule>();
-  ToMany<ObjectBoxStructureMapDependent>? dependent =
+  ToMany<ObjectBoxStructureMapRule> rule = ToMany<ObjectBoxStructureMapRule>();
+  ToMany<ObjectBoxStructureMapDependent> dependent =
       ToMany<ObjectBoxStructureMapDependent>();
   String? documentation;
-  ToOne<ObjectBoxElement>? documentationElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> documentationElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxStructureMapSource {
   ObjectBoxStructureMapSource({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.context,
-    this.contextElement,
+    ObjectBoxElement? contextElement,
     this.min,
-    this.minElement,
+    ObjectBoxElement? minElement,
     this.max,
-    this.maxElement,
+    ObjectBoxElement? maxElement,
     this.type,
-    this.typeElement,
+    ObjectBoxElement? typeElement,
     this.defaultValueBase64Binary,
-    this.defaultValueBase64BinaryElement,
+    ObjectBoxElement? defaultValueBase64BinaryElement,
     this.defaultValueBoolean,
-    this.defaultValueBooleanElement,
+    ObjectBoxElement? defaultValueBooleanElement,
     this.defaultValueCanonical,
-    this.defaultValueCanonicalElement,
+    ObjectBoxElement? defaultValueCanonicalElement,
     this.defaultValueCode,
-    this.defaultValueCodeElement,
+    ObjectBoxElement? defaultValueCodeElement,
     this.defaultValueDate,
-    this.defaultValueDateElement,
+    ObjectBoxElement? defaultValueDateElement,
     this.defaultValueDateTime,
-    this.defaultValueDateTimeElement,
+    ObjectBoxElement? defaultValueDateTimeElement,
     this.defaultValueDecimal,
-    this.defaultValueDecimalElement,
+    ObjectBoxElement? defaultValueDecimalElement,
     this.defaultValueId,
-    this.defaultValueIdElement,
+    ObjectBoxElement? defaultValueIdElement,
     this.defaultValueInstant,
-    this.defaultValueInstantElement,
+    ObjectBoxElement? defaultValueInstantElement,
     this.defaultValueInteger,
-    this.defaultValueIntegerElement,
+    ObjectBoxElement? defaultValueIntegerElement,
     this.defaultValueMarkdown,
-    this.defaultValueMarkdownElement,
+    ObjectBoxElement? defaultValueMarkdownElement,
     this.defaultValueOid,
-    this.defaultValueOidElement,
+    ObjectBoxElement? defaultValueOidElement,
     this.defaultValuePositiveInt,
-    this.defaultValuePositiveIntElement,
+    ObjectBoxElement? defaultValuePositiveIntElement,
     this.defaultValueString,
-    this.defaultValueStringElement,
+    ObjectBoxElement? defaultValueStringElement,
     this.defaultValueTime,
-    this.defaultValueTimeElement,
+    ObjectBoxElement? defaultValueTimeElement,
     this.defaultValueUnsignedInt,
-    this.defaultValueUnsignedIntElement,
+    ObjectBoxElement? defaultValueUnsignedIntElement,
     this.defaultValueUri,
-    this.defaultValueUriElement,
+    ObjectBoxElement? defaultValueUriElement,
     this.defaultValueUrl,
-    this.defaultValueUrlElement,
+    ObjectBoxElement? defaultValueUrlElement,
     this.defaultValueUuid,
-    this.defaultValueUuidElement,
-    this.defaultValueAddress,
-    this.defaultValueAge,
-    this.defaultValueAnnotation,
-    this.defaultValueAttachment,
-    this.defaultValueCodeableConcept,
-    this.defaultValueCoding,
-    this.defaultValueContactPoint,
-    this.defaultValueCount,
-    this.defaultValueDistance,
-    this.defaultValueDuration,
-    this.defaultValueHumanName,
-    this.defaultValueIdentifier,
-    this.defaultValueMoney,
-    this.defaultValuePeriod,
-    this.defaultValueQuantity,
-    this.defaultValueRange,
-    this.defaultValueRatio,
-    this.defaultValueReference,
-    this.defaultValueSampledData,
-    this.defaultValueSignature,
-    this.defaultValueTiming,
-    this.defaultValueContactDetail,
-    this.defaultValueContributor,
-    this.defaultValueDataRequirement,
-    this.defaultValueExpression,
-    this.defaultValueParameterDefinition,
-    this.defaultValueRelatedArtifact,
-    this.defaultValueTriggerDefinition,
-    this.defaultValueUsageContext,
-    this.defaultValueDosage,
-    this.defaultValueMeta,
+    ObjectBoxElement? defaultValueUuidElement,
+    ObjectBoxAddress? defaultValueAddress,
+    ObjectBoxAge? defaultValueAge,
+    ObjectBoxAnnotation? defaultValueAnnotation,
+    ObjectBoxAttachment? defaultValueAttachment,
+    ObjectBoxCodeableConcept? defaultValueCodeableConcept,
+    ObjectBoxCoding? defaultValueCoding,
+    ObjectBoxContactPoint? defaultValueContactPoint,
+    ObjectBoxCount? defaultValueCount,
+    ObjectBoxDistance? defaultValueDistance,
+    ObjectBoxFhirDuration? defaultValueDuration,
+    ObjectBoxHumanName? defaultValueHumanName,
+    ObjectBoxIdentifier? defaultValueIdentifier,
+    ObjectBoxMoney? defaultValueMoney,
+    ObjectBoxPeriod? defaultValuePeriod,
+    ObjectBoxQuantity? defaultValueQuantity,
+    ObjectBoxRange? defaultValueRange,
+    ObjectBoxRatio? defaultValueRatio,
+    ObjectBoxReference? defaultValueReference,
+    ObjectBoxSampledData? defaultValueSampledData,
+    ObjectBoxSignature? defaultValueSignature,
+    ObjectBoxTiming? defaultValueTiming,
+    ObjectBoxContactDetail? defaultValueContactDetail,
+    ObjectBoxContributor? defaultValueContributor,
+    ObjectBoxDataRequirement? defaultValueDataRequirement,
+    ObjectBoxFhirExpression? defaultValueExpression,
+    ObjectBoxParameterDefinition? defaultValueParameterDefinition,
+    ObjectBoxRelatedArtifact? defaultValueRelatedArtifact,
+    ObjectBoxTriggerDefinition? defaultValueTriggerDefinition,
+    ObjectBoxUsageContext? defaultValueUsageContext,
+    ObjectBoxDosage? defaultValueDosage,
+    ObjectBoxFhirMeta? defaultValueMeta,
     this.element,
-    this.elementElement,
+    ObjectBoxElement? elementElement,
     this.listMode,
-    this.listModeElement,
+    ObjectBoxElement? listModeElement,
     this.variable,
-    this.variableElement,
+    ObjectBoxElement? variableElement,
     this.condition,
-    this.conditionElement,
+    ObjectBoxElement? conditionElement,
     this.check,
-    this.checkElement,
+    ObjectBoxElement? checkElement,
     this.logMessage,
-    this.logMessageElement,
-  });
+    ObjectBoxElement? logMessageElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.contextElement.target = contextElement;
+    this.minElement.target = minElement;
+    this.maxElement.target = maxElement;
+    this.typeElement.target = typeElement;
+    this.defaultValueBase64BinaryElement.target =
+        defaultValueBase64BinaryElement;
+    this.defaultValueBooleanElement.target = defaultValueBooleanElement;
+    this.defaultValueCanonicalElement.target = defaultValueCanonicalElement;
+    this.defaultValueCodeElement.target = defaultValueCodeElement;
+    this.defaultValueDateElement.target = defaultValueDateElement;
+    this.defaultValueDateTimeElement.target = defaultValueDateTimeElement;
+    this.defaultValueDecimalElement.target = defaultValueDecimalElement;
+    this.defaultValueIdElement.target = defaultValueIdElement;
+    this.defaultValueInstantElement.target = defaultValueInstantElement;
+    this.defaultValueIntegerElement.target = defaultValueIntegerElement;
+    this.defaultValueMarkdownElement.target = defaultValueMarkdownElement;
+    this.defaultValueOidElement.target = defaultValueOidElement;
+    this.defaultValuePositiveIntElement.target = defaultValuePositiveIntElement;
+    this.defaultValueStringElement.target = defaultValueStringElement;
+    this.defaultValueTimeElement.target = defaultValueTimeElement;
+    this.defaultValueUnsignedIntElement.target = defaultValueUnsignedIntElement;
+    this.defaultValueUriElement.target = defaultValueUriElement;
+    this.defaultValueUrlElement.target = defaultValueUrlElement;
+    this.defaultValueUuidElement.target = defaultValueUuidElement;
+    this.defaultValueAddress.target = defaultValueAddress;
+    this.defaultValueAge.target = defaultValueAge;
+    this.defaultValueAnnotation.target = defaultValueAnnotation;
+    this.defaultValueAttachment.target = defaultValueAttachment;
+    this.defaultValueCodeableConcept.target = defaultValueCodeableConcept;
+    this.defaultValueCoding.target = defaultValueCoding;
+    this.defaultValueContactPoint.target = defaultValueContactPoint;
+    this.defaultValueCount.target = defaultValueCount;
+    this.defaultValueDistance.target = defaultValueDistance;
+    this.defaultValueDuration.target = defaultValueDuration;
+    this.defaultValueHumanName.target = defaultValueHumanName;
+    this.defaultValueIdentifier.target = defaultValueIdentifier;
+    this.defaultValueMoney.target = defaultValueMoney;
+    this.defaultValuePeriod.target = defaultValuePeriod;
+    this.defaultValueQuantity.target = defaultValueQuantity;
+    this.defaultValueRange.target = defaultValueRange;
+    this.defaultValueRatio.target = defaultValueRatio;
+    this.defaultValueReference.target = defaultValueReference;
+    this.defaultValueSampledData.target = defaultValueSampledData;
+    this.defaultValueSignature.target = defaultValueSignature;
+    this.defaultValueTiming.target = defaultValueTiming;
+    this.defaultValueContactDetail.target = defaultValueContactDetail;
+    this.defaultValueContributor.target = defaultValueContributor;
+    this.defaultValueDataRequirement.target = defaultValueDataRequirement;
+    this.defaultValueExpression.target = defaultValueExpression;
+    this.defaultValueParameterDefinition.target =
+        defaultValueParameterDefinition;
+    this.defaultValueRelatedArtifact.target = defaultValueRelatedArtifact;
+    this.defaultValueTriggerDefinition.target = defaultValueTriggerDefinition;
+    this.defaultValueUsageContext.target = defaultValueUsageContext;
+    this.defaultValueDosage.target = defaultValueDosage;
+    this.defaultValueMeta.target = defaultValueMeta;
+    this.elementElement.target = elementElement;
+    this.listModeElement.target = listModeElement;
+    this.variableElement.target = variableElement;
+    this.conditionElement.target = conditionElement;
+    this.checkElement.target = checkElement;
+    this.logMessageElement.target = logMessageElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String context;
-  ToOne<ObjectBoxElement>? contextElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> contextElement = ToOne<ObjectBoxElement>();
   int? min;
-  ToOne<ObjectBoxElement>? minElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> minElement = ToOne<ObjectBoxElement>();
   String? max;
-  ToOne<ObjectBoxElement>? maxElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> maxElement = ToOne<ObjectBoxElement>();
   String? type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
   String? defaultValueBase64Binary;
-  ToOne<ObjectBoxElement>? defaultValueBase64BinaryElement =
+  ToOne<ObjectBoxElement> defaultValueBase64BinaryElement =
       ToOne<ObjectBoxElement>();
   bool? defaultValueBoolean;
-  ToOne<ObjectBoxElement>? defaultValueBooleanElement =
+  ToOne<ObjectBoxElement> defaultValueBooleanElement =
       ToOne<ObjectBoxElement>();
   String? defaultValueCanonical;
-  ToOne<ObjectBoxElement>? defaultValueCanonicalElement =
+  ToOne<ObjectBoxElement> defaultValueCanonicalElement =
       ToOne<ObjectBoxElement>();
   String? defaultValueCode;
-  ToOne<ObjectBoxElement>? defaultValueCodeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> defaultValueCodeElement = ToOne<ObjectBoxElement>();
   String? defaultValueDate;
-  ToOne<ObjectBoxElement>? defaultValueDateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> defaultValueDateElement = ToOne<ObjectBoxElement>();
   String? defaultValueDateTime;
-  ToOne<ObjectBoxElement>? defaultValueDateTimeElement =
+  ToOne<ObjectBoxElement> defaultValueDateTimeElement =
       ToOne<ObjectBoxElement>();
   double? defaultValueDecimal;
-  ToOne<ObjectBoxElement>? defaultValueDecimalElement =
+  ToOne<ObjectBoxElement> defaultValueDecimalElement =
       ToOne<ObjectBoxElement>();
   String? defaultValueId;
-  ToOne<ObjectBoxElement>? defaultValueIdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> defaultValueIdElement = ToOne<ObjectBoxElement>();
   String? defaultValueInstant;
-  ToOne<ObjectBoxElement>? defaultValueInstantElement =
+  ToOne<ObjectBoxElement> defaultValueInstantElement =
       ToOne<ObjectBoxElement>();
   int? defaultValueInteger;
-  ToOne<ObjectBoxElement>? defaultValueIntegerElement =
+  ToOne<ObjectBoxElement> defaultValueIntegerElement =
       ToOne<ObjectBoxElement>();
   String? defaultValueMarkdown;
-  ToOne<ObjectBoxElement>? defaultValueMarkdownElement =
+  ToOne<ObjectBoxElement> defaultValueMarkdownElement =
       ToOne<ObjectBoxElement>();
   String? defaultValueOid;
-  ToOne<ObjectBoxElement>? defaultValueOidElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> defaultValueOidElement = ToOne<ObjectBoxElement>();
   int? defaultValuePositiveInt;
-  ToOne<ObjectBoxElement>? defaultValuePositiveIntElement =
+  ToOne<ObjectBoxElement> defaultValuePositiveIntElement =
       ToOne<ObjectBoxElement>();
   String? defaultValueString;
-  ToOne<ObjectBoxElement>? defaultValueStringElement =
-      ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> defaultValueStringElement = ToOne<ObjectBoxElement>();
   String? defaultValueTime;
-  ToOne<ObjectBoxElement>? defaultValueTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> defaultValueTimeElement = ToOne<ObjectBoxElement>();
   int? defaultValueUnsignedInt;
-  ToOne<ObjectBoxElement>? defaultValueUnsignedIntElement =
+  ToOne<ObjectBoxElement> defaultValueUnsignedIntElement =
       ToOne<ObjectBoxElement>();
   String? defaultValueUri;
-  ToOne<ObjectBoxElement>? defaultValueUriElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> defaultValueUriElement = ToOne<ObjectBoxElement>();
   String? defaultValueUrl;
-  ToOne<ObjectBoxElement>? defaultValueUrlElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> defaultValueUrlElement = ToOne<ObjectBoxElement>();
   String? defaultValueUuid;
-  ToOne<ObjectBoxElement>? defaultValueUuidElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxAddress>? defaultValueAddress = ToOne<ObjectBoxAddress>();
-  ToOne<ObjectBoxAge>? defaultValueAge = ToOne<ObjectBoxAge>();
-  ToOne<ObjectBoxAnnotation>? defaultValueAnnotation =
+  ToOne<ObjectBoxElement> defaultValueUuidElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxAddress> defaultValueAddress = ToOne<ObjectBoxAddress>();
+  ToOne<ObjectBoxAge> defaultValueAge = ToOne<ObjectBoxAge>();
+  ToOne<ObjectBoxAnnotation> defaultValueAnnotation =
       ToOne<ObjectBoxAnnotation>();
-  ToOne<ObjectBoxAttachment>? defaultValueAttachment =
+  ToOne<ObjectBoxAttachment> defaultValueAttachment =
       ToOne<ObjectBoxAttachment>();
-  ToOne<ObjectBoxCodeableConcept>? defaultValueCodeableConcept =
+  ToOne<ObjectBoxCodeableConcept> defaultValueCodeableConcept =
       ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCoding>? defaultValueCoding = ToOne<ObjectBoxCoding>();
-  ToOne<ObjectBoxContactPoint>? defaultValueContactPoint =
+  ToOne<ObjectBoxCoding> defaultValueCoding = ToOne<ObjectBoxCoding>();
+  ToOne<ObjectBoxContactPoint> defaultValueContactPoint =
       ToOne<ObjectBoxContactPoint>();
-  ToOne<ObjectBoxCount>? defaultValueCount = ToOne<ObjectBoxCount>();
-  ToOne<ObjectBoxDistance>? defaultValueDistance = ToOne<ObjectBoxDistance>();
-  ToOne<ObjectBoxFhirDuration>? defaultValueDuration =
+  ToOne<ObjectBoxCount> defaultValueCount = ToOne<ObjectBoxCount>();
+  ToOne<ObjectBoxDistance> defaultValueDistance = ToOne<ObjectBoxDistance>();
+  ToOne<ObjectBoxFhirDuration> defaultValueDuration =
       ToOne<ObjectBoxFhirDuration>();
-  ToOne<ObjectBoxHumanName>? defaultValueHumanName =
-      ToOne<ObjectBoxHumanName>();
-  ToOne<ObjectBoxIdentifier>? defaultValueIdentifier =
+  ToOne<ObjectBoxHumanName> defaultValueHumanName = ToOne<ObjectBoxHumanName>();
+  ToOne<ObjectBoxIdentifier> defaultValueIdentifier =
       ToOne<ObjectBoxIdentifier>();
-  ToOne<ObjectBoxMoney>? defaultValueMoney = ToOne<ObjectBoxMoney>();
-  ToOne<ObjectBoxPeriod>? defaultValuePeriod = ToOne<ObjectBoxPeriod>();
-  ToOne<ObjectBoxQuantity>? defaultValueQuantity = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxRange>? defaultValueRange = ToOne<ObjectBoxRange>();
-  ToOne<ObjectBoxRatio>? defaultValueRatio = ToOne<ObjectBoxRatio>();
-  ToOne<ObjectBoxReference>? defaultValueReference =
-      ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxSampledData>? defaultValueSampledData =
+  ToOne<ObjectBoxMoney> defaultValueMoney = ToOne<ObjectBoxMoney>();
+  ToOne<ObjectBoxPeriod> defaultValuePeriod = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxQuantity> defaultValueQuantity = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxRange> defaultValueRange = ToOne<ObjectBoxRange>();
+  ToOne<ObjectBoxRatio> defaultValueRatio = ToOne<ObjectBoxRatio>();
+  ToOne<ObjectBoxReference> defaultValueReference = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxSampledData> defaultValueSampledData =
       ToOne<ObjectBoxSampledData>();
-  ToOne<ObjectBoxSignature>? defaultValueSignature =
-      ToOne<ObjectBoxSignature>();
-  ToOne<ObjectBoxTiming>? defaultValueTiming = ToOne<ObjectBoxTiming>();
-  ToOne<ObjectBoxContactDetail>? defaultValueContactDetail =
+  ToOne<ObjectBoxSignature> defaultValueSignature = ToOne<ObjectBoxSignature>();
+  ToOne<ObjectBoxTiming> defaultValueTiming = ToOne<ObjectBoxTiming>();
+  ToOne<ObjectBoxContactDetail> defaultValueContactDetail =
       ToOne<ObjectBoxContactDetail>();
-  ToOne<ObjectBoxContributor>? defaultValueContributor =
+  ToOne<ObjectBoxContributor> defaultValueContributor =
       ToOne<ObjectBoxContributor>();
-  ToOne<ObjectBoxDataRequirement>? defaultValueDataRequirement =
+  ToOne<ObjectBoxDataRequirement> defaultValueDataRequirement =
       ToOne<ObjectBoxDataRequirement>();
-  ToOne<ObjectBoxFhirExpression>? defaultValueExpression =
+  ToOne<ObjectBoxFhirExpression> defaultValueExpression =
       ToOne<ObjectBoxFhirExpression>();
-  ToOne<ObjectBoxParameterDefinition>? defaultValueParameterDefinition =
+  ToOne<ObjectBoxParameterDefinition> defaultValueParameterDefinition =
       ToOne<ObjectBoxParameterDefinition>();
-  ToOne<ObjectBoxRelatedArtifact>? defaultValueRelatedArtifact =
+  ToOne<ObjectBoxRelatedArtifact> defaultValueRelatedArtifact =
       ToOne<ObjectBoxRelatedArtifact>();
-  ToOne<ObjectBoxTriggerDefinition>? defaultValueTriggerDefinition =
+  ToOne<ObjectBoxTriggerDefinition> defaultValueTriggerDefinition =
       ToOne<ObjectBoxTriggerDefinition>();
-  ToOne<ObjectBoxUsageContext>? defaultValueUsageContext =
+  ToOne<ObjectBoxUsageContext> defaultValueUsageContext =
       ToOne<ObjectBoxUsageContext>();
-  ToOne<ObjectBoxDosage>? defaultValueDosage = ToOne<ObjectBoxDosage>();
-  ToOne<ObjectBoxFhirMeta>? defaultValueMeta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<ObjectBoxDosage> defaultValueDosage = ToOne<ObjectBoxDosage>();
+  ToOne<ObjectBoxFhirMeta> defaultValueMeta = ToOne<ObjectBoxFhirMeta>();
   String? element;
-  ToOne<ObjectBoxElement>? elementElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> elementElement = ToOne<ObjectBoxElement>();
   String? listMode;
-  ToOne<ObjectBoxElement>? listModeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> listModeElement = ToOne<ObjectBoxElement>();
   String? variable;
-  ToOne<ObjectBoxElement>? variableElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> variableElement = ToOne<ObjectBoxElement>();
   String? condition;
-  ToOne<ObjectBoxElement>? conditionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> conditionElement = ToOne<ObjectBoxElement>();
   String? check;
-  ToOne<ObjectBoxElement>? checkElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> checkElement = ToOne<ObjectBoxElement>();
   String? logMessage;
-  ToOne<ObjectBoxElement>? logMessageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> logMessageElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxStructureMapTarget {
   ObjectBoxStructureMapTarget({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.context,
-    this.contextElement,
+    ObjectBoxElement? contextElement,
     this.contextType,
-    this.contextTypeElement,
+    ObjectBoxElement? contextTypeElement,
     this.element,
-    this.elementElement,
+    ObjectBoxElement? elementElement,
     this.variable,
-    this.variableElement,
+    ObjectBoxElement? variableElement,
     this.listMode,
-    this.listModeElement,
+    List<ObjectBoxElement>? listModeElement,
     this.listRuleId,
-    this.listRuleIdElement,
+    ObjectBoxElement? listRuleIdElement,
     this.transform,
-    this.transformElement,
-    this.parameter,
-  });
+    ObjectBoxElement? transformElement,
+    List<ObjectBoxStructureMapParameter>? parameter,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.contextElement.target = contextElement;
+    this.contextTypeElement.target = contextTypeElement;
+    this.elementElement.target = elementElement;
+    this.variableElement.target = variableElement;
+    this.listModeElement.addAll(listModeElement ?? []);
+    this.listRuleIdElement.target = listRuleIdElement;
+    this.transformElement.target = transformElement;
+    this.parameter.addAll(parameter ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? context;
-  ToOne<ObjectBoxElement>? contextElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> contextElement = ToOne<ObjectBoxElement>();
   String? contextType;
-  ToOne<ObjectBoxElement>? contextTypeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> contextTypeElement = ToOne<ObjectBoxElement>();
   String? element;
-  ToOne<ObjectBoxElement>? elementElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> elementElement = ToOne<ObjectBoxElement>();
   String? variable;
-  ToOne<ObjectBoxElement>? variableElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> variableElement = ToOne<ObjectBoxElement>();
   List<String>? listMode;
-  ToMany<ObjectBoxElement>? listModeElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> listModeElement = ToMany<ObjectBoxElement>();
   String? listRuleId;
-  ToOne<ObjectBoxElement>? listRuleIdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> listRuleIdElement = ToOne<ObjectBoxElement>();
   String? transform;
-  ToOne<ObjectBoxElement>? transformElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxStructureMapParameter>? parameter =
+  ToOne<ObjectBoxElement> transformElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxStructureMapParameter> parameter =
       ToMany<ObjectBoxStructureMapParameter>();
 }
 
 @Entity()
 class ObjectBoxStructureMapParameter {
   ObjectBoxStructureMapParameter({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.valueId,
-    this.valueIdElement,
+    ObjectBoxElement? valueIdElement,
     this.valueString,
-    this.valueStringElement,
+    ObjectBoxElement? valueStringElement,
     this.valueBoolean,
-    this.valueBooleanElement,
+    ObjectBoxElement? valueBooleanElement,
     this.valueInteger,
-    this.valueIntegerElement,
+    ObjectBoxElement? valueIntegerElement,
     this.valueDecimal,
-    this.valueDecimalElement,
-  });
+    ObjectBoxElement? valueDecimalElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.valueIdElement.target = valueIdElement;
+    this.valueStringElement.target = valueStringElement;
+    this.valueBooleanElement.target = valueBooleanElement;
+    this.valueIntegerElement.target = valueIntegerElement;
+    this.valueDecimalElement.target = valueDecimalElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? valueId;
-  ToOne<ObjectBoxElement>? valueIdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueIdElement = ToOne<ObjectBoxElement>();
   String? valueString;
-  ToOne<ObjectBoxElement>? valueStringElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueStringElement = ToOne<ObjectBoxElement>();
   bool? valueBoolean;
-  ToOne<ObjectBoxElement>? valueBooleanElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueBooleanElement = ToOne<ObjectBoxElement>();
   int? valueInteger;
-  ToOne<ObjectBoxElement>? valueIntegerElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueIntegerElement = ToOne<ObjectBoxElement>();
   double? valueDecimal;
-  ToOne<ObjectBoxElement>? valueDecimalElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueDecimalElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxStructureMapDependent {
   ObjectBoxStructureMapDependent({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     required this.variable,
-    this.variableElement,
-  });
+    List<ObjectBoxElement>? variableElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.nameElement.target = nameElement;
+    this.variableElement.addAll(variableElement ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   List<String> variable;
-  ToMany<ObjectBoxElement>? variableElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> variableElement = ToMany<ObjectBoxElement>();
 }

@@ -6,26 +6,33 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxReference {
   ObjectBoxReference({
-    this.id,
-    this.extension_,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
     this.reference,
-    this.referenceElement,
+    ObjectBoxElement? referenceElement,
     this.type,
-    this.typeElement,
-    this.identifier,
+    ObjectBoxElement? typeElement,
+    ObjectBoxIdentifier? identifier,
     this.display,
-    this.displayElement,
-  });
+    ObjectBoxElement? displayElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.referenceElement.target = referenceElement;
+    this.typeElement.target = typeElement;
+    this.identifier.target = identifier;
+    this.displayElement.target = displayElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String? reference;
-  ToOne<ObjectBoxElement>? referenceElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> referenceElement = ToOne<ObjectBoxElement>();
   String? type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxIdentifier>? identifier = ToOne<ObjectBoxIdentifier>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxIdentifier> identifier = ToOne<ObjectBoxIdentifier>();
   String? display;
-  ToOne<ObjectBoxElement>? displayElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> displayElement = ToOne<ObjectBoxElement>();
 }

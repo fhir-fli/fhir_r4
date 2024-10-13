@@ -6,81 +6,108 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxPractitioner {
   ObjectBoxPractitioner({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     this.active,
-    this.activeElement,
-    this.name,
-    this.telecom,
-    this.address,
+    ObjectBoxElement? activeElement,
+    List<ObjectBoxHumanName>? name,
+    List<ObjectBoxContactPoint>? telecom,
+    List<ObjectBoxAddress>? address,
     this.gender,
-    this.genderElement,
+    ObjectBoxElement? genderElement,
     this.birthDate,
-    this.birthDateElement,
-    this.photo,
-    this.qualification,
-    this.communication,
-  });
+    ObjectBoxElement? birthDateElement,
+    List<ObjectBoxAttachment>? photo,
+    List<ObjectBoxPractitionerQualification>? qualification,
+    List<ObjectBoxCodeableConcept>? communication,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.activeElement.target = activeElement;
+    this.name.addAll(name ?? []);
+    this.telecom.addAll(telecom ?? []);
+    this.address.addAll(address ?? []);
+    this.genderElement.target = genderElement;
+    this.birthDateElement.target = birthDateElement;
+    this.photo.addAll(photo ?? []);
+    this.qualification.addAll(qualification ?? []);
+    this.communication.addAll(communication ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   bool? active;
-  ToOne<ObjectBoxElement>? activeElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxHumanName>? name = ToMany<ObjectBoxHumanName>();
-  ToMany<ObjectBoxContactPoint>? telecom = ToMany<ObjectBoxContactPoint>();
-  ToMany<ObjectBoxAddress>? address = ToMany<ObjectBoxAddress>();
+  ToOne<ObjectBoxElement> activeElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxHumanName> name = ToMany<ObjectBoxHumanName>();
+  ToMany<ObjectBoxContactPoint> telecom = ToMany<ObjectBoxContactPoint>();
+  ToMany<ObjectBoxAddress> address = ToMany<ObjectBoxAddress>();
   String? gender;
-  ToOne<ObjectBoxElement>? genderElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> genderElement = ToOne<ObjectBoxElement>();
   String? birthDate;
-  ToOne<ObjectBoxElement>? birthDateElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxAttachment>? photo = ToMany<ObjectBoxAttachment>();
-  ToMany<ObjectBoxPractitionerQualification>? qualification =
+  ToOne<ObjectBoxElement> birthDateElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxAttachment> photo = ToMany<ObjectBoxAttachment>();
+  ToMany<ObjectBoxPractitionerQualification> qualification =
       ToMany<ObjectBoxPractitionerQualification>();
-  ToMany<ObjectBoxCodeableConcept>? communication =
+  ToMany<ObjectBoxCodeableConcept> communication =
       ToMany<ObjectBoxCodeableConcept>();
 }
 
 @Entity()
 class ObjectBoxPractitionerQualification {
   ObjectBoxPractitionerQualification({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
-    required this.code,
-    this.period,
-    this.issuer,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
+    ObjectBoxCodeableConcept? code,
+    ObjectBoxPeriod? period,
+    ObjectBoxReference? issuer,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.code.target = code;
+    this.period.target = period;
+    this.issuer.target = issuer;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   ToOne<ObjectBoxCodeableConcept> code = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxPeriod>? period = ToOne<ObjectBoxPeriod>();
-  ToOne<ObjectBoxReference>? issuer = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxPeriod> period = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxReference> issuer = ToOne<ObjectBoxReference>();
 }

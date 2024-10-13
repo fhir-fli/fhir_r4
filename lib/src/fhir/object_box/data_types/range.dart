@@ -6,16 +6,21 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxRange {
   ObjectBoxRange({
-    this.id,
-    this.extension_,
-    this.low,
-    this.high,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    ObjectBoxQuantity? low,
+    ObjectBoxQuantity? high,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.low.target = low;
+    this.high.target = high;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxQuantity>? low = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxQuantity>? high = ToOne<ObjectBoxQuantity>();
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToOne<ObjectBoxQuantity> low = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxQuantity> high = ToOne<ObjectBoxQuantity>();
 }

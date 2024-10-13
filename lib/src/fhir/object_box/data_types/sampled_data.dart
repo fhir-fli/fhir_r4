@@ -6,38 +6,48 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxSampledData {
   ObjectBoxSampledData({
-    this.id,
-    this.extension_,
-    required this.origin,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    ObjectBoxQuantity? origin,
     required this.period,
-    this.periodElement,
+    ObjectBoxElement? periodElement,
     this.factor,
-    this.factorElement,
+    ObjectBoxElement? factorElement,
     this.lowerLimit,
-    this.lowerLimitElement,
+    ObjectBoxElement? lowerLimitElement,
     this.upperLimit,
-    this.upperLimitElement,
+    ObjectBoxElement? upperLimitElement,
     required this.dimensions,
-    this.dimensionsElement,
+    ObjectBoxElement? dimensionsElement,
     this.data,
-    this.dataElement,
-  });
+    ObjectBoxElement? dataElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.origin.target = origin;
+    this.periodElement.target = periodElement;
+    this.factorElement.target = factorElement;
+    this.lowerLimitElement.target = lowerLimitElement;
+    this.upperLimitElement.target = upperLimitElement;
+    this.dimensionsElement.target = dimensionsElement;
+    this.dataElement.target = dataElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxQuantity> origin = ToOne<ObjectBoxQuantity>();
   double period;
-  ToOne<ObjectBoxElement>? periodElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> periodElement = ToOne<ObjectBoxElement>();
   double? factor;
-  ToOne<ObjectBoxElement>? factorElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> factorElement = ToOne<ObjectBoxElement>();
   double? lowerLimit;
-  ToOne<ObjectBoxElement>? lowerLimitElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> lowerLimitElement = ToOne<ObjectBoxElement>();
   double? upperLimit;
-  ToOne<ObjectBoxElement>? upperLimitElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> upperLimitElement = ToOne<ObjectBoxElement>();
   int dimensions;
-  ToOne<ObjectBoxElement>? dimensionsElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> dimensionsElement = ToOne<ObjectBoxElement>();
   String? data;
-  ToOne<ObjectBoxElement>? dataElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> dataElement = ToOne<ObjectBoxElement>();
 }

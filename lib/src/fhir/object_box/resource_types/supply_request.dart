@@ -6,106 +6,141 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxSupplyRequest {
   ObjectBoxSupplyRequest({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     this.status,
-    this.statusElement,
-    this.category,
+    ObjectBoxElement? statusElement,
+    ObjectBoxCodeableConcept? category,
     this.priority,
-    this.priorityElement,
-    this.itemCodeableConcept,
-    this.itemReference,
-    required this.quantity,
-    this.parameter,
+    ObjectBoxElement? priorityElement,
+    ObjectBoxCodeableConcept? itemCodeableConcept,
+    ObjectBoxReference? itemReference,
+    ObjectBoxQuantity? quantity,
+    List<ObjectBoxSupplyRequestParameter>? parameter,
     this.occurrenceDateTime,
-    this.occurrenceDateTimeElement,
-    this.occurrencePeriod,
-    this.occurrenceTiming,
+    ObjectBoxElement? occurrenceDateTimeElement,
+    ObjectBoxPeriod? occurrencePeriod,
+    ObjectBoxTiming? occurrenceTiming,
     this.authoredOn,
-    this.authoredOnElement,
-    this.requester,
-    this.supplier,
-    this.reasonCode,
-    this.reasonReference,
-    this.deliverFrom,
-    this.deliverTo,
-  });
+    ObjectBoxElement? authoredOnElement,
+    ObjectBoxReference? requester,
+    List<ObjectBoxReference>? supplier,
+    List<ObjectBoxCodeableConcept>? reasonCode,
+    List<ObjectBoxReference>? reasonReference,
+    ObjectBoxReference? deliverFrom,
+    ObjectBoxReference? deliverTo,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.statusElement.target = statusElement;
+    this.category.target = category;
+    this.priorityElement.target = priorityElement;
+    this.itemCodeableConcept.target = itemCodeableConcept;
+    this.itemReference.target = itemReference;
+    this.quantity.target = quantity;
+    this.parameter.addAll(parameter ?? []);
+    this.occurrenceDateTimeElement.target = occurrenceDateTimeElement;
+    this.occurrencePeriod.target = occurrencePeriod;
+    this.occurrenceTiming.target = occurrenceTiming;
+    this.authoredOnElement.target = authoredOnElement;
+    this.requester.target = requester;
+    this.supplier.addAll(supplier ?? []);
+    this.reasonCode.addAll(reasonCode ?? []);
+    this.reasonReference.addAll(reasonReference ?? []);
+    this.deliverFrom.target = deliverFrom;
+    this.deliverTo.target = deliverTo;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   String? status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxCodeableConcept>? category = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxCodeableConcept> category = ToOne<ObjectBoxCodeableConcept>();
   String? priority;
-  ToOne<ObjectBoxElement>? priorityElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxCodeableConcept>? itemCodeableConcept =
+  ToOne<ObjectBoxElement> priorityElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxCodeableConcept> itemCodeableConcept =
       ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxReference>? itemReference = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> itemReference = ToOne<ObjectBoxReference>();
   ToOne<ObjectBoxQuantity> quantity = ToOne<ObjectBoxQuantity>();
-  ToMany<ObjectBoxSupplyRequestParameter>? parameter =
+  ToMany<ObjectBoxSupplyRequestParameter> parameter =
       ToMany<ObjectBoxSupplyRequestParameter>();
   String? occurrenceDateTime;
-  ToOne<ObjectBoxElement>? occurrenceDateTimeElement =
-      ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? occurrencePeriod = ToOne<ObjectBoxPeriod>();
-  ToOne<ObjectBoxTiming>? occurrenceTiming = ToOne<ObjectBoxTiming>();
+  ToOne<ObjectBoxElement> occurrenceDateTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> occurrencePeriod = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxTiming> occurrenceTiming = ToOne<ObjectBoxTiming>();
   String? authoredOn;
-  ToOne<ObjectBoxElement>? authoredOnElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? requester = ToOne<ObjectBoxReference>();
-  ToMany<ObjectBoxReference>? supplier = ToMany<ObjectBoxReference>();
-  ToMany<ObjectBoxCodeableConcept>? reasonCode =
+  ToOne<ObjectBoxElement> authoredOnElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> requester = ToOne<ObjectBoxReference>();
+  ToMany<ObjectBoxReference> supplier = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxCodeableConcept> reasonCode =
       ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxReference>? reasonReference = ToMany<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? deliverFrom = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? deliverTo = ToOne<ObjectBoxReference>();
+  ToMany<ObjectBoxReference> reasonReference = ToMany<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> deliverFrom = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> deliverTo = ToOne<ObjectBoxReference>();
 }
 
 @Entity()
 class ObjectBoxSupplyRequestParameter {
   ObjectBoxSupplyRequestParameter({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.code,
-    this.valueCodeableConcept,
-    this.valueQuantity,
-    this.valueRange,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? code,
+    ObjectBoxCodeableConcept? valueCodeableConcept,
+    ObjectBoxQuantity? valueQuantity,
+    ObjectBoxRange? valueRange,
     this.valueBoolean,
-    this.valueBooleanElement,
-  });
+    ObjectBoxElement? valueBooleanElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.code.target = code;
+    this.valueCodeableConcept.target = valueCodeableConcept;
+    this.valueQuantity.target = valueQuantity;
+    this.valueRange.target = valueRange;
+    this.valueBooleanElement.target = valueBooleanElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxCodeableConcept>? code = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? valueCodeableConcept =
+  ToOne<ObjectBoxCodeableConcept> code = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxCodeableConcept> valueCodeableConcept =
       ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxQuantity>? valueQuantity = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxRange>? valueRange = ToOne<ObjectBoxRange>();
+  ToOne<ObjectBoxQuantity> valueQuantity = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxRange> valueRange = ToOne<ObjectBoxRange>();
   bool? valueBoolean;
-  ToOne<ObjectBoxElement>? valueBooleanElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueBooleanElement = ToOne<ObjectBoxElement>();
 }

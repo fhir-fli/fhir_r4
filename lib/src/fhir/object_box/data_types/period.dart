@@ -6,20 +6,25 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxPeriod {
   ObjectBoxPeriod({
-    this.id,
-    this.extension_,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
     this.start,
-    this.startElement,
+    ObjectBoxElement? startElement,
     this.end,
-    this.endElement,
-  });
+    ObjectBoxElement? endElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.startElement.target = startElement;
+    this.endElement.target = endElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String? start;
-  ToOne<ObjectBoxElement>? startElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> startElement = ToOne<ObjectBoxElement>();
   String? end;
-  ToOne<ObjectBoxElement>? endElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> endElement = ToOne<ObjectBoxElement>();
 }

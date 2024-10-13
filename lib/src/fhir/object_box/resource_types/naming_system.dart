@@ -6,73 +6,95 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxNamingSystem {
   ObjectBoxNamingSystem({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     required this.status,
-    this.statusElement,
+    ObjectBoxElement? statusElement,
     required this.kind,
-    this.kindElement,
+    ObjectBoxElement? kindElement,
     required this.date,
-    this.dateElement,
+    ObjectBoxElement? dateElement,
     this.publisher,
-    this.publisherElement,
-    this.contact,
+    ObjectBoxElement? publisherElement,
+    List<ObjectBoxContactDetail>? contact,
     this.responsible,
-    this.responsibleElement,
-    this.type,
+    ObjectBoxElement? responsibleElement,
+    ObjectBoxCodeableConcept? type,
     this.description,
-    this.descriptionElement,
-    this.useContext,
-    this.jurisdiction,
+    ObjectBoxElement? descriptionElement,
+    List<ObjectBoxUsageContext>? useContext,
+    List<ObjectBoxCodeableConcept>? jurisdiction,
     this.usage,
-    this.usageElement,
-    required this.uniqueId,
-  });
+    ObjectBoxElement? usageElement,
+    List<ObjectBoxNamingSystemUniqueId>? uniqueId,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.nameElement.target = nameElement;
+    this.statusElement.target = statusElement;
+    this.kindElement.target = kindElement;
+    this.dateElement.target = dateElement;
+    this.publisherElement.target = publisherElement;
+    this.contact.addAll(contact ?? []);
+    this.responsibleElement.target = responsibleElement;
+    this.type.target = type;
+    this.descriptionElement.target = descriptionElement;
+    this.useContext.addAll(useContext ?? []);
+    this.jurisdiction.addAll(jurisdiction ?? []);
+    this.usageElement.target = usageElement;
+    this.uniqueId.addAll(uniqueId ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
   String kind;
-  ToOne<ObjectBoxElement>? kindElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> kindElement = ToOne<ObjectBoxElement>();
   String date;
-  ToOne<ObjectBoxElement>? dateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> dateElement = ToOne<ObjectBoxElement>();
   String? publisher;
-  ToOne<ObjectBoxElement>? publisherElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxContactDetail>? contact = ToMany<ObjectBoxContactDetail>();
+  ToOne<ObjectBoxElement> publisherElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxContactDetail> contact = ToMany<ObjectBoxContactDetail>();
   String? responsible;
-  ToOne<ObjectBoxElement>? responsibleElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxCodeableConcept>? type = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxElement> responsibleElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxCodeableConcept> type = ToOne<ObjectBoxCodeableConcept>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxUsageContext>? useContext = ToMany<ObjectBoxUsageContext>();
-  ToMany<ObjectBoxCodeableConcept>? jurisdiction =
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxUsageContext> useContext = ToMany<ObjectBoxUsageContext>();
+  ToMany<ObjectBoxCodeableConcept> jurisdiction =
       ToMany<ObjectBoxCodeableConcept>();
   String? usage;
-  ToOne<ObjectBoxElement>? usageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> usageElement = ToOne<ObjectBoxElement>();
   ToMany<ObjectBoxNamingSystemUniqueId> uniqueId =
       ToMany<ObjectBoxNamingSystemUniqueId>();
 }
@@ -80,33 +102,42 @@ class ObjectBoxNamingSystem {
 @Entity()
 class ObjectBoxNamingSystemUniqueId {
   ObjectBoxNamingSystemUniqueId({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.type,
-    this.typeElement,
+    ObjectBoxElement? typeElement,
     required this.value,
-    this.valueElement,
+    ObjectBoxElement? valueElement,
     this.preferred,
-    this.preferredElement,
+    ObjectBoxElement? preferredElement,
     this.comment,
-    this.commentElement,
-    this.period,
-  });
+    ObjectBoxElement? commentElement,
+    ObjectBoxPeriod? period,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.typeElement.target = typeElement;
+    this.valueElement.target = valueElement;
+    this.preferredElement.target = preferredElement;
+    this.commentElement.target = commentElement;
+    this.period.target = period;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
   String value;
-  ToOne<ObjectBoxElement>? valueElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueElement = ToOne<ObjectBoxElement>();
   bool? preferred;
-  ToOne<ObjectBoxElement>? preferredElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> preferredElement = ToOne<ObjectBoxElement>();
   String? comment;
-  ToOne<ObjectBoxElement>? commentElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? period = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxElement> commentElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> period = ToOne<ObjectBoxPeriod>();
 }

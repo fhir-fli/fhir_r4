@@ -6,161 +6,210 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxPatient {
   ObjectBoxPatient({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     this.active,
-    this.activeElement,
-    this.name,
-    this.telecom,
+    ObjectBoxElement? activeElement,
+    List<ObjectBoxHumanName>? name,
+    List<ObjectBoxContactPoint>? telecom,
     this.gender,
-    this.genderElement,
+    ObjectBoxElement? genderElement,
     this.birthDate,
-    this.birthDateElement,
+    ObjectBoxElement? birthDateElement,
     this.deceasedBoolean,
-    this.deceasedBooleanElement,
+    ObjectBoxElement? deceasedBooleanElement,
     this.deceasedDateTime,
-    this.deceasedDateTimeElement,
-    this.address,
-    this.maritalStatus,
+    ObjectBoxElement? deceasedDateTimeElement,
+    List<ObjectBoxAddress>? address,
+    ObjectBoxCodeableConcept? maritalStatus,
     this.multipleBirthBoolean,
-    this.multipleBirthBooleanElement,
+    ObjectBoxElement? multipleBirthBooleanElement,
     this.multipleBirthInteger,
-    this.multipleBirthIntegerElement,
-    this.photo,
-    this.contact,
-    this.communication,
-    this.generalPractitioner,
-    this.managingOrganization,
-    this.link,
-  });
+    ObjectBoxElement? multipleBirthIntegerElement,
+    List<ObjectBoxAttachment>? photo,
+    List<ObjectBoxPatientContact>? contact,
+    List<ObjectBoxPatientCommunication>? communication,
+    List<ObjectBoxReference>? generalPractitioner,
+    ObjectBoxReference? managingOrganization,
+    List<ObjectBoxPatientLink>? link,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.activeElement.target = activeElement;
+    this.name.addAll(name ?? []);
+    this.telecom.addAll(telecom ?? []);
+    this.genderElement.target = genderElement;
+    this.birthDateElement.target = birthDateElement;
+    this.deceasedBooleanElement.target = deceasedBooleanElement;
+    this.deceasedDateTimeElement.target = deceasedDateTimeElement;
+    this.address.addAll(address ?? []);
+    this.maritalStatus.target = maritalStatus;
+    this.multipleBirthBooleanElement.target = multipleBirthBooleanElement;
+    this.multipleBirthIntegerElement.target = multipleBirthIntegerElement;
+    this.photo.addAll(photo ?? []);
+    this.contact.addAll(contact ?? []);
+    this.communication.addAll(communication ?? []);
+    this.generalPractitioner.addAll(generalPractitioner ?? []);
+    this.managingOrganization.target = managingOrganization;
+    this.link.addAll(link ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   bool? active;
-  ToOne<ObjectBoxElement>? activeElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxHumanName>? name = ToMany<ObjectBoxHumanName>();
-  ToMany<ObjectBoxContactPoint>? telecom = ToMany<ObjectBoxContactPoint>();
+  ToOne<ObjectBoxElement> activeElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxHumanName> name = ToMany<ObjectBoxHumanName>();
+  ToMany<ObjectBoxContactPoint> telecom = ToMany<ObjectBoxContactPoint>();
   String? gender;
-  ToOne<ObjectBoxElement>? genderElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> genderElement = ToOne<ObjectBoxElement>();
   String? birthDate;
-  ToOne<ObjectBoxElement>? birthDateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> birthDateElement = ToOne<ObjectBoxElement>();
   bool? deceasedBoolean;
-  ToOne<ObjectBoxElement>? deceasedBooleanElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> deceasedBooleanElement = ToOne<ObjectBoxElement>();
   String? deceasedDateTime;
-  ToOne<ObjectBoxElement>? deceasedDateTimeElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxAddress>? address = ToMany<ObjectBoxAddress>();
-  ToOne<ObjectBoxCodeableConcept>? maritalStatus =
+  ToOne<ObjectBoxElement> deceasedDateTimeElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxAddress> address = ToMany<ObjectBoxAddress>();
+  ToOne<ObjectBoxCodeableConcept> maritalStatus =
       ToOne<ObjectBoxCodeableConcept>();
   bool? multipleBirthBoolean;
-  ToOne<ObjectBoxElement>? multipleBirthBooleanElement =
+  ToOne<ObjectBoxElement> multipleBirthBooleanElement =
       ToOne<ObjectBoxElement>();
   int? multipleBirthInteger;
-  ToOne<ObjectBoxElement>? multipleBirthIntegerElement =
+  ToOne<ObjectBoxElement> multipleBirthIntegerElement =
       ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxAttachment>? photo = ToMany<ObjectBoxAttachment>();
-  ToMany<ObjectBoxPatientContact>? contact = ToMany<ObjectBoxPatientContact>();
-  ToMany<ObjectBoxPatientCommunication>? communication =
+  ToMany<ObjectBoxAttachment> photo = ToMany<ObjectBoxAttachment>();
+  ToMany<ObjectBoxPatientContact> contact = ToMany<ObjectBoxPatientContact>();
+  ToMany<ObjectBoxPatientCommunication> communication =
       ToMany<ObjectBoxPatientCommunication>();
-  ToMany<ObjectBoxReference>? generalPractitioner =
-      ToMany<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? managingOrganization = ToOne<ObjectBoxReference>();
-  ToMany<ObjectBoxPatientLink>? link = ToMany<ObjectBoxPatientLink>();
+  ToMany<ObjectBoxReference> generalPractitioner = ToMany<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> managingOrganization = ToOne<ObjectBoxReference>();
+  ToMany<ObjectBoxPatientLink> link = ToMany<ObjectBoxPatientLink>();
 }
 
 @Entity()
 class ObjectBoxPatientContact {
   ObjectBoxPatientContact({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.relationship,
-    this.name,
-    this.telecom,
-    this.address,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxCodeableConcept>? relationship,
+    ObjectBoxHumanName? name,
+    List<ObjectBoxContactPoint>? telecom,
+    ObjectBoxAddress? address,
     this.gender,
-    this.genderElement,
-    this.organization,
-    this.period,
-  });
+    ObjectBoxElement? genderElement,
+    ObjectBoxReference? organization,
+    ObjectBoxPeriod? period,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.relationship.addAll(relationship ?? []);
+    this.name.target = name;
+    this.telecom.addAll(telecom ?? []);
+    this.address.target = address;
+    this.genderElement.target = genderElement;
+    this.organization.target = organization;
+    this.period.target = period;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxCodeableConcept>? relationship =
+  ToMany<ObjectBoxCodeableConcept> relationship =
       ToMany<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxHumanName>? name = ToOne<ObjectBoxHumanName>();
-  ToMany<ObjectBoxContactPoint>? telecom = ToMany<ObjectBoxContactPoint>();
-  ToOne<ObjectBoxAddress>? address = ToOne<ObjectBoxAddress>();
+  ToOne<ObjectBoxHumanName> name = ToOne<ObjectBoxHumanName>();
+  ToMany<ObjectBoxContactPoint> telecom = ToMany<ObjectBoxContactPoint>();
+  ToOne<ObjectBoxAddress> address = ToOne<ObjectBoxAddress>();
   String? gender;
-  ToOne<ObjectBoxElement>? genderElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? organization = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxPeriod>? period = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxElement> genderElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> organization = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxPeriod> period = ToOne<ObjectBoxPeriod>();
 }
 
 @Entity()
 class ObjectBoxPatientCommunication {
   ObjectBoxPatientCommunication({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.language,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? language,
     this.preferred,
-    this.preferredElement,
-  });
+    ObjectBoxElement? preferredElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.language.target = language;
+    this.preferredElement.target = preferredElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxCodeableConcept> language = ToOne<ObjectBoxCodeableConcept>();
   bool? preferred;
-  ToOne<ObjectBoxElement>? preferredElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> preferredElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxPatientLink {
   ObjectBoxPatientLink({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.other,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxReference? other,
     required this.type,
-    this.typeElement,
-  });
+    ObjectBoxElement? typeElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.other.target = other;
+    this.typeElement.target = typeElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxReference> other = ToOne<ObjectBoxReference>();
   String type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
 }

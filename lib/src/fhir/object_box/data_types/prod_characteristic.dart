@@ -6,43 +6,58 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxProdCharacteristic {
   ObjectBoxProdCharacteristic({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.height,
-    this.width,
-    this.depth,
-    this.weight,
-    this.nominalVolume,
-    this.externalDiameter,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxQuantity? height,
+    ObjectBoxQuantity? width,
+    ObjectBoxQuantity? depth,
+    ObjectBoxQuantity? weight,
+    ObjectBoxQuantity? nominalVolume,
+    ObjectBoxQuantity? externalDiameter,
     this.shape,
-    this.shapeElement,
+    ObjectBoxElement? shapeElement,
     this.color,
-    this.colorElement,
+    List<ObjectBoxElement>? colorElement,
     this.imprint,
-    this.imprintElement,
-    this.image,
-    this.scoring,
-  });
+    List<ObjectBoxElement>? imprintElement,
+    List<ObjectBoxAttachment>? image,
+    ObjectBoxCodeableConcept? scoring,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.height.target = height;
+    this.width.target = width;
+    this.depth.target = depth;
+    this.weight.target = weight;
+    this.nominalVolume.target = nominalVolume;
+    this.externalDiameter.target = externalDiameter;
+    this.shapeElement.target = shapeElement;
+    this.colorElement.addAll(colorElement ?? []);
+    this.imprintElement.addAll(imprintElement ?? []);
+    this.image.addAll(image ?? []);
+    this.scoring.target = scoring;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxQuantity>? height = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxQuantity>? width = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxQuantity>? depth = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxQuantity>? weight = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxQuantity>? nominalVolume = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxQuantity>? externalDiameter = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxQuantity> height = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxQuantity> width = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxQuantity> depth = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxQuantity> weight = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxQuantity> nominalVolume = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxQuantity> externalDiameter = ToOne<ObjectBoxQuantity>();
   String? shape;
-  ToOne<ObjectBoxElement>? shapeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> shapeElement = ToOne<ObjectBoxElement>();
   List<String>? color;
-  ToMany<ObjectBoxElement>? colorElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> colorElement = ToMany<ObjectBoxElement>();
   List<String>? imprint;
-  ToMany<ObjectBoxElement>? imprintElement = ToMany<ObjectBoxElement>();
-  ToMany<ObjectBoxAttachment>? image = ToMany<ObjectBoxAttachment>();
-  ToOne<ObjectBoxCodeableConcept>? scoring = ToOne<ObjectBoxCodeableConcept>();
+  ToMany<ObjectBoxElement> imprintElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxAttachment> image = ToMany<ObjectBoxAttachment>();
+  ToOne<ObjectBoxCodeableConcept> scoring = ToOne<ObjectBoxCodeableConcept>();
 }

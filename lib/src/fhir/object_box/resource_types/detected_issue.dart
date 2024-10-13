@@ -6,112 +6,146 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxDetectedIssue {
   ObjectBoxDetectedIssue({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     required this.status,
-    this.statusElement,
-    this.code,
+    ObjectBoxElement? statusElement,
+    ObjectBoxCodeableConcept? code,
     this.severity,
-    this.severityElement,
-    this.patient,
+    ObjectBoxElement? severityElement,
+    ObjectBoxReference? patient,
     this.identifiedDateTime,
-    this.identifiedDateTimeElement,
-    this.identifiedPeriod,
-    this.author,
-    this.implicated,
-    this.evidence,
+    ObjectBoxElement? identifiedDateTimeElement,
+    ObjectBoxPeriod? identifiedPeriod,
+    ObjectBoxReference? author,
+    List<ObjectBoxReference>? implicated,
+    List<ObjectBoxDetectedIssueEvidence>? evidence,
     this.detail,
-    this.detailElement,
+    ObjectBoxElement? detailElement,
     this.reference,
-    this.referenceElement,
-    this.mitigation,
-  });
+    ObjectBoxElement? referenceElement,
+    List<ObjectBoxDetectedIssueMitigation>? mitigation,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.statusElement.target = statusElement;
+    this.code.target = code;
+    this.severityElement.target = severityElement;
+    this.patient.target = patient;
+    this.identifiedDateTimeElement.target = identifiedDateTimeElement;
+    this.identifiedPeriod.target = identifiedPeriod;
+    this.author.target = author;
+    this.implicated.addAll(implicated ?? []);
+    this.evidence.addAll(evidence ?? []);
+    this.detailElement.target = detailElement;
+    this.referenceElement.target = referenceElement;
+    this.mitigation.addAll(mitigation ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxCodeableConcept>? code = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxCodeableConcept> code = ToOne<ObjectBoxCodeableConcept>();
   String? severity;
-  ToOne<ObjectBoxElement>? severityElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? patient = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> severityElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> patient = ToOne<ObjectBoxReference>();
   String? identifiedDateTime;
-  ToOne<ObjectBoxElement>? identifiedDateTimeElement =
-      ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? identifiedPeriod = ToOne<ObjectBoxPeriod>();
-  ToOne<ObjectBoxReference>? author = ToOne<ObjectBoxReference>();
-  ToMany<ObjectBoxReference>? implicated = ToMany<ObjectBoxReference>();
-  ToMany<ObjectBoxDetectedIssueEvidence>? evidence =
+  ToOne<ObjectBoxElement> identifiedDateTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> identifiedPeriod = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxReference> author = ToOne<ObjectBoxReference>();
+  ToMany<ObjectBoxReference> implicated = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxDetectedIssueEvidence> evidence =
       ToMany<ObjectBoxDetectedIssueEvidence>();
   String? detail;
-  ToOne<ObjectBoxElement>? detailElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> detailElement = ToOne<ObjectBoxElement>();
   String? reference;
-  ToOne<ObjectBoxElement>? referenceElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxDetectedIssueMitigation>? mitigation =
+  ToOne<ObjectBoxElement> referenceElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxDetectedIssueMitigation> mitigation =
       ToMany<ObjectBoxDetectedIssueMitigation>();
 }
 
 @Entity()
 class ObjectBoxDetectedIssueEvidence {
   ObjectBoxDetectedIssueEvidence({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.code,
-    this.detail,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxCodeableConcept>? code,
+    List<ObjectBoxReference>? detail,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.code.addAll(code ?? []);
+    this.detail.addAll(detail ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxCodeableConcept>? code = ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxReference>? detail = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxCodeableConcept> code = ToMany<ObjectBoxCodeableConcept>();
+  ToMany<ObjectBoxReference> detail = ToMany<ObjectBoxReference>();
 }
 
 @Entity()
 class ObjectBoxDetectedIssueMitigation {
   ObjectBoxDetectedIssueMitigation({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.action,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? action,
     this.date,
-    this.dateElement,
-    this.author,
-  });
+    ObjectBoxElement? dateElement,
+    ObjectBoxReference? author,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.action.target = action;
+    this.dateElement.target = dateElement;
+    this.author.target = author;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxCodeableConcept> action = ToOne<ObjectBoxCodeableConcept>();
   String? date;
-  ToOne<ObjectBoxElement>? dateElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? author = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> dateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> author = ToOne<ObjectBoxReference>();
 }

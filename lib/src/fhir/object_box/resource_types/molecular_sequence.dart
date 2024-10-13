@@ -6,396 +6,504 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxMolecularSequence {
   ObjectBoxMolecularSequence({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     this.type,
-    this.typeElement,
+    ObjectBoxElement? typeElement,
     required this.coordinateSystem,
-    this.coordinateSystemElement,
-    this.patient,
-    this.specimen,
-    this.device,
-    this.performer,
-    this.quantity,
-    this.referenceSeq,
-    this.variant,
+    ObjectBoxElement? coordinateSystemElement,
+    ObjectBoxReference? patient,
+    ObjectBoxReference? specimen,
+    ObjectBoxReference? device,
+    ObjectBoxReference? performer,
+    ObjectBoxQuantity? quantity,
+    ObjectBoxMolecularSequenceReferenceSeq? referenceSeq,
+    List<ObjectBoxMolecularSequenceVariant>? variant,
     this.observedSeq,
-    this.observedSeqElement,
-    this.quality,
+    ObjectBoxElement? observedSeqElement,
+    List<ObjectBoxMolecularSequenceQuality>? quality,
     this.readCoverage,
-    this.readCoverageElement,
-    this.repository,
-    this.pointer,
-    this.structureVariant,
-  });
+    ObjectBoxElement? readCoverageElement,
+    List<ObjectBoxMolecularSequenceRepository>? repository,
+    List<ObjectBoxReference>? pointer,
+    List<ObjectBoxMolecularSequenceStructureVariant>? structureVariant,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.typeElement.target = typeElement;
+    this.coordinateSystemElement.target = coordinateSystemElement;
+    this.patient.target = patient;
+    this.specimen.target = specimen;
+    this.device.target = device;
+    this.performer.target = performer;
+    this.quantity.target = quantity;
+    this.referenceSeq.target = referenceSeq;
+    this.variant.addAll(variant ?? []);
+    this.observedSeqElement.target = observedSeqElement;
+    this.quality.addAll(quality ?? []);
+    this.readCoverageElement.target = readCoverageElement;
+    this.repository.addAll(repository ?? []);
+    this.pointer.addAll(pointer ?? []);
+    this.structureVariant.addAll(structureVariant ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   String? type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
   int coordinateSystem;
-  ToOne<ObjectBoxElement>? coordinateSystemElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? patient = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? specimen = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? device = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? performer = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxQuantity>? quantity = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxMolecularSequenceReferenceSeq>? referenceSeq =
+  ToOne<ObjectBoxElement> coordinateSystemElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> patient = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> specimen = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> device = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> performer = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxQuantity> quantity = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxMolecularSequenceReferenceSeq> referenceSeq =
       ToOne<ObjectBoxMolecularSequenceReferenceSeq>();
-  ToMany<ObjectBoxMolecularSequenceVariant>? variant =
+  ToMany<ObjectBoxMolecularSequenceVariant> variant =
       ToMany<ObjectBoxMolecularSequenceVariant>();
   String? observedSeq;
-  ToOne<ObjectBoxElement>? observedSeqElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxMolecularSequenceQuality>? quality =
+  ToOne<ObjectBoxElement> observedSeqElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxMolecularSequenceQuality> quality =
       ToMany<ObjectBoxMolecularSequenceQuality>();
   int? readCoverage;
-  ToOne<ObjectBoxElement>? readCoverageElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxMolecularSequenceRepository>? repository =
+  ToOne<ObjectBoxElement> readCoverageElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxMolecularSequenceRepository> repository =
       ToMany<ObjectBoxMolecularSequenceRepository>();
-  ToMany<ObjectBoxReference>? pointer = ToMany<ObjectBoxReference>();
-  ToMany<ObjectBoxMolecularSequenceStructureVariant>? structureVariant =
+  ToMany<ObjectBoxReference> pointer = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxMolecularSequenceStructureVariant> structureVariant =
       ToMany<ObjectBoxMolecularSequenceStructureVariant>();
 }
 
 @Entity()
 class ObjectBoxMolecularSequenceReferenceSeq {
   ObjectBoxMolecularSequenceReferenceSeq({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.chromosome,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? chromosome,
     this.genomeBuild,
-    this.genomeBuildElement,
+    ObjectBoxElement? genomeBuildElement,
     this.orientation,
-    this.orientationElement,
-    this.referenceSeqId,
-    this.referenceSeqPointer,
+    ObjectBoxElement? orientationElement,
+    ObjectBoxCodeableConcept? referenceSeqId,
+    ObjectBoxReference? referenceSeqPointer,
     this.referenceSeqString,
-    this.referenceSeqStringElement,
+    ObjectBoxElement? referenceSeqStringElement,
     this.strand,
-    this.strandElement,
+    ObjectBoxElement? strandElement,
     this.windowStart,
-    this.windowStartElement,
+    ObjectBoxElement? windowStartElement,
     this.windowEnd,
-    this.windowEndElement,
-  });
+    ObjectBoxElement? windowEndElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.chromosome.target = chromosome;
+    this.genomeBuildElement.target = genomeBuildElement;
+    this.orientationElement.target = orientationElement;
+    this.referenceSeqId.target = referenceSeqId;
+    this.referenceSeqPointer.target = referenceSeqPointer;
+    this.referenceSeqStringElement.target = referenceSeqStringElement;
+    this.strandElement.target = strandElement;
+    this.windowStartElement.target = windowStartElement;
+    this.windowEndElement.target = windowEndElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxCodeableConcept>? chromosome =
+  ToOne<ObjectBoxCodeableConcept> chromosome =
       ToOne<ObjectBoxCodeableConcept>();
   String? genomeBuild;
-  ToOne<ObjectBoxElement>? genomeBuildElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> genomeBuildElement = ToOne<ObjectBoxElement>();
   String? orientation;
-  ToOne<ObjectBoxElement>? orientationElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxCodeableConcept>? referenceSeqId =
+  ToOne<ObjectBoxElement> orientationElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxCodeableConcept> referenceSeqId =
       ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxReference>? referenceSeqPointer = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> referenceSeqPointer = ToOne<ObjectBoxReference>();
   String? referenceSeqString;
-  ToOne<ObjectBoxElement>? referenceSeqStringElement =
-      ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> referenceSeqStringElement = ToOne<ObjectBoxElement>();
   String? strand;
-  ToOne<ObjectBoxElement>? strandElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> strandElement = ToOne<ObjectBoxElement>();
   int? windowStart;
-  ToOne<ObjectBoxElement>? windowStartElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> windowStartElement = ToOne<ObjectBoxElement>();
   int? windowEnd;
-  ToOne<ObjectBoxElement>? windowEndElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> windowEndElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxMolecularSequenceVariant {
   ObjectBoxMolecularSequenceVariant({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.start,
-    this.startElement,
+    ObjectBoxElement? startElement,
     this.end,
-    this.endElement,
+    ObjectBoxElement? endElement,
     this.observedAllele,
-    this.observedAlleleElement,
+    ObjectBoxElement? observedAlleleElement,
     this.referenceAllele,
-    this.referenceAlleleElement,
+    ObjectBoxElement? referenceAlleleElement,
     this.cigar,
-    this.cigarElement,
-    this.variantPointer,
-  });
+    ObjectBoxElement? cigarElement,
+    ObjectBoxReference? variantPointer,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.startElement.target = startElement;
+    this.endElement.target = endElement;
+    this.observedAlleleElement.target = observedAlleleElement;
+    this.referenceAlleleElement.target = referenceAlleleElement;
+    this.cigarElement.target = cigarElement;
+    this.variantPointer.target = variantPointer;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   int? start;
-  ToOne<ObjectBoxElement>? startElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> startElement = ToOne<ObjectBoxElement>();
   int? end;
-  ToOne<ObjectBoxElement>? endElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> endElement = ToOne<ObjectBoxElement>();
   String? observedAllele;
-  ToOne<ObjectBoxElement>? observedAlleleElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> observedAlleleElement = ToOne<ObjectBoxElement>();
   String? referenceAllele;
-  ToOne<ObjectBoxElement>? referenceAlleleElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> referenceAlleleElement = ToOne<ObjectBoxElement>();
   String? cigar;
-  ToOne<ObjectBoxElement>? cigarElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? variantPointer = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> cigarElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> variantPointer = ToOne<ObjectBoxReference>();
 }
 
 @Entity()
 class ObjectBoxMolecularSequenceQuality {
   ObjectBoxMolecularSequenceQuality({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.type,
-    this.typeElement,
-    this.standardSequence,
+    ObjectBoxElement? typeElement,
+    ObjectBoxCodeableConcept? standardSequence,
     this.start,
-    this.startElement,
+    ObjectBoxElement? startElement,
     this.end,
-    this.endElement,
-    this.score,
-    this.method,
+    ObjectBoxElement? endElement,
+    ObjectBoxQuantity? score,
+    ObjectBoxCodeableConcept? method,
     this.truthTP,
-    this.truthTPElement,
+    ObjectBoxElement? truthTPElement,
     this.queryTP,
-    this.queryTPElement,
+    ObjectBoxElement? queryTPElement,
     this.truthFN,
-    this.truthFNElement,
+    ObjectBoxElement? truthFNElement,
     this.queryFP,
-    this.queryFPElement,
+    ObjectBoxElement? queryFPElement,
     this.gtFP,
-    this.gtFPElement,
+    ObjectBoxElement? gtFPElement,
     this.precision,
-    this.precisionElement,
+    ObjectBoxElement? precisionElement,
     this.recall,
-    this.recallElement,
+    ObjectBoxElement? recallElement,
     this.fScore,
-    this.fScoreElement,
-    this.roc,
-  });
+    ObjectBoxElement? fScoreElement,
+    ObjectBoxMolecularSequenceRoc? roc,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.typeElement.target = typeElement;
+    this.standardSequence.target = standardSequence;
+    this.startElement.target = startElement;
+    this.endElement.target = endElement;
+    this.score.target = score;
+    this.method.target = method;
+    this.truthTPElement.target = truthTPElement;
+    this.queryTPElement.target = queryTPElement;
+    this.truthFNElement.target = truthFNElement;
+    this.queryFPElement.target = queryFPElement;
+    this.gtFPElement.target = gtFPElement;
+    this.precisionElement.target = precisionElement;
+    this.recallElement.target = recallElement;
+    this.fScoreElement.target = fScoreElement;
+    this.roc.target = roc;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxCodeableConcept>? standardSequence =
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxCodeableConcept> standardSequence =
       ToOne<ObjectBoxCodeableConcept>();
   int? start;
-  ToOne<ObjectBoxElement>? startElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> startElement = ToOne<ObjectBoxElement>();
   int? end;
-  ToOne<ObjectBoxElement>? endElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxQuantity>? score = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxCodeableConcept>? method = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxElement> endElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxQuantity> score = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxCodeableConcept> method = ToOne<ObjectBoxCodeableConcept>();
   double? truthTP;
-  ToOne<ObjectBoxElement>? truthTPElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> truthTPElement = ToOne<ObjectBoxElement>();
   double? queryTP;
-  ToOne<ObjectBoxElement>? queryTPElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> queryTPElement = ToOne<ObjectBoxElement>();
   double? truthFN;
-  ToOne<ObjectBoxElement>? truthFNElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> truthFNElement = ToOne<ObjectBoxElement>();
   double? queryFP;
-  ToOne<ObjectBoxElement>? queryFPElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> queryFPElement = ToOne<ObjectBoxElement>();
   double? gtFP;
-  ToOne<ObjectBoxElement>? gtFPElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> gtFPElement = ToOne<ObjectBoxElement>();
   double? precision;
-  ToOne<ObjectBoxElement>? precisionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> precisionElement = ToOne<ObjectBoxElement>();
   double? recall;
-  ToOne<ObjectBoxElement>? recallElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> recallElement = ToOne<ObjectBoxElement>();
   double? fScore;
-  ToOne<ObjectBoxElement>? fScoreElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxMolecularSequenceRoc>? roc =
+  ToOne<ObjectBoxElement> fScoreElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxMolecularSequenceRoc> roc =
       ToOne<ObjectBoxMolecularSequenceRoc>();
 }
 
 @Entity()
 class ObjectBoxMolecularSequenceRoc {
   ObjectBoxMolecularSequenceRoc({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.score,
-    this.scoreElement,
+    List<ObjectBoxElement>? scoreElement,
     this.numTP,
-    this.numTPElement,
+    List<ObjectBoxElement>? numTPElement,
     this.numFP,
-    this.numFPElement,
+    List<ObjectBoxElement>? numFPElement,
     this.numFN,
-    this.numFNElement,
+    List<ObjectBoxElement>? numFNElement,
     this.precision,
-    this.precisionElement,
+    List<ObjectBoxElement>? precisionElement,
     this.sensitivity,
-    this.sensitivityElement,
+    List<ObjectBoxElement>? sensitivityElement,
     this.fMeasure,
-    this.fMeasureElement,
-  });
+    List<ObjectBoxElement>? fMeasureElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.scoreElement.addAll(scoreElement ?? []);
+    this.numTPElement.addAll(numTPElement ?? []);
+    this.numFPElement.addAll(numFPElement ?? []);
+    this.numFNElement.addAll(numFNElement ?? []);
+    this.precisionElement.addAll(precisionElement ?? []);
+    this.sensitivityElement.addAll(sensitivityElement ?? []);
+    this.fMeasureElement.addAll(fMeasureElement ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   List<int>? score;
-  ToMany<ObjectBoxElement>? scoreElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> scoreElement = ToMany<ObjectBoxElement>();
   List<int>? numTP;
-  ToMany<ObjectBoxElement>? numTPElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> numTPElement = ToMany<ObjectBoxElement>();
   List<int>? numFP;
-  ToMany<ObjectBoxElement>? numFPElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> numFPElement = ToMany<ObjectBoxElement>();
   List<int>? numFN;
-  ToMany<ObjectBoxElement>? numFNElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> numFNElement = ToMany<ObjectBoxElement>();
   List<double>? precision;
-  ToMany<ObjectBoxElement>? precisionElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> precisionElement = ToMany<ObjectBoxElement>();
   List<double>? sensitivity;
-  ToMany<ObjectBoxElement>? sensitivityElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> sensitivityElement = ToMany<ObjectBoxElement>();
   List<double>? fMeasure;
-  ToMany<ObjectBoxElement>? fMeasureElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> fMeasureElement = ToMany<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxMolecularSequenceRepository {
   ObjectBoxMolecularSequenceRepository({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.type,
-    this.typeElement,
+    ObjectBoxElement? typeElement,
     this.url,
-    this.urlElement,
+    ObjectBoxElement? urlElement,
     this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     this.datasetId,
-    this.datasetIdElement,
+    ObjectBoxElement? datasetIdElement,
     this.variantsetId,
-    this.variantsetIdElement,
+    ObjectBoxElement? variantsetIdElement,
     this.readsetId,
-    this.readsetIdElement,
-  });
+    ObjectBoxElement? readsetIdElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.typeElement.target = typeElement;
+    this.urlElement.target = urlElement;
+    this.nameElement.target = nameElement;
+    this.datasetIdElement.target = datasetIdElement;
+    this.variantsetIdElement.target = variantsetIdElement;
+    this.readsetIdElement.target = readsetIdElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
   String? url;
-  ToOne<ObjectBoxElement>? urlElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> urlElement = ToOne<ObjectBoxElement>();
   String? name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String? datasetId;
-  ToOne<ObjectBoxElement>? datasetIdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> datasetIdElement = ToOne<ObjectBoxElement>();
   String? variantsetId;
-  ToOne<ObjectBoxElement>? variantsetIdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> variantsetIdElement = ToOne<ObjectBoxElement>();
   String? readsetId;
-  ToOne<ObjectBoxElement>? readsetIdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> readsetIdElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxMolecularSequenceStructureVariant {
   ObjectBoxMolecularSequenceStructureVariant({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.variantType,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? variantType,
     this.exact,
-    this.exactElement,
+    ObjectBoxElement? exactElement,
     this.length,
-    this.lengthElement,
-    this.outer,
-    this.inner,
-  });
+    ObjectBoxElement? lengthElement,
+    ObjectBoxMolecularSequenceOuter? outer,
+    ObjectBoxMolecularSequenceInner? inner,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.variantType.target = variantType;
+    this.exactElement.target = exactElement;
+    this.lengthElement.target = lengthElement;
+    this.outer.target = outer;
+    this.inner.target = inner;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxCodeableConcept>? variantType =
+  ToOne<ObjectBoxCodeableConcept> variantType =
       ToOne<ObjectBoxCodeableConcept>();
   bool? exact;
-  ToOne<ObjectBoxElement>? exactElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> exactElement = ToOne<ObjectBoxElement>();
   int? length;
-  ToOne<ObjectBoxElement>? lengthElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxMolecularSequenceOuter>? outer =
+  ToOne<ObjectBoxElement> lengthElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxMolecularSequenceOuter> outer =
       ToOne<ObjectBoxMolecularSequenceOuter>();
-  ToOne<ObjectBoxMolecularSequenceInner>? inner =
+  ToOne<ObjectBoxMolecularSequenceInner> inner =
       ToOne<ObjectBoxMolecularSequenceInner>();
 }
 
 @Entity()
 class ObjectBoxMolecularSequenceOuter {
   ObjectBoxMolecularSequenceOuter({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.start,
-    this.startElement,
+    ObjectBoxElement? startElement,
     this.end,
-    this.endElement,
-  });
+    ObjectBoxElement? endElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.startElement.target = startElement;
+    this.endElement.target = endElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   int? start;
-  ToOne<ObjectBoxElement>? startElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> startElement = ToOne<ObjectBoxElement>();
   int? end;
-  ToOne<ObjectBoxElement>? endElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> endElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxMolecularSequenceInner {
   ObjectBoxMolecularSequenceInner({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.start,
-    this.startElement,
+    ObjectBoxElement? startElement,
     this.end,
-    this.endElement,
-  });
+    ObjectBoxElement? endElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.startElement.target = startElement;
+    this.endElement.target = endElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   int? start;
-  ToOne<ObjectBoxElement>? startElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> startElement = ToOne<ObjectBoxElement>();
   int? end;
-  ToOne<ObjectBoxElement>? endElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> endElement = ToOne<ObjectBoxElement>();
 }

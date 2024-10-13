@@ -6,378 +6,493 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxClaimResponse {
   ObjectBoxClaimResponse({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     required this.status,
-    this.statusElement,
-    required this.type,
-    this.subType,
+    ObjectBoxElement? statusElement,
+    ObjectBoxCodeableConcept? type,
+    ObjectBoxCodeableConcept? subType,
     required this.use,
-    this.useElement,
-    required this.patient,
+    ObjectBoxElement? useElement,
+    ObjectBoxReference? patient,
     required this.created,
-    this.createdElement,
-    required this.insurer,
-    this.requestor,
-    this.request,
+    ObjectBoxElement? createdElement,
+    ObjectBoxReference? insurer,
+    ObjectBoxReference? requestor,
+    ObjectBoxReference? request,
     required this.outcome,
-    this.outcomeElement,
+    ObjectBoxElement? outcomeElement,
     this.disposition,
-    this.dispositionElement,
+    ObjectBoxElement? dispositionElement,
     this.preAuthRef,
-    this.preAuthRefElement,
-    this.preAuthPeriod,
-    this.payeeType,
-    this.item,
-    this.addItem,
-    this.adjudication,
-    this.total,
-    this.payment,
-    this.fundsReserve,
-    this.formCode,
-    this.form,
-    this.processNote,
-    this.communicationRequest,
-    this.insurance,
-    this.error,
-  });
+    ObjectBoxElement? preAuthRefElement,
+    ObjectBoxPeriod? preAuthPeriod,
+    ObjectBoxCodeableConcept? payeeType,
+    List<ObjectBoxClaimResponseItem>? item,
+    List<ObjectBoxClaimResponseAddItem>? addItem,
+    List<ObjectBoxClaimResponseAdjudication>? adjudication,
+    List<ObjectBoxClaimResponseTotal>? total,
+    ObjectBoxClaimResponsePayment? payment,
+    ObjectBoxCodeableConcept? fundsReserve,
+    ObjectBoxCodeableConcept? formCode,
+    ObjectBoxAttachment? form,
+    List<ObjectBoxClaimResponseProcessNote>? processNote,
+    List<ObjectBoxReference>? communicationRequest,
+    List<ObjectBoxClaimResponseInsurance>? insurance,
+    List<ObjectBoxClaimResponseError>? error,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.statusElement.target = statusElement;
+    this.type.target = type;
+    this.subType.target = subType;
+    this.useElement.target = useElement;
+    this.patient.target = patient;
+    this.createdElement.target = createdElement;
+    this.insurer.target = insurer;
+    this.requestor.target = requestor;
+    this.request.target = request;
+    this.outcomeElement.target = outcomeElement;
+    this.dispositionElement.target = dispositionElement;
+    this.preAuthRefElement.target = preAuthRefElement;
+    this.preAuthPeriod.target = preAuthPeriod;
+    this.payeeType.target = payeeType;
+    this.item.addAll(item ?? []);
+    this.addItem.addAll(addItem ?? []);
+    this.adjudication.addAll(adjudication ?? []);
+    this.total.addAll(total ?? []);
+    this.payment.target = payment;
+    this.fundsReserve.target = fundsReserve;
+    this.formCode.target = formCode;
+    this.form.target = form;
+    this.processNote.addAll(processNote ?? []);
+    this.communicationRequest.addAll(communicationRequest ?? []);
+    this.insurance.addAll(insurance ?? []);
+    this.error.addAll(error ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxCodeableConcept> type = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? subType = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxCodeableConcept> subType = ToOne<ObjectBoxCodeableConcept>();
   String use;
-  ToOne<ObjectBoxElement>? useElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> useElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxReference> patient = ToOne<ObjectBoxReference>();
   String created;
-  ToOne<ObjectBoxElement>? createdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> createdElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxReference> insurer = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? requestor = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? request = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> requestor = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> request = ToOne<ObjectBoxReference>();
   String outcome;
-  ToOne<ObjectBoxElement>? outcomeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> outcomeElement = ToOne<ObjectBoxElement>();
   String? disposition;
-  ToOne<ObjectBoxElement>? dispositionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> dispositionElement = ToOne<ObjectBoxElement>();
   String? preAuthRef;
-  ToOne<ObjectBoxElement>? preAuthRefElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? preAuthPeriod = ToOne<ObjectBoxPeriod>();
-  ToOne<ObjectBoxCodeableConcept>? payeeType =
-      ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxClaimResponseItem>? item =
+  ToOne<ObjectBoxElement> preAuthRefElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> preAuthPeriod = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxCodeableConcept> payeeType = ToOne<ObjectBoxCodeableConcept>();
+  ToMany<ObjectBoxClaimResponseItem> item =
       ToMany<ObjectBoxClaimResponseItem>();
-  ToMany<ObjectBoxClaimResponseAddItem>? addItem =
+  ToMany<ObjectBoxClaimResponseAddItem> addItem =
       ToMany<ObjectBoxClaimResponseAddItem>();
-  ToMany<ObjectBoxClaimResponseAdjudication>? adjudication =
+  ToMany<ObjectBoxClaimResponseAdjudication> adjudication =
       ToMany<ObjectBoxClaimResponseAdjudication>();
-  ToMany<ObjectBoxClaimResponseTotal>? total =
+  ToMany<ObjectBoxClaimResponseTotal> total =
       ToMany<ObjectBoxClaimResponseTotal>();
-  ToOne<ObjectBoxClaimResponsePayment>? payment =
+  ToOne<ObjectBoxClaimResponsePayment> payment =
       ToOne<ObjectBoxClaimResponsePayment>();
-  ToOne<ObjectBoxCodeableConcept>? fundsReserve =
+  ToOne<ObjectBoxCodeableConcept> fundsReserve =
       ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? formCode = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxAttachment>? form = ToOne<ObjectBoxAttachment>();
-  ToMany<ObjectBoxClaimResponseProcessNote>? processNote =
+  ToOne<ObjectBoxCodeableConcept> formCode = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxAttachment> form = ToOne<ObjectBoxAttachment>();
+  ToMany<ObjectBoxClaimResponseProcessNote> processNote =
       ToMany<ObjectBoxClaimResponseProcessNote>();
-  ToMany<ObjectBoxReference>? communicationRequest =
+  ToMany<ObjectBoxReference> communicationRequest =
       ToMany<ObjectBoxReference>();
-  ToMany<ObjectBoxClaimResponseInsurance>? insurance =
+  ToMany<ObjectBoxClaimResponseInsurance> insurance =
       ToMany<ObjectBoxClaimResponseInsurance>();
-  ToMany<ObjectBoxClaimResponseError>? error =
+  ToMany<ObjectBoxClaimResponseError> error =
       ToMany<ObjectBoxClaimResponseError>();
 }
 
 @Entity()
 class ObjectBoxClaimResponseItem {
   ObjectBoxClaimResponseItem({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.itemSequence,
-    this.itemSequenceElement,
+    ObjectBoxElement? itemSequenceElement,
     this.noteNumber,
-    this.noteNumberElement,
-    required this.adjudication,
-    this.detail,
-  });
+    List<ObjectBoxElement>? noteNumberElement,
+    List<ObjectBoxClaimResponseAdjudication>? adjudication,
+    List<ObjectBoxClaimResponseDetail>? detail,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.itemSequenceElement.target = itemSequenceElement;
+    this.noteNumberElement.addAll(noteNumberElement ?? []);
+    this.adjudication.addAll(adjudication ?? []);
+    this.detail.addAll(detail ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   int itemSequence;
-  ToOne<ObjectBoxElement>? itemSequenceElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> itemSequenceElement = ToOne<ObjectBoxElement>();
   List<int>? noteNumber;
-  ToMany<ObjectBoxElement>? noteNumberElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> noteNumberElement = ToMany<ObjectBoxElement>();
   ToMany<ObjectBoxClaimResponseAdjudication> adjudication =
       ToMany<ObjectBoxClaimResponseAdjudication>();
-  ToMany<ObjectBoxClaimResponseDetail>? detail =
+  ToMany<ObjectBoxClaimResponseDetail> detail =
       ToMany<ObjectBoxClaimResponseDetail>();
 }
 
 @Entity()
 class ObjectBoxClaimResponseAdjudication {
   ObjectBoxClaimResponseAdjudication({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.category,
-    this.reason,
-    this.amount,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? category,
+    ObjectBoxCodeableConcept? reason,
+    ObjectBoxMoney? amount,
     this.value,
-    this.valueElement,
-  });
+    ObjectBoxElement? valueElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.category.target = category;
+    this.reason.target = reason;
+    this.amount.target = amount;
+    this.valueElement.target = valueElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxCodeableConcept> category = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? reason = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxMoney>? amount = ToOne<ObjectBoxMoney>();
+  ToOne<ObjectBoxCodeableConcept> reason = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxMoney> amount = ToOne<ObjectBoxMoney>();
   double? value;
-  ToOne<ObjectBoxElement>? valueElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxClaimResponseDetail {
   ObjectBoxClaimResponseDetail({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.detailSequence,
-    this.detailSequenceElement,
+    ObjectBoxElement? detailSequenceElement,
     this.noteNumber,
-    this.noteNumberElement,
-    required this.adjudication,
-    this.subDetail,
-  });
+    List<ObjectBoxElement>? noteNumberElement,
+    List<ObjectBoxClaimResponseAdjudication>? adjudication,
+    List<ObjectBoxClaimResponseSubDetail>? subDetail,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.detailSequenceElement.target = detailSequenceElement;
+    this.noteNumberElement.addAll(noteNumberElement ?? []);
+    this.adjudication.addAll(adjudication ?? []);
+    this.subDetail.addAll(subDetail ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   int detailSequence;
-  ToOne<ObjectBoxElement>? detailSequenceElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> detailSequenceElement = ToOne<ObjectBoxElement>();
   List<int>? noteNumber;
-  ToMany<ObjectBoxElement>? noteNumberElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> noteNumberElement = ToMany<ObjectBoxElement>();
   ToMany<ObjectBoxClaimResponseAdjudication> adjudication =
       ToMany<ObjectBoxClaimResponseAdjudication>();
-  ToMany<ObjectBoxClaimResponseSubDetail>? subDetail =
+  ToMany<ObjectBoxClaimResponseSubDetail> subDetail =
       ToMany<ObjectBoxClaimResponseSubDetail>();
 }
 
 @Entity()
 class ObjectBoxClaimResponseSubDetail {
   ObjectBoxClaimResponseSubDetail({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.subDetailSequence,
-    this.subDetailSequenceElement,
+    ObjectBoxElement? subDetailSequenceElement,
     this.noteNumber,
-    this.noteNumberElement,
-    this.adjudication,
-  });
+    List<ObjectBoxElement>? noteNumberElement,
+    List<ObjectBoxClaimResponseAdjudication>? adjudication,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.subDetailSequenceElement.target = subDetailSequenceElement;
+    this.noteNumberElement.addAll(noteNumberElement ?? []);
+    this.adjudication.addAll(adjudication ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   int subDetailSequence;
-  ToOne<ObjectBoxElement>? subDetailSequenceElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> subDetailSequenceElement = ToOne<ObjectBoxElement>();
   List<int>? noteNumber;
-  ToMany<ObjectBoxElement>? noteNumberElement = ToMany<ObjectBoxElement>();
-  ToMany<ObjectBoxClaimResponseAdjudication>? adjudication =
+  ToMany<ObjectBoxElement> noteNumberElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxClaimResponseAdjudication> adjudication =
       ToMany<ObjectBoxClaimResponseAdjudication>();
 }
 
 @Entity()
 class ObjectBoxClaimResponseAddItem {
   ObjectBoxClaimResponseAddItem({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.itemSequence,
-    this.itemSequenceElement,
+    List<ObjectBoxElement>? itemSequenceElement,
     this.detailSequence,
-    this.detailSequenceElement,
+    List<ObjectBoxElement>? detailSequenceElement,
     this.subdetailSequence,
-    this.subdetailSequenceElement,
-    this.provider,
-    required this.productOrService,
-    this.modifier,
-    this.programCode,
+    List<ObjectBoxElement>? subdetailSequenceElement,
+    List<ObjectBoxReference>? provider,
+    ObjectBoxCodeableConcept? productOrService,
+    List<ObjectBoxCodeableConcept>? modifier,
+    List<ObjectBoxCodeableConcept>? programCode,
     this.servicedDate,
-    this.servicedDateElement,
-    this.servicedPeriod,
-    this.locationCodeableConcept,
-    this.locationAddress,
-    this.locationReference,
-    this.quantity,
-    this.unitPrice,
+    ObjectBoxElement? servicedDateElement,
+    ObjectBoxPeriod? servicedPeriod,
+    ObjectBoxCodeableConcept? locationCodeableConcept,
+    ObjectBoxAddress? locationAddress,
+    ObjectBoxReference? locationReference,
+    ObjectBoxQuantity? quantity,
+    ObjectBoxMoney? unitPrice,
     this.factor,
-    this.factorElement,
-    this.net,
-    this.bodySite,
-    this.subSite,
+    ObjectBoxElement? factorElement,
+    ObjectBoxMoney? net,
+    ObjectBoxCodeableConcept? bodySite,
+    List<ObjectBoxCodeableConcept>? subSite,
     this.noteNumber,
-    this.noteNumberElement,
-    required this.adjudication,
-    this.detail,
-  });
+    List<ObjectBoxElement>? noteNumberElement,
+    List<ObjectBoxClaimResponseAdjudication>? adjudication,
+    List<ObjectBoxClaimResponseDetail>? detail,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.itemSequenceElement.addAll(itemSequenceElement ?? []);
+    this.detailSequenceElement.addAll(detailSequenceElement ?? []);
+    this.subdetailSequenceElement.addAll(subdetailSequenceElement ?? []);
+    this.provider.addAll(provider ?? []);
+    this.productOrService.target = productOrService;
+    this.modifier.addAll(modifier ?? []);
+    this.programCode.addAll(programCode ?? []);
+    this.servicedDateElement.target = servicedDateElement;
+    this.servicedPeriod.target = servicedPeriod;
+    this.locationCodeableConcept.target = locationCodeableConcept;
+    this.locationAddress.target = locationAddress;
+    this.locationReference.target = locationReference;
+    this.quantity.target = quantity;
+    this.unitPrice.target = unitPrice;
+    this.factorElement.target = factorElement;
+    this.net.target = net;
+    this.bodySite.target = bodySite;
+    this.subSite.addAll(subSite ?? []);
+    this.noteNumberElement.addAll(noteNumberElement ?? []);
+    this.adjudication.addAll(adjudication ?? []);
+    this.detail.addAll(detail ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   List<int>? itemSequence;
-  ToMany<ObjectBoxElement>? itemSequenceElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> itemSequenceElement = ToMany<ObjectBoxElement>();
   List<int>? detailSequence;
-  ToMany<ObjectBoxElement>? detailSequenceElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> detailSequenceElement = ToMany<ObjectBoxElement>();
   List<int>? subdetailSequence;
-  ToMany<ObjectBoxElement>? subdetailSequenceElement =
+  ToMany<ObjectBoxElement> subdetailSequenceElement =
       ToMany<ObjectBoxElement>();
-  ToMany<ObjectBoxReference>? provider = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxReference> provider = ToMany<ObjectBoxReference>();
   ToOne<ObjectBoxCodeableConcept> productOrService =
       ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCodeableConcept>? modifier =
+  ToMany<ObjectBoxCodeableConcept> modifier =
       ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCodeableConcept>? programCode =
+  ToMany<ObjectBoxCodeableConcept> programCode =
       ToMany<ObjectBoxCodeableConcept>();
   String? servicedDate;
-  ToOne<ObjectBoxElement>? servicedDateElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? servicedPeriod = ToOne<ObjectBoxPeriod>();
-  ToOne<ObjectBoxCodeableConcept>? locationCodeableConcept =
+  ToOne<ObjectBoxElement> servicedDateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> servicedPeriod = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxCodeableConcept> locationCodeableConcept =
       ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxAddress>? locationAddress = ToOne<ObjectBoxAddress>();
-  ToOne<ObjectBoxReference>? locationReference = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxQuantity>? quantity = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxMoney>? unitPrice = ToOne<ObjectBoxMoney>();
+  ToOne<ObjectBoxAddress> locationAddress = ToOne<ObjectBoxAddress>();
+  ToOne<ObjectBoxReference> locationReference = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxQuantity> quantity = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxMoney> unitPrice = ToOne<ObjectBoxMoney>();
   double? factor;
-  ToOne<ObjectBoxElement>? factorElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxMoney>? net = ToOne<ObjectBoxMoney>();
-  ToOne<ObjectBoxCodeableConcept>? bodySite = ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCodeableConcept>? subSite =
-      ToMany<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxElement> factorElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxMoney> net = ToOne<ObjectBoxMoney>();
+  ToOne<ObjectBoxCodeableConcept> bodySite = ToOne<ObjectBoxCodeableConcept>();
+  ToMany<ObjectBoxCodeableConcept> subSite = ToMany<ObjectBoxCodeableConcept>();
   List<int>? noteNumber;
-  ToMany<ObjectBoxElement>? noteNumberElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> noteNumberElement = ToMany<ObjectBoxElement>();
   ToMany<ObjectBoxClaimResponseAdjudication> adjudication =
       ToMany<ObjectBoxClaimResponseAdjudication>();
-  ToMany<ObjectBoxClaimResponseDetail>? detail =
+  ToMany<ObjectBoxClaimResponseDetail> detail =
       ToMany<ObjectBoxClaimResponseDetail>();
 }
 
 @Entity()
 class ObjectBoxClaimResponseDetail1 {
   ObjectBoxClaimResponseDetail1({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.productOrService,
-    this.modifier,
-    this.quantity,
-    this.unitPrice,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? productOrService,
+    List<ObjectBoxCodeableConcept>? modifier,
+    ObjectBoxQuantity? quantity,
+    ObjectBoxMoney? unitPrice,
     this.factor,
-    this.factorElement,
-    this.net,
+    ObjectBoxElement? factorElement,
+    ObjectBoxMoney? net,
     this.noteNumber,
-    this.noteNumberElement,
-    required this.adjudication,
-    this.subDetail,
-  });
+    List<ObjectBoxElement>? noteNumberElement,
+    List<ObjectBoxClaimResponseAdjudication>? adjudication,
+    List<ObjectBoxClaimResponseSubDetail>? subDetail,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.productOrService.target = productOrService;
+    this.modifier.addAll(modifier ?? []);
+    this.quantity.target = quantity;
+    this.unitPrice.target = unitPrice;
+    this.factorElement.target = factorElement;
+    this.net.target = net;
+    this.noteNumberElement.addAll(noteNumberElement ?? []);
+    this.adjudication.addAll(adjudication ?? []);
+    this.subDetail.addAll(subDetail ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxCodeableConcept> productOrService =
       ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCodeableConcept>? modifier =
+  ToMany<ObjectBoxCodeableConcept> modifier =
       ToMany<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxQuantity>? quantity = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxMoney>? unitPrice = ToOne<ObjectBoxMoney>();
+  ToOne<ObjectBoxQuantity> quantity = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxMoney> unitPrice = ToOne<ObjectBoxMoney>();
   double? factor;
-  ToOne<ObjectBoxElement>? factorElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxMoney>? net = ToOne<ObjectBoxMoney>();
+  ToOne<ObjectBoxElement> factorElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxMoney> net = ToOne<ObjectBoxMoney>();
   List<int>? noteNumber;
-  ToMany<ObjectBoxElement>? noteNumberElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> noteNumberElement = ToMany<ObjectBoxElement>();
   ToMany<ObjectBoxClaimResponseAdjudication> adjudication =
       ToMany<ObjectBoxClaimResponseAdjudication>();
-  ToMany<ObjectBoxClaimResponseSubDetail>? subDetail =
+  ToMany<ObjectBoxClaimResponseSubDetail> subDetail =
       ToMany<ObjectBoxClaimResponseSubDetail>();
 }
 
 @Entity()
 class ObjectBoxClaimResponseSubDetail1 {
   ObjectBoxClaimResponseSubDetail1({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.productOrService,
-    this.modifier,
-    this.quantity,
-    this.unitPrice,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? productOrService,
+    List<ObjectBoxCodeableConcept>? modifier,
+    ObjectBoxQuantity? quantity,
+    ObjectBoxMoney? unitPrice,
     this.factor,
-    this.factorElement,
-    this.net,
+    ObjectBoxElement? factorElement,
+    ObjectBoxMoney? net,
     this.noteNumber,
-    this.noteNumberElement,
-    required this.adjudication,
-  });
+    List<ObjectBoxElement>? noteNumberElement,
+    List<ObjectBoxClaimResponseAdjudication>? adjudication,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.productOrService.target = productOrService;
+    this.modifier.addAll(modifier ?? []);
+    this.quantity.target = quantity;
+    this.unitPrice.target = unitPrice;
+    this.factorElement.target = factorElement;
+    this.net.target = net;
+    this.noteNumberElement.addAll(noteNumberElement ?? []);
+    this.adjudication.addAll(adjudication ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxCodeableConcept> productOrService =
       ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCodeableConcept>? modifier =
+  ToMany<ObjectBoxCodeableConcept> modifier =
       ToMany<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxQuantity>? quantity = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxMoney>? unitPrice = ToOne<ObjectBoxMoney>();
+  ToOne<ObjectBoxQuantity> quantity = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxMoney> unitPrice = ToOne<ObjectBoxMoney>();
   double? factor;
-  ToOne<ObjectBoxElement>? factorElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxMoney>? net = ToOne<ObjectBoxMoney>();
+  ToOne<ObjectBoxElement> factorElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxMoney> net = ToOne<ObjectBoxMoney>();
   List<int>? noteNumber;
-  ToMany<ObjectBoxElement>? noteNumberElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> noteNumberElement = ToMany<ObjectBoxElement>();
   ToMany<ObjectBoxClaimResponseAdjudication> adjudication =
       ToMany<ObjectBoxClaimResponseAdjudication>();
 }
@@ -385,18 +500,24 @@ class ObjectBoxClaimResponseSubDetail1 {
 @Entity()
 class ObjectBoxClaimResponseTotal {
   ObjectBoxClaimResponseTotal({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.category,
-    required this.amount,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? category,
+    ObjectBoxMoney? amount,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.category.target = category;
+    this.amount.target = amount;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxCodeableConcept> category = ToOne<ObjectBoxCodeableConcept>();
   ToOne<ObjectBoxMoney> amount = ToOne<ObjectBoxMoney>();
@@ -405,123 +526,158 @@ class ObjectBoxClaimResponseTotal {
 @Entity()
 class ObjectBoxClaimResponsePayment {
   ObjectBoxClaimResponsePayment({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.type,
-    this.adjustment,
-    this.adjustmentReason,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? type,
+    ObjectBoxMoney? adjustment,
+    ObjectBoxCodeableConcept? adjustmentReason,
     this.date,
-    this.dateElement,
-    required this.amount,
-    this.identifier,
-  });
+    ObjectBoxElement? dateElement,
+    ObjectBoxMoney? amount,
+    ObjectBoxIdentifier? identifier,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.type.target = type;
+    this.adjustment.target = adjustment;
+    this.adjustmentReason.target = adjustmentReason;
+    this.dateElement.target = dateElement;
+    this.amount.target = amount;
+    this.identifier.target = identifier;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxCodeableConcept> type = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxMoney>? adjustment = ToOne<ObjectBoxMoney>();
-  ToOne<ObjectBoxCodeableConcept>? adjustmentReason =
+  ToOne<ObjectBoxMoney> adjustment = ToOne<ObjectBoxMoney>();
+  ToOne<ObjectBoxCodeableConcept> adjustmentReason =
       ToOne<ObjectBoxCodeableConcept>();
   String? date;
-  ToOne<ObjectBoxElement>? dateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> dateElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxMoney> amount = ToOne<ObjectBoxMoney>();
-  ToOne<ObjectBoxIdentifier>? identifier = ToOne<ObjectBoxIdentifier>();
+  ToOne<ObjectBoxIdentifier> identifier = ToOne<ObjectBoxIdentifier>();
 }
 
 @Entity()
 class ObjectBoxClaimResponseProcessNote {
   ObjectBoxClaimResponseProcessNote({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.number,
-    this.numberElement,
+    ObjectBoxElement? numberElement,
     this.type,
-    this.typeElement,
+    ObjectBoxElement? typeElement,
     required this.text,
-    this.textElement,
-    this.language,
-  });
+    ObjectBoxElement? textElement,
+    ObjectBoxCodeableConcept? language,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.numberElement.target = numberElement;
+    this.typeElement.target = typeElement;
+    this.textElement.target = textElement;
+    this.language.target = language;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   int? number;
-  ToOne<ObjectBoxElement>? numberElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> numberElement = ToOne<ObjectBoxElement>();
   String? type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
   String text;
-  ToOne<ObjectBoxElement>? textElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxCodeableConcept>? language = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxElement> textElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxCodeableConcept> language = ToOne<ObjectBoxCodeableConcept>();
 }
 
 @Entity()
 class ObjectBoxClaimResponseInsurance {
   ObjectBoxClaimResponseInsurance({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.sequence,
-    this.sequenceElement,
+    ObjectBoxElement? sequenceElement,
     required this.focal,
-    this.focalElement,
-    required this.coverage,
+    ObjectBoxElement? focalElement,
+    ObjectBoxReference? coverage,
     this.businessArrangement,
-    this.businessArrangementElement,
-    this.claimResponse,
-  });
+    ObjectBoxElement? businessArrangementElement,
+    ObjectBoxReference? claimResponse,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.sequenceElement.target = sequenceElement;
+    this.focalElement.target = focalElement;
+    this.coverage.target = coverage;
+    this.businessArrangementElement.target = businessArrangementElement;
+    this.claimResponse.target = claimResponse;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   int sequence;
-  ToOne<ObjectBoxElement>? sequenceElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> sequenceElement = ToOne<ObjectBoxElement>();
   bool focal;
-  ToOne<ObjectBoxElement>? focalElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> focalElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxReference> coverage = ToOne<ObjectBoxReference>();
   String? businessArrangement;
-  ToOne<ObjectBoxElement>? businessArrangementElement =
+  ToOne<ObjectBoxElement> businessArrangementElement =
       ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? claimResponse = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> claimResponse = ToOne<ObjectBoxReference>();
 }
 
 @Entity()
 class ObjectBoxClaimResponseError {
   ObjectBoxClaimResponseError({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.itemSequence,
-    this.itemSequenceElement,
+    ObjectBoxElement? itemSequenceElement,
     this.detailSequence,
-    this.detailSequenceElement,
+    ObjectBoxElement? detailSequenceElement,
     this.subDetailSequence,
-    this.subDetailSequenceElement,
-    required this.code,
-  });
+    ObjectBoxElement? subDetailSequenceElement,
+    ObjectBoxCodeableConcept? code,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.itemSequenceElement.target = itemSequenceElement;
+    this.detailSequenceElement.target = detailSequenceElement;
+    this.subDetailSequenceElement.target = subDetailSequenceElement;
+    this.code.target = code;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   int? itemSequence;
-  ToOne<ObjectBoxElement>? itemSequenceElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> itemSequenceElement = ToOne<ObjectBoxElement>();
   int? detailSequence;
-  ToOne<ObjectBoxElement>? detailSequenceElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> detailSequenceElement = ToOne<ObjectBoxElement>();
   int? subDetailSequence;
-  ToOne<ObjectBoxElement>? subDetailSequenceElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> subDetailSequenceElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxCodeableConcept> code = ToOne<ObjectBoxCodeableConcept>();
 }

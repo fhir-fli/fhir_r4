@@ -6,151 +6,197 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxQuestionnaireResponse {
   ObjectBoxQuestionnaireResponse({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
-    this.basedOn,
-    this.partOf,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxIdentifier? identifier,
+    List<ObjectBoxReference>? basedOn,
+    List<ObjectBoxReference>? partOf,
     this.questionnaire,
-    this.questionnaireElement,
+    ObjectBoxElement? questionnaireElement,
     required this.status,
-    this.statusElement,
-    this.subject,
-    this.encounter,
+    ObjectBoxElement? statusElement,
+    ObjectBoxReference? subject,
+    ObjectBoxReference? encounter,
     this.authored,
-    this.authoredElement,
-    this.author,
-    this.source,
-    this.item,
-  });
+    ObjectBoxElement? authoredElement,
+    ObjectBoxReference? author,
+    ObjectBoxReference? source,
+    List<ObjectBoxQuestionnaireResponseItem>? item,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.target = identifier;
+    this.basedOn.addAll(basedOn ?? []);
+    this.partOf.addAll(partOf ?? []);
+    this.questionnaireElement.target = questionnaireElement;
+    this.statusElement.target = statusElement;
+    this.subject.target = subject;
+    this.encounter.target = encounter;
+    this.authoredElement.target = authoredElement;
+    this.author.target = author;
+    this.source.target = source;
+    this.item.addAll(item ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxIdentifier>? identifier = ToOne<ObjectBoxIdentifier>();
-  ToMany<ObjectBoxReference>? basedOn = ToMany<ObjectBoxReference>();
-  ToMany<ObjectBoxReference>? partOf = ToMany<ObjectBoxReference>();
+  ToOne<ObjectBoxIdentifier> identifier = ToOne<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxReference> basedOn = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxReference> partOf = ToMany<ObjectBoxReference>();
   String? questionnaire;
-  ToOne<ObjectBoxElement>? questionnaireElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> questionnaireElement = ToOne<ObjectBoxElement>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? subject = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? encounter = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> subject = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> encounter = ToOne<ObjectBoxReference>();
   String? authored;
-  ToOne<ObjectBoxElement>? authoredElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? author = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? source = ToOne<ObjectBoxReference>();
-  ToMany<ObjectBoxQuestionnaireResponseItem>? item =
+  ToOne<ObjectBoxElement> authoredElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> author = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> source = ToOne<ObjectBoxReference>();
+  ToMany<ObjectBoxQuestionnaireResponseItem> item =
       ToMany<ObjectBoxQuestionnaireResponseItem>();
 }
 
 @Entity()
 class ObjectBoxQuestionnaireResponseItem {
   ObjectBoxQuestionnaireResponseItem({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.linkId,
-    this.linkIdElement,
+    ObjectBoxElement? linkIdElement,
     this.definition,
-    this.definitionElement,
+    ObjectBoxElement? definitionElement,
     this.text,
-    this.textElement,
-    this.answer,
-    this.item,
-  });
+    ObjectBoxElement? textElement,
+    List<ObjectBoxQuestionnaireResponseAnswer>? answer,
+    List<ObjectBoxQuestionnaireResponseItem>? item,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.linkIdElement.target = linkIdElement;
+    this.definitionElement.target = definitionElement;
+    this.textElement.target = textElement;
+    this.answer.addAll(answer ?? []);
+    this.item.addAll(item ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String linkId;
-  ToOne<ObjectBoxElement>? linkIdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> linkIdElement = ToOne<ObjectBoxElement>();
   String? definition;
-  ToOne<ObjectBoxElement>? definitionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> definitionElement = ToOne<ObjectBoxElement>();
   String? text;
-  ToOne<ObjectBoxElement>? textElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxQuestionnaireResponseAnswer>? answer =
+  ToOne<ObjectBoxElement> textElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxQuestionnaireResponseAnswer> answer =
       ToMany<ObjectBoxQuestionnaireResponseAnswer>();
-  ToMany<ObjectBoxQuestionnaireResponseItem>? item =
+  ToMany<ObjectBoxQuestionnaireResponseItem> item =
       ToMany<ObjectBoxQuestionnaireResponseItem>();
 }
 
 @Entity()
 class ObjectBoxQuestionnaireResponseAnswer {
   ObjectBoxQuestionnaireResponseAnswer({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.valueBoolean,
-    this.valueBooleanElement,
+    ObjectBoxElement? valueBooleanElement,
     this.valueDecimal,
-    this.valueDecimalElement,
+    ObjectBoxElement? valueDecimalElement,
     this.valueInteger,
-    this.valueIntegerElement,
+    ObjectBoxElement? valueIntegerElement,
     this.valueDate,
-    this.valueDateElement,
+    ObjectBoxElement? valueDateElement,
     this.valueDateTime,
-    this.valueDateTimeElement,
+    ObjectBoxElement? valueDateTimeElement,
     this.valueTime,
-    this.valueTimeElement,
+    ObjectBoxElement? valueTimeElement,
     this.valueString,
-    this.valueStringElement,
+    ObjectBoxElement? valueStringElement,
     this.valueUri,
-    this.valueUriElement,
-    this.valueAttachment,
-    this.valueCoding,
-    this.valueQuantity,
-    this.valueReference,
-    this.item,
-  });
+    ObjectBoxElement? valueUriElement,
+    ObjectBoxAttachment? valueAttachment,
+    ObjectBoxCoding? valueCoding,
+    ObjectBoxQuantity? valueQuantity,
+    ObjectBoxReference? valueReference,
+    List<ObjectBoxQuestionnaireResponseItem>? item,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.valueBooleanElement.target = valueBooleanElement;
+    this.valueDecimalElement.target = valueDecimalElement;
+    this.valueIntegerElement.target = valueIntegerElement;
+    this.valueDateElement.target = valueDateElement;
+    this.valueDateTimeElement.target = valueDateTimeElement;
+    this.valueTimeElement.target = valueTimeElement;
+    this.valueStringElement.target = valueStringElement;
+    this.valueUriElement.target = valueUriElement;
+    this.valueAttachment.target = valueAttachment;
+    this.valueCoding.target = valueCoding;
+    this.valueQuantity.target = valueQuantity;
+    this.valueReference.target = valueReference;
+    this.item.addAll(item ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   bool? valueBoolean;
-  ToOne<ObjectBoxElement>? valueBooleanElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueBooleanElement = ToOne<ObjectBoxElement>();
   double? valueDecimal;
-  ToOne<ObjectBoxElement>? valueDecimalElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueDecimalElement = ToOne<ObjectBoxElement>();
   int? valueInteger;
-  ToOne<ObjectBoxElement>? valueIntegerElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueIntegerElement = ToOne<ObjectBoxElement>();
   String? valueDate;
-  ToOne<ObjectBoxElement>? valueDateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueDateElement = ToOne<ObjectBoxElement>();
   String? valueDateTime;
-  ToOne<ObjectBoxElement>? valueDateTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueDateTimeElement = ToOne<ObjectBoxElement>();
   String? valueTime;
-  ToOne<ObjectBoxElement>? valueTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueTimeElement = ToOne<ObjectBoxElement>();
   String? valueString;
-  ToOne<ObjectBoxElement>? valueStringElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueStringElement = ToOne<ObjectBoxElement>();
   String? valueUri;
-  ToOne<ObjectBoxElement>? valueUriElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxAttachment>? valueAttachment = ToOne<ObjectBoxAttachment>();
-  ToOne<ObjectBoxCoding>? valueCoding = ToOne<ObjectBoxCoding>();
-  ToOne<ObjectBoxQuantity>? valueQuantity = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxReference>? valueReference = ToOne<ObjectBoxReference>();
-  ToMany<ObjectBoxQuestionnaireResponseItem>? item =
+  ToOne<ObjectBoxElement> valueUriElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxAttachment> valueAttachment = ToOne<ObjectBoxAttachment>();
+  ToOne<ObjectBoxCoding> valueCoding = ToOne<ObjectBoxCoding>();
+  ToOne<ObjectBoxQuantity> valueQuantity = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxReference> valueReference = ToOne<ObjectBoxReference>();
+  ToMany<ObjectBoxQuestionnaireResponseItem> item =
       ToMany<ObjectBoxQuestionnaireResponseItem>();
 }

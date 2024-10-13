@@ -6,51 +6,68 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxResearchSubject {
   ObjectBoxResearchSubject({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     required this.status,
-    this.statusElement,
-    this.period,
-    required this.study,
-    required this.individual,
+    ObjectBoxElement? statusElement,
+    ObjectBoxPeriod? period,
+    ObjectBoxReference? study,
+    ObjectBoxReference? individual,
     this.assignedArm,
-    this.assignedArmElement,
+    ObjectBoxElement? assignedArmElement,
     this.actualArm,
-    this.actualArmElement,
-    this.consent,
-  });
+    ObjectBoxElement? actualArmElement,
+    ObjectBoxReference? consent,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.statusElement.target = statusElement;
+    this.period.target = period;
+    this.study.target = study;
+    this.individual.target = individual;
+    this.assignedArmElement.target = assignedArmElement;
+    this.actualArmElement.target = actualArmElement;
+    this.consent.target = consent;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? period = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> period = ToOne<ObjectBoxPeriod>();
   ToOne<ObjectBoxReference> study = ToOne<ObjectBoxReference>();
   ToOne<ObjectBoxReference> individual = ToOne<ObjectBoxReference>();
   String? assignedArm;
-  ToOne<ObjectBoxElement>? assignedArmElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> assignedArmElement = ToOne<ObjectBoxElement>();
   String? actualArm;
-  ToOne<ObjectBoxElement>? actualArmElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? consent = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> actualArmElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> consent = ToOne<ObjectBoxReference>();
 }

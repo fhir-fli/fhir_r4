@@ -6,350 +6,444 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxExampleScenario {
   ObjectBoxExampleScenario({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.url,
-    this.urlElement,
-    this.identifier,
+    ObjectBoxElement? urlElement,
+    List<ObjectBoxIdentifier>? identifier,
     this.version,
-    this.versionElement,
+    ObjectBoxElement? versionElement,
     this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     required this.status,
-    this.statusElement,
+    ObjectBoxElement? statusElement,
     this.experimental,
-    this.experimentalElement,
+    ObjectBoxElement? experimentalElement,
     this.date,
-    this.dateElement,
+    ObjectBoxElement? dateElement,
     this.publisher,
-    this.publisherElement,
-    this.contact,
-    this.useContext,
-    this.jurisdiction,
+    ObjectBoxElement? publisherElement,
+    List<ObjectBoxContactDetail>? contact,
+    List<ObjectBoxUsageContext>? useContext,
+    List<ObjectBoxCodeableConcept>? jurisdiction,
     this.copyright,
-    this.copyrightElement,
+    ObjectBoxElement? copyrightElement,
     this.purpose,
-    this.purposeElement,
-    this.actor,
-    this.instance,
-    this.process,
+    ObjectBoxElement? purposeElement,
+    List<ObjectBoxExampleScenarioActor>? actor,
+    List<ObjectBoxExampleScenarioInstance>? instance,
+    List<ObjectBoxExampleScenarioProcess>? process,
     this.workflow,
-    this.workflowElement,
-  });
+    List<ObjectBoxElement>? workflowElement,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.urlElement.target = urlElement;
+    this.identifier.addAll(identifier ?? []);
+    this.versionElement.target = versionElement;
+    this.nameElement.target = nameElement;
+    this.statusElement.target = statusElement;
+    this.experimentalElement.target = experimentalElement;
+    this.dateElement.target = dateElement;
+    this.publisherElement.target = publisherElement;
+    this.contact.addAll(contact ?? []);
+    this.useContext.addAll(useContext ?? []);
+    this.jurisdiction.addAll(jurisdiction ?? []);
+    this.copyrightElement.target = copyrightElement;
+    this.purposeElement.target = purposeElement;
+    this.actor.addAll(actor ?? []);
+    this.instance.addAll(instance ?? []);
+    this.process.addAll(process ?? []);
+    this.workflowElement.addAll(workflowElement ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? url;
-  ToOne<ObjectBoxElement>? urlElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToOne<ObjectBoxElement> urlElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   String? version;
-  ToOne<ObjectBoxElement>? versionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> versionElement = ToOne<ObjectBoxElement>();
   String? name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
   bool? experimental;
-  ToOne<ObjectBoxElement>? experimentalElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> experimentalElement = ToOne<ObjectBoxElement>();
   String? date;
-  ToOne<ObjectBoxElement>? dateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> dateElement = ToOne<ObjectBoxElement>();
   String? publisher;
-  ToOne<ObjectBoxElement>? publisherElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxContactDetail>? contact = ToMany<ObjectBoxContactDetail>();
-  ToMany<ObjectBoxUsageContext>? useContext = ToMany<ObjectBoxUsageContext>();
-  ToMany<ObjectBoxCodeableConcept>? jurisdiction =
+  ToOne<ObjectBoxElement> publisherElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxContactDetail> contact = ToMany<ObjectBoxContactDetail>();
+  ToMany<ObjectBoxUsageContext> useContext = ToMany<ObjectBoxUsageContext>();
+  ToMany<ObjectBoxCodeableConcept> jurisdiction =
       ToMany<ObjectBoxCodeableConcept>();
   String? copyright;
-  ToOne<ObjectBoxElement>? copyrightElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> copyrightElement = ToOne<ObjectBoxElement>();
   String? purpose;
-  ToOne<ObjectBoxElement>? purposeElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxExampleScenarioActor>? actor =
+  ToOne<ObjectBoxElement> purposeElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxExampleScenarioActor> actor =
       ToMany<ObjectBoxExampleScenarioActor>();
-  ToMany<ObjectBoxExampleScenarioInstance>? instance =
+  ToMany<ObjectBoxExampleScenarioInstance> instance =
       ToMany<ObjectBoxExampleScenarioInstance>();
-  ToMany<ObjectBoxExampleScenarioProcess>? process =
+  ToMany<ObjectBoxExampleScenarioProcess> process =
       ToMany<ObjectBoxExampleScenarioProcess>();
   List<String>? workflow;
-  ToMany<ObjectBoxElement>? workflowElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> workflowElement = ToMany<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxExampleScenarioActor {
   ObjectBoxExampleScenarioActor({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.actorId,
-    this.actorIdElement,
+    ObjectBoxElement? actorIdElement,
     required this.type,
-    this.typeElement,
+    ObjectBoxElement? typeElement,
     this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     this.description,
-    this.descriptionElement,
-  });
+    ObjectBoxElement? descriptionElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.actorIdElement.target = actorIdElement;
+    this.typeElement.target = typeElement;
+    this.nameElement.target = nameElement;
+    this.descriptionElement.target = descriptionElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String actorId;
-  ToOne<ObjectBoxElement>? actorIdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> actorIdElement = ToOne<ObjectBoxElement>();
   String type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
   String? name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxExampleScenarioInstance {
   ObjectBoxExampleScenarioInstance({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.resourceId,
-    this.resourceIdElement,
+    ObjectBoxElement? resourceIdElement,
     required this.resourceType,
-    this.resourceTypeElement,
+    ObjectBoxElement? resourceTypeElement,
     this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     this.description,
-    this.descriptionElement,
-    this.version,
-    this.containedInstance,
-  });
+    ObjectBoxElement? descriptionElement,
+    List<ObjectBoxExampleScenarioVersion>? version,
+    List<ObjectBoxExampleScenarioContainedInstance>? containedInstance,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.resourceIdElement.target = resourceIdElement;
+    this.resourceTypeElement.target = resourceTypeElement;
+    this.nameElement.target = nameElement;
+    this.descriptionElement.target = descriptionElement;
+    this.version.addAll(version ?? []);
+    this.containedInstance.addAll(containedInstance ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String resourceId;
-  ToOne<ObjectBoxElement>? resourceIdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> resourceIdElement = ToOne<ObjectBoxElement>();
   String resourceType;
-  ToOne<ObjectBoxElement>? resourceTypeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> resourceTypeElement = ToOne<ObjectBoxElement>();
   String? name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxExampleScenarioVersion>? version =
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxExampleScenarioVersion> version =
       ToMany<ObjectBoxExampleScenarioVersion>();
-  ToMany<ObjectBoxExampleScenarioContainedInstance>? containedInstance =
+  ToMany<ObjectBoxExampleScenarioContainedInstance> containedInstance =
       ToMany<ObjectBoxExampleScenarioContainedInstance>();
 }
 
 @Entity()
 class ObjectBoxExampleScenarioVersion {
   ObjectBoxExampleScenarioVersion({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.versionId,
-    this.versionIdElement,
+    ObjectBoxElement? versionIdElement,
     required this.description,
-    this.descriptionElement,
-  });
+    ObjectBoxElement? descriptionElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.versionIdElement.target = versionIdElement;
+    this.descriptionElement.target = descriptionElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String versionId;
-  ToOne<ObjectBoxElement>? versionIdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> versionIdElement = ToOne<ObjectBoxElement>();
   String description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxExampleScenarioContainedInstance {
   ObjectBoxExampleScenarioContainedInstance({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.resourceId,
-    this.resourceIdElement,
+    ObjectBoxElement? resourceIdElement,
     this.versionId,
-    this.versionIdElement,
-  });
+    ObjectBoxElement? versionIdElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.resourceIdElement.target = resourceIdElement;
+    this.versionIdElement.target = versionIdElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String resourceId;
-  ToOne<ObjectBoxElement>? resourceIdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> resourceIdElement = ToOne<ObjectBoxElement>();
   String? versionId;
-  ToOne<ObjectBoxElement>? versionIdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> versionIdElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxExampleScenarioProcess {
   ObjectBoxExampleScenarioProcess({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.title,
-    this.titleElement,
+    ObjectBoxElement? titleElement,
     this.description,
-    this.descriptionElement,
+    ObjectBoxElement? descriptionElement,
     this.preConditions,
-    this.preConditionsElement,
+    ObjectBoxElement? preConditionsElement,
     this.postConditions,
-    this.postConditionsElement,
-    this.step,
-  });
+    ObjectBoxElement? postConditionsElement,
+    List<ObjectBoxExampleScenarioStep>? step,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.titleElement.target = titleElement;
+    this.descriptionElement.target = descriptionElement;
+    this.preConditionsElement.target = preConditionsElement;
+    this.postConditionsElement.target = postConditionsElement;
+    this.step.addAll(step ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String title;
-  ToOne<ObjectBoxElement>? titleElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> titleElement = ToOne<ObjectBoxElement>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
   String? preConditions;
-  ToOne<ObjectBoxElement>? preConditionsElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> preConditionsElement = ToOne<ObjectBoxElement>();
   String? postConditions;
-  ToOne<ObjectBoxElement>? postConditionsElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxExampleScenarioStep>? step =
+  ToOne<ObjectBoxElement> postConditionsElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxExampleScenarioStep> step =
       ToMany<ObjectBoxExampleScenarioStep>();
 }
 
 @Entity()
 class ObjectBoxExampleScenarioStep {
   ObjectBoxExampleScenarioStep({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.process,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxExampleScenarioProcess>? process,
     this.pause,
-    this.pauseElement,
-    this.operation,
-    this.alternative,
-  });
+    ObjectBoxElement? pauseElement,
+    ObjectBoxExampleScenarioOperation? operation,
+    List<ObjectBoxExampleScenarioAlternative>? alternative,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.process.addAll(process ?? []);
+    this.pauseElement.target = pauseElement;
+    this.operation.target = operation;
+    this.alternative.addAll(alternative ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxExampleScenarioProcess>? process =
+  ToMany<ObjectBoxExampleScenarioProcess> process =
       ToMany<ObjectBoxExampleScenarioProcess>();
   bool? pause;
-  ToOne<ObjectBoxElement>? pauseElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxExampleScenarioOperation>? operation =
+  ToOne<ObjectBoxElement> pauseElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxExampleScenarioOperation> operation =
       ToOne<ObjectBoxExampleScenarioOperation>();
-  ToMany<ObjectBoxExampleScenarioAlternative>? alternative =
+  ToMany<ObjectBoxExampleScenarioAlternative> alternative =
       ToMany<ObjectBoxExampleScenarioAlternative>();
 }
 
 @Entity()
 class ObjectBoxExampleScenarioOperation {
   ObjectBoxExampleScenarioOperation({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.number,
-    this.numberElement,
+    ObjectBoxElement? numberElement,
     this.type,
-    this.typeElement,
+    ObjectBoxElement? typeElement,
     this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     this.initiator,
-    this.initiatorElement,
+    ObjectBoxElement? initiatorElement,
     this.receiver,
-    this.receiverElement,
+    ObjectBoxElement? receiverElement,
     this.description,
-    this.descriptionElement,
+    ObjectBoxElement? descriptionElement,
     this.initiatorActive,
-    this.initiatorActiveElement,
+    ObjectBoxElement? initiatorActiveElement,
     this.receiverActive,
-    this.receiverActiveElement,
-    this.request,
-    this.response,
-  });
+    ObjectBoxElement? receiverActiveElement,
+    ObjectBoxExampleScenarioContainedInstance? request,
+    ObjectBoxExampleScenarioContainedInstance? response,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.numberElement.target = numberElement;
+    this.typeElement.target = typeElement;
+    this.nameElement.target = nameElement;
+    this.initiatorElement.target = initiatorElement;
+    this.receiverElement.target = receiverElement;
+    this.descriptionElement.target = descriptionElement;
+    this.initiatorActiveElement.target = initiatorActiveElement;
+    this.receiverActiveElement.target = receiverActiveElement;
+    this.request.target = request;
+    this.response.target = response;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String number;
-  ToOne<ObjectBoxElement>? numberElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> numberElement = ToOne<ObjectBoxElement>();
   String? type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
   String? name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String? initiator;
-  ToOne<ObjectBoxElement>? initiatorElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> initiatorElement = ToOne<ObjectBoxElement>();
   String? receiver;
-  ToOne<ObjectBoxElement>? receiverElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> receiverElement = ToOne<ObjectBoxElement>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
   bool? initiatorActive;
-  ToOne<ObjectBoxElement>? initiatorActiveElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> initiatorActiveElement = ToOne<ObjectBoxElement>();
   bool? receiverActive;
-  ToOne<ObjectBoxElement>? receiverActiveElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxExampleScenarioContainedInstance>? request =
+  ToOne<ObjectBoxElement> receiverActiveElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxExampleScenarioContainedInstance> request =
       ToOne<ObjectBoxExampleScenarioContainedInstance>();
-  ToOne<ObjectBoxExampleScenarioContainedInstance>? response =
+  ToOne<ObjectBoxExampleScenarioContainedInstance> response =
       ToOne<ObjectBoxExampleScenarioContainedInstance>();
 }
 
 @Entity()
 class ObjectBoxExampleScenarioAlternative {
   ObjectBoxExampleScenarioAlternative({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.title,
-    this.titleElement,
+    ObjectBoxElement? titleElement,
     this.description,
-    this.descriptionElement,
-    this.step,
-  });
+    ObjectBoxElement? descriptionElement,
+    List<ObjectBoxExampleScenarioStep>? step,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.titleElement.target = titleElement;
+    this.descriptionElement.target = descriptionElement;
+    this.step.addAll(step ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String title;
-  ToOne<ObjectBoxElement>? titleElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> titleElement = ToOne<ObjectBoxElement>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxExampleScenarioStep>? step =
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxExampleScenarioStep> step =
       ToMany<ObjectBoxExampleScenarioStep>();
 }

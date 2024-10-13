@@ -6,220 +6,286 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxCoverageEligibilityResponse {
   ObjectBoxCoverageEligibilityResponse({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     required this.status,
-    this.statusElement,
+    ObjectBoxElement? statusElement,
     required this.purpose,
-    this.purposeElement,
-    required this.patient,
+    List<ObjectBoxElement>? purposeElement,
+    ObjectBoxReference? patient,
     this.servicedDate,
-    this.servicedDateElement,
-    this.servicedPeriod,
+    ObjectBoxElement? servicedDateElement,
+    ObjectBoxPeriod? servicedPeriod,
     required this.created,
-    this.createdElement,
-    this.requestor,
-    required this.request,
+    ObjectBoxElement? createdElement,
+    ObjectBoxReference? requestor,
+    ObjectBoxReference? request,
     required this.outcome,
-    this.outcomeElement,
+    ObjectBoxElement? outcomeElement,
     this.disposition,
-    this.dispositionElement,
-    required this.insurer,
-    this.insurance,
+    ObjectBoxElement? dispositionElement,
+    ObjectBoxReference? insurer,
+    List<ObjectBoxCoverageEligibilityResponseInsurance>? insurance,
     this.preAuthRef,
-    this.preAuthRefElement,
-    this.form,
-    this.error,
-  });
+    ObjectBoxElement? preAuthRefElement,
+    ObjectBoxCodeableConcept? form,
+    List<ObjectBoxCoverageEligibilityResponseError>? error,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.statusElement.target = statusElement;
+    this.purposeElement.addAll(purposeElement ?? []);
+    this.patient.target = patient;
+    this.servicedDateElement.target = servicedDateElement;
+    this.servicedPeriod.target = servicedPeriod;
+    this.createdElement.target = createdElement;
+    this.requestor.target = requestor;
+    this.request.target = request;
+    this.outcomeElement.target = outcomeElement;
+    this.dispositionElement.target = dispositionElement;
+    this.insurer.target = insurer;
+    this.insurance.addAll(insurance ?? []);
+    this.preAuthRefElement.target = preAuthRefElement;
+    this.form.target = form;
+    this.error.addAll(error ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
   List<String> purpose;
-  ToMany<ObjectBoxElement>? purposeElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> purposeElement = ToMany<ObjectBoxElement>();
   ToOne<ObjectBoxReference> patient = ToOne<ObjectBoxReference>();
   String? servicedDate;
-  ToOne<ObjectBoxElement>? servicedDateElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? servicedPeriod = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxElement> servicedDateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> servicedPeriod = ToOne<ObjectBoxPeriod>();
   String created;
-  ToOne<ObjectBoxElement>? createdElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? requestor = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> createdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> requestor = ToOne<ObjectBoxReference>();
   ToOne<ObjectBoxReference> request = ToOne<ObjectBoxReference>();
   String outcome;
-  ToOne<ObjectBoxElement>? outcomeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> outcomeElement = ToOne<ObjectBoxElement>();
   String? disposition;
-  ToOne<ObjectBoxElement>? dispositionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> dispositionElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxReference> insurer = ToOne<ObjectBoxReference>();
-  ToMany<ObjectBoxCoverageEligibilityResponseInsurance>? insurance =
+  ToMany<ObjectBoxCoverageEligibilityResponseInsurance> insurance =
       ToMany<ObjectBoxCoverageEligibilityResponseInsurance>();
   String? preAuthRef;
-  ToOne<ObjectBoxElement>? preAuthRefElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxCodeableConcept>? form = ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCoverageEligibilityResponseError>? error =
+  ToOne<ObjectBoxElement> preAuthRefElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxCodeableConcept> form = ToOne<ObjectBoxCodeableConcept>();
+  ToMany<ObjectBoxCoverageEligibilityResponseError> error =
       ToMany<ObjectBoxCoverageEligibilityResponseError>();
 }
 
 @Entity()
 class ObjectBoxCoverageEligibilityResponseInsurance {
   ObjectBoxCoverageEligibilityResponseInsurance({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.coverage,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxReference? coverage,
     this.inforce,
-    this.inforceElement,
-    this.benefitPeriod,
-    this.item,
-  });
+    ObjectBoxElement? inforceElement,
+    ObjectBoxPeriod? benefitPeriod,
+    List<ObjectBoxCoverageEligibilityResponseItem>? item,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.coverage.target = coverage;
+    this.inforceElement.target = inforceElement;
+    this.benefitPeriod.target = benefitPeriod;
+    this.item.addAll(item ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxReference> coverage = ToOne<ObjectBoxReference>();
   bool? inforce;
-  ToOne<ObjectBoxElement>? inforceElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? benefitPeriod = ToOne<ObjectBoxPeriod>();
-  ToMany<ObjectBoxCoverageEligibilityResponseItem>? item =
+  ToOne<ObjectBoxElement> inforceElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> benefitPeriod = ToOne<ObjectBoxPeriod>();
+  ToMany<ObjectBoxCoverageEligibilityResponseItem> item =
       ToMany<ObjectBoxCoverageEligibilityResponseItem>();
 }
 
 @Entity()
 class ObjectBoxCoverageEligibilityResponseItem {
   ObjectBoxCoverageEligibilityResponseItem({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.category,
-    this.productOrService,
-    this.modifier,
-    this.provider,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? category,
+    ObjectBoxCodeableConcept? productOrService,
+    List<ObjectBoxCodeableConcept>? modifier,
+    ObjectBoxReference? provider,
     this.excluded,
-    this.excludedElement,
+    ObjectBoxElement? excludedElement,
     this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     this.description,
-    this.descriptionElement,
-    this.network,
-    this.unit,
-    this.term,
-    this.benefit,
+    ObjectBoxElement? descriptionElement,
+    ObjectBoxCodeableConcept? network,
+    ObjectBoxCodeableConcept? unit,
+    ObjectBoxCodeableConcept? term,
+    List<ObjectBoxCoverageEligibilityResponseBenefit>? benefit,
     this.authorizationRequired,
-    this.authorizationRequiredElement,
-    this.authorizationSupporting,
+    ObjectBoxElement? authorizationRequiredElement,
+    List<ObjectBoxCodeableConcept>? authorizationSupporting,
     this.authorizationUrl,
-    this.authorizationUrlElement,
-  });
+    ObjectBoxElement? authorizationUrlElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.category.target = category;
+    this.productOrService.target = productOrService;
+    this.modifier.addAll(modifier ?? []);
+    this.provider.target = provider;
+    this.excludedElement.target = excludedElement;
+    this.nameElement.target = nameElement;
+    this.descriptionElement.target = descriptionElement;
+    this.network.target = network;
+    this.unit.target = unit;
+    this.term.target = term;
+    this.benefit.addAll(benefit ?? []);
+    this.authorizationRequiredElement.target = authorizationRequiredElement;
+    this.authorizationSupporting.addAll(authorizationSupporting ?? []);
+    this.authorizationUrlElement.target = authorizationUrlElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxCodeableConcept>? category = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? productOrService =
+  ToOne<ObjectBoxCodeableConcept> category = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxCodeableConcept> productOrService =
       ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCodeableConcept>? modifier =
+  ToMany<ObjectBoxCodeableConcept> modifier =
       ToMany<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxReference>? provider = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> provider = ToOne<ObjectBoxReference>();
   bool? excluded;
-  ToOne<ObjectBoxElement>? excludedElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> excludedElement = ToOne<ObjectBoxElement>();
   String? name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxCodeableConcept>? network = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? unit = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? term = ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCoverageEligibilityResponseBenefit>? benefit =
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxCodeableConcept> network = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxCodeableConcept> unit = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxCodeableConcept> term = ToOne<ObjectBoxCodeableConcept>();
+  ToMany<ObjectBoxCoverageEligibilityResponseBenefit> benefit =
       ToMany<ObjectBoxCoverageEligibilityResponseBenefit>();
   bool? authorizationRequired;
-  ToOne<ObjectBoxElement>? authorizationRequiredElement =
+  ToOne<ObjectBoxElement> authorizationRequiredElement =
       ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxCodeableConcept>? authorizationSupporting =
+  ToMany<ObjectBoxCodeableConcept> authorizationSupporting =
       ToMany<ObjectBoxCodeableConcept>();
   String? authorizationUrl;
-  ToOne<ObjectBoxElement>? authorizationUrlElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> authorizationUrlElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxCoverageEligibilityResponseBenefit {
   ObjectBoxCoverageEligibilityResponseBenefit({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.type,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? type,
     this.allowedUnsignedInt,
-    this.allowedUnsignedIntElement,
+    ObjectBoxElement? allowedUnsignedIntElement,
     this.allowedString,
-    this.allowedStringElement,
-    this.allowedMoney,
+    ObjectBoxElement? allowedStringElement,
+    ObjectBoxMoney? allowedMoney,
     this.usedUnsignedInt,
-    this.usedUnsignedIntElement,
+    ObjectBoxElement? usedUnsignedIntElement,
     this.usedString,
-    this.usedStringElement,
-    this.usedMoney,
-  });
+    ObjectBoxElement? usedStringElement,
+    ObjectBoxMoney? usedMoney,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.type.target = type;
+    this.allowedUnsignedIntElement.target = allowedUnsignedIntElement;
+    this.allowedStringElement.target = allowedStringElement;
+    this.allowedMoney.target = allowedMoney;
+    this.usedUnsignedIntElement.target = usedUnsignedIntElement;
+    this.usedStringElement.target = usedStringElement;
+    this.usedMoney.target = usedMoney;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxCodeableConcept> type = ToOne<ObjectBoxCodeableConcept>();
   int? allowedUnsignedInt;
-  ToOne<ObjectBoxElement>? allowedUnsignedIntElement =
-      ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> allowedUnsignedIntElement = ToOne<ObjectBoxElement>();
   String? allowedString;
-  ToOne<ObjectBoxElement>? allowedStringElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxMoney>? allowedMoney = ToOne<ObjectBoxMoney>();
+  ToOne<ObjectBoxElement> allowedStringElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxMoney> allowedMoney = ToOne<ObjectBoxMoney>();
   int? usedUnsignedInt;
-  ToOne<ObjectBoxElement>? usedUnsignedIntElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> usedUnsignedIntElement = ToOne<ObjectBoxElement>();
   String? usedString;
-  ToOne<ObjectBoxElement>? usedStringElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxMoney>? usedMoney = ToOne<ObjectBoxMoney>();
+  ToOne<ObjectBoxElement> usedStringElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxMoney> usedMoney = ToOne<ObjectBoxMoney>();
 }
 
 @Entity()
 class ObjectBoxCoverageEligibilityResponseError {
   ObjectBoxCoverageEligibilityResponseError({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.code,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? code,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.code.target = code;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxCodeableConcept> code = ToOne<ObjectBoxCodeableConcept>();
 }

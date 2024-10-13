@@ -6,38 +6,48 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxRelatedArtifact {
   ObjectBoxRelatedArtifact({
-    this.id,
-    this.extension_,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
     required this.type,
-    this.typeElement,
+    ObjectBoxElement? typeElement,
     this.label,
-    this.labelElement,
+    ObjectBoxElement? labelElement,
     this.display,
-    this.displayElement,
+    ObjectBoxElement? displayElement,
     this.citation,
-    this.citationElement,
+    ObjectBoxElement? citationElement,
     this.url,
-    this.urlElement,
-    this.document,
+    ObjectBoxElement? urlElement,
+    ObjectBoxAttachment? document,
     this.resource,
-    this.resourceElement,
-  });
+    ObjectBoxElement? resourceElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.typeElement.target = typeElement;
+    this.labelElement.target = labelElement;
+    this.displayElement.target = displayElement;
+    this.citationElement.target = citationElement;
+    this.urlElement.target = urlElement;
+    this.document.target = document;
+    this.resourceElement.target = resourceElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
   String? label;
-  ToOne<ObjectBoxElement>? labelElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> labelElement = ToOne<ObjectBoxElement>();
   String? display;
-  ToOne<ObjectBoxElement>? displayElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> displayElement = ToOne<ObjectBoxElement>();
   String? citation;
-  ToOne<ObjectBoxElement>? citationElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> citationElement = ToOne<ObjectBoxElement>();
   String? url;
-  ToOne<ObjectBoxElement>? urlElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxAttachment>? document = ToOne<ObjectBoxAttachment>();
+  ToOne<ObjectBoxElement> urlElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxAttachment> document = ToOne<ObjectBoxAttachment>();
   String? resource;
-  ToOne<ObjectBoxElement>? resourceElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> resourceElement = ToOne<ObjectBoxElement>();
 }

@@ -5,13 +5,15 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:collection/collection.dart';
+import 'package:fhir_r4/fhir_r4.dart';
+import 'package:fhir_r4/src/fhir_db/cipher_from_key.dart';
 import 'package:hive/hive.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../fhir_r4.dart';
-import 'cipher_from_key.dart';
-
+/// This class is a singleton that manages the local database for FHIR
+/// resources.
 class FhirDb {
+  /// The singleton instance of the FhirDb.
   factory FhirDb() => _fhirDb;
 
   FhirDb._internal(); // private constructor
@@ -21,7 +23,11 @@ class FhirDb {
   bool _initialized = false;
   Completer<void>? _initCompleter;
   Set<R4ResourceType> _types = <R4ResourceType>{};
+
+  /// Set to true if you want to store resources for sync
   bool storeForSync = false;
+
+  /// Set to true if you want to store versionId as time
   bool versionIdAsTime = false;
 
   /// Initializes the database, configures its path, and returns it.
@@ -36,20 +42,22 @@ class FhirDb {
   /// registers all ResourceTypeAdapters, and assigns the set of all the types
   /// to the variable types.
   Future<void> _initDb({String? path, String? pw}) async {
-    final HiveAesCipher? cipher = cipherFromKey(key: pw);
+    final cipher = cipherFromKey(key: pw);
     try {
       Hive.init(path ?? '.');
-      final Box<List<String>> typesBox =
+      final typesBox =
           await Hive.openBox<List<String>>('types', encryptionCipher: cipher);
       _types = typesBox
               .get('types')
               ?.map((String e) => Resource.resourceTypeFromString(e)!)
               .toSet() ??
           <R4ResourceType>{};
-      await Hive.openBox<Map<dynamic, dynamic>>('sync',
-          encryptionCipher: cipher);
-      _initialized =
-          true; // Set initialized to true only after all operations are successful.
+      await Hive.openBox<Map<dynamic, dynamic>>(
+        'sync',
+        encryptionCipher: cipher,
+      );
+      // Set initialized to true only after all operations are successful.
+      _initialized = true;
     } catch (e) {
       log(e.toString());
       throw Exception('Failed to initialize FhirDb: $e');
@@ -77,6 +85,7 @@ class FhirDb {
         ?.future; // Wait for completion if initialization is ongoing.
   }
 
+  /// This function is used to update the cipher of the database. It will
   Future<void> updateCipher({
     String? path,
     String? oldPw,
@@ -87,20 +96,22 @@ class FhirDb {
     }
     try {
       await _ensureInit(pw: oldPw);
-      final Box<List<String>> typesBox = await Hive.openBox<List<String>>(
+      final typesBox = await Hive.openBox<List<String>>(
         'types',
         encryptionCipher: cipherFromKey(key: oldPw),
       );
 
-      final List<String> types = typesBox.get('types') ?? <String>[];
+      final types = typesBox.get('types') ?? <String>[];
       try {
-        for (final String type in [...types, 'sync', 'history']) {
-          final Box<Map<dynamic, dynamic>> oldBox =
-              await Hive.openBox<Map<dynamic, dynamic>>(type,
-                  encryptionCipher: cipherFromKey(key: oldPw));
-          final Box<Map<dynamic, dynamic>> tempBox =
-              await Hive.openBox<Map<dynamic, dynamic>>('temp',
-                  encryptionCipher: cipherFromKey(key: newPw));
+        for (final type in [...types, 'sync', 'history']) {
+          final oldBox = await Hive.openBox<Map<dynamic, dynamic>>(
+            type,
+            encryptionCipher: cipherFromKey(key: oldPw),
+          );
+          final tempBox = await Hive.openBox<Map<dynamic, dynamic>>(
+            'temp',
+            encryptionCipher: cipherFromKey(key: newPw),
+          );
 
           try {
             for (final dynamic key in oldBox.keys.toList()) {
@@ -108,10 +119,11 @@ class FhirDb {
             }
           } finally {
             await oldBox.deleteFromDisk();
-            final Box<Map<dynamic, dynamic>> newBox =
-                await Hive.openBox<Map<dynamic, dynamic>>(type,
-                    encryptionCipher: cipherFromKey(key: newPw));
-            for (final Map<dynamic, dynamic> value in tempBox.values) {
+            final newBox = await Hive.openBox<Map<dynamic, dynamic>>(
+              type,
+              encryptionCipher: cipherFromKey(key: newPw),
+            );
+            for (final value in tempBox.values) {
               await newBox.put(value['id'], value);
             }
             await tempBox.deleteFromDisk();
@@ -135,6 +147,8 @@ class FhirDb {
     }
   }
 
+  /// This function is used to update the password of the database. It will
+  /// update the cipher of the database and then update the password.
   Future<void> updatePw({String? oldPw, String? newPw}) async {
     if (oldPw != newPw) {
       await updateCipher(oldPw: oldPw, newPw: newPw);
@@ -147,9 +161,8 @@ class FhirDb {
     String? pw,
   }) async {
     await _ensureInit(pw: pw);
-    final HiveAesCipher? cipher = cipherFromKey(key: pw);
-    final String resourceTypeString =
-        Resource.resourceTypeToString(resourceType);
+    final cipher = cipherFromKey(key: pw);
+    final resourceTypeString = Resource.resourceTypeToString(resourceType);
 
     try {
       return Hive.isBoxOpen(resourceTypeString)
@@ -174,12 +187,11 @@ class FhirDb {
     }
 
     await _ensureInit(pw: pw);
-    final Box<List<String>> box = await Hive.openBox<List<String>>('types');
+    final box = await Hive.openBox<List<String>>('types');
 
     try {
-      final List<String> currentTypes =
-          box.get('types', defaultValue: <String>[])!;
-      currentTypes.add(Resource.resourceTypeToString(resourceType));
+      final currentTypes = box.get('types', defaultValue: <String>[])!
+        ..add(Resource.resourceTypeToString(resourceType));
       await box.put('types', currentTypes);
       return true;
     } catch (e) {
@@ -202,10 +214,10 @@ class FhirDb {
     }
 
     await _ensureInit(pw: pw);
-    final bool exists = resource.id != null &&
+    final exists = resource.id != null &&
         await this.exists(
           resourceType: resource.resourceType,
-          id: resource.id!.value!,
+          id: resource.id!.value,
           pw: pw,
         );
 
@@ -219,8 +231,8 @@ class FhirDb {
     required List<Resource> resources,
     String? pw,
   }) async {
-    bool success = true;
-    for (final Resource resource in resources) {
+    var success = true;
+    for (final resource in resources) {
       try {
         await save(resource: resource, pw: pw);
       } catch (e) {
@@ -232,6 +244,12 @@ class FhirDb {
     return success;
   }
 
+  /// This function is used to add a resource to the db, it will check if the
+  /// resource already exists and if it does, it will update it instead
+  /// (this is the same as the save function, but with a different name)
+  /// This function is used to add a resource to the db, it will check if the
+  /// resource already exists and if it does, it will update it instead
+  /// (this is the same as the save function, but with a different name)
   Future<bool> addAll(
     List<Resource> resources, {
     String? pw,
@@ -243,8 +261,10 @@ class FhirDb {
     Resource resource,
     String? pw,
   ) async {
-    final Resource newResource = resource.newIdIfNoId().updateVersion(
-        oldMeta: resource.meta, versionIdAsTime: versionIdAsTime);
+    final newResource = resource.newIdIfNoId().updateVersion(
+          oldMeta: resource.meta,
+          versionIdAsTime: versionIdAsTime,
+        );
     await _saveToDb(
       resourceType: newResource.resourceType,
       resource: newResource.toJson(),
@@ -263,9 +283,9 @@ class FhirDb {
     String? pw,
   ) async {
     if (resource.id != null) {
-      final Resource? oldResource = await get(
+      final oldResource = await get(
         resourceType: resource.resourceType,
-        id: resource.id!.value!,
+        id: resource.id!.value,
         pw: pw,
       );
       if (oldResource != null) {
@@ -273,9 +293,11 @@ class FhirDb {
           resource: oldResource.toJson(),
           pw: pw,
         );
-        final FhirMeta? oldMeta = oldResource.meta;
-        final Resource newResource = resource.updateVersion(
-            oldMeta: oldMeta, versionIdAsTime: versionIdAsTime);
+        final oldMeta = oldResource.meta;
+        final newResource = resource.updateVersion(
+          oldMeta: oldMeta,
+          versionIdAsTime: versionIdAsTime,
+        );
         await _saveToDb(
           resourceType: newResource.resourceType,
           resource: newResource.toJson(),
@@ -299,12 +321,12 @@ class FhirDb {
     String? pw,
   }) async {
     try {
-      final Box<Map<dynamic, dynamic>> box =
-          await _getBox(resourceType: resourceType, pw: pw);
+      final box = await _getBox(resourceType: resourceType, pw: pw);
       await box.put(resource['id'], resource);
       return await _addType(
-          resourceType: resourceType,
-          pw: pw); // Add type after successful save.
+        resourceType: resourceType,
+        pw: pw,
+      ); // Add type after successful save.
     } catch (e, s) {
       log('Error saving to DB: $e, Stack at time of Error: $s');
       return false;
@@ -316,12 +338,14 @@ class FhirDb {
     String? pw,
   }) async {
     try {
-      final Box<Map<dynamic, dynamic>> box = Hive.isBoxOpen('history')
-          ? Hive.box('history')
-          : await Hive.openBox('history',
-              encryptionCipher: cipherFromKey(key: pw));
+      final box = Hive.isBoxOpen('history')
+          ? Hive.box<Map<String, dynamic>>('history')
+          : await Hive.openBox<Map<String, dynamic>>(
+              'history',
+              encryptionCipher: cipherFromKey(key: pw),
+            );
 
-      final String historyKey =
+      final historyKey =
           '${resource["resourceType"]}/${resource["id"]}/${resource["meta"]["versionId"]}';
       await box.put(historyKey, resource);
       return true;
@@ -331,6 +355,7 @@ class FhirDb {
     }
   }
 
+  /// function used to check if a resource exists in the db
   Future<bool> exists({
     required R4ResourceType resourceType,
     required String id,
@@ -340,22 +365,21 @@ class FhirDb {
       return false;
     }
 
-    final Box<Map<dynamic, dynamic>> box =
-        await _getBox(resourceType: resourceType, pw: pw);
+    final box = await _getBox(resourceType: resourceType, pw: pw);
     return box.containsKey(id);
   }
 
+  /// function used to get a specific resource from the db
   BehaviorSubject<Resource?> subject({
     required R4ResourceType resourceType,
     String? id,
     String? pw,
   }) {
-    final BehaviorSubject<Resource?> subject = BehaviorSubject<Resource?>();
+    final subject = BehaviorSubject<Resource?>();
 
     _getBox(resourceType: resourceType, pw: pw).then((box) {
-      final Stream<BoxEvent> stream =
-          (id == null) ? box.watch() : box.watch(key: id);
-      final StreamSubscription<BoxEvent> subscription = stream.listen(
+      final stream = (id == null) ? box.watch() : box.watch(key: id);
+      final subscription = stream.listen(
         (event) {
           if (!event.deleted) {
             subject.add(Resource.fromJson(event.value as Map<String, dynamic>));
@@ -366,17 +390,16 @@ class FhirDb {
         onError: (Object e) {
           subject.addError(e); // Propagate errors.
         },
-        onDone: () =>
-            subject.close(), // Close the BehaviorSubject on stream completion.
+        onDone:
+            subject.close, // Close the BehaviorSubject on stream completion.
       );
 
-      // Ensure the subscription is cancelled when the BehaviorSubject is closed.
-      subject.onCancel = () {
-        subscription.cancel();
-      };
+      // Ensure the subscription is cancelled when the BehaviorSubject is closed
+      subject.onCancel = subscription.cancel;
     }).catchError((Object e) {
-      subject.addError(e); // Handle errors from _getBox.
-      subject.close();
+      subject
+        ..addError(e) // Handle errors from _getBox.
+        ..close();
     });
 
     return subject;
@@ -391,9 +414,8 @@ class FhirDb {
   }) async {
     try {
       await _ensureInit(pw: pw);
-      final Box<Map<dynamic, dynamic>> box =
-          await _getBox(resourceType: resourceType, pw: pw);
-      final Map<dynamic, dynamic>? resourceMap = box.get(id);
+      final box = await _getBox(resourceType: resourceType, pw: pw);
+      final resourceMap = box.get(id);
 
       if (resourceMap == null) {
         return null;
@@ -401,10 +423,11 @@ class FhirDb {
 
       // Assuming the map from the box is already in the correct format
       return Resource.fromJson(
-          jsonDecode(jsonEncode(resourceMap)) as Map<String, dynamic>);
+        jsonDecode(jsonEncode(resourceMap)) as Map<String, dynamic>,
+      );
     } catch (e, s) {
       log('Failed to retrieve resource from box. Error: $e, StackTrace: $s');
-      return null; // Consider whether to rethrow the exception or handle it differently
+      return null;
     }
   }
 
@@ -435,23 +458,29 @@ class FhirDb {
       return _searchByField(resourceType, field, value, pw);
     } else {
       throw const FormatException(
-          'Insufficient parameters provided for search.');
+        'Insufficient parameters provided for search.',
+      );
     }
   }
 
   Future<List<Resource>> _searchByResource(
-      Resource resource, String? pw) async {
-    final Resource? result = await get(
+    Resource resource,
+    String? pw,
+  ) async {
+    final result = await get(
       resourceType: resource.resourceType,
-      id: resource.id!.value!,
+      id: resource.id!.value,
       pw: pw,
     );
     return result == null ? <Resource>[] : <Resource>[result];
   }
 
   Future<List<Resource>> _searchById(
-      R4ResourceType resourceType, String id, String? pw) async {
-    final Resource? result = await get(
+    R4ResourceType resourceType,
+    String id,
+    String? pw,
+  ) async {
+    final result = await get(
       resourceType: resourceType,
       id: id,
       pw: pw,
@@ -459,11 +488,15 @@ class FhirDb {
     return result == null ? <Resource>[] : <Resource>[result];
   }
 
-  Future<List<Resource>> _searchByField(R4ResourceType resourceType,
-      List<Object> field, String value, String? pw) async {
+  Future<List<Resource>> _searchByField(
+    R4ResourceType resourceType,
+    List<Object> field,
+    String value,
+    String? pw,
+  ) async {
     bool finder(Map<String, dynamic> finderResource) {
       dynamic result = finderResource;
-      for (final Object key in field) {
+      for (final key in field) {
         result = result[key];
         if (result == null) {
           return false;
@@ -483,7 +516,7 @@ class FhirDb {
     Resource? resource,
     String? pw,
   }) async {
-    final Set<R4ResourceType> typeList = <R4ResourceType>{};
+    final typeList = <R4ResourceType>{};
     if (resource?.resourceType != null) {
       typeList.add(resource!.resourceType);
     }
@@ -491,25 +524,27 @@ class FhirDb {
       typeList.addAll(resourceTypes);
     }
     if (resourceTypeStrings != null) {
-      for (final String type in resourceTypeStrings) {
-        final R4ResourceType? resourceType = R4ResourceType.fromString(type);
+      for (final type in resourceTypeStrings) {
+        final resourceType = R4ResourceType.fromString(type);
         if (resourceType != null) {
           typeList.add(resourceType);
         }
       }
     }
-    final List<Resource> resourceList = <Resource>[];
+    final resourceList = <Resource>[];
     await _ensureInit(pw: pw);
-    for (final R4ResourceType resourceType in typeList) {
-      final Box<Map<dynamic, dynamic>> box =
-          await _getBox(resourceType: resourceType, pw: pw);
-      final List<Map<String, dynamic>> newResources = box.values
-          .map((Map<dynamic, dynamic> e) =>
-              jsonDecode(jsonEncode(e)) as Map<String, dynamic>)
+    for (final resourceType in typeList) {
+      final box = await _getBox(resourceType: resourceType, pw: pw);
+      final newResources = box.values
+          .map(
+            (Map<dynamic, dynamic> e) =>
+                jsonDecode(jsonEncode(e)) as Map<String, dynamic>,
+          )
           .toList();
 
       resourceList.addAll(
-          newResources.map((Map<String, dynamic> e) => Resource.fromJson(e)));
+        newResources.map(Resource.fromJson),
+      );
     }
     return resourceList;
   }
@@ -531,7 +566,7 @@ class FhirDb {
     if (resource != null && resource.id != null) {
       return _deleteById(
         resourceType: resource.resourceType,
-        id: resource.id!.value!,
+        id: resource.id!.value,
         pw: pw,
       );
     } else if (resourceType != null && id != null) {
@@ -578,7 +613,7 @@ class FhirDb {
   }) async {
     try {
       await _ensureInit(pw: pw);
-      final Box<Map<dynamic, dynamic>> box = await _getBox(
+      final box = await _getBox(
         resourceType: resourceType,
       );
       await box.delete(id);
@@ -595,11 +630,12 @@ class FhirDb {
   }) async {
     try {
       await _ensureInit(pw: pw);
-      final Box<Map<dynamic, dynamic>> box =
-          await _getBox(resourceType: resourceType, pw: pw);
-      final String? resourceId = box.values
-          .firstWhereOrNull((Map<dynamic, dynamic> element) =>
-              finder(Map<String, dynamic>.from(element)))?['id']
+      final box = await _getBox(resourceType: resourceType, pw: pw);
+      final resourceId = box.values
+          .firstWhereOrNull(
+            (Map<dynamic, dynamic> element) =>
+                finder(Map<String, dynamic>.from(element)),
+          )?['id']
           ?.toString();
       if (resourceId != null) {
         await box.delete(resourceId);
@@ -616,7 +652,7 @@ class FhirDb {
   }) async {
     try {
       await _ensureInit(pw: pw);
-      final Box<Map<dynamic, dynamic>> box = await _getBox(
+      final box = await _getBox(
         resourceType: resourceType,
       );
       await box.clear();
@@ -626,15 +662,15 @@ class FhirDb {
     }
   }
 
+  /// Deletes all resources, including historical versions
   Future<bool> clear({String? pw}) async => deleteAllResources(pw: pw);
 
   /// Deletes all resources, including historical versions
   Future<bool> deleteAllResources({String? pw}) async {
     try {
       await _ensureInit(pw: pw);
-      for (final R4ResourceType type in _types) {
-        final Box<Map<dynamic, dynamic>> box =
-            await _getBox(resourceType: type, pw: pw);
+      for (final type in _types) {
+        final box = await _getBox(resourceType: type, pw: pw);
         await box.deleteFromDisk();
       }
       return true;
@@ -643,26 +679,35 @@ class FhirDb {
     }
   }
 
+  /// Deletes all resources, including historical versions
   Future<void> deleteDatabase({String? pw}) async {
     await _ensureInit(pw: pw);
     await Hive.deleteFromDisk();
   }
 
+  /// ************************************************************************
+  /// The following functions are for searching the database
+  /// ************************************************************************
+  ///
+  /// search: searches for a specific resource in the db
   Future<Iterable<Resource>> search({
     required R4ResourceType resourceType,
     required bool Function(Map<String, dynamic>) finder,
     String? pw,
   }) async {
     await _ensureInit(pw: pw);
-    final Box<Map<dynamic, dynamic>> box =
-        await _getBox(resourceType: resourceType, pw: pw);
-    final Map<dynamic, Map<dynamic, dynamic>> boxData = box.toMap();
-    boxData.removeWhere((dynamic key, Map<dynamic, dynamic> value) =>
-        !finder(Map<String, dynamic>.from(value)));
+    final box = await _getBox(resourceType: resourceType, pw: pw);
+    final boxData = box.toMap()
+      ..removeWhere(
+        (dynamic key, Map<dynamic, dynamic> value) =>
+            !finder(Map<String, dynamic>.from(value)),
+      );
     return boxData.values
-        .map((Map<dynamic, dynamic> e) =>
-            jsonDecode(jsonEncode(e)) as Map<String, dynamic>)
-        .map((Map<String, dynamic> e) => Resource.fromJson(e))
+        .map(
+          (Map<dynamic, dynamic> e) =>
+              jsonDecode(jsonEncode(e)) as Map<String, dynamic>,
+        )
+        .map(Resource.fromJson)
         .toList();
   }
 
@@ -676,7 +721,7 @@ class FhirDb {
     String? pw,
   }) async {
     await _ensureInit(pw: pw);
-    final HiveAesCipher? cipher = cipherFromKey(key: pw);
+    final cipher = cipherFromKey(key: pw);
     try {
       final Box<Object> box;
       if (!Hive.isBoxOpen('sync')) {
@@ -684,7 +729,7 @@ class FhirDb {
       } else {
         box = Hive.box('sync');
       }
-      final String key =
+      final key =
           '${resource['resourceType']}/${resource['id']}/${resource['meta']['versionId']}';
       await box.put(key, resource);
     } catch (e) {
@@ -692,11 +737,12 @@ class FhirDb {
     }
   }
 
+  /// function used to get a specific resource from the db
   Future<List<Resource>?> getSync({
     String? pw,
   }) async {
     await _ensureInit(pw: pw);
-    final HiveAesCipher? cipher = cipherFromKey(key: pw);
+    final cipher = cipherFromKey(key: pw);
     final Box<Map<dynamic, dynamic>> box;
     if (!Hive.isBoxOpen('sync')) {
       box = await Hive.openBox('sync', encryptionCipher: cipher);
@@ -704,9 +750,11 @@ class FhirDb {
       box = Hive.box('sync');
     }
     return box.values
-        .map((Map<dynamic, dynamic> e) =>
-            jsonDecode(jsonEncode(e)) as Map<String, dynamic>)
-        .map((Map<String, dynamic> e) => Resource.fromJson(e))
+        .map(
+          (Map<dynamic, dynamic> e) =>
+              jsonDecode(jsonEncode(e)) as Map<String, dynamic>,
+        )
+        .map(Resource.fromJson)
         .toList();
   }
 
@@ -714,7 +762,7 @@ class FhirDb {
     String? pw,
   }) async {
     await _ensureInit(pw: pw);
-    final HiveAesCipher? cipher = cipherFromKey(key: pw);
+    final cipher = cipherFromKey(key: pw);
     try {
       final Box<Object> box;
       if (!Hive.isBoxOpen('sync')) {
@@ -732,11 +780,11 @@ class FhirDb {
   BehaviorSubject<Resource?> listenSync({
     String? pw,
   }) {
-    final BehaviorSubject<Resource?> subject = BehaviorSubject<Resource?>();
-    final Box<Object> box = Hive.box('sync');
+    final subject = BehaviorSubject<Resource?>();
+    final box = Hive.box('sync');
 
-    final Stream<BoxEvent> stream = box.watch();
-    final StreamSubscription<BoxEvent> subscription = stream.listen(
+    final stream = box.watch();
+    final subscription = stream.listen(
       (event) {
         if (!event.deleted) {
           subject.add(Resource.fromJson(event.value as Map<String, dynamic>));
@@ -747,14 +795,11 @@ class FhirDb {
       onError: (Object e) {
         subject.addError(e); // Propagate errors.
       },
-      onDone: () =>
-          subject.close(), // Close the BehaviorSubject on stream completion.
+      onDone: subject.close, // Close the BehaviorSubject on stream completion.
     );
 
     // Ensure the subscription is cancelled when the BehaviorSubject is closed.
-    subject.onCancel = () {
-      subscription.cancel();
-    };
+    subject.onCancel = subscription.cancel;
 
     return subject;
   }
@@ -770,7 +815,7 @@ class FhirDb {
     String? pw,
   }) async {
     await _ensureInit(pw: pw);
-    final HiveAesCipher? cipher = cipherFromKey(key: pw);
+    final cipher = cipherFromKey(key: pw);
     try {
       final Box<Object> box;
       if (!Hive.isBoxOpen('general')) {
@@ -794,7 +839,7 @@ class FhirDb {
     String? pw,
   }) async {
     await _ensureInit(pw: pw);
-    final HiveAesCipher? cipher = cipherFromKey(key: pw);
+    final cipher = cipherFromKey(key: pw);
     final Box<Object> box;
     if (!Hive.isBoxOpen('general')) {
       box = await Hive.openBox('general', encryptionCipher: cipher);
@@ -808,14 +853,14 @@ class FhirDb {
     String? pw,
   }) async {
     await _ensureInit(pw: pw);
-    final HiveAesCipher? cipher = cipherFromKey(key: pw);
+    final cipher = cipherFromKey(key: pw);
     final Box<Object> box;
     if (!Hive.isBoxOpen('general')) {
       box = await Hive.openBox('general', encryptionCipher: cipher);
     } else {
       box = Hive.box('general');
     }
-    final Map<dynamic, Object> boxData = box.toMap();
+    final boxData = box.toMap();
     return boxData.values;
   }
 
@@ -824,14 +869,14 @@ class FhirDb {
     String? pw,
   }) async {
     await _ensureInit(pw: pw);
-    final HiveAesCipher? cipher = cipherFromKey(key: pw);
+    final cipher = cipherFromKey(key: pw);
     final Box<Object> box;
     if (!Hive.isBoxOpen('general')) {
       box = await Hive.openBox('general', encryptionCipher: cipher);
     } else {
       box = Hive.box('general');
     }
-    final Map<dynamic, Object> boxData = box.toMap();
+    final boxData = box.toMap();
     boxData.removeWhere((dynamic key, Object value) => !finder(value));
     return boxData.values;
   }
@@ -841,7 +886,7 @@ class FhirDb {
     String? pw,
   }) async {
     await _ensureInit(pw: pw);
-    final HiveAesCipher? cipher = cipherFromKey(key: pw);
+    final cipher = cipherFromKey(key: pw);
     try {
       final Box<Object> box;
       if (!Hive.isBoxOpen('general')) {
@@ -866,7 +911,7 @@ class FhirDb {
     String? pw,
   }) async {
     await _ensureInit(pw: pw);
-    final HiveAesCipher? cipher = cipherFromKey(key: pw);
+    final cipher = cipherFromKey(key: pw);
     try {
       final Box<Object> box;
       if (!Hive.isBoxOpen('general')) {
@@ -884,12 +929,12 @@ class FhirDb {
   BehaviorSubject<dynamic> generalSubject({
     String? pw,
   }) {
-    final BehaviorSubject<dynamic> subject = BehaviorSubject<dynamic>();
-    final HiveAesCipher? cipher = cipherFromKey(key: pw);
+    final subject = BehaviorSubject<dynamic>();
+    final cipher = cipherFromKey(key: pw);
     _ensureInit(pw: pw).then((_) {
       Hive.openBox<dynamic>('general', encryptionCipher: cipher).then((box) {
-        final Stream<BoxEvent> stream = box.watch();
-        final StreamSubscription<BoxEvent> subscription = stream.listen(
+        final stream = box.watch();
+        final subscription = stream.listen(
           (event) {
             if (!event.deleted) {
               subject.add(event.value);
@@ -900,14 +945,12 @@ class FhirDb {
           onError: (Object e) {
             subject.addError(e); // Propagate errors.
           },
-          onDone: () => subject
-              .close(), // Close the BehaviorSubject on stream completion.
+          onDone:
+              subject.close, // Close the BehaviorSubject on stream completion.
         );
 
         // Ensure the subscription is cancelled when the BehaviorSubject is closed.
-        subject.onCancel = () {
-          subscription.cancel();
-        };
+        subject.onCancel = subscription.cancel;
       }).catchError((Object e) {
         subject.addError(e); // Handle errors from _getBox.
         subject.close();
@@ -928,9 +971,8 @@ class FhirDb {
     String? pw,
   }) async {
     await _ensureInit(pw: pw);
-    for (final R4ResourceType resourceType in types) {
-      final String resourceTypeString =
-          Resource.resourceTypeToString(resourceType);
+    for (final resourceType in types) {
+      final resourceTypeString = Resource.resourceTypeToString(resourceType);
       if (!Hive.isBoxOpen(resourceTypeString)) {
         await Hive.box<Map<dynamic, dynamic>>(resourceTypeString).close();
       }

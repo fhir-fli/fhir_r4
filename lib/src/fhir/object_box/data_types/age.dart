@@ -6,32 +6,40 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxAge {
   ObjectBoxAge({
-    this.id,
-    this.extension_,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
     this.value,
-    this.valueElement,
+    ObjectBoxElement? valueElement,
     this.comparator,
-    this.comparatorElement,
+    ObjectBoxElement? comparatorElement,
     this.unit,
-    this.unitElement,
+    ObjectBoxElement? unitElement,
     this.system,
-    this.systemElement,
+    ObjectBoxElement? systemElement,
     this.code,
-    this.codeElement,
-  });
+    ObjectBoxElement? codeElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.valueElement.target = valueElement;
+    this.comparatorElement.target = comparatorElement;
+    this.unitElement.target = unitElement;
+    this.systemElement.target = systemElement;
+    this.codeElement.target = codeElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   double? value;
-  ToOne<ObjectBoxElement>? valueElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueElement = ToOne<ObjectBoxElement>();
   String? comparator;
-  ToOne<ObjectBoxElement>? comparatorElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> comparatorElement = ToOne<ObjectBoxElement>();
   String? unit;
-  ToOne<ObjectBoxElement>? unitElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> unitElement = ToOne<ObjectBoxElement>();
   String? system;
-  ToOne<ObjectBoxElement>? systemElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> systemElement = ToOne<ObjectBoxElement>();
   String? code;
-  ToOne<ObjectBoxElement>? codeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> codeElement = ToOne<ObjectBoxElement>();
 }

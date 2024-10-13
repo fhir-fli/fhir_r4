@@ -6,333 +6,427 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxQuestionnaire {
   ObjectBoxQuestionnaire({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.url,
-    this.urlElement,
-    this.identifier,
+    ObjectBoxElement? urlElement,
+    List<ObjectBoxIdentifier>? identifier,
     this.version,
-    this.versionElement,
+    ObjectBoxElement? versionElement,
     this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     this.title,
-    this.titleElement,
+    ObjectBoxElement? titleElement,
     this.derivedFrom,
-    this.derivedFromElement,
+    List<ObjectBoxElement>? derivedFromElement,
     required this.status,
-    this.statusElement,
+    ObjectBoxElement? statusElement,
     this.experimental,
-    this.experimentalElement,
+    ObjectBoxElement? experimentalElement,
     this.subjectType,
-    this.subjectTypeElement,
+    List<ObjectBoxElement>? subjectTypeElement,
     this.date,
-    this.dateElement,
+    ObjectBoxElement? dateElement,
     this.publisher,
-    this.publisherElement,
-    this.contact,
+    ObjectBoxElement? publisherElement,
+    List<ObjectBoxContactDetail>? contact,
     this.description,
-    this.descriptionElement,
-    this.useContext,
-    this.jurisdiction,
+    ObjectBoxElement? descriptionElement,
+    List<ObjectBoxUsageContext>? useContext,
+    List<ObjectBoxCodeableConcept>? jurisdiction,
     this.purpose,
-    this.purposeElement,
+    ObjectBoxElement? purposeElement,
     this.copyright,
-    this.copyrightElement,
+    ObjectBoxElement? copyrightElement,
     this.approvalDate,
-    this.approvalDateElement,
+    ObjectBoxElement? approvalDateElement,
     this.lastReviewDate,
-    this.lastReviewDateElement,
-    this.effectivePeriod,
-    this.code,
-    this.item,
-  });
+    ObjectBoxElement? lastReviewDateElement,
+    ObjectBoxPeriod? effectivePeriod,
+    List<ObjectBoxCoding>? code,
+    List<ObjectBoxQuestionnaireItem>? item,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.urlElement.target = urlElement;
+    this.identifier.addAll(identifier ?? []);
+    this.versionElement.target = versionElement;
+    this.nameElement.target = nameElement;
+    this.titleElement.target = titleElement;
+    this.derivedFromElement.addAll(derivedFromElement ?? []);
+    this.statusElement.target = statusElement;
+    this.experimentalElement.target = experimentalElement;
+    this.subjectTypeElement.addAll(subjectTypeElement ?? []);
+    this.dateElement.target = dateElement;
+    this.publisherElement.target = publisherElement;
+    this.contact.addAll(contact ?? []);
+    this.descriptionElement.target = descriptionElement;
+    this.useContext.addAll(useContext ?? []);
+    this.jurisdiction.addAll(jurisdiction ?? []);
+    this.purposeElement.target = purposeElement;
+    this.copyrightElement.target = copyrightElement;
+    this.approvalDateElement.target = approvalDateElement;
+    this.lastReviewDateElement.target = lastReviewDateElement;
+    this.effectivePeriod.target = effectivePeriod;
+    this.code.addAll(code ?? []);
+    this.item.addAll(item ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String? url;
-  ToOne<ObjectBoxElement>? urlElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToOne<ObjectBoxElement> urlElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   String? version;
-  ToOne<ObjectBoxElement>? versionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> versionElement = ToOne<ObjectBoxElement>();
   String? name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String? title;
-  ToOne<ObjectBoxElement>? titleElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> titleElement = ToOne<ObjectBoxElement>();
   List<String>? derivedFrom;
-  ToMany<ObjectBoxElement>? derivedFromElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> derivedFromElement = ToMany<ObjectBoxElement>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
   bool? experimental;
-  ToOne<ObjectBoxElement>? experimentalElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> experimentalElement = ToOne<ObjectBoxElement>();
   List<String>? subjectType;
-  ToMany<ObjectBoxElement>? subjectTypeElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> subjectTypeElement = ToMany<ObjectBoxElement>();
   String? date;
-  ToOne<ObjectBoxElement>? dateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> dateElement = ToOne<ObjectBoxElement>();
   String? publisher;
-  ToOne<ObjectBoxElement>? publisherElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxContactDetail>? contact = ToMany<ObjectBoxContactDetail>();
+  ToOne<ObjectBoxElement> publisherElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxContactDetail> contact = ToMany<ObjectBoxContactDetail>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxUsageContext>? useContext = ToMany<ObjectBoxUsageContext>();
-  ToMany<ObjectBoxCodeableConcept>? jurisdiction =
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxUsageContext> useContext = ToMany<ObjectBoxUsageContext>();
+  ToMany<ObjectBoxCodeableConcept> jurisdiction =
       ToMany<ObjectBoxCodeableConcept>();
   String? purpose;
-  ToOne<ObjectBoxElement>? purposeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> purposeElement = ToOne<ObjectBoxElement>();
   String? copyright;
-  ToOne<ObjectBoxElement>? copyrightElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> copyrightElement = ToOne<ObjectBoxElement>();
   String? approvalDate;
-  ToOne<ObjectBoxElement>? approvalDateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> approvalDateElement = ToOne<ObjectBoxElement>();
   String? lastReviewDate;
-  ToOne<ObjectBoxElement>? lastReviewDateElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? effectivePeriod = ToOne<ObjectBoxPeriod>();
-  ToMany<ObjectBoxCoding>? code = ToMany<ObjectBoxCoding>();
-  ToMany<ObjectBoxQuestionnaireItem>? item =
+  ToOne<ObjectBoxElement> lastReviewDateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> effectivePeriod = ToOne<ObjectBoxPeriod>();
+  ToMany<ObjectBoxCoding> code = ToMany<ObjectBoxCoding>();
+  ToMany<ObjectBoxQuestionnaireItem> item =
       ToMany<ObjectBoxQuestionnaireItem>();
 }
 
 @Entity()
 class ObjectBoxQuestionnaireItem {
   ObjectBoxQuestionnaireItem({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.linkId,
-    this.linkIdElement,
+    ObjectBoxElement? linkIdElement,
     this.definition,
-    this.definitionElement,
-    this.code,
+    ObjectBoxElement? definitionElement,
+    List<ObjectBoxCoding>? code,
     this.prefix,
-    this.prefixElement,
+    ObjectBoxElement? prefixElement,
     this.text,
-    this.textElement,
+    ObjectBoxElement? textElement,
     required this.type,
-    this.typeElement,
-    this.enableWhen,
+    ObjectBoxElement? typeElement,
+    List<ObjectBoxQuestionnaireEnableWhen>? enableWhen,
     this.enableBehavior,
-    this.enableBehaviorElement,
+    ObjectBoxElement? enableBehaviorElement,
     this.required_,
-    this.requiredElement,
+    ObjectBoxElement? requiredElement,
     this.repeats,
-    this.repeatsElement,
+    ObjectBoxElement? repeatsElement,
     this.readOnly,
-    this.readOnlyElement,
+    ObjectBoxElement? readOnlyElement,
     this.maxLength,
-    this.maxLengthElement,
+    ObjectBoxElement? maxLengthElement,
     this.answerValueSet,
-    this.answerValueSetElement,
-    this.answerOption,
-    this.initial,
-    this.item,
-  });
+    ObjectBoxElement? answerValueSetElement,
+    List<ObjectBoxQuestionnaireAnswerOption>? answerOption,
+    List<ObjectBoxQuestionnaireInitial>? initial,
+    List<ObjectBoxQuestionnaireItem>? item,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.linkIdElement.target = linkIdElement;
+    this.definitionElement.target = definitionElement;
+    this.code.addAll(code ?? []);
+    this.prefixElement.target = prefixElement;
+    this.textElement.target = textElement;
+    this.typeElement.target = typeElement;
+    this.enableWhen.addAll(enableWhen ?? []);
+    this.enableBehaviorElement.target = enableBehaviorElement;
+    this.requiredElement.target = requiredElement;
+    this.repeatsElement.target = repeatsElement;
+    this.readOnlyElement.target = readOnlyElement;
+    this.maxLengthElement.target = maxLengthElement;
+    this.answerValueSetElement.target = answerValueSetElement;
+    this.answerOption.addAll(answerOption ?? []);
+    this.initial.addAll(initial ?? []);
+    this.item.addAll(item ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String linkId;
-  ToOne<ObjectBoxElement>? linkIdElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> linkIdElement = ToOne<ObjectBoxElement>();
   String? definition;
-  ToOne<ObjectBoxElement>? definitionElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxCoding>? code = ToMany<ObjectBoxCoding>();
+  ToOne<ObjectBoxElement> definitionElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxCoding> code = ToMany<ObjectBoxCoding>();
   String? prefix;
-  ToOne<ObjectBoxElement>? prefixElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> prefixElement = ToOne<ObjectBoxElement>();
   String? text;
-  ToOne<ObjectBoxElement>? textElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> textElement = ToOne<ObjectBoxElement>();
   String type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxQuestionnaireEnableWhen>? enableWhen =
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxQuestionnaireEnableWhen> enableWhen =
       ToMany<ObjectBoxQuestionnaireEnableWhen>();
   String? enableBehavior;
-  ToOne<ObjectBoxElement>? enableBehaviorElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> enableBehaviorElement = ToOne<ObjectBoxElement>();
   bool? required_;
-  ToOne<ObjectBoxElement>? requiredElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> requiredElement = ToOne<ObjectBoxElement>();
   bool? repeats;
-  ToOne<ObjectBoxElement>? repeatsElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> repeatsElement = ToOne<ObjectBoxElement>();
   bool? readOnly;
-  ToOne<ObjectBoxElement>? readOnlyElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> readOnlyElement = ToOne<ObjectBoxElement>();
   int? maxLength;
-  ToOne<ObjectBoxElement>? maxLengthElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> maxLengthElement = ToOne<ObjectBoxElement>();
   String? answerValueSet;
-  ToOne<ObjectBoxElement>? answerValueSetElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxQuestionnaireAnswerOption>? answerOption =
+  ToOne<ObjectBoxElement> answerValueSetElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxQuestionnaireAnswerOption> answerOption =
       ToMany<ObjectBoxQuestionnaireAnswerOption>();
-  ToMany<ObjectBoxQuestionnaireInitial>? initial =
+  ToMany<ObjectBoxQuestionnaireInitial> initial =
       ToMany<ObjectBoxQuestionnaireInitial>();
-  ToMany<ObjectBoxQuestionnaireItem>? item =
+  ToMany<ObjectBoxQuestionnaireItem> item =
       ToMany<ObjectBoxQuestionnaireItem>();
 }
 
 @Entity()
 class ObjectBoxQuestionnaireEnableWhen {
   ObjectBoxQuestionnaireEnableWhen({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.question,
-    this.questionElement,
+    ObjectBoxElement? questionElement,
     required this.operator_,
-    this.operatorElement,
+    ObjectBoxElement? operatorElement,
     this.answerBoolean,
-    this.answerBooleanElement,
+    ObjectBoxElement? answerBooleanElement,
     this.answerDecimal,
-    this.answerDecimalElement,
+    ObjectBoxElement? answerDecimalElement,
     this.answerInteger,
-    this.answerIntegerElement,
+    ObjectBoxElement? answerIntegerElement,
     this.answerDate,
-    this.answerDateElement,
+    ObjectBoxElement? answerDateElement,
     this.answerDateTime,
-    this.answerDateTimeElement,
+    ObjectBoxElement? answerDateTimeElement,
     this.answerTime,
-    this.answerTimeElement,
+    ObjectBoxElement? answerTimeElement,
     this.answerString,
-    this.answerStringElement,
-    this.answerCoding,
-    this.answerQuantity,
-    this.answerReference,
-  });
+    ObjectBoxElement? answerStringElement,
+    ObjectBoxCoding? answerCoding,
+    ObjectBoxQuantity? answerQuantity,
+    ObjectBoxReference? answerReference,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.questionElement.target = questionElement;
+    this.operatorElement.target = operatorElement;
+    this.answerBooleanElement.target = answerBooleanElement;
+    this.answerDecimalElement.target = answerDecimalElement;
+    this.answerIntegerElement.target = answerIntegerElement;
+    this.answerDateElement.target = answerDateElement;
+    this.answerDateTimeElement.target = answerDateTimeElement;
+    this.answerTimeElement.target = answerTimeElement;
+    this.answerStringElement.target = answerStringElement;
+    this.answerCoding.target = answerCoding;
+    this.answerQuantity.target = answerQuantity;
+    this.answerReference.target = answerReference;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String question;
-  ToOne<ObjectBoxElement>? questionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> questionElement = ToOne<ObjectBoxElement>();
   String operator_;
-  ToOne<ObjectBoxElement>? operatorElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> operatorElement = ToOne<ObjectBoxElement>();
   bool? answerBoolean;
-  ToOne<ObjectBoxElement>? answerBooleanElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> answerBooleanElement = ToOne<ObjectBoxElement>();
   double? answerDecimal;
-  ToOne<ObjectBoxElement>? answerDecimalElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> answerDecimalElement = ToOne<ObjectBoxElement>();
   int? answerInteger;
-  ToOne<ObjectBoxElement>? answerIntegerElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> answerIntegerElement = ToOne<ObjectBoxElement>();
   String? answerDate;
-  ToOne<ObjectBoxElement>? answerDateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> answerDateElement = ToOne<ObjectBoxElement>();
   String? answerDateTime;
-  ToOne<ObjectBoxElement>? answerDateTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> answerDateTimeElement = ToOne<ObjectBoxElement>();
   String? answerTime;
-  ToOne<ObjectBoxElement>? answerTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> answerTimeElement = ToOne<ObjectBoxElement>();
   String? answerString;
-  ToOne<ObjectBoxElement>? answerStringElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxCoding>? answerCoding = ToOne<ObjectBoxCoding>();
-  ToOne<ObjectBoxQuantity>? answerQuantity = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxReference>? answerReference = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> answerStringElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxCoding> answerCoding = ToOne<ObjectBoxCoding>();
+  ToOne<ObjectBoxQuantity> answerQuantity = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxReference> answerReference = ToOne<ObjectBoxReference>();
 }
 
 @Entity()
 class ObjectBoxQuestionnaireAnswerOption {
   ObjectBoxQuestionnaireAnswerOption({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.valueInteger,
-    this.valueIntegerElement,
+    ObjectBoxElement? valueIntegerElement,
     this.valueDate,
-    this.valueDateElement,
+    ObjectBoxElement? valueDateElement,
     this.valueTime,
-    this.valueTimeElement,
+    ObjectBoxElement? valueTimeElement,
     this.valueString,
-    this.valueStringElement,
-    this.valueCoding,
-    this.valueReference,
+    ObjectBoxElement? valueStringElement,
+    ObjectBoxCoding? valueCoding,
+    ObjectBoxReference? valueReference,
     this.initialSelected,
-    this.initialSelectedElement,
-  });
+    ObjectBoxElement? initialSelectedElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.valueIntegerElement.target = valueIntegerElement;
+    this.valueDateElement.target = valueDateElement;
+    this.valueTimeElement.target = valueTimeElement;
+    this.valueStringElement.target = valueStringElement;
+    this.valueCoding.target = valueCoding;
+    this.valueReference.target = valueReference;
+    this.initialSelectedElement.target = initialSelectedElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   int? valueInteger;
-  ToOne<ObjectBoxElement>? valueIntegerElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueIntegerElement = ToOne<ObjectBoxElement>();
   String? valueDate;
-  ToOne<ObjectBoxElement>? valueDateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueDateElement = ToOne<ObjectBoxElement>();
   String? valueTime;
-  ToOne<ObjectBoxElement>? valueTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueTimeElement = ToOne<ObjectBoxElement>();
   String? valueString;
-  ToOne<ObjectBoxElement>? valueStringElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxCoding>? valueCoding = ToOne<ObjectBoxCoding>();
-  ToOne<ObjectBoxReference>? valueReference = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> valueStringElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxCoding> valueCoding = ToOne<ObjectBoxCoding>();
+  ToOne<ObjectBoxReference> valueReference = ToOne<ObjectBoxReference>();
   bool? initialSelected;
-  ToOne<ObjectBoxElement>? initialSelectedElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> initialSelectedElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxQuestionnaireInitial {
   ObjectBoxQuestionnaireInitial({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.valueBoolean,
-    this.valueBooleanElement,
+    ObjectBoxElement? valueBooleanElement,
     this.valueDecimal,
-    this.valueDecimalElement,
+    ObjectBoxElement? valueDecimalElement,
     this.valueInteger,
-    this.valueIntegerElement,
+    ObjectBoxElement? valueIntegerElement,
     this.valueDate,
-    this.valueDateElement,
+    ObjectBoxElement? valueDateElement,
     this.valueDateTime,
-    this.valueDateTimeElement,
+    ObjectBoxElement? valueDateTimeElement,
     this.valueTime,
-    this.valueTimeElement,
+    ObjectBoxElement? valueTimeElement,
     this.valueString,
-    this.valueStringElement,
+    ObjectBoxElement? valueStringElement,
     this.valueUri,
-    this.valueUriElement,
-    this.valueAttachment,
-    this.valueCoding,
-    this.valueQuantity,
-    this.valueReference,
-  });
+    ObjectBoxElement? valueUriElement,
+    ObjectBoxAttachment? valueAttachment,
+    ObjectBoxCoding? valueCoding,
+    ObjectBoxQuantity? valueQuantity,
+    ObjectBoxReference? valueReference,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.valueBooleanElement.target = valueBooleanElement;
+    this.valueDecimalElement.target = valueDecimalElement;
+    this.valueIntegerElement.target = valueIntegerElement;
+    this.valueDateElement.target = valueDateElement;
+    this.valueDateTimeElement.target = valueDateTimeElement;
+    this.valueTimeElement.target = valueTimeElement;
+    this.valueStringElement.target = valueStringElement;
+    this.valueUriElement.target = valueUriElement;
+    this.valueAttachment.target = valueAttachment;
+    this.valueCoding.target = valueCoding;
+    this.valueQuantity.target = valueQuantity;
+    this.valueReference.target = valueReference;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   bool? valueBoolean;
-  ToOne<ObjectBoxElement>? valueBooleanElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueBooleanElement = ToOne<ObjectBoxElement>();
   double? valueDecimal;
-  ToOne<ObjectBoxElement>? valueDecimalElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueDecimalElement = ToOne<ObjectBoxElement>();
   int? valueInteger;
-  ToOne<ObjectBoxElement>? valueIntegerElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueIntegerElement = ToOne<ObjectBoxElement>();
   String? valueDate;
-  ToOne<ObjectBoxElement>? valueDateElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueDateElement = ToOne<ObjectBoxElement>();
   String? valueDateTime;
-  ToOne<ObjectBoxElement>? valueDateTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueDateTimeElement = ToOne<ObjectBoxElement>();
   String? valueTime;
-  ToOne<ObjectBoxElement>? valueTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueTimeElement = ToOne<ObjectBoxElement>();
   String? valueString;
-  ToOne<ObjectBoxElement>? valueStringElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueStringElement = ToOne<ObjectBoxElement>();
   String? valueUri;
-  ToOne<ObjectBoxElement>? valueUriElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxAttachment>? valueAttachment = ToOne<ObjectBoxAttachment>();
-  ToOne<ObjectBoxCoding>? valueCoding = ToOne<ObjectBoxCoding>();
-  ToOne<ObjectBoxQuantity>? valueQuantity = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxReference>? valueReference = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> valueUriElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxAttachment> valueAttachment = ToOne<ObjectBoxAttachment>();
+  ToOne<ObjectBoxCoding> valueCoding = ToOne<ObjectBoxCoding>();
+  ToOne<ObjectBoxQuantity> valueQuantity = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxReference> valueReference = ToOne<ObjectBoxReference>();
 }

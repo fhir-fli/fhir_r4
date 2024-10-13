@@ -6,178 +6,232 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxSpecimenDefinition {
   ObjectBoxSpecimenDefinition({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
-    this.typeCollected,
-    this.patientPreparation,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxIdentifier? identifier,
+    ObjectBoxCodeableConcept? typeCollected,
+    List<ObjectBoxCodeableConcept>? patientPreparation,
     this.timeAspect,
-    this.timeAspectElement,
-    this.collection,
-    this.typeTested,
-  });
+    ObjectBoxElement? timeAspectElement,
+    List<ObjectBoxCodeableConcept>? collection,
+    List<ObjectBoxSpecimenDefinitionTypeTested>? typeTested,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.target = identifier;
+    this.typeCollected.target = typeCollected;
+    this.patientPreparation.addAll(patientPreparation ?? []);
+    this.timeAspectElement.target = timeAspectElement;
+    this.collection.addAll(collection ?? []);
+    this.typeTested.addAll(typeTested ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxIdentifier>? identifier = ToOne<ObjectBoxIdentifier>();
-  ToOne<ObjectBoxCodeableConcept>? typeCollected =
+  ToOne<ObjectBoxIdentifier> identifier = ToOne<ObjectBoxIdentifier>();
+  ToOne<ObjectBoxCodeableConcept> typeCollected =
       ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCodeableConcept>? patientPreparation =
+  ToMany<ObjectBoxCodeableConcept> patientPreparation =
       ToMany<ObjectBoxCodeableConcept>();
   String? timeAspect;
-  ToOne<ObjectBoxElement>? timeAspectElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxCodeableConcept>? collection =
+  ToOne<ObjectBoxElement> timeAspectElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxCodeableConcept> collection =
       ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxSpecimenDefinitionTypeTested>? typeTested =
+  ToMany<ObjectBoxSpecimenDefinitionTypeTested> typeTested =
       ToMany<ObjectBoxSpecimenDefinitionTypeTested>();
 }
 
 @Entity()
 class ObjectBoxSpecimenDefinitionTypeTested {
   ObjectBoxSpecimenDefinitionTypeTested({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.isDerived,
-    this.isDerivedElement,
-    this.type,
+    ObjectBoxElement? isDerivedElement,
+    ObjectBoxCodeableConcept? type,
     required this.preference,
-    this.preferenceElement,
-    this.container,
+    ObjectBoxElement? preferenceElement,
+    ObjectBoxSpecimenDefinitionContainer? container,
     this.requirement,
-    this.requirementElement,
-    this.retentionTime,
-    this.rejectionCriterion,
-    this.handling,
-  });
+    ObjectBoxElement? requirementElement,
+    ObjectBoxFhirDuration? retentionTime,
+    List<ObjectBoxCodeableConcept>? rejectionCriterion,
+    List<ObjectBoxSpecimenDefinitionHandling>? handling,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.isDerivedElement.target = isDerivedElement;
+    this.type.target = type;
+    this.preferenceElement.target = preferenceElement;
+    this.container.target = container;
+    this.requirementElement.target = requirementElement;
+    this.retentionTime.target = retentionTime;
+    this.rejectionCriterion.addAll(rejectionCriterion ?? []);
+    this.handling.addAll(handling ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   bool? isDerived;
-  ToOne<ObjectBoxElement>? isDerivedElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxCodeableConcept>? type = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxElement> isDerivedElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxCodeableConcept> type = ToOne<ObjectBoxCodeableConcept>();
   String preference;
-  ToOne<ObjectBoxElement>? preferenceElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxSpecimenDefinitionContainer>? container =
+  ToOne<ObjectBoxElement> preferenceElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxSpecimenDefinitionContainer> container =
       ToOne<ObjectBoxSpecimenDefinitionContainer>();
   String? requirement;
-  ToOne<ObjectBoxElement>? requirementElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxFhirDuration>? retentionTime = ToOne<ObjectBoxFhirDuration>();
-  ToMany<ObjectBoxCodeableConcept>? rejectionCriterion =
+  ToOne<ObjectBoxElement> requirementElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxFhirDuration> retentionTime = ToOne<ObjectBoxFhirDuration>();
+  ToMany<ObjectBoxCodeableConcept> rejectionCriterion =
       ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxSpecimenDefinitionHandling>? handling =
+  ToMany<ObjectBoxSpecimenDefinitionHandling> handling =
       ToMany<ObjectBoxSpecimenDefinitionHandling>();
 }
 
 @Entity()
 class ObjectBoxSpecimenDefinitionContainer {
   ObjectBoxSpecimenDefinitionContainer({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.material,
-    this.type,
-    this.cap,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? material,
+    ObjectBoxCodeableConcept? type,
+    ObjectBoxCodeableConcept? cap,
     this.description,
-    this.descriptionElement,
-    this.capacity,
-    this.minimumVolumeQuantity,
+    ObjectBoxElement? descriptionElement,
+    ObjectBoxQuantity? capacity,
+    ObjectBoxQuantity? minimumVolumeQuantity,
     this.minimumVolumeString,
-    this.minimumVolumeStringElement,
-    this.additive,
+    ObjectBoxElement? minimumVolumeStringElement,
+    List<ObjectBoxSpecimenDefinitionAdditive>? additive,
     this.preparation,
-    this.preparationElement,
-  });
+    ObjectBoxElement? preparationElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.material.target = material;
+    this.type.target = type;
+    this.cap.target = cap;
+    this.descriptionElement.target = descriptionElement;
+    this.capacity.target = capacity;
+    this.minimumVolumeQuantity.target = minimumVolumeQuantity;
+    this.minimumVolumeStringElement.target = minimumVolumeStringElement;
+    this.additive.addAll(additive ?? []);
+    this.preparationElement.target = preparationElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxCodeableConcept>? material = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? type = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? cap = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxCodeableConcept> material = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxCodeableConcept> type = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxCodeableConcept> cap = ToOne<ObjectBoxCodeableConcept>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxQuantity>? capacity = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxQuantity>? minimumVolumeQuantity = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxQuantity> capacity = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxQuantity> minimumVolumeQuantity = ToOne<ObjectBoxQuantity>();
   String? minimumVolumeString;
-  ToOne<ObjectBoxElement>? minimumVolumeStringElement =
+  ToOne<ObjectBoxElement> minimumVolumeStringElement =
       ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxSpecimenDefinitionAdditive>? additive =
+  ToMany<ObjectBoxSpecimenDefinitionAdditive> additive =
       ToMany<ObjectBoxSpecimenDefinitionAdditive>();
   String? preparation;
-  ToOne<ObjectBoxElement>? preparationElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> preparationElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxSpecimenDefinitionAdditive {
   ObjectBoxSpecimenDefinitionAdditive({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.additiveCodeableConcept,
-    this.additiveReference,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? additiveCodeableConcept,
+    ObjectBoxReference? additiveReference,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.additiveCodeableConcept.target = additiveCodeableConcept;
+    this.additiveReference.target = additiveReference;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxCodeableConcept>? additiveCodeableConcept =
+  ToOne<ObjectBoxCodeableConcept> additiveCodeableConcept =
       ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxReference>? additiveReference = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> additiveReference = ToOne<ObjectBoxReference>();
 }
 
 @Entity()
 class ObjectBoxSpecimenDefinitionHandling {
   ObjectBoxSpecimenDefinitionHandling({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.temperatureQualifier,
-    this.temperatureRange,
-    this.maxDuration,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? temperatureQualifier,
+    ObjectBoxRange? temperatureRange,
+    ObjectBoxFhirDuration? maxDuration,
     this.instruction,
-    this.instructionElement,
-  });
+    ObjectBoxElement? instructionElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.temperatureQualifier.target = temperatureQualifier;
+    this.temperatureRange.target = temperatureRange;
+    this.maxDuration.target = maxDuration;
+    this.instructionElement.target = instructionElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxCodeableConcept>? temperatureQualifier =
+  ToOne<ObjectBoxCodeableConcept> temperatureQualifier =
       ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxRange>? temperatureRange = ToOne<ObjectBoxRange>();
-  ToOne<ObjectBoxFhirDuration>? maxDuration = ToOne<ObjectBoxFhirDuration>();
+  ToOne<ObjectBoxRange> temperatureRange = ToOne<ObjectBoxRange>();
+  ToOne<ObjectBoxFhirDuration> maxDuration = ToOne<ObjectBoxFhirDuration>();
   String? instruction;
-  ToOne<ObjectBoxElement>? instructionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> instructionElement = ToOne<ObjectBoxElement>();
 }

@@ -6,30 +6,38 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxContactPoint {
   ObjectBoxContactPoint({
-    this.id,
-    this.extension_,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
     this.system,
-    this.systemElement,
+    ObjectBoxElement? systemElement,
     this.value,
-    this.valueElement,
+    ObjectBoxElement? valueElement,
     this.use,
-    this.useElement,
+    ObjectBoxElement? useElement,
     this.rank,
-    this.rankElement,
-    this.period,
-  });
+    ObjectBoxElement? rankElement,
+    ObjectBoxPeriod? period,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.systemElement.target = systemElement;
+    this.valueElement.target = valueElement;
+    this.useElement.target = useElement;
+    this.rankElement.target = rankElement;
+    this.period.target = period;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String? system;
-  ToOne<ObjectBoxElement>? systemElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> systemElement = ToOne<ObjectBoxElement>();
   String? value;
-  ToOne<ObjectBoxElement>? valueElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueElement = ToOne<ObjectBoxElement>();
   String? use;
-  ToOne<ObjectBoxElement>? useElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> useElement = ToOne<ObjectBoxElement>();
   int? rank;
-  ToOne<ObjectBoxElement>? rankElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? period = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxElement> rankElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> period = ToOne<ObjectBoxPeriod>();
 }

@@ -6,16 +6,21 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxCodeableReference {
   ObjectBoxCodeableReference({
-    this.id,
-    this.extension_,
-    this.concept,
-    this.reference,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    ObjectBoxCodeableConcept? concept,
+    ObjectBoxReference? reference,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.concept.target = concept;
+    this.reference.target = reference;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxCodeableConcept>? concept = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxReference>? reference = ToOne<ObjectBoxReference>();
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToOne<ObjectBoxCodeableConcept> concept = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxReference> reference = ToOne<ObjectBoxReference>();
 }

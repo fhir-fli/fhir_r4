@@ -6,148 +6,195 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxInvoice {
   ObjectBoxInvoice({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     required this.status,
-    this.statusElement,
+    ObjectBoxElement? statusElement,
     this.cancelledReason,
-    this.cancelledReasonElement,
-    this.type,
-    this.subject,
-    this.recipient,
+    ObjectBoxElement? cancelledReasonElement,
+    ObjectBoxCodeableConcept? type,
+    ObjectBoxReference? subject,
+    ObjectBoxReference? recipient,
     this.date,
-    this.dateElement,
-    this.participant,
-    this.issuer,
-    this.account,
-    this.lineItem,
-    this.totalPriceComponent,
-    this.totalNet,
-    this.totalGross,
+    ObjectBoxElement? dateElement,
+    List<ObjectBoxInvoiceParticipant>? participant,
+    ObjectBoxReference? issuer,
+    ObjectBoxReference? account,
+    List<ObjectBoxInvoiceLineItem>? lineItem,
+    List<ObjectBoxInvoicePriceComponent>? totalPriceComponent,
+    ObjectBoxMoney? totalNet,
+    ObjectBoxMoney? totalGross,
     this.paymentTerms,
-    this.paymentTermsElement,
-    this.note,
-  });
+    ObjectBoxElement? paymentTermsElement,
+    List<ObjectBoxAnnotation>? note,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.statusElement.target = statusElement;
+    this.cancelledReasonElement.target = cancelledReasonElement;
+    this.type.target = type;
+    this.subject.target = subject;
+    this.recipient.target = recipient;
+    this.dateElement.target = dateElement;
+    this.participant.addAll(participant ?? []);
+    this.issuer.target = issuer;
+    this.account.target = account;
+    this.lineItem.addAll(lineItem ?? []);
+    this.totalPriceComponent.addAll(totalPriceComponent ?? []);
+    this.totalNet.target = totalNet;
+    this.totalGross.target = totalGross;
+    this.paymentTermsElement.target = paymentTermsElement;
+    this.note.addAll(note ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
   String? cancelledReason;
-  ToOne<ObjectBoxElement>? cancelledReasonElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxCodeableConcept>? type = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxReference>? subject = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? recipient = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> cancelledReasonElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxCodeableConcept> type = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxReference> subject = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> recipient = ToOne<ObjectBoxReference>();
   String? date;
-  ToOne<ObjectBoxElement>? dateElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxInvoiceParticipant>? participant =
+  ToOne<ObjectBoxElement> dateElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxInvoiceParticipant> participant =
       ToMany<ObjectBoxInvoiceParticipant>();
-  ToOne<ObjectBoxReference>? issuer = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? account = ToOne<ObjectBoxReference>();
-  ToMany<ObjectBoxInvoiceLineItem>? lineItem =
+  ToOne<ObjectBoxReference> issuer = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> account = ToOne<ObjectBoxReference>();
+  ToMany<ObjectBoxInvoiceLineItem> lineItem =
       ToMany<ObjectBoxInvoiceLineItem>();
-  ToMany<ObjectBoxInvoicePriceComponent>? totalPriceComponent =
+  ToMany<ObjectBoxInvoicePriceComponent> totalPriceComponent =
       ToMany<ObjectBoxInvoicePriceComponent>();
-  ToOne<ObjectBoxMoney>? totalNet = ToOne<ObjectBoxMoney>();
-  ToOne<ObjectBoxMoney>? totalGross = ToOne<ObjectBoxMoney>();
+  ToOne<ObjectBoxMoney> totalNet = ToOne<ObjectBoxMoney>();
+  ToOne<ObjectBoxMoney> totalGross = ToOne<ObjectBoxMoney>();
   String? paymentTerms;
-  ToOne<ObjectBoxElement>? paymentTermsElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxAnnotation>? note = ToMany<ObjectBoxAnnotation>();
+  ToOne<ObjectBoxElement> paymentTermsElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxAnnotation> note = ToMany<ObjectBoxAnnotation>();
 }
 
 @Entity()
 class ObjectBoxInvoiceParticipant {
   ObjectBoxInvoiceParticipant({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.role,
-    required this.actor,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? role,
+    ObjectBoxReference? actor,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.role.target = role;
+    this.actor.target = actor;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxCodeableConcept>? role = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxCodeableConcept> role = ToOne<ObjectBoxCodeableConcept>();
   ToOne<ObjectBoxReference> actor = ToOne<ObjectBoxReference>();
 }
 
 @Entity()
 class ObjectBoxInvoiceLineItem {
   ObjectBoxInvoiceLineItem({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     this.sequence,
-    this.sequenceElement,
-    this.chargeItemReference,
-    this.chargeItemCodeableConcept,
-    this.priceComponent,
-  });
+    ObjectBoxElement? sequenceElement,
+    ObjectBoxReference? chargeItemReference,
+    ObjectBoxCodeableConcept? chargeItemCodeableConcept,
+    List<ObjectBoxInvoicePriceComponent>? priceComponent,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.sequenceElement.target = sequenceElement;
+    this.chargeItemReference.target = chargeItemReference;
+    this.chargeItemCodeableConcept.target = chargeItemCodeableConcept;
+    this.priceComponent.addAll(priceComponent ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   int? sequence;
-  ToOne<ObjectBoxElement>? sequenceElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? chargeItemReference = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxCodeableConcept>? chargeItemCodeableConcept =
+  ToOne<ObjectBoxElement> sequenceElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> chargeItemReference = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxCodeableConcept> chargeItemCodeableConcept =
       ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxInvoicePriceComponent>? priceComponent =
+  ToMany<ObjectBoxInvoicePriceComponent> priceComponent =
       ToMany<ObjectBoxInvoicePriceComponent>();
 }
 
 @Entity()
 class ObjectBoxInvoicePriceComponent {
   ObjectBoxInvoicePriceComponent({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
     required this.type,
-    this.typeElement,
-    this.code,
+    ObjectBoxElement? typeElement,
+    ObjectBoxCodeableConcept? code,
     this.factor,
-    this.factorElement,
-    this.amount,
-  });
+    ObjectBoxElement? factorElement,
+    ObjectBoxMoney? amount,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.typeElement.target = typeElement;
+    this.code.target = code;
+    this.factorElement.target = factorElement;
+    this.amount.target = amount;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   String type;
-  ToOne<ObjectBoxElement>? typeElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxCodeableConcept>? code = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxElement> typeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxCodeableConcept> code = ToOne<ObjectBoxCodeableConcept>();
   double? factor;
-  ToOne<ObjectBoxElement>? factorElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxMoney>? amount = ToOne<ObjectBoxMoney>();
+  ToOne<ObjectBoxElement> factorElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxMoney> amount = ToOne<ObjectBoxMoney>();
 }

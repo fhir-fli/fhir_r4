@@ -6,218 +6,293 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxObservation {
   ObjectBoxObservation({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
-    this.basedOn,
-    this.partOf,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
+    List<ObjectBoxReference>? basedOn,
+    List<ObjectBoxReference>? partOf,
     required this.status,
-    this.statusElement,
-    this.category,
-    required this.code,
-    this.subject,
-    this.focus,
-    this.encounter,
+    ObjectBoxElement? statusElement,
+    List<ObjectBoxCodeableConcept>? category,
+    ObjectBoxCodeableConcept? code,
+    ObjectBoxReference? subject,
+    List<ObjectBoxReference>? focus,
+    ObjectBoxReference? encounter,
     this.effectiveDateTime,
-    this.effectiveDateTimeElement,
-    this.effectivePeriod,
-    this.effectiveTiming,
+    ObjectBoxElement? effectiveDateTimeElement,
+    ObjectBoxPeriod? effectivePeriod,
+    ObjectBoxTiming? effectiveTiming,
     this.effectiveInstant,
-    this.effectiveInstantElement,
+    ObjectBoxElement? effectiveInstantElement,
     this.issued,
-    this.issuedElement,
-    this.performer,
-    this.valueQuantity,
-    this.valueCodeableConcept,
+    ObjectBoxElement? issuedElement,
+    List<ObjectBoxReference>? performer,
+    ObjectBoxQuantity? valueQuantity,
+    ObjectBoxCodeableConcept? valueCodeableConcept,
     this.valueString,
-    this.valueStringElement,
+    ObjectBoxElement? valueStringElement,
     this.valueBoolean,
-    this.valueBooleanElement,
+    ObjectBoxElement? valueBooleanElement,
     this.valueInteger,
-    this.valueIntegerElement,
-    this.valueRange,
-    this.valueRatio,
-    this.valueSampledData,
+    ObjectBoxElement? valueIntegerElement,
+    ObjectBoxRange? valueRange,
+    ObjectBoxRatio? valueRatio,
+    ObjectBoxSampledData? valueSampledData,
     this.valueTime,
-    this.valueTimeElement,
+    ObjectBoxElement? valueTimeElement,
     this.valueDateTime,
-    this.valueDateTimeElement,
-    this.valuePeriod,
-    this.dataAbsentReason,
-    this.interpretation,
-    this.note,
-    this.bodySite,
-    this.method,
-    this.specimen,
-    this.device,
-    this.referenceRange,
-    this.hasMember,
-    this.derivedFrom,
-    this.component,
-  });
+    ObjectBoxElement? valueDateTimeElement,
+    ObjectBoxPeriod? valuePeriod,
+    ObjectBoxCodeableConcept? dataAbsentReason,
+    List<ObjectBoxCodeableConcept>? interpretation,
+    List<ObjectBoxAnnotation>? note,
+    ObjectBoxCodeableConcept? bodySite,
+    ObjectBoxCodeableConcept? method,
+    ObjectBoxReference? specimen,
+    ObjectBoxReference? device,
+    List<ObjectBoxObservationReferenceRange>? referenceRange,
+    List<ObjectBoxReference>? hasMember,
+    List<ObjectBoxReference>? derivedFrom,
+    List<ObjectBoxObservationComponent>? component,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.basedOn.addAll(basedOn ?? []);
+    this.partOf.addAll(partOf ?? []);
+    this.statusElement.target = statusElement;
+    this.category.addAll(category ?? []);
+    this.code.target = code;
+    this.subject.target = subject;
+    this.focus.addAll(focus ?? []);
+    this.encounter.target = encounter;
+    this.effectiveDateTimeElement.target = effectiveDateTimeElement;
+    this.effectivePeriod.target = effectivePeriod;
+    this.effectiveTiming.target = effectiveTiming;
+    this.effectiveInstantElement.target = effectiveInstantElement;
+    this.issuedElement.target = issuedElement;
+    this.performer.addAll(performer ?? []);
+    this.valueQuantity.target = valueQuantity;
+    this.valueCodeableConcept.target = valueCodeableConcept;
+    this.valueStringElement.target = valueStringElement;
+    this.valueBooleanElement.target = valueBooleanElement;
+    this.valueIntegerElement.target = valueIntegerElement;
+    this.valueRange.target = valueRange;
+    this.valueRatio.target = valueRatio;
+    this.valueSampledData.target = valueSampledData;
+    this.valueTimeElement.target = valueTimeElement;
+    this.valueDateTimeElement.target = valueDateTimeElement;
+    this.valuePeriod.target = valuePeriod;
+    this.dataAbsentReason.target = dataAbsentReason;
+    this.interpretation.addAll(interpretation ?? []);
+    this.note.addAll(note ?? []);
+    this.bodySite.target = bodySite;
+    this.method.target = method;
+    this.specimen.target = specimen;
+    this.device.target = device;
+    this.referenceRange.addAll(referenceRange ?? []);
+    this.hasMember.addAll(hasMember ?? []);
+    this.derivedFrom.addAll(derivedFrom ?? []);
+    this.component.addAll(component ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
-  ToMany<ObjectBoxReference>? basedOn = ToMany<ObjectBoxReference>();
-  ToMany<ObjectBoxReference>? partOf = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxReference> basedOn = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxReference> partOf = ToMany<ObjectBoxReference>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxCodeableConcept>? category =
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxCodeableConcept> category =
       ToMany<ObjectBoxCodeableConcept>();
   ToOne<ObjectBoxCodeableConcept> code = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxReference>? subject = ToOne<ObjectBoxReference>();
-  ToMany<ObjectBoxReference>? focus = ToMany<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? encounter = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> subject = ToOne<ObjectBoxReference>();
+  ToMany<ObjectBoxReference> focus = ToMany<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> encounter = ToOne<ObjectBoxReference>();
   String? effectiveDateTime;
-  ToOne<ObjectBoxElement>? effectiveDateTimeElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? effectivePeriod = ToOne<ObjectBoxPeriod>();
-  ToOne<ObjectBoxTiming>? effectiveTiming = ToOne<ObjectBoxTiming>();
+  ToOne<ObjectBoxElement> effectiveDateTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> effectivePeriod = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxTiming> effectiveTiming = ToOne<ObjectBoxTiming>();
   String? effectiveInstant;
-  ToOne<ObjectBoxElement>? effectiveInstantElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> effectiveInstantElement = ToOne<ObjectBoxElement>();
   String? issued;
-  ToOne<ObjectBoxElement>? issuedElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxReference>? performer = ToMany<ObjectBoxReference>();
-  ToOne<ObjectBoxQuantity>? valueQuantity = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxCodeableConcept>? valueCodeableConcept =
+  ToOne<ObjectBoxElement> issuedElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxReference> performer = ToMany<ObjectBoxReference>();
+  ToOne<ObjectBoxQuantity> valueQuantity = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxCodeableConcept> valueCodeableConcept =
       ToOne<ObjectBoxCodeableConcept>();
   String? valueString;
-  ToOne<ObjectBoxElement>? valueStringElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueStringElement = ToOne<ObjectBoxElement>();
   bool? valueBoolean;
-  ToOne<ObjectBoxElement>? valueBooleanElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueBooleanElement = ToOne<ObjectBoxElement>();
   int? valueInteger;
-  ToOne<ObjectBoxElement>? valueIntegerElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxRange>? valueRange = ToOne<ObjectBoxRange>();
-  ToOne<ObjectBoxRatio>? valueRatio = ToOne<ObjectBoxRatio>();
-  ToOne<ObjectBoxSampledData>? valueSampledData = ToOne<ObjectBoxSampledData>();
+  ToOne<ObjectBoxElement> valueIntegerElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxRange> valueRange = ToOne<ObjectBoxRange>();
+  ToOne<ObjectBoxRatio> valueRatio = ToOne<ObjectBoxRatio>();
+  ToOne<ObjectBoxSampledData> valueSampledData = ToOne<ObjectBoxSampledData>();
   String? valueTime;
-  ToOne<ObjectBoxElement>? valueTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueTimeElement = ToOne<ObjectBoxElement>();
   String? valueDateTime;
-  ToOne<ObjectBoxElement>? valueDateTimeElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? valuePeriod = ToOne<ObjectBoxPeriod>();
-  ToOne<ObjectBoxCodeableConcept>? dataAbsentReason =
+  ToOne<ObjectBoxElement> valueDateTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> valuePeriod = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxCodeableConcept> dataAbsentReason =
       ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCodeableConcept>? interpretation =
+  ToMany<ObjectBoxCodeableConcept> interpretation =
       ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxAnnotation>? note = ToMany<ObjectBoxAnnotation>();
-  ToOne<ObjectBoxCodeableConcept>? bodySite = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxCodeableConcept>? method = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxReference>? specimen = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? device = ToOne<ObjectBoxReference>();
-  ToMany<ObjectBoxObservationReferenceRange>? referenceRange =
+  ToMany<ObjectBoxAnnotation> note = ToMany<ObjectBoxAnnotation>();
+  ToOne<ObjectBoxCodeableConcept> bodySite = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxCodeableConcept> method = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxReference> specimen = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> device = ToOne<ObjectBoxReference>();
+  ToMany<ObjectBoxObservationReferenceRange> referenceRange =
       ToMany<ObjectBoxObservationReferenceRange>();
-  ToMany<ObjectBoxReference>? hasMember = ToMany<ObjectBoxReference>();
-  ToMany<ObjectBoxReference>? derivedFrom = ToMany<ObjectBoxReference>();
-  ToMany<ObjectBoxObservationComponent>? component =
+  ToMany<ObjectBoxReference> hasMember = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxReference> derivedFrom = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxObservationComponent> component =
       ToMany<ObjectBoxObservationComponent>();
 }
 
 @Entity()
 class ObjectBoxObservationReferenceRange {
   ObjectBoxObservationReferenceRange({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.low,
-    this.high,
-    this.type,
-    this.appliesTo,
-    this.age,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxQuantity? low,
+    ObjectBoxQuantity? high,
+    ObjectBoxCodeableConcept? type,
+    List<ObjectBoxCodeableConcept>? appliesTo,
+    ObjectBoxRange? age,
     this.text,
-    this.textElement,
-  });
+    ObjectBoxElement? textElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.low.target = low;
+    this.high.target = high;
+    this.type.target = type;
+    this.appliesTo.addAll(appliesTo ?? []);
+    this.age.target = age;
+    this.textElement.target = textElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxQuantity>? low = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxQuantity>? high = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxCodeableConcept>? type = ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCodeableConcept>? appliesTo =
+  ToOne<ObjectBoxQuantity> low = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxQuantity> high = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxCodeableConcept> type = ToOne<ObjectBoxCodeableConcept>();
+  ToMany<ObjectBoxCodeableConcept> appliesTo =
       ToMany<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxRange>? age = ToOne<ObjectBoxRange>();
+  ToOne<ObjectBoxRange> age = ToOne<ObjectBoxRange>();
   String? text;
-  ToOne<ObjectBoxElement>? textElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> textElement = ToOne<ObjectBoxElement>();
 }
 
 @Entity()
 class ObjectBoxObservationComponent {
   ObjectBoxObservationComponent({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    required this.code,
-    this.valueQuantity,
-    this.valueCodeableConcept,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? code,
+    ObjectBoxQuantity? valueQuantity,
+    ObjectBoxCodeableConcept? valueCodeableConcept,
     this.valueString,
-    this.valueStringElement,
+    ObjectBoxElement? valueStringElement,
     this.valueBoolean,
-    this.valueBooleanElement,
+    ObjectBoxElement? valueBooleanElement,
     this.valueInteger,
-    this.valueIntegerElement,
-    this.valueRange,
-    this.valueRatio,
-    this.valueSampledData,
+    ObjectBoxElement? valueIntegerElement,
+    ObjectBoxRange? valueRange,
+    ObjectBoxRatio? valueRatio,
+    ObjectBoxSampledData? valueSampledData,
     this.valueTime,
-    this.valueTimeElement,
+    ObjectBoxElement? valueTimeElement,
     this.valueDateTime,
-    this.valueDateTimeElement,
-    this.valuePeriod,
-    this.dataAbsentReason,
-    this.interpretation,
-    this.referenceRange,
-  });
+    ObjectBoxElement? valueDateTimeElement,
+    ObjectBoxPeriod? valuePeriod,
+    ObjectBoxCodeableConcept? dataAbsentReason,
+    List<ObjectBoxCodeableConcept>? interpretation,
+    List<ObjectBoxObservationReferenceRange>? referenceRange,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.code.target = code;
+    this.valueQuantity.target = valueQuantity;
+    this.valueCodeableConcept.target = valueCodeableConcept;
+    this.valueStringElement.target = valueStringElement;
+    this.valueBooleanElement.target = valueBooleanElement;
+    this.valueIntegerElement.target = valueIntegerElement;
+    this.valueRange.target = valueRange;
+    this.valueRatio.target = valueRatio;
+    this.valueSampledData.target = valueSampledData;
+    this.valueTimeElement.target = valueTimeElement;
+    this.valueDateTimeElement.target = valueDateTimeElement;
+    this.valuePeriod.target = valuePeriod;
+    this.dataAbsentReason.target = dataAbsentReason;
+    this.interpretation.addAll(interpretation ?? []);
+    this.referenceRange.addAll(referenceRange ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
   ToOne<ObjectBoxCodeableConcept> code = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxQuantity>? valueQuantity = ToOne<ObjectBoxQuantity>();
-  ToOne<ObjectBoxCodeableConcept>? valueCodeableConcept =
+  ToOne<ObjectBoxQuantity> valueQuantity = ToOne<ObjectBoxQuantity>();
+  ToOne<ObjectBoxCodeableConcept> valueCodeableConcept =
       ToOne<ObjectBoxCodeableConcept>();
   String? valueString;
-  ToOne<ObjectBoxElement>? valueStringElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueStringElement = ToOne<ObjectBoxElement>();
   bool? valueBoolean;
-  ToOne<ObjectBoxElement>? valueBooleanElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueBooleanElement = ToOne<ObjectBoxElement>();
   int? valueInteger;
-  ToOne<ObjectBoxElement>? valueIntegerElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxRange>? valueRange = ToOne<ObjectBoxRange>();
-  ToOne<ObjectBoxRatio>? valueRatio = ToOne<ObjectBoxRatio>();
-  ToOne<ObjectBoxSampledData>? valueSampledData = ToOne<ObjectBoxSampledData>();
+  ToOne<ObjectBoxElement> valueIntegerElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxRange> valueRange = ToOne<ObjectBoxRange>();
+  ToOne<ObjectBoxRatio> valueRatio = ToOne<ObjectBoxRatio>();
+  ToOne<ObjectBoxSampledData> valueSampledData = ToOne<ObjectBoxSampledData>();
   String? valueTime;
-  ToOne<ObjectBoxElement>? valueTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> valueTimeElement = ToOne<ObjectBoxElement>();
   String? valueDateTime;
-  ToOne<ObjectBoxElement>? valueDateTimeElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? valuePeriod = ToOne<ObjectBoxPeriod>();
-  ToOne<ObjectBoxCodeableConcept>? dataAbsentReason =
+  ToOne<ObjectBoxElement> valueDateTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> valuePeriod = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxCodeableConcept> dataAbsentReason =
       ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxCodeableConcept>? interpretation =
+  ToMany<ObjectBoxCodeableConcept> interpretation =
       ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxObservationReferenceRange>? referenceRange =
+  ToMany<ObjectBoxObservationReferenceRange> referenceRange =
       ToMany<ObjectBoxObservationReferenceRange>();
 }

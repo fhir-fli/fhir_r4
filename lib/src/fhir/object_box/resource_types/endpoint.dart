@@ -6,62 +6,82 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxFhirEndpoint {
   ObjectBoxFhirEndpoint({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     required this.status,
-    this.statusElement,
-    required this.connectionType,
+    ObjectBoxElement? statusElement,
+    ObjectBoxCoding? connectionType,
     this.name,
-    this.nameElement,
-    this.managingOrganization,
-    this.contact,
-    this.period,
-    required this.payloadType,
+    ObjectBoxElement? nameElement,
+    ObjectBoxReference? managingOrganization,
+    List<ObjectBoxContactPoint>? contact,
+    ObjectBoxPeriod? period,
+    List<ObjectBoxCodeableConcept>? payloadType,
     this.payloadMimeType,
-    this.payloadMimeTypeElement,
+    List<ObjectBoxElement>? payloadMimeTypeElement,
     required this.address,
-    this.addressElement,
+    ObjectBoxElement? addressElement,
     this.header,
-    this.headerElement,
-  });
+    List<ObjectBoxElement>? headerElement,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.statusElement.target = statusElement;
+    this.connectionType.target = connectionType;
+    this.nameElement.target = nameElement;
+    this.managingOrganization.target = managingOrganization;
+    this.contact.addAll(contact ?? []);
+    this.period.target = period;
+    this.payloadType.addAll(payloadType ?? []);
+    this.payloadMimeTypeElement.addAll(payloadMimeTypeElement ?? []);
+    this.addressElement.target = addressElement;
+    this.headerElement.addAll(headerElement ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
   ToOne<ObjectBoxCoding> connectionType = ToOne<ObjectBoxCoding>();
   String? name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? managingOrganization = ToOne<ObjectBoxReference>();
-  ToMany<ObjectBoxContactPoint>? contact = ToMany<ObjectBoxContactPoint>();
-  ToOne<ObjectBoxPeriod>? period = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> managingOrganization = ToOne<ObjectBoxReference>();
+  ToMany<ObjectBoxContactPoint> contact = ToMany<ObjectBoxContactPoint>();
+  ToOne<ObjectBoxPeriod> period = ToOne<ObjectBoxPeriod>();
   ToMany<ObjectBoxCodeableConcept> payloadType =
       ToMany<ObjectBoxCodeableConcept>();
   List<String>? payloadMimeType;
-  ToMany<ObjectBoxElement>? payloadMimeTypeElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> payloadMimeTypeElement = ToMany<ObjectBoxElement>();
   String address;
-  ToOne<ObjectBoxElement>? addressElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> addressElement = ToOne<ObjectBoxElement>();
   List<String>? header;
-  ToMany<ObjectBoxElement>? headerElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> headerElement = ToMany<ObjectBoxElement>();
 }

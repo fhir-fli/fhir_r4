@@ -6,130 +6,172 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxChargeItem {
   ObjectBoxChargeItem({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     this.definitionUri,
-    this.definitionUriElement,
+    List<ObjectBoxElement>? definitionUriElement,
     this.definitionCanonical,
-    this.definitionCanonicalElement,
+    List<ObjectBoxElement>? definitionCanonicalElement,
     required this.status,
-    this.statusElement,
-    this.partOf,
-    required this.code,
-    required this.subject,
-    this.context,
+    ObjectBoxElement? statusElement,
+    List<ObjectBoxReference>? partOf,
+    ObjectBoxCodeableConcept? code,
+    ObjectBoxReference? subject,
+    ObjectBoxReference? context,
     this.occurrenceDateTime,
-    this.occurrenceDateTimeElement,
-    this.occurrencePeriod,
-    this.occurrenceTiming,
-    this.performer,
-    this.performingOrganization,
-    this.requestingOrganization,
-    this.costCenter,
-    this.quantity,
-    this.bodysite,
+    ObjectBoxElement? occurrenceDateTimeElement,
+    ObjectBoxPeriod? occurrencePeriod,
+    ObjectBoxTiming? occurrenceTiming,
+    List<ObjectBoxChargeItemPerformer>? performer,
+    ObjectBoxReference? performingOrganization,
+    ObjectBoxReference? requestingOrganization,
+    ObjectBoxReference? costCenter,
+    ObjectBoxQuantity? quantity,
+    List<ObjectBoxCodeableConcept>? bodysite,
     this.factorOverride,
-    this.factorOverrideElement,
-    this.priceOverride,
+    ObjectBoxElement? factorOverrideElement,
+    ObjectBoxMoney? priceOverride,
     this.overrideReason,
-    this.overrideReasonElement,
-    this.enterer,
+    ObjectBoxElement? overrideReasonElement,
+    ObjectBoxReference? enterer,
     this.enteredDate,
-    this.enteredDateElement,
-    this.reason,
-    this.service,
-    this.productReference,
-    this.productCodeableConcept,
-    this.account,
-    this.note,
-    this.supportingInformation,
-  });
+    ObjectBoxElement? enteredDateElement,
+    List<ObjectBoxCodeableConcept>? reason,
+    List<ObjectBoxReference>? service,
+    ObjectBoxReference? productReference,
+    ObjectBoxCodeableConcept? productCodeableConcept,
+    List<ObjectBoxReference>? account,
+    List<ObjectBoxAnnotation>? note,
+    List<ObjectBoxReference>? supportingInformation,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.definitionUriElement.addAll(definitionUriElement ?? []);
+    this.definitionCanonicalElement.addAll(definitionCanonicalElement ?? []);
+    this.statusElement.target = statusElement;
+    this.partOf.addAll(partOf ?? []);
+    this.code.target = code;
+    this.subject.target = subject;
+    this.context.target = context;
+    this.occurrenceDateTimeElement.target = occurrenceDateTimeElement;
+    this.occurrencePeriod.target = occurrencePeriod;
+    this.occurrenceTiming.target = occurrenceTiming;
+    this.performer.addAll(performer ?? []);
+    this.performingOrganization.target = performingOrganization;
+    this.requestingOrganization.target = requestingOrganization;
+    this.costCenter.target = costCenter;
+    this.quantity.target = quantity;
+    this.bodysite.addAll(bodysite ?? []);
+    this.factorOverrideElement.target = factorOverrideElement;
+    this.priceOverride.target = priceOverride;
+    this.overrideReasonElement.target = overrideReasonElement;
+    this.enterer.target = enterer;
+    this.enteredDateElement.target = enteredDateElement;
+    this.reason.addAll(reason ?? []);
+    this.service.addAll(service ?? []);
+    this.productReference.target = productReference;
+    this.productCodeableConcept.target = productCodeableConcept;
+    this.account.addAll(account ?? []);
+    this.note.addAll(note ?? []);
+    this.supportingInformation.addAll(supportingInformation ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   List<String>? definitionUri;
-  ToMany<ObjectBoxElement>? definitionUriElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxElement> definitionUriElement = ToMany<ObjectBoxElement>();
   List<String>? definitionCanonical;
-  ToMany<ObjectBoxElement>? definitionCanonicalElement =
+  ToMany<ObjectBoxElement> definitionCanonicalElement =
       ToMany<ObjectBoxElement>();
   String status;
-  ToOne<ObjectBoxElement>? statusElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxReference>? partOf = ToMany<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> statusElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxReference> partOf = ToMany<ObjectBoxReference>();
   ToOne<ObjectBoxCodeableConcept> code = ToOne<ObjectBoxCodeableConcept>();
   ToOne<ObjectBoxReference> subject = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? context = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> context = ToOne<ObjectBoxReference>();
   String? occurrenceDateTime;
-  ToOne<ObjectBoxElement>? occurrenceDateTimeElement =
-      ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxPeriod>? occurrencePeriod = ToOne<ObjectBoxPeriod>();
-  ToOne<ObjectBoxTiming>? occurrenceTiming = ToOne<ObjectBoxTiming>();
-  ToMany<ObjectBoxChargeItemPerformer>? performer =
+  ToOne<ObjectBoxElement> occurrenceDateTimeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxPeriod> occurrencePeriod = ToOne<ObjectBoxPeriod>();
+  ToOne<ObjectBoxTiming> occurrenceTiming = ToOne<ObjectBoxTiming>();
+  ToMany<ObjectBoxChargeItemPerformer> performer =
       ToMany<ObjectBoxChargeItemPerformer>();
-  ToOne<ObjectBoxReference>? performingOrganization =
+  ToOne<ObjectBoxReference> performingOrganization =
       ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? requestingOrganization =
+  ToOne<ObjectBoxReference> requestingOrganization =
       ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? costCenter = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxQuantity>? quantity = ToOne<ObjectBoxQuantity>();
-  ToMany<ObjectBoxCodeableConcept>? bodysite =
+  ToOne<ObjectBoxReference> costCenter = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxQuantity> quantity = ToOne<ObjectBoxQuantity>();
+  ToMany<ObjectBoxCodeableConcept> bodysite =
       ToMany<ObjectBoxCodeableConcept>();
   double? factorOverride;
-  ToOne<ObjectBoxElement>? factorOverrideElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxMoney>? priceOverride = ToOne<ObjectBoxMoney>();
+  ToOne<ObjectBoxElement> factorOverrideElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxMoney> priceOverride = ToOne<ObjectBoxMoney>();
   String? overrideReason;
-  ToOne<ObjectBoxElement>? overrideReasonElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? enterer = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> overrideReasonElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> enterer = ToOne<ObjectBoxReference>();
   String? enteredDate;
-  ToOne<ObjectBoxElement>? enteredDateElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxCodeableConcept>? reason = ToMany<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxReference>? service = ToMany<ObjectBoxReference>();
-  ToOne<ObjectBoxReference>? productReference = ToOne<ObjectBoxReference>();
-  ToOne<ObjectBoxCodeableConcept>? productCodeableConcept =
+  ToOne<ObjectBoxElement> enteredDateElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxCodeableConcept> reason = ToMany<ObjectBoxCodeableConcept>();
+  ToMany<ObjectBoxReference> service = ToMany<ObjectBoxReference>();
+  ToOne<ObjectBoxReference> productReference = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxCodeableConcept> productCodeableConcept =
       ToOne<ObjectBoxCodeableConcept>();
-  ToMany<ObjectBoxReference>? account = ToMany<ObjectBoxReference>();
-  ToMany<ObjectBoxAnnotation>? note = ToMany<ObjectBoxAnnotation>();
-  ToMany<ObjectBoxReference>? supportingInformation =
+  ToMany<ObjectBoxReference> account = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxAnnotation> note = ToMany<ObjectBoxAnnotation>();
+  ToMany<ObjectBoxReference> supportingInformation =
       ToMany<ObjectBoxReference>();
 }
 
 @Entity()
 class ObjectBoxChargeItemPerformer {
   ObjectBoxChargeItemPerformer({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.function_,
-    required this.actor,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? function_,
+    ObjectBoxReference? actor,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.function_.target = function_;
+    this.actor.target = actor;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxCodeableConcept>? function_ =
-      ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxCodeableConcept> function_ = ToOne<ObjectBoxCodeableConcept>();
   ToOne<ObjectBoxReference> actor = ToOne<ObjectBoxReference>();
 }

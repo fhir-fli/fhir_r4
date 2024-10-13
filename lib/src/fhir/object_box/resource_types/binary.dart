@@ -6,30 +6,38 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxBinary {
   ObjectBoxBinary({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
+    ObjectBoxElement? languageElement,
     required this.contentType,
-    this.contentTypeElement,
-    this.securityContext,
+    ObjectBoxElement? contentTypeElement,
+    ObjectBoxReference? securityContext,
     this.data,
-    this.dataElement,
-  });
+    ObjectBoxElement? dataElement,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.contentTypeElement.target = contentTypeElement;
+    this.securityContext.target = securityContext;
+    this.dataElement.target = dataElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
   String contentType;
-  ToOne<ObjectBoxElement>? contentTypeElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxReference>? securityContext = ToOne<ObjectBoxReference>();
+  ToOne<ObjectBoxElement> contentTypeElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxReference> securityContext = ToOne<ObjectBoxReference>();
   String? data;
-  ToOne<ObjectBoxElement>? dataElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> dataElement = ToOne<ObjectBoxElement>();
 }

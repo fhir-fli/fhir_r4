@@ -6,80 +6,107 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxOrganization {
   ObjectBoxOrganization({
-    this.id,
-    this.meta,
+    String? id,
+    ObjectBoxFhirMeta? meta,
     this.implicitRules,
-    this.implicitRulesElement,
+    ObjectBoxElement? implicitRulesElement,
     this.language,
-    this.languageElement,
-    this.text,
-    this.contained,
-    this.extension_,
-    this.modifierExtension,
-    this.identifier,
+    ObjectBoxElement? languageElement,
+    ObjectBoxNarrative? text,
+    List<ObjectBoxResource>? contained,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    List<ObjectBoxIdentifier>? identifier,
     this.active,
-    this.activeElement,
-    this.type,
+    ObjectBoxElement? activeElement,
+    List<ObjectBoxCodeableConcept>? type,
     this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     this.alias,
-    this.aliasElement,
-    this.telecom,
-    this.address,
-    this.partOf,
-    this.contact,
-    this.endpoint,
-  });
+    List<ObjectBoxElement>? aliasElement,
+    List<ObjectBoxContactPoint>? telecom,
+    List<ObjectBoxAddress>? address,
+    ObjectBoxReference? partOf,
+    List<ObjectBoxOrganizationContact>? contact,
+    List<ObjectBoxReference>? endpoint,
+  }) {
+    this.id.target = id;
+    this.meta.target = meta;
+    this.implicitRulesElement.target = implicitRulesElement;
+    this.languageElement.target = languageElement;
+    this.text.target = text;
+    this.contained.addAll(contained ?? []);
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.identifier.addAll(identifier ?? []);
+    this.activeElement.target = activeElement;
+    this.type.addAll(type ?? []);
+    this.nameElement.target = nameElement;
+    this.aliasElement.addAll(aliasElement ?? []);
+    this.telecom.addAll(telecom ?? []);
+    this.address.addAll(address ?? []);
+    this.partOf.target = partOf;
+    this.contact.addAll(contact ?? []);
+    this.endpoint.addAll(endpoint ?? []);
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToOne<ObjectBoxFhirMeta>? meta = ToOne<ObjectBoxFhirMeta>();
+  ToOne<String> id = ToOne<String>();
+  ToOne<ObjectBoxFhirMeta> meta = ToOne<ObjectBoxFhirMeta>();
   String? implicitRules;
-  ToOne<ObjectBoxElement>? implicitRulesElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> implicitRulesElement = ToOne<ObjectBoxElement>();
   String? language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
-  ToOne<ObjectBoxNarrative>? text = ToOne<ObjectBoxNarrative>();
-  ToMany<ObjectBoxResource>? contained = ToMany<ObjectBoxResource>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxNarrative> text = ToOne<ObjectBoxNarrative>();
+  ToMany<ObjectBoxResource> contained = ToMany<ObjectBoxResource>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxIdentifier>? identifier = ToMany<ObjectBoxIdentifier>();
+  ToMany<ObjectBoxIdentifier> identifier = ToMany<ObjectBoxIdentifier>();
   bool? active;
-  ToOne<ObjectBoxElement>? activeElement = ToOne<ObjectBoxElement>();
-  ToMany<ObjectBoxCodeableConcept>? type = ToMany<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxElement> activeElement = ToOne<ObjectBoxElement>();
+  ToMany<ObjectBoxCodeableConcept> type = ToMany<ObjectBoxCodeableConcept>();
   String? name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   List<String>? alias;
-  ToMany<ObjectBoxElement>? aliasElement = ToMany<ObjectBoxElement>();
-  ToMany<ObjectBoxContactPoint>? telecom = ToMany<ObjectBoxContactPoint>();
-  ToMany<ObjectBoxAddress>? address = ToMany<ObjectBoxAddress>();
-  ToOne<ObjectBoxReference>? partOf = ToOne<ObjectBoxReference>();
-  ToMany<ObjectBoxOrganizationContact>? contact =
+  ToMany<ObjectBoxElement> aliasElement = ToMany<ObjectBoxElement>();
+  ToMany<ObjectBoxContactPoint> telecom = ToMany<ObjectBoxContactPoint>();
+  ToMany<ObjectBoxAddress> address = ToMany<ObjectBoxAddress>();
+  ToOne<ObjectBoxReference> partOf = ToOne<ObjectBoxReference>();
+  ToMany<ObjectBoxOrganizationContact> contact =
       ToMany<ObjectBoxOrganizationContact>();
-  ToMany<ObjectBoxReference>? endpoint = ToMany<ObjectBoxReference>();
+  ToMany<ObjectBoxReference> endpoint = ToMany<ObjectBoxReference>();
 }
 
 @Entity()
 class ObjectBoxOrganizationContact {
   ObjectBoxOrganizationContact({
-    this.id,
-    this.extension_,
-    this.modifierExtension,
-    this.purpose,
-    this.name,
-    this.telecom,
-    this.address,
-  });
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
+    List<ObjectBoxFhirExtension>? modifierExtension,
+    ObjectBoxCodeableConcept? purpose,
+    ObjectBoxHumanName? name,
+    List<ObjectBoxContactPoint>? telecom,
+    ObjectBoxAddress? address,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.modifierExtension.addAll(modifierExtension ?? []);
+    this.purpose.target = purpose;
+    this.name.target = name;
+    this.telecom.addAll(telecom ?? []);
+    this.address.target = address;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
-  ToMany<ObjectBoxFhirExtension>? modifierExtension =
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToMany<ObjectBoxFhirExtension> modifierExtension =
       ToMany<ObjectBoxFhirExtension>();
-  ToOne<ObjectBoxCodeableConcept>? purpose = ToOne<ObjectBoxCodeableConcept>();
-  ToOne<ObjectBoxHumanName>? name = ToOne<ObjectBoxHumanName>();
-  ToMany<ObjectBoxContactPoint>? telecom = ToMany<ObjectBoxContactPoint>();
-  ToOne<ObjectBoxAddress>? address = ToOne<ObjectBoxAddress>();
+  ToOne<ObjectBoxCodeableConcept> purpose = ToOne<ObjectBoxCodeableConcept>();
+  ToOne<ObjectBoxHumanName> name = ToOne<ObjectBoxHumanName>();
+  ToMany<ObjectBoxContactPoint> telecom = ToMany<ObjectBoxContactPoint>();
+  ToOne<ObjectBoxAddress> address = ToOne<ObjectBoxAddress>();
 }

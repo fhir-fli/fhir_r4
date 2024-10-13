@@ -6,32 +6,40 @@ import 'package:objectbox/objectbox.dart';
 @Entity()
 class ObjectBoxFhirExpression {
   ObjectBoxFhirExpression({
-    this.id,
-    this.extension_,
+    String? id,
+    List<ObjectBoxFhirExtension>? extension_,
     this.description,
-    this.descriptionElement,
+    ObjectBoxElement? descriptionElement,
     this.name,
-    this.nameElement,
+    ObjectBoxElement? nameElement,
     required this.language,
-    this.languageElement,
+    ObjectBoxElement? languageElement,
     this.expression,
-    this.expressionElement,
+    ObjectBoxElement? expressionElement,
     this.reference,
-    this.referenceElement,
-  });
+    ObjectBoxElement? referenceElement,
+  }) {
+    this.id.target = id;
+    this.extension_.addAll(extension_ ?? []);
+    this.descriptionElement.target = descriptionElement;
+    this.nameElement.target = nameElement;
+    this.languageElement.target = languageElement;
+    this.expressionElement.target = expressionElement;
+    this.referenceElement.target = referenceElement;
+  }
 
   @Id()
   int? dbId;
-  ToOne<String>? id = ToOne<String>();
-  ToMany<ObjectBoxFhirExtension>? extension_ = ToMany<ObjectBoxFhirExtension>();
+  ToOne<String> id = ToOne<String>();
+  ToMany<ObjectBoxFhirExtension> extension_ = ToMany<ObjectBoxFhirExtension>();
   String? description;
-  ToOne<ObjectBoxElement>? descriptionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> descriptionElement = ToOne<ObjectBoxElement>();
   String? name;
-  ToOne<ObjectBoxElement>? nameElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> nameElement = ToOne<ObjectBoxElement>();
   String language;
-  ToOne<ObjectBoxElement>? languageElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> languageElement = ToOne<ObjectBoxElement>();
   String? expression;
-  ToOne<ObjectBoxElement>? expressionElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> expressionElement = ToOne<ObjectBoxElement>();
   String? reference;
-  ToOne<ObjectBoxElement>? referenceElement = ToOne<ObjectBoxElement>();
+  ToOne<ObjectBoxElement> referenceElement = ToOne<ObjectBoxElement>();
 }
