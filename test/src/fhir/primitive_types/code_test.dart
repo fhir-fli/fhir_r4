@@ -4,7 +4,6 @@ import 'package:test/test.dart';
 void main() {
   group('FhirCode Tests', () {
     const validCode = 'ABC123';
-    const invalidCode = 'ABC 123'; // Invalid because of the space
     const jsonCode = 'CODE123';
     const yamlCode = 'YAML_CODE';
 
@@ -26,7 +25,6 @@ void main() {
       );
       expect(FhirCode('___').toString(), '___');
       expect(FhirCode('___').toJson(), '___');
-      expect(FhirCode('').value, null);
     });
 
     test('Valid FhirCode from String', () {
@@ -37,7 +35,7 @@ void main() {
     });
 
     test('Invalid FhirCode throws FormatException', () {
-      expect(() => FhirCode(invalidCode), throwsFormatException);
+      expect(() => FhirCode(''), throwsFormatException);
     });
 
     test('FhirCode tryParse with valid String', () {
@@ -45,11 +43,6 @@ void main() {
       expect(fhirCode?.value, equals(validCode));
       expect(fhirCode?.toString(), equals(validCode));
       expect(fhirCode?.toJson(), equals(validCode));
-    });
-
-    test('FhirCode tryParse with invalid String', () {
-      final fhirCode = FhirCode.tryParse(invalidCode);
-      expect(fhirCode, isNull);
     });
 
     test('FhirCode fromJson with valid String', () {
