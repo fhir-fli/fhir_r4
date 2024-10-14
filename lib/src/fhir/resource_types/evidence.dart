@@ -1933,8 +1933,8 @@ class EvidenceModelCharacteristic extends BackboneElement {
           : null,
       variable: json['variable'] != null
           ? (json['variable'] as List<dynamic>)
-              .map<EvidenceVariable>(
-                (dynamic v) => EvidenceVariable.fromJson(
+              .map<EvidenceModelCharacteristicVariable>(
+                (dynamic v) => EvidenceModelCharacteristicVariable.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1992,7 +1992,7 @@ class EvidenceModelCharacteristic extends BackboneElement {
 
   /// [variable]
   /// A variable adjusted for in the adjusted analysis.
-  final List<EvidenceVariable>? variable;
+  final List<EvidenceModelCharacteristicVariable>? variable;
 
   /// [attributeEstimate]
   /// An attribute of the statistic used as a model characteristic.
@@ -2016,8 +2016,9 @@ class EvidenceModelCharacteristic extends BackboneElement {
       json['value'] = value!.toJson();
     }
     if (variable != null && variable!.isNotEmpty) {
-      json['variable'] =
-          variable!.map((EvidenceVariable v) => v.toJson()).toList();
+      json['variable'] = variable!
+          .map((EvidenceModelCharacteristicVariable v) => v.toJson())
+          .toList();
     }
     if (attributeEstimate != null && attributeEstimate!.isNotEmpty) {
       json['attributeEstimate'] = attributeEstimate!
@@ -2036,7 +2037,7 @@ class EvidenceModelCharacteristic extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
     Quantity? value,
-    List<EvidenceVariable>? variable,
+    List<EvidenceModelCharacteristicVariable>? variable,
     List<EvidenceAttributeEstimate>? attributeEstimate,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
