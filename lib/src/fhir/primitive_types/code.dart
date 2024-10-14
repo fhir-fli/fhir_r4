@@ -51,7 +51,7 @@ class FhirCode extends PrimitiveType<String> {
     if (regex.hasMatch(input)) {
       return input;
     } else {
-      throw const FormatException('Invalid FHIR Code');
+      throw FormatException('Invalid FHIR Code: "$input"');
     }
   }
 
