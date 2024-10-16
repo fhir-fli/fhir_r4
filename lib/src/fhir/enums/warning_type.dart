@@ -1,109 +1,77 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Classification of warning type.
 enum WarningType {
   /// Display: Get medical advice/attention.
   /// Definition: Get medical advice/attention.
-  P313,
+  P313('P313'),
 
   /// Display: Get medical advice/attention if you feel unwell.
   /// Definition: Get medical advice/attention if you feel unwell.
-  P314,
+  P314('P314'),
 
   /// Display: Get immediate medical advice/attention.
   /// Definition: Get immediate medical advice/attention.
-  P315,
+  P315('P315'),
 
   /// Display: Specific treatment is urgent (see ... on this label).
   /// Definition: Specific treatment is urgent (see ... on this label).
-  P320,
+  P320('P320'),
 
   /// Display: Specific treatment (see ... on this label).
   /// Definition: Specific treatment (see ... on this label).
-  P321,
+  P321('P321'),
 
   /// Display: Specific measures (see ... on this label).
   /// Definition: Specific measures (see ... on this label).
-  P322,
+  P322('P322'),
 
   /// Display: Rinse mouth.
   /// Definition: Rinse mouth.
-  P330,
+  P330('P330'),
 
   /// Display: Do NOT induce vomiting.
   /// Definition: Do NOT induce vomiting.
-  P331,
+  P331('P331'),
 
   /// Display: Remove/Take off immediately all contaminated clothing.
   /// Definition: Remove/Take off immediately all contaminated clothing.
-  P361,
+  P361('P361'),
 
   /// Display: Wash contaminated clothing before reuse..
   /// Definition: Wash contaminated clothing before reuse.
-  P363,
+  P363('P363'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case P313:
-        return 'P313';
-      case P314:
-        return 'P314';
-      case P315:
-        return 'P315';
-      case P320:
-        return 'P320';
-      case P321:
-        return 'P321';
-      case P322:
-        return 'P322';
-      case P330:
-        return 'P330';
-      case P331:
-        return 'P331';
-      case P361:
-        return 'P361';
-      case P363:
-        return 'P363';
+  final String fhirCode;
+  final Element? element;
+
+  const WarningType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static WarningType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return WarningType.elementOnly.withElement(element);
     }
+    return WarningType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [WarningType] enum.
-  String toJson() => toString();
-
-  /// Returns a [WarningType] from a [String] enum.
-  static WarningType fromString(String str) {
-    switch (str) {
-      case 'P313':
-        return WarningType.P313;
-      case 'P314':
-        return WarningType.P314;
-      case 'P315':
-        return WarningType.P315;
-      case 'P320':
-        return WarningType.P320;
-      case 'P321':
-        return WarningType.P321;
-      case 'P322':
-        return WarningType.P322;
-      case 'P330':
-        return WarningType.P330;
-      case 'P331':
-        return WarningType.P331;
-      case 'P361':
-        return WarningType.P361;
-      case 'P363':
-        return WarningType.P363;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [WarningType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static WarningType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  WarningType withElement(Element? newElement) {
+    return WarningType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

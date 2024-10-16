@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// How an element value is interpreted when discrimination is evaluated.
 enum DiscriminatorType {
   /// Display: Value
   /// Definition: The slices have different values in the nominated element.
-  value,
+  value('value'),
 
   /// Display: Exists
   /// Definition: The slices are differentiated by the presence or absence of the nominated element.
-  exists,
+  exists('exists'),
 
   /// Display: Pattern
   /// Definition: The slices have different values in the nominated element, as determined by testing them against the applicable ElementDefinition.pattern[x].
-  pattern,
+  pattern('pattern'),
 
   /// Display: Type
   /// Definition: The slices are differentiated by type of the nominated element.
-  type,
+  type('type'),
 
   /// Display: Profile
   /// Definition: The slices are differentiated by conformance of the nominated element to a specified profile. Note that if the path specifies .resolve() then the profile is the target profile on the reference. In this case, validation by the possible profiles is required to differentiate the slices.
-  profile,
+  profile('profile'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case value:
-        return 'value';
-      case exists:
-        return 'exists';
-      case pattern:
-        return 'pattern';
-      case type:
-        return 'type';
-      case profile:
-        return 'profile';
+  final String fhirCode;
+  final Element? element;
+
+  const DiscriminatorType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static DiscriminatorType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DiscriminatorType.elementOnly.withElement(element);
     }
+    return DiscriminatorType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [DiscriminatorType] enum.
-  String toJson() => toString();
-
-  /// Returns a [DiscriminatorType] from a [String] enum.
-  static DiscriminatorType fromString(String str) {
-    switch (str) {
-      case 'value':
-        return DiscriminatorType.value;
-      case 'exists':
-        return DiscriminatorType.exists;
-      case 'pattern':
-        return DiscriminatorType.pattern;
-      case 'type':
-        return DiscriminatorType.type;
-      case 'profile':
-        return DiscriminatorType.profile;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [DiscriminatorType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static DiscriminatorType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  DiscriminatorType withElement(Element? newElement) {
+    return DiscriminatorType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

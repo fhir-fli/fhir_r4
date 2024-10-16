@@ -1,389 +1,217 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set defines a set of codes that are used to indicate the supported operations of a testing engine or tool.
 enum TestScriptOperationCode {
   /// Display: Read
   /// Definition: Read the current state of the resource.
-  read,
+  read('read'),
 
   /// Display: Version Read
   /// Definition: Read the state of a specific version of the resource.
-  vread,
+  vread('vread'),
 
   /// Display: Update
   /// Definition: Update an existing resource by its id.
-  update,
+  update('update'),
 
   /// Display: Create using Update
   /// Definition: Update an existing resource by its id (or create it if it is new).
-  updateCreate,
+  updateCreate('updateCreate'),
 
   /// Display: Patch
   /// Definition: Patch an existing resource by its id.
-  patch,
+  patch('patch'),
 
   /// Display: Delete
   /// Definition: Delete a resource.
-  delete,
+  delete('delete'),
 
   /// Display: Conditional Delete Single
   /// Definition: Conditionally delete a single resource based on search parameters.
-  deleteCondSingle,
+  deleteCondSingle('deleteCondSingle'),
 
   /// Display: Conditional Delete Multiple
   /// Definition: Conditionally delete one or more resources based on search parameters.
-  deleteCondMultiple,
+  deleteCondMultiple('deleteCondMultiple'),
 
   /// Display: History
   /// Definition: Retrieve the change history for a particular resource or resource type.
-  history,
+  history('history'),
 
   /// Display: Create
   /// Definition: Create a new resource with a server assigned id.
-  create,
+  create('create'),
 
   /// Display: Search
   /// Definition: Search based on some filter criteria.
-  search,
+  search('search'),
 
   /// Display: Batch
   /// Definition: Update, create or delete a set of resources as independent actions.
-  batch,
+  batch('batch'),
 
   /// Display: Transaction
   /// Definition: Update, create or delete a set of resources as a single transaction.
-  transaction,
+  transaction('transaction'),
 
   /// Display: Capabilities
   /// Definition: Get a capability statement for the system.
-  capabilities,
+  capabilities('capabilities'),
 
   /// Display: $apply
   /// Definition: Realizes an ActivityDefinition in a specific context
-  apply,
+  apply('apply'),
 
   /// Display: $closure
   /// Definition: Closure Table Maintenance
-  closure,
+  closure('closure'),
 
   /// Display: $find-matches
   /// Definition: Finding Codes based on supplied properties
-  find_matches,
+  find_matches('find-matches'),
 
   /// Display: $conforms
   /// Definition: Compare two systems CapabilityStatements
-  conforms,
+  conforms('conforms'),
 
   /// Display: $data-requirements
   /// Definition: Aggregates and returns the parameters and data requirements for a resource and all its dependencies as a single module definition
-  data_requirements,
+  data_requirements('data-requirements'),
 
   /// Display: $document
   /// Definition: Generate a Document
-  document,
+  document('document'),
 
   /// Display: $evaluate
   /// Definition: Request clinical decision support guidance based on a specific decision support module
-  evaluate,
+  evaluate('evaluate'),
 
   /// Display: $evaluate-measure
   /// Definition: Invoke an eMeasure and obtain the results
-  evaluate_measure,
+  evaluate_measure('evaluate-measure'),
 
   /// Display: $everything
   /// Definition: Return all the related information as described in the Encounter or Patient
-  everything,
+  everything('everything'),
 
   /// Display: $expand
   /// Definition: Value Set Expansion
-  expand,
+  expand('expand'),
 
   /// Display: $find
   /// Definition: Find a functional list
-  find,
+  find('find'),
 
   /// Display: $graphql
   /// Definition: Invoke a GraphQL query
-  graphql,
+  graphql('graphql'),
 
   /// Display: $implements
   /// Definition: Test if a server implements a client's required operations
-  implements_,
+  implements_('implements'),
 
   /// Display: $lastn
   /// Definition: Last N Observations Query
-  lastn,
+  lastn('lastn'),
 
   /// Display: $lookup
   /// Definition: Concept Look Up and Decomposition
-  lookup,
+  lookup('lookup'),
 
   /// Display: $match
   /// Definition: Find patient matches using MPI based logic
-  match,
+  match('match'),
 
   /// Display: $meta
   /// Definition: Access a list of profiles, tags, and security labels
-  meta,
+  meta('meta'),
 
   /// Display: $meta-add
   /// Definition: Add profiles, tags, and security labels to a resource
-  meta_add,
+  meta_add('meta-add'),
 
   /// Display: $meta-delete
   /// Definition: Delete profiles, tags, and security labels for a resource
-  meta_delete,
+  meta_delete('meta-delete'),
 
   /// Display: $populate
   /// Definition: Populate Questionnaire
-  populate,
+  populate('populate'),
 
   /// Display: $populatehtml
   /// Definition: Generate HTML for Questionnaire
-  populatehtml,
+  populatehtml('populatehtml'),
 
   /// Display: $populatelink
   /// Definition: Generate a link to a Questionnaire completion webpage
-  populatelink,
+  populatelink('populatelink'),
 
   /// Display: $process-message
   /// Definition: Process a message according to the defined event
-  process_message,
+  process_message('process-message'),
 
   /// Display: $questionnaire
   /// Definition: Build Questionnaire
-  questionnaire,
+  questionnaire('questionnaire'),
 
   /// Display: $stats
   /// Definition: Observation Statistics
-  stats,
+  stats('stats'),
 
   /// Display: $subset
   /// Definition: Fetch a subset of the CapabilityStatement resource
-  subset,
+  subset('subset'),
 
   /// Display: $subsumes
   /// Definition: CodeSystem Subsumption Testing
-  subsumes,
+  subsumes('subsumes'),
 
   /// Display: $transform
   /// Definition: Model Instance Transformation
-  transform,
+  transform('transform'),
 
   /// Display: $translate
   /// Definition: Concept Translation
-  translate,
+  translate('translate'),
 
   /// Display: $validate
   /// Definition: Validate a resource
-  validate,
+  validate('validate'),
 
   /// Display: $validate-code
   /// Definition: ValueSet based Validation
-  validate_code,
+  validate_code('validate-code'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case read:
-        return 'read';
-      case vread:
-        return 'vread';
-      case update:
-        return 'update';
-      case updateCreate:
-        return 'updateCreate';
-      case patch:
-        return 'patch';
-      case delete:
-        return 'delete';
-      case deleteCondSingle:
-        return 'deleteCondSingle';
-      case deleteCondMultiple:
-        return 'deleteCondMultiple';
-      case history:
-        return 'history';
-      case create:
-        return 'create';
-      case search:
-        return 'search';
-      case batch:
-        return 'batch';
-      case transaction:
-        return 'transaction';
-      case capabilities:
-        return 'capabilities';
-      case apply:
-        return 'apply';
-      case closure:
-        return 'closure';
-      case find_matches:
-        return 'find-matches';
-      case conforms:
-        return 'conforms';
-      case data_requirements:
-        return 'data-requirements';
-      case document:
-        return 'document';
-      case evaluate:
-        return 'evaluate';
-      case evaluate_measure:
-        return 'evaluate-measure';
-      case everything:
-        return 'everything';
-      case expand:
-        return 'expand';
-      case find:
-        return 'find';
-      case graphql:
-        return 'graphql';
-      case implements_:
-        return 'implements';
-      case lastn:
-        return 'lastn';
-      case lookup:
-        return 'lookup';
-      case match:
-        return 'match';
-      case meta:
-        return 'meta';
-      case meta_add:
-        return 'meta-add';
-      case meta_delete:
-        return 'meta-delete';
-      case populate:
-        return 'populate';
-      case populatehtml:
-        return 'populatehtml';
-      case populatelink:
-        return 'populatelink';
-      case process_message:
-        return 'process-message';
-      case questionnaire:
-        return 'questionnaire';
-      case stats:
-        return 'stats';
-      case subset:
-        return 'subset';
-      case subsumes:
-        return 'subsumes';
-      case transform:
-        return 'transform';
-      case translate:
-        return 'translate';
-      case validate:
-        return 'validate';
-      case validate_code:
-        return 'validate-code';
+  final String fhirCode;
+  final Element? element;
+
+  const TestScriptOperationCode(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static TestScriptOperationCode fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TestScriptOperationCode.elementOnly.withElement(element);
     }
+    return TestScriptOperationCode.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [TestScriptOperationCode] enum.
-  String toJson() => toString();
-
-  /// Returns a [TestScriptOperationCode] from a [String] enum.
-  static TestScriptOperationCode fromString(String str) {
-    switch (str) {
-      case 'read':
-        return TestScriptOperationCode.read;
-      case 'vread':
-        return TestScriptOperationCode.vread;
-      case 'update':
-        return TestScriptOperationCode.update;
-      case 'updateCreate':
-        return TestScriptOperationCode.updateCreate;
-      case 'patch':
-        return TestScriptOperationCode.patch;
-      case 'delete':
-        return TestScriptOperationCode.delete;
-      case 'deleteCondSingle':
-        return TestScriptOperationCode.deleteCondSingle;
-      case 'deleteCondMultiple':
-        return TestScriptOperationCode.deleteCondMultiple;
-      case 'history':
-        return TestScriptOperationCode.history;
-      case 'create':
-        return TestScriptOperationCode.create;
-      case 'search':
-        return TestScriptOperationCode.search;
-      case 'batch':
-        return TestScriptOperationCode.batch;
-      case 'transaction':
-        return TestScriptOperationCode.transaction;
-      case 'capabilities':
-        return TestScriptOperationCode.capabilities;
-      case 'apply':
-        return TestScriptOperationCode.apply;
-      case 'closure':
-        return TestScriptOperationCode.closure;
-      case 'find-matches':
-        return TestScriptOperationCode.find_matches;
-      case 'conforms':
-        return TestScriptOperationCode.conforms;
-      case 'data-requirements':
-        return TestScriptOperationCode.data_requirements;
-      case 'document':
-        return TestScriptOperationCode.document;
-      case 'evaluate':
-        return TestScriptOperationCode.evaluate;
-      case 'evaluate-measure':
-        return TestScriptOperationCode.evaluate_measure;
-      case 'everything':
-        return TestScriptOperationCode.everything;
-      case 'expand':
-        return TestScriptOperationCode.expand;
-      case 'find':
-        return TestScriptOperationCode.find;
-      case 'graphql':
-        return TestScriptOperationCode.graphql;
-      case 'implements':
-        return TestScriptOperationCode.implements_;
-      case 'lastn':
-        return TestScriptOperationCode.lastn;
-      case 'lookup':
-        return TestScriptOperationCode.lookup;
-      case 'match':
-        return TestScriptOperationCode.match;
-      case 'meta':
-        return TestScriptOperationCode.meta;
-      case 'meta-add':
-        return TestScriptOperationCode.meta_add;
-      case 'meta-delete':
-        return TestScriptOperationCode.meta_delete;
-      case 'populate':
-        return TestScriptOperationCode.populate;
-      case 'populatehtml':
-        return TestScriptOperationCode.populatehtml;
-      case 'populatelink':
-        return TestScriptOperationCode.populatelink;
-      case 'process-message':
-        return TestScriptOperationCode.process_message;
-      case 'questionnaire':
-        return TestScriptOperationCode.questionnaire;
-      case 'stats':
-        return TestScriptOperationCode.stats;
-      case 'subset':
-        return TestScriptOperationCode.subset;
-      case 'subsumes':
-        return TestScriptOperationCode.subsumes;
-      case 'transform':
-        return TestScriptOperationCode.transform;
-      case 'translate':
-        return TestScriptOperationCode.translate;
-      case 'validate':
-        return TestScriptOperationCode.validate;
-      case 'validate-code':
-        return TestScriptOperationCode.validate_code;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [TestScriptOperationCode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static TestScriptOperationCode fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  TestScriptOperationCode withElement(Element? newElement) {
+    return TestScriptOperationCode.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

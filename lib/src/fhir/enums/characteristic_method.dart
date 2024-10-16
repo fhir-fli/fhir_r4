@@ -1,37 +1,41 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The method used to determine the characteristic(s) of the variable.
 enum CharacteristicMethod {
   /// Display: Default
   /// Definition: Default.
-  Default,
+  Default('Default'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case Default:
-        return 'Default';
+  final String fhirCode;
+  final Element? element;
+
+  const CharacteristicMethod(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static CharacteristicMethod fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CharacteristicMethod.elementOnly.withElement(element);
     }
+    return CharacteristicMethod.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [CharacteristicMethod] enum.
-  String toJson() => toString();
-
-  /// Returns a [CharacteristicMethod] from a [String] enum.
-  static CharacteristicMethod fromString(String str) {
-    switch (str) {
-      case 'Default':
-        return CharacteristicMethod.Default;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [CharacteristicMethod] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static CharacteristicMethod fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  CharacteristicMethod withElement(Element? newElement) {
+    return CharacteristicMethod.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

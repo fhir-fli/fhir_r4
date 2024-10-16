@@ -1,50 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Laterality: SNOMED-CT concepts for 'left', 'right', and 'bilateral'
 enum Laterality {
   /// Display: Unilateral left
-  value419161000,
+  /// Definition:
+  value419161000('419161000'),
 
   /// Display: Unilateral right
-  value419465000,
+  /// Definition:
+  value419465000('419465000'),
 
   /// Display: Bilateral
-  value51440002,
+  /// Definition:
+  value51440002('51440002'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case value419161000:
-        return '419161000';
-      case value419465000:
-        return '419465000';
-      case value51440002:
-        return '51440002';
+  final String fhirCode;
+  final Element? element;
+
+  const Laterality(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static Laterality fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return Laterality.elementOnly.withElement(element);
     }
+    return Laterality.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [Laterality] enum.
-  String toJson() => toString();
-
-  /// Returns a [Laterality] from a [String] enum.
-  static Laterality fromString(String str) {
-    switch (str) {
-      case '419161000':
-        return Laterality.value419161000;
-      case '419465000':
-        return Laterality.value419465000;
-      case '51440002':
-        return Laterality.value51440002;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [Laterality] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static Laterality fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  Laterality withElement(Element? newElement) {
+    return Laterality.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

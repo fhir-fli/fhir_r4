@@ -1,50 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// A high level categorisation of a package.
 enum PackageType {
   /// Display: Medicinal product pack
-  MedicinalProductPack,
+  /// Definition:
+  MedicinalProductPack('MedicinalProductPack'),
 
   /// Display: Raw material package
-  RawMaterialPackage,
+  /// Definition:
+  RawMaterialPackage('RawMaterialPackage'),
 
   /// Display: Shipping or transport container
-  Shipping_TransportContainer,
+  /// Definition:
+  Shipping_TransportContainer('Shipping-TransportContainer'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case MedicinalProductPack:
-        return 'MedicinalProductPack';
-      case RawMaterialPackage:
-        return 'RawMaterialPackage';
-      case Shipping_TransportContainer:
-        return 'Shipping-TransportContainer';
+  final String fhirCode;
+  final Element? element;
+
+  const PackageType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static PackageType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return PackageType.elementOnly.withElement(element);
     }
+    return PackageType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [PackageType] enum.
-  String toJson() => toString();
-
-  /// Returns a [PackageType] from a [String] enum.
-  static PackageType fromString(String str) {
-    switch (str) {
-      case 'MedicinalProductPack':
-        return PackageType.MedicinalProductPack;
-      case 'RawMaterialPackage':
-        return PackageType.RawMaterialPackage;
-      case 'Shipping-TransportContainer':
-        return PackageType.Shipping_TransportContainer;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [PackageType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static PackageType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  PackageType withElement(Element? newElement) {
+    return PackageType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

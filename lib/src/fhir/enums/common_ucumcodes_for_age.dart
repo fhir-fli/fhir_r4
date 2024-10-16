@@ -1,71 +1,61 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Unified Code for Units of Measure (UCUM). This value set includes all UCUM codes
 enum CommonUCUMCodesForAge {
   /// Display: minutes
-  min,
+  /// Definition:
+  min('min'),
 
   /// Display: hours
-  h,
+  /// Definition:
+  h('h'),
 
   /// Display: days
-  d,
+  /// Definition:
+  d('d'),
 
   /// Display: weeks
-  wk,
+  /// Definition:
+  wk('wk'),
 
   /// Display: months
-  mo,
+  /// Definition:
+  mo('mo'),
 
   /// Display: years
-  a,
+  /// Definition:
+  a('a'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case min:
-        return 'min';
-      case h:
-        return 'h';
-      case d:
-        return 'd';
-      case wk:
-        return 'wk';
-      case mo:
-        return 'mo';
-      case a:
-        return 'a';
+  final String fhirCode;
+  final Element? element;
+
+  const CommonUCUMCodesForAge(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static CommonUCUMCodesForAge fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CommonUCUMCodesForAge.elementOnly.withElement(element);
     }
+    return CommonUCUMCodesForAge.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [CommonUCUMCodesForAge] enum.
-  String toJson() => toString();
-
-  /// Returns a [CommonUCUMCodesForAge] from a [String] enum.
-  static CommonUCUMCodesForAge fromString(String str) {
-    switch (str) {
-      case 'min':
-        return CommonUCUMCodesForAge.min;
-      case 'h':
-        return CommonUCUMCodesForAge.h;
-      case 'd':
-        return CommonUCUMCodesForAge.d;
-      case 'wk':
-        return CommonUCUMCodesForAge.wk;
-      case 'mo':
-        return CommonUCUMCodesForAge.mo;
-      case 'a':
-        return CommonUCUMCodesForAge.a;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [CommonUCUMCodesForAge] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static CommonUCUMCodesForAge fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  CommonUCUMCodesForAge withElement(Element? newElement) {
+    return CommonUCUMCodesForAge.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

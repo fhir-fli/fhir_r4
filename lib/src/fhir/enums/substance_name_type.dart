@@ -1,50 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The type of a name given to a substance.
 enum SubstanceNameType {
   /// Display: systematic
-  Systematic,
+  /// Definition:
+  Systematic('Systematic'),
 
   /// Display: scientific
-  Scientific,
+  /// Definition:
+  Scientific('Scientific'),
 
   /// Display: brand
-  Brand,
+  /// Definition:
+  Brand('Brand'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case Systematic:
-        return 'Systematic';
-      case Scientific:
-        return 'Scientific';
-      case Brand:
-        return 'Brand';
+  final String fhirCode;
+  final Element? element;
+
+  const SubstanceNameType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static SubstanceNameType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SubstanceNameType.elementOnly.withElement(element);
     }
+    return SubstanceNameType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [SubstanceNameType] enum.
-  String toJson() => toString();
-
-  /// Returns a [SubstanceNameType] from a [String] enum.
-  static SubstanceNameType fromString(String str) {
-    switch (str) {
-      case 'Systematic':
-        return SubstanceNameType.Systematic;
-      case 'Scientific':
-        return SubstanceNameType.Scientific;
-      case 'Brand':
-        return SubstanceNameType.Brand;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [SubstanceNameType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static SubstanceNameType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  SubstanceNameType withElement(Element? newElement) {
+    return SubstanceNameType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

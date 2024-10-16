@@ -1,61 +1,53 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Describes the state of a metric calibration.
 enum DeviceMetricCalibrationState {
   /// Display: Not Calibrated
   /// Definition: The metric has not been calibrated.
-  not_calibrated,
+  not_calibrated('not-calibrated'),
 
   /// Display: Calibration Required
   /// Definition: The metric needs to be calibrated.
-  calibration_required,
+  calibration_required('calibration-required'),
 
   /// Display: Calibrated
   /// Definition: The metric has been calibrated.
-  calibrated,
+  calibrated('calibrated'),
 
   /// Display: Unspecified
   /// Definition: The state of calibration of this metric is unspecified.
-  unspecified,
+  unspecified('unspecified'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case not_calibrated:
-        return 'not-calibrated';
-      case calibration_required:
-        return 'calibration-required';
-      case calibrated:
-        return 'calibrated';
-      case unspecified:
-        return 'unspecified';
+  final String fhirCode;
+  final Element? element;
+
+  const DeviceMetricCalibrationState(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static DeviceMetricCalibrationState fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DeviceMetricCalibrationState.elementOnly.withElement(element);
     }
+    return DeviceMetricCalibrationState.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [DeviceMetricCalibrationState] enum.
-  String toJson() => toString();
-
-  /// Returns a [DeviceMetricCalibrationState] from a [String] enum.
-  static DeviceMetricCalibrationState fromString(String str) {
-    switch (str) {
-      case 'not-calibrated':
-        return DeviceMetricCalibrationState.not_calibrated;
-      case 'calibration-required':
-        return DeviceMetricCalibrationState.calibration_required;
-      case 'calibrated':
-        return DeviceMetricCalibrationState.calibrated;
-      case 'unspecified':
-        return DeviceMetricCalibrationState.unspecified;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [DeviceMetricCalibrationState] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static DeviceMetricCalibrationState fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  DeviceMetricCalibrationState withElement(Element? newElement) {
+    return DeviceMetricCalibrationState.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

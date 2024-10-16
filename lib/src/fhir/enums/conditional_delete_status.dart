@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// A code that indicates how the server supports conditional delete.
 enum ConditionalDeleteStatus {
   /// Display: Not Supported
   /// Definition: No support for conditional deletes.
-  not_supported,
+  not_supported('not-supported'),
 
   /// Display: Single Deletes Supported
   /// Definition: Conditional deletes are supported, but only single resources at a time.
-  single,
+  single('single'),
 
   /// Display: Multiple Deletes Supported
   /// Definition: Conditional deletes are supported, and multiple resources can be deleted in a single interaction.
-  multiple,
+  multiple('multiple'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case not_supported:
-        return 'not-supported';
-      case single:
-        return 'single';
-      case multiple:
-        return 'multiple';
+  final String fhirCode;
+  final Element? element;
+
+  const ConditionalDeleteStatus(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ConditionalDeleteStatus fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConditionalDeleteStatus.elementOnly.withElement(element);
     }
+    return ConditionalDeleteStatus.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ConditionalDeleteStatus] enum.
-  String toJson() => toString();
-
-  /// Returns a [ConditionalDeleteStatus] from a [String] enum.
-  static ConditionalDeleteStatus fromString(String str) {
-    switch (str) {
-      case 'not-supported':
-        return ConditionalDeleteStatus.not_supported;
-      case 'single':
-        return ConditionalDeleteStatus.single;
-      case 'multiple':
-        return ConditionalDeleteStatus.multiple;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ConditionalDeleteStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ConditionalDeleteStatus fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ConditionalDeleteStatus withElement(Element? newElement) {
+    return ConditionalDeleteStatus.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

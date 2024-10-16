@@ -1,85 +1,65 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Used to code the format of the display string.
 enum ContributorRole {
   /// Display: Publisher
   /// Definition: Entity that makes the content available for public use
-  publisher,
+  publisher('publisher'),
 
   /// Display: Author/Creator
   /// Definition: An entity primarily responsible for making the resource, often called author or creator
-  author,
+  author('author'),
 
   /// Display: Reviewer
   /// Definition: Entity that examines the content, formally or informally, and suggests revisions or comments
-  reviewer,
+  reviewer('reviewer'),
 
   /// Display: Endorser
   /// Definition: Entity that supports, approves, or advocates for the content
-  endorser,
+  endorser('endorser'),
 
   /// Display: Editor
   /// Definition: Entity that revises or has authority to control the content
-  editor,
+  editor('editor'),
 
   /// Display: Informant
   /// Definition: Entity that supplies information
-  informant,
+  informant('informant'),
 
   /// Display: Funder
   /// Definition: Entity that supplies financial support
-  funder,
+  funder('funder'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case publisher:
-        return 'publisher';
-      case author:
-        return 'author';
-      case reviewer:
-        return 'reviewer';
-      case endorser:
-        return 'endorser';
-      case editor:
-        return 'editor';
-      case informant:
-        return 'informant';
-      case funder:
-        return 'funder';
+  final String fhirCode;
+  final Element? element;
+
+  const ContributorRole(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ContributorRole fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ContributorRole.elementOnly.withElement(element);
     }
+    return ContributorRole.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ContributorRole] enum.
-  String toJson() => toString();
-
-  /// Returns a [ContributorRole] from a [String] enum.
-  static ContributorRole fromString(String str) {
-    switch (str) {
-      case 'publisher':
-        return ContributorRole.publisher;
-      case 'author':
-        return ContributorRole.author;
-      case 'reviewer':
-        return ContributorRole.reviewer;
-      case 'endorser':
-        return ContributorRole.endorser;
-      case 'editor':
-        return ContributorRole.editor;
-      case 'informant':
-        return ContributorRole.informant;
-      case 'funder':
-        return ContributorRole.funder;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ContributorRole] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ContributorRole fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ContributorRole withElement(Element? newElement) {
+    return ContributorRole.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

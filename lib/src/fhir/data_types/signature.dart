@@ -167,27 +167,77 @@ class Signature extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['type'] = type.map<dynamic>((Coding v) => v.toJson()).toList();
-    json['when'] = when.toJson();
-    json['who'] = who.toJson();
+
+    if (type != null && type!.isNotEmpty) {
+      final primitiveList = type!.map((e) => e.toJson()).toList();
+      json['type'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_type'] = primitiveList.map((e) => e['_value']).toList();
+      }
+    }
+
+    if (when != null) {
+      final primitiveJson = when!.toJson();
+      json['when'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_when'] = primitiveJson['_value'];
+      }
+    }
+
+    if (who != null) {
+      final primitiveJson = who!.toJson();
+      json['who'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_who'] = primitiveJson['_value'];
+      }
+    }
+
     if (onBehalfOf != null) {
-      json['onBehalfOf'] = onBehalfOf!.toJson();
+      final primitiveJson = onBehalfOf!.toJson();
+      json['onBehalfOf'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_onBehalfOf'] = primitiveJson['_value'];
+      }
     }
-    if (targetFormat?.value != null) {
-      json['targetFormat'] = targetFormat!.toJson();
+
+    if (targetFormat != null) {
+      final primitiveJson = targetFormat!.toJson();
+      json['targetFormat'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_targetFormat'] = primitiveJson['_value'];
+      }
     }
-    if (sigFormat?.value != null) {
-      json['sigFormat'] = sigFormat!.toJson();
+
+    if (sigFormat != null) {
+      final primitiveJson = sigFormat!.toJson();
+      json['sigFormat'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_sigFormat'] = primitiveJson['_value'];
+      }
     }
-    if (data?.value != null) {
-      json['data'] = data!.toJson();
+
+    if (data != null) {
+      final primitiveJson = data!.toJson();
+      json['data'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_data'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 

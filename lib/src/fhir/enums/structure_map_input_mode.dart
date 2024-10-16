@@ -1,45 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Mode for this instance of data.
 enum StructureMapInputMode {
   /// Display: Source Instance
   /// Definition: Names an input instance used a source for mapping.
-  source,
+  source('source'),
 
   /// Display: Target Instance
   /// Definition: Names an instance that is being populated.
-  target,
+  target('target'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case source:
-        return 'source';
-      case target:
-        return 'target';
+  final String fhirCode;
+  final Element? element;
+
+  const StructureMapInputMode(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static StructureMapInputMode fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return StructureMapInputMode.elementOnly.withElement(element);
     }
+    return StructureMapInputMode.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [StructureMapInputMode] enum.
-  String toJson() => toString();
-
-  /// Returns a [StructureMapInputMode] from a [String] enum.
-  static StructureMapInputMode fromString(String str) {
-    switch (str) {
-      case 'source':
-        return StructureMapInputMode.source;
-      case 'target':
-        return StructureMapInputMode.target;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [StructureMapInputMode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static StructureMapInputMode fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  StructureMapInputMode withElement(Element? newElement) {
+    return StructureMapInputMode.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

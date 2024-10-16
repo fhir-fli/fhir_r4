@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Codes identifying the lifecycle stage of an Invoice.
 enum InvoiceStatus {
   /// Display: draft
   /// Definition: the invoice has been prepared but not yet finalized.
-  draft,
+  draft('draft'),
 
   /// Display: issued
   /// Definition: the invoice has been finalized and sent to the recipient.
-  issued,
+  issued('issued'),
 
   /// Display: balanced
   /// Definition: the invoice has been balaced / completely paid.
-  balanced,
+  balanced('balanced'),
 
   /// Display: cancelled
   /// Definition: the invoice was cancelled.
-  cancelled,
+  cancelled('cancelled'),
 
   /// Display: entered in error
   /// Definition: the invoice was determined as entered in error before it was issued.
-  entered_in_error,
+  entered_in_error('entered-in-error'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case draft:
-        return 'draft';
-      case issued:
-        return 'issued';
-      case balanced:
-        return 'balanced';
-      case cancelled:
-        return 'cancelled';
-      case entered_in_error:
-        return 'entered-in-error';
+  final String fhirCode;
+  final Element? element;
+
+  const InvoiceStatus(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static InvoiceStatus fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return InvoiceStatus.elementOnly.withElement(element);
     }
+    return InvoiceStatus.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [InvoiceStatus] enum.
-  String toJson() => toString();
-
-  /// Returns a [InvoiceStatus] from a [String] enum.
-  static InvoiceStatus fromString(String str) {
-    switch (str) {
-      case 'draft':
-        return InvoiceStatus.draft;
-      case 'issued':
-        return InvoiceStatus.issued;
-      case 'balanced':
-        return InvoiceStatus.balanced;
-      case 'cancelled':
-        return InvoiceStatus.cancelled;
-      case 'entered-in-error':
-        return InvoiceStatus.entered_in_error;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [InvoiceStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static InvoiceStatus fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  InvoiceStatus withElement(Element? newElement) {
+    return InvoiceStatus.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

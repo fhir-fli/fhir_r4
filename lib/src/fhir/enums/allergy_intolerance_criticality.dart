@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Estimate of the potential clinical harm, or seriousness, of a reaction to an identified substance.
 enum AllergyIntoleranceCriticality {
   /// Display: Low Risk
   /// Definition: Worst case result of a future exposure is not assessed to be life-threatening or having high potential for organ system failure.
-  low,
+  low('low'),
 
   /// Display: High Risk
   /// Definition: Worst case result of a future exposure is assessed to be life-threatening or having high potential for organ system failure.
-  high,
+  high('high'),
 
   /// Display: Unable to Assess Risk
   /// Definition: Unable to assess the worst case result of a future exposure.
-  unable_to_assess,
+  unable_to_assess('unable-to-assess'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case low:
-        return 'low';
-      case high:
-        return 'high';
-      case unable_to_assess:
-        return 'unable-to-assess';
+  final String fhirCode;
+  final Element? element;
+
+  const AllergyIntoleranceCriticality(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static AllergyIntoleranceCriticality fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AllergyIntoleranceCriticality.elementOnly.withElement(element);
     }
+    return AllergyIntoleranceCriticality.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [AllergyIntoleranceCriticality] enum.
-  String toJson() => toString();
-
-  /// Returns a [AllergyIntoleranceCriticality] from a [String] enum.
-  static AllergyIntoleranceCriticality fromString(String str) {
-    switch (str) {
-      case 'low':
-        return AllergyIntoleranceCriticality.low;
-      case 'high':
-        return AllergyIntoleranceCriticality.high;
-      case 'unable-to-assess':
-        return AllergyIntoleranceCriticality.unable_to_assess;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [AllergyIntoleranceCriticality] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static AllergyIntoleranceCriticality fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  AllergyIntoleranceCriticality withElement(Element? newElement) {
+    return AllergyIntoleranceCriticality.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

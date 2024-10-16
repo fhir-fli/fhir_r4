@@ -1,120 +1,109 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// A coded type for an identifier that can be used to determine which identifier to use for a specific purpose.
 enum IdentifierTypeCodes {
-  DL,
-  PPN,
-  BRN,
-  MR,
-  MCN,
-  EN,
-  TAX,
-  NIIP,
-  PRN,
-  MD,
-  DR,
-  ACSN,
-  UDI,
-  SNO,
-  SB,
-  PLAC,
-  FILL,
-  JHN,
+  /// Display:
+  /// Definition:
+  DL('DL'),
+
+  /// Display:
+  /// Definition:
+  PPN('PPN'),
+
+  /// Display:
+  /// Definition:
+  BRN('BRN'),
+
+  /// Display:
+  /// Definition:
+  MR('MR'),
+
+  /// Display:
+  /// Definition:
+  MCN('MCN'),
+
+  /// Display:
+  /// Definition:
+  EN('EN'),
+
+  /// Display:
+  /// Definition:
+  TAX('TAX'),
+
+  /// Display:
+  /// Definition:
+  NIIP('NIIP'),
+
+  /// Display:
+  /// Definition:
+  PRN('PRN'),
+
+  /// Display:
+  /// Definition:
+  MD('MD'),
+
+  /// Display:
+  /// Definition:
+  DR('DR'),
+
+  /// Display:
+  /// Definition:
+  ACSN('ACSN'),
+
+  /// Display:
+  /// Definition:
+  UDI('UDI'),
+
+  /// Display:
+  /// Definition:
+  SNO('SNO'),
+
+  /// Display:
+  /// Definition:
+  SB('SB'),
+
+  /// Display:
+  /// Definition:
+  PLAC('PLAC'),
+
+  /// Display:
+  /// Definition:
+  FILL('FILL'),
+
+  /// Display:
+  /// Definition:
+  JHN('JHN'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case DL:
-        return 'DL';
-      case PPN:
-        return 'PPN';
-      case BRN:
-        return 'BRN';
-      case MR:
-        return 'MR';
-      case MCN:
-        return 'MCN';
-      case EN:
-        return 'EN';
-      case TAX:
-        return 'TAX';
-      case NIIP:
-        return 'NIIP';
-      case PRN:
-        return 'PRN';
-      case MD:
-        return 'MD';
-      case DR:
-        return 'DR';
-      case ACSN:
-        return 'ACSN';
-      case UDI:
-        return 'UDI';
-      case SNO:
-        return 'SNO';
-      case SB:
-        return 'SB';
-      case PLAC:
-        return 'PLAC';
-      case FILL:
-        return 'FILL';
-      case JHN:
-        return 'JHN';
+  final String fhirCode;
+  final Element? element;
+
+  const IdentifierTypeCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static IdentifierTypeCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return IdentifierTypeCodes.elementOnly.withElement(element);
     }
+    return IdentifierTypeCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [IdentifierTypeCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [IdentifierTypeCodes] from a [String] enum.
-  static IdentifierTypeCodes fromString(String str) {
-    switch (str) {
-      case 'DL':
-        return IdentifierTypeCodes.DL;
-      case 'PPN':
-        return IdentifierTypeCodes.PPN;
-      case 'BRN':
-        return IdentifierTypeCodes.BRN;
-      case 'MR':
-        return IdentifierTypeCodes.MR;
-      case 'MCN':
-        return IdentifierTypeCodes.MCN;
-      case 'EN':
-        return IdentifierTypeCodes.EN;
-      case 'TAX':
-        return IdentifierTypeCodes.TAX;
-      case 'NIIP':
-        return IdentifierTypeCodes.NIIP;
-      case 'PRN':
-        return IdentifierTypeCodes.PRN;
-      case 'MD':
-        return IdentifierTypeCodes.MD;
-      case 'DR':
-        return IdentifierTypeCodes.DR;
-      case 'ACSN':
-        return IdentifierTypeCodes.ACSN;
-      case 'UDI':
-        return IdentifierTypeCodes.UDI;
-      case 'SNO':
-        return IdentifierTypeCodes.SNO;
-      case 'SB':
-        return IdentifierTypeCodes.SB;
-      case 'PLAC':
-        return IdentifierTypeCodes.PLAC;
-      case 'FILL':
-        return IdentifierTypeCodes.FILL;
-      case 'JHN':
-        return IdentifierTypeCodes.JHN;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [IdentifierTypeCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static IdentifierTypeCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  IdentifierTypeCodes withElement(Element? newElement) {
+    return IdentifierTypeCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

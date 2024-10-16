@@ -1,125 +1,85 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The type of response code to use for assertion.
 enum AssertionResponseTypes {
   /// Display: okay
   /// Definition: Response code is 200.
-  okay,
+  okay('okay'),
 
   /// Display: created
   /// Definition: Response code is 201.
-  created,
+  created('created'),
 
   /// Display: noContent
   /// Definition: Response code is 204.
-  noContent,
+  noContent('noContent'),
 
   /// Display: notModified
   /// Definition: Response code is 304.
-  notModified,
+  notModified('notModified'),
 
   /// Display: bad
   /// Definition: Response code is 400.
-  bad,
+  bad('bad'),
 
   /// Display: forbidden
   /// Definition: Response code is 403.
-  forbidden,
+  forbidden('forbidden'),
 
   /// Display: notFound
   /// Definition: Response code is 404.
-  notFound,
+  notFound('notFound'),
 
   /// Display: methodNotAllowed
   /// Definition: Response code is 405.
-  methodNotAllowed,
+  methodNotAllowed('methodNotAllowed'),
 
   /// Display: conflict
   /// Definition: Response code is 409.
-  conflict,
+  conflict('conflict'),
 
   /// Display: gone
   /// Definition: Response code is 410.
-  gone,
+  gone('gone'),
 
   /// Display: preconditionFailed
   /// Definition: Response code is 412.
-  preconditionFailed,
+  preconditionFailed('preconditionFailed'),
 
   /// Display: unprocessable
   /// Definition: Response code is 422.
-  unprocessable,
+  unprocessable('unprocessable'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case okay:
-        return 'okay';
-      case created:
-        return 'created';
-      case noContent:
-        return 'noContent';
-      case notModified:
-        return 'notModified';
-      case bad:
-        return 'bad';
-      case forbidden:
-        return 'forbidden';
-      case notFound:
-        return 'notFound';
-      case methodNotAllowed:
-        return 'methodNotAllowed';
-      case conflict:
-        return 'conflict';
-      case gone:
-        return 'gone';
-      case preconditionFailed:
-        return 'preconditionFailed';
-      case unprocessable:
-        return 'unprocessable';
+  final String fhirCode;
+  final Element? element;
+
+  const AssertionResponseTypes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static AssertionResponseTypes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AssertionResponseTypes.elementOnly.withElement(element);
     }
+    return AssertionResponseTypes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [AssertionResponseTypes] enum.
-  String toJson() => toString();
-
-  /// Returns a [AssertionResponseTypes] from a [String] enum.
-  static AssertionResponseTypes fromString(String str) {
-    switch (str) {
-      case 'okay':
-        return AssertionResponseTypes.okay;
-      case 'created':
-        return AssertionResponseTypes.created;
-      case 'noContent':
-        return AssertionResponseTypes.noContent;
-      case 'notModified':
-        return AssertionResponseTypes.notModified;
-      case 'bad':
-        return AssertionResponseTypes.bad;
-      case 'forbidden':
-        return AssertionResponseTypes.forbidden;
-      case 'notFound':
-        return AssertionResponseTypes.notFound;
-      case 'methodNotAllowed':
-        return AssertionResponseTypes.methodNotAllowed;
-      case 'conflict':
-        return AssertionResponseTypes.conflict;
-      case 'gone':
-        return AssertionResponseTypes.gone;
-      case 'preconditionFailed':
-        return AssertionResponseTypes.preconditionFailed;
-      case 'unprocessable':
-        return AssertionResponseTypes.unprocessable;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [AssertionResponseTypes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static AssertionResponseTypes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  AssertionResponseTypes withElement(Element? newElement) {
+    return AssertionResponseTypes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

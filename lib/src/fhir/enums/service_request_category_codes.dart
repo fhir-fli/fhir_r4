@@ -1,64 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// An example value set of SNOMED CT concepts that can classify a requested service
 enum ServiceRequestCategoryCodes {
   /// Display: Laboratory procedure
-  value108252007,
+  /// Definition:
+  value108252007('108252007'),
 
   /// Display: Imaging
-  value363679005,
+  /// Definition:
+  value363679005('363679005'),
 
   /// Display: Counselling
-  value409063005,
+  /// Definition:
+  value409063005('409063005'),
 
   /// Display: Education
-  value409073007,
+  /// Definition:
+  value409073007('409073007'),
 
   /// Display: Surgical procedure
-  value387713003,
+  /// Definition:
+  value387713003('387713003'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case value108252007:
-        return '108252007';
-      case value363679005:
-        return '363679005';
-      case value409063005:
-        return '409063005';
-      case value409073007:
-        return '409073007';
-      case value387713003:
-        return '387713003';
+  final String fhirCode;
+  final Element? element;
+
+  const ServiceRequestCategoryCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ServiceRequestCategoryCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ServiceRequestCategoryCodes.elementOnly.withElement(element);
     }
+    return ServiceRequestCategoryCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ServiceRequestCategoryCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ServiceRequestCategoryCodes] from a [String] enum.
-  static ServiceRequestCategoryCodes fromString(String str) {
-    switch (str) {
-      case '108252007':
-        return ServiceRequestCategoryCodes.value108252007;
-      case '363679005':
-        return ServiceRequestCategoryCodes.value363679005;
-      case '409063005':
-        return ServiceRequestCategoryCodes.value409063005;
-      case '409073007':
-        return ServiceRequestCategoryCodes.value409073007;
-      case '387713003':
-        return ServiceRequestCategoryCodes.value387713003;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ServiceRequestCategoryCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ServiceRequestCategoryCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ServiceRequestCategoryCodes withElement(Element? newElement) {
+    return ServiceRequestCategoryCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

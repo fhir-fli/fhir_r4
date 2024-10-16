@@ -1,45 +1,47 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set includes Example Coverage Financial Exception Codes.
 enum ExampleCoverageFinancialExceptionCodes {
   /// Display: Retired
   /// Definition: Retired persons have all copays and deductibles reduced.
-  retired,
+  retired('retired'),
 
   /// Display: Foster child
   /// Definition: Children in the foster care have all copays and deductibles waived.
-  foster,
+  foster('foster'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case retired:
-        return 'retired';
-      case foster:
-        return 'foster';
+  final String fhirCode;
+  final Element? element;
+
+  const ExampleCoverageFinancialExceptionCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ExampleCoverageFinancialExceptionCodes fromJson(
+      Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleCoverageFinancialExceptionCodes.elementOnly
+          .withElement(element);
     }
+    return ExampleCoverageFinancialExceptionCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ExampleCoverageFinancialExceptionCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ExampleCoverageFinancialExceptionCodes] from a [String] enum.
-  static ExampleCoverageFinancialExceptionCodes fromString(String str) {
-    switch (str) {
-      case 'retired':
-        return ExampleCoverageFinancialExceptionCodes.retired;
-      case 'foster':
-        return ExampleCoverageFinancialExceptionCodes.foster;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ExampleCoverageFinancialExceptionCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ExampleCoverageFinancialExceptionCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ExampleCoverageFinancialExceptionCodes withElement(Element? newElement) {
+    return ExampleCoverageFinancialExceptionCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

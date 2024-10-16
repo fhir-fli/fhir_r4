@@ -1,61 +1,53 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The status of a subscription.
 enum SubscriptionStatusCodes {
   /// Display: Requested
   /// Definition: The client has requested the subscription, and the server has not yet set it up.
-  requested,
+  requested('requested'),
 
   /// Display: Active
   /// Definition: The subscription is active.
-  active,
+  active('active'),
 
   /// Display: Error
   /// Definition: The server has an error executing the notification.
-  error,
+  error('error'),
 
   /// Display: Off
   /// Definition: Too many errors have occurred or the subscription has expired.
-  off,
+  off('off'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case requested:
-        return 'requested';
-      case active:
-        return 'active';
-      case error:
-        return 'error';
-      case off:
-        return 'off';
+  final String fhirCode;
+  final Element? element;
+
+  const SubscriptionStatusCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static SubscriptionStatusCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SubscriptionStatusCodes.elementOnly.withElement(element);
     }
+    return SubscriptionStatusCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [SubscriptionStatusCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [SubscriptionStatusCodes] from a [String] enum.
-  static SubscriptionStatusCodes fromString(String str) {
-    switch (str) {
-      case 'requested':
-        return SubscriptionStatusCodes.requested;
-      case 'active':
-        return SubscriptionStatusCodes.active;
-      case 'error':
-        return SubscriptionStatusCodes.error;
-      case 'off':
-        return SubscriptionStatusCodes.off;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [SubscriptionStatusCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static SubscriptionStatusCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  SubscriptionStatusCodes withElement(Element? newElement) {
+    return SubscriptionStatusCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

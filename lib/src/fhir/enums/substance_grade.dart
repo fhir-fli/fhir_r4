@@ -1,64 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The quality standard, established benchmark, to which a substance complies.
 enum SubstanceGrade {
   /// Display: USP/NF United States Pharmacopeia (USP) and the National Formulary (NF)
-  USP_NF,
+  /// Definition:
+  USP_NF('USP-NF'),
 
   /// Display: European Pharmacopoeia
-  Ph_Eur,
+  /// Definition:
+  Ph_Eur('Ph.Eur'),
 
   /// Display: Japanese Pharmacopoeia
-  JP,
+  /// Definition:
+  JP('JP'),
 
   /// Display: British Pharmacopoeia
-  BP,
+  /// Definition:
+  BP('BP'),
 
   /// Display: Company Standard
-  CompanyStandard,
+  /// Definition:
+  CompanyStandard('CompanyStandard'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case USP_NF:
-        return 'USP-NF';
-      case Ph_Eur:
-        return 'Ph.Eur';
-      case JP:
-        return 'JP';
-      case BP:
-        return 'BP';
-      case CompanyStandard:
-        return 'CompanyStandard';
+  final String fhirCode;
+  final Element? element;
+
+  const SubstanceGrade(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static SubstanceGrade fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SubstanceGrade.elementOnly.withElement(element);
     }
+    return SubstanceGrade.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [SubstanceGrade] enum.
-  String toJson() => toString();
-
-  /// Returns a [SubstanceGrade] from a [String] enum.
-  static SubstanceGrade fromString(String str) {
-    switch (str) {
-      case 'USP-NF':
-        return SubstanceGrade.USP_NF;
-      case 'Ph.Eur':
-        return SubstanceGrade.Ph_Eur;
-      case 'JP':
-        return SubstanceGrade.JP;
-      case 'BP':
-        return SubstanceGrade.BP;
-      case 'CompanyStandard':
-        return SubstanceGrade.CompanyStandard;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [SubstanceGrade] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static SubstanceGrade fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  SubstanceGrade withElement(Element? newElement) {
+    return SubstanceGrade.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

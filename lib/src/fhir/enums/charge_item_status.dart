@@ -1,85 +1,65 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Codes identifying the lifecycle stage of a ChargeItem.
 enum ChargeItemStatus {
   /// Display: Planned
-  /// Definition: The charge item has been entered, but the charged service is not  yet complete, so it shall not be billed yet but might be used in the context of pre-authorization.
-  planned,
+  /// Definition: The charge item has been entered, but the charged service is not yet complete, so it shall not be billed yet but might be used in the context of pre-authorization.
+  planned('planned'),
 
   /// Display: Billable
   /// Definition: The charge item is ready for billing.
-  billable,
+  billable('billable'),
 
   /// Display: Not billable
   /// Definition: The charge item has been determined to be not billable (e.g. due to rules associated with the billing code).
-  not_billable,
+  not_billable('not-billable'),
 
   /// Display: Aborted
   /// Definition: The processing of the charge was aborted.
-  aborted,
+  aborted('aborted'),
 
   /// Display: Billed
   /// Definition: The charge item has been billed (e.g. a billing engine has generated financial transactions by applying the associated ruled for the charge item to the context of the Encounter, and placed them into Claims/Invoices.
-  billed,
+  billed('billed'),
 
   /// Display: Entered in Error
   /// Definition: The charge item has been entered in error and should not be processed for billing.
-  entered_in_error,
+  entered_in_error('entered-in-error'),
 
   /// Display: Unknown
-  /// Definition: The authoring system does not know which of the status values currently applies for this charge item  Note: This concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known which one.
-  unknown,
+  /// Definition: The authoring system does not know which of the status values currently applies for this charge item Note: This concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known which one.
+  unknown('unknown'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case planned:
-        return 'planned';
-      case billable:
-        return 'billable';
-      case not_billable:
-        return 'not-billable';
-      case aborted:
-        return 'aborted';
-      case billed:
-        return 'billed';
-      case entered_in_error:
-        return 'entered-in-error';
-      case unknown:
-        return 'unknown';
+  final String fhirCode;
+  final Element? element;
+
+  const ChargeItemStatus(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ChargeItemStatus fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ChargeItemStatus.elementOnly.withElement(element);
     }
+    return ChargeItemStatus.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ChargeItemStatus] enum.
-  String toJson() => toString();
-
-  /// Returns a [ChargeItemStatus] from a [String] enum.
-  static ChargeItemStatus fromString(String str) {
-    switch (str) {
-      case 'planned':
-        return ChargeItemStatus.planned;
-      case 'billable':
-        return ChargeItemStatus.billable;
-      case 'not-billable':
-        return ChargeItemStatus.not_billable;
-      case 'aborted':
-        return ChargeItemStatus.aborted;
-      case 'billed':
-        return ChargeItemStatus.billed;
-      case 'entered-in-error':
-        return ChargeItemStatus.entered_in_error;
-      case 'unknown':
-        return ChargeItemStatus.unknown;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ChargeItemStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ChargeItemStatus fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ChargeItemStatus withElement(Element? newElement) {
+    return ChargeItemStatus.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

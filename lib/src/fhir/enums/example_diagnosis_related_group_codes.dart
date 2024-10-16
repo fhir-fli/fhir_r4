@@ -1,61 +1,53 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set includes example Diagnosis Related Group codes.
 enum ExampleDiagnosisRelatedGroupCodes {
   /// Display: Normal Vaginal Delivery
   /// Definition: Normal Vaginal Delivery.
-  value100,
+  value100('100'),
 
   /// Display: Appendectomy - uncomplicated
   /// Definition: Appendectomy without rupture or other complications.
-  value101,
+  value101('101'),
 
   /// Display: Tooth abscess
   /// Definition: Emergency department treatment of a tooth abscess.
-  value300,
+  value300('300'),
 
   /// Display: Head trauma - concussion
   /// Definition: Head trauma - concussion.
-  value400,
+  value400('400'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case value100:
-        return '100';
-      case value101:
-        return '101';
-      case value300:
-        return '300';
-      case value400:
-        return '400';
+  final String fhirCode;
+  final Element? element;
+
+  const ExampleDiagnosisRelatedGroupCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ExampleDiagnosisRelatedGroupCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleDiagnosisRelatedGroupCodes.elementOnly.withElement(element);
     }
+    return ExampleDiagnosisRelatedGroupCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ExampleDiagnosisRelatedGroupCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ExampleDiagnosisRelatedGroupCodes] from a [String] enum.
-  static ExampleDiagnosisRelatedGroupCodes fromString(String str) {
-    switch (str) {
-      case '100':
-        return ExampleDiagnosisRelatedGroupCodes.value100;
-      case '101':
-        return ExampleDiagnosisRelatedGroupCodes.value101;
-      case '300':
-        return ExampleDiagnosisRelatedGroupCodes.value300;
-      case '400':
-        return ExampleDiagnosisRelatedGroupCodes.value400;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ExampleDiagnosisRelatedGroupCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ExampleDiagnosisRelatedGroupCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ExampleDiagnosisRelatedGroupCodes withElement(Element? newElement) {
+    return ExampleDiagnosisRelatedGroupCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

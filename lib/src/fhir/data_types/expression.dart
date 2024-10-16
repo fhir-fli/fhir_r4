@@ -138,25 +138,61 @@ class FhirExpression extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    if (description?.value != null) {
-      json['description'] = description!.toJson();
+
+    if (description != null) {
+      final primitiveJson = description!.toJson();
+      json['description'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_description'] = primitiveJson['_value'];
+      }
     }
-    if (name?.value != null) {
-      json['name'] = name!.toJson();
+
+    if (name != null) {
+      final primitiveJson = name!.toJson();
+      json['name'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_name'] = primitiveJson['_value'];
+      }
     }
-    json['language'] = language.toJson();
-    if (expression?.value != null) {
-      json['expression'] = expression!.toJson();
+
+    if (language != null) {
+      final primitiveJson = language!.toJson();
+      json['language'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_language'] = primitiveJson['_value'];
+      }
     }
-    if (reference?.value != null) {
-      json['reference'] = reference!.toJson();
+
+    if (expression != null) {
+      final primitiveJson = expression!.toJson();
+      json['expression'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_expression'] = primitiveJson['_value'];
+      }
     }
+
+    if (reference != null) {
+      final primitiveJson = reference!.toJson();
+      json['reference'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_reference'] = primitiveJson['_value'];
+      }
+    }
+
     return json;
   }
 

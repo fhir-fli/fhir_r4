@@ -1,50 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The genus of an organism, typically referring to the Latin epithet of the genus element of the plant/animal scientific name.
 enum SourceMaterialGenus {
   /// Display: Mycobacterium
-  Mycobacterium,
+  /// Definition:
+  Mycobacterium('Mycobacterium'),
 
   /// Display: Influenza A virus
-  InfluenzavirusA,
+  /// Definition:
+  InfluenzavirusA('InfluenzavirusA'),
 
   /// Display: Ginkgo
-  Ginkgo,
+  /// Definition:
+  Ginkgo('Ginkgo'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case Mycobacterium:
-        return 'Mycobacterium';
-      case InfluenzavirusA:
-        return 'InfluenzavirusA';
-      case Ginkgo:
-        return 'Ginkgo';
+  final String fhirCode;
+  final Element? element;
+
+  const SourceMaterialGenus(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static SourceMaterialGenus fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SourceMaterialGenus.elementOnly.withElement(element);
     }
+    return SourceMaterialGenus.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [SourceMaterialGenus] enum.
-  String toJson() => toString();
-
-  /// Returns a [SourceMaterialGenus] from a [String] enum.
-  static SourceMaterialGenus fromString(String str) {
-    switch (str) {
-      case 'Mycobacterium':
-        return SourceMaterialGenus.Mycobacterium;
-      case 'InfluenzavirusA':
-        return SourceMaterialGenus.InfluenzavirusA;
-      case 'Ginkgo':
-        return SourceMaterialGenus.Ginkgo;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [SourceMaterialGenus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static SourceMaterialGenus fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  SourceMaterialGenus withElement(Element? newElement) {
+    return SourceMaterialGenus.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

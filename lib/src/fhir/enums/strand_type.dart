@@ -1,45 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Type for strand.
 enum StrandType {
   /// Display: Watson strand of referenceSeq
   /// Definition: Watson strand of reference sequence.
-  watson,
+  watson('watson'),
 
   /// Display: Crick strand of referenceSeq
   /// Definition: Crick strand of reference sequence.
-  crick,
+  crick('crick'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case watson:
-        return 'watson';
-      case crick:
-        return 'crick';
+  final String fhirCode;
+  final Element? element;
+
+  const StrandType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static StrandType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return StrandType.elementOnly.withElement(element);
     }
+    return StrandType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [StrandType] enum.
-  String toJson() => toString();
-
-  /// Returns a [StrandType] from a [String] enum.
-  static StrandType fromString(String str) {
-    switch (str) {
-      case 'watson':
-        return StrandType.watson;
-      case 'crick':
-        return StrandType.crick;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [StrandType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static StrandType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  StrandType withElement(Element? newElement) {
+    return StrandType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

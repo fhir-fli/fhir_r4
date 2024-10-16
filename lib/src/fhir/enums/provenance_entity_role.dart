@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// How an entity was used in an activity.
 enum ProvenanceEntityRole {
   /// Display: Derivation
   /// Definition: A transformation of an entity into another, an update of an entity resulting in a new one, or the construction of a new entity based on a pre-existing entity.
-  derivation,
+  derivation('derivation'),
 
   /// Display: Revision
   /// Definition: A derivation for which the resulting entity is a revised version of some original.
-  revision,
+  revision('revision'),
 
   /// Display: Quotation
   /// Definition: The repeat of (some or all of) an entity, such as text or image, by someone who might or might not be its original author.
-  quotation,
+  quotation('quotation'),
 
   /// Display: Source
   /// Definition: A primary source for a topic refers to something produced by some agent with direct experience and knowledge about the topic, at the time of the topic's study, without benefit from hindsight.
-  source,
+  source('source'),
 
   /// Display: Removal
   /// Definition: A derivation for which the entity is removed from accessibility usually through the use of the Delete operation.
-  removal,
+  removal('removal'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case derivation:
-        return 'derivation';
-      case revision:
-        return 'revision';
-      case quotation:
-        return 'quotation';
-      case source:
-        return 'source';
-      case removal:
-        return 'removal';
+  final String fhirCode;
+  final Element? element;
+
+  const ProvenanceEntityRole(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ProvenanceEntityRole fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ProvenanceEntityRole.elementOnly.withElement(element);
     }
+    return ProvenanceEntityRole.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ProvenanceEntityRole] enum.
-  String toJson() => toString();
-
-  /// Returns a [ProvenanceEntityRole] from a [String] enum.
-  static ProvenanceEntityRole fromString(String str) {
-    switch (str) {
-      case 'derivation':
-        return ProvenanceEntityRole.derivation;
-      case 'revision':
-        return ProvenanceEntityRole.revision;
-      case 'quotation':
-        return ProvenanceEntityRole.quotation;
-      case 'source':
-        return ProvenanceEntityRole.source;
-      case 'removal':
-        return ProvenanceEntityRole.removal;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ProvenanceEntityRole] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ProvenanceEntityRole fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ProvenanceEntityRole withElement(Element? newElement) {
+    return ProvenanceEntityRole.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

@@ -1,77 +1,61 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Defines selection behavior of a group.
 enum ActionSelectionBehavior {
   /// Display: Any
   /// Definition: Any number of the actions in the group may be chosen, from zero to all.
-  any,
+  any('any'),
 
   /// Display: All
   /// Definition: All the actions in the group must be selected as a single unit.
-  all,
+  all('all'),
 
   /// Display: All Or None
   /// Definition: All the actions in the group are meant to be chosen as a single unit: either all must be selected by the end user, or none may be selected.
-  all_or_none,
+  all_or_none('all-or-none'),
 
   /// Display: Exactly One
   /// Definition: The end user must choose one and only one of the selectable actions in the group. The user SHALL NOT choose none of the actions in the group.
-  exactly_one,
+  exactly_one('exactly-one'),
 
   /// Display: At Most One
   /// Definition: The end user may choose zero or at most one of the actions in the group.
-  at_most_one,
+  at_most_one('at-most-one'),
 
   /// Display: One Or More
   /// Definition: The end user must choose a minimum of one, and as many additional as desired.
-  one_or_more,
+  one_or_more('one-or-more'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case any:
-        return 'any';
-      case all:
-        return 'all';
-      case all_or_none:
-        return 'all-or-none';
-      case exactly_one:
-        return 'exactly-one';
-      case at_most_one:
-        return 'at-most-one';
-      case one_or_more:
-        return 'one-or-more';
+  final String fhirCode;
+  final Element? element;
+
+  const ActionSelectionBehavior(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ActionSelectionBehavior fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ActionSelectionBehavior.elementOnly.withElement(element);
     }
+    return ActionSelectionBehavior.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ActionSelectionBehavior] enum.
-  String toJson() => toString();
-
-  /// Returns a [ActionSelectionBehavior] from a [String] enum.
-  static ActionSelectionBehavior fromString(String str) {
-    switch (str) {
-      case 'any':
-        return ActionSelectionBehavior.any;
-      case 'all':
-        return ActionSelectionBehavior.all;
-      case 'all-or-none':
-        return ActionSelectionBehavior.all_or_none;
-      case 'exactly-one':
-        return ActionSelectionBehavior.exactly_one;
-      case 'at-most-one':
-        return ActionSelectionBehavior.at_most_one;
-      case 'one-or-more':
-        return ActionSelectionBehavior.one_or_more;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ActionSelectionBehavior] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ActionSelectionBehavior fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ActionSelectionBehavior withElement(Element? newElement) {
+    return ActionSelectionBehavior.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

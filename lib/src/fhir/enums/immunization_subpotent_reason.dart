@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the reason why a dose is considered to be subpotent. This value set is provided as a suggestive example.
 enum ImmunizationSubpotentReason {
   /// Display: Partial Dose
   /// Definition: The full volume of the dose was not administered to the patient.
-  partial,
+  partial('partial'),
 
   /// Display: Cold Chain Break
   /// Definition: The vaccine experienced a cold chain break.
-  coldchainbreak,
+  coldchainbreak('coldchainbreak'),
 
   /// Display: Manufacturer Recall
   /// Definition: The vaccine was recalled by the manufacturer.
-  recall,
+  recall('recall'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case partial:
-        return 'partial';
-      case coldchainbreak:
-        return 'coldchainbreak';
-      case recall:
-        return 'recall';
+  final String fhirCode;
+  final Element? element;
+
+  const ImmunizationSubpotentReason(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ImmunizationSubpotentReason fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationSubpotentReason.elementOnly.withElement(element);
     }
+    return ImmunizationSubpotentReason.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ImmunizationSubpotentReason] enum.
-  String toJson() => toString();
-
-  /// Returns a [ImmunizationSubpotentReason] from a [String] enum.
-  static ImmunizationSubpotentReason fromString(String str) {
-    switch (str) {
-      case 'partial':
-        return ImmunizationSubpotentReason.partial;
-      case 'coldchainbreak':
-        return ImmunizationSubpotentReason.coldchainbreak;
-      case 'recall':
-        return ImmunizationSubpotentReason.recall;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ImmunizationSubpotentReason] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ImmunizationSubpotentReason fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ImmunizationSubpotentReason withElement(Element? newElement) {
+    return ImmunizationSubpotentReason.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

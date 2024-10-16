@@ -1,109 +1,77 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set defines a set of codes that can be used to indicate from where the patient came in.
 enum AdmitSource {
   /// Display: Transferred from other hospital
   /// Definition: The Patient has been transferred from another hospital for this encounter.
-  hosp_trans,
+  hosp_trans('hosp-trans'),
 
   /// Display: From accident/emergency department
   /// Definition: The patient has been transferred from the emergency department within the hospital. This is typically used in the transition to an inpatient encounter
-  emd,
+  emd('emd'),
 
   /// Display: From outpatient department
   /// Definition: The patient has been transferred from an outpatient department within the hospital.
-  outp,
+  outp('outp'),
 
   /// Display: Born in hospital
   /// Definition: The patient is a newborn and the encounter will track the baby related activities (as opposed to the Mothers encounter - that may be associated using the newborn encounters partof property)
-  born,
+  born('born'),
 
   /// Display: General Practitioner referral
   /// Definition: The patient has been admitted due to a referred from a General Practitioner.
-  gp,
+  gp('gp'),
 
   /// Display: Medical Practitioner/physician referral
   /// Definition: The patient has been admitted due to a referred from a Specialist (as opposed to a General Practitioner).
-  mp,
+  mp('mp'),
 
   /// Display: From nursing home
   /// Definition: The patient has been transferred from a nursing home.
-  nursing,
+  nursing('nursing'),
 
   /// Display: From psychiatric hospital
   /// Definition: The patient has been transferred from a psychiatric facility.
-  psych,
+  psych('psych'),
 
   /// Display: From rehabilitation facility
   /// Definition: The patient has been transferred from a rehabilitation facility or clinic.
-  rehab,
+  rehab('rehab'),
 
   /// Display: Other
   /// Definition: The patient has been admitted from a source otherwise not specified here.
-  other,
+  other('other'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case hosp_trans:
-        return 'hosp-trans';
-      case emd:
-        return 'emd';
-      case outp:
-        return 'outp';
-      case born:
-        return 'born';
-      case gp:
-        return 'gp';
-      case mp:
-        return 'mp';
-      case nursing:
-        return 'nursing';
-      case psych:
-        return 'psych';
-      case rehab:
-        return 'rehab';
-      case other:
-        return 'other';
+  final String fhirCode;
+  final Element? element;
+
+  const AdmitSource(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static AdmitSource fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AdmitSource.elementOnly.withElement(element);
     }
+    return AdmitSource.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [AdmitSource] enum.
-  String toJson() => toString();
-
-  /// Returns a [AdmitSource] from a [String] enum.
-  static AdmitSource fromString(String str) {
-    switch (str) {
-      case 'hosp-trans':
-        return AdmitSource.hosp_trans;
-      case 'emd':
-        return AdmitSource.emd;
-      case 'outp':
-        return AdmitSource.outp;
-      case 'born':
-        return AdmitSource.born;
-      case 'gp':
-        return AdmitSource.gp;
-      case 'mp':
-        return AdmitSource.mp;
-      case 'nursing':
-        return AdmitSource.nursing;
-      case 'psych':
-        return AdmitSource.psych;
-      case 'rehab':
-        return AdmitSource.rehab;
-      case 'other':
-        return AdmitSource.other;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [AdmitSource] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static AdmitSource fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  AdmitSource withElement(Element? newElement) {
+    return AdmitSource.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

@@ -1,77 +1,61 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set includes sample Modifier type codes.
 enum ModifierTypeCodes {
   /// Display: Repair of prior service or installation
   /// Definition: Repair of prior service or installation.
-  a,
+  a('a'),
 
   /// Display: Temporary service or installation
   /// Definition: Temporary service or installation.
-  b,
+  b('b'),
 
   /// Display: TMJ treatment
   /// Definition: Treatment associated with TMJ.
-  c,
+  c('c'),
 
   /// Display: Implant or associated with an implant
   /// Definition: Implant or associated with an implant.
-  e,
+  e('e'),
 
   /// Display: Rush or Outside of office hours
   /// Definition: A Rush service or service performed outside of normal office hours.
-  rooh,
+  rooh('rooh'),
 
   /// Display: None
   /// Definition: None.
-  x,
+  x('x'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case a:
-        return 'a';
-      case b:
-        return 'b';
-      case c:
-        return 'c';
-      case e:
-        return 'e';
-      case rooh:
-        return 'rooh';
-      case x:
-        return 'x';
+  final String fhirCode;
+  final Element? element;
+
+  const ModifierTypeCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ModifierTypeCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ModifierTypeCodes.elementOnly.withElement(element);
     }
+    return ModifierTypeCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ModifierTypeCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ModifierTypeCodes] from a [String] enum.
-  static ModifierTypeCodes fromString(String str) {
-    switch (str) {
-      case 'a':
-        return ModifierTypeCodes.a;
-      case 'b':
-        return ModifierTypeCodes.b;
-      case 'c':
-        return ModifierTypeCodes.c;
-      case 'e':
-        return ModifierTypeCodes.e;
-      case 'rooh':
-        return ModifierTypeCodes.rooh;
-      case 'x':
-        return ModifierTypeCodes.x;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ModifierTypeCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ModifierTypeCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ModifierTypeCodes withElement(Element? newElement) {
+    return ModifierTypeCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

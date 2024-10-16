@@ -1,43 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Example value set for investigation type.
 enum InvestigationType {
   /// Display: Examination / signs
-  value271336007,
+  /// Definition:
+  value271336007('271336007'),
 
   /// Display: History/symptoms
-  value160237006,
+  /// Definition:
+  value160237006('160237006'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case value271336007:
-        return '271336007';
-      case value160237006:
-        return '160237006';
+  final String fhirCode;
+  final Element? element;
+
+  const InvestigationType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static InvestigationType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return InvestigationType.elementOnly.withElement(element);
     }
+    return InvestigationType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [InvestigationType] enum.
-  String toJson() => toString();
-
-  /// Returns a [InvestigationType] from a [String] enum.
-  static InvestigationType fromString(String str) {
-    switch (str) {
-      case '271336007':
-        return InvestigationType.value271336007;
-      case '160237006':
-        return InvestigationType.value160237006;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [InvestigationType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static InvestigationType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  InvestigationType withElement(Element? newElement) {
+    return InvestigationType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

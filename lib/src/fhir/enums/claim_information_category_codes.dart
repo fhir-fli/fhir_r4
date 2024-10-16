@@ -1,141 +1,93 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set includes sample Information Category codes.
 enum ClaimInformationCategoryCodes {
   /// Display: Information
   /// Definition: Codes conveying additional situation and condition information.
-  info,
+  info('info'),
 
   /// Display: Discharge
   /// Definition: Discharge status and discharge to locations.
-  discharge,
+  discharge('discharge'),
 
   /// Display: Onset
   /// Definition: Period, start or end dates of aspects of the Condition.
-  onset,
+  onset('onset'),
 
   /// Display: Related Services
   /// Definition: Nature and date of the related event e.g. Last exam, service, X-ray etc.
-  related,
+  related('related'),
 
   /// Display: Exception
   /// Definition: Insurance policy exceptions.
-  exception,
+  exception('exception'),
 
   /// Display: Materials Forwarded
   /// Definition: Materials being forwarded, e.g. Models, molds, images, documents.
-  material,
+  material('material'),
 
   /// Display: Attachment
   /// Definition: Materials attached such as images, documents and resources.
-  attachment,
+  attachment('attachment'),
 
   /// Display: Missing Tooth
   /// Definition: Teeth which are missing for any reason, for example: prior extraction, never developed.
-  missingtooth,
+  missingtooth('missingtooth'),
 
   /// Display: Prosthesis
   /// Definition: The type of prosthesis and date of supply if a previously supplied prosthesis.
-  prosthesis,
+  prosthesis('prosthesis'),
 
   /// Display: Other
   /// Definition: Other information identified by the type.system.
-  other,
+  other('other'),
 
   /// Display: Hospitalized
   /// Definition: An indication that the patient was hospitalized, the period if known otherwise a Yes/No (boolean).
-  hospitalized,
+  hospitalized('hospitalized'),
 
   /// Display: EmploymentImpacted
   /// Definition: An indication that the patient was unable to work, the period if known otherwise a Yes/No (boolean).
-  employmentimpacted,
+  employmentimpacted('employmentimpacted'),
 
   /// Display: External Caause
   /// Definition: The external cause of an illness or injury.
-  externalcause,
+  externalcause('externalcause'),
 
   /// Display: Patient Reason for Visit
   /// Definition: The reason for the patient visit.
-  patientreasonforvisit,
+  patientreasonforvisit('patientreasonforvisit'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case info:
-        return 'info';
-      case discharge:
-        return 'discharge';
-      case onset:
-        return 'onset';
-      case related:
-        return 'related';
-      case exception:
-        return 'exception';
-      case material:
-        return 'material';
-      case attachment:
-        return 'attachment';
-      case missingtooth:
-        return 'missingtooth';
-      case prosthesis:
-        return 'prosthesis';
-      case other:
-        return 'other';
-      case hospitalized:
-        return 'hospitalized';
-      case employmentimpacted:
-        return 'employmentimpacted';
-      case externalcause:
-        return 'externalcause';
-      case patientreasonforvisit:
-        return 'patientreasonforvisit';
+  final String fhirCode;
+  final Element? element;
+
+  const ClaimInformationCategoryCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ClaimInformationCategoryCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ClaimInformationCategoryCodes.elementOnly.withElement(element);
     }
+    return ClaimInformationCategoryCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ClaimInformationCategoryCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ClaimInformationCategoryCodes] from a [String] enum.
-  static ClaimInformationCategoryCodes fromString(String str) {
-    switch (str) {
-      case 'info':
-        return ClaimInformationCategoryCodes.info;
-      case 'discharge':
-        return ClaimInformationCategoryCodes.discharge;
-      case 'onset':
-        return ClaimInformationCategoryCodes.onset;
-      case 'related':
-        return ClaimInformationCategoryCodes.related;
-      case 'exception':
-        return ClaimInformationCategoryCodes.exception;
-      case 'material':
-        return ClaimInformationCategoryCodes.material;
-      case 'attachment':
-        return ClaimInformationCategoryCodes.attachment;
-      case 'missingtooth':
-        return ClaimInformationCategoryCodes.missingtooth;
-      case 'prosthesis':
-        return ClaimInformationCategoryCodes.prosthesis;
-      case 'other':
-        return ClaimInformationCategoryCodes.other;
-      case 'hospitalized':
-        return ClaimInformationCategoryCodes.hospitalized;
-      case 'employmentimpacted':
-        return ClaimInformationCategoryCodes.employmentimpacted;
-      case 'externalcause':
-        return ClaimInformationCategoryCodes.externalcause;
-      case 'patientreasonforvisit':
-        return ClaimInformationCategoryCodes.patientreasonforvisit;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ClaimInformationCategoryCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ClaimInformationCategoryCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ClaimInformationCategoryCodes withElement(Element? newElement) {
+    return ClaimInformationCategoryCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

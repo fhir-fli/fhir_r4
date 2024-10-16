@@ -1,37 +1,41 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set contract specific codes for decision modes.
 enum ContractResourceDecisionModeCodes {
   /// Display: Policy
   /// Definition: To be completed
-  policy,
+  policy('policy'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case policy:
-        return 'policy';
+  final String fhirCode;
+  final Element? element;
+
+  const ContractResourceDecisionModeCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ContractResourceDecisionModeCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ContractResourceDecisionModeCodes.elementOnly.withElement(element);
     }
+    return ContractResourceDecisionModeCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ContractResourceDecisionModeCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ContractResourceDecisionModeCodes] from a [String] enum.
-  static ContractResourceDecisionModeCodes fromString(String str) {
-    switch (str) {
-      case 'policy':
-        return ContractResourceDecisionModeCodes.policy;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ContractResourceDecisionModeCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ContractResourceDecisionModeCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ContractResourceDecisionModeCodes withElement(Element? newElement) {
+    return ContractResourceDecisionModeCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

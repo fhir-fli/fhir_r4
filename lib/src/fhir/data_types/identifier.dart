@@ -147,30 +147,69 @@ class Identifier extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (use != null) {
-      json['use'] = use!.toJson();
+      final primitiveJson = use!.toJson();
+      json['use'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_use'] = primitiveJson['_value'];
+      }
     }
+
     if (type != null) {
-      json['type'] = type!.toJson();
+      final primitiveJson = type!.toJson();
+      json['type'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_type'] = primitiveJson['_value'];
+      }
     }
-    if (system?.value != null) {
-      json['system'] = system!.toJson();
+
+    if (system != null) {
+      final primitiveJson = system!.toJson();
+      json['system'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_system'] = primitiveJson['_value'];
+      }
     }
-    if (value?.value != null) {
-      json['value'] = value!.toJson();
+
+    if (value != null) {
+      final primitiveJson = value!.toJson();
+      json['value'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_value'] = primitiveJson['_value'];
+      }
     }
+
     if (period != null) {
-      json['period'] = period!.toJson();
+      final primitiveJson = period!.toJson();
+      json['period'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_period'] = primitiveJson['_value'];
+      }
     }
+
     if (assigner != null) {
-      json['assigner'] = assigner!.toJson();
+      final primitiveJson = assigner!.toJson();
+      json['assigner'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_assigner'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 

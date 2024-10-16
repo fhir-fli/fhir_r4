@@ -1,195 +1,141 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Real world event relating to the schedule.
 enum EventTiming {
   /// Display: Morning
   /// Definition: Event occurs during the morning. The exact time is unspecified and established by institution convention or patient interpretation.
-  MORN,
+  MORN('MORN'),
 
   /// Display: Early Morning
   /// Definition: Event occurs during the early morning. The exact time is unspecified and established by institution convention or patient interpretation.
-  MORN_early,
+  MORN_early('MORN.early'),
 
   /// Display: Late Morning
   /// Definition: Event occurs during the late morning. The exact time is unspecified and established by institution convention or patient interpretation.
-  MORN_late,
+  MORN_late('MORN.late'),
 
   /// Display: Noon
   /// Definition: Event occurs around 12:00pm. The exact time is unspecified and established by institution convention or patient interpretation.
-  NOON,
+  NOON('NOON'),
 
   /// Display: Afternoon
   /// Definition: Event occurs during the afternoon. The exact time is unspecified and established by institution convention or patient interpretation.
-  AFT,
+  AFT('AFT'),
 
   /// Display: Early Afternoon
   /// Definition: Event occurs during the early afternoon. The exact time is unspecified and established by institution convention or patient interpretation.
-  AFT_early,
+  AFT_early('AFT.early'),
 
   /// Display: Late Afternoon
   /// Definition: Event occurs during the late afternoon. The exact time is unspecified and established by institution convention or patient interpretation.
-  AFT_late,
+  AFT_late('AFT.late'),
 
   /// Display: Evening
   /// Definition: Event occurs during the evening. The exact time is unspecified and established by institution convention or patient interpretation.
-  EVE,
+  EVE('EVE'),
 
   /// Display: Early Evening
   /// Definition: Event occurs during the early evening. The exact time is unspecified and established by institution convention or patient interpretation.
-  EVE_early,
+  EVE_early('EVE.early'),
 
   /// Display: Late Evening
   /// Definition: Event occurs during the late evening. The exact time is unspecified and established by institution convention or patient interpretation.
-  EVE_late,
+  EVE_late('EVE.late'),
 
   /// Display: Night
   /// Definition: Event occurs during the night. The exact time is unspecified and established by institution convention or patient interpretation.
-  NIGHT,
+  NIGHT('NIGHT'),
 
   /// Display: After Sleep
   /// Definition: Event occurs [offset] after subject goes to sleep. The exact time is unspecified and established by institution convention or patient interpretation.
-  PHS,
-  HS,
-  WAKE,
-  C,
-  CM,
-  CD,
-  CV,
-  AC,
-  ACM,
-  ACD,
-  ACV,
-  PC,
-  PCM,
-  PCD,
-  PCV,
+  PHS('PHS'),
+
+  /// Display:
+  /// Definition:
+  HS('HS'),
+
+  /// Display:
+  /// Definition:
+  WAKE('WAKE'),
+
+  /// Display:
+  /// Definition:
+  C('C'),
+
+  /// Display:
+  /// Definition:
+  CM('CM'),
+
+  /// Display:
+  /// Definition:
+  CD('CD'),
+
+  /// Display:
+  /// Definition:
+  CV('CV'),
+
+  /// Display:
+  /// Definition:
+  AC('AC'),
+
+  /// Display:
+  /// Definition:
+  ACM('ACM'),
+
+  /// Display:
+  /// Definition:
+  ACD('ACD'),
+
+  /// Display:
+  /// Definition:
+  ACV('ACV'),
+
+  /// Display:
+  /// Definition:
+  PC('PC'),
+
+  /// Display:
+  /// Definition:
+  PCM('PCM'),
+
+  /// Display:
+  /// Definition:
+  PCD('PCD'),
+
+  /// Display:
+  /// Definition:
+  PCV('PCV'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case MORN:
-        return 'MORN';
-      case MORN_early:
-        return 'MORN.early';
-      case MORN_late:
-        return 'MORN.late';
-      case NOON:
-        return 'NOON';
-      case AFT:
-        return 'AFT';
-      case AFT_early:
-        return 'AFT.early';
-      case AFT_late:
-        return 'AFT.late';
-      case EVE:
-        return 'EVE';
-      case EVE_early:
-        return 'EVE.early';
-      case EVE_late:
-        return 'EVE.late';
-      case NIGHT:
-        return 'NIGHT';
-      case PHS:
-        return 'PHS';
-      case HS:
-        return 'HS';
-      case WAKE:
-        return 'WAKE';
-      case C:
-        return 'C';
-      case CM:
-        return 'CM';
-      case CD:
-        return 'CD';
-      case CV:
-        return 'CV';
-      case AC:
-        return 'AC';
-      case ACM:
-        return 'ACM';
-      case ACD:
-        return 'ACD';
-      case ACV:
-        return 'ACV';
-      case PC:
-        return 'PC';
-      case PCM:
-        return 'PCM';
-      case PCD:
-        return 'PCD';
-      case PCV:
-        return 'PCV';
+  final String fhirCode;
+  final Element? element;
+
+  const EventTiming(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static EventTiming fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EventTiming.elementOnly.withElement(element);
     }
+    return EventTiming.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [EventTiming] enum.
-  String toJson() => toString();
-
-  /// Returns a [EventTiming] from a [String] enum.
-  static EventTiming fromString(String str) {
-    switch (str) {
-      case 'MORN':
-        return EventTiming.MORN;
-      case 'MORN.early':
-        return EventTiming.MORN_early;
-      case 'MORN.late':
-        return EventTiming.MORN_late;
-      case 'NOON':
-        return EventTiming.NOON;
-      case 'AFT':
-        return EventTiming.AFT;
-      case 'AFT.early':
-        return EventTiming.AFT_early;
-      case 'AFT.late':
-        return EventTiming.AFT_late;
-      case 'EVE':
-        return EventTiming.EVE;
-      case 'EVE.early':
-        return EventTiming.EVE_early;
-      case 'EVE.late':
-        return EventTiming.EVE_late;
-      case 'NIGHT':
-        return EventTiming.NIGHT;
-      case 'PHS':
-        return EventTiming.PHS;
-      case 'HS':
-        return EventTiming.HS;
-      case 'WAKE':
-        return EventTiming.WAKE;
-      case 'C':
-        return EventTiming.C;
-      case 'CM':
-        return EventTiming.CM;
-      case 'CD':
-        return EventTiming.CD;
-      case 'CV':
-        return EventTiming.CV;
-      case 'AC':
-        return EventTiming.AC;
-      case 'ACM':
-        return EventTiming.ACM;
-      case 'ACD':
-        return EventTiming.ACD;
-      case 'ACV':
-        return EventTiming.ACV;
-      case 'PC':
-        return EventTiming.PC;
-      case 'PCM':
-        return EventTiming.PCM;
-      case 'PCD':
-        return EventTiming.PCD;
-      case 'PCV':
-        return EventTiming.PCV;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [EventTiming] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static EventTiming fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  EventTiming withElement(Element? newElement) {
+    return EventTiming.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

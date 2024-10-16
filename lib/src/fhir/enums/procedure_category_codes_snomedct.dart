@@ -1,65 +1,65 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Procedure Category code: A selection of relevant SNOMED CT codes.
 enum ProcedureCategoryCodesSNOMEDCT {
-  value24642003,
-  value409063005,
-  value409073007,
-  value387713003,
-  value103693007,
-  value46947000,
-  value410606002,
+  /// Display:
+  /// Definition:
+  value24642003('24642003'),
+
+  /// Display:
+  /// Definition:
+  value409063005('409063005'),
+
+  /// Display:
+  /// Definition:
+  value409073007('409073007'),
+
+  /// Display:
+  /// Definition:
+  value387713003('387713003'),
+
+  /// Display:
+  /// Definition:
+  value103693007('103693007'),
+
+  /// Display:
+  /// Definition:
+  value46947000('46947000'),
+
+  /// Display:
+  /// Definition:
+  value410606002('410606002'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case value24642003:
-        return '24642003';
-      case value409063005:
-        return '409063005';
-      case value409073007:
-        return '409073007';
-      case value387713003:
-        return '387713003';
-      case value103693007:
-        return '103693007';
-      case value46947000:
-        return '46947000';
-      case value410606002:
-        return '410606002';
+  final String fhirCode;
+  final Element? element;
+
+  const ProcedureCategoryCodesSNOMEDCT(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ProcedureCategoryCodesSNOMEDCT fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ProcedureCategoryCodesSNOMEDCT.elementOnly.withElement(element);
     }
+    return ProcedureCategoryCodesSNOMEDCT.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ProcedureCategoryCodesSNOMEDCT] enum.
-  String toJson() => toString();
-
-  /// Returns a [ProcedureCategoryCodesSNOMEDCT] from a [String] enum.
-  static ProcedureCategoryCodesSNOMEDCT fromString(String str) {
-    switch (str) {
-      case '24642003':
-        return ProcedureCategoryCodesSNOMEDCT.value24642003;
-      case '409063005':
-        return ProcedureCategoryCodesSNOMEDCT.value409063005;
-      case '409073007':
-        return ProcedureCategoryCodesSNOMEDCT.value409073007;
-      case '387713003':
-        return ProcedureCategoryCodesSNOMEDCT.value387713003;
-      case '103693007':
-        return ProcedureCategoryCodesSNOMEDCT.value103693007;
-      case '46947000':
-        return ProcedureCategoryCodesSNOMEDCT.value46947000;
-      case '410606002':
-        return ProcedureCategoryCodesSNOMEDCT.value410606002;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ProcedureCategoryCodesSNOMEDCT] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ProcedureCategoryCodesSNOMEDCT fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ProcedureCategoryCodesSNOMEDCT withElement(Element? newElement) {
+    return ProcedureCategoryCodesSNOMEDCT.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

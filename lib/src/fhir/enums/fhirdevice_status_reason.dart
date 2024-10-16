@@ -1,93 +1,69 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The availability status reason of the device.
 enum FHIRDeviceStatusReason {
   /// Display: Online
   /// Definition: The device is off.
-  online,
+  online('online'),
 
   /// Display: Paused
   /// Definition: The device is paused.
-  paused,
+  paused('paused'),
 
   /// Display: Standby
   /// Definition: The device is ready but not actively operating.
-  standby,
+  standby('standby'),
 
   /// Display: Offline
   /// Definition: The device is offline.
-  offline,
+  offline('offline'),
 
   /// Display: Not Ready
   /// Definition: The device is not ready.
-  not_ready,
+  not_ready('not-ready'),
 
   /// Display: Transducer Disconnected
   /// Definition: The device transducer is disconnected.
-  transduc_discon,
+  transduc_discon('transduc-discon'),
 
   /// Display: Hardware Disconnected
   /// Definition: The device hardware is disconnected.
-  hw_discon,
+  hw_discon('hw-discon'),
 
   /// Display: Off
   /// Definition: The device is off.
-  off,
+  off('off'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case online:
-        return 'online';
-      case paused:
-        return 'paused';
-      case standby:
-        return 'standby';
-      case offline:
-        return 'offline';
-      case not_ready:
-        return 'not-ready';
-      case transduc_discon:
-        return 'transduc-discon';
-      case hw_discon:
-        return 'hw-discon';
-      case off:
-        return 'off';
+  final String fhirCode;
+  final Element? element;
+
+  const FHIRDeviceStatusReason(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static FHIRDeviceStatusReason fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FHIRDeviceStatusReason.elementOnly.withElement(element);
     }
+    return FHIRDeviceStatusReason.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [FHIRDeviceStatusReason] enum.
-  String toJson() => toString();
-
-  /// Returns a [FHIRDeviceStatusReason] from a [String] enum.
-  static FHIRDeviceStatusReason fromString(String str) {
-    switch (str) {
-      case 'online':
-        return FHIRDeviceStatusReason.online;
-      case 'paused':
-        return FHIRDeviceStatusReason.paused;
-      case 'standby':
-        return FHIRDeviceStatusReason.standby;
-      case 'offline':
-        return FHIRDeviceStatusReason.offline;
-      case 'not-ready':
-        return FHIRDeviceStatusReason.not_ready;
-      case 'transduc-discon':
-        return FHIRDeviceStatusReason.transduc_discon;
-      case 'hw-discon':
-        return FHIRDeviceStatusReason.hw_discon;
-      case 'off':
-        return FHIRDeviceStatusReason.off;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [FHIRDeviceStatusReason] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static FHIRDeviceStatusReason fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  FHIRDeviceStatusReason withElement(Element? newElement) {
+    return FHIRDeviceStatusReason.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

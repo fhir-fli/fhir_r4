@@ -164,30 +164,69 @@ class FhirMeta extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    if (versionId?.value != null) {
-      json['versionId'] = versionId!.toJson();
+
+    if (versionId != null) {
+      final primitiveJson = versionId!.toJson();
+      json['versionId'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_versionId'] = primitiveJson['_value'];
+      }
     }
-    if (lastUpdated?.value != null) {
-      json['lastUpdated'] = lastUpdated!.toJson();
+
+    if (lastUpdated != null) {
+      final primitiveJson = lastUpdated!.toJson();
+      json['lastUpdated'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_lastUpdated'] = primitiveJson['_value'];
+      }
     }
-    if (source?.value != null) {
-      json['source'] = source!.toJson();
+
+    if (source != null) {
+      final primitiveJson = source!.toJson();
+      json['source'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_source'] = primitiveJson['_value'];
+      }
     }
+
     if (profile != null && profile!.isNotEmpty) {
-      json['profile'] = profile!.map((FhirCanonical v) => v.toJson()).toList();
+      final primitiveList = profile!.map((e) => e.toJson()).toList();
+      json['profile'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_profile'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (security != null && security!.isNotEmpty) {
-      json['security'] = security!.map((Coding v) => v.toJson()).toList();
+      final primitiveList = security!.map((e) => e.toJson()).toList();
+      json['security'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_security'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (tag != null && tag!.isNotEmpty) {
-      json['tag'] = tag!.map((Coding v) => v.toJson()).toList();
+      final primitiveList = tag!.map((e) => e.toJson()).toList();
+      json['tag'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_tag'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     return json;
   }
 

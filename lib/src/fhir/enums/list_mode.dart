@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The processing mode that applies to this list.
 enum ListMode {
   /// Display: Working List
   /// Definition: This list is the master list, maintained in an ongoing fashion with regular updates as the real world list it is tracking changes.
-  working,
+  working('working'),
 
   /// Display: Snapshot List
   /// Definition: This list was prepared as a snapshot. It should not be assumed to be current.
-  snapshot,
+  snapshot('snapshot'),
 
   /// Display: Change List
-  /// Definition: A point-in-time list that shows what changes have been made or recommended.  E.g. a discharge medication list showing what was added and removed during an encounter.
-  changes,
+  /// Definition: A point-in-time list that shows what changes have been made or recommended. E.g. a discharge medication list showing what was added and removed during an encounter.
+  changes('changes'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case working:
-        return 'working';
-      case snapshot:
-        return 'snapshot';
-      case changes:
-        return 'changes';
+  final String fhirCode;
+  final Element? element;
+
+  const ListMode(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ListMode fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ListMode.elementOnly.withElement(element);
     }
+    return ListMode.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ListMode] enum.
-  String toJson() => toString();
-
-  /// Returns a [ListMode] from a [String] enum.
-  static ListMode fromString(String str) {
-    switch (str) {
-      case 'working':
-        return ListMode.working;
-      case 'snapshot':
-        return ListMode.snapshot;
-      case 'changes':
-        return ListMode.changes;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ListMode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ListMode fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ListMode withElement(Element? newElement) {
+    return ListMode.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Which type a compartment definition describes.
 enum CompartmentType {
   /// Display: Patient
   /// Definition: The compartment definition is for the patient compartment.
-  Patient,
+  Patient('Patient'),
 
   /// Display: Encounter
   /// Definition: The compartment definition is for the encounter compartment.
-  Encounter,
+  Encounter('Encounter'),
 
   /// Display: RelatedPerson
   /// Definition: The compartment definition is for the related-person compartment.
-  RelatedPerson,
+  RelatedPerson('RelatedPerson'),
 
   /// Display: Practitioner
   /// Definition: The compartment definition is for the practitioner compartment.
-  Practitioner,
+  Practitioner('Practitioner'),
 
   /// Display: Device
   /// Definition: The compartment definition is for the device compartment.
-  Device,
+  Device('Device'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case Patient:
-        return 'Patient';
-      case Encounter:
-        return 'Encounter';
-      case RelatedPerson:
-        return 'RelatedPerson';
-      case Practitioner:
-        return 'Practitioner';
-      case Device:
-        return 'Device';
+  final String fhirCode;
+  final Element? element;
+
+  const CompartmentType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static CompartmentType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CompartmentType.elementOnly.withElement(element);
     }
+    return CompartmentType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [CompartmentType] enum.
-  String toJson() => toString();
-
-  /// Returns a [CompartmentType] from a [String] enum.
-  static CompartmentType fromString(String str) {
-    switch (str) {
-      case 'Patient':
-        return CompartmentType.Patient;
-      case 'Encounter':
-        return CompartmentType.Encounter;
-      case 'RelatedPerson':
-        return CompartmentType.RelatedPerson;
-      case 'Practitioner':
-        return CompartmentType.Practitioner;
-      case 'Device':
-        return CompartmentType.Device;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [CompartmentType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static CompartmentType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  CompartmentType withElement(Element? newElement) {
+    return CompartmentType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

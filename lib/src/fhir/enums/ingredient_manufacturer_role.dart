@@ -1,50 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The way in which this manufacturer is associated with the ingredient. For example whether it is a possible one (others allowed), or an exclusive authorized one for this ingredient. Note that this is not the manufacturing process role.
 enum IngredientManufacturerRole {
   /// Display: Manufacturer is specifically allowed for this ingredient
-  allowed,
+  /// Definition:
+  allowed('allowed'),
 
   /// Display: Manufacturer is known to make this ingredient in general
-  possible,
+  /// Definition:
+  possible('possible'),
 
   /// Display: Manufacturer actually makes this particular ingredient
-  actual,
+  /// Definition:
+  actual('actual'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case allowed:
-        return 'allowed';
-      case possible:
-        return 'possible';
-      case actual:
-        return 'actual';
+  final String fhirCode;
+  final Element? element;
+
+  const IngredientManufacturerRole(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static IngredientManufacturerRole fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return IngredientManufacturerRole.elementOnly.withElement(element);
     }
+    return IngredientManufacturerRole.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [IngredientManufacturerRole] enum.
-  String toJson() => toString();
-
-  /// Returns a [IngredientManufacturerRole] from a [String] enum.
-  static IngredientManufacturerRole fromString(String str) {
-    switch (str) {
-      case 'allowed':
-        return IngredientManufacturerRole.allowed;
-      case 'possible':
-        return IngredientManufacturerRole.possible;
-      case 'actual':
-        return IngredientManufacturerRole.actual;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [IngredientManufacturerRole] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static IngredientManufacturerRole fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  IngredientManufacturerRole withElement(Element? newElement) {
+    return IngredientManufacturerRole.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

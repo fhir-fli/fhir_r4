@@ -1,101 +1,73 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The type of process where the audit event originated from.
 enum AuditEventSourceType {
   /// Display: User Device
   /// Definition: End-user display device, diagnostic device.
-  value1,
+  value1('1'),
 
   /// Display: Data Interface
   /// Definition: Data acquisition device or instrument.
-  value2,
+  value2('2'),
 
   /// Display: Web Server
   /// Definition: Web Server process or thread.
-  value3,
+  value3('3'),
 
   /// Display: Application Server
   /// Definition: Application Server process or thread.
-  value4,
+  value4('4'),
 
   /// Display: Database Server
   /// Definition: Database Server process or thread.
-  value5,
+  value5('5'),
 
   /// Display: Security Server
   /// Definition: Security server, e.g. a domain controller.
-  value6,
+  value6('6'),
 
   /// Display: Network Device
   /// Definition: ISO level 1-3 network component.
-  value7,
+  value7('7'),
 
   /// Display: Network Router
   /// Definition: ISO level 4-6 operating software.
-  value8,
+  value8('8'),
 
   /// Display: Other
   /// Definition: Other kind of device (defined by DICOM, but some other code/system can be used).
-  value9,
+  value9('9'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case value1:
-        return '1';
-      case value2:
-        return '2';
-      case value3:
-        return '3';
-      case value4:
-        return '4';
-      case value5:
-        return '5';
-      case value6:
-        return '6';
-      case value7:
-        return '7';
-      case value8:
-        return '8';
-      case value9:
-        return '9';
+  final String fhirCode;
+  final Element? element;
+
+  const AuditEventSourceType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static AuditEventSourceType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AuditEventSourceType.elementOnly.withElement(element);
     }
+    return AuditEventSourceType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [AuditEventSourceType] enum.
-  String toJson() => toString();
-
-  /// Returns a [AuditEventSourceType] from a [String] enum.
-  static AuditEventSourceType fromString(String str) {
-    switch (str) {
-      case '1':
-        return AuditEventSourceType.value1;
-      case '2':
-        return AuditEventSourceType.value2;
-      case '3':
-        return AuditEventSourceType.value3;
-      case '4':
-        return AuditEventSourceType.value4;
-      case '5':
-        return AuditEventSourceType.value5;
-      case '6':
-        return AuditEventSourceType.value6;
-      case '7':
-        return AuditEventSourceType.value7;
-      case '8':
-        return AuditEventSourceType.value8;
-      case '9':
-        return AuditEventSourceType.value9;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [AuditEventSourceType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static AuditEventSourceType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  AuditEventSourceType withElement(Element? newElement) {
+    return AuditEventSourceType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

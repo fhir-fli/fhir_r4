@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Criterion for rejection of the specimen by laboratory.
 enum RejectionCriterion {
   /// Display: hemolized specimen
   /// Definition: blood specimen hemolized.
-  hemolized,
+  hemolized('hemolized'),
 
   /// Display: insufficient specimen volume
   /// Definition: insufficient quantity of specimen.
-  insufficient,
+  insufficient('insufficient'),
 
   /// Display: broken specimen container
   /// Definition: specimen container broken.
-  broken,
+  broken('broken'),
 
   /// Display: specimen clotted
   /// Definition: specimen clotted.
-  clotted,
+  clotted('clotted'),
 
   /// Display: specimen temperature inappropriate
   /// Definition: specimen temperature inappropriate.
-  wrong_temperature,
+  wrong_temperature('wrong-temperature'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case hemolized:
-        return 'hemolized';
-      case insufficient:
-        return 'insufficient';
-      case broken:
-        return 'broken';
-      case clotted:
-        return 'clotted';
-      case wrong_temperature:
-        return 'wrong-temperature';
+  final String fhirCode;
+  final Element? element;
+
+  const RejectionCriterion(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static RejectionCriterion fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return RejectionCriterion.elementOnly.withElement(element);
     }
+    return RejectionCriterion.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [RejectionCriterion] enum.
-  String toJson() => toString();
-
-  /// Returns a [RejectionCriterion] from a [String] enum.
-  static RejectionCriterion fromString(String str) {
-    switch (str) {
-      case 'hemolized':
-        return RejectionCriterion.hemolized;
-      case 'insufficient':
-        return RejectionCriterion.insufficient;
-      case 'broken':
-        return RejectionCriterion.broken;
-      case 'clotted':
-        return RejectionCriterion.clotted;
-      case 'wrong-temperature':
-        return RejectionCriterion.wrong_temperature;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [RejectionCriterion] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static RejectionCriterion fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  RejectionCriterion withElement(Element? newElement) {
+    return RejectionCriterion.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

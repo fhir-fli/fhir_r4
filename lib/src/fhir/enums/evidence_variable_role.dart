@@ -1,77 +1,61 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The role that the assertion variable plays.
 enum EvidenceVariableRole {
   /// Display: population
   /// Definition: variable represents a population.
-  population,
+  population('population'),
 
   /// Display: subpopulation
   /// Definition: variable represents a subpopulation.
-  subpopulation,
+  subpopulation('subpopulation'),
 
   /// Display: exposure
   /// Definition: variable represents an exposure.
-  exposure,
+  exposure('exposure'),
 
   /// Display: reference exposure
   /// Definition: variable represents a reference exposure.
-  referenceExposure,
+  referenceExposure('referenceExposure'),
 
   /// Display: measured variable
   /// Definition: variable represents a measured variable.
-  measuredVariable,
+  measuredVariable('measuredVariable'),
 
   /// Display: confounder
   /// Definition: variable represents a confounder.
-  confounder,
+  confounder('confounder'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case population:
-        return 'population';
-      case subpopulation:
-        return 'subpopulation';
-      case exposure:
-        return 'exposure';
-      case referenceExposure:
-        return 'referenceExposure';
-      case measuredVariable:
-        return 'measuredVariable';
-      case confounder:
-        return 'confounder';
+  final String fhirCode;
+  final Element? element;
+
+  const EvidenceVariableRole(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static EvidenceVariableRole fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EvidenceVariableRole.elementOnly.withElement(element);
     }
+    return EvidenceVariableRole.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [EvidenceVariableRole] enum.
-  String toJson() => toString();
-
-  /// Returns a [EvidenceVariableRole] from a [String] enum.
-  static EvidenceVariableRole fromString(String str) {
-    switch (str) {
-      case 'population':
-        return EvidenceVariableRole.population;
-      case 'subpopulation':
-        return EvidenceVariableRole.subpopulation;
-      case 'exposure':
-        return EvidenceVariableRole.exposure;
-      case 'referenceExposure':
-        return EvidenceVariableRole.referenceExposure;
-      case 'measuredVariable':
-        return EvidenceVariableRole.measuredVariable;
-      case 'confounder':
-        return EvidenceVariableRole.confounder;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [EvidenceVariableRole] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static EvidenceVariableRole fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  EvidenceVariableRole withElement(Element? newElement) {
+    return EvidenceVariableRole.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

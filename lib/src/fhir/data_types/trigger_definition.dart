@@ -173,34 +173,85 @@ class TriggerDefinition extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['type'] = type.toJson();
-    if (name?.value != null) {
-      json['name'] = name!.toJson();
+
+    if (type != null) {
+      final primitiveJson = type!.toJson();
+      json['type'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_type'] = primitiveJson['_value'];
+      }
     }
+
+    if (name != null) {
+      final primitiveJson = name!.toJson();
+      json['name'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_name'] = primitiveJson['_value'];
+      }
+    }
+
     if (timingTiming != null) {
-      json['timingTiming'] = timingTiming!.toJson();
+      final primitiveJson = timingTiming!.toJson();
+      json['timingTiming'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_timingTiming'] = primitiveJson['_value'];
+      }
     }
+
     if (timingReference != null) {
-      json['timingReference'] = timingReference!.toJson();
+      final primitiveJson = timingReference!.toJson();
+      json['timingReference'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_timingReference'] = primitiveJson['_value'];
+      }
     }
-    if (timingDate?.value != null) {
-      json['timingDate'] = timingDate!.toJson();
+
+    if (timingDate != null) {
+      final primitiveJson = timingDate!.toJson();
+      json['timingDate'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_timingDate'] = primitiveJson['_value'];
+      }
     }
-    if (timingDateTime?.value != null) {
-      json['timingDateTime'] = timingDateTime!.toJson();
+
+    if (timingDateTime != null) {
+      final primitiveJson = timingDateTime!.toJson();
+      json['timingDateTime'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_timingDateTime'] = primitiveJson['_value'];
+      }
     }
+
     if (data != null && data!.isNotEmpty) {
-      json['data'] = data!.map((DataRequirement v) => v.toJson()).toList();
+      final primitiveList = data!.map((e) => e.toJson()).toList();
+      json['data'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_data'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (condition != null) {
-      json['condition'] = condition!.toJson();
+      final primitiveJson = condition!.toJson();
+      json['condition'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_condition'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 

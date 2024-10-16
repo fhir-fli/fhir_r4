@@ -1,61 +1,53 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// How a resource reference is interpreted when testing consent restrictions.
 enum ConsentDataMeaning {
   /// Display: Instance
   /// Definition: The consent applies directly to the instance of the resource.
-  instance,
+  instance('instance'),
 
   /// Display: Related
   /// Definition: The consent applies directly to the instance of the resource and instances it refers to.
-  related,
+  related('related'),
 
   /// Display: Dependents
   /// Definition: The consent applies directly to the instance of the resource and instances that refer to it.
-  dependents,
+  dependents('dependents'),
 
   /// Display: AuthoredBy
   /// Definition: The consent applies to instances of resources that are authored by.
-  authoredby,
+  authoredby('authoredby'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case instance:
-        return 'instance';
-      case related:
-        return 'related';
-      case dependents:
-        return 'dependents';
-      case authoredby:
-        return 'authoredby';
+  final String fhirCode;
+  final Element? element;
+
+  const ConsentDataMeaning(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ConsentDataMeaning fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConsentDataMeaning.elementOnly.withElement(element);
     }
+    return ConsentDataMeaning.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ConsentDataMeaning] enum.
-  String toJson() => toString();
-
-  /// Returns a [ConsentDataMeaning] from a [String] enum.
-  static ConsentDataMeaning fromString(String str) {
-    switch (str) {
-      case 'instance':
-        return ConsentDataMeaning.instance;
-      case 'related':
-        return ConsentDataMeaning.related;
-      case 'dependents':
-        return ConsentDataMeaning.dependents;
-      case 'authoredby':
-        return ConsentDataMeaning.authoredby;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ConsentDataMeaning] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ConsentDataMeaning fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ConsentDataMeaning withElement(Element? newElement) {
+    return ConsentDataMeaning.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

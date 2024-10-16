@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set includes sample funds reservation type codes.
 enum FundsReservationCodes {
   /// Display: Patient
   /// Definition: The payor is requested to reserve funds for the provision of the named services by any provider for settlement of future claims related to this request.
-  patient,
+  patient('patient'),
 
   /// Display: Provider
   /// Definition: The payor is requested to reserve funds solely for the named provider for settlement of future claims related to this request.
-  provider,
+  provider('provider'),
 
   /// Display: None
   /// Definition: The payor is not being requested to reserve any funds for the settlement of future claims.
-  none,
+  none('none'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case patient:
-        return 'patient';
-      case provider:
-        return 'provider';
-      case none:
-        return 'none';
+  final String fhirCode;
+  final Element? element;
+
+  const FundsReservationCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static FundsReservationCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FundsReservationCodes.elementOnly.withElement(element);
     }
+    return FundsReservationCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [FundsReservationCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [FundsReservationCodes] from a [String] enum.
-  static FundsReservationCodes fromString(String str) {
-    switch (str) {
-      case 'patient':
-        return FundsReservationCodes.patient;
-      case 'provider':
-        return FundsReservationCodes.provider;
-      case 'none':
-        return FundsReservationCodes.none;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [FundsReservationCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static FundsReservationCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  FundsReservationCodes withElement(Element? newElement) {
+    return FundsReservationCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

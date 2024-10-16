@@ -1,77 +1,61 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Codes for the reason why a communication did not happen.
 enum CommunicationNotDoneReason {
   /// Display: Unknown
   /// Definition: The communication was not done due to an unknown reason.
-  unknown,
+  unknown('unknown'),
 
   /// Display: System Error
   /// Definition: The communication was not done due to a system error.
-  system_error,
+  system_error('system-error'),
 
   /// Display: Invalid Phone Number
   /// Definition: The communication was not done due to an invalid phone number.
-  invalid_phone_number,
+  invalid_phone_number('invalid-phone-number'),
 
   /// Display: Recipient Unavailable
   /// Definition: The communication was not done due to the recipient being unavailable.
-  recipient_unavailable,
+  recipient_unavailable('recipient-unavailable'),
 
   /// Display: Family Objection
   /// Definition: The communication was not done due to a family objection.
-  family_objection,
+  family_objection('family-objection'),
 
   /// Display: Patient Objection
   /// Definition: The communication was not done due to a patient objection.
-  patient_objection,
+  patient_objection('patient-objection'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case unknown:
-        return 'unknown';
-      case system_error:
-        return 'system-error';
-      case invalid_phone_number:
-        return 'invalid-phone-number';
-      case recipient_unavailable:
-        return 'recipient-unavailable';
-      case family_objection:
-        return 'family-objection';
-      case patient_objection:
-        return 'patient-objection';
+  final String fhirCode;
+  final Element? element;
+
+  const CommunicationNotDoneReason(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static CommunicationNotDoneReason fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CommunicationNotDoneReason.elementOnly.withElement(element);
     }
+    return CommunicationNotDoneReason.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [CommunicationNotDoneReason] enum.
-  String toJson() => toString();
-
-  /// Returns a [CommunicationNotDoneReason] from a [String] enum.
-  static CommunicationNotDoneReason fromString(String str) {
-    switch (str) {
-      case 'unknown':
-        return CommunicationNotDoneReason.unknown;
-      case 'system-error':
-        return CommunicationNotDoneReason.system_error;
-      case 'invalid-phone-number':
-        return CommunicationNotDoneReason.invalid_phone_number;
-      case 'recipient-unavailable':
-        return CommunicationNotDoneReason.recipient_unavailable;
-      case 'family-objection':
-        return CommunicationNotDoneReason.family_objection;
-      case 'patient-objection':
-        return CommunicationNotDoneReason.patient_objection;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [CommunicationNotDoneReason] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static CommunicationNotDoneReason fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  CommunicationNotDoneReason withElement(Element? newElement) {
+    return CommunicationNotDoneReason.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

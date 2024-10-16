@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The current status of the test report.
 enum TestReportStatus {
   /// Display: Completed
   /// Definition: All test operations have completed.
-  completed,
+  completed('completed'),
 
   /// Display: In Progress
   /// Definition: A test operations is currently executing.
-  in_progress,
+  in_progress('in-progress'),
 
   /// Display: Waiting
   /// Definition: A test operation is waiting for an external client request.
-  waiting,
+  waiting('waiting'),
 
   /// Display: Stopped
   /// Definition: The test script execution was manually stopped.
-  stopped,
+  stopped('stopped'),
 
   /// Display: Entered In Error
   /// Definition: This test report was entered or created in error.
-  entered_in_error,
+  entered_in_error('entered-in-error'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case completed:
-        return 'completed';
-      case in_progress:
-        return 'in-progress';
-      case waiting:
-        return 'waiting';
-      case stopped:
-        return 'stopped';
-      case entered_in_error:
-        return 'entered-in-error';
+  final String fhirCode;
+  final Element? element;
+
+  const TestReportStatus(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static TestReportStatus fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TestReportStatus.elementOnly.withElement(element);
     }
+    return TestReportStatus.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [TestReportStatus] enum.
-  String toJson() => toString();
-
-  /// Returns a [TestReportStatus] from a [String] enum.
-  static TestReportStatus fromString(String str) {
-    switch (str) {
-      case 'completed':
-        return TestReportStatus.completed;
-      case 'in-progress':
-        return TestReportStatus.in_progress;
-      case 'waiting':
-        return TestReportStatus.waiting;
-      case 'stopped':
-        return TestReportStatus.stopped;
-      case 'entered-in-error':
-        return TestReportStatus.entered_in_error;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [TestReportStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static TestReportStatus fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  TestReportStatus withElement(Element? newElement) {
+    return TestReportStatus.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

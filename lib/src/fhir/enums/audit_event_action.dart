@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Indicator for type of action performed during the event that generated the event.
 enum AuditEventAction {
   /// Display: Create
   /// Definition: Create a new database object, such as placing an order.
-  C,
+  C('C'),
 
   /// Display: Read/View/Print
   /// Definition: Display or print data, such as a doctor census.
-  R,
+  R('R'),
 
   /// Display: Update
   /// Definition: Update data, such as revise patient information.
-  U,
+  U('U'),
 
   /// Display: Delete
   /// Definition: Delete items, such as a doctor master file record.
-  D,
+  D('D'),
 
   /// Display: Execute
   /// Definition: Perform a system or application function such as log-on, program execution or use of an object's method, or perform a query/search operation.
-  E,
+  E('E'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case C:
-        return 'C';
-      case R:
-        return 'R';
-      case U:
-        return 'U';
-      case D:
-        return 'D';
-      case E:
-        return 'E';
+  final String fhirCode;
+  final Element? element;
+
+  const AuditEventAction(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static AuditEventAction fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AuditEventAction.elementOnly.withElement(element);
     }
+    return AuditEventAction.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [AuditEventAction] enum.
-  String toJson() => toString();
-
-  /// Returns a [AuditEventAction] from a [String] enum.
-  static AuditEventAction fromString(String str) {
-    switch (str) {
-      case 'C':
-        return AuditEventAction.C;
-      case 'R':
-        return AuditEventAction.R;
-      case 'U':
-        return AuditEventAction.U;
-      case 'D':
-        return AuditEventAction.D;
-      case 'E':
-        return AuditEventAction.E;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [AuditEventAction] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static AuditEventAction fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  AuditEventAction withElement(Element? newElement) {
+    return AuditEventAction.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

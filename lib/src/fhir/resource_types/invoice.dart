@@ -307,77 +307,190 @@ class Invoice extends DomainResource {
     final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (meta != null) {
-      json['meta'] = meta!.toJson();
+      final primitiveJson = meta!.toJson();
+      json['meta'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_meta'] = primitiveJson['_value'];
+      }
     }
-    if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.toJson();
+
+    if (implicitRules != null) {
+      final primitiveJson = implicitRules!.toJson();
+      json['implicitRules'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_implicitRules'] = primitiveJson['_value'];
+      }
     }
+
     if (language != null) {
-      json['language'] = language!.toJson();
+      final primitiveJson = language!.toJson();
+      json['language'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_language'] = primitiveJson['_value'];
+      }
     }
+
     if (text != null) {
-      json['text'] = text!.toJson();
+      final primitiveJson = text!.toJson();
+      json['text'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_text'] = primitiveJson['_value'];
+      }
     }
+
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
+      final primitiveList = contained!.map((e) => e.toJson()).toList();
+      json['contained'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_contained'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (identifier != null && identifier!.isNotEmpty) {
-      json['identifier'] =
-          identifier!.map((Identifier v) => v.toJson()).toList();
+      final primitiveList = identifier!.map((e) => e.toJson()).toList();
+      json['identifier'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_identifier'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['status'] = status.toJson();
-    if (cancelledReason?.value != null) {
-      json['cancelledReason'] = cancelledReason!.toJson();
+
+    if (status != null) {
+      final primitiveJson = status!.toJson();
+      json['status'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_status'] = primitiveJson['_value'];
+      }
     }
+
+    if (cancelledReason != null) {
+      final primitiveJson = cancelledReason!.toJson();
+      json['cancelledReason'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_cancelledReason'] = primitiveJson['_value'];
+      }
+    }
+
     if (type != null) {
-      json['type'] = type!.toJson();
+      final primitiveJson = type!.toJson();
+      json['type'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_type'] = primitiveJson['_value'];
+      }
     }
+
     if (subject != null) {
-      json['subject'] = subject!.toJson();
+      final primitiveJson = subject!.toJson();
+      json['subject'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_subject'] = primitiveJson['_value'];
+      }
     }
+
     if (recipient != null) {
-      json['recipient'] = recipient!.toJson();
+      final primitiveJson = recipient!.toJson();
+      json['recipient'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_recipient'] = primitiveJson['_value'];
+      }
     }
-    if (date?.value != null) {
-      json['date'] = date!.toJson();
+
+    if (date != null) {
+      final primitiveJson = date!.toJson();
+      json['date'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_date'] = primitiveJson['_value'];
+      }
     }
+
     if (participant != null && participant!.isNotEmpty) {
-      json['participant'] =
-          participant!.map((InvoiceParticipant v) => v.toJson()).toList();
+      final primitiveList = participant!.map((e) => e.toJson()).toList();
+      json['participant'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_participant'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (issuer != null) {
-      json['issuer'] = issuer!.toJson();
+      final primitiveJson = issuer!.toJson();
+      json['issuer'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_issuer'] = primitiveJson['_value'];
+      }
     }
+
     if (account != null) {
-      json['account'] = account!.toJson();
+      final primitiveJson = account!.toJson();
+      json['account'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_account'] = primitiveJson['_value'];
+      }
     }
+
     if (lineItem != null && lineItem!.isNotEmpty) {
-      json['lineItem'] =
-          lineItem!.map((InvoiceLineItem v) => v.toJson()).toList();
+      final primitiveList = lineItem!.map((e) => e.toJson()).toList();
+      json['lineItem'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_lineItem'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (totalNet != null) {
-      json['totalNet'] = totalNet!.toJson();
+      final primitiveJson = totalNet!.toJson();
+      json['totalNet'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_totalNet'] = primitiveJson['_value'];
+      }
     }
+
     if (totalGross != null) {
-      json['totalGross'] = totalGross!.toJson();
+      final primitiveJson = totalGross!.toJson();
+      json['totalGross'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_totalGross'] = primitiveJson['_value'];
+      }
     }
-    if (paymentTerms?.value != null) {
-      json['paymentTerms'] = paymentTerms!.toJson();
+
+    if (paymentTerms != null) {
+      final primitiveJson = paymentTerms!.toJson();
+      json['paymentTerms'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_paymentTerms'] = primitiveJson['_value'];
+      }
     }
+
     if (note != null && note!.isNotEmpty) {
-      json['note'] = note!.map((Annotation v) => v.toJson()).toList();
+      final primitiveList = note!.map((e) => e.toJson()).toList();
+      json['note'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_note'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     return json;
   }
 
@@ -558,20 +671,46 @@ class InvoiceParticipant extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (role != null) {
-      json['role'] = role!.toJson();
+      final primitiveJson = role!.toJson();
+      json['role'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_role'] = primitiveJson['_value'];
+      }
     }
-    json['actor'] = actor.toJson();
+
+    if (actor != null) {
+      final primitiveJson = actor!.toJson();
+      json['actor'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_actor'] = primitiveJson['_value'];
+      }
+    }
+
     return json;
   }
 
@@ -753,29 +892,63 @@ class InvoiceLineItem extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    if (sequence?.value != null) {
-      json['sequence'] = sequence!.toJson();
+
+    if (sequence != null) {
+      final primitiveJson = sequence!.toJson();
+      json['sequence'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_sequence'] = primitiveJson['_value'];
+      }
     }
+
     if (chargeItemReference != null) {
-      json['chargeItemReference'] = chargeItemReference!.toJson();
+      final primitiveJson = chargeItemReference!.toJson();
+      json['chargeItemReference'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_chargeItemReference'] = primitiveJson['_value'];
+      }
     }
+
     if (chargeItemCodeableConcept != null) {
-      json['chargeItemCodeableConcept'] = chargeItemCodeableConcept!.toJson();
+      final primitiveJson = chargeItemCodeableConcept!.toJson();
+      json['chargeItemCodeableConcept'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_chargeItemCodeableConcept'] = primitiveJson['_value'];
+      }
     }
+
     if (priceComponent != null && priceComponent!.isNotEmpty) {
-      json['priceComponent'] =
-          priceComponent!.map((InvoicePriceComponent v) => v.toJson()).toList();
+      final primitiveList = priceComponent!.map((e) => e.toJson()).toList();
+      json['priceComponent'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_priceComponent'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     return json;
   }
 
@@ -952,26 +1125,62 @@ class InvoicePriceComponent extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['type'] = type.toJson();
+
+    if (type != null) {
+      final primitiveJson = type!.toJson();
+      json['type'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_type'] = primitiveJson['_value'];
+      }
+    }
+
     if (code != null) {
-      json['code'] = code!.toJson();
+      final primitiveJson = code!.toJson();
+      json['code'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_code'] = primitiveJson['_value'];
+      }
     }
-    if (factor?.value != null) {
-      json['factor'] = factor!.toJson();
+
+    if (factor != null) {
+      final primitiveJson = factor!.toJson();
+      json['factor'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_factor'] = primitiveJson['_value'];
+      }
     }
+
     if (amount != null) {
-      json['amount'] = amount!.toJson();
+      final primitiveJson = amount!.toJson();
+      json['amount'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_amount'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 

@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Artifact Contribution Instance Type
 enum ArtifactContributionInstanceType {
   /// Display: Reviewed
   /// Definition: Reviewed
-  reviewed,
+  reviewed('reviewed'),
 
   /// Display: Approved
   /// Definition: Approved
-  approved,
+  approved('approved'),
 
   /// Display: Edited
   /// Definition: Edited
-  edited,
+  edited('edited'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case reviewed:
-        return 'reviewed';
-      case approved:
-        return 'approved';
-      case edited:
-        return 'edited';
+  final String fhirCode;
+  final Element? element;
+
+  const ArtifactContributionInstanceType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ArtifactContributionInstanceType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ArtifactContributionInstanceType.elementOnly.withElement(element);
     }
+    return ArtifactContributionInstanceType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ArtifactContributionInstanceType] enum.
-  String toJson() => toString();
-
-  /// Returns a [ArtifactContributionInstanceType] from a [String] enum.
-  static ArtifactContributionInstanceType fromString(String str) {
-    switch (str) {
-      case 'reviewed':
-        return ArtifactContributionInstanceType.reviewed;
-      case 'approved':
-        return ArtifactContributionInstanceType.approved;
-      case 'edited':
-        return ArtifactContributionInstanceType.edited;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ArtifactContributionInstanceType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ArtifactContributionInstanceType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ArtifactContributionInstanceType withElement(Element? newElement) {
+    return ArtifactContributionInstanceType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

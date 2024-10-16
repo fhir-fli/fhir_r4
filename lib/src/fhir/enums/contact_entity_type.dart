@@ -1,77 +1,61 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This example value set defines a set of codes that can be used to indicate the purpose for which you would contact a contact party.
 enum ContactEntityType {
   /// Display: Billing
   /// Definition: Contact details for information regarding to billing/general finance enquiries.
-  BILL,
+  BILL('BILL'),
 
   /// Display: Administrative
   /// Definition: Contact details for administrative enquiries.
-  ADMIN,
+  ADMIN('ADMIN'),
 
   /// Display: Human Resource
   /// Definition: Contact details for issues related to Human Resources, such as staff matters, OH&S etc.
-  HR,
+  HR('HR'),
 
   /// Display: Payor
   /// Definition: Contact details for dealing with issues related to insurance claims/adjudication/payment.
-  PAYOR,
+  PAYOR('PAYOR'),
 
   /// Display: Patient
   /// Definition: Generic information contact for patients.
-  PATINF,
+  PATINF('PATINF'),
 
   /// Display: Press
   /// Definition: Dedicated contact point for matters relating to press enquiries.
-  PRESS,
+  PRESS('PRESS'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case BILL:
-        return 'BILL';
-      case ADMIN:
-        return 'ADMIN';
-      case HR:
-        return 'HR';
-      case PAYOR:
-        return 'PAYOR';
-      case PATINF:
-        return 'PATINF';
-      case PRESS:
-        return 'PRESS';
+  final String fhirCode;
+  final Element? element;
+
+  const ContactEntityType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ContactEntityType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ContactEntityType.elementOnly.withElement(element);
     }
+    return ContactEntityType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ContactEntityType] enum.
-  String toJson() => toString();
-
-  /// Returns a [ContactEntityType] from a [String] enum.
-  static ContactEntityType fromString(String str) {
-    switch (str) {
-      case 'BILL':
-        return ContactEntityType.BILL;
-      case 'ADMIN':
-        return ContactEntityType.ADMIN;
-      case 'HR':
-        return ContactEntityType.HR;
-      case 'PAYOR':
-        return ContactEntityType.PAYOR;
-      case 'PATINF':
-        return ContactEntityType.PATINF;
-      case 'PRESS':
-        return ContactEntityType.PRESS;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ContactEntityType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ContactEntityType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ContactEntityType withElement(Element? newElement) {
+    return ContactEntityType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

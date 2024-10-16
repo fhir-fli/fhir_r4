@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set includes sample Consent Action codes.
 enum ConsentActionCodes {
   /// Display: Collect
   /// Definition: Gather retrieved information for storage
-  collect,
+  collect('collect'),
 
   /// Display: Access
   /// Definition: Retrieval without permitting collection, use or disclosure. e.g., no screen-scraping for collection, use or disclosure (view-only access)
-  access,
+  access('access'),
 
   /// Display: Use
   /// Definition: Utilize the retrieved information
-  use,
+  use('use'),
 
   /// Display: Disclose
   /// Definition: Transfer retrieved information
-  disclose,
+  disclose('disclose'),
 
   /// Display: Access and Correct
   /// Definition: Allow retrieval of a patient's information for the purpose of update or rectify
-  correct,
+  correct('correct'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case collect:
-        return 'collect';
-      case access:
-        return 'access';
-      case use:
-        return 'use';
-      case disclose:
-        return 'disclose';
-      case correct:
-        return 'correct';
+  final String fhirCode;
+  final Element? element;
+
+  const ConsentActionCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ConsentActionCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConsentActionCodes.elementOnly.withElement(element);
     }
+    return ConsentActionCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ConsentActionCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ConsentActionCodes] from a [String] enum.
-  static ConsentActionCodes fromString(String str) {
-    switch (str) {
-      case 'collect':
-        return ConsentActionCodes.collect;
-      case 'access':
-        return ConsentActionCodes.access;
-      case 'use':
-        return ConsentActionCodes.use;
-      case 'disclose':
-        return ConsentActionCodes.disclose;
-      case 'correct':
-        return ConsentActionCodes.correct;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ConsentActionCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ConsentActionCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ConsentActionCodes withElement(Element? newElement) {
+    return ConsentActionCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

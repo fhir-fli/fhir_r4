@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// If this is the default rule set to apply for the source type, or this combination of types.
 enum StructureMapGroupTypeMode {
   /// Display: Not a Default
   /// Definition: This group is not a default group for the types.
-  none,
+  none('none'),
 
   /// Display: Default for Type Combination
   /// Definition: This group is a default mapping group for the specified types and for the primary source type.
-  types,
+  types('types'),
 
   /// Display: Default for type + combination
   /// Definition: This group is a default mapping group for the specified types.
-  type_and_types,
+  type_and_types('type-and-types'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case none:
-        return 'none';
-      case types:
-        return 'types';
-      case type_and_types:
-        return 'type-and-types';
+  final String fhirCode;
+  final Element? element;
+
+  const StructureMapGroupTypeMode(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static StructureMapGroupTypeMode fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return StructureMapGroupTypeMode.elementOnly.withElement(element);
     }
+    return StructureMapGroupTypeMode.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [StructureMapGroupTypeMode] enum.
-  String toJson() => toString();
-
-  /// Returns a [StructureMapGroupTypeMode] from a [String] enum.
-  static StructureMapGroupTypeMode fromString(String str) {
-    switch (str) {
-      case 'none':
-        return StructureMapGroupTypeMode.none;
-      case 'types':
-        return StructureMapGroupTypeMode.types;
-      case 'type-and-types':
-        return StructureMapGroupTypeMode.type_and_types;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [StructureMapGroupTypeMode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static StructureMapGroupTypeMode fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  StructureMapGroupTypeMode withElement(Element? newElement) {
+    return StructureMapGroupTypeMode.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

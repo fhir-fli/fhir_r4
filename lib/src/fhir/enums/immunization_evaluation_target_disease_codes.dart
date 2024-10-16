@@ -1,75 +1,75 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the disease that the evaluation is against. This value set is provided as a suggestive example and includes the SNOMED CT concepts from the 64572001 (Disease) hierarchy.
 enum ImmunizationEvaluationTargetDiseaseCodes {
-  value1857005,
-  value397430003,
-  value14189004,
-  value36989005,
-  value36653000,
-  value76902006,
-  value709410003,
-  value27836007,
-  value398102009,
+  /// Display:
+  /// Definition:
+  value1857005('1857005'),
+
+  /// Display:
+  /// Definition:
+  value397430003('397430003'),
+
+  /// Display:
+  /// Definition:
+  value14189004('14189004'),
+
+  /// Display:
+  /// Definition:
+  value36989005('36989005'),
+
+  /// Display:
+  /// Definition:
+  value36653000('36653000'),
+
+  /// Display:
+  /// Definition:
+  value76902006('76902006'),
+
+  /// Display:
+  /// Definition:
+  value709410003('709410003'),
+
+  /// Display:
+  /// Definition:
+  value27836007('27836007'),
+
+  /// Display:
+  /// Definition:
+  value398102009('398102009'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case value1857005:
-        return '1857005';
-      case value397430003:
-        return '397430003';
-      case value14189004:
-        return '14189004';
-      case value36989005:
-        return '36989005';
-      case value36653000:
-        return '36653000';
-      case value76902006:
-        return '76902006';
-      case value709410003:
-        return '709410003';
-      case value27836007:
-        return '27836007';
-      case value398102009:
-        return '398102009';
+  final String fhirCode;
+  final Element? element;
+
+  const ImmunizationEvaluationTargetDiseaseCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ImmunizationEvaluationTargetDiseaseCodes fromJson(
+      Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationEvaluationTargetDiseaseCodes.elementOnly
+          .withElement(element);
     }
+    return ImmunizationEvaluationTargetDiseaseCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ImmunizationEvaluationTargetDiseaseCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ImmunizationEvaluationTargetDiseaseCodes] from a [String] enum.
-  static ImmunizationEvaluationTargetDiseaseCodes fromString(String str) {
-    switch (str) {
-      case '1857005':
-        return ImmunizationEvaluationTargetDiseaseCodes.value1857005;
-      case '397430003':
-        return ImmunizationEvaluationTargetDiseaseCodes.value397430003;
-      case '14189004':
-        return ImmunizationEvaluationTargetDiseaseCodes.value14189004;
-      case '36989005':
-        return ImmunizationEvaluationTargetDiseaseCodes.value36989005;
-      case '36653000':
-        return ImmunizationEvaluationTargetDiseaseCodes.value36653000;
-      case '76902006':
-        return ImmunizationEvaluationTargetDiseaseCodes.value76902006;
-      case '709410003':
-        return ImmunizationEvaluationTargetDiseaseCodes.value709410003;
-      case '27836007':
-        return ImmunizationEvaluationTargetDiseaseCodes.value27836007;
-      case '398102009':
-        return ImmunizationEvaluationTargetDiseaseCodes.value398102009;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ImmunizationEvaluationTargetDiseaseCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ImmunizationEvaluationTargetDiseaseCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ImmunizationEvaluationTargetDiseaseCodes withElement(Element? newElement) {
+    return ImmunizationEvaluationTargetDiseaseCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

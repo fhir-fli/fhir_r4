@@ -1,61 +1,53 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The lifecycle status of an artifact.
 enum PublicationStatus {
   /// Display: Draft
   /// Definition: This resource is still under development and is not yet considered to be ready for normal use.
-  draft,
+  draft('draft'),
 
   /// Display: Active
   /// Definition: This resource is ready for normal use.
-  active,
+  active('active'),
 
   /// Display: Retired
   /// Definition: This resource has been withdrawn or superseded and should no longer be used.
-  retired,
+  retired('retired'),
 
   /// Display: Unknown
-  /// Definition: The authoring system does not know which of the status values currently applies for this resource.  Note: This concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known which one.
-  unknown,
+  /// Definition: The authoring system does not know which of the status values currently applies for this resource. Note: This concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known which one.
+  unknown('unknown'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case draft:
-        return 'draft';
-      case active:
-        return 'active';
-      case retired:
-        return 'retired';
-      case unknown:
-        return 'unknown';
+  final String fhirCode;
+  final Element? element;
+
+  const PublicationStatus(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static PublicationStatus fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return PublicationStatus.elementOnly.withElement(element);
     }
+    return PublicationStatus.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [PublicationStatus] enum.
-  String toJson() => toString();
-
-  /// Returns a [PublicationStatus] from a [String] enum.
-  static PublicationStatus fromString(String str) {
-    switch (str) {
-      case 'draft':
-        return PublicationStatus.draft;
-      case 'active':
-        return PublicationStatus.active;
-      case 'retired':
-        return PublicationStatus.retired;
-      case 'unknown':
-        return PublicationStatus.unknown;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [PublicationStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static PublicationStatus fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  PublicationStatus withElement(Element? newElement) {
+    return PublicationStatus.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

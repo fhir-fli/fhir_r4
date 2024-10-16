@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// A set of flags that defines how references are supported.
 enum ReferenceHandlingPolicy {
   /// Display: Literal References
   /// Definition: The server supports and populates Literal references (i.e. using Reference.reference) where they are known (this code does not guarantee that all references are literal; see 'enforced').
-  literal,
+  literal('literal'),
 
   /// Display: Logical References
   /// Definition: The server allows logical references (i.e. using Reference.identifier).
-  logical,
+  logical('logical'),
 
   /// Display: Resolves References
   /// Definition: The server will attempt to resolve logical references to literal references - i.e. converting Reference.identifier to Reference.reference (if resolution fails, the server may still accept resources; see logical).
-  resolves,
+  resolves('resolves'),
 
   /// Display: Reference Integrity Enforced
   /// Definition: The server enforces that references have integrity - e.g. it ensures that references can always be resolved. This is typically the case for clinical record systems, but often not the case for middleware/proxy systems.
-  enforced,
+  enforced('enforced'),
 
   /// Display: Local References Only
   /// Definition: The server does not support references that point to other servers.
-  local,
+  local('local'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case literal:
-        return 'literal';
-      case logical:
-        return 'logical';
-      case resolves:
-        return 'resolves';
-      case enforced:
-        return 'enforced';
-      case local:
-        return 'local';
+  final String fhirCode;
+  final Element? element;
+
+  const ReferenceHandlingPolicy(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ReferenceHandlingPolicy fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ReferenceHandlingPolicy.elementOnly.withElement(element);
     }
+    return ReferenceHandlingPolicy.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ReferenceHandlingPolicy] enum.
-  String toJson() => toString();
-
-  /// Returns a [ReferenceHandlingPolicy] from a [String] enum.
-  static ReferenceHandlingPolicy fromString(String str) {
-    switch (str) {
-      case 'literal':
-        return ReferenceHandlingPolicy.literal;
-      case 'logical':
-        return ReferenceHandlingPolicy.logical;
-      case 'resolves':
-        return ReferenceHandlingPolicy.resolves;
-      case 'enforced':
-        return ReferenceHandlingPolicy.enforced;
-      case 'local':
-        return ReferenceHandlingPolicy.local;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ReferenceHandlingPolicy] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ReferenceHandlingPolicy fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ReferenceHandlingPolicy withElement(Element? newElement) {
+    return ReferenceHandlingPolicy.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

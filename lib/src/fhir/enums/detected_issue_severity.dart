@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Indicates the potential degree of impact of the identified issue on the patient.
 enum DetectedIssueSeverity {
   /// Display: High
   /// Definition: Indicates the issue may be life-threatening or has the potential to cause permanent injury.
-  high,
+  high('high'),
 
   /// Display: Moderate
   /// Definition: Indicates the issue may result in noticeable adverse consequences but is unlikely to be life-threatening or cause permanent injury.
-  moderate,
+  moderate('moderate'),
 
   /// Display: Low
   /// Definition: Indicates the issue may result in some adverse consequences but is unlikely to substantially affect the situation of the subject.
-  low,
+  low('low'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case high:
-        return 'high';
-      case moderate:
-        return 'moderate';
-      case low:
-        return 'low';
+  final String fhirCode;
+  final Element? element;
+
+  const DetectedIssueSeverity(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static DetectedIssueSeverity fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DetectedIssueSeverity.elementOnly.withElement(element);
     }
+    return DetectedIssueSeverity.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [DetectedIssueSeverity] enum.
-  String toJson() => toString();
-
-  /// Returns a [DetectedIssueSeverity] from a [String] enum.
-  static DetectedIssueSeverity fromString(String str) {
-    switch (str) {
-      case 'high':
-        return DetectedIssueSeverity.high;
-      case 'moderate':
-        return DetectedIssueSeverity.moderate;
-      case 'low':
-        return DetectedIssueSeverity.low;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [DetectedIssueSeverity] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static DetectedIssueSeverity fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  DetectedIssueSeverity withElement(Element? newElement) {
+    return DetectedIssueSeverity.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

@@ -1,64 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Unified Code for Units of Measure (UCUM). This value set includes common UCUM codes for units of distance
 enum CommonUCUMCodesForDistance {
   /// Display: nanometers
-  nm,
+  /// Definition:
+  nm('nm'),
 
   /// Display: micrometers
-  um,
+  /// Definition:
+  um('um'),
 
   /// Display: millimeters
-  mm,
+  /// Definition:
+  mm('mm'),
 
   /// Display: meters
-  m,
+  /// Definition:
+  m('m'),
 
   /// Display: kilometers
-  km,
+  /// Definition:
+  km('km'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case nm:
-        return 'nm';
-      case um:
-        return 'um';
-      case mm:
-        return 'mm';
-      case m:
-        return 'm';
-      case km:
-        return 'km';
+  final String fhirCode;
+  final Element? element;
+
+  const CommonUCUMCodesForDistance(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static CommonUCUMCodesForDistance fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CommonUCUMCodesForDistance.elementOnly.withElement(element);
     }
+    return CommonUCUMCodesForDistance.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [CommonUCUMCodesForDistance] enum.
-  String toJson() => toString();
-
-  /// Returns a [CommonUCUMCodesForDistance] from a [String] enum.
-  static CommonUCUMCodesForDistance fromString(String str) {
-    switch (str) {
-      case 'nm':
-        return CommonUCUMCodesForDistance.nm;
-      case 'um':
-        return CommonUCUMCodesForDistance.um;
-      case 'mm':
-        return CommonUCUMCodesForDistance.mm;
-      case 'm':
-        return CommonUCUMCodesForDistance.m;
-      case 'km':
-        return CommonUCUMCodesForDistance.km;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [CommonUCUMCodesForDistance] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static CommonUCUMCodesForDistance fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  CommonUCUMCodesForDistance withElement(Element? newElement) {
+    return CommonUCUMCodesForDistance.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

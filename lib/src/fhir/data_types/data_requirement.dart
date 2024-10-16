@@ -202,40 +202,93 @@ class DataRequirement extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['type'] = type.toJson();
+
+    if (type != null) {
+      final primitiveJson = type!.toJson();
+      json['type'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_type'] = primitiveJson['_value'];
+      }
+    }
+
     if (profile != null && profile!.isNotEmpty) {
-      json['profile'] = profile!.map((FhirCanonical v) => v.toJson()).toList();
+      final primitiveList = profile!.map((e) => e.toJson()).toList();
+      json['profile'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_profile'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (subjectCodeableConcept != null) {
-      json['subjectCodeableConcept'] = subjectCodeableConcept!.toJson();
+      final primitiveJson = subjectCodeableConcept!.toJson();
+      json['subjectCodeableConcept'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_subjectCodeableConcept'] = primitiveJson['_value'];
+      }
     }
+
     if (subjectReference != null) {
-      json['subjectReference'] = subjectReference!.toJson();
+      final primitiveJson = subjectReference!.toJson();
+      json['subjectReference'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_subjectReference'] = primitiveJson['_value'];
+      }
     }
+
     if (mustSupport != null && mustSupport!.isNotEmpty) {
-      json['mustSupport'] =
-          mustSupport!.map((FhirString v) => v.toJson()).toList();
+      final primitiveList = mustSupport!.map((e) => e.toJson()).toList();
+      json['mustSupport'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_mustSupport'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (codeFilter != null && codeFilter!.isNotEmpty) {
-      json['codeFilter'] =
-          codeFilter!.map((DataRequirementCodeFilter v) => v.toJson()).toList();
+      final primitiveList = codeFilter!.map((e) => e.toJson()).toList();
+      json['codeFilter'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_codeFilter'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (dateFilter != null && dateFilter!.isNotEmpty) {
-      json['dateFilter'] =
-          dateFilter!.map((DataRequirementDateFilter v) => v.toJson()).toList();
+      final primitiveList = dateFilter!.map((e) => e.toJson()).toList();
+      json['dateFilter'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_dateFilter'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    if (limit?.value != null) {
-      json['limit'] = limit!.toJson();
+
+    if (limit != null) {
+      final primitiveJson = limit!.toJson();
+      json['limit'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_limit'] = primitiveJson['_value'];
+      }
     }
+
     if (sort != null && sort!.isNotEmpty) {
-      json['sort'] = sort!.map((DataRequirementSort v) => v.toJson()).toList();
+      final primitiveList = sort!.map((e) => e.toJson()).toList();
+      json['sort'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_sort'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     return json;
   }
 
@@ -429,24 +482,53 @@ class DataRequirementCodeFilter extends Element {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    if (path?.value != null) {
-      json['path'] = path!.toJson();
+
+    if (path != null) {
+      final primitiveJson = path!.toJson();
+      json['path'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_path'] = primitiveJson['_value'];
+      }
     }
-    if (searchParam?.value != null) {
-      json['searchParam'] = searchParam!.toJson();
+
+    if (searchParam != null) {
+      final primitiveJson = searchParam!.toJson();
+      json['searchParam'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_searchParam'] = primitiveJson['_value'];
+      }
     }
-    if (valueSet?.value != null) {
-      json['valueSet'] = valueSet!.toJson();
+
+    if (valueSet != null) {
+      final primitiveJson = valueSet!.toJson();
+      json['valueSet'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_valueSet'] = primitiveJson['_value'];
+      }
     }
+
     if (code != null && code!.isNotEmpty) {
-      json['code'] = code!.map((Coding v) => v.toJson()).toList();
+      final primitiveList = code!.map((e) => e.toJson()).toList();
+      json['code'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_code'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     return json;
   }
 
@@ -644,27 +726,61 @@ class DataRequirementDateFilter extends Element {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    if (path?.value != null) {
-      json['path'] = path!.toJson();
+
+    if (path != null) {
+      final primitiveJson = path!.toJson();
+      json['path'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_path'] = primitiveJson['_value'];
+      }
     }
-    if (searchParam?.value != null) {
-      json['searchParam'] = searchParam!.toJson();
+
+    if (searchParam != null) {
+      final primitiveJson = searchParam!.toJson();
+      json['searchParam'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_searchParam'] = primitiveJson['_value'];
+      }
     }
-    if (valueDateTime?.value != null) {
-      json['valueDateTime'] = valueDateTime!.toJson();
+
+    if (valueDateTime != null) {
+      final primitiveJson = valueDateTime!.toJson();
+      json['valueDateTime'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_valueDateTime'] = primitiveJson['_value'];
+      }
     }
+
     if (valuePeriod != null) {
-      json['valuePeriod'] = valuePeriod!.toJson();
+      final primitiveJson = valuePeriod!.toJson();
+      json['valuePeriod'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_valuePeriod'] = primitiveJson['_value'];
+      }
     }
+
     if (valueDuration != null) {
-      json['valueDuration'] = valueDuration!.toJson();
+      final primitiveJson = valueDuration!.toJson();
+      json['valueDuration'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_valueDuration'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 
@@ -805,14 +921,37 @@ class DataRequirementSort extends Element {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['path'] = path.toJson();
-    json['direction'] = direction.toJson();
+
+    if (path != null) {
+      final primitiveJson = path!.toJson();
+      json['path'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_path'] = primitiveJson['_value'];
+      }
+    }
+
+    if (direction != null) {
+      final primitiveJson = direction!.toJson();
+      json['direction'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_direction'] = primitiveJson['_value'];
+      }
+    }
+
     return json;
   }
 

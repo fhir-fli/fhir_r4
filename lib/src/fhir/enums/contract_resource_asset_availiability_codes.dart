@@ -1,37 +1,43 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set has asset availability codes.
 enum ContractResourceAssetAvailiabilityCodes {
   /// Display: Lease
   /// Definition: To be completed
-  lease,
+  lease('lease'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case lease:
-        return 'lease';
+  final String fhirCode;
+  final Element? element;
+
+  const ContractResourceAssetAvailiabilityCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ContractResourceAssetAvailiabilityCodes fromJson(
+      Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ContractResourceAssetAvailiabilityCodes.elementOnly
+          .withElement(element);
     }
+    return ContractResourceAssetAvailiabilityCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ContractResourceAssetAvailiabilityCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ContractResourceAssetAvailiabilityCodes] from a [String] enum.
-  static ContractResourceAssetAvailiabilityCodes fromString(String str) {
-    switch (str) {
-      case 'lease':
-        return ContractResourceAssetAvailiabilityCodes.lease;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ContractResourceAssetAvailiabilityCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ContractResourceAssetAvailiabilityCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ContractResourceAssetAvailiabilityCodes withElement(Element? newElement) {
+    return ContractResourceAssetAvailiabilityCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

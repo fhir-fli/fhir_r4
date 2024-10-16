@@ -1,85 +1,65 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The days of the week.
 enum DaysOfWeek {
   /// Display: Monday
   /// Definition: Monday.
-  mon,
+  mon('mon'),
 
   /// Display: Tuesday
   /// Definition: Tuesday.
-  tue,
+  tue('tue'),
 
   /// Display: Wednesday
   /// Definition: Wednesday.
-  wed,
+  wed('wed'),
 
   /// Display: Thursday
   /// Definition: Thursday.
-  thu,
+  thu('thu'),
 
   /// Display: Friday
   /// Definition: Friday.
-  fri,
+  fri('fri'),
 
   /// Display: Saturday
   /// Definition: Saturday.
-  sat,
+  sat('sat'),
 
   /// Display: Sunday
   /// Definition: Sunday.
-  sun,
+  sun('sun'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case mon:
-        return 'mon';
-      case tue:
-        return 'tue';
-      case wed:
-        return 'wed';
-      case thu:
-        return 'thu';
-      case fri:
-        return 'fri';
-      case sat:
-        return 'sat';
-      case sun:
-        return 'sun';
+  final String fhirCode;
+  final Element? element;
+
+  const DaysOfWeek(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static DaysOfWeek fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DaysOfWeek.elementOnly.withElement(element);
     }
+    return DaysOfWeek.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [DaysOfWeek] enum.
-  String toJson() => toString();
-
-  /// Returns a [DaysOfWeek] from a [String] enum.
-  static DaysOfWeek fromString(String str) {
-    switch (str) {
-      case 'mon':
-        return DaysOfWeek.mon;
-      case 'tue':
-        return DaysOfWeek.tue;
-      case 'wed':
-        return DaysOfWeek.wed;
-      case 'thu':
-        return DaysOfWeek.thu;
-      case 'fri':
-        return DaysOfWeek.fri;
-      case 'sat':
-        return DaysOfWeek.sat;
-      case 'sun':
-        return DaysOfWeek.sun;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [DaysOfWeek] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static DaysOfWeek fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  DaysOfWeek withElement(Element? newElement) {
+    return DaysOfWeek.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

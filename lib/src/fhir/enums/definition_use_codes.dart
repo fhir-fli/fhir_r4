@@ -1,77 +1,61 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Structure Definition Use Codes / Keywords
 enum DefinitionUseCodes {
   /// Display: FHIR Structure
   /// Definition: This structure is defined as part of the base FHIR Specification
-  fhir_structure,
+  fhir_structure('fhir-structure'),
 
   /// Display: Custom Resource
   /// Definition: This structure is intended to be treated like a FHIR resource (e.g. on the FHIR API)
-  custom_resource,
+  custom_resource('custom-resource'),
 
   /// Display: Domain Analysis Model
   /// Definition: This structure captures an analysis of a domain
-  dam,
+  dam('dam'),
 
   /// Display: Wire Format
   /// Definition: This structure represents and existing structure (e.g. CDA, HL7 v2)
-  wire_format,
+  wire_format('wire-format'),
 
   /// Display: Domain Analysis Model
   /// Definition: This structure captures an analysis of a domain
-  archetype,
+  archetype('archetype'),
 
   /// Display: Template
   /// Definition: This structure is a template (n.b: 'template' has many meanings)
-  template,
+  template('template'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case fhir_structure:
-        return 'fhir-structure';
-      case custom_resource:
-        return 'custom-resource';
-      case dam:
-        return 'dam';
-      case wire_format:
-        return 'wire-format';
-      case archetype:
-        return 'archetype';
-      case template:
-        return 'template';
+  final String fhirCode;
+  final Element? element;
+
+  const DefinitionUseCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static DefinitionUseCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DefinitionUseCodes.elementOnly.withElement(element);
     }
+    return DefinitionUseCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [DefinitionUseCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [DefinitionUseCodes] from a [String] enum.
-  static DefinitionUseCodes fromString(String str) {
-    switch (str) {
-      case 'fhir-structure':
-        return DefinitionUseCodes.fhir_structure;
-      case 'custom-resource':
-        return DefinitionUseCodes.custom_resource;
-      case 'dam':
-        return DefinitionUseCodes.dam;
-      case 'wire-format':
-        return DefinitionUseCodes.wire_format;
-      case 'archetype':
-        return DefinitionUseCodes.archetype;
-      case 'template':
-        return DefinitionUseCodes.template;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [DefinitionUseCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static DefinitionUseCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  DefinitionUseCodes withElement(Element? newElement) {
+    return DefinitionUseCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

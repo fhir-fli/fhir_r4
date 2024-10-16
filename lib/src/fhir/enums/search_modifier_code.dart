@@ -1,125 +1,85 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// A supported modifier for a search parameter.
 enum SearchModifierCode {
   /// Display: Missing
   /// Definition: The search parameter returns resources that have a value or not.
-  missing,
+  missing('missing'),
 
   /// Display: Exact
   /// Definition: The search parameter returns resources that have a value that exactly matches the supplied parameter (the whole string, including casing and accents).
-  exact,
+  exact('exact'),
 
   /// Display: Contains
   /// Definition: The search parameter returns resources that include the supplied parameter value anywhere within the field being searched.
-  contains,
+  contains('contains'),
 
   /// Display: Not
   /// Definition: The search parameter returns resources that do not contain a match.
-  not,
+  not('not'),
 
   /// Display: Text
   /// Definition: The search parameter is processed as a string that searches text associated with the code/value - either CodeableConcept.text, Coding.display, or Identifier.type.text.
-  text,
+  text('text'),
 
   /// Display: In
   /// Definition: The search parameter is a URI (relative or absolute) that identifies a value set, and the search parameter tests whether the coding is in the specified value set.
-  in_,
+  in_('in'),
 
   /// Display: Not In
   /// Definition: The search parameter is a URI (relative or absolute) that identifies a value set, and the search parameter tests whether the coding is not in the specified value set.
-  not_in,
+  not_in('not-in'),
 
   /// Display: Below
   /// Definition: The search parameter tests whether the value in a resource is subsumed by the specified value (is-a, or hierarchical relationships).
-  below,
+  below('below'),
 
   /// Display: Above
   /// Definition: The search parameter tests whether the value in a resource subsumes the specified value (is-a, or hierarchical relationships).
-  above,
+  above('above'),
 
   /// Display: Type
   /// Definition: The search parameter only applies to the Resource Type specified as a modifier (e.g. the modifier is not actually :type, but :Patient etc.).
-  type,
+  type('type'),
 
   /// Display: Identifier
   /// Definition: The search parameter applies to the identifier on the resource, not the reference.
-  identifier,
+  identifier('identifier'),
 
   /// Display: Of Type
   /// Definition: The search parameter has the format system|code|value, where the system and code refer to an Identifier.type.coding.system and .code, and match if any of the type codes match. All 3 parts must be present.
-  ofType,
+  ofType('ofType'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case missing:
-        return 'missing';
-      case exact:
-        return 'exact';
-      case contains:
-        return 'contains';
-      case not:
-        return 'not';
-      case text:
-        return 'text';
-      case in_:
-        return 'in';
-      case not_in:
-        return 'not-in';
-      case below:
-        return 'below';
-      case above:
-        return 'above';
-      case type:
-        return 'type';
-      case identifier:
-        return 'identifier';
-      case ofType:
-        return 'ofType';
+  final String fhirCode;
+  final Element? element;
+
+  const SearchModifierCode(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static SearchModifierCode fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SearchModifierCode.elementOnly.withElement(element);
     }
+    return SearchModifierCode.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [SearchModifierCode] enum.
-  String toJson() => toString();
-
-  /// Returns a [SearchModifierCode] from a [String] enum.
-  static SearchModifierCode fromString(String str) {
-    switch (str) {
-      case 'missing':
-        return SearchModifierCode.missing;
-      case 'exact':
-        return SearchModifierCode.exact;
-      case 'contains':
-        return SearchModifierCode.contains;
-      case 'not':
-        return SearchModifierCode.not;
-      case 'text':
-        return SearchModifierCode.text;
-      case 'in':
-        return SearchModifierCode.in_;
-      case 'not-in':
-        return SearchModifierCode.not_in;
-      case 'below':
-        return SearchModifierCode.below;
-      case 'above':
-        return SearchModifierCode.above;
-      case 'type':
-        return SearchModifierCode.type;
-      case 'identifier':
-        return SearchModifierCode.identifier;
-      case 'ofType':
-        return SearchModifierCode.ofType;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [SearchModifierCode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static SearchModifierCode fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  SearchModifierCode withElement(Element? newElement) {
+    return SearchModifierCode.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

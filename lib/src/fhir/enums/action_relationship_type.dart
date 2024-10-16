@@ -1,101 +1,73 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Defines the types of relationships between actions.
 enum ActionRelationshipType {
   /// Display: Before Start
   /// Definition: The action must be performed before the start of the related action.
-  before_start,
+  before_start('before-start'),
 
   /// Display: Before
   /// Definition: The action must be performed before the related action.
-  before,
+  before('before'),
 
   /// Display: Before End
   /// Definition: The action must be performed before the end of the related action.
-  before_end,
+  before_end('before-end'),
 
   /// Display: Concurrent With Start
   /// Definition: The action must be performed concurrent with the start of the related action.
-  concurrent_with_start,
+  concurrent_with_start('concurrent-with-start'),
 
   /// Display: Concurrent
   /// Definition: The action must be performed concurrent with the related action.
-  concurrent,
+  concurrent('concurrent'),
 
   /// Display: Concurrent With End
   /// Definition: The action must be performed concurrent with the end of the related action.
-  concurrent_with_end,
+  concurrent_with_end('concurrent-with-end'),
 
   /// Display: After Start
   /// Definition: The action must be performed after the start of the related action.
-  after_start,
+  after_start('after-start'),
 
   /// Display: After
   /// Definition: The action must be performed after the related action.
-  after,
+  after('after'),
 
   /// Display: After End
   /// Definition: The action must be performed after the end of the related action.
-  after_end,
+  after_end('after-end'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case before_start:
-        return 'before-start';
-      case before:
-        return 'before';
-      case before_end:
-        return 'before-end';
-      case concurrent_with_start:
-        return 'concurrent-with-start';
-      case concurrent:
-        return 'concurrent';
-      case concurrent_with_end:
-        return 'concurrent-with-end';
-      case after_start:
-        return 'after-start';
-      case after:
-        return 'after';
-      case after_end:
-        return 'after-end';
+  final String fhirCode;
+  final Element? element;
+
+  const ActionRelationshipType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ActionRelationshipType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ActionRelationshipType.elementOnly.withElement(element);
     }
+    return ActionRelationshipType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ActionRelationshipType] enum.
-  String toJson() => toString();
-
-  /// Returns a [ActionRelationshipType] from a [String] enum.
-  static ActionRelationshipType fromString(String str) {
-    switch (str) {
-      case 'before-start':
-        return ActionRelationshipType.before_start;
-      case 'before':
-        return ActionRelationshipType.before;
-      case 'before-end':
-        return ActionRelationshipType.before_end;
-      case 'concurrent-with-start':
-        return ActionRelationshipType.concurrent_with_start;
-      case 'concurrent':
-        return ActionRelationshipType.concurrent;
-      case 'concurrent-with-end':
-        return ActionRelationshipType.concurrent_with_end;
-      case 'after-start':
-        return ActionRelationshipType.after_start;
-      case 'after':
-        return ActionRelationshipType.after;
-      case 'after-end':
-        return ActionRelationshipType.after_end;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ActionRelationshipType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ActionRelationshipType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ActionRelationshipType withElement(Element? newElement) {
+    return ActionRelationshipType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

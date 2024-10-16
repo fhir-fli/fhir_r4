@@ -1,61 +1,53 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// How a compartment must be linked.
 enum GraphCompartmentRule {
   /// Display: Identical
   /// Definition: The compartment must be identical (the same literal reference).
-  identical,
+  identical('identical'),
 
   /// Display: Matching
   /// Definition: The compartment must be the same - the record must be about the same patient, but the reference may be different.
-  matching,
+  matching('matching'),
 
   /// Display: Different
   /// Definition: The compartment must be different.
-  different,
+  different('different'),
 
   /// Display: Custom
   /// Definition: The compartment rule is defined in the accompanying FHIRPath expression.
-  custom,
+  custom('custom'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case identical:
-        return 'identical';
-      case matching:
-        return 'matching';
-      case different:
-        return 'different';
-      case custom:
-        return 'custom';
+  final String fhirCode;
+  final Element? element;
+
+  const GraphCompartmentRule(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static GraphCompartmentRule fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return GraphCompartmentRule.elementOnly.withElement(element);
     }
+    return GraphCompartmentRule.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [GraphCompartmentRule] enum.
-  String toJson() => toString();
-
-  /// Returns a [GraphCompartmentRule] from a [String] enum.
-  static GraphCompartmentRule fromString(String str) {
-    switch (str) {
-      case 'identical':
-        return GraphCompartmentRule.identical;
-      case 'matching':
-        return GraphCompartmentRule.matching;
-      case 'different':
-        return GraphCompartmentRule.different;
-      case 'custom':
-        return GraphCompartmentRule.custom;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [GraphCompartmentRule] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static GraphCompartmentRule fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  GraphCompartmentRule withElement(Element? newElement) {
+    return GraphCompartmentRule.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

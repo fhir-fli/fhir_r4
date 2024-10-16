@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The purpose of the Claim: predetermination, preauthorization, claim.
 enum Use {
   /// Display: Claim
   /// Definition: The treatment is complete and this represents a Claim for the services.
-  claim,
+  claim('claim'),
 
   /// Display: Preauthorization
   /// Definition: The treatment is proposed and this represents a Pre-authorization for the services.
-  preauthorization,
+  preauthorization('preauthorization'),
 
   /// Display: Predetermination
   /// Definition: The treatment is proposed and this represents a Pre-determination for the services.
-  predetermination,
+  predetermination('predetermination'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case claim:
-        return 'claim';
-      case preauthorization:
-        return 'preauthorization';
-      case predetermination:
-        return 'predetermination';
+  final String fhirCode;
+  final Element? element;
+
+  const Use(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static Use fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return Use.elementOnly.withElement(element);
     }
+    return Use.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [Use] enum.
-  String toJson() => toString();
-
-  /// Returns a [Use] from a [String] enum.
-  static Use fromString(String str) {
-    switch (str) {
-      case 'claim':
-        return Use.claim;
-      case 'preauthorization':
-        return Use.preauthorization;
-      case 'predetermination':
-        return Use.predetermination;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [Use] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static Use fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  Use withElement(Element? newElement) {
+    return Use.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

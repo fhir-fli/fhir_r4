@@ -199,42 +199,101 @@ class Address extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (use != null) {
-      json['use'] = use!.toJson();
+      final primitiveJson = use!.toJson();
+      json['use'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_use'] = primitiveJson['_value'];
+      }
     }
+
     if (type != null) {
-      json['type'] = type!.toJson();
+      final primitiveJson = type!.toJson();
+      json['type'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_type'] = primitiveJson['_value'];
+      }
     }
-    if (text?.value != null) {
-      json['text'] = text!.toJson();
+
+    if (text != null) {
+      final primitiveJson = text!.toJson();
+      json['text'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_text'] = primitiveJson['_value'];
+      }
     }
+
     if (line != null && line!.isNotEmpty) {
-      json['line'] = line!.map((FhirString v) => v.toJson()).toList();
+      final primitiveList = line!.map((e) => e.toJson()).toList();
+      json['line'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_line'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    if (city?.value != null) {
-      json['city'] = city!.toJson();
+
+    if (city != null) {
+      final primitiveJson = city!.toJson();
+      json['city'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_city'] = primitiveJson['_value'];
+      }
     }
-    if (district?.value != null) {
-      json['district'] = district!.toJson();
+
+    if (district != null) {
+      final primitiveJson = district!.toJson();
+      json['district'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_district'] = primitiveJson['_value'];
+      }
     }
-    if (state?.value != null) {
-      json['state'] = state!.toJson();
+
+    if (state != null) {
+      final primitiveJson = state!.toJson();
+      json['state'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_state'] = primitiveJson['_value'];
+      }
     }
-    if (postalCode?.value != null) {
-      json['postalCode'] = postalCode!.toJson();
+
+    if (postalCode != null) {
+      final primitiveJson = postalCode!.toJson();
+      json['postalCode'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_postalCode'] = primitiveJson['_value'];
+      }
     }
-    if (country?.value != null) {
-      json['country'] = country!.toJson();
+
+    if (country != null) {
+      final primitiveJson = country!.toJson();
+      json['country'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_country'] = primitiveJson['_value'];
+      }
     }
+
     if (period != null) {
-      json['period'] = period!.toJson();
+      final primitiveJson = period!.toJson();
+      json['period'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_period'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 

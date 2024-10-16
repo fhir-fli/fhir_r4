@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The results of executing an action.
 enum TestReportActionResult {
   /// Display: Pass
   /// Definition: The action was successful.
-  pass,
+  pass('pass'),
 
   /// Display: Skip
   /// Definition: The action was skipped.
-  skip,
+  skip('skip'),
 
   /// Display: Fail
   /// Definition: The action failed.
-  fail,
+  fail('fail'),
 
   /// Display: Warning
   /// Definition: The action passed but with warnings.
-  warning,
+  warning('warning'),
 
   /// Display: Error
   /// Definition: The action encountered a fatal error and the engine was unable to process.
-  error,
+  error('error'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case pass:
-        return 'pass';
-      case skip:
-        return 'skip';
-      case fail:
-        return 'fail';
-      case warning:
-        return 'warning';
-      case error:
-        return 'error';
+  final String fhirCode;
+  final Element? element;
+
+  const TestReportActionResult(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static TestReportActionResult fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TestReportActionResult.elementOnly.withElement(element);
     }
+    return TestReportActionResult.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [TestReportActionResult] enum.
-  String toJson() => toString();
-
-  /// Returns a [TestReportActionResult] from a [String] enum.
-  static TestReportActionResult fromString(String str) {
-    switch (str) {
-      case 'pass':
-        return TestReportActionResult.pass;
-      case 'skip':
-        return TestReportActionResult.skip;
-      case 'fail':
-        return TestReportActionResult.fail;
-      case 'warning':
-        return TestReportActionResult.warning;
-      case 'error':
-        return TestReportActionResult.error;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [TestReportActionResult] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static TestReportActionResult fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  TestReportActionResult withElement(Element? newElement) {
+    return TestReportActionResult.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

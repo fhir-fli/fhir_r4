@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The reported execution result.
 enum TestReportResult {
   /// Display: Pass
   /// Definition: All test operations successfully passed all asserts.
-  pass,
+  pass('pass'),
 
   /// Display: Fail
   /// Definition: One or more test operations failed one or more asserts.
-  fail,
+  fail('fail'),
 
   /// Display: Pending
   /// Definition: One or more test operations is pending execution completion.
-  pending,
+  pending('pending'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case pass:
-        return 'pass';
-      case fail:
-        return 'fail';
-      case pending:
-        return 'pending';
+  final String fhirCode;
+  final Element? element;
+
+  const TestReportResult(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static TestReportResult fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TestReportResult.elementOnly.withElement(element);
     }
+    return TestReportResult.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [TestReportResult] enum.
-  String toJson() => toString();
-
-  /// Returns a [TestReportResult] from a [String] enum.
-  static TestReportResult fromString(String str) {
-    switch (str) {
-      case 'pass':
-        return TestReportResult.pass;
-      case 'fail':
-        return TestReportResult.fail;
-      case 'pending':
-        return TestReportResult.pending;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [TestReportResult] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static TestReportResult fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  TestReportResult withElement(Element? newElement) {
+    return TestReportResult.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

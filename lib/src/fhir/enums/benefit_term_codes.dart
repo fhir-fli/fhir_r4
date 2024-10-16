@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set includes a smattering of Benefit Term codes.
 enum BenefitTermCodes {
   /// Display: Annual
   /// Definition: Annual, renewing on the anniversary
-  annual,
+  annual('annual'),
 
   /// Display: Day
   /// Definition: Per day
-  day,
+  day('day'),
 
   /// Display: Lifetime
   /// Definition: For the total term, lifetime, of the policy or coverage
-  lifetime,
+  lifetime('lifetime'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case annual:
-        return 'annual';
-      case day:
-        return 'day';
-      case lifetime:
-        return 'lifetime';
+  final String fhirCode;
+  final Element? element;
+
+  const BenefitTermCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static BenefitTermCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return BenefitTermCodes.elementOnly.withElement(element);
     }
+    return BenefitTermCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [BenefitTermCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [BenefitTermCodes] from a [String] enum.
-  static BenefitTermCodes fromString(String str) {
-    switch (str) {
-      case 'annual':
-        return BenefitTermCodes.annual;
-      case 'day':
-        return BenefitTermCodes.day;
-      case 'lifetime':
-        return BenefitTermCodes.lifetime;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [BenefitTermCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static BenefitTermCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  BenefitTermCodes withElement(Element? newElement) {
+    return BenefitTermCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

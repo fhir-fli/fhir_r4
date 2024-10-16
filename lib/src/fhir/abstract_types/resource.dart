@@ -111,8 +111,7 @@ abstract class Resource extends FhirBase {
 
   /// returns the same resource with a new ID (even if there is already an ID
   /// present)
-  Resource newId() => throw UnimplementedError();
-  // _newId(this);
+  Resource newId() => resourceWithNewId(this);
 
   /// Updates the [meta] field of this Resource, updates the meta.lastUpdated
   /// field, adds 1 to the version number

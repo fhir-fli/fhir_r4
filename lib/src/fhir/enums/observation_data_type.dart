@@ -1,117 +1,81 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Permitted data type for observation value.
 enum ObservationDataType {
   /// Display: Quantity
   /// Definition: A measured amount.
-  Quantity,
+  Quantity('Quantity'),
 
   /// Display: CodeableConcept
   /// Definition: A coded concept from a reference terminology and/or text.
-  CodeableConcept,
+  CodeableConcept('CodeableConcept'),
 
   /// Display: string
   /// Definition: A sequence of Unicode characters.
-  string,
+  string('string'),
 
   /// Display: boolean
   /// Definition: true or false.
-  boolean,
+  boolean('boolean'),
 
   /// Display: integer
   /// Definition: A signed integer.
-  integer,
+  integer('integer'),
 
   /// Display: Range
   /// Definition: A set of values bounded by low and high.
-  Range,
+  Range('Range'),
 
   /// Display: Ratio
   /// Definition: A ratio of two Quantity values - a numerator and a denominator.
-  Ratio,
+  Ratio('Ratio'),
 
   /// Display: SampledData
   /// Definition: A series of measurements taken by a device.
-  SampledData,
+  SampledData('SampledData'),
 
   /// Display: time
   /// Definition: A time during the day, in the format hh:mm:ss.
-  time,
+  time('time'),
 
   /// Display: dateTime
   /// Definition: A date, date-time or partial date (e.g. just year or year + month) as used in human communication.
-  dateTime,
+  dateTime('dateTime'),
 
   /// Display: Period
   /// Definition: A time range defined by start and end date/time.
-  Period,
+  Period('Period'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case Quantity:
-        return 'Quantity';
-      case CodeableConcept:
-        return 'CodeableConcept';
-      case string:
-        return 'string';
-      case boolean:
-        return 'boolean';
-      case integer:
-        return 'integer';
-      case Range:
-        return 'Range';
-      case Ratio:
-        return 'Ratio';
-      case SampledData:
-        return 'SampledData';
-      case time:
-        return 'time';
-      case dateTime:
-        return 'dateTime';
-      case Period:
-        return 'Period';
+  final String fhirCode;
+  final Element? element;
+
+  const ObservationDataType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ObservationDataType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ObservationDataType.elementOnly.withElement(element);
     }
+    return ObservationDataType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ObservationDataType] enum.
-  String toJson() => toString();
-
-  /// Returns a [ObservationDataType] from a [String] enum.
-  static ObservationDataType fromString(String str) {
-    switch (str) {
-      case 'Quantity':
-        return ObservationDataType.Quantity;
-      case 'CodeableConcept':
-        return ObservationDataType.CodeableConcept;
-      case 'string':
-        return ObservationDataType.string;
-      case 'boolean':
-        return ObservationDataType.boolean;
-      case 'integer':
-        return ObservationDataType.integer;
-      case 'Range':
-        return ObservationDataType.Range;
-      case 'Ratio':
-        return ObservationDataType.Ratio;
-      case 'SampledData':
-        return ObservationDataType.SampledData;
-      case 'time':
-        return ObservationDataType.time;
-      case 'dateTime':
-        return ObservationDataType.dateTime;
-      case 'Period':
-        return ObservationDataType.Period;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ObservationDataType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ObservationDataType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ObservationDataType withElement(Element? newElement) {
+    return ObservationDataType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

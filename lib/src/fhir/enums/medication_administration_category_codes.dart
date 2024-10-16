@@ -1,53 +1,51 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// MedicationAdministration Category Codes
 enum MedicationAdministrationCategoryCodes {
   /// Display: Inpatient
   /// Definition: Includes administrations in an inpatient or acute care setting
-  inpatient,
+  inpatient('inpatient'),
 
   /// Display: Outpatient
   /// Definition: Includes administrations in an outpatient setting (for example, Emergency Department, Outpatient Clinic, Outpatient Surgery, Doctor's office)
-  outpatient,
+  outpatient('outpatient'),
 
   /// Display: Community
   /// Definition: Includes administrations by the patient in their home (this would include long term care or nursing homes, hospices, etc.)
-  community,
+  community('community'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case inpatient:
-        return 'inpatient';
-      case outpatient:
-        return 'outpatient';
-      case community:
-        return 'community';
+  final String fhirCode;
+  final Element? element;
+
+  const MedicationAdministrationCategoryCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static MedicationAdministrationCategoryCodes fromJson(
+      Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicationAdministrationCategoryCodes.elementOnly
+          .withElement(element);
     }
+    return MedicationAdministrationCategoryCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [MedicationAdministrationCategoryCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [MedicationAdministrationCategoryCodes] from a [String] enum.
-  static MedicationAdministrationCategoryCodes fromString(String str) {
-    switch (str) {
-      case 'inpatient':
-        return MedicationAdministrationCategoryCodes.inpatient;
-      case 'outpatient':
-        return MedicationAdministrationCategoryCodes.outpatient;
-      case 'community':
-        return MedicationAdministrationCategoryCodes.community;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [MedicationAdministrationCategoryCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static MedicationAdministrationCategoryCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  MedicationAdministrationCategoryCodes withElement(Element? newElement) {
+    return MedicationAdministrationCategoryCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

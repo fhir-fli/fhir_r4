@@ -1,50 +1,49 @@
-/// NutrientModifier :  Codes for types of nutrients that are being modified such as carbohydrate or sodium.  This value set includes codes from [SNOMED CT](http://snomed.info/sct) where concept is-a 226355009 (Nutrients(substance)), and the concepts for Sodium, Potassium and Fluid. This is provided as a suggestive example.
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// NutrientModifier : Codes for types of nutrients that are being modified such as carbohydrate or sodium. This value set includes codes from [SNOMED CT](http://snomed.info/sct) where concept is-a 226355009 (Nutrients(substance)), and the concepts for Sodium, Potassium and Fluid. This is provided as a suggestive example.
 enum NutrientModifierCodes {
   /// Display: Fluid
-  value33463005,
+  /// Definition:
+  value33463005('33463005'),
 
   /// Display: Sodium
-  value39972003,
+  /// Definition:
+  value39972003('39972003'),
 
   /// Display: Potassium
-  value88480006,
+  /// Definition:
+  value88480006('88480006'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case value33463005:
-        return '33463005';
-      case value39972003:
-        return '39972003';
-      case value88480006:
-        return '88480006';
+  final String fhirCode;
+  final Element? element;
+
+  const NutrientModifierCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static NutrientModifierCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return NutrientModifierCodes.elementOnly.withElement(element);
     }
+    return NutrientModifierCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [NutrientModifierCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [NutrientModifierCodes] from a [String] enum.
-  static NutrientModifierCodes fromString(String str) {
-    switch (str) {
-      case '33463005':
-        return NutrientModifierCodes.value33463005;
-      case '39972003':
-        return NutrientModifierCodes.value39972003;
-      case '88480006':
-        return NutrientModifierCodes.value88480006;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [NutrientModifierCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static NutrientModifierCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  NutrientModifierCodes withElement(Element? newElement) {
+    return NutrientModifierCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

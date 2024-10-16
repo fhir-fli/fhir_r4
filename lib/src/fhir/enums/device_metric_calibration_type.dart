@@ -1,61 +1,53 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Describes the type of a metric calibration.
 enum DeviceMetricCalibrationType {
   /// Display: Unspecified
   /// Definition: Metric calibration method has not been identified.
-  unspecified,
+  unspecified('unspecified'),
 
   /// Display: Offset
   /// Definition: Offset metric calibration method.
-  offset,
+  offset('offset'),
 
   /// Display: Gain
   /// Definition: Gain metric calibration method.
-  gain,
+  gain('gain'),
 
   /// Display: Two Point
   /// Definition: Two-point metric calibration method.
-  two_point,
+  two_point('two-point'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case unspecified:
-        return 'unspecified';
-      case offset:
-        return 'offset';
-      case gain:
-        return 'gain';
-      case two_point:
-        return 'two-point';
+  final String fhirCode;
+  final Element? element;
+
+  const DeviceMetricCalibrationType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static DeviceMetricCalibrationType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DeviceMetricCalibrationType.elementOnly.withElement(element);
     }
+    return DeviceMetricCalibrationType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [DeviceMetricCalibrationType] enum.
-  String toJson() => toString();
-
-  /// Returns a [DeviceMetricCalibrationType] from a [String] enum.
-  static DeviceMetricCalibrationType fromString(String str) {
-    switch (str) {
-      case 'unspecified':
-        return DeviceMetricCalibrationType.unspecified;
-      case 'offset':
-        return DeviceMetricCalibrationType.offset;
-      case 'gain':
-        return DeviceMetricCalibrationType.gain;
-      case 'two-point':
-        return DeviceMetricCalibrationType.two_point;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [DeviceMetricCalibrationType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static DeviceMetricCalibrationType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  DeviceMetricCalibrationType withElement(Element? newElement) {
+    return DeviceMetricCalibrationType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

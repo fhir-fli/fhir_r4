@@ -1,141 +1,101 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Code for a known / defined timing pattern.
 enum TimingAbbreviation {
   /// Display: BID
-  BID,
+  /// Definition:
+  BID('BID'),
 
   /// Display: TID
-  TID,
+  /// Definition:
+  TID('TID'),
 
   /// Display: QID
-  QID,
+  /// Definition:
+  QID('QID'),
 
   /// Display: AM
-  AM,
+  /// Definition:
+  AM('AM'),
 
   /// Display: PM
-  PM,
+  /// Definition:
+  PM('PM'),
 
   /// Display: QD
-  QD,
+  /// Definition:
+  QD('QD'),
 
   /// Display: QOD
-  QOD,
+  /// Definition:
+  QOD('QOD'),
 
   /// Display: every hour
-  Q1H,
+  /// Definition:
+  Q1H('Q1H'),
 
   /// Display: every 2 hours
-  Q2H,
+  /// Definition:
+  Q2H('Q2H'),
 
   /// Display: every 3 hours
-  Q3H,
+  /// Definition:
+  Q3H('Q3H'),
 
   /// Display: Q4H
-  Q4H,
+  /// Definition:
+  Q4H('Q4H'),
 
   /// Display: Q6H
-  Q6H,
+  /// Definition:
+  Q6H('Q6H'),
 
   /// Display: every 8 hours
-  Q8H,
+  /// Definition:
+  Q8H('Q8H'),
 
   /// Display: at bedtime
-  BED,
+  /// Definition:
+  BED('BED'),
 
   /// Display: weekly
-  WK,
+  /// Definition:
+  WK('WK'),
 
   /// Display: monthly
-  MO,
+  /// Definition:
+  MO('MO'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case BID:
-        return 'BID';
-      case TID:
-        return 'TID';
-      case QID:
-        return 'QID';
-      case AM:
-        return 'AM';
-      case PM:
-        return 'PM';
-      case QD:
-        return 'QD';
-      case QOD:
-        return 'QOD';
-      case Q1H:
-        return 'Q1H';
-      case Q2H:
-        return 'Q2H';
-      case Q3H:
-        return 'Q3H';
-      case Q4H:
-        return 'Q4H';
-      case Q6H:
-        return 'Q6H';
-      case Q8H:
-        return 'Q8H';
-      case BED:
-        return 'BED';
-      case WK:
-        return 'WK';
-      case MO:
-        return 'MO';
+  final String fhirCode;
+  final Element? element;
+
+  const TimingAbbreviation(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static TimingAbbreviation fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TimingAbbreviation.elementOnly.withElement(element);
     }
+    return TimingAbbreviation.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [TimingAbbreviation] enum.
-  String toJson() => toString();
-
-  /// Returns a [TimingAbbreviation] from a [String] enum.
-  static TimingAbbreviation fromString(String str) {
-    switch (str) {
-      case 'BID':
-        return TimingAbbreviation.BID;
-      case 'TID':
-        return TimingAbbreviation.TID;
-      case 'QID':
-        return TimingAbbreviation.QID;
-      case 'AM':
-        return TimingAbbreviation.AM;
-      case 'PM':
-        return TimingAbbreviation.PM;
-      case 'QD':
-        return TimingAbbreviation.QD;
-      case 'QOD':
-        return TimingAbbreviation.QOD;
-      case 'Q1H':
-        return TimingAbbreviation.Q1H;
-      case 'Q2H':
-        return TimingAbbreviation.Q2H;
-      case 'Q3H':
-        return TimingAbbreviation.Q3H;
-      case 'Q4H':
-        return TimingAbbreviation.Q4H;
-      case 'Q6H':
-        return TimingAbbreviation.Q6H;
-      case 'Q8H':
-        return TimingAbbreviation.Q8H;
-      case 'BED':
-        return TimingAbbreviation.BED;
-      case 'WK':
-        return TimingAbbreviation.WK;
-      case 'MO':
-        return TimingAbbreviation.MO;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [TimingAbbreviation] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static TimingAbbreviation fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  TimingAbbreviation withElement(Element? newElement) {
+    return TimingAbbreviation.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

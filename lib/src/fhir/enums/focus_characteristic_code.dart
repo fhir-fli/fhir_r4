@@ -1,93 +1,69 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Evidence focus characteristic code.
 enum FocusCharacteristicCode {
   /// Display: Citation
   /// Definition: Used to reference a specific article.
-  citation,
+  citation('citation'),
 
   /// Display: Observed outcomes are clinical outcomes
   /// Definition: Used to denote a focus on clinical outcomes, ie evidence variable in role of outcome (measured variable) as observed is considered a "clinical outcome" (patient-important outcome such as mortality, symptoms, function or quality of life).
-  clinical_outcomes_observed,
+  clinical_outcomes_observed('clinical-outcomes-observed'),
 
   /// Display: Population
   /// Definition: The population of interest.
-  population,
+  population('population'),
 
   /// Display: Exposure
   /// Definition: The exposure of interest, such as an intervention.
-  exposure,
+  exposure('exposure'),
 
   /// Display: Comparator
   /// Definition: The comparator (intervention or control state) of interest.
-  comparator,
+  comparator('comparator'),
 
   /// Display: Outcome
   /// Definition: the outcome of interest.
-  outcome,
+  outcome('outcome'),
 
   /// Display: Medication exposures
   /// Definition: Any medication exposures. A subset of exposures or interventions that are medications.
-  medication_exposures,
+  medication_exposures('medication-exposures'),
 
   /// Display: Study type
   /// Definition: Type of research study, such as randomized trial or case-control study.
-  study_type,
+  study_type('study-type'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case citation:
-        return 'citation';
-      case clinical_outcomes_observed:
-        return 'clinical-outcomes-observed';
-      case population:
-        return 'population';
-      case exposure:
-        return 'exposure';
-      case comparator:
-        return 'comparator';
-      case outcome:
-        return 'outcome';
-      case medication_exposures:
-        return 'medication-exposures';
-      case study_type:
-        return 'study-type';
+  final String fhirCode;
+  final Element? element;
+
+  const FocusCharacteristicCode(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static FocusCharacteristicCode fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FocusCharacteristicCode.elementOnly.withElement(element);
     }
+    return FocusCharacteristicCode.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [FocusCharacteristicCode] enum.
-  String toJson() => toString();
-
-  /// Returns a [FocusCharacteristicCode] from a [String] enum.
-  static FocusCharacteristicCode fromString(String str) {
-    switch (str) {
-      case 'citation':
-        return FocusCharacteristicCode.citation;
-      case 'clinical-outcomes-observed':
-        return FocusCharacteristicCode.clinical_outcomes_observed;
-      case 'population':
-        return FocusCharacteristicCode.population;
-      case 'exposure':
-        return FocusCharacteristicCode.exposure;
-      case 'comparator':
-        return FocusCharacteristicCode.comparator;
-      case 'outcome':
-        return FocusCharacteristicCode.outcome;
-      case 'medication-exposures':
-        return FocusCharacteristicCode.medication_exposures;
-      case 'study-type':
-        return FocusCharacteristicCode.study_type;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [FocusCharacteristicCode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static FocusCharacteristicCode fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  FocusCharacteristicCode withElement(Element? newElement) {
+    return FocusCharacteristicCode.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

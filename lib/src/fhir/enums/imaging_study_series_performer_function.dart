@@ -1,64 +1,59 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Performer function of an agent in an imaging study series
 enum ImagingStudySeriesPerformerFunction {
   /// Display: consultant
-  CON,
+  /// Definition:
+  CON('CON'),
 
   /// Display: verifier
-  VRF,
+  /// Definition:
+  VRF('VRF'),
 
   /// Display: performer
-  PRF,
+  /// Definition:
+  PRF('PRF'),
 
   /// Display: secondary performer
-  SPRF,
+  /// Definition:
+  SPRF('SPRF'),
 
   /// Display: referrer
-  REF,
+  /// Definition:
+  REF('REF'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case CON:
-        return 'CON';
-      case VRF:
-        return 'VRF';
-      case PRF:
-        return 'PRF';
-      case SPRF:
-        return 'SPRF';
-      case REF:
-        return 'REF';
+  final String fhirCode;
+  final Element? element;
+
+  const ImagingStudySeriesPerformerFunction(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ImagingStudySeriesPerformerFunction fromJson(
+      Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImagingStudySeriesPerformerFunction.elementOnly
+          .withElement(element);
     }
+    return ImagingStudySeriesPerformerFunction.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ImagingStudySeriesPerformerFunction] enum.
-  String toJson() => toString();
-
-  /// Returns a [ImagingStudySeriesPerformerFunction] from a [String] enum.
-  static ImagingStudySeriesPerformerFunction fromString(String str) {
-    switch (str) {
-      case 'CON':
-        return ImagingStudySeriesPerformerFunction.CON;
-      case 'VRF':
-        return ImagingStudySeriesPerformerFunction.VRF;
-      case 'PRF':
-        return ImagingStudySeriesPerformerFunction.PRF;
-      case 'SPRF':
-        return ImagingStudySeriesPerformerFunction.SPRF;
-      case 'REF':
-        return ImagingStudySeriesPerformerFunction.REF;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ImagingStudySeriesPerformerFunction] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ImagingStudySeriesPerformerFunction fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ImagingStudySeriesPerformerFunction withElement(Element? newElement) {
+    return ImagingStudySeriesPerformerFunction.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

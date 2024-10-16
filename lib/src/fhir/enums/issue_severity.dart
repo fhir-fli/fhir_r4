@@ -1,61 +1,53 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// How the issue affects the success of the action.
 enum IssueSeverity {
   /// Display: Fatal
   /// Definition: The issue caused the action to fail and no further checking could be performed.
-  fatal,
+  fatal('fatal'),
 
   /// Display: Error
   /// Definition: The issue is sufficiently important to cause the action to fail.
-  error,
+  error('error'),
 
   /// Display: Warning
   /// Definition: The issue is not important enough to cause the action to fail but may cause it to be performed suboptimally or in a way that is not as desired.
-  warning,
+  warning('warning'),
 
   /// Display: Information
   /// Definition: The issue has no relation to the degree of success of the action.
-  information,
+  information('information'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case fatal:
-        return 'fatal';
-      case error:
-        return 'error';
-      case warning:
-        return 'warning';
-      case information:
-        return 'information';
+  final String fhirCode;
+  final Element? element;
+
+  const IssueSeverity(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static IssueSeverity fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return IssueSeverity.elementOnly.withElement(element);
     }
+    return IssueSeverity.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [IssueSeverity] enum.
-  String toJson() => toString();
-
-  /// Returns a [IssueSeverity] from a [String] enum.
-  static IssueSeverity fromString(String str) {
-    switch (str) {
-      case 'fatal':
-        return IssueSeverity.fatal;
-      case 'error':
-        return IssueSeverity.error;
-      case 'warning':
-        return IssueSeverity.warning;
-      case 'information':
-        return IssueSeverity.information;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [IssueSeverity] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static IssueSeverity fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  IssueSeverity withElement(Element? newElement) {
+    return IssueSeverity.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

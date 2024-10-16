@@ -103,18 +103,37 @@ class CodeableReference extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (concept != null) {
-      json['concept'] = concept!.toJson();
+      final primitiveJson = concept!.toJson();
+      json['concept'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_concept'] = primitiveJson['_value'];
+      }
     }
+
     if (reference != null) {
-      json['reference'] = reference!.toJson();
+      final primitiveJson = reference!.toJson();
+      json['reference'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_reference'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 

@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The type of notification represented by the status message.
 enum SubscriptionNotificationType {
   /// Display: Handshake
   /// Definition: The status was generated as part of the setup or verification of a communications channel.
-  handshake,
+  handshake('handshake'),
 
   /// Display: Heartbeat
   /// Definition: The status was generated to perform a heartbeat notification to the subscriber.
-  heartbeat,
+  heartbeat('heartbeat'),
 
   /// Display: Event Notification
   /// Definition: The status was generated for an event to the subscriber.
-  event_notification,
+  event_notification('event-notification'),
 
   /// Display: Query Status
   /// Definition: The status was generated in response to a status query/request.
-  query_status,
+  query_status('query-status'),
 
   /// Display: Query Event
   /// Definition: The status was generated in response to an event query/request.
-  query_event,
+  query_event('query-event'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case handshake:
-        return 'handshake';
-      case heartbeat:
-        return 'heartbeat';
-      case event_notification:
-        return 'event-notification';
-      case query_status:
-        return 'query-status';
-      case query_event:
-        return 'query-event';
+  final String fhirCode;
+  final Element? element;
+
+  const SubscriptionNotificationType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static SubscriptionNotificationType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SubscriptionNotificationType.elementOnly.withElement(element);
     }
+    return SubscriptionNotificationType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [SubscriptionNotificationType] enum.
-  String toJson() => toString();
-
-  /// Returns a [SubscriptionNotificationType] from a [String] enum.
-  static SubscriptionNotificationType fromString(String str) {
-    switch (str) {
-      case 'handshake':
-        return SubscriptionNotificationType.handshake;
-      case 'heartbeat':
-        return SubscriptionNotificationType.heartbeat;
-      case 'event-notification':
-        return SubscriptionNotificationType.event_notification;
-      case 'query-status':
-        return SubscriptionNotificationType.query_status;
-      case 'query-event':
-        return SubscriptionNotificationType.query_event;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [SubscriptionNotificationType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static SubscriptionNotificationType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  SubscriptionNotificationType withElement(Element? newElement) {
+    return SubscriptionNotificationType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

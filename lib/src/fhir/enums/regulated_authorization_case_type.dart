@@ -1,183 +1,125 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The type of a case involved in an application.
 enum RegulatedAuthorizationCaseType {
   /// Display: Initial Marketing Authorisation Application
-  InitialMAA,
+  /// Definition:
+  InitialMAA('InitialMAA'),
 
   /// Display: Variation
-  Variation,
+  /// Definition:
+  Variation('Variation'),
 
   /// Display: Line Extension
-  LineExtension,
+  /// Definition:
+  LineExtension('LineExtension'),
 
   /// Display: Periodic Safety Update Report
-  PSUR,
+  /// Definition:
+  PSUR('PSUR'),
 
   /// Display: Renewal
-  Renewal,
+  /// Definition:
+  Renewal('Renewal'),
 
   /// Display: Follow-up Measure
-  Follow_up,
+  /// Definition:
+  Follow_up('Follow-up'),
 
   /// Display: Specific Obligation
-  value100000155699,
+  /// Definition:
+  value100000155699('100000155699'),
 
   /// Display: Annual Reassessment
-  AnnualReassessment,
+  /// Definition:
+  AnnualReassessment('AnnualReassessment'),
 
   /// Display: Urgent Safety Restriction
-  UrgentSafetyRestriction,
+  /// Definition:
+  UrgentSafetyRestriction('UrgentSafetyRestriction'),
 
   /// Display: Paediatric Submission
-  PaediatricSubmission,
+  /// Definition:
+  PaediatricSubmission('PaediatricSubmission'),
 
   /// Display: Transfer of a marketing authorisation
-  TransferMA,
+  /// Definition:
+  TransferMA('TransferMA'),
 
   /// Display: Lifting of a Suspension
-  LiftingSuspension,
+  /// Definition:
+  LiftingSuspension('LiftingSuspension'),
 
   /// Display: Withdrawal
-  Withdrawal,
+  /// Definition:
+  Withdrawal('Withdrawal'),
 
   /// Display: Reformatting
-  Reformatting,
+  /// Definition:
+  Reformatting('Reformatting'),
 
   /// Display: Risk Management Plan
-  RMP,
+  /// Definition:
+  RMP('RMP'),
 
   /// Display: Review of a Suspension of MA
-  ReviewSuspension,
+  /// Definition:
+  ReviewSuspension('ReviewSuspension'),
 
   /// Display: Supplemental Information
-  SupplementalInformation,
+  /// Definition:
+  SupplementalInformation('SupplementalInformation'),
 
   /// Display: Repeat Use Procedure
-  RepeatUse,
+  /// Definition:
+  RepeatUse('RepeatUse'),
 
   /// Display: Signal detection
-  SignalDetection,
+  /// Definition:
+  SignalDetection('SignalDetection'),
 
   /// Display: FLU STRAIN UPDATE
-  FLU,
+  /// Definition:
+  FLU('FLU'),
 
   /// Display: PANDEMIC UPDATE
-  PANDEMIC,
+  /// Definition:
+  PANDEMIC('PANDEMIC'),
 
   /// Display: Orphan Designation Application
-  Orphan,
+  /// Definition:
+  Orphan('Orphan'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case InitialMAA:
-        return 'InitialMAA';
-      case Variation:
-        return 'Variation';
-      case LineExtension:
-        return 'LineExtension';
-      case PSUR:
-        return 'PSUR';
-      case Renewal:
-        return 'Renewal';
-      case Follow_up:
-        return 'Follow-up';
-      case value100000155699:
-        return '100000155699';
-      case AnnualReassessment:
-        return 'AnnualReassessment';
-      case UrgentSafetyRestriction:
-        return 'UrgentSafetyRestriction';
-      case PaediatricSubmission:
-        return 'PaediatricSubmission';
-      case TransferMA:
-        return 'TransferMA';
-      case LiftingSuspension:
-        return 'LiftingSuspension';
-      case Withdrawal:
-        return 'Withdrawal';
-      case Reformatting:
-        return 'Reformatting';
-      case RMP:
-        return 'RMP';
-      case ReviewSuspension:
-        return 'ReviewSuspension';
-      case SupplementalInformation:
-        return 'SupplementalInformation';
-      case RepeatUse:
-        return 'RepeatUse';
-      case SignalDetection:
-        return 'SignalDetection';
-      case FLU:
-        return 'FLU';
-      case PANDEMIC:
-        return 'PANDEMIC';
-      case Orphan:
-        return 'Orphan';
+  final String fhirCode;
+  final Element? element;
+
+  const RegulatedAuthorizationCaseType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static RegulatedAuthorizationCaseType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return RegulatedAuthorizationCaseType.elementOnly.withElement(element);
     }
+    return RegulatedAuthorizationCaseType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [RegulatedAuthorizationCaseType] enum.
-  String toJson() => toString();
-
-  /// Returns a [RegulatedAuthorizationCaseType] from a [String] enum.
-  static RegulatedAuthorizationCaseType fromString(String str) {
-    switch (str) {
-      case 'InitialMAA':
-        return RegulatedAuthorizationCaseType.InitialMAA;
-      case 'Variation':
-        return RegulatedAuthorizationCaseType.Variation;
-      case 'LineExtension':
-        return RegulatedAuthorizationCaseType.LineExtension;
-      case 'PSUR':
-        return RegulatedAuthorizationCaseType.PSUR;
-      case 'Renewal':
-        return RegulatedAuthorizationCaseType.Renewal;
-      case 'Follow-up':
-        return RegulatedAuthorizationCaseType.Follow_up;
-      case '100000155699':
-        return RegulatedAuthorizationCaseType.value100000155699;
-      case 'AnnualReassessment':
-        return RegulatedAuthorizationCaseType.AnnualReassessment;
-      case 'UrgentSafetyRestriction':
-        return RegulatedAuthorizationCaseType.UrgentSafetyRestriction;
-      case 'PaediatricSubmission':
-        return RegulatedAuthorizationCaseType.PaediatricSubmission;
-      case 'TransferMA':
-        return RegulatedAuthorizationCaseType.TransferMA;
-      case 'LiftingSuspension':
-        return RegulatedAuthorizationCaseType.LiftingSuspension;
-      case 'Withdrawal':
-        return RegulatedAuthorizationCaseType.Withdrawal;
-      case 'Reformatting':
-        return RegulatedAuthorizationCaseType.Reformatting;
-      case 'RMP':
-        return RegulatedAuthorizationCaseType.RMP;
-      case 'ReviewSuspension':
-        return RegulatedAuthorizationCaseType.ReviewSuspension;
-      case 'SupplementalInformation':
-        return RegulatedAuthorizationCaseType.SupplementalInformation;
-      case 'RepeatUse':
-        return RegulatedAuthorizationCaseType.RepeatUse;
-      case 'SignalDetection':
-        return RegulatedAuthorizationCaseType.SignalDetection;
-      case 'FLU':
-        return RegulatedAuthorizationCaseType.FLU;
-      case 'PANDEMIC':
-        return RegulatedAuthorizationCaseType.PANDEMIC;
-      case 'Orphan':
-        return RegulatedAuthorizationCaseType.Orphan;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [RegulatedAuthorizationCaseType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static RegulatedAuthorizationCaseType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  RegulatedAuthorizationCaseType withElement(Element? newElement) {
+    return RegulatedAuthorizationCaseType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

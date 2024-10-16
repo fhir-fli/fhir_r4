@@ -1,60 +1,61 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set defines a set of codes that can be used to indicate special courtesies provided to the patient.
 enum SpecialCourtesy {
-  EXT,
-  NRM,
-  PRF,
-  STF,
-  VIP,
-  UNK,
+  /// Display:
+  /// Definition:
+  EXT('EXT'),
+
+  /// Display:
+  /// Definition:
+  NRM('NRM'),
+
+  /// Display:
+  /// Definition:
+  PRF('PRF'),
+
+  /// Display:
+  /// Definition:
+  STF('STF'),
+
+  /// Display:
+  /// Definition:
+  VIP('VIP'),
+
+  /// Display:
+  /// Definition:
+  UNK('UNK'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case EXT:
-        return 'EXT';
-      case NRM:
-        return 'NRM';
-      case PRF:
-        return 'PRF';
-      case STF:
-        return 'STF';
-      case VIP:
-        return 'VIP';
-      case UNK:
-        return 'UNK';
+  final String fhirCode;
+  final Element? element;
+
+  const SpecialCourtesy(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static SpecialCourtesy fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SpecialCourtesy.elementOnly.withElement(element);
     }
+    return SpecialCourtesy.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [SpecialCourtesy] enum.
-  String toJson() => toString();
-
-  /// Returns a [SpecialCourtesy] from a [String] enum.
-  static SpecialCourtesy fromString(String str) {
-    switch (str) {
-      case 'EXT':
-        return SpecialCourtesy.EXT;
-      case 'NRM':
-        return SpecialCourtesy.NRM;
-      case 'PRF':
-        return SpecialCourtesy.PRF;
-      case 'STF':
-        return SpecialCourtesy.STF;
-      case 'VIP':
-        return SpecialCourtesy.VIP;
-      case 'UNK':
-        return SpecialCourtesy.UNK;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [SpecialCourtesy] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static SpecialCourtesy fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  SpecialCourtesy withElement(Element? newElement) {
+    return SpecialCourtesy.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

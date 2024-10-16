@@ -136,25 +136,61 @@ class UsageContext extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['code'] = code.toJson();
+
+    if (code != null) {
+      final primitiveJson = code!.toJson();
+      json['code'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_code'] = primitiveJson['_value'];
+      }
+    }
+
     if (valueCodeableConcept != null) {
-      json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
+      final primitiveJson = valueCodeableConcept!.toJson();
+      json['valueCodeableConcept'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_valueCodeableConcept'] = primitiveJson['_value'];
+      }
     }
+
     if (valueQuantity != null) {
-      json['valueQuantity'] = valueQuantity!.toJson();
+      final primitiveJson = valueQuantity!.toJson();
+      json['valueQuantity'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_valueQuantity'] = primitiveJson['_value'];
+      }
     }
+
     if (valueRange != null) {
-      json['valueRange'] = valueRange!.toJson();
+      final primitiveJson = valueRange!.toJson();
+      json['valueRange'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_valueRange'] = primitiveJson['_value'];
+      }
     }
+
     if (valueReference != null) {
-      json['valueReference'] = valueReference!.toJson();
+      final primitiveJson = valueReference!.toJson();
+      json['valueReference'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_valueReference'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 

@@ -1,45 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The mode of a message capability statement.
 enum EventCapabilityMode {
   /// Display: Sender
   /// Definition: The application sends requests and receives responses.
-  sender,
+  sender('sender'),
 
   /// Display: Receiver
   /// Definition: The application receives requests and sends responses.
-  receiver,
+  receiver('receiver'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case sender:
-        return 'sender';
-      case receiver:
-        return 'receiver';
+  final String fhirCode;
+  final Element? element;
+
+  const EventCapabilityMode(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static EventCapabilityMode fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EventCapabilityMode.elementOnly.withElement(element);
     }
+    return EventCapabilityMode.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [EventCapabilityMode] enum.
-  String toJson() => toString();
-
-  /// Returns a [EventCapabilityMode] from a [String] enum.
-  static EventCapabilityMode fromString(String str) {
-    switch (str) {
-      case 'sender':
-        return EventCapabilityMode.sender;
-      case 'receiver':
-        return EventCapabilityMode.receiver;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [EventCapabilityMode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static EventCapabilityMode fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  EventCapabilityMode withElement(Element? newElement) {
+    return EventCapabilityMode.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

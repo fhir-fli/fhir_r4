@@ -1,50 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// An anatomical origin of the source material within an organism.
 enum SourceMaterialPart {
   /// Display: animal
-  Animal,
+  /// Definition:
+  Animal('Animal'),
 
   /// Display: plant
-  Plant,
+  /// Definition:
+  Plant('Plant'),
 
   /// Display: mineral
-  Mineral,
+  /// Definition:
+  Mineral('Mineral'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case Animal:
-        return 'Animal';
-      case Plant:
-        return 'Plant';
-      case Mineral:
-        return 'Mineral';
+  final String fhirCode;
+  final Element? element;
+
+  const SourceMaterialPart(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static SourceMaterialPart fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SourceMaterialPart.elementOnly.withElement(element);
     }
+    return SourceMaterialPart.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [SourceMaterialPart] enum.
-  String toJson() => toString();
-
-  /// Returns a [SourceMaterialPart] from a [String] enum.
-  static SourceMaterialPart fromString(String str) {
-    switch (str) {
-      case 'Animal':
-        return SourceMaterialPart.Animal;
-      case 'Plant':
-        return SourceMaterialPart.Plant;
-      case 'Mineral':
-        return SourceMaterialPart.Mineral;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [SourceMaterialPart] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static SourceMaterialPart fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  SourceMaterialPart withElement(Element? newElement) {
+    return SourceMaterialPart.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

@@ -1,117 +1,81 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set includes Coverage Class codes.
 enum CoverageClassCodes {
   /// Display: Group
   /// Definition: An employee group
-  group,
+  group('group'),
 
   /// Display: SubGroup
   /// Definition: A sub-group of an employee group
-  subgroup,
+  subgroup('subgroup'),
 
   /// Display: Plan
   /// Definition: A specific suite of benefits.
-  plan,
+  plan('plan'),
 
   /// Display: SubPlan
   /// Definition: A subset of a specific suite of benefits.
-  subplan,
+  subplan('subplan'),
 
   /// Display: Class
   /// Definition: A class of benefits.
-  class_,
+  class_('class'),
 
   /// Display: SubClass
   /// Definition: A subset of a class of benefits.
-  subclass,
+  subclass('subclass'),
 
   /// Display: Sequence
   /// Definition: A sequence number associated with a short-term continuance of the coverage.
-  sequence,
+  sequence('sequence'),
 
   /// Display: RX BIN
   /// Definition: Pharmacy benefit manager's Business Identification Number.
-  rxbin,
+  rxbin('rxbin'),
 
   /// Display: RX PCN
   /// Definition: A Pharmacy Benefit Manager specified Processor Control Number.
-  rxpcn,
+  rxpcn('rxpcn'),
 
   /// Display: RX Id
   /// Definition: A Pharmacy Benefit Manager specified Member ID.
-  rxid,
+  rxid('rxid'),
 
   /// Display: RX Group
   /// Definition: A Pharmacy Benefit Manager specified Group number.
-  rxgroup,
+  rxgroup('rxgroup'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case group:
-        return 'group';
-      case subgroup:
-        return 'subgroup';
-      case plan:
-        return 'plan';
-      case subplan:
-        return 'subplan';
-      case class_:
-        return 'class';
-      case subclass:
-        return 'subclass';
-      case sequence:
-        return 'sequence';
-      case rxbin:
-        return 'rxbin';
-      case rxpcn:
-        return 'rxpcn';
-      case rxid:
-        return 'rxid';
-      case rxgroup:
-        return 'rxgroup';
+  final String fhirCode;
+  final Element? element;
+
+  const CoverageClassCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static CoverageClassCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CoverageClassCodes.elementOnly.withElement(element);
     }
+    return CoverageClassCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [CoverageClassCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [CoverageClassCodes] from a [String] enum.
-  static CoverageClassCodes fromString(String str) {
-    switch (str) {
-      case 'group':
-        return CoverageClassCodes.group;
-      case 'subgroup':
-        return CoverageClassCodes.subgroup;
-      case 'plan':
-        return CoverageClassCodes.plan;
-      case 'subplan':
-        return CoverageClassCodes.subplan;
-      case 'class':
-        return CoverageClassCodes.class_;
-      case 'subclass':
-        return CoverageClassCodes.subclass;
-      case 'sequence':
-        return CoverageClassCodes.sequence;
-      case 'rxbin':
-        return CoverageClassCodes.rxbin;
-      case 'rxpcn':
-        return CoverageClassCodes.rxpcn;
-      case 'rxid':
-        return CoverageClassCodes.rxid;
-      case 'rxgroup':
-        return CoverageClassCodes.rxgroup;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [CoverageClassCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static CoverageClassCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  CoverageClassCodes withElement(Element? newElement) {
+    return CoverageClassCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

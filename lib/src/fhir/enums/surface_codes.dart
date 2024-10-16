@@ -1,117 +1,81 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set includes a smattering of FDI tooth surface codes.
 enum SurfaceCodes {
   /// Display: Mesial
   /// Definition: The surface of a tooth that is closest to the midline (middle) of the face.
-  M,
+  M('M'),
 
   /// Display: Occlusal
   /// Definition: The chewing surface of posterior teeth.
-  O,
+  O('O'),
 
   /// Display: Incisal
   /// Definition: The biting edge of anterior teeth.
-  I,
+  I('I'),
 
   /// Display: Distal
   /// Definition: The surface of a tooth that faces away from the midline of the face.
-  D,
+  D('D'),
 
   /// Display: Buccal
   /// Definition: The surface of a posterior tooth facing the cheeks.
-  B,
+  B('B'),
 
   /// Display: Ventral
   /// Definition: The surface of a tooth facing the lips.
-  V,
+  V('V'),
 
   /// Display: Lingual
   /// Definition: The surface of a tooth facing the tongue.
-  L,
+  L('L'),
 
   /// Display: Mesioclusal
   /// Definition: The Mesioclusal surfaces of a tooth.
-  MO,
+  MO('MO'),
 
   /// Display: Distoclusal
   /// Definition: The Distoclusal surfaces of a tooth.
-  DO,
+  DO('DO'),
 
   /// Display: Distoincisal
   /// Definition: The Distoincisal surfaces of a tooth.
-  DI,
+  DI('DI'),
 
   /// Display: Mesioclusodistal
   /// Definition: The Mesioclusodistal surfaces of a tooth.
-  MOD,
+  MOD('MOD'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case M:
-        return 'M';
-      case O:
-        return 'O';
-      case I:
-        return 'I';
-      case D:
-        return 'D';
-      case B:
-        return 'B';
-      case V:
-        return 'V';
-      case L:
-        return 'L';
-      case MO:
-        return 'MO';
-      case DO:
-        return 'DO';
-      case DI:
-        return 'DI';
-      case MOD:
-        return 'MOD';
+  final String fhirCode;
+  final Element? element;
+
+  const SurfaceCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static SurfaceCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SurfaceCodes.elementOnly.withElement(element);
     }
+    return SurfaceCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [SurfaceCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [SurfaceCodes] from a [String] enum.
-  static SurfaceCodes fromString(String str) {
-    switch (str) {
-      case 'M':
-        return SurfaceCodes.M;
-      case 'O':
-        return SurfaceCodes.O;
-      case 'I':
-        return SurfaceCodes.I;
-      case 'D':
-        return SurfaceCodes.D;
-      case 'B':
-        return SurfaceCodes.B;
-      case 'V':
-        return SurfaceCodes.V;
-      case 'L':
-        return SurfaceCodes.L;
-      case 'MO':
-        return SurfaceCodes.MO;
-      case 'DO':
-        return SurfaceCodes.DO;
-      case 'DI':
-        return SurfaceCodes.DI;
-      case 'MOD':
-        return SurfaceCodes.MOD;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [SurfaceCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static SurfaceCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  SurfaceCodes withElement(Element? newElement) {
+    return SurfaceCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

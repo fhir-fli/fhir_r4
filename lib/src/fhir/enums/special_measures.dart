@@ -1,37 +1,41 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Extra measures defined for a Medicinal Product, such as a requirement to conduct post-authorisation studies.
 enum SpecialMeasures {
   /// Display: Requirement to conduct post-authorisation studies
   /// Definition: Requirement to conduct post-authorisation studies
-  Post_authorisationStudies,
+  Post_authorisationStudies('Post-authorisationStudies'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case Post_authorisationStudies:
-        return 'Post-authorisationStudies';
+  final String fhirCode;
+  final Element? element;
+
+  const SpecialMeasures(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static SpecialMeasures fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SpecialMeasures.elementOnly.withElement(element);
     }
+    return SpecialMeasures.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [SpecialMeasures] enum.
-  String toJson() => toString();
-
-  /// Returns a [SpecialMeasures] from a [String] enum.
-  static SpecialMeasures fromString(String str) {
-    switch (str) {
-      case 'Post-authorisationStudies':
-        return SpecialMeasures.Post_authorisationStudies;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [SpecialMeasures] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static SpecialMeasures fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  SpecialMeasures withElement(Element? newElement) {
+    return SpecialMeasures.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

@@ -1,45 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Observation values that indicate what change in a measurement value or score is indicative of an improvement in the measured item or scored issue.
 enum MeasureImprovementNotation {
   /// Display: Increased score indicates improvement
   /// Definition: Improvement is indicated as an increase in the score or measurement (e.g. Higher score indicates better quality).
-  increase,
+  increase('increase'),
 
   /// Display: Decreased score indicates improvement
   /// Definition: Improvement is indicated as a decrease in the score or measurement (e.g. Lower score indicates better quality).
-  decrease,
+  decrease('decrease'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case increase:
-        return 'increase';
-      case decrease:
-        return 'decrease';
+  final String fhirCode;
+  final Element? element;
+
+  const MeasureImprovementNotation(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static MeasureImprovementNotation fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MeasureImprovementNotation.elementOnly.withElement(element);
     }
+    return MeasureImprovementNotation.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [MeasureImprovementNotation] enum.
-  String toJson() => toString();
-
-  /// Returns a [MeasureImprovementNotation] from a [String] enum.
-  static MeasureImprovementNotation fromString(String str) {
-    switch (str) {
-      case 'increase':
-        return MeasureImprovementNotation.increase;
-      case 'decrease':
-        return MeasureImprovementNotation.decrease;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [MeasureImprovementNotation] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static MeasureImprovementNotation fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  MeasureImprovementNotation withElement(Element? newElement) {
+    return MeasureImprovementNotation.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

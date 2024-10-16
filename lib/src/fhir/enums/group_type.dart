@@ -1,77 +1,61 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Types of resources that are part of group.
 enum GroupType {
   /// Display: Person
   /// Definition: Group contains "person" Patient resources.
-  person,
+  person('person'),
 
   /// Display: Animal
   /// Definition: Group contains "animal" Patient resources.
-  animal,
+  animal('animal'),
 
   /// Display: Practitioner
   /// Definition: Group contains healthcare practitioner resources (Practitioner or PractitionerRole).
-  practitioner,
+  practitioner('practitioner'),
 
   /// Display: Device
   /// Definition: Group contains Device resources.
-  device,
+  device('device'),
 
   /// Display: Medication
   /// Definition: Group contains Medication resources.
-  medication,
+  medication('medication'),
 
   /// Display: Substance
   /// Definition: Group contains Substance resources.
-  substance,
+  substance('substance'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case person:
-        return 'person';
-      case animal:
-        return 'animal';
-      case practitioner:
-        return 'practitioner';
-      case device:
-        return 'device';
-      case medication:
-        return 'medication';
-      case substance:
-        return 'substance';
+  final String fhirCode;
+  final Element? element;
+
+  const GroupType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static GroupType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return GroupType.elementOnly.withElement(element);
     }
+    return GroupType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [GroupType] enum.
-  String toJson() => toString();
-
-  /// Returns a [GroupType] from a [String] enum.
-  static GroupType fromString(String str) {
-    switch (str) {
-      case 'person':
-        return GroupType.person;
-      case 'animal':
-        return GroupType.animal;
-      case 'practitioner':
-        return GroupType.practitioner;
-      case 'device':
-        return GroupType.device;
-      case 'medication':
-        return GroupType.medication;
-      case 'substance':
-        return GroupType.substance;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [GroupType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static GroupType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  GroupType withElement(Element? newElement) {
+    return GroupType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

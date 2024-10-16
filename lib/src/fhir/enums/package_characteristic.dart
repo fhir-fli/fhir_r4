@@ -1,50 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// A characteristic of a package.
 enum PackageCharacteristic {
   /// Display: Hospital pack
-  HospitalPack,
+  /// Definition:
+  HospitalPack('HospitalPack'),
 
   /// Display: Nurse prescribable
-  NursePrescribable,
+  /// Definition:
+  NursePrescribable('NursePrescribable'),
 
   /// Display: Calendar pack
-  CalendarPack,
+  /// Definition:
+  CalendarPack('CalendarPack'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case HospitalPack:
-        return 'HospitalPack';
-      case NursePrescribable:
-        return 'NursePrescribable';
-      case CalendarPack:
-        return 'CalendarPack';
+  final String fhirCode;
+  final Element? element;
+
+  const PackageCharacteristic(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static PackageCharacteristic fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return PackageCharacteristic.elementOnly.withElement(element);
     }
+    return PackageCharacteristic.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [PackageCharacteristic] enum.
-  String toJson() => toString();
-
-  /// Returns a [PackageCharacteristic] from a [String] enum.
-  static PackageCharacteristic fromString(String str) {
-    switch (str) {
-      case 'HospitalPack':
-        return PackageCharacteristic.HospitalPack;
-      case 'NursePrescribable':
-        return PackageCharacteristic.NursePrescribable;
-      case 'CalendarPack':
-        return PackageCharacteristic.CalendarPack;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [PackageCharacteristic] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static PackageCharacteristic fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  PackageCharacteristic withElement(Element? newElement) {
+    return PackageCharacteristic.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

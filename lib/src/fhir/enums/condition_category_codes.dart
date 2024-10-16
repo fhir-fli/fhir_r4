@@ -1,45 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Preferred value set for Condition Categories.
 enum ConditionCategoryCodes {
   /// Display: Problem List Item
   /// Definition: An item on a problem list that can be managed over time and can be expressed by a practitioner (e.g. physician, nurse), patient, or related person.
-  problem_list_item,
+  problem_list_item('problem-list-item'),
 
   /// Display: Encounter Diagnosis
   /// Definition: A point in time diagnosis (e.g. from a physician or nurse) in context of an encounter.
-  encounter_diagnosis,
+  encounter_diagnosis('encounter-diagnosis'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case problem_list_item:
-        return 'problem-list-item';
-      case encounter_diagnosis:
-        return 'encounter-diagnosis';
+  final String fhirCode;
+  final Element? element;
+
+  const ConditionCategoryCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ConditionCategoryCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConditionCategoryCodes.elementOnly.withElement(element);
     }
+    return ConditionCategoryCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ConditionCategoryCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ConditionCategoryCodes] from a [String] enum.
-  static ConditionCategoryCodes fromString(String str) {
-    switch (str) {
-      case 'problem-list-item':
-        return ConditionCategoryCodes.problem_list_item;
-      case 'encounter-diagnosis':
-        return ConditionCategoryCodes.encounter_diagnosis;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ConditionCategoryCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ConditionCategoryCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ConditionCategoryCodes withElement(Element? newElement) {
+    return ConditionCategoryCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

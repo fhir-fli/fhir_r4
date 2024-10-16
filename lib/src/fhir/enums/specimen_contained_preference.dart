@@ -1,45 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Degree of preference of a type of conditioned specimen.
 enum SpecimenContainedPreference {
   /// Display: Preferred
   /// Definition: This type of contained specimen is preferred to collect this kind of specimen.
-  preferred,
+  preferred('preferred'),
 
   /// Display: Alternate
   /// Definition: This type of conditioned specimen is an alternate.
-  alternate,
+  alternate('alternate'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case preferred:
-        return 'preferred';
-      case alternate:
-        return 'alternate';
+  final String fhirCode;
+  final Element? element;
+
+  const SpecimenContainedPreference(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static SpecimenContainedPreference fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SpecimenContainedPreference.elementOnly.withElement(element);
     }
+    return SpecimenContainedPreference.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [SpecimenContainedPreference] enum.
-  String toJson() => toString();
-
-  /// Returns a [SpecimenContainedPreference] from a [String] enum.
-  static SpecimenContainedPreference fromString(String str) {
-    switch (str) {
-      case 'preferred':
-        return SpecimenContainedPreference.preferred;
-      case 'alternate':
-        return SpecimenContainedPreference.alternate;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [SpecimenContainedPreference] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static SpecimenContainedPreference fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  SpecimenContainedPreference withElement(Element? newElement) {
+    return SpecimenContainedPreference.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

@@ -1,134 +1,97 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// An authority that officates substance names.
 enum SubstanceNameAuthority {
   /// Display: BAN
-  BAN,
+  /// Definition:
+  BAN('BAN'),
 
   /// Display: COSING
-  COSING,
+  /// Definition:
+  COSING('COSING'),
 
   /// Display: Ph.Eur.
-  Ph_Eur_,
+  /// Definition:
+  Ph_Eur_('Ph.Eur.'),
 
   /// Display: FCC
-  FCC,
+  /// Definition:
+  FCC('FCC'),
 
   /// Display: INCI
-  INCI,
+  /// Definition:
+  INCI('INCI'),
 
   /// Display: INN
-  INN,
+  /// Definition:
+  INN('INN'),
 
   /// Display: JAN
-  JAN,
+  /// Definition:
+  JAN('JAN'),
 
   /// Display: JECFA
-  JECFA,
+  /// Definition:
+  JECFA('JECFA'),
 
   /// Display: MARTINDALE
-  MARTINDALE,
+  /// Definition:
+  MARTINDALE('MARTINDALE'),
 
   /// Display: USAN
-  USAN,
+  /// Definition:
+  USAN('USAN'),
 
   /// Display: USP
-  USP,
+  /// Definition:
+  USP('USP'),
 
   /// Display: PHF
-  PHF,
+  /// Definition:
+  PHF('PHF'),
 
   /// Display: HAB
-  HAB,
+  /// Definition:
+  HAB('HAB'),
 
   /// Display: PhF (Pharmacopée française)
-  PhF,
+  /// Definition:
+  PhF('PhF'),
 
   /// Display: IUIS
-  IUIS,
+  /// Definition:
+  IUIS('IUIS'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case BAN:
-        return 'BAN';
-      case COSING:
-        return 'COSING';
-      case Ph_Eur_:
-        return 'Ph.Eur.';
-      case FCC:
-        return 'FCC';
-      case INCI:
-        return 'INCI';
-      case INN:
-        return 'INN';
-      case JAN:
-        return 'JAN';
-      case JECFA:
-        return 'JECFA';
-      case MARTINDALE:
-        return 'MARTINDALE';
-      case USAN:
-        return 'USAN';
-      case USP:
-        return 'USP';
-      case PHF:
-        return 'PHF';
-      case HAB:
-        return 'HAB';
-      case PhF:
-        return 'PhF';
-      case IUIS:
-        return 'IUIS';
+  final String fhirCode;
+  final Element? element;
+
+  const SubstanceNameAuthority(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static SubstanceNameAuthority fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SubstanceNameAuthority.elementOnly.withElement(element);
     }
+    return SubstanceNameAuthority.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [SubstanceNameAuthority] enum.
-  String toJson() => toString();
-
-  /// Returns a [SubstanceNameAuthority] from a [String] enum.
-  static SubstanceNameAuthority fromString(String str) {
-    switch (str) {
-      case 'BAN':
-        return SubstanceNameAuthority.BAN;
-      case 'COSING':
-        return SubstanceNameAuthority.COSING;
-      case 'Ph.Eur.':
-        return SubstanceNameAuthority.Ph_Eur_;
-      case 'FCC':
-        return SubstanceNameAuthority.FCC;
-      case 'INCI':
-        return SubstanceNameAuthority.INCI;
-      case 'INN':
-        return SubstanceNameAuthority.INN;
-      case 'JAN':
-        return SubstanceNameAuthority.JAN;
-      case 'JECFA':
-        return SubstanceNameAuthority.JECFA;
-      case 'MARTINDALE':
-        return SubstanceNameAuthority.MARTINDALE;
-      case 'USAN':
-        return SubstanceNameAuthority.USAN;
-      case 'USP':
-        return SubstanceNameAuthority.USP;
-      case 'PHF':
-        return SubstanceNameAuthority.PHF;
-      case 'HAB':
-        return SubstanceNameAuthority.HAB;
-      case 'PhF':
-        return SubstanceNameAuthority.PhF;
-      case 'IUIS':
-        return SubstanceNameAuthority.IUIS;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [SubstanceNameAuthority] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static SubstanceNameAuthority fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  SubstanceNameAuthority withElement(Element? newElement) {
+    return SubstanceNameAuthority.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

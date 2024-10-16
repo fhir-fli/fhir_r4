@@ -1,165 +1,117 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// FHIR RESTful interaction codes used for SubscriptionTopic trigger.
 enum InteractionTrigger {
   /// Display: read
   /// Definition: Read the current state of the resource.
-  read,
+  read('read'),
 
   /// Display: vread
   /// Definition: Read the state of a specific version of the resource.
-  vread,
+  vread('vread'),
 
   /// Display: update
   /// Definition: Update an existing resource by its id (or create it if it is new).
-  update,
+  update('update'),
 
   /// Display: patch
   /// Definition: Update an existing resource by posting a set of changes to it.
-  patch,
+  patch('patch'),
 
   /// Display: delete
   /// Definition: Delete a resource.
-  delete,
+  delete('delete'),
 
   /// Display: history
   /// Definition: Retrieve the change history for a particular resource, type of resource, or the entire system.
-  history,
+  history('history'),
 
   /// Display: history-instance
   /// Definition: Retrieve the change history for a particular resource.
-  history_instance,
+  history_instance('history-instance'),
 
   /// Display: history-type
   /// Definition: Retrieve the change history for all resources of a particular type.
-  history_type,
+  history_type('history-type'),
 
   /// Display: history-system
   /// Definition: Retrieve the change history for all resources on a system.
-  history_system,
+  history_system('history-system'),
 
   /// Display: create
   /// Definition: Create a new resource with a server assigned id.
-  create,
+  create('create'),
 
   /// Display: search
   /// Definition: Search a resource type or all resources based on some filter criteria.
-  search,
+  search('search'),
 
   /// Display: search-type
   /// Definition: Search all resources of the specified type based on some filter criteria.
-  search_type,
+  search_type('search-type'),
 
   /// Display: search-system
   /// Definition: Search all resources based on some filter criteria.
-  search_system,
+  search_system('search-system'),
 
   /// Display: capabilities
   /// Definition: Get a Capability Statement for the system.
-  capabilities,
+  capabilities('capabilities'),
 
   /// Display: transaction
   /// Definition: Update, create or delete a set of resources as a single transaction.
-  transaction,
+  transaction('transaction'),
 
   /// Display: batch
   /// Definition: perform a set of a separate interactions in a single http operation
-  batch,
+  batch('batch'),
 
   /// Display: operation
   /// Definition: Perform an operation as defined by an OperationDefinition.
-  operation,
+  operation('operation'),
+
+  /// Display:
+  /// Definition:
+  create_1('create'),
+
+  /// Display:
+  /// Definition:
+  update_1('update'),
+
+  /// Display:
+  /// Definition:
+  delete_1('delete'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case read:
-        return 'read';
-      case vread:
-        return 'vread';
-      case update:
-        return 'update';
-      case patch:
-        return 'patch';
-      case delete:
-        return 'delete';
-      case history:
-        return 'history';
-      case history_instance:
-        return 'history-instance';
-      case history_type:
-        return 'history-type';
-      case history_system:
-        return 'history-system';
-      case create:
-        return 'create';
-      case search:
-        return 'search';
-      case search_type:
-        return 'search-type';
-      case search_system:
-        return 'search-system';
-      case capabilities:
-        return 'capabilities';
-      case transaction:
-        return 'transaction';
-      case batch:
-        return 'batch';
-      case operation:
-        return 'operation';
+  final String fhirCode;
+  final Element? element;
+
+  const InteractionTrigger(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static InteractionTrigger fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return InteractionTrigger.elementOnly.withElement(element);
     }
+    return InteractionTrigger.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [InteractionTrigger] enum.
-  String toJson() => toString();
-
-  /// Returns a [InteractionTrigger] from a [String] enum.
-  static InteractionTrigger fromString(String str) {
-    switch (str) {
-      case 'read':
-        return InteractionTrigger.read;
-      case 'vread':
-        return InteractionTrigger.vread;
-      case 'update':
-        return InteractionTrigger.update;
-      case 'patch':
-        return InteractionTrigger.patch;
-      case 'delete':
-        return InteractionTrigger.delete;
-      case 'history':
-        return InteractionTrigger.history;
-      case 'history-instance':
-        return InteractionTrigger.history_instance;
-      case 'history-type':
-        return InteractionTrigger.history_type;
-      case 'history-system':
-        return InteractionTrigger.history_system;
-      case 'create':
-        return InteractionTrigger.create;
-      case 'search':
-        return InteractionTrigger.search;
-      case 'search-type':
-        return InteractionTrigger.search_type;
-      case 'search-system':
-        return InteractionTrigger.search_system;
-      case 'capabilities':
-        return InteractionTrigger.capabilities;
-      case 'transaction':
-        return InteractionTrigger.transaction;
-      case 'batch':
-        return InteractionTrigger.batch;
-      case 'operation':
-        return InteractionTrigger.operation;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [InteractionTrigger] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static InteractionTrigger fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  InteractionTrigger withElement(Element? newElement) {
+    return InteractionTrigger.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

@@ -1,45 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Confidentiality rating, e.g. commercial sensitivity for a Medicinal Product.
 enum ProductConfidentiality {
   /// Display: Commercially Sensitive
   /// Definition: Commercially Sensitive
-  CommerciallySensitive,
+  CommerciallySensitive('CommerciallySensitive'),
 
   /// Display: Not Commercially Sensitive
   /// Definition: Not Commercially Sensitive
-  NotCommerciallySensitive,
+  NotCommerciallySensitive('NotCommerciallySensitive'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case CommerciallySensitive:
-        return 'CommerciallySensitive';
-      case NotCommerciallySensitive:
-        return 'NotCommerciallySensitive';
+  final String fhirCode;
+  final Element? element;
+
+  const ProductConfidentiality(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ProductConfidentiality fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ProductConfidentiality.elementOnly.withElement(element);
     }
+    return ProductConfidentiality.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ProductConfidentiality] enum.
-  String toJson() => toString();
-
-  /// Returns a [ProductConfidentiality] from a [String] enum.
-  static ProductConfidentiality fromString(String str) {
-    switch (str) {
-      case 'CommerciallySensitive':
-        return ProductConfidentiality.CommerciallySensitive;
-      case 'NotCommerciallySensitive':
-        return ProductConfidentiality.NotCommerciallySensitive;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ProductConfidentiality] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ProductConfidentiality fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ProductConfidentiality withElement(Element? newElement) {
+    return ProductConfidentiality.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

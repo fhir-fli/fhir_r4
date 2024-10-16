@@ -1,77 +1,61 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Preferred value set for Condition Clinical Status.
 enum ConditionClinicalStatusCodes {
   /// Display: Active
   /// Definition: The subject is currently experiencing the symptoms of the condition or there is evidence of the condition.
-  active,
+  active('active'),
 
   /// Display: Recurrence
   /// Definition: The subject is experiencing a re-occurence or repeating of a previously resolved condition, e.g. urinary tract infection, pancreatitis, cholangitis, conjunctivitis.
-  recurrence,
+  recurrence('recurrence'),
 
   /// Display: Relapse
   /// Definition: The subject is experiencing a return of a condition, or signs and symptoms after a period of improvement or remission, e.g. relapse of cancer, multiple sclerosis, rheumatoid arthritis, systemic lupus erythematosus, bipolar disorder, [psychotic relapse of] schizophrenia, etc.
-  relapse,
+  relapse('relapse'),
 
   /// Display: Inactive
   /// Definition: The subject is no longer experiencing the symptoms of the condition or there is no longer evidence of the condition.
-  inactive,
+  inactive('inactive'),
 
   /// Display: Remission
   /// Definition: The subject is no longer experiencing the symptoms of the condition, but there is a risk of the symptoms returning.
-  remission,
+  remission('remission'),
 
   /// Display: Resolved
   /// Definition: The subject is no longer experiencing the symptoms of the condition and there is a negligible perceived risk of the symptoms returning.
-  resolved,
+  resolved('resolved'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case active:
-        return 'active';
-      case recurrence:
-        return 'recurrence';
-      case relapse:
-        return 'relapse';
-      case inactive:
-        return 'inactive';
-      case remission:
-        return 'remission';
-      case resolved:
-        return 'resolved';
+  final String fhirCode;
+  final Element? element;
+
+  const ConditionClinicalStatusCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ConditionClinicalStatusCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConditionClinicalStatusCodes.elementOnly.withElement(element);
     }
+    return ConditionClinicalStatusCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ConditionClinicalStatusCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ConditionClinicalStatusCodes] from a [String] enum.
-  static ConditionClinicalStatusCodes fromString(String str) {
-    switch (str) {
-      case 'active':
-        return ConditionClinicalStatusCodes.active;
-      case 'recurrence':
-        return ConditionClinicalStatusCodes.recurrence;
-      case 'relapse':
-        return ConditionClinicalStatusCodes.relapse;
-      case 'inactive':
-        return ConditionClinicalStatusCodes.inactive;
-      case 'remission':
-        return ConditionClinicalStatusCodes.remission;
-      case 'resolved':
-        return ConditionClinicalStatusCodes.resolved;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ConditionClinicalStatusCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ConditionClinicalStatusCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ConditionClinicalStatusCodes withElement(Element? newElement) {
+    return ConditionClinicalStatusCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

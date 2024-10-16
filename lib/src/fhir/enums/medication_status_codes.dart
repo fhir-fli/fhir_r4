@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Medication Status Codes
 enum MedicationStatusCodes {
   /// Display: Active
   /// Definition: The medication is available for use.
-  active,
+  active('active'),
 
   /// Display: Inactive
   /// Definition: The medication is not available for use.
-  inactive,
+  inactive('inactive'),
 
   /// Display: Entered in Error
   /// Definition: The medication was entered in error.
-  entered_in_error,
+  entered_in_error('entered-in-error'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case active:
-        return 'active';
-      case inactive:
-        return 'inactive';
-      case entered_in_error:
-        return 'entered-in-error';
+  final String fhirCode;
+  final Element? element;
+
+  const MedicationStatusCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static MedicationStatusCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicationStatusCodes.elementOnly.withElement(element);
     }
+    return MedicationStatusCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [MedicationStatusCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [MedicationStatusCodes] from a [String] enum.
-  static MedicationStatusCodes fromString(String str) {
-    switch (str) {
-      case 'active':
-        return MedicationStatusCodes.active;
-      case 'inactive':
-        return MedicationStatusCodes.inactive;
-      case 'entered-in-error':
-        return MedicationStatusCodes.entered_in_error;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [MedicationStatusCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static MedicationStatusCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  MedicationStatusCodes withElement(Element? newElement) {
+    return MedicationStatusCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

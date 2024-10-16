@@ -1,85 +1,67 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// MedicationKnowledge Characteristic Codes
 enum MedicationKnowledgeCharacteristicCodes {
   /// Display: Imprint Code
   /// Definition: Identyifying marks on product
-  imprintcd,
+  imprintcd('imprintcd'),
 
   /// Display: Size
   /// Definition: Description of size of the product
-  size,
+  size('size'),
 
   /// Display: Shape
   /// Definition: Description of the shape of the product
-  shape,
+  shape('shape'),
 
   /// Display: Color
   /// Definition: Description of the color of the product
-  color,
+  color('color'),
 
   /// Display: Coating
   /// Definition: Description of the coating of the product
-  coating,
+  coating('coating'),
 
   /// Display: Scoring
   /// Definition: Description of the scoring of the product
-  scoring,
+  scoring('scoring'),
 
   /// Display: Logo
   /// Definition: Description of the Logo of the product
-  logo,
+  logo('logo'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case imprintcd:
-        return 'imprintcd';
-      case size:
-        return 'size';
-      case shape:
-        return 'shape';
-      case color:
-        return 'color';
-      case coating:
-        return 'coating';
-      case scoring:
-        return 'scoring';
-      case logo:
-        return 'logo';
+  final String fhirCode;
+  final Element? element;
+
+  const MedicationKnowledgeCharacteristicCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static MedicationKnowledgeCharacteristicCodes fromJson(
+      Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicationKnowledgeCharacteristicCodes.elementOnly
+          .withElement(element);
     }
+    return MedicationKnowledgeCharacteristicCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [MedicationKnowledgeCharacteristicCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [MedicationKnowledgeCharacteristicCodes] from a [String] enum.
-  static MedicationKnowledgeCharacteristicCodes fromString(String str) {
-    switch (str) {
-      case 'imprintcd':
-        return MedicationKnowledgeCharacteristicCodes.imprintcd;
-      case 'size':
-        return MedicationKnowledgeCharacteristicCodes.size;
-      case 'shape':
-        return MedicationKnowledgeCharacteristicCodes.shape;
-      case 'color':
-        return MedicationKnowledgeCharacteristicCodes.color;
-      case 'coating':
-        return MedicationKnowledgeCharacteristicCodes.coating;
-      case 'scoring':
-        return MedicationKnowledgeCharacteristicCodes.scoring;
-      case 'logo':
-        return MedicationKnowledgeCharacteristicCodes.logo;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [MedicationKnowledgeCharacteristicCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static MedicationKnowledgeCharacteristicCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  MedicationKnowledgeCharacteristicCodes withElement(Element? newElement) {
+    return MedicationKnowledgeCharacteristicCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

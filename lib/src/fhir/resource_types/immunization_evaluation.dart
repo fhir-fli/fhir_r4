@@ -293,68 +293,191 @@ class ImmunizationEvaluation extends DomainResource {
     final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (meta != null) {
-      json['meta'] = meta!.toJson();
+      final primitiveJson = meta!.toJson();
+      json['meta'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_meta'] = primitiveJson['_value'];
+      }
     }
-    if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.toJson();
+
+    if (implicitRules != null) {
+      final primitiveJson = implicitRules!.toJson();
+      json['implicitRules'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_implicitRules'] = primitiveJson['_value'];
+      }
     }
+
     if (language != null) {
-      json['language'] = language!.toJson();
+      final primitiveJson = language!.toJson();
+      json['language'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_language'] = primitiveJson['_value'];
+      }
     }
+
     if (text != null) {
-      json['text'] = text!.toJson();
+      final primitiveJson = text!.toJson();
+      json['text'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_text'] = primitiveJson['_value'];
+      }
     }
+
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
+      final primitiveList = contained!.map((e) => e.toJson()).toList();
+      json['contained'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_contained'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (identifier != null && identifier!.isNotEmpty) {
-      json['identifier'] =
-          identifier!.map((Identifier v) => v.toJson()).toList();
+      final primitiveList = identifier!.map((e) => e.toJson()).toList();
+      json['identifier'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_identifier'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['status'] = status.toJson();
-    json['patient'] = patient.toJson();
-    if (date?.value != null) {
-      json['date'] = date!.toJson();
+
+    if (status != null) {
+      final primitiveJson = status!.toJson();
+      json['status'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_status'] = primitiveJson['_value'];
+      }
     }
+
+    if (patient != null) {
+      final primitiveJson = patient!.toJson();
+      json['patient'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_patient'] = primitiveJson['_value'];
+      }
+    }
+
+    if (date != null) {
+      final primitiveJson = date!.toJson();
+      json['date'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_date'] = primitiveJson['_value'];
+      }
+    }
+
     if (authority != null) {
-      json['authority'] = authority!.toJson();
+      final primitiveJson = authority!.toJson();
+      json['authority'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_authority'] = primitiveJson['_value'];
+      }
     }
-    json['targetDisease'] = targetDisease.toJson();
-    json['immunizationEvent'] = immunizationEvent.toJson();
-    json['doseStatus'] = doseStatus.toJson();
+
+    if (targetDisease != null) {
+      final primitiveJson = targetDisease!.toJson();
+      json['targetDisease'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_targetDisease'] = primitiveJson['_value'];
+      }
+    }
+
+    if (immunizationEvent != null) {
+      final primitiveJson = immunizationEvent!.toJson();
+      json['immunizationEvent'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_immunizationEvent'] = primitiveJson['_value'];
+      }
+    }
+
+    if (doseStatus != null) {
+      final primitiveJson = doseStatus!.toJson();
+      json['doseStatus'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_doseStatus'] = primitiveJson['_value'];
+      }
+    }
+
     if (doseStatusReason != null && doseStatusReason!.isNotEmpty) {
-      json['doseStatusReason'] =
-          doseStatusReason!.map((CodeableConcept v) => v.toJson()).toList();
+      final primitiveList = doseStatusReason!.map((e) => e.toJson()).toList();
+      json['doseStatusReason'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_doseStatusReason'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    if (description?.value != null) {
-      json['description'] = description!.toJson();
+
+    if (description != null) {
+      final primitiveJson = description!.toJson();
+      json['description'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_description'] = primitiveJson['_value'];
+      }
     }
-    if (series?.value != null) {
-      json['series'] = series!.toJson();
+
+    if (series != null) {
+      final primitiveJson = series!.toJson();
+      json['series'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_series'] = primitiveJson['_value'];
+      }
     }
-    if (doseNumberPositiveInt?.value != null) {
-      json['doseNumberPositiveInt'] = doseNumberPositiveInt!.toJson();
+
+    if (doseNumberPositiveInt != null) {
+      final primitiveJson = doseNumberPositiveInt!.toJson();
+      json['doseNumberPositiveInt'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_doseNumberPositiveInt'] = primitiveJson['_value'];
+      }
     }
-    if (doseNumberString?.value != null) {
-      json['doseNumberString'] = doseNumberString!.toJson();
+
+    if (doseNumberString != null) {
+      final primitiveJson = doseNumberString!.toJson();
+      json['doseNumberString'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_doseNumberString'] = primitiveJson['_value'];
+      }
     }
-    if (seriesDosesPositiveInt?.value != null) {
-      json['seriesDosesPositiveInt'] = seriesDosesPositiveInt!.toJson();
+
+    if (seriesDosesPositiveInt != null) {
+      final primitiveJson = seriesDosesPositiveInt!.toJson();
+      json['seriesDosesPositiveInt'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_seriesDosesPositiveInt'] = primitiveJson['_value'];
+      }
     }
-    if (seriesDosesString?.value != null) {
-      json['seriesDosesString'] = seriesDosesString!.toJson();
+
+    if (seriesDosesString != null) {
+      final primitiveJson = seriesDosesString!.toJson();
+      json['seriesDosesString'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_seriesDosesString'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 

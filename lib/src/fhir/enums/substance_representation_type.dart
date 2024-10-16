@@ -1,50 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The type of a name given to a substance.
 enum SubstanceRepresentationType {
   /// Display: systematic
-  Systematic,
+  /// Definition:
+  Systematic('Systematic'),
 
   /// Display: scientific
-  Scientific,
+  /// Definition:
+  Scientific('Scientific'),
 
   /// Display: brand
-  Brand,
+  /// Definition:
+  Brand('Brand'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case Systematic:
-        return 'Systematic';
-      case Scientific:
-        return 'Scientific';
-      case Brand:
-        return 'Brand';
+  final String fhirCode;
+  final Element? element;
+
+  const SubstanceRepresentationType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static SubstanceRepresentationType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SubstanceRepresentationType.elementOnly.withElement(element);
     }
+    return SubstanceRepresentationType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [SubstanceRepresentationType] enum.
-  String toJson() => toString();
-
-  /// Returns a [SubstanceRepresentationType] from a [String] enum.
-  static SubstanceRepresentationType fromString(String str) {
-    switch (str) {
-      case 'Systematic':
-        return SubstanceRepresentationType.Systematic;
-      case 'Scientific':
-        return SubstanceRepresentationType.Scientific;
-      case 'Brand':
-        return SubstanceRepresentationType.Brand;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [SubstanceRepresentationType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static SubstanceRepresentationType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  SubstanceRepresentationType withElement(Element? newElement) {
+    return SubstanceRepresentationType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

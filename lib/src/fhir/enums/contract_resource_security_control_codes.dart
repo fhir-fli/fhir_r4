@@ -1,37 +1,43 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set contract specific codes for security control.
 enum ContractResourceSecurityControlCodes {
   /// Display: Policy
   /// Definition: To be completed
-  policy,
+  policy('policy'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case policy:
-        return 'policy';
+  final String fhirCode;
+  final Element? element;
+
+  const ContractResourceSecurityControlCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ContractResourceSecurityControlCodes fromJson(
+      Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ContractResourceSecurityControlCodes.elementOnly
+          .withElement(element);
     }
+    return ContractResourceSecurityControlCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ContractResourceSecurityControlCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ContractResourceSecurityControlCodes] from a [String] enum.
-  static ContractResourceSecurityControlCodes fromString(String str) {
-    switch (str) {
-      case 'policy':
-        return ContractResourceSecurityControlCodes.policy;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ContractResourceSecurityControlCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ContractResourceSecurityControlCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ContractResourceSecurityControlCodes withElement(Element? newElement) {
+    return ContractResourceSecurityControlCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

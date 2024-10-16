@@ -1,45 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Overall defining type of this Medicinal Product.
 enum MedicinalProductType {
   /// Display: Medicinal Product
   /// Definition: A standard medicinal product.
-  MedicinalProduct,
+  MedicinalProduct('MedicinalProduct'),
 
   /// Display: Investigational Medicinal Product
   /// Definition: An investigational medicinal product.
-  InvestigationalProduct,
+  InvestigationalProduct('InvestigationalProduct'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case MedicinalProduct:
-        return 'MedicinalProduct';
-      case InvestigationalProduct:
-        return 'InvestigationalProduct';
+  final String fhirCode;
+  final Element? element;
+
+  const MedicinalProductType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static MedicinalProductType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicinalProductType.elementOnly.withElement(element);
     }
+    return MedicinalProductType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [MedicinalProductType] enum.
-  String toJson() => toString();
-
-  /// Returns a [MedicinalProductType] from a [String] enum.
-  static MedicinalProductType fromString(String str) {
-    switch (str) {
-      case 'MedicinalProduct':
-        return MedicinalProductType.MedicinalProduct;
-      case 'InvestigationalProduct':
-        return MedicinalProductType.InvestigationalProduct;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [MedicinalProductType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static MedicinalProductType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  MedicinalProductType withElement(Element? newElement) {
+    return MedicinalProductType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

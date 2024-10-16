@@ -1,45 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Procedure Outcome code: A selection of relevant SNOMED CT codes.
 enum ProcedureOutcomeCodesSNOMEDCT {
-  value385669000,
-  value385671000,
-  value385670004,
+  /// Display:
+  /// Definition:
+  value385669000('385669000'),
+
+  /// Display:
+  /// Definition:
+  value385671000('385671000'),
+
+  /// Display:
+  /// Definition:
+  value385670004('385670004'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case value385669000:
-        return '385669000';
-      case value385671000:
-        return '385671000';
-      case value385670004:
-        return '385670004';
+  final String fhirCode;
+  final Element? element;
+
+  const ProcedureOutcomeCodesSNOMEDCT(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ProcedureOutcomeCodesSNOMEDCT fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ProcedureOutcomeCodesSNOMEDCT.elementOnly.withElement(element);
     }
+    return ProcedureOutcomeCodesSNOMEDCT.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ProcedureOutcomeCodesSNOMEDCT] enum.
-  String toJson() => toString();
-
-  /// Returns a [ProcedureOutcomeCodesSNOMEDCT] from a [String] enum.
-  static ProcedureOutcomeCodesSNOMEDCT fromString(String str) {
-    switch (str) {
-      case '385669000':
-        return ProcedureOutcomeCodesSNOMEDCT.value385669000;
-      case '385671000':
-        return ProcedureOutcomeCodesSNOMEDCT.value385671000;
-      case '385670004':
-        return ProcedureOutcomeCodesSNOMEDCT.value385670004;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ProcedureOutcomeCodesSNOMEDCT] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ProcedureOutcomeCodesSNOMEDCT fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ProcedureOutcomeCodesSNOMEDCT withElement(Element? newElement) {
+    return ProcedureOutcomeCodesSNOMEDCT.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

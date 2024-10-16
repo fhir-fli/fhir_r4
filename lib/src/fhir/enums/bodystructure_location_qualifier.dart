@@ -1,113 +1,85 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// SNOMED-CT concepts modifying the anatomic location
 enum BodystructureLocationQualifier {
   /// Display: Unilateral left
-  value419161000,
+  /// Definition:
+  value419161000('419161000'),
 
   /// Display: Unilateral right
-  value419465000,
+  /// Definition:
+  value419465000('419465000'),
 
   /// Display: Bilateral
-  value51440002,
+  /// Definition:
+  value51440002('51440002'),
 
   /// Display: Upper
-  value261183002,
+  /// Definition:
+  value261183002('261183002'),
 
   /// Display: Lower
-  value261122009,
+  /// Definition:
+  value261122009('261122009'),
 
   /// Display: Medial
-  value255561001,
+  /// Definition:
+  value255561001('255561001'),
 
   /// Display: Lateral
-  value49370004,
+  /// Definition:
+  value49370004('49370004'),
 
   /// Display: Superior
-  value264217000,
+  /// Definition:
+  value264217000('264217000'),
 
   /// Display: Inferior
-  value261089000,
+  /// Definition:
+  value261089000('261089000'),
 
   /// Display: Posterior
-  value255551008,
+  /// Definition:
+  value255551008('255551008'),
 
   /// Display: Below
-  value351726001,
+  /// Definition:
+  value351726001('351726001'),
 
   /// Display: Above
-  value352730000,
+  /// Definition:
+  value352730000('352730000'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case value419161000:
-        return '419161000';
-      case value419465000:
-        return '419465000';
-      case value51440002:
-        return '51440002';
-      case value261183002:
-        return '261183002';
-      case value261122009:
-        return '261122009';
-      case value255561001:
-        return '255561001';
-      case value49370004:
-        return '49370004';
-      case value264217000:
-        return '264217000';
-      case value261089000:
-        return '261089000';
-      case value255551008:
-        return '255551008';
-      case value351726001:
-        return '351726001';
-      case value352730000:
-        return '352730000';
+  final String fhirCode;
+  final Element? element;
+
+  const BodystructureLocationQualifier(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static BodystructureLocationQualifier fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return BodystructureLocationQualifier.elementOnly.withElement(element);
     }
+    return BodystructureLocationQualifier.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [BodystructureLocationQualifier] enum.
-  String toJson() => toString();
-
-  /// Returns a [BodystructureLocationQualifier] from a [String] enum.
-  static BodystructureLocationQualifier fromString(String str) {
-    switch (str) {
-      case '419161000':
-        return BodystructureLocationQualifier.value419161000;
-      case '419465000':
-        return BodystructureLocationQualifier.value419465000;
-      case '51440002':
-        return BodystructureLocationQualifier.value51440002;
-      case '261183002':
-        return BodystructureLocationQualifier.value261183002;
-      case '261122009':
-        return BodystructureLocationQualifier.value261122009;
-      case '255561001':
-        return BodystructureLocationQualifier.value255561001;
-      case '49370004':
-        return BodystructureLocationQualifier.value49370004;
-      case '264217000':
-        return BodystructureLocationQualifier.value264217000;
-      case '261089000':
-        return BodystructureLocationQualifier.value261089000;
-      case '255551008':
-        return BodystructureLocationQualifier.value255551008;
-      case '351726001':
-        return BodystructureLocationQualifier.value351726001;
-      case '352730000':
-        return BodystructureLocationQualifier.value352730000;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [BodystructureLocationQualifier] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static BodystructureLocationQualifier fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  BodystructureLocationQualifier withElement(Element? newElement) {
+    return BodystructureLocationQualifier.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The impact of the content of a message.
 enum MessageSignificanceCategory {
   /// Display: Consequence
   /// Definition: The message represents/requests a change that should not be processed more than once; e.g., making a booking for an appointment.
-  consequence,
+  consequence('consequence'),
 
   /// Display: Currency
   /// Definition: The message represents a response to query for current information. Retrospective processing is wrong and/or wasteful.
-  currency,
+  currency('currency'),
 
   /// Display: Notification
   /// Definition: The content is not necessarily intended to be current, and it can be reprocessed, though there may be version issues created by processing old notifications.
-  notification,
+  notification('notification'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case consequence:
-        return 'consequence';
-      case currency:
-        return 'currency';
-      case notification:
-        return 'notification';
+  final String fhirCode;
+  final Element? element;
+
+  const MessageSignificanceCategory(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static MessageSignificanceCategory fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MessageSignificanceCategory.elementOnly.withElement(element);
     }
+    return MessageSignificanceCategory.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [MessageSignificanceCategory] enum.
-  String toJson() => toString();
-
-  /// Returns a [MessageSignificanceCategory] from a [String] enum.
-  static MessageSignificanceCategory fromString(String str) {
-    switch (str) {
-      case 'consequence':
-        return MessageSignificanceCategory.consequence;
-      case 'currency':
-        return MessageSignificanceCategory.currency;
-      case 'notification':
-        return MessageSignificanceCategory.notification;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [MessageSignificanceCategory] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static MessageSignificanceCategory fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  MessageSignificanceCategory withElement(Element? newElement) {
+    return MessageSignificanceCategory.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The use of an address.
 enum AddressUse {
   /// Display: Home
   /// Definition: A communication address at a home.
-  home,
+  home('home'),
 
   /// Display: Work
   /// Definition: An office address. First choice for business related contacts during business hours.
-  work,
+  work('work'),
 
   /// Display: Temporary
   /// Definition: A temporary address. The period can provide more detailed information.
-  temp,
+  temp('temp'),
 
   /// Display: Old / Incorrect
   /// Definition: This address is no longer in use (or was never correct but retained for records).
-  old,
+  old('old'),
 
   /// Display: Billing
   /// Definition: An address to be used to send bills, invoices, receipts etc.
-  billing,
+  billing('billing'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case home:
-        return 'home';
-      case work:
-        return 'work';
-      case temp:
-        return 'temp';
-      case old:
-        return 'old';
-      case billing:
-        return 'billing';
+  final String fhirCode;
+  final Element? element;
+
+  const AddressUse(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static AddressUse fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AddressUse.elementOnly.withElement(element);
     }
+    return AddressUse.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [AddressUse] enum.
-  String toJson() => toString();
-
-  /// Returns a [AddressUse] from a [String] enum.
-  static AddressUse fromString(String str) {
-    switch (str) {
-      case 'home':
-        return AddressUse.home;
-      case 'work':
-        return AddressUse.work;
-      case 'temp':
-        return AddressUse.temp;
-      case 'old':
-        return AddressUse.old;
-      case 'billing':
-        return AddressUse.billing;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [AddressUse] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static AddressUse fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  AddressUse withElement(Element? newElement) {
+    return AddressUse.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

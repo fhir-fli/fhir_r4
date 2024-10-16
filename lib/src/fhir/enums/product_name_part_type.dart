@@ -1,141 +1,101 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Type of part of a name for a Medicinal Product.
 enum ProductNamePartType {
   /// Display: Full name
-  FullName,
+  /// Definition:
+  FullName('FullName'),
 
   /// Display: Invented name part
-  InventedNamePart,
+  /// Definition:
+  InventedNamePart('InventedNamePart'),
 
   /// Display: Scientific name part
-  ScientificNamePart,
+  /// Definition:
+  ScientificNamePart('ScientificNamePart'),
 
   /// Display: Strength part
-  StrengthPart,
+  /// Definition:
+  StrengthPart('StrengthPart'),
 
   /// Display: Pharmaceutical dose form part
-  DoseFormPart,
+  /// Definition:
+  DoseFormPart('DoseFormPart'),
 
   /// Display: Formulation part
-  FormulationPart,
+  /// Definition:
+  FormulationPart('FormulationPart'),
 
   /// Display: Intended use part
-  IntendedUsePart,
+  /// Definition:
+  IntendedUsePart('IntendedUsePart'),
 
   /// Display: Target population part
-  PopulationPart,
+  /// Definition:
+  PopulationPart('PopulationPart'),
 
   /// Display: Container or pack part
-  ContainerPart,
+  /// Definition:
+  ContainerPart('ContainerPart'),
 
   /// Display: Device part
-  DevicePart,
+  /// Definition:
+  DevicePart('DevicePart'),
 
   /// Display: Trademark or company name part
-  TrademarkOrCompanyPart,
+  /// Definition:
+  TrademarkOrCompanyPart('TrademarkOrCompanyPart'),
 
   /// Display: Time/Period part
-  TimeOrPeriodPart,
+  /// Definition:
+  TimeOrPeriodPart('TimeOrPeriodPart'),
 
   /// Display: Flavor part
-  FlavorPart,
+  /// Definition:
+  FlavorPart('FlavorPart'),
 
   /// Display: Delimiter part
-  DelimiterPart,
+  /// Definition:
+  DelimiterPart('DelimiterPart'),
 
   /// Display: Legacy name
-  LegacyNamePart,
+  /// Definition:
+  LegacyNamePart('LegacyNamePart'),
 
   /// Display: Target species name part
-  SpeciesNamePart,
+  /// Definition:
+  SpeciesNamePart('SpeciesNamePart'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case FullName:
-        return 'FullName';
-      case InventedNamePart:
-        return 'InventedNamePart';
-      case ScientificNamePart:
-        return 'ScientificNamePart';
-      case StrengthPart:
-        return 'StrengthPart';
-      case DoseFormPart:
-        return 'DoseFormPart';
-      case FormulationPart:
-        return 'FormulationPart';
-      case IntendedUsePart:
-        return 'IntendedUsePart';
-      case PopulationPart:
-        return 'PopulationPart';
-      case ContainerPart:
-        return 'ContainerPart';
-      case DevicePart:
-        return 'DevicePart';
-      case TrademarkOrCompanyPart:
-        return 'TrademarkOrCompanyPart';
-      case TimeOrPeriodPart:
-        return 'TimeOrPeriodPart';
-      case FlavorPart:
-        return 'FlavorPart';
-      case DelimiterPart:
-        return 'DelimiterPart';
-      case LegacyNamePart:
-        return 'LegacyNamePart';
-      case SpeciesNamePart:
-        return 'SpeciesNamePart';
+  final String fhirCode;
+  final Element? element;
+
+  const ProductNamePartType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ProductNamePartType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ProductNamePartType.elementOnly.withElement(element);
     }
+    return ProductNamePartType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ProductNamePartType] enum.
-  String toJson() => toString();
-
-  /// Returns a [ProductNamePartType] from a [String] enum.
-  static ProductNamePartType fromString(String str) {
-    switch (str) {
-      case 'FullName':
-        return ProductNamePartType.FullName;
-      case 'InventedNamePart':
-        return ProductNamePartType.InventedNamePart;
-      case 'ScientificNamePart':
-        return ProductNamePartType.ScientificNamePart;
-      case 'StrengthPart':
-        return ProductNamePartType.StrengthPart;
-      case 'DoseFormPart':
-        return ProductNamePartType.DoseFormPart;
-      case 'FormulationPart':
-        return ProductNamePartType.FormulationPart;
-      case 'IntendedUsePart':
-        return ProductNamePartType.IntendedUsePart;
-      case 'PopulationPart':
-        return ProductNamePartType.PopulationPart;
-      case 'ContainerPart':
-        return ProductNamePartType.ContainerPart;
-      case 'DevicePart':
-        return ProductNamePartType.DevicePart;
-      case 'TrademarkOrCompanyPart':
-        return ProductNamePartType.TrademarkOrCompanyPart;
-      case 'TimeOrPeriodPart':
-        return ProductNamePartType.TimeOrPeriodPart;
-      case 'FlavorPart':
-        return ProductNamePartType.FlavorPart;
-      case 'DelimiterPart':
-        return ProductNamePartType.DelimiterPart;
-      case 'LegacyNamePart':
-        return ProductNamePartType.LegacyNamePart;
-      case 'SpeciesNamePart':
-        return ProductNamePartType.SpeciesNamePart;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ProductNamePartType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ProductNamePartType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ProductNamePartType withElement(Element? newElement) {
+    return ProductNamePartType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

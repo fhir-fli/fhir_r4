@@ -1,77 +1,61 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Example Message Reasons. These are the set of codes that might be used an updating an encounter using admin-update.
 enum ExampleMessageReasonCodes {
   /// Display: Admit
   /// Definition: The patient has been admitted.
-  admit,
+  admit('admit'),
 
   /// Display: Discharge
   /// Definition: The patient has been discharged.
-  discharge,
+  discharge('discharge'),
 
   /// Display: Absent
   /// Definition: The patient has temporarily left the institution.
-  absent,
+  absent('absent'),
 
   /// Display: Returned
   /// Definition: The patient has returned from a temporary absence.
-  return_,
+  return_('return'),
 
   /// Display: Moved
   /// Definition: The patient has been moved to a new location.
-  moved,
+  moved('moved'),
 
   /// Display: Edit
   /// Definition: Encounter details have been updated (e.g. to correct a coding error).
-  edit,
+  edit('edit'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case admit:
-        return 'admit';
-      case discharge:
-        return 'discharge';
-      case absent:
-        return 'absent';
-      case return_:
-        return 'return';
-      case moved:
-        return 'moved';
-      case edit:
-        return 'edit';
+  final String fhirCode;
+  final Element? element;
+
+  const ExampleMessageReasonCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ExampleMessageReasonCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleMessageReasonCodes.elementOnly.withElement(element);
     }
+    return ExampleMessageReasonCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ExampleMessageReasonCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ExampleMessageReasonCodes] from a [String] enum.
-  static ExampleMessageReasonCodes fromString(String str) {
-    switch (str) {
-      case 'admit':
-        return ExampleMessageReasonCodes.admit;
-      case 'discharge':
-        return ExampleMessageReasonCodes.discharge;
-      case 'absent':
-        return ExampleMessageReasonCodes.absent;
-      case 'return':
-        return ExampleMessageReasonCodes.return_;
-      case 'moved':
-        return ExampleMessageReasonCodes.moved;
-      case 'edit':
-        return ExampleMessageReasonCodes.edit;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ExampleMessageReasonCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ExampleMessageReasonCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ExampleMessageReasonCodes withElement(Element? newElement) {
+    return ExampleMessageReasonCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

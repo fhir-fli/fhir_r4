@@ -1,50 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// A categorisation for a frequency of occurence of an undesirable effect.
 enum UndesirablEffectFrequency {
   /// Display: Common
-  Common,
+  /// Definition:
+  Common('Common'),
 
   /// Display: Uncommon
-  Uncommon,
+  /// Definition:
+  Uncommon('Uncommon'),
 
   /// Display: Rare
-  Rare,
+  /// Definition:
+  Rare('Rare'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case Common:
-        return 'Common';
-      case Uncommon:
-        return 'Uncommon';
-      case Rare:
-        return 'Rare';
+  final String fhirCode;
+  final Element? element;
+
+  const UndesirablEffectFrequency(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static UndesirablEffectFrequency fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return UndesirablEffectFrequency.elementOnly.withElement(element);
     }
+    return UndesirablEffectFrequency.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [UndesirablEffectFrequency] enum.
-  String toJson() => toString();
-
-  /// Returns a [UndesirablEffectFrequency] from a [String] enum.
-  static UndesirablEffectFrequency fromString(String str) {
-    switch (str) {
-      case 'Common':
-        return UndesirablEffectFrequency.Common;
-      case 'Uncommon':
-        return UndesirablEffectFrequency.Uncommon;
-      case 'Rare':
-        return UndesirablEffectFrequency.Rare;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [UndesirablEffectFrequency] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static UndesirablEffectFrequency fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  UndesirablEffectFrequency withElement(Element? newElement) {
+    return UndesirablEffectFrequency.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

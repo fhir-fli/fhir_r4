@@ -141,31 +141,70 @@ class Population extends BackboneType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (ageRange != null) {
-      json['ageRange'] = ageRange!.toJson();
+      final primitiveJson = ageRange!.toJson();
+      json['ageRange'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_ageRange'] = primitiveJson['_value'];
+      }
     }
+
     if (ageCodeableConcept != null) {
-      json['ageCodeableConcept'] = ageCodeableConcept!.toJson();
+      final primitiveJson = ageCodeableConcept!.toJson();
+      json['ageCodeableConcept'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_ageCodeableConcept'] = primitiveJson['_value'];
+      }
     }
+
     if (gender != null) {
-      json['gender'] = gender!.toJson();
+      final primitiveJson = gender!.toJson();
+      json['gender'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_gender'] = primitiveJson['_value'];
+      }
     }
+
     if (race != null) {
-      json['race'] = race!.toJson();
+      final primitiveJson = race!.toJson();
+      json['race'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_race'] = primitiveJson['_value'];
+      }
     }
+
     if (physiologicalCondition != null) {
-      json['physiologicalCondition'] = physiologicalCondition!.toJson();
+      final primitiveJson = physiologicalCondition!.toJson();
+      json['physiologicalCondition'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_physiologicalCondition'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 

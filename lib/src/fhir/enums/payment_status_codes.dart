@@ -1,45 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set includes a sample set of Payment Status codes.
 enum PaymentStatusCodes {
   /// Display: Paid
   /// Definition: The payment has been sent physically or electronically.
-  paid,
+  paid('paid'),
 
   /// Display: Cleared
   /// Definition: The payment has been received by the payee.
-  cleared,
+  cleared('cleared'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case paid:
-        return 'paid';
-      case cleared:
-        return 'cleared';
+  final String fhirCode;
+  final Element? element;
+
+  const PaymentStatusCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static PaymentStatusCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return PaymentStatusCodes.elementOnly.withElement(element);
     }
+    return PaymentStatusCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [PaymentStatusCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [PaymentStatusCodes] from a [String] enum.
-  static PaymentStatusCodes fromString(String str) {
-    switch (str) {
-      case 'paid':
-        return PaymentStatusCodes.paid;
-      case 'cleared':
-        return PaymentStatusCodes.cleared;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [PaymentStatusCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static PaymentStatusCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  PaymentStatusCodes withElement(Element? newElement) {
+    return PaymentStatusCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

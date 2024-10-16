@@ -1,71 +1,61 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// TODO (and should this be required?).
 enum AdverseEventOutcome {
   /// Display: Resolved
-  resolved,
+  /// Definition:
+  resolved('resolved'),
 
   /// Display: Recovering
-  recovering,
+  /// Definition:
+  recovering('recovering'),
 
   /// Display: Ongoing
-  ongoing,
+  /// Definition:
+  ongoing('ongoing'),
 
   /// Display: Resolved with Sequelae
-  resolvedWithSequelae,
+  /// Definition:
+  resolvedWithSequelae('resolvedWithSequelae'),
 
   /// Display: Fatal
-  fatal,
+  /// Definition:
+  fatal('fatal'),
 
   /// Display: Unknown
-  unknown,
+  /// Definition:
+  unknown('unknown'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case resolved:
-        return 'resolved';
-      case recovering:
-        return 'recovering';
-      case ongoing:
-        return 'ongoing';
-      case resolvedWithSequelae:
-        return 'resolvedWithSequelae';
-      case fatal:
-        return 'fatal';
-      case unknown:
-        return 'unknown';
+  final String fhirCode;
+  final Element? element;
+
+  const AdverseEventOutcome(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static AdverseEventOutcome fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AdverseEventOutcome.elementOnly.withElement(element);
     }
+    return AdverseEventOutcome.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [AdverseEventOutcome] enum.
-  String toJson() => toString();
-
-  /// Returns a [AdverseEventOutcome] from a [String] enum.
-  static AdverseEventOutcome fromString(String str) {
-    switch (str) {
-      case 'resolved':
-        return AdverseEventOutcome.resolved;
-      case 'recovering':
-        return AdverseEventOutcome.recovering;
-      case 'ongoing':
-        return AdverseEventOutcome.ongoing;
-      case 'resolvedWithSequelae':
-        return AdverseEventOutcome.resolvedWithSequelae;
-      case 'fatal':
-        return AdverseEventOutcome.fatal;
-      case 'unknown':
-        return AdverseEventOutcome.unknown;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [AdverseEventOutcome] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static AdverseEventOutcome fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  AdverseEventOutcome withElement(Element? newElement) {
+    return AdverseEventOutcome.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

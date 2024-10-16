@@ -1,109 +1,109 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Distinguishes whether the task is a proposal, plan or full order.
 enum TaskIntent {
   /// Display: Unknown
-  /// Definition: The intent is not known.  When dealing with Task, it's not always known (or relevant) how the task was initiated - i.e. whether it was proposed, planned, ordered or just done spontaneously.
-  unknown,
+  /// Definition: The intent is not known. When dealing with Task, it's not always known (or relevant) how the task was initiated - i.e. whether it was proposed, planned, ordered or just done spontaneously.
+  unknown('unknown'),
 
   /// Display: Proposal
   /// Definition: The request is a suggestion made by someone/something that does not have an intention to ensure it occurs and without providing an authorization to act.
-  proposal,
+  proposal('proposal'),
 
   /// Display: Plan
   /// Definition: The request represents an intention to ensure something occurs without providing an authorization for others to act.
-  plan,
+  plan('plan'),
 
   /// Display: Directive
   /// Definition: The request represents a legally binding instruction authored by a Patient or RelatedPerson.
-  directive,
+  directive('directive'),
 
   /// Display: Order
   /// Definition: The request represents a request/demand and authorization for action by a Practitioner.
-  order,
+  order('order'),
 
   /// Display: Original Order
   /// Definition: The request represents an original authorization for action.
-  original_order,
+  original_order('original-order'),
 
   /// Display: Reflex Order
   /// Definition: The request represents an automatically generated supplemental authorization for action based on a parent authorization together with initial results of the action taken against that parent authorization.
-  reflex_order,
+  reflex_order('reflex-order'),
 
   /// Display: Filler Order
   /// Definition: The request represents the view of an authorization instantiated by a fulfilling system representing the details of the fulfiller's intention to act upon a submitted order.
-  filler_order,
+  filler_order('filler-order'),
 
   /// Display: Instance Order
-  /// Definition: An order created in fulfillment of a broader order that represents the authorization for a single activity occurrence.  E.g. The administration of a single dose of a drug.
-  instance_order,
+  /// Definition: An order created in fulfillment of a broader order that represents the authorization for a single activity occurrence. E.g. The administration of a single dose of a drug.
+  instance_order('instance-order'),
 
   /// Display: Option
-  /// Definition: The request represents a component or option for a RequestGroup that establishes timing, conditionality and/or other constraints among a set of requests.  Refer to [[[RequestGroup]]] for additional information on how this status is used.
-  option,
+  /// Definition: The request represents a component or option for a RequestGroup that establishes timing, conditionality and/or other constraints among a set of requests. Refer to [[[RequestGroup]]] for additional information on how this status is used.
+  option('option'),
+
+  /// Display:
+  /// Definition:
+  proposal_1('proposal'),
+
+  /// Display:
+  /// Definition:
+  plan_1('plan'),
+
+  /// Display:
+  /// Definition:
+  order_1('order'),
+
+  /// Display:
+  /// Definition:
+  original_order_1('original-order'),
+
+  /// Display:
+  /// Definition:
+  reflex_order_1('reflex-order'),
+
+  /// Display:
+  /// Definition:
+  filler_order_1('filler-order'),
+
+  /// Display:
+  /// Definition:
+  instance_order_1('instance-order'),
+
+  /// Display:
+  /// Definition:
+  option_1('option'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case unknown:
-        return 'unknown';
-      case proposal:
-        return 'proposal';
-      case plan:
-        return 'plan';
-      case directive:
-        return 'directive';
-      case order:
-        return 'order';
-      case original_order:
-        return 'original-order';
-      case reflex_order:
-        return 'reflex-order';
-      case filler_order:
-        return 'filler-order';
-      case instance_order:
-        return 'instance-order';
-      case option:
-        return 'option';
+  final String fhirCode;
+  final Element? element;
+
+  const TaskIntent(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static TaskIntent fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TaskIntent.elementOnly.withElement(element);
     }
+    return TaskIntent.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [TaskIntent] enum.
-  String toJson() => toString();
-
-  /// Returns a [TaskIntent] from a [String] enum.
-  static TaskIntent fromString(String str) {
-    switch (str) {
-      case 'unknown':
-        return TaskIntent.unknown;
-      case 'proposal':
-        return TaskIntent.proposal;
-      case 'plan':
-        return TaskIntent.plan;
-      case 'directive':
-        return TaskIntent.directive;
-      case 'order':
-        return TaskIntent.order;
-      case 'original-order':
-        return TaskIntent.original_order;
-      case 'reflex-order':
-        return TaskIntent.reflex_order;
-      case 'filler-order':
-        return TaskIntent.filler_order;
-      case 'instance-order':
-        return TaskIntent.instance_order;
-      case 'option':
-        return TaskIntent.option;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [TaskIntent] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static TaskIntent fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  TaskIntent withElement(Element? newElement) {
+    return TaskIntent.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

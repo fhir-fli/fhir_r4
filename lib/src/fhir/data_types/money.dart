@@ -102,18 +102,37 @@ class Money extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    if (value?.value != null) {
-      json['value'] = value!.toJson();
+
+    if (value != null) {
+      final primitiveJson = value!.toJson();
+      json['value'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_value'] = primitiveJson['_value'];
+      }
     }
-    if (currency?.value != null) {
-      json['currency'] = currency!.toJson();
+
+    if (currency != null) {
+      final primitiveJson = currency!.toJson();
+      json['currency'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_currency'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 

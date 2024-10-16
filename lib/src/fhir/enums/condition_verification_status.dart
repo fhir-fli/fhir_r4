@@ -1,77 +1,61 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The verification status to support or decline the clinical status of the condition or diagnosis.
 enum ConditionVerificationStatus {
   /// Display: Unconfirmed
   /// Definition: There is not sufficient diagnostic and/or clinical evidence to treat this as a confirmed condition.
-  unconfirmed,
+  unconfirmed('unconfirmed'),
 
   /// Display: Provisional
   /// Definition: This is a tentative diagnosis - still a candidate that is under consideration.
-  provisional,
+  provisional('provisional'),
 
   /// Display: Differential
   /// Definition: One of a set of potential (and typically mutually exclusive) diagnoses asserted to further guide the diagnostic process and preliminary treatment.
-  differential,
+  differential('differential'),
 
   /// Display: Confirmed
   /// Definition: There is sufficient diagnostic and/or clinical evidence to treat this as a confirmed condition.
-  confirmed,
+  confirmed('confirmed'),
 
   /// Display: Refuted
   /// Definition: This condition has been ruled out by diagnostic and clinical evidence.
-  refuted,
+  refuted('refuted'),
 
   /// Display: Entered in Error
   /// Definition: The statement was entered in error and is not valid.
-  entered_in_error,
+  entered_in_error('entered-in-error'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case unconfirmed:
-        return 'unconfirmed';
-      case provisional:
-        return 'provisional';
-      case differential:
-        return 'differential';
-      case confirmed:
-        return 'confirmed';
-      case refuted:
-        return 'refuted';
-      case entered_in_error:
-        return 'entered-in-error';
+  final String fhirCode;
+  final Element? element;
+
+  const ConditionVerificationStatus(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ConditionVerificationStatus fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConditionVerificationStatus.elementOnly.withElement(element);
     }
+    return ConditionVerificationStatus.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ConditionVerificationStatus] enum.
-  String toJson() => toString();
-
-  /// Returns a [ConditionVerificationStatus] from a [String] enum.
-  static ConditionVerificationStatus fromString(String str) {
-    switch (str) {
-      case 'unconfirmed':
-        return ConditionVerificationStatus.unconfirmed;
-      case 'provisional':
-        return ConditionVerificationStatus.provisional;
-      case 'differential':
-        return ConditionVerificationStatus.differential;
-      case 'confirmed':
-        return ConditionVerificationStatus.confirmed;
-      case 'refuted':
-        return ConditionVerificationStatus.refuted;
-      case 'entered-in-error':
-        return ConditionVerificationStatus.entered_in_error;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ConditionVerificationStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ConditionVerificationStatus fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ConditionVerificationStatus withElement(Element? newElement) {
+    return ConditionVerificationStatus.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

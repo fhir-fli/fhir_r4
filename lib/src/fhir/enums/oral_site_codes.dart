@@ -1,357 +1,201 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set includes a smattering of FDI oral site codes.
 enum OralSiteCodes {
   /// Display: Oral cavity
   /// Definition: Oral cavity.
-  value0,
+  value0('0'),
 
   /// Display: 1
   /// Definition: Permanent teeth Maxillary right.
-  value1,
+  value1('1'),
 
   /// Display: 2
   /// Definition: Permanent teeth Maxillary left.
-  value2,
+  value2('2'),
 
   /// Display: 3
   /// Definition: Permanent teeth Mandibular right.
-  value3,
+  value3('3'),
 
   /// Display: 4
   /// Definition: Permanent teeth Mandibular left.
-  value4,
+  value4('4'),
 
   /// Display: 5
   /// Definition: Deciduous teeth Maxillary right.
-  value5,
+  value5('5'),
 
   /// Display: 6
   /// Definition: Deciduous teeth Maxillary left.
-  value6,
+  value6('6'),
 
   /// Display: 7
   /// Definition: Deciduous teeth Mandibular right.
-  value7,
+  value7('7'),
 
   /// Display: 8
   /// Definition: Deciduous teeth Mandibular left.
-  value8,
+  value8('8'),
 
   /// Display: 11
   /// Definition: Upper Right Tooth 1 from the central axis, permanent dentition.
-  value11,
+  value11('11'),
 
   /// Display: 12
   /// Definition: Upper Right Tooth 2 from the central axis, permanent dentition.
-  value12,
+  value12('12'),
 
   /// Display: 13
   /// Definition: Upper Right Tooth 3 from the central axis, permanent dentition.
-  value13,
+  value13('13'),
 
   /// Display: 14
   /// Definition: Upper Right Tooth 4 from the central axis, permanent dentition.
-  value14,
+  value14('14'),
 
   /// Display: 15
   /// Definition: Upper Right Tooth 5 from the central axis, permanent dentition.
-  value15,
+  value15('15'),
 
   /// Display: 16
   /// Definition: Upper Right Tooth 6 from the central axis, permanent dentition.
-  value16,
+  value16('16'),
 
   /// Display: 17
   /// Definition: Upper Right Tooth 7 from the central axis, permanent dentition.
-  value17,
+  value17('17'),
 
   /// Display: 18
   /// Definition: Upper Right Tooth 8 from the central axis, permanent dentition.
-  value18,
+  value18('18'),
 
   /// Display: 21
   /// Definition: Upper Left Tooth 1 from the central axis, permanent dentition.
-  value21,
+  value21('21'),
 
   /// Display: 22
   /// Definition: Upper Left Tooth 2 from the central axis, permanent dentition.
-  value22,
+  value22('22'),
 
   /// Display: 23
   /// Definition: Upper Left Tooth 3 from the central axis, permanent dentition.
-  value23,
+  value23('23'),
 
   /// Display: 24
   /// Definition: Upper Left Tooth 4 from the central axis, permanent dentition.
-  value24,
+  value24('24'),
 
   /// Display: 25
   /// Definition: Upper Left Tooth 5 from the central axis, permanent dentition.
-  value25,
+  value25('25'),
 
   /// Display: 26
   /// Definition: Upper Left Tooth 6 from the central axis, permanent dentition.
-  value26,
+  value26('26'),
 
   /// Display: 27
   /// Definition: Upper Left Tooth 7 from the central axis, permanent dentition.
-  value27,
+  value27('27'),
 
   /// Display: 28
   /// Definition: Upper Left Tooth 8 from the central axis, permanent dentition.
-  value28,
+  value28('28'),
 
   /// Display: 31
   /// Definition: Lower Left Tooth 1 from the central axis, permanent dentition.
-  value31,
+  value31('31'),
 
   /// Display: 32
   /// Definition: Lower Left Tooth 2 from the central axis, permanent dentition.
-  value32,
+  value32('32'),
 
   /// Display: 33
   /// Definition: Lower Left Tooth 3 from the central axis, permanent dentition.
-  value33,
+  value33('33'),
 
   /// Display: 34
   /// Definition: Lower Left Tooth 4 from the central axis, permanent dentition.
-  value34,
+  value34('34'),
 
   /// Display: 35
   /// Definition: Lower Left Tooth 5 from the central axis, permanent dentition.
-  value35,
+  value35('35'),
 
   /// Display: 36
   /// Definition: Lower Left Tooth 6 from the central axis, permanent dentition.
-  value36,
+  value36('36'),
 
   /// Display: 37
   /// Definition: Lower Left Tooth 7 from the central axis, permanent dentition.
-  value37,
+  value37('37'),
 
   /// Display: 38
   /// Definition: Lower Left Tooth 8 from the central axis, permanent dentition.
-  value38,
+  value38('38'),
 
   /// Display: 41
   /// Definition: Lower Right Tooth 1 from the central axis, permanent dentition.
-  value41,
+  value41('41'),
 
   /// Display: 42
   /// Definition: Lower Right Tooth 2 from the central axis, permanent dentition.
-  value42,
+  value42('42'),
 
   /// Display: 43
   /// Definition: Lower Right Tooth 3 from the central axis, permanent dentition.
-  value43,
+  value43('43'),
 
   /// Display: 44
   /// Definition: Lower Right Tooth 4 from the central axis, permanent dentition.
-  value44,
+  value44('44'),
 
   /// Display: 45
   /// Definition: Lower Right Tooth 5 from the central axis, permanent dentition.
-  value45,
+  value45('45'),
 
   /// Display: 46
   /// Definition: Lower Right Tooth 6 from the central axis, permanent dentition.
-  value46,
+  value46('46'),
 
   /// Display: 47
   /// Definition: Lower Right Tooth 7 from the central axis, permanent dentition.
-  value47,
+  value47('47'),
 
   /// Display: 48
   /// Definition: Lower Right Tooth 8 from the central axis, permanent dentition.
-  value48,
+  value48('48'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case value0:
-        return '0';
-      case value1:
-        return '1';
-      case value2:
-        return '2';
-      case value3:
-        return '3';
-      case value4:
-        return '4';
-      case value5:
-        return '5';
-      case value6:
-        return '6';
-      case value7:
-        return '7';
-      case value8:
-        return '8';
-      case value11:
-        return '11';
-      case value12:
-        return '12';
-      case value13:
-        return '13';
-      case value14:
-        return '14';
-      case value15:
-        return '15';
-      case value16:
-        return '16';
-      case value17:
-        return '17';
-      case value18:
-        return '18';
-      case value21:
-        return '21';
-      case value22:
-        return '22';
-      case value23:
-        return '23';
-      case value24:
-        return '24';
-      case value25:
-        return '25';
-      case value26:
-        return '26';
-      case value27:
-        return '27';
-      case value28:
-        return '28';
-      case value31:
-        return '31';
-      case value32:
-        return '32';
-      case value33:
-        return '33';
-      case value34:
-        return '34';
-      case value35:
-        return '35';
-      case value36:
-        return '36';
-      case value37:
-        return '37';
-      case value38:
-        return '38';
-      case value41:
-        return '41';
-      case value42:
-        return '42';
-      case value43:
-        return '43';
-      case value44:
-        return '44';
-      case value45:
-        return '45';
-      case value46:
-        return '46';
-      case value47:
-        return '47';
-      case value48:
-        return '48';
+  final String fhirCode;
+  final Element? element;
+
+  const OralSiteCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static OralSiteCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return OralSiteCodes.elementOnly.withElement(element);
     }
+    return OralSiteCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [OralSiteCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [OralSiteCodes] from a [String] enum.
-  static OralSiteCodes fromString(String str) {
-    switch (str) {
-      case '0':
-        return OralSiteCodes.value0;
-      case '1':
-        return OralSiteCodes.value1;
-      case '2':
-        return OralSiteCodes.value2;
-      case '3':
-        return OralSiteCodes.value3;
-      case '4':
-        return OralSiteCodes.value4;
-      case '5':
-        return OralSiteCodes.value5;
-      case '6':
-        return OralSiteCodes.value6;
-      case '7':
-        return OralSiteCodes.value7;
-      case '8':
-        return OralSiteCodes.value8;
-      case '11':
-        return OralSiteCodes.value11;
-      case '12':
-        return OralSiteCodes.value12;
-      case '13':
-        return OralSiteCodes.value13;
-      case '14':
-        return OralSiteCodes.value14;
-      case '15':
-        return OralSiteCodes.value15;
-      case '16':
-        return OralSiteCodes.value16;
-      case '17':
-        return OralSiteCodes.value17;
-      case '18':
-        return OralSiteCodes.value18;
-      case '21':
-        return OralSiteCodes.value21;
-      case '22':
-        return OralSiteCodes.value22;
-      case '23':
-        return OralSiteCodes.value23;
-      case '24':
-        return OralSiteCodes.value24;
-      case '25':
-        return OralSiteCodes.value25;
-      case '26':
-        return OralSiteCodes.value26;
-      case '27':
-        return OralSiteCodes.value27;
-      case '28':
-        return OralSiteCodes.value28;
-      case '31':
-        return OralSiteCodes.value31;
-      case '32':
-        return OralSiteCodes.value32;
-      case '33':
-        return OralSiteCodes.value33;
-      case '34':
-        return OralSiteCodes.value34;
-      case '35':
-        return OralSiteCodes.value35;
-      case '36':
-        return OralSiteCodes.value36;
-      case '37':
-        return OralSiteCodes.value37;
-      case '38':
-        return OralSiteCodes.value38;
-      case '41':
-        return OralSiteCodes.value41;
-      case '42':
-        return OralSiteCodes.value42;
-      case '43':
-        return OralSiteCodes.value43;
-      case '44':
-        return OralSiteCodes.value44;
-      case '45':
-        return OralSiteCodes.value45;
-      case '46':
-        return OralSiteCodes.value46;
-      case '47':
-        return OralSiteCodes.value47;
-      case '48':
-        return OralSiteCodes.value48;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [OralSiteCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static OralSiteCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  OralSiteCodes withElement(Element? newElement) {
+    return OralSiteCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

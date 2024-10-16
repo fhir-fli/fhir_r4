@@ -1,85 +1,69 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The method by which the substance weight was measured.
 enum WeightMethod {
   /// Display: SDS-PAGE (sodium dodecyl sulfate-polyacrylamide gel electrophoresis)
-  SDS_PAGE,
+  /// Definition:
+  SDS_PAGE('SDS-PAGE'),
 
   /// Display: calculated
-  Calculated,
+  /// Definition:
+  Calculated('Calculated'),
 
   /// Display: light scattering
-  LighScattering,
+  /// Definition:
+  LighScattering('LighScattering'),
 
   /// Display: viscosity
-  Viscosity,
+  /// Definition:
+  Viscosity('Viscosity'),
 
   /// Display: gel permeation centrifugation
-  GelPermeationCentrifugation,
+  /// Definition:
+  GelPermeationCentrifugation('GelPermeationCentrifugation'),
 
   /// Display: End-group analysis
-  End_groupAnalysis,
+  /// Definition:
+  End_groupAnalysis('End-groupAnalysis'),
 
   /// Display: End-group titration
-  End_groupTitration,
+  /// Definition:
+  End_groupTitration('End-groupTitration'),
 
   /// Display: Size-exclusion chromatography
-  Size_ExclusionChromatography,
+  /// Definition:
+  Size_ExclusionChromatography('Size-ExclusionChromatography'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case SDS_PAGE:
-        return 'SDS-PAGE';
-      case Calculated:
-        return 'Calculated';
-      case LighScattering:
-        return 'LighScattering';
-      case Viscosity:
-        return 'Viscosity';
-      case GelPermeationCentrifugation:
-        return 'GelPermeationCentrifugation';
-      case End_groupAnalysis:
-        return 'End-groupAnalysis';
-      case End_groupTitration:
-        return 'End-groupTitration';
-      case Size_ExclusionChromatography:
-        return 'Size-ExclusionChromatography';
+  final String fhirCode;
+  final Element? element;
+
+  const WeightMethod(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static WeightMethod fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return WeightMethod.elementOnly.withElement(element);
     }
+    return WeightMethod.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [WeightMethod] enum.
-  String toJson() => toString();
-
-  /// Returns a [WeightMethod] from a [String] enum.
-  static WeightMethod fromString(String str) {
-    switch (str) {
-      case 'SDS-PAGE':
-        return WeightMethod.SDS_PAGE;
-      case 'Calculated':
-        return WeightMethod.Calculated;
-      case 'LighScattering':
-        return WeightMethod.LighScattering;
-      case 'Viscosity':
-        return WeightMethod.Viscosity;
-      case 'GelPermeationCentrifugation':
-        return WeightMethod.GelPermeationCentrifugation;
-      case 'End-groupAnalysis':
-        return WeightMethod.End_groupAnalysis;
-      case 'End-groupTitration':
-        return WeightMethod.End_groupTitration;
-      case 'Size-ExclusionChromatography':
-        return WeightMethod.Size_ExclusionChromatography;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [WeightMethod] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static WeightMethod fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  WeightMethod withElement(Element? newElement) {
+    return WeightMethod.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

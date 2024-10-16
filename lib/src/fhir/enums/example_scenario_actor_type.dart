@@ -1,45 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The type of actor - system or human.
 enum ExampleScenarioActorType {
   /// Display: Person
   /// Definition: A person.
-  person,
+  person('person'),
 
   /// Display: System
   /// Definition: A system.
-  entity,
+  entity('entity'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case person:
-        return 'person';
-      case entity:
-        return 'entity';
+  final String fhirCode;
+  final Element? element;
+
+  const ExampleScenarioActorType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ExampleScenarioActorType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleScenarioActorType.elementOnly.withElement(element);
     }
+    return ExampleScenarioActorType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ExampleScenarioActorType] enum.
-  String toJson() => toString();
-
-  /// Returns a [ExampleScenarioActorType] from a [String] enum.
-  static ExampleScenarioActorType fromString(String str) {
-    switch (str) {
-      case 'person':
-        return ExampleScenarioActorType.person;
-      case 'entity':
-        return ExampleScenarioActorType.entity;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ExampleScenarioActorType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ExampleScenarioActorType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ExampleScenarioActorType withElement(Element? newElement) {
+    return ExampleScenarioActorType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

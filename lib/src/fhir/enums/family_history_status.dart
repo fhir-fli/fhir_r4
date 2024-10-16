@@ -1,61 +1,53 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// A code that identifies the status of the family history record.
 enum FamilyHistoryStatus {
   /// Display: Partial
   /// Definition: Some health information is known and captured, but not complete - see notes for details.
-  partial,
+  partial('partial'),
 
   /// Display: Completed
   /// Definition: All available related health information is captured as of the date (and possibly time) when the family member history was taken.
-  completed,
+  completed('completed'),
 
   /// Display: Entered in Error
   /// Definition: This instance should not have been part of this patient's medical record.
-  entered_in_error,
+  entered_in_error('entered-in-error'),
 
   /// Display: Health Unknown
   /// Definition: Health information for this family member is unavailable/unknown.
-  health_unknown,
+  health_unknown('health-unknown'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case partial:
-        return 'partial';
-      case completed:
-        return 'completed';
-      case entered_in_error:
-        return 'entered-in-error';
-      case health_unknown:
-        return 'health-unknown';
+  final String fhirCode;
+  final Element? element;
+
+  const FamilyHistoryStatus(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static FamilyHistoryStatus fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FamilyHistoryStatus.elementOnly.withElement(element);
     }
+    return FamilyHistoryStatus.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [FamilyHistoryStatus] enum.
-  String toJson() => toString();
-
-  /// Returns a [FamilyHistoryStatus] from a [String] enum.
-  static FamilyHistoryStatus fromString(String str) {
-    switch (str) {
-      case 'partial':
-        return FamilyHistoryStatus.partial;
-      case 'completed':
-        return FamilyHistoryStatus.completed;
-      case 'entered-in-error':
-        return FamilyHistoryStatus.entered_in_error;
-      case 'health-unknown':
-        return FamilyHistoryStatus.health_unknown;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [FamilyHistoryStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static FamilyHistoryStatus fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  FamilyHistoryStatus withElement(Element? newElement) {
+    return FamilyHistoryStatus.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

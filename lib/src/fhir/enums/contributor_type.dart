@@ -1,61 +1,53 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The type of contributor.
 enum ContributorType {
   /// Display: Author
   /// Definition: An author of the content of the module.
-  author,
+  author('author'),
 
   /// Display: Editor
   /// Definition: An editor of the content of the module.
-  editor,
+  editor('editor'),
 
   /// Display: Reviewer
   /// Definition: A reviewer of the content of the module.
-  reviewer,
+  reviewer('reviewer'),
 
   /// Display: Endorser
   /// Definition: An endorser of the content of the module.
-  endorser,
+  endorser('endorser'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case author:
-        return 'author';
-      case editor:
-        return 'editor';
-      case reviewer:
-        return 'reviewer';
-      case endorser:
-        return 'endorser';
+  final String fhirCode;
+  final Element? element;
+
+  const ContributorType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ContributorType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ContributorType.elementOnly.withElement(element);
     }
+    return ContributorType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ContributorType] enum.
-  String toJson() => toString();
-
-  /// Returns a [ContributorType] from a [String] enum.
-  static ContributorType fromString(String str) {
-    switch (str) {
-      case 'author':
-        return ContributorType.author;
-      case 'editor':
-        return ContributorType.editor;
-      case 'reviewer':
-        return ContributorType.reviewer;
-      case 'endorser':
-        return ContributorType.endorser;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ContributorType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ContributorType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ContributorType withElement(Element? newElement) {
+    return ContributorType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

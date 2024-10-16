@@ -1,69 +1,59 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the status of the patient towards perceived immunity against a vaccine preventable disease. This value set is provided as a suggestive example.
 enum ImmunizationRecommendationStatusCodes {
   /// Display: Due
   /// Definition: The patient is due for their next vaccination.
-  due,
+  due('due'),
 
   /// Display: Overdue
   /// Definition: The patient is considered overdue for their next vaccination.
-  overdue,
+  overdue('overdue'),
 
   /// Display: Immune
   /// Definition: The patient is immune to the target disease and further immunization against the disease is not likely to provide benefit.
-  immune,
+  immune('immune'),
 
   /// Display: Contraindicated
   /// Definition: The patient is contraindicated for futher doses.
-  contraindicated,
+  contraindicated('contraindicated'),
 
   /// Display: Complete
   /// Definition: The patient is fully protected and no further doses are recommended.
-  complete,
+  complete('complete'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case due:
-        return 'due';
-      case overdue:
-        return 'overdue';
-      case immune:
-        return 'immune';
-      case contraindicated:
-        return 'contraindicated';
-      case complete:
-        return 'complete';
+  final String fhirCode;
+  final Element? element;
+
+  const ImmunizationRecommendationStatusCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ImmunizationRecommendationStatusCodes fromJson(
+      Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationRecommendationStatusCodes.elementOnly
+          .withElement(element);
     }
+    return ImmunizationRecommendationStatusCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ImmunizationRecommendationStatusCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ImmunizationRecommendationStatusCodes] from a [String] enum.
-  static ImmunizationRecommendationStatusCodes fromString(String str) {
-    switch (str) {
-      case 'due':
-        return ImmunizationRecommendationStatusCodes.due;
-      case 'overdue':
-        return ImmunizationRecommendationStatusCodes.overdue;
-      case 'immune':
-        return ImmunizationRecommendationStatusCodes.immune;
-      case 'contraindicated':
-        return ImmunizationRecommendationStatusCodes.contraindicated;
-      case 'complete':
-        return ImmunizationRecommendationStatusCodes.complete;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ImmunizationRecommendationStatusCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ImmunizationRecommendationStatusCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ImmunizationRecommendationStatusCodes withElement(Element? newElement) {
+    return ImmunizationRecommendationStatusCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

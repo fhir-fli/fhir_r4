@@ -1,85 +1,65 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set defines a set of codes that can be used to indicate dietary preferences or restrictions a patient may have.
 enum Diet {
   /// Display: Vegetarian
   /// Definition: Food without meat, poultry or seafood.
-  vegetarian,
+  vegetarian('vegetarian'),
 
   /// Display: Dairy Free
   /// Definition: Excludes dairy products.
-  dairy_free,
+  dairy_free('dairy-free'),
 
   /// Display: Nut Free
   /// Definition: Excludes ingredients containing nuts.
-  nut_free,
+  nut_free('nut-free'),
 
   /// Display: Gluten Free
   /// Definition: Excludes ingredients containing gluten.
-  gluten_free,
+  gluten_free('gluten-free'),
 
   /// Display: Vegan
   /// Definition: Food without meat, poultry, seafood, eggs, dairy products and other animal-derived substances.
-  vegan,
+  vegan('vegan'),
 
   /// Display: Halal
   /// Definition: Foods that conform to Islamic law.
-  halal,
+  halal('halal'),
 
   /// Display: Kosher
   /// Definition: Foods that conform to Jewish dietary law.
-  kosher,
+  kosher('kosher'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case vegetarian:
-        return 'vegetarian';
-      case dairy_free:
-        return 'dairy-free';
-      case nut_free:
-        return 'nut-free';
-      case gluten_free:
-        return 'gluten-free';
-      case vegan:
-        return 'vegan';
-      case halal:
-        return 'halal';
-      case kosher:
-        return 'kosher';
+  final String fhirCode;
+  final Element? element;
+
+  const Diet(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static Diet fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return Diet.elementOnly.withElement(element);
     }
+    return Diet.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [Diet] enum.
-  String toJson() => toString();
-
-  /// Returns a [Diet] from a [String] enum.
-  static Diet fromString(String str) {
-    switch (str) {
-      case 'vegetarian':
-        return Diet.vegetarian;
-      case 'dairy-free':
-        return Diet.dairy_free;
-      case 'nut-free':
-        return Diet.nut_free;
-      case 'gluten-free':
-        return Diet.gluten_free;
-      case 'vegan':
-        return Diet.vegan;
-      case 'halal':
-        return Diet.halal;
-      case 'kosher':
-        return Diet.kosher;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [Diet] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static Diet fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  Diet withElement(Element? newElement) {
+    return Diet.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

@@ -1,57 +1,53 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// A categorisation for an interaction between two substances.
 enum InteractionType {
   /// Display: drug to drug interaction
-  drug_drug,
+  /// Definition:
+  drug_drug('drug-drug'),
 
   /// Display: drug to food interaction
-  drug_food,
+  /// Definition:
+  drug_food('drug-food'),
 
   /// Display: drug to laboratory test interaction
-  drug_test,
+  /// Definition:
+  drug_test('drug-test'),
 
   /// Display: other interaction
-  other,
+  /// Definition:
+  other('other'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case drug_drug:
-        return 'drug-drug';
-      case drug_food:
-        return 'drug-food';
-      case drug_test:
-        return 'drug-test';
-      case other:
-        return 'other';
+  final String fhirCode;
+  final Element? element;
+
+  const InteractionType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static InteractionType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return InteractionType.elementOnly.withElement(element);
     }
+    return InteractionType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [InteractionType] enum.
-  String toJson() => toString();
-
-  /// Returns a [InteractionType] from a [String] enum.
-  static InteractionType fromString(String str) {
-    switch (str) {
-      case 'drug-drug':
-        return InteractionType.drug_drug;
-      case 'drug-food':
-        return InteractionType.drug_food;
-      case 'drug-test':
-        return InteractionType.drug_test;
-      case 'other':
-        return InteractionType.other;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [InteractionType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static InteractionType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  InteractionType withElement(Element? newElement) {
+    return InteractionType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

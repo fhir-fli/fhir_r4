@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The status of the ImagingStudy.
 enum ImagingStudyStatus {
   /// Display: Registered
   /// Definition: The existence of the imaging study is registered, but there is nothing yet available.
-  registered,
+  registered('registered'),
 
   /// Display: Available
   /// Definition: At least one instance has been associated with this imaging study.
-  available,
+  available('available'),
 
   /// Display: Cancelled
   /// Definition: The imaging study is unavailable because the imaging study was not started or not completed (also sometimes called "aborted").
-  cancelled,
+  cancelled('cancelled'),
 
   /// Display: Entered in Error
-  /// Definition: The imaging study has been withdrawn following a previous final release.  This electronic record should never have existed, though it is possible that real-world decisions were based on it. (If real-world activity has occurred, the status should be "cancelled" rather than "entered-in-error".).
-  entered_in_error,
+  /// Definition: The imaging study has been withdrawn following a previous final release. This electronic record should never have existed, though it is possible that real-world decisions were based on it. (If real-world activity has occurred, the status should be "cancelled" rather than "entered-in-error".).
+  entered_in_error('entered-in-error'),
 
   /// Display: Unknown
   /// Definition: The system does not know which of the status values currently applies for this request. Note: This concept is not to be used for "other" - one of the listed statuses is presumed to apply, it's just not known which one.
-  unknown,
+  unknown('unknown'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case registered:
-        return 'registered';
-      case available:
-        return 'available';
-      case cancelled:
-        return 'cancelled';
-      case entered_in_error:
-        return 'entered-in-error';
-      case unknown:
-        return 'unknown';
+  final String fhirCode;
+  final Element? element;
+
+  const ImagingStudyStatus(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ImagingStudyStatus fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImagingStudyStatus.elementOnly.withElement(element);
     }
+    return ImagingStudyStatus.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ImagingStudyStatus] enum.
-  String toJson() => toString();
-
-  /// Returns a [ImagingStudyStatus] from a [String] enum.
-  static ImagingStudyStatus fromString(String str) {
-    switch (str) {
-      case 'registered':
-        return ImagingStudyStatus.registered;
-      case 'available':
-        return ImagingStudyStatus.available;
-      case 'cancelled':
-        return ImagingStudyStatus.cancelled;
-      case 'entered-in-error':
-        return ImagingStudyStatus.entered_in_error;
-      case 'unknown':
-        return ImagingStudyStatus.unknown;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ImagingStudyStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ImagingStudyStatus fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ImagingStudyStatus withElement(Element? newElement) {
+    return ImagingStudyStatus.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

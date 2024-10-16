@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set includes sample Payee Type codes.
 enum ClaimPayeeTypeCodes {
   /// Display: Subscriber
   /// Definition: The subscriber (policy holder) will be reimbursed.
-  subscriber,
+  subscriber('subscriber'),
 
   /// Display: Provider
   /// Definition: Any benefit payable will be paid to the provider (Assignment of Benefit).
-  provider,
+  provider('provider'),
 
   /// Display: Provider
   /// Definition: Any benefit payable will be paid to a third party such as a guarrantor.
-  other,
+  other('other'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case subscriber:
-        return 'subscriber';
-      case provider:
-        return 'provider';
-      case other:
-        return 'other';
+  final String fhirCode;
+  final Element? element;
+
+  const ClaimPayeeTypeCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ClaimPayeeTypeCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ClaimPayeeTypeCodes.elementOnly.withElement(element);
     }
+    return ClaimPayeeTypeCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ClaimPayeeTypeCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ClaimPayeeTypeCodes] from a [String] enum.
-  static ClaimPayeeTypeCodes fromString(String str) {
-    switch (str) {
-      case 'subscriber':
-        return ClaimPayeeTypeCodes.subscriber;
-      case 'provider':
-        return ClaimPayeeTypeCodes.provider;
-      case 'other':
-        return ClaimPayeeTypeCodes.other;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ClaimPayeeTypeCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ClaimPayeeTypeCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ClaimPayeeTypeCodes withElement(Element? newElement) {
+    return ClaimPayeeTypeCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

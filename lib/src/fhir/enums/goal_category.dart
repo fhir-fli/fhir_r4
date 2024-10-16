@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Example codes for grouping goals to use for filtering or presentation.
 enum GoalCategory {
   /// Display: Dietary
   /// Definition: Goals related to the consumption of food and/or beverages.
-  dietary,
+  dietary('dietary'),
 
   /// Display: Safety
   /// Definition: Goals related to the personal protection of the subject.
-  safety,
+  safety('safety'),
 
   /// Display: Behavioral
   /// Definition: Goals related to the manner in which the subject acts.
-  behavioral,
+  behavioral('behavioral'),
 
   /// Display: Nursing
   /// Definition: Goals related to the practice of nursing or established by nurses.
-  nursing,
+  nursing('nursing'),
 
   /// Display: Physiotherapy
   /// Definition: Goals related to the mobility and/or motor capability of the subject.
-  physiotherapy,
+  physiotherapy('physiotherapy'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case dietary:
-        return 'dietary';
-      case safety:
-        return 'safety';
-      case behavioral:
-        return 'behavioral';
-      case nursing:
-        return 'nursing';
-      case physiotherapy:
-        return 'physiotherapy';
+  final String fhirCode;
+  final Element? element;
+
+  const GoalCategory(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static GoalCategory fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return GoalCategory.elementOnly.withElement(element);
     }
+    return GoalCategory.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [GoalCategory] enum.
-  String toJson() => toString();
-
-  /// Returns a [GoalCategory] from a [String] enum.
-  static GoalCategory fromString(String str) {
-    switch (str) {
-      case 'dietary':
-        return GoalCategory.dietary;
-      case 'safety':
-        return GoalCategory.safety;
-      case 'behavioral':
-        return GoalCategory.behavioral;
-      case 'nursing':
-        return GoalCategory.nursing;
-      case 'physiotherapy':
-        return GoalCategory.physiotherapy;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [GoalCategory] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static GoalCategory fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  GoalCategory withElement(Element? newElement) {
+    return GoalCategory.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

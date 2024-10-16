@@ -1,101 +1,73 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// To describe the reason for the variant citation, such as version number or subpart specification.
 enum CitedArtifactPartType {
   /// Display: pages
   /// Definition: Denotes specific page or pages of an article or artifact.
-  pages,
+  pages('pages'),
 
   /// Display: sections
   /// Definition: Denotes specific section or sections of an article or artifact.
-  sections,
+  sections('sections'),
 
   /// Display: paragraphs
   /// Definition: Denotes specific paragraph or paragraphs of an article or artifact.
-  paragraphs,
+  paragraphs('paragraphs'),
 
   /// Display: lines
   /// Definition: Denotes specific line or lines of an article or artifact.
-  lines,
+  lines('lines'),
 
   /// Display: tables
   /// Definition: Denotes specific table or tables of an article or artifact.
-  tables,
+  tables('tables'),
 
   /// Display: figures
   /// Definition: Denotes specific figure or figures of an article or artifact.
-  figures,
+  figures('figures'),
 
   /// Display: Supplement or Appendix
   /// Definition: Used to denote a supplementary file, appendix, or additional part that is not a subpart of the primary article.
-  supplement,
+  supplement('supplement'),
 
   /// Display: Supplement or Appendix Subpart
   /// Definition: Used to denote a subpart within a supplementary file or appendix.
-  supplement_subpart,
+  supplement_subpart('supplement-subpart'),
 
   /// Display: Part of an article set
   /// Definition: Used to distinguish an individual article within an article set where the article set is a base citation.
-  article_set,
+  article_set('article-set'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case pages:
-        return 'pages';
-      case sections:
-        return 'sections';
-      case paragraphs:
-        return 'paragraphs';
-      case lines:
-        return 'lines';
-      case tables:
-        return 'tables';
-      case figures:
-        return 'figures';
-      case supplement:
-        return 'supplement';
-      case supplement_subpart:
-        return 'supplement-subpart';
-      case article_set:
-        return 'article-set';
+  final String fhirCode;
+  final Element? element;
+
+  const CitedArtifactPartType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static CitedArtifactPartType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CitedArtifactPartType.elementOnly.withElement(element);
     }
+    return CitedArtifactPartType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [CitedArtifactPartType] enum.
-  String toJson() => toString();
-
-  /// Returns a [CitedArtifactPartType] from a [String] enum.
-  static CitedArtifactPartType fromString(String str) {
-    switch (str) {
-      case 'pages':
-        return CitedArtifactPartType.pages;
-      case 'sections':
-        return CitedArtifactPartType.sections;
-      case 'paragraphs':
-        return CitedArtifactPartType.paragraphs;
-      case 'lines':
-        return CitedArtifactPartType.lines;
-      case 'tables':
-        return CitedArtifactPartType.tables;
-      case 'figures':
-        return CitedArtifactPartType.figures;
-      case 'supplement':
-        return CitedArtifactPartType.supplement;
-      case 'supplement-subpart':
-        return CitedArtifactPartType.supplement_subpart;
-      case 'article-set':
-        return CitedArtifactPartType.article_set;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [CitedArtifactPartType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static CitedArtifactPartType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  CitedArtifactPartType withElement(Element? newElement) {
+    return CitedArtifactPartType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

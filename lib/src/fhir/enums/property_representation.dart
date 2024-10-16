@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// How a property is represented when serialized.
 enum PropertyRepresentation {
   /// Display: XML Attribute
   /// Definition: In XML, this property is represented as an attribute not an element.
-  xmlAttr,
+  xmlAttr('xmlAttr'),
 
   /// Display: XML Text
   /// Definition: This element is represented using the XML text attribute (primitives only).
-  xmlText,
+  xmlText('xmlText'),
 
   /// Display: Type Attribute
   /// Definition: The type of this element is indicated using xsi:type.
-  typeAttr,
+  typeAttr('typeAttr'),
 
   /// Display: CDA Text Format
   /// Definition: Use CDA narrative instead of XHTML.
-  cdaText,
+  cdaText('cdaText'),
 
   /// Display: XHTML
   /// Definition: The property is represented using XHTML.
-  xhtml,
+  xhtml('xhtml'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case xmlAttr:
-        return 'xmlAttr';
-      case xmlText:
-        return 'xmlText';
-      case typeAttr:
-        return 'typeAttr';
-      case cdaText:
-        return 'cdaText';
-      case xhtml:
-        return 'xhtml';
+  final String fhirCode;
+  final Element? element;
+
+  const PropertyRepresentation(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static PropertyRepresentation fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return PropertyRepresentation.elementOnly.withElement(element);
     }
+    return PropertyRepresentation.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [PropertyRepresentation] enum.
-  String toJson() => toString();
-
-  /// Returns a [PropertyRepresentation] from a [String] enum.
-  static PropertyRepresentation fromString(String str) {
-    switch (str) {
-      case 'xmlAttr':
-        return PropertyRepresentation.xmlAttr;
-      case 'xmlText':
-        return PropertyRepresentation.xmlText;
-      case 'typeAttr':
-        return PropertyRepresentation.typeAttr;
-      case 'cdaText':
-        return PropertyRepresentation.cdaText;
-      case 'xhtml':
-        return PropertyRepresentation.xhtml;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [PropertyRepresentation] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static PropertyRepresentation fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  PropertyRepresentation withElement(Element? newElement) {
+    return PropertyRepresentation.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

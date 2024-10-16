@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set includes sample Payment Type codes.
 enum PaymentTypeCodes {
   /// Display: Payment
   /// Definition: The amount is partial or complete settlement of the amounts due.
-  payment,
+  payment('payment'),
 
   /// Display: Adjustment
   /// Definition: The amount is an adjustment regarding claims already paid.
-  adjustment,
+  adjustment('adjustment'),
 
   /// Display: Advance
   /// Definition: The amount is an advance against future claims.
-  advance,
+  advance('advance'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case payment:
-        return 'payment';
-      case adjustment:
-        return 'adjustment';
-      case advance:
-        return 'advance';
+  final String fhirCode;
+  final Element? element;
+
+  const PaymentTypeCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static PaymentTypeCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return PaymentTypeCodes.elementOnly.withElement(element);
     }
+    return PaymentTypeCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [PaymentTypeCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [PaymentTypeCodes] from a [String] enum.
-  static PaymentTypeCodes fromString(String str) {
-    switch (str) {
-      case 'payment':
-        return PaymentTypeCodes.payment;
-      case 'adjustment':
-        return PaymentTypeCodes.adjustment;
-      case 'advance':
-        return PaymentTypeCodes.advance;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [PaymentTypeCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static PaymentTypeCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  PaymentTypeCodes withElement(Element? newElement) {
+    return PaymentTypeCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

@@ -1,78 +1,65 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// A unit of time (units from UCUM).
 enum UnitsOfTime {
   /// Display: second
-  s,
+  /// Definition:
+  s('s'),
 
   /// Display: minute
-  min,
+  /// Definition:
+  min('min'),
 
   /// Display: hour
-  h,
+  /// Definition:
+  h('h'),
 
   /// Display: day
-  d,
+  /// Definition:
+  d('d'),
 
   /// Display: week
-  wk,
+  /// Definition:
+  wk('wk'),
 
   /// Display: month
-  mo,
+  /// Definition:
+  mo('mo'),
 
   /// Display: year
-  a,
+  /// Definition:
+  a('a'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case s:
-        return 's';
-      case min:
-        return 'min';
-      case h:
-        return 'h';
-      case d:
-        return 'd';
-      case wk:
-        return 'wk';
-      case mo:
-        return 'mo';
-      case a:
-        return 'a';
+  final String fhirCode;
+  final Element? element;
+
+  const UnitsOfTime(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static UnitsOfTime fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return UnitsOfTime.elementOnly.withElement(element);
     }
+    return UnitsOfTime.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [UnitsOfTime] enum.
-  String toJson() => toString();
-
-  /// Returns a [UnitsOfTime] from a [String] enum.
-  static UnitsOfTime fromString(String str) {
-    switch (str) {
-      case 's':
-        return UnitsOfTime.s;
-      case 'min':
-        return UnitsOfTime.min;
-      case 'h':
-        return UnitsOfTime.h;
-      case 'd':
-        return UnitsOfTime.d;
-      case 'wk':
-        return UnitsOfTime.wk;
-      case 'mo':
-        return UnitsOfTime.mo;
-      case 'a':
-        return UnitsOfTime.a;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [UnitsOfTime] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static UnitsOfTime fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  UnitsOfTime withElement(Element? newElement) {
+    return UnitsOfTime.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

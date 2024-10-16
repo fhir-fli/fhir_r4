@@ -431,121 +431,264 @@ class MedicationKnowledge extends DomainResource {
     final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (meta != null) {
-      json['meta'] = meta!.toJson();
+      final primitiveJson = meta!.toJson();
+      json['meta'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_meta'] = primitiveJson['_value'];
+      }
     }
-    if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.toJson();
+
+    if (implicitRules != null) {
+      final primitiveJson = implicitRules!.toJson();
+      json['implicitRules'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_implicitRules'] = primitiveJson['_value'];
+      }
     }
+
     if (language != null) {
-      json['language'] = language!.toJson();
+      final primitiveJson = language!.toJson();
+      json['language'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_language'] = primitiveJson['_value'];
+      }
     }
+
     if (text != null) {
-      json['text'] = text!.toJson();
+      final primitiveJson = text!.toJson();
+      json['text'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_text'] = primitiveJson['_value'];
+      }
     }
+
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
+      final primitiveList = contained!.map((e) => e.toJson()).toList();
+      json['contained'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_contained'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (code != null) {
-      json['code'] = code!.toJson();
+      final primitiveJson = code!.toJson();
+      json['code'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_code'] = primitiveJson['_value'];
+      }
     }
+
     if (status != null) {
-      json['status'] = status!.toJson();
+      final primitiveJson = status!.toJson();
+      json['status'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_status'] = primitiveJson['_value'];
+      }
     }
+
     if (manufacturer != null) {
-      json['manufacturer'] = manufacturer!.toJson();
+      final primitiveJson = manufacturer!.toJson();
+      json['manufacturer'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_manufacturer'] = primitiveJson['_value'];
+      }
     }
+
     if (doseForm != null) {
-      json['doseForm'] = doseForm!.toJson();
+      final primitiveJson = doseForm!.toJson();
+      json['doseForm'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_doseForm'] = primitiveJson['_value'];
+      }
     }
+
     if (amount != null) {
-      json['amount'] = amount!.toJson();
+      final primitiveJson = amount!.toJson();
+      json['amount'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_amount'] = primitiveJson['_value'];
+      }
     }
+
     if (synonym != null && synonym!.isNotEmpty) {
-      json['synonym'] = synonym!.map((FhirString v) => v.toJson()).toList();
+      final primitiveList = synonym!.map((e) => e.toJson()).toList();
+      json['synonym'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_synonym'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (relatedMedicationKnowledge != null &&
         relatedMedicationKnowledge!.isNotEmpty) {
-      json['relatedMedicationKnowledge'] = relatedMedicationKnowledge!
-          .map((MedicationKnowledgeRelatedMedicationKnowledge v) => v.toJson())
-          .toList();
+      final primitiveList =
+          relatedMedicationKnowledge!.map((e) => e.toJson()).toList();
+      json['relatedMedicationKnowledge'] =
+          primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_relatedMedicationKnowledge'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (associatedMedication != null && associatedMedication!.isNotEmpty) {
+      final primitiveList =
+          associatedMedication!.map((e) => e.toJson()).toList();
       json['associatedMedication'] =
-          associatedMedication!.map((Reference v) => v.toJson()).toList();
+          primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_associatedMedication'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (productType != null && productType!.isNotEmpty) {
-      json['productType'] =
-          productType!.map((CodeableConcept v) => v.toJson()).toList();
+      final primitiveList = productType!.map((e) => e.toJson()).toList();
+      json['productType'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_productType'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (monograph != null && monograph!.isNotEmpty) {
-      json['monograph'] = monograph!
-          .map((MedicationKnowledgeMonograph v) => v.toJson())
-          .toList();
+      final primitiveList = monograph!.map((e) => e.toJson()).toList();
+      json['monograph'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_monograph'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (ingredient != null && ingredient!.isNotEmpty) {
-      json['ingredient'] = ingredient!
-          .map((MedicationKnowledgeIngredient v) => v.toJson())
-          .toList();
+      final primitiveList = ingredient!.map((e) => e.toJson()).toList();
+      json['ingredient'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_ingredient'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    if (preparationInstruction?.value != null) {
-      json['preparationInstruction'] = preparationInstruction!.toJson();
+
+    if (preparationInstruction != null) {
+      final primitiveJson = preparationInstruction!.toJson();
+      json['preparationInstruction'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_preparationInstruction'] = primitiveJson['_value'];
+      }
     }
+
     if (intendedRoute != null && intendedRoute!.isNotEmpty) {
-      json['intendedRoute'] =
-          intendedRoute!.map((CodeableConcept v) => v.toJson()).toList();
+      final primitiveList = intendedRoute!.map((e) => e.toJson()).toList();
+      json['intendedRoute'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_intendedRoute'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (cost != null && cost!.isNotEmpty) {
-      json['cost'] =
-          cost!.map((MedicationKnowledgeCost v) => v.toJson()).toList();
+      final primitiveList = cost!.map((e) => e.toJson()).toList();
+      json['cost'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_cost'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (monitoringProgram != null && monitoringProgram!.isNotEmpty) {
-      json['monitoringProgram'] = monitoringProgram!
-          .map((MedicationKnowledgeMonitoringProgram v) => v.toJson())
-          .toList();
+      final primitiveList = monitoringProgram!.map((e) => e.toJson()).toList();
+      json['monitoringProgram'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_monitoringProgram'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (administrationGuidelines != null &&
         administrationGuidelines!.isNotEmpty) {
-      json['administrationGuidelines'] = administrationGuidelines!
-          .map((MedicationKnowledgeAdministrationGuidelines v) => v.toJson())
-          .toList();
+      final primitiveList =
+          administrationGuidelines!.map((e) => e.toJson()).toList();
+      json['administrationGuidelines'] =
+          primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_administrationGuidelines'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (medicineClassification != null && medicineClassification!.isNotEmpty) {
-      json['medicineClassification'] = medicineClassification!
-          .map((MedicationKnowledgeMedicineClassification v) => v.toJson())
-          .toList();
+      final primitiveList =
+          medicineClassification!.map((e) => e.toJson()).toList();
+      json['medicineClassification'] =
+          primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_medicineClassification'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (packaging != null) {
-      json['packaging'] = packaging!.toJson();
+      final primitiveJson = packaging!.toJson();
+      json['packaging'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_packaging'] = primitiveJson['_value'];
+      }
     }
+
     if (drugCharacteristic != null && drugCharacteristic!.isNotEmpty) {
-      json['drugCharacteristic'] = drugCharacteristic!
-          .map((MedicationKnowledgeDrugCharacteristic v) => v.toJson())
-          .toList();
+      final primitiveList = drugCharacteristic!.map((e) => e.toJson()).toList();
+      json['drugCharacteristic'] =
+          primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_drugCharacteristic'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (contraindication != null && contraindication!.isNotEmpty) {
-      json['contraindication'] =
-          contraindication!.map((Reference v) => v.toJson()).toList();
+      final primitiveList = contraindication!.map((e) => e.toJson()).toList();
+      json['contraindication'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_contraindication'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (regulatory != null && regulatory!.isNotEmpty) {
-      json['regulatory'] = regulatory!
-          .map((MedicationKnowledgeRegulatory v) => v.toJson())
-          .toList();
+      final primitiveList = regulatory!.map((e) => e.toJson()).toList();
+      json['regulatory'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_regulatory'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (kinetics != null && kinetics!.isNotEmpty) {
-      json['kinetics'] =
-          kinetics!.map((MedicationKnowledgeKinetics v) => v.toJson()).toList();
+      final primitiveList = kinetics!.map((e) => e.toJson()).toList();
+      json['kinetics'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_kinetics'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     return json;
   }
 
@@ -749,19 +892,46 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['type'] = type.toJson();
-    json['reference'] =
-        reference.map<dynamic>((Reference v) => v.toJson()).toList();
+
+    if (type != null) {
+      final primitiveJson = type!.toJson();
+      json['type'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_type'] = primitiveJson['_value'];
+      }
+    }
+
+    if (reference != null && reference!.isNotEmpty) {
+      final primitiveList = reference!.map((e) => e.toJson()).toList();
+      json['reference'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_reference'] = primitiveList.map((e) => e['_value']).toList();
+      }
+    }
+
     return json;
   }
 
@@ -908,22 +1078,46 @@ class MedicationKnowledgeMonograph extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (type != null) {
-      json['type'] = type!.toJson();
+      final primitiveJson = type!.toJson();
+      json['type'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_type'] = primitiveJson['_value'];
+      }
     }
+
     if (source != null) {
-      json['source'] = source!.toJson();
+      final primitiveJson = source!.toJson();
+      json['source'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_source'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 
@@ -1094,28 +1288,62 @@ class MedicationKnowledgeIngredient extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (itemCodeableConcept != null) {
-      json['itemCodeableConcept'] = itemCodeableConcept!.toJson();
+      final primitiveJson = itemCodeableConcept!.toJson();
+      json['itemCodeableConcept'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_itemCodeableConcept'] = primitiveJson['_value'];
+      }
     }
+
     if (itemReference != null) {
-      json['itemReference'] = itemReference!.toJson();
+      final primitiveJson = itemReference!.toJson();
+      json['itemReference'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_itemReference'] = primitiveJson['_value'];
+      }
     }
-    if (isActive?.value != null) {
-      json['isActive'] = isActive!.toJson();
+
+    if (isActive != null) {
+      final primitiveJson = isActive!.toJson();
+      json['isActive'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_isActive'] = primitiveJson['_value'];
+      }
     }
+
     if (strength != null) {
-      json['strength'] = strength!.toJson();
+      final primitiveJson = strength!.toJson();
+      json['strength'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_strength'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 
@@ -1272,21 +1500,54 @@ class MedicationKnowledgeCost extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['type'] = type.toJson();
-    if (source?.value != null) {
-      json['source'] = source!.toJson();
+
+    if (type != null) {
+      final primitiveJson = type!.toJson();
+      json['type'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_type'] = primitiveJson['_value'];
+      }
     }
-    json['cost'] = cost.toJson();
+
+    if (source != null) {
+      final primitiveJson = source!.toJson();
+      json['source'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_source'] = primitiveJson['_value'];
+      }
+    }
+
+    if (cost != null) {
+      final primitiveJson = cost!.toJson();
+      json['cost'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_cost'] = primitiveJson['_value'];
+      }
+    }
+
     return json;
   }
 
@@ -1436,22 +1697,46 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (type != null) {
-      json['type'] = type!.toJson();
+      final primitiveJson = type!.toJson();
+      json['type'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_type'] = primitiveJson['_value'];
+      }
     }
-    if (name?.value != null) {
-      json['name'] = name!.toJson();
+
+    if (name != null) {
+      final primitiveJson = name!.toJson();
+      json['name'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_name'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 
@@ -1630,31 +1915,65 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (dosage != null && dosage!.isNotEmpty) {
-      json['dosage'] =
-          dosage!.map((MedicationKnowledgeDosage v) => v.toJson()).toList();
+      final primitiveList = dosage!.map((e) => e.toJson()).toList();
+      json['dosage'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_dosage'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (indicationCodeableConcept != null) {
-      json['indicationCodeableConcept'] = indicationCodeableConcept!.toJson();
+      final primitiveJson = indicationCodeableConcept!.toJson();
+      json['indicationCodeableConcept'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_indicationCodeableConcept'] = primitiveJson['_value'];
+      }
     }
+
     if (indicationReference != null) {
-      json['indicationReference'] = indicationReference!.toJson();
+      final primitiveJson = indicationReference!.toJson();
+      json['indicationReference'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_indicationReference'] = primitiveJson['_value'];
+      }
     }
+
     if (patientCharacteristics != null && patientCharacteristics!.isNotEmpty) {
-      json['patientCharacteristics'] = patientCharacteristics!
-          .map((MedicationKnowledgePatientCharacteristics v) => v.toJson())
-          .toList();
+      final primitiveList =
+          patientCharacteristics!.map((e) => e.toJson()).toList();
+      json['patientCharacteristics'] =
+          primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_patientCharacteristics'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     return json;
   }
 
@@ -1807,18 +2126,46 @@ class MedicationKnowledgeDosage extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['type'] = type.toJson();
-    json['dosage'] = dosage.map<dynamic>((Dosage v) => v.toJson()).toList();
+
+    if (type != null) {
+      final primitiveJson = type!.toJson();
+      json['type'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_type'] = primitiveJson['_value'];
+      }
+    }
+
+    if (dosage != null && dosage!.isNotEmpty) {
+      final primitiveList = dosage!.map((e) => e.toJson()).toList();
+      json['dosage'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_dosage'] = primitiveList.map((e) => e['_value']).toList();
+      }
+    }
+
     return json;
   }
 
@@ -1978,26 +2325,54 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (characteristicCodeableConcept != null) {
-      json['characteristicCodeableConcept'] =
-          characteristicCodeableConcept!.toJson();
+      final primitiveJson = characteristicCodeableConcept!.toJson();
+      json['characteristicCodeableConcept'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_characteristicCodeableConcept'] = primitiveJson['_value'];
+      }
     }
+
     if (characteristicQuantity != null) {
-      json['characteristicQuantity'] = characteristicQuantity!.toJson();
+      final primitiveJson = characteristicQuantity!.toJson();
+      json['characteristicQuantity'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_characteristicQuantity'] = primitiveJson['_value'];
+      }
     }
+
     if (value != null && value!.isNotEmpty) {
-      json['value'] = value!.map((FhirString v) => v.toJson()).toList();
+      final primitiveList = value!.map((e) => e.toJson()).toList();
+      json['value'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_value'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     return json;
   }
 
@@ -2155,21 +2530,47 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['type'] = type.toJson();
+
+    if (type != null) {
+      final primitiveJson = type!.toJson();
+      json['type'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_type'] = primitiveJson['_value'];
+      }
+    }
+
     if (classification != null && classification!.isNotEmpty) {
-      json['classification'] =
-          classification!.map((CodeableConcept v) => v.toJson()).toList();
+      final primitiveList = classification!.map((e) => e.toJson()).toList();
+      json['classification'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_classification'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     return json;
   }
 
@@ -2316,22 +2717,46 @@ class MedicationKnowledgePackaging extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (type != null) {
-      json['type'] = type!.toJson();
+      final primitiveJson = type!.toJson();
+      json['type'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_type'] = primitiveJson['_value'];
+      }
     }
+
     if (quantity != null) {
-      json['quantity'] = quantity!.toJson();
+      final primitiveJson = quantity!.toJson();
+      json['quantity'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_quantity'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 
@@ -2512,31 +2937,70 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (type != null) {
-      json['type'] = type!.toJson();
+      final primitiveJson = type!.toJson();
+      json['type'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_type'] = primitiveJson['_value'];
+      }
     }
+
     if (valueCodeableConcept != null) {
-      json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
+      final primitiveJson = valueCodeableConcept!.toJson();
+      json['valueCodeableConcept'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_valueCodeableConcept'] = primitiveJson['_value'];
+      }
     }
-    if (valueString?.value != null) {
-      json['valueString'] = valueString!.toJson();
+
+    if (valueString != null) {
+      final primitiveJson = valueString!.toJson();
+      json['valueString'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_valueString'] = primitiveJson['_value'];
+      }
     }
+
     if (valueQuantity != null) {
-      json['valueQuantity'] = valueQuantity!.toJson();
+      final primitiveJson = valueQuantity!.toJson();
+      json['valueQuantity'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_valueQuantity'] = primitiveJson['_value'];
+      }
     }
-    if (valueBase64Binary?.value != null) {
-      json['valueBase64Binary'] = valueBase64Binary!.toJson();
+
+    if (valueBase64Binary != null) {
+      final primitiveJson = valueBase64Binary!.toJson();
+      json['valueBase64Binary'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_valueBase64Binary'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 
@@ -2715,29 +3179,62 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['regulatoryAuthority'] = regulatoryAuthority.toJson();
+
+    if (regulatoryAuthority != null) {
+      final primitiveJson = regulatoryAuthority!.toJson();
+      json['regulatoryAuthority'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_regulatoryAuthority'] = primitiveJson['_value'];
+      }
+    }
+
     if (substitution != null && substitution!.isNotEmpty) {
-      json['substitution'] = substitution!
-          .map((MedicationKnowledgeSubstitution v) => v.toJson())
-          .toList();
+      final primitiveList = substitution!.map((e) => e.toJson()).toList();
+      json['substitution'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_substitution'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (schedule != null && schedule!.isNotEmpty) {
-      json['schedule'] =
-          schedule!.map((MedicationKnowledgeSchedule v) => v.toJson()).toList();
+      final primitiveList = schedule!.map((e) => e.toJson()).toList();
+      json['schedule'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_schedule'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (maxDispense != null) {
-      json['maxDispense'] = maxDispense!.toJson();
+      final primitiveJson = maxDispense!.toJson();
+      json['maxDispense'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_maxDispense'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 
@@ -2886,18 +3383,46 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['type'] = type.toJson();
-    json['allowed'] = allowed.toJson();
+
+    if (type != null) {
+      final primitiveJson = type!.toJson();
+      json['type'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_type'] = primitiveJson['_value'];
+      }
+    }
+
+    if (allowed != null) {
+      final primitiveJson = allowed!.toJson();
+      json['allowed'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_allowed'] = primitiveJson['_value'];
+      }
+    }
+
     return json;
   }
 
@@ -3030,17 +3555,38 @@ class MedicationKnowledgeSchedule extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['schedule'] = schedule.toJson();
+
+    if (schedule != null) {
+      final primitiveJson = schedule!.toJson();
+      json['schedule'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_schedule'] = primitiveJson['_value'];
+      }
+    }
+
     return json;
   }
 
@@ -3183,20 +3729,46 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['quantity'] = quantity.toJson();
+
+    if (quantity != null) {
+      final primitiveJson = quantity!.toJson();
+      json['quantity'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_quantity'] = primitiveJson['_value'];
+      }
+    }
+
     if (period != null) {
-      json['period'] = period!.toJson();
+      final primitiveJson = period!.toJson();
+      json['period'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_period'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 
@@ -3361,27 +3933,55 @@ class MedicationKnowledgeKinetics extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (areaUnderCurve != null && areaUnderCurve!.isNotEmpty) {
-      json['areaUnderCurve'] =
-          areaUnderCurve!.map((Quantity v) => v.toJson()).toList();
+      final primitiveList = areaUnderCurve!.map((e) => e.toJson()).toList();
+      json['areaUnderCurve'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_areaUnderCurve'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (lethalDose50 != null && lethalDose50!.isNotEmpty) {
-      json['lethalDose50'] =
-          lethalDose50!.map((Quantity v) => v.toJson()).toList();
+      final primitiveList = lethalDose50!.map((e) => e.toJson()).toList();
+      json['lethalDose50'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_lethalDose50'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (halfLifePeriod != null) {
-      json['halfLifePeriod'] = halfLifePeriod!.toJson();
+      final primitiveJson = halfLifePeriod!.toJson();
+      json['halfLifePeriod'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_halfLifePeriod'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 

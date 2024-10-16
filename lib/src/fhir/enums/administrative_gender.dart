@@ -1,61 +1,53 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The gender of a person used for administrative purposes.
 enum AdministrativeGender {
   /// Display: Male
   /// Definition: Male.
-  male,
+  male('male'),
 
   /// Display: Female
   /// Definition: Female.
-  female,
+  female('female'),
 
   /// Display: Other
   /// Definition: Other.
-  other,
+  other('other'),
 
   /// Display: Unknown
   /// Definition: Unknown.
-  unknown,
+  unknown('unknown'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case male:
-        return 'male';
-      case female:
-        return 'female';
-      case other:
-        return 'other';
-      case unknown:
-        return 'unknown';
+  final String fhirCode;
+  final Element? element;
+
+  const AdministrativeGender(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static AdministrativeGender fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AdministrativeGender.elementOnly.withElement(element);
     }
+    return AdministrativeGender.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [AdministrativeGender] enum.
-  String toJson() => toString();
-
-  /// Returns a [AdministrativeGender] from a [String] enum.
-  static AdministrativeGender fromString(String str) {
-    switch (str) {
-      case 'male':
-        return AdministrativeGender.male;
-      case 'female':
-        return AdministrativeGender.female;
-      case 'other':
-        return AdministrativeGender.other;
-      case 'unknown':
-        return AdministrativeGender.unknown;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [AdministrativeGender] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static AdministrativeGender fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  AdministrativeGender withElement(Element? newElement) {
+    return AdministrativeGender.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

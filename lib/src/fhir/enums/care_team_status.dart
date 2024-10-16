@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Indicates the status of the care team.
 enum CareTeamStatus {
   /// Display: Proposed
   /// Definition: The care team has been drafted and proposed, but not yet participating in the coordination and delivery of patient care.
-  proposed,
+  proposed('proposed'),
 
   /// Display: Active
   /// Definition: The care team is currently participating in the coordination and delivery of care.
-  active,
+  active('active'),
 
   /// Display: Suspended
   /// Definition: The care team is temporarily on hold or suspended and not participating in the coordination and delivery of care.
-  suspended,
+  suspended('suspended'),
 
   /// Display: Inactive
   /// Definition: The care team was, but is no longer, participating in the coordination and delivery of care.
-  inactive,
+  inactive('inactive'),
 
   /// Display: Entered in Error
   /// Definition: The care team should have never existed.
-  entered_in_error,
+  entered_in_error('entered-in-error'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case proposed:
-        return 'proposed';
-      case active:
-        return 'active';
-      case suspended:
-        return 'suspended';
-      case inactive:
-        return 'inactive';
-      case entered_in_error:
-        return 'entered-in-error';
+  final String fhirCode;
+  final Element? element;
+
+  const CareTeamStatus(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static CareTeamStatus fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CareTeamStatus.elementOnly.withElement(element);
     }
+    return CareTeamStatus.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [CareTeamStatus] enum.
-  String toJson() => toString();
-
-  /// Returns a [CareTeamStatus] from a [String] enum.
-  static CareTeamStatus fromString(String str) {
-    switch (str) {
-      case 'proposed':
-        return CareTeamStatus.proposed;
-      case 'active':
-        return CareTeamStatus.active;
-      case 'suspended':
-        return CareTeamStatus.suspended;
-      case 'inactive':
-        return CareTeamStatus.inactive;
-      case 'entered-in-error':
-        return CareTeamStatus.entered_in_error;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [CareTeamStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static CareTeamStatus fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  CareTeamStatus withElement(Element? newElement) {
+    return CareTeamStatus.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

@@ -1,51 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support the definition of dates relevant to recommendations for future doses of vaccines. This value set is provided as a suggestive example.
 enum ImmunizationRecommendationDateCriterionCodes {
-  value30981_5,
-  value30980_7,
-  value59777_3,
-  value59778_1,
+  /// Display:
+  /// Definition:
+  value30981_5('30981-5'),
+
+  /// Display:
+  /// Definition:
+  value30980_7('30980-7'),
+
+  /// Display:
+  /// Definition:
+  value59777_3('59777-3'),
+
+  /// Display:
+  /// Definition:
+  value59778_1('59778-1'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case value30981_5:
-        return '30981-5';
-      case value30980_7:
-        return '30980-7';
-      case value59777_3:
-        return '59777-3';
-      case value59778_1:
-        return '59778-1';
-    }
-  }
+  final String fhirCode;
+  final Element? element;
 
-  /// Returns a [String] from a [ImmunizationRecommendationDateCriterionCodes] enum.
-  String toJson() => toString();
+  const ImmunizationRecommendationDateCriterionCodes(this.fhirCode,
+      [this.element]);
 
-  /// Returns a [ImmunizationRecommendationDateCriterionCodes] from a [String] enum.
-  static ImmunizationRecommendationDateCriterionCodes fromString(String str) {
-    switch (str) {
-      case '30981-5':
-        return ImmunizationRecommendationDateCriterionCodes.value30981_5;
-      case '30980-7':
-        return ImmunizationRecommendationDateCriterionCodes.value30980_7;
-      case '59777-3':
-        return ImmunizationRecommendationDateCriterionCodes.value59777_3;
-      case '59778-1':
-        return ImmunizationRecommendationDateCriterionCodes.value59778_1;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
 
-  /// Returns a [ImmunizationRecommendationDateCriterionCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
   static ImmunizationRecommendationDateCriterionCodes fromJson(
-      dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
+      Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationRecommendationDateCriterionCodes.elementOnly
+          .withElement(element);
     }
+    return ImmunizationRecommendationDateCriterionCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
+  }
+
+  ImmunizationRecommendationDateCriterionCodes withElement(
+      Element? newElement) {
+    return ImmunizationRecommendationDateCriterionCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

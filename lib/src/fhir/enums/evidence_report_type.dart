@@ -1,61 +1,53 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The kind of report, such as grouping of classifiers, search results, or human-compiled expression.
 enum EvidenceReportType {
   /// Display: Classification
   /// Definition: The report is primarily a listing of classifiers about the report subject.
-  classification,
+  classification('classification'),
 
   /// Display: Search Results
   /// Definition: The report is a composition of results generated in response to a search query.
-  search_results,
+  search_results('search-results'),
 
   /// Display: Resource Compilation
   /// Definition: The report is a composition containing one or more FHIR resources in the content.
-  resources_compiled,
+  resources_compiled('resources-compiled'),
 
   /// Display: Structured Text
   /// Definition: The report is a structured representation of text.
-  text_structured,
+  text_structured('text-structured'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case classification:
-        return 'classification';
-      case search_results:
-        return 'search-results';
-      case resources_compiled:
-        return 'resources-compiled';
-      case text_structured:
-        return 'text-structured';
+  final String fhirCode;
+  final Element? element;
+
+  const EvidenceReportType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static EvidenceReportType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EvidenceReportType.elementOnly.withElement(element);
     }
+    return EvidenceReportType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [EvidenceReportType] enum.
-  String toJson() => toString();
-
-  /// Returns a [EvidenceReportType] from a [String] enum.
-  static EvidenceReportType fromString(String str) {
-    switch (str) {
-      case 'classification':
-        return EvidenceReportType.classification;
-      case 'search-results':
-        return EvidenceReportType.search_results;
-      case 'resources-compiled':
-        return EvidenceReportType.resources_compiled;
-      case 'text-structured':
-        return EvidenceReportType.text_structured;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [EvidenceReportType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static EvidenceReportType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  EvidenceReportType withElement(Element? newElement) {
+    return EvidenceReportType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

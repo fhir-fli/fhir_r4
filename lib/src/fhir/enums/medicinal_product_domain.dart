@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Applicable domain for this product (e.g. human, veterinary)
 enum MedicinalProductDomain {
   /// Display: Human use
   /// Definition: Product intended for use with humans
-  Human,
+  Human('Human'),
 
   /// Display: Veterinary use
   /// Definition: Product intended for use with animals
-  Veterinary,
+  Veterinary('Veterinary'),
 
   /// Display: Human and Veterinary use
   /// Definition: Product intended for use with both humans and animals
-  HumanAndVeterinary,
+  HumanAndVeterinary('HumanAndVeterinary'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case Human:
-        return 'Human';
-      case Veterinary:
-        return 'Veterinary';
-      case HumanAndVeterinary:
-        return 'HumanAndVeterinary';
+  final String fhirCode;
+  final Element? element;
+
+  const MedicinalProductDomain(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static MedicinalProductDomain fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicinalProductDomain.elementOnly.withElement(element);
     }
+    return MedicinalProductDomain.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [MedicinalProductDomain] enum.
-  String toJson() => toString();
-
-  /// Returns a [MedicinalProductDomain] from a [String] enum.
-  static MedicinalProductDomain fromString(String str) {
-    switch (str) {
-      case 'Human':
-        return MedicinalProductDomain.Human;
-      case 'Veterinary':
-        return MedicinalProductDomain.Veterinary;
-      case 'HumanAndVeterinary':
-        return MedicinalProductDomain.HumanAndVeterinary;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [MedicinalProductDomain] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static MedicinalProductDomain fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  MedicinalProductDomain withElement(Element? newElement) {
+    return MedicinalProductDomain.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

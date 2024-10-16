@@ -1,50 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Overall type of this authorization.
 enum RegulatedAuthorizationType {
   /// Display: Marketing Authorization
-  MarketingAuth,
+  /// Definition:
+  MarketingAuth('MarketingAuth'),
 
   /// Display: Orphan Drug Authorization
-  Orphan,
+  /// Definition:
+  Orphan('Orphan'),
 
   /// Display: Pediatric Use Drug Authorization
-  Pediatric,
+  /// Definition:
+  Pediatric('Pediatric'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case MarketingAuth:
-        return 'MarketingAuth';
-      case Orphan:
-        return 'Orphan';
-      case Pediatric:
-        return 'Pediatric';
+  final String fhirCode;
+  final Element? element;
+
+  const RegulatedAuthorizationType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static RegulatedAuthorizationType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return RegulatedAuthorizationType.elementOnly.withElement(element);
     }
+    return RegulatedAuthorizationType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [RegulatedAuthorizationType] enum.
-  String toJson() => toString();
-
-  /// Returns a [RegulatedAuthorizationType] from a [String] enum.
-  static RegulatedAuthorizationType fromString(String str) {
-    switch (str) {
-      case 'MarketingAuth':
-        return RegulatedAuthorizationType.MarketingAuth;
-      case 'Orphan':
-        return RegulatedAuthorizationType.Orphan;
-      case 'Pediatric':
-        return RegulatedAuthorizationType.Pediatric;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [RegulatedAuthorizationType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static RegulatedAuthorizationType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  RegulatedAuthorizationType withElement(Element? newElement) {
+    return RegulatedAuthorizationType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

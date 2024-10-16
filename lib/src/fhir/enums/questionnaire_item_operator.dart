@@ -1,85 +1,65 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The criteria by which a question is enabled.
 enum QuestionnaireItemOperator {
   /// Display: Exists
   /// Definition: True if whether an answer exists is equal to the enableWhen answer (which must be a boolean).
-  exists,
+  exists('exists'),
 
   /// Display: Equals
   /// Definition: True if whether at least one answer has a value that is equal to the enableWhen answer.
-  equals,
+  eq('='),
 
   /// Display: Not Equals
   /// Definition: True if whether at least no answer has a value that is equal to the enableWhen answer.
-  notEquals,
+  ne('!='),
 
   /// Display: Greater Than
   /// Definition: True if whether at least no answer has a value that is greater than the enableWhen answer.
-  greaterThan,
+  gt('>'),
 
   /// Display: Less Than
   /// Definition: True if whether at least no answer has a value that is less than the enableWhen answer.
-  lessThan,
+  lt('<'),
 
   /// Display: Greater or Equals
   /// Definition: True if whether at least no answer has a value that is greater or equal to the enableWhen answer.
-  greaterThanOrEquals,
+  ge('>='),
 
   /// Display: Less or Equals
   /// Definition: True if whether at least no answer has a value that is less or equal to the enableWhen answer.
-  lessThanOrEquals,
+  le('<='),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case exists:
-        return 'exists';
-      case equals:
-        return '=';
-      case notEquals:
-        return '!=';
-      case greaterThan:
-        return '>';
-      case lessThan:
-        return '<';
-      case greaterThanOrEquals:
-        return '>=';
-      case lessThanOrEquals:
-        return '<=';
+  final String fhirCode;
+  final Element? element;
+
+  const QuestionnaireItemOperator(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static QuestionnaireItemOperator fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return QuestionnaireItemOperator.elementOnly.withElement(element);
     }
+    return QuestionnaireItemOperator.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [QuestionnaireItemOperator] enum.
-  String toJson() => toString();
-
-  /// Returns a [QuestionnaireItemOperator] from a [String] enum.
-  static QuestionnaireItemOperator fromString(String str) {
-    switch (str) {
-      case 'exists':
-        return QuestionnaireItemOperator.exists;
-      case '=':
-        return QuestionnaireItemOperator.equals;
-      case '!=':
-        return QuestionnaireItemOperator.notEquals;
-      case '>':
-        return QuestionnaireItemOperator.greaterThan;
-      case '<':
-        return QuestionnaireItemOperator.lessThan;
-      case '>=':
-        return QuestionnaireItemOperator.greaterThanOrEquals;
-      case '<=':
-        return QuestionnaireItemOperator.lessThanOrEquals;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [QuestionnaireItemOperator] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static QuestionnaireItemOperator fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  QuestionnaireItemOperator withElement(Element? newElement) {
+    return QuestionnaireItemOperator.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

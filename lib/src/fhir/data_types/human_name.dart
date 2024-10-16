@@ -155,33 +155,77 @@ class HumanName extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (use != null) {
-      json['use'] = use!.toJson();
+      final primitiveJson = use!.toJson();
+      json['use'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_use'] = primitiveJson['_value'];
+      }
     }
-    if (text?.value != null) {
-      json['text'] = text!.toJson();
+
+    if (text != null) {
+      final primitiveJson = text!.toJson();
+      json['text'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_text'] = primitiveJson['_value'];
+      }
     }
-    if (family?.value != null) {
-      json['family'] = family!.toJson();
+
+    if (family != null) {
+      final primitiveJson = family!.toJson();
+      json['family'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_family'] = primitiveJson['_value'];
+      }
     }
+
     if (given != null && given!.isNotEmpty) {
-      json['given'] = given!.map((FhirString v) => v.toJson()).toList();
+      final primitiveList = given!.map((e) => e.toJson()).toList();
+      json['given'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_given'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (prefix != null && prefix!.isNotEmpty) {
-      json['prefix'] = prefix!.map((FhirString v) => v.toJson()).toList();
+      final primitiveList = prefix!.map((e) => e.toJson()).toList();
+      json['prefix'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_prefix'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (suffix != null && suffix!.isNotEmpty) {
-      json['suffix'] = suffix!.map((FhirString v) => v.toJson()).toList();
+      final primitiveList = suffix!.map((e) => e.toJson()).toList();
+      json['suffix'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_suffix'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (period != null) {
-      json['period'] = period!.toJson();
+      final primitiveJson = period!.toJson();
+      json['period'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_period'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 

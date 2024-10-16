@@ -1,101 +1,73 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Current state of the encounter.
 enum EncounterStatus {
   /// Display: Planned
   /// Definition: The Encounter has not yet started.
-  planned,
+  planned('planned'),
 
   /// Display: Arrived
   /// Definition: The Patient is present for the encounter, however is not currently meeting with a practitioner.
-  arrived,
+  arrived('arrived'),
 
   /// Display: Triaged
   /// Definition: The patient has been assessed for the priority of their treatment based on the severity of their condition.
-  triaged,
+  triaged('triaged'),
 
   /// Display: In Progress
   /// Definition: The Encounter has begun and the patient is present / the practitioner and the patient are meeting.
-  in_progress,
+  in_progress('in-progress'),
 
   /// Display: On Leave
   /// Definition: The Encounter has begun, but the patient is temporarily on leave.
-  onleave,
+  onleave('onleave'),
 
   /// Display: Finished
   /// Definition: The Encounter has ended.
-  finished,
+  finished('finished'),
 
   /// Display: Cancelled
   /// Definition: The Encounter has ended before it has begun.
-  cancelled,
+  cancelled('cancelled'),
 
   /// Display: Entered in Error
   /// Definition: This instance should not have been part of this patient's medical record.
-  entered_in_error,
+  entered_in_error('entered-in-error'),
 
   /// Display: Unknown
   /// Definition: The encounter status is unknown. Note that "unknown" is a value of last resort and every attempt should be made to provide a meaningful value other than "unknown".
-  unknown,
+  unknown('unknown'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case planned:
-        return 'planned';
-      case arrived:
-        return 'arrived';
-      case triaged:
-        return 'triaged';
-      case in_progress:
-        return 'in-progress';
-      case onleave:
-        return 'onleave';
-      case finished:
-        return 'finished';
-      case cancelled:
-        return 'cancelled';
-      case entered_in_error:
-        return 'entered-in-error';
-      case unknown:
-        return 'unknown';
+  final String fhirCode;
+  final Element? element;
+
+  const EncounterStatus(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static EncounterStatus fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return EncounterStatus.elementOnly.withElement(element);
     }
+    return EncounterStatus.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [EncounterStatus] enum.
-  String toJson() => toString();
-
-  /// Returns a [EncounterStatus] from a [String] enum.
-  static EncounterStatus fromString(String str) {
-    switch (str) {
-      case 'planned':
-        return EncounterStatus.planned;
-      case 'arrived':
-        return EncounterStatus.arrived;
-      case 'triaged':
-        return EncounterStatus.triaged;
-      case 'in-progress':
-        return EncounterStatus.in_progress;
-      case 'onleave':
-        return EncounterStatus.onleave;
-      case 'finished':
-        return EncounterStatus.finished;
-      case 'cancelled':
-        return EncounterStatus.cancelled;
-      case 'entered-in-error':
-        return EncounterStatus.entered_in_error;
-      case 'unknown':
-        return EncounterStatus.unknown;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [EncounterStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static EncounterStatus fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  EncounterStatus withElement(Element? newElement) {
+    return EncounterStatus.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

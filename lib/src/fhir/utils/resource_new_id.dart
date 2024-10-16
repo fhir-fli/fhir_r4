@@ -1,7 +1,7 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Creates a new [id] for the Resources that's passed
-Resource newId(Resource resource) {
+Resource resourceWithNewId(Resource resource) {
   final newId = generateNewUuidFhirString();
   switch (resource.resourceType) {
     case R4ResourceType.Account:

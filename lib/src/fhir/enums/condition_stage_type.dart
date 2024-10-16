@@ -1,43 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Example value set for the type of stages of cancer and other conditions
 enum ConditionStageType {
   /// Display: Pathological staging (qualifier value)
-  value261023001,
+  /// Definition:
+  value261023001('261023001'),
 
   /// Display: Clinical staging (qualifier value)
-  value260998006,
+  /// Definition:
+  value260998006('260998006'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case value261023001:
-        return '261023001';
-      case value260998006:
-        return '260998006';
+  final String fhirCode;
+  final Element? element;
+
+  const ConditionStageType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ConditionStageType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ConditionStageType.elementOnly.withElement(element);
     }
+    return ConditionStageType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ConditionStageType] enum.
-  String toJson() => toString();
-
-  /// Returns a [ConditionStageType] from a [String] enum.
-  static ConditionStageType fromString(String str) {
-    switch (str) {
-      case '261023001':
-        return ConditionStageType.value261023001;
-      case '260998006':
-        return ConditionStageType.value260998006;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ConditionStageType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ConditionStageType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ConditionStageType withElement(Element? newElement) {
+    return ConditionStageType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

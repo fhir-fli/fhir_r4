@@ -1,101 +1,73 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Example use codes for the List resource - typical kinds of use.
 enum ExampleUseCodesForList {
   /// Display: Alerts
   /// Definition: A list of alerts for the patient.
-  alerts,
+  alerts('alerts'),
 
   /// Display: Adverse Reactions
   /// Definition: A list of part adverse reactions.
-  adverserxns,
+  adverserxns('adverserxns'),
 
   /// Display: Allergies
   /// Definition: A list of Allergies for the patient.
-  allergies,
+  allergies('allergies'),
 
   /// Display: Medication List
   /// Definition: A list of medication statements for the patient.
-  medications,
+  medications('medications'),
 
   /// Display: Problem List
   /// Definition: A list of problems that the patient is known of have (or have had in the past).
-  problems,
+  problems('problems'),
 
   /// Display: Worklist
   /// Definition: A list of items that constitute a set of work to be performed (typically this code would be specialized for more specific uses, such as a ward round list).
-  worklist,
+  worklist('worklist'),
 
   /// Display: Waiting List
   /// Definition: A list of items waiting for an event (perhaps a surgical patient waiting list).
-  waiting,
+  waiting('waiting'),
 
   /// Display: Protocols
   /// Definition: A set of protocols to be followed.
-  protocols,
+  protocols('protocols'),
 
   /// Display: Care Plans
   /// Definition: A set of care plans that apply in a particular context of care.
-  plans,
+  plans('plans'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case alerts:
-        return 'alerts';
-      case adverserxns:
-        return 'adverserxns';
-      case allergies:
-        return 'allergies';
-      case medications:
-        return 'medications';
-      case problems:
-        return 'problems';
-      case worklist:
-        return 'worklist';
-      case waiting:
-        return 'waiting';
-      case protocols:
-        return 'protocols';
-      case plans:
-        return 'plans';
+  final String fhirCode;
+  final Element? element;
+
+  const ExampleUseCodesForList(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ExampleUseCodesForList fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleUseCodesForList.elementOnly.withElement(element);
     }
+    return ExampleUseCodesForList.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ExampleUseCodesForList] enum.
-  String toJson() => toString();
-
-  /// Returns a [ExampleUseCodesForList] from a [String] enum.
-  static ExampleUseCodesForList fromString(String str) {
-    switch (str) {
-      case 'alerts':
-        return ExampleUseCodesForList.alerts;
-      case 'adverserxns':
-        return ExampleUseCodesForList.adverserxns;
-      case 'allergies':
-        return ExampleUseCodesForList.allergies;
-      case 'medications':
-        return ExampleUseCodesForList.medications;
-      case 'problems':
-        return ExampleUseCodesForList.problems;
-      case 'worklist':
-        return ExampleUseCodesForList.worklist;
-      case 'waiting':
-        return ExampleUseCodesForList.waiting;
-      case 'protocols':
-        return ExampleUseCodesForList.protocols;
-      case 'plans':
-        return ExampleUseCodesForList.plans;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ExampleUseCodesForList] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ExampleUseCodesForList fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ExampleUseCodesForList withElement(Element? newElement) {
+    return ExampleUseCodesForList.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

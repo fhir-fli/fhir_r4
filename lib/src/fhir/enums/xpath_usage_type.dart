@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// How a search parameter relates to the set of elements returned by evaluating its xpath query.
 enum XPathUsageType {
   /// Display: Normal
   /// Definition: The search parameter is derived directly from the selected nodes based on the type definitions.
-  normal,
+  normal('normal'),
 
   /// Display: Phonetic
   /// Definition: The search parameter is derived by a phonetic transform from the selected nodes.
-  phonetic,
+  phonetic('phonetic'),
 
   /// Display: Nearby
   /// Definition: The search parameter is based on a spatial transform of the selected nodes.
-  nearby,
+  nearby('nearby'),
 
   /// Display: Distance
   /// Definition: The search parameter is based on a spatial transform of the selected nodes, using physical distance from the middle.
-  distance,
+  distance('distance'),
 
   /// Display: Other
   /// Definition: The interpretation of the xpath statement is unknown (and can't be automated).
-  other,
+  other('other'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case normal:
-        return 'normal';
-      case phonetic:
-        return 'phonetic';
-      case nearby:
-        return 'nearby';
-      case distance:
-        return 'distance';
-      case other:
-        return 'other';
+  final String fhirCode;
+  final Element? element;
+
+  const XPathUsageType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static XPathUsageType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return XPathUsageType.elementOnly.withElement(element);
     }
+    return XPathUsageType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [XPathUsageType] enum.
-  String toJson() => toString();
-
-  /// Returns a [XPathUsageType] from a [String] enum.
-  static XPathUsageType fromString(String str) {
-    switch (str) {
-      case 'normal':
-        return XPathUsageType.normal;
-      case 'phonetic':
-        return XPathUsageType.phonetic;
-      case 'nearby':
-        return XPathUsageType.nearby;
-      case 'distance':
-        return XPathUsageType.distance;
-      case 'other':
-        return XPathUsageType.other;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [XPathUsageType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static XPathUsageType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  XPathUsageType withElement(Element? newElement) {
+    return XPathUsageType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

@@ -1,252 +1,149 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Evidence Report Section Type.
 enum ReportSectionType {
   /// Display: Evidence Results
   /// Definition: Evidence Results.
-  Evidence,
+  Evidence('Evidence'),
 
   /// Display: Evidence Results for the intervention exposure only
   /// Definition: Evidence Results for the intervention exposure only.
-  Intervention_group_alone_Evidence,
+  Intervention_group_alone_Evidence('Intervention-group-alone-Evidence'),
 
   /// Display: Evidence Results for comparison of Intervention and Control
   /// Definition: Evidence Results for comparison of Intervention and Control.
-  Intervention_vs_Control_Evidence,
+  Intervention_vs_Control_Evidence('Intervention-vs-Control-Evidence'),
 
   /// Display: Evidence Results for the control exposure only
   /// Definition: Evidence Results for the control exposure only.
-  Control_group_alone_Evidence,
+  Control_group_alone_Evidence('Control-group-alone-Evidence'),
 
   /// Display: Evidence Variables used
   /// Definition: Evidence Variables used.
-  EvidenceVariable,
+  EvidenceVariable('EvidenceVariable'),
 
   /// Display: Evidence Variables actually observed
   /// Definition: Evidence Variables as observed in the research data.
-  EvidenceVariable_observed,
+  EvidenceVariable_observed('EvidenceVariable-observed'),
 
   /// Display: Evidence Variables intended for interpretation
   /// Definition: Evidence Variables intended for interpretation.
-  EvidenceVariable_intended,
+  EvidenceVariable_intended('EvidenceVariable-intended'),
 
   /// Display: Evidence Variable in variable role Population
   /// Definition: Evidence Variable in variable role Population.
-  EvidenceVariable_population,
+  EvidenceVariable_population('EvidenceVariable-population'),
 
   /// Display: Evidence Variable in variable role Exposure
   /// Definition: Evidence Variable in variable role Exposure.
-  EvidenceVariable_exposure,
+  EvidenceVariable_exposure('EvidenceVariable-exposure'),
 
   /// Display: Evidence Variable in variable role Outcome (MeasuredVariable)
   /// Definition: Evidence Variable in variable role Outcome (MeasuredVariable).
-  EvidenceVariable_outcome,
+  EvidenceVariable_outcome('EvidenceVariable-outcome'),
 
   /// Display: Efficacy-outcomes
   /// Definition: Outcomes related to efficacy or potential benefits of interventions.
-  Efficacy_outcomes,
+  Efficacy_outcomes('Efficacy-outcomes'),
 
   /// Display: Harms outcomes
   /// Definition: Outcomes related to adverse effects or potential harms of interventions.
-  Harms_outcomes,
+  Harms_outcomes('Harms-outcomes'),
 
   /// Display: Sample Size
   /// Definition: Sample Size.
-  SampleSize,
+  SampleSize('SampleSize'),
 
   /// Display: References
   /// Definition: References.
-  References,
+  References('References'),
 
   /// Display: Assertion
   /// Definition: Assertion.
-  Assertion,
+  Assertion('Assertion'),
 
   /// Display: Reasons
   /// Definition: Reasons.
-  Reasons,
+  Reasons('Reasons'),
 
   /// Display: Certainty of Evidence
   /// Definition: Certainty of Evidence.
-  Certainty_of_Evidence,
+  Certainty_of_Evidence('Certainty-of-Evidence'),
 
   /// Display: Evidence Classifier section
   /// Definition: This section is used for classifiers of the evidence.
-  Evidence_Classifier,
+  Evidence_Classifier('Evidence-Classifier'),
 
   /// Display: Warnings
   /// Definition: Warnings.
-  Warnings,
+  Warnings('Warnings'),
 
   /// Display: Text Summary
   /// Definition: Denotes a section specifying text summary for a report.
-  Text_Summary,
+  Text_Summary('Text-Summary'),
 
   /// Display: Summary of Body of Evidence Findings
   /// Definition: Summary of Body of Evidence Findings.
-  SummaryOfBodyOfEvidenceFindings,
+  SummaryOfBodyOfEvidenceFindings('SummaryOfBodyOfEvidenceFindings'),
 
   /// Display: Summary of Individual Study Findings
   /// Definition: Summary of Individual Study Findings.
-  SummaryOfIndividualStudyFindings,
+  SummaryOfIndividualStudyFindings('SummaryOfIndividualStudyFindings'),
 
   /// Display: Header
   /// Definition: Denotes the header to use for a Text Summary or above a Table.
-  Header,
+  Header('Header'),
 
   /// Display: Tables
   /// Definition: Tables.
-  Tables,
+  Tables('Tables'),
 
   /// Display: Table
-  Table,
+  /// Definition:
+  Table('Table'),
 
   /// Display: Row Headers
   /// Definition: Denotes a section specifying row headers for a tabular report.
-  Row_Headers,
+  Row_Headers('Row-Headers'),
 
   /// Display: Column Header
   /// Definition: Denotes the header to use for the column for a tabular report.
-  Column_Header,
+  Column_Header('Column-Header'),
 
   /// Display: Column Headers
   /// Definition: Denotes a section specifying column headers for a tabular report.
-  Column_Headers,
+  Column_Headers('Column-Headers'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case Evidence:
-        return 'Evidence';
-      case Intervention_group_alone_Evidence:
-        return 'Intervention-group-alone-Evidence';
-      case Intervention_vs_Control_Evidence:
-        return 'Intervention-vs-Control-Evidence';
-      case Control_group_alone_Evidence:
-        return 'Control-group-alone-Evidence';
-      case EvidenceVariable:
-        return 'EvidenceVariable';
-      case EvidenceVariable_observed:
-        return 'EvidenceVariable-observed';
-      case EvidenceVariable_intended:
-        return 'EvidenceVariable-intended';
-      case EvidenceVariable_population:
-        return 'EvidenceVariable-population';
-      case EvidenceVariable_exposure:
-        return 'EvidenceVariable-exposure';
-      case EvidenceVariable_outcome:
-        return 'EvidenceVariable-outcome';
-      case Efficacy_outcomes:
-        return 'Efficacy-outcomes';
-      case Harms_outcomes:
-        return 'Harms-outcomes';
-      case SampleSize:
-        return 'SampleSize';
-      case References:
-        return 'References';
-      case Assertion:
-        return 'Assertion';
-      case Reasons:
-        return 'Reasons';
-      case Certainty_of_Evidence:
-        return 'Certainty-of-Evidence';
-      case Evidence_Classifier:
-        return 'Evidence-Classifier';
-      case Warnings:
-        return 'Warnings';
-      case Text_Summary:
-        return 'Text-Summary';
-      case SummaryOfBodyOfEvidenceFindings:
-        return 'SummaryOfBodyOfEvidenceFindings';
-      case SummaryOfIndividualStudyFindings:
-        return 'SummaryOfIndividualStudyFindings';
-      case Header:
-        return 'Header';
-      case Tables:
-        return 'Tables';
-      case Table:
-        return 'Table';
-      case Row_Headers:
-        return 'Row-Headers';
-      case Column_Header:
-        return 'Column-Header';
-      case Column_Headers:
-        return 'Column-Headers';
+  final String fhirCode;
+  final Element? element;
+
+  const ReportSectionType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ReportSectionType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ReportSectionType.elementOnly.withElement(element);
     }
+    return ReportSectionType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ReportSectionType] enum.
-  String toJson() => toString();
-
-  /// Returns a [ReportSectionType] from a [String] enum.
-  static ReportSectionType fromString(String str) {
-    switch (str) {
-      case 'Evidence':
-        return ReportSectionType.Evidence;
-      case 'Intervention-group-alone-Evidence':
-        return ReportSectionType.Intervention_group_alone_Evidence;
-      case 'Intervention-vs-Control-Evidence':
-        return ReportSectionType.Intervention_vs_Control_Evidence;
-      case 'Control-group-alone-Evidence':
-        return ReportSectionType.Control_group_alone_Evidence;
-      case 'EvidenceVariable':
-        return ReportSectionType.EvidenceVariable;
-      case 'EvidenceVariable-observed':
-        return ReportSectionType.EvidenceVariable_observed;
-      case 'EvidenceVariable-intended':
-        return ReportSectionType.EvidenceVariable_intended;
-      case 'EvidenceVariable-population':
-        return ReportSectionType.EvidenceVariable_population;
-      case 'EvidenceVariable-exposure':
-        return ReportSectionType.EvidenceVariable_exposure;
-      case 'EvidenceVariable-outcome':
-        return ReportSectionType.EvidenceVariable_outcome;
-      case 'Efficacy-outcomes':
-        return ReportSectionType.Efficacy_outcomes;
-      case 'Harms-outcomes':
-        return ReportSectionType.Harms_outcomes;
-      case 'SampleSize':
-        return ReportSectionType.SampleSize;
-      case 'References':
-        return ReportSectionType.References;
-      case 'Assertion':
-        return ReportSectionType.Assertion;
-      case 'Reasons':
-        return ReportSectionType.Reasons;
-      case 'Certainty-of-Evidence':
-        return ReportSectionType.Certainty_of_Evidence;
-      case 'Evidence-Classifier':
-        return ReportSectionType.Evidence_Classifier;
-      case 'Warnings':
-        return ReportSectionType.Warnings;
-      case 'Text-Summary':
-        return ReportSectionType.Text_Summary;
-      case 'SummaryOfBodyOfEvidenceFindings':
-        return ReportSectionType.SummaryOfBodyOfEvidenceFindings;
-      case 'SummaryOfIndividualStudyFindings':
-        return ReportSectionType.SummaryOfIndividualStudyFindings;
-      case 'Header':
-        return ReportSectionType.Header;
-      case 'Tables':
-        return ReportSectionType.Tables;
-      case 'Table':
-        return ReportSectionType.Table;
-      case 'Row-Headers':
-        return ReportSectionType.Row_Headers;
-      case 'Column-Header':
-        return ReportSectionType.Column_Header;
-      case 'Column-Headers':
-        return ReportSectionType.Column_Headers;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ReportSectionType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ReportSectionType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ReportSectionType withElement(Element? newElement) {
+    return ReportSectionType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

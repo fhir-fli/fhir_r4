@@ -1,127 +1,93 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// TextureModifiedFoodType: Codes for types of foods that are texture-modified. This value set is composed SNOMED CT Concepts from SCTID 255620007 Foods (substance) and is provided as a suggestive example.
 enum TextureModifiedFoodTypeCodes {
   /// Display: Foods
-  value255620007,
+  /// Definition:
+  value255620007('255620007'),
 
   /// Display: Meat
-  value28647000,
+  /// Definition:
+  value28647000('28647000'),
 
   /// Display: Vegetables
-  value22836000,
+  /// Definition:
+  value22836000('22836000'),
 
   /// Display: Fruit
-  value72511004,
+  /// Definition:
+  value72511004('72511004'),
 
   /// Display: Dairy foods
-  value226760005,
+  /// Definition:
+  value226760005('226760005'),
 
   /// Display: Dietary Fats and Oils
-  value226887002,
+  /// Definition:
+  value226887002('226887002'),
 
   /// Display: Eggs
-  value102263004,
+  /// Definition:
+  value102263004('102263004'),
 
   /// Display: Food Starch
-  value74242007,
+  /// Definition:
+  value74242007('74242007'),
 
   /// Display: Fruit Nuts and Seeds
-  value227415002,
+  /// Definition:
+  value227415002('227415002'),
 
   /// Display: Grain
-  value264331002,
+  /// Definition:
+  value264331002('264331002'),
 
   /// Display: Sauce seasonings and soups
-  value227518002,
+  /// Definition:
+  value227518002('227518002'),
 
   /// Display: Seafood
-  value44027008,
+  /// Definition:
+  value44027008('44027008'),
 
   /// Display: Starchy food
-  value226529007,
+  /// Definition:
+  value226529007('226529007'),
 
   /// Display: Vegetables plus herbs and spices
-  value227210005,
+  /// Definition:
+  value227210005('227210005'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case value255620007:
-        return '255620007';
-      case value28647000:
-        return '28647000';
-      case value22836000:
-        return '22836000';
-      case value72511004:
-        return '72511004';
-      case value226760005:
-        return '226760005';
-      case value226887002:
-        return '226887002';
-      case value102263004:
-        return '102263004';
-      case value74242007:
-        return '74242007';
-      case value227415002:
-        return '227415002';
-      case value264331002:
-        return '264331002';
-      case value227518002:
-        return '227518002';
-      case value44027008:
-        return '44027008';
-      case value226529007:
-        return '226529007';
-      case value227210005:
-        return '227210005';
+  final String fhirCode;
+  final Element? element;
+
+  const TextureModifiedFoodTypeCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static TextureModifiedFoodTypeCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TextureModifiedFoodTypeCodes.elementOnly.withElement(element);
     }
+    return TextureModifiedFoodTypeCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [TextureModifiedFoodTypeCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [TextureModifiedFoodTypeCodes] from a [String] enum.
-  static TextureModifiedFoodTypeCodes fromString(String str) {
-    switch (str) {
-      case '255620007':
-        return TextureModifiedFoodTypeCodes.value255620007;
-      case '28647000':
-        return TextureModifiedFoodTypeCodes.value28647000;
-      case '22836000':
-        return TextureModifiedFoodTypeCodes.value22836000;
-      case '72511004':
-        return TextureModifiedFoodTypeCodes.value72511004;
-      case '226760005':
-        return TextureModifiedFoodTypeCodes.value226760005;
-      case '226887002':
-        return TextureModifiedFoodTypeCodes.value226887002;
-      case '102263004':
-        return TextureModifiedFoodTypeCodes.value102263004;
-      case '74242007':
-        return TextureModifiedFoodTypeCodes.value74242007;
-      case '227415002':
-        return TextureModifiedFoodTypeCodes.value227415002;
-      case '264331002':
-        return TextureModifiedFoodTypeCodes.value264331002;
-      case '227518002':
-        return TextureModifiedFoodTypeCodes.value227518002;
-      case '44027008':
-        return TextureModifiedFoodTypeCodes.value44027008;
-      case '226529007':
-        return TextureModifiedFoodTypeCodes.value226529007;
-      case '227210005':
-        return TextureModifiedFoodTypeCodes.value227210005;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [TextureModifiedFoodTypeCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static TextureModifiedFoodTypeCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  TextureModifiedFoodTypeCodes withElement(Element? newElement) {
+    return TextureModifiedFoodTypeCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

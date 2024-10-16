@@ -249,58 +249,166 @@ class PaymentNotice extends DomainResource {
     final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (meta != null) {
-      json['meta'] = meta!.toJson();
+      final primitiveJson = meta!.toJson();
+      json['meta'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_meta'] = primitiveJson['_value'];
+      }
     }
-    if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.toJson();
+
+    if (implicitRules != null) {
+      final primitiveJson = implicitRules!.toJson();
+      json['implicitRules'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_implicitRules'] = primitiveJson['_value'];
+      }
     }
+
     if (language != null) {
-      json['language'] = language!.toJson();
+      final primitiveJson = language!.toJson();
+      json['language'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_language'] = primitiveJson['_value'];
+      }
     }
+
     if (text != null) {
-      json['text'] = text!.toJson();
+      final primitiveJson = text!.toJson();
+      json['text'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_text'] = primitiveJson['_value'];
+      }
     }
+
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
+      final primitiveList = contained!.map((e) => e.toJson()).toList();
+      json['contained'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_contained'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (identifier != null && identifier!.isNotEmpty) {
-      json['identifier'] =
-          identifier!.map((Identifier v) => v.toJson()).toList();
+      final primitiveList = identifier!.map((e) => e.toJson()).toList();
+      json['identifier'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_identifier'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['status'] = status.toJson();
+
+    if (status != null) {
+      final primitiveJson = status!.toJson();
+      json['status'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_status'] = primitiveJson['_value'];
+      }
+    }
+
     if (request != null) {
-      json['request'] = request!.toJson();
+      final primitiveJson = request!.toJson();
+      json['request'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_request'] = primitiveJson['_value'];
+      }
     }
+
     if (response != null) {
-      json['response'] = response!.toJson();
+      final primitiveJson = response!.toJson();
+      json['response'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_response'] = primitiveJson['_value'];
+      }
     }
-    json['created'] = created.toJson();
+
+    if (created != null) {
+      final primitiveJson = created!.toJson();
+      json['created'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_created'] = primitiveJson['_value'];
+      }
+    }
+
     if (provider != null) {
-      json['provider'] = provider!.toJson();
+      final primitiveJson = provider!.toJson();
+      json['provider'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_provider'] = primitiveJson['_value'];
+      }
     }
-    json['payment'] = payment.toJson();
-    if (paymentDate?.value != null) {
-      json['paymentDate'] = paymentDate!.toJson();
+
+    if (payment != null) {
+      final primitiveJson = payment!.toJson();
+      json['payment'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_payment'] = primitiveJson['_value'];
+      }
     }
+
+    if (paymentDate != null) {
+      final primitiveJson = paymentDate!.toJson();
+      json['paymentDate'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_paymentDate'] = primitiveJson['_value'];
+      }
+    }
+
     if (payee != null) {
-      json['payee'] = payee!.toJson();
+      final primitiveJson = payee!.toJson();
+      json['payee'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_payee'] = primitiveJson['_value'];
+      }
     }
-    json['recipient'] = recipient.toJson();
-    json['amount'] = amount.toJson();
+
+    if (recipient != null) {
+      final primitiveJson = recipient!.toJson();
+      json['recipient'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_recipient'] = primitiveJson['_value'];
+      }
+    }
+
+    if (amount != null) {
+      final primitiveJson = amount!.toJson();
+      json['amount'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_amount'] = primitiveJson['_value'];
+      }
+    }
+
     if (paymentStatus != null) {
-      json['paymentStatus'] = paymentStatus!.toJson();
+      final primitiveJson = paymentStatus!.toJson();
+      json['paymentStatus'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_paymentStatus'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 

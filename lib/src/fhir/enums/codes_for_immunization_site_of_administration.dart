@@ -1,43 +1,47 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the body site where the vaccination occurred. This value set is provided as a suggestive example.
 enum CodesForImmunizationSiteOfAdministration {
   /// Display: Left arm
-  LA,
+  /// Definition:
+  LA('LA'),
 
   /// Display: Right arm
-  RA,
+  /// Definition:
+  RA('RA'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case LA:
-        return 'LA';
-      case RA:
-        return 'RA';
+  final String fhirCode;
+  final Element? element;
+
+  const CodesForImmunizationSiteOfAdministration(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static CodesForImmunizationSiteOfAdministration fromJson(
+      Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CodesForImmunizationSiteOfAdministration.elementOnly
+          .withElement(element);
     }
+    return CodesForImmunizationSiteOfAdministration.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [CodesForImmunizationSiteOfAdministration] enum.
-  String toJson() => toString();
-
-  /// Returns a [CodesForImmunizationSiteOfAdministration] from a [String] enum.
-  static CodesForImmunizationSiteOfAdministration fromString(String str) {
-    switch (str) {
-      case 'LA':
-        return CodesForImmunizationSiteOfAdministration.LA;
-      case 'RA':
-        return CodesForImmunizationSiteOfAdministration.RA;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [CodesForImmunizationSiteOfAdministration] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static CodesForImmunizationSiteOfAdministration fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  CodesForImmunizationSiteOfAdministration withElement(Element? newElement) {
+    return CodesForImmunizationSiteOfAdministration.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

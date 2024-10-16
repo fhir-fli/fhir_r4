@@ -161,27 +161,77 @@ class SampledData extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['origin'] = origin.toJson();
-    json['period'] = period.toJson();
-    if (factor?.value != null) {
-      json['factor'] = factor!.toJson();
+
+    if (origin != null) {
+      final primitiveJson = origin!.toJson();
+      json['origin'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_origin'] = primitiveJson['_value'];
+      }
     }
-    if (lowerLimit?.value != null) {
-      json['lowerLimit'] = lowerLimit!.toJson();
+
+    if (period != null) {
+      final primitiveJson = period!.toJson();
+      json['period'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_period'] = primitiveJson['_value'];
+      }
     }
-    if (upperLimit?.value != null) {
-      json['upperLimit'] = upperLimit!.toJson();
+
+    if (factor != null) {
+      final primitiveJson = factor!.toJson();
+      json['factor'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_factor'] = primitiveJson['_value'];
+      }
     }
-    json['dimensions'] = dimensions.toJson();
-    if (data?.value != null) {
-      json['data'] = data!.toJson();
+
+    if (lowerLimit != null) {
+      final primitiveJson = lowerLimit!.toJson();
+      json['lowerLimit'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_lowerLimit'] = primitiveJson['_value'];
+      }
     }
+
+    if (upperLimit != null) {
+      final primitiveJson = upperLimit!.toJson();
+      json['upperLimit'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_upperLimit'] = primitiveJson['_value'];
+      }
+    }
+
+    if (dimensions != null) {
+      final primitiveJson = dimensions!.toJson();
+      json['dimensions'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_dimensions'] = primitiveJson['_value'];
+      }
+    }
+
+    if (data != null) {
+      final primitiveJson = data!.toJson();
+      json['data'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_data'] = primitiveJson['_value'];
+      }
+    }
+
     return json;
   }
 

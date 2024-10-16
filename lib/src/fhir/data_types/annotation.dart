@@ -122,22 +122,53 @@ class Annotation extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (authorReference != null) {
-      json['authorReference'] = authorReference!.toJson();
+      final primitiveJson = authorReference!.toJson();
+      json['authorReference'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_authorReference'] = primitiveJson['_value'];
+      }
     }
-    if (authorString?.value != null) {
-      json['authorString'] = authorString!.toJson();
+
+    if (authorString != null) {
+      final primitiveJson = authorString!.toJson();
+      json['authorString'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_authorString'] = primitiveJson['_value'];
+      }
     }
-    if (time?.value != null) {
-      json['time'] = time!.toJson();
+
+    if (time != null) {
+      final primitiveJson = time!.toJson();
+      json['time'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_time'] = primitiveJson['_value'];
+      }
     }
-    json['text'] = text.toJson();
+
+    if (text != null) {
+      final primitiveJson = text!.toJson();
+      json['text'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_text'] = primitiveJson['_value'];
+      }
+    }
+
     return json;
   }
 

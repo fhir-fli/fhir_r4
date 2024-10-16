@@ -1,45 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Defines selection frequency behavior for an action or group.
 enum ActionPrecheckBehavior {
   /// Display: Yes
   /// Definition: An action with this behavior is one of the most frequent action that is, or should be, included by an end user, for the particular context in which the action occurs. The system displaying the action to the end user should consider "pre-checking" such an action as a convenience for the user.
-  yes,
+  yes('yes'),
 
   /// Display: No
   /// Definition: An action with this behavior is one of the less frequent actions included by the end user, for the particular context in which the action occurs. The system displaying the actions to the end user would typically not "pre-check" such an action.
-  no,
+  no('no'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case yes:
-        return 'yes';
-      case no:
-        return 'no';
+  final String fhirCode;
+  final Element? element;
+
+  const ActionPrecheckBehavior(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ActionPrecheckBehavior fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ActionPrecheckBehavior.elementOnly.withElement(element);
     }
+    return ActionPrecheckBehavior.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ActionPrecheckBehavior] enum.
-  String toJson() => toString();
-
-  /// Returns a [ActionPrecheckBehavior] from a [String] enum.
-  static ActionPrecheckBehavior fromString(String str) {
-    switch (str) {
-      case 'yes':
-        return ActionPrecheckBehavior.yes;
-      case 'no':
-        return ActionPrecheckBehavior.no;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ActionPrecheckBehavior] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ActionPrecheckBehavior fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ActionPrecheckBehavior withElement(Element? newElement) {
+    return ActionPrecheckBehavior.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

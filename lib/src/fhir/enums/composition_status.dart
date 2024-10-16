@@ -1,61 +1,53 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The workflow/clinical status of the composition.
 enum CompositionStatus {
   /// Display: Preliminary
   /// Definition: This is a preliminary composition or document (also known as initial or interim). The content may be incomplete or unverified.
-  preliminary,
+  preliminary('preliminary'),
 
   /// Display: Final
   /// Definition: This version of the composition is complete and verified by an appropriate person and no further work is planned. Any subsequent updates would be on a new version of the composition.
-  final_,
+  final_('final'),
 
   /// Display: Amended
   /// Definition: The composition content or the referenced resources have been modified (edited or added to) subsequent to being released as "final" and the composition is complete and verified by an authorized person.
-  amended,
+  amended('amended'),
 
   /// Display: Entered in Error
   /// Definition: The composition or document was originally created/issued in error, and this is an amendment that marks that the entire series should not be considered as valid.
-  entered_in_error,
+  entered_in_error('entered-in-error'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case preliminary:
-        return 'preliminary';
-      case final_:
-        return 'final';
-      case amended:
-        return 'amended';
-      case entered_in_error:
-        return 'entered-in-error';
+  final String fhirCode;
+  final Element? element;
+
+  const CompositionStatus(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static CompositionStatus fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CompositionStatus.elementOnly.withElement(element);
     }
+    return CompositionStatus.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [CompositionStatus] enum.
-  String toJson() => toString();
-
-  /// Returns a [CompositionStatus] from a [String] enum.
-  static CompositionStatus fromString(String str) {
-    switch (str) {
-      case 'preliminary':
-        return CompositionStatus.preliminary;
-      case 'final':
-        return CompositionStatus.final_;
-      case 'amended':
-        return CompositionStatus.amended;
-      case 'entered-in-error':
-        return CompositionStatus.entered_in_error;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [CompositionStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static CompositionStatus fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  CompositionStatus withElement(Element? newElement) {
+    return CompositionStatus.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

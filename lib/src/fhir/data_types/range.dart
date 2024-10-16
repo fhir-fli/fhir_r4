@@ -100,18 +100,37 @@ class Range extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (low != null) {
-      json['low'] = low!.toJson();
+      final primitiveJson = low!.toJson();
+      json['low'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_low'] = primitiveJson['_value'];
+      }
     }
+
     if (high != null) {
-      json['high'] = high!.toJson();
+      final primitiveJson = high!.toJson();
+      json['high'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_high'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 

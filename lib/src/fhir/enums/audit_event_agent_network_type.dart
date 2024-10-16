@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The type of network access point of this agent in the audit event.
 enum AuditEventAgentNetworkType {
   /// Display: Machine Name
   /// Definition: The machine name, including DNS name.
-  value1,
+  value1('1'),
 
   /// Display: IP Address
   /// Definition: The assigned Internet Protocol (IP) address.
-  value2,
+  value2('2'),
 
   /// Display: Telephone Number
   /// Definition: The assigned telephone number.
-  value3,
+  value3('3'),
 
   /// Display: Email address
   /// Definition: The assigned email address.
-  value4,
+  value4('4'),
 
   /// Display: URI
   /// Definition: URI (User directory, HTTP-PUT, ftp, etc.).
-  value5,
+  value5('5'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case value1:
-        return '1';
-      case value2:
-        return '2';
-      case value3:
-        return '3';
-      case value4:
-        return '4';
-      case value5:
-        return '5';
+  final String fhirCode;
+  final Element? element;
+
+  const AuditEventAgentNetworkType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static AuditEventAgentNetworkType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AuditEventAgentNetworkType.elementOnly.withElement(element);
     }
+    return AuditEventAgentNetworkType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [AuditEventAgentNetworkType] enum.
-  String toJson() => toString();
-
-  /// Returns a [AuditEventAgentNetworkType] from a [String] enum.
-  static AuditEventAgentNetworkType fromString(String str) {
-    switch (str) {
-      case '1':
-        return AuditEventAgentNetworkType.value1;
-      case '2':
-        return AuditEventAgentNetworkType.value2;
-      case '3':
-        return AuditEventAgentNetworkType.value3;
-      case '4':
-        return AuditEventAgentNetworkType.value4;
-      case '5':
-        return AuditEventAgentNetworkType.value5;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [AuditEventAgentNetworkType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static AuditEventAgentNetworkType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  AuditEventAgentNetworkType withElement(Element? newElement) {
+    return AuditEventAgentNetworkType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

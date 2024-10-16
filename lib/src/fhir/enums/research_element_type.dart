@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The possible types of research elements (E.g. Population, Exposure, Outcome).
 enum ResearchElementType {
   /// Display: Population
   /// Definition: The element defines the population that forms the basis for research.
-  population,
+  population('population'),
 
   /// Display: Exposure
   /// Definition: The element defines an exposure within the population that is being researched.
-  exposure,
+  exposure('exposure'),
 
   /// Display: Outcome
   /// Definition: The element defines an outcome within the population that is being researched.
-  outcome,
+  outcome('outcome'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case population:
-        return 'population';
-      case exposure:
-        return 'exposure';
-      case outcome:
-        return 'outcome';
+  final String fhirCode;
+  final Element? element;
+
+  const ResearchElementType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ResearchElementType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ResearchElementType.elementOnly.withElement(element);
     }
+    return ResearchElementType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ResearchElementType] enum.
-  String toJson() => toString();
-
-  /// Returns a [ResearchElementType] from a [String] enum.
-  static ResearchElementType fromString(String str) {
-    switch (str) {
-      case 'population':
-        return ResearchElementType.population;
-      case 'exposure':
-        return ResearchElementType.exposure;
-      case 'outcome':
-        return ResearchElementType.outcome;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ResearchElementType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ResearchElementType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ResearchElementType withElement(Element? newElement) {
+    return ResearchElementType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

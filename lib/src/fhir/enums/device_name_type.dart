@@ -1,77 +1,61 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The type of name the device is referred by.
 enum DeviceNameType {
   /// Display: UDI Label name
   /// Definition: UDI Label name.
-  udi_label_name,
+  udi_label_name('udi-label-name'),
 
   /// Display: User Friendly name
   /// Definition: User Friendly name.
-  user_friendly_name,
+  user_friendly_name('user-friendly-name'),
 
   /// Display: Patient Reported name
   /// Definition: Patient Reported name.
-  patient_reported_name,
+  patient_reported_name('patient-reported-name'),
 
   /// Display: Manufacturer name
   /// Definition: Manufacturer name.
-  manufacturer_name,
+  manufacturer_name('manufacturer-name'),
 
   /// Display: Model name
   /// Definition: Model name.
-  model_name,
+  model_name('model-name'),
 
   /// Display: other
   /// Definition: other.
-  other,
+  other('other'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case udi_label_name:
-        return 'udi-label-name';
-      case user_friendly_name:
-        return 'user-friendly-name';
-      case patient_reported_name:
-        return 'patient-reported-name';
-      case manufacturer_name:
-        return 'manufacturer-name';
-      case model_name:
-        return 'model-name';
-      case other:
-        return 'other';
+  final String fhirCode;
+  final Element? element;
+
+  const DeviceNameType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static DeviceNameType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DeviceNameType.elementOnly.withElement(element);
     }
+    return DeviceNameType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [DeviceNameType] enum.
-  String toJson() => toString();
-
-  /// Returns a [DeviceNameType] from a [String] enum.
-  static DeviceNameType fromString(String str) {
-    switch (str) {
-      case 'udi-label-name':
-        return DeviceNameType.udi_label_name;
-      case 'user-friendly-name':
-        return DeviceNameType.user_friendly_name;
-      case 'patient-reported-name':
-        return DeviceNameType.patient_reported_name;
-      case 'manufacturer-name':
-        return DeviceNameType.manufacturer_name;
-      case 'model-name':
-        return DeviceNameType.model_name;
-      case 'other':
-        return DeviceNameType.other;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [DeviceNameType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static DeviceNameType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  DeviceNameType withElement(Element? newElement) {
+    return DeviceNameType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

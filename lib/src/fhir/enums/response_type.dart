@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The kind of response to a message.
 enum ResponseType {
   /// Display: OK
   /// Definition: The message was accepted and processed without error.
-  ok,
+  ok('ok'),
 
   /// Display: Transient Error
   /// Definition: Some internal unexpected error occurred - wait and try again. Note - this is usually used for things like database unavailable, which may be expected to resolve, though human intervention may be required.
-  transient_error,
+  transient_error('transient-error'),
 
   /// Display: Fatal Error
   /// Definition: The message was rejected because of a problem with the content. There is no point in re-sending without change. The response narrative SHALL describe the issue.
-  fatal_error,
+  fatal_error('fatal-error'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case ok:
-        return 'ok';
-      case transient_error:
-        return 'transient-error';
-      case fatal_error:
-        return 'fatal-error';
+  final String fhirCode;
+  final Element? element;
+
+  const ResponseType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ResponseType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ResponseType.elementOnly.withElement(element);
     }
+    return ResponseType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ResponseType] enum.
-  String toJson() => toString();
-
-  /// Returns a [ResponseType] from a [String] enum.
-  static ResponseType fromString(String str) {
-    switch (str) {
-      case 'ok':
-        return ResponseType.ok;
-      case 'transient-error':
-        return ResponseType.transient_error;
-      case 'fatal-error':
-        return ResponseType.fatal_error;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ResponseType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ResponseType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ResponseType withElement(Element? newElement) {
+    return ResponseType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

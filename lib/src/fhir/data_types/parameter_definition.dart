@@ -162,29 +162,77 @@ class ParameterDefinition extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    if (name?.value != null) {
-      json['name'] = name!.toJson();
+
+    if (name != null) {
+      final primitiveJson = name!.toJson();
+      json['name'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_name'] = primitiveJson['_value'];
+      }
     }
-    json['use'] = use.toJson();
-    if (min?.value != null) {
-      json['min'] = min!.toJson();
+
+    if (use != null) {
+      final primitiveJson = use!.toJson();
+      json['use'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_use'] = primitiveJson['_value'];
+      }
     }
-    if (max?.value != null) {
-      json['max'] = max!.toJson();
+
+    if (min != null) {
+      final primitiveJson = min!.toJson();
+      json['min'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_min'] = primitiveJson['_value'];
+      }
     }
-    if (documentation?.value != null) {
-      json['documentation'] = documentation!.toJson();
+
+    if (max != null) {
+      final primitiveJson = max!.toJson();
+      json['max'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_max'] = primitiveJson['_value'];
+      }
     }
-    json['type'] = type.toJson();
-    if (profile?.value != null) {
-      json['profile'] = profile!.toJson();
+
+    if (documentation != null) {
+      final primitiveJson = documentation!.toJson();
+      json['documentation'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_documentation'] = primitiveJson['_value'];
+      }
     }
+
+    if (type != null) {
+      final primitiveJson = type!.toJson();
+      json['type'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_type'] = primitiveJson['_value'];
+      }
+    }
+
+    if (profile != null) {
+      final primitiveJson = profile!.toJson();
+      json['profile'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_profile'] = primitiveJson['_value'];
+      }
+    }
+
     return json;
   }
 

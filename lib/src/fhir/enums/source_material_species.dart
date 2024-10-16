@@ -1,43 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// A species of origin a substance raw material.
 enum SourceMaterialSpecies {
   /// Display: Ginkgo biloba
-  GinkgoBiloba,
+  /// Definition:
+  GinkgoBiloba('GinkgoBiloba'),
 
   /// Display: Olea europaea
-  OleaEuropaea,
+  /// Definition:
+  OleaEuropaea('OleaEuropaea'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case GinkgoBiloba:
-        return 'GinkgoBiloba';
-      case OleaEuropaea:
-        return 'OleaEuropaea';
+  final String fhirCode;
+  final Element? element;
+
+  const SourceMaterialSpecies(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static SourceMaterialSpecies fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SourceMaterialSpecies.elementOnly.withElement(element);
     }
+    return SourceMaterialSpecies.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [SourceMaterialSpecies] enum.
-  String toJson() => toString();
-
-  /// Returns a [SourceMaterialSpecies] from a [String] enum.
-  static SourceMaterialSpecies fromString(String str) {
-    switch (str) {
-      case 'GinkgoBiloba':
-        return SourceMaterialSpecies.GinkgoBiloba;
-      case 'OleaEuropaea':
-        return SourceMaterialSpecies.OleaEuropaea;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [SourceMaterialSpecies] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static SourceMaterialSpecies fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  SourceMaterialSpecies withElement(Element? newElement) {
+    return SourceMaterialSpecies.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

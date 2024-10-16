@@ -1,93 +1,69 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The type of trigger.
 enum TriggerType {
   /// Display: Named Event
   /// Definition: The trigger occurs in response to a specific named event, and no other information about the trigger is specified. Named events are completely pre-coordinated, and the formal semantics of the trigger are not provided.
-  named_event,
+  named_event('named-event'),
 
   /// Display: Periodic
   /// Definition: The trigger occurs at a specific time or periodically as described by a timing or schedule. A periodic event cannot have any data elements, but may have a name assigned as a shorthand for the event.
-  periodic,
+  periodic('periodic'),
 
   /// Display: Data Changed
   /// Definition: The trigger occurs whenever data of a particular type is changed in any way, either added, modified, or removed.
-  data_changed,
+  data_changed('data-changed'),
 
   /// Display: Data Added
   /// Definition: The trigger occurs whenever data of a particular type is added.
-  data_added,
+  data_added('data-added'),
 
   /// Display: Data Updated
   /// Definition: The trigger occurs whenever data of a particular type is modified.
-  data_modified,
+  data_modified('data-modified'),
 
   /// Display: Data Removed
   /// Definition: The trigger occurs whenever data of a particular type is removed.
-  data_removed,
+  data_removed('data-removed'),
 
   /// Display: Data Accessed
   /// Definition: The trigger occurs whenever data of a particular type is accessed.
-  data_accessed,
+  data_accessed('data-accessed'),
 
   /// Display: Data Access Ended
   /// Definition: The trigger occurs whenever access to data of a particular type is completed.
-  data_access_ended,
+  data_access_ended('data-access-ended'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case named_event:
-        return 'named-event';
-      case periodic:
-        return 'periodic';
-      case data_changed:
-        return 'data-changed';
-      case data_added:
-        return 'data-added';
-      case data_modified:
-        return 'data-modified';
-      case data_removed:
-        return 'data-removed';
-      case data_accessed:
-        return 'data-accessed';
-      case data_access_ended:
-        return 'data-access-ended';
+  final String fhirCode;
+  final Element? element;
+
+  const TriggerType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static TriggerType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TriggerType.elementOnly.withElement(element);
     }
+    return TriggerType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [TriggerType] enum.
-  String toJson() => toString();
-
-  /// Returns a [TriggerType] from a [String] enum.
-  static TriggerType fromString(String str) {
-    switch (str) {
-      case 'named-event':
-        return TriggerType.named_event;
-      case 'periodic':
-        return TriggerType.periodic;
-      case 'data-changed':
-        return TriggerType.data_changed;
-      case 'data-added':
-        return TriggerType.data_added;
-      case 'data-modified':
-        return TriggerType.data_modified;
-      case 'data-removed':
-        return TriggerType.data_removed;
-      case 'data-accessed':
-        return TriggerType.data_accessed;
-      case 'data-access-ended':
-        return TriggerType.data_access_ended;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [TriggerType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static TriggerType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  TriggerType withElement(Element? newElement) {
+    return TriggerType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

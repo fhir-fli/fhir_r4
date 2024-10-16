@@ -1,61 +1,53 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// A coded concept listing the base codes.
 enum VisionBase {
   /// Display: Up
   /// Definition: top.
-  up,
+  up('up'),
 
   /// Display: Down
   /// Definition: bottom.
-  down,
+  down('down'),
 
   /// Display: In
   /// Definition: inner edge.
-  in_,
+  in_('in'),
 
   /// Display: Out
   /// Definition: outer edge.
-  out,
+  out('out'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case up:
-        return 'up';
-      case down:
-        return 'down';
-      case in_:
-        return 'in';
-      case out:
-        return 'out';
+  final String fhirCode;
+  final Element? element;
+
+  const VisionBase(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static VisionBase fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return VisionBase.elementOnly.withElement(element);
     }
+    return VisionBase.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [VisionBase] enum.
-  String toJson() => toString();
-
-  /// Returns a [VisionBase] from a [String] enum.
-  static VisionBase fromString(String str) {
-    switch (str) {
-      case 'up':
-        return VisionBase.up;
-      case 'down':
-        return VisionBase.down;
-      case 'in':
-        return VisionBase.in_;
-      case 'out':
-        return VisionBase.out;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [VisionBase] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static VisionBase fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  VisionBase withElement(Element? newElement) {
+    return VisionBase.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

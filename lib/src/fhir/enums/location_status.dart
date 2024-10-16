@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Indicates whether the location is still in use.
 enum LocationStatus {
   /// Display: Active
   /// Definition: The location is operational.
-  active,
+  active('active'),
 
   /// Display: Suspended
   /// Definition: The location is temporarily closed.
-  suspended,
+  suspended('suspended'),
 
   /// Display: Inactive
   /// Definition: The location is no longer used.
-  inactive,
+  inactive('inactive'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case active:
-        return 'active';
-      case suspended:
-        return 'suspended';
-      case inactive:
-        return 'inactive';
+  final String fhirCode;
+  final Element? element;
+
+  const LocationStatus(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static LocationStatus fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return LocationStatus.elementOnly.withElement(element);
     }
+    return LocationStatus.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [LocationStatus] enum.
-  String toJson() => toString();
-
-  /// Returns a [LocationStatus] from a [String] enum.
-  static LocationStatus fromString(String str) {
-    switch (str) {
-      case 'active':
-        return LocationStatus.active;
-      case 'suspended':
-        return LocationStatus.suspended;
-      case 'inactive':
-        return LocationStatus.inactive;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [LocationStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static LocationStatus fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  LocationStatus withElement(Element? newElement) {
+    return LocationStatus.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

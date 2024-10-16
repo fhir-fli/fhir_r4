@@ -1,85 +1,65 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Used to code author list statement, contributorship statement, and such.
 enum ContributorSummaryType {
   /// Display: Author string
   /// Definition: Display of the author list as a complete string.
-  author_string,
+  author_string('author-string'),
 
   /// Display: Contributorship list
   /// Definition: Display of the list of contributors as a complete string.
-  contributorship_list,
+  contributorship_list('contributorship-list'),
 
   /// Display: Contributorship statement
   /// Definition: Compiled summary of contributions.
-  contributorship_statement,
+  contributorship_statement('contributorship-statement'),
 
   /// Display: Acknowledgment list
   /// Definition: Display of the list of acknowledged parties as a complete string.
-  acknowledgement_list,
+  acknowledgement_list('acknowledgement-list'),
 
   /// Display: Acknowledgment statement
   /// Definition: Statement of acknowledgment of contributions beyond those compiled for formal contributorship statements.
-  acknowledgment_statement,
+  acknowledgment_statement('acknowledgment-statement'),
 
   /// Display: Funding statement
   /// Definition: Statement of financial support for the creation of the cited artifact.
-  funding_statement,
+  funding_statement('funding-statement'),
 
   /// Display: Competing interests statement
   /// Definition: Statement of completing interests related to the creation of the cited artifact. Also called conflicts of interest or declaration of interests.
-  competing_interests_statement,
+  competing_interests_statement('competing-interests-statement'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case author_string:
-        return 'author-string';
-      case contributorship_list:
-        return 'contributorship-list';
-      case contributorship_statement:
-        return 'contributorship-statement';
-      case acknowledgement_list:
-        return 'acknowledgement-list';
-      case acknowledgment_statement:
-        return 'acknowledgment-statement';
-      case funding_statement:
-        return 'funding-statement';
-      case competing_interests_statement:
-        return 'competing-interests-statement';
+  final String fhirCode;
+  final Element? element;
+
+  const ContributorSummaryType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ContributorSummaryType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ContributorSummaryType.elementOnly.withElement(element);
     }
+    return ContributorSummaryType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ContributorSummaryType] enum.
-  String toJson() => toString();
-
-  /// Returns a [ContributorSummaryType] from a [String] enum.
-  static ContributorSummaryType fromString(String str) {
-    switch (str) {
-      case 'author-string':
-        return ContributorSummaryType.author_string;
-      case 'contributorship-list':
-        return ContributorSummaryType.contributorship_list;
-      case 'contributorship-statement':
-        return ContributorSummaryType.contributorship_statement;
-      case 'acknowledgement-list':
-        return ContributorSummaryType.acknowledgement_list;
-      case 'acknowledgment-statement':
-        return ContributorSummaryType.acknowledgment_statement;
-      case 'funding-statement':
-        return ContributorSummaryType.funding_statement;
-      case 'competing-interests-statement':
-        return ContributorSummaryType.competing_interests_statement;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ContributorSummaryType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ContributorSummaryType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ContributorSummaryType withElement(Element? newElement) {
+    return ContributorSummaryType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

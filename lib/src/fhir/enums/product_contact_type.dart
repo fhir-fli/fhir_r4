@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Contact type for a Medicinal Product.
 enum ProductContactType {
   /// Display: Proposed Marketing Authorisation Holder/Person
   /// Definition: Proposed Marketing Authorisation Holder/Person
-  ProposedMAH,
+  ProposedMAH('ProposedMAH'),
 
   /// Display: Person/Company authorised for Communication during procedure
   /// Definition: Person/Company authorised for Communication on behalf of the Applicant during the Procedure
-  ProcedureContactDuring,
+  ProcedureContactDuring('ProcedureContactDuring'),
 
   /// Display: Person/Company authorised for Communication after procedure
   /// Definition: Person/Company authorised for Communication between MAH and Authorities after Authorisation
-  ProcedureContactAfter,
+  ProcedureContactAfter('ProcedureContactAfter'),
 
   /// Display: Qualified Person Responsible for Pharmacovigilance
   /// Definition: Qualified Person Responsible for Pharmacovigilance
-  QPPV,
+  QPPV('QPPV'),
 
   /// Display: Pharmacovigilance Enquiry Information
   /// Definition: Pharmacovigilance Enquiry Information
-  PVEnquiries,
+  PVEnquiries('PVEnquiries'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case ProposedMAH:
-        return 'ProposedMAH';
-      case ProcedureContactDuring:
-        return 'ProcedureContactDuring';
-      case ProcedureContactAfter:
-        return 'ProcedureContactAfter';
-      case QPPV:
-        return 'QPPV';
-      case PVEnquiries:
-        return 'PVEnquiries';
+  final String fhirCode;
+  final Element? element;
+
+  const ProductContactType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ProductContactType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ProductContactType.elementOnly.withElement(element);
     }
+    return ProductContactType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ProductContactType] enum.
-  String toJson() => toString();
-
-  /// Returns a [ProductContactType] from a [String] enum.
-  static ProductContactType fromString(String str) {
-    switch (str) {
-      case 'ProposedMAH':
-        return ProductContactType.ProposedMAH;
-      case 'ProcedureContactDuring':
-        return ProductContactType.ProcedureContactDuring;
-      case 'ProcedureContactAfter':
-        return ProductContactType.ProcedureContactAfter;
-      case 'QPPV':
-        return ProductContactType.QPPV;
-      case 'PVEnquiries':
-        return ProductContactType.PVEnquiries;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ProductContactType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ProductContactType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ProductContactType withElement(Element? newElement) {
+    return ProductContactType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

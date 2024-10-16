@@ -1,101 +1,73 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// What Search Comparator Codes are supported in search.
 enum SearchComparator {
   /// Display: Equals
   /// Definition: the value for the parameter in the resource is equal to the provided value.
-  eq,
+  eq('eq'),
 
   /// Display: Not Equals
   /// Definition: the value for the parameter in the resource is not equal to the provided value.
-  ne,
+  ne('ne'),
 
   /// Display: Greater Than
   /// Definition: the value for the parameter in the resource is greater than the provided value.
-  gt,
+  gt('gt'),
 
   /// Display: Less Than
   /// Definition: the value for the parameter in the resource is less than the provided value.
-  lt,
+  lt('lt'),
 
   /// Display: Greater or Equals
   /// Definition: the value for the parameter in the resource is greater or equal to the provided value.
-  ge,
+  ge('ge'),
 
   /// Display: Less of Equal
   /// Definition: the value for the parameter in the resource is less or equal to the provided value.
-  le,
+  le('le'),
 
   /// Display: Starts After
   /// Definition: the value for the parameter in the resource starts after the provided value.
-  sa,
+  sa('sa'),
 
   /// Display: Ends Before
   /// Definition: the value for the parameter in the resource ends before the provided value.
-  eb,
+  eb('eb'),
 
   /// Display: Approximately
   /// Definition: the value for the parameter in the resource is approximately the same to the provided value.
-  ap,
+  ap('ap'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case eq:
-        return 'eq';
-      case ne:
-        return 'ne';
-      case gt:
-        return 'gt';
-      case lt:
-        return 'lt';
-      case ge:
-        return 'ge';
-      case le:
-        return 'le';
-      case sa:
-        return 'sa';
-      case eb:
-        return 'eb';
-      case ap:
-        return 'ap';
+  final String fhirCode;
+  final Element? element;
+
+  const SearchComparator(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static SearchComparator fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SearchComparator.elementOnly.withElement(element);
     }
+    return SearchComparator.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [SearchComparator] enum.
-  String toJson() => toString();
-
-  /// Returns a [SearchComparator] from a [String] enum.
-  static SearchComparator fromString(String str) {
-    switch (str) {
-      case 'eq':
-        return SearchComparator.eq;
-      case 'ne':
-        return SearchComparator.ne;
-      case 'gt':
-        return SearchComparator.gt;
-      case 'lt':
-        return SearchComparator.lt;
-      case 'ge':
-        return SearchComparator.ge;
-      case 'le':
-        return SearchComparator.le;
-      case 'sa':
-        return SearchComparator.sa;
-      case 'eb':
-        return SearchComparator.eb;
-      case 'ap':
-        return SearchComparator.ap;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [SearchComparator] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static SearchComparator fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  SearchComparator withElement(Element? newElement) {
+    return SearchComparator.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

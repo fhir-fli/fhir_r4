@@ -1,189 +1,117 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set includes a smattering of USCLS codes.
 enum USCLSCodes {
   /// Display: Exam, comp, primary
   /// Definition: Exam, comp, primary
-  value1101,
+  value1101('1101'),
 
   /// Display: Exam, comp, mixed
   /// Definition: Exam, comp, mixed
-  value1102,
+  value1102('1102'),
 
   /// Display: Exam, comp, permanent
   /// Definition: Exam, comp, permanent
-  value1103,
+  value1103('1103'),
 
   /// Display: Exam, recall
   /// Definition: Exam, recall
-  value1201,
+  value1201('1201'),
 
   /// Display: Exam, emergency
   /// Definition: Exam, emergency
-  value1205,
+  value1205('1205'),
 
   /// Display: Radiograph, series (12)
   /// Definition: Radiograph, series (12)
-  value2101,
+  value2101('2101'),
 
   /// Display: Radiograph, series (16)
   /// Definition: Radiograph, series (16)
-  value2102,
+  value2102('2102'),
 
   /// Display: Radiograph, bitewing
   /// Definition: Radiograph, bitewing
-  value2141,
+  value2141('2141'),
 
   /// Display: Radiograph, panoramic
   /// Definition: Radiograph, panoramic
-  value2601,
+  value2601('2601'),
 
   /// Display: Polishing, 1 unit
   /// Definition: Polishing, 1 unit
-  value11101,
+  value11101('11101'),
 
   /// Display: Polishing, 2 unit
   /// Definition: Polishing, 2 unit
-  value11102,
+  value11102('11102'),
 
   /// Display: Polishing, 3 unit
   /// Definition: Polishing, 3 unit
-  value11103,
+  value11103('11103'),
 
   /// Display: Polishing, 4 unit
   /// Definition: Polishing, 4 unit
-  value11104,
+  value11104('11104'),
 
   /// Display: Amalgam, 1 surface
   /// Definition: Amalgam, 1 surface
-  value21211,
+  value21211('21211'),
 
   /// Display: Amalgam, 2 surface
   /// Definition: Amalgam, 2 surface
-  value21212,
+  value21212('21212'),
 
   /// Display: Crown, PFM
   /// Definition: Crown, PFM
-  value27211,
+  value27211('27211'),
 
   /// Display: Maryland Bridge
   /// Definition: Maryland Bridge
-  value67211,
+  value67211('67211'),
 
   /// Display: Lab, commercial
   /// Definition: Lab, commercial
-  value99111,
+  value99111('99111'),
 
   /// Display: Lab, in office
   /// Definition: Lab, in office
-  value99333,
+  value99333('99333'),
 
   /// Display: Expense
   /// Definition: Expense
-  value99555,
+  value99555('99555'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case value1101:
-        return '1101';
-      case value1102:
-        return '1102';
-      case value1103:
-        return '1103';
-      case value1201:
-        return '1201';
-      case value1205:
-        return '1205';
-      case value2101:
-        return '2101';
-      case value2102:
-        return '2102';
-      case value2141:
-        return '2141';
-      case value2601:
-        return '2601';
-      case value11101:
-        return '11101';
-      case value11102:
-        return '11102';
-      case value11103:
-        return '11103';
-      case value11104:
-        return '11104';
-      case value21211:
-        return '21211';
-      case value21212:
-        return '21212';
-      case value27211:
-        return '27211';
-      case value67211:
-        return '67211';
-      case value99111:
-        return '99111';
-      case value99333:
-        return '99333';
-      case value99555:
-        return '99555';
+  final String fhirCode;
+  final Element? element;
+
+  const USCLSCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static USCLSCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return USCLSCodes.elementOnly.withElement(element);
     }
+    return USCLSCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [USCLSCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [USCLSCodes] from a [String] enum.
-  static USCLSCodes fromString(String str) {
-    switch (str) {
-      case '1101':
-        return USCLSCodes.value1101;
-      case '1102':
-        return USCLSCodes.value1102;
-      case '1103':
-        return USCLSCodes.value1103;
-      case '1201':
-        return USCLSCodes.value1201;
-      case '1205':
-        return USCLSCodes.value1205;
-      case '2101':
-        return USCLSCodes.value2101;
-      case '2102':
-        return USCLSCodes.value2102;
-      case '2141':
-        return USCLSCodes.value2141;
-      case '2601':
-        return USCLSCodes.value2601;
-      case '11101':
-        return USCLSCodes.value11101;
-      case '11102':
-        return USCLSCodes.value11102;
-      case '11103':
-        return USCLSCodes.value11103;
-      case '11104':
-        return USCLSCodes.value11104;
-      case '21211':
-        return USCLSCodes.value21211;
-      case '21212':
-        return USCLSCodes.value21212;
-      case '27211':
-        return USCLSCodes.value27211;
-      case '67211':
-        return USCLSCodes.value67211;
-      case '99111':
-        return USCLSCodes.value99111;
-      case '99333':
-        return USCLSCodes.value99333;
-      case '99555':
-        return USCLSCodes.value99555;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [USCLSCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static USCLSCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  USCLSCodes withElement(Element? newElement) {
+    return USCLSCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

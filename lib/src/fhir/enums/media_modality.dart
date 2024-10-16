@@ -1,93 +1,69 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Detailed information about the type of the image - its kind, purpose, or the kind of equipment used to generate it.
 enum MediaModality {
   /// Display: Diagram
   /// Definition: A diagram. Often used in diagnostic reports
-  diagram,
+  diagram('diagram'),
 
   /// Display: Fax
   /// Definition: A digital record of a fax document
-  fax,
+  fax('fax'),
 
   /// Display: Scanned Document
   /// Definition: A digital scan of a document. This is reserved for when there is not enough metadata to create a document reference
-  scan,
+  scan('scan'),
 
   /// Display: Retina Scan
   /// Definition: A retinal image used for identification purposes
-  retina,
+  retina('retina'),
 
   /// Display: Fingerprint
   /// Definition: A finger print scan used for identification purposes
-  fingerprint,
+  fingerprint('fingerprint'),
 
   /// Display: Iris Scan
   /// Definition: An iris scan used for identification purposes
-  iris,
+  iris('iris'),
 
   /// Display: Palm Scan
   /// Definition: A palm scan used for identification purposes
-  palm,
+  palm('palm'),
 
   /// Display: Face Scan
   /// Definition: A face scan used for identification purposes
-  face,
+  face('face'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case diagram:
-        return 'diagram';
-      case fax:
-        return 'fax';
-      case scan:
-        return 'scan';
-      case retina:
-        return 'retina';
-      case fingerprint:
-        return 'fingerprint';
-      case iris:
-        return 'iris';
-      case palm:
-        return 'palm';
-      case face:
-        return 'face';
+  final String fhirCode;
+  final Element? element;
+
+  const MediaModality(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static MediaModality fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MediaModality.elementOnly.withElement(element);
     }
+    return MediaModality.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [MediaModality] enum.
-  String toJson() => toString();
-
-  /// Returns a [MediaModality] from a [String] enum.
-  static MediaModality fromString(String str) {
-    switch (str) {
-      case 'diagram':
-        return MediaModality.diagram;
-      case 'fax':
-        return MediaModality.fax;
-      case 'scan':
-        return MediaModality.scan;
-      case 'retina':
-        return MediaModality.retina;
-      case 'fingerprint':
-        return MediaModality.fingerprint;
-      case 'iris':
-        return MediaModality.iris;
-      case 'palm':
-        return MediaModality.palm;
-      case 'face':
-        return MediaModality.face;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [MediaModality] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static MediaModality fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  MediaModality withElement(Element? newElement) {
+    return MediaModality.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

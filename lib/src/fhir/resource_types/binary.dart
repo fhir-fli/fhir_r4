@@ -127,24 +127,61 @@ class Binary extends Resource {
     final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (meta != null) {
-      json['meta'] = meta!.toJson();
+      final primitiveJson = meta!.toJson();
+      json['meta'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_meta'] = primitiveJson['_value'];
+      }
     }
-    if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.toJson();
+
+    if (implicitRules != null) {
+      final primitiveJson = implicitRules!.toJson();
+      json['implicitRules'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_implicitRules'] = primitiveJson['_value'];
+      }
     }
+
     if (language != null) {
-      json['language'] = language!.toJson();
+      final primitiveJson = language!.toJson();
+      json['language'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_language'] = primitiveJson['_value'];
+      }
     }
-    json['contentType'] = contentType.toJson();
+
+    if (contentType != null) {
+      final primitiveJson = contentType!.toJson();
+      json['contentType'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_contentType'] = primitiveJson['_value'];
+      }
+    }
+
     if (securityContext != null) {
-      json['securityContext'] = securityContext!.toJson();
+      final primitiveJson = securityContext!.toJson();
+      json['securityContext'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_securityContext'] = primitiveJson['_value'];
+      }
     }
-    if (data?.value != null) {
-      json['data'] = data!.toJson();
+
+    if (data != null) {
+      final primitiveJson = data!.toJson();
+      json['data'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_data'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 

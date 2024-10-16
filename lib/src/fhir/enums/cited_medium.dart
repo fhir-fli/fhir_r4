@@ -1,77 +1,62 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// NLM codes Internet or Print.
 enum CitedMedium {
   /// Display: Internet
   /// Definition: Online publication in a periodic release. Used to match NLM JournalIssue CitedMedium code for online version.
-  internet,
+  internet('internet'),
 
   /// Display: Print
   /// Definition: Print publication in a periodic release. Used to match NLM JournalIssue CitedMedium code for print version.
-  print,
+  print('print'),
 
   /// Display: Offline Digital Storage
   /// Definition: Publication in a physical device for electronic data storage, organized in issues for periodic release.
-  offline_digital_storage,
+  offline_digital_storage('offline-digital-storage'),
 
   /// Display: Internet without issue
   /// Definition: Online publication without any periodic release. Used for article specific publication date which could be the same as or different from journal issue publication date.
-  internet_without_issue,
+  internet_without_issue('internet-without-issue'),
 
   /// Display: Print without issue
   /// Definition: Print publication without any periodic release.
-  print_without_issue,
+  print_without_issue('print-without-issue'),
 
   /// Display: Offline Digital Storage without issue
   /// Definition: Publication in a physical device for electronic data storage, without any periodic release.
-  offline_digital_storage_without_issue,
+  offline_digital_storage_without_issue(
+      'offline-digital-storage-without-issue'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case internet:
-        return 'internet';
-      case print:
-        return 'print';
-      case offline_digital_storage:
-        return 'offline-digital-storage';
-      case internet_without_issue:
-        return 'internet-without-issue';
-      case print_without_issue:
-        return 'print-without-issue';
-      case offline_digital_storage_without_issue:
-        return 'offline-digital-storage-without-issue';
+  final String fhirCode;
+  final Element? element;
+
+  const CitedMedium(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static CitedMedium fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CitedMedium.elementOnly.withElement(element);
     }
+    return CitedMedium.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [CitedMedium] enum.
-  String toJson() => toString();
-
-  /// Returns a [CitedMedium] from a [String] enum.
-  static CitedMedium fromString(String str) {
-    switch (str) {
-      case 'internet':
-        return CitedMedium.internet;
-      case 'print':
-        return CitedMedium.print;
-      case 'offline-digital-storage':
-        return CitedMedium.offline_digital_storage;
-      case 'internet-without-issue':
-        return CitedMedium.internet_without_issue;
-      case 'print-without-issue':
-        return CitedMedium.print_without_issue;
-      case 'offline-digital-storage-without-issue':
-        return CitedMedium.offline_digital_storage_without_issue;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [CitedMedium] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static CitedMedium fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  CitedMedium withElement(Element? newElement) {
+    return CitedMedium.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

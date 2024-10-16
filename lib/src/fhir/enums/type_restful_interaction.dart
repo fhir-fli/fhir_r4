@@ -1,165 +1,141 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Operations supported by REST at the type or instance level.
 enum TypeRestfulInteraction {
   /// Display: read
   /// Definition: Read the current state of the resource.
-  read,
+  read('read'),
 
   /// Display: vread
   /// Definition: Read the state of a specific version of the resource.
-  vread,
+  vread('vread'),
 
   /// Display: update
   /// Definition: Update an existing resource by its id (or create it if it is new).
-  update,
+  update('update'),
 
   /// Display: patch
   /// Definition: Update an existing resource by posting a set of changes to it.
-  patch,
+  patch('patch'),
 
   /// Display: delete
   /// Definition: Delete a resource.
-  delete,
+  delete('delete'),
 
   /// Display: history
   /// Definition: Retrieve the change history for a particular resource, type of resource, or the entire system.
-  history,
+  history('history'),
 
   /// Display: history-instance
   /// Definition: Retrieve the change history for a particular resource.
-  history_instance,
+  history_instance('history-instance'),
 
   /// Display: history-type
   /// Definition: Retrieve the change history for all resources of a particular type.
-  history_type,
+  history_type('history-type'),
 
   /// Display: history-system
   /// Definition: Retrieve the change history for all resources on a system.
-  history_system,
+  history_system('history-system'),
 
   /// Display: create
   /// Definition: Create a new resource with a server assigned id.
-  create,
+  create('create'),
 
   /// Display: search
   /// Definition: Search a resource type or all resources based on some filter criteria.
-  search,
+  search('search'),
 
   /// Display: search-type
   /// Definition: Search all resources of the specified type based on some filter criteria.
-  search_type,
+  search_type('search-type'),
 
   /// Display: search-system
   /// Definition: Search all resources based on some filter criteria.
-  search_system,
+  search_system('search-system'),
 
   /// Display: capabilities
   /// Definition: Get a Capability Statement for the system.
-  capabilities,
+  capabilities('capabilities'),
 
   /// Display: transaction
   /// Definition: Update, create or delete a set of resources as a single transaction.
-  transaction,
+  transaction('transaction'),
 
   /// Display: batch
   /// Definition: perform a set of a separate interactions in a single http operation
-  batch,
+  batch('batch'),
 
   /// Display: operation
   /// Definition: Perform an operation as defined by an OperationDefinition.
-  operation,
+  operation('operation'),
+
+  /// Display:
+  /// Definition:
+  read_1('read'),
+
+  /// Display:
+  /// Definition:
+  vread_1('vread'),
+
+  /// Display:
+  /// Definition:
+  update_1('update'),
+
+  /// Display:
+  /// Definition:
+  patch_1('patch'),
+
+  /// Display:
+  /// Definition:
+  delete_1('delete'),
+
+  /// Display:
+  /// Definition:
+  history_instance_1('history-instance'),
+
+  /// Display:
+  /// Definition:
+  history_type_1('history-type'),
+
+  /// Display:
+  /// Definition:
+  create_1('create'),
+
+  /// Display:
+  /// Definition:
+  search_type_1('search-type'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case read:
-        return 'read';
-      case vread:
-        return 'vread';
-      case update:
-        return 'update';
-      case patch:
-        return 'patch';
-      case delete:
-        return 'delete';
-      case history:
-        return 'history';
-      case history_instance:
-        return 'history-instance';
-      case history_type:
-        return 'history-type';
-      case history_system:
-        return 'history-system';
-      case create:
-        return 'create';
-      case search:
-        return 'search';
-      case search_type:
-        return 'search-type';
-      case search_system:
-        return 'search-system';
-      case capabilities:
-        return 'capabilities';
-      case transaction:
-        return 'transaction';
-      case batch:
-        return 'batch';
-      case operation:
-        return 'operation';
+  final String fhirCode;
+  final Element? element;
+
+  const TypeRestfulInteraction(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static TypeRestfulInteraction fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TypeRestfulInteraction.elementOnly.withElement(element);
     }
+    return TypeRestfulInteraction.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [TypeRestfulInteraction] enum.
-  String toJson() => toString();
-
-  /// Returns a [TypeRestfulInteraction] from a [String] enum.
-  static TypeRestfulInteraction fromString(String str) {
-    switch (str) {
-      case 'read':
-        return TypeRestfulInteraction.read;
-      case 'vread':
-        return TypeRestfulInteraction.vread;
-      case 'update':
-        return TypeRestfulInteraction.update;
-      case 'patch':
-        return TypeRestfulInteraction.patch;
-      case 'delete':
-        return TypeRestfulInteraction.delete;
-      case 'history':
-        return TypeRestfulInteraction.history;
-      case 'history-instance':
-        return TypeRestfulInteraction.history_instance;
-      case 'history-type':
-        return TypeRestfulInteraction.history_type;
-      case 'history-system':
-        return TypeRestfulInteraction.history_system;
-      case 'create':
-        return TypeRestfulInteraction.create;
-      case 'search':
-        return TypeRestfulInteraction.search;
-      case 'search-type':
-        return TypeRestfulInteraction.search_type;
-      case 'search-system':
-        return TypeRestfulInteraction.search_system;
-      case 'capabilities':
-        return TypeRestfulInteraction.capabilities;
-      case 'transaction':
-        return TypeRestfulInteraction.transaction;
-      case 'batch':
-        return TypeRestfulInteraction.batch;
-      case 'operation':
-        return TypeRestfulInteraction.operation;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [TypeRestfulInteraction] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static TypeRestfulInteraction fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  TypeRestfulInteraction withElement(Element? newElement) {
+    return TypeRestfulInteraction.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

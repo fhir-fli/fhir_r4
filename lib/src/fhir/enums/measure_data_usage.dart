@@ -1,45 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The intended usage for supplemental data elements in the measure.
 enum MeasureDataUsage {
   /// Display: Supplemental Data
   /// Definition: The data is intended to be provided as additional information alongside the measure results.
-  supplemental_data,
+  supplemental_data('supplemental-data'),
 
   /// Display: Risk Adjustment Factor
   /// Definition: The data is intended to be used to calculate and apply a risk adjustment model for the measure.
-  risk_adjustment_factor,
+  risk_adjustment_factor('risk-adjustment-factor'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case supplemental_data:
-        return 'supplemental-data';
-      case risk_adjustment_factor:
-        return 'risk-adjustment-factor';
+  final String fhirCode;
+  final Element? element;
+
+  const MeasureDataUsage(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static MeasureDataUsage fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MeasureDataUsage.elementOnly.withElement(element);
     }
+    return MeasureDataUsage.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [MeasureDataUsage] enum.
-  String toJson() => toString();
-
-  /// Returns a [MeasureDataUsage] from a [String] enum.
-  static MeasureDataUsage fromString(String str) {
-    switch (str) {
-      case 'supplemental-data':
-        return MeasureDataUsage.supplemental_data;
-      case 'risk-adjustment-factor':
-        return MeasureDataUsage.risk_adjustment_factor;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [MeasureDataUsage] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static MeasureDataUsage fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  MeasureDataUsage withElement(Element? newElement) {
+    return MeasureDataUsage.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

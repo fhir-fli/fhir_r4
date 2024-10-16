@@ -129,25 +129,54 @@ class Timing extends BackboneType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (event != null && event!.isNotEmpty) {
-      json['event'] = event!.map((FhirDateTime v) => v.toJson()).toList();
+      final primitiveList = event!.map((e) => e.toJson()).toList();
+      json['event'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_event'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (repeat != null) {
-      json['repeat'] = repeat!.toJson();
+      final primitiveJson = repeat!.toJson();
+      json['repeat'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_repeat'] = primitiveJson['_value'];
+      }
     }
+
     if (code != null) {
-      json['code'] = code!.toJson();
+      final primitiveJson = code!.toJson();
+      json['code'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_code'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 
@@ -465,63 +494,157 @@ class TimingRepeat extends Element {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (boundsDuration != null) {
-      json['boundsDuration'] = boundsDuration!.toJson();
+      final primitiveJson = boundsDuration!.toJson();
+      json['boundsDuration'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_boundsDuration'] = primitiveJson['_value'];
+      }
     }
+
     if (boundsRange != null) {
-      json['boundsRange'] = boundsRange!.toJson();
+      final primitiveJson = boundsRange!.toJson();
+      json['boundsRange'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_boundsRange'] = primitiveJson['_value'];
+      }
     }
+
     if (boundsPeriod != null) {
-      json['boundsPeriod'] = boundsPeriod!.toJson();
+      final primitiveJson = boundsPeriod!.toJson();
+      json['boundsPeriod'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_boundsPeriod'] = primitiveJson['_value'];
+      }
     }
-    if (count?.value != null) {
-      json['count'] = count!.toJson();
+
+    if (count != null) {
+      final primitiveJson = count!.toJson();
+      json['count'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_count'] = primitiveJson['_value'];
+      }
     }
-    if (countMax?.value != null) {
-      json['countMax'] = countMax!.toJson();
+
+    if (countMax != null) {
+      final primitiveJson = countMax!.toJson();
+      json['countMax'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_countMax'] = primitiveJson['_value'];
+      }
     }
-    if (duration?.value != null) {
-      json['duration'] = duration!.toJson();
+
+    if (duration != null) {
+      final primitiveJson = duration!.toJson();
+      json['duration'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_duration'] = primitiveJson['_value'];
+      }
     }
-    if (durationMax?.value != null) {
-      json['durationMax'] = durationMax!.toJson();
+
+    if (durationMax != null) {
+      final primitiveJson = durationMax!.toJson();
+      json['durationMax'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_durationMax'] = primitiveJson['_value'];
+      }
     }
+
     if (durationUnit != null) {
-      json['durationUnit'] = durationUnit!.toJson();
+      final primitiveJson = durationUnit!.toJson();
+      json['durationUnit'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_durationUnit'] = primitiveJson['_value'];
+      }
     }
-    if (frequency?.value != null) {
-      json['frequency'] = frequency!.toJson();
+
+    if (frequency != null) {
+      final primitiveJson = frequency!.toJson();
+      json['frequency'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_frequency'] = primitiveJson['_value'];
+      }
     }
-    if (frequencyMax?.value != null) {
-      json['frequencyMax'] = frequencyMax!.toJson();
+
+    if (frequencyMax != null) {
+      final primitiveJson = frequencyMax!.toJson();
+      json['frequencyMax'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_frequencyMax'] = primitiveJson['_value'];
+      }
     }
-    if (period?.value != null) {
-      json['period'] = period!.toJson();
+
+    if (period != null) {
+      final primitiveJson = period!.toJson();
+      json['period'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_period'] = primitiveJson['_value'];
+      }
     }
-    if (periodMax?.value != null) {
-      json['periodMax'] = periodMax!.toJson();
+
+    if (periodMax != null) {
+      final primitiveJson = periodMax!.toJson();
+      json['periodMax'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_periodMax'] = primitiveJson['_value'];
+      }
     }
+
     if (periodUnit != null) {
-      json['periodUnit'] = periodUnit!.toJson();
+      final primitiveJson = periodUnit!.toJson();
+      json['periodUnit'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_periodUnit'] = primitiveJson['_value'];
+      }
     }
+
     if (dayOfWeek != null && dayOfWeek!.isNotEmpty) {
-      json['dayOfWeek'] = dayOfWeek!.map((DaysOfWeek v) => v.toJson()).toList();
+      final primitiveList = dayOfWeek!.map((e) => e.toJson()).toList();
+      json['dayOfWeek'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_dayOfWeek'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (timeOfDay != null && timeOfDay!.isNotEmpty) {
-      json['timeOfDay'] = timeOfDay!.map((FhirTime v) => v.toJson()).toList();
+      final primitiveList = timeOfDay!.map((e) => e.toJson()).toList();
+      json['timeOfDay'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_timeOfDay'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (when != null && when!.isNotEmpty) {
-      json['when'] = when!.map((EventTiming v) => v.toJson()).toList();
+      final primitiveList = when!.map((e) => e.toJson()).toList();
+      json['when'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_when'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    if (offset?.value != null) {
-      json['offset'] = offset!.toJson();
+
+    if (offset != null) {
+      final primitiveJson = offset!.toJson();
+      json['offset'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_offset'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 

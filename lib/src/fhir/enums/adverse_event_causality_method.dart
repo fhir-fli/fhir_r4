@@ -1,50 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// TODO.
 enum AdverseEventCausalityMethod {
   /// Display: Probability Scale
-  ProbabilityScale,
+  /// Definition:
+  ProbabilityScale('ProbabilityScale'),
 
   /// Display: Bayesian
-  Bayesian,
+  /// Definition:
+  Bayesian('Bayesian'),
 
   /// Display: Checklist
-  Checklist,
+  /// Definition:
+  Checklist('Checklist'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case ProbabilityScale:
-        return 'ProbabilityScale';
-      case Bayesian:
-        return 'Bayesian';
-      case Checklist:
-        return 'Checklist';
+  final String fhirCode;
+  final Element? element;
+
+  const AdverseEventCausalityMethod(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static AdverseEventCausalityMethod fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AdverseEventCausalityMethod.elementOnly.withElement(element);
     }
+    return AdverseEventCausalityMethod.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [AdverseEventCausalityMethod] enum.
-  String toJson() => toString();
-
-  /// Returns a [AdverseEventCausalityMethod] from a [String] enum.
-  static AdverseEventCausalityMethod fromString(String str) {
-    switch (str) {
-      case 'ProbabilityScale':
-        return AdverseEventCausalityMethod.ProbabilityScale;
-      case 'Bayesian':
-        return AdverseEventCausalityMethod.Bayesian;
-      case 'Checklist':
-        return AdverseEventCausalityMethod.Checklist;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [AdverseEventCausalityMethod] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static AdverseEventCausalityMethod fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  AdverseEventCausalityMethod withElement(Element? newElement) {
+    return AdverseEventCausalityMethod.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

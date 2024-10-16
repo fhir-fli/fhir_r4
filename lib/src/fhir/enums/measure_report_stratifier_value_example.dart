@@ -1,61 +1,55 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Example Measure Stratification Value for MeasureReports Resource.
 enum MeasureReportStratifierValueExample {
   /// Display: Northwest
   /// Definition: Northwest region stratification.
-  northwest,
+  northwest('northwest'),
 
   /// Display: Northeast
   /// Definition: Northeast region stratification.
-  northeast,
+  northeast('northeast'),
 
   /// Display: Soutwest
   /// Definition: Soutwest region stratification.
-  southwest,
+  southwest('southwest'),
 
   /// Display: Southeast
   /// Definition: Southeast region stratification.
-  southeast,
+  southeast('southeast'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case northwest:
-        return 'northwest';
-      case northeast:
-        return 'northeast';
-      case southwest:
-        return 'southwest';
-      case southeast:
-        return 'southeast';
+  final String fhirCode;
+  final Element? element;
+
+  const MeasureReportStratifierValueExample(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static MeasureReportStratifierValueExample fromJson(
+      Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MeasureReportStratifierValueExample.elementOnly
+          .withElement(element);
     }
+    return MeasureReportStratifierValueExample.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [MeasureReportStratifierValueExample] enum.
-  String toJson() => toString();
-
-  /// Returns a [MeasureReportStratifierValueExample] from a [String] enum.
-  static MeasureReportStratifierValueExample fromString(String str) {
-    switch (str) {
-      case 'northwest':
-        return MeasureReportStratifierValueExample.northwest;
-      case 'northeast':
-        return MeasureReportStratifierValueExample.northeast;
-      case 'southwest':
-        return MeasureReportStratifierValueExample.southwest;
-      case 'southeast':
-        return MeasureReportStratifierValueExample.southeast;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [MeasureReportStratifierValueExample] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static MeasureReportStratifierValueExample fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  MeasureReportStratifierValueExample withElement(Element? newElement) {
+    return MeasureReportStratifierValueExample.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

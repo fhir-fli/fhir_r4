@@ -1,183 +1,127 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// MedicationKnowledge Package Type Codes
 enum MedicationKnowledgePackageTypeCodes {
   /// Display: Ampule
-  amp,
+  /// Definition:
+  amp('amp'),
 
   /// Display: Bag
-  bag,
+  /// Definition:
+  bag('bag'),
 
   /// Display: Blister Pack
-  blstrpk,
+  /// Definition:
+  blstrpk('blstrpk'),
 
   /// Display: Bottle
-  bot,
+  /// Definition:
+  bot('bot'),
 
   /// Display: Box
-  box,
+  /// Definition:
+  box('box'),
 
   /// Display: Can
-  can,
+  /// Definition:
+  can('can'),
 
   /// Display: Cartridge
-  cart,
+  /// Definition:
+  cart('cart'),
 
   /// Display: Disk
-  disk,
+  /// Definition:
+  disk('disk'),
 
   /// Display: Dosette
-  doset,
+  /// Definition:
+  doset('doset'),
 
   /// Display: Jar
-  jar,
+  /// Definition:
+  jar('jar'),
 
   /// Display: Jug
-  jug,
+  /// Definition:
+  jug('jug'),
 
   /// Display: Minim
-  minim,
+  /// Definition:
+  minim('minim'),
 
   /// Display: Nebule Amp
-  nebamp,
+  /// Definition:
+  nebamp('nebamp'),
 
   /// Display: Ovule
-  ovul,
+  /// Definition:
+  ovul('ovul'),
 
   /// Display: Pouch
-  pch,
+  /// Definition:
+  pch('pch'),
 
   /// Display: Packet
-  pkt,
+  /// Definition:
+  pkt('pkt'),
 
   /// Display: Sashet
-  sash,
+  /// Definition:
+  sash('sash'),
 
   /// Display: Strip
-  strip,
+  /// Definition:
+  strip('strip'),
 
   /// Display: Tin
-  tin,
+  /// Definition:
+  tin('tin'),
 
   /// Display: Tub
-  tub,
+  /// Definition:
+  tub('tub'),
 
   /// Display: Tube
-  tube,
+  /// Definition:
+  tube('tube'),
 
   /// Display: Vial
-  vial,
+  /// Definition:
+  vial('vial'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case amp:
-        return 'amp';
-      case bag:
-        return 'bag';
-      case blstrpk:
-        return 'blstrpk';
-      case bot:
-        return 'bot';
-      case box:
-        return 'box';
-      case can:
-        return 'can';
-      case cart:
-        return 'cart';
-      case disk:
-        return 'disk';
-      case doset:
-        return 'doset';
-      case jar:
-        return 'jar';
-      case jug:
-        return 'jug';
-      case minim:
-        return 'minim';
-      case nebamp:
-        return 'nebamp';
-      case ovul:
-        return 'ovul';
-      case pch:
-        return 'pch';
-      case pkt:
-        return 'pkt';
-      case sash:
-        return 'sash';
-      case strip:
-        return 'strip';
-      case tin:
-        return 'tin';
-      case tub:
-        return 'tub';
-      case tube:
-        return 'tube';
-      case vial:
-        return 'vial';
+  final String fhirCode;
+  final Element? element;
+
+  const MedicationKnowledgePackageTypeCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static MedicationKnowledgePackageTypeCodes fromJson(
+      Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MedicationKnowledgePackageTypeCodes.elementOnly
+          .withElement(element);
     }
+    return MedicationKnowledgePackageTypeCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [MedicationKnowledgePackageTypeCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [MedicationKnowledgePackageTypeCodes] from a [String] enum.
-  static MedicationKnowledgePackageTypeCodes fromString(String str) {
-    switch (str) {
-      case 'amp':
-        return MedicationKnowledgePackageTypeCodes.amp;
-      case 'bag':
-        return MedicationKnowledgePackageTypeCodes.bag;
-      case 'blstrpk':
-        return MedicationKnowledgePackageTypeCodes.blstrpk;
-      case 'bot':
-        return MedicationKnowledgePackageTypeCodes.bot;
-      case 'box':
-        return MedicationKnowledgePackageTypeCodes.box;
-      case 'can':
-        return MedicationKnowledgePackageTypeCodes.can;
-      case 'cart':
-        return MedicationKnowledgePackageTypeCodes.cart;
-      case 'disk':
-        return MedicationKnowledgePackageTypeCodes.disk;
-      case 'doset':
-        return MedicationKnowledgePackageTypeCodes.doset;
-      case 'jar':
-        return MedicationKnowledgePackageTypeCodes.jar;
-      case 'jug':
-        return MedicationKnowledgePackageTypeCodes.jug;
-      case 'minim':
-        return MedicationKnowledgePackageTypeCodes.minim;
-      case 'nebamp':
-        return MedicationKnowledgePackageTypeCodes.nebamp;
-      case 'ovul':
-        return MedicationKnowledgePackageTypeCodes.ovul;
-      case 'pch':
-        return MedicationKnowledgePackageTypeCodes.pch;
-      case 'pkt':
-        return MedicationKnowledgePackageTypeCodes.pkt;
-      case 'sash':
-        return MedicationKnowledgePackageTypeCodes.sash;
-      case 'strip':
-        return MedicationKnowledgePackageTypeCodes.strip;
-      case 'tin':
-        return MedicationKnowledgePackageTypeCodes.tin;
-      case 'tub':
-        return MedicationKnowledgePackageTypeCodes.tub;
-      case 'tube':
-        return MedicationKnowledgePackageTypeCodes.tube;
-      case 'vial':
-        return MedicationKnowledgePackageTypeCodes.vial;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [MedicationKnowledgePackageTypeCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static MedicationKnowledgePackageTypeCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  MedicationKnowledgePackageTypeCodes withElement(Element? newElement) {
+    return MedicationKnowledgePackageTypeCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

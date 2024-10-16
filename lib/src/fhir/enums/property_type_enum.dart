@@ -1,85 +1,65 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The type of a property value.
 enum PropertyTypeEnum {
   /// Display: code (internal reference)
   /// Definition: The property value is a code that identifies a concept defined in the code system.
-  code,
+  code('code'),
 
   /// Display: Coding (external reference)
-  /// Definition: The property  value is a code defined in an external code system. This may be used for translations, but is not the intent.
-  Coding,
+  /// Definition: The property value is a code defined in an external code system. This may be used for translations, but is not the intent.
+  Coding('Coding'),
 
   /// Display: string
   /// Definition: The property value is a string.
-  string,
+  string('string'),
 
   /// Display: integer
   /// Definition: The property value is a string (often used to assign ranking values to concepts for supporting score assessments).
-  integer,
+  integer('integer'),
 
   /// Display: boolean
   /// Definition: The property value is a boolean true | false.
-  boolean,
+  boolean('boolean'),
 
   /// Display: dateTime
   /// Definition: The property is a date or a date + time.
-  dateTime,
+  dateTime('dateTime'),
 
   /// Display: decimal
   /// Definition: The property value is a decimal number.
-  decimal,
+  decimal('decimal'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case code:
-        return 'code';
-      case Coding:
-        return 'Coding';
-      case string:
-        return 'string';
-      case integer:
-        return 'integer';
-      case boolean:
-        return 'boolean';
-      case dateTime:
-        return 'dateTime';
-      case decimal:
-        return 'decimal';
+  final String fhirCode;
+  final Element? element;
+
+  const PropertyTypeEnum(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static PropertyTypeEnum fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return PropertyTypeEnum.elementOnly.withElement(element);
     }
+    return PropertyTypeEnum.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [PropertyTypeEnum] enum.
-  String toJson() => toString();
-
-  /// Returns a [PropertyTypeEnum] from a [String] enum.
-  static PropertyTypeEnum fromString(String str) {
-    switch (str) {
-      case 'code':
-        return PropertyTypeEnum.code;
-      case 'Coding':
-        return PropertyTypeEnum.Coding;
-      case 'string':
-        return PropertyTypeEnum.string;
-      case 'integer':
-        return PropertyTypeEnum.integer;
-      case 'boolean':
-        return PropertyTypeEnum.boolean;
-      case 'dateTime':
-        return PropertyTypeEnum.dateTime;
-      case 'decimal':
-        return PropertyTypeEnum.decimal;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [PropertyTypeEnum] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static PropertyTypeEnum fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  PropertyTypeEnum withElement(Element? newElement) {
+    return PropertyTypeEnum.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Citation classification type
 enum CitationClassificationType {
   /// Display: Citation Source
   /// Definition: Citation repository where this citation was created or copied from
-  citation_source,
+  citation_source('citation-source'),
 
   /// Display: MEDLINE Citation Owner
   /// Definition: The party responsible for creating and validating the MEDLINE citation
-  medline_owner,
+  medline_owner('medline-owner'),
 
   /// Display: FEvIR Platform Use
   /// Definition: Used for Citation sharing on the Fast Evidence Interoperability Resources (FEvIR) Platform
-  fevir_platform_use,
+  fevir_platform_use('fevir-platform-use'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case citation_source:
-        return 'citation-source';
-      case medline_owner:
-        return 'medline-owner';
-      case fevir_platform_use:
-        return 'fevir-platform-use';
+  final String fhirCode;
+  final Element? element;
+
+  const CitationClassificationType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static CitationClassificationType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CitationClassificationType.elementOnly.withElement(element);
     }
+    return CitationClassificationType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [CitationClassificationType] enum.
-  String toJson() => toString();
-
-  /// Returns a [CitationClassificationType] from a [String] enum.
-  static CitationClassificationType fromString(String str) {
-    switch (str) {
-      case 'citation-source':
-        return CitationClassificationType.citation_source;
-      case 'medline-owner':
-        return CitationClassificationType.medline_owner;
-      case 'fevir-platform-use':
-        return CitationClassificationType.fevir_platform_use;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [CitationClassificationType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static CitationClassificationType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  CitationClassificationType withElement(Element? newElement) {
+    return CitationClassificationType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

@@ -1,77 +1,61 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Codes describing the purpose or content of the communication.
 enum CommunicationTopic {
   /// Display: Prescription Refill Request
   /// Definition: The purpose or content of the communication is a prescription refill request.
-  prescription_refill_request,
+  prescription_refill_request('prescription-refill-request'),
 
   /// Display: Progress Update
   /// Definition: The purpose or content of the communication is a progress update.
-  progress_update,
+  progress_update('progress-update'),
 
   /// Display: Report Labs
   /// Definition: The purpose or content of the communication is to report labs.
-  report_labs,
+  report_labs('report-labs'),
 
   /// Display: Appointment Reminder
   /// Definition: The purpose or content of the communication is an appointment reminder.
-  appointment_reminder,
+  appointment_reminder('appointment-reminder'),
 
   /// Display: Phone Consult
   /// Definition: The purpose or content of the communication is a phone consult.
-  phone_consult,
+  phone_consult('phone-consult'),
 
   /// Display: Summary Report
   /// Definition: The purpose or content of the communication is a summary report.
-  summary_report,
+  summary_report('summary-report'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case prescription_refill_request:
-        return 'prescription-refill-request';
-      case progress_update:
-        return 'progress-update';
-      case report_labs:
-        return 'report-labs';
-      case appointment_reminder:
-        return 'appointment-reminder';
-      case phone_consult:
-        return 'phone-consult';
-      case summary_report:
-        return 'summary-report';
+  final String fhirCode;
+  final Element? element;
+
+  const CommunicationTopic(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static CommunicationTopic fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CommunicationTopic.elementOnly.withElement(element);
     }
+    return CommunicationTopic.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [CommunicationTopic] enum.
-  String toJson() => toString();
-
-  /// Returns a [CommunicationTopic] from a [String] enum.
-  static CommunicationTopic fromString(String str) {
-    switch (str) {
-      case 'prescription-refill-request':
-        return CommunicationTopic.prescription_refill_request;
-      case 'progress-update':
-        return CommunicationTopic.progress_update;
-      case 'report-labs':
-        return CommunicationTopic.report_labs;
-      case 'appointment-reminder':
-        return CommunicationTopic.appointment_reminder;
-      case 'phone-consult':
-        return CommunicationTopic.phone_consult;
-      case 'summary-report':
-        return CommunicationTopic.summary_report;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [CommunicationTopic] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static CommunicationTopic fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  CommunicationTopic withElement(Element? newElement) {
+    return CommunicationTopic.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

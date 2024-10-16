@@ -1,77 +1,61 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// A coded concept indicating the current status of the Device Usage.
 enum DeviceUseStatementStatus {
   /// Display: Active
   /// Definition: The device is still being used.
-  active,
+  active('active'),
 
   /// Display: Completed
   /// Definition: The device is no longer being used.
-  completed,
+  completed('completed'),
 
   /// Display: Entered in Error
   /// Definition: The statement was recorded incorrectly.
-  entered_in_error,
+  entered_in_error('entered-in-error'),
 
   /// Display: Intended
   /// Definition: The device may be used at some time in the future.
-  intended,
+  intended('intended'),
 
   /// Display: Stopped
   /// Definition: Actions implied by the statement have been permanently halted, before all of them occurred.
-  stopped,
+  stopped('stopped'),
 
   /// Display: On Hold
   /// Definition: Actions implied by the statement have been temporarily halted, but are expected to continue later. May also be called "suspended".
-  on_hold,
+  on_hold('on-hold'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case active:
-        return 'active';
-      case completed:
-        return 'completed';
-      case entered_in_error:
-        return 'entered-in-error';
-      case intended:
-        return 'intended';
-      case stopped:
-        return 'stopped';
-      case on_hold:
-        return 'on-hold';
+  final String fhirCode;
+  final Element? element;
+
+  const DeviceUseStatementStatus(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static DeviceUseStatementStatus fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DeviceUseStatementStatus.elementOnly.withElement(element);
     }
+    return DeviceUseStatementStatus.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [DeviceUseStatementStatus] enum.
-  String toJson() => toString();
-
-  /// Returns a [DeviceUseStatementStatus] from a [String] enum.
-  static DeviceUseStatementStatus fromString(String str) {
-    switch (str) {
-      case 'active':
-        return DeviceUseStatementStatus.active;
-      case 'completed':
-        return DeviceUseStatementStatus.completed;
-      case 'entered-in-error':
-        return DeviceUseStatementStatus.entered_in_error;
-      case 'intended':
-        return DeviceUseStatementStatus.intended;
-      case 'stopped':
-        return DeviceUseStatementStatus.stopped;
-      case 'on-hold':
-        return DeviceUseStatementStatus.on_hold;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [DeviceUseStatementStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static DeviceUseStatementStatus fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  DeviceUseStatementStatus withElement(Element? newElement) {
+    return DeviceUseStatementStatus.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

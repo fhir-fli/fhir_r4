@@ -1,78 +1,65 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set defines a set of codes that can be used to express the role of a diagnosis on the Encounter or EpisodeOfCare record.
 enum DiagnosisRole {
   /// Display: Admission diagnosis
-  AD,
+  /// Definition:
+  AD('AD'),
 
   /// Display: Discharge diagnosis
-  DD,
+  /// Definition:
+  DD('DD'),
 
   /// Display: Chief complaint
-  CC,
+  /// Definition:
+  CC('CC'),
 
   /// Display: Comorbidity diagnosis
-  CM,
+  /// Definition:
+  CM('CM'),
 
   /// Display: pre-op diagnosis
-  pre_op,
+  /// Definition:
+  pre_op('pre-op'),
 
   /// Display: post-op diagnosis
-  post_op,
+  /// Definition:
+  post_op('post-op'),
 
   /// Display: Billing
-  billing,
+  /// Definition:
+  billing('billing'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case AD:
-        return 'AD';
-      case DD:
-        return 'DD';
-      case CC:
-        return 'CC';
-      case CM:
-        return 'CM';
-      case pre_op:
-        return 'pre-op';
-      case post_op:
-        return 'post-op';
-      case billing:
-        return 'billing';
+  final String fhirCode;
+  final Element? element;
+
+  const DiagnosisRole(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static DiagnosisRole fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return DiagnosisRole.elementOnly.withElement(element);
     }
+    return DiagnosisRole.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [DiagnosisRole] enum.
-  String toJson() => toString();
-
-  /// Returns a [DiagnosisRole] from a [String] enum.
-  static DiagnosisRole fromString(String str) {
-    switch (str) {
-      case 'AD':
-        return DiagnosisRole.AD;
-      case 'DD':
-        return DiagnosisRole.DD;
-      case 'CC':
-        return DiagnosisRole.CC;
-      case 'CM':
-        return DiagnosisRole.CM;
-      case 'pre-op':
-        return DiagnosisRole.pre_op;
-      case 'post-op':
-        return DiagnosisRole.post_op;
-      case 'billing':
-        return DiagnosisRole.billing;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [DiagnosisRole] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static DiagnosisRole fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  DiagnosisRole withElement(Element? newElement) {
+    return DiagnosisRole.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

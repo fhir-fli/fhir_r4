@@ -1,57 +1,53 @@
-/// FluidConsistencyType :  Codes used to represent the consistency of fluids and liquids provided to the patient. This value set includes concepts from [SNOMED CT](http://snomed.info/sct)(US Extension) where concept is a 435681000124103  (Dietary liquid consistency diet (regime/therapy)). It is provided as a suggestive example.
+import 'package:fhir_r4/fhir_r4.dart';
+
+/// FluidConsistencyType : Codes used to represent the consistency of fluids and liquids provided to the patient. This value set includes concepts from [SNOMED CT](http://snomed.info/sct)(US Extension) where concept is a 435681000124103 (Dietary liquid consistency diet (regime/therapy)). It is provided as a suggestive example.
 enum FluidConsistencyTypeCodes {
   /// Display: honey thick liquid
-  value439031000124108,
+  /// Definition:
+  value439031000124108('439031000124108'),
 
   /// Display: nectar thick liquid
-  value439021000124105,
+  /// Definition:
+  value439021000124105('439021000124105'),
 
   /// Display: spoon thick liquid
-  value439041000124103,
+  /// Definition:
+  value439041000124103('439041000124103'),
 
   /// Display: thin liquid
-  value439081000124109,
+  /// Definition:
+  value439081000124109('439081000124109'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case value439031000124108:
-        return '439031000124108';
-      case value439021000124105:
-        return '439021000124105';
-      case value439041000124103:
-        return '439041000124103';
-      case value439081000124109:
-        return '439081000124109';
+  final String fhirCode;
+  final Element? element;
+
+  const FluidConsistencyTypeCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static FluidConsistencyTypeCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return FluidConsistencyTypeCodes.elementOnly.withElement(element);
     }
+    return FluidConsistencyTypeCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [FluidConsistencyTypeCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [FluidConsistencyTypeCodes] from a [String] enum.
-  static FluidConsistencyTypeCodes fromString(String str) {
-    switch (str) {
-      case '439031000124108':
-        return FluidConsistencyTypeCodes.value439031000124108;
-      case '439021000124105':
-        return FluidConsistencyTypeCodes.value439021000124105;
-      case '439041000124103':
-        return FluidConsistencyTypeCodes.value439041000124103;
-      case '439081000124109':
-        return FluidConsistencyTypeCodes.value439081000124109;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [FluidConsistencyTypeCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static FluidConsistencyTypeCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  FluidConsistencyTypeCodes withElement(Element? newElement) {
+    return FluidConsistencyTypeCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

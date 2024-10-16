@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The methods of referral can be used when referring to a specific HealthCareService resource.
 enum ReferralMethod {
   /// Display: Fax
   /// Definition: Referrals may be accepted by fax.
-  fax,
+  fax('fax'),
 
   /// Display: Phone
   /// Definition: Referrals may be accepted over the phone from a practitioner.
-  phone,
+  phone('phone'),
 
   /// Display: Secure Messaging
   /// Definition: Referrals may be accepted via a secure messaging system. To determine the types of secure messaging systems supported, refer to the identifiers collection. Callers will need to understand the specific identifier system used to know that they are able to transmit messages.
-  elec,
+  elec('elec'),
 
   /// Display: Secure Email
   /// Definition: Referrals may be accepted via a secure email. To send please encrypt with the services public key.
-  semail,
+  semail('semail'),
 
   /// Display: Mail
   /// Definition: Referrals may be accepted via regular postage (or hand delivered).
-  mail,
+  mail('mail'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case fax:
-        return 'fax';
-      case phone:
-        return 'phone';
-      case elec:
-        return 'elec';
-      case semail:
-        return 'semail';
-      case mail:
-        return 'mail';
+  final String fhirCode;
+  final Element? element;
+
+  const ReferralMethod(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ReferralMethod fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ReferralMethod.elementOnly.withElement(element);
     }
+    return ReferralMethod.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ReferralMethod] enum.
-  String toJson() => toString();
-
-  /// Returns a [ReferralMethod] from a [String] enum.
-  static ReferralMethod fromString(String str) {
-    switch (str) {
-      case 'fax':
-        return ReferralMethod.fax;
-      case 'phone':
-        return ReferralMethod.phone;
-      case 'elec':
-        return ReferralMethod.elec;
-      case 'semail':
-        return ReferralMethod.semail;
-      case 'mail':
-        return ReferralMethod.mail;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ReferralMethod] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ReferralMethod fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ReferralMethod withElement(Element? newElement) {
+    return ReferralMethod.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

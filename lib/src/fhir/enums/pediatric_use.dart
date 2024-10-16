@@ -1,141 +1,93 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Extra measures defined for a Medicinal Product, such as heightened reporting requirements.
 enum PediatricUse {
   /// Display: In utero
   /// Definition: In utero
-  InUtero,
+  InUtero('InUtero'),
 
   /// Display: Preterm newborn infants (0 – 27 days)
   /// Definition: Preterm newborn infants (0 – 27 days)
-  PretermNewborn,
+  PretermNewborn('PretermNewborn'),
 
   /// Display: Term newborn infants (0 – 27 days)
   /// Definition: Term newborn infants (0 – 27 days)
-  TermNewborn,
+  TermNewborn('TermNewborn'),
 
   /// Display: Infants and toddlers (28 days – 23 months)
   /// Definition: Infants and toddlers (28 days – 23 months)
-  Infants,
+  Infants('Infants'),
 
   /// Display: Children (2 to < 12 years)
   /// Definition: Children (2 to < 12 years)
-  Children,
+  Children('Children'),
 
   /// Display: Adolescents (12 to < 18 years)
   /// Definition: Adolescents (12 to < 18 years)
-  Adolescents,
+  Adolescents('Adolescents'),
 
   /// Display: Adults (18 to < 65 years)
   /// Definition: Adults (18 to < 65 years)
-  Adults,
+  Adults('Adults'),
 
   /// Display: Elderly (≥ 65 years)
   /// Definition: Elderly (≥ 65 years)
-  Elderly,
+  Elderly('Elderly'),
 
   /// Display: Neonate
   /// Definition: Neonate
-  Neonate,
+  Neonate('Neonate'),
 
   /// Display: Pediatric Population (< 18 years)
   /// Definition: Pediatric Population (< 18 years)
-  PediatricPopulation,
+  PediatricPopulation('PediatricPopulation'),
 
   /// Display: All
   /// Definition: All
-  All,
+  All('All'),
 
   /// Display: Prepubertal children (2 years to onset of puberty)
   /// Definition: Prepubertal children (2 years to onset of puberty)
-  Prepubertal,
+  Prepubertal('Prepubertal'),
 
   /// Display: Adult and elderly population (> 18 years)
   /// Definition: Adult and elderly population (> 18 years)
-  AdultsAndElderly,
+  AdultsAndElderly('AdultsAndElderly'),
 
   /// Display: Pubertal and postpubertal adolescents (onset of puberty to < 18 years)
   /// Definition: Pubertal and postpubertal adolescents (onset of puberty to < 18 years)
-  PubertalAndPostpubertal,
+  PubertalAndPostpubertal('PubertalAndPostpubertal'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case InUtero:
-        return 'InUtero';
-      case PretermNewborn:
-        return 'PretermNewborn';
-      case TermNewborn:
-        return 'TermNewborn';
-      case Infants:
-        return 'Infants';
-      case Children:
-        return 'Children';
-      case Adolescents:
-        return 'Adolescents';
-      case Adults:
-        return 'Adults';
-      case Elderly:
-        return 'Elderly';
-      case Neonate:
-        return 'Neonate';
-      case PediatricPopulation:
-        return 'PediatricPopulation';
-      case All:
-        return 'All';
-      case Prepubertal:
-        return 'Prepubertal';
-      case AdultsAndElderly:
-        return 'AdultsAndElderly';
-      case PubertalAndPostpubertal:
-        return 'PubertalAndPostpubertal';
+  final String fhirCode;
+  final Element? element;
+
+  const PediatricUse(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static PediatricUse fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return PediatricUse.elementOnly.withElement(element);
     }
+    return PediatricUse.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [PediatricUse] enum.
-  String toJson() => toString();
-
-  /// Returns a [PediatricUse] from a [String] enum.
-  static PediatricUse fromString(String str) {
-    switch (str) {
-      case 'InUtero':
-        return PediatricUse.InUtero;
-      case 'PretermNewborn':
-        return PediatricUse.PretermNewborn;
-      case 'TermNewborn':
-        return PediatricUse.TermNewborn;
-      case 'Infants':
-        return PediatricUse.Infants;
-      case 'Children':
-        return PediatricUse.Children;
-      case 'Adolescents':
-        return PediatricUse.Adolescents;
-      case 'Adults':
-        return PediatricUse.Adults;
-      case 'Elderly':
-        return PediatricUse.Elderly;
-      case 'Neonate':
-        return PediatricUse.Neonate;
-      case 'PediatricPopulation':
-        return PediatricUse.PediatricPopulation;
-      case 'All':
-        return PediatricUse.All;
-      case 'Prepubertal':
-        return PediatricUse.Prepubertal;
-      case 'AdultsAndElderly':
-        return PediatricUse.AdultsAndElderly;
-      case 'PubertalAndPostpubertal':
-        return PediatricUse.PubertalAndPostpubertal;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [PediatricUse] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static PediatricUse fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  PediatricUse withElement(Element? newElement) {
+    return PediatricUse.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

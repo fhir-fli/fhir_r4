@@ -1,69 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The extent of the content of the code system (the concepts and codes it defines) are represented in a code system resource.
 enum CodeSystemContentMode {
   /// Display: Not Present
   /// Definition: None of the concepts defined by the code system are included in the code system resource.
-  not_present,
+  not_present('not-present'),
 
   /// Display: Example
   /// Definition: A few representative concepts are included in the code system resource. There is no useful intent in the subset choice and there's no process to make it workable: it's not intended to be workable.
-  example,
+  example('example'),
 
   /// Display: Fragment
   /// Definition: A subset of the code system concepts are included in the code system resource. This is a curated subset released for a specific purpose under the governance of the code system steward, and that the intent, bounds and consequences of the fragmentation are clearly defined in the fragment or the code system documentation. Fragments are also known as partitions.
-  fragment,
+  fragment('fragment'),
 
   /// Display: Complete
   /// Definition: All the concepts defined by the code system are included in the code system resource.
-  complete,
+  complete('complete'),
 
   /// Display: Supplement
   /// Definition: The resource doesn't define any new concepts; it just provides additional designations and properties to another code system.
-  supplement,
+  supplement('supplement'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case not_present:
-        return 'not-present';
-      case example:
-        return 'example';
-      case fragment:
-        return 'fragment';
-      case complete:
-        return 'complete';
-      case supplement:
-        return 'supplement';
+  final String fhirCode;
+  final Element? element;
+
+  const CodeSystemContentMode(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static CodeSystemContentMode fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CodeSystemContentMode.elementOnly.withElement(element);
     }
+    return CodeSystemContentMode.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [CodeSystemContentMode] enum.
-  String toJson() => toString();
-
-  /// Returns a [CodeSystemContentMode] from a [String] enum.
-  static CodeSystemContentMode fromString(String str) {
-    switch (str) {
-      case 'not-present':
-        return CodeSystemContentMode.not_present;
-      case 'example':
-        return CodeSystemContentMode.example;
-      case 'fragment':
-        return CodeSystemContentMode.fragment;
-      case 'complete':
-        return CodeSystemContentMode.complete;
-      case 'supplement':
-        return CodeSystemContentMode.supplement;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [CodeSystemContentMode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static CodeSystemContentMode fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  CodeSystemContentMode withElement(Element? newElement) {
+    return CodeSystemContentMode.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

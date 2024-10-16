@@ -305,74 +305,191 @@ class CoverageEligibilityRequest extends DomainResource {
     final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (meta != null) {
-      json['meta'] = meta!.toJson();
+      final primitiveJson = meta!.toJson();
+      json['meta'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_meta'] = primitiveJson['_value'];
+      }
     }
-    if (implicitRules?.value != null) {
-      json['implicitRules'] = implicitRules!.toJson();
+
+    if (implicitRules != null) {
+      final primitiveJson = implicitRules!.toJson();
+      json['implicitRules'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_implicitRules'] = primitiveJson['_value'];
+      }
     }
+
     if (language != null) {
-      json['language'] = language!.toJson();
+      final primitiveJson = language!.toJson();
+      json['language'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_language'] = primitiveJson['_value'];
+      }
     }
+
     if (text != null) {
-      json['text'] = text!.toJson();
+      final primitiveJson = text!.toJson();
+      json['text'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_text'] = primitiveJson['_value'];
+      }
     }
+
     if (contained != null && contained!.isNotEmpty) {
-      json['contained'] = contained!.map((Resource v) => v.toJson()).toList();
+      final primitiveList = contained!.map((e) => e.toJson()).toList();
+      json['contained'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_contained'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (identifier != null && identifier!.isNotEmpty) {
-      json['identifier'] =
-          identifier!.map((Identifier v) => v.toJson()).toList();
+      final primitiveList = identifier!.map((e) => e.toJson()).toList();
+      json['identifier'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_identifier'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['status'] = status.toJson();
+
+    if (status != null) {
+      final primitiveJson = status!.toJson();
+      json['status'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_status'] = primitiveJson['_value'];
+      }
+    }
+
     if (priority != null) {
-      json['priority'] = priority!.toJson();
+      final primitiveJson = priority!.toJson();
+      json['priority'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_priority'] = primitiveJson['_value'];
+      }
     }
-    json['purpose'] = purpose
-        .map<dynamic>((EligibilityRequestPurpose v) => v.toJson())
-        .toList();
-    json['patient'] = patient.toJson();
-    if (servicedDate?.value != null) {
-      json['servicedDate'] = servicedDate!.toJson();
+
+    if (purpose != null && purpose!.isNotEmpty) {
+      final primitiveList = purpose!.map((e) => e.toJson()).toList();
+      json['purpose'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_purpose'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
+    if (patient != null) {
+      final primitiveJson = patient!.toJson();
+      json['patient'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_patient'] = primitiveJson['_value'];
+      }
+    }
+
+    if (servicedDate != null) {
+      final primitiveJson = servicedDate!.toJson();
+      json['servicedDate'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_servicedDate'] = primitiveJson['_value'];
+      }
+    }
+
     if (servicedPeriod != null) {
-      json['servicedPeriod'] = servicedPeriod!.toJson();
+      final primitiveJson = servicedPeriod!.toJson();
+      json['servicedPeriod'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_servicedPeriod'] = primitiveJson['_value'];
+      }
     }
-    json['created'] = created.toJson();
+
+    if (created != null) {
+      final primitiveJson = created!.toJson();
+      json['created'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_created'] = primitiveJson['_value'];
+      }
+    }
+
     if (enterer != null) {
-      json['enterer'] = enterer!.toJson();
+      final primitiveJson = enterer!.toJson();
+      json['enterer'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_enterer'] = primitiveJson['_value'];
+      }
     }
+
     if (provider != null) {
-      json['provider'] = provider!.toJson();
+      final primitiveJson = provider!.toJson();
+      json['provider'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_provider'] = primitiveJson['_value'];
+      }
     }
-    json['insurer'] = insurer.toJson();
+
+    if (insurer != null) {
+      final primitiveJson = insurer!.toJson();
+      json['insurer'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_insurer'] = primitiveJson['_value'];
+      }
+    }
+
     if (facility != null) {
-      json['facility'] = facility!.toJson();
+      final primitiveJson = facility!.toJson();
+      json['facility'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_facility'] = primitiveJson['_value'];
+      }
     }
+
     if (supportingInfo != null && supportingInfo!.isNotEmpty) {
-      json['supportingInfo'] = supportingInfo!
-          .map((CoverageEligibilityRequestSupportingInfo v) => v.toJson())
-          .toList();
+      final primitiveList = supportingInfo!.map((e) => e.toJson()).toList();
+      json['supportingInfo'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_supportingInfo'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (insurance != null && insurance!.isNotEmpty) {
-      json['insurance'] = insurance!
-          .map((CoverageEligibilityRequestInsurance v) => v.toJson())
-          .toList();
+      final primitiveList = insurance!.map((e) => e.toJson()).toList();
+      json['insurance'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_insurance'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (item != null && item!.isNotEmpty) {
-      json['item'] =
-          item!.map((CoverageEligibilityRequestItem v) => v.toJson()).toList();
+      final primitiveList = item!.map((e) => e.toJson()).toList();
+      json['item'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_item'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     return json;
   }
 
@@ -568,21 +685,54 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    json['sequence'] = sequence.toJson();
-    json['information'] = information.toJson();
-    if (appliesToAll?.value != null) {
-      json['appliesToAll'] = appliesToAll!.toJson();
+
+    if (sequence != null) {
+      final primitiveJson = sequence!.toJson();
+      json['sequence'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_sequence'] = primitiveJson['_value'];
+      }
     }
+
+    if (information != null) {
+      final primitiveJson = information!.toJson();
+      json['information'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_information'] = primitiveJson['_value'];
+      }
+    }
+
+    if (appliesToAll != null) {
+      final primitiveJson = appliesToAll!.toJson();
+      json['appliesToAll'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_appliesToAll'] = primitiveJson['_value'];
+      }
+    }
+
     return json;
   }
 
@@ -748,23 +898,54 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
-    if (focal?.value != null) {
-      json['focal'] = focal!.toJson();
+
+    if (focal != null) {
+      final primitiveJson = focal!.toJson();
+      json['focal'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_focal'] = primitiveJson['_value'];
+      }
     }
-    json['coverage'] = coverage.toJson();
-    if (businessArrangement?.value != null) {
-      json['businessArrangement'] = businessArrangement!.toJson();
+
+    if (coverage != null) {
+      final primitiveJson = coverage!.toJson();
+      json['coverage'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_coverage'] = primitiveJson['_value'];
+      }
     }
+
+    if (businessArrangement != null) {
+      final primitiveJson = businessArrangement!.toJson();
+      json['businessArrangement'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_businessArrangement'] = primitiveJson['_value'];
+      }
+    }
+
     return json;
   }
 
@@ -1010,51 +1191,113 @@ class CoverageEligibilityRequestItem extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (supportingInfoSequence != null && supportingInfoSequence!.isNotEmpty) {
-      json['supportingInfoSequence'] = supportingInfoSequence!
-          .map((FhirPositiveInt v) => v.toJson())
-          .toList();
+      final primitiveList =
+          supportingInfoSequence!.map((e) => e.toJson()).toList();
+      json['supportingInfoSequence'] =
+          primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_supportingInfoSequence'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (category != null) {
-      json['category'] = category!.toJson();
+      final primitiveJson = category!.toJson();
+      json['category'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_category'] = primitiveJson['_value'];
+      }
     }
+
     if (productOrService != null) {
-      json['productOrService'] = productOrService!.toJson();
+      final primitiveJson = productOrService!.toJson();
+      json['productOrService'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_productOrService'] = primitiveJson['_value'];
+      }
     }
+
     if (modifier != null && modifier!.isNotEmpty) {
-      json['modifier'] =
-          modifier!.map((CodeableConcept v) => v.toJson()).toList();
+      final primitiveList = modifier!.map((e) => e.toJson()).toList();
+      json['modifier'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifier'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (provider != null) {
-      json['provider'] = provider!.toJson();
+      final primitiveJson = provider!.toJson();
+      json['provider'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_provider'] = primitiveJson['_value'];
+      }
     }
+
     if (quantity != null) {
-      json['quantity'] = quantity!.toJson();
+      final primitiveJson = quantity!.toJson();
+      json['quantity'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_quantity'] = primitiveJson['_value'];
+      }
     }
+
     if (unitPrice != null) {
-      json['unitPrice'] = unitPrice!.toJson();
+      final primitiveJson = unitPrice!.toJson();
+      json['unitPrice'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_unitPrice'] = primitiveJson['_value'];
+      }
     }
+
     if (facility != null) {
-      json['facility'] = facility!.toJson();
+      final primitiveJson = facility!.toJson();
+      json['facility'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_facility'] = primitiveJson['_value'];
+      }
     }
+
     if (diagnosis != null && diagnosis!.isNotEmpty) {
-      json['diagnosis'] = diagnosis!
-          .map((CoverageEligibilityRequestDiagnosis v) => v.toJson())
-          .toList();
+      final primitiveList = diagnosis!.map((e) => e.toJson()).toList();
+      json['diagnosis'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_diagnosis'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (detail != null && detail!.isNotEmpty) {
-      json['detail'] = detail!.map((Reference v) => v.toJson()).toList();
+      final primitiveList = detail!.map((e) => e.toJson()).toList();
+      json['detail'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_detail'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     return json;
   }
 
@@ -1220,22 +1463,46 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (diagnosisCodeableConcept != null) {
-      json['diagnosisCodeableConcept'] = diagnosisCodeableConcept!.toJson();
+      final primitiveJson = diagnosisCodeableConcept!.toJson();
+      json['diagnosisCodeableConcept'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_diagnosisCodeableConcept'] = primitiveJson['_value'];
+      }
     }
+
     if (diagnosisReference != null) {
-      json['diagnosisReference'] = diagnosisReference!.toJson();
+      final primitiveJson = diagnosisReference!.toJson();
+      json['diagnosisReference'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_diagnosisReference'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 

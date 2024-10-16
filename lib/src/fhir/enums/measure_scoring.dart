@@ -1,61 +1,53 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The scoring type of the measure.
 enum MeasureScoring {
   /// Display: Proportion
   /// Definition: The measure score is defined using a proportion.
-  proportion,
+  proportion('proportion'),
 
   /// Display: Ratio
   /// Definition: The measure score is defined using a ratio.
-  ratio,
+  ratio('ratio'),
 
   /// Display: Continuous Variable
   /// Definition: The score is defined by a calculation of some quantity.
-  continuous_variable,
+  continuous_variable('continuous-variable'),
 
   /// Display: Cohort
   /// Definition: The measure is a cohort definition.
-  cohort,
+  cohort('cohort'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case proportion:
-        return 'proportion';
-      case ratio:
-        return 'ratio';
-      case continuous_variable:
-        return 'continuous-variable';
-      case cohort:
-        return 'cohort';
+  final String fhirCode;
+  final Element? element;
+
+  const MeasureScoring(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static MeasureScoring fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MeasureScoring.elementOnly.withElement(element);
     }
+    return MeasureScoring.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [MeasureScoring] enum.
-  String toJson() => toString();
-
-  /// Returns a [MeasureScoring] from a [String] enum.
-  static MeasureScoring fromString(String str) {
-    switch (str) {
-      case 'proportion':
-        return MeasureScoring.proportion;
-      case 'ratio':
-        return MeasureScoring.ratio;
-      case 'continuous-variable':
-        return MeasureScoring.continuous_variable;
-      case 'cohort':
-        return MeasureScoring.cohort;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [MeasureScoring] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static MeasureScoring fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  MeasureScoring withElement(Element? newElement) {
+    return MeasureScoring.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

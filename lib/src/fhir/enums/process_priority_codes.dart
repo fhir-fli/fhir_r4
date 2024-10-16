@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set includes the financial processing priority codes.
 enum ProcessPriorityCodes {
   /// Display: Immediate
   /// Definition: Immediately in real time.
-  stat,
+  stat('stat'),
 
   /// Display: Normal
   /// Definition: With best effort.
-  normal,
+  normal('normal'),
 
   /// Display: Deferred
   /// Definition: Later, when possible.
-  deferred_,
+  deferred_('deferred'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case stat:
-        return 'stat';
-      case normal:
-        return 'normal';
-      case deferred_:
-        return 'deferred';
+  final String fhirCode;
+  final Element? element;
+
+  const ProcessPriorityCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ProcessPriorityCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ProcessPriorityCodes.elementOnly.withElement(element);
     }
+    return ProcessPriorityCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ProcessPriorityCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ProcessPriorityCodes] from a [String] enum.
-  static ProcessPriorityCodes fromString(String str) {
-    switch (str) {
-      case 'stat':
-        return ProcessPriorityCodes.stat;
-      case 'normal':
-        return ProcessPriorityCodes.normal;
-      case 'deferred':
-        return ProcessPriorityCodes.deferred_;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ProcessPriorityCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ProcessPriorityCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ProcessPriorityCodes withElement(Element? newElement) {
+    return ProcessPriorityCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Type if a sequence -- DNA, RNA, or amino acid sequence.
 enum SequenceType {
   /// Display: AA Sequence
   /// Definition: Amino acid sequence.
-  aa,
+  aa('aa'),
 
   /// Display: DNA Sequence
   /// Definition: DNA Sequence.
-  dna,
+  dna('dna'),
 
   /// Display: RNA Sequence
   /// Definition: RNA Sequence.
-  rna,
+  rna('rna'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case aa:
-        return 'aa';
-      case dna:
-        return 'dna';
-      case rna:
-        return 'rna';
+  final String fhirCode;
+  final Element? element;
+
+  const SequenceType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static SequenceType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SequenceType.elementOnly.withElement(element);
     }
+    return SequenceType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [SequenceType] enum.
-  String toJson() => toString();
-
-  /// Returns a [SequenceType] from a [String] enum.
-  static SequenceType fromString(String str) {
-    switch (str) {
-      case 'aa':
-        return SequenceType.aa;
-      case 'dna':
-        return SequenceType.dna;
-      case 'rna':
-        return SequenceType.rna;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [SequenceType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static SequenceType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  SequenceType withElement(Element? newElement) {
+    return SequenceType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

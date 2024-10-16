@@ -1,85 +1,69 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Unified Code for Units of Measure (UCUM). This value set includes all UCUM codes
 enum CommonUCUMCodesForDuration {
   /// Display: milliseconds
-  ms,
+  /// Definition:
+  ms('ms'),
 
   /// Display: seconds
-  s,
+  /// Definition:
+  s('s'),
 
   /// Display: minutes
-  min,
+  /// Definition:
+  min('min'),
 
   /// Display: hours
-  h,
+  /// Definition:
+  h('h'),
 
   /// Display: days
-  d,
+  /// Definition:
+  d('d'),
 
   /// Display: weeks
-  wk,
+  /// Definition:
+  wk('wk'),
 
   /// Display: months
-  mo,
+  /// Definition:
+  mo('mo'),
 
   /// Display: years
-  a,
+  /// Definition:
+  a('a'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case ms:
-        return 'ms';
-      case s:
-        return 's';
-      case min:
-        return 'min';
-      case h:
-        return 'h';
-      case d:
-        return 'd';
-      case wk:
-        return 'wk';
-      case mo:
-        return 'mo';
-      case a:
-        return 'a';
+  final String fhirCode;
+  final Element? element;
+
+  const CommonUCUMCodesForDuration(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static CommonUCUMCodesForDuration fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return CommonUCUMCodesForDuration.elementOnly.withElement(element);
     }
+    return CommonUCUMCodesForDuration.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [CommonUCUMCodesForDuration] enum.
-  String toJson() => toString();
-
-  /// Returns a [CommonUCUMCodesForDuration] from a [String] enum.
-  static CommonUCUMCodesForDuration fromString(String str) {
-    switch (str) {
-      case 'ms':
-        return CommonUCUMCodesForDuration.ms;
-      case 's':
-        return CommonUCUMCodesForDuration.s;
-      case 'min':
-        return CommonUCUMCodesForDuration.min;
-      case 'h':
-        return CommonUCUMCodesForDuration.h;
-      case 'd':
-        return CommonUCUMCodesForDuration.d;
-      case 'wk':
-        return CommonUCUMCodesForDuration.wk;
-      case 'mo':
-        return CommonUCUMCodesForDuration.mo;
-      case 'a':
-        return CommonUCUMCodesForDuration.a;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [CommonUCUMCodesForDuration] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static CommonUCUMCodesForDuration fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  CommonUCUMCodesForDuration withElement(Element? newElement) {
+    return CommonUCUMCodesForDuration.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The status of the measure report.
 enum MeasureReportStatus {
   /// Display: Complete
   /// Definition: The report is complete and ready for use.
-  complete,
+  complete('complete'),
 
   /// Display: Pending
   /// Definition: The report is currently being generated.
-  pending,
+  pending('pending'),
 
   /// Display: Error
   /// Definition: An error occurred attempting to generate the report.
-  error,
+  error('error'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case complete:
-        return 'complete';
-      case pending:
-        return 'pending';
-      case error:
-        return 'error';
+  final String fhirCode;
+  final Element? element;
+
+  const MeasureReportStatus(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static MeasureReportStatus fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MeasureReportStatus.elementOnly.withElement(element);
     }
+    return MeasureReportStatus.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [MeasureReportStatus] enum.
-  String toJson() => toString();
-
-  /// Returns a [MeasureReportStatus] from a [String] enum.
-  static MeasureReportStatus fromString(String str) {
-    switch (str) {
-      case 'complete':
-        return MeasureReportStatus.complete;
-      case 'pending':
-        return MeasureReportStatus.pending;
-      case 'error':
-        return MeasureReportStatus.error;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [MeasureReportStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static MeasureReportStatus fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  MeasureReportStatus withElement(Element? newElement) {
+    return MeasureReportStatus.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

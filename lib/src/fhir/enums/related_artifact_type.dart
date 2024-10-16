@@ -1,93 +1,69 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The type of relationship to the related artifact.
 enum RelatedArtifactType {
   /// Display: Documentation
   /// Definition: Additional documentation for the knowledge resource. This would include additional instructions on usage as well as additional information on clinical context or appropriateness.
-  documentation,
+  documentation('documentation'),
 
   /// Display: Justification
   /// Definition: A summary of the justification for the knowledge resource including supporting evidence, relevant guidelines, or other clinically important information. This information is intended to provide a way to make the justification for the knowledge resource available to the consumer of interventions or results produced by the knowledge resource.
-  justification,
+  justification('justification'),
 
   /// Display: Citation
   /// Definition: Bibliographic citation for papers, references, or other relevant material for the knowledge resource. This is intended to allow for citation of related material, but that was not necessarily specifically prepared in connection with this knowledge resource.
-  citation,
+  citation('citation'),
 
   /// Display: Predecessor
   /// Definition: The previous version of the knowledge resource.
-  predecessor,
+  predecessor('predecessor'),
 
   /// Display: Successor
   /// Definition: The next version of the knowledge resource.
-  successor,
+  successor('successor'),
 
   /// Display: Derived From
   /// Definition: The knowledge resource is derived from the related artifact. This is intended to capture the relationship in which a particular knowledge resource is based on the content of another artifact, but is modified to capture either a different set of overall requirements, or a more specific set of requirements such as those involved in a particular institution or clinical setting.
-  derived_from,
+  derived_from('derived-from'),
 
   /// Display: Depends On
   /// Definition: The knowledge resource depends on the given related artifact.
-  depends_on,
+  depends_on('depends-on'),
 
   /// Display: Composed Of
   /// Definition: The knowledge resource is composed of the given related artifact.
-  composed_of,
+  composed_of('composed-of'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case documentation:
-        return 'documentation';
-      case justification:
-        return 'justification';
-      case citation:
-        return 'citation';
-      case predecessor:
-        return 'predecessor';
-      case successor:
-        return 'successor';
-      case derived_from:
-        return 'derived-from';
-      case depends_on:
-        return 'depends-on';
-      case composed_of:
-        return 'composed-of';
+  final String fhirCode;
+  final Element? element;
+
+  const RelatedArtifactType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static RelatedArtifactType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return RelatedArtifactType.elementOnly.withElement(element);
     }
+    return RelatedArtifactType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [RelatedArtifactType] enum.
-  String toJson() => toString();
-
-  /// Returns a [RelatedArtifactType] from a [String] enum.
-  static RelatedArtifactType fromString(String str) {
-    switch (str) {
-      case 'documentation':
-        return RelatedArtifactType.documentation;
-      case 'justification':
-        return RelatedArtifactType.justification;
-      case 'citation':
-        return RelatedArtifactType.citation;
-      case 'predecessor':
-        return RelatedArtifactType.predecessor;
-      case 'successor':
-        return RelatedArtifactType.successor;
-      case 'derived-from':
-        return RelatedArtifactType.derived_from;
-      case 'depends-on':
-        return RelatedArtifactType.depends_on;
-      case 'composed-of':
-        return RelatedArtifactType.composed_of;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [RelatedArtifactType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static RelatedArtifactType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  RelatedArtifactType withElement(Element? newElement) {
+    return RelatedArtifactType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

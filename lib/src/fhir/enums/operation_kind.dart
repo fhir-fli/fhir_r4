@@ -1,45 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Whether an operation is a normal operation or a query.
 enum OperationKind {
   /// Display: Operation
   /// Definition: This operation is invoked as an operation.
-  operation,
+  operation('operation'),
 
   /// Display: Query
   /// Definition: This operation is a named query, invoked using the search mechanism.
-  query,
+  query('query'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case operation:
-        return 'operation';
-      case query:
-        return 'query';
+  final String fhirCode;
+  final Element? element;
+
+  const OperationKind(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static OperationKind fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return OperationKind.elementOnly.withElement(element);
     }
+    return OperationKind.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [OperationKind] enum.
-  String toJson() => toString();
-
-  /// Returns a [OperationKind] from a [String] enum.
-  static OperationKind fromString(String str) {
-    switch (str) {
-      case 'operation':
-        return OperationKind.operation;
-      case 'query':
-        return OperationKind.query;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [OperationKind] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static OperationKind fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  OperationKind withElement(Element? newElement) {
+    return OperationKind.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

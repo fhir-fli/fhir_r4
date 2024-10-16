@@ -1,61 +1,53 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Status of the supply delivery.
 enum SupplyDeliveryStatus {
   /// Display: In Progress
   /// Definition: Supply has been requested, but not delivered.
-  in_progress,
+  in_progress('in-progress'),
 
   /// Display: Delivered
   /// Definition: Supply has been delivered ("completed").
-  completed,
+  completed('completed'),
 
   /// Display: Abandoned
   /// Definition: Delivery was not completed.
-  abandoned,
+  abandoned('abandoned'),
 
   /// Display: Entered In Error
   /// Definition: This electronic record should never have existed, though it is possible that real-world decisions were based on it. (If real-world activity has occurred, the status should be "abandoned" rather than "entered-in-error".).
-  entered_in_error,
+  entered_in_error('entered-in-error'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case in_progress:
-        return 'in-progress';
-      case completed:
-        return 'completed';
-      case abandoned:
-        return 'abandoned';
-      case entered_in_error:
-        return 'entered-in-error';
+  final String fhirCode;
+  final Element? element;
+
+  const SupplyDeliveryStatus(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static SupplyDeliveryStatus fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return SupplyDeliveryStatus.elementOnly.withElement(element);
     }
+    return SupplyDeliveryStatus.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [SupplyDeliveryStatus] enum.
-  String toJson() => toString();
-
-  /// Returns a [SupplyDeliveryStatus] from a [String] enum.
-  static SupplyDeliveryStatus fromString(String str) {
-    switch (str) {
-      case 'in-progress':
-        return SupplyDeliveryStatus.in_progress;
-      case 'completed':
-        return SupplyDeliveryStatus.completed;
-      case 'abandoned':
-        return SupplyDeliveryStatus.abandoned;
-      case 'entered-in-error':
-        return SupplyDeliveryStatus.entered_in_error;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [SupplyDeliveryStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static SupplyDeliveryStatus fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  SupplyDeliveryStatus withElement(Element? newElement) {
+    return SupplyDeliveryStatus.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

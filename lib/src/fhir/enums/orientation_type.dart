@@ -1,45 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Type for orientation.
 enum OrientationType {
   /// Display: Sense orientation of referenceSeq
   /// Definition: Sense orientation of reference sequence.
-  sense,
+  sense('sense'),
 
   /// Display: Antisense orientation of referenceSeq
   /// Definition: Antisense orientation of reference sequence.
-  antisense,
+  antisense('antisense'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case sense:
-        return 'sense';
-      case antisense:
-        return 'antisense';
+  final String fhirCode;
+  final Element? element;
+
+  const OrientationType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static OrientationType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return OrientationType.elementOnly.withElement(element);
     }
+    return OrientationType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [OrientationType] enum.
-  String toJson() => toString();
-
-  /// Returns a [OrientationType] from a [String] enum.
-  static OrientationType fromString(String str) {
-    switch (str) {
-      case 'sense':
-        return OrientationType.sense;
-      case 'antisense':
-        return OrientationType.antisense;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [OrientationType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static OrientationType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  OrientationType withElement(Element? newElement) {
+    return OrientationType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

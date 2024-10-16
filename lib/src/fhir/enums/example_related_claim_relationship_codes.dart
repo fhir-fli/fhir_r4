@@ -1,45 +1,47 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set includes sample Related Claim Relationship codes.
 enum ExampleRelatedClaimRelationshipCodes {
   /// Display: Prior Claim
   /// Definition: A prior claim instance for the same intended suite of services.
-  prior,
+  prior('prior'),
 
   /// Display: Associated Claim
   /// Definition: A claim for a different suite of services which is related the suite claimed here.
-  associated,
+  associated('associated'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case prior:
-        return 'prior';
-      case associated:
-        return 'associated';
+  final String fhirCode;
+  final Element? element;
+
+  const ExampleRelatedClaimRelationshipCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ExampleRelatedClaimRelationshipCodes fromJson(
+      Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleRelatedClaimRelationshipCodes.elementOnly
+          .withElement(element);
     }
+    return ExampleRelatedClaimRelationshipCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ExampleRelatedClaimRelationshipCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ExampleRelatedClaimRelationshipCodes] from a [String] enum.
-  static ExampleRelatedClaimRelationshipCodes fromString(String str) {
-    switch (str) {
-      case 'prior':
-        return ExampleRelatedClaimRelationshipCodes.prior;
-      case 'associated':
-        return ExampleRelatedClaimRelationshipCodes.associated;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ExampleRelatedClaimRelationshipCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ExampleRelatedClaimRelationshipCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ExampleRelatedClaimRelationshipCodes withElement(Element? newElement) {
+    return ExampleRelatedClaimRelationshipCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

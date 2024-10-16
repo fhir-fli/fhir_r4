@@ -1,45 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Biologically Derived Product Status.
 enum BiologicallyDerivedProductStatus {
   /// Display: Available
   /// Definition: Product is currently available for use.
-  available,
+  available('available'),
 
   /// Display: Unavailable
   /// Definition: Product is not currently available for use.
-  unavailable,
+  unavailable('unavailable'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case available:
-        return 'available';
-      case unavailable:
-        return 'unavailable';
+  final String fhirCode;
+  final Element? element;
+
+  const BiologicallyDerivedProductStatus(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static BiologicallyDerivedProductStatus fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return BiologicallyDerivedProductStatus.elementOnly.withElement(element);
     }
+    return BiologicallyDerivedProductStatus.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [BiologicallyDerivedProductStatus] enum.
-  String toJson() => toString();
-
-  /// Returns a [BiologicallyDerivedProductStatus] from a [String] enum.
-  static BiologicallyDerivedProductStatus fromString(String str) {
-    switch (str) {
-      case 'available':
-        return BiologicallyDerivedProductStatus.available;
-      case 'unavailable':
-        return BiologicallyDerivedProductStatus.unavailable;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [BiologicallyDerivedProductStatus] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static BiologicallyDerivedProductStatus fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  BiologicallyDerivedProductStatus withElement(Element? newElement) {
+    return BiologicallyDerivedProductStatus.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

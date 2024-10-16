@@ -161,29 +161,70 @@ class MarketingStatus extends BackboneType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      json['id'] = id!.toJson();
+      final primitiveJson = id!.toJson();
+      json['id'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_id'] = primitiveJson['_value'];
+      }
     }
+
     if (extension_ != null && extension_!.isNotEmpty) {
-      json['extension'] =
-          extension_!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      json['modifierExtension'] =
-          modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
+      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
+      if (primitiveList.any((e) => e['_value'] != null)) {
+        json['_modifierExtension'] =
+            primitiveList.map((e) => e['_value']).toList();
+      }
     }
+
     if (country != null) {
-      json['country'] = country!.toJson();
+      final primitiveJson = country!.toJson();
+      json['country'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_country'] = primitiveJson['_value'];
+      }
     }
+
     if (jurisdiction != null) {
-      json['jurisdiction'] = jurisdiction!.toJson();
+      final primitiveJson = jurisdiction!.toJson();
+      json['jurisdiction'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_jurisdiction'] = primitiveJson['_value'];
+      }
     }
-    json['status'] = status.toJson();
+
+    if (status != null) {
+      final primitiveJson = status!.toJson();
+      json['status'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_status'] = primitiveJson['_value'];
+      }
+    }
+
     if (dateRange != null) {
-      json['dateRange'] = dateRange!.toJson();
+      final primitiveJson = dateRange!.toJson();
+      json['dateRange'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_dateRange'] = primitiveJson['_value'];
+      }
     }
-    if (restoreDate?.value != null) {
-      json['restoreDate'] = restoreDate!.toJson();
+
+    if (restoreDate != null) {
+      final primitiveJson = restoreDate!.toJson();
+      json['restoreDate'] = primitiveJson['value'];
+      if (primitiveJson['_value'] != null) {
+        json['_restoreDate'] = primitiveJson['_value'];
+      }
     }
+
     return json;
   }
 

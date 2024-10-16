@@ -1,101 +1,73 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set includes sample Revenue Center codes.
 enum ExampleRevenueCenterCodes {
   /// Display: Anaesthesia
   /// Definition: Anaesthesia.
-  value0370,
+  value0370('0370'),
 
   /// Display: Physical Therapy
   /// Definition: Physical Therapy.
-  value0420,
+  value0420('0420'),
 
   /// Display: Physical Therapy -
   /// Definition: Physical Therapy - visit charge.
-  value0421,
+  value0421('0421'),
 
   /// Display: Speech-Language Pathology
   /// Definition: Speech-Language Pathology.
-  value0440,
+  value0440('0440'),
 
   /// Display: Speech-Language Pathology - Visit
   /// Definition: Speech-Language Pathology- visit charge
-  value0441,
+  value0441('0441'),
 
   /// Display: Emergency Room
   /// Definition: Emergency Room
-  value0450,
+  value0450('0450'),
 
   /// Display: Emergency Room - EM/EMTALA
   /// Definition: Emergency Room - EM/EMTALA
-  value0451,
+  value0451('0451'),
 
   /// Display: Emergency Room - beyond EMTALA
   /// Definition: Emergency Room - beyond EMTALA
-  value0452,
+  value0452('0452'),
 
   /// Display: Vision Clinic
   /// Definition: Vision Clinic
-  value0010,
+  value0010('0010'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case value0370:
-        return '0370';
-      case value0420:
-        return '0420';
-      case value0421:
-        return '0421';
-      case value0440:
-        return '0440';
-      case value0441:
-        return '0441';
-      case value0450:
-        return '0450';
-      case value0451:
-        return '0451';
-      case value0452:
-        return '0452';
-      case value0010:
-        return '0010';
+  final String fhirCode;
+  final Element? element;
+
+  const ExampleRevenueCenterCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ExampleRevenueCenterCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ExampleRevenueCenterCodes.elementOnly.withElement(element);
     }
+    return ExampleRevenueCenterCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ExampleRevenueCenterCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ExampleRevenueCenterCodes] from a [String] enum.
-  static ExampleRevenueCenterCodes fromString(String str) {
-    switch (str) {
-      case '0370':
-        return ExampleRevenueCenterCodes.value0370;
-      case '0420':
-        return ExampleRevenueCenterCodes.value0420;
-      case '0421':
-        return ExampleRevenueCenterCodes.value0421;
-      case '0440':
-        return ExampleRevenueCenterCodes.value0440;
-      case '0441':
-        return ExampleRevenueCenterCodes.value0441;
-      case '0450':
-        return ExampleRevenueCenterCodes.value0450;
-      case '0451':
-        return ExampleRevenueCenterCodes.value0451;
-      case '0452':
-        return ExampleRevenueCenterCodes.value0452;
-      case '0010':
-        return ExampleRevenueCenterCodes.value0010;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ExampleRevenueCenterCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ExampleRevenueCenterCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ExampleRevenueCenterCodes withElement(Element? newElement) {
+    return ExampleRevenueCenterCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

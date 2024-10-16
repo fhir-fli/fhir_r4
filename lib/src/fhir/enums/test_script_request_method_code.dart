@@ -1,85 +1,65 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The allowable request method or HTTP operation codes.
 enum TestScriptRequestMethodCode {
   /// Display: DELETE
   /// Definition: HTTP DELETE operation.
-  delete,
+  delete('delete'),
 
   /// Display: GET
   /// Definition: HTTP GET operation.
-  get_,
+  get_('get'),
 
   /// Display: OPTIONS
   /// Definition: HTTP OPTIONS operation.
-  options,
+  options('options'),
 
   /// Display: PATCH
   /// Definition: HTTP PATCH operation.
-  patch,
+  patch('patch'),
 
   /// Display: POST
   /// Definition: HTTP POST operation.
-  post,
+  post('post'),
 
   /// Display: PUT
   /// Definition: HTTP PUT operation.
-  put,
+  put('put'),
 
   /// Display: HEAD
   /// Definition: HTTP HEAD operation.
-  head,
+  head('head'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case delete:
-        return 'delete';
-      case get_:
-        return 'get';
-      case options:
-        return 'options';
-      case patch:
-        return 'patch';
-      case post:
-        return 'post';
-      case put:
-        return 'put';
-      case head:
-        return 'head';
+  final String fhirCode;
+  final Element? element;
+
+  const TestScriptRequestMethodCode(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static TestScriptRequestMethodCode fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return TestScriptRequestMethodCode.elementOnly.withElement(element);
     }
+    return TestScriptRequestMethodCode.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [TestScriptRequestMethodCode] enum.
-  String toJson() => toString();
-
-  /// Returns a [TestScriptRequestMethodCode] from a [String] enum.
-  static TestScriptRequestMethodCode fromString(String str) {
-    switch (str) {
-      case 'delete':
-        return TestScriptRequestMethodCode.delete;
-      case 'get':
-        return TestScriptRequestMethodCode.get_;
-      case 'options':
-        return TestScriptRequestMethodCode.options;
-      case 'patch':
-        return TestScriptRequestMethodCode.patch;
-      case 'post':
-        return TestScriptRequestMethodCode.post;
-      case 'put':
-        return TestScriptRequestMethodCode.put;
-      case 'head':
-        return TestScriptRequestMethodCode.head;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [TestScriptRequestMethodCode] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static TestScriptRequestMethodCode fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  TestScriptRequestMethodCode withElement(Element? newElement) {
+    return TestScriptRequestMethodCode.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

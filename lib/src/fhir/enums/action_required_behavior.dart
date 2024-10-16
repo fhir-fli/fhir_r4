@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Defines expectations around whether an action or action group is required.
 enum ActionRequiredBehavior {
   /// Display: Must
   /// Definition: An action with this behavior must be included in the actions processed by the end user; the end user SHALL NOT choose not to include this action.
-  must,
+  must('must'),
 
   /// Display: Could
   /// Definition: An action with this behavior may be included in the set of actions processed by the end user.
-  could,
+  could('could'),
 
   /// Display: Must Unless Documented
   /// Definition: An action with this behavior must be included in the set of actions processed by the end user, unless the end user provides documentation as to why the action was not included.
-  must_unless_documented,
+  must_unless_documented('must-unless-documented'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case must:
-        return 'must';
-      case could:
-        return 'could';
-      case must_unless_documented:
-        return 'must-unless-documented';
+  final String fhirCode;
+  final Element? element;
+
+  const ActionRequiredBehavior(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ActionRequiredBehavior fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ActionRequiredBehavior.elementOnly.withElement(element);
     }
+    return ActionRequiredBehavior.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ActionRequiredBehavior] enum.
-  String toJson() => toString();
-
-  /// Returns a [ActionRequiredBehavior] from a [String] enum.
-  static ActionRequiredBehavior fromString(String str) {
-    switch (str) {
-      case 'must':
-        return ActionRequiredBehavior.must;
-      case 'could':
-        return ActionRequiredBehavior.could;
-      case 'must-unless-documented':
-        return ActionRequiredBehavior.must_unless_documented;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ActionRequiredBehavior] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ActionRequiredBehavior fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ActionRequiredBehavior withElement(Element? newElement) {
+    return ActionRequiredBehavior.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

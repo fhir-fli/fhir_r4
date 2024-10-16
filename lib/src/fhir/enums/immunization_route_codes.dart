@@ -1,78 +1,65 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the administrative routes used during vaccination. This value set is provided as a suggestive example.
 enum ImmunizationRouteCodes {
   /// Display: Injection, intradermal
-  IDINJ,
+  /// Definition:
+  IDINJ('IDINJ'),
 
   /// Display: Injection, intramuscular
-  IM,
+  /// Definition:
+  IM('IM'),
 
   /// Display: Inhalation, nasal
-  NASINHLC,
+  /// Definition:
+  NASINHLC('NASINHLC'),
 
   /// Display: Injection, intravenous
-  IVINJ,
+  /// Definition:
+  IVINJ('IVINJ'),
 
   /// Display: Swallow, oral
-  PO,
+  /// Definition:
+  PO('PO'),
 
   /// Display: Injection, subcutaneous
-  SQ,
+  /// Definition:
+  SQ('SQ'),
 
   /// Display: Transdermal
-  TRNSDERM,
+  /// Definition:
+  TRNSDERM('TRNSDERM'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case IDINJ:
-        return 'IDINJ';
-      case IM:
-        return 'IM';
-      case NASINHLC:
-        return 'NASINHLC';
-      case IVINJ:
-        return 'IVINJ';
-      case PO:
-        return 'PO';
-      case SQ:
-        return 'SQ';
-      case TRNSDERM:
-        return 'TRNSDERM';
+  final String fhirCode;
+  final Element? element;
+
+  const ImmunizationRouteCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ImmunizationRouteCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationRouteCodes.elementOnly.withElement(element);
     }
+    return ImmunizationRouteCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ImmunizationRouteCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ImmunizationRouteCodes] from a [String] enum.
-  static ImmunizationRouteCodes fromString(String str) {
-    switch (str) {
-      case 'IDINJ':
-        return ImmunizationRouteCodes.IDINJ;
-      case 'IM':
-        return ImmunizationRouteCodes.IM;
-      case 'NASINHLC':
-        return ImmunizationRouteCodes.NASINHLC;
-      case 'IVINJ':
-        return ImmunizationRouteCodes.IVINJ;
-      case 'PO':
-        return ImmunizationRouteCodes.PO;
-      case 'SQ':
-        return ImmunizationRouteCodes.SQ;
-      case 'TRNSDERM':
-        return ImmunizationRouteCodes.TRNSDERM;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ImmunizationRouteCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ImmunizationRouteCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ImmunizationRouteCodes withElement(Element? newElement) {
+    return ImmunizationRouteCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

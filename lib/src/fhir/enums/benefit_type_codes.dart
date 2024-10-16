@@ -1,125 +1,85 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set includes a smattering of Benefit type codes.
 enum BenefitTypeCodes {
   /// Display: Benefit
   /// Definition: Maximum benefit allowable.
-  benefit,
+  benefit('benefit'),
 
   /// Display: Deductible
   /// Definition: Cost to be incurred before benefits are applied
-  deductible,
+  deductible('deductible'),
 
   /// Display: Visit
   /// Definition: Service visit
-  visit,
+  visit('visit'),
 
   /// Display: Room
   /// Definition: Type of room
-  room,
+  room('room'),
 
   /// Display: Copayment per service
   /// Definition: Copayment per service
-  copay,
+  copay('copay'),
 
   /// Display: Copayment Percent per service
   /// Definition: Copayment percentage per service
-  copay_percent,
+  copay_percent('copay-percent'),
 
   /// Display: Copayment maximum per service
   /// Definition: Copayment maximum per service
-  copay_maximum,
+  copay_maximum('copay-maximum'),
 
   /// Display: Vision Exam
   /// Definition: Vision Exam
-  vision_exam,
+  vision_exam('vision-exam'),
 
   /// Display: Vision Glasses
   /// Definition: Frames and lenses
-  vision_glasses,
+  vision_glasses('vision-glasses'),
 
   /// Display: Vision Contacts Coverage
   /// Definition: Contact Lenses
-  vision_contacts,
+  vision_contacts('vision-contacts'),
 
   /// Display: Medical Primary Health Coverage
   /// Definition: Medical Primary Health Coverage
-  medical_primarycare,
+  medical_primarycare('medical-primarycare'),
 
   /// Display: Pharmacy Dispense Coverage
   /// Definition: Pharmacy Dispense Coverage
-  pharmacy_dispense,
+  pharmacy_dispense('pharmacy-dispense'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case benefit:
-        return 'benefit';
-      case deductible:
-        return 'deductible';
-      case visit:
-        return 'visit';
-      case room:
-        return 'room';
-      case copay:
-        return 'copay';
-      case copay_percent:
-        return 'copay-percent';
-      case copay_maximum:
-        return 'copay-maximum';
-      case vision_exam:
-        return 'vision-exam';
-      case vision_glasses:
-        return 'vision-glasses';
-      case vision_contacts:
-        return 'vision-contacts';
-      case medical_primarycare:
-        return 'medical-primarycare';
-      case pharmacy_dispense:
-        return 'pharmacy-dispense';
+  final String fhirCode;
+  final Element? element;
+
+  const BenefitTypeCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static BenefitTypeCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return BenefitTypeCodes.elementOnly.withElement(element);
     }
+    return BenefitTypeCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [BenefitTypeCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [BenefitTypeCodes] from a [String] enum.
-  static BenefitTypeCodes fromString(String str) {
-    switch (str) {
-      case 'benefit':
-        return BenefitTypeCodes.benefit;
-      case 'deductible':
-        return BenefitTypeCodes.deductible;
-      case 'visit':
-        return BenefitTypeCodes.visit;
-      case 'room':
-        return BenefitTypeCodes.room;
-      case 'copay':
-        return BenefitTypeCodes.copay;
-      case 'copay-percent':
-        return BenefitTypeCodes.copay_percent;
-      case 'copay-maximum':
-        return BenefitTypeCodes.copay_maximum;
-      case 'vision-exam':
-        return BenefitTypeCodes.vision_exam;
-      case 'vision-glasses':
-        return BenefitTypeCodes.vision_glasses;
-      case 'vision-contacts':
-        return BenefitTypeCodes.vision_contacts;
-      case 'medical-primarycare':
-        return BenefitTypeCodes.medical_primarycare;
-      case 'pharmacy-dispense':
-        return BenefitTypeCodes.pharmacy_dispense;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [BenefitTypeCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static BenefitTypeCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  BenefitTypeCodes withElement(Element? newElement) {
+    return BenefitTypeCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

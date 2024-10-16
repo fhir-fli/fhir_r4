@@ -1,45 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the source of the vaccine administered. This value set is provided as a suggestive example.
 enum ImmunizationFundingSource {
   /// Display: Private
   /// Definition: The vaccine was purchased with private funds.
-  private,
+  private('private'),
 
   /// Display: Public
   /// Definition: The vaccine was purchased with public funds.
-  public,
+  public('public'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case private:
-        return 'private';
-      case public:
-        return 'public';
+  final String fhirCode;
+  final Element? element;
+
+  const ImmunizationFundingSource(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ImmunizationFundingSource fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationFundingSource.elementOnly.withElement(element);
     }
+    return ImmunizationFundingSource.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ImmunizationFundingSource] enum.
-  String toJson() => toString();
-
-  /// Returns a [ImmunizationFundingSource] from a [String] enum.
-  static ImmunizationFundingSource fromString(String str) {
-    switch (str) {
-      case 'private':
-        return ImmunizationFundingSource.private;
-      case 'public':
-        return ImmunizationFundingSource.public;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ImmunizationFundingSource] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ImmunizationFundingSource fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ImmunizationFundingSource withElement(Element? newElement) {
+    return ImmunizationFundingSource.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

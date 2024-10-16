@@ -1,50 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The type of substance weight measurement.
 enum WeightType {
   /// Display: exact
-  Exact,
+  /// Definition:
+  Exact('Exact'),
 
   /// Display: number average
-  Average,
+  /// Definition:
+  Average('Average'),
 
   /// Display: weight average
-  WeightAverage,
+  /// Definition:
+  WeightAverage('WeightAverage'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case Exact:
-        return 'Exact';
-      case Average:
-        return 'Average';
-      case WeightAverage:
-        return 'WeightAverage';
+  final String fhirCode;
+  final Element? element;
+
+  const WeightType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static WeightType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return WeightType.elementOnly.withElement(element);
     }
+    return WeightType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [WeightType] enum.
-  String toJson() => toString();
-
-  /// Returns a [WeightType] from a [String] enum.
-  static WeightType fromString(String str) {
-    switch (str) {
-      case 'Exact':
-        return WeightType.Exact;
-      case 'Average':
-        return WeightType.Average;
-      case 'WeightAverage':
-        return WeightType.WeightAverage;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [WeightType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static WeightType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  WeightType withElement(Element? newElement) {
+    return WeightType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

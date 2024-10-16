@@ -1,37 +1,41 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Extra monitoring defined for a Medicinal Product.
 enum AdditionalMonitoring {
   /// Display: Requirement for Black Triangle Monitoring
   /// Definition: Requirement for Black Triangle Monitoring
-  BlackTriangleMonitoring,
+  BlackTriangleMonitoring('BlackTriangleMonitoring'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case BlackTriangleMonitoring:
-        return 'BlackTriangleMonitoring';
+  final String fhirCode;
+  final Element? element;
+
+  const AdditionalMonitoring(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static AdditionalMonitoring fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AdditionalMonitoring.elementOnly.withElement(element);
     }
+    return AdditionalMonitoring.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [AdditionalMonitoring] enum.
-  String toJson() => toString();
-
-  /// Returns a [AdditionalMonitoring] from a [String] enum.
-  static AdditionalMonitoring fromString(String str) {
-    switch (str) {
-      case 'BlackTriangleMonitoring':
-        return AdditionalMonitoring.BlackTriangleMonitoring;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [AdditionalMonitoring] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static AdditionalMonitoring fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  AdditionalMonitoring withElement(Element? newElement) {
+    return AdditionalMonitoring.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

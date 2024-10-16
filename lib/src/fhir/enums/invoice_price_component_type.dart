@@ -1,77 +1,61 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Codes indicating the kind of the price component.
 enum InvoicePriceComponentType {
   /// Display: base price
   /// Definition: the amount is the base price used for calculating the total price before applying surcharges, discount or taxes.
-  base,
+  base('base'),
 
   /// Display: surcharge
   /// Definition: the amount is a surcharge applied on the base price.
-  surcharge,
+  surcharge('surcharge'),
 
   /// Display: deduction
   /// Definition: the amount is a deduction applied on the base price.
-  deduction,
+  deduction('deduction'),
 
   /// Display: discount
   /// Definition: the amount is a discount applied on the base price.
-  discount,
+  discount('discount'),
 
   /// Display: tax
   /// Definition: the amount is the tax component of the total price.
-  tax,
+  tax('tax'),
 
   /// Display: informational
   /// Definition: the amount is of informational character, it has not been applied in the calculation of the total price.
-  informational,
+  informational('informational'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case base:
-        return 'base';
-      case surcharge:
-        return 'surcharge';
-      case deduction:
-        return 'deduction';
-      case discount:
-        return 'discount';
-      case tax:
-        return 'tax';
-      case informational:
-        return 'informational';
+  final String fhirCode;
+  final Element? element;
+
+  const InvoicePriceComponentType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static InvoicePriceComponentType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return InvoicePriceComponentType.elementOnly.withElement(element);
     }
+    return InvoicePriceComponentType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [InvoicePriceComponentType] enum.
-  String toJson() => toString();
-
-  /// Returns a [InvoicePriceComponentType] from a [String] enum.
-  static InvoicePriceComponentType fromString(String str) {
-    switch (str) {
-      case 'base':
-        return InvoicePriceComponentType.base;
-      case 'surcharge':
-        return InvoicePriceComponentType.surcharge;
-      case 'deduction':
-        return InvoicePriceComponentType.deduction;
-      case 'discount':
-        return InvoicePriceComponentType.discount;
-      case 'tax':
-        return InvoicePriceComponentType.tax;
-      case 'informational':
-        return InvoicePriceComponentType.informational;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [InvoicePriceComponentType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static InvoicePriceComponentType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  InvoicePriceComponentType withElement(Element? newElement) {
+    return InvoicePriceComponentType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

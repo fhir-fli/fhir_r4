@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Type for quality report.
 enum QualityType {
   /// Display: INDEL Comparison
   /// Definition: INDEL Comparison.
-  indel,
+  indel('indel'),
 
   /// Display: SNP Comparison
   /// Definition: SNP Comparison.
-  snp,
+  snp('snp'),
 
   /// Display: UNKNOWN Comparison
   /// Definition: UNKNOWN Comparison.
-  unknown,
+  unknown('unknown'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case indel:
-        return 'indel';
-      case snp:
-        return 'snp';
-      case unknown:
-        return 'unknown';
+  final String fhirCode;
+  final Element? element;
+
+  const QualityType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static QualityType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return QualityType.elementOnly.withElement(element);
     }
+    return QualityType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [QualityType] enum.
-  String toJson() => toString();
-
-  /// Returns a [QualityType] from a [String] enum.
-  static QualityType fromString(String str) {
-    switch (str) {
-      case 'indel':
-        return QualityType.indel;
-      case 'snp':
-        return QualityType.snp;
-      case 'unknown':
-        return QualityType.unknown;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [QualityType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static QualityType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  QualityType withElement(Element? newElement) {
+    return QualityType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

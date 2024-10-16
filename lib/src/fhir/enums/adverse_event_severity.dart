@@ -1,50 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The severity of the adverse event itself, in direct relation to the subject.
 enum AdverseEventSeverity {
   /// Display: Mild
-  mild,
+  /// Definition:
+  mild('mild'),
 
   /// Display: Moderate
-  moderate,
+  /// Definition:
+  moderate('moderate'),
 
   /// Display: Severe
-  severe,
+  /// Definition:
+  severe('severe'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case mild:
-        return 'mild';
-      case moderate:
-        return 'moderate';
-      case severe:
-        return 'severe';
+  final String fhirCode;
+  final Element? element;
+
+  const AdverseEventSeverity(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static AdverseEventSeverity fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AdverseEventSeverity.elementOnly.withElement(element);
     }
+    return AdverseEventSeverity.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [AdverseEventSeverity] enum.
-  String toJson() => toString();
-
-  /// Returns a [AdverseEventSeverity] from a [String] enum.
-  static AdverseEventSeverity fromString(String str) {
-    switch (str) {
-      case 'mild':
-        return AdverseEventSeverity.mild;
-      case 'moderate':
-        return AdverseEventSeverity.moderate;
-      case 'severe':
-        return AdverseEventSeverity.severe;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [AdverseEventSeverity] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static AdverseEventSeverity fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  AdverseEventSeverity withElement(Element? newElement) {
+    return AdverseEventSeverity.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

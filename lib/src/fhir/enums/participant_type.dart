@@ -1,61 +1,57 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set defines a set of codes that can be used to indicate how an individual participates in an encounter.
 enum ParticipantType {
-  SPRF,
-  PPRF,
-  PART,
+  /// Display:
+  /// Definition:
+  SPRF('SPRF'),
+
+  /// Display:
+  /// Definition:
+  PPRF('PPRF'),
+
+  /// Display:
+  /// Definition:
+  PART('PART'),
 
   /// Display: Translator
   /// Definition: A translator who is facilitating communication with the patient during the encounter.
-  translator,
+  translator('translator'),
 
   /// Display: Emergency
   /// Definition: A person to be contacted in case of an emergency during the encounter.
-  emergency,
+  emergency('emergency'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case SPRF:
-        return 'SPRF';
-      case PPRF:
-        return 'PPRF';
-      case PART:
-        return 'PART';
-      case translator:
-        return 'translator';
-      case emergency:
-        return 'emergency';
+  final String fhirCode;
+  final Element? element;
+
+  const ParticipantType(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ParticipantType fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ParticipantType.elementOnly.withElement(element);
     }
+    return ParticipantType.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ParticipantType] enum.
-  String toJson() => toString();
-
-  /// Returns a [ParticipantType] from a [String] enum.
-  static ParticipantType fromString(String str) {
-    switch (str) {
-      case 'SPRF':
-        return ParticipantType.SPRF;
-      case 'PPRF':
-        return ParticipantType.PPRF;
-      case 'PART':
-        return ParticipantType.PART;
-      case 'translator':
-        return ParticipantType.translator;
-      case 'emergency':
-        return ParticipantType.emergency;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ParticipantType] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ParticipantType fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ParticipantType withElement(Element? newElement) {
+    return ParticipantType.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

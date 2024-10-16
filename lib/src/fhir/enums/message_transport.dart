@@ -1,53 +1,49 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The protocol used for message transport.
 enum MessageTransport {
   /// Display: HTTP
   /// Definition: The application sends or receives messages using HTTP POST (may be over http: or https:).
-  http,
+  http('http'),
 
   /// Display: FTP
   /// Definition: The application sends or receives messages using File Transfer Protocol.
-  ftp,
+  ftp('ftp'),
 
   /// Display: MLLP
   /// Definition: The application sends or receives messages using HL7's Minimal Lower Level Protocol.
-  mllp,
+  mllp('mllp'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case http:
-        return 'http';
-      case ftp:
-        return 'ftp';
-      case mllp:
-        return 'mllp';
+  final String fhirCode;
+  final Element? element;
+
+  const MessageTransport(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static MessageTransport fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return MessageTransport.elementOnly.withElement(element);
     }
+    return MessageTransport.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [MessageTransport] enum.
-  String toJson() => toString();
-
-  /// Returns a [MessageTransport] from a [String] enum.
-  static MessageTransport fromString(String str) {
-    switch (str) {
-      case 'http':
-        return MessageTransport.http;
-      case 'ftp':
-        return MessageTransport.ftp;
-      case 'mllp':
-        return MessageTransport.mllp;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [MessageTransport] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static MessageTransport fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  MessageTransport withElement(Element? newElement) {
+    return MessageTransport.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

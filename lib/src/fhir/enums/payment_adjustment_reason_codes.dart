@@ -1,45 +1,45 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// This value set includes smattering of Payment Adjustment Reason codes.
 enum PaymentAdjustmentReasonCodes {
   /// Display: Prior Payment Reversal
   /// Definition: Prior Payment Reversal
-  a001,
+  a001('a001'),
 
   /// Display: Prior Overpayment
   /// Definition: Prior Overpayment
-  a002,
+  a002('a002'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case a001:
-        return 'a001';
-      case a002:
-        return 'a002';
+  final String fhirCode;
+  final Element? element;
+
+  const PaymentAdjustmentReasonCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static PaymentAdjustmentReasonCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return PaymentAdjustmentReasonCodes.elementOnly.withElement(element);
     }
+    return PaymentAdjustmentReasonCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [PaymentAdjustmentReasonCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [PaymentAdjustmentReasonCodes] from a [String] enum.
-  static PaymentAdjustmentReasonCodes fromString(String str) {
-    switch (str) {
-      case 'a001':
-        return PaymentAdjustmentReasonCodes.a001;
-      case 'a002':
-        return PaymentAdjustmentReasonCodes.a002;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [PaymentAdjustmentReasonCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static PaymentAdjustmentReasonCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  PaymentAdjustmentReasonCodes withElement(Element? newElement) {
+    return PaymentAdjustmentReasonCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

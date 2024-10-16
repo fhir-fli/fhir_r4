@@ -1,61 +1,53 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// How the Quantity should be understood and represented.
 enum QuantityComparator {
   /// Display: Less than
   /// Definition: The actual value is less than the given value.
-  lessThan,
+  lt('<'),
 
   /// Display: Less or Equal to
   /// Definition: The actual value is less than or equal to the given value.
-  lessThanOrEquals,
+  le('<='),
 
   /// Display: Greater or Equal to
   /// Definition: The actual value is greater than or equal to the given value.
-  greaterThanOrEquals,
+  ge('>='),
 
   /// Display: Greater than
   /// Definition: The actual value is greater than the given value.
-  greaterThan,
+  gt('>'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case lessThan:
-        return '<';
-      case lessThanOrEquals:
-        return '<=';
-      case greaterThanOrEquals:
-        return '>=';
-      case greaterThan:
-        return '>';
+  final String fhirCode;
+  final Element? element;
+
+  const QuantityComparator(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static QuantityComparator fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return QuantityComparator.elementOnly.withElement(element);
     }
+    return QuantityComparator.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [QuantityComparator] enum.
-  String toJson() => toString();
-
-  /// Returns a [QuantityComparator] from a [String] enum.
-  static QuantityComparator fromString(String str) {
-    switch (str) {
-      case '<':
-        return QuantityComparator.lessThan;
-      case '<=':
-        return QuantityComparator.lessThanOrEquals;
-      case '>=':
-        return QuantityComparator.greaterThanOrEquals;
-      case '>':
-        return QuantityComparator.greaterThan;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [QuantityComparator] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static QuantityComparator fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  QuantityComparator withElement(Element? newElement) {
+    return QuantityComparator.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

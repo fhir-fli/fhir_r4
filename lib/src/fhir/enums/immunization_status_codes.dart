@@ -1,93 +1,81 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// The value set to instantiate this attribute should be drawn from a terminologically robust code system that consists of or contains concepts to support describing the current status of the administered dose of vaccine.
 enum ImmunizationStatusCodes {
   /// Display: Preparation
-  /// Definition: The core event has not started yet, but some staging activities have begun (e.g. surgical suite preparation).  Preparation stages may be tracked for billing purposes.
-  preparation,
+  /// Definition: The core event has not started yet, but some staging activities have begun (e.g. surgical suite preparation). Preparation stages may be tracked for billing purposes.
+  preparation('preparation'),
 
   /// Display: In Progress
   /// Definition: The event is currently occurring.
-  in_progress,
+  in_progress('in-progress'),
 
   /// Display: Not Done
-  /// Definition: The event was terminated prior to any activity beyond preparation.  I.e. The 'main' activity has not yet begun.  The boundary between preparatory and the 'main' activity is context-specific.
-  not_done,
+  /// Definition: The event was terminated prior to any activity beyond preparation. I.e. The 'main' activity has not yet begun. The boundary between preparatory and the 'main' activity is context-specific.
+  not_done('not-done'),
 
   /// Display: On Hold
   /// Definition: The event has been temporarily stopped but is expected to resume in the future.
-  on_hold,
+  on_hold('on-hold'),
 
   /// Display: Stopped
   /// Definition: The event was terminated prior to the full completion of the intended activity but after at least some of the 'main' activity (beyond preparation) has occurred.
-  stopped,
+  stopped('stopped'),
 
   /// Display: Completed
   /// Definition: The event has now concluded.
-  completed,
+  completed('completed'),
 
   /// Display: Entered in Error
-  /// Definition: This electronic record should never have existed, though it is possible that real-world decisions were based on it.  (If real-world activity has occurred, the status should be "stopped" rather than "entered-in-error".).
-  entered_in_error,
+  /// Definition: This electronic record should never have existed, though it is possible that real-world decisions were based on it. (If real-world activity has occurred, the status should be "stopped" rather than "entered-in-error".).
+  entered_in_error('entered-in-error'),
 
   /// Display: Unknown
-  /// Definition: The authoring/source system does not know which of the status values currently applies for this event.  Note: This concept is not to be used for "other" - one of the listed statuses is presumed to apply,  but the authoring/source system does not know which.
-  unknown,
+  /// Definition: The authoring/source system does not know which of the status values currently applies for this event. Note: This concept is not to be used for "other" - one of the listed statuses is presumed to apply, but the authoring/source system does not know which.
+  unknown('unknown'),
+
+  /// Display:
+  /// Definition:
+  completed_1('completed'),
+
+  /// Display:
+  /// Definition:
+  entered_in_error_1('entered-in-error'),
+
+  /// Display:
+  /// Definition:
+  not_done_1('not-done'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case preparation:
-        return 'preparation';
-      case in_progress:
-        return 'in-progress';
-      case not_done:
-        return 'not-done';
-      case on_hold:
-        return 'on-hold';
-      case stopped:
-        return 'stopped';
-      case completed:
-        return 'completed';
-      case entered_in_error:
-        return 'entered-in-error';
-      case unknown:
-        return 'unknown';
+  final String fhirCode;
+  final Element? element;
+
+  const ImmunizationStatusCodes(this.fhirCode, [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static ImmunizationStatusCodes fromJson(Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return ImmunizationStatusCodes.elementOnly.withElement(element);
     }
+    return ImmunizationStatusCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [ImmunizationStatusCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [ImmunizationStatusCodes] from a [String] enum.
-  static ImmunizationStatusCodes fromString(String str) {
-    switch (str) {
-      case 'preparation':
-        return ImmunizationStatusCodes.preparation;
-      case 'in-progress':
-        return ImmunizationStatusCodes.in_progress;
-      case 'not-done':
-        return ImmunizationStatusCodes.not_done;
-      case 'on-hold':
-        return ImmunizationStatusCodes.on_hold;
-      case 'stopped':
-        return ImmunizationStatusCodes.stopped;
-      case 'completed':
-        return ImmunizationStatusCodes.completed;
-      case 'entered-in-error':
-        return ImmunizationStatusCodes.entered_in_error;
-      case 'unknown':
-        return ImmunizationStatusCodes.unknown;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [ImmunizationStatusCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static ImmunizationStatusCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  ImmunizationStatusCodes withElement(Element? newElement) {
+    return ImmunizationStatusCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }

@@ -1,61 +1,56 @@
+import 'package:fhir_r4/fhir_r4.dart';
+
 /// Preferred value set for AllergyIntolerance Verification Status.
 enum AllergyIntoleranceVerificationStatusCodes {
   /// Display: Unconfirmed
   /// Definition: A low level of certainty about the propensity for a reaction to the identified substance.
-  unconfirmed,
+  unconfirmed('unconfirmed'),
 
   /// Display: Confirmed
   /// Definition: A high level of certainty about the propensity for a reaction to the identified substance, which may include clinical evidence by testing or rechallenge.
-  confirmed,
+  confirmed('confirmed'),
 
   /// Display: Refuted
   /// Definition: A propensity for a reaction to the identified substance has been disputed or disproven with a sufficient level of clinical certainty to justify invalidating the assertion. This might or might not include testing or rechallenge.
-  refuted,
+  refuted('refuted'),
 
   /// Display: Entered in Error
   /// Definition: The statement was entered in error and is not valid.
-  entered_in_error,
+  entered_in_error('entered-in-error'),
+  elementOnly('', null),
   ;
 
-  @override
-  String toString() {
-    switch (this) {
-      case unconfirmed:
-        return 'unconfirmed';
-      case confirmed:
-        return 'confirmed';
-      case refuted:
-        return 'refuted';
-      case entered_in_error:
-        return 'entered-in-error';
+  final String fhirCode;
+  final Element? element;
+
+  const AllergyIntoleranceVerificationStatusCodes(this.fhirCode,
+      [this.element]);
+
+  Map<String, dynamic> toJson() => {
+        'value': fhirCode.isEmpty ? null : fhirCode,
+        if (element != null) '_value': element!.toJson(),
+      };
+
+  static AllergyIntoleranceVerificationStatusCodes fromJson(
+      Map<String, dynamic> json) {
+    final String? value = json['value'] as String?;
+    final Map<String, dynamic>? elementJson =
+        json['_value'] as Map<String, dynamic>?;
+    final Element? element =
+        elementJson != null ? Element.fromJson(elementJson) : null;
+    if (value == null && element != null) {
+      return AllergyIntoleranceVerificationStatusCodes.elementOnly
+          .withElement(element);
     }
+    return AllergyIntoleranceVerificationStatusCodes.values.firstWhere(
+      (e) => e.fhirCode == value,
+    );
   }
 
-  /// Returns a [String] from a [AllergyIntoleranceVerificationStatusCodes] enum.
-  String toJson() => toString();
-
-  /// Returns a [AllergyIntoleranceVerificationStatusCodes] from a [String] enum.
-  static AllergyIntoleranceVerificationStatusCodes fromString(String str) {
-    switch (str) {
-      case 'unconfirmed':
-        return AllergyIntoleranceVerificationStatusCodes.unconfirmed;
-      case 'confirmed':
-        return AllergyIntoleranceVerificationStatusCodes.confirmed;
-      case 'refuted':
-        return AllergyIntoleranceVerificationStatusCodes.refuted;
-      case 'entered-in-error':
-        return AllergyIntoleranceVerificationStatusCodes.entered_in_error;
-      default:
-        throw ArgumentError('Unknown enum value: $str');
-    }
-  }
-
-  /// Returns a [AllergyIntoleranceVerificationStatusCodes] from a json [String] (although it will accept any dynamic and throw an error if it is not a String due to requirements for serializing/deserializing
-  static AllergyIntoleranceVerificationStatusCodes fromJson(dynamic jsonValue) {
-    if (jsonValue is String) {
-      return fromString(jsonValue);
-    } else {
-      throw ArgumentError('Unknown enum value: $jsonValue');
-    }
+  AllergyIntoleranceVerificationStatusCodes withElement(Element? newElement) {
+    return AllergyIntoleranceVerificationStatusCodes.fromJson({
+      'value': fhirCode,
+      '_value': newElement?.toJson(),
+    });
   }
 }
