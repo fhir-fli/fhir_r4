@@ -161,74 +161,68 @@ class SampledData extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final primitiveJson = id!.toJson();
-      json['id'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_id'] = primitiveJson['_value'];
+      final fieldJson0 = id!.toJson();
+      json['id'] = fieldJson0['value'];
+      if (fieldJson0['_value'] != null) {
+        json['_id'] = fieldJson0['_value'];
       }
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final primitiveList = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = primitiveList.map((e) => e['value']).toList();
-      if (primitiveList.any((e) => e['_value'] != null)) {
-        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
-    if (origin != null) {
-      final primitiveJson = origin!.toJson();
-      json['origin'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_origin'] = primitiveJson['_value'];
-      }
+    final fieldJson2 = origin.toJson();
+    json['origin'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_origin'] = fieldJson2['_value'];
     }
 
-    if (period != null) {
-      final primitiveJson = period!.toJson();
-      json['period'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_period'] = primitiveJson['_value'];
-      }
+    final fieldJson3 = period.toJson();
+    json['period'] = fieldJson3['value'];
+    if (fieldJson3['_value'] != null) {
+      json['_period'] = fieldJson3['_value'];
     }
 
     if (factor != null) {
-      final primitiveJson = factor!.toJson();
-      json['factor'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_factor'] = primitiveJson['_value'];
+      final fieldJson4 = factor!.toJson();
+      json['factor'] = fieldJson4['value'];
+      if (fieldJson4['_value'] != null) {
+        json['_factor'] = fieldJson4['_value'];
       }
     }
 
     if (lowerLimit != null) {
-      final primitiveJson = lowerLimit!.toJson();
-      json['lowerLimit'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_lowerLimit'] = primitiveJson['_value'];
+      final fieldJson5 = lowerLimit!.toJson();
+      json['lowerLimit'] = fieldJson5['value'];
+      if (fieldJson5['_value'] != null) {
+        json['_lowerLimit'] = fieldJson5['_value'];
       }
     }
 
     if (upperLimit != null) {
-      final primitiveJson = upperLimit!.toJson();
-      json['upperLimit'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_upperLimit'] = primitiveJson['_value'];
+      final fieldJson6 = upperLimit!.toJson();
+      json['upperLimit'] = fieldJson6['value'];
+      if (fieldJson6['_value'] != null) {
+        json['_upperLimit'] = fieldJson6['_value'];
       }
     }
 
-    if (dimensions != null) {
-      final primitiveJson = dimensions!.toJson();
-      json['dimensions'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_dimensions'] = primitiveJson['_value'];
-      }
+    final fieldJson7 = dimensions.toJson();
+    json['dimensions'] = fieldJson7['value'];
+    if (fieldJson7['_value'] != null) {
+      json['_dimensions'] = fieldJson7['_value'];
     }
 
     if (data != null) {
-      final primitiveJson = data!.toJson();
-      json['data'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_data'] = primitiveJson['_value'];
+      final fieldJson8 = data!.toJson();
+      json['data'] = fieldJson8['value'];
+      if (fieldJson8['_value'] != null) {
+        json['_data'] = fieldJson8['_value'];
       }
     }
 

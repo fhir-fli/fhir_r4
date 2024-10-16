@@ -115,42 +115,38 @@ class Contributor extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final primitiveJson = id!.toJson();
-      json['id'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_id'] = primitiveJson['_value'];
+      final fieldJson0 = id!.toJson();
+      json['id'] = fieldJson0['value'];
+      if (fieldJson0['_value'] != null) {
+        json['_id'] = fieldJson0['_value'];
       }
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final primitiveList = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = primitiveList.map((e) => e['value']).toList();
-      if (primitiveList.any((e) => e['_value'] != null)) {
-        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
-    if (type != null) {
-      final primitiveJson = type!.toJson();
-      json['type'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_type'] = primitiveJson['_value'];
-      }
+    final fieldJson2 = type.toJson();
+    json['type'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_type'] = fieldJson2['_value'];
     }
 
-    if (name != null) {
-      final primitiveJson = name!.toJson();
-      json['name'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_name'] = primitiveJson['_value'];
-      }
+    final fieldJson3 = name.toJson();
+    json['name'] = fieldJson3['value'];
+    if (fieldJson3['_value'] != null) {
+      json['_name'] = fieldJson3['_value'];
     }
 
     if (contact != null && contact!.isNotEmpty) {
-      final primitiveList = contact!.map((e) => e.toJson()).toList();
-      json['contact'] = primitiveList.map((e) => e['value']).toList();
-      if (primitiveList.any((e) => e['_value'] != null)) {
-        json['_contact'] = primitiveList.map((e) => e['_value']).toList();
+      final fieldJson4 = contact!.map((e) => e.toJson()).toList();
+      json['contact'] = fieldJson4.map((e) => e['value']).toList();
+      if (fieldJson4.any((e) => e['_value'] != null)) {
+        json['_contact'] = fieldJson4.map((e) => e['_value']).toList();
       }
     }
 

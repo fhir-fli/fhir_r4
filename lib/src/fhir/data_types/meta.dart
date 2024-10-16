@@ -164,66 +164,66 @@ class FhirMeta extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final primitiveJson = id!.toJson();
-      json['id'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_id'] = primitiveJson['_value'];
+      final fieldJson0 = id!.toJson();
+      json['id'] = fieldJson0['value'];
+      if (fieldJson0['_value'] != null) {
+        json['_id'] = fieldJson0['_value'];
       }
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final primitiveList = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = primitiveList.map((e) => e['value']).toList();
-      if (primitiveList.any((e) => e['_value'] != null)) {
-        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
     if (versionId != null) {
-      final primitiveJson = versionId!.toJson();
-      json['versionId'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_versionId'] = primitiveJson['_value'];
+      final fieldJson2 = versionId!.toJson();
+      json['versionId'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_versionId'] = fieldJson2['_value'];
       }
     }
 
     if (lastUpdated != null) {
-      final primitiveJson = lastUpdated!.toJson();
-      json['lastUpdated'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_lastUpdated'] = primitiveJson['_value'];
+      final fieldJson3 = lastUpdated!.toJson();
+      json['lastUpdated'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_lastUpdated'] = fieldJson3['_value'];
       }
     }
 
     if (source != null) {
-      final primitiveJson = source!.toJson();
-      json['source'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_source'] = primitiveJson['_value'];
+      final fieldJson4 = source!.toJson();
+      json['source'] = fieldJson4['value'];
+      if (fieldJson4['_value'] != null) {
+        json['_source'] = fieldJson4['_value'];
       }
     }
 
     if (profile != null && profile!.isNotEmpty) {
-      final primitiveList = profile!.map((e) => e.toJson()).toList();
-      json['profile'] = primitiveList.map((e) => e['value']).toList();
-      if (primitiveList.any((e) => e['_value'] != null)) {
-        json['_profile'] = primitiveList.map((e) => e['_value']).toList();
+      final fieldJson5 = profile!.map((e) => e.toJson()).toList();
+      json['profile'] = fieldJson5.map((e) => e['value']).toList();
+      if (fieldJson5.any((e) => e['_value'] != null)) {
+        json['_profile'] = fieldJson5.map((e) => e['_value']).toList();
       }
     }
 
     if (security != null && security!.isNotEmpty) {
-      final primitiveList = security!.map((e) => e.toJson()).toList();
-      json['security'] = primitiveList.map((e) => e['value']).toList();
-      if (primitiveList.any((e) => e['_value'] != null)) {
-        json['_security'] = primitiveList.map((e) => e['_value']).toList();
+      final fieldJson6 = security!.map((e) => e.toJson()).toList();
+      json['security'] = fieldJson6.map((e) => e['value']).toList();
+      if (fieldJson6.any((e) => e['_value'] != null)) {
+        json['_security'] = fieldJson6.map((e) => e['_value']).toList();
       }
     }
 
     if (tag != null && tag!.isNotEmpty) {
-      final primitiveList = tag!.map((e) => e.toJson()).toList();
-      json['tag'] = primitiveList.map((e) => e['value']).toList();
-      if (primitiveList.any((e) => e['_value'] != null)) {
-        json['_tag'] = primitiveList.map((e) => e['_value']).toList();
+      final fieldJson7 = tag!.map((e) => e.toJson()).toList();
+      json['tag'] = fieldJson7.map((e) => e['value']).toList();
+      if (fieldJson7.any((e) => e['_value'] != null)) {
+        json['_tag'] = fieldJson7.map((e) => e['_value']).toList();
       }
     }
 

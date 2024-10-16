@@ -127,58 +127,56 @@ class Binary extends Resource {
     final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
-      final primitiveJson = id!.toJson();
-      json['id'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_id'] = primitiveJson['_value'];
+      final fieldJson0 = id!.toJson();
+      json['id'] = fieldJson0['value'];
+      if (fieldJson0['_value'] != null) {
+        json['_id'] = fieldJson0['_value'];
       }
     }
 
     if (meta != null) {
-      final primitiveJson = meta!.toJson();
-      json['meta'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_meta'] = primitiveJson['_value'];
+      final fieldJson1 = meta!.toJson();
+      json['meta'] = fieldJson1['value'];
+      if (fieldJson1['_value'] != null) {
+        json['_meta'] = fieldJson1['_value'];
       }
     }
 
     if (implicitRules != null) {
-      final primitiveJson = implicitRules!.toJson();
-      json['implicitRules'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_implicitRules'] = primitiveJson['_value'];
+      final fieldJson2 = implicitRules!.toJson();
+      json['implicitRules'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_implicitRules'] = fieldJson2['_value'];
       }
     }
 
     if (language != null) {
-      final primitiveJson = language!.toJson();
-      json['language'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_language'] = primitiveJson['_value'];
+      final fieldJson3 = language!.toJson();
+      json['language'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_language'] = fieldJson3['_value'];
       }
     }
 
-    if (contentType != null) {
-      final primitiveJson = contentType!.toJson();
-      json['contentType'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_contentType'] = primitiveJson['_value'];
-      }
+    final fieldJson4 = contentType.toJson();
+    json['contentType'] = fieldJson4['value'];
+    if (fieldJson4['_value'] != null) {
+      json['_contentType'] = fieldJson4['_value'];
     }
 
     if (securityContext != null) {
-      final primitiveJson = securityContext!.toJson();
-      json['securityContext'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_securityContext'] = primitiveJson['_value'];
+      final fieldJson5 = securityContext!.toJson();
+      json['securityContext'] = fieldJson5['value'];
+      if (fieldJson5['_value'] != null) {
+        json['_securityContext'] = fieldJson5['_value'];
       }
     }
 
     if (data != null) {
-      final primitiveJson = data!.toJson();
-      json['data'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_data'] = primitiveJson['_value'];
+      final fieldJson6 = data!.toJson();
+      json['data'] = fieldJson6['value'];
+      if (fieldJson6['_value'] != null) {
+        json['_data'] = fieldJson6['_value'];
       }
     }
 

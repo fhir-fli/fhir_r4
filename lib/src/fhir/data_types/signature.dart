@@ -167,74 +167,68 @@ class Signature extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final primitiveJson = id!.toJson();
-      json['id'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_id'] = primitiveJson['_value'];
+      final fieldJson0 = id!.toJson();
+      json['id'] = fieldJson0['value'];
+      if (fieldJson0['_value'] != null) {
+        json['_id'] = fieldJson0['_value'];
       }
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final primitiveList = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = primitiveList.map((e) => e['value']).toList();
-      if (primitiveList.any((e) => e['_value'] != null)) {
-        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
-    if (type != null && type!.isNotEmpty) {
-      final primitiveList = type!.map((e) => e.toJson()).toList();
-      json['type'] = primitiveList.map((e) => e['value']).toList();
-      if (primitiveList.any((e) => e['_value'] != null)) {
-        json['_type'] = primitiveList.map((e) => e['_value']).toList();
-      }
+    final fieldJson2 = type.map((e) => e.toJson()).toList();
+    json['type'] = fieldJson2.map((e) => e['value']).toList();
+    if (fieldJson2.any((e) => e['_value'] != null)) {
+      json['_type'] = fieldJson2.map((e) => e['_value']).toList();
     }
 
-    if (when != null) {
-      final primitiveJson = when!.toJson();
-      json['when'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_when'] = primitiveJson['_value'];
-      }
+    final fieldJson3 = when.toJson();
+    json['when'] = fieldJson3['value'];
+    if (fieldJson3['_value'] != null) {
+      json['_when'] = fieldJson3['_value'];
     }
 
-    if (who != null) {
-      final primitiveJson = who!.toJson();
-      json['who'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_who'] = primitiveJson['_value'];
-      }
+    final fieldJson4 = who.toJson();
+    json['who'] = fieldJson4['value'];
+    if (fieldJson4['_value'] != null) {
+      json['_who'] = fieldJson4['_value'];
     }
 
     if (onBehalfOf != null) {
-      final primitiveJson = onBehalfOf!.toJson();
-      json['onBehalfOf'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_onBehalfOf'] = primitiveJson['_value'];
+      final fieldJson5 = onBehalfOf!.toJson();
+      json['onBehalfOf'] = fieldJson5['value'];
+      if (fieldJson5['_value'] != null) {
+        json['_onBehalfOf'] = fieldJson5['_value'];
       }
     }
 
     if (targetFormat != null) {
-      final primitiveJson = targetFormat!.toJson();
-      json['targetFormat'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_targetFormat'] = primitiveJson['_value'];
+      final fieldJson6 = targetFormat!.toJson();
+      json['targetFormat'] = fieldJson6['value'];
+      if (fieldJson6['_value'] != null) {
+        json['_targetFormat'] = fieldJson6['_value'];
       }
     }
 
     if (sigFormat != null) {
-      final primitiveJson = sigFormat!.toJson();
-      json['sigFormat'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_sigFormat'] = primitiveJson['_value'];
+      final fieldJson7 = sigFormat!.toJson();
+      json['sigFormat'] = fieldJson7['value'];
+      if (fieldJson7['_value'] != null) {
+        json['_sigFormat'] = fieldJson7['_value'];
       }
     }
 
     if (data != null) {
-      final primitiveJson = data!.toJson();
-      json['data'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_data'] = primitiveJson['_value'];
+      final fieldJson8 = data!.toJson();
+      json['data'] = fieldJson8['value'];
+      if (fieldJson8['_value'] != null) {
+        json['_data'] = fieldJson8['_value'];
       }
     }
 

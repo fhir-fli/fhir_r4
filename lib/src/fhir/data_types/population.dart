@@ -141,67 +141,67 @@ class Population extends BackboneType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final primitiveJson = id!.toJson();
-      json['id'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_id'] = primitiveJson['_value'];
+      final fieldJson0 = id!.toJson();
+      json['id'] = fieldJson0['value'];
+      if (fieldJson0['_value'] != null) {
+        json['_id'] = fieldJson0['_value'];
       }
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final primitiveList = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = primitiveList.map((e) => e['value']).toList();
-      if (primitiveList.any((e) => e['_value'] != null)) {
-        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      final primitiveList = modifierExtension!.map((e) => e.toJson()).toList();
-      json['modifierExtension'] = primitiveList.map((e) => e['value']).toList();
-      if (primitiveList.any((e) => e['_value'] != null)) {
+      final fieldJson2 = modifierExtension!.map((e) => e.toJson()).toList();
+      json['modifierExtension'] = fieldJson2.map((e) => e['value']).toList();
+      if (fieldJson2.any((e) => e['_value'] != null)) {
         json['_modifierExtension'] =
-            primitiveList.map((e) => e['_value']).toList();
+            fieldJson2.map((e) => e['_value']).toList();
       }
     }
 
     if (ageRange != null) {
-      final primitiveJson = ageRange!.toJson();
-      json['ageRange'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_ageRange'] = primitiveJson['_value'];
+      final fieldJson3 = ageRange!.toJson();
+      json['ageRange'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_ageRange'] = fieldJson3['_value'];
       }
     }
 
     if (ageCodeableConcept != null) {
-      final primitiveJson = ageCodeableConcept!.toJson();
-      json['ageCodeableConcept'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_ageCodeableConcept'] = primitiveJson['_value'];
+      final fieldJson4 = ageCodeableConcept!.toJson();
+      json['ageCodeableConcept'] = fieldJson4['value'];
+      if (fieldJson4['_value'] != null) {
+        json['_ageCodeableConcept'] = fieldJson4['_value'];
       }
     }
 
     if (gender != null) {
-      final primitiveJson = gender!.toJson();
-      json['gender'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_gender'] = primitiveJson['_value'];
+      final fieldJson5 = gender!.toJson();
+      json['gender'] = fieldJson5['value'];
+      if (fieldJson5['_value'] != null) {
+        json['_gender'] = fieldJson5['_value'];
       }
     }
 
     if (race != null) {
-      final primitiveJson = race!.toJson();
-      json['race'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_race'] = primitiveJson['_value'];
+      final fieldJson6 = race!.toJson();
+      json['race'] = fieldJson6['value'];
+      if (fieldJson6['_value'] != null) {
+        json['_race'] = fieldJson6['_value'];
       }
     }
 
     if (physiologicalCondition != null) {
-      final primitiveJson = physiologicalCondition!.toJson();
-      json['physiologicalCondition'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_physiologicalCondition'] = primitiveJson['_value'];
+      final fieldJson7 = physiologicalCondition!.toJson();
+      json['physiologicalCondition'] = fieldJson7['value'];
+      if (fieldJson7['_value'] != null) {
+        json['_physiologicalCondition'] = fieldJson7['_value'];
       }
     }
 

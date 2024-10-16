@@ -122,51 +122,49 @@ class Annotation extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final primitiveJson = id!.toJson();
-      json['id'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_id'] = primitiveJson['_value'];
+      final fieldJson0 = id!.toJson();
+      json['id'] = fieldJson0['value'];
+      if (fieldJson0['_value'] != null) {
+        json['_id'] = fieldJson0['_value'];
       }
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final primitiveList = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = primitiveList.map((e) => e['value']).toList();
-      if (primitiveList.any((e) => e['_value'] != null)) {
-        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
     if (authorReference != null) {
-      final primitiveJson = authorReference!.toJson();
-      json['authorReference'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_authorReference'] = primitiveJson['_value'];
+      final fieldJson2 = authorReference!.toJson();
+      json['authorReference'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_authorReference'] = fieldJson2['_value'];
       }
     }
 
     if (authorString != null) {
-      final primitiveJson = authorString!.toJson();
-      json['authorString'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_authorString'] = primitiveJson['_value'];
+      final fieldJson3 = authorString!.toJson();
+      json['authorString'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_authorString'] = fieldJson3['_value'];
       }
     }
 
     if (time != null) {
-      final primitiveJson = time!.toJson();
-      json['time'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_time'] = primitiveJson['_value'];
+      final fieldJson4 = time!.toJson();
+      json['time'] = fieldJson4['value'];
+      if (fieldJson4['_value'] != null) {
+        json['_time'] = fieldJson4['_value'];
       }
     }
 
-    if (text != null) {
-      final primitiveJson = text!.toJson();
-      json['text'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_text'] = primitiveJson['_value'];
-      }
+    final fieldJson5 = text.toJson();
+    json['text'] = fieldJson5['value'];
+    if (fieldJson5['_value'] != null) {
+      json['_text'] = fieldJson5['_value'];
     }
 
     return json;

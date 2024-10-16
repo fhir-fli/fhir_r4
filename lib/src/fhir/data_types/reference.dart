@@ -147,50 +147,50 @@ class Reference extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final primitiveJson = id!.toJson();
-      json['id'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_id'] = primitiveJson['_value'];
+      final fieldJson0 = id!.toJson();
+      json['id'] = fieldJson0['value'];
+      if (fieldJson0['_value'] != null) {
+        json['_id'] = fieldJson0['_value'];
       }
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final primitiveList = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = primitiveList.map((e) => e['value']).toList();
-      if (primitiveList.any((e) => e['_value'] != null)) {
-        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
     if (reference != null) {
-      final primitiveJson = reference!.toJson();
-      json['reference'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_reference'] = primitiveJson['_value'];
+      final fieldJson2 = reference!.toJson();
+      json['reference'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_reference'] = fieldJson2['_value'];
       }
     }
 
     if (type != null) {
-      final primitiveJson = type!.toJson();
-      json['type'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_type'] = primitiveJson['_value'];
+      final fieldJson3 = type!.toJson();
+      json['type'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_type'] = fieldJson3['_value'];
       }
     }
 
     if (identifier != null) {
-      final primitiveJson = identifier!.toJson();
-      json['identifier'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_identifier'] = primitiveJson['_value'];
+      final fieldJson4 = identifier!.toJson();
+      json['identifier'] = fieldJson4['value'];
+      if (fieldJson4['_value'] != null) {
+        json['_identifier'] = fieldJson4['_value'];
       }
     }
 
     if (display != null) {
-      final primitiveJson = display!.toJson();
-      json['display'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_display'] = primitiveJson['_value'];
+      final fieldJson5 = display!.toJson();
+      json['display'] = fieldJson5['value'];
+      if (fieldJson5['_value'] != null) {
+        json['_display'] = fieldJson5['_value'];
       }
     }
 

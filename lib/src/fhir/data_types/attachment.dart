@@ -173,82 +173,82 @@ class Attachment extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final primitiveJson = id!.toJson();
-      json['id'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_id'] = primitiveJson['_value'];
+      final fieldJson0 = id!.toJson();
+      json['id'] = fieldJson0['value'];
+      if (fieldJson0['_value'] != null) {
+        json['_id'] = fieldJson0['_value'];
       }
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final primitiveList = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = primitiveList.map((e) => e['value']).toList();
-      if (primitiveList.any((e) => e['_value'] != null)) {
-        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
     if (contentType != null) {
-      final primitiveJson = contentType!.toJson();
-      json['contentType'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_contentType'] = primitiveJson['_value'];
+      final fieldJson2 = contentType!.toJson();
+      json['contentType'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_contentType'] = fieldJson2['_value'];
       }
     }
 
     if (language != null) {
-      final primitiveJson = language!.toJson();
-      json['language'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_language'] = primitiveJson['_value'];
+      final fieldJson3 = language!.toJson();
+      json['language'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_language'] = fieldJson3['_value'];
       }
     }
 
     if (data != null) {
-      final primitiveJson = data!.toJson();
-      json['data'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_data'] = primitiveJson['_value'];
+      final fieldJson4 = data!.toJson();
+      json['data'] = fieldJson4['value'];
+      if (fieldJson4['_value'] != null) {
+        json['_data'] = fieldJson4['_value'];
       }
     }
 
     if (url != null) {
-      final primitiveJson = url!.toJson();
-      json['url'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_url'] = primitiveJson['_value'];
+      final fieldJson5 = url!.toJson();
+      json['url'] = fieldJson5['value'];
+      if (fieldJson5['_value'] != null) {
+        json['_url'] = fieldJson5['_value'];
       }
     }
 
     if (size != null) {
-      final primitiveJson = size!.toJson();
-      json['size'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_size'] = primitiveJson['_value'];
+      final fieldJson6 = size!.toJson();
+      json['size'] = fieldJson6['value'];
+      if (fieldJson6['_value'] != null) {
+        json['_size'] = fieldJson6['_value'];
       }
     }
 
     if (hash != null) {
-      final primitiveJson = hash!.toJson();
-      json['hash'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_hash'] = primitiveJson['_value'];
+      final fieldJson7 = hash!.toJson();
+      json['hash'] = fieldJson7['value'];
+      if (fieldJson7['_value'] != null) {
+        json['_hash'] = fieldJson7['_value'];
       }
     }
 
     if (title != null) {
-      final primitiveJson = title!.toJson();
-      json['title'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_title'] = primitiveJson['_value'];
+      final fieldJson8 = title!.toJson();
+      json['title'] = fieldJson8['value'];
+      if (fieldJson8['_value'] != null) {
+        json['_title'] = fieldJson8['_value'];
       }
     }
 
     if (creation != null) {
-      final primitiveJson = creation!.toJson();
-      json['creation'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_creation'] = primitiveJson['_value'];
+      final fieldJson9 = creation!.toJson();
+      json['creation'] = fieldJson9['value'];
+      if (fieldJson9['_value'] != null) {
+        json['_creation'] = fieldJson9['_value'];
       }
     }
 

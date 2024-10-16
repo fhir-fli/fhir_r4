@@ -100,34 +100,34 @@ class Range extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final primitiveJson = id!.toJson();
-      json['id'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_id'] = primitiveJson['_value'];
+      final fieldJson0 = id!.toJson();
+      json['id'] = fieldJson0['value'];
+      if (fieldJson0['_value'] != null) {
+        json['_id'] = fieldJson0['_value'];
       }
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final primitiveList = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = primitiveList.map((e) => e['value']).toList();
-      if (primitiveList.any((e) => e['_value'] != null)) {
-        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
     if (low != null) {
-      final primitiveJson = low!.toJson();
-      json['low'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_low'] = primitiveJson['_value'];
+      final fieldJson2 = low!.toJson();
+      json['low'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_low'] = fieldJson2['_value'];
       }
     }
 
     if (high != null) {
-      final primitiveJson = high!.toJson();
-      json['high'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_high'] = primitiveJson['_value'];
+      final fieldJson3 = high!.toJson();
+      json['high'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_high'] = fieldJson3['_value'];
       }
     }
 

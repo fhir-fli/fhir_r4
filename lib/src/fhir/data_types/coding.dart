@@ -144,58 +144,58 @@ class Coding extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final primitiveJson = id!.toJson();
-      json['id'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_id'] = primitiveJson['_value'];
+      final fieldJson0 = id!.toJson();
+      json['id'] = fieldJson0['value'];
+      if (fieldJson0['_value'] != null) {
+        json['_id'] = fieldJson0['_value'];
       }
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final primitiveList = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = primitiveList.map((e) => e['value']).toList();
-      if (primitiveList.any((e) => e['_value'] != null)) {
-        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
     if (system != null) {
-      final primitiveJson = system!.toJson();
-      json['system'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_system'] = primitiveJson['_value'];
+      final fieldJson2 = system!.toJson();
+      json['system'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_system'] = fieldJson2['_value'];
       }
     }
 
     if (version != null) {
-      final primitiveJson = version!.toJson();
-      json['version'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_version'] = primitiveJson['_value'];
+      final fieldJson3 = version!.toJson();
+      json['version'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_version'] = fieldJson3['_value'];
       }
     }
 
     if (code != null) {
-      final primitiveJson = code!.toJson();
-      json['code'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_code'] = primitiveJson['_value'];
+      final fieldJson4 = code!.toJson();
+      json['code'] = fieldJson4['value'];
+      if (fieldJson4['_value'] != null) {
+        json['_code'] = fieldJson4['_value'];
       }
     }
 
     if (display != null) {
-      final primitiveJson = display!.toJson();
-      json['display'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_display'] = primitiveJson['_value'];
+      final fieldJson5 = display!.toJson();
+      json['display'] = fieldJson5['value'];
+      if (fieldJson5['_value'] != null) {
+        json['_display'] = fieldJson5['_value'];
       }
     }
 
     if (userSelected != null) {
-      final primitiveJson = userSelected!.toJson();
-      json['userSelected'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_userSelected'] = primitiveJson['_value'];
+      final fieldJson6 = userSelected!.toJson();
+      json['userSelected'] = fieldJson6['value'];
+      if (fieldJson6['_value'] != null) {
+        json['_userSelected'] = fieldJson6['_value'];
       }
     }
 

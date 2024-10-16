@@ -105,34 +105,34 @@ class Period extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final primitiveJson = id!.toJson();
-      json['id'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_id'] = primitiveJson['_value'];
+      final fieldJson0 = id!.toJson();
+      json['id'] = fieldJson0['value'];
+      if (fieldJson0['_value'] != null) {
+        json['_id'] = fieldJson0['_value'];
       }
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final primitiveList = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = primitiveList.map((e) => e['value']).toList();
-      if (primitiveList.any((e) => e['_value'] != null)) {
-        json['_extension'] = primitiveList.map((e) => e['_value']).toList();
+      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
+      json['extension'] = fieldJson1.map((e) => e['value']).toList();
+      if (fieldJson1.any((e) => e['_value'] != null)) {
+        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
       }
     }
 
     if (start != null) {
-      final primitiveJson = start!.toJson();
-      json['start'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_start'] = primitiveJson['_value'];
+      final fieldJson2 = start!.toJson();
+      json['start'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_start'] = fieldJson2['_value'];
       }
     }
 
     if (end != null) {
-      final primitiveJson = end!.toJson();
-      json['end'] = primitiveJson['value'];
-      if (primitiveJson['_value'] != null) {
-        json['_end'] = primitiveJson['_value'];
+      final fieldJson3 = end!.toJson();
+      json['end'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_end'] = fieldJson3['_value'];
       }
     }
 
