@@ -138,56 +138,44 @@ class FhirExpression extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     if (description != null) {
-      final fieldJson2 = description!.toJson();
-      json['description'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_description'] = fieldJson2['_value'];
+      final fieldJson1 = description!.toJson();
+      json['description'] = fieldJson1['value'];
+      if (fieldJson1['_value'] != null) {
+        json['_description'] = fieldJson1['_value'];
       }
     }
 
     if (name != null) {
-      final fieldJson3 = name!.toJson();
-      json['name'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_name'] = fieldJson3['_value'];
+      final fieldJson2 = name!.toJson();
+      json['name'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_name'] = fieldJson2['_value'];
       }
     }
 
-    final fieldJson4 = language.toJson();
-    json['language'] = fieldJson4['value'];
-    if (fieldJson4['_value'] != null) {
-      json['_language'] = fieldJson4['_value'];
-    }
+    json['language'] = language.toJson();
 
     if (expression != null) {
-      final fieldJson5 = expression!.toJson();
-      json['expression'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_expression'] = fieldJson5['_value'];
+      final fieldJson4 = expression!.toJson();
+      json['expression'] = fieldJson4['value'];
+      if (fieldJson4['_value'] != null) {
+        json['_expression'] = fieldJson4['_value'];
       }
     }
 
     if (reference != null) {
-      final fieldJson6 = reference!.toJson();
-      json['reference'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_reference'] = fieldJson6['_value'];
+      final fieldJson5 = reference!.toJson();
+      json['reference'] = fieldJson5['value'];
+      if (fieldJson5['_value'] != null) {
+        json['_reference'] = fieldJson5['_value'];
       }
     }
 

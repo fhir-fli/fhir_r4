@@ -164,67 +164,51 @@ class FhirMeta extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     if (versionId != null) {
-      final fieldJson2 = versionId!.toJson();
-      json['versionId'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_versionId'] = fieldJson2['_value'];
+      final fieldJson1 = versionId!.toJson();
+      json['versionId'] = fieldJson1['value'];
+      if (fieldJson1['_value'] != null) {
+        json['_versionId'] = fieldJson1['_value'];
       }
     }
 
     if (lastUpdated != null) {
-      final fieldJson3 = lastUpdated!.toJson();
-      json['lastUpdated'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_lastUpdated'] = fieldJson3['_value'];
+      final fieldJson2 = lastUpdated!.toJson();
+      json['lastUpdated'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_lastUpdated'] = fieldJson2['_value'];
       }
     }
 
     if (source != null) {
-      final fieldJson4 = source!.toJson();
-      json['source'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_source'] = fieldJson4['_value'];
+      final fieldJson3 = source!.toJson();
+      json['source'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_source'] = fieldJson3['_value'];
       }
     }
 
     if (profile != null && profile!.isNotEmpty) {
-      final fieldJson5 = profile!.map((e) => e.toJson()).toList();
-      json['profile'] = fieldJson5.map((e) => e['value']).toList();
-      if (fieldJson5.any((e) => e['_value'] != null)) {
-        json['_profile'] = fieldJson5.map((e) => e['_value']).toList();
+      final fieldJson4 = profile!.map((e) => e.toJson()).toList();
+      json['profile'] = fieldJson4.map((e) => e['value']).toList();
+      if (fieldJson4.any((e) => e['_value'] != null)) {
+        json['_profile'] = fieldJson4.map((e) => e['_value']).toList();
       }
     }
 
     if (security != null && security!.isNotEmpty) {
-      final fieldJson6 = security!.map((e) => e.toJson()).toList();
-      json['security'] = fieldJson6.map((e) => e['value']).toList();
-      if (fieldJson6.any((e) => e['_value'] != null)) {
-        json['_security'] = fieldJson6.map((e) => e['_value']).toList();
-      }
+      json['security'] = security!.map((e) => e.toJson()).toList();
     }
 
     if (tag != null && tag!.isNotEmpty) {
-      final fieldJson7 = tag!.map((e) => e.toJson()).toList();
-      json['tag'] = fieldJson7.map((e) => e['value']).toList();
-      if (fieldJson7.any((e) => e['_value'] != null)) {
-        json['_tag'] = fieldJson7.map((e) => e['_value']).toList();
-      }
+      json['tag'] = tag!.map((e) => e.toJson()).toList();
     }
 
     return json;

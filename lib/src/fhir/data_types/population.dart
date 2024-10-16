@@ -141,68 +141,36 @@ class Population extends BackboneType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      final fieldJson2 = modifierExtension!.map((e) => e.toJson()).toList();
-      json['modifierExtension'] = fieldJson2.map((e) => e['value']).toList();
-      if (fieldJson2.any((e) => e['_value'] != null)) {
-        json['_modifierExtension'] =
-            fieldJson2.map((e) => e['_value']).toList();
-      }
+      json['modifierExtension'] =
+          modifierExtension!.map((e) => e.toJson()).toList();
     }
 
     if (ageRange != null) {
-      final fieldJson3 = ageRange!.toJson();
-      json['ageRange'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_ageRange'] = fieldJson3['_value'];
-      }
+      json['ageRange'] = ageRange!.toJson();
     }
 
     if (ageCodeableConcept != null) {
-      final fieldJson4 = ageCodeableConcept!.toJson();
-      json['ageCodeableConcept'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_ageCodeableConcept'] = fieldJson4['_value'];
-      }
+      json['ageCodeableConcept'] = ageCodeableConcept!.toJson();
     }
 
     if (gender != null) {
-      final fieldJson5 = gender!.toJson();
-      json['gender'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_gender'] = fieldJson5['_value'];
-      }
+      json['gender'] = gender!.toJson();
     }
 
     if (race != null) {
-      final fieldJson6 = race!.toJson();
-      json['race'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_race'] = fieldJson6['_value'];
-      }
+      json['race'] = race!.toJson();
     }
 
     if (physiologicalCondition != null) {
-      final fieldJson7 = physiologicalCondition!.toJson();
-      json['physiologicalCondition'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_physiologicalCondition'] = fieldJson7['_value'];
-      }
+      json['physiologicalCondition'] = physiologicalCondition!.toJson();
     }
 
     return json;

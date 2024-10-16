@@ -69,14 +69,12 @@ class FhirMarkdown extends PrimitiveType<String> {
   @override
   String get fhirType => 'markdown';
 
-  /// Serializes the instance to a JSON-compatible map.
+  /// Serializes the instance to JSON with standardized keys
   @override
-  Map<String, dynamic> toJson() {
-    return {
-      'value': value,
-      if (element != null) '_value': element!.toJson(),
-    };
-  }
+  Map<String, dynamic> toJson() => {
+        'value': value,
+        '_value': element?.toJson(),
+      };
 
   /// Converts the instance to a JSON string.
   @override

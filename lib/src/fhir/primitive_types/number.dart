@@ -50,11 +50,11 @@ abstract class FhirNumber extends PrimitiveType<num?>
   @override
   String get fhirType => 'number';
 
-  /// Converts this instance to JSON with standardized keys.
+  /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
         'value': value,
-        if (element != null) '_value': element!.toJson(),
+        '_value': element?.toJson(),
       };
 
   /// Converts a list of JSON values to a list of [FhirNumber] instances.

@@ -108,34 +108,22 @@ class CodeableConcept extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     if (coding != null && coding!.isNotEmpty) {
-      final fieldJson2 = coding!.map((e) => e.toJson()).toList();
-      json['coding'] = fieldJson2.map((e) => e['value']).toList();
-      if (fieldJson2.any((e) => e['_value'] != null)) {
-        json['_coding'] = fieldJson2.map((e) => e['_value']).toList();
-      }
+      json['coding'] = coding!.map((e) => e.toJson()).toList();
     }
 
     if (text != null) {
-      final fieldJson3 = text!.toJson();
-      json['text'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_text'] = fieldJson3['_value'];
+      final fieldJson2 = text!.toJson();
+      json['text'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_text'] = fieldJson2['_value'];
       }
     }
 

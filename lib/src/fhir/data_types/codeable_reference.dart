@@ -103,35 +103,19 @@ class CodeableReference extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     if (concept != null) {
-      final fieldJson2 = concept!.toJson();
-      json['concept'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_concept'] = fieldJson2['_value'];
-      }
+      json['concept'] = concept!.toJson();
     }
 
     if (reference != null) {
-      final fieldJson3 = reference!.toJson();
-      json['reference'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_reference'] = fieldJson3['_value'];
-      }
+      json['reference'] = reference!.toJson();
     }
 
     return json;

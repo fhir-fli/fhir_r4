@@ -161,72 +161,56 @@ class RelatedArtifact extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = type.toJson();
-    json['type'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_type'] = fieldJson2['_value'];
-    }
+    json['type'] = type.toJson();
 
     if (label != null) {
-      final fieldJson3 = label!.toJson();
-      json['label'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_label'] = fieldJson3['_value'];
+      final fieldJson2 = label!.toJson();
+      json['label'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_label'] = fieldJson2['_value'];
       }
     }
 
     if (display != null) {
-      final fieldJson4 = display!.toJson();
-      json['display'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_display'] = fieldJson4['_value'];
+      final fieldJson3 = display!.toJson();
+      json['display'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_display'] = fieldJson3['_value'];
       }
     }
 
     if (citation != null) {
-      final fieldJson5 = citation!.toJson();
-      json['citation'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_citation'] = fieldJson5['_value'];
+      final fieldJson4 = citation!.toJson();
+      json['citation'] = fieldJson4['value'];
+      if (fieldJson4['_value'] != null) {
+        json['_citation'] = fieldJson4['_value'];
       }
     }
 
     if (url != null) {
-      final fieldJson6 = url!.toJson();
-      json['url'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_url'] = fieldJson6['_value'];
+      final fieldJson5 = url!.toJson();
+      json['url'] = fieldJson5['value'];
+      if (fieldJson5['_value'] != null) {
+        json['_url'] = fieldJson5['_value'];
       }
     }
 
     if (document != null) {
-      final fieldJson7 = document!.toJson();
-      json['document'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_document'] = fieldJson7['_value'];
-      }
+      json['document'] = document!.toJson();
     }
 
     if (resource != null) {
-      final fieldJson8 = resource!.toJson();
-      json['resource'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_resource'] = fieldJson8['_value'];
+      final fieldJson7 = resource!.toJson();
+      json['resource'] = fieldJson7['value'];
+      if (fieldJson7['_value'] != null) {
+        json['_resource'] = fieldJson7['_value'];
       }
     }
 

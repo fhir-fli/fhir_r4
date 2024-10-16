@@ -167,68 +167,48 @@ class Signature extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = type.map((e) => e.toJson()).toList();
-    json['type'] = fieldJson2.map((e) => e['value']).toList();
-    if (fieldJson2.any((e) => e['_value'] != null)) {
-      json['_type'] = fieldJson2.map((e) => e['_value']).toList();
+    json['type'] = type.map((e) => e.toJson()).toList();
+
+    final fieldJson2 = when.toJson();
+    json['when'] = fieldJson2['value'];
+    if (fieldJson2['_value'] != null) {
+      json['_when'] = fieldJson2['_value'];
     }
 
-    final fieldJson3 = when.toJson();
-    json['when'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_when'] = fieldJson3['_value'];
-    }
-
-    final fieldJson4 = who.toJson();
-    json['who'] = fieldJson4['value'];
-    if (fieldJson4['_value'] != null) {
-      json['_who'] = fieldJson4['_value'];
-    }
+    json['who'] = who.toJson();
 
     if (onBehalfOf != null) {
-      final fieldJson5 = onBehalfOf!.toJson();
-      json['onBehalfOf'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_onBehalfOf'] = fieldJson5['_value'];
-      }
+      json['onBehalfOf'] = onBehalfOf!.toJson();
     }
 
     if (targetFormat != null) {
-      final fieldJson6 = targetFormat!.toJson();
-      json['targetFormat'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_targetFormat'] = fieldJson6['_value'];
+      final fieldJson5 = targetFormat!.toJson();
+      json['targetFormat'] = fieldJson5['value'];
+      if (fieldJson5['_value'] != null) {
+        json['_targetFormat'] = fieldJson5['_value'];
       }
     }
 
     if (sigFormat != null) {
-      final fieldJson7 = sigFormat!.toJson();
-      json['sigFormat'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_sigFormat'] = fieldJson7['_value'];
+      final fieldJson6 = sigFormat!.toJson();
+      json['sigFormat'] = fieldJson6['value'];
+      if (fieldJson6['_value'] != null) {
+        json['_sigFormat'] = fieldJson6['_value'];
       }
     }
 
     if (data != null) {
-      final fieldJson8 = data!.toJson();
-      json['data'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_data'] = fieldJson8['_value'];
+      final fieldJson7 = data!.toJson();
+      json['data'] = fieldJson7['value'];
+      if (fieldJson7['_value'] != null) {
+        json['_data'] = fieldJson7['_value'];
       }
     }
 

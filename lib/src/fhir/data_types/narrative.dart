@@ -101,31 +101,19 @@ class Narrative extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = status.toJson();
-    json['status'] = fieldJson2['value'];
+    json['status'] = status.toJson();
+
+    final fieldJson2 = div.toJson();
+    json['div'] = fieldJson2['value'];
     if (fieldJson2['_value'] != null) {
-      json['_status'] = fieldJson2['_value'];
-    }
-
-    final fieldJson3 = div.toJson();
-    json['div'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_div'] = fieldJson3['_value'];
+      json['_div'] = fieldJson2['_value'];
     }
 
     return json;

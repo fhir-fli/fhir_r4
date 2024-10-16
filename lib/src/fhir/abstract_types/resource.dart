@@ -116,8 +116,7 @@ abstract class Resource extends FhirBase {
   /// Updates the [meta] field of this Resource, updates the meta.lastUpdated
   /// field, adds 1 to the version number
   Resource updateVersion({FhirMeta? oldMeta, bool versionIdAsTime = false}) =>
-      throw UnimplementedError();
-  // _updateMeta(this, meta: oldMeta, versionIdAsTime: versionIdAsTime);
+      updateMeta(this, meta: oldMeta, versionIdAsTime: versionIdAsTime);
 
   /// Returns a [R4ResourceType] from a [String]
   static R4ResourceType? resourceTypeFromString(String type) =>

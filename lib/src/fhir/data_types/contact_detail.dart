@@ -106,35 +106,23 @@ class ContactDetail extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     if (name != null) {
-      final fieldJson2 = name!.toJson();
-      json['name'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_name'] = fieldJson2['_value'];
+      final fieldJson1 = name!.toJson();
+      json['name'] = fieldJson1['value'];
+      if (fieldJson1['_value'] != null) {
+        json['_name'] = fieldJson1['_value'];
       }
     }
 
     if (telecom != null && telecom!.isNotEmpty) {
-      final fieldJson3 = telecom!.map((e) => e.toJson()).toList();
-      json['telecom'] = fieldJson3.map((e) => e['value']).toList();
-      if (fieldJson3.any((e) => e['_value'] != null)) {
-        json['_telecom'] = fieldJson3.map((e) => e['_value']).toList();
-      }
+      json['telecom'] = telecom!.map((e) => e.toJson()).toList();
     }
 
     return json;

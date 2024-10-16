@@ -82,11 +82,11 @@ class FhirUuid extends PrimitiveType<UuidValue?> {
   @override
   String get fhirType => 'uuid';
 
-  /// Converts the UUID to a JSON-compatible map.
+  /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': value?.uuid,
-        if (element != null) '_value': element!.toJson(),
+        'value': value?.toString(),
+        '_value': element?.toJson(),
       };
 
   /// String representation of the instance.

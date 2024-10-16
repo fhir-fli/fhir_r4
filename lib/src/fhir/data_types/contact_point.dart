@@ -139,59 +139,39 @@ class ContactPoint extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     if (system != null) {
-      final fieldJson2 = system!.toJson();
-      json['system'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_system'] = fieldJson2['_value'];
-      }
+      json['system'] = system!.toJson();
     }
 
     if (value != null) {
-      final fieldJson3 = value!.toJson();
-      json['value'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_value'] = fieldJson3['_value'];
+      final fieldJson2 = value!.toJson();
+      json['value'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_value'] = fieldJson2['_value'];
       }
     }
 
     if (use != null) {
-      final fieldJson4 = use!.toJson();
-      json['use'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_use'] = fieldJson4['_value'];
-      }
+      json['use'] = use!.toJson();
     }
 
     if (rank != null) {
-      final fieldJson5 = rank!.toJson();
-      json['rank'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_rank'] = fieldJson5['_value'];
+      final fieldJson4 = rank!.toJson();
+      json['rank'] = fieldJson4['value'];
+      if (fieldJson4['_value'] != null) {
+        json['_rank'] = fieldJson4['_value'];
       }
     }
 
     if (period != null) {
-      final fieldJson6 = period!.toJson();
-      json['period'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_period'] = fieldJson6['_value'];
-      }
+      json['period'] = period!.toJson();
     }
 
     return json;

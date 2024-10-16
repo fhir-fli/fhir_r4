@@ -161,68 +161,56 @@ class SampledData extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = origin.toJson();
-    json['origin'] = fieldJson2['value'];
+    json['origin'] = origin.toJson();
+
+    final fieldJson2 = period.toJson();
+    json['period'] = fieldJson2['value'];
     if (fieldJson2['_value'] != null) {
-      json['_origin'] = fieldJson2['_value'];
-    }
-
-    final fieldJson3 = period.toJson();
-    json['period'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_period'] = fieldJson3['_value'];
+      json['_period'] = fieldJson2['_value'];
     }
 
     if (factor != null) {
-      final fieldJson4 = factor!.toJson();
-      json['factor'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_factor'] = fieldJson4['_value'];
+      final fieldJson3 = factor!.toJson();
+      json['factor'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_factor'] = fieldJson3['_value'];
       }
     }
 
     if (lowerLimit != null) {
-      final fieldJson5 = lowerLimit!.toJson();
-      json['lowerLimit'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_lowerLimit'] = fieldJson5['_value'];
+      final fieldJson4 = lowerLimit!.toJson();
+      json['lowerLimit'] = fieldJson4['value'];
+      if (fieldJson4['_value'] != null) {
+        json['_lowerLimit'] = fieldJson4['_value'];
       }
     }
 
     if (upperLimit != null) {
-      final fieldJson6 = upperLimit!.toJson();
-      json['upperLimit'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_upperLimit'] = fieldJson6['_value'];
+      final fieldJson5 = upperLimit!.toJson();
+      json['upperLimit'] = fieldJson5['value'];
+      if (fieldJson5['_value'] != null) {
+        json['_upperLimit'] = fieldJson5['_value'];
       }
     }
 
-    final fieldJson7 = dimensions.toJson();
-    json['dimensions'] = fieldJson7['value'];
-    if (fieldJson7['_value'] != null) {
-      json['_dimensions'] = fieldJson7['_value'];
+    final fieldJson6 = dimensions.toJson();
+    json['dimensions'] = fieldJson6['value'];
+    if (fieldJson6['_value'] != null) {
+      json['_dimensions'] = fieldJson6['_value'];
     }
 
     if (data != null) {
-      final fieldJson8 = data!.toJson();
-      json['data'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_data'] = fieldJson8['_value'];
+      final fieldJson7 = data!.toJson();
+      json['data'] = fieldJson7['value'];
+      if (fieldJson7['_value'] != null) {
+        json['_data'] = fieldJson7['_value'];
       }
     }
 

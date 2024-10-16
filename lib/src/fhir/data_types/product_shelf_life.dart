@@ -142,60 +142,30 @@ class ProductShelfLife extends BackboneType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      final fieldJson2 = modifierExtension!.map((e) => e.toJson()).toList();
-      json['modifierExtension'] = fieldJson2.map((e) => e['value']).toList();
-      if (fieldJson2.any((e) => e['_value'] != null)) {
-        json['_modifierExtension'] =
-            fieldJson2.map((e) => e['_value']).toList();
-      }
+      json['modifierExtension'] =
+          modifierExtension!.map((e) => e.toJson()).toList();
     }
 
     if (identifier != null) {
-      final fieldJson3 = identifier!.toJson();
-      json['identifier'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_identifier'] = fieldJson3['_value'];
-      }
+      json['identifier'] = identifier!.toJson();
     }
 
-    final fieldJson4 = type.toJson();
-    json['type'] = fieldJson4['value'];
-    if (fieldJson4['_value'] != null) {
-      json['_type'] = fieldJson4['_value'];
-    }
+    json['type'] = type.toJson();
 
-    final fieldJson5 = period.toJson();
-    json['period'] = fieldJson5['value'];
-    if (fieldJson5['_value'] != null) {
-      json['_period'] = fieldJson5['_value'];
-    }
+    json['period'] = period.toJson();
 
     if (specialPrecautionsForStorage != null &&
         specialPrecautionsForStorage!.isNotEmpty) {
-      final fieldJson6 =
-          specialPrecautionsForStorage!.map((e) => e.toJson()).toList();
       json['specialPrecautionsForStorage'] =
-          fieldJson6.map((e) => e['value']).toList();
-      if (fieldJson6.any((e) => e['_value'] != null)) {
-        json['_specialPrecautionsForStorage'] =
-            fieldJson6.map((e) => e['_value']).toList();
-      }
+          specialPrecautionsForStorage!.map((e) => e.toJson()).toList();
     }
 
     return json;

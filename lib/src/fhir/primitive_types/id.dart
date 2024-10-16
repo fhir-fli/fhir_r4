@@ -75,14 +75,12 @@ class FhirId extends PrimitiveType<String> {
   @override
   String get fhirType => 'id';
 
-  /// Serializes the instance to JSON with standardized keys.
+  /// Serializes the instance to JSON with standardized keys
   @override
-  Map<String, dynamic> toJson() {
-    return {
-      'value': value,
-      if (element != null) '_value': element!.toJson(),
-    };
-  }
+  Map<String, dynamic> toJson() => {
+        'value': value,
+        '_value': element?.toJson(),
+      };
 
   /// Converts a list of JSON values to a list of [FhirId] instances.
   static List<FhirId> fromJsonList(

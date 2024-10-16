@@ -162,70 +162,54 @@ class ParameterDefinition extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     if (name != null) {
-      final fieldJson2 = name!.toJson();
-      json['name'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_name'] = fieldJson2['_value'];
+      final fieldJson1 = name!.toJson();
+      json['name'] = fieldJson1['value'];
+      if (fieldJson1['_value'] != null) {
+        json['_name'] = fieldJson1['_value'];
       }
     }
 
-    final fieldJson3 = use.toJson();
-    json['use'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_use'] = fieldJson3['_value'];
-    }
+    json['use'] = use.toJson();
 
     if (min != null) {
-      final fieldJson4 = min!.toJson();
-      json['min'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_min'] = fieldJson4['_value'];
+      final fieldJson3 = min!.toJson();
+      json['min'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_min'] = fieldJson3['_value'];
       }
     }
 
     if (max != null) {
-      final fieldJson5 = max!.toJson();
-      json['max'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_max'] = fieldJson5['_value'];
+      final fieldJson4 = max!.toJson();
+      json['max'] = fieldJson4['value'];
+      if (fieldJson4['_value'] != null) {
+        json['_max'] = fieldJson4['_value'];
       }
     }
 
     if (documentation != null) {
-      final fieldJson6 = documentation!.toJson();
-      json['documentation'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_documentation'] = fieldJson6['_value'];
+      final fieldJson5 = documentation!.toJson();
+      json['documentation'] = fieldJson5['value'];
+      if (fieldJson5['_value'] != null) {
+        json['_documentation'] = fieldJson5['_value'];
       }
     }
 
-    final fieldJson7 = type.toJson();
-    json['type'] = fieldJson7['value'];
-    if (fieldJson7['_value'] != null) {
-      json['_type'] = fieldJson7['_value'];
-    }
+    json['type'] = type.toJson();
 
     if (profile != null) {
-      final fieldJson8 = profile!.toJson();
-      json['profile'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_profile'] = fieldJson8['_value'];
+      final fieldJson7 = profile!.toJson();
+      json['profile'] = fieldJson7['value'];
+      if (fieldJson7['_value'] != null) {
+        json['_profile'] = fieldJson7['_value'];
       }
     }
 

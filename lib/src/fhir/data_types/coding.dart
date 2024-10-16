@@ -144,58 +144,50 @@ class Coding extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     if (system != null) {
-      final fieldJson2 = system!.toJson();
-      json['system'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_system'] = fieldJson2['_value'];
+      final fieldJson1 = system!.toJson();
+      json['system'] = fieldJson1['value'];
+      if (fieldJson1['_value'] != null) {
+        json['_system'] = fieldJson1['_value'];
       }
     }
 
     if (version != null) {
-      final fieldJson3 = version!.toJson();
-      json['version'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_version'] = fieldJson3['_value'];
+      final fieldJson2 = version!.toJson();
+      json['version'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_version'] = fieldJson2['_value'];
       }
     }
 
     if (code != null) {
-      final fieldJson4 = code!.toJson();
-      json['code'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_code'] = fieldJson4['_value'];
+      final fieldJson3 = code!.toJson();
+      json['code'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_code'] = fieldJson3['_value'];
       }
     }
 
     if (display != null) {
-      final fieldJson5 = display!.toJson();
-      json['display'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_display'] = fieldJson5['_value'];
+      final fieldJson4 = display!.toJson();
+      json['display'] = fieldJson4['value'];
+      if (fieldJson4['_value'] != null) {
+        json['_display'] = fieldJson4['_value'];
       }
     }
 
     if (userSelected != null) {
-      final fieldJson6 = userSelected!.toJson();
-      json['userSelected'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_userSelected'] = fieldJson6['_value'];
+      final fieldJson5 = userSelected!.toJson();
+      json['userSelected'] = fieldJson5['value'];
+      if (fieldJson5['_value'] != null) {
+        json['_userSelected'] = fieldJson5['_value'];
       }
     }
 

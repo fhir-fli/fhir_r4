@@ -173,82 +173,70 @@ class Attachment extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     if (contentType != null) {
-      final fieldJson2 = contentType!.toJson();
-      json['contentType'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_contentType'] = fieldJson2['_value'];
+      final fieldJson1 = contentType!.toJson();
+      json['contentType'] = fieldJson1['value'];
+      if (fieldJson1['_value'] != null) {
+        json['_contentType'] = fieldJson1['_value'];
       }
     }
 
     if (language != null) {
-      final fieldJson3 = language!.toJson();
-      json['language'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_language'] = fieldJson3['_value'];
-      }
+      json['language'] = language!.toJson();
     }
 
     if (data != null) {
-      final fieldJson4 = data!.toJson();
-      json['data'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_data'] = fieldJson4['_value'];
+      final fieldJson3 = data!.toJson();
+      json['data'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_data'] = fieldJson3['_value'];
       }
     }
 
     if (url != null) {
-      final fieldJson5 = url!.toJson();
-      json['url'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_url'] = fieldJson5['_value'];
+      final fieldJson4 = url!.toJson();
+      json['url'] = fieldJson4['value'];
+      if (fieldJson4['_value'] != null) {
+        json['_url'] = fieldJson4['_value'];
       }
     }
 
     if (size != null) {
-      final fieldJson6 = size!.toJson();
-      json['size'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_size'] = fieldJson6['_value'];
+      final fieldJson5 = size!.toJson();
+      json['size'] = fieldJson5['value'];
+      if (fieldJson5['_value'] != null) {
+        json['_size'] = fieldJson5['_value'];
       }
     }
 
     if (hash != null) {
-      final fieldJson7 = hash!.toJson();
-      json['hash'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_hash'] = fieldJson7['_value'];
+      final fieldJson6 = hash!.toJson();
+      json['hash'] = fieldJson6['value'];
+      if (fieldJson6['_value'] != null) {
+        json['_hash'] = fieldJson6['_value'];
       }
     }
 
     if (title != null) {
-      final fieldJson8 = title!.toJson();
-      json['title'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_title'] = fieldJson8['_value'];
+      final fieldJson7 = title!.toJson();
+      json['title'] = fieldJson7['value'];
+      if (fieldJson7['_value'] != null) {
+        json['_title'] = fieldJson7['_value'];
       }
     }
 
     if (creation != null) {
-      final fieldJson9 = creation!.toJson();
-      json['creation'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_creation'] = fieldJson9['_value'];
+      final fieldJson8 = creation!.toJson();
+      json['creation'] = fieldJson8['value'];
+      if (fieldJson8['_value'] != null) {
+        json['_creation'] = fieldJson8['_value'];
       }
     }
 

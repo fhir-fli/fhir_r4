@@ -100,35 +100,19 @@ class Range extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     if (low != null) {
-      final fieldJson2 = low!.toJson();
-      json['low'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_low'] = fieldJson2['_value'];
-      }
+      json['low'] = low!.toJson();
     }
 
     if (high != null) {
-      final fieldJson3 = high!.toJson();
-      json['high'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_high'] = fieldJson3['_value'];
-      }
+      json['high'] = high!.toJson();
     }
 
     return json;

@@ -105,34 +105,26 @@ class Period extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     if (start != null) {
-      final fieldJson2 = start!.toJson();
-      json['start'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_start'] = fieldJson2['_value'];
+      final fieldJson1 = start!.toJson();
+      json['start'] = fieldJson1['value'];
+      if (fieldJson1['_value'] != null) {
+        json['_start'] = fieldJson1['_value'];
       }
     }
 
     if (end != null) {
-      final fieldJson3 = end!.toJson();
-      json['end'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_end'] = fieldJson3['_value'];
+      final fieldJson2 = end!.toJson();
+      json['end'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_end'] = fieldJson2['_value'];
       }
     }
 

@@ -127,56 +127,40 @@ class Binary extends Resource {
     final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (meta != null) {
-      final fieldJson1 = meta!.toJson();
-      json['meta'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_meta'] = fieldJson1['_value'];
-      }
+      json['meta'] = meta!.toJson();
     }
 
     if (implicitRules != null) {
-      final fieldJson2 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_implicitRules'] = fieldJson2['_value'];
+      final fieldJson1 = implicitRules!.toJson();
+      json['implicitRules'] = fieldJson1['value'];
+      if (fieldJson1['_value'] != null) {
+        json['_implicitRules'] = fieldJson1['_value'];
       }
     }
 
     if (language != null) {
-      final fieldJson3 = language!.toJson();
-      json['language'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_language'] = fieldJson3['_value'];
-      }
+      json['language'] = language!.toJson();
     }
 
-    final fieldJson4 = contentType.toJson();
-    json['contentType'] = fieldJson4['value'];
-    if (fieldJson4['_value'] != null) {
-      json['_contentType'] = fieldJson4['_value'];
+    final fieldJson3 = contentType.toJson();
+    json['contentType'] = fieldJson3['value'];
+    if (fieldJson3['_value'] != null) {
+      json['_contentType'] = fieldJson3['_value'];
     }
 
     if (securityContext != null) {
-      final fieldJson5 = securityContext!.toJson();
-      json['securityContext'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_securityContext'] = fieldJson5['_value'];
-      }
+      json['securityContext'] = securityContext!.toJson();
     }
 
     if (data != null) {
-      final fieldJson6 = data!.toJson();
-      json['data'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_data'] = fieldJson6['_value'];
+      final fieldJson5 = data!.toJson();
+      json['data'] = fieldJson5['value'];
+      if (fieldJson5['_value'] != null) {
+        json['_data'] = fieldJson5['_value'];
       }
     }
 

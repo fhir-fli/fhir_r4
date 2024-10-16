@@ -227,11 +227,11 @@ class FhirXhtml extends PrimitiveType<String?> {
   @override
   String get fhirType => 'xhtml';
 
-  /// Converts to JSON with `value` and optional `_value`.
+  /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
         'value': value,
-        if (element != null) '_value': element!.toJson(),
+        '_value': element?.toJson(),
       };
 
   /// Returns the stored XHTML as a string.

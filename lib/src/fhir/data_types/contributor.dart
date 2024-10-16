@@ -115,39 +115,23 @@ class Contributor extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = type.toJson();
-    json['type'] = fieldJson2['value'];
+    json['type'] = type.toJson();
+
+    final fieldJson2 = name.toJson();
+    json['name'] = fieldJson2['value'];
     if (fieldJson2['_value'] != null) {
-      json['_type'] = fieldJson2['_value'];
-    }
-
-    final fieldJson3 = name.toJson();
-    json['name'] = fieldJson3['value'];
-    if (fieldJson3['_value'] != null) {
-      json['_name'] = fieldJson3['_value'];
+      json['_name'] = fieldJson2['_value'];
     }
 
     if (contact != null && contact!.isNotEmpty) {
-      final fieldJson4 = contact!.map((e) => e.toJson()).toList();
-      json['contact'] = fieldJson4.map((e) => e['value']).toList();
-      if (fieldJson4.any((e) => e['_value'] != null)) {
-        json['_contact'] = fieldJson4.map((e) => e['_value']).toList();
-      }
+      json['contact'] = contact!.map((e) => e.toJson()).toList();
     }
 
     return json;

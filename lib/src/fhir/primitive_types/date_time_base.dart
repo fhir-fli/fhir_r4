@@ -138,14 +138,12 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   /// Serialization
   String toIso8601String() => valueDateTime.toIso8601String();
 
-  /// Converts the `FhirDateTimeBase` instance to a JSON-compatible map.
+  /// Serializes the instance to JSON with standardized keys
   @override
-  Map<String, dynamic> toJson() {
-    return {
-      'value': valueString, // The formatted date-time string.
-      '_value': element!.toJson(), // Element metadata.
-    };
-  }
+  Map<String, dynamic> toJson() => {
+        'value': valueString,
+        '_value': element?.toJson(),
+      };
 
   /// Map representation
   Map<String, num?> toMap() => <String, num?>{
@@ -390,7 +388,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
           'Month, day, hour, minute, and second are required for FhirInstant',
         );
       }
-      return FhirInstant.fromBase(
+      final instant = FhirInstant.fromBase(
         year: dateTimeMap['year']!.toInt(),
         month: dateTimeMap['month']?.toInt(),
         day: dateTimeMap['day']?.toInt(),
@@ -399,10 +397,11 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         second: dateTimeMap['second']?.toInt(),
         millisecond: dateTimeMap['millisecond']?.toInt(),
         microsecond: dateTimeMap['microsecond']?.toInt(),
-        timeZoneOffset: dateTimeMap['timeZoneOffset'],
+        timeZoneOffset: dateTimeMap['timeZoneOffset'] ?? 0,
         isUtc: dateTimeMap['isUtc'] == 0,
         element: element,
       );
+      return instant;
     } else {
       throw ArgumentError('Unsupported type $T');
     }

@@ -57,14 +57,12 @@ class FhirString extends PrimitiveType<String> {
   @override
   String get fhirType => 'string';
 
-  /// Serializes the instance to JSON with standardized keys.
+  /// Serializes the instance to JSON with standardized keys
   @override
-  Map<String, dynamic> toJson() {
-    return {
-      'value': value,
-      if (element != null) '_value': element!.toJson(),
-    };
-  }
+  Map<String, dynamic> toJson() => {
+        'value': value,
+        '_value': element?.toJson(),
+      };
 
   /// Provides a string representation of the value.
   @override

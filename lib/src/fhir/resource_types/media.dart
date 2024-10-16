@@ -400,248 +400,156 @@ class Media extends DomainResource {
     final json = <String, dynamic>{};
     json['resourceType'] = resourceType.toJson();
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (meta != null) {
-      final fieldJson1 = meta!.toJson();
-      json['meta'] = fieldJson1['value'];
-      if (fieldJson1['_value'] != null) {
-        json['_meta'] = fieldJson1['_value'];
-      }
+      json['meta'] = meta!.toJson();
     }
 
     if (implicitRules != null) {
-      final fieldJson2 = implicitRules!.toJson();
-      json['implicitRules'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_implicitRules'] = fieldJson2['_value'];
+      final fieldJson1 = implicitRules!.toJson();
+      json['implicitRules'] = fieldJson1['value'];
+      if (fieldJson1['_value'] != null) {
+        json['_implicitRules'] = fieldJson1['_value'];
       }
     }
 
     if (language != null) {
-      final fieldJson3 = language!.toJson();
-      json['language'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_language'] = fieldJson3['_value'];
-      }
+      json['language'] = language!.toJson();
     }
 
     if (text != null) {
-      final fieldJson4 = text!.toJson();
-      json['text'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_text'] = fieldJson4['_value'];
-      }
+      json['text'] = text!.toJson();
     }
 
     if (contained != null && contained!.isNotEmpty) {
-      final fieldJson5 = contained!.map((e) => e.toJson()).toList();
-      json['contained'] = fieldJson5.map((e) => e['value']).toList();
-      if (fieldJson5.any((e) => e['_value'] != null)) {
-        json['_contained'] = fieldJson5.map((e) => e['_value']).toList();
-      }
+      json['contained'] = contained!.map((e) => e.toJson()).toList();
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson6 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson6.map((e) => e['value']).toList();
-      if (fieldJson6.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson6.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     if (modifierExtension != null && modifierExtension!.isNotEmpty) {
-      final fieldJson7 = modifierExtension!.map((e) => e.toJson()).toList();
-      json['modifierExtension'] = fieldJson7.map((e) => e['value']).toList();
-      if (fieldJson7.any((e) => e['_value'] != null)) {
-        json['_modifierExtension'] =
-            fieldJson7.map((e) => e['_value']).toList();
-      }
+      json['modifierExtension'] =
+          modifierExtension!.map((e) => e.toJson()).toList();
     }
 
     if (identifier != null && identifier!.isNotEmpty) {
-      final fieldJson8 = identifier!.map((e) => e.toJson()).toList();
-      json['identifier'] = fieldJson8.map((e) => e['value']).toList();
-      if (fieldJson8.any((e) => e['_value'] != null)) {
-        json['_identifier'] = fieldJson8.map((e) => e['_value']).toList();
-      }
+      json['identifier'] = identifier!.map((e) => e.toJson()).toList();
     }
 
     if (basedOn != null && basedOn!.isNotEmpty) {
-      final fieldJson9 = basedOn!.map((e) => e.toJson()).toList();
-      json['basedOn'] = fieldJson9.map((e) => e['value']).toList();
-      if (fieldJson9.any((e) => e['_value'] != null)) {
-        json['_basedOn'] = fieldJson9.map((e) => e['_value']).toList();
-      }
+      json['basedOn'] = basedOn!.map((e) => e.toJson()).toList();
     }
 
     if (partOf != null && partOf!.isNotEmpty) {
-      final fieldJson10 = partOf!.map((e) => e.toJson()).toList();
-      json['partOf'] = fieldJson10.map((e) => e['value']).toList();
-      if (fieldJson10.any((e) => e['_value'] != null)) {
-        json['_partOf'] = fieldJson10.map((e) => e['_value']).toList();
-      }
+      json['partOf'] = partOf!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson11 = status.toJson();
-    json['status'] = fieldJson11['value'];
-    if (fieldJson11['_value'] != null) {
-      json['_status'] = fieldJson11['_value'];
-    }
+    json['status'] = status.toJson();
 
     if (type != null) {
-      final fieldJson12 = type!.toJson();
-      json['type'] = fieldJson12['value'];
-      if (fieldJson12['_value'] != null) {
-        json['_type'] = fieldJson12['_value'];
-      }
+      json['type'] = type!.toJson();
     }
 
     if (modality != null) {
-      final fieldJson13 = modality!.toJson();
-      json['modality'] = fieldJson13['value'];
-      if (fieldJson13['_value'] != null) {
-        json['_modality'] = fieldJson13['_value'];
-      }
+      json['modality'] = modality!.toJson();
     }
 
     if (view != null) {
-      final fieldJson14 = view!.toJson();
-      json['view'] = fieldJson14['value'];
-      if (fieldJson14['_value'] != null) {
-        json['_view'] = fieldJson14['_value'];
-      }
+      json['view'] = view!.toJson();
     }
 
     if (subject != null) {
-      final fieldJson15 = subject!.toJson();
-      json['subject'] = fieldJson15['value'];
-      if (fieldJson15['_value'] != null) {
-        json['_subject'] = fieldJson15['_value'];
-      }
+      json['subject'] = subject!.toJson();
     }
 
     if (encounter != null) {
-      final fieldJson16 = encounter!.toJson();
-      json['encounter'] = fieldJson16['value'];
-      if (fieldJson16['_value'] != null) {
-        json['_encounter'] = fieldJson16['_value'];
-      }
+      json['encounter'] = encounter!.toJson();
     }
 
     if (createdDateTime != null) {
-      final fieldJson17 = createdDateTime!.toJson();
-      json['createdDateTime'] = fieldJson17['value'];
-      if (fieldJson17['_value'] != null) {
-        json['_createdDateTime'] = fieldJson17['_value'];
+      final fieldJson16 = createdDateTime!.toJson();
+      json['createdDateTime'] = fieldJson16['value'];
+      if (fieldJson16['_value'] != null) {
+        json['_createdDateTime'] = fieldJson16['_value'];
       }
     }
 
     if (createdPeriod != null) {
-      final fieldJson18 = createdPeriod!.toJson();
-      json['createdPeriod'] = fieldJson18['value'];
-      if (fieldJson18['_value'] != null) {
-        json['_createdPeriod'] = fieldJson18['_value'];
-      }
+      json['createdPeriod'] = createdPeriod!.toJson();
     }
 
     if (issued != null) {
-      final fieldJson19 = issued!.toJson();
-      json['issued'] = fieldJson19['value'];
-      if (fieldJson19['_value'] != null) {
-        json['_issued'] = fieldJson19['_value'];
+      final fieldJson18 = issued!.toJson();
+      json['issued'] = fieldJson18['value'];
+      if (fieldJson18['_value'] != null) {
+        json['_issued'] = fieldJson18['_value'];
       }
     }
 
     if (operator_ != null) {
-      final fieldJson20 = operator_!.toJson();
-      json['operator'] = fieldJson20['value'];
-      if (fieldJson20['_value'] != null) {
-        json['_operator'] = fieldJson20['_value'];
-      }
+      json['operator'] = operator_!.toJson();
     }
 
     if (reasonCode != null && reasonCode!.isNotEmpty) {
-      final fieldJson21 = reasonCode!.map((e) => e.toJson()).toList();
-      json['reasonCode'] = fieldJson21.map((e) => e['value']).toList();
-      if (fieldJson21.any((e) => e['_value'] != null)) {
-        json['_reasonCode'] = fieldJson21.map((e) => e['_value']).toList();
-      }
+      json['reasonCode'] = reasonCode!.map((e) => e.toJson()).toList();
     }
 
     if (bodySite != null) {
-      final fieldJson22 = bodySite!.toJson();
-      json['bodySite'] = fieldJson22['value'];
-      if (fieldJson22['_value'] != null) {
-        json['_bodySite'] = fieldJson22['_value'];
-      }
+      json['bodySite'] = bodySite!.toJson();
     }
 
     if (deviceName != null) {
-      final fieldJson23 = deviceName!.toJson();
-      json['deviceName'] = fieldJson23['value'];
-      if (fieldJson23['_value'] != null) {
-        json['_deviceName'] = fieldJson23['_value'];
+      final fieldJson22 = deviceName!.toJson();
+      json['deviceName'] = fieldJson22['value'];
+      if (fieldJson22['_value'] != null) {
+        json['_deviceName'] = fieldJson22['_value'];
       }
     }
 
     if (device != null) {
-      final fieldJson24 = device!.toJson();
-      json['device'] = fieldJson24['value'];
-      if (fieldJson24['_value'] != null) {
-        json['_device'] = fieldJson24['_value'];
-      }
+      json['device'] = device!.toJson();
     }
 
     if (height != null) {
-      final fieldJson25 = height!.toJson();
-      json['height'] = fieldJson25['value'];
-      if (fieldJson25['_value'] != null) {
-        json['_height'] = fieldJson25['_value'];
+      final fieldJson24 = height!.toJson();
+      json['height'] = fieldJson24['value'];
+      if (fieldJson24['_value'] != null) {
+        json['_height'] = fieldJson24['_value'];
       }
     }
 
     if (width != null) {
-      final fieldJson26 = width!.toJson();
-      json['width'] = fieldJson26['value'];
-      if (fieldJson26['_value'] != null) {
-        json['_width'] = fieldJson26['_value'];
+      final fieldJson25 = width!.toJson();
+      json['width'] = fieldJson25['value'];
+      if (fieldJson25['_value'] != null) {
+        json['_width'] = fieldJson25['_value'];
       }
     }
 
     if (frames != null) {
-      final fieldJson27 = frames!.toJson();
-      json['frames'] = fieldJson27['value'];
-      if (fieldJson27['_value'] != null) {
-        json['_frames'] = fieldJson27['_value'];
+      final fieldJson26 = frames!.toJson();
+      json['frames'] = fieldJson26['value'];
+      if (fieldJson26['_value'] != null) {
+        json['_frames'] = fieldJson26['_value'];
       }
     }
 
     if (duration != null) {
-      final fieldJson28 = duration!.toJson();
-      json['duration'] = fieldJson28['value'];
-      if (fieldJson28['_value'] != null) {
-        json['_duration'] = fieldJson28['_value'];
+      final fieldJson27 = duration!.toJson();
+      json['duration'] = fieldJson27['value'];
+      if (fieldJson27['_value'] != null) {
+        json['_duration'] = fieldJson27['_value'];
       }
     }
 
-    final fieldJson29 = content.toJson();
-    json['content'] = fieldJson29['value'];
-    if (fieldJson29['_value'] != null) {
-      json['_content'] = fieldJson29['_value'];
-    }
+    json['content'] = content.toJson();
 
     if (note != null && note!.isNotEmpty) {
-      final fieldJson30 = note!.map((e) => e.toJson()).toList();
-      json['note'] = fieldJson30.map((e) => e['value']).toList();
-      if (fieldJson30.any((e) => e['_value'] != null)) {
-        json['_note'] = fieldJson30.map((e) => e['_value']).toList();
-      }
+      json['note'] = note!.map((e) => e.toJson()).toList();
     }
 
     return json;

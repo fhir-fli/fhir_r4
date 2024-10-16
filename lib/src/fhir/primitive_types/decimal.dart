@@ -78,14 +78,12 @@ class FhirDecimal extends FhirNumber {
   @override
   String get fhirType => 'decimal';
 
-  /// Serializes the instance to JSON with standardized keys.
+  /// Serializes the instance to JSON with standardized keys
   @override
-  Map<String, dynamic> toJson() {
-    return {
-      'value': isInt ? value?.toInt() : value,
-      if (element != null) '_value': element!.toJson(),
-    };
-  }
+  Map<String, dynamic> toJson() => {
+        'value': isInt ? value?.toInt() : value,
+        '_value': element?.toJson(),
+      };
 
   /// Converts a list of JSON values to a list of [FhirDecimal] instances.
   static List<FhirDecimal> fromJsonList(

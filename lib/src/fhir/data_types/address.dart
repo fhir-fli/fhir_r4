@@ -199,99 +199,79 @@ class Address extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     if (use != null) {
-      final fieldJson2 = use!.toJson();
-      json['use'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_use'] = fieldJson2['_value'];
-      }
+      json['use'] = use!.toJson();
     }
 
     if (type != null) {
-      final fieldJson3 = type!.toJson();
-      json['type'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_type'] = fieldJson3['_value'];
-      }
+      json['type'] = type!.toJson();
     }
 
     if (text != null) {
-      final fieldJson4 = text!.toJson();
-      json['text'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_text'] = fieldJson4['_value'];
+      final fieldJson3 = text!.toJson();
+      json['text'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_text'] = fieldJson3['_value'];
       }
     }
 
     if (line != null && line!.isNotEmpty) {
-      final fieldJson5 = line!.map((e) => e.toJson()).toList();
-      json['line'] = fieldJson5.map((e) => e['value']).toList();
-      if (fieldJson5.any((e) => e['_value'] != null)) {
-        json['_line'] = fieldJson5.map((e) => e['_value']).toList();
+      final fieldJson4 = line!.map((e) => e.toJson()).toList();
+      json['line'] = fieldJson4.map((e) => e['value']).toList();
+      if (fieldJson4.any((e) => e['_value'] != null)) {
+        json['_line'] = fieldJson4.map((e) => e['_value']).toList();
       }
     }
 
     if (city != null) {
-      final fieldJson6 = city!.toJson();
-      json['city'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_city'] = fieldJson6['_value'];
+      final fieldJson5 = city!.toJson();
+      json['city'] = fieldJson5['value'];
+      if (fieldJson5['_value'] != null) {
+        json['_city'] = fieldJson5['_value'];
       }
     }
 
     if (district != null) {
-      final fieldJson7 = district!.toJson();
-      json['district'] = fieldJson7['value'];
-      if (fieldJson7['_value'] != null) {
-        json['_district'] = fieldJson7['_value'];
+      final fieldJson6 = district!.toJson();
+      json['district'] = fieldJson6['value'];
+      if (fieldJson6['_value'] != null) {
+        json['_district'] = fieldJson6['_value'];
       }
     }
 
     if (state != null) {
-      final fieldJson8 = state!.toJson();
-      json['state'] = fieldJson8['value'];
-      if (fieldJson8['_value'] != null) {
-        json['_state'] = fieldJson8['_value'];
+      final fieldJson7 = state!.toJson();
+      json['state'] = fieldJson7['value'];
+      if (fieldJson7['_value'] != null) {
+        json['_state'] = fieldJson7['_value'];
       }
     }
 
     if (postalCode != null) {
-      final fieldJson9 = postalCode!.toJson();
-      json['postalCode'] = fieldJson9['value'];
-      if (fieldJson9['_value'] != null) {
-        json['_postalCode'] = fieldJson9['_value'];
+      final fieldJson8 = postalCode!.toJson();
+      json['postalCode'] = fieldJson8['value'];
+      if (fieldJson8['_value'] != null) {
+        json['_postalCode'] = fieldJson8['_value'];
       }
     }
 
     if (country != null) {
-      final fieldJson10 = country!.toJson();
-      json['country'] = fieldJson10['value'];
-      if (fieldJson10['_value'] != null) {
-        json['_country'] = fieldJson10['_value'];
+      final fieldJson9 = country!.toJson();
+      json['country'] = fieldJson9['value'];
+      if (fieldJson9['_value'] != null) {
+        json['_country'] = fieldJson9['_value'];
       }
     }
 
     if (period != null) {
-      final fieldJson11 = period!.toJson();
-      json['period'] = fieldJson11['value'];
-      if (fieldJson11['_value'] != null) {
-        json['_period'] = fieldJson11['_value'];
-      }
+      json['period'] = period!.toJson();
     }
 
     return json;

@@ -111,43 +111,23 @@ class RatioRange extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     if (lowNumerator != null) {
-      final fieldJson2 = lowNumerator!.toJson();
-      json['lowNumerator'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_lowNumerator'] = fieldJson2['_value'];
-      }
+      json['lowNumerator'] = lowNumerator!.toJson();
     }
 
     if (highNumerator != null) {
-      final fieldJson3 = highNumerator!.toJson();
-      json['highNumerator'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_highNumerator'] = fieldJson3['_value'];
-      }
+      json['highNumerator'] = highNumerator!.toJson();
     }
 
     if (denominator != null) {
-      final fieldJson4 = denominator!.toJson();
-      json['denominator'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_denominator'] = fieldJson4['_value'];
-      }
+      json['denominator'] = denominator!.toJson();
     }
 
     return json;

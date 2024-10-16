@@ -64,14 +64,12 @@ class FhirPositiveInt extends FhirNumber {
   @override
   String get fhirType => 'integer';
 
-  /// Corrected `toJson()` method to return a proper map.
+  /// Serializes the instance to JSON with standardized keys
   @override
-  Map<String, dynamic> toJson() {
-    final json = <String, dynamic>{};
-    if (value != null) json['value'] = value;
-    if (element != null) json['_value'] = element!.toJson();
-    return json;
-  }
+  Map<String, dynamic> toJson() => {
+        'value': value,
+        '_value': element?.toJson(),
+      };
 
   /// Converts a list of JSON values to a list of [FhirPositiveInt] instances.
   static List<FhirPositiveInt> fromJsonList(

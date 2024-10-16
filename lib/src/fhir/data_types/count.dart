@@ -118,58 +118,46 @@ class Count extends Quantity {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     if (value != null) {
-      final fieldJson2 = value!.toJson();
-      json['value'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_value'] = fieldJson2['_value'];
+      final fieldJson1 = value!.toJson();
+      json['value'] = fieldJson1['value'];
+      if (fieldJson1['_value'] != null) {
+        json['_value'] = fieldJson1['_value'];
       }
     }
 
     if (comparator != null) {
-      final fieldJson3 = comparator!.toJson();
-      json['comparator'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_comparator'] = fieldJson3['_value'];
-      }
+      json['comparator'] = comparator!.toJson();
     }
 
     if (unit != null) {
-      final fieldJson4 = unit!.toJson();
-      json['unit'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_unit'] = fieldJson4['_value'];
+      final fieldJson3 = unit!.toJson();
+      json['unit'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_unit'] = fieldJson3['_value'];
       }
     }
 
     if (system != null) {
-      final fieldJson5 = system!.toJson();
-      json['system'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_system'] = fieldJson5['_value'];
+      final fieldJson4 = system!.toJson();
+      json['system'] = fieldJson4['value'];
+      if (fieldJson4['_value'] != null) {
+        json['_system'] = fieldJson4['_value'];
       }
     }
 
     if (code != null) {
-      final fieldJson6 = code!.toJson();
-      json['code'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_code'] = fieldJson6['_value'];
+      final fieldJson5 = code!.toJson();
+      json['code'] = fieldJson5['value'];
+      if (fieldJson5['_value'] != null) {
+        json['_code'] = fieldJson5['_value'];
       }
     }
 

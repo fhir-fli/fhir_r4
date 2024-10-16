@@ -122,49 +122,37 @@ class Annotation extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
     if (authorReference != null) {
-      final fieldJson2 = authorReference!.toJson();
-      json['authorReference'] = fieldJson2['value'];
-      if (fieldJson2['_value'] != null) {
-        json['_authorReference'] = fieldJson2['_value'];
-      }
+      json['authorReference'] = authorReference!.toJson();
     }
 
     if (authorString != null) {
-      final fieldJson3 = authorString!.toJson();
-      json['authorString'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_authorString'] = fieldJson3['_value'];
+      final fieldJson2 = authorString!.toJson();
+      json['authorString'] = fieldJson2['value'];
+      if (fieldJson2['_value'] != null) {
+        json['_authorString'] = fieldJson2['_value'];
       }
     }
 
     if (time != null) {
-      final fieldJson4 = time!.toJson();
-      json['time'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_time'] = fieldJson4['_value'];
+      final fieldJson3 = time!.toJson();
+      json['time'] = fieldJson3['value'];
+      if (fieldJson3['_value'] != null) {
+        json['_time'] = fieldJson3['_value'];
       }
     }
 
-    final fieldJson5 = text.toJson();
-    json['text'] = fieldJson5['value'];
-    if (fieldJson5['_value'] != null) {
-      json['_text'] = fieldJson5['_value'];
+    final fieldJson4 = text.toJson();
+    json['text'] = fieldJson4['value'];
+    if (fieldJson4['_value'] != null) {
+      json['_text'] = fieldJson4['_value'];
     }
 
     return json;

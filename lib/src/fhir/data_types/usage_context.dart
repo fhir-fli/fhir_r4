@@ -136,57 +136,29 @@ class UsageContext extends DataType {
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
     if (id != null) {
-      final fieldJson0 = id!.toJson();
-      json['id'] = fieldJson0['value'];
-      if (fieldJson0['_value'] != null) {
-        json['_id'] = fieldJson0['_value'];
-      }
+      json['id'] = id!.toJson()['value'];
     }
 
     if (extension_ != null && extension_!.isNotEmpty) {
-      final fieldJson1 = extension_!.map((e) => e.toJson()).toList();
-      json['extension'] = fieldJson1.map((e) => e['value']).toList();
-      if (fieldJson1.any((e) => e['_value'] != null)) {
-        json['_extension'] = fieldJson1.map((e) => e['_value']).toList();
-      }
+      json['extension'] = extension_!.map((e) => e.toJson()).toList();
     }
 
-    final fieldJson2 = code.toJson();
-    json['code'] = fieldJson2['value'];
-    if (fieldJson2['_value'] != null) {
-      json['_code'] = fieldJson2['_value'];
-    }
+    json['code'] = code.toJson();
 
     if (valueCodeableConcept != null) {
-      final fieldJson3 = valueCodeableConcept!.toJson();
-      json['valueCodeableConcept'] = fieldJson3['value'];
-      if (fieldJson3['_value'] != null) {
-        json['_valueCodeableConcept'] = fieldJson3['_value'];
-      }
+      json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
     }
 
     if (valueQuantity != null) {
-      final fieldJson4 = valueQuantity!.toJson();
-      json['valueQuantity'] = fieldJson4['value'];
-      if (fieldJson4['_value'] != null) {
-        json['_valueQuantity'] = fieldJson4['_value'];
-      }
+      json['valueQuantity'] = valueQuantity!.toJson();
     }
 
     if (valueRange != null) {
-      final fieldJson5 = valueRange!.toJson();
-      json['valueRange'] = fieldJson5['value'];
-      if (fieldJson5['_value'] != null) {
-        json['_valueRange'] = fieldJson5['_value'];
-      }
+      json['valueRange'] = valueRange!.toJson();
     }
 
     if (valueReference != null) {
-      final fieldJson6 = valueReference!.toJson();
-      json['valueReference'] = fieldJson6['value'];
-      if (fieldJson6['_value'] != null) {
-        json['_valueReference'] = fieldJson6['_value'];
-      }
+      json['valueReference'] = valueReference!.toJson();
     }
 
     return json;
