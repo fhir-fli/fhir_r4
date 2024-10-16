@@ -1,11 +1,10 @@
 import 'dart:convert';
-
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-/// FhirPositiveInt is a type of integer that is used in FHIR resources
+/// Extension to convert a [num] to a [FhirPositiveInt].
 extension FhirPositiveIntExtension on num {
-  /// This method converts a Dart integer to a FHIR integer
+  /// Converts a [num] to a [FhirPositiveInt].
   FhirPositiveInt get toFhirPositiveInt => this is int
       ? FhirPositiveInt(this as int)
       : int.tryParse(toString()) != null
@@ -13,33 +12,43 @@ extension FhirPositiveIntExtension on num {
           : throw FormatException('Invalid input for FhirPositiveInt: $this');
 }
 
-/// This class represents the FHIR primitive type `integer`
+/// Represents the FHIR primitive type `integer`.
 class FhirPositiveInt extends FhirNumber {
-  /// Constructor enforces valid input
-  FhirPositiveInt(int super.input, {super.element}) : value = input;
+  /// Constructor that ensures valid input.
+  FhirPositiveInt(int? super.input, [super.element]);
 
-  /// fromJson accepts dynamic input and validates
-  factory FhirPositiveInt.fromJson(dynamic json) {
-    if (json is int) {
-      return FhirPositiveInt(json);
-    } else if (json is num) {
-      return FhirPositiveInt(json.toInt());
+  /// Factory constructor to create [FhirPositiveInt] from JSON input.
+  factory FhirPositiveInt.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as num?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+
+    if (value == null) {
+      throw const FormatException(
+        'Invalid input for FhirPositiveInt: value is null',
+      );
     }
-    throw FormatException('Invalid input for FhirPositiveInt: $json');
+
+    return FhirPositiveInt(value.toInt(), element);
   }
 
-  /// fromYaml accepts dynamic input and validates
-  factory FhirPositiveInt.fromYaml(dynamic yaml) => yaml is String
-      ? FhirPositiveInt.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : yaml is YamlMap
-          ? FhirPositiveInt.fromJson(jsonDecode(jsonEncode(yaml)))
-          : throw const FormatException(
-              'Invalid Yaml format for FhirPositiveInt',
-            );
-  @override
-  final int value;
+  /// Factory constructor to create [FhirPositiveInt] from YAML input.
+  static FhirPositiveInt fromYaml(dynamic yaml) {
+    return yaml is String
+        ? FhirPositiveInt.fromJson(
+            jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+          )
+        : yaml is YamlMap
+            ? FhirPositiveInt.fromJson(
+                jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
+              )
+            : throw const FormatException(
+                'Invalid input for FhirPositiveInt: not a valid YAML string or map.',
+              );
+  }
 
-  /// This method tries to parse a dynamic input into a FHIR integer
+  /// Static method to try parsing input as [FhirPositiveInt], returns `null`
+  /// if unsuccessful.
   static FhirPositiveInt? tryParse(dynamic input) {
     if (input is int) {
       try {
@@ -47,55 +56,86 @@ class FhirPositiveInt extends FhirNumber {
       } catch (e) {
         return null;
       }
-    } else {
-      return null;
     }
+    return null;
   }
 
+  /// Returns the FHIR type as a string.
   @override
   String get fhirType => 'integer';
 
+  /// Corrected `toJson()` method to return a proper map.
   @override
-  int toJson() => value;
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{};
+    if (value != null) json['value'] = value;
+    if (element != null) json['_value'] = element!.toJson();
+    return json;
+  }
 
+  /// Converts a list of JSON values to a list of [FhirPositiveInt] instances.
+  static List<FhirPositiveInt> fromJsonList(
+    List<dynamic> values,
+    List<dynamic>? elements,
+  ) {
+    if (elements != null && elements.length != values.length) {
+      throw const FormatException(
+        'Values and elements must have the same length',
+      );
+    }
+
+    return List.generate(values.length, (i) {
+      final value = values[i] as num?;
+      final element = elements?[i] != null
+          ? Element.fromJson(elements![i] as Map<String, dynamic>)
+          : null;
+      return FhirPositiveInt(value?.toInt(), element);
+    });
+  }
+
+  /// Converts a list of [FhirPositiveInt] instances to a JSON-compatible map.
+  static Map<String, dynamic> toJsonList(List<FhirPositiveInt> integers) {
+    return {
+      'value': integers.map((integer) => integer.value).toList(),
+      '_value': integers.map((integer) => integer.element?.toJson()).toList(),
+    };
+  }
+
+  /// Provides a string representation of the instance.
   @override
-  int toYaml() => value;
+  String toString() => value?.toString() ?? '';
 
-  @override
-  String toString() => value.toString();
-
-  @override
-  String toJsonString() => jsonEncode(toJson());
-
+  /// Overrides equality operator to compare instances.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => value.hashCode;
-
-  @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  bool operator ==(Object other) => equals(other);
-
-  @override
-  bool equals(Object other) =>
+  bool operator ==(Object other) =>
       identical(this, other) ||
       (other is FhirPositiveInt && other.value == value) ||
       (other is int && other == value);
 
+  /// Overrides hashCode for use in hash-based collections.
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => Object.hash(value, element);
+
+  /// Clones the current instance.
   @override
   FhirPositiveInt clone() =>
-      FhirPositiveInt(value, element: element?.clone() as Element?);
+      FhirPositiveInt(value as int?, element?.clone() as Element?);
 
+  /// Sets a property on the associated [Element], returning a new instance.
   @override
   FhirPositiveInt setElement(String name, dynamic elementValue) {
     return FhirPositiveInt(
-      value,
-      element: element?.setProperty(name, elementValue),
+      value as int?,
+      element?.setProperty(name, elementValue),
     );
   }
 
+  /// Creates a modified copy with updated properties.
   @override
   FhirPositiveInt copyWith({
-    int? newValue,
+    num? newValue,
     Element? element,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -105,9 +145,12 @@ class FhirPositiveInt extends FhirNumber {
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
   }) {
+    if ((newValue ?? value) is! int) {
+      throw ArgumentError('Invalid input for FhirPositiveInt: $newValue');
+    }
     return FhirPositiveInt(
-      newValue ?? value,
-      element: element?.copyWith(
+      (newValue ?? value) as int?,
+      element?.copyWith(
         userData: userData,
         formatCommentsPre: formatCommentsPre,
         formatCommentsPost: formatCommentsPost,

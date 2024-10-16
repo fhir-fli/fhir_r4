@@ -11,7 +11,7 @@ class ProdCharacteristic extends BackboneType {
 
   ProdCharacteristic({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.height,
     this.width,
@@ -20,17 +20,8 @@ class ProdCharacteristic extends BackboneType {
     this.nominalVolume,
     this.externalDiameter,
     this.shape,
-
-    /// Extensions for [shape]
-    this.shapeElement,
     this.color,
-
-    /// Extensions for [color]
-    this.colorElement,
     this.imprint,
-
-    /// Extensions for [imprint]
-    this.imprintElement,
     this.image,
     this.scoring,
     super.userData,
@@ -44,11 +35,15 @@ class ProdCharacteristic extends BackboneType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProdCharacteristic.fromJson(Map<String, dynamic> json) {
     return ProdCharacteristic(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -57,7 +52,7 @@ class ProdCharacteristic extends BackboneType {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -93,44 +88,22 @@ class ProdCharacteristic extends BackboneType {
               json['externalDiameter'] as Map<String, dynamic>,
             )
           : null,
-      shape: json['shape'] != null ? FhirString.fromJson(json['shape']) : null,
-      shapeElement: json['_shape'] != null
-          ? Element.fromJson(
-              json['_shape'] as Map<String, dynamic>,
-            )
+      shape: json['shape'] != null
+          ? FhirString.fromJson({
+              'value': json['shape'],
+              '_value': json['_shape'],
+            })
           : null,
-      color: json['color'] != null
-          ? (json['color'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      colorElement: json['_color'] != null
-          ? (json['_color'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      imprint: json['imprint'] != null
-          ? (json['imprint'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      imprintElement: json['_imprint'] != null
-          ? (json['_imprint'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      color: parsePrimitiveList<FhirString>(
+          json['color'] as List<dynamic>?, json['_color'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
+      imprint: parsePrimitiveList<FhirString>(
+          json['imprint'] as List<dynamic>?, json['_imprint'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
       image: json['image'] != null
           ? (json['image'] as List<dynamic>)
               .map<Attachment>(
-                (dynamic v) => Attachment.fromJson(
+                (v) => Attachment.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -144,7 +117,8 @@ class ProdCharacteristic extends BackboneType {
     );
   }
 
-  /// Deserialize [ProdCharacteristic] from a [String] or [YamlMap] object
+  /// Deserialize [ProdCharacteristic] from a [String]
+  /// or [YamlMap] object
   factory ProdCharacteristic.fromYaml(dynamic yaml) => yaml is String
       ? ProdCharacteristic.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -153,11 +127,11 @@ class ProdCharacteristic extends BackboneType {
           ? ProdCharacteristic.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ProdCharacteristic cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ProdCharacteristic cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ProdCharacteristic] that takes in a [String]
+  /// Factory constructor for [ProdCharacteristic]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ProdCharacteristic.fromJsonString(String source) {
@@ -172,6 +146,15 @@ class ProdCharacteristic extends BackboneType {
 
   @override
   String get fhirType => 'ProdCharacteristic';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [height]
   /// Where applicable, the height can be specified using a numerical value
@@ -221,24 +204,15 @@ class ProdCharacteristic extends BackboneType {
   /// used.
   final FhirString? shape;
 
-  /// Extensions for [shape]
-  final Element? shapeElement;
-
   /// [color]
   /// Where applicable, the color can be specified An appropriate controlled
   /// vocabulary shall be used The term and the term identifier shall be
   /// used.
   final List<FhirString>? color;
 
-  /// Extensions for [color]
-  final List<Element>? colorElement;
-
   /// [imprint]
   /// Where applicable, the imprint can be specified as text.
   final List<FhirString>? imprint;
-
-  /// Extensions for [imprint]
-  final List<Element>? imprintElement;
 
   /// [image]
   /// Where applicable, the image can be provided The format of the image
@@ -285,21 +259,11 @@ class ProdCharacteristic extends BackboneType {
     if (shape?.value != null) {
       json['shape'] = shape!.toJson();
     }
-    if (shapeElement != null) {
-      json['_shape'] = shapeElement!.toJson();
-    }
     if (color != null && color!.isNotEmpty) {
       json['color'] = color!.map((FhirString v) => v.toJson()).toList();
     }
-    if (colorElement != null && colorElement!.isNotEmpty) {
-      json['_color'] = colorElement!.map((Element v) => v.toJson()).toList();
-    }
     if (imprint != null && imprint!.isNotEmpty) {
       json['imprint'] = imprint!.map((FhirString v) => v.toJson()).toList();
-    }
-    if (imprintElement != null && imprintElement!.isNotEmpty) {
-      json['_imprint'] =
-          imprintElement!.map((Element v) => v.toJson()).toList();
     }
     if (image != null && image!.isNotEmpty) {
       json['image'] = image!.map((Attachment v) => v.toJson()).toList();
@@ -324,11 +288,8 @@ class ProdCharacteristic extends BackboneType {
     Quantity? nominalVolume,
     Quantity? externalDiameter,
     FhirString? shape,
-    Element? shapeElement,
     List<FhirString>? color,
-    List<Element>? colorElement,
     List<FhirString>? imprint,
-    List<Element>? imprintElement,
     List<Attachment>? image,
     CodeableConcept? scoring,
     Map<String, Object?>? userData,
@@ -349,11 +310,8 @@ class ProdCharacteristic extends BackboneType {
       nominalVolume: nominalVolume ?? this.nominalVolume,
       externalDiameter: externalDiameter ?? this.externalDiameter,
       shape: shape ?? this.shape,
-      shapeElement: shapeElement ?? this.shapeElement,
       color: color ?? this.color,
-      colorElement: colorElement ?? this.colorElement,
       imprint: imprint ?? this.imprint,
-      imprintElement: imprintElement ?? this.imprintElement,
       image: image ?? this.image,
       scoring: scoring ?? this.scoring,
       userData: userData ?? this.userData,

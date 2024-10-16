@@ -12,35 +12,20 @@ class DeviceUseStatement extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.basedOn,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     required this.subject,
     this.derivedFrom,
     this.timingTiming,
     this.timingPeriod,
     this.timingDateTime,
-
-    /// Extensions for [timingDateTime]
-    this.timingDateTimeElement,
     this.recordedOn,
-
-    /// Extensions for [recordedOn]
-    this.recordedOnElement,
     this.source,
     required this.device,
     this.reasonCode,
@@ -60,27 +45,27 @@ class DeviceUseStatement extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceUseStatement.fromJson(Map<String, dynamic> json) {
     return DeviceUseStatement(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -90,7 +75,7 @@ class DeviceUseStatement extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -99,7 +84,7 @@ class DeviceUseStatement extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -108,7 +93,7 @@ class DeviceUseStatement extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -117,7 +102,7 @@ class DeviceUseStatement extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -126,25 +111,23 @@ class DeviceUseStatement extends DomainResource {
       basedOn: json['basedOn'] != null
           ? (json['basedOn'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: DeviceUseStatementStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: DeviceUseStatementStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
       ),
       derivedFrom: json['derivedFrom'] != null
           ? (json['derivedFrom'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -161,20 +144,16 @@ class DeviceUseStatement extends DomainResource {
             )
           : null,
       timingDateTime: json['timingDateTime'] != null
-          ? FhirDateTime.fromJson(json['timingDateTime'])
-          : null,
-      timingDateTimeElement: json['_timingDateTime'] != null
-          ? Element.fromJson(
-              json['_timingDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['timingDateTime'],
+              '_value': json['_timingDateTime'],
+            })
           : null,
       recordedOn: json['recordedOn'] != null
-          ? FhirDateTime.fromJson(json['recordedOn'])
-          : null,
-      recordedOnElement: json['_recordedOn'] != null
-          ? Element.fromJson(
-              json['_recordedOn'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['recordedOn'],
+              '_value': json['_recordedOn'],
+            })
           : null,
       source: json['source'] != null
           ? Reference.fromJson(
@@ -187,7 +166,7 @@ class DeviceUseStatement extends DomainResource {
       reasonCode: json['reasonCode'] != null
           ? (json['reasonCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -196,7 +175,7 @@ class DeviceUseStatement extends DomainResource {
       reasonReference: json['reasonReference'] != null
           ? (json['reasonReference'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -210,7 +189,7 @@ class DeviceUseStatement extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -219,7 +198,8 @@ class DeviceUseStatement extends DomainResource {
     );
   }
 
-  /// Deserialize [DeviceUseStatement] from a [String] or [YamlMap] object
+  /// Deserialize [DeviceUseStatement] from a [String]
+  /// or [YamlMap] object
   factory DeviceUseStatement.fromYaml(dynamic yaml) => yaml is String
       ? DeviceUseStatement.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -228,11 +208,11 @@ class DeviceUseStatement extends DomainResource {
           ? DeviceUseStatement.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DeviceUseStatement cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('DeviceUseStatement cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DeviceUseStatement] that takes in a [String]
+  /// Factory constructor for [DeviceUseStatement]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DeviceUseStatement.fromJsonString(String source) {
@@ -248,6 +228,15 @@ class DeviceUseStatement extends DomainResource {
   @override
   String get fhirType => 'DeviceUseStatement';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// An external identifier for this statement such as an IRI.
   final List<Identifier>? identifier;
@@ -262,9 +251,6 @@ class DeviceUseStatement extends DomainResource {
   /// state of the device used that this statement is about. Generally this
   /// will be active or completed.
   final DeviceUseStatementStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [subject]
   /// The patient who used the device.
@@ -288,15 +274,9 @@ class DeviceUseStatement extends DomainResource {
   /// How often the device was used.
   final FhirDateTime? timingDateTime;
 
-  /// Extensions for [timingDateTime]
-  final Element? timingDateTimeElement;
-
   /// [recordedOn]
   /// The time at which the statement was made/recorded.
   final FhirDateTime? recordedOn;
-
-  /// Extensions for [recordedOn]
-  final Element? recordedOnElement;
 
   /// [source]
   /// Who reported the device was being used by the patient.
@@ -339,9 +319,6 @@ class DeviceUseStatement extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -381,14 +358,8 @@ class DeviceUseStatement extends DomainResource {
     if (timingDateTime?.value != null) {
       json['timingDateTime'] = timingDateTime!.toJson();
     }
-    if (timingDateTimeElement != null) {
-      json['_timingDateTime'] = timingDateTimeElement!.toJson();
-    }
     if (recordedOn?.value != null) {
       json['recordedOn'] = recordedOn!.toJson();
-    }
-    if (recordedOnElement != null) {
-      json['_recordedOn'] = recordedOnElement!.toJson();
     }
     if (source != null) {
       json['source'] = source!.toJson();
@@ -418,9 +389,7 @@ class DeviceUseStatement extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -428,15 +397,12 @@ class DeviceUseStatement extends DomainResource {
     List<Identifier>? identifier,
     List<Reference>? basedOn,
     DeviceUseStatementStatus? status,
-    Element? statusElement,
     Reference? subject,
     List<Reference>? derivedFrom,
     Timing? timingTiming,
     Period? timingPeriod,
     FhirDateTime? timingDateTime,
-    Element? timingDateTimeElement,
     FhirDateTime? recordedOn,
-    Element? recordedOnElement,
     Reference? source,
     Reference? device,
     List<CodeableConcept>? reasonCode,
@@ -454,9 +420,7 @@ class DeviceUseStatement extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -464,16 +428,12 @@ class DeviceUseStatement extends DomainResource {
       identifier: identifier ?? this.identifier,
       basedOn: basedOn ?? this.basedOn,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       subject: subject ?? this.subject,
       derivedFrom: derivedFrom ?? this.derivedFrom,
       timingTiming: timingTiming ?? this.timingTiming,
       timingPeriod: timingPeriod ?? this.timingPeriod,
       timingDateTime: timingDateTime ?? this.timingDateTime,
-      timingDateTimeElement:
-          timingDateTimeElement ?? this.timingDateTimeElement,
       recordedOn: recordedOn ?? this.recordedOn,
-      recordedOnElement: recordedOnElement ?? this.recordedOnElement,
       source: source ?? this.source,
       device: device ?? this.device,
       reasonCode: reasonCode ?? this.reasonCode,

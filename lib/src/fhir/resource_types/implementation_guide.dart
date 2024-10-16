@@ -15,72 +15,27 @@ class ImplementationGuide extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.experimental,
-
-    /// Extensions for [experimental]
-    this.experimentalElement,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.publisher,
-
-    /// Extensions for [publisher]
-    this.publisherElement,
     this.contact,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.copyright,
-
-    /// Extensions for [copyright]
-    this.copyrightElement,
     required this.packageId,
-
-    /// Extensions for [packageId]
-    this.packageIdElement,
     this.license,
-
-    /// Extensions for [license]
-    this.licenseElement,
     required this.fhirVersion,
-
-    /// Extensions for [fhirVersion]
-    this.fhirVersionElement,
     this.dependsOn,
     this.global,
     this.definition,
@@ -98,27 +53,27 @@ class ImplementationGuide extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuide.fromJson(Map<String, dynamic> json) {
     return ImplementationGuide(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -128,7 +83,7 @@ class ImplementationGuide extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -137,7 +92,7 @@ class ImplementationGuide extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -146,86 +101,73 @@ class ImplementationGuide extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      url: FhirUri.fromJson(json['url']),
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
+      url: FhirUri.fromJson({
+        'value': json['url'],
+        '_value': json['_url'],
+      }),
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      name: FhirString.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
-      name: FhirString.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
-          : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
-          : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: PublicationStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson(json['experimental'])
+          ? FhirBoolean.fromJson({
+              'value': json['experimental'],
+              '_value': json['_experimental'],
+            })
           : null,
-      experimentalElement: json['_experimental'] != null
-          ? Element.fromJson(
-              json['_experimental'] as Map<String, dynamic>,
-            )
-          : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       publisher: json['publisher'] != null
-          ? FhirString.fromJson(json['publisher'])
-          : null,
-      publisherElement: json['_publisher'] != null
-          ? Element.fromJson(
-              json['_publisher'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['publisher'],
+              '_value': json['_publisher'],
+            })
           : null,
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       useContext: json['useContext'] != null
           ? (json['useContext'] as List<dynamic>)
               .map<UsageContext>(
-                (dynamic v) => UsageContext.fromJson(
+                (v) => UsageContext.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -234,48 +176,36 @@ class ImplementationGuide extends DomainResource {
       jurisdiction: json['jurisdiction'] != null
           ? (json['jurisdiction'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       copyright: json['copyright'] != null
-          ? FhirMarkdown.fromJson(json['copyright'])
+          ? FhirMarkdown.fromJson({
+              'value': json['copyright'],
+              '_value': json['_copyright'],
+            })
           : null,
-      copyrightElement: json['_copyright'] != null
-          ? Element.fromJson(
-              json['_copyright'] as Map<String, dynamic>,
-            )
-          : null,
-      packageId: FhirId.fromJson(json['packageId']),
-      packageIdElement: json['_packageId'] != null
-          ? Element.fromJson(
-              json['_packageId'] as Map<String, dynamic>,
-            )
-          : null,
+      packageId: FhirId.fromJson({
+        'value': json['packageId'],
+        '_value': json['_packageId'],
+      }),
       license: json['license'] != null
-          ? SPDXLicense.fromJson(json['license'])
+          ? SPDXLicense.fromJson({
+              'value': json['license'],
+              '_value': json['_license'],
+            })
           : null,
-      licenseElement: json['_license'] != null
-          ? Element.fromJson(
-              json['_license'] as Map<String, dynamic>,
-            )
-          : null,
-      fhirVersion: (json['fhirVersion'] as List<dynamic>)
-          .map<FHIRVersion>((dynamic v) => FHIRVersion.fromJson(v as dynamic))
-          .toList(),
-      fhirVersionElement: json['_fhirVersion'] != null
-          ? (json['_fhirVersion'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      fhirVersion: ensureNonNullList(parsePrimitiveList<FHIRVersion>(
+          json['fhirVersion'] as List<dynamic>?,
+          json['_fhirVersion'] as List<dynamic>?,
+          fromJson: FHIRVersion.fromJson)),
       dependsOn: json['dependsOn'] != null
           ? (json['dependsOn'] as List<dynamic>)
               .map<ImplementationGuideDependsOn>(
-                (dynamic v) => ImplementationGuideDependsOn.fromJson(
+                (v) => ImplementationGuideDependsOn.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -284,7 +214,7 @@ class ImplementationGuide extends DomainResource {
       global: json['global'] != null
           ? (json['global'] as List<dynamic>)
               .map<ImplementationGuideGlobal>(
-                (dynamic v) => ImplementationGuideGlobal.fromJson(
+                (v) => ImplementationGuideGlobal.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -303,7 +233,8 @@ class ImplementationGuide extends DomainResource {
     );
   }
 
-  /// Deserialize [ImplementationGuide] from a [String] or [YamlMap] object
+  /// Deserialize [ImplementationGuide] from a [String]
+  /// or [YamlMap] object
   factory ImplementationGuide.fromYaml(dynamic yaml) => yaml is String
       ? ImplementationGuide.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -313,10 +244,11 @@ class ImplementationGuide extends DomainResource {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ImplementationGuide cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ImplementationGuide cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ImplementationGuide] that takes in a [String]
+  /// Factory constructor for [ImplementationGuide]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ImplementationGuide.fromJsonString(String source) {
@@ -332,6 +264,15 @@ class ImplementationGuide extends DomainResource {
   @override
   String get fhirType => 'ImplementationGuide';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [url]
   /// An absolute URI that is used to identify this implementation guide when
   /// it is referenced in a specification, model, design or an instance; also
@@ -341,9 +282,6 @@ class ImplementationGuide extends DomainResource {
   /// the target of a canonical reference. It SHALL remain the same when the
   /// implementation guide is stored on different servers.
   final FhirUri url;
-
-  /// Extensions for [url]
-  final Element? urlElement;
 
   /// [version]
   /// The identifier that is used to identify this version of the
@@ -355,41 +293,26 @@ class ImplementationGuide extends DomainResource {
   /// can be placed in a lexicographical sequence.
   final FhirString? version;
 
-  /// Extensions for [version]
-  final Element? versionElement;
-
   /// [name]
   /// A natural language name identifying the implementation guide. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
   final FhirString name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [title]
   /// A short, descriptive, user-friendly title for the implementation guide.
   final FhirString? title;
-
-  /// Extensions for [title]
-  final Element? titleElement;
 
   /// [status]
   /// The status of this implementation guide. Enables tracking the
   /// life-cycle of the content.
   final PublicationStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [experimental]
   /// A Boolean value to indicate that this implementation guide is authored
   /// for testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
   final FhirBoolean? experimental;
-
-  /// Extensions for [experimental]
-  final Element? experimentalElement;
 
   /// [date]
   /// The date (and optionally time) when the implementation guide was
@@ -399,16 +322,10 @@ class ImplementationGuide extends DomainResource {
   /// changes.
   final FhirDateTime? date;
 
-  /// Extensions for [date]
-  final Element? dateElement;
-
   /// [publisher]
   /// The name of the organization or individual that published the
   /// implementation guide.
   final FhirString? publisher;
-
-  /// Extensions for [publisher]
-  final Element? publisherElement;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
@@ -419,9 +336,6 @@ class ImplementationGuide extends DomainResource {
   /// A free text natural language description of the implementation guide
   /// from a consumer's perspective.
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -442,9 +356,6 @@ class ImplementationGuide extends DomainResource {
   /// use and publishing of the implementation guide.
   final FhirMarkdown? copyright;
 
-  /// Extensions for [copyright]
-  final Element? copyrightElement;
-
   /// [packageId]
   /// The NPM package name for this Implementation Guide, used in the NPM
   /// package distribution, which is the primary mechanism by which FHIR
@@ -452,16 +363,10 @@ class ImplementationGuide extends DomainResource {
   /// unique, and should be assigned with care.
   final FhirId packageId;
 
-  /// Extensions for [packageId]
-  final Element? packageIdElement;
-
   /// [license]
   /// The license that applies to this Implementation Guide, using an SPDX
   /// license code, or 'not-open-source'.
   final SPDXLicense? license;
-
-  /// Extensions for [license]
-  final Element? licenseElement;
 
   /// [fhirVersion]
   /// The version(s) of the FHIR specification that this ImplementationGuide
@@ -469,9 +374,6 @@ class ImplementationGuide extends DomainResource {
   /// formal version of the specification, without the revision number, e.g.
   /// [publication].[major].[minor], which is 4.3.0 for this version.
   final List<FHIRVersion> fhirVersion;
-
-  /// Extensions for [fhirVersion]
-  final List<Element>? fhirVersionElement;
 
   /// [dependsOn]
   /// Another implementation guide that this implementation depends on.
@@ -506,9 +408,6 @@ class ImplementationGuide extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -527,52 +426,28 @@ class ImplementationGuide extends DomainResource {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['url'] = url.toJson();
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
-    }
     if (version?.value != null) {
       json['version'] = version!.toJson();
     }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
-    }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (title?.value != null) {
       json['title'] = title!.toJson();
-    }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
     }
     json['status'] = status.toJson();
     if (experimental?.value != null) {
       json['experimental'] = experimental!.toJson();
     }
-    if (experimentalElement != null) {
-      json['_experimental'] = experimentalElement!.toJson();
-    }
     if (date?.value != null) {
       json['date'] = date!.toJson();
     }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (publisher?.value != null) {
       json['publisher'] = publisher!.toJson();
-    }
-    if (publisherElement != null) {
-      json['_publisher'] = publisherElement!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] =
@@ -585,13 +460,7 @@ class ImplementationGuide extends DomainResource {
     if (copyright?.value != null) {
       json['copyright'] = copyright!.toJson();
     }
-    if (copyrightElement != null) {
-      json['_copyright'] = copyrightElement!.toJson();
-    }
     json['packageId'] = packageId.toJson();
-    if (packageIdElement != null) {
-      json['_packageId'] = packageIdElement!.toJson();
-    }
     if (license != null) {
       json['license'] = license!.toJson();
     }
@@ -622,42 +491,27 @@ class ImplementationGuide extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    Element? urlElement,
     FhirString? version,
-    Element? versionElement,
     FhirString? name,
-    Element? nameElement,
     FhirString? title,
-    Element? titleElement,
     PublicationStatus? status,
-    Element? statusElement,
     FhirBoolean? experimental,
-    Element? experimentalElement,
     FhirDateTime? date,
-    Element? dateElement,
     FhirString? publisher,
-    Element? publisherElement,
     List<ContactDetail>? contact,
     FhirMarkdown? description,
-    Element? descriptionElement,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
     FhirMarkdown? copyright,
-    Element? copyrightElement,
     FhirId? packageId,
-    Element? packageIdElement,
     SPDXLicense? license,
-    Element? licenseElement,
     List<FHIRVersion>? fhirVersion,
-    List<Element>? fhirVersionElement,
     List<ImplementationGuideDependsOn>? dependsOn,
     List<ImplementationGuideGlobal>? global,
     ImplementationGuideDefinition? definition,
@@ -673,42 +527,27 @@ class ImplementationGuide extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       experimental: experimental ?? this.experimental,
-      experimentalElement: experimentalElement ?? this.experimentalElement,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       publisher: publisher ?? this.publisher,
-      publisherElement: publisherElement ?? this.publisherElement,
       contact: contact ?? this.contact,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       useContext: useContext ?? this.useContext,
       jurisdiction: jurisdiction ?? this.jurisdiction,
       copyright: copyright ?? this.copyright,
-      copyrightElement: copyrightElement ?? this.copyrightElement,
       packageId: packageId ?? this.packageId,
-      packageIdElement: packageIdElement ?? this.packageIdElement,
       license: license ?? this.license,
-      licenseElement: licenseElement ?? this.licenseElement,
       fhirVersion: fhirVersion ?? this.fhirVersion,
-      fhirVersionElement: fhirVersionElement ?? this.fhirVersionElement,
       dependsOn: dependsOn ?? this.dependsOn,
       global: global ?? this.global,
       definition: definition ?? this.definition,
@@ -732,20 +571,11 @@ class ImplementationGuideDependsOn extends BackboneElement {
 
   ImplementationGuideDependsOn({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.uri,
-
-    /// Extensions for [uri]
-    this.uriElement,
     this.packageId,
-
-    /// Extensions for [packageId]
-    this.packageIdElement,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -757,11 +587,15 @@ class ImplementationGuideDependsOn extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideDependsOn.fromJson(Map<String, dynamic> json) {
     return ImplementationGuideDependsOn(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -770,36 +604,33 @@ class ImplementationGuideDependsOn extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      uri: FhirCanonical.fromJson(json['uri']),
-      uriElement: json['_uri'] != null
-          ? Element.fromJson(
-              json['_uri'] as Map<String, dynamic>,
-            )
+      uri: FhirCanonical.fromJson({
+        'value': json['uri'],
+        '_value': json['_uri'],
+      }),
+      packageId: json['packageId'] != null
+          ? FhirId.fromJson({
+              'value': json['packageId'],
+              '_value': json['_packageId'],
+            })
           : null,
-      packageId:
-          json['packageId'] != null ? FhirId.fromJson(json['packageId']) : null,
-      packageIdElement: json['_packageId'] != null
-          ? Element.fromJson(
-              json['_packageId'] as Map<String, dynamic>,
-            )
-          : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [ImplementationGuideDependsOn] from a [String] or [YamlMap] object
+  /// Deserialize [ImplementationGuideDependsOn] from a [String]
+  /// or [YamlMap] object
   factory ImplementationGuideDependsOn.fromYaml(dynamic yaml) => yaml is String
       ? ImplementationGuideDependsOn.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -809,10 +640,11 @@ class ImplementationGuideDependsOn extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ImplementationGuideDependsOn cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ImplementationGuideDependsOn cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ImplementationGuideDependsOn] that takes in a [String]
+  /// Factory constructor for [ImplementationGuideDependsOn]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ImplementationGuideDependsOn.fromJsonString(String source) {
@@ -828,28 +660,28 @@ class ImplementationGuideDependsOn extends BackboneElement {
   @override
   String get fhirType => 'ImplementationGuideDependsOn';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [uri]
   /// A canonical reference to the Implementation guide for the dependency.
   final FhirCanonical uri;
-
-  /// Extensions for [uri]
-  final Element? uriElement;
 
   /// [packageId]
   /// The NPM package name for the Implementation Guide that this IG depends
   /// on.
   final FhirId? packageId;
 
-  /// Extensions for [packageId]
-  final Element? packageIdElement;
-
   /// [version]
   /// The version of the IG that is depended on, when the correct version is
   /// required to understand the IG correctly.
   final FhirString? version;
-
-  /// Extensions for [version]
-  final Element? versionElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -865,20 +697,11 @@ class ImplementationGuideDependsOn extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['uri'] = uri.toJson();
-    if (uriElement != null) {
-      json['_uri'] = uriElement!.toJson();
-    }
     if (packageId?.value != null) {
       json['packageId'] = packageId!.toJson();
     }
-    if (packageIdElement != null) {
-      json['_packageId'] = packageIdElement!.toJson();
-    }
     if (version?.value != null) {
       json['version'] = version!.toJson();
-    }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
     }
     return json;
   }
@@ -891,11 +714,8 @@ class ImplementationGuideDependsOn extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirCanonical? uri,
-    Element? uriElement,
     FhirId? packageId,
-    Element? packageIdElement,
     FhirString? version,
-    Element? versionElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -908,11 +728,8 @@ class ImplementationGuideDependsOn extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       uri: uri ?? this.uri,
-      uriElement: uriElement ?? this.uriElement,
       packageId: packageId ?? this.packageId,
-      packageIdElement: packageIdElement ?? this.packageIdElement,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -931,16 +748,10 @@ class ImplementationGuideGlobal extends BackboneElement {
 
   ImplementationGuideGlobal({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     required this.profile,
-
-    /// Extensions for [profile]
-    this.profileElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -952,11 +763,15 @@ class ImplementationGuideGlobal extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideGlobal.fromJson(Map<String, dynamic> json) {
     return ImplementationGuideGlobal(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -965,28 +780,25 @@ class ImplementationGuideGlobal extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      type: FhirCode.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
-      profile: FhirCanonical.fromJson(json['profile']),
-      profileElement: json['_profile'] != null
-          ? Element.fromJson(
-              json['_profile'] as Map<String, dynamic>,
-            )
-          : null,
+      type: FhirCode.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
+      profile: FhirCanonical.fromJson({
+        'value': json['profile'],
+        '_value': json['_profile'],
+      }),
     );
   }
 
-  /// Deserialize [ImplementationGuideGlobal] from a [String] or [YamlMap] object
+  /// Deserialize [ImplementationGuideGlobal] from a [String]
+  /// or [YamlMap] object
   factory ImplementationGuideGlobal.fromYaml(dynamic yaml) => yaml is String
       ? ImplementationGuideGlobal.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -996,10 +808,11 @@ class ImplementationGuideGlobal extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ImplementationGuideGlobal cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ImplementationGuideGlobal cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ImplementationGuideGlobal] that takes in a [String]
+  /// Factory constructor for [ImplementationGuideGlobal]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ImplementationGuideGlobal.fromJsonString(String source) {
@@ -1015,19 +828,22 @@ class ImplementationGuideGlobal extends BackboneElement {
   @override
   String get fhirType => 'ImplementationGuideGlobal';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// The type of resource that all instances must conform to.
   final FhirCode type;
 
-  /// Extensions for [type]
-  final Element? typeElement;
-
   /// [profile]
   /// A reference to the profile that all instances must conform to.
   final FhirCanonical profile;
-
-  /// Extensions for [profile]
-  final Element? profileElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1043,13 +859,7 @@ class ImplementationGuideGlobal extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['type'] = type.toJson();
-    if (typeElement != null) {
-      json['_type'] = typeElement!.toJson();
-    }
     json['profile'] = profile.toJson();
-    if (profileElement != null) {
-      json['_profile'] = profileElement!.toJson();
-    }
     return json;
   }
 
@@ -1061,9 +871,7 @@ class ImplementationGuideGlobal extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirCode? type,
-    Element? typeElement,
     FhirCanonical? profile,
-    Element? profileElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1076,9 +884,7 @@ class ImplementationGuideGlobal extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       profile: profile ?? this.profile,
-      profileElement: profileElement ?? this.profileElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1097,7 +903,7 @@ class ImplementationGuideDefinition extends BackboneElement {
 
   ImplementationGuideDefinition({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.grouping,
     required this.resource,
@@ -1115,11 +921,15 @@ class ImplementationGuideDefinition extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideDefinition.fromJson(Map<String, dynamic> json) {
     return ImplementationGuideDefinition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1128,7 +938,7 @@ class ImplementationGuideDefinition extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1137,16 +947,19 @@ class ImplementationGuideDefinition extends BackboneElement {
       grouping: json['grouping'] != null
           ? (json['grouping'] as List<dynamic>)
               .map<ImplementationGuideGrouping>(
-                (dynamic v) => ImplementationGuideGrouping.fromJson(
+                (v) => ImplementationGuideGrouping.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      resource: (json['resource'] as List<dynamic>)
-          .map<ImplementationGuideResource>((dynamic v) =>
-              ImplementationGuideResource.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      resource: ensureNonNullList((json['resource'] as List<dynamic>)
+          .map<ImplementationGuideResource>(
+            (v) => ImplementationGuideResource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
       page: json['page'] != null
           ? ImplementationGuidePage.fromJson(
               json['page'] as Map<String, dynamic>,
@@ -1155,7 +968,7 @@ class ImplementationGuideDefinition extends BackboneElement {
       parameter: json['parameter'] != null
           ? (json['parameter'] as List<dynamic>)
               .map<ImplementationGuideParameter>(
-                (dynamic v) => ImplementationGuideParameter.fromJson(
+                (v) => ImplementationGuideParameter.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1164,7 +977,7 @@ class ImplementationGuideDefinition extends BackboneElement {
       template: json['template'] != null
           ? (json['template'] as List<dynamic>)
               .map<ImplementationGuideTemplate>(
-                (dynamic v) => ImplementationGuideTemplate.fromJson(
+                (v) => ImplementationGuideTemplate.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1173,7 +986,8 @@ class ImplementationGuideDefinition extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImplementationGuideDefinition] from a [String] or [YamlMap] object
+  /// Deserialize [ImplementationGuideDefinition] from a [String]
+  /// or [YamlMap] object
   factory ImplementationGuideDefinition.fromYaml(dynamic yaml) => yaml is String
       ? ImplementationGuideDefinition.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1183,10 +997,11 @@ class ImplementationGuideDefinition extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ImplementationGuideDefinition cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ImplementationGuideDefinition cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ImplementationGuideDefinition] that takes in a [String]
+  /// Factory constructor for [ImplementationGuideDefinition]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ImplementationGuideDefinition.fromJsonString(String source) {
@@ -1201,6 +1016,15 @@ class ImplementationGuideDefinition extends BackboneElement {
 
   @override
   String get fhirType => 'ImplementationGuideDefinition';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [grouping]
   /// A logical group of resources. Logical groups can be used when building
@@ -1308,16 +1132,10 @@ class ImplementationGuideGrouping extends BackboneElement {
 
   ImplementationGuideGrouping({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1329,11 +1147,15 @@ class ImplementationGuideGrouping extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideGrouping.fromJson(Map<String, dynamic> json) {
     return ImplementationGuideGrouping(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1342,30 +1164,27 @@ class ImplementationGuideGrouping extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: FhirString.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
-          : null,
+      name: FhirString.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [ImplementationGuideGrouping] from a [String] or [YamlMap] object
+  /// Deserialize [ImplementationGuideGrouping] from a [String]
+  /// or [YamlMap] object
   factory ImplementationGuideGrouping.fromYaml(dynamic yaml) => yaml is String
       ? ImplementationGuideGrouping.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1375,10 +1194,11 @@ class ImplementationGuideGrouping extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ImplementationGuideGrouping cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ImplementationGuideGrouping cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ImplementationGuideGrouping] that takes in a [String]
+  /// Factory constructor for [ImplementationGuideGrouping]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ImplementationGuideGrouping.fromJsonString(String source) {
@@ -1394,20 +1214,23 @@ class ImplementationGuideGrouping extends BackboneElement {
   @override
   String get fhirType => 'ImplementationGuideGrouping';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// The human-readable title to display for the package of resources when
   /// rendering the implementation guide.
   final FhirString name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [description]
   /// Human readable text describing the package.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1423,14 +1246,8 @@ class ImplementationGuideGrouping extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     return json;
   }
@@ -1443,9 +1260,7 @@ class ImplementationGuideGrouping extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    Element? nameElement,
     FhirString? description,
-    Element? descriptionElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1458,9 +1273,7 @@ class ImplementationGuideGrouping extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1481,33 +1294,15 @@ class ImplementationGuideResource extends BackboneElement {
 
   ImplementationGuideResource({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.reference,
     this.fhirVersion,
-
-    /// Extensions for [fhirVersion]
-    this.fhirVersionElement,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.exampleBoolean,
-
-    /// Extensions for [exampleBoolean]
-    this.exampleBooleanElement,
     this.exampleCanonical,
-
-    /// Extensions for [exampleCanonical]
-    this.exampleCanonicalElement,
     this.groupingId,
-
-    /// Extensions for [groupingId]
-    this.groupingIdElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1519,11 +1314,15 @@ class ImplementationGuideResource extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideResource.fromJson(Map<String, dynamic> json) {
     return ImplementationGuideResource(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1532,7 +1331,7 @@ class ImplementationGuideResource extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1541,62 +1340,45 @@ class ImplementationGuideResource extends BackboneElement {
       reference: Reference.fromJson(
         json['reference'] as Map<String, dynamic>,
       ),
-      fhirVersion: json['fhirVersion'] != null
-          ? (json['fhirVersion'] as List<dynamic>)
-              .map<FHIRVersion>(
-                (dynamic v) => FHIRVersion.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      fhirVersionElement: json['_fhirVersion'] != null
-          ? (json['_fhirVersion'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      fhirVersion: parsePrimitiveList<FHIRVersion>(
+          json['fhirVersion'] as List<dynamic>?,
+          json['_fhirVersion'] as List<dynamic>?,
+          fromJson: FHIRVersion.fromJson),
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       exampleBoolean: json['exampleBoolean'] != null
-          ? FhirBoolean.fromJson(json['exampleBoolean'])
-          : null,
-      exampleBooleanElement: json['_exampleBoolean'] != null
-          ? Element.fromJson(
-              json['_exampleBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['exampleBoolean'],
+              '_value': json['_exampleBoolean'],
+            })
           : null,
       exampleCanonical: json['exampleCanonical'] != null
-          ? FhirCanonical.fromJson(json['exampleCanonical'])
-          : null,
-      exampleCanonicalElement: json['_exampleCanonical'] != null
-          ? Element.fromJson(
-              json['_exampleCanonical'] as Map<String, dynamic>,
-            )
+          ? FhirCanonical.fromJson({
+              'value': json['exampleCanonical'],
+              '_value': json['_exampleCanonical'],
+            })
           : null,
       groupingId: json['groupingId'] != null
-          ? FhirId.fromJson(json['groupingId'])
-          : null,
-      groupingIdElement: json['_groupingId'] != null
-          ? Element.fromJson(
-              json['_groupingId'] as Map<String, dynamic>,
-            )
+          ? FhirId.fromJson({
+              'value': json['groupingId'],
+              '_value': json['_groupingId'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [ImplementationGuideResource] from a [String] or [YamlMap] object
+  /// Deserialize [ImplementationGuideResource] from a [String]
+  /// or [YamlMap] object
   factory ImplementationGuideResource.fromYaml(dynamic yaml) => yaml is String
       ? ImplementationGuideResource.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1606,10 +1388,11 @@ class ImplementationGuideResource extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ImplementationGuideResource cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ImplementationGuideResource cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ImplementationGuideResource] that takes in a [String]
+  /// Factory constructor for [ImplementationGuideResource]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ImplementationGuideResource.fromJsonString(String source) {
@@ -1625,6 +1408,15 @@ class ImplementationGuideResource extends BackboneElement {
   @override
   String get fhirType => 'ImplementationGuideResource';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [reference]
   /// Where this resource is found.
   final Reference reference;
@@ -1635,25 +1427,16 @@ class ImplementationGuideResource extends BackboneElement {
   /// versions stated in ImplementationGuide.fhirVersion.
   final List<FHIRVersion>? fhirVersion;
 
-  /// Extensions for [fhirVersion]
-  final List<Element>? fhirVersionElement;
-
   /// [name]
   /// A human assigned name for the resource. All resources SHOULD have a
   /// name, but the name may be extracted from the resource (e.g.
   /// ValueSet.name).
   final FhirString? name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [description]
   /// A description of the reason that a resource has been included in the
   /// implementation guide.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [exampleBoolean]
   /// If true or a reference, indicates the resource is an example instance.
@@ -1661,24 +1444,15 @@ class ImplementationGuideResource extends BackboneElement {
   /// the specified profile.
   final FhirBoolean? exampleBoolean;
 
-  /// Extensions for [exampleBoolean]
-  final Element? exampleBooleanElement;
-
   /// [exampleCanonical]
   /// If true or a reference, indicates the resource is an example instance.
   /// If a reference is present, indicates that the example is an example of
   /// the specified profile.
   final FhirCanonical? exampleCanonical;
 
-  /// Extensions for [exampleCanonical]
-  final Element? exampleCanonicalElement;
-
   /// [groupingId]
   /// Reference to the id of the grouping this resource appears in.
   final FhirId? groupingId;
-
-  /// Extensions for [groupingId]
-  final Element? groupingIdElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1701,32 +1475,17 @@ class ImplementationGuideResource extends BackboneElement {
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (exampleBoolean?.value != null) {
       json['exampleBoolean'] = exampleBoolean!.toJson();
     }
-    if (exampleBooleanElement != null) {
-      json['_exampleBoolean'] = exampleBooleanElement!.toJson();
-    }
     if (exampleCanonical?.value != null) {
       json['exampleCanonical'] = exampleCanonical!.toJson();
     }
-    if (exampleCanonicalElement != null) {
-      json['_exampleCanonical'] = exampleCanonicalElement!.toJson();
-    }
     if (groupingId?.value != null) {
       json['groupingId'] = groupingId!.toJson();
-    }
-    if (groupingIdElement != null) {
-      json['_groupingId'] = groupingIdElement!.toJson();
     }
     return json;
   }
@@ -1740,17 +1499,11 @@ class ImplementationGuideResource extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Reference? reference,
     List<FHIRVersion>? fhirVersion,
-    List<Element>? fhirVersionElement,
     FhirString? name,
-    Element? nameElement,
     FhirString? description,
-    Element? descriptionElement,
     FhirBoolean? exampleBoolean,
-    Element? exampleBooleanElement,
     FhirCanonical? exampleCanonical,
-    Element? exampleCanonicalElement,
     FhirId? groupingId,
-    Element? groupingIdElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1764,19 +1517,11 @@ class ImplementationGuideResource extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       reference: reference ?? this.reference,
       fhirVersion: fhirVersion ?? this.fhirVersion,
-      fhirVersionElement: fhirVersionElement ?? this.fhirVersionElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       exampleBoolean: exampleBoolean ?? this.exampleBoolean,
-      exampleBooleanElement:
-          exampleBooleanElement ?? this.exampleBooleanElement,
       exampleCanonical: exampleCanonical ?? this.exampleCanonical,
-      exampleCanonicalElement:
-          exampleCanonicalElement ?? this.exampleCanonicalElement,
       groupingId: groupingId ?? this.groupingId,
-      groupingIdElement: groupingIdElement ?? this.groupingIdElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1795,22 +1540,12 @@ class ImplementationGuidePage extends BackboneElement {
 
   ImplementationGuidePage({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.nameUrl,
-
-    /// Extensions for [nameUrl]
-    this.nameUrlElement,
     this.nameReference,
     required this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     required this.generation,
-
-    /// Extensions for [generation]
-    this.generationElement,
-    this.page,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1822,11 +1557,15 @@ class ImplementationGuidePage extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuidePage.fromJson(Map<String, dynamic> json) {
     return ImplementationGuidePage(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1835,49 +1574,36 @@ class ImplementationGuidePage extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      nameUrl:
-          json['nameUrl'] != null ? FhirUrl.fromJson(json['nameUrl']) : null,
-      nameUrlElement: json['_nameUrl'] != null
-          ? Element.fromJson(
-              json['_nameUrl'] as Map<String, dynamic>,
-            )
+      nameUrl: json['nameUrl'] != null
+          ? FhirUrl.fromJson({
+              'value': json['nameUrl'],
+              '_value': json['_nameUrl'],
+            })
           : null,
       nameReference: json['nameReference'] != null
           ? Reference.fromJson(
               json['nameReference'] as Map<String, dynamic>,
             )
           : null,
-      title: FhirString.fromJson(json['title']),
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
-          : null,
-      generation: GuidePageGeneration.fromJson(json['generation']),
-      generationElement: json['_generation'] != null
-          ? Element.fromJson(
-              json['_generation'] as Map<String, dynamic>,
-            )
-          : null,
-      page: json['page'] != null
-          ? (json['page'] as List<dynamic>)
-              .map<ImplementationGuidePage>(
-                (dynamic v) => ImplementationGuidePage.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      title: FhirString.fromJson({
+        'value': json['title'],
+        '_value': json['_title'],
+      }),
+      generation: GuidePageGeneration.fromJson({
+        'value': json['generation'],
+        '_value': json['_generation'],
+      }),
     );
   }
 
-  /// Deserialize [ImplementationGuidePage] from a [String] or [YamlMap] object
+  /// Deserialize [ImplementationGuidePage] from a [String]
+  /// or [YamlMap] object
   factory ImplementationGuidePage.fromYaml(dynamic yaml) => yaml is String
       ? ImplementationGuidePage.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1887,10 +1613,11 @@ class ImplementationGuidePage extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ImplementationGuidePage cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ImplementationGuidePage cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ImplementationGuidePage] that takes in a [String]
+  /// Factory constructor for [ImplementationGuidePage]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ImplementationGuidePage.fromJsonString(String source) {
@@ -1906,12 +1633,18 @@ class ImplementationGuidePage extends BackboneElement {
   @override
   String get fhirType => 'ImplementationGuidePage';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [nameUrl]
   /// The source address for the page.
   final FhirUrl? nameUrl;
-
-  /// Extensions for [nameUrl]
-  final Element? nameUrlElement;
 
   /// [nameReference]
   /// The source address for the page.
@@ -1922,19 +1655,9 @@ class ImplementationGuidePage extends BackboneElement {
   /// such as table of contents, bread crumbs, etc.
   final FhirString title;
 
-  /// Extensions for [title]
-  final Element? titleElement;
-
   /// [generation]
   /// A code that indicates how the page is generated.
   final GuidePageGeneration generation;
-
-  /// Extensions for [generation]
-  final Element? generationElement;
-
-  /// [page]
-  /// Nested Pages/Sections under this page.
-  final List<ImplementationGuidePage>? page;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1952,21 +1675,11 @@ class ImplementationGuidePage extends BackboneElement {
     if (nameUrl?.value != null) {
       json['nameUrl'] = nameUrl!.toJson();
     }
-    if (nameUrlElement != null) {
-      json['_nameUrl'] = nameUrlElement!.toJson();
-    }
     if (nameReference != null) {
       json['nameReference'] = nameReference!.toJson();
     }
     json['title'] = title.toJson();
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
-    }
     json['generation'] = generation.toJson();
-    if (page != null && page!.isNotEmpty) {
-      json['page'] =
-          page!.map((ImplementationGuidePage v) => v.toJson()).toList();
-    }
     return json;
   }
 
@@ -1978,13 +1691,9 @@ class ImplementationGuidePage extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUrl? nameUrl,
-    Element? nameUrlElement,
     Reference? nameReference,
     FhirString? title,
-    Element? titleElement,
     GuidePageGeneration? generation,
-    Element? generationElement,
-    List<ImplementationGuidePage>? page,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1997,13 +1706,9 @@ class ImplementationGuidePage extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       nameUrl: nameUrl ?? this.nameUrl,
-      nameUrlElement: nameUrlElement ?? this.nameUrlElement,
       nameReference: nameReference ?? this.nameReference,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       generation: generation ?? this.generation,
-      generationElement: generationElement ?? this.generationElement,
-      page: page ?? this.page,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2021,16 +1726,10 @@ class ImplementationGuideParameter extends BackboneElement {
 
   ImplementationGuideParameter({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.code,
-
-    /// Extensions for [code]
-    this.codeElement,
     required this.value,
-
-    /// Extensions for [value]
-    this.valueElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2042,11 +1741,15 @@ class ImplementationGuideParameter extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideParameter.fromJson(Map<String, dynamic> json) {
     return ImplementationGuideParameter(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2055,28 +1758,25 @@ class ImplementationGuideParameter extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      code: GuideParameterCode.fromJson(json['code']),
-      codeElement: json['_code'] != null
-          ? Element.fromJson(
-              json['_code'] as Map<String, dynamic>,
-            )
-          : null,
-      value: FhirString.fromJson(json['value']),
-      valueElement: json['_value'] != null
-          ? Element.fromJson(
-              json['_value'] as Map<String, dynamic>,
-            )
-          : null,
+      code: GuideParameterCode.fromJson({
+        'value': json['code'],
+        '_value': json['_code'],
+      }),
+      value: FhirString.fromJson({
+        'value': json['value'],
+        '_value': json['_value'],
+      }),
     );
   }
 
-  /// Deserialize [ImplementationGuideParameter] from a [String] or [YamlMap] object
+  /// Deserialize [ImplementationGuideParameter] from a [String]
+  /// or [YamlMap] object
   factory ImplementationGuideParameter.fromYaml(dynamic yaml) => yaml is String
       ? ImplementationGuideParameter.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2086,10 +1786,11 @@ class ImplementationGuideParameter extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ImplementationGuideParameter cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ImplementationGuideParameter cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ImplementationGuideParameter] that takes in a [String]
+  /// Factory constructor for [ImplementationGuideParameter]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ImplementationGuideParameter.fromJsonString(String source) {
@@ -2105,21 +1806,24 @@ class ImplementationGuideParameter extends BackboneElement {
   @override
   String get fhirType => 'ImplementationGuideParameter';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [code]
   /// apply | path-resource | path-pages | path-tx-cache |
   /// expansion-parameter | rule-broken-links | generate-xml | generate-json
   /// | generate-turtle | html-template.
   final GuideParameterCode code;
 
-  /// Extensions for [code]
-  final Element? codeElement;
-
   /// [value]
   /// Value for named type.
   final FhirString value;
-
-  /// Extensions for [value]
-  final Element? valueElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2136,9 +1840,6 @@ class ImplementationGuideParameter extends BackboneElement {
     }
     json['code'] = code.toJson();
     json['value'] = value.toJson();
-    if (valueElement != null) {
-      json['_value'] = valueElement!.toJson();
-    }
     return json;
   }
 
@@ -2150,9 +1851,7 @@ class ImplementationGuideParameter extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     GuideParameterCode? code,
-    Element? codeElement,
     FhirString? value,
-    Element? valueElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2165,9 +1864,7 @@ class ImplementationGuideParameter extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      codeElement: codeElement ?? this.codeElement,
       value: value ?? this.value,
-      valueElement: valueElement ?? this.valueElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2185,20 +1882,11 @@ class ImplementationGuideTemplate extends BackboneElement {
 
   ImplementationGuideTemplate({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.code,
-
-    /// Extensions for [code]
-    this.codeElement,
     required this.source,
-
-    /// Extensions for [source]
-    this.sourceElement,
     this.scope,
-
-    /// Extensions for [scope]
-    this.scopeElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2210,11 +1898,15 @@ class ImplementationGuideTemplate extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideTemplate.fromJson(Map<String, dynamic> json) {
     return ImplementationGuideTemplate(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2223,34 +1915,31 @@ class ImplementationGuideTemplate extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      code: FhirCode.fromJson(json['code']),
-      codeElement: json['_code'] != null
-          ? Element.fromJson(
-              json['_code'] as Map<String, dynamic>,
-            )
-          : null,
-      source: FhirString.fromJson(json['source']),
-      sourceElement: json['_source'] != null
-          ? Element.fromJson(
-              json['_source'] as Map<String, dynamic>,
-            )
-          : null,
-      scope: json['scope'] != null ? FhirString.fromJson(json['scope']) : null,
-      scopeElement: json['_scope'] != null
-          ? Element.fromJson(
-              json['_scope'] as Map<String, dynamic>,
-            )
+      code: FhirCode.fromJson({
+        'value': json['code'],
+        '_value': json['_code'],
+      }),
+      source: FhirString.fromJson({
+        'value': json['source'],
+        '_value': json['_source'],
+      }),
+      scope: json['scope'] != null
+          ? FhirString.fromJson({
+              'value': json['scope'],
+              '_value': json['_scope'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [ImplementationGuideTemplate] from a [String] or [YamlMap] object
+  /// Deserialize [ImplementationGuideTemplate] from a [String]
+  /// or [YamlMap] object
   factory ImplementationGuideTemplate.fromYaml(dynamic yaml) => yaml is String
       ? ImplementationGuideTemplate.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2260,10 +1949,11 @@ class ImplementationGuideTemplate extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ImplementationGuideTemplate cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ImplementationGuideTemplate cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ImplementationGuideTemplate] that takes in a [String]
+  /// Factory constructor for [ImplementationGuideTemplate]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ImplementationGuideTemplate.fromJsonString(String source) {
@@ -2279,26 +1969,26 @@ class ImplementationGuideTemplate extends BackboneElement {
   @override
   String get fhirType => 'ImplementationGuideTemplate';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [code]
   /// Type of template specified.
   final FhirCode code;
-
-  /// Extensions for [code]
-  final Element? codeElement;
 
   /// [source]
   /// The source location for the template.
   final FhirString source;
 
-  /// Extensions for [source]
-  final Element? sourceElement;
-
   /// [scope]
   /// The scope in which the template applies.
   final FhirString? scope;
-
-  /// Extensions for [scope]
-  final Element? scopeElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2314,18 +2004,9 @@ class ImplementationGuideTemplate extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['code'] = code.toJson();
-    if (codeElement != null) {
-      json['_code'] = codeElement!.toJson();
-    }
     json['source'] = source.toJson();
-    if (sourceElement != null) {
-      json['_source'] = sourceElement!.toJson();
-    }
     if (scope?.value != null) {
       json['scope'] = scope!.toJson();
-    }
-    if (scopeElement != null) {
-      json['_scope'] = scopeElement!.toJson();
     }
     return json;
   }
@@ -2338,11 +2019,8 @@ class ImplementationGuideTemplate extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirCode? code,
-    Element? codeElement,
     FhirString? source,
-    Element? sourceElement,
     FhirString? scope,
-    Element? scopeElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2355,11 +2033,8 @@ class ImplementationGuideTemplate extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      codeElement: codeElement ?? this.codeElement,
       source: source ?? this.source,
-      sourceElement: sourceElement ?? this.sourceElement,
       scope: scope ?? this.scope,
-      scopeElement: scopeElement ?? this.scopeElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2378,22 +2053,13 @@ class ImplementationGuideManifest extends BackboneElement {
 
   ImplementationGuideManifest({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.rendering,
-
-    /// Extensions for [rendering]
-    this.renderingElement,
     required this.resource,
     this.page,
     this.image,
-
-    /// Extensions for [image]
-    this.imageElement,
     this.other,
-
-    /// Extensions for [other]
-    this.otherElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2405,11 +2071,15 @@ class ImplementationGuideManifest extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideManifest.fromJson(Map<String, dynamic> json) {
     return ImplementationGuideManifest(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2418,65 +2088,45 @@ class ImplementationGuideManifest extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       rendering: json['rendering'] != null
-          ? FhirUrl.fromJson(json['rendering'])
+          ? FhirUrl.fromJson({
+              'value': json['rendering'],
+              '_value': json['_rendering'],
+            })
           : null,
-      renderingElement: json['_rendering'] != null
-          ? Element.fromJson(
-              json['_rendering'] as Map<String, dynamic>,
-            )
-          : null,
-      resource: (json['resource'] as List<dynamic>)
-          .map<ImplementationGuideResource>((dynamic v) =>
-              ImplementationGuideResource.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      resource: ensureNonNullList((json['resource'] as List<dynamic>)
+          .map<ImplementationGuideResource>(
+            (v) => ImplementationGuideResource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
       page: json['page'] != null
           ? (json['page'] as List<dynamic>)
               .map<ImplementationGuidePage>(
-                (dynamic v) => ImplementationGuidePage.fromJson(
+                (v) => ImplementationGuidePage.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      image: json['image'] != null
-          ? (json['image'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      imageElement: json['_image'] != null
-          ? (json['_image'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      other: json['other'] != null
-          ? (json['other'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      otherElement: json['_other'] != null
-          ? (json['_other'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      image: parsePrimitiveList<FhirString>(
+          json['image'] as List<dynamic>?, json['_image'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
+      other: parsePrimitiveList<FhirString>(
+          json['other'] as List<dynamic>?, json['_other'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
     );
   }
 
-  /// Deserialize [ImplementationGuideManifest] from a [String] or [YamlMap] object
+  /// Deserialize [ImplementationGuideManifest] from a [String]
+  /// or [YamlMap] object
   factory ImplementationGuideManifest.fromYaml(dynamic yaml) => yaml is String
       ? ImplementationGuideManifest.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2486,10 +2136,11 @@ class ImplementationGuideManifest extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ImplementationGuideManifest cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ImplementationGuideManifest cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ImplementationGuideManifest] that takes in a [String]
+  /// Factory constructor for [ImplementationGuideManifest]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ImplementationGuideManifest.fromJsonString(String source) {
@@ -2505,13 +2156,19 @@ class ImplementationGuideManifest extends BackboneElement {
   @override
   String get fhirType => 'ImplementationGuideManifest';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [rendering]
   /// A pointer to official web page, PDF or other rendering of the
   /// implementation guide.
   final FhirUrl? rendering;
-
-  /// Extensions for [rendering]
-  final Element? renderingElement;
 
   /// [resource]
   /// A resource that is part of the implementation guide. Conformance
@@ -2528,17 +2185,11 @@ class ImplementationGuideManifest extends BackboneElement {
   /// Indicates a relative path to an image that exists within the IG.
   final List<FhirString>? image;
 
-  /// Extensions for [image]
-  final List<Element>? imageElement;
-
   /// [other]
   /// Indicates the relative path of an additional non-page, non-image file
   /// that is part of the IG - e.g. zip, jar and similar files that could be
   /// the target of a hyperlink in a derived IG.
   final List<FhirString>? other;
-
-  /// Extensions for [other]
-  final List<Element>? otherElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2556,9 +2207,6 @@ class ImplementationGuideManifest extends BackboneElement {
     if (rendering?.value != null) {
       json['rendering'] = rendering!.toJson();
     }
-    if (renderingElement != null) {
-      json['_rendering'] = renderingElement!.toJson();
-    }
     json['resource'] = resource
         .map<dynamic>((ImplementationGuideResource v) => v.toJson())
         .toList();
@@ -2569,14 +2217,8 @@ class ImplementationGuideManifest extends BackboneElement {
     if (image != null && image!.isNotEmpty) {
       json['image'] = image!.map((FhirString v) => v.toJson()).toList();
     }
-    if (imageElement != null && imageElement!.isNotEmpty) {
-      json['_image'] = imageElement!.map((Element v) => v.toJson()).toList();
-    }
     if (other != null && other!.isNotEmpty) {
       json['other'] = other!.map((FhirString v) => v.toJson()).toList();
-    }
-    if (otherElement != null && otherElement!.isNotEmpty) {
-      json['_other'] = otherElement!.map((Element v) => v.toJson()).toList();
     }
     return json;
   }
@@ -2589,13 +2231,10 @@ class ImplementationGuideManifest extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUrl? rendering,
-    Element? renderingElement,
     List<ImplementationGuideResource>? resource,
     List<ImplementationGuidePage>? page,
     List<FhirString>? image,
-    List<Element>? imageElement,
     List<FhirString>? other,
-    List<Element>? otherElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2608,13 +2247,10 @@ class ImplementationGuideManifest extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       rendering: rendering ?? this.rendering,
-      renderingElement: renderingElement ?? this.renderingElement,
       resource: resource ?? this.resource,
       page: page ?? this.page,
       image: image ?? this.image,
-      imageElement: imageElement ?? this.imageElement,
       other: other ?? this.other,
-      otherElement: otherElement ?? this.otherElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2635,21 +2271,12 @@ class ImplementationGuideResource1 extends BackboneElement {
 
   ImplementationGuideResource1({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.reference,
     this.exampleBoolean,
-
-    /// Extensions for [exampleBoolean]
-    this.exampleBooleanElement,
     this.exampleCanonical,
-
-    /// Extensions for [exampleCanonical]
-    this.exampleCanonicalElement,
     this.relativePath,
-
-    /// Extensions for [relativePath]
-    this.relativePathElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2661,11 +2288,15 @@ class ImplementationGuideResource1 extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuideResource1.fromJson(Map<String, dynamic> json) {
     return ImplementationGuideResource1(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2674,7 +2305,7 @@ class ImplementationGuideResource1 extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2684,33 +2315,28 @@ class ImplementationGuideResource1 extends BackboneElement {
         json['reference'] as Map<String, dynamic>,
       ),
       exampleBoolean: json['exampleBoolean'] != null
-          ? FhirBoolean.fromJson(json['exampleBoolean'])
-          : null,
-      exampleBooleanElement: json['_exampleBoolean'] != null
-          ? Element.fromJson(
-              json['_exampleBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['exampleBoolean'],
+              '_value': json['_exampleBoolean'],
+            })
           : null,
       exampleCanonical: json['exampleCanonical'] != null
-          ? FhirCanonical.fromJson(json['exampleCanonical'])
-          : null,
-      exampleCanonicalElement: json['_exampleCanonical'] != null
-          ? Element.fromJson(
-              json['_exampleCanonical'] as Map<String, dynamic>,
-            )
+          ? FhirCanonical.fromJson({
+              'value': json['exampleCanonical'],
+              '_value': json['_exampleCanonical'],
+            })
           : null,
       relativePath: json['relativePath'] != null
-          ? FhirUrl.fromJson(json['relativePath'])
-          : null,
-      relativePathElement: json['_relativePath'] != null
-          ? Element.fromJson(
-              json['_relativePath'] as Map<String, dynamic>,
-            )
+          ? FhirUrl.fromJson({
+              'value': json['relativePath'],
+              '_value': json['_relativePath'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [ImplementationGuideResource1] from a [String] or [YamlMap] object
+  /// Deserialize [ImplementationGuideResource1] from a [String]
+  /// or [YamlMap] object
   factory ImplementationGuideResource1.fromYaml(dynamic yaml) => yaml is String
       ? ImplementationGuideResource1.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2720,10 +2346,11 @@ class ImplementationGuideResource1 extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ImplementationGuideResource1 cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ImplementationGuideResource1 cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ImplementationGuideResource1] that takes in a [String]
+  /// Factory constructor for [ImplementationGuideResource1]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ImplementationGuideResource1.fromJsonString(String source) {
@@ -2739,6 +2366,15 @@ class ImplementationGuideResource1 extends BackboneElement {
   @override
   String get fhirType => 'ImplementationGuideResource1';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [reference]
   /// Where this resource is found.
   final Reference reference;
@@ -2749,24 +2385,15 @@ class ImplementationGuideResource1 extends BackboneElement {
   /// the specified profile.
   final FhirBoolean? exampleBoolean;
 
-  /// Extensions for [exampleBoolean]
-  final Element? exampleBooleanElement;
-
   /// [exampleCanonical]
   /// If true or a reference, indicates the resource is an example instance.
   /// If a reference is present, indicates that the example is an example of
   /// the specified profile.
   final FhirCanonical? exampleCanonical;
 
-  /// Extensions for [exampleCanonical]
-  final Element? exampleCanonicalElement;
-
   /// [relativePath]
   /// The relative path for primary page for this resource within the IG.
   final FhirUrl? relativePath;
-
-  /// Extensions for [relativePath]
-  final Element? relativePathElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2785,20 +2412,11 @@ class ImplementationGuideResource1 extends BackboneElement {
     if (exampleBoolean?.value != null) {
       json['exampleBoolean'] = exampleBoolean!.toJson();
     }
-    if (exampleBooleanElement != null) {
-      json['_exampleBoolean'] = exampleBooleanElement!.toJson();
-    }
     if (exampleCanonical?.value != null) {
       json['exampleCanonical'] = exampleCanonical!.toJson();
     }
-    if (exampleCanonicalElement != null) {
-      json['_exampleCanonical'] = exampleCanonicalElement!.toJson();
-    }
     if (relativePath?.value != null) {
       json['relativePath'] = relativePath!.toJson();
-    }
-    if (relativePathElement != null) {
-      json['_relativePath'] = relativePathElement!.toJson();
     }
     return json;
   }
@@ -2812,11 +2430,8 @@ class ImplementationGuideResource1 extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Reference? reference,
     FhirBoolean? exampleBoolean,
-    Element? exampleBooleanElement,
     FhirCanonical? exampleCanonical,
-    Element? exampleCanonicalElement,
     FhirUrl? relativePath,
-    Element? relativePathElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2830,13 +2445,8 @@ class ImplementationGuideResource1 extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       reference: reference ?? this.reference,
       exampleBoolean: exampleBoolean ?? this.exampleBoolean,
-      exampleBooleanElement:
-          exampleBooleanElement ?? this.exampleBooleanElement,
       exampleCanonical: exampleCanonical ?? this.exampleCanonical,
-      exampleCanonicalElement:
-          exampleCanonicalElement ?? this.exampleCanonicalElement,
       relativePath: relativePath ?? this.relativePath,
-      relativePathElement: relativePathElement ?? this.relativePathElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2854,20 +2464,11 @@ class ImplementationGuidePage1 extends BackboneElement {
 
   ImplementationGuidePage1({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     this.anchor,
-
-    /// Extensions for [anchor]
-    this.anchorElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2879,11 +2480,15 @@ class ImplementationGuidePage1 extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImplementationGuidePage1.fromJson(Map<String, dynamic> json) {
     return ImplementationGuidePage1(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2892,42 +2497,30 @@ class ImplementationGuidePage1 extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: FhirString.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: FhirString.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
-          : null,
-      anchor: json['anchor'] != null
-          ? (json['anchor'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      anchorElement: json['_anchor'] != null
-          ? (json['_anchor'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      anchor: parsePrimitiveList<FhirString>(
+          json['anchor'] as List<dynamic>?, json['_anchor'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
     );
   }
 
-  /// Deserialize [ImplementationGuidePage1] from a [String] or [YamlMap] object
+  /// Deserialize [ImplementationGuidePage1] from a [String]
+  /// or [YamlMap] object
   factory ImplementationGuidePage1.fromYaml(dynamic yaml) => yaml is String
       ? ImplementationGuidePage1.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2937,10 +2530,11 @@ class ImplementationGuidePage1 extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ImplementationGuidePage1 cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ImplementationGuidePage1 cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ImplementationGuidePage1] that takes in a [String]
+  /// Factory constructor for [ImplementationGuidePage1]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ImplementationGuidePage1.fromJsonString(String source) {
@@ -2956,26 +2550,26 @@ class ImplementationGuidePage1 extends BackboneElement {
   @override
   String get fhirType => 'ImplementationGuidePage1';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// Relative path to the page.
   final FhirString name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [title]
   /// Label for the page intended for human display.
   final FhirString? title;
 
-  /// Extensions for [title]
-  final Element? titleElement;
-
   /// [anchor]
   /// The name of an anchor available on the page.
   final List<FhirString>? anchor;
-
-  /// Extensions for [anchor]
-  final List<Element>? anchorElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2991,20 +2585,11 @@ class ImplementationGuidePage1 extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (title?.value != null) {
       json['title'] = title!.toJson();
     }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
-    }
     if (anchor != null && anchor!.isNotEmpty) {
       json['anchor'] = anchor!.map((FhirString v) => v.toJson()).toList();
-    }
-    if (anchorElement != null && anchorElement!.isNotEmpty) {
-      json['_anchor'] = anchorElement!.map((Element v) => v.toJson()).toList();
     }
     return json;
   }
@@ -3017,11 +2602,8 @@ class ImplementationGuidePage1 extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    Element? nameElement,
     FhirString? title,
-    Element? titleElement,
     List<FhirString>? anchor,
-    List<Element>? anchorElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3034,11 +2616,8 @@ class ImplementationGuidePage1 extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       anchor: anchor ?? this.anchor,
-      anchorElement: anchorElement ?? this.anchorElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

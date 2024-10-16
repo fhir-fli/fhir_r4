@@ -12,83 +12,32 @@ class EventDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.identifier,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     this.subtitle,
-
-    /// Extensions for [subtitle]
-    this.subtitleElement,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.experimental,
-
-    /// Extensions for [experimental]
-    this.experimentalElement,
     this.subjectCodeableConcept,
     this.subjectReference,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.publisher,
-
-    /// Extensions for [publisher]
-    this.publisherElement,
     this.contact,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-
-    /// Extensions for [purpose]
-    this.purposeElement,
     this.usage,
-
-    /// Extensions for [usage]
-    this.usageElement,
     this.copyright,
-
-    /// Extensions for [copyright]
-    this.copyrightElement,
     this.approvalDate,
-
-    /// Extensions for [approvalDate]
-    this.approvalDateElement,
     this.lastReviewDate,
-
-    /// Extensions for [lastReviewDate]
-    this.lastReviewDateElement,
     this.effectivePeriod,
     this.topic,
     this.author,
@@ -110,27 +59,27 @@ class EventDefinition extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EventDefinition.fromJson(Map<String, dynamic> json) {
     return EventDefinition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -140,7 +89,7 @@ class EventDefinition extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -149,7 +98,7 @@ class EventDefinition extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -158,67 +107,60 @@ class EventDefinition extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
+      url: json['url'] != null
+          ? FhirUri.fromJson({
+              'value': json['url'],
+              '_value': json['_url'],
+            })
           : null,
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
       subtitle: json['subtitle'] != null
-          ? FhirString.fromJson(json['subtitle'])
+          ? FhirString.fromJson({
+              'value': json['subtitle'],
+              '_value': json['_subtitle'],
+            })
           : null,
-      subtitleElement: json['_subtitle'] != null
-          ? Element.fromJson(
-              json['_subtitle'] as Map<String, dynamic>,
-            )
-          : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: PublicationStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson(json['experimental'])
-          : null,
-      experimentalElement: json['_experimental'] != null
-          ? Element.fromJson(
-              json['_experimental'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['experimental'],
+              '_value': json['_experimental'],
+            })
           : null,
       subjectCodeableConcept: json['subjectCodeableConcept'] != null
           ? CodeableConcept.fromJson(
@@ -230,41 +172,37 @@ class EventDefinition extends DomainResource {
               json['subjectReference'] as Map<String, dynamic>,
             )
           : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       publisher: json['publisher'] != null
-          ? FhirString.fromJson(json['publisher'])
-          : null,
-      publisherElement: json['_publisher'] != null
-          ? Element.fromJson(
-              json['_publisher'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['publisher'],
+              '_value': json['_publisher'],
+            })
           : null,
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       useContext: json['useContext'] != null
           ? (json['useContext'] as List<dynamic>)
               .map<UsageContext>(
-                (dynamic v) => UsageContext.fromJson(
+                (v) => UsageContext.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -273,49 +211,41 @@ class EventDefinition extends DomainResource {
       jurisdiction: json['jurisdiction'] != null
           ? (json['jurisdiction'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       purpose: json['purpose'] != null
-          ? FhirMarkdown.fromJson(json['purpose'])
+          ? FhirMarkdown.fromJson({
+              'value': json['purpose'],
+              '_value': json['_purpose'],
+            })
           : null,
-      purposeElement: json['_purpose'] != null
-          ? Element.fromJson(
-              json['_purpose'] as Map<String, dynamic>,
-            )
-          : null,
-      usage: json['usage'] != null ? FhirString.fromJson(json['usage']) : null,
-      usageElement: json['_usage'] != null
-          ? Element.fromJson(
-              json['_usage'] as Map<String, dynamic>,
-            )
+      usage: json['usage'] != null
+          ? FhirString.fromJson({
+              'value': json['usage'],
+              '_value': json['_usage'],
+            })
           : null,
       copyright: json['copyright'] != null
-          ? FhirMarkdown.fromJson(json['copyright'])
-          : null,
-      copyrightElement: json['_copyright'] != null
-          ? Element.fromJson(
-              json['_copyright'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['copyright'],
+              '_value': json['_copyright'],
+            })
           : null,
       approvalDate: json['approvalDate'] != null
-          ? FhirDate.fromJson(json['approvalDate'])
-          : null,
-      approvalDateElement: json['_approvalDate'] != null
-          ? Element.fromJson(
-              json['_approvalDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['approvalDate'],
+              '_value': json['_approvalDate'],
+            })
           : null,
       lastReviewDate: json['lastReviewDate'] != null
-          ? FhirDate.fromJson(json['lastReviewDate'])
-          : null,
-      lastReviewDateElement: json['_lastReviewDate'] != null
-          ? Element.fromJson(
-              json['_lastReviewDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['lastReviewDate'],
+              '_value': json['_lastReviewDate'],
+            })
           : null,
       effectivePeriod: json['effectivePeriod'] != null
           ? Period.fromJson(
@@ -325,7 +255,7 @@ class EventDefinition extends DomainResource {
       topic: json['topic'] != null
           ? (json['topic'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -334,7 +264,7 @@ class EventDefinition extends DomainResource {
       author: json['author'] != null
           ? (json['author'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -343,7 +273,7 @@ class EventDefinition extends DomainResource {
       editor: json['editor'] != null
           ? (json['editor'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -352,7 +282,7 @@ class EventDefinition extends DomainResource {
       reviewer: json['reviewer'] != null
           ? (json['reviewer'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -361,7 +291,7 @@ class EventDefinition extends DomainResource {
       endorser: json['endorser'] != null
           ? (json['endorser'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -370,20 +300,24 @@ class EventDefinition extends DomainResource {
       relatedArtifact: json['relatedArtifact'] != null
           ? (json['relatedArtifact'] as List<dynamic>)
               .map<RelatedArtifact>(
-                (dynamic v) => RelatedArtifact.fromJson(
+                (v) => RelatedArtifact.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      trigger: (json['trigger'] as List<dynamic>)
-          .map<TriggerDefinition>((dynamic v) =>
-              TriggerDefinition.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      trigger: ensureNonNullList((json['trigger'] as List<dynamic>)
+          .map<TriggerDefinition>(
+            (v) => TriggerDefinition.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
     );
   }
 
-  /// Deserialize [EventDefinition] from a [String] or [YamlMap] object
+  /// Deserialize [EventDefinition] from a [String]
+  /// or [YamlMap] object
   factory EventDefinition.fromYaml(dynamic yaml) => yaml is String
       ? EventDefinition.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -392,11 +326,11 @@ class EventDefinition extends DomainResource {
           ? EventDefinition.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'EventDefinition cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('EventDefinition cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [EventDefinition] that takes in a [String]
+  /// Factory constructor for [EventDefinition]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory EventDefinition.fromJsonString(String source) {
@@ -412,6 +346,15 @@ class EventDefinition extends DomainResource {
   @override
   String get fhirType => 'EventDefinition';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [url]
   /// An absolute URI that is used to identify this event definition when it
   /// is referenced in a specification, model, design or an instance; also
@@ -421,9 +364,6 @@ class EventDefinition extends DomainResource {
   /// target of a canonical reference. It SHALL remain the same when the
   /// event definition is stored on different servers.
   final FhirUri? url;
-
-  /// Extensions for [url]
-  final Element? urlElement;
 
   /// [identifier]
   /// A formal identifier that is used to identify this event definition when
@@ -441,49 +381,31 @@ class EventDefinition extends DomainResource {
   /// lexicographical sequence.
   final FhirString? version;
 
-  /// Extensions for [version]
-  final Element? versionElement;
-
   /// [name]
   /// A natural language name identifying the event definition. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
   final FhirString? name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [title]
   /// A short, descriptive, user-friendly title for the event definition.
   final FhirString? title;
-
-  /// Extensions for [title]
-  final Element? titleElement;
 
   /// [subtitle]
   /// An explanatory or alternate title for the event definition giving
   /// additional information about its content.
   final FhirString? subtitle;
 
-  /// Extensions for [subtitle]
-  final Element? subtitleElement;
-
   /// [status]
   /// The status of this event definition. Enables tracking the life-cycle of
   /// the content.
   final PublicationStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [experimental]
   /// A Boolean value to indicate that this event definition is authored for
   /// testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
   final FhirBoolean? experimental;
-
-  /// Extensions for [experimental]
-  final Element? experimentalElement;
 
   /// [subjectCodeableConcept]
   /// A code or group definition that describes the intended subject of the
@@ -502,16 +424,10 @@ class EventDefinition extends DomainResource {
   /// the substantive content of the event definition changes.
   final FhirDateTime? date;
 
-  /// Extensions for [date]
-  final Element? dateElement;
-
   /// [publisher]
   /// The name of the organization or individual that published the event
   /// definition.
   final FhirString? publisher;
-
-  /// Extensions for [publisher]
-  final Element? publisherElement;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
@@ -522,9 +438,6 @@ class EventDefinition extends DomainResource {
   /// A free text natural language description of the event definition from a
   /// consumer's perspective.
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -544,16 +457,10 @@ class EventDefinition extends DomainResource {
   /// designed as it has.
   final FhirMarkdown? purpose;
 
-  /// Extensions for [purpose]
-  final Element? purposeElement;
-
   /// [usage]
   /// A detailed description of how the event definition is used from a
   /// clinical perspective.
   final FhirString? usage;
-
-  /// Extensions for [usage]
-  final Element? usageElement;
 
   /// [copyright]
   /// A copyright statement relating to the event definition and/or its
@@ -561,26 +468,17 @@ class EventDefinition extends DomainResource {
   /// use and publishing of the event definition.
   final FhirMarkdown? copyright;
 
-  /// Extensions for [copyright]
-  final Element? copyrightElement;
-
   /// [approvalDate]
   /// The date on which the resource content was approved by the publisher.
   /// Approval happens once when the content is officially approved for
   /// usage.
   final FhirDate? approvalDate;
 
-  /// Extensions for [approvalDate]
-  final Element? approvalDateElement;
-
   /// [lastReviewDate]
   /// The date on which the resource content was last reviewed. Review
   /// happens periodically after approval but does not change the original
   /// approval date.
   final FhirDate? lastReviewDate;
-
-  /// Extensions for [lastReviewDate]
-  final Element? lastReviewDateElement;
 
   /// [effectivePeriod]
   /// The period during which the event definition content was or is planned
@@ -636,9 +534,6 @@ class EventDefinition extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -659,9 +554,6 @@ class EventDefinition extends DomainResource {
     if (url?.value != null) {
       json['url'] = url!.toJson();
     }
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
-    }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
           identifier!.map((Identifier v) => v.toJson()).toList();
@@ -669,33 +561,18 @@ class EventDefinition extends DomainResource {
     if (version?.value != null) {
       json['version'] = version!.toJson();
     }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
-    }
     if (name?.value != null) {
       json['name'] = name!.toJson();
-    }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
     }
     if (title?.value != null) {
       json['title'] = title!.toJson();
     }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
-    }
     if (subtitle?.value != null) {
       json['subtitle'] = subtitle!.toJson();
-    }
-    if (subtitleElement != null) {
-      json['_subtitle'] = subtitleElement!.toJson();
     }
     json['status'] = status.toJson();
     if (experimental?.value != null) {
       json['experimental'] = experimental!.toJson();
-    }
-    if (experimentalElement != null) {
-      json['_experimental'] = experimentalElement!.toJson();
     }
     if (subjectCodeableConcept != null) {
       json['subjectCodeableConcept'] = subjectCodeableConcept!.toJson();
@@ -706,23 +583,14 @@ class EventDefinition extends DomainResource {
     if (date?.value != null) {
       json['date'] = date!.toJson();
     }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (publisher?.value != null) {
       json['publisher'] = publisher!.toJson();
-    }
-    if (publisherElement != null) {
-      json['_publisher'] = publisherElement!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] =
@@ -735,32 +603,17 @@ class EventDefinition extends DomainResource {
     if (purpose?.value != null) {
       json['purpose'] = purpose!.toJson();
     }
-    if (purposeElement != null) {
-      json['_purpose'] = purposeElement!.toJson();
-    }
     if (usage?.value != null) {
       json['usage'] = usage!.toJson();
-    }
-    if (usageElement != null) {
-      json['_usage'] = usageElement!.toJson();
     }
     if (copyright?.value != null) {
       json['copyright'] = copyright!.toJson();
     }
-    if (copyrightElement != null) {
-      json['_copyright'] = copyrightElement!.toJson();
-    }
     if (approvalDate?.value != null) {
       json['approvalDate'] = approvalDate!.toJson();
     }
-    if (approvalDateElement != null) {
-      json['_approvalDate'] = approvalDateElement!.toJson();
-    }
     if (lastReviewDate?.value != null) {
       json['lastReviewDate'] = lastReviewDate!.toJson();
-    }
-    if (lastReviewDateElement != null) {
-      json['_lastReviewDate'] = lastReviewDateElement!.toJson();
     }
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
@@ -798,49 +651,32 @@ class EventDefinition extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    Element? urlElement,
     List<Identifier>? identifier,
     FhirString? version,
-    Element? versionElement,
     FhirString? name,
-    Element? nameElement,
     FhirString? title,
-    Element? titleElement,
     FhirString? subtitle,
-    Element? subtitleElement,
     PublicationStatus? status,
-    Element? statusElement,
     FhirBoolean? experimental,
-    Element? experimentalElement,
     CodeableConcept? subjectCodeableConcept,
     Reference? subjectReference,
     FhirDateTime? date,
-    Element? dateElement,
     FhirString? publisher,
-    Element? publisherElement,
     List<ContactDetail>? contact,
     FhirMarkdown? description,
-    Element? descriptionElement,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
     FhirMarkdown? purpose,
-    Element? purposeElement,
     FhirString? usage,
-    Element? usageElement,
     FhirMarkdown? copyright,
-    Element? copyrightElement,
     FhirDate? approvalDate,
-    Element? approvalDateElement,
     FhirDate? lastReviewDate,
-    Element? lastReviewDateElement,
     Period? effectivePeriod,
     List<CodeableConcept>? topic,
     List<ContactDetail>? author,
@@ -860,51 +696,33 @@ class EventDefinition extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       identifier: identifier ?? this.identifier,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       subtitle: subtitle ?? this.subtitle,
-      subtitleElement: subtitleElement ?? this.subtitleElement,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       experimental: experimental ?? this.experimental,
-      experimentalElement: experimentalElement ?? this.experimentalElement,
       subjectCodeableConcept:
           subjectCodeableConcept ?? this.subjectCodeableConcept,
       subjectReference: subjectReference ?? this.subjectReference,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       publisher: publisher ?? this.publisher,
-      publisherElement: publisherElement ?? this.publisherElement,
       contact: contact ?? this.contact,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       useContext: useContext ?? this.useContext,
       jurisdiction: jurisdiction ?? this.jurisdiction,
       purpose: purpose ?? this.purpose,
-      purposeElement: purposeElement ?? this.purposeElement,
       usage: usage ?? this.usage,
-      usageElement: usageElement ?? this.usageElement,
       copyright: copyright ?? this.copyright,
-      copyrightElement: copyrightElement ?? this.copyrightElement,
       approvalDate: approvalDate ?? this.approvalDate,
-      approvalDateElement: approvalDateElement ?? this.approvalDateElement,
       lastReviewDate: lastReviewDate ?? this.lastReviewDate,
-      lastReviewDateElement:
-          lastReviewDateElement ?? this.lastReviewDateElement,
       effectivePeriod: effectivePeriod ?? this.effectivePeriod,
       topic: topic ?? this.topic,
       author: author ?? this.author,

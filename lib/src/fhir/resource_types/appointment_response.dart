@@ -12,37 +12,19 @@ class AppointmentResponse extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.appointment,
     this.start,
-
-    /// Extensions for [start]
-    this.startElement,
     this.end,
-
-    /// Extensions for [end]
-    this.endElement,
     this.participantType,
     this.actor,
     required this.participantStatus,
-
-    /// Extensions for [participantStatus]
-    this.participantStatusElement,
     this.comment,
-
-    /// Extensions for [comment]
-    this.commentElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -56,27 +38,27 @@ class AppointmentResponse extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AppointmentResponse.fromJson(Map<String, dynamic> json) {
     return AppointmentResponse(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -86,7 +68,7 @@ class AppointmentResponse extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -95,7 +77,7 @@ class AppointmentResponse extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -104,7 +86,7 @@ class AppointmentResponse extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -113,7 +95,7 @@ class AppointmentResponse extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -122,22 +104,22 @@ class AppointmentResponse extends DomainResource {
       appointment: Reference.fromJson(
         json['appointment'] as Map<String, dynamic>,
       ),
-      start: json['start'] != null ? FhirInstant.fromJson(json['start']) : null,
-      startElement: json['_start'] != null
-          ? Element.fromJson(
-              json['_start'] as Map<String, dynamic>,
-            )
+      start: json['start'] != null
+          ? FhirInstant.fromJson({
+              'value': json['start'],
+              '_value': json['_start'],
+            })
           : null,
-      end: json['end'] != null ? FhirInstant.fromJson(json['end']) : null,
-      endElement: json['_end'] != null
-          ? Element.fromJson(
-              json['_end'] as Map<String, dynamic>,
-            )
+      end: json['end'] != null
+          ? FhirInstant.fromJson({
+              'value': json['end'],
+              '_value': json['_end'],
+            })
           : null,
       participantType: json['participantType'] != null
           ? (json['participantType'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -148,24 +130,21 @@ class AppointmentResponse extends DomainResource {
               json['actor'] as Map<String, dynamic>,
             )
           : null,
-      participantStatus:
-          ParticipationStatus.fromJson(json['participantStatus']),
-      participantStatusElement: json['_participantStatus'] != null
-          ? Element.fromJson(
-              json['_participantStatus'] as Map<String, dynamic>,
-            )
-          : null,
-      comment:
-          json['comment'] != null ? FhirString.fromJson(json['comment']) : null,
-      commentElement: json['_comment'] != null
-          ? Element.fromJson(
-              json['_comment'] as Map<String, dynamic>,
-            )
+      participantStatus: ParticipationStatus.fromJson({
+        'value': json['participantStatus'],
+        '_value': json['_participantStatus'],
+      }),
+      comment: json['comment'] != null
+          ? FhirString.fromJson({
+              'value': json['comment'],
+              '_value': json['_comment'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [AppointmentResponse] from a [String] or [YamlMap] object
+  /// Deserialize [AppointmentResponse] from a [String]
+  /// or [YamlMap] object
   factory AppointmentResponse.fromYaml(dynamic yaml) => yaml is String
       ? AppointmentResponse.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -175,10 +154,11 @@ class AppointmentResponse extends DomainResource {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'AppointmentResponse cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'AppointmentResponse cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [AppointmentResponse] that takes in a [String]
+  /// Factory constructor for [AppointmentResponse]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory AppointmentResponse.fromJsonString(String source) {
@@ -193,6 +173,15 @@ class AppointmentResponse extends DomainResource {
 
   @override
   String get fhirType => 'AppointmentResponse';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// This records identifiers associated with this appointment response
@@ -210,17 +199,11 @@ class AppointmentResponse extends DomainResource {
   /// time.
   final FhirInstant? start;
 
-  /// Extensions for [start]
-  final Element? startElement;
-
   /// [end]
   /// This may be either the same as the appointment request to confirm the
   /// details of the appointment, or alternately a new time to request a
   /// re-negotiation of the end time.
   final FhirInstant? end;
-
-  /// Extensions for [end]
-  final Element? endElement;
 
   /// [participantType]
   /// Role of participant in the appointment.
@@ -239,15 +222,9 @@ class AppointmentResponse extends DomainResource {
   /// (as a confirmation of the time) or can be empty.
   final ParticipationStatus participantStatus;
 
-  /// Extensions for [participantStatus]
-  final Element? participantStatusElement;
-
   /// [comment]
   /// Additional comments about the appointment.
   final FhirString? comment;
-
-  /// Extensions for [comment]
-  final Element? commentElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -260,9 +237,6 @@ class AppointmentResponse extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -289,14 +263,8 @@ class AppointmentResponse extends DomainResource {
     if (start?.value != null) {
       json['start'] = start!.toJson();
     }
-    if (startElement != null) {
-      json['_start'] = startElement!.toJson();
-    }
     if (end?.value != null) {
       json['end'] = end!.toJson();
-    }
-    if (endElement != null) {
-      json['_end'] = endElement!.toJson();
     }
     if (participantType != null && participantType!.isNotEmpty) {
       json['participantType'] =
@@ -309,9 +277,6 @@ class AppointmentResponse extends DomainResource {
     if (comment?.value != null) {
       json['comment'] = comment!.toJson();
     }
-    if (commentElement != null) {
-      json['_comment'] = commentElement!.toJson();
-    }
     return json;
   }
 
@@ -322,9 +287,7 @@ class AppointmentResponse extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -332,15 +295,11 @@ class AppointmentResponse extends DomainResource {
     List<Identifier>? identifier,
     Reference? appointment,
     FhirInstant? start,
-    Element? startElement,
     FhirInstant? end,
-    Element? endElement,
     List<CodeableConcept>? participantType,
     Reference? actor,
     ParticipationStatus? participantStatus,
-    Element? participantStatusElement,
     FhirString? comment,
-    Element? commentElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -352,9 +311,7 @@ class AppointmentResponse extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -362,16 +319,11 @@ class AppointmentResponse extends DomainResource {
       identifier: identifier ?? this.identifier,
       appointment: appointment ?? this.appointment,
       start: start ?? this.start,
-      startElement: startElement ?? this.startElement,
       end: end ?? this.end,
-      endElement: endElement ?? this.endElement,
       participantType: participantType ?? this.participantType,
       actor: actor ?? this.actor,
       participantStatus: participantStatus ?? this.participantStatus,
-      participantStatusElement:
-          participantStatusElement ?? this.participantStatusElement,
       comment: comment ?? this.comment,
-      commentElement: commentElement ?? this.commentElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

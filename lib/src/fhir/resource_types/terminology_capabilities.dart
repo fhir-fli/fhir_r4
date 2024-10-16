@@ -14,80 +14,32 @@ class TerminologyCapabilities extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.experimental,
-
-    /// Extensions for [experimental]
-    this.experimentalElement,
     required this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.publisher,
-
-    /// Extensions for [publisher]
-    this.publisherElement,
     this.contact,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-
-    /// Extensions for [purpose]
-    this.purposeElement,
     this.copyright,
-
-    /// Extensions for [copyright]
-    this.copyrightElement,
     required this.kind,
-
-    /// Extensions for [kind]
-    this.kindElement,
     this.software,
     this.implementation,
     this.lockedDate,
-
-    /// Extensions for [lockedDate]
-    this.lockedDateElement,
     this.codeSystem,
     this.expansion,
     this.codeSearch,
-
-    /// Extensions for [codeSearch]
-    this.codeSearchElement,
     this.validateCode,
     this.translation,
     this.closure,
@@ -104,27 +56,27 @@ class TerminologyCapabilities extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilities.fromJson(Map<String, dynamic> json) {
     return TerminologyCapabilities(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -134,7 +86,7 @@ class TerminologyCapabilities extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -143,7 +95,7 @@ class TerminologyCapabilities extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -152,86 +104,75 @@ class TerminologyCapabilities extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
+      url: json['url'] != null
+          ? FhirUri.fromJson({
+              'value': json['url'],
+              '_value': json['_url'],
+            })
           : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: PublicationStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson(json['experimental'])
+          ? FhirBoolean.fromJson({
+              'value': json['experimental'],
+              '_value': json['_experimental'],
+            })
           : null,
-      experimentalElement: json['_experimental'] != null
-          ? Element.fromJson(
-              json['_experimental'] as Map<String, dynamic>,
-            )
-          : null,
-      date: FhirDateTime.fromJson(json['date']),
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
-          : null,
+      date: FhirDateTime.fromJson({
+        'value': json['date'],
+        '_value': json['_date'],
+      }),
       publisher: json['publisher'] != null
-          ? FhirString.fromJson(json['publisher'])
-          : null,
-      publisherElement: json['_publisher'] != null
-          ? Element.fromJson(
-              json['_publisher'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['publisher'],
+              '_value': json['_publisher'],
+            })
           : null,
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       useContext: json['useContext'] != null
           ? (json['useContext'] as List<dynamic>)
               .map<UsageContext>(
-                (dynamic v) => UsageContext.fromJson(
+                (v) => UsageContext.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -240,34 +181,28 @@ class TerminologyCapabilities extends DomainResource {
       jurisdiction: json['jurisdiction'] != null
           ? (json['jurisdiction'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       purpose: json['purpose'] != null
-          ? FhirMarkdown.fromJson(json['purpose'])
-          : null,
-      purposeElement: json['_purpose'] != null
-          ? Element.fromJson(
-              json['_purpose'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['purpose'],
+              '_value': json['_purpose'],
+            })
           : null,
       copyright: json['copyright'] != null
-          ? FhirMarkdown.fromJson(json['copyright'])
+          ? FhirMarkdown.fromJson({
+              'value': json['copyright'],
+              '_value': json['_copyright'],
+            })
           : null,
-      copyrightElement: json['_copyright'] != null
-          ? Element.fromJson(
-              json['_copyright'] as Map<String, dynamic>,
-            )
-          : null,
-      kind: CapabilityStatementKind.fromJson(json['kind']),
-      kindElement: json['_kind'] != null
-          ? Element.fromJson(
-              json['_kind'] as Map<String, dynamic>,
-            )
-          : null,
+      kind: CapabilityStatementKind.fromJson({
+        'value': json['kind'],
+        '_value': json['_kind'],
+      }),
       software: json['software'] != null
           ? TerminologyCapabilitiesSoftware.fromJson(
               json['software'] as Map<String, dynamic>,
@@ -279,17 +214,15 @@ class TerminologyCapabilities extends DomainResource {
             )
           : null,
       lockedDate: json['lockedDate'] != null
-          ? FhirBoolean.fromJson(json['lockedDate'])
-          : null,
-      lockedDateElement: json['_lockedDate'] != null
-          ? Element.fromJson(
-              json['_lockedDate'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['lockedDate'],
+              '_value': json['_lockedDate'],
+            })
           : null,
       codeSystem: json['codeSystem'] != null
           ? (json['codeSystem'] as List<dynamic>)
               .map<TerminologyCapabilitiesCodeSystem>(
-                (dynamic v) => TerminologyCapabilitiesCodeSystem.fromJson(
+                (v) => TerminologyCapabilitiesCodeSystem.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -301,12 +234,10 @@ class TerminologyCapabilities extends DomainResource {
             )
           : null,
       codeSearch: json['codeSearch'] != null
-          ? CodeSearchSupport.fromJson(json['codeSearch'])
-          : null,
-      codeSearchElement: json['_codeSearch'] != null
-          ? Element.fromJson(
-              json['_codeSearch'] as Map<String, dynamic>,
-            )
+          ? CodeSearchSupport.fromJson({
+              'value': json['codeSearch'],
+              '_value': json['_codeSearch'],
+            })
           : null,
       validateCode: json['validateCode'] != null
           ? TerminologyCapabilitiesValidateCode.fromJson(
@@ -326,7 +257,8 @@ class TerminologyCapabilities extends DomainResource {
     );
   }
 
-  /// Deserialize [TerminologyCapabilities] from a [String] or [YamlMap] object
+  /// Deserialize [TerminologyCapabilities] from a [String]
+  /// or [YamlMap] object
   factory TerminologyCapabilities.fromYaml(dynamic yaml) => yaml is String
       ? TerminologyCapabilities.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -336,10 +268,11 @@ class TerminologyCapabilities extends DomainResource {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'TerminologyCapabilities cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'TerminologyCapabilities cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TerminologyCapabilities] that takes in a [String]
+  /// Factory constructor for [TerminologyCapabilities]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TerminologyCapabilities.fromJsonString(String source) {
@@ -355,6 +288,15 @@ class TerminologyCapabilities extends DomainResource {
   @override
   String get fhirType => 'TerminologyCapabilities';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [url]
   /// An absolute URI that is used to identify this terminology capabilities
   /// when it is referenced in a specification, model, design or an instance;
@@ -366,9 +308,6 @@ class TerminologyCapabilities extends DomainResource {
   /// servers.
   final FhirUri? url;
 
-  /// Extensions for [url]
-  final Element? urlElement;
-
   /// [version]
   /// The identifier that is used to identify this version of the terminology
   /// capabilities when it is referenced in a specification, model, design or
@@ -379,42 +318,27 @@ class TerminologyCapabilities extends DomainResource {
   /// placed in a lexicographical sequence.
   final FhirString? version;
 
-  /// Extensions for [version]
-  final Element? versionElement;
-
   /// [name]
   /// A natural language name identifying the terminology capabilities. This
   /// name should be usable as an identifier for the module by machine
   /// processing applications such as code generation.
   final FhirString? name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [title]
   /// A short, descriptive, user-friendly title for the terminology
   /// capabilities.
   final FhirString? title;
-
-  /// Extensions for [title]
-  final Element? titleElement;
 
   /// [status]
   /// The status of this terminology capabilities. Enables tracking the
   /// life-cycle of the content.
   final PublicationStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [experimental]
   /// A Boolean value to indicate that this terminology capabilities is
   /// authored for testing purposes (or education/evaluation/marketing) and
   /// is not intended to be used for genuine usage.
   final FhirBoolean? experimental;
-
-  /// Extensions for [experimental]
-  final Element? experimentalElement;
 
   /// [date]
   /// The date (and optionally time) when the terminology capabilities was
@@ -424,16 +348,10 @@ class TerminologyCapabilities extends DomainResource {
   /// changes.
   final FhirDateTime date;
 
-  /// Extensions for [date]
-  final Element? dateElement;
-
   /// [publisher]
   /// The name of the organization or individual that published the
   /// terminology capabilities.
   final FhirString? publisher;
-
-  /// Extensions for [publisher]
-  final Element? publisherElement;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
@@ -447,9 +365,6 @@ class TerminologyCapabilities extends DomainResource {
   /// solution, for example as a formal expression of requirements as part of
   /// an RFP.
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -469,17 +384,11 @@ class TerminologyCapabilities extends DomainResource {
   /// has been designed as it has.
   final FhirMarkdown? purpose;
 
-  /// Extensions for [purpose]
-  final Element? purposeElement;
-
   /// [copyright]
   /// A copyright statement relating to the terminology capabilities and/or
   /// its contents. Copyright statements are generally legal restrictions on
   /// the use and publishing of the terminology capabilities.
   final FhirMarkdown? copyright;
-
-  /// Extensions for [copyright]
-  final Element? copyrightElement;
 
   /// [kind]
   /// The way that this statement is intended to be used, to describe an
@@ -487,9 +396,6 @@ class TerminologyCapabilities extends DomainResource {
   /// instance of software) or a class of implementation (e.g. a desired
   /// purchase).
   final CapabilityStatementKind kind;
-
-  /// Extensions for [kind]
-  final Element? kindElement;
 
   /// [software]
   /// Software that is covered by this terminology capability statement. It
@@ -507,9 +413,6 @@ class TerminologyCapabilities extends DomainResource {
   /// Whether the server supports lockedDate.
   final FhirBoolean? lockedDate;
 
-  /// Extensions for [lockedDate]
-  final Element? lockedDateElement;
-
   /// [codeSystem]
   /// Identifies a code system that is supported by the server. If there is a
   /// no code system URL, then this declares the general assumptions a client
@@ -525,9 +428,6 @@ class TerminologyCapabilities extends DomainResource {
   /// The degree to which the server supports the code search parameter on
   /// ValueSet, if it is supported.
   final CodeSearchSupport? codeSearch;
-
-  /// Extensions for [codeSearch]
-  final Element? codeSearchElement;
 
   /// [validateCode]
   /// Information about the
@@ -556,9 +456,6 @@ class TerminologyCapabilities extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -579,52 +476,28 @@ class TerminologyCapabilities extends DomainResource {
     if (url?.value != null) {
       json['url'] = url!.toJson();
     }
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
-    }
     if (version?.value != null) {
       json['version'] = version!.toJson();
-    }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
     }
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (title?.value != null) {
       json['title'] = title!.toJson();
-    }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
     }
     json['status'] = status.toJson();
     if (experimental?.value != null) {
       json['experimental'] = experimental!.toJson();
     }
-    if (experimentalElement != null) {
-      json['_experimental'] = experimentalElement!.toJson();
-    }
     json['date'] = date.toJson();
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (publisher?.value != null) {
       json['publisher'] = publisher!.toJson();
-    }
-    if (publisherElement != null) {
-      json['_publisher'] = publisherElement!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] =
@@ -637,14 +510,8 @@ class TerminologyCapabilities extends DomainResource {
     if (purpose?.value != null) {
       json['purpose'] = purpose!.toJson();
     }
-    if (purposeElement != null) {
-      json['_purpose'] = purposeElement!.toJson();
-    }
     if (copyright?.value != null) {
       json['copyright'] = copyright!.toJson();
-    }
-    if (copyrightElement != null) {
-      json['_copyright'] = copyrightElement!.toJson();
     }
     json['kind'] = kind.toJson();
     if (software != null) {
@@ -655,9 +522,6 @@ class TerminologyCapabilities extends DomainResource {
     }
     if (lockedDate?.value != null) {
       json['lockedDate'] = lockedDate!.toJson();
-    }
-    if (lockedDateElement != null) {
-      json['_lockedDate'] = lockedDateElement!.toJson();
     }
     if (codeSystem != null && codeSystem!.isNotEmpty) {
       json['codeSystem'] = codeSystem!
@@ -689,48 +553,32 @@ class TerminologyCapabilities extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    Element? urlElement,
     FhirString? version,
-    Element? versionElement,
     FhirString? name,
-    Element? nameElement,
     FhirString? title,
-    Element? titleElement,
     PublicationStatus? status,
-    Element? statusElement,
     FhirBoolean? experimental,
-    Element? experimentalElement,
     FhirDateTime? date,
-    Element? dateElement,
     FhirString? publisher,
-    Element? publisherElement,
     List<ContactDetail>? contact,
     FhirMarkdown? description,
-    Element? descriptionElement,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
     FhirMarkdown? purpose,
-    Element? purposeElement,
     FhirMarkdown? copyright,
-    Element? copyrightElement,
     CapabilityStatementKind? kind,
-    Element? kindElement,
     TerminologyCapabilitiesSoftware? software,
     TerminologyCapabilitiesImplementation? implementation,
     FhirBoolean? lockedDate,
-    Element? lockedDateElement,
     List<TerminologyCapabilitiesCodeSystem>? codeSystem,
     TerminologyCapabilitiesExpansion? expansion,
     CodeSearchSupport? codeSearch,
-    Element? codeSearchElement,
     TerminologyCapabilitiesValidateCode? validateCode,
     TerminologyCapabilitiesTranslation? translation,
     TerminologyCapabilitiesClosure? closure,
@@ -745,48 +593,32 @@ class TerminologyCapabilities extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       experimental: experimental ?? this.experimental,
-      experimentalElement: experimentalElement ?? this.experimentalElement,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       publisher: publisher ?? this.publisher,
-      publisherElement: publisherElement ?? this.publisherElement,
       contact: contact ?? this.contact,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       useContext: useContext ?? this.useContext,
       jurisdiction: jurisdiction ?? this.jurisdiction,
       purpose: purpose ?? this.purpose,
-      purposeElement: purposeElement ?? this.purposeElement,
       copyright: copyright ?? this.copyright,
-      copyrightElement: copyrightElement ?? this.copyrightElement,
       kind: kind ?? this.kind,
-      kindElement: kindElement ?? this.kindElement,
       software: software ?? this.software,
       implementation: implementation ?? this.implementation,
       lockedDate: lockedDate ?? this.lockedDate,
-      lockedDateElement: lockedDateElement ?? this.lockedDateElement,
       codeSystem: codeSystem ?? this.codeSystem,
       expansion: expansion ?? this.expansion,
       codeSearch: codeSearch ?? this.codeSearch,
-      codeSearchElement: codeSearchElement ?? this.codeSearchElement,
       validateCode: validateCode ?? this.validateCode,
       translation: translation ?? this.translation,
       closure: closure ?? this.closure,
@@ -809,16 +641,10 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
 
   TerminologyCapabilitiesSoftware({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -830,11 +656,15 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesSoftware.fromJson(Map<String, dynamic> json) {
     return TerminologyCapabilitiesSoftware(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -843,29 +673,27 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: FhirString.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
-          : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      name: FhirString.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesSoftware] from a [String] or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesSoftware] from a [String]
+  /// or [YamlMap] object
   factory TerminologyCapabilitiesSoftware.fromYaml(dynamic yaml) => yaml
           is String
       ? TerminologyCapabilitiesSoftware.fromJson(
@@ -876,10 +704,11 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'TerminologyCapabilitiesSoftware cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'TerminologyCapabilitiesSoftware cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TerminologyCapabilitiesSoftware] that takes in a [String]
+  /// Factory constructor for [TerminologyCapabilitiesSoftware]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TerminologyCapabilitiesSoftware.fromJsonString(String source) {
@@ -895,19 +724,22 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
   @override
   String get fhirType => 'TerminologyCapabilitiesSoftware';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// Name the software is known by.
   final FhirString name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [version]
   /// The version identifier for the software covered by this statement.
   final FhirString? version;
-
-  /// Extensions for [version]
-  final Element? versionElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -923,14 +755,8 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (version?.value != null) {
       json['version'] = version!.toJson();
-    }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
     }
     return json;
   }
@@ -943,9 +769,7 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    Element? nameElement,
     FhirString? version,
-    Element? versionElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -958,9 +782,7 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -980,16 +802,10 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
 
   TerminologyCapabilitiesImplementation({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1002,11 +818,15 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
   factory TerminologyCapabilitiesImplementation.fromJson(
       Map<String, dynamic> json) {
     return TerminologyCapabilitiesImplementation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1015,28 +835,27 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      description: FhirString.fromJson(json['description']),
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
-          : null,
-      url: json['url'] != null ? FhirUrl.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
+      description: FhirString.fromJson({
+        'value': json['description'],
+        '_value': json['_description'],
+      }),
+      url: json['url'] != null
+          ? FhirUrl.fromJson({
+              'value': json['url'],
+              '_value': json['_url'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesImplementation] from a [String] or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesImplementation] from a [String]
+  /// or [YamlMap] object
   factory TerminologyCapabilitiesImplementation.fromYaml(dynamic yaml) => yaml
           is String
       ? TerminologyCapabilitiesImplementation.fromJson(
@@ -1047,10 +866,11 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'TerminologyCapabilitiesImplementation cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'TerminologyCapabilitiesImplementation cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TerminologyCapabilitiesImplementation] that takes in a [String]
+  /// Factory constructor for [TerminologyCapabilitiesImplementation]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TerminologyCapabilitiesImplementation.fromJsonString(String source) {
@@ -1066,20 +886,23 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
   @override
   String get fhirType => 'TerminologyCapabilitiesImplementation';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [description]
   /// Information about the specific installation that this terminology
   /// capability statement relates to.
   final FhirString description;
 
-  /// Extensions for [description]
-  final Element? descriptionElement;
-
   /// [url]
   /// An absolute base URL for the implementation.
   final FhirUrl? url;
-
-  /// Extensions for [url]
-  final Element? urlElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1095,14 +918,8 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['description'] = description.toJson();
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (url?.value != null) {
       json['url'] = url!.toJson();
-    }
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
     }
     return json;
   }
@@ -1115,9 +932,7 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? description,
-    Element? descriptionElement,
     FhirUrl? url,
-    Element? urlElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1130,9 +945,7 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1152,17 +965,11 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
 
   TerminologyCapabilitiesCodeSystem({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.uri,
-
-    /// Extensions for [uri]
-    this.uriElement,
     this.version,
     this.subsumption,
-
-    /// Extensions for [subsumption]
-    this.subsumptionElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1175,11 +982,15 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   factory TerminologyCapabilitiesCodeSystem.fromJson(
       Map<String, dynamic> json) {
     return TerminologyCapabilitiesCodeSystem(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1188,39 +999,38 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      uri: json['uri'] != null ? FhirCanonical.fromJson(json['uri']) : null,
-      uriElement: json['_uri'] != null
-          ? Element.fromJson(
-              json['_uri'] as Map<String, dynamic>,
-            )
+      uri: json['uri'] != null
+          ? FhirCanonical.fromJson({
+              'value': json['uri'],
+              '_value': json['_uri'],
+            })
           : null,
       version: json['version'] != null
           ? (json['version'] as List<dynamic>)
               .map<TerminologyCapabilitiesVersion>(
-                (dynamic v) => TerminologyCapabilitiesVersion.fromJson(
+                (v) => TerminologyCapabilitiesVersion.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       subsumption: json['subsumption'] != null
-          ? FhirBoolean.fromJson(json['subsumption'])
-          : null,
-      subsumptionElement: json['_subsumption'] != null
-          ? Element.fromJson(
-              json['_subsumption'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['subsumption'],
+              '_value': json['_subsumption'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesCodeSystem] from a [String] or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesCodeSystem] from a [String]
+  /// or [YamlMap] object
   factory TerminologyCapabilitiesCodeSystem.fromYaml(dynamic yaml) => yaml
           is String
       ? TerminologyCapabilitiesCodeSystem.fromJson(
@@ -1231,10 +1041,11 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'TerminologyCapabilitiesCodeSystem cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'TerminologyCapabilitiesCodeSystem cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TerminologyCapabilitiesCodeSystem] that takes in a [String]
+  /// Factory constructor for [TerminologyCapabilitiesCodeSystem]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TerminologyCapabilitiesCodeSystem.fromJsonString(String source) {
@@ -1250,12 +1061,18 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   @override
   String get fhirType => 'TerminologyCapabilitiesCodeSystem';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [uri]
   /// URI for the Code System.
   final FhirCanonical? uri;
-
-  /// Extensions for [uri]
-  final Element? uriElement;
 
   /// [version]
   /// For the code system, a list of versions that are supported by the
@@ -1265,9 +1082,6 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
   /// [subsumption]
   /// True if subsumption is supported for this version of the code system.
   final FhirBoolean? subsumption;
-
-  /// Extensions for [subsumption]
-  final Element? subsumptionElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1285,9 +1099,6 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
     if (uri?.value != null) {
       json['uri'] = uri!.toJson();
     }
-    if (uriElement != null) {
-      json['_uri'] = uriElement!.toJson();
-    }
     if (version != null && version!.isNotEmpty) {
       json['version'] = version!
           .map((TerminologyCapabilitiesVersion v) => v.toJson())
@@ -1295,9 +1106,6 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
     }
     if (subsumption?.value != null) {
       json['subsumption'] = subsumption!.toJson();
-    }
-    if (subsumptionElement != null) {
-      json['_subsumption'] = subsumptionElement!.toJson();
     }
     return json;
   }
@@ -1310,10 +1118,8 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirCanonical? uri,
-    Element? uriElement,
     List<TerminologyCapabilitiesVersion>? version,
     FhirBoolean? subsumption,
-    Element? subsumptionElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1326,10 +1132,8 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       uri: uri ?? this.uri,
-      uriElement: uriElement ?? this.uriElement,
       version: version ?? this.version,
       subsumption: subsumption ?? this.subsumption,
-      subsumptionElement: subsumptionElement ?? this.subsumptionElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1348,29 +1152,14 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
 
   TerminologyCapabilitiesVersion({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.code,
-
-    /// Extensions for [code]
-    this.codeElement,
     this.isDefault,
-
-    /// Extensions for [isDefault]
-    this.isDefaultElement,
     this.compositional,
-
-    /// Extensions for [compositional]
-    this.compositionalElement,
     this.language,
-
-    /// Extensions for [language]
-    this.languageElement,
     this.filter,
     this.property,
-
-    /// Extensions for [property]
-    this.propertyElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1382,11 +1171,15 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesVersion.fromJson(Map<String, dynamic> json) {
     return TerminologyCapabilitiesVersion(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1395,75 +1188,50 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      code: json['code'] != null ? FhirString.fromJson(json['code']) : null,
-      codeElement: json['_code'] != null
-          ? Element.fromJson(
-              json['_code'] as Map<String, dynamic>,
-            )
+      code: json['code'] != null
+          ? FhirString.fromJson({
+              'value': json['code'],
+              '_value': json['_code'],
+            })
           : null,
       isDefault: json['isDefault'] != null
-          ? FhirBoolean.fromJson(json['isDefault'])
-          : null,
-      isDefaultElement: json['_isDefault'] != null
-          ? Element.fromJson(
-              json['_isDefault'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['isDefault'],
+              '_value': json['_isDefault'],
+            })
           : null,
       compositional: json['compositional'] != null
-          ? FhirBoolean.fromJson(json['compositional'])
+          ? FhirBoolean.fromJson({
+              'value': json['compositional'],
+              '_value': json['_compositional'],
+            })
           : null,
-      compositionalElement: json['_compositional'] != null
-          ? Element.fromJson(
-              json['_compositional'] as Map<String, dynamic>,
-            )
-          : null,
-      language: json['language'] != null
-          ? (json['language'] as List<dynamic>)
-              .map<FhirCode>(
-                (dynamic v) => FhirCode.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      languageElement: json['_language'] != null
-          ? (json['_language'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      language: parsePrimitiveList<FhirCode>(json['language'] as List<dynamic>?,
+          json['_language'] as List<dynamic>?,
+          fromJson: FhirCode.fromJson),
       filter: json['filter'] != null
           ? (json['filter'] as List<dynamic>)
               .map<TerminologyCapabilitiesFilter>(
-                (dynamic v) => TerminologyCapabilitiesFilter.fromJson(
+                (v) => TerminologyCapabilitiesFilter.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      property: json['property'] != null
-          ? (json['property'] as List<dynamic>)
-              .map<FhirCode>(
-                (dynamic v) => FhirCode.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      propertyElement: json['_property'] != null
-          ? (json['_property'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      property: parsePrimitiveList<FhirCode>(json['property'] as List<dynamic>?,
+          json['_property'] as List<dynamic>?,
+          fromJson: FhirCode.fromJson),
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesVersion] from a [String] or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesVersion] from a [String]
+  /// or [YamlMap] object
   factory TerminologyCapabilitiesVersion.fromYaml(dynamic yaml) => yaml
           is String
       ? TerminologyCapabilitiesVersion.fromJson(
@@ -1474,10 +1242,11 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'TerminologyCapabilitiesVersion cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'TerminologyCapabilitiesVersion cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TerminologyCapabilitiesVersion] that takes in a [String]
+  /// Factory constructor for [TerminologyCapabilitiesVersion]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TerminologyCapabilitiesVersion.fromJsonString(String source) {
@@ -1493,34 +1262,31 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
   @override
   String get fhirType => 'TerminologyCapabilitiesVersion';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [code]
   /// For version-less code systems, there should be a single version with no
   /// identifier.
   final FhirString? code;
 
-  /// Extensions for [code]
-  final Element? codeElement;
-
   /// [isDefault]
   /// If this is the default version for this code system.
   final FhirBoolean? isDefault;
-
-  /// Extensions for [isDefault]
-  final Element? isDefaultElement;
 
   /// [compositional]
   /// If the compositional grammar defined by the code system is supported.
   final FhirBoolean? compositional;
 
-  /// Extensions for [compositional]
-  final Element? compositionalElement;
-
   /// [language]
   /// Language Displays supported.
   final List<FhirCode>? language;
-
-  /// Extensions for [language]
-  final List<Element>? languageElement;
 
   /// [filter]
   /// Filter Properties supported.
@@ -1529,9 +1295,6 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
   /// [property]
   /// Properties supported for $lookup.
   final List<FhirCode>? property;
-
-  /// Extensions for [property]
-  final List<Element>? propertyElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1549,27 +1312,14 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
     if (code?.value != null) {
       json['code'] = code!.toJson();
     }
-    if (codeElement != null) {
-      json['_code'] = codeElement!.toJson();
-    }
     if (isDefault?.value != null) {
       json['isDefault'] = isDefault!.toJson();
-    }
-    if (isDefaultElement != null) {
-      json['_isDefault'] = isDefaultElement!.toJson();
     }
     if (compositional?.value != null) {
       json['compositional'] = compositional!.toJson();
     }
-    if (compositionalElement != null) {
-      json['_compositional'] = compositionalElement!.toJson();
-    }
     if (language != null && language!.isNotEmpty) {
       json['language'] = language!.map((FhirCode v) => v.toJson()).toList();
-    }
-    if (languageElement != null && languageElement!.isNotEmpty) {
-      json['_language'] =
-          languageElement!.map((Element v) => v.toJson()).toList();
     }
     if (filter != null && filter!.isNotEmpty) {
       json['filter'] =
@@ -1577,10 +1327,6 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
     }
     if (property != null && property!.isNotEmpty) {
       json['property'] = property!.map((FhirCode v) => v.toJson()).toList();
-    }
-    if (propertyElement != null && propertyElement!.isNotEmpty) {
-      json['_property'] =
-          propertyElement!.map((Element v) => v.toJson()).toList();
     }
     return json;
   }
@@ -1593,16 +1339,11 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? code,
-    Element? codeElement,
     FhirBoolean? isDefault,
-    Element? isDefaultElement,
     FhirBoolean? compositional,
-    Element? compositionalElement,
     List<FhirCode>? language,
-    List<Element>? languageElement,
     List<TerminologyCapabilitiesFilter>? filter,
     List<FhirCode>? property,
-    List<Element>? propertyElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1615,16 +1356,11 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      codeElement: codeElement ?? this.codeElement,
       isDefault: isDefault ?? this.isDefault,
-      isDefaultElement: isDefaultElement ?? this.isDefaultElement,
       compositional: compositional ?? this.compositional,
-      compositionalElement: compositionalElement ?? this.compositionalElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       filter: filter ?? this.filter,
       property: property ?? this.property,
-      propertyElement: propertyElement ?? this.propertyElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1642,16 +1378,10 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
 
   TerminologyCapabilitiesFilter({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.code,
-
-    /// Extensions for [code]
-    this.codeElement,
     required this.op,
-
-    /// Extensions for [op]
-    this.opElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1663,11 +1393,15 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesFilter.fromJson(Map<String, dynamic> json) {
     return TerminologyCapabilitiesFilter(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1676,32 +1410,24 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      code: FhirCode.fromJson(json['code']),
-      codeElement: json['_code'] != null
-          ? Element.fromJson(
-              json['_code'] as Map<String, dynamic>,
-            )
-          : null,
-      op: (json['op'] as List<dynamic>)
-          .map<FhirCode>((dynamic v) => FhirCode.fromJson(v as dynamic))
-          .toList(),
-      opElement: json['_op'] != null
-          ? (json['_op'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      code: FhirCode.fromJson({
+        'value': json['code'],
+        '_value': json['_code'],
+      }),
+      op: ensureNonNullList(parsePrimitiveList<FhirCode>(
+          json['op'] as List<dynamic>?, json['_op'] as List<dynamic>?,
+          fromJson: FhirCode.fromJson)),
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesFilter] from a [String] or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesFilter] from a [String]
+  /// or [YamlMap] object
   factory TerminologyCapabilitiesFilter.fromYaml(dynamic yaml) => yaml is String
       ? TerminologyCapabilitiesFilter.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1711,10 +1437,11 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'TerminologyCapabilitiesFilter cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'TerminologyCapabilitiesFilter cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TerminologyCapabilitiesFilter] that takes in a [String]
+  /// Factory constructor for [TerminologyCapabilitiesFilter]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TerminologyCapabilitiesFilter.fromJsonString(String source) {
@@ -1730,19 +1457,22 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
   @override
   String get fhirType => 'TerminologyCapabilitiesFilter';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [code]
   /// Code of the property supported.
   final FhirCode code;
 
-  /// Extensions for [code]
-  final Element? codeElement;
-
   /// [op]
   /// Operations supported for the property.
   final List<FhirCode> op;
-
-  /// Extensions for [op]
-  final List<Element>? opElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1758,13 +1488,7 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['code'] = code.toJson();
-    if (codeElement != null) {
-      json['_code'] = codeElement!.toJson();
-    }
     json['op'] = op.map((FhirCode v) => v.toJson()).toList();
-    if (opElement != null && opElement!.isNotEmpty) {
-      json['_op'] = opElement!.map((Element v) => v.toJson()).toList();
-    }
     return json;
   }
 
@@ -1776,9 +1500,7 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirCode? code,
-    Element? codeElement,
     List<FhirCode>? op,
-    List<Element>? opElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1791,9 +1513,7 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      codeElement: codeElement ?? this.codeElement,
       op: op ?? this.op,
-      opElement: opElement ?? this.opElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1812,25 +1532,13 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
 
   TerminologyCapabilitiesExpansion({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.hierarchical,
-
-    /// Extensions for [hierarchical]
-    this.hierarchicalElement,
     this.paging,
-
-    /// Extensions for [paging]
-    this.pagingElement,
     this.incomplete,
-
-    /// Extensions for [incomplete]
-    this.incompleteElement,
     this.parameter,
     this.textFilter,
-
-    /// Extensions for [textFilter]
-    this.textFilterElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1842,11 +1550,15 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesExpansion.fromJson(Map<String, dynamic> json) {
     return TerminologyCapabilitiesExpansion(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1855,56 +1567,50 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       hierarchical: json['hierarchical'] != null
-          ? FhirBoolean.fromJson(json['hierarchical'])
+          ? FhirBoolean.fromJson({
+              'value': json['hierarchical'],
+              '_value': json['_hierarchical'],
+            })
           : null,
-      hierarchicalElement: json['_hierarchical'] != null
-          ? Element.fromJson(
-              json['_hierarchical'] as Map<String, dynamic>,
-            )
-          : null,
-      paging:
-          json['paging'] != null ? FhirBoolean.fromJson(json['paging']) : null,
-      pagingElement: json['_paging'] != null
-          ? Element.fromJson(
-              json['_paging'] as Map<String, dynamic>,
-            )
+      paging: json['paging'] != null
+          ? FhirBoolean.fromJson({
+              'value': json['paging'],
+              '_value': json['_paging'],
+            })
           : null,
       incomplete: json['incomplete'] != null
-          ? FhirBoolean.fromJson(json['incomplete'])
-          : null,
-      incompleteElement: json['_incomplete'] != null
-          ? Element.fromJson(
-              json['_incomplete'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['incomplete'],
+              '_value': json['_incomplete'],
+            })
           : null,
       parameter: json['parameter'] != null
           ? (json['parameter'] as List<dynamic>)
               .map<TerminologyCapabilitiesParameter>(
-                (dynamic v) => TerminologyCapabilitiesParameter.fromJson(
+                (v) => TerminologyCapabilitiesParameter.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       textFilter: json['textFilter'] != null
-          ? FhirMarkdown.fromJson(json['textFilter'])
-          : null,
-      textFilterElement: json['_textFilter'] != null
-          ? Element.fromJson(
-              json['_textFilter'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['textFilter'],
+              '_value': json['_textFilter'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesExpansion] from a [String] or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesExpansion] from a [String]
+  /// or [YamlMap] object
   factory TerminologyCapabilitiesExpansion.fromYaml(dynamic yaml) => yaml
           is String
       ? TerminologyCapabilitiesExpansion.fromJson(
@@ -1915,10 +1621,11 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'TerminologyCapabilitiesExpansion cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'TerminologyCapabilitiesExpansion cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TerminologyCapabilitiesExpansion] that takes in a [String]
+  /// Factory constructor for [TerminologyCapabilitiesExpansion]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TerminologyCapabilitiesExpansion.fromJsonString(String source) {
@@ -1934,26 +1641,26 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
   @override
   String get fhirType => 'TerminologyCapabilitiesExpansion';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [hierarchical]
   /// Whether the server can return nested value sets.
   final FhirBoolean? hierarchical;
-
-  /// Extensions for [hierarchical]
-  final Element? hierarchicalElement;
 
   /// [paging]
   /// Whether the server supports paging on expansion.
   final FhirBoolean? paging;
 
-  /// Extensions for [paging]
-  final Element? pagingElement;
-
   /// [incomplete]
   /// Allow request for incomplete expansions?
   final FhirBoolean? incomplete;
-
-  /// Extensions for [incomplete]
-  final Element? incompleteElement;
 
   /// [parameter]
   /// Supported expansion parameter.
@@ -1962,9 +1669,6 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
   /// [textFilter]
   /// Documentation about text searching works.
   final FhirMarkdown? textFilter;
-
-  /// Extensions for [textFilter]
-  final Element? textFilterElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1982,20 +1686,11 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     if (hierarchical?.value != null) {
       json['hierarchical'] = hierarchical!.toJson();
     }
-    if (hierarchicalElement != null) {
-      json['_hierarchical'] = hierarchicalElement!.toJson();
-    }
     if (paging?.value != null) {
       json['paging'] = paging!.toJson();
     }
-    if (pagingElement != null) {
-      json['_paging'] = pagingElement!.toJson();
-    }
     if (incomplete?.value != null) {
       json['incomplete'] = incomplete!.toJson();
-    }
-    if (incompleteElement != null) {
-      json['_incomplete'] = incompleteElement!.toJson();
     }
     if (parameter != null && parameter!.isNotEmpty) {
       json['parameter'] = parameter!
@@ -2004,9 +1699,6 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     }
     if (textFilter?.value != null) {
       json['textFilter'] = textFilter!.toJson();
-    }
-    if (textFilterElement != null) {
-      json['_textFilter'] = textFilterElement!.toJson();
     }
     return json;
   }
@@ -2019,14 +1711,10 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirBoolean? hierarchical,
-    Element? hierarchicalElement,
     FhirBoolean? paging,
-    Element? pagingElement,
     FhirBoolean? incomplete,
-    Element? incompleteElement,
     List<TerminologyCapabilitiesParameter>? parameter,
     FhirMarkdown? textFilter,
-    Element? textFilterElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2039,14 +1727,10 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       hierarchical: hierarchical ?? this.hierarchical,
-      hierarchicalElement: hierarchicalElement ?? this.hierarchicalElement,
       paging: paging ?? this.paging,
-      pagingElement: pagingElement ?? this.pagingElement,
       incomplete: incomplete ?? this.incomplete,
-      incompleteElement: incompleteElement ?? this.incompleteElement,
       parameter: parameter ?? this.parameter,
       textFilter: textFilter ?? this.textFilter,
-      textFilterElement: textFilterElement ?? this.textFilterElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2064,16 +1748,10 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
 
   TerminologyCapabilitiesParameter({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.documentation,
-
-    /// Extensions for [documentation]
-    this.documentationElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2085,11 +1763,15 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesParameter.fromJson(Map<String, dynamic> json) {
     return TerminologyCapabilitiesParameter(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2098,30 +1780,27 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: FhirCode.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
-          : null,
+      name: FhirCode.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
       documentation: json['documentation'] != null
-          ? FhirString.fromJson(json['documentation'])
-          : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(
-              json['_documentation'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['documentation'],
+              '_value': json['_documentation'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesParameter] from a [String] or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesParameter] from a [String]
+  /// or [YamlMap] object
   factory TerminologyCapabilitiesParameter.fromYaml(dynamic yaml) => yaml
           is String
       ? TerminologyCapabilitiesParameter.fromJson(
@@ -2132,10 +1811,11 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'TerminologyCapabilitiesParameter cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'TerminologyCapabilitiesParameter cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TerminologyCapabilitiesParameter] that takes in a [String]
+  /// Factory constructor for [TerminologyCapabilitiesParameter]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TerminologyCapabilitiesParameter.fromJsonString(String source) {
@@ -2151,19 +1831,22 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
   @override
   String get fhirType => 'TerminologyCapabilitiesParameter';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// Expansion Parameter name.
   final FhirCode name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [documentation]
   /// Description of support for parameter.
   final FhirString? documentation;
-
-  /// Extensions for [documentation]
-  final Element? documentationElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2179,14 +1862,8 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (documentation?.value != null) {
       json['documentation'] = documentation!.toJson();
-    }
-    if (documentationElement != null) {
-      json['_documentation'] = documentationElement!.toJson();
     }
     return json;
   }
@@ -2199,9 +1876,7 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirCode? name,
-    Element? nameElement,
     FhirString? documentation,
-    Element? documentationElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2214,9 +1889,7 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       documentation: documentation ?? this.documentation,
-      documentationElement: documentationElement ?? this.documentationElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2236,12 +1909,9 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
 
   TerminologyCapabilitiesValidateCode({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.translations,
-
-    /// Extensions for [translations]
-    this.translationsElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2254,11 +1924,15 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
   factory TerminologyCapabilitiesValidateCode.fromJson(
       Map<String, dynamic> json) {
     return TerminologyCapabilitiesValidateCode(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2267,22 +1941,21 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      translations: FhirBoolean.fromJson(json['translations']),
-      translationsElement: json['_translations'] != null
-          ? Element.fromJson(
-              json['_translations'] as Map<String, dynamic>,
-            )
-          : null,
+      translations: FhirBoolean.fromJson({
+        'value': json['translations'],
+        '_value': json['_translations'],
+      }),
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesValidateCode] from a [String] or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesValidateCode] from a [String]
+  /// or [YamlMap] object
   factory TerminologyCapabilitiesValidateCode.fromYaml(dynamic yaml) => yaml
           is String
       ? TerminologyCapabilitiesValidateCode.fromJson(
@@ -2293,10 +1966,11 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'TerminologyCapabilitiesValidateCode cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'TerminologyCapabilitiesValidateCode cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TerminologyCapabilitiesValidateCode] that takes in a [String]
+  /// Factory constructor for [TerminologyCapabilitiesValidateCode]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TerminologyCapabilitiesValidateCode.fromJsonString(String source) {
@@ -2312,12 +1986,18 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
   @override
   String get fhirType => 'TerminologyCapabilitiesValidateCode';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [translations]
   /// Whether translations are validated.
   final FhirBoolean translations;
-
-  /// Extensions for [translations]
-  final Element? translationsElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2333,9 +2013,6 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['translations'] = translations.toJson();
-    if (translationsElement != null) {
-      json['_translations'] = translationsElement!.toJson();
-    }
     return json;
   }
 
@@ -2347,7 +2024,6 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirBoolean? translations,
-    Element? translationsElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2360,7 +2036,6 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       translations: translations ?? this.translations,
-      translationsElement: translationsElement ?? this.translationsElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2379,12 +2054,9 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
 
   TerminologyCapabilitiesTranslation({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.needsMap,
-
-    /// Extensions for [needsMap]
-    this.needsMapElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2397,11 +2069,15 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
   factory TerminologyCapabilitiesTranslation.fromJson(
       Map<String, dynamic> json) {
     return TerminologyCapabilitiesTranslation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2410,22 +2086,21 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      needsMap: FhirBoolean.fromJson(json['needsMap']),
-      needsMapElement: json['_needsMap'] != null
-          ? Element.fromJson(
-              json['_needsMap'] as Map<String, dynamic>,
-            )
-          : null,
+      needsMap: FhirBoolean.fromJson({
+        'value': json['needsMap'],
+        '_value': json['_needsMap'],
+      }),
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesTranslation] from a [String] or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesTranslation] from a [String]
+  /// or [YamlMap] object
   factory TerminologyCapabilitiesTranslation.fromYaml(dynamic yaml) => yaml
           is String
       ? TerminologyCapabilitiesTranslation.fromJson(
@@ -2436,10 +2111,11 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'TerminologyCapabilitiesTranslation cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'TerminologyCapabilitiesTranslation cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TerminologyCapabilitiesTranslation] that takes in a [String]
+  /// Factory constructor for [TerminologyCapabilitiesTranslation]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TerminologyCapabilitiesTranslation.fromJsonString(String source) {
@@ -2455,12 +2131,18 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
   @override
   String get fhirType => 'TerminologyCapabilitiesTranslation';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [needsMap]
   /// Whether the client must identify the map.
   final FhirBoolean needsMap;
-
-  /// Extensions for [needsMap]
-  final Element? needsMapElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2476,9 +2158,6 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['needsMap'] = needsMap.toJson();
-    if (needsMapElement != null) {
-      json['_needsMap'] = needsMapElement!.toJson();
-    }
     return json;
   }
 
@@ -2490,7 +2169,6 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirBoolean? needsMap,
-    Element? needsMapElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2503,7 +2181,6 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       needsMap: needsMap ?? this.needsMap,
-      needsMapElement: needsMapElement ?? this.needsMapElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2521,12 +2198,9 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
 
   TerminologyCapabilitiesClosure({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.translation,
-
-    /// Extensions for [translation]
-    this.translationElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2538,11 +2212,15 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesClosure.fromJson(Map<String, dynamic> json) {
     return TerminologyCapabilitiesClosure(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2551,24 +2229,23 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       translation: json['translation'] != null
-          ? FhirBoolean.fromJson(json['translation'])
-          : null,
-      translationElement: json['_translation'] != null
-          ? Element.fromJson(
-              json['_translation'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['translation'],
+              '_value': json['_translation'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [TerminologyCapabilitiesClosure] from a [String] or [YamlMap] object
+  /// Deserialize [TerminologyCapabilitiesClosure] from a [String]
+  /// or [YamlMap] object
   factory TerminologyCapabilitiesClosure.fromYaml(dynamic yaml) => yaml
           is String
       ? TerminologyCapabilitiesClosure.fromJson(
@@ -2579,10 +2256,11 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'TerminologyCapabilitiesClosure cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'TerminologyCapabilitiesClosure cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TerminologyCapabilitiesClosure] that takes in a [String]
+  /// Factory constructor for [TerminologyCapabilitiesClosure]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TerminologyCapabilitiesClosure.fromJsonString(String source) {
@@ -2598,12 +2276,18 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
   @override
   String get fhirType => 'TerminologyCapabilitiesClosure';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [translation]
   /// If cross-system closure is supported.
   final FhirBoolean? translation;
-
-  /// Extensions for [translation]
-  final Element? translationElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2621,9 +2305,6 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
     if (translation?.value != null) {
       json['translation'] = translation!.toJson();
     }
-    if (translationElement != null) {
-      json['_translation'] = translationElement!.toJson();
-    }
     return json;
   }
 
@@ -2635,7 +2316,6 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirBoolean? translation,
-    Element? translationElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2648,7 +2328,6 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       translation: translation ?? this.translation,
-      translationElement: translationElement ?? this.translationElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

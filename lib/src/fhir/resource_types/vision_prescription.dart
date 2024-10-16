@@ -12,32 +12,17 @@ class VisionPrescription extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     required this.created,
-
-    /// Extensions for [created]
-    this.createdElement,
     required this.patient,
     this.encounter,
     required this.dateWritten,
-
-    /// Extensions for [dateWritten]
-    this.dateWrittenElement,
     required this.prescriber,
     required this.lensSpecification,
     super.userData,
@@ -53,27 +38,27 @@ class VisionPrescription extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory VisionPrescription.fromJson(Map<String, dynamic> json) {
     return VisionPrescription(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -83,7 +68,7 @@ class VisionPrescription extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -92,7 +77,7 @@ class VisionPrescription extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -101,7 +86,7 @@ class VisionPrescription extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -110,24 +95,20 @@ class VisionPrescription extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: FinancialResourceStatusCodes.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
-      created: FhirDateTime.fromJson(json['created']),
-      createdElement: json['_created'] != null
-          ? Element.fromJson(
-              json['_created'] as Map<String, dynamic>,
-            )
-          : null,
+      status: FinancialResourceStatusCodes.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
+      created: FhirDateTime.fromJson({
+        'value': json['created'],
+        '_value': json['_created'],
+      }),
       patient: Reference.fromJson(
         json['patient'] as Map<String, dynamic>,
       ),
@@ -136,24 +117,26 @@ class VisionPrescription extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      dateWritten: FhirDateTime.fromJson(json['dateWritten']),
-      dateWrittenElement: json['_dateWritten'] != null
-          ? Element.fromJson(
-              json['_dateWritten'] as Map<String, dynamic>,
-            )
-          : null,
+      dateWritten: FhirDateTime.fromJson({
+        'value': json['dateWritten'],
+        '_value': json['_dateWritten'],
+      }),
       prescriber: Reference.fromJson(
         json['prescriber'] as Map<String, dynamic>,
       ),
-      lensSpecification: (json['lensSpecification'] as List<dynamic>)
-          .map<VisionPrescriptionLensSpecification>((dynamic v) =>
-              VisionPrescriptionLensSpecification.fromJson(
-                  v as Map<String, dynamic>))
-          .toList(),
+      lensSpecification:
+          ensureNonNullList((json['lensSpecification'] as List<dynamic>)
+              .map<VisionPrescriptionLensSpecification>(
+                (v) => VisionPrescriptionLensSpecification.fromJson(
+                  v as Map<String, dynamic>,
+                ),
+              )
+              .toList()),
     );
   }
 
-  /// Deserialize [VisionPrescription] from a [String] or [YamlMap] object
+  /// Deserialize [VisionPrescription] from a [String]
+  /// or [YamlMap] object
   factory VisionPrescription.fromYaml(dynamic yaml) => yaml is String
       ? VisionPrescription.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -162,11 +145,11 @@ class VisionPrescription extends DomainResource {
           ? VisionPrescription.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'VisionPrescription cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('VisionPrescription cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [VisionPrescription] that takes in a [String]
+  /// Factory constructor for [VisionPrescription]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory VisionPrescription.fromJsonString(String source) {
@@ -182,6 +165,15 @@ class VisionPrescription extends DomainResource {
   @override
   String get fhirType => 'VisionPrescription';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// A unique identifier assigned to this vision prescription.
   final List<Identifier>? identifier;
@@ -190,15 +182,9 @@ class VisionPrescription extends DomainResource {
   /// The status of the resource instance.
   final FinancialResourceStatusCodes status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [created]
   /// The date this resource was created.
   final FhirDateTime created;
-
-  /// Extensions for [created]
-  final Element? createdElement;
 
   /// [patient]
   /// A resource reference to the person to whom the vision prescription
@@ -214,9 +200,6 @@ class VisionPrescription extends DomainResource {
   /// [dateWritten]
   /// The date (and perhaps time) when the prescription was written.
   final FhirDateTime dateWritten;
-
-  /// Extensions for [dateWritten]
-  final Element? dateWrittenElement;
 
   /// [prescriber]
   /// The healthcare professional responsible for authorizing the
@@ -239,9 +222,6 @@ class VisionPrescription extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -266,17 +246,11 @@ class VisionPrescription extends DomainResource {
     }
     json['status'] = status.toJson();
     json['created'] = created.toJson();
-    if (createdElement != null) {
-      json['_created'] = createdElement!.toJson();
-    }
     json['patient'] = patient.toJson();
     if (encounter != null) {
       json['encounter'] = encounter!.toJson();
     }
     json['dateWritten'] = dateWritten.toJson();
-    if (dateWrittenElement != null) {
-      json['_dateWritten'] = dateWrittenElement!.toJson();
-    }
     json['prescriber'] = prescriber.toJson();
     json['lensSpecification'] = lensSpecification
         .map<dynamic>((VisionPrescriptionLensSpecification v) => v.toJson())
@@ -291,22 +265,17 @@ class VisionPrescription extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     FinancialResourceStatusCodes? status,
-    Element? statusElement,
     FhirDateTime? created,
-    Element? createdElement,
     Reference? patient,
     Reference? encounter,
     FhirDateTime? dateWritten,
-    Element? dateWrittenElement,
     Reference? prescriber,
     List<VisionPrescriptionLensSpecification>? lensSpecification,
     Map<String, Object?>? userData,
@@ -320,22 +289,17 @@ class VisionPrescription extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       created: created ?? this.created,
-      createdElement: createdElement ?? this.createdElement,
       patient: patient ?? this.patient,
       encounter: encounter ?? this.encounter,
       dateWritten: dateWritten ?? this.dateWritten,
-      dateWrittenElement: dateWrittenElement ?? this.dateWrittenElement,
       prescriber: prescriber ?? this.prescriber,
       lensSpecification: lensSpecification ?? this.lensSpecification,
       userData: userData ?? this.userData,
@@ -356,51 +320,21 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
 
   VisionPrescriptionLensSpecification({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.product,
     required this.eye,
-
-    /// Extensions for [eye]
-    this.eyeElement,
     this.sphere,
-
-    /// Extensions for [sphere]
-    this.sphereElement,
     this.cylinder,
-
-    /// Extensions for [cylinder]
-    this.cylinderElement,
     this.axis,
-
-    /// Extensions for [axis]
-    this.axisElement,
     this.prism,
     this.add,
-
-    /// Extensions for [add]
-    this.addElement,
     this.power,
-
-    /// Extensions for [power]
-    this.powerElement,
     this.backCurve,
-
-    /// Extensions for [backCurve]
-    this.backCurveElement,
     this.diameter,
-
-    /// Extensions for [diameter]
-    this.diameterElement,
     this.duration,
     this.color,
-
-    /// Extensions for [color]
-    this.colorElement,
     this.brand,
-
-    /// Extensions for [brand]
-    this.brandElement,
     this.note,
     super.userData,
     super.formatCommentsPre,
@@ -414,11 +348,15 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   factory VisionPrescriptionLensSpecification.fromJson(
       Map<String, dynamic> json) {
     return VisionPrescriptionLensSpecification(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -427,7 +365,7 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -436,91 +374,82 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
       product: CodeableConcept.fromJson(
         json['product'] as Map<String, dynamic>,
       ),
-      eye: VisionEyes.fromJson(json['eye']),
-      eyeElement: json['_eye'] != null
-          ? Element.fromJson(
-              json['_eye'] as Map<String, dynamic>,
-            )
-          : null,
-      sphere:
-          json['sphere'] != null ? FhirDecimal.fromJson(json['sphere']) : null,
-      sphereElement: json['_sphere'] != null
-          ? Element.fromJson(
-              json['_sphere'] as Map<String, dynamic>,
-            )
+      eye: VisionEyes.fromJson({
+        'value': json['eye'],
+        '_value': json['_eye'],
+      }),
+      sphere: json['sphere'] != null
+          ? FhirDecimal.fromJson({
+              'value': json['sphere'],
+              '_value': json['_sphere'],
+            })
           : null,
       cylinder: json['cylinder'] != null
-          ? FhirDecimal.fromJson(json['cylinder'])
+          ? FhirDecimal.fromJson({
+              'value': json['cylinder'],
+              '_value': json['_cylinder'],
+            })
           : null,
-      cylinderElement: json['_cylinder'] != null
-          ? Element.fromJson(
-              json['_cylinder'] as Map<String, dynamic>,
-            )
-          : null,
-      axis: json['axis'] != null ? FhirInteger.fromJson(json['axis']) : null,
-      axisElement: json['_axis'] != null
-          ? Element.fromJson(
-              json['_axis'] as Map<String, dynamic>,
-            )
+      axis: json['axis'] != null
+          ? FhirInteger.fromJson({
+              'value': json['axis'],
+              '_value': json['_axis'],
+            })
           : null,
       prism: json['prism'] != null
           ? (json['prism'] as List<dynamic>)
               .map<VisionPrescriptionPrism>(
-                (dynamic v) => VisionPrescriptionPrism.fromJson(
+                (v) => VisionPrescriptionPrism.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      add: json['add'] != null ? FhirDecimal.fromJson(json['add']) : null,
-      addElement: json['_add'] != null
-          ? Element.fromJson(
-              json['_add'] as Map<String, dynamic>,
-            )
+      add: json['add'] != null
+          ? FhirDecimal.fromJson({
+              'value': json['add'],
+              '_value': json['_add'],
+            })
           : null,
-      power: json['power'] != null ? FhirDecimal.fromJson(json['power']) : null,
-      powerElement: json['_power'] != null
-          ? Element.fromJson(
-              json['_power'] as Map<String, dynamic>,
-            )
+      power: json['power'] != null
+          ? FhirDecimal.fromJson({
+              'value': json['power'],
+              '_value': json['_power'],
+            })
           : null,
       backCurve: json['backCurve'] != null
-          ? FhirDecimal.fromJson(json['backCurve'])
-          : null,
-      backCurveElement: json['_backCurve'] != null
-          ? Element.fromJson(
-              json['_backCurve'] as Map<String, dynamic>,
-            )
+          ? FhirDecimal.fromJson({
+              'value': json['backCurve'],
+              '_value': json['_backCurve'],
+            })
           : null,
       diameter: json['diameter'] != null
-          ? FhirDecimal.fromJson(json['diameter'])
-          : null,
-      diameterElement: json['_diameter'] != null
-          ? Element.fromJson(
-              json['_diameter'] as Map<String, dynamic>,
-            )
+          ? FhirDecimal.fromJson({
+              'value': json['diameter'],
+              '_value': json['_diameter'],
+            })
           : null,
       duration: json['duration'] != null
           ? Quantity.fromJson(
               json['duration'] as Map<String, dynamic>,
             )
           : null,
-      color: json['color'] != null ? FhirString.fromJson(json['color']) : null,
-      colorElement: json['_color'] != null
-          ? Element.fromJson(
-              json['_color'] as Map<String, dynamic>,
-            )
+      color: json['color'] != null
+          ? FhirString.fromJson({
+              'value': json['color'],
+              '_value': json['_color'],
+            })
           : null,
-      brand: json['brand'] != null ? FhirString.fromJson(json['brand']) : null,
-      brandElement: json['_brand'] != null
-          ? Element.fromJson(
-              json['_brand'] as Map<String, dynamic>,
-            )
+      brand: json['brand'] != null
+          ? FhirString.fromJson({
+              'value': json['brand'],
+              '_value': json['_brand'],
+            })
           : null,
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -529,7 +458,8 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     );
   }
 
-  /// Deserialize [VisionPrescriptionLensSpecification] from a [String] or [YamlMap] object
+  /// Deserialize [VisionPrescriptionLensSpecification] from a [String]
+  /// or [YamlMap] object
   factory VisionPrescriptionLensSpecification.fromYaml(dynamic yaml) => yaml
           is String
       ? VisionPrescriptionLensSpecification.fromJson(
@@ -540,10 +470,11 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'VisionPrescriptionLensSpecification cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'VisionPrescriptionLensSpecification cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [VisionPrescriptionLensSpecification] that takes in a [String]
+  /// Factory constructor for [VisionPrescriptionLensSpecification]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory VisionPrescriptionLensSpecification.fromJsonString(String source) {
@@ -559,6 +490,15 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   @override
   String get fhirType => 'VisionPrescriptionLensSpecification';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [product]
   /// Identifies the type of vision correction product which is required for
   /// the patient.
@@ -568,29 +508,17 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   /// The eye for which the lens specification applies.
   final VisionEyes eye;
 
-  /// Extensions for [eye]
-  final Element? eyeElement;
-
   /// [sphere]
   /// Lens power measured in dioptres (0.25 units).
   final FhirDecimal? sphere;
-
-  /// Extensions for [sphere]
-  final Element? sphereElement;
 
   /// [cylinder]
   /// Power adjustment for astigmatism measured in dioptres (0.25 units).
   final FhirDecimal? cylinder;
 
-  /// Extensions for [cylinder]
-  final Element? cylinderElement;
-
   /// [axis]
   /// Adjustment for astigmatism measured in integer degrees.
   final FhirInteger? axis;
-
-  /// Extensions for [axis]
-  final Element? axisElement;
 
   /// [prism]
   /// Allows for adjustment on two axis.
@@ -601,29 +529,17 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   /// units).
   final FhirDecimal? add;
 
-  /// Extensions for [add]
-  final Element? addElement;
-
   /// [power]
   /// Contact lens power measured in dioptres (0.25 units).
   final FhirDecimal? power;
-
-  /// Extensions for [power]
-  final Element? powerElement;
 
   /// [backCurve]
   /// Back curvature measured in millimetres.
   final FhirDecimal? backCurve;
 
-  /// Extensions for [backCurve]
-  final Element? backCurveElement;
-
   /// [diameter]
   /// Contact lens diameter measured in millimetres.
   final FhirDecimal? diameter;
-
-  /// Extensions for [diameter]
-  final Element? diameterElement;
 
   /// [duration]
   /// The recommended maximum wear period for the lens.
@@ -633,15 +549,9 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
   /// Special color or pattern.
   final FhirString? color;
 
-  /// Extensions for [color]
-  final Element? colorElement;
-
   /// [brand]
   /// Brand recommendations or restrictions.
   final FhirString? brand;
-
-  /// Extensions for [brand]
-  final Element? brandElement;
 
   /// [note]
   /// Notes for special requirements such as coatings and lens materials.
@@ -665,20 +575,11 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     if (sphere?.value != null) {
       json['sphere'] = sphere!.toJson();
     }
-    if (sphereElement != null) {
-      json['_sphere'] = sphereElement!.toJson();
-    }
     if (cylinder?.value != null) {
       json['cylinder'] = cylinder!.toJson();
     }
-    if (cylinderElement != null) {
-      json['_cylinder'] = cylinderElement!.toJson();
-    }
     if (axis?.value != null) {
       json['axis'] = axis!.toJson();
-    }
-    if (axisElement != null) {
-      json['_axis'] = axisElement!.toJson();
     }
     if (prism != null && prism!.isNotEmpty) {
       json['prism'] =
@@ -687,26 +588,14 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     if (add?.value != null) {
       json['add'] = add!.toJson();
     }
-    if (addElement != null) {
-      json['_add'] = addElement!.toJson();
-    }
     if (power?.value != null) {
       json['power'] = power!.toJson();
-    }
-    if (powerElement != null) {
-      json['_power'] = powerElement!.toJson();
     }
     if (backCurve?.value != null) {
       json['backCurve'] = backCurve!.toJson();
     }
-    if (backCurveElement != null) {
-      json['_backCurve'] = backCurveElement!.toJson();
-    }
     if (diameter?.value != null) {
       json['diameter'] = diameter!.toJson();
-    }
-    if (diameterElement != null) {
-      json['_diameter'] = diameterElement!.toJson();
     }
     if (duration != null) {
       json['duration'] = duration!.toJson();
@@ -714,14 +603,8 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     if (color?.value != null) {
       json['color'] = color!.toJson();
     }
-    if (colorElement != null) {
-      json['_color'] = colorElement!.toJson();
-    }
     if (brand?.value != null) {
       json['brand'] = brand!.toJson();
-    }
-    if (brandElement != null) {
-      json['_brand'] = brandElement!.toJson();
     }
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((Annotation v) => v.toJson()).toList();
@@ -738,27 +621,17 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? product,
     VisionEyes? eye,
-    Element? eyeElement,
     FhirDecimal? sphere,
-    Element? sphereElement,
     FhirDecimal? cylinder,
-    Element? cylinderElement,
     FhirInteger? axis,
-    Element? axisElement,
     List<VisionPrescriptionPrism>? prism,
     FhirDecimal? add,
-    Element? addElement,
     FhirDecimal? power,
-    Element? powerElement,
     FhirDecimal? backCurve,
-    Element? backCurveElement,
     FhirDecimal? diameter,
-    Element? diameterElement,
     Quantity? duration,
     FhirString? color,
-    Element? colorElement,
     FhirString? brand,
-    Element? brandElement,
     List<Annotation>? note,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -773,27 +646,17 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       product: product ?? this.product,
       eye: eye ?? this.eye,
-      eyeElement: eyeElement ?? this.eyeElement,
       sphere: sphere ?? this.sphere,
-      sphereElement: sphereElement ?? this.sphereElement,
       cylinder: cylinder ?? this.cylinder,
-      cylinderElement: cylinderElement ?? this.cylinderElement,
       axis: axis ?? this.axis,
-      axisElement: axisElement ?? this.axisElement,
       prism: prism ?? this.prism,
       add: add ?? this.add,
-      addElement: addElement ?? this.addElement,
       power: power ?? this.power,
-      powerElement: powerElement ?? this.powerElement,
       backCurve: backCurve ?? this.backCurve,
-      backCurveElement: backCurveElement ?? this.backCurveElement,
       diameter: diameter ?? this.diameter,
-      diameterElement: diameterElement ?? this.diameterElement,
       duration: duration ?? this.duration,
       color: color ?? this.color,
-      colorElement: colorElement ?? this.colorElement,
       brand: brand ?? this.brand,
-      brandElement: brandElement ?? this.brandElement,
       note: note ?? this.note,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -812,16 +675,10 @@ class VisionPrescriptionPrism extends BackboneElement {
 
   VisionPrescriptionPrism({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.amount,
-
-    /// Extensions for [amount]
-    this.amountElement,
     required this.base,
-
-    /// Extensions for [base]
-    this.baseElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -833,11 +690,15 @@ class VisionPrescriptionPrism extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory VisionPrescriptionPrism.fromJson(Map<String, dynamic> json) {
     return VisionPrescriptionPrism(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -846,28 +707,25 @@ class VisionPrescriptionPrism extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      amount: FhirDecimal.fromJson(json['amount']),
-      amountElement: json['_amount'] != null
-          ? Element.fromJson(
-              json['_amount'] as Map<String, dynamic>,
-            )
-          : null,
-      base: VisionBase.fromJson(json['base']),
-      baseElement: json['_base'] != null
-          ? Element.fromJson(
-              json['_base'] as Map<String, dynamic>,
-            )
-          : null,
+      amount: FhirDecimal.fromJson({
+        'value': json['amount'],
+        '_value': json['_amount'],
+      }),
+      base: VisionBase.fromJson({
+        'value': json['base'],
+        '_value': json['_base'],
+      }),
     );
   }
 
-  /// Deserialize [VisionPrescriptionPrism] from a [String] or [YamlMap] object
+  /// Deserialize [VisionPrescriptionPrism] from a [String]
+  /// or [YamlMap] object
   factory VisionPrescriptionPrism.fromYaml(dynamic yaml) => yaml is String
       ? VisionPrescriptionPrism.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -877,10 +735,11 @@ class VisionPrescriptionPrism extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'VisionPrescriptionPrism cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'VisionPrescriptionPrism cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [VisionPrescriptionPrism] that takes in a [String]
+  /// Factory constructor for [VisionPrescriptionPrism]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory VisionPrescriptionPrism.fromJsonString(String source) {
@@ -896,19 +755,22 @@ class VisionPrescriptionPrism extends BackboneElement {
   @override
   String get fhirType => 'VisionPrescriptionPrism';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [amount]
   /// Amount of prism to compensate for eye alignment in fractional units.
   final FhirDecimal amount;
 
-  /// Extensions for [amount]
-  final Element? amountElement;
-
   /// [base]
   /// The relative base, or reference lens edge, for the prism.
   final VisionBase base;
-
-  /// Extensions for [base]
-  final Element? baseElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -924,9 +786,6 @@ class VisionPrescriptionPrism extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['amount'] = amount.toJson();
-    if (amountElement != null) {
-      json['_amount'] = amountElement!.toJson();
-    }
     json['base'] = base.toJson();
     return json;
   }
@@ -939,9 +798,7 @@ class VisionPrescriptionPrism extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirDecimal? amount,
-    Element? amountElement,
     VisionBase? base,
-    Element? baseElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -954,9 +811,7 @@ class VisionPrescriptionPrism extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       amount: amount ?? this.amount,
-      amountElement: amountElement ?? this.amountElement,
       base: base ?? this.base,
-      baseElement: baseElement ?? this.baseElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

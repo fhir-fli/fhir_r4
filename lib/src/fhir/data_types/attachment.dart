@@ -9,39 +9,15 @@ class Attachment extends DataType {
 
   Attachment({
     super.id,
-    super.extension_,
+    this.extension_,
     this.contentType,
-
-    /// Extensions for [contentType]
-    this.contentTypeElement,
     this.language,
-
-    /// Extensions for [language]
-    this.languageElement,
     this.data,
-
-    /// Extensions for [data]
-    this.dataElement,
     this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.size,
-
-    /// Extensions for [size]
-    this.sizeElement,
     this.hash,
-
-    /// Extensions for [hash]
-    this.hashElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     this.creation,
-
-    /// Extensions for [creation]
-    this.creationElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -53,77 +29,73 @@ class Attachment extends DataType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Attachment.fromJson(Map<String, dynamic> json) {
     return Attachment(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       contentType: json['contentType'] != null
-          ? FhirCode.fromJson(json['contentType'])
-          : null,
-      contentTypeElement: json['_contentType'] != null
-          ? Element.fromJson(
-              json['_contentType'] as Map<String, dynamic>,
-            )
+          ? FhirCode.fromJson({
+              'value': json['contentType'],
+              '_value': json['_contentType'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+      data: json['data'] != null
+          ? FhirBase64Binary.fromJson({
+              'value': json['data'],
+              '_value': json['_data'],
+            })
           : null,
-      data:
-          json['data'] != null ? FhirBase64Binary.fromJson(json['data']) : null,
-      dataElement: json['_data'] != null
-          ? Element.fromJson(
-              json['_data'] as Map<String, dynamic>,
-            )
+      url: json['url'] != null
+          ? FhirUrl.fromJson({
+              'value': json['url'],
+              '_value': json['_url'],
+            })
           : null,
-      url: json['url'] != null ? FhirUrl.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
+      size: json['size'] != null
+          ? FhirUnsignedInt.fromJson({
+              'value': json['size'],
+              '_value': json['_size'],
+            })
           : null,
-      size:
-          json['size'] != null ? FhirUnsignedInt.fromJson(json['size']) : null,
-      sizeElement: json['_size'] != null
-          ? Element.fromJson(
-              json['_size'] as Map<String, dynamic>,
-            )
+      hash: json['hash'] != null
+          ? FhirBase64Binary.fromJson({
+              'value': json['hash'],
+              '_value': json['_hash'],
+            })
           : null,
-      hash:
-          json['hash'] != null ? FhirBase64Binary.fromJson(json['hash']) : null,
-      hashElement: json['_hash'] != null
-          ? Element.fromJson(
-              json['_hash'] as Map<String, dynamic>,
-            )
-          : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
       creation: json['creation'] != null
-          ? FhirDateTime.fromJson(json['creation'])
-          : null,
-      creationElement: json['_creation'] != null
-          ? Element.fromJson(
-              json['_creation'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['creation'],
+              '_value': json['_creation'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [Attachment] from a [String] or [YamlMap] object
+  /// Deserialize [Attachment] from a [String]
+  /// or [YamlMap] object
   factory Attachment.fromYaml(dynamic yaml) => yaml is String
       ? Attachment.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -132,10 +104,11 @@ class Attachment extends DataType {
           ? Attachment.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Attachment cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Attachment cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Attachment] that takes in a [String]
+  /// Factory constructor for [Attachment]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Attachment.fromJsonString(String source) {
@@ -151,66 +124,51 @@ class Attachment extends DataType {
   @override
   String get fhirType => 'Attachment';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [contentType]
   /// Identifies the type of the data in the attachment and allows a method
   /// to be chosen to interpret or render the data. Includes mime type
   /// parameters such as charset where appropriate.
   final FhirCode? contentType;
 
-  /// Extensions for [contentType]
-  final Element? contentTypeElement;
-
   /// [language]
   /// The human language of the content. The value can be any valid value
   /// according to BCP 47.
   final CommonLanguages? language;
-
-  /// Extensions for [language]
-  final Element? languageElement;
 
   /// [data]
   /// The actual data of the attachment - a sequence of bytes, base64
   /// encoded.
   final FhirBase64Binary? data;
 
-  /// Extensions for [data]
-  final Element? dataElement;
-
   /// [url]
   /// A location where the data can be accessed.
   final FhirUrl? url;
-
-  /// Extensions for [url]
-  final Element? urlElement;
 
   /// [size]
   /// The number of bytes of data that make up this attachment (before base64
   /// encoding, if that is done).
   final FhirUnsignedInt? size;
 
-  /// Extensions for [size]
-  final Element? sizeElement;
-
   /// [hash]
   /// The calculated hash of the data using SHA-1. Represented using base64.
   final FhirBase64Binary? hash;
-
-  /// Extensions for [hash]
-  final Element? hashElement;
 
   /// [title]
   /// A label or set of text to display in place of the data.
   final FhirString? title;
 
-  /// Extensions for [title]
-  final Element? titleElement;
-
   /// [creation]
   /// The date that the attachment was first created.
   final FhirDateTime? creation;
-
-  /// Extensions for [creation]
-  final Element? creationElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -224,47 +182,26 @@ class Attachment extends DataType {
     if (contentType?.value != null) {
       json['contentType'] = contentType!.toJson();
     }
-    if (contentTypeElement != null) {
-      json['_contentType'] = contentTypeElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
     if (data?.value != null) {
       json['data'] = data!.toJson();
     }
-    if (dataElement != null) {
-      json['_data'] = dataElement!.toJson();
-    }
     if (url?.value != null) {
       json['url'] = url!.toJson();
-    }
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
     }
     if (size?.value != null) {
       json['size'] = size!.toJson();
     }
-    if (sizeElement != null) {
-      json['_size'] = sizeElement!.toJson();
-    }
     if (hash?.value != null) {
       json['hash'] = hash!.toJson();
-    }
-    if (hashElement != null) {
-      json['_hash'] = hashElement!.toJson();
     }
     if (title?.value != null) {
       json['title'] = title!.toJson();
     }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
-    }
     if (creation?.value != null) {
       json['creation'] = creation!.toJson();
-    }
-    if (creationElement != null) {
-      json['_creation'] = creationElement!.toJson();
     }
     return json;
   }
@@ -276,21 +213,13 @@ class Attachment extends DataType {
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirCode? contentType,
-    Element? contentTypeElement,
     CommonLanguages? language,
-    Element? languageElement,
     FhirBase64Binary? data,
-    Element? dataElement,
     FhirUrl? url,
-    Element? urlElement,
     FhirUnsignedInt? size,
-    Element? sizeElement,
     FhirBase64Binary? hash,
-    Element? hashElement,
     FhirString? title,
-    Element? titleElement,
     FhirDateTime? creation,
-    Element? creationElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -302,21 +231,13 @@ class Attachment extends DataType {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       contentType: contentType ?? this.contentType,
-      contentTypeElement: contentTypeElement ?? this.contentTypeElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       data: data ?? this.data,
-      dataElement: dataElement ?? this.dataElement,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       size: size ?? this.size,
-      sizeElement: sizeElement ?? this.sizeElement,
       hash: hash ?? this.hash,
-      hashElement: hashElement ?? this.hashElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       creation: creation ?? this.creation,
-      creationElement: creationElement ?? this.creationElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

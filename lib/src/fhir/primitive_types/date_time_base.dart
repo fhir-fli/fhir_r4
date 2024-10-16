@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// [DateTime](https://www.hl7.org/fhir/datatypes.html#dateTime)
@@ -17,23 +15,37 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     this.millisecond,
     this.microsecond,
     this.timeZoneOffset,
-    super.element,
-  });
+    Element? element,
+  }) : super(null, element);
 
-  ///
+  /// Year
   final int year;
 
-  ///
+  /// Month
   final int? month;
 
-  ///
+  /// Day
   final int? day;
+
+  /// Hour
   final int? hour;
+
+  /// Minute
   final int? minute;
+
+  /// Second
   final int? second;
+
+  /// Millisecond
   final int? millisecond;
+
+  /// Microsecond
   final int? microsecond;
+
+  /// Time zone offset
   final num? timeZoneOffset;
+
+  /// UTC
   final bool isUtc;
 
   /// Getters for value and formatting
@@ -115,7 +127,8 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         buffer.write('T');
       }
       buffer.write(
-        '${timeZoneOffset! >= 0 ? '+' : '-'}${timeZoneOffset!.toInt().abs().toString().padLeft(2, '0')}:00',
+        '${timeZoneOffset! >= 0 ? '+' : '-'}'
+        '${timeZoneOffset!.toInt().abs().toString().padLeft(2, '0')}:00',
       );
     }
 
@@ -124,12 +137,15 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
 
   /// Serialization
   String toIso8601String() => valueDateTime.toIso8601String();
+
+  /// Converts the `FhirDateTimeBase` instance to a JSON-compatible map.
   @override
-  String toJson() => _formattedString;
-  @override
-  String toYaml() => _formattedString;
-  @override
-  String toJsonString() => jsonEncode(toJson());
+  Map<String, dynamic> toJson() {
+    return {
+      'value': valueString, // The formatted date-time string.
+      '_value': element!.toJson(), // Element metadata.
+    };
+  }
 
   /// Map representation
   Map<String, num?> toMap() => <String, num?>{
@@ -451,6 +467,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     return '$sign$hours:$minutes';
   }
 
+  /// Converts a [DateTime] to a [FhirDateTimeBase].
   static FhirDateTimeBase fromMathUnits<T>(
     DateTime dateTime,
     FhirDateTimeBase fhirDateTimeBase,
@@ -469,6 +486,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     );
   }
 
+  /// Factory constructor to create a [FhirDateTimeBase] from individual units.
   static FhirDateTimeBase fromUnits<T>({
     required int year,
     required bool isUtc,
@@ -498,14 +516,17 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     return _constructor<T>(dateTimeMap, null, true);
   }
 
+  /// Factory constructor to create a [FhirDateTimeBase] from a [String].
   FhirDateTimeBase fromJson<T>(String json) => constructor<T>(json);
 
+  /// Factory constructor to create a [FhirDateTimeBase] from a [DateTime].
   InvalidTypes<FhirDateTimeBase> comparisonError(
     Comparator comparator,
     Object o,
   ) =>
       InvalidTypes<FhirDateTimeBase>('Two values were passed to the date time '
-          '"$comparator" comparison operator, but there was an error comparing them.\n'
+          '"$comparator" comparison operator, but there was an error comparing '
+          'them.\n'
           'Argument 1: $value (${value.runtimeType})\n'
           'Argument 2: $o (${o.runtimeType})');
 
@@ -513,7 +534,8 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   Duration difference(dynamic other) {
     if (!(other is FhirDateTimeBase || other is DateTime)) {
       throw ArgumentError(
-        'The difference method can only be called with another FhirDateTimeBase or a Dart DateTime',
+        'The difference method can only be called with another '
+        'FhirDateTimeBase or a Dart DateTime',
       );
     }
     final thisDateTime = DateTime(
@@ -553,38 +575,51 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   @override
   bool equals(Object other) => _compare(Comparator.eq, other) ?? false;
 
+  /// Greater than operator.
   bool? operator >(Object other) => _compare(Comparator.gt, other);
 
+  /// Greater than or equal to operator.
   bool? operator >=(Object other) => _compare(Comparator.gte, other);
 
+  /// Less than operator.
   bool? operator <(Object other) => _compare(Comparator.lt, other);
 
+  /// Less than or equal to operator.
   bool? operator <=(Object other) => _compare(Comparator.lte, other);
 
+  /// Arithmetic Operators
   bool? isBefore(FhirDateTimeBase other) => _compare(Comparator.lt, other);
 
+  /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase].
   bool? isAfter(FhirDateTimeBase other) => _compare(Comparator.gt, other);
 
+  /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase].
   bool? isSameOrBefore(FhirDateTimeBase other) =>
       _compare(Comparator.lte, other);
 
+  /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase].
   bool? isSameOrAfter(FhirDateTimeBase other) =>
       _compare(Comparator.gte, other);
 
+  /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase].
   bool? isAtSameMomentAs(FhirDateTimeBase other) =>
       _compare(Comparator.eq, other);
 
+  /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase].
   bool? isEqual(Object other) => _compare(Comparator.eq, other);
 
-  FhirDateTimeBase operator +(ExtendedDuration other);
+  /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase].
+  FhirDateTimeBase? operator +(ExtendedDuration other);
 
-  FhirDateTimeBase operator -(ExtendedDuration other);
+  /// Subtracts an [ExtendedDuration] from a [FhirDateTimeBase].
+  FhirDateTimeBase? operator -(ExtendedDuration other);
 
   /// [DateTime](https://build.fhir.org/datatypes.html#dateTime)
   static final RegExp dateTimeExp = RegExp(
     r'(?<year>[0-9]{4})(-(?<month>0[1-9]|1[0-2])(-(?<day>0[1-9]|[1-2][0-9]|3[0-1])(T((?<hour>[01][0-9]|2[0-3])(:(?<minute>[0-5][0-9])(:(?<second>[0-5][0-9]|60)(\.(?<fraction>[0-9]+))?)?)?)?(?<timezone>Z|(\+|-)([0-1][0-9]|2[0-3])(:[0-5][0-9])?)?)?)?)?',
   );
 
+  /// Formats a date-time string into a map of date-time parts.
   static Map<String, num?> formatDateTimeString<T>(String dateTimeString) {
     final dateTimeRegExp = dateTimeExp.firstMatch(dateTimeString);
     final fractionString = dateTimeRegExp?.namedGroup('fraction');
@@ -618,7 +653,9 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   }
 }
 
+/// [Date](https://www.hl7.org/fhir/datatypes.html#date)
 extension TimeZoneOffsetDouble on double {
+  /// Converts a double to a time zone offset string.
   String get timeZoneOffsetToString {
     final offsetHours = toInt();
 
@@ -635,7 +672,9 @@ extension TimeZoneOffsetDouble on double {
   }
 }
 
+/// [Date](https://www.hl7.org/fhir/datatypes.html#date)
 extension TimeZoneOffsetString on String {
+  /// Converts a string to a time zone offset double.
   double? get stringToTimeZoneOffset {
     final positive = !startsWith('-');
     final parts = substring(1).split(':');

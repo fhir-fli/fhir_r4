@@ -2,7 +2,7 @@
 
 import 'package:ucum/ucum.dart';
 
-import '../../../../fhir_r4.dart';
+import 'package:fhir_r4/fhir_r4.dart';
 
 class GreaterParser extends OperatorParser {
   GreaterParser();
@@ -139,9 +139,14 @@ class LessEqualParser extends OperatorParser {
 
 // TODO(Dokotela): review if appropriately comparing different types
 @override
-List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
-    ParserList after, Map<String, dynamic> passed, Comparator comparator,
-    {bool where = false}) {
+List<dynamic> executeComparisons(
+  List<dynamic> results,
+  ParserList before,
+  ParserList after,
+  Map<String, dynamic> passed,
+  Comparator comparator, {
+  bool where = false,
+}) {
   // TODO(Dokotela): Currently, this is going to assume that if a String is being compared
   // with a Date, DateTime, or Time, and the String is a valid format of a Time
   // or DateTime, then they should still be compared
@@ -154,12 +159,12 @@ List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
   //    if(param)}
 
   bool stringGt(String param1, String param2) {
-    final List<int> runes1 = param1.runes.toList();
-    final List<int> runes2 = param2.runes.toList();
+    final runes1 = param1.runes.toList();
+    final runes2 = param2.runes.toList();
     if (runes1.length < runes2.length) {
       return false;
     }
-    for (int i = 0; i < runes1.length; i++) {
+    for (var i = 0; i < runes1.length; i++) {
       if (runes2[i] > runes1[i]) {
         return false;
       } else if (runes2[i] < runes1[i]) {
@@ -211,7 +216,7 @@ List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
         return rhs is num
             ? makeComparison(comparator, lhs, rhs)
             : rhs is FhirNumber
-                ? makeComparison(comparator, lhs, rhs.valueNumber)
+                ? makeComparison(comparator, lhs, rhs.value)
                 : rhs is String && num.tryParse(rhs) != null
                     ? makeComparison(comparator, lhs, num.parse(rhs))
                     : throw cannotCompareException(lhs, rhs);
@@ -219,7 +224,7 @@ List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
         return rhs is num
             ? makeComparison(comparator, lhs, rhs)
             : rhs is FhirNumber
-                ? makeComparison(comparator, lhs, rhs.valueNumber)
+                ? makeComparison(comparator, lhs, rhs.value)
                 : rhs is String && num.tryParse(rhs) != null
                     ? makeComparison(comparator, lhs, num.parse(rhs))
                     : throw cannotCompareException(lhs, rhs);
@@ -231,11 +236,17 @@ List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
         return (rhs is FhirDateTimeBase)
             ? makeComparison(comparator, FhirDateTime.fromDateTime(lhs), rhs)
             : rhs is DateTime
-                ? makeComparison(comparator, FhirDateTime.fromDateTime(lhs),
-                    FhirDateTime.fromDateTime(rhs))
+                ? makeComparison(
+                    comparator,
+                    FhirDateTime.fromDateTime(lhs),
+                    FhirDateTime.fromDateTime(rhs),
+                  )
                 : rhs is String && FhirDateTime.tryParse(rhs) != null
-                    ? makeComparison(comparator, FhirDateTime.fromDateTime(lhs),
-                        FhirDateTime.fromString(rhs))
+                    ? makeComparison(
+                        comparator,
+                        FhirDateTime.fromDateTime(lhs),
+                        FhirDateTime.fromString(rhs),
+                      )
                     : throw cannotCompareException(lhs, rhs);
       case FhirDateTime _:
         return rhs is FhirDateTimeBase
@@ -250,7 +261,10 @@ List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
             ? makeComparison(comparator, lhs, rhs)
             : rhs is String
                 ? makeComparison(
-                    comparator, lhs, ValidatedQuantity.fromString(rhs))
+                    comparator,
+                    lhs,
+                    ValidatedQuantity.fromString(rhs),
+                  )
                 : throw cannotCompareException(lhs, rhs);
 
       /// Default should be when lhs is a String
@@ -273,10 +287,16 @@ List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
           } else if (rhs is FhirDate || rhs is FhirDateTime) {
             if (lhs is String && FhirDateTime.tryParse(lhs) != null) {
               return makeComparison(
-                  comparator, FhirDateTime.fromString(lhs), rhs);
+                comparator,
+                FhirDateTime.fromString(lhs),
+                rhs,
+              );
             } else if (lhs is DateTime) {
               return makeComparison(
-                  comparator, FhirDateTime.fromDateTime(lhs), rhs);
+                comparator,
+                FhirDateTime.fromDateTime(lhs),
+                rhs,
+              );
             } else if (lhs is FhirDateTimeBase) {
               return makeComparison(comparator, lhs, rhs);
             }
@@ -290,16 +310,18 @@ List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
     }
   }
 
-  final List<dynamic> lhs = SingletonEvaluation.toSingleton(
-      before.execute(results.toList(), passed),
-      name: 'left-hand side',
-      operation: comparator.toString(),
-      collection: results);
-  final List<dynamic> rhs = SingletonEvaluation.toSingleton(
-      after.execute(results.toList(), passed),
-      name: 'right-hand side',
-      operation: comparator.toString(),
-      collection: results);
+  final lhs = SingletonEvaluation.toSingleton(
+    before.execute(results.toList(), passed),
+    name: 'left-hand side',
+    operation: comparator.toString(),
+    collection: results,
+  );
+  final rhs = SingletonEvaluation.toSingleton(
+    after.execute(results.toList(), passed),
+    name: 'right-hand side',
+    operation: comparator.toString(),
+    collection: results,
+  );
 
   if (lhs.isEmpty || rhs.isEmpty) {
     return <dynamic>[];
@@ -312,7 +334,7 @@ List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
   {
     if (!_allowedTypes.contains(lhs.first.runtimeType) ||
         !_allowedTypes.contains(rhs.first.runtimeType)) {
-      final String functionName = comparator == Comparator.gt
+      final functionName = comparator == Comparator.gt
           ? '>'
           : comparator == Comparator.gte
               ? '>='
@@ -320,18 +342,21 @@ List<dynamic> executeComparisons(List<dynamic> results, ParserList before,
                   ? '<'
                   : '<=';
       throw FhirPathEvaluationException(
-          'The comparator $functionName cannot work with the types '
-          'passed.\n'
-          'LHS: $lhs\n'
-          'RHS: $rhs',
-          operation: functionName,
-          arguments: <ParserList>[before, after]);
+        'The comparator $functionName cannot work with the types '
+        'passed.\n'
+        'LHS: $lhs\n'
+        'RHS: $rhs',
+        operation: functionName,
+        arguments: <ParserList>[before, after],
+      );
     } else if (where) {
-      results.retainWhere((dynamic element) =>
-          compare(comparator, element[lhs.first], rhs.first) ?? false);
+      results.retainWhere(
+        (dynamic element) =>
+            compare(comparator, element[lhs.first], rhs.first) ?? false,
+      );
       return results;
     } else {
-      final bool? newResult = compare(comparator, lhs.first, rhs.first);
+      final newResult = compare(comparator, lhs.first, rhs.first);
       return newResult == null ? <dynamic>[] : <dynamic>[newResult];
     }
   }
@@ -350,7 +375,8 @@ const List<Type> _allowedTypes = <Type>[
 
 Exception _wrongArgLength(String functionName, List<dynamic> value) =>
     FhirPathEvaluationException(
-        'The function $functionName must have an argument that '
-        'evaluates to 0 or 1 item.',
-        operation: functionName,
-        arguments: value);
+      'The function $functionName must have an argument that '
+      'evaluates to 0 or 1 item.',
+      operation: functionName,
+      arguments: value,
+    );

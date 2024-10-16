@@ -13,39 +13,18 @@ class Location extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.operationalStatus,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.alias,
-
-    /// Extensions for [alias]
-    this.aliasElement,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.mode,
-
-    /// Extensions for [mode]
-    this.modeElement,
     this.type,
     this.telecom,
     this.address,
@@ -55,9 +34,6 @@ class Location extends DomainResource {
     this.partOf,
     this.hoursOfOperation,
     this.availabilityExceptions,
-
-    /// Extensions for [availabilityExceptions]
-    this.availabilityExceptionsElement,
     this.endpoint,
     super.userData,
     super.formatCommentsPre,
@@ -72,27 +48,27 @@ class Location extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Location.fromJson(Map<String, dynamic> json) {
     return Location(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -102,7 +78,7 @@ class Location extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -111,7 +87,7 @@ class Location extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -120,7 +96,7 @@ class Location extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -129,63 +105,48 @@ class Location extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       status: json['status'] != null
-          ? LocationStatus.fromJson(json['status'])
-          : null,
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
+          ? LocationStatus.fromJson({
+              'value': json['status'],
+              '_value': json['_status'],
+            })
           : null,
       operationalStatus: json['operationalStatus'] != null
           ? Coding.fromJson(
               json['operationalStatus'] as Map<String, dynamic>,
             )
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
-      alias: json['alias'] != null
-          ? (json['alias'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      aliasElement: json['_alias'] != null
-          ? (json['_alias'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      alias: parsePrimitiveList<FhirString>(
+          json['alias'] as List<dynamic>?, json['_alias'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
-          : null,
-      mode: json['mode'] != null ? LocationMode.fromJson(json['mode']) : null,
-      modeElement: json['_mode'] != null
-          ? Element.fromJson(
-              json['_mode'] as Map<String, dynamic>,
-            )
+      mode: json['mode'] != null
+          ? LocationMode.fromJson({
+              'value': json['mode'],
+              '_value': json['_mode'],
+            })
           : null,
       type: json['type'] != null
           ? (json['type'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -194,7 +155,7 @@ class Location extends DomainResource {
       telecom: json['telecom'] != null
           ? (json['telecom'] as List<dynamic>)
               .map<ContactPoint>(
-                (dynamic v) => ContactPoint.fromJson(
+                (v) => ContactPoint.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -228,24 +189,22 @@ class Location extends DomainResource {
       hoursOfOperation: json['hoursOfOperation'] != null
           ? (json['hoursOfOperation'] as List<dynamic>)
               .map<LocationHoursOfOperation>(
-                (dynamic v) => LocationHoursOfOperation.fromJson(
+                (v) => LocationHoursOfOperation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       availabilityExceptions: json['availabilityExceptions'] != null
-          ? FhirString.fromJson(json['availabilityExceptions'])
-          : null,
-      availabilityExceptionsElement: json['_availabilityExceptions'] != null
-          ? Element.fromJson(
-              json['_availabilityExceptions'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['availabilityExceptions'],
+              '_value': json['_availabilityExceptions'],
+            })
           : null,
       endpoint: json['endpoint'] != null
           ? (json['endpoint'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -254,7 +213,8 @@ class Location extends DomainResource {
     );
   }
 
-  /// Deserialize [Location] from a [String] or [YamlMap] object
+  /// Deserialize [Location] from a [String]
+  /// or [YamlMap] object
   factory Location.fromYaml(dynamic yaml) => yaml is String
       ? Location.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -263,10 +223,11 @@ class Location extends DomainResource {
           ? Location.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Location cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Location cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Location] that takes in a [String]
+  /// Factory constructor for [Location]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Location.fromJsonString(String source) {
@@ -282,6 +243,15 @@ class Location extends DomainResource {
   @override
   String get fhirType => 'Location';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Unique code or number identifying the location to its users.
   final List<Identifier>? identifier;
@@ -291,9 +261,6 @@ class Location extends DomainResource {
   /// not the current value which may be covered by the operationStatus, or
   /// by a schedule/slots if they are configured for the location.
   final LocationStatus? status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [operationalStatus]
   /// The operational status covers operation values most relevant to beds
@@ -306,32 +273,20 @@ class Location extends DomainResource {
   /// Name of the location as used by humans. Does not need to be unique.
   final FhirString? name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [alias]
   /// A list of alternate names that the location is known as, or was known
   /// as, in the past.
   final List<FhirString>? alias;
-
-  /// Extensions for [alias]
-  final List<Element>? aliasElement;
 
   /// [description]
   /// Description of the Location, which helps in finding or referencing the
   /// place.
   final FhirString? description;
 
-  /// Extensions for [description]
-  final Element? descriptionElement;
-
   /// [mode]
   /// Indicates whether a resource instance represents a specific location or
   /// a class of locations.
   final LocationMode? mode;
-
-  /// Extensions for [mode]
-  final Element? modeElement;
 
   /// [type]
   /// Indicates the type of function performed at the location.
@@ -376,9 +331,6 @@ class Location extends DomainResource {
   /// opening hours Times.
   final FhirString? availabilityExceptions;
 
-  /// Extensions for [availabilityExceptions]
-  final Element? availabilityExceptionsElement;
-
   /// [endpoint]
   /// Technical endpoints providing access to services operated for the
   /// location.
@@ -395,9 +347,6 @@ class Location extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -429,20 +378,11 @@ class Location extends DomainResource {
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (alias != null && alias!.isNotEmpty) {
       json['alias'] = alias!.map((FhirString v) => v.toJson()).toList();
     }
-    if (aliasElement != null && aliasElement!.isNotEmpty) {
-      json['_alias'] = aliasElement!.map((Element v) => v.toJson()).toList();
-    }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (mode != null) {
       json['mode'] = mode!.toJson();
@@ -476,9 +416,6 @@ class Location extends DomainResource {
     if (availabilityExceptions?.value != null) {
       json['availabilityExceptions'] = availabilityExceptions!.toJson();
     }
-    if (availabilityExceptionsElement != null) {
-      json['_availabilityExceptions'] = availabilityExceptionsElement!.toJson();
-    }
     if (endpoint != null && endpoint!.isNotEmpty) {
       json['endpoint'] = endpoint!.map((Reference v) => v.toJson()).toList();
     }
@@ -492,25 +429,18 @@ class Location extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     LocationStatus? status,
-    Element? statusElement,
     Coding? operationalStatus,
     FhirString? name,
-    Element? nameElement,
     List<FhirString>? alias,
-    List<Element>? aliasElement,
     FhirString? description,
-    Element? descriptionElement,
     LocationMode? mode,
-    Element? modeElement,
     List<CodeableConcept>? type,
     List<ContactPoint>? telecom,
     Address? address,
@@ -520,7 +450,6 @@ class Location extends DomainResource {
     Reference? partOf,
     List<LocationHoursOfOperation>? hoursOfOperation,
     FhirString? availabilityExceptions,
-    Element? availabilityExceptionsElement,
     List<Reference>? endpoint,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -533,25 +462,18 @@ class Location extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       operationalStatus: operationalStatus ?? this.operationalStatus,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       alias: alias ?? this.alias,
-      aliasElement: aliasElement ?? this.aliasElement,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       mode: mode ?? this.mode,
-      modeElement: modeElement ?? this.modeElement,
       type: type ?? this.type,
       telecom: telecom ?? this.telecom,
       address: address ?? this.address,
@@ -562,8 +484,6 @@ class Location extends DomainResource {
       hoursOfOperation: hoursOfOperation ?? this.hoursOfOperation,
       availabilityExceptions:
           availabilityExceptions ?? this.availabilityExceptions,
-      availabilityExceptionsElement:
-          availabilityExceptionsElement ?? this.availabilityExceptionsElement,
       endpoint: endpoint ?? this.endpoint,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -583,20 +503,11 @@ class LocationPosition extends BackboneElement {
 
   LocationPosition({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.longitude,
-
-    /// Extensions for [longitude]
-    this.longitudeElement,
     required this.latitude,
-
-    /// Extensions for [latitude]
-    this.latitudeElement,
     this.altitude,
-
-    /// Extensions for [altitude]
-    this.altitudeElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -608,11 +519,15 @@ class LocationPosition extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory LocationPosition.fromJson(Map<String, dynamic> json) {
     return LocationPosition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -621,36 +536,31 @@ class LocationPosition extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      longitude: FhirDecimal.fromJson(json['longitude']),
-      longitudeElement: json['_longitude'] != null
-          ? Element.fromJson(
-              json['_longitude'] as Map<String, dynamic>,
-            )
-          : null,
-      latitude: FhirDecimal.fromJson(json['latitude']),
-      latitudeElement: json['_latitude'] != null
-          ? Element.fromJson(
-              json['_latitude'] as Map<String, dynamic>,
-            )
-          : null,
+      longitude: FhirDecimal.fromJson({
+        'value': json['longitude'],
+        '_value': json['_longitude'],
+      }),
+      latitude: FhirDecimal.fromJson({
+        'value': json['latitude'],
+        '_value': json['_latitude'],
+      }),
       altitude: json['altitude'] != null
-          ? FhirDecimal.fromJson(json['altitude'])
-          : null,
-      altitudeElement: json['_altitude'] != null
-          ? Element.fromJson(
-              json['_altitude'] as Map<String, dynamic>,
-            )
+          ? FhirDecimal.fromJson({
+              'value': json['altitude'],
+              '_value': json['_altitude'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [LocationPosition] from a [String] or [YamlMap] object
+  /// Deserialize [LocationPosition] from a [String]
+  /// or [YamlMap] object
   factory LocationPosition.fromYaml(dynamic yaml) => yaml is String
       ? LocationPosition.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -659,11 +569,11 @@ class LocationPosition extends BackboneElement {
           ? LocationPosition.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'LocationPosition cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('LocationPosition cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [LocationPosition] that takes in a [String]
+  /// Factory constructor for [LocationPosition]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory LocationPosition.fromJsonString(String source) {
@@ -679,29 +589,29 @@ class LocationPosition extends BackboneElement {
   @override
   String get fhirType => 'LocationPosition';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [longitude]
   /// Longitude. The value domain and the interpretation are the same as for
   /// the text of the longitude element in KML (see notes below).
   final FhirDecimal longitude;
-
-  /// Extensions for [longitude]
-  final Element? longitudeElement;
 
   /// [latitude]
   /// Latitude. The value domain and the interpretation are the same as for
   /// the text of the latitude element in KML (see notes below).
   final FhirDecimal latitude;
 
-  /// Extensions for [latitude]
-  final Element? latitudeElement;
-
   /// [altitude]
   /// Altitude. The value domain and the interpretation are the same as for
   /// the text of the altitude element in KML (see notes below).
   final FhirDecimal? altitude;
-
-  /// Extensions for [altitude]
-  final Element? altitudeElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -717,18 +627,9 @@ class LocationPosition extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['longitude'] = longitude.toJson();
-    if (longitudeElement != null) {
-      json['_longitude'] = longitudeElement!.toJson();
-    }
     json['latitude'] = latitude.toJson();
-    if (latitudeElement != null) {
-      json['_latitude'] = latitudeElement!.toJson();
-    }
     if (altitude?.value != null) {
       json['altitude'] = altitude!.toJson();
-    }
-    if (altitudeElement != null) {
-      json['_altitude'] = altitudeElement!.toJson();
     }
     return json;
   }
@@ -741,11 +642,8 @@ class LocationPosition extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirDecimal? longitude,
-    Element? longitudeElement,
     FhirDecimal? latitude,
-    Element? latitudeElement,
     FhirDecimal? altitude,
-    Element? altitudeElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -758,11 +656,8 @@ class LocationPosition extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       longitude: longitude ?? this.longitude,
-      longitudeElement: longitudeElement ?? this.longitudeElement,
       latitude: latitude ?? this.latitude,
-      latitudeElement: latitudeElement ?? this.latitudeElement,
       altitude: altitude ?? this.altitude,
-      altitudeElement: altitudeElement ?? this.altitudeElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -780,24 +675,12 @@ class LocationHoursOfOperation extends BackboneElement {
 
   LocationHoursOfOperation({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.daysOfWeek,
-
-    /// Extensions for [daysOfWeek]
-    this.daysOfWeekElement,
     this.allDay,
-
-    /// Extensions for [allDay]
-    this.allDayElement,
     this.openingTime,
-
-    /// Extensions for [openingTime]
-    this.openingTimeElement,
     this.closingTime,
-
-    /// Extensions for [closingTime]
-    this.closingTimeElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -809,11 +692,15 @@ class LocationHoursOfOperation extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory LocationHoursOfOperation.fromJson(Map<String, dynamic> json) {
     return LocationHoursOfOperation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -822,53 +709,39 @@ class LocationHoursOfOperation extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      daysOfWeek: json['daysOfWeek'] != null
-          ? (json['daysOfWeek'] as List<dynamic>)
-              .map<DaysOfWeek>(
-                (dynamic v) => DaysOfWeek.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      daysOfWeekElement: json['_daysOfWeek'] != null
-          ? (json['_daysOfWeek'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      allDay:
-          json['allDay'] != null ? FhirBoolean.fromJson(json['allDay']) : null,
-      allDayElement: json['_allDay'] != null
-          ? Element.fromJson(
-              json['_allDay'] as Map<String, dynamic>,
-            )
+      daysOfWeek: parsePrimitiveList<DaysOfWeek>(
+          json['daysOfWeek'] as List<dynamic>?,
+          json['_daysOfWeek'] as List<dynamic>?,
+          fromJson: DaysOfWeek.fromJson),
+      allDay: json['allDay'] != null
+          ? FhirBoolean.fromJson({
+              'value': json['allDay'],
+              '_value': json['_allDay'],
+            })
           : null,
       openingTime: json['openingTime'] != null
-          ? FhirTime.fromJson(json['openingTime'])
-          : null,
-      openingTimeElement: json['_openingTime'] != null
-          ? Element.fromJson(
-              json['_openingTime'] as Map<String, dynamic>,
-            )
+          ? FhirTime.fromJson({
+              'value': json['openingTime'],
+              '_value': json['_openingTime'],
+            })
           : null,
       closingTime: json['closingTime'] != null
-          ? FhirTime.fromJson(json['closingTime'])
-          : null,
-      closingTimeElement: json['_closingTime'] != null
-          ? Element.fromJson(
-              json['_closingTime'] as Map<String, dynamic>,
-            )
+          ? FhirTime.fromJson({
+              'value': json['closingTime'],
+              '_value': json['_closingTime'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [LocationHoursOfOperation] from a [String] or [YamlMap] object
+  /// Deserialize [LocationHoursOfOperation] from a [String]
+  /// or [YamlMap] object
   factory LocationHoursOfOperation.fromYaml(dynamic yaml) => yaml is String
       ? LocationHoursOfOperation.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -878,10 +751,11 @@ class LocationHoursOfOperation extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'LocationHoursOfOperation cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'LocationHoursOfOperation cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [LocationHoursOfOperation] that takes in a [String]
+  /// Factory constructor for [LocationHoursOfOperation]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory LocationHoursOfOperation.fromJsonString(String source) {
@@ -897,34 +771,31 @@ class LocationHoursOfOperation extends BackboneElement {
   @override
   String get fhirType => 'LocationHoursOfOperation';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [daysOfWeek]
   /// Indicates which days of the week are available between the start and
   /// end Times.
   final List<DaysOfWeek>? daysOfWeek;
 
-  /// Extensions for [daysOfWeek]
-  final List<Element>? daysOfWeekElement;
-
   /// [allDay]
   /// The Location is open all day.
   final FhirBoolean? allDay;
-
-  /// Extensions for [allDay]
-  final Element? allDayElement;
 
   /// [openingTime]
   /// Time that the Location opens.
   final FhirTime? openingTime;
 
-  /// Extensions for [openingTime]
-  final Element? openingTimeElement;
-
   /// [closingTime]
   /// Time that the Location closes.
   final FhirTime? closingTime;
-
-  /// Extensions for [closingTime]
-  final Element? closingTimeElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -946,20 +817,11 @@ class LocationHoursOfOperation extends BackboneElement {
     if (allDay?.value != null) {
       json['allDay'] = allDay!.toJson();
     }
-    if (allDayElement != null) {
-      json['_allDay'] = allDayElement!.toJson();
-    }
     if (openingTime?.value != null) {
       json['openingTime'] = openingTime!.toJson();
     }
-    if (openingTimeElement != null) {
-      json['_openingTime'] = openingTimeElement!.toJson();
-    }
     if (closingTime?.value != null) {
       json['closingTime'] = closingTime!.toJson();
-    }
-    if (closingTimeElement != null) {
-      json['_closingTime'] = closingTimeElement!.toJson();
     }
     return json;
   }
@@ -972,13 +834,9 @@ class LocationHoursOfOperation extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<DaysOfWeek>? daysOfWeek,
-    List<Element>? daysOfWeekElement,
     FhirBoolean? allDay,
-    Element? allDayElement,
     FhirTime? openingTime,
-    Element? openingTimeElement,
     FhirTime? closingTime,
-    Element? closingTimeElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -991,13 +849,9 @@ class LocationHoursOfOperation extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       daysOfWeek: daysOfWeek ?? this.daysOfWeek,
-      daysOfWeekElement: daysOfWeekElement ?? this.daysOfWeekElement,
       allDay: allDay ?? this.allDay,
-      allDayElement: allDayElement ?? this.allDayElement,
       openingTime: openingTime ?? this.openingTime,
-      openingTimeElement: openingTimeElement ?? this.openingTimeElement,
       closingTime: closingTime ?? this.closingTime,
-      closingTimeElement: closingTimeElement ?? this.closingTimeElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

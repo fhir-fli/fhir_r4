@@ -12,60 +12,24 @@ class EvidenceVariable extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.identifier,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     this.shortTitle,
-
-    /// Extensions for [shortTitle]
-    this.shortTitleElement,
     this.subtitle,
-
-    /// Extensions for [subtitle]
-    this.subtitleElement,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.note,
     this.useContext,
     this.publisher,
-
-    /// Extensions for [publisher]
-    this.publisherElement,
     this.contact,
     this.author,
     this.editor,
@@ -73,18 +37,9 @@ class EvidenceVariable extends DomainResource {
     this.endorser,
     this.relatedArtifact,
     this.actual,
-
-    /// Extensions for [actual]
-    this.actualElement,
     this.characteristicCombination,
-
-    /// Extensions for [characteristicCombination]
-    this.characteristicCombinationElement,
     this.characteristic,
     this.handling,
-
-    /// Extensions for [handling]
-    this.handlingElement,
     this.category,
     super.userData,
     super.formatCommentsPre,
@@ -99,27 +54,27 @@ class EvidenceVariable extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceVariable.fromJson(Map<String, dynamic> json) {
     return EvidenceVariable(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -129,7 +84,7 @@ class EvidenceVariable extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -138,7 +93,7 @@ class EvidenceVariable extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -147,86 +102,77 @@ class EvidenceVariable extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
+      url: json['url'] != null
+          ? FhirUri.fromJson({
+              'value': json['url'],
+              '_value': json['_url'],
+            })
           : null,
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
       shortTitle: json['shortTitle'] != null
-          ? FhirString.fromJson(json['shortTitle'])
-          : null,
-      shortTitleElement: json['_shortTitle'] != null
-          ? Element.fromJson(
-              json['_shortTitle'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['shortTitle'],
+              '_value': json['_shortTitle'],
+            })
           : null,
       subtitle: json['subtitle'] != null
-          ? FhirString.fromJson(json['subtitle'])
+          ? FhirString.fromJson({
+              'value': json['subtitle'],
+              '_value': json['_subtitle'],
+            })
           : null,
-      subtitleElement: json['_subtitle'] != null
-          ? Element.fromJson(
-              json['_subtitle'] as Map<String, dynamic>,
-            )
-          : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      status: PublicationStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -235,24 +181,22 @@ class EvidenceVariable extends DomainResource {
       useContext: json['useContext'] != null
           ? (json['useContext'] as List<dynamic>)
               .map<UsageContext>(
-                (dynamic v) => UsageContext.fromJson(
+                (v) => UsageContext.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       publisher: json['publisher'] != null
-          ? FhirString.fromJson(json['publisher'])
-          : null,
-      publisherElement: json['_publisher'] != null
-          ? Element.fromJson(
-              json['_publisher'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['publisher'],
+              '_value': json['_publisher'],
+            })
           : null,
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -261,7 +205,7 @@ class EvidenceVariable extends DomainResource {
       author: json['author'] != null
           ? (json['author'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -270,7 +214,7 @@ class EvidenceVariable extends DomainResource {
       editor: json['editor'] != null
           ? (json['editor'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -279,7 +223,7 @@ class EvidenceVariable extends DomainResource {
       reviewer: json['reviewer'] != null
           ? (json['reviewer'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -288,7 +232,7 @@ class EvidenceVariable extends DomainResource {
       endorser: json['endorser'] != null
           ? (json['endorser'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -297,50 +241,43 @@ class EvidenceVariable extends DomainResource {
       relatedArtifact: json['relatedArtifact'] != null
           ? (json['relatedArtifact'] as List<dynamic>)
               .map<RelatedArtifact>(
-                (dynamic v) => RelatedArtifact.fromJson(
+                (v) => RelatedArtifact.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      actual:
-          json['actual'] != null ? FhirBoolean.fromJson(json['actual']) : null,
-      actualElement: json['_actual'] != null
-          ? Element.fromJson(
-              json['_actual'] as Map<String, dynamic>,
-            )
+      actual: json['actual'] != null
+          ? FhirBoolean.fromJson({
+              'value': json['actual'],
+              '_value': json['_actual'],
+            })
           : null,
       characteristicCombination: json['characteristicCombination'] != null
-          ? CharacteristicCombination.fromJson(
-              json['characteristicCombination'])
+          ? CharacteristicCombination.fromJson({
+              'value': json['characteristicCombination'],
+              '_value': json['_characteristicCombination'],
+            })
           : null,
-      characteristicCombinationElement:
-          json['_characteristicCombination'] != null
-              ? Element.fromJson(
-                  json['_characteristicCombination'] as Map<String, dynamic>,
-                )
-              : null,
       characteristic: json['characteristic'] != null
           ? (json['characteristic'] as List<dynamic>)
               .map<EvidenceVariableCharacteristic>(
-                (dynamic v) => EvidenceVariableCharacteristic.fromJson(
+                (v) => EvidenceVariableCharacteristic.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       handling: json['handling'] != null
-          ? EvidenceVariableHandling.fromJson(json['handling'])
-          : null,
-      handlingElement: json['_handling'] != null
-          ? Element.fromJson(
-              json['_handling'] as Map<String, dynamic>,
-            )
+          ? EvidenceVariableHandling.fromJson({
+              'value': json['handling'],
+              '_value': json['_handling'],
+            })
           : null,
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<EvidenceVariableCategory>(
-                (dynamic v) => EvidenceVariableCategory.fromJson(
+                (v) => EvidenceVariableCategory.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -349,7 +286,8 @@ class EvidenceVariable extends DomainResource {
     );
   }
 
-  /// Deserialize [EvidenceVariable] from a [String] or [YamlMap] object
+  /// Deserialize [EvidenceVariable] from a [String]
+  /// or [YamlMap] object
   factory EvidenceVariable.fromYaml(dynamic yaml) => yaml is String
       ? EvidenceVariable.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -358,11 +296,11 @@ class EvidenceVariable extends DomainResource {
           ? EvidenceVariable.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'EvidenceVariable cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('EvidenceVariable cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [EvidenceVariable] that takes in a [String]
+  /// Factory constructor for [EvidenceVariable]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory EvidenceVariable.fromJsonString(String source) {
@@ -378,6 +316,15 @@ class EvidenceVariable extends DomainResource {
   @override
   String get fhirType => 'EvidenceVariable';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [url]
   /// An absolute URI that is used to identify this evidence variable when it
   /// is referenced in a specification, model, design or an instance; also
@@ -387,9 +334,6 @@ class EvidenceVariable extends DomainResource {
   /// the target of a canonical reference. It SHALL remain the same when the
   /// evidence variable is stored on different servers.
   final FhirUri? url;
-
-  /// Extensions for [url]
-  final Element? urlElement;
 
   /// [identifier]
   /// A formal identifier that is used to identify this evidence variable
@@ -411,48 +355,30 @@ class EvidenceVariable extends DomainResource {
   /// Note that a version is required for non-experimental active artifacts.
   final FhirString? version;
 
-  /// Extensions for [version]
-  final Element? versionElement;
-
   /// [name]
   /// A natural language name identifying the evidence variable. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
   final FhirString? name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [title]
   /// A short, descriptive, user-friendly title for the evidence variable.
   final FhirString? title;
-
-  /// Extensions for [title]
-  final Element? titleElement;
 
   /// [shortTitle]
   /// The short title provides an alternate title for use in informal
   /// descriptive contexts where the full, formal title is not necessary.
   final FhirString? shortTitle;
 
-  /// Extensions for [shortTitle]
-  final Element? shortTitleElement;
-
   /// [subtitle]
   /// An explanatory or alternate title for the EvidenceVariable giving
   /// additional information about its content.
   final FhirString? subtitle;
 
-  /// Extensions for [subtitle]
-  final Element? subtitleElement;
-
   /// [status]
   /// The status of this evidence variable. Enables tracking the life-cycle
   /// of the content.
   final PublicationStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [date]
   /// The date (and optionally time) when the evidence variable was
@@ -461,16 +387,10 @@ class EvidenceVariable extends DomainResource {
   /// change when the substantive content of the evidence variable changes.
   final FhirDateTime? date;
 
-  /// Extensions for [date]
-  final Element? dateElement;
-
   /// [description]
   /// A free text natural language description of the evidence variable from
   /// a consumer's perspective.
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [note]
   /// A human-readable string to clarify or explain concepts about the
@@ -489,9 +409,6 @@ class EvidenceVariable extends DomainResource {
   /// The name of the organization or individual that published the evidence
   /// variable.
   final FhirString? publisher;
-
-  /// Extensions for [publisher]
-  final Element? publisherElement;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
@@ -528,16 +445,10 @@ class EvidenceVariable extends DomainResource {
   /// representation of the intended variable.
   final FhirBoolean? actual;
 
-  /// Extensions for [actual]
-  final Element? actualElement;
-
   /// [characteristicCombination]
   /// Used to specify if two or more characteristics are combined with OR or
   /// AND.
   final CharacteristicCombination? characteristicCombination;
-
-  /// Extensions for [characteristicCombination]
-  final Element? characteristicCombinationElement;
 
   /// [characteristic]
   /// A characteristic that defines the members of the evidence element.
@@ -547,9 +458,6 @@ class EvidenceVariable extends DomainResource {
   /// [handling]
   /// Used for an outcome to classify.
   final EvidenceVariableHandling? handling;
-
-  /// Extensions for [handling]
-  final Element? handlingElement;
 
   /// [category]
   /// A grouping (or set of values) described along with other groupings to
@@ -567,9 +475,6 @@ class EvidenceVariable extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -591,9 +496,6 @@ class EvidenceVariable extends DomainResource {
     if (url?.value != null) {
       json['url'] = url!.toJson();
     }
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
-    }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
           identifier!.map((Identifier v) => v.toJson()).toList();
@@ -601,45 +503,24 @@ class EvidenceVariable extends DomainResource {
     if (version?.value != null) {
       json['version'] = version!.toJson();
     }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
-    }
     if (name?.value != null) {
       json['name'] = name!.toJson();
-    }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
     }
     if (title?.value != null) {
       json['title'] = title!.toJson();
     }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
-    }
     if (shortTitle?.value != null) {
       json['shortTitle'] = shortTitle!.toJson();
     }
-    if (shortTitleElement != null) {
-      json['_shortTitle'] = shortTitleElement!.toJson();
-    }
     if (subtitle?.value != null) {
       json['subtitle'] = subtitle!.toJson();
-    }
-    if (subtitleElement != null) {
-      json['_subtitle'] = subtitleElement!.toJson();
     }
     json['status'] = status.toJson();
     if (date?.value != null) {
       json['date'] = date!.toJson();
     }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((Annotation v) => v.toJson()).toList();
@@ -650,9 +531,6 @@ class EvidenceVariable extends DomainResource {
     }
     if (publisher?.value != null) {
       json['publisher'] = publisher!.toJson();
-    }
-    if (publisherElement != null) {
-      json['_publisher'] = publisherElement!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((ContactDetail v) => v.toJson()).toList();
@@ -677,9 +555,6 @@ class EvidenceVariable extends DomainResource {
     }
     if (actual?.value != null) {
       json['actual'] = actual!.toJson();
-    }
-    if (actualElement != null) {
-      json['_actual'] = actualElement!.toJson();
     }
     if (characteristicCombination != null) {
       json['characteristicCombination'] = characteristicCombination!.toJson();
@@ -706,36 +581,24 @@ class EvidenceVariable extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    Element? urlElement,
     List<Identifier>? identifier,
     FhirString? version,
-    Element? versionElement,
     FhirString? name,
-    Element? nameElement,
     FhirString? title,
-    Element? titleElement,
     FhirString? shortTitle,
-    Element? shortTitleElement,
     FhirString? subtitle,
-    Element? subtitleElement,
     PublicationStatus? status,
-    Element? statusElement,
     FhirDateTime? date,
-    Element? dateElement,
     FhirMarkdown? description,
-    Element? descriptionElement,
     List<Annotation>? note,
     List<UsageContext>? useContext,
     FhirString? publisher,
-    Element? publisherElement,
     List<ContactDetail>? contact,
     List<ContactDetail>? author,
     List<ContactDetail>? editor,
@@ -743,12 +606,9 @@ class EvidenceVariable extends DomainResource {
     List<ContactDetail>? endorser,
     List<RelatedArtifact>? relatedArtifact,
     FhirBoolean? actual,
-    Element? actualElement,
     CharacteristicCombination? characteristicCombination,
-    Element? characteristicCombinationElement,
     List<EvidenceVariableCharacteristic>? characteristic,
     EvidenceVariableHandling? handling,
-    Element? handlingElement,
     List<EvidenceVariableCategory>? category,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -761,36 +621,24 @@ class EvidenceVariable extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       identifier: identifier ?? this.identifier,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       shortTitle: shortTitle ?? this.shortTitle,
-      shortTitleElement: shortTitleElement ?? this.shortTitleElement,
       subtitle: subtitle ?? this.subtitle,
-      subtitleElement: subtitleElement ?? this.subtitleElement,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       note: note ?? this.note,
       useContext: useContext ?? this.useContext,
       publisher: publisher ?? this.publisher,
-      publisherElement: publisherElement ?? this.publisherElement,
       contact: contact ?? this.contact,
       author: author ?? this.author,
       editor: editor ?? this.editor,
@@ -798,14 +646,10 @@ class EvidenceVariable extends DomainResource {
       endorser: endorser ?? this.endorser,
       relatedArtifact: relatedArtifact ?? this.relatedArtifact,
       actual: actual ?? this.actual,
-      actualElement: actualElement ?? this.actualElement,
       characteristicCombination:
           characteristicCombination ?? this.characteristicCombination,
-      characteristicCombinationElement: characteristicCombinationElement ??
-          this.characteristicCombinationElement,
       characteristic: characteristic ?? this.characteristic,
       handling: handling ?? this.handling,
-      handlingElement: handlingElement ?? this.handlingElement,
       category: category ?? this.category,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -825,30 +669,18 @@ class EvidenceVariableCharacteristic extends BackboneElement {
 
   EvidenceVariableCharacteristic({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.definitionReference,
     this.definitionCanonical,
-
-    /// Extensions for [definitionCanonical]
-    this.definitionCanonicalElement,
     this.definitionCodeableConcept,
     this.definitionExpression,
     this.method,
     this.device,
     this.exclude,
-
-    /// Extensions for [exclude]
-    this.excludeElement,
     this.timeFromStart,
     this.groupMeasure,
-
-    /// Extensions for [groupMeasure]
-    this.groupMeasureElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -860,11 +692,15 @@ class EvidenceVariableCharacteristic extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceVariableCharacteristic.fromJson(Map<String, dynamic> json) {
     return EvidenceVariableCharacteristic(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -873,19 +709,17 @@ class EvidenceVariableCharacteristic extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       definitionReference: json['definitionReference'] != null
           ? Reference.fromJson(
@@ -893,12 +727,10 @@ class EvidenceVariableCharacteristic extends BackboneElement {
             )
           : null,
       definitionCanonical: json['definitionCanonical'] != null
-          ? FhirCanonical.fromJson(json['definitionCanonical'])
-          : null,
-      definitionCanonicalElement: json['_definitionCanonical'] != null
-          ? Element.fromJson(
-              json['_definitionCanonical'] as Map<String, dynamic>,
-            )
+          ? FhirCanonical.fromJson({
+              'value': json['definitionCanonical'],
+              '_value': json['_definitionCanonical'],
+            })
           : null,
       definitionCodeableConcept: json['definitionCodeableConcept'] != null
           ? CodeableConcept.fromJson(
@@ -921,12 +753,10 @@ class EvidenceVariableCharacteristic extends BackboneElement {
             )
           : null,
       exclude: json['exclude'] != null
-          ? FhirBoolean.fromJson(json['exclude'])
-          : null,
-      excludeElement: json['_exclude'] != null
-          ? Element.fromJson(
-              json['_exclude'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['exclude'],
+              '_value': json['_exclude'],
+            })
           : null,
       timeFromStart: json['timeFromStart'] != null
           ? EvidenceVariableTimeFromStart.fromJson(
@@ -934,17 +764,16 @@ class EvidenceVariableCharacteristic extends BackboneElement {
             )
           : null,
       groupMeasure: json['groupMeasure'] != null
-          ? GroupMeasure.fromJson(json['groupMeasure'])
-          : null,
-      groupMeasureElement: json['_groupMeasure'] != null
-          ? Element.fromJson(
-              json['_groupMeasure'] as Map<String, dynamic>,
-            )
+          ? GroupMeasure.fromJson({
+              'value': json['groupMeasure'],
+              '_value': json['_groupMeasure'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [EvidenceVariableCharacteristic] from a [String] or [YamlMap] object
+  /// Deserialize [EvidenceVariableCharacteristic] from a [String]
+  /// or [YamlMap] object
   factory EvidenceVariableCharacteristic.fromYaml(dynamic yaml) => yaml
           is String
       ? EvidenceVariableCharacteristic.fromJson(
@@ -955,10 +784,11 @@ class EvidenceVariableCharacteristic extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'EvidenceVariableCharacteristic cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'EvidenceVariableCharacteristic cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [EvidenceVariableCharacteristic] that takes in a [String]
+  /// Factory constructor for [EvidenceVariableCharacteristic]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory EvidenceVariableCharacteristic.fromJsonString(String source) {
@@ -974,13 +804,19 @@ class EvidenceVariableCharacteristic extends BackboneElement {
   @override
   String get fhirType => 'EvidenceVariableCharacteristic';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [description]
   /// A short, natural language description of the characteristic that could
   /// be used to communicate the criteria to an end-user.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [definitionReference]
   /// Define members of the evidence element using Codes (such as condition,
@@ -995,9 +831,6 @@ class EvidenceVariableCharacteristic extends BackboneElement {
   /// such as FHIRPath or CQL) or DataRequirements (such as Diabetes
   /// diagnosis onset in the last year).
   final FhirCanonical? definitionCanonical;
-
-  /// Extensions for [definitionCanonical]
-  final Element? definitionCanonicalElement;
 
   /// [definitionCodeableConcept]
   /// Define members of the evidence element using Codes (such as condition,
@@ -1026,9 +859,6 @@ class EvidenceVariableCharacteristic extends BackboneElement {
   /// element.
   final FhirBoolean? exclude;
 
-  /// Extensions for [exclude]
-  final Element? excludeElement;
-
   /// [timeFromStart]
   /// Indicates duration, period, or point of observation from the
   /// participant's study entry.
@@ -1038,9 +868,6 @@ class EvidenceVariableCharacteristic extends BackboneElement {
   /// Indicates how elements are aggregated within the study effective
   /// period.
   final GroupMeasure? groupMeasure;
-
-  /// Extensions for [groupMeasure]
-  final Element? groupMeasureElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1058,17 +885,11 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (definitionReference != null) {
       json['definitionReference'] = definitionReference!.toJson();
     }
     if (definitionCanonical?.value != null) {
       json['definitionCanonical'] = definitionCanonical!.toJson();
-    }
-    if (definitionCanonicalElement != null) {
-      json['_definitionCanonical'] = definitionCanonicalElement!.toJson();
     }
     if (definitionCodeableConcept != null) {
       json['definitionCodeableConcept'] = definitionCodeableConcept!.toJson();
@@ -1084,9 +905,6 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     }
     if (exclude?.value != null) {
       json['exclude'] = exclude!.toJson();
-    }
-    if (excludeElement != null) {
-      json['_exclude'] = excludeElement!.toJson();
     }
     if (timeFromStart != null) {
       json['timeFromStart'] = timeFromStart!.toJson();
@@ -1105,19 +923,15 @@ class EvidenceVariableCharacteristic extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? description,
-    Element? descriptionElement,
     Reference? definitionReference,
     FhirCanonical? definitionCanonical,
-    Element? definitionCanonicalElement,
     CodeableConcept? definitionCodeableConcept,
     FhirExpression? definitionExpression,
     CodeableConcept? method,
     Reference? device,
     FhirBoolean? exclude,
-    Element? excludeElement,
     EvidenceVariableTimeFromStart? timeFromStart,
     GroupMeasure? groupMeasure,
-    Element? groupMeasureElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1130,21 +944,16 @@ class EvidenceVariableCharacteristic extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       definitionReference: definitionReference ?? this.definitionReference,
       definitionCanonical: definitionCanonical ?? this.definitionCanonical,
-      definitionCanonicalElement:
-          definitionCanonicalElement ?? this.definitionCanonicalElement,
       definitionCodeableConcept:
           definitionCodeableConcept ?? this.definitionCodeableConcept,
       definitionExpression: definitionExpression ?? this.definitionExpression,
       method: method ?? this.method,
       device: device ?? this.device,
       exclude: exclude ?? this.exclude,
-      excludeElement: excludeElement ?? this.excludeElement,
       timeFromStart: timeFromStart ?? this.timeFromStart,
       groupMeasure: groupMeasure ?? this.groupMeasure,
-      groupMeasureElement: groupMeasureElement ?? this.groupMeasureElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1163,12 +972,9 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
 
   EvidenceVariableTimeFromStart({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.quantity,
     this.range,
     this.note,
@@ -1183,11 +989,15 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceVariableTimeFromStart.fromJson(Map<String, dynamic> json) {
     return EvidenceVariableTimeFromStart(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1196,19 +1006,17 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
@@ -1223,7 +1031,7 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1232,7 +1040,8 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
     );
   }
 
-  /// Deserialize [EvidenceVariableTimeFromStart] from a [String] or [YamlMap] object
+  /// Deserialize [EvidenceVariableTimeFromStart] from a [String]
+  /// or [YamlMap] object
   factory EvidenceVariableTimeFromStart.fromYaml(dynamic yaml) => yaml is String
       ? EvidenceVariableTimeFromStart.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1242,10 +1051,11 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'EvidenceVariableTimeFromStart cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'EvidenceVariableTimeFromStart cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [EvidenceVariableTimeFromStart] that takes in a [String]
+  /// Factory constructor for [EvidenceVariableTimeFromStart]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory EvidenceVariableTimeFromStart.fromJsonString(String source) {
@@ -1261,12 +1071,18 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
   @override
   String get fhirType => 'EvidenceVariableTimeFromStart';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [description]
   /// A short, natural language description.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [quantity]
   /// Used to express the observation at a defined amount of time after the
@@ -1298,9 +1114,6 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (quantity != null) {
       json['quantity'] = quantity!.toJson();
     }
@@ -1321,7 +1134,6 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? description,
-    Element? descriptionElement,
     Quantity? quantity,
     Range? range,
     List<Annotation>? note,
@@ -1337,7 +1149,6 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       quantity: quantity ?? this.quantity,
       range: range ?? this.range,
       note: note ?? this.note,
@@ -1359,12 +1170,9 @@ class EvidenceVariableCategory extends BackboneElement {
 
   EvidenceVariableCategory({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.valueCodeableConcept,
     this.valueQuantity,
     this.valueRange,
@@ -1379,11 +1187,15 @@ class EvidenceVariableCategory extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EvidenceVariableCategory.fromJson(Map<String, dynamic> json) {
     return EvidenceVariableCategory(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1392,17 +1204,17 @@ class EvidenceVariableCategory extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
       valueCodeableConcept: json['valueCodeableConcept'] != null
           ? CodeableConcept.fromJson(
@@ -1422,7 +1234,8 @@ class EvidenceVariableCategory extends BackboneElement {
     );
   }
 
-  /// Deserialize [EvidenceVariableCategory] from a [String] or [YamlMap] object
+  /// Deserialize [EvidenceVariableCategory] from a [String]
+  /// or [YamlMap] object
   factory EvidenceVariableCategory.fromYaml(dynamic yaml) => yaml is String
       ? EvidenceVariableCategory.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1432,10 +1245,11 @@ class EvidenceVariableCategory extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'EvidenceVariableCategory cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'EvidenceVariableCategory cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [EvidenceVariableCategory] that takes in a [String]
+  /// Factory constructor for [EvidenceVariableCategory]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory EvidenceVariableCategory.fromJsonString(String source) {
@@ -1451,12 +1265,18 @@ class EvidenceVariableCategory extends BackboneElement {
   @override
   String get fhirType => 'EvidenceVariableCategory';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// A human-readable title or representation of the grouping.
   final FhirString? name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [valueCodeableConcept]
   /// Value or set of values that define the grouping.
@@ -1486,9 +1306,6 @@ class EvidenceVariableCategory extends BackboneElement {
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (valueCodeableConcept != null) {
       json['valueCodeableConcept'] = valueCodeableConcept!.toJson();
     }
@@ -1509,7 +1326,6 @@ class EvidenceVariableCategory extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    Element? nameElement,
     CodeableConcept? valueCodeableConcept,
     Quantity? valueQuantity,
     Range? valueRange,
@@ -1525,7 +1341,6 @@ class EvidenceVariableCategory extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueRange: valueRange ?? this.valueRange,

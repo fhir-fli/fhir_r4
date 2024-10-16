@@ -14,81 +14,30 @@ class Questionnaire extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.identifier,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     this.derivedFrom,
-
-    /// Extensions for [derivedFrom]
-    this.derivedFromElement,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.experimental,
-
-    /// Extensions for [experimental]
-    this.experimentalElement,
     this.subjectType,
-
-    /// Extensions for [subjectType]
-    this.subjectTypeElement,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.publisher,
-
-    /// Extensions for [publisher]
-    this.publisherElement,
     this.contact,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-
-    /// Extensions for [purpose]
-    this.purposeElement,
     this.copyright,
-
-    /// Extensions for [copyright]
-    this.copyrightElement,
     this.approvalDate,
-
-    /// Extensions for [approvalDate]
-    this.approvalDateElement,
     this.lastReviewDate,
-
-    /// Extensions for [lastReviewDate]
-    this.lastReviewDateElement,
     this.effectivePeriod,
     this.code,
     this.item,
@@ -105,27 +54,27 @@ class Questionnaire extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Questionnaire.fromJson(Map<String, dynamic> json) {
     return Questionnaire(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -135,7 +84,7 @@ class Questionnaire extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -144,7 +93,7 @@ class Questionnaire extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -153,123 +102,94 @@ class Questionnaire extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
+      url: json['url'] != null
+          ? FhirUri.fromJson({
+              'value': json['url'],
+              '_value': json['_url'],
+            })
           : null,
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
-      derivedFrom: json['derivedFrom'] != null
-          ? (json['derivedFrom'] as List<dynamic>)
-              .map<FhirCanonical>(
-                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      derivedFromElement: json['_derivedFrom'] != null
-          ? (json['_derivedFrom'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      derivedFrom: parsePrimitiveList<FhirCanonical>(
+          json['derivedFrom'] as List<dynamic>?,
+          json['_derivedFrom'] as List<dynamic>?,
+          fromJson: FhirCanonical.fromJson),
+      status: PublicationStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson(json['experimental'])
+          ? FhirBoolean.fromJson({
+              'value': json['experimental'],
+              '_value': json['_experimental'],
+            })
           : null,
-      experimentalElement: json['_experimental'] != null
-          ? Element.fromJson(
-              json['_experimental'] as Map<String, dynamic>,
-            )
-          : null,
-      subjectType: json['subjectType'] != null
-          ? (json['subjectType'] as List<dynamic>)
-              .map<FhirCode>(
-                (dynamic v) => FhirCode.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      subjectTypeElement: json['_subjectType'] != null
-          ? (json['_subjectType'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      subjectType: parsePrimitiveList<FhirCode>(
+          json['subjectType'] as List<dynamic>?,
+          json['_subjectType'] as List<dynamic>?,
+          fromJson: FhirCode.fromJson),
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       publisher: json['publisher'] != null
-          ? FhirString.fromJson(json['publisher'])
-          : null,
-      publisherElement: json['_publisher'] != null
-          ? Element.fromJson(
-              json['_publisher'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['publisher'],
+              '_value': json['_publisher'],
+            })
           : null,
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       useContext: json['useContext'] != null
           ? (json['useContext'] as List<dynamic>)
               .map<UsageContext>(
-                (dynamic v) => UsageContext.fromJson(
+                (v) => UsageContext.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -278,43 +198,35 @@ class Questionnaire extends DomainResource {
       jurisdiction: json['jurisdiction'] != null
           ? (json['jurisdiction'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       purpose: json['purpose'] != null
-          ? FhirMarkdown.fromJson(json['purpose'])
-          : null,
-      purposeElement: json['_purpose'] != null
-          ? Element.fromJson(
-              json['_purpose'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['purpose'],
+              '_value': json['_purpose'],
+            })
           : null,
       copyright: json['copyright'] != null
-          ? FhirMarkdown.fromJson(json['copyright'])
-          : null,
-      copyrightElement: json['_copyright'] != null
-          ? Element.fromJson(
-              json['_copyright'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['copyright'],
+              '_value': json['_copyright'],
+            })
           : null,
       approvalDate: json['approvalDate'] != null
-          ? FhirDate.fromJson(json['approvalDate'])
-          : null,
-      approvalDateElement: json['_approvalDate'] != null
-          ? Element.fromJson(
-              json['_approvalDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['approvalDate'],
+              '_value': json['_approvalDate'],
+            })
           : null,
       lastReviewDate: json['lastReviewDate'] != null
-          ? FhirDate.fromJson(json['lastReviewDate'])
-          : null,
-      lastReviewDateElement: json['_lastReviewDate'] != null
-          ? Element.fromJson(
-              json['_lastReviewDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['lastReviewDate'],
+              '_value': json['_lastReviewDate'],
+            })
           : null,
       effectivePeriod: json['effectivePeriod'] != null
           ? Period.fromJson(
@@ -324,7 +236,7 @@ class Questionnaire extends DomainResource {
       code: json['code'] != null
           ? (json['code'] as List<dynamic>)
               .map<Coding>(
-                (dynamic v) => Coding.fromJson(
+                (v) => Coding.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -333,7 +245,7 @@ class Questionnaire extends DomainResource {
       item: json['item'] != null
           ? (json['item'] as List<dynamic>)
               .map<QuestionnaireItem>(
-                (dynamic v) => QuestionnaireItem.fromJson(
+                (v) => QuestionnaireItem.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -342,7 +254,8 @@ class Questionnaire extends DomainResource {
     );
   }
 
-  /// Deserialize [Questionnaire] from a [String] or [YamlMap] object
+  /// Deserialize [Questionnaire] from a [String]
+  /// or [YamlMap] object
   factory Questionnaire.fromYaml(dynamic yaml) => yaml is String
       ? Questionnaire.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -351,11 +264,11 @@ class Questionnaire extends DomainResource {
           ? Questionnaire.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'Questionnaire cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Questionnaire cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Questionnaire] that takes in a [String]
+  /// Factory constructor for [Questionnaire]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Questionnaire.fromJsonString(String source) {
@@ -371,6 +284,15 @@ class Questionnaire extends DomainResource {
   @override
   String get fhirType => 'Questionnaire';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [url]
   /// An absolute URI that is used to identify this questionnaire when it is
   /// referenced in a specification, model, design or an instance; also
@@ -380,9 +302,6 @@ class Questionnaire extends DomainResource {
   /// target of a canonical reference. It SHALL remain the same when the
   /// questionnaire is stored on different servers.
   final FhirUri? url;
-
-  /// Extensions for [url]
-  final Element? urlElement;
 
   /// [identifier]
   /// A formal identifier that is used to identify this questionnaire when it
@@ -400,39 +319,24 @@ class Questionnaire extends DomainResource {
   /// lexicographical sequence.
   final FhirString? version;
 
-  /// Extensions for [version]
-  final Element? versionElement;
-
   /// [name]
   /// A natural language name identifying the questionnaire. This name should
   /// be usable as an identifier for the module by machine processing
   /// applications such as code generation.
   final FhirString? name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [title]
   /// A short, descriptive, user-friendly title for the questionnaire.
   final FhirString? title;
-
-  /// Extensions for [title]
-  final Element? titleElement;
 
   /// [derivedFrom]
   /// The URL of a Questionnaire that this Questionnaire is based on.
   final List<FhirCanonical>? derivedFrom;
 
-  /// Extensions for [derivedFrom]
-  final List<Element>? derivedFromElement;
-
   /// [status]
   /// The status of this questionnaire. Enables tracking the life-cycle of
   /// the content.
   final PublicationStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [experimental]
   /// A Boolean value to indicate that this questionnaire is authored for
@@ -440,16 +344,10 @@ class Questionnaire extends DomainResource {
   /// intended to be used for genuine usage.
   final FhirBoolean? experimental;
 
-  /// Extensions for [experimental]
-  final Element? experimentalElement;
-
   /// [subjectType]
   /// The types of subjects that can be the subject of responses created for
   /// the questionnaire.
   final List<FhirCode>? subjectType;
-
-  /// Extensions for [subjectType]
-  final List<Element>? subjectTypeElement;
 
   /// [date]
   /// The date (and optionally time) when the questionnaire was published.
@@ -458,16 +356,10 @@ class Questionnaire extends DomainResource {
   /// the substantive content of the questionnaire changes.
   final FhirDateTime? date;
 
-  /// Extensions for [date]
-  final Element? dateElement;
-
   /// [publisher]
   /// The name of the organization or individual that published the
   /// questionnaire.
   final FhirString? publisher;
-
-  /// Extensions for [publisher]
-  final Element? publisherElement;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
@@ -478,9 +370,6 @@ class Questionnaire extends DomainResource {
   /// A free text natural language description of the questionnaire from a
   /// consumer's perspective.
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -500,17 +389,11 @@ class Questionnaire extends DomainResource {
   /// designed as it has.
   final FhirMarkdown? purpose;
 
-  /// Extensions for [purpose]
-  final Element? purposeElement;
-
   /// [copyright]
   /// A copyright statement relating to the questionnaire and/or its
   /// contents. Copyright statements are generally legal restrictions on the
   /// use and publishing of the questionnaire.
   final FhirMarkdown? copyright;
-
-  /// Extensions for [copyright]
-  final Element? copyrightElement;
 
   /// [approvalDate]
   /// The date on which the resource content was approved by the publisher.
@@ -518,17 +401,11 @@ class Questionnaire extends DomainResource {
   /// usage.
   final FhirDate? approvalDate;
 
-  /// Extensions for [approvalDate]
-  final Element? approvalDateElement;
-
   /// [lastReviewDate]
   /// The date on which the resource content was last reviewed. Review
   /// happens periodically after approval but does not change the original
   /// approval date.
   final FhirDate? lastReviewDate;
-
-  /// Extensions for [lastReviewDate]
-  final Element? lastReviewDateElement;
 
   /// [effectivePeriod]
   /// The period during which the questionnaire content was or is planned to
@@ -557,9 +434,6 @@ class Questionnaire extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -580,9 +454,6 @@ class Questionnaire extends DomainResource {
     if (url?.value != null) {
       json['url'] = url!.toJson();
     }
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
-    }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
           identifier!.map((Identifier v) => v.toJson()).toList();
@@ -590,64 +461,35 @@ class Questionnaire extends DomainResource {
     if (version?.value != null) {
       json['version'] = version!.toJson();
     }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
-    }
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (title?.value != null) {
       json['title'] = title!.toJson();
-    }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
     }
     if (derivedFrom != null && derivedFrom!.isNotEmpty) {
       json['derivedFrom'] =
           derivedFrom!.map((FhirCanonical v) => v.toJson()).toList();
     }
-    if (derivedFromElement != null && derivedFromElement!.isNotEmpty) {
-      json['_derivedFrom'] =
-          derivedFromElement!.map((Element v) => v.toJson()).toList();
-    }
     json['status'] = status.toJson();
     if (experimental?.value != null) {
       json['experimental'] = experimental!.toJson();
-    }
-    if (experimentalElement != null) {
-      json['_experimental'] = experimentalElement!.toJson();
     }
     if (subjectType != null && subjectType!.isNotEmpty) {
       json['subjectType'] =
           subjectType!.map((FhirCode v) => v.toJson()).toList();
     }
-    if (subjectTypeElement != null && subjectTypeElement!.isNotEmpty) {
-      json['_subjectType'] =
-          subjectTypeElement!.map((Element v) => v.toJson()).toList();
-    }
     if (date?.value != null) {
       json['date'] = date!.toJson();
     }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (publisher?.value != null) {
       json['publisher'] = publisher!.toJson();
-    }
-    if (publisherElement != null) {
-      json['_publisher'] = publisherElement!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] =
@@ -660,26 +502,14 @@ class Questionnaire extends DomainResource {
     if (purpose?.value != null) {
       json['purpose'] = purpose!.toJson();
     }
-    if (purposeElement != null) {
-      json['_purpose'] = purposeElement!.toJson();
-    }
     if (copyright?.value != null) {
       json['copyright'] = copyright!.toJson();
-    }
-    if (copyrightElement != null) {
-      json['_copyright'] = copyrightElement!.toJson();
     }
     if (approvalDate?.value != null) {
       json['approvalDate'] = approvalDate!.toJson();
     }
-    if (approvalDateElement != null) {
-      json['_approvalDate'] = approvalDateElement!.toJson();
-    }
     if (lastReviewDate?.value != null) {
       json['lastReviewDate'] = lastReviewDate!.toJson();
-    }
-    if (lastReviewDateElement != null) {
-      json['_lastReviewDate'] = lastReviewDateElement!.toJson();
     }
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
@@ -700,47 +530,30 @@ class Questionnaire extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    Element? urlElement,
     List<Identifier>? identifier,
     FhirString? version,
-    Element? versionElement,
     FhirString? name,
-    Element? nameElement,
     FhirString? title,
-    Element? titleElement,
     List<FhirCanonical>? derivedFrom,
-    List<Element>? derivedFromElement,
     PublicationStatus? status,
-    Element? statusElement,
     FhirBoolean? experimental,
-    Element? experimentalElement,
     List<FhirCode>? subjectType,
-    List<Element>? subjectTypeElement,
     FhirDateTime? date,
-    Element? dateElement,
     FhirString? publisher,
-    Element? publisherElement,
     List<ContactDetail>? contact,
     FhirMarkdown? description,
-    Element? descriptionElement,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
     FhirMarkdown? purpose,
-    Element? purposeElement,
     FhirMarkdown? copyright,
-    Element? copyrightElement,
     FhirDate? approvalDate,
-    Element? approvalDateElement,
     FhirDate? lastReviewDate,
-    Element? lastReviewDateElement,
     Period? effectivePeriod,
     List<Coding>? code,
     List<QuestionnaireItem>? item,
@@ -755,48 +568,30 @@ class Questionnaire extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       identifier: identifier ?? this.identifier,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       derivedFrom: derivedFrom ?? this.derivedFrom,
-      derivedFromElement: derivedFromElement ?? this.derivedFromElement,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       experimental: experimental ?? this.experimental,
-      experimentalElement: experimentalElement ?? this.experimentalElement,
       subjectType: subjectType ?? this.subjectType,
-      subjectTypeElement: subjectTypeElement ?? this.subjectTypeElement,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       publisher: publisher ?? this.publisher,
-      publisherElement: publisherElement ?? this.publisherElement,
       contact: contact ?? this.contact,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       useContext: useContext ?? this.useContext,
       jurisdiction: jurisdiction ?? this.jurisdiction,
       purpose: purpose ?? this.purpose,
-      purposeElement: purposeElement ?? this.purposeElement,
       copyright: copyright ?? this.copyright,
-      copyrightElement: copyrightElement ?? this.copyrightElement,
       approvalDate: approvalDate ?? this.approvalDate,
-      approvalDateElement: approvalDateElement ?? this.approvalDateElement,
       lastReviewDate: lastReviewDate ?? this.lastReviewDate,
-      lastReviewDateElement:
-          lastReviewDateElement ?? this.lastReviewDateElement,
       effectivePeriod: effectivePeriod ?? this.effectivePeriod,
       code: code ?? this.code,
       item: item ?? this.item,
@@ -818,54 +613,21 @@ class QuestionnaireItem extends BackboneElement {
 
   QuestionnaireItem({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.linkId,
-
-    /// Extensions for [linkId]
-    this.linkIdElement,
     this.definition,
-
-    /// Extensions for [definition]
-    this.definitionElement,
     this.code,
     this.prefix,
-
-    /// Extensions for [prefix]
-    this.prefixElement,
     this.text,
-
-    /// Extensions for [text]
-    this.textElement,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.enableWhen,
     this.enableBehavior,
-
-    /// Extensions for [enableBehavior]
-    this.enableBehaviorElement,
     this.required_,
-
-    /// Extensions for [required]
-    this.requiredElement,
     this.repeats,
-
-    /// Extensions for [repeats]
-    this.repeatsElement,
     this.readOnly,
-
-    /// Extensions for [readOnly]
-    this.readOnlyElement,
     this.maxLength,
-
-    /// Extensions for [maxLength]
-    this.maxLengthElement,
     this.answerValueSet,
-
-    /// Extensions for [answerValueSet]
-    this.answerValueSetElement,
     this.answerOption,
     this.initial,
     this.item,
@@ -880,11 +642,15 @@ class QuestionnaireItem extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory QuestionnaireItem.fromJson(Map<String, dynamic> json) {
     return QuestionnaireItem(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -893,115 +659,96 @@ class QuestionnaireItem extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      linkId: FhirString.fromJson(json['linkId']),
-      linkIdElement: json['_linkId'] != null
-          ? Element.fromJson(
-              json['_linkId'] as Map<String, dynamic>,
-            )
-          : null,
+      linkId: FhirString.fromJson({
+        'value': json['linkId'],
+        '_value': json['_linkId'],
+      }),
       definition: json['definition'] != null
-          ? FhirUri.fromJson(json['definition'])
-          : null,
-      definitionElement: json['_definition'] != null
-          ? Element.fromJson(
-              json['_definition'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['definition'],
+              '_value': json['_definition'],
+            })
           : null,
       code: json['code'] != null
           ? (json['code'] as List<dynamic>)
               .map<Coding>(
-                (dynamic v) => Coding.fromJson(
+                (v) => Coding.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      prefix:
-          json['prefix'] != null ? FhirString.fromJson(json['prefix']) : null,
-      prefixElement: json['_prefix'] != null
-          ? Element.fromJson(
-              json['_prefix'] as Map<String, dynamic>,
-            )
+      prefix: json['prefix'] != null
+          ? FhirString.fromJson({
+              'value': json['prefix'],
+              '_value': json['_prefix'],
+            })
           : null,
-      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
-      textElement: json['_text'] != null
-          ? Element.fromJson(
-              json['_text'] as Map<String, dynamic>,
-            )
+      text: json['text'] != null
+          ? FhirString.fromJson({
+              'value': json['text'],
+              '_value': json['_text'],
+            })
           : null,
-      type: QuestionnaireItemType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
+      type: QuestionnaireItemType.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
       enableWhen: json['enableWhen'] != null
           ? (json['enableWhen'] as List<dynamic>)
               .map<QuestionnaireEnableWhen>(
-                (dynamic v) => QuestionnaireEnableWhen.fromJson(
+                (v) => QuestionnaireEnableWhen.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       enableBehavior: json['enableBehavior'] != null
-          ? EnableWhenBehavior.fromJson(json['enableBehavior'])
-          : null,
-      enableBehaviorElement: json['_enableBehavior'] != null
-          ? Element.fromJson(
-              json['_enableBehavior'] as Map<String, dynamic>,
-            )
+          ? EnableWhenBehavior.fromJson({
+              'value': json['enableBehavior'],
+              '_value': json['_enableBehavior'],
+            })
           : null,
       required_: json['required'] != null
-          ? FhirBoolean.fromJson(json['required'])
-          : null,
-      requiredElement: json['_required'] != null
-          ? Element.fromJson(
-              json['_required'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['required'],
+              '_value': json['_required'],
+            })
           : null,
       repeats: json['repeats'] != null
-          ? FhirBoolean.fromJson(json['repeats'])
-          : null,
-      repeatsElement: json['_repeats'] != null
-          ? Element.fromJson(
-              json['_repeats'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['repeats'],
+              '_value': json['_repeats'],
+            })
           : null,
       readOnly: json['readOnly'] != null
-          ? FhirBoolean.fromJson(json['readOnly'])
-          : null,
-      readOnlyElement: json['_readOnly'] != null
-          ? Element.fromJson(
-              json['_readOnly'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['readOnly'],
+              '_value': json['_readOnly'],
+            })
           : null,
       maxLength: json['maxLength'] != null
-          ? FhirInteger.fromJson(json['maxLength'])
-          : null,
-      maxLengthElement: json['_maxLength'] != null
-          ? Element.fromJson(
-              json['_maxLength'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['maxLength'],
+              '_value': json['_maxLength'],
+            })
           : null,
       answerValueSet: json['answerValueSet'] != null
-          ? FhirCanonical.fromJson(json['answerValueSet'])
-          : null,
-      answerValueSetElement: json['_answerValueSet'] != null
-          ? Element.fromJson(
-              json['_answerValueSet'] as Map<String, dynamic>,
-            )
+          ? FhirCanonical.fromJson({
+              'value': json['answerValueSet'],
+              '_value': json['_answerValueSet'],
+            })
           : null,
       answerOption: json['answerOption'] != null
           ? (json['answerOption'] as List<dynamic>)
               .map<QuestionnaireAnswerOption>(
-                (dynamic v) => QuestionnaireAnswerOption.fromJson(
+                (v) => QuestionnaireAnswerOption.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1010,7 +757,7 @@ class QuestionnaireItem extends BackboneElement {
       initial: json['initial'] != null
           ? (json['initial'] as List<dynamic>)
               .map<QuestionnaireInitial>(
-                (dynamic v) => QuestionnaireInitial.fromJson(
+                (v) => QuestionnaireInitial.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1019,7 +766,7 @@ class QuestionnaireItem extends BackboneElement {
       item: json['item'] != null
           ? (json['item'] as List<dynamic>)
               .map<QuestionnaireItem>(
-                (dynamic v) => QuestionnaireItem.fromJson(
+                (v) => QuestionnaireItem.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1028,7 +775,8 @@ class QuestionnaireItem extends BackboneElement {
     );
   }
 
-  /// Deserialize [QuestionnaireItem] from a [String] or [YamlMap] object
+  /// Deserialize [QuestionnaireItem] from a [String]
+  /// or [YamlMap] object
   factory QuestionnaireItem.fromYaml(dynamic yaml) => yaml is String
       ? QuestionnaireItem.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1037,11 +785,11 @@ class QuestionnaireItem extends BackboneElement {
           ? QuestionnaireItem.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'QuestionnaireItem cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('QuestionnaireItem cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [QuestionnaireItem] that takes in a [String]
+  /// Factory constructor for [QuestionnaireItem]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory QuestionnaireItem.fromJsonString(String source) {
@@ -1057,13 +805,19 @@ class QuestionnaireItem extends BackboneElement {
   @override
   String get fhirType => 'QuestionnaireItem';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [linkId]
   /// An identifier that is unique within the Questionnaire allowing linkage
   /// to the equivalent item in a QuestionnaireResponse resource.
   final FhirString linkId;
-
-  /// Extensions for [linkId]
-  final Element? linkIdElement;
 
   /// [definition]
   /// This element is a URI that refers to an
@@ -1084,9 +838,6 @@ class QuestionnaireItem extends BackboneElement {
   /// * options (ElementDefinition.binding).
   final FhirUri? definition;
 
-  /// Extensions for [definition]
-  final Element? definitionElement;
-
   /// [code]
   /// A terminology code that corresponds to this group or question (e.g. a
   /// code from LOINC, which defines many questions and answers).
@@ -1098,25 +849,16 @@ class QuestionnaireItem extends BackboneElement {
   /// completing the questionnaire.
   final FhirString? prefix;
 
-  /// Extensions for [prefix]
-  final Element? prefixElement;
-
   /// [text]
   /// The name of a section, the text of a question or text content for a
   /// display item.
   final FhirString? text;
-
-  /// Extensions for [text]
-  final Element? textElement;
 
   /// [type]
   /// The type of questionnaire item this is - whether text for display, a
   /// grouping of other items or a particular type of data to be captured
   /// (string, integer, coded choice, etc.).
   final QuestionnaireItemType type;
-
-  /// Extensions for [type]
-  final Element? typeElement;
 
   /// [enableWhen]
   /// A constraint indicating that this item should only be enabled
@@ -1129,17 +871,11 @@ class QuestionnaireItem extends BackboneElement {
   /// or any must be true.
   final EnableWhenBehavior? enableBehavior;
 
-  /// Extensions for [enableBehavior]
-  final Element? enableBehaviorElement;
-
   /// [required_]
   /// An indication, if true, that the item must be present in a "completed"
   /// QuestionnaireResponse. If false, the item may be skipped when answering
   /// the questionnaire.
   final FhirBoolean? required_;
-
-  /// Extensions for [required]
-  final Element? requiredElement;
 
   /// [repeats]
   /// An indication, if true, that the item may occur multiple times in the
@@ -1147,32 +883,20 @@ class QuestionnaireItem extends BackboneElement {
   /// answers for groups.
   final FhirBoolean? repeats;
 
-  /// Extensions for [repeats]
-  final Element? repeatsElement;
-
   /// [readOnly]
   /// An indication, when true, that the value cannot be changed by a human
   /// respondent to the Questionnaire.
   final FhirBoolean? readOnly;
-
-  /// Extensions for [readOnly]
-  final Element? readOnlyElement;
 
   /// [maxLength]
   /// The maximum number of characters that are permitted in the answer to be
   /// considered a "valid" QuestionnaireResponse.
   final FhirInteger? maxLength;
 
-  /// Extensions for [maxLength]
-  final Element? maxLengthElement;
-
   /// [answerValueSet]
   /// A reference to a value set containing a list of codes representing
   /// permitted answers for a "choice" or "open-choice" question.
   final FhirCanonical? answerValueSet;
-
-  /// Extensions for [answerValueSet]
-  final Element? answerValueSetElement;
 
   /// [answerOption]
   /// One of the permitted answers for a "choice" or "open-choice" question.
@@ -1202,14 +926,8 @@ class QuestionnaireItem extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['linkId'] = linkId.toJson();
-    if (linkIdElement != null) {
-      json['_linkId'] = linkIdElement!.toJson();
-    }
     if (definition?.value != null) {
       json['definition'] = definition!.toJson();
-    }
-    if (definitionElement != null) {
-      json['_definition'] = definitionElement!.toJson();
     }
     if (code != null && code!.isNotEmpty) {
       json['code'] = code!.map((Coding v) => v.toJson()).toList();
@@ -1217,14 +935,8 @@ class QuestionnaireItem extends BackboneElement {
     if (prefix?.value != null) {
       json['prefix'] = prefix!.toJson();
     }
-    if (prefixElement != null) {
-      json['_prefix'] = prefixElement!.toJson();
-    }
     if (text?.value != null) {
       json['text'] = text!.toJson();
-    }
-    if (textElement != null) {
-      json['_text'] = textElement!.toJson();
     }
     json['type'] = type.toJson();
     if (enableWhen != null && enableWhen!.isNotEmpty) {
@@ -1237,32 +949,17 @@ class QuestionnaireItem extends BackboneElement {
     if (required_?.value != null) {
       json['required'] = required_!.toJson();
     }
-    if (requiredElement != null) {
-      json['_required'] = requiredElement!.toJson();
-    }
     if (repeats?.value != null) {
       json['repeats'] = repeats!.toJson();
-    }
-    if (repeatsElement != null) {
-      json['_repeats'] = repeatsElement!.toJson();
     }
     if (readOnly?.value != null) {
       json['readOnly'] = readOnly!.toJson();
     }
-    if (readOnlyElement != null) {
-      json['_readOnly'] = readOnlyElement!.toJson();
-    }
     if (maxLength?.value != null) {
       json['maxLength'] = maxLength!.toJson();
     }
-    if (maxLengthElement != null) {
-      json['_maxLength'] = maxLengthElement!.toJson();
-    }
     if (answerValueSet?.value != null) {
       json['answerValueSet'] = answerValueSet!.toJson();
-    }
-    if (answerValueSetElement != null) {
-      json['_answerValueSet'] = answerValueSetElement!.toJson();
     }
     if (answerOption != null && answerOption!.isNotEmpty) {
       json['answerOption'] = answerOption!
@@ -1287,29 +984,18 @@ class QuestionnaireItem extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? linkId,
-    Element? linkIdElement,
     FhirUri? definition,
-    Element? definitionElement,
     List<Coding>? code,
     FhirString? prefix,
-    Element? prefixElement,
     FhirString? text,
-    Element? textElement,
     QuestionnaireItemType? type,
-    Element? typeElement,
     List<QuestionnaireEnableWhen>? enableWhen,
     EnableWhenBehavior? enableBehavior,
-    Element? enableBehaviorElement,
     FhirBoolean? required_,
-    Element? requiredElement,
     FhirBoolean? repeats,
-    Element? repeatsElement,
     FhirBoolean? readOnly,
-    Element? readOnlyElement,
     FhirInteger? maxLength,
-    Element? maxLengthElement,
     FhirCanonical? answerValueSet,
-    Element? answerValueSetElement,
     List<QuestionnaireAnswerOption>? answerOption,
     List<QuestionnaireInitial>? initial,
     List<QuestionnaireItem>? item,
@@ -1325,31 +1011,18 @@ class QuestionnaireItem extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       linkId: linkId ?? this.linkId,
-      linkIdElement: linkIdElement ?? this.linkIdElement,
       definition: definition ?? this.definition,
-      definitionElement: definitionElement ?? this.definitionElement,
       code: code ?? this.code,
       prefix: prefix ?? this.prefix,
-      prefixElement: prefixElement ?? this.prefixElement,
       text: text ?? this.text,
-      textElement: textElement ?? this.textElement,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       enableWhen: enableWhen ?? this.enableWhen,
       enableBehavior: enableBehavior ?? this.enableBehavior,
-      enableBehaviorElement:
-          enableBehaviorElement ?? this.enableBehaviorElement,
       required_: required_ ?? this.required_,
-      requiredElement: requiredElement ?? this.requiredElement,
       repeats: repeats ?? this.repeats,
-      repeatsElement: repeatsElement ?? this.repeatsElement,
       readOnly: readOnly ?? this.readOnly,
-      readOnlyElement: readOnlyElement ?? this.readOnlyElement,
       maxLength: maxLength ?? this.maxLength,
-      maxLengthElement: maxLengthElement ?? this.maxLengthElement,
       answerValueSet: answerValueSet ?? this.answerValueSet,
-      answerValueSetElement:
-          answerValueSetElement ?? this.answerValueSetElement,
       answerOption: answerOption ?? this.answerOption,
       initial: initial ?? this.initial,
       item: item ?? this.item,
@@ -1372,44 +1045,17 @@ class QuestionnaireEnableWhen extends BackboneElement {
 
   QuestionnaireEnableWhen({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.question,
-
-    /// Extensions for [question]
-    this.questionElement,
     required this.operator_,
-
-    /// Extensions for [operator]
-    this.operatorElement,
     this.answerBoolean,
-
-    /// Extensions for [answerBoolean]
-    this.answerBooleanElement,
     this.answerDecimal,
-
-    /// Extensions for [answerDecimal]
-    this.answerDecimalElement,
     this.answerInteger,
-
-    /// Extensions for [answerInteger]
-    this.answerIntegerElement,
     this.answerDate,
-
-    /// Extensions for [answerDate]
-    this.answerDateElement,
     this.answerDateTime,
-
-    /// Extensions for [answerDateTime]
-    this.answerDateTimeElement,
     this.answerTime,
-
-    /// Extensions for [answerTime]
-    this.answerTimeElement,
     this.answerString,
-
-    /// Extensions for [answerString]
-    this.answerStringElement,
     this.answerCoding,
     this.answerQuantity,
     this.answerReference,
@@ -1424,11 +1070,15 @@ class QuestionnaireEnableWhen extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory QuestionnaireEnableWhen.fromJson(Map<String, dynamic> json) {
     return QuestionnaireEnableWhen(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1437,79 +1087,61 @@ class QuestionnaireEnableWhen extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      question: FhirString.fromJson(json['question']),
-      questionElement: json['_question'] != null
-          ? Element.fromJson(
-              json['_question'] as Map<String, dynamic>,
-            )
-          : null,
-      operator_: QuestionnaireItemOperator.fromJson(json['operator']),
-      operatorElement: json['_operator'] != null
-          ? Element.fromJson(
-              json['_operator'] as Map<String, dynamic>,
-            )
-          : null,
+      question: FhirString.fromJson({
+        'value': json['question'],
+        '_value': json['_question'],
+      }),
+      operator_: QuestionnaireItemOperator.fromJson({
+        'value': json['operator'],
+        '_value': json['_operator'],
+      }),
       answerBoolean: json['answerBoolean'] != null
-          ? FhirBoolean.fromJson(json['answerBoolean'])
-          : null,
-      answerBooleanElement: json['_answerBoolean'] != null
-          ? Element.fromJson(
-              json['_answerBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['answerBoolean'],
+              '_value': json['_answerBoolean'],
+            })
           : null,
       answerDecimal: json['answerDecimal'] != null
-          ? FhirDecimal.fromJson(json['answerDecimal'])
-          : null,
-      answerDecimalElement: json['_answerDecimal'] != null
-          ? Element.fromJson(
-              json['_answerDecimal'] as Map<String, dynamic>,
-            )
+          ? FhirDecimal.fromJson({
+              'value': json['answerDecimal'],
+              '_value': json['_answerDecimal'],
+            })
           : null,
       answerInteger: json['answerInteger'] != null
-          ? FhirInteger.fromJson(json['answerInteger'])
-          : null,
-      answerIntegerElement: json['_answerInteger'] != null
-          ? Element.fromJson(
-              json['_answerInteger'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['answerInteger'],
+              '_value': json['_answerInteger'],
+            })
           : null,
       answerDate: json['answerDate'] != null
-          ? FhirDate.fromJson(json['answerDate'])
-          : null,
-      answerDateElement: json['_answerDate'] != null
-          ? Element.fromJson(
-              json['_answerDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['answerDate'],
+              '_value': json['_answerDate'],
+            })
           : null,
       answerDateTime: json['answerDateTime'] != null
-          ? FhirDateTime.fromJson(json['answerDateTime'])
-          : null,
-      answerDateTimeElement: json['_answerDateTime'] != null
-          ? Element.fromJson(
-              json['_answerDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['answerDateTime'],
+              '_value': json['_answerDateTime'],
+            })
           : null,
       answerTime: json['answerTime'] != null
-          ? FhirTime.fromJson(json['answerTime'])
-          : null,
-      answerTimeElement: json['_answerTime'] != null
-          ? Element.fromJson(
-              json['_answerTime'] as Map<String, dynamic>,
-            )
+          ? FhirTime.fromJson({
+              'value': json['answerTime'],
+              '_value': json['_answerTime'],
+            })
           : null,
       answerString: json['answerString'] != null
-          ? FhirString.fromJson(json['answerString'])
-          : null,
-      answerStringElement: json['_answerString'] != null
-          ? Element.fromJson(
-              json['_answerString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['answerString'],
+              '_value': json['_answerString'],
+            })
           : null,
       answerCoding: json['answerCoding'] != null
           ? Coding.fromJson(
@@ -1529,7 +1161,8 @@ class QuestionnaireEnableWhen extends BackboneElement {
     );
   }
 
-  /// Deserialize [QuestionnaireEnableWhen] from a [String] or [YamlMap] object
+  /// Deserialize [QuestionnaireEnableWhen] from a [String]
+  /// or [YamlMap] object
   factory QuestionnaireEnableWhen.fromYaml(dynamic yaml) => yaml is String
       ? QuestionnaireEnableWhen.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1539,10 +1172,11 @@ class QuestionnaireEnableWhen extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'QuestionnaireEnableWhen cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'QuestionnaireEnableWhen cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [QuestionnaireEnableWhen] that takes in a [String]
+  /// Factory constructor for [QuestionnaireEnableWhen]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory QuestionnaireEnableWhen.fromJsonString(String source) {
@@ -1558,76 +1192,58 @@ class QuestionnaireEnableWhen extends BackboneElement {
   @override
   String get fhirType => 'QuestionnaireEnableWhen';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [question]
   /// The linkId for the question whose answer (or lack of answer) governs
   /// whether this item is enabled.
   final FhirString question;
 
-  /// Extensions for [question]
-  final Element? questionElement;
-
   /// [operator_]
   /// Specifies the criteria by which the question is enabled.
   final QuestionnaireItemOperator operator_;
-
-  /// Extensions for [operator]
-  final Element? operatorElement;
 
   /// [answerBoolean]
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
   final FhirBoolean? answerBoolean;
 
-  /// Extensions for [answerBoolean]
-  final Element? answerBooleanElement;
-
   /// [answerDecimal]
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
   final FhirDecimal? answerDecimal;
-
-  /// Extensions for [answerDecimal]
-  final Element? answerDecimalElement;
 
   /// [answerInteger]
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
   final FhirInteger? answerInteger;
 
-  /// Extensions for [answerInteger]
-  final Element? answerIntegerElement;
-
   /// [answerDate]
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
   final FhirDate? answerDate;
-
-  /// Extensions for [answerDate]
-  final Element? answerDateElement;
 
   /// [answerDateTime]
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
   final FhirDateTime? answerDateTime;
 
-  /// Extensions for [answerDateTime]
-  final Element? answerDateTimeElement;
-
   /// [answerTime]
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
   final FhirTime? answerTime;
 
-  /// Extensions for [answerTime]
-  final Element? answerTimeElement;
-
   /// [answerString]
   /// A value that the referenced question is tested using the specified
   /// operator in order for the item to be enabled.
   final FhirString? answerString;
-
-  /// Extensions for [answerString]
-  final Element? answerStringElement;
 
   /// [answerCoding]
   /// A value that the referenced question is tested using the specified
@@ -1658,51 +1274,27 @@ class QuestionnaireEnableWhen extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['question'] = question.toJson();
-    if (questionElement != null) {
-      json['_question'] = questionElement!.toJson();
-    }
     json['operator'] = operator_.toJson();
     if (answerBoolean?.value != null) {
       json['answerBoolean'] = answerBoolean!.toJson();
     }
-    if (answerBooleanElement != null) {
-      json['_answerBoolean'] = answerBooleanElement!.toJson();
-    }
     if (answerDecimal?.value != null) {
       json['answerDecimal'] = answerDecimal!.toJson();
-    }
-    if (answerDecimalElement != null) {
-      json['_answerDecimal'] = answerDecimalElement!.toJson();
     }
     if (answerInteger?.value != null) {
       json['answerInteger'] = answerInteger!.toJson();
     }
-    if (answerIntegerElement != null) {
-      json['_answerInteger'] = answerIntegerElement!.toJson();
-    }
     if (answerDate?.value != null) {
       json['answerDate'] = answerDate!.toJson();
-    }
-    if (answerDateElement != null) {
-      json['_answerDate'] = answerDateElement!.toJson();
     }
     if (answerDateTime?.value != null) {
       json['answerDateTime'] = answerDateTime!.toJson();
     }
-    if (answerDateTimeElement != null) {
-      json['_answerDateTime'] = answerDateTimeElement!.toJson();
-    }
     if (answerTime?.value != null) {
       json['answerTime'] = answerTime!.toJson();
     }
-    if (answerTimeElement != null) {
-      json['_answerTime'] = answerTimeElement!.toJson();
-    }
     if (answerString?.value != null) {
       json['answerString'] = answerString!.toJson();
-    }
-    if (answerStringElement != null) {
-      json['_answerString'] = answerStringElement!.toJson();
     }
     if (answerCoding != null) {
       json['answerCoding'] = answerCoding!.toJson();
@@ -1724,23 +1316,14 @@ class QuestionnaireEnableWhen extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? question,
-    Element? questionElement,
     QuestionnaireItemOperator? operator_,
-    Element? operatorElement,
     FhirBoolean? answerBoolean,
-    Element? answerBooleanElement,
     FhirDecimal? answerDecimal,
-    Element? answerDecimalElement,
     FhirInteger? answerInteger,
-    Element? answerIntegerElement,
     FhirDate? answerDate,
-    Element? answerDateElement,
     FhirDateTime? answerDateTime,
-    Element? answerDateTimeElement,
     FhirTime? answerTime,
-    Element? answerTimeElement,
     FhirString? answerString,
-    Element? answerStringElement,
     Coding? answerCoding,
     Quantity? answerQuantity,
     Reference? answerReference,
@@ -1756,24 +1339,14 @@ class QuestionnaireEnableWhen extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       question: question ?? this.question,
-      questionElement: questionElement ?? this.questionElement,
       operator_: operator_ ?? this.operator_,
-      operatorElement: operatorElement ?? this.operatorElement,
       answerBoolean: answerBoolean ?? this.answerBoolean,
-      answerBooleanElement: answerBooleanElement ?? this.answerBooleanElement,
       answerDecimal: answerDecimal ?? this.answerDecimal,
-      answerDecimalElement: answerDecimalElement ?? this.answerDecimalElement,
       answerInteger: answerInteger ?? this.answerInteger,
-      answerIntegerElement: answerIntegerElement ?? this.answerIntegerElement,
       answerDate: answerDate ?? this.answerDate,
-      answerDateElement: answerDateElement ?? this.answerDateElement,
       answerDateTime: answerDateTime ?? this.answerDateTime,
-      answerDateTimeElement:
-          answerDateTimeElement ?? this.answerDateTimeElement,
       answerTime: answerTime ?? this.answerTime,
-      answerTimeElement: answerTimeElement ?? this.answerTimeElement,
       answerString: answerString ?? this.answerString,
-      answerStringElement: answerStringElement ?? this.answerStringElement,
       answerCoding: answerCoding ?? this.answerCoding,
       answerQuantity: answerQuantity ?? this.answerQuantity,
       answerReference: answerReference ?? this.answerReference,
@@ -1794,30 +1367,15 @@ class QuestionnaireAnswerOption extends BackboneElement {
 
   QuestionnaireAnswerOption({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.valueInteger,
-
-    /// Extensions for [valueInteger]
-    this.valueIntegerElement,
     this.valueDate,
-
-    /// Extensions for [valueDate]
-    this.valueDateElement,
     this.valueTime,
-
-    /// Extensions for [valueTime]
-    this.valueTimeElement,
     this.valueString,
-
-    /// Extensions for [valueString]
-    this.valueStringElement,
     this.valueCoding,
     this.valueReference,
     this.initialSelected,
-
-    /// Extensions for [initialSelected]
-    this.initialSelectedElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1829,11 +1387,15 @@ class QuestionnaireAnswerOption extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory QuestionnaireAnswerOption.fromJson(Map<String, dynamic> json) {
     return QuestionnaireAnswerOption(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1842,43 +1404,35 @@ class QuestionnaireAnswerOption extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       valueInteger: json['valueInteger'] != null
-          ? FhirInteger.fromJson(json['valueInteger'])
-          : null,
-      valueIntegerElement: json['_valueInteger'] != null
-          ? Element.fromJson(
-              json['_valueInteger'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['valueInteger'],
+              '_value': json['_valueInteger'],
+            })
           : null,
       valueDate: json['valueDate'] != null
-          ? FhirDate.fromJson(json['valueDate'])
-          : null,
-      valueDateElement: json['_valueDate'] != null
-          ? Element.fromJson(
-              json['_valueDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['valueDate'],
+              '_value': json['_valueDate'],
+            })
           : null,
       valueTime: json['valueTime'] != null
-          ? FhirTime.fromJson(json['valueTime'])
-          : null,
-      valueTimeElement: json['_valueTime'] != null
-          ? Element.fromJson(
-              json['_valueTime'] as Map<String, dynamic>,
-            )
+          ? FhirTime.fromJson({
+              'value': json['valueTime'],
+              '_value': json['_valueTime'],
+            })
           : null,
       valueString: json['valueString'] != null
-          ? FhirString.fromJson(json['valueString'])
-          : null,
-      valueStringElement: json['_valueString'] != null
-          ? Element.fromJson(
-              json['_valueString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['valueString'],
+              '_value': json['_valueString'],
+            })
           : null,
       valueCoding: json['valueCoding'] != null
           ? Coding.fromJson(
@@ -1891,17 +1445,16 @@ class QuestionnaireAnswerOption extends BackboneElement {
             )
           : null,
       initialSelected: json['initialSelected'] != null
-          ? FhirBoolean.fromJson(json['initialSelected'])
-          : null,
-      initialSelectedElement: json['_initialSelected'] != null
-          ? Element.fromJson(
-              json['_initialSelected'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['initialSelected'],
+              '_value': json['_initialSelected'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [QuestionnaireAnswerOption] from a [String] or [YamlMap] object
+  /// Deserialize [QuestionnaireAnswerOption] from a [String]
+  /// or [YamlMap] object
   factory QuestionnaireAnswerOption.fromYaml(dynamic yaml) => yaml is String
       ? QuestionnaireAnswerOption.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1911,10 +1464,11 @@ class QuestionnaireAnswerOption extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'QuestionnaireAnswerOption cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'QuestionnaireAnswerOption cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [QuestionnaireAnswerOption] that takes in a [String]
+  /// Factory constructor for [QuestionnaireAnswerOption]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory QuestionnaireAnswerOption.fromJsonString(String source) {
@@ -1930,33 +1484,30 @@ class QuestionnaireAnswerOption extends BackboneElement {
   @override
   String get fhirType => 'QuestionnaireAnswerOption';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [valueInteger]
   /// A potential answer that's allowed as the answer to this question.
   final FhirInteger? valueInteger;
-
-  /// Extensions for [valueInteger]
-  final Element? valueIntegerElement;
 
   /// [valueDate]
   /// A potential answer that's allowed as the answer to this question.
   final FhirDate? valueDate;
 
-  /// Extensions for [valueDate]
-  final Element? valueDateElement;
-
   /// [valueTime]
   /// A potential answer that's allowed as the answer to this question.
   final FhirTime? valueTime;
 
-  /// Extensions for [valueTime]
-  final Element? valueTimeElement;
-
   /// [valueString]
   /// A potential answer that's allowed as the answer to this question.
   final FhirString? valueString;
-
-  /// Extensions for [valueString]
-  final Element? valueStringElement;
 
   /// [valueCoding]
   /// A potential answer that's allowed as the answer to this question.
@@ -1970,9 +1521,6 @@ class QuestionnaireAnswerOption extends BackboneElement {
   /// Indicates whether the answer value is selected when the list of
   /// possible answers is initially shown.
   final FhirBoolean? initialSelected;
-
-  /// Extensions for [initialSelected]
-  final Element? initialSelectedElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1990,26 +1538,14 @@ class QuestionnaireAnswerOption extends BackboneElement {
     if (valueInteger?.value != null) {
       json['valueInteger'] = valueInteger!.toJson();
     }
-    if (valueIntegerElement != null) {
-      json['_valueInteger'] = valueIntegerElement!.toJson();
-    }
     if (valueDate?.value != null) {
       json['valueDate'] = valueDate!.toJson();
-    }
-    if (valueDateElement != null) {
-      json['_valueDate'] = valueDateElement!.toJson();
     }
     if (valueTime?.value != null) {
       json['valueTime'] = valueTime!.toJson();
     }
-    if (valueTimeElement != null) {
-      json['_valueTime'] = valueTimeElement!.toJson();
-    }
     if (valueString?.value != null) {
       json['valueString'] = valueString!.toJson();
-    }
-    if (valueStringElement != null) {
-      json['_valueString'] = valueStringElement!.toJson();
     }
     if (valueCoding != null) {
       json['valueCoding'] = valueCoding!.toJson();
@@ -2019,9 +1555,6 @@ class QuestionnaireAnswerOption extends BackboneElement {
     }
     if (initialSelected?.value != null) {
       json['initialSelected'] = initialSelected!.toJson();
-    }
-    if (initialSelectedElement != null) {
-      json['_initialSelected'] = initialSelectedElement!.toJson();
     }
     return json;
   }
@@ -2034,17 +1567,12 @@ class QuestionnaireAnswerOption extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirInteger? valueInteger,
-    Element? valueIntegerElement,
     FhirDate? valueDate,
-    Element? valueDateElement,
     FhirTime? valueTime,
-    Element? valueTimeElement,
     FhirString? valueString,
-    Element? valueStringElement,
     Coding? valueCoding,
     Reference? valueReference,
     FhirBoolean? initialSelected,
-    Element? initialSelectedElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2057,18 +1585,12 @@ class QuestionnaireAnswerOption extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       valueInteger: valueInteger ?? this.valueInteger,
-      valueIntegerElement: valueIntegerElement ?? this.valueIntegerElement,
       valueDate: valueDate ?? this.valueDate,
-      valueDateElement: valueDateElement ?? this.valueDateElement,
       valueTime: valueTime ?? this.valueTime,
-      valueTimeElement: valueTimeElement ?? this.valueTimeElement,
       valueString: valueString ?? this.valueString,
-      valueStringElement: valueStringElement ?? this.valueStringElement,
       valueCoding: valueCoding ?? this.valueCoding,
       valueReference: valueReference ?? this.valueReference,
       initialSelected: initialSelected ?? this.initialSelected,
-      initialSelectedElement:
-          initialSelectedElement ?? this.initialSelectedElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2087,40 +1609,16 @@ class QuestionnaireInitial extends BackboneElement {
 
   QuestionnaireInitial({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.valueBoolean,
-
-    /// Extensions for [valueBoolean]
-    this.valueBooleanElement,
     this.valueDecimal,
-
-    /// Extensions for [valueDecimal]
-    this.valueDecimalElement,
     this.valueInteger,
-
-    /// Extensions for [valueInteger]
-    this.valueIntegerElement,
     this.valueDate,
-
-    /// Extensions for [valueDate]
-    this.valueDateElement,
     this.valueDateTime,
-
-    /// Extensions for [valueDateTime]
-    this.valueDateTimeElement,
     this.valueTime,
-
-    /// Extensions for [valueTime]
-    this.valueTimeElement,
     this.valueString,
-
-    /// Extensions for [valueString]
-    this.valueStringElement,
     this.valueUri,
-
-    /// Extensions for [valueUri]
-    this.valueUriElement,
     this.valueAttachment,
     this.valueCoding,
     this.valueQuantity,
@@ -2136,11 +1634,15 @@ class QuestionnaireInitial extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory QuestionnaireInitial.fromJson(Map<String, dynamic> json) {
     return QuestionnaireInitial(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2149,74 +1651,59 @@ class QuestionnaireInitial extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(
-              json['_valueBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['valueBoolean'],
+              '_value': json['_valueBoolean'],
+            })
           : null,
       valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal.fromJson(json['valueDecimal'])
-          : null,
-      valueDecimalElement: json['_valueDecimal'] != null
-          ? Element.fromJson(
-              json['_valueDecimal'] as Map<String, dynamic>,
-            )
+          ? FhirDecimal.fromJson({
+              'value': json['valueDecimal'],
+              '_value': json['_valueDecimal'],
+            })
           : null,
       valueInteger: json['valueInteger'] != null
-          ? FhirInteger.fromJson(json['valueInteger'])
-          : null,
-      valueIntegerElement: json['_valueInteger'] != null
-          ? Element.fromJson(
-              json['_valueInteger'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['valueInteger'],
+              '_value': json['_valueInteger'],
+            })
           : null,
       valueDate: json['valueDate'] != null
-          ? FhirDate.fromJson(json['valueDate'])
-          : null,
-      valueDateElement: json['_valueDate'] != null
-          ? Element.fromJson(
-              json['_valueDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['valueDate'],
+              '_value': json['_valueDate'],
+            })
           : null,
       valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime.fromJson(json['valueDateTime'])
-          : null,
-      valueDateTimeElement: json['_valueDateTime'] != null
-          ? Element.fromJson(
-              json['_valueDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['valueDateTime'],
+              '_value': json['_valueDateTime'],
+            })
           : null,
       valueTime: json['valueTime'] != null
-          ? FhirTime.fromJson(json['valueTime'])
-          : null,
-      valueTimeElement: json['_valueTime'] != null
-          ? Element.fromJson(
-              json['_valueTime'] as Map<String, dynamic>,
-            )
+          ? FhirTime.fromJson({
+              'value': json['valueTime'],
+              '_value': json['_valueTime'],
+            })
           : null,
       valueString: json['valueString'] != null
-          ? FhirString.fromJson(json['valueString'])
+          ? FhirString.fromJson({
+              'value': json['valueString'],
+              '_value': json['_valueString'],
+            })
           : null,
-      valueStringElement: json['_valueString'] != null
-          ? Element.fromJson(
-              json['_valueString'] as Map<String, dynamic>,
-            )
-          : null,
-      valueUri:
-          json['valueUri'] != null ? FhirUri.fromJson(json['valueUri']) : null,
-      valueUriElement: json['_valueUri'] != null
-          ? Element.fromJson(
-              json['_valueUri'] as Map<String, dynamic>,
-            )
+      valueUri: json['valueUri'] != null
+          ? FhirUri.fromJson({
+              'value': json['valueUri'],
+              '_value': json['_valueUri'],
+            })
           : null,
       valueAttachment: json['valueAttachment'] != null
           ? Attachment.fromJson(
@@ -2241,7 +1728,8 @@ class QuestionnaireInitial extends BackboneElement {
     );
   }
 
-  /// Deserialize [QuestionnaireInitial] from a [String] or [YamlMap] object
+  /// Deserialize [QuestionnaireInitial] from a [String]
+  /// or [YamlMap] object
   factory QuestionnaireInitial.fromYaml(dynamic yaml) => yaml is String
       ? QuestionnaireInitial.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2251,10 +1739,11 @@ class QuestionnaireInitial extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'QuestionnaireInitial cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'QuestionnaireInitial cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [QuestionnaireInitial] that takes in a [String]
+  /// Factory constructor for [QuestionnaireInitial]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory QuestionnaireInitial.fromJsonString(String source) {
@@ -2270,61 +1759,46 @@ class QuestionnaireInitial extends BackboneElement {
   @override
   String get fhirType => 'QuestionnaireInitial';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [valueBoolean]
   /// The actual value to for an initial answer.
   final FhirBoolean? valueBoolean;
-
-  /// Extensions for [valueBoolean]
-  final Element? valueBooleanElement;
 
   /// [valueDecimal]
   /// The actual value to for an initial answer.
   final FhirDecimal? valueDecimal;
 
-  /// Extensions for [valueDecimal]
-  final Element? valueDecimalElement;
-
   /// [valueInteger]
   /// The actual value to for an initial answer.
   final FhirInteger? valueInteger;
-
-  /// Extensions for [valueInteger]
-  final Element? valueIntegerElement;
 
   /// [valueDate]
   /// The actual value to for an initial answer.
   final FhirDate? valueDate;
 
-  /// Extensions for [valueDate]
-  final Element? valueDateElement;
-
   /// [valueDateTime]
   /// The actual value to for an initial answer.
   final FhirDateTime? valueDateTime;
-
-  /// Extensions for [valueDateTime]
-  final Element? valueDateTimeElement;
 
   /// [valueTime]
   /// The actual value to for an initial answer.
   final FhirTime? valueTime;
 
-  /// Extensions for [valueTime]
-  final Element? valueTimeElement;
-
   /// [valueString]
   /// The actual value to for an initial answer.
   final FhirString? valueString;
 
-  /// Extensions for [valueString]
-  final Element? valueStringElement;
-
   /// [valueUri]
   /// The actual value to for an initial answer.
   final FhirUri? valueUri;
-
-  /// Extensions for [valueUri]
-  final Element? valueUriElement;
 
   /// [valueAttachment]
   /// The actual value to for an initial answer.
@@ -2358,50 +1832,26 @@ class QuestionnaireInitial extends BackboneElement {
     if (valueBoolean?.value != null) {
       json['valueBoolean'] = valueBoolean!.toJson();
     }
-    if (valueBooleanElement != null) {
-      json['_valueBoolean'] = valueBooleanElement!.toJson();
-    }
     if (valueDecimal?.value != null) {
       json['valueDecimal'] = valueDecimal!.toJson();
-    }
-    if (valueDecimalElement != null) {
-      json['_valueDecimal'] = valueDecimalElement!.toJson();
     }
     if (valueInteger?.value != null) {
       json['valueInteger'] = valueInteger!.toJson();
     }
-    if (valueIntegerElement != null) {
-      json['_valueInteger'] = valueIntegerElement!.toJson();
-    }
     if (valueDate?.value != null) {
       json['valueDate'] = valueDate!.toJson();
-    }
-    if (valueDateElement != null) {
-      json['_valueDate'] = valueDateElement!.toJson();
     }
     if (valueDateTime?.value != null) {
       json['valueDateTime'] = valueDateTime!.toJson();
     }
-    if (valueDateTimeElement != null) {
-      json['_valueDateTime'] = valueDateTimeElement!.toJson();
-    }
     if (valueTime?.value != null) {
       json['valueTime'] = valueTime!.toJson();
-    }
-    if (valueTimeElement != null) {
-      json['_valueTime'] = valueTimeElement!.toJson();
     }
     if (valueString?.value != null) {
       json['valueString'] = valueString!.toJson();
     }
-    if (valueStringElement != null) {
-      json['_valueString'] = valueStringElement!.toJson();
-    }
     if (valueUri?.value != null) {
       json['valueUri'] = valueUri!.toJson();
-    }
-    if (valueUriElement != null) {
-      json['_valueUri'] = valueUriElement!.toJson();
     }
     if (valueAttachment != null) {
       json['valueAttachment'] = valueAttachment!.toJson();
@@ -2426,21 +1876,13 @@ class QuestionnaireInitial extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirBoolean? valueBoolean,
-    Element? valueBooleanElement,
     FhirDecimal? valueDecimal,
-    Element? valueDecimalElement,
     FhirInteger? valueInteger,
-    Element? valueIntegerElement,
     FhirDate? valueDate,
-    Element? valueDateElement,
     FhirDateTime? valueDateTime,
-    Element? valueDateTimeElement,
     FhirTime? valueTime,
-    Element? valueTimeElement,
     FhirString? valueString,
-    Element? valueStringElement,
     FhirUri? valueUri,
-    Element? valueUriElement,
     Attachment? valueAttachment,
     Coding? valueCoding,
     Quantity? valueQuantity,
@@ -2457,21 +1899,13 @@ class QuestionnaireInitial extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueBooleanElement: valueBooleanElement ?? this.valueBooleanElement,
       valueDecimal: valueDecimal ?? this.valueDecimal,
-      valueDecimalElement: valueDecimalElement ?? this.valueDecimalElement,
       valueInteger: valueInteger ?? this.valueInteger,
-      valueIntegerElement: valueIntegerElement ?? this.valueIntegerElement,
       valueDate: valueDate ?? this.valueDate,
-      valueDateElement: valueDateElement ?? this.valueDateElement,
       valueDateTime: valueDateTime ?? this.valueDateTime,
-      valueDateTimeElement: valueDateTimeElement ?? this.valueDateTimeElement,
       valueTime: valueTime ?? this.valueTime,
-      valueTimeElement: valueTimeElement ?? this.valueTimeElement,
       valueString: valueString ?? this.valueString,
-      valueStringElement: valueStringElement ?? this.valueStringElement,
       valueUri: valueUri ?? this.valueUri,
-      valueUriElement: valueUriElement ?? this.valueUriElement,
       valueAttachment: valueAttachment ?? this.valueAttachment,
       valueCoding: valueCoding ?? this.valueCoding,
       valueQuantity: valueQuantity ?? this.valueQuantity,

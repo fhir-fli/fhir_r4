@@ -13,32 +13,17 @@ class BiologicallyDerivedProduct extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.productCategory,
-
-    /// Extensions for [productCategory]
-    this.productCategoryElement,
     this.productCode,
     this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.request,
     this.quantity,
-
-    /// Extensions for [quantity]
-    this.quantityElement,
     this.parent,
     this.collection,
     this.processing,
@@ -57,27 +42,27 @@ class BiologicallyDerivedProduct extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProduct.fromJson(Map<String, dynamic> json) {
     return BiologicallyDerivedProduct(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -87,7 +72,7 @@ class BiologicallyDerivedProduct extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -96,7 +81,7 @@ class BiologicallyDerivedProduct extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -105,7 +90,7 @@ class BiologicallyDerivedProduct extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -114,19 +99,17 @@ class BiologicallyDerivedProduct extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       productCategory: json['productCategory'] != null
-          ? BiologicallyDerivedProductCategory.fromJson(json['productCategory'])
-          : null,
-      productCategoryElement: json['_productCategory'] != null
-          ? Element.fromJson(
-              json['_productCategory'] as Map<String, dynamic>,
-            )
+          ? BiologicallyDerivedProductCategory.fromJson({
+              'value': json['productCategory'],
+              '_value': json['_productCategory'],
+            })
           : null,
       productCode: json['productCode'] != null
           ? CodeableConcept.fromJson(
@@ -134,34 +117,30 @@ class BiologicallyDerivedProduct extends DomainResource {
             )
           : null,
       status: json['status'] != null
-          ? BiologicallyDerivedProductStatus.fromJson(json['status'])
-          : null,
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
+          ? BiologicallyDerivedProductStatus.fromJson({
+              'value': json['status'],
+              '_value': json['_status'],
+            })
           : null,
       request: json['request'] != null
           ? (json['request'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       quantity: json['quantity'] != null
-          ? FhirInteger.fromJson(json['quantity'])
-          : null,
-      quantityElement: json['_quantity'] != null
-          ? Element.fromJson(
-              json['_quantity'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['quantity'],
+              '_value': json['_quantity'],
+            })
           : null,
       parent: json['parent'] != null
           ? (json['parent'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -175,7 +154,7 @@ class BiologicallyDerivedProduct extends DomainResource {
       processing: json['processing'] != null
           ? (json['processing'] as List<dynamic>)
               .map<BiologicallyDerivedProductProcessing>(
-                (dynamic v) => BiologicallyDerivedProductProcessing.fromJson(
+                (v) => BiologicallyDerivedProductProcessing.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -189,7 +168,7 @@ class BiologicallyDerivedProduct extends DomainResource {
       storage: json['storage'] != null
           ? (json['storage'] as List<dynamic>)
               .map<BiologicallyDerivedProductStorage>(
-                (dynamic v) => BiologicallyDerivedProductStorage.fromJson(
+                (v) => BiologicallyDerivedProductStorage.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -198,7 +177,8 @@ class BiologicallyDerivedProduct extends DomainResource {
     );
   }
 
-  /// Deserialize [BiologicallyDerivedProduct] from a [String] or [YamlMap] object
+  /// Deserialize [BiologicallyDerivedProduct] from a [String]
+  /// or [YamlMap] object
   factory BiologicallyDerivedProduct.fromYaml(dynamic yaml) => yaml is String
       ? BiologicallyDerivedProduct.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -208,10 +188,11 @@ class BiologicallyDerivedProduct extends DomainResource {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'BiologicallyDerivedProduct cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'BiologicallyDerivedProduct cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [BiologicallyDerivedProduct] that takes in a [String]
+  /// Factory constructor for [BiologicallyDerivedProduct]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory BiologicallyDerivedProduct.fromJsonString(String source) {
@@ -227,6 +208,15 @@ class BiologicallyDerivedProduct extends DomainResource {
   @override
   String get fhirType => 'BiologicallyDerivedProduct';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// This records identifiers associated with this biologically derived
   /// product instance that are defined by business processes and/or used to
@@ -239,9 +229,6 @@ class BiologicallyDerivedProduct extends DomainResource {
   /// Broad category of this product.
   final BiologicallyDerivedProductCategory? productCategory;
 
-  /// Extensions for [productCategory]
-  final Element? productCategoryElement;
-
   /// [productCode]
   /// A code that identifies the kind of this biologically derived product
   /// (SNOMED Ctcode).
@@ -251,9 +238,6 @@ class BiologicallyDerivedProduct extends DomainResource {
   /// Whether the product is currently available.
   final BiologicallyDerivedProductStatus? status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [request]
   /// Procedure request to obtain this biologically derived product.
   final List<Reference>? request;
@@ -261,9 +245,6 @@ class BiologicallyDerivedProduct extends DomainResource {
   /// [quantity]
   /// Number of discrete units within this product.
   final FhirInteger? quantity;
-
-  /// Extensions for [quantity]
-  final Element? quantityElement;
 
   /// [parent]
   /// Parent product (if any).
@@ -301,9 +282,6 @@ class BiologicallyDerivedProduct extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -340,9 +318,6 @@ class BiologicallyDerivedProduct extends DomainResource {
     if (quantity?.value != null) {
       json['quantity'] = quantity!.toJson();
     }
-    if (quantityElement != null) {
-      json['_quantity'] = quantityElement!.toJson();
-    }
     if (parent != null && parent!.isNotEmpty) {
       json['parent'] = parent!.map((Reference v) => v.toJson()).toList();
     }
@@ -372,22 +347,17 @@ class BiologicallyDerivedProduct extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     BiologicallyDerivedProductCategory? productCategory,
-    Element? productCategoryElement,
     CodeableConcept? productCode,
     BiologicallyDerivedProductStatus? status,
-    Element? statusElement,
     List<Reference>? request,
     FhirInteger? quantity,
-    Element? quantityElement,
     List<Reference>? parent,
     BiologicallyDerivedProductCollection? collection,
     List<BiologicallyDerivedProductProcessing>? processing,
@@ -404,23 +374,17 @@ class BiologicallyDerivedProduct extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       productCategory: productCategory ?? this.productCategory,
-      productCategoryElement:
-          productCategoryElement ?? this.productCategoryElement,
       productCode: productCode ?? this.productCode,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       request: request ?? this.request,
       quantity: quantity ?? this.quantity,
-      quantityElement: quantityElement ?? this.quantityElement,
       parent: parent ?? this.parent,
       collection: collection ?? this.collection,
       processing: processing ?? this.processing,
@@ -443,14 +407,11 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
 
   BiologicallyDerivedProductCollection({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.collector,
     this.source,
     this.collectedDateTime,
-
-    /// Extensions for [collectedDateTime]
-    this.collectedDateTimeElement,
     this.collectedPeriod,
     super.userData,
     super.formatCommentsPre,
@@ -464,11 +425,15 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
   factory BiologicallyDerivedProductCollection.fromJson(
       Map<String, dynamic> json) {
     return BiologicallyDerivedProductCollection(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -477,7 +442,7 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -494,12 +459,10 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
             )
           : null,
       collectedDateTime: json['collectedDateTime'] != null
-          ? FhirDateTime.fromJson(json['collectedDateTime'])
-          : null,
-      collectedDateTimeElement: json['_collectedDateTime'] != null
-          ? Element.fromJson(
-              json['_collectedDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['collectedDateTime'],
+              '_value': json['_collectedDateTime'],
+            })
           : null,
       collectedPeriod: json['collectedPeriod'] != null
           ? Period.fromJson(
@@ -509,7 +472,8 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     );
   }
 
-  /// Deserialize [BiologicallyDerivedProductCollection] from a [String] or [YamlMap] object
+  /// Deserialize [BiologicallyDerivedProductCollection] from a [String]
+  /// or [YamlMap] object
   factory BiologicallyDerivedProductCollection.fromYaml(dynamic yaml) => yaml
           is String
       ? BiologicallyDerivedProductCollection.fromJson(
@@ -520,10 +484,11 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'BiologicallyDerivedProductCollection cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'BiologicallyDerivedProductCollection cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [BiologicallyDerivedProductCollection] that takes in a [String]
+  /// Factory constructor for [BiologicallyDerivedProductCollection]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory BiologicallyDerivedProductCollection.fromJsonString(String source) {
@@ -539,6 +504,15 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
   @override
   String get fhirType => 'BiologicallyDerivedProductCollection';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [collector]
   /// Healthcare professional who is performing the collection.
   final Reference? collector;
@@ -551,9 +525,6 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
   /// [collectedDateTime]
   /// Time of product collection.
   final FhirDateTime? collectedDateTime;
-
-  /// Extensions for [collectedDateTime]
-  final Element? collectedDateTimeElement;
 
   /// [collectedPeriod]
   /// Time of product collection.
@@ -581,9 +552,6 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     if (collectedDateTime?.value != null) {
       json['collectedDateTime'] = collectedDateTime!.toJson();
     }
-    if (collectedDateTimeElement != null) {
-      json['_collectedDateTime'] = collectedDateTimeElement!.toJson();
-    }
     if (collectedPeriod != null) {
       json['collectedPeriod'] = collectedPeriod!.toJson();
     }
@@ -600,7 +568,6 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
     Reference? collector,
     Reference? source,
     FhirDateTime? collectedDateTime,
-    Element? collectedDateTimeElement,
     Period? collectedPeriod,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -616,8 +583,6 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
       collector: collector ?? this.collector,
       source: source ?? this.source,
       collectedDateTime: collectedDateTime ?? this.collectedDateTime,
-      collectedDateTimeElement:
-          collectedDateTimeElement ?? this.collectedDateTimeElement,
       collectedPeriod: collectedPeriod ?? this.collectedPeriod,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -638,18 +603,12 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
 
   BiologicallyDerivedProductProcessing({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.procedure,
     this.additive,
     this.timeDateTime,
-
-    /// Extensions for [timeDateTime]
-    this.timeDateTimeElement,
     this.timePeriod,
     super.userData,
     super.formatCommentsPre,
@@ -663,11 +622,15 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
   factory BiologicallyDerivedProductProcessing.fromJson(
       Map<String, dynamic> json) {
     return BiologicallyDerivedProductProcessing(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -676,19 +639,17 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       procedure: json['procedure'] != null
           ? CodeableConcept.fromJson(
@@ -701,12 +662,10 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
             )
           : null,
       timeDateTime: json['timeDateTime'] != null
-          ? FhirDateTime.fromJson(json['timeDateTime'])
-          : null,
-      timeDateTimeElement: json['_timeDateTime'] != null
-          ? Element.fromJson(
-              json['_timeDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['timeDateTime'],
+              '_value': json['_timeDateTime'],
+            })
           : null,
       timePeriod: json['timePeriod'] != null
           ? Period.fromJson(
@@ -716,7 +675,8 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     );
   }
 
-  /// Deserialize [BiologicallyDerivedProductProcessing] from a [String] or [YamlMap] object
+  /// Deserialize [BiologicallyDerivedProductProcessing] from a [String]
+  /// or [YamlMap] object
   factory BiologicallyDerivedProductProcessing.fromYaml(dynamic yaml) => yaml
           is String
       ? BiologicallyDerivedProductProcessing.fromJson(
@@ -727,10 +687,11 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'BiologicallyDerivedProductProcessing cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'BiologicallyDerivedProductProcessing cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [BiologicallyDerivedProductProcessing] that takes in a [String]
+  /// Factory constructor for [BiologicallyDerivedProductProcessing]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory BiologicallyDerivedProductProcessing.fromJsonString(String source) {
@@ -746,12 +707,18 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
   @override
   String get fhirType => 'BiologicallyDerivedProductProcessing';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [description]
   /// Description of of processing.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [procedure]
   /// Procesing code.
@@ -764,9 +731,6 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
   /// [timeDateTime]
   /// Time of processing.
   final FhirDateTime? timeDateTime;
-
-  /// Extensions for [timeDateTime]
-  final Element? timeDateTimeElement;
 
   /// [timePeriod]
   /// Time of processing.
@@ -788,9 +752,6 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (procedure != null) {
       json['procedure'] = procedure!.toJson();
     }
@@ -799,9 +760,6 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     }
     if (timeDateTime?.value != null) {
       json['timeDateTime'] = timeDateTime!.toJson();
-    }
-    if (timeDateTimeElement != null) {
-      json['_timeDateTime'] = timeDateTimeElement!.toJson();
     }
     if (timePeriod != null) {
       json['timePeriod'] = timePeriod!.toJson();
@@ -817,11 +775,9 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? description,
-    Element? descriptionElement,
     CodeableConcept? procedure,
     Reference? additive,
     FhirDateTime? timeDateTime,
-    Element? timeDateTimeElement,
     Period? timePeriod,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -835,11 +791,9 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       procedure: procedure ?? this.procedure,
       additive: additive ?? this.additive,
       timeDateTime: timeDateTime ?? this.timeDateTime,
-      timeDateTimeElement: timeDateTimeElement ?? this.timeDateTimeElement,
       timePeriod: timePeriod ?? this.timePeriod,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -860,16 +814,10 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
 
   BiologicallyDerivedProductManipulation({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.timeDateTime,
-
-    /// Extensions for [timeDateTime]
-    this.timeDateTimeElement,
     this.timePeriod,
     super.userData,
     super.formatCommentsPre,
@@ -883,11 +831,15 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
   factory BiologicallyDerivedProductManipulation.fromJson(
       Map<String, dynamic> json) {
     return BiologicallyDerivedProductManipulation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -896,27 +848,23 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       timeDateTime: json['timeDateTime'] != null
-          ? FhirDateTime.fromJson(json['timeDateTime'])
-          : null,
-      timeDateTimeElement: json['_timeDateTime'] != null
-          ? Element.fromJson(
-              json['_timeDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['timeDateTime'],
+              '_value': json['_timeDateTime'],
+            })
           : null,
       timePeriod: json['timePeriod'] != null
           ? Period.fromJson(
@@ -926,7 +874,8 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     );
   }
 
-  /// Deserialize [BiologicallyDerivedProductManipulation] from a [String] or [YamlMap] object
+  /// Deserialize [BiologicallyDerivedProductManipulation] from a [String]
+  /// or [YamlMap] object
   factory BiologicallyDerivedProductManipulation.fromYaml(dynamic yaml) => yaml
           is String
       ? BiologicallyDerivedProductManipulation.fromJson(
@@ -937,10 +886,11 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'BiologicallyDerivedProductManipulation cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'BiologicallyDerivedProductManipulation cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [BiologicallyDerivedProductManipulation] that takes in a [String]
+  /// Factory constructor for [BiologicallyDerivedProductManipulation]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory BiologicallyDerivedProductManipulation.fromJsonString(String source) {
@@ -956,19 +906,22 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
   @override
   String get fhirType => 'BiologicallyDerivedProductManipulation';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [description]
   /// Description of manipulation.
   final FhirString? description;
 
-  /// Extensions for [description]
-  final Element? descriptionElement;
-
   /// [timeDateTime]
   /// Time of manipulation.
   final FhirDateTime? timeDateTime;
-
-  /// Extensions for [timeDateTime]
-  final Element? timeDateTimeElement;
 
   /// [timePeriod]
   /// Time of manipulation.
@@ -990,14 +943,8 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (timeDateTime?.value != null) {
       json['timeDateTime'] = timeDateTime!.toJson();
-    }
-    if (timeDateTimeElement != null) {
-      json['_timeDateTime'] = timeDateTimeElement!.toJson();
     }
     if (timePeriod != null) {
       json['timePeriod'] = timePeriod!.toJson();
@@ -1013,9 +960,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? description,
-    Element? descriptionElement,
     FhirDateTime? timeDateTime,
-    Element? timeDateTimeElement,
     Period? timePeriod,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1029,9 +974,7 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       timeDateTime: timeDateTime ?? this.timeDateTime,
-      timeDateTimeElement: timeDateTimeElement ?? this.timeDateTimeElement,
       timePeriod: timePeriod ?? this.timePeriod,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -1050,20 +993,11 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
 
   BiologicallyDerivedProductStorage({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.temperature,
-
-    /// Extensions for [temperature]
-    this.temperatureElement,
     this.scale,
-
-    /// Extensions for [scale]
-    this.scaleElement,
     this.duration,
     super.userData,
     super.formatCommentsPre,
@@ -1077,11 +1011,15 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
   factory BiologicallyDerivedProductStorage.fromJson(
       Map<String, dynamic> json) {
     return BiologicallyDerivedProductStorage(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1090,35 +1028,29 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       temperature: json['temperature'] != null
-          ? FhirDecimal.fromJson(json['temperature'])
-          : null,
-      temperatureElement: json['_temperature'] != null
-          ? Element.fromJson(
-              json['_temperature'] as Map<String, dynamic>,
-            )
+          ? FhirDecimal.fromJson({
+              'value': json['temperature'],
+              '_value': json['_temperature'],
+            })
           : null,
       scale: json['scale'] != null
-          ? BiologicallyDerivedProductStorageScale.fromJson(json['scale'])
-          : null,
-      scaleElement: json['_scale'] != null
-          ? Element.fromJson(
-              json['_scale'] as Map<String, dynamic>,
-            )
+          ? BiologicallyDerivedProductStorageScale.fromJson({
+              'value': json['scale'],
+              '_value': json['_scale'],
+            })
           : null,
       duration: json['duration'] != null
           ? Period.fromJson(
@@ -1128,7 +1060,8 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
     );
   }
 
-  /// Deserialize [BiologicallyDerivedProductStorage] from a [String] or [YamlMap] object
+  /// Deserialize [BiologicallyDerivedProductStorage] from a [String]
+  /// or [YamlMap] object
   factory BiologicallyDerivedProductStorage.fromYaml(dynamic yaml) => yaml
           is String
       ? BiologicallyDerivedProductStorage.fromJson(
@@ -1139,10 +1072,11 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'BiologicallyDerivedProductStorage cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'BiologicallyDerivedProductStorage cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [BiologicallyDerivedProductStorage] that takes in a [String]
+  /// Factory constructor for [BiologicallyDerivedProductStorage]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory BiologicallyDerivedProductStorage.fromJsonString(String source) {
@@ -1158,26 +1092,26 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
   @override
   String get fhirType => 'BiologicallyDerivedProductStorage';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [description]
   /// Description of storage.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [temperature]
   /// Storage temperature.
   final FhirDecimal? temperature;
 
-  /// Extensions for [temperature]
-  final Element? temperatureElement;
-
   /// [scale]
   /// Temperature scale used.
   final BiologicallyDerivedProductStorageScale? scale;
-
-  /// Extensions for [scale]
-  final Element? scaleElement;
 
   /// [duration]
   /// Storage timeperiod.
@@ -1199,14 +1133,8 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (temperature?.value != null) {
       json['temperature'] = temperature!.toJson();
-    }
-    if (temperatureElement != null) {
-      json['_temperature'] = temperatureElement!.toJson();
     }
     if (scale != null) {
       json['scale'] = scale!.toJson();
@@ -1225,11 +1153,8 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? description,
-    Element? descriptionElement,
     FhirDecimal? temperature,
-    Element? temperatureElement,
     BiologicallyDerivedProductStorageScale? scale,
-    Element? scaleElement,
     Period? duration,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1243,11 +1168,8 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       temperature: temperature ?? this.temperature,
-      temperatureElement: temperatureElement ?? this.temperatureElement,
       scale: scale ?? this.scale,
-      scaleElement: scaleElement ?? this.scaleElement,
       duration: duration ?? this.duration,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

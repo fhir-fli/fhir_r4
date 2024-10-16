@@ -12,56 +12,29 @@ class AllergyIntolerance extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.clinicalStatus,
     this.verificationStatus,
     this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.category,
-
-    /// Extensions for [category]
-    this.categoryElement,
     this.criticality,
-
-    /// Extensions for [criticality]
-    this.criticalityElement,
     this.code,
     required this.patient,
     this.encounter,
     this.onsetDateTime,
-
-    /// Extensions for [onsetDateTime]
-    this.onsetDateTimeElement,
     this.onsetAge,
     this.onsetPeriod,
     this.onsetRange,
     this.onsetString,
-
-    /// Extensions for [onsetString]
-    this.onsetStringElement,
     this.recordedDate,
-
-    /// Extensions for [recordedDate]
-    this.recordedDateElement,
     this.recorder,
     this.asserter,
     this.lastOccurrence,
-
-    /// Extensions for [lastOccurrence]
-    this.lastOccurrenceElement,
     this.note,
     this.reaction,
     super.userData,
@@ -77,27 +50,27 @@ class AllergyIntolerance extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AllergyIntolerance.fromJson(Map<String, dynamic> json) {
     return AllergyIntolerance(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -107,7 +80,7 @@ class AllergyIntolerance extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -116,7 +89,7 @@ class AllergyIntolerance extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -125,7 +98,7 @@ class AllergyIntolerance extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -134,7 +107,7 @@ class AllergyIntolerance extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -151,35 +124,20 @@ class AllergyIntolerance extends DomainResource {
             )
           : null,
       type: json['type'] != null
-          ? AllergyIntoleranceType.fromJson(json['type'])
+          ? AllergyIntoleranceType.fromJson({
+              'value': json['type'],
+              '_value': json['_type'],
+            })
           : null,
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
-      category: json['category'] != null
-          ? (json['category'] as List<dynamic>)
-              .map<AllergyIntoleranceCategory>(
-                (dynamic v) =>
-                    AllergyIntoleranceCategory.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      categoryElement: json['_category'] != null
-          ? (json['_category'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      category: parsePrimitiveList<AllergyIntoleranceCategory>(
+          json['category'] as List<dynamic>?,
+          json['_category'] as List<dynamic>?,
+          fromJson: AllergyIntoleranceCategory.fromJson),
       criticality: json['criticality'] != null
-          ? AllergyIntoleranceCriticality.fromJson(json['criticality'])
-          : null,
-      criticalityElement: json['_criticality'] != null
-          ? Element.fromJson(
-              json['_criticality'] as Map<String, dynamic>,
-            )
+          ? AllergyIntoleranceCriticality.fromJson({
+              'value': json['criticality'],
+              '_value': json['_criticality'],
+            })
           : null,
       code: json['code'] != null
           ? CodeableConcept.fromJson(
@@ -195,12 +153,10 @@ class AllergyIntolerance extends DomainResource {
             )
           : null,
       onsetDateTime: json['onsetDateTime'] != null
-          ? FhirDateTime.fromJson(json['onsetDateTime'])
-          : null,
-      onsetDateTimeElement: json['_onsetDateTime'] != null
-          ? Element.fromJson(
-              json['_onsetDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['onsetDateTime'],
+              '_value': json['_onsetDateTime'],
+            })
           : null,
       onsetAge: json['onsetAge'] != null
           ? Age.fromJson(
@@ -218,20 +174,16 @@ class AllergyIntolerance extends DomainResource {
             )
           : null,
       onsetString: json['onsetString'] != null
-          ? FhirString.fromJson(json['onsetString'])
-          : null,
-      onsetStringElement: json['_onsetString'] != null
-          ? Element.fromJson(
-              json['_onsetString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['onsetString'],
+              '_value': json['_onsetString'],
+            })
           : null,
       recordedDate: json['recordedDate'] != null
-          ? FhirDateTime.fromJson(json['recordedDate'])
-          : null,
-      recordedDateElement: json['_recordedDate'] != null
-          ? Element.fromJson(
-              json['_recordedDate'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['recordedDate'],
+              '_value': json['_recordedDate'],
+            })
           : null,
       recorder: json['recorder'] != null
           ? Reference.fromJson(
@@ -244,17 +196,15 @@ class AllergyIntolerance extends DomainResource {
             )
           : null,
       lastOccurrence: json['lastOccurrence'] != null
-          ? FhirDateTime.fromJson(json['lastOccurrence'])
-          : null,
-      lastOccurrenceElement: json['_lastOccurrence'] != null
-          ? Element.fromJson(
-              json['_lastOccurrence'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['lastOccurrence'],
+              '_value': json['_lastOccurrence'],
+            })
           : null,
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -263,7 +213,7 @@ class AllergyIntolerance extends DomainResource {
       reaction: json['reaction'] != null
           ? (json['reaction'] as List<dynamic>)
               .map<AllergyIntoleranceReaction>(
-                (dynamic v) => AllergyIntoleranceReaction.fromJson(
+                (v) => AllergyIntoleranceReaction.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -272,7 +222,8 @@ class AllergyIntolerance extends DomainResource {
     );
   }
 
-  /// Deserialize [AllergyIntolerance] from a [String] or [YamlMap] object
+  /// Deserialize [AllergyIntolerance] from a [String]
+  /// or [YamlMap] object
   factory AllergyIntolerance.fromYaml(dynamic yaml) => yaml is String
       ? AllergyIntolerance.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -281,11 +232,11 @@ class AllergyIntolerance extends DomainResource {
           ? AllergyIntolerance.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'AllergyIntolerance cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('AllergyIntolerance cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [AllergyIntolerance] that takes in a [String]
+  /// Factory constructor for [AllergyIntolerance]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory AllergyIntolerance.fromJsonString(String source) {
@@ -300,6 +251,15 @@ class AllergyIntolerance extends DomainResource {
 
   @override
   String get fhirType => 'AllergyIntolerance';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Business identifiers assigned to this AllergyIntolerance by the
@@ -322,23 +282,14 @@ class AllergyIntolerance extends DomainResource {
   /// reaction risk.
   final AllergyIntoleranceType? type;
 
-  /// Extensions for [type]
-  final Element? typeElement;
-
   /// [category]
   /// Category of the identified substance.
   final List<AllergyIntoleranceCategory>? category;
-
-  /// Extensions for [category]
-  final List<Element>? categoryElement;
 
   /// [criticality]
   /// Estimate of the potential clinical harm, or seriousness, of the
   /// reaction to the identified substance.
   final AllergyIntoleranceCriticality? criticality;
-
-  /// Extensions for [criticality]
-  final Element? criticalityElement;
 
   /// [code]
   /// Code for an allergy or intolerance statement (either a positive or a
@@ -372,9 +323,6 @@ class AllergyIntolerance extends DomainResource {
   /// was identified.
   final FhirDateTime? onsetDateTime;
 
-  /// Extensions for [onsetDateTime]
-  final Element? onsetDateTimeElement;
-
   /// [onsetAge]
   /// Estimated or actual date, date-time, or age when allergy or intolerance
   /// was identified.
@@ -395,17 +343,11 @@ class AllergyIntolerance extends DomainResource {
   /// was identified.
   final FhirString? onsetString;
 
-  /// Extensions for [onsetString]
-  final Element? onsetStringElement;
-
   /// [recordedDate]
   /// The recordedDate represents when this particular AllergyIntolerance
   /// record was created in the system, which is often a system-generated
   /// date.
   final FhirDateTime? recordedDate;
-
-  /// Extensions for [recordedDate]
-  final Element? recordedDateElement;
 
   /// [recorder]
   /// Individual who recorded the record and takes responsibility for its
@@ -420,9 +362,6 @@ class AllergyIntolerance extends DomainResource {
   /// Represents the date and/or time of the last known occurrence of a
   /// reaction event.
   final FhirDateTime? lastOccurrence;
-
-  /// Extensions for [lastOccurrence]
-  final Element? lastOccurrenceElement;
 
   /// [note]
   /// Additional narrative about the propensity for the Adverse Reaction, not
@@ -445,9 +384,6 @@ class AllergyIntolerance extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -496,9 +432,6 @@ class AllergyIntolerance extends DomainResource {
     if (onsetDateTime?.value != null) {
       json['onsetDateTime'] = onsetDateTime!.toJson();
     }
-    if (onsetDateTimeElement != null) {
-      json['_onsetDateTime'] = onsetDateTimeElement!.toJson();
-    }
     if (onsetAge != null) {
       json['onsetAge'] = onsetAge!.toJson();
     }
@@ -511,14 +444,8 @@ class AllergyIntolerance extends DomainResource {
     if (onsetString?.value != null) {
       json['onsetString'] = onsetString!.toJson();
     }
-    if (onsetStringElement != null) {
-      json['_onsetString'] = onsetStringElement!.toJson();
-    }
     if (recordedDate?.value != null) {
       json['recordedDate'] = recordedDate!.toJson();
-    }
-    if (recordedDateElement != null) {
-      json['_recordedDate'] = recordedDateElement!.toJson();
     }
     if (recorder != null) {
       json['recorder'] = recorder!.toJson();
@@ -528,9 +455,6 @@ class AllergyIntolerance extends DomainResource {
     }
     if (lastOccurrence?.value != null) {
       json['lastOccurrence'] = lastOccurrence!.toJson();
-    }
-    if (lastOccurrenceElement != null) {
-      json['_lastOccurrence'] = lastOccurrenceElement!.toJson();
     }
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((Annotation v) => v.toJson()).toList();
@@ -549,9 +473,7 @@ class AllergyIntolerance extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -560,27 +482,20 @@ class AllergyIntolerance extends DomainResource {
     CodeableConcept? clinicalStatus,
     CodeableConcept? verificationStatus,
     AllergyIntoleranceType? type,
-    Element? typeElement,
     List<AllergyIntoleranceCategory>? category,
-    List<Element>? categoryElement,
     AllergyIntoleranceCriticality? criticality,
-    Element? criticalityElement,
     CodeableConcept? code,
     Reference? patient,
     Reference? encounter,
     FhirDateTime? onsetDateTime,
-    Element? onsetDateTimeElement,
     Age? onsetAge,
     Period? onsetPeriod,
     Range? onsetRange,
     FhirString? onsetString,
-    Element? onsetStringElement,
     FhirDateTime? recordedDate,
-    Element? recordedDateElement,
     Reference? recorder,
     Reference? asserter,
     FhirDateTime? lastOccurrence,
-    Element? lastOccurrenceElement,
     List<Annotation>? note,
     List<AllergyIntoleranceReaction>? reaction,
     Map<String, Object?>? userData,
@@ -594,9 +509,7 @@ class AllergyIntolerance extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -605,28 +518,20 @@ class AllergyIntolerance extends DomainResource {
       clinicalStatus: clinicalStatus ?? this.clinicalStatus,
       verificationStatus: verificationStatus ?? this.verificationStatus,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       category: category ?? this.category,
-      categoryElement: categoryElement ?? this.categoryElement,
       criticality: criticality ?? this.criticality,
-      criticalityElement: criticalityElement ?? this.criticalityElement,
       code: code ?? this.code,
       patient: patient ?? this.patient,
       encounter: encounter ?? this.encounter,
       onsetDateTime: onsetDateTime ?? this.onsetDateTime,
-      onsetDateTimeElement: onsetDateTimeElement ?? this.onsetDateTimeElement,
       onsetAge: onsetAge ?? this.onsetAge,
       onsetPeriod: onsetPeriod ?? this.onsetPeriod,
       onsetRange: onsetRange ?? this.onsetRange,
       onsetString: onsetString ?? this.onsetString,
-      onsetStringElement: onsetStringElement ?? this.onsetStringElement,
       recordedDate: recordedDate ?? this.recordedDate,
-      recordedDateElement: recordedDateElement ?? this.recordedDateElement,
       recorder: recorder ?? this.recorder,
       asserter: asserter ?? this.asserter,
       lastOccurrence: lastOccurrence ?? this.lastOccurrence,
-      lastOccurrenceElement:
-          lastOccurrenceElement ?? this.lastOccurrenceElement,
       note: note ?? this.note,
       reaction: reaction ?? this.reaction,
       userData: userData ?? this.userData,
@@ -647,22 +552,13 @@ class AllergyIntoleranceReaction extends BackboneElement {
 
   AllergyIntoleranceReaction({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.substance,
     required this.manifestation,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.onset,
-
-    /// Extensions for [onset]
-    this.onsetElement,
     this.severity,
-
-    /// Extensions for [severity]
-    this.severityElement,
     this.exposureRoute,
     this.note,
     super.userData,
@@ -676,11 +572,15 @@ class AllergyIntoleranceReaction extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AllergyIntoleranceReaction.fromJson(Map<String, dynamic> json) {
     return AllergyIntoleranceReaction(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -689,7 +589,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -700,32 +600,30 @@ class AllergyIntoleranceReaction extends BackboneElement {
               json['substance'] as Map<String, dynamic>,
             )
           : null,
-      manifestation: (json['manifestation'] as List<dynamic>)
-          .map<CodeableConcept>((dynamic v) =>
-              CodeableConcept.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      manifestation: ensureNonNullList((json['manifestation'] as List<dynamic>)
+          .map<CodeableConcept>(
+            (v) => CodeableConcept.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
-          : null,
-      onset:
-          json['onset'] != null ? FhirDateTime.fromJson(json['onset']) : null,
-      onsetElement: json['_onset'] != null
-          ? Element.fromJson(
-              json['_onset'] as Map<String, dynamic>,
-            )
+      onset: json['onset'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['onset'],
+              '_value': json['_onset'],
+            })
           : null,
       severity: json['severity'] != null
-          ? AllergyIntoleranceSeverity.fromJson(json['severity'])
-          : null,
-      severityElement: json['_severity'] != null
-          ? Element.fromJson(
-              json['_severity'] as Map<String, dynamic>,
-            )
+          ? AllergyIntoleranceSeverity.fromJson({
+              'value': json['severity'],
+              '_value': json['_severity'],
+            })
           : null,
       exposureRoute: json['exposureRoute'] != null
           ? CodeableConcept.fromJson(
@@ -735,7 +633,7 @@ class AllergyIntoleranceReaction extends BackboneElement {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -744,7 +642,8 @@ class AllergyIntoleranceReaction extends BackboneElement {
     );
   }
 
-  /// Deserialize [AllergyIntoleranceReaction] from a [String] or [YamlMap] object
+  /// Deserialize [AllergyIntoleranceReaction] from a [String]
+  /// or [YamlMap] object
   factory AllergyIntoleranceReaction.fromYaml(dynamic yaml) => yaml is String
       ? AllergyIntoleranceReaction.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -754,10 +653,11 @@ class AllergyIntoleranceReaction extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'AllergyIntoleranceReaction cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'AllergyIntoleranceReaction cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [AllergyIntoleranceReaction] that takes in a [String]
+  /// Factory constructor for [AllergyIntoleranceReaction]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory AllergyIntoleranceReaction.fromJsonString(String source) {
@@ -772,6 +672,15 @@ class AllergyIntoleranceReaction extends BackboneElement {
 
   @override
   String get fhirType => 'AllergyIntoleranceReaction';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [substance]
   /// Identification of the specific substance (or pharmaceutical product)
@@ -797,23 +706,14 @@ class AllergyIntoleranceReaction extends BackboneElement {
   /// the manifestation if required.
   final FhirString? description;
 
-  /// Extensions for [description]
-  final Element? descriptionElement;
-
   /// [onset]
   /// Record of the date and/or time of the onset of the Reaction.
   final FhirDateTime? onset;
-
-  /// Extensions for [onset]
-  final Element? onsetElement;
 
   /// [severity]
   /// Clinical assessment of the severity of the reaction event as a whole,
   /// potentially considering multiple different manifestations.
   final AllergyIntoleranceSeverity? severity;
-
-  /// Extensions for [severity]
-  final Element? severityElement;
 
   /// [exposureRoute]
   /// Identification of the route by which the subject was exposed to the
@@ -846,14 +746,8 @@ class AllergyIntoleranceReaction extends BackboneElement {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (onset?.value != null) {
       json['onset'] = onset!.toJson();
-    }
-    if (onsetElement != null) {
-      json['_onset'] = onsetElement!.toJson();
     }
     if (severity != null) {
       json['severity'] = severity!.toJson();
@@ -877,11 +771,8 @@ class AllergyIntoleranceReaction extends BackboneElement {
     CodeableConcept? substance,
     List<CodeableConcept>? manifestation,
     FhirString? description,
-    Element? descriptionElement,
     FhirDateTime? onset,
-    Element? onsetElement,
     AllergyIntoleranceSeverity? severity,
-    Element? severityElement,
     CodeableConcept? exposureRoute,
     List<Annotation>? note,
     Map<String, Object?>? userData,
@@ -898,11 +789,8 @@ class AllergyIntoleranceReaction extends BackboneElement {
       substance: substance ?? this.substance,
       manifestation: manifestation ?? this.manifestation,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       onset: onset ?? this.onset,
-      onsetElement: onsetElement ?? this.onsetElement,
       severity: severity ?? this.severity,
-      severityElement: severityElement ?? this.severityElement,
       exposureRoute: exposureRoute ?? this.exposureRoute,
       note: note ?? this.note,
       userData: userData ?? this.userData,

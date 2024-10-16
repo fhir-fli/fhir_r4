@@ -12,104 +12,35 @@ class OperationDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     required this.kind,
-
-    /// Extensions for [kind]
-    this.kindElement,
     this.experimental,
-
-    /// Extensions for [experimental]
-    this.experimentalElement,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.publisher,
-
-    /// Extensions for [publisher]
-    this.publisherElement,
     this.contact,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-
-    /// Extensions for [purpose]
-    this.purposeElement,
     this.affectsState,
-
-    /// Extensions for [affectsState]
-    this.affectsStateElement,
     required this.code,
-
-    /// Extensions for [code]
-    this.codeElement,
     this.comment,
-
-    /// Extensions for [comment]
-    this.commentElement,
     this.base,
-
-    /// Extensions for [base]
-    this.baseElement,
     this.resource,
-
-    /// Extensions for [resource]
-    this.resourceElement,
     required this.system,
-
-    /// Extensions for [system]
-    this.systemElement,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     required this.instance,
-
-    /// Extensions for [instance]
-    this.instanceElement,
     this.inputProfile,
-
-    /// Extensions for [inputProfile]
-    this.inputProfileElement,
     this.outputProfile,
-
-    /// Extensions for [outputProfile]
-    this.outputProfileElement,
     this.parameter,
     this.overload,
     super.userData,
@@ -125,27 +56,27 @@ class OperationDefinition extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinition.fromJson(Map<String, dynamic> json) {
     return OperationDefinition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -155,7 +86,7 @@ class OperationDefinition extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -164,7 +95,7 @@ class OperationDefinition extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -173,92 +104,79 @@ class OperationDefinition extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
+      url: json['url'] != null
+          ? FhirUri.fromJson({
+              'value': json['url'],
+              '_value': json['_url'],
+            })
           : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
-      name: FhirString.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: FhirString.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
-          : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
-      kind: OperationKind.fromJson(json['kind']),
-      kindElement: json['_kind'] != null
-          ? Element.fromJson(
-              json['_kind'] as Map<String, dynamic>,
-            )
-          : null,
+      status: PublicationStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
+      kind: OperationKind.fromJson({
+        'value': json['kind'],
+        '_value': json['_kind'],
+      }),
       experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson(json['experimental'])
+          ? FhirBoolean.fromJson({
+              'value': json['experimental'],
+              '_value': json['_experimental'],
+            })
           : null,
-      experimentalElement: json['_experimental'] != null
-          ? Element.fromJson(
-              json['_experimental'] as Map<String, dynamic>,
-            )
-          : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       publisher: json['publisher'] != null
-          ? FhirString.fromJson(json['publisher'])
-          : null,
-      publisherElement: json['_publisher'] != null
-          ? Element.fromJson(
-              json['_publisher'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['publisher'],
+              '_value': json['_publisher'],
+            })
           : null,
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       useContext: json['useContext'] != null
           ? (json['useContext'] as List<dynamic>)
               .map<UsageContext>(
-                (dynamic v) => UsageContext.fromJson(
+                (v) => UsageContext.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -267,100 +185,71 @@ class OperationDefinition extends DomainResource {
       jurisdiction: json['jurisdiction'] != null
           ? (json['jurisdiction'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       purpose: json['purpose'] != null
-          ? FhirMarkdown.fromJson(json['purpose'])
-          : null,
-      purposeElement: json['_purpose'] != null
-          ? Element.fromJson(
-              json['_purpose'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['purpose'],
+              '_value': json['_purpose'],
+            })
           : null,
       affectsState: json['affectsState'] != null
-          ? FhirBoolean.fromJson(json['affectsState'])
+          ? FhirBoolean.fromJson({
+              'value': json['affectsState'],
+              '_value': json['_affectsState'],
+            })
           : null,
-      affectsStateElement: json['_affectsState'] != null
-          ? Element.fromJson(
-              json['_affectsState'] as Map<String, dynamic>,
-            )
-          : null,
-      code: FhirCode.fromJson(json['code']),
-      codeElement: json['_code'] != null
-          ? Element.fromJson(
-              json['_code'] as Map<String, dynamic>,
-            )
-          : null,
+      code: FhirCode.fromJson({
+        'value': json['code'],
+        '_value': json['_code'],
+      }),
       comment: json['comment'] != null
-          ? FhirMarkdown.fromJson(json['comment'])
+          ? FhirMarkdown.fromJson({
+              'value': json['comment'],
+              '_value': json['_comment'],
+            })
           : null,
-      commentElement: json['_comment'] != null
-          ? Element.fromJson(
-              json['_comment'] as Map<String, dynamic>,
-            )
+      base: json['base'] != null
+          ? FhirCanonical.fromJson({
+              'value': json['base'],
+              '_value': json['_base'],
+            })
           : null,
-      base: json['base'] != null ? FhirCanonical.fromJson(json['base']) : null,
-      baseElement: json['_base'] != null
-          ? Element.fromJson(
-              json['_base'] as Map<String, dynamic>,
-            )
-          : null,
-      resource: json['resource'] != null
-          ? (json['resource'] as List<dynamic>)
-              .map<FhirCode>(
-                (dynamic v) => FhirCode.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      resourceElement: json['_resource'] != null
-          ? (json['_resource'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      system: FhirBoolean.fromJson(json['system']),
-      systemElement: json['_system'] != null
-          ? Element.fromJson(
-              json['_system'] as Map<String, dynamic>,
-            )
-          : null,
-      type: FhirBoolean.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
-      instance: FhirBoolean.fromJson(json['instance']),
-      instanceElement: json['_instance'] != null
-          ? Element.fromJson(
-              json['_instance'] as Map<String, dynamic>,
-            )
-          : null,
+      resource: parsePrimitiveList<FhirCode>(json['resource'] as List<dynamic>?,
+          json['_resource'] as List<dynamic>?,
+          fromJson: FhirCode.fromJson),
+      system: FhirBoolean.fromJson({
+        'value': json['system'],
+        '_value': json['_system'],
+      }),
+      type: FhirBoolean.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
+      instance: FhirBoolean.fromJson({
+        'value': json['instance'],
+        '_value': json['_instance'],
+      }),
       inputProfile: json['inputProfile'] != null
-          ? FhirCanonical.fromJson(json['inputProfile'])
-          : null,
-      inputProfileElement: json['_inputProfile'] != null
-          ? Element.fromJson(
-              json['_inputProfile'] as Map<String, dynamic>,
-            )
+          ? FhirCanonical.fromJson({
+              'value': json['inputProfile'],
+              '_value': json['_inputProfile'],
+            })
           : null,
       outputProfile: json['outputProfile'] != null
-          ? FhirCanonical.fromJson(json['outputProfile'])
-          : null,
-      outputProfileElement: json['_outputProfile'] != null
-          ? Element.fromJson(
-              json['_outputProfile'] as Map<String, dynamic>,
-            )
+          ? FhirCanonical.fromJson({
+              'value': json['outputProfile'],
+              '_value': json['_outputProfile'],
+            })
           : null,
       parameter: json['parameter'] != null
           ? (json['parameter'] as List<dynamic>)
               .map<OperationDefinitionParameter>(
-                (dynamic v) => OperationDefinitionParameter.fromJson(
+                (v) => OperationDefinitionParameter.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -369,7 +258,7 @@ class OperationDefinition extends DomainResource {
       overload: json['overload'] != null
           ? (json['overload'] as List<dynamic>)
               .map<OperationDefinitionOverload>(
-                (dynamic v) => OperationDefinitionOverload.fromJson(
+                (v) => OperationDefinitionOverload.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -378,7 +267,8 @@ class OperationDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [OperationDefinition] from a [String] or [YamlMap] object
+  /// Deserialize [OperationDefinition] from a [String]
+  /// or [YamlMap] object
   factory OperationDefinition.fromYaml(dynamic yaml) => yaml is String
       ? OperationDefinition.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -388,10 +278,11 @@ class OperationDefinition extends DomainResource {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'OperationDefinition cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'OperationDefinition cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [OperationDefinition] that takes in a [String]
+  /// Factory constructor for [OperationDefinition]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory OperationDefinition.fromJsonString(String source) {
@@ -407,6 +298,15 @@ class OperationDefinition extends DomainResource {
   @override
   String get fhirType => 'OperationDefinition';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [url]
   /// An absolute URI that is used to identify this operation definition when
   /// it is referenced in a specification, model, design or an instance; also
@@ -416,9 +316,6 @@ class OperationDefinition extends DomainResource {
   /// the target of a canonical reference. It SHALL remain the same when the
   /// operation definition is stored on different servers.
   final FhirUri? url;
-
-  /// Extensions for [url]
-  final Element? urlElement;
 
   /// [version]
   /// The identifier that is used to identify this version of the operation
@@ -430,48 +327,30 @@ class OperationDefinition extends DomainResource {
   /// placed in a lexicographical sequence.
   final FhirString? version;
 
-  /// Extensions for [version]
-  final Element? versionElement;
-
   /// [name]
   /// A natural language name identifying the operation definition. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
   final FhirString name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [title]
   /// A short, descriptive, user-friendly title for the operation definition.
   final FhirString? title;
-
-  /// Extensions for [title]
-  final Element? titleElement;
 
   /// [status]
   /// The status of this operation definition. Enables tracking the
   /// life-cycle of the content.
   final PublicationStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [kind]
   /// Whether this is an operation or a named query.
   final OperationKind kind;
-
-  /// Extensions for [kind]
-  final Element? kindElement;
 
   /// [experimental]
   /// A Boolean value to indicate that this operation definition is authored
   /// for testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
   final FhirBoolean? experimental;
-
-  /// Extensions for [experimental]
-  final Element? experimentalElement;
 
   /// [date]
   /// The date (and optionally time) when the operation definition was
@@ -481,16 +360,10 @@ class OperationDefinition extends DomainResource {
   /// changes.
   final FhirDateTime? date;
 
-  /// Extensions for [date]
-  final Element? dateElement;
-
   /// [publisher]
   /// The name of the organization or individual that published the operation
   /// definition.
   final FhirString? publisher;
-
-  /// Extensions for [publisher]
-  final Element? publisherElement;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
@@ -501,9 +374,6 @@ class OperationDefinition extends DomainResource {
   /// A free text natural language description of the operation definition
   /// from a consumer's perspective.
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -523,45 +393,27 @@ class OperationDefinition extends DomainResource {
   /// been designed as it has.
   final FhirMarkdown? purpose;
 
-  /// Extensions for [purpose]
-  final Element? purposeElement;
-
   /// [affectsState]
   /// Whether the operation affects state. Side effects such as producing
   /// audit trail entries do not count as 'affecting state'.
   final FhirBoolean? affectsState;
 
-  /// Extensions for [affectsState]
-  final Element? affectsStateElement;
-
   /// [code]
   /// The name used to invoke the operation.
   final FhirCode code;
 
-  /// Extensions for [code]
-  final Element? codeElement;
-
   /// [comment]
   /// Additional information about how to use this operation or named query.
   final FhirMarkdown? comment;
-
-  /// Extensions for [comment]
-  final Element? commentElement;
 
   /// [base]
   /// Indicates that this operation definition is a constraining profile on
   /// the base.
   final FhirCanonical? base;
 
-  /// Extensions for [base]
-  final Element? baseElement;
-
   /// [resource]
   /// The types on which this operation can be executed.
   final List<FhirCode>? resource;
-
-  /// Extensions for [resource]
-  final List<Element>? resourceElement;
 
   /// [system]
   /// Indicates whether this operation or named query can be invoked at the
@@ -569,25 +421,16 @@ class OperationDefinition extends DomainResource {
   /// context).
   final FhirBoolean system;
 
-  /// Extensions for [system]
-  final Element? systemElement;
-
   /// [type]
   /// Indicates whether this operation or named query can be invoked at the
   /// resource type level for any given resource type level (e.g. without
   /// needing to choose a specific resource id for the context).
   final FhirBoolean type;
 
-  /// Extensions for [type]
-  final Element? typeElement;
-
   /// [instance]
   /// Indicates whether this operation can be invoked on a particular
   /// instance of one of the given types.
   final FhirBoolean instance;
-
-  /// Extensions for [instance]
-  final Element? instanceElement;
 
   /// [inputProfile]
   /// Additional validation information for the in parameters - a single
@@ -595,17 +438,11 @@ class OperationDefinition extends DomainResource {
   /// the parameters resource as a whole.
   final FhirCanonical? inputProfile;
 
-  /// Extensions for [inputProfile]
-  final Element? inputProfileElement;
-
   /// [outputProfile]
   /// Additional validation information for the out parameters - a single
   /// profile that covers all the parameters. The profile is a constraint on
   /// the parameters resource.
   final FhirCanonical? outputProfile;
-
-  /// Extensions for [outputProfile]
-  final Element? outputProfileElement;
 
   /// [parameter]
   /// The parameters for the operation/query.
@@ -629,9 +466,6 @@ class OperationDefinition extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -652,53 +486,29 @@ class OperationDefinition extends DomainResource {
     if (url?.value != null) {
       json['url'] = url!.toJson();
     }
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
-    }
     if (version?.value != null) {
       json['version'] = version!.toJson();
     }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
-    }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (title?.value != null) {
       json['title'] = title!.toJson();
-    }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
     }
     json['status'] = status.toJson();
     json['kind'] = kind.toJson();
     if (experimental?.value != null) {
       json['experimental'] = experimental!.toJson();
     }
-    if (experimentalElement != null) {
-      json['_experimental'] = experimentalElement!.toJson();
-    }
     if (date?.value != null) {
       json['date'] = date!.toJson();
     }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (publisher?.value != null) {
       json['publisher'] = publisher!.toJson();
-    }
-    if (publisherElement != null) {
-      json['_publisher'] = publisherElement!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] =
@@ -711,61 +521,27 @@ class OperationDefinition extends DomainResource {
     if (purpose?.value != null) {
       json['purpose'] = purpose!.toJson();
     }
-    if (purposeElement != null) {
-      json['_purpose'] = purposeElement!.toJson();
-    }
     if (affectsState?.value != null) {
       json['affectsState'] = affectsState!.toJson();
     }
-    if (affectsStateElement != null) {
-      json['_affectsState'] = affectsStateElement!.toJson();
-    }
     json['code'] = code.toJson();
-    if (codeElement != null) {
-      json['_code'] = codeElement!.toJson();
-    }
     if (comment?.value != null) {
       json['comment'] = comment!.toJson();
-    }
-    if (commentElement != null) {
-      json['_comment'] = commentElement!.toJson();
     }
     if (base?.value != null) {
       json['base'] = base!.toJson();
     }
-    if (baseElement != null) {
-      json['_base'] = baseElement!.toJson();
-    }
     if (resource != null && resource!.isNotEmpty) {
       json['resource'] = resource!.map((FhirCode v) => v.toJson()).toList();
     }
-    if (resourceElement != null && resourceElement!.isNotEmpty) {
-      json['_resource'] =
-          resourceElement!.map((Element v) => v.toJson()).toList();
-    }
     json['system'] = system.toJson();
-    if (systemElement != null) {
-      json['_system'] = systemElement!.toJson();
-    }
     json['type'] = type.toJson();
-    if (typeElement != null) {
-      json['_type'] = typeElement!.toJson();
-    }
     json['instance'] = instance.toJson();
-    if (instanceElement != null) {
-      json['_instance'] = instanceElement!.toJson();
-    }
     if (inputProfile?.value != null) {
       json['inputProfile'] = inputProfile!.toJson();
     }
-    if (inputProfileElement != null) {
-      json['_inputProfile'] = inputProfileElement!.toJson();
-    }
     if (outputProfile?.value != null) {
       json['outputProfile'] = outputProfile!.toJson();
-    }
-    if (outputProfileElement != null) {
-      json['_outputProfile'] = outputProfileElement!.toJson();
     }
     if (parameter != null && parameter!.isNotEmpty) {
       json['parameter'] = parameter!
@@ -786,58 +562,35 @@ class OperationDefinition extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    Element? urlElement,
     FhirString? version,
-    Element? versionElement,
     FhirString? name,
-    Element? nameElement,
     FhirString? title,
-    Element? titleElement,
     PublicationStatus? status,
-    Element? statusElement,
     OperationKind? kind,
-    Element? kindElement,
     FhirBoolean? experimental,
-    Element? experimentalElement,
     FhirDateTime? date,
-    Element? dateElement,
     FhirString? publisher,
-    Element? publisherElement,
     List<ContactDetail>? contact,
     FhirMarkdown? description,
-    Element? descriptionElement,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
     FhirMarkdown? purpose,
-    Element? purposeElement,
     FhirBoolean? affectsState,
-    Element? affectsStateElement,
     FhirCode? code,
-    Element? codeElement,
     FhirMarkdown? comment,
-    Element? commentElement,
     FhirCanonical? base,
-    Element? baseElement,
     List<FhirCode>? resource,
-    List<Element>? resourceElement,
     FhirBoolean? system,
-    Element? systemElement,
     FhirBoolean? type,
-    Element? typeElement,
     FhirBoolean? instance,
-    Element? instanceElement,
     FhirCanonical? inputProfile,
-    Element? inputProfileElement,
     FhirCanonical? outputProfile,
-    Element? outputProfileElement,
     List<OperationDefinitionParameter>? parameter,
     List<OperationDefinitionOverload>? overload,
     Map<String, Object?>? userData,
@@ -851,58 +604,35 @@ class OperationDefinition extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       kind: kind ?? this.kind,
-      kindElement: kindElement ?? this.kindElement,
       experimental: experimental ?? this.experimental,
-      experimentalElement: experimentalElement ?? this.experimentalElement,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       publisher: publisher ?? this.publisher,
-      publisherElement: publisherElement ?? this.publisherElement,
       contact: contact ?? this.contact,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       useContext: useContext ?? this.useContext,
       jurisdiction: jurisdiction ?? this.jurisdiction,
       purpose: purpose ?? this.purpose,
-      purposeElement: purposeElement ?? this.purposeElement,
       affectsState: affectsState ?? this.affectsState,
-      affectsStateElement: affectsStateElement ?? this.affectsStateElement,
       code: code ?? this.code,
-      codeElement: codeElement ?? this.codeElement,
       comment: comment ?? this.comment,
-      commentElement: commentElement ?? this.commentElement,
       base: base ?? this.base,
-      baseElement: baseElement ?? this.baseElement,
       resource: resource ?? this.resource,
-      resourceElement: resourceElement ?? this.resourceElement,
       system: system ?? this.system,
-      systemElement: systemElement ?? this.systemElement,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       instance: instance ?? this.instance,
-      instanceElement: instanceElement ?? this.instanceElement,
       inputProfile: inputProfile ?? this.inputProfile,
-      inputProfileElement: inputProfileElement ?? this.inputProfileElement,
       outputProfile: outputProfile ?? this.outputProfile,
-      outputProfileElement: outputProfileElement ?? this.outputProfileElement,
       parameter: parameter ?? this.parameter,
       overload: overload ?? this.overload,
       userData: userData ?? this.userData,
@@ -922,40 +652,16 @@ class OperationDefinitionParameter extends BackboneElement {
 
   OperationDefinitionParameter({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     required this.use,
-
-    /// Extensions for [use]
-    this.useElement,
     required this.min,
-
-    /// Extensions for [min]
-    this.minElement,
     required this.max,
-
-    /// Extensions for [max]
-    this.maxElement,
     this.documentation,
-
-    /// Extensions for [documentation]
-    this.documentationElement,
     this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.targetProfile,
-
-    /// Extensions for [targetProfile]
-    this.targetProfileElement,
     this.searchType,
-
-    /// Extensions for [searchType]
-    this.searchTypeElement,
     this.binding,
     this.referencedFrom,
     this.part_,
@@ -970,11 +676,15 @@ class OperationDefinitionParameter extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinitionParameter.fromJson(Map<String, dynamic> json) {
     return OperationDefinitionParameter(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -983,71 +693,49 @@ class OperationDefinitionParameter extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: FhirCode.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
-          : null,
-      use: OperationParameterUse.fromJson(json['use']),
-      useElement: json['_use'] != null
-          ? Element.fromJson(
-              json['_use'] as Map<String, dynamic>,
-            )
-          : null,
-      min: FhirInteger.fromJson(json['min']),
-      minElement: json['_min'] != null
-          ? Element.fromJson(
-              json['_min'] as Map<String, dynamic>,
-            )
-          : null,
-      max: FhirString.fromJson(json['max']),
-      maxElement: json['_max'] != null
-          ? Element.fromJson(
-              json['_max'] as Map<String, dynamic>,
-            )
-          : null,
+      name: FhirCode.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
+      use: OperationParameterUse.fromJson({
+        'value': json['use'],
+        '_value': json['_use'],
+      }),
+      min: FhirInteger.fromJson({
+        'value': json['min'],
+        '_value': json['_min'],
+      }),
+      max: FhirString.fromJson({
+        'value': json['max'],
+        '_value': json['_max'],
+      }),
       documentation: json['documentation'] != null
-          ? FhirString.fromJson(json['documentation'])
+          ? FhirString.fromJson({
+              'value': json['documentation'],
+              '_value': json['_documentation'],
+            })
           : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(
-              json['_documentation'] as Map<String, dynamic>,
-            )
+      type: json['type'] != null
+          ? FHIRAllTypes.fromJson({
+              'value': json['type'],
+              '_value': json['_type'],
+            })
           : null,
-      type: json['type'] != null ? FHIRAllTypes.fromJson(json['type']) : null,
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
-      targetProfile: json['targetProfile'] != null
-          ? (json['targetProfile'] as List<dynamic>)
-              .map<FhirCanonical>(
-                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      targetProfileElement: json['_targetProfile'] != null
-          ? (json['_targetProfile'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      targetProfile: parsePrimitiveList<FhirCanonical>(
+          json['targetProfile'] as List<dynamic>?,
+          json['_targetProfile'] as List<dynamic>?,
+          fromJson: FhirCanonical.fromJson),
       searchType: json['searchType'] != null
-          ? SearchParamType.fromJson(json['searchType'])
-          : null,
-      searchTypeElement: json['_searchType'] != null
-          ? Element.fromJson(
-              json['_searchType'] as Map<String, dynamic>,
-            )
+          ? SearchParamType.fromJson({
+              'value': json['searchType'],
+              '_value': json['_searchType'],
+            })
           : null,
       binding: json['binding'] != null
           ? OperationDefinitionBinding.fromJson(
@@ -1057,7 +745,7 @@ class OperationDefinitionParameter extends BackboneElement {
       referencedFrom: json['referencedFrom'] != null
           ? (json['referencedFrom'] as List<dynamic>)
               .map<OperationDefinitionReferencedFrom>(
-                (dynamic v) => OperationDefinitionReferencedFrom.fromJson(
+                (v) => OperationDefinitionReferencedFrom.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1066,7 +754,7 @@ class OperationDefinitionParameter extends BackboneElement {
       part_: json['part'] != null
           ? (json['part'] as List<dynamic>)
               .map<OperationDefinitionParameter>(
-                (dynamic v) => OperationDefinitionParameter.fromJson(
+                (v) => OperationDefinitionParameter.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1075,7 +763,8 @@ class OperationDefinitionParameter extends BackboneElement {
     );
   }
 
-  /// Deserialize [OperationDefinitionParameter] from a [String] or [YamlMap] object
+  /// Deserialize [OperationDefinitionParameter] from a [String]
+  /// or [YamlMap] object
   factory OperationDefinitionParameter.fromYaml(dynamic yaml) => yaml is String
       ? OperationDefinitionParameter.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1085,10 +774,11 @@ class OperationDefinitionParameter extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'OperationDefinitionParameter cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'OperationDefinitionParameter cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [OperationDefinitionParameter] that takes in a [String]
+  /// Factory constructor for [OperationDefinitionParameter]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory OperationDefinitionParameter.fromJsonString(String source) {
@@ -1104,49 +794,40 @@ class OperationDefinitionParameter extends BackboneElement {
   @override
   String get fhirType => 'OperationDefinitionParameter';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// The name of used to identify the parameter.
   final FhirCode name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [use]
   /// Whether this is an input or an output parameter.
   final OperationParameterUse use;
-
-  /// Extensions for [use]
-  final Element? useElement;
 
   /// [min]
   /// The minimum number of times this parameter SHALL appear in the request
   /// or response.
   final FhirInteger min;
 
-  /// Extensions for [min]
-  final Element? minElement;
-
   /// [max]
   /// The maximum number of times this element is permitted to appear in the
   /// request or response.
   final FhirString max;
 
-  /// Extensions for [max]
-  final Element? maxElement;
-
   /// [documentation]
   /// Describes the meaning or use of this parameter.
   final FhirString? documentation;
 
-  /// Extensions for [documentation]
-  final Element? documentationElement;
-
   /// [type]
   /// The type for this parameter.
   final FHIRAllTypes? type;
-
-  /// Extensions for [type]
-  final Element? typeElement;
 
   /// [targetProfile]
   /// Used when the type is "Reference" or "canonical", and identifies a
@@ -1159,16 +840,10 @@ class OperationDefinitionParameter extends BackboneElement {
   /// conform to at least one profile defined in the implementation guide.
   final List<FhirCanonical>? targetProfile;
 
-  /// Extensions for [targetProfile]
-  final List<Element>? targetProfileElement;
-
   /// [searchType]
   /// How the parameter is understood as a search parameter. This is only
   /// used if the parameter type is 'string'.
   final SearchParamType? searchType;
-
-  /// Extensions for [searchType]
-  final Element? searchTypeElement;
 
   /// [binding]
   /// Binds to a value set if this parameter is coded (code, Coding,
@@ -1198,23 +873,11 @@ class OperationDefinitionParameter extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     json['use'] = use.toJson();
     json['min'] = min.toJson();
-    if (minElement != null) {
-      json['_min'] = minElement!.toJson();
-    }
     json['max'] = max.toJson();
-    if (maxElement != null) {
-      json['_max'] = maxElement!.toJson();
-    }
     if (documentation?.value != null) {
       json['documentation'] = documentation!.toJson();
-    }
-    if (documentationElement != null) {
-      json['_documentation'] = documentationElement!.toJson();
     }
     if (type != null) {
       json['type'] = type!.toJson();
@@ -1222,10 +885,6 @@ class OperationDefinitionParameter extends BackboneElement {
     if (targetProfile != null && targetProfile!.isNotEmpty) {
       json['targetProfile'] =
           targetProfile!.map((FhirCanonical v) => v.toJson()).toList();
-    }
-    if (targetProfileElement != null && targetProfileElement!.isNotEmpty) {
-      json['_targetProfile'] =
-          targetProfileElement!.map((Element v) => v.toJson()).toList();
     }
     if (searchType != null) {
       json['searchType'] = searchType!.toJson();
@@ -1253,21 +912,13 @@ class OperationDefinitionParameter extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirCode? name,
-    Element? nameElement,
     OperationParameterUse? use,
-    Element? useElement,
     FhirInteger? min,
-    Element? minElement,
     FhirString? max,
-    Element? maxElement,
     FhirString? documentation,
-    Element? documentationElement,
     FHIRAllTypes? type,
-    Element? typeElement,
     List<FhirCanonical>? targetProfile,
-    List<Element>? targetProfileElement,
     SearchParamType? searchType,
-    Element? searchTypeElement,
     OperationDefinitionBinding? binding,
     List<OperationDefinitionReferencedFrom>? referencedFrom,
     List<OperationDefinitionParameter>? part_,
@@ -1283,21 +934,13 @@ class OperationDefinitionParameter extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       use: use ?? this.use,
-      useElement: useElement ?? this.useElement,
       min: min ?? this.min,
-      minElement: minElement ?? this.minElement,
       max: max ?? this.max,
-      maxElement: maxElement ?? this.maxElement,
       documentation: documentation ?? this.documentation,
-      documentationElement: documentationElement ?? this.documentationElement,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       targetProfile: targetProfile ?? this.targetProfile,
-      targetProfileElement: targetProfileElement ?? this.targetProfileElement,
       searchType: searchType ?? this.searchType,
-      searchTypeElement: searchTypeElement ?? this.searchTypeElement,
       binding: binding ?? this.binding,
       referencedFrom: referencedFrom ?? this.referencedFrom,
       part_: part_ ?? this.part_,
@@ -1319,16 +962,10 @@ class OperationDefinitionBinding extends BackboneElement {
 
   OperationDefinitionBinding({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.strength,
-
-    /// Extensions for [strength]
-    this.strengthElement,
     required this.valueSet,
-
-    /// Extensions for [valueSet]
-    this.valueSetElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1340,11 +977,15 @@ class OperationDefinitionBinding extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinitionBinding.fromJson(Map<String, dynamic> json) {
     return OperationDefinitionBinding(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1353,28 +994,25 @@ class OperationDefinitionBinding extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      strength: BindingStrength.fromJson(json['strength']),
-      strengthElement: json['_strength'] != null
-          ? Element.fromJson(
-              json['_strength'] as Map<String, dynamic>,
-            )
-          : null,
-      valueSet: FhirCanonical.fromJson(json['valueSet']),
-      valueSetElement: json['_valueSet'] != null
-          ? Element.fromJson(
-              json['_valueSet'] as Map<String, dynamic>,
-            )
-          : null,
+      strength: BindingStrength.fromJson({
+        'value': json['strength'],
+        '_value': json['_strength'],
+      }),
+      valueSet: FhirCanonical.fromJson({
+        'value': json['valueSet'],
+        '_value': json['_valueSet'],
+      }),
     );
   }
 
-  /// Deserialize [OperationDefinitionBinding] from a [String] or [YamlMap] object
+  /// Deserialize [OperationDefinitionBinding] from a [String]
+  /// or [YamlMap] object
   factory OperationDefinitionBinding.fromYaml(dynamic yaml) => yaml is String
       ? OperationDefinitionBinding.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1384,10 +1022,11 @@ class OperationDefinitionBinding extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'OperationDefinitionBinding cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'OperationDefinitionBinding cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [OperationDefinitionBinding] that takes in a [String]
+  /// Factory constructor for [OperationDefinitionBinding]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory OperationDefinitionBinding.fromJsonString(String source) {
@@ -1403,22 +1042,25 @@ class OperationDefinitionBinding extends BackboneElement {
   @override
   String get fhirType => 'OperationDefinitionBinding';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [strength]
   /// Indicates the degree of conformance expectations associated with this
   /// binding - that is, the degree to which the provided value set must be
   /// adhered to in the instances.
   final BindingStrength strength;
 
-  /// Extensions for [strength]
-  final Element? strengthElement;
-
   /// [valueSet]
   /// Points to the value set or external definition (e.g. implicit value
   /// set) that identifies the set of codes to be used.
   final FhirCanonical valueSet;
-
-  /// Extensions for [valueSet]
-  final Element? valueSetElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1435,9 +1077,6 @@ class OperationDefinitionBinding extends BackboneElement {
     }
     json['strength'] = strength.toJson();
     json['valueSet'] = valueSet.toJson();
-    if (valueSetElement != null) {
-      json['_valueSet'] = valueSetElement!.toJson();
-    }
     return json;
   }
 
@@ -1449,9 +1088,7 @@ class OperationDefinitionBinding extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     BindingStrength? strength,
-    Element? strengthElement,
     FhirCanonical? valueSet,
-    Element? valueSetElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1464,9 +1101,7 @@ class OperationDefinitionBinding extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       strength: strength ?? this.strength,
-      strengthElement: strengthElement ?? this.strengthElement,
       valueSet: valueSet ?? this.valueSet,
-      valueSetElement: valueSetElement ?? this.valueSetElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1485,16 +1120,10 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
 
   OperationDefinitionReferencedFrom({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.source,
-
-    /// Extensions for [source]
-    this.sourceElement,
     this.sourceId,
-
-    /// Extensions for [sourceId]
-    this.sourceIdElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1507,11 +1136,15 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
   factory OperationDefinitionReferencedFrom.fromJson(
       Map<String, dynamic> json) {
     return OperationDefinitionReferencedFrom(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1520,30 +1153,27 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      source: FhirString.fromJson(json['source']),
-      sourceElement: json['_source'] != null
-          ? Element.fromJson(
-              json['_source'] as Map<String, dynamic>,
-            )
-          : null,
+      source: FhirString.fromJson({
+        'value': json['source'],
+        '_value': json['_source'],
+      }),
       sourceId: json['sourceId'] != null
-          ? FhirString.fromJson(json['sourceId'])
-          : null,
-      sourceIdElement: json['_sourceId'] != null
-          ? Element.fromJson(
-              json['_sourceId'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['sourceId'],
+              '_value': json['_sourceId'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [OperationDefinitionReferencedFrom] from a [String] or [YamlMap] object
+  /// Deserialize [OperationDefinitionReferencedFrom] from a [String]
+  /// or [YamlMap] object
   factory OperationDefinitionReferencedFrom.fromYaml(dynamic yaml) => yaml
           is String
       ? OperationDefinitionReferencedFrom.fromJson(
@@ -1554,10 +1184,11 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'OperationDefinitionReferencedFrom cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'OperationDefinitionReferencedFrom cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [OperationDefinitionReferencedFrom] that takes in a [String]
+  /// Factory constructor for [OperationDefinitionReferencedFrom]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory OperationDefinitionReferencedFrom.fromJsonString(String source) {
@@ -1573,22 +1204,25 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
   @override
   String get fhirType => 'OperationDefinitionReferencedFrom';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [source]
   /// The name of the parameter or dot-separated path of parameter names
   /// pointing to the resource parameter that is expected to contain a
   /// reference to this resource.
   final FhirString source;
 
-  /// Extensions for [source]
-  final Element? sourceElement;
-
   /// [sourceId]
   /// The id of the element in the referencing resource that is expected to
   /// resolve to this resource.
   final FhirString? sourceId;
-
-  /// Extensions for [sourceId]
-  final Element? sourceIdElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1604,14 +1238,8 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['source'] = source.toJson();
-    if (sourceElement != null) {
-      json['_source'] = sourceElement!.toJson();
-    }
     if (sourceId?.value != null) {
       json['sourceId'] = sourceId!.toJson();
-    }
-    if (sourceIdElement != null) {
-      json['_sourceId'] = sourceIdElement!.toJson();
     }
     return json;
   }
@@ -1624,9 +1252,7 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? source,
-    Element? sourceElement,
     FhirString? sourceId,
-    Element? sourceIdElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1639,9 +1265,7 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       source: source ?? this.source,
-      sourceElement: sourceElement ?? this.sourceElement,
       sourceId: sourceId ?? this.sourceId,
-      sourceIdElement: sourceIdElement ?? this.sourceIdElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1661,16 +1285,10 @@ class OperationDefinitionOverload extends BackboneElement {
 
   OperationDefinitionOverload({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.parameterName,
-
-    /// Extensions for [parameterName]
-    this.parameterNameElement,
     this.comment,
-
-    /// Extensions for [comment]
-    this.commentElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1682,11 +1300,15 @@ class OperationDefinitionOverload extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinitionOverload.fromJson(Map<String, dynamic> json) {
     return OperationDefinitionOverload(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1695,37 +1317,27 @@ class OperationDefinitionOverload extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      parameterName: json['parameterName'] != null
-          ? (json['parameterName'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      parameterNameElement: json['_parameterName'] != null
-          ? (json['_parameterName'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      comment:
-          json['comment'] != null ? FhirString.fromJson(json['comment']) : null,
-      commentElement: json['_comment'] != null
-          ? Element.fromJson(
-              json['_comment'] as Map<String, dynamic>,
-            )
+      parameterName: parsePrimitiveList<FhirString>(
+          json['parameterName'] as List<dynamic>?,
+          json['_parameterName'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
+      comment: json['comment'] != null
+          ? FhirString.fromJson({
+              'value': json['comment'],
+              '_value': json['_comment'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [OperationDefinitionOverload] from a [String] or [YamlMap] object
+  /// Deserialize [OperationDefinitionOverload] from a [String]
+  /// or [YamlMap] object
   factory OperationDefinitionOverload.fromYaml(dynamic yaml) => yaml is String
       ? OperationDefinitionOverload.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1735,10 +1347,11 @@ class OperationDefinitionOverload extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'OperationDefinitionOverload cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'OperationDefinitionOverload cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [OperationDefinitionOverload] that takes in a [String]
+  /// Factory constructor for [OperationDefinitionOverload]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory OperationDefinitionOverload.fromJsonString(String source) {
@@ -1754,19 +1367,22 @@ class OperationDefinitionOverload extends BackboneElement {
   @override
   String get fhirType => 'OperationDefinitionOverload';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [parameterName]
   /// Name of parameter to include in overload.
   final List<FhirString>? parameterName;
 
-  /// Extensions for [parameterName]
-  final List<Element>? parameterNameElement;
-
   /// [comment]
   /// Comments to go on overload.
   final FhirString? comment;
-
-  /// Extensions for [comment]
-  final Element? commentElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1785,15 +1401,8 @@ class OperationDefinitionOverload extends BackboneElement {
       json['parameterName'] =
           parameterName!.map((FhirString v) => v.toJson()).toList();
     }
-    if (parameterNameElement != null && parameterNameElement!.isNotEmpty) {
-      json['_parameterName'] =
-          parameterNameElement!.map((Element v) => v.toJson()).toList();
-    }
     if (comment?.value != null) {
       json['comment'] = comment!.toJson();
-    }
-    if (commentElement != null) {
-      json['_comment'] = commentElement!.toJson();
     }
     return json;
   }
@@ -1806,9 +1415,7 @@ class OperationDefinitionOverload extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<FhirString>? parameterName,
-    List<Element>? parameterNameElement,
     FhirString? comment,
-    Element? commentElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1821,9 +1428,7 @@ class OperationDefinitionOverload extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       parameterName: parameterName ?? this.parameterName,
-      parameterNameElement: parameterNameElement ?? this.parameterNameElement,
       comment: comment ?? this.comment,
-      commentElement: commentElement ?? this.commentElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

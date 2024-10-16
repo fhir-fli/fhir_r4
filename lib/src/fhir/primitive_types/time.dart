@@ -13,9 +13,8 @@ extension FhirTimeExtension on String {
 class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   /// Constructor that accepts a valid [String] input representing a time and
   /// validates the input. Optionally takes an [Element].
-  FhirTime(String input, [Element? element])
-      : value = _validateTime(input),
-        super(element: element);
+  FhirTime(String? input, [Element? element])
+      : super(_validateTime(input), element);
 
   /// Factory method to construct [FhirTime] from time units (hour, minute,
   /// second, millisecond).
@@ -52,10 +51,6 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   factory FhirTime.fromYaml(String yaml) =>
       FhirTime.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))) as String);
 
-  /// Final String field to store the validated time value.
-  @override
-  final String value;
-
   /// Method to attempt parsing the input into a [FhirTime]. Returns [null] if
   /// parsing fails.
   static FhirTime? tryParse(dynamic input) {
@@ -72,7 +67,10 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
 
   /// Validates the time input using a regular expression. Throws a
   /// [FormatException] if the input is not valid.
-  static String _validateTime(String input) {
+  static String? _validateTime(String? input) {
+    if (input == null) {
+      return input;
+    }
     final timeRegex = RegExp(
       r'^([01][0-9]|2[0-3])(:([0-5][0-9])(:([0-5][0-9]|60)(\.[0-9]+)?)?)?$',
     );
@@ -88,20 +86,28 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   String get fhirType => 'time';
 
   /// Getter for the hour component of the time.
-  int? get hour => int.tryParse(value.split(':')[0]);
+  int? get hour => value == null ? null : int.tryParse(value!.split(':')[0]);
 
   /// Getter for the minute component of the time.
-  int? get minute =>
-      (value.split(':').length > 1) ? int.tryParse(value.split(':')[1]) : null;
+  int? get minute => value == null
+      ? null
+      : (value!.split(':').length > 1)
+          ? int.tryParse(value!.split(':')[1])
+          : null;
 
   /// Getter for the second component of the time.
-  int? get second => (value.split(':').length > 2)
-      ? int.tryParse(value.split(':')[2].split('.')[0])
-      : null;
+  int? get second => value == null
+      ? null
+      : (value!.split(':').length > 2)
+          ? int.tryParse(value!.split(':')[2].split('.')[0])
+          : null;
 
   /// Getter for the millisecond component of the time.
-  int? get millisecond =>
-      (value.split('.').length > 1) ? int.tryParse(value.split('.')[1]) : null;
+  int? get millisecond => value == null
+      ? null
+      : (value!.split('.').length > 1)
+          ? int.tryParse(value!.split('.')[1])
+          : null;
 
   /// Adds the given time units (hours, minutes, seconds, milliseconds) to the
   /// current [FhirTime] and returns a new [FhirTime] with the updated value.
@@ -179,8 +185,12 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
       return false;
     }
 
-    final lhsParts = value.split(':');
-    final rhsParts = rhs.value.split(':');
+    if (value == null || rhs.value == null) {
+      return null;
+    }
+
+    final lhsParts = value!.split(':');
+    final rhsParts = rhs.value!.split(':');
 
     for (var i = 0; i < lhsParts.length; i++) {
       final lhs = int.parse(lhsParts[i]);
@@ -256,19 +266,16 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
 
   /// Converts [FhirTime] to a String.
   @override
-  String toString() => value;
+  String toString() => value ?? '';
 
   /// Converts [FhirTime] to a JSON string.
   @override
-  String toJson() => value;
-
-  /// Converts [FhirTime] to a YAML string.
-  @override
-  String toYaml() => value;
-
-  /// Converts [FhirTime] to a JSON-encoded string.
-  @override
-  String toJsonString() => jsonEncode(toJson());
+  Map<String, dynamic> toJson() {
+    return {
+      'value': value,
+      '_value': element?.toJson(),
+    };
+  }
 
   /// Creates a copy of the current [FhirTime] with optional new properties.
   @override

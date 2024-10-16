@@ -15,27 +15,15 @@ class MedicationAdministration extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiates,
-
-    /// Extensions for [instantiates]
-    this.instantiatesElement,
     this.partOf,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.statusReason,
     this.category,
     this.medicationCodeableConcept,
@@ -44,9 +32,6 @@ class MedicationAdministration extends DomainResource {
     this.context,
     this.supportingInformation,
     this.effectiveDateTime,
-
-    /// Extensions for [effectiveDateTime]
-    this.effectiveDateTimeElement,
     this.effectivePeriod,
     this.performer,
     this.reasonCode,
@@ -69,27 +54,27 @@ class MedicationAdministration extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationAdministration.fromJson(Map<String, dynamic> json) {
     return MedicationAdministration(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -99,7 +84,7 @@ class MedicationAdministration extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -108,7 +93,7 @@ class MedicationAdministration extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -117,7 +102,7 @@ class MedicationAdministration extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -126,45 +111,33 @@ class MedicationAdministration extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      instantiates: json['instantiates'] != null
-          ? (json['instantiates'] as List<dynamic>)
-              .map<FhirUri>(
-                (dynamic v) => FhirUri.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      instantiatesElement: json['_instantiates'] != null
-          ? (json['_instantiates'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      instantiates: parsePrimitiveList<FhirUri>(
+          json['instantiates'] as List<dynamic>?,
+          json['_instantiates'] as List<dynamic>?,
+          fromJson: FhirUri.fromJson),
       partOf: json['partOf'] != null
           ? (json['partOf'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: MedicationAdministrationStatusCodes.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: MedicationAdministrationStatusCodes.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       statusReason: json['statusReason'] != null
           ? (json['statusReason'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -196,19 +169,17 @@ class MedicationAdministration extends DomainResource {
       supportingInformation: json['supportingInformation'] != null
           ? (json['supportingInformation'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       effectiveDateTime: json['effectiveDateTime'] != null
-          ? FhirDateTime.fromJson(json['effectiveDateTime'])
-          : null,
-      effectiveDateTimeElement: json['_effectiveDateTime'] != null
-          ? Element.fromJson(
-              json['_effectiveDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['effectiveDateTime'],
+              '_value': json['_effectiveDateTime'],
+            })
           : null,
       effectivePeriod: json['effectivePeriod'] != null
           ? Period.fromJson(
@@ -218,7 +189,7 @@ class MedicationAdministration extends DomainResource {
       performer: json['performer'] != null
           ? (json['performer'] as List<dynamic>)
               .map<MedicationAdministrationPerformer>(
-                (dynamic v) => MedicationAdministrationPerformer.fromJson(
+                (v) => MedicationAdministrationPerformer.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -227,7 +198,7 @@ class MedicationAdministration extends DomainResource {
       reasonCode: json['reasonCode'] != null
           ? (json['reasonCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -236,7 +207,7 @@ class MedicationAdministration extends DomainResource {
       reasonReference: json['reasonReference'] != null
           ? (json['reasonReference'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -250,7 +221,7 @@ class MedicationAdministration extends DomainResource {
       device: json['device'] != null
           ? (json['device'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -259,7 +230,7 @@ class MedicationAdministration extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -273,7 +244,7 @@ class MedicationAdministration extends DomainResource {
       eventHistory: json['eventHistory'] != null
           ? (json['eventHistory'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -282,7 +253,8 @@ class MedicationAdministration extends DomainResource {
     );
   }
 
-  /// Deserialize [MedicationAdministration] from a [String] or [YamlMap] object
+  /// Deserialize [MedicationAdministration] from a [String]
+  /// or [YamlMap] object
   factory MedicationAdministration.fromYaml(dynamic yaml) => yaml is String
       ? MedicationAdministration.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -292,10 +264,11 @@ class MedicationAdministration extends DomainResource {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'MedicationAdministration cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'MedicationAdministration cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MedicationAdministration] that takes in a [String]
+  /// Factory constructor for [MedicationAdministration]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MedicationAdministration.fromJsonString(String source) {
@@ -311,6 +284,15 @@ class MedicationAdministration extends DomainResource {
   @override
   String get fhirType => 'MedicationAdministration';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Identifiers associated with this Medication Administration that are
   /// defined by business processes and/or used to refer to it when a direct
@@ -325,9 +307,6 @@ class MedicationAdministration extends DomainResource {
   /// to in whole or in part by this event.
   final List<FhirUri>? instantiates;
 
-  /// Extensions for [instantiates]
-  final List<Element>? instantiatesElement;
-
   /// [partOf]
   /// A larger event of which this particular event is a component or step.
   final List<Reference>? partOf;
@@ -338,9 +317,6 @@ class MedicationAdministration extends DomainResource {
   /// is possible for an administration to be started but not completed or it
   /// may be paused while some other process is under way.
   final MedicationAdministrationStatusCodes status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [statusReason]
   /// A code indicating why the administration was not performed.
@@ -385,9 +361,6 @@ class MedicationAdministration extends DomainResource {
   /// attribute is true). For many administrations, such as swallowing a
   /// tablet the use of dateTime is more appropriate.
   final FhirDateTime? effectiveDateTime;
-
-  /// Extensions for [effectiveDateTime]
-  final Element? effectiveDateTimeElement;
 
   /// [effectivePeriod]
   /// A specific date/time or interval of time during which the
@@ -447,9 +420,6 @@ class MedicationAdministration extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -474,10 +444,6 @@ class MedicationAdministration extends DomainResource {
     if (instantiates != null && instantiates!.isNotEmpty) {
       json['instantiates'] =
           instantiates!.map((FhirUri v) => v.toJson()).toList();
-    }
-    if (instantiatesElement != null && instantiatesElement!.isNotEmpty) {
-      json['_instantiates'] =
-          instantiatesElement!.map((Element v) => v.toJson()).toList();
     }
     if (partOf != null && partOf!.isNotEmpty) {
       json['partOf'] = partOf!.map((Reference v) => v.toJson()).toList();
@@ -506,9 +472,6 @@ class MedicationAdministration extends DomainResource {
     }
     if (effectiveDateTime?.value != null) {
       json['effectiveDateTime'] = effectiveDateTime!.toJson();
-    }
-    if (effectiveDateTimeElement != null) {
-      json['_effectiveDateTime'] = effectiveDateTimeElement!.toJson();
     }
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
@@ -552,19 +515,15 @@ class MedicationAdministration extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     List<FhirUri>? instantiates,
-    List<Element>? instantiatesElement,
     List<Reference>? partOf,
     MedicationAdministrationStatusCodes? status,
-    Element? statusElement,
     List<CodeableConcept>? statusReason,
     CodeableConcept? category,
     CodeableConcept? medicationCodeableConcept,
@@ -573,7 +532,6 @@ class MedicationAdministration extends DomainResource {
     Reference? context,
     List<Reference>? supportingInformation,
     FhirDateTime? effectiveDateTime,
-    Element? effectiveDateTimeElement,
     Period? effectivePeriod,
     List<MedicationAdministrationPerformer>? performer,
     List<CodeableConcept>? reasonCode,
@@ -594,19 +552,15 @@ class MedicationAdministration extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       instantiates: instantiates ?? this.instantiates,
-      instantiatesElement: instantiatesElement ?? this.instantiatesElement,
       partOf: partOf ?? this.partOf,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       statusReason: statusReason ?? this.statusReason,
       category: category ?? this.category,
       medicationCodeableConcept:
@@ -617,8 +571,6 @@ class MedicationAdministration extends DomainResource {
       supportingInformation:
           supportingInformation ?? this.supportingInformation,
       effectiveDateTime: effectiveDateTime ?? this.effectiveDateTime,
-      effectiveDateTimeElement:
-          effectiveDateTimeElement ?? this.effectiveDateTimeElement,
       effectivePeriod: effectivePeriod ?? this.effectivePeriod,
       performer: performer ?? this.performer,
       reasonCode: reasonCode ?? this.reasonCode,
@@ -646,7 +598,7 @@ class MedicationAdministrationPerformer extends BackboneElement {
 
   MedicationAdministrationPerformer({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.function_,
     required this.actor,
@@ -662,11 +614,15 @@ class MedicationAdministrationPerformer extends BackboneElement {
   factory MedicationAdministrationPerformer.fromJson(
       Map<String, dynamic> json) {
     return MedicationAdministrationPerformer(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -675,7 +631,7 @@ class MedicationAdministrationPerformer extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -692,7 +648,8 @@ class MedicationAdministrationPerformer extends BackboneElement {
     );
   }
 
-  /// Deserialize [MedicationAdministrationPerformer] from a [String] or [YamlMap] object
+  /// Deserialize [MedicationAdministrationPerformer] from a [String]
+  /// or [YamlMap] object
   factory MedicationAdministrationPerformer.fromYaml(dynamic yaml) => yaml
           is String
       ? MedicationAdministrationPerformer.fromJson(
@@ -703,10 +660,11 @@ class MedicationAdministrationPerformer extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'MedicationAdministrationPerformer cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'MedicationAdministrationPerformer cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MedicationAdministrationPerformer] that takes in a [String]
+  /// Factory constructor for [MedicationAdministrationPerformer]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MedicationAdministrationPerformer.fromJsonString(String source) {
@@ -721,6 +679,15 @@ class MedicationAdministrationPerformer extends BackboneElement {
 
   @override
   String get fhirType => 'MedicationAdministrationPerformer';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [function_]
   /// Distinguishes the type of involvement of the performer in the
@@ -791,12 +758,9 @@ class MedicationAdministrationDosage extends BackboneElement {
 
   MedicationAdministrationDosage({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.text,
-
-    /// Extensions for [text]
-    this.textElement,
     this.site,
     this.route,
     this.method,
@@ -814,11 +778,15 @@ class MedicationAdministrationDosage extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationAdministrationDosage.fromJson(Map<String, dynamic> json) {
     return MedicationAdministrationDosage(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -827,17 +795,17 @@ class MedicationAdministrationDosage extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
-      textElement: json['_text'] != null
-          ? Element.fromJson(
-              json['_text'] as Map<String, dynamic>,
-            )
+      text: json['text'] != null
+          ? FhirString.fromJson({
+              'value': json['text'],
+              '_value': json['_text'],
+            })
           : null,
       site: json['site'] != null
           ? CodeableConcept.fromJson(
@@ -872,7 +840,8 @@ class MedicationAdministrationDosage extends BackboneElement {
     );
   }
 
-  /// Deserialize [MedicationAdministrationDosage] from a [String] or [YamlMap] object
+  /// Deserialize [MedicationAdministrationDosage] from a [String]
+  /// or [YamlMap] object
   factory MedicationAdministrationDosage.fromYaml(dynamic yaml) => yaml
           is String
       ? MedicationAdministrationDosage.fromJson(
@@ -883,10 +852,11 @@ class MedicationAdministrationDosage extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'MedicationAdministrationDosage cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'MedicationAdministrationDosage cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MedicationAdministrationDosage] that takes in a [String]
+  /// Factory constructor for [MedicationAdministrationDosage]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MedicationAdministrationDosage.fromJsonString(String source) {
@@ -902,15 +872,21 @@ class MedicationAdministrationDosage extends BackboneElement {
   @override
   String get fhirType => 'MedicationAdministrationDosage';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [text]
   /// Free text dosage can be used for cases where the dosage administered is
   /// too complex to code. When coded dosage is present, the free text dosage
   /// may still be present for display to humans. The dosage instructions
   /// should reflect the dosage of the medication that was administered.
   final FhirString? text;
-
-  /// Extensions for [text]
-  final Element? textElement;
 
   /// [site]
   /// A coded specification of the anatomic site where the medication first
@@ -968,9 +944,6 @@ class MedicationAdministrationDosage extends BackboneElement {
     if (text?.value != null) {
       json['text'] = text!.toJson();
     }
-    if (textElement != null) {
-      json['_text'] = textElement!.toJson();
-    }
     if (site != null) {
       json['site'] = site!.toJson();
     }
@@ -1000,7 +973,6 @@ class MedicationAdministrationDosage extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? text,
-    Element? textElement,
     CodeableConcept? site,
     CodeableConcept? route,
     CodeableConcept? method,
@@ -1019,7 +991,6 @@ class MedicationAdministrationDosage extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       text: text ?? this.text,
-      textElement: textElement ?? this.textElement,
       site: site ?? this.site,
       route: route ?? this.route,
       method: method ?? this.method,

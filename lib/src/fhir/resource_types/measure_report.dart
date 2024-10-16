@@ -13,35 +13,17 @@ class MeasureReport extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     required this.measure,
-
-    /// Extensions for [measure]
-    this.measureElement,
     this.subject,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.reporter,
     required this.period,
     this.improvementNotation,
@@ -60,27 +42,27 @@ class MeasureReport extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureReport.fromJson(Map<String, dynamic> json) {
     return MeasureReport(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -90,7 +72,7 @@ class MeasureReport extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -99,7 +81,7 @@ class MeasureReport extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -108,7 +90,7 @@ class MeasureReport extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -117,40 +99,34 @@ class MeasureReport extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: MeasureReportStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
-      type: MeasureReportType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
-      measure: FhirCanonical.fromJson(json['measure']),
-      measureElement: json['_measure'] != null
-          ? Element.fromJson(
-              json['_measure'] as Map<String, dynamic>,
-            )
-          : null,
+      status: MeasureReportStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
+      type: MeasureReportType.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
+      measure: FhirCanonical.fromJson({
+        'value': json['measure'],
+        '_value': json['_measure'],
+      }),
       subject: json['subject'] != null
           ? Reference.fromJson(
               json['subject'] as Map<String, dynamic>,
             )
           : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       reporter: json['reporter'] != null
           ? Reference.fromJson(
@@ -168,7 +144,7 @@ class MeasureReport extends DomainResource {
       group: json['group'] != null
           ? (json['group'] as List<dynamic>)
               .map<MeasureReportGroup>(
-                (dynamic v) => MeasureReportGroup.fromJson(
+                (v) => MeasureReportGroup.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -177,7 +153,7 @@ class MeasureReport extends DomainResource {
       evaluatedResource: json['evaluatedResource'] != null
           ? (json['evaluatedResource'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -186,7 +162,8 @@ class MeasureReport extends DomainResource {
     );
   }
 
-  /// Deserialize [MeasureReport] from a [String] or [YamlMap] object
+  /// Deserialize [MeasureReport] from a [String]
+  /// or [YamlMap] object
   factory MeasureReport.fromYaml(dynamic yaml) => yaml is String
       ? MeasureReport.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -195,11 +172,11 @@ class MeasureReport extends DomainResource {
           ? MeasureReport.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MeasureReport cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('MeasureReport cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MeasureReport] that takes in a [String]
+  /// Factory constructor for [MeasureReport]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MeasureReport.fromJsonString(String source) {
@@ -215,6 +192,15 @@ class MeasureReport extends DomainResource {
   @override
   String get fhirType => 'MeasureReport';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// A formal identifier that is used to identify this MeasureReport when it
   /// is represented in other formats or referenced in a specification,
@@ -226,9 +212,6 @@ class MeasureReport extends DomainResource {
   /// MeasureReport status is complete.
   final MeasureReportStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [type]
   /// The type of measure report. This may be an individual report, which
   /// provides the score for the measure for an individual member of the
@@ -239,15 +222,9 @@ class MeasureReport extends DomainResource {
   /// exchange the data-of-interest for a quality measure.
   final MeasureReportType type;
 
-  /// Extensions for [type]
-  final Element? typeElement;
-
   /// [measure]
   /// A reference to the Measure that was calculated to produce this report.
   final FhirCanonical measure;
-
-  /// Extensions for [measure]
-  final Element? measureElement;
 
   /// [subject]
   /// Optional subject identifying the individual or individuals the report
@@ -257,9 +234,6 @@ class MeasureReport extends DomainResource {
   /// [date]
   /// The date this measure report was generated.
   final FhirDateTime? date;
-
-  /// Extensions for [date]
-  final Element? dateElement;
 
   /// [reporter]
   /// The individual, location, or organization that is reporting the data.
@@ -296,9 +270,6 @@ class MeasureReport extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -323,17 +294,11 @@ class MeasureReport extends DomainResource {
     json['status'] = status.toJson();
     json['type'] = type.toJson();
     json['measure'] = measure.toJson();
-    if (measureElement != null) {
-      json['_measure'] = measureElement!.toJson();
-    }
     if (subject != null) {
       json['subject'] = subject!.toJson();
     }
     if (date?.value != null) {
       json['date'] = date!.toJson();
-    }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
     }
     if (reporter != null) {
       json['reporter'] = reporter!.toJson();
@@ -359,23 +324,17 @@ class MeasureReport extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     MeasureReportStatus? status,
-    Element? statusElement,
     MeasureReportType? type,
-    Element? typeElement,
     FhirCanonical? measure,
-    Element? measureElement,
     Reference? subject,
     FhirDateTime? date,
-    Element? dateElement,
     Reference? reporter,
     Period? period,
     CodeableConcept? improvementNotation,
@@ -392,23 +351,17 @@ class MeasureReport extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       measure: measure ?? this.measure,
-      measureElement: measureElement ?? this.measureElement,
       subject: subject ?? this.subject,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       reporter: reporter ?? this.reporter,
       period: period ?? this.period,
       improvementNotation: improvementNotation ?? this.improvementNotation,
@@ -432,7 +385,7 @@ class MeasureReportGroup extends BackboneElement {
 
   MeasureReportGroup({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.code,
     this.population,
@@ -449,11 +402,15 @@ class MeasureReportGroup extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureReportGroup.fromJson(Map<String, dynamic> json) {
     return MeasureReportGroup(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -462,7 +419,7 @@ class MeasureReportGroup extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -476,7 +433,7 @@ class MeasureReportGroup extends BackboneElement {
       population: json['population'] != null
           ? (json['population'] as List<dynamic>)
               .map<MeasureReportPopulation>(
-                (dynamic v) => MeasureReportPopulation.fromJson(
+                (v) => MeasureReportPopulation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -490,7 +447,7 @@ class MeasureReportGroup extends BackboneElement {
       stratifier: json['stratifier'] != null
           ? (json['stratifier'] as List<dynamic>)
               .map<MeasureReportStratifier>(
-                (dynamic v) => MeasureReportStratifier.fromJson(
+                (v) => MeasureReportStratifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -499,7 +456,8 @@ class MeasureReportGroup extends BackboneElement {
     );
   }
 
-  /// Deserialize [MeasureReportGroup] from a [String] or [YamlMap] object
+  /// Deserialize [MeasureReportGroup] from a [String]
+  /// or [YamlMap] object
   factory MeasureReportGroup.fromYaml(dynamic yaml) => yaml is String
       ? MeasureReportGroup.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -508,11 +466,11 @@ class MeasureReportGroup extends BackboneElement {
           ? MeasureReportGroup.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MeasureReportGroup cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('MeasureReportGroup cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MeasureReportGroup] that takes in a [String]
+  /// Factory constructor for [MeasureReportGroup]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MeasureReportGroup.fromJsonString(String source) {
@@ -527,6 +485,15 @@ class MeasureReportGroup extends BackboneElement {
 
   @override
   String get fhirType => 'MeasureReportGroup';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [code]
   /// The meaning of the population group as defined in the measure
@@ -623,13 +590,10 @@ class MeasureReportPopulation extends BackboneElement {
 
   MeasureReportPopulation({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.code,
     this.count,
-
-    /// Extensions for [count]
-    this.countElement,
     this.subjectResults,
     super.userData,
     super.formatCommentsPre,
@@ -642,11 +606,15 @@ class MeasureReportPopulation extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureReportPopulation.fromJson(Map<String, dynamic> json) {
     return MeasureReportPopulation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -655,7 +623,7 @@ class MeasureReportPopulation extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -666,11 +634,11 @@ class MeasureReportPopulation extends BackboneElement {
               json['code'] as Map<String, dynamic>,
             )
           : null,
-      count: json['count'] != null ? FhirInteger.fromJson(json['count']) : null,
-      countElement: json['_count'] != null
-          ? Element.fromJson(
-              json['_count'] as Map<String, dynamic>,
-            )
+      count: json['count'] != null
+          ? FhirInteger.fromJson({
+              'value': json['count'],
+              '_value': json['_count'],
+            })
           : null,
       subjectResults: json['subjectResults'] != null
           ? Reference.fromJson(
@@ -680,7 +648,8 @@ class MeasureReportPopulation extends BackboneElement {
     );
   }
 
-  /// Deserialize [MeasureReportPopulation] from a [String] or [YamlMap] object
+  /// Deserialize [MeasureReportPopulation] from a [String]
+  /// or [YamlMap] object
   factory MeasureReportPopulation.fromYaml(dynamic yaml) => yaml is String
       ? MeasureReportPopulation.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -690,10 +659,11 @@ class MeasureReportPopulation extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'MeasureReportPopulation cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'MeasureReportPopulation cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MeasureReportPopulation] that takes in a [String]
+  /// Factory constructor for [MeasureReportPopulation]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MeasureReportPopulation.fromJsonString(String source) {
@@ -709,6 +679,15 @@ class MeasureReportPopulation extends BackboneElement {
   @override
   String get fhirType => 'MeasureReportPopulation';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [code]
   /// The type of the population.
   final CodeableConcept? code;
@@ -716,9 +695,6 @@ class MeasureReportPopulation extends BackboneElement {
   /// [count]
   /// The number of members of the population.
   final FhirInteger? count;
-
-  /// Extensions for [count]
-  final Element? countElement;
 
   /// [subjectResults]
   /// This element refers to a List of subject level MeasureReport resources,
@@ -744,9 +720,6 @@ class MeasureReportPopulation extends BackboneElement {
     if (count?.value != null) {
       json['count'] = count!.toJson();
     }
-    if (countElement != null) {
-      json['_count'] = countElement!.toJson();
-    }
     if (subjectResults != null) {
       json['subjectResults'] = subjectResults!.toJson();
     }
@@ -762,7 +735,6 @@ class MeasureReportPopulation extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
     FhirInteger? count,
-    Element? countElement,
     Reference? subjectResults,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -777,7 +749,6 @@ class MeasureReportPopulation extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       count: count ?? this.count,
-      countElement: countElement ?? this.countElement,
       subjectResults: subjectResults ?? this.subjectResults,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -797,7 +768,7 @@ class MeasureReportStratifier extends BackboneElement {
 
   MeasureReportStratifier({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.code,
     this.stratum,
@@ -812,11 +783,15 @@ class MeasureReportStratifier extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureReportStratifier.fromJson(Map<String, dynamic> json) {
     return MeasureReportStratifier(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -825,7 +800,7 @@ class MeasureReportStratifier extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -834,7 +809,7 @@ class MeasureReportStratifier extends BackboneElement {
       code: json['code'] != null
           ? (json['code'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -843,7 +818,7 @@ class MeasureReportStratifier extends BackboneElement {
       stratum: json['stratum'] != null
           ? (json['stratum'] as List<dynamic>)
               .map<MeasureReportStratum>(
-                (dynamic v) => MeasureReportStratum.fromJson(
+                (v) => MeasureReportStratum.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -852,7 +827,8 @@ class MeasureReportStratifier extends BackboneElement {
     );
   }
 
-  /// Deserialize [MeasureReportStratifier] from a [String] or [YamlMap] object
+  /// Deserialize [MeasureReportStratifier] from a [String]
+  /// or [YamlMap] object
   factory MeasureReportStratifier.fromYaml(dynamic yaml) => yaml is String
       ? MeasureReportStratifier.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -862,10 +838,11 @@ class MeasureReportStratifier extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'MeasureReportStratifier cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'MeasureReportStratifier cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MeasureReportStratifier] that takes in a [String]
+  /// Factory constructor for [MeasureReportStratifier]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MeasureReportStratifier.fromJsonString(String source) {
@@ -880,6 +857,15 @@ class MeasureReportStratifier extends BackboneElement {
 
   @override
   String get fhirType => 'MeasureReportStratifier';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [code]
   /// The meaning of this stratifier, as defined in the measure definition.
@@ -955,7 +941,7 @@ class MeasureReportStratum extends BackboneElement {
 
   MeasureReportStratum({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.value,
     this.component,
@@ -972,11 +958,15 @@ class MeasureReportStratum extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureReportStratum.fromJson(Map<String, dynamic> json) {
     return MeasureReportStratum(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -985,7 +975,7 @@ class MeasureReportStratum extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -999,7 +989,7 @@ class MeasureReportStratum extends BackboneElement {
       component: json['component'] != null
           ? (json['component'] as List<dynamic>)
               .map<MeasureReportComponent>(
-                (dynamic v) => MeasureReportComponent.fromJson(
+                (v) => MeasureReportComponent.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1008,7 +998,7 @@ class MeasureReportStratum extends BackboneElement {
       population: json['population'] != null
           ? (json['population'] as List<dynamic>)
               .map<MeasureReportPopulation>(
-                (dynamic v) => MeasureReportPopulation.fromJson(
+                (v) => MeasureReportPopulation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1022,7 +1012,8 @@ class MeasureReportStratum extends BackboneElement {
     );
   }
 
-  /// Deserialize [MeasureReportStratum] from a [String] or [YamlMap] object
+  /// Deserialize [MeasureReportStratum] from a [String]
+  /// or [YamlMap] object
   factory MeasureReportStratum.fromYaml(dynamic yaml) => yaml is String
       ? MeasureReportStratum.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1032,10 +1023,11 @@ class MeasureReportStratum extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'MeasureReportStratum cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'MeasureReportStratum cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MeasureReportStratum] that takes in a [String]
+  /// Factory constructor for [MeasureReportStratum]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MeasureReportStratum.fromJsonString(String source) {
@@ -1050,6 +1042,15 @@ class MeasureReportStratum extends BackboneElement {
 
   @override
   String get fhirType => 'MeasureReportStratum';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [value]
   /// The value for this stratum, expressed as a CodeableConcept. When
@@ -1145,7 +1146,7 @@ class MeasureReportComponent extends BackboneElement {
 
   MeasureReportComponent({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.code,
     required this.value,
@@ -1160,11 +1161,15 @@ class MeasureReportComponent extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureReportComponent.fromJson(Map<String, dynamic> json) {
     return MeasureReportComponent(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1173,7 +1178,7 @@ class MeasureReportComponent extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1188,7 +1193,8 @@ class MeasureReportComponent extends BackboneElement {
     );
   }
 
-  /// Deserialize [MeasureReportComponent] from a [String] or [YamlMap] object
+  /// Deserialize [MeasureReportComponent] from a [String]
+  /// or [YamlMap] object
   factory MeasureReportComponent.fromYaml(dynamic yaml) => yaml is String
       ? MeasureReportComponent.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1198,10 +1204,11 @@ class MeasureReportComponent extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'MeasureReportComponent cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'MeasureReportComponent cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MeasureReportComponent] that takes in a [String]
+  /// Factory constructor for [MeasureReportComponent]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MeasureReportComponent.fromJsonString(String source) {
@@ -1216,6 +1223,15 @@ class MeasureReportComponent extends BackboneElement {
 
   @override
   String get fhirType => 'MeasureReportComponent';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [code]
   /// The code for the stratum component value.
@@ -1283,13 +1299,10 @@ class MeasureReportPopulation1 extends BackboneElement {
 
   MeasureReportPopulation1({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.code,
     this.count,
-
-    /// Extensions for [count]
-    this.countElement,
     this.subjectResults,
     super.userData,
     super.formatCommentsPre,
@@ -1302,11 +1315,15 @@ class MeasureReportPopulation1 extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MeasureReportPopulation1.fromJson(Map<String, dynamic> json) {
     return MeasureReportPopulation1(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1315,7 +1332,7 @@ class MeasureReportPopulation1 extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1326,11 +1343,11 @@ class MeasureReportPopulation1 extends BackboneElement {
               json['code'] as Map<String, dynamic>,
             )
           : null,
-      count: json['count'] != null ? FhirInteger.fromJson(json['count']) : null,
-      countElement: json['_count'] != null
-          ? Element.fromJson(
-              json['_count'] as Map<String, dynamic>,
-            )
+      count: json['count'] != null
+          ? FhirInteger.fromJson({
+              'value': json['count'],
+              '_value': json['_count'],
+            })
           : null,
       subjectResults: json['subjectResults'] != null
           ? Reference.fromJson(
@@ -1340,7 +1357,8 @@ class MeasureReportPopulation1 extends BackboneElement {
     );
   }
 
-  /// Deserialize [MeasureReportPopulation1] from a [String] or [YamlMap] object
+  /// Deserialize [MeasureReportPopulation1] from a [String]
+  /// or [YamlMap] object
   factory MeasureReportPopulation1.fromYaml(dynamic yaml) => yaml is String
       ? MeasureReportPopulation1.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1350,10 +1368,11 @@ class MeasureReportPopulation1 extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'MeasureReportPopulation1 cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'MeasureReportPopulation1 cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MeasureReportPopulation1] that takes in a [String]
+  /// Factory constructor for [MeasureReportPopulation1]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MeasureReportPopulation1.fromJsonString(String source) {
@@ -1369,6 +1388,15 @@ class MeasureReportPopulation1 extends BackboneElement {
   @override
   String get fhirType => 'MeasureReportPopulation1';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [code]
   /// The type of the population.
   final CodeableConcept? code;
@@ -1376,9 +1404,6 @@ class MeasureReportPopulation1 extends BackboneElement {
   /// [count]
   /// The number of members of the population in this stratum.
   final FhirInteger? count;
-
-  /// Extensions for [count]
-  final Element? countElement;
 
   /// [subjectResults]
   /// This element refers to a List of subject level MeasureReport resources,
@@ -1404,9 +1429,6 @@ class MeasureReportPopulation1 extends BackboneElement {
     if (count?.value != null) {
       json['count'] = count!.toJson();
     }
-    if (countElement != null) {
-      json['_count'] = countElement!.toJson();
-    }
     if (subjectResults != null) {
       json['subjectResults'] = subjectResults!.toJson();
     }
@@ -1422,7 +1444,6 @@ class MeasureReportPopulation1 extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? code,
     FhirInteger? count,
-    Element? countElement,
     Reference? subjectResults,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1437,7 +1458,6 @@ class MeasureReportPopulation1 extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
       count: count ?? this.count,
-      countElement: countElement ?? this.countElement,
       subjectResults: subjectResults ?? this.subjectResults,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

@@ -13,56 +13,26 @@ class ImmunizationEvaluation extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     required this.patient,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.authority,
     required this.targetDisease,
     required this.immunizationEvent,
     required this.doseStatus,
     this.doseStatusReason,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.series,
-
-    /// Extensions for [series]
-    this.seriesElement,
     this.doseNumberPositiveInt,
-
-    /// Extensions for [doseNumberPositiveInt]
-    this.doseNumberPositiveIntElement,
     this.doseNumberString,
-
-    /// Extensions for [doseNumberString]
-    this.doseNumberStringElement,
     this.seriesDosesPositiveInt,
-
-    /// Extensions for [seriesDosesPositiveInt]
-    this.seriesDosesPositiveIntElement,
     this.seriesDosesString,
-
-    /// Extensions for [seriesDosesString]
-    this.seriesDosesStringElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -76,27 +46,27 @@ class ImmunizationEvaluation extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImmunizationEvaluation.fromJson(Map<String, dynamic> json) {
     return ImmunizationEvaluation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -106,7 +76,7 @@ class ImmunizationEvaluation extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -115,7 +85,7 @@ class ImmunizationEvaluation extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -124,7 +94,7 @@ class ImmunizationEvaluation extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -133,26 +103,24 @@ class ImmunizationEvaluation extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: ImmunizationEvaluationStatusCodes.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: ImmunizationEvaluationStatusCodes.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       patient: Reference.fromJson(
         json['patient'] as Map<String, dynamic>,
       ),
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       authority: json['authority'] != null
           ? Reference.fromJson(
@@ -171,63 +139,53 @@ class ImmunizationEvaluation extends DomainResource {
       doseStatusReason: json['doseStatusReason'] != null
           ? (json['doseStatusReason'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
-          : null,
-      series:
-          json['series'] != null ? FhirString.fromJson(json['series']) : null,
-      seriesElement: json['_series'] != null
-          ? Element.fromJson(
-              json['_series'] as Map<String, dynamic>,
-            )
+      series: json['series'] != null
+          ? FhirString.fromJson({
+              'value': json['series'],
+              '_value': json['_series'],
+            })
           : null,
       doseNumberPositiveInt: json['doseNumberPositiveInt'] != null
-          ? FhirPositiveInt.fromJson(json['doseNumberPositiveInt'])
-          : null,
-      doseNumberPositiveIntElement: json['_doseNumberPositiveInt'] != null
-          ? Element.fromJson(
-              json['_doseNumberPositiveInt'] as Map<String, dynamic>,
-            )
+          ? FhirPositiveInt.fromJson({
+              'value': json['doseNumberPositiveInt'],
+              '_value': json['_doseNumberPositiveInt'],
+            })
           : null,
       doseNumberString: json['doseNumberString'] != null
-          ? FhirString.fromJson(json['doseNumberString'])
-          : null,
-      doseNumberStringElement: json['_doseNumberString'] != null
-          ? Element.fromJson(
-              json['_doseNumberString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['doseNumberString'],
+              '_value': json['_doseNumberString'],
+            })
           : null,
       seriesDosesPositiveInt: json['seriesDosesPositiveInt'] != null
-          ? FhirPositiveInt.fromJson(json['seriesDosesPositiveInt'])
-          : null,
-      seriesDosesPositiveIntElement: json['_seriesDosesPositiveInt'] != null
-          ? Element.fromJson(
-              json['_seriesDosesPositiveInt'] as Map<String, dynamic>,
-            )
+          ? FhirPositiveInt.fromJson({
+              'value': json['seriesDosesPositiveInt'],
+              '_value': json['_seriesDosesPositiveInt'],
+            })
           : null,
       seriesDosesString: json['seriesDosesString'] != null
-          ? FhirString.fromJson(json['seriesDosesString'])
-          : null,
-      seriesDosesStringElement: json['_seriesDosesString'] != null
-          ? Element.fromJson(
-              json['_seriesDosesString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['seriesDosesString'],
+              '_value': json['_seriesDosesString'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [ImmunizationEvaluation] from a [String] or [YamlMap] object
+  /// Deserialize [ImmunizationEvaluation] from a [String]
+  /// or [YamlMap] object
   factory ImmunizationEvaluation.fromYaml(dynamic yaml) => yaml is String
       ? ImmunizationEvaluation.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -237,10 +195,11 @@ class ImmunizationEvaluation extends DomainResource {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ImmunizationEvaluation cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ImmunizationEvaluation cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ImmunizationEvaluation] that takes in a [String]
+  /// Factory constructor for [ImmunizationEvaluation]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ImmunizationEvaluation.fromJsonString(String source) {
@@ -256,6 +215,15 @@ class ImmunizationEvaluation extends DomainResource {
   @override
   String get fhirType => 'ImmunizationEvaluation';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// A unique identifier assigned to this immunization evaluation record.
   final List<Identifier>? identifier;
@@ -265,9 +233,6 @@ class ImmunizationEvaluation extends DomainResource {
   /// administration event.
   final ImmunizationEvaluationStatusCodes status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [patient]
   /// The individual for whom the evaluation is being done.
   final Reference patient;
@@ -276,9 +241,6 @@ class ImmunizationEvaluation extends DomainResource {
   /// The date the evaluation of the vaccine administration event was
   /// performed.
   final FhirDateTime? date;
-
-  /// Extensions for [date]
-  final Element? dateElement;
 
   /// [authority]
   /// Indicates the authority who published the protocol (e.g. ACIP).
@@ -306,44 +268,26 @@ class ImmunizationEvaluation extends DomainResource {
   /// Additional information about the evaluation.
   final FhirString? description;
 
-  /// Extensions for [description]
-  final Element? descriptionElement;
-
   /// [series]
   /// One possible path to achieve presumed immunity against a disease -
   /// within the context of an authority.
   final FhirString? series;
 
-  /// Extensions for [series]
-  final Element? seriesElement;
-
   /// [doseNumberPositiveInt]
   /// Nominal position in a series.
   final FhirPositiveInt? doseNumberPositiveInt;
-
-  /// Extensions for [doseNumberPositiveInt]
-  final Element? doseNumberPositiveIntElement;
 
   /// [doseNumberString]
   /// Nominal position in a series.
   final FhirString? doseNumberString;
 
-  /// Extensions for [doseNumberString]
-  final Element? doseNumberStringElement;
-
   /// [seriesDosesPositiveInt]
   /// The recommended number of doses to achieve immunity.
   final FhirPositiveInt? seriesDosesPositiveInt;
 
-  /// Extensions for [seriesDosesPositiveInt]
-  final Element? seriesDosesPositiveIntElement;
-
   /// [seriesDosesString]
   /// The recommended number of doses to achieve immunity.
   final FhirString? seriesDosesString;
-
-  /// Extensions for [seriesDosesString]
-  final Element? seriesDosesStringElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -356,9 +300,6 @@ class ImmunizationEvaluation extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -386,9 +327,6 @@ class ImmunizationEvaluation extends DomainResource {
     if (date?.value != null) {
       json['date'] = date!.toJson();
     }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (authority != null) {
       json['authority'] = authority!.toJson();
     }
@@ -402,38 +340,20 @@ class ImmunizationEvaluation extends DomainResource {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (series?.value != null) {
       json['series'] = series!.toJson();
-    }
-    if (seriesElement != null) {
-      json['_series'] = seriesElement!.toJson();
     }
     if (doseNumberPositiveInt?.value != null) {
       json['doseNumberPositiveInt'] = doseNumberPositiveInt!.toJson();
     }
-    if (doseNumberPositiveIntElement != null) {
-      json['_doseNumberPositiveInt'] = doseNumberPositiveIntElement!.toJson();
-    }
     if (doseNumberString?.value != null) {
       json['doseNumberString'] = doseNumberString!.toJson();
-    }
-    if (doseNumberStringElement != null) {
-      json['_doseNumberString'] = doseNumberStringElement!.toJson();
     }
     if (seriesDosesPositiveInt?.value != null) {
       json['seriesDosesPositiveInt'] = seriesDosesPositiveInt!.toJson();
     }
-    if (seriesDosesPositiveIntElement != null) {
-      json['_seriesDosesPositiveInt'] = seriesDosesPositiveIntElement!.toJson();
-    }
     if (seriesDosesString?.value != null) {
       json['seriesDosesString'] = seriesDosesString!.toJson();
-    }
-    if (seriesDosesStringElement != null) {
-      json['_seriesDosesString'] = seriesDosesStringElement!.toJson();
     }
     return json;
   }
@@ -445,36 +365,26 @@ class ImmunizationEvaluation extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     ImmunizationEvaluationStatusCodes? status,
-    Element? statusElement,
     Reference? patient,
     FhirDateTime? date,
-    Element? dateElement,
     Reference? authority,
     CodeableConcept? targetDisease,
     Reference? immunizationEvent,
     CodeableConcept? doseStatus,
     List<CodeableConcept>? doseStatusReason,
     FhirString? description,
-    Element? descriptionElement,
     FhirString? series,
-    Element? seriesElement,
     FhirPositiveInt? doseNumberPositiveInt,
-    Element? doseNumberPositiveIntElement,
     FhirString? doseNumberString,
-    Element? doseNumberStringElement,
     FhirPositiveInt? seriesDosesPositiveInt,
-    Element? seriesDosesPositiveIntElement,
     FhirString? seriesDosesString,
-    Element? seriesDosesStringElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -486,42 +396,28 @@ class ImmunizationEvaluation extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       patient: patient ?? this.patient,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       authority: authority ?? this.authority,
       targetDisease: targetDisease ?? this.targetDisease,
       immunizationEvent: immunizationEvent ?? this.immunizationEvent,
       doseStatus: doseStatus ?? this.doseStatus,
       doseStatusReason: doseStatusReason ?? this.doseStatusReason,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       series: series ?? this.series,
-      seriesElement: seriesElement ?? this.seriesElement,
       doseNumberPositiveInt:
           doseNumberPositiveInt ?? this.doseNumberPositiveInt,
-      doseNumberPositiveIntElement:
-          doseNumberPositiveIntElement ?? this.doseNumberPositiveIntElement,
       doseNumberString: doseNumberString ?? this.doseNumberString,
-      doseNumberStringElement:
-          doseNumberStringElement ?? this.doseNumberStringElement,
       seriesDosesPositiveInt:
           seriesDosesPositiveInt ?? this.seriesDosesPositiveInt,
-      seriesDosesPositiveIntElement:
-          seriesDosesPositiveIntElement ?? this.seriesDosesPositiveIntElement,
       seriesDosesString: seriesDosesString ?? this.seriesDosesString,
-      seriesDosesStringElement:
-          seriesDosesStringElement ?? this.seriesDosesStringElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

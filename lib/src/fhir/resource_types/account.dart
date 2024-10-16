@@ -13,35 +13,20 @@ class Account extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.type,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.subject,
     this.servicePeriod,
     this.coverage,
     this.owner,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.guarantor,
     this.partOf,
     super.userData,
@@ -57,27 +42,27 @@ class Account extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Account.fromJson(Map<String, dynamic> json) {
     return Account(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -87,7 +72,7 @@ class Account extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -96,7 +81,7 @@ class Account extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -105,7 +90,7 @@ class Account extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -114,33 +99,31 @@ class Account extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: AccountStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: AccountStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
       subject: json['subject'] != null
           ? (json['subject'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -154,7 +137,7 @@ class Account extends DomainResource {
       coverage: json['coverage'] != null
           ? (json['coverage'] as List<dynamic>)
               .map<AccountCoverage>(
-                (dynamic v) => AccountCoverage.fromJson(
+                (v) => AccountCoverage.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -166,17 +149,15 @@ class Account extends DomainResource {
             )
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       guarantor: json['guarantor'] != null
           ? (json['guarantor'] as List<dynamic>)
               .map<AccountGuarantor>(
-                (dynamic v) => AccountGuarantor.fromJson(
+                (v) => AccountGuarantor.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -190,7 +171,8 @@ class Account extends DomainResource {
     );
   }
 
-  /// Deserialize [Account] from a [String] or [YamlMap] object
+  /// Deserialize [Account] from a [String]
+  /// or [YamlMap] object
   factory Account.fromYaml(dynamic yaml) => yaml is String
       ? Account.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -199,10 +181,11 @@ class Account extends DomainResource {
           ? Account.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Account cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Account cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Account] that takes in a [String]
+  /// Factory constructor for [Account]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Account.fromJsonString(String source) {
@@ -218,6 +201,15 @@ class Account extends DomainResource {
   @override
   String get fhirType => 'Account';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Unique identifier used to reference the account. Might or might not be
   /// intended for human use (e.g. credit card number).
@@ -227,9 +219,6 @@ class Account extends DomainResource {
   /// Indicates whether the account is presently used/usable or not.
   final AccountStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [type]
   /// Categorizes the account for reporting and searching purposes.
   final CodeableConcept? type;
@@ -237,9 +226,6 @@ class Account extends DomainResource {
   /// [name]
   /// Name used for the account when displaying it to humans in reports, etc.
   final FhirString? name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [subject]
   /// Identifies the entity which incurs the expenses. While the immediate
@@ -267,9 +253,6 @@ class Account extends DomainResource {
   /// it is used.
   final FhirString? description;
 
-  /// Extensions for [description]
-  final Element? descriptionElement;
-
   /// [guarantor]
   /// The parties responsible for balancing the account if other payment
   /// options fall short.
@@ -290,9 +273,6 @@ class Account extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -322,9 +302,6 @@ class Account extends DomainResource {
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (subject != null && subject!.isNotEmpty) {
       json['subject'] = subject!.map((Reference v) => v.toJson()).toList();
     }
@@ -340,9 +317,6 @@ class Account extends DomainResource {
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (guarantor != null && guarantor!.isNotEmpty) {
       json['guarantor'] =
@@ -361,25 +335,20 @@ class Account extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     AccountStatus? status,
-    Element? statusElement,
     CodeableConcept? type,
     FhirString? name,
-    Element? nameElement,
     List<Reference>? subject,
     Period? servicePeriod,
     List<AccountCoverage>? coverage,
     Reference? owner,
     FhirString? description,
-    Element? descriptionElement,
     List<AccountGuarantor>? guarantor,
     Reference? partOf,
     Map<String, Object?>? userData,
@@ -393,25 +362,20 @@ class Account extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       type: type ?? this.type,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       subject: subject ?? this.subject,
       servicePeriod: servicePeriod ?? this.servicePeriod,
       coverage: coverage ?? this.coverage,
       owner: owner ?? this.owner,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       guarantor: guarantor ?? this.guarantor,
       partOf: partOf ?? this.partOf,
       userData: userData ?? this.userData,
@@ -432,13 +396,10 @@ class AccountCoverage extends BackboneElement {
 
   AccountCoverage({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.coverage,
     this.priority,
-
-    /// Extensions for [priority]
-    this.priorityElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -450,11 +411,15 @@ class AccountCoverage extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AccountCoverage.fromJson(Map<String, dynamic> json) {
     return AccountCoverage(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -463,7 +428,7 @@ class AccountCoverage extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -473,17 +438,16 @@ class AccountCoverage extends BackboneElement {
         json['coverage'] as Map<String, dynamic>,
       ),
       priority: json['priority'] != null
-          ? FhirPositiveInt.fromJson(json['priority'])
-          : null,
-      priorityElement: json['_priority'] != null
-          ? Element.fromJson(
-              json['_priority'] as Map<String, dynamic>,
-            )
+          ? FhirPositiveInt.fromJson({
+              'value': json['priority'],
+              '_value': json['_priority'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [AccountCoverage] from a [String] or [YamlMap] object
+  /// Deserialize [AccountCoverage] from a [String]
+  /// or [YamlMap] object
   factory AccountCoverage.fromYaml(dynamic yaml) => yaml is String
       ? AccountCoverage.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -492,11 +456,11 @@ class AccountCoverage extends BackboneElement {
           ? AccountCoverage.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'AccountCoverage cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('AccountCoverage cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [AccountCoverage] that takes in a [String]
+  /// Factory constructor for [AccountCoverage]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory AccountCoverage.fromJsonString(String source) {
@@ -512,6 +476,15 @@ class AccountCoverage extends BackboneElement {
   @override
   String get fhirType => 'AccountCoverage';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [coverage]
   /// The party(s) that contribute to payment (or part of) of the charges
   /// applied to this account (including self-pay).
@@ -524,9 +497,6 @@ class AccountCoverage extends BackboneElement {
   /// [priority]
   /// The priority of the coverage in the context of this account.
   final FhirPositiveInt? priority;
-
-  /// Extensions for [priority]
-  final Element? priorityElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -545,9 +515,6 @@ class AccountCoverage extends BackboneElement {
     if (priority?.value != null) {
       json['priority'] = priority!.toJson();
     }
-    if (priorityElement != null) {
-      json['_priority'] = priorityElement!.toJson();
-    }
     return json;
   }
 
@@ -560,7 +527,6 @@ class AccountCoverage extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Reference? coverage,
     FhirPositiveInt? priority,
-    Element? priorityElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -574,7 +540,6 @@ class AccountCoverage extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       coverage: coverage ?? this.coverage,
       priority: priority ?? this.priority,
-      priorityElement: priorityElement ?? this.priorityElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -593,13 +558,10 @@ class AccountGuarantor extends BackboneElement {
 
   AccountGuarantor({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.party,
     this.onHold,
-
-    /// Extensions for [onHold]
-    this.onHoldElement,
     this.period,
     super.userData,
     super.formatCommentsPre,
@@ -612,11 +574,15 @@ class AccountGuarantor extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AccountGuarantor.fromJson(Map<String, dynamic> json) {
     return AccountGuarantor(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -625,7 +591,7 @@ class AccountGuarantor extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -634,12 +600,11 @@ class AccountGuarantor extends BackboneElement {
       party: Reference.fromJson(
         json['party'] as Map<String, dynamic>,
       ),
-      onHold:
-          json['onHold'] != null ? FhirBoolean.fromJson(json['onHold']) : null,
-      onHoldElement: json['_onHold'] != null
-          ? Element.fromJson(
-              json['_onHold'] as Map<String, dynamic>,
-            )
+      onHold: json['onHold'] != null
+          ? FhirBoolean.fromJson({
+              'value': json['onHold'],
+              '_value': json['_onHold'],
+            })
           : null,
       period: json['period'] != null
           ? Period.fromJson(
@@ -649,7 +614,8 @@ class AccountGuarantor extends BackboneElement {
     );
   }
 
-  /// Deserialize [AccountGuarantor] from a [String] or [YamlMap] object
+  /// Deserialize [AccountGuarantor] from a [String]
+  /// or [YamlMap] object
   factory AccountGuarantor.fromYaml(dynamic yaml) => yaml is String
       ? AccountGuarantor.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -658,11 +624,11 @@ class AccountGuarantor extends BackboneElement {
           ? AccountGuarantor.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'AccountGuarantor cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('AccountGuarantor cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [AccountGuarantor] that takes in a [String]
+  /// Factory constructor for [AccountGuarantor]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory AccountGuarantor.fromJsonString(String source) {
@@ -678,6 +644,15 @@ class AccountGuarantor extends BackboneElement {
   @override
   String get fhirType => 'AccountGuarantor';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [party]
   /// The entity who is responsible.
   final Reference party;
@@ -686,9 +661,6 @@ class AccountGuarantor extends BackboneElement {
   /// A guarantor may be placed on credit hold or otherwise have their role
   /// temporarily suspended.
   final FhirBoolean? onHold;
-
-  /// Extensions for [onHold]
-  final Element? onHoldElement;
 
   /// [period]
   /// The timeframe during which the guarantor accepts responsibility for the
@@ -712,9 +684,6 @@ class AccountGuarantor extends BackboneElement {
     if (onHold?.value != null) {
       json['onHold'] = onHold!.toJson();
     }
-    if (onHoldElement != null) {
-      json['_onHold'] = onHoldElement!.toJson();
-    }
     if (period != null) {
       json['period'] = period!.toJson();
     }
@@ -730,7 +699,6 @@ class AccountGuarantor extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Reference? party,
     FhirBoolean? onHold,
-    Element? onHoldElement,
     Period? period,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -745,7 +713,6 @@ class AccountGuarantor extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       party: party ?? this.party,
       onHold: onHold ?? this.onHold,
-      onHoldElement: onHoldElement ?? this.onHoldElement,
       period: period ?? this.period,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

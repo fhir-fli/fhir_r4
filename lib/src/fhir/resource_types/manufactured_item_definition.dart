@@ -13,22 +13,13 @@ class ManufacturedItemDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     required this.manufacturedDoseForm,
     this.unitOfPresentation,
     this.manufacturer,
@@ -47,27 +38,27 @@ class ManufacturedItemDefinition extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ManufacturedItemDefinition.fromJson(Map<String, dynamic> json) {
     return ManufacturedItemDefinition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -77,7 +68,7 @@ class ManufacturedItemDefinition extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -86,7 +77,7 @@ class ManufacturedItemDefinition extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -95,7 +86,7 @@ class ManufacturedItemDefinition extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -104,18 +95,16 @@ class ManufacturedItemDefinition extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: PublicationStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       manufacturedDoseForm: CodeableConcept.fromJson(
         json['manufacturedDoseForm'] as Map<String, dynamic>,
       ),
@@ -127,7 +116,7 @@ class ManufacturedItemDefinition extends DomainResource {
       manufacturer: json['manufacturer'] != null
           ? (json['manufacturer'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -136,7 +125,7 @@ class ManufacturedItemDefinition extends DomainResource {
       ingredient: json['ingredient'] != null
           ? (json['ingredient'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -145,7 +134,7 @@ class ManufacturedItemDefinition extends DomainResource {
       property: json['property'] != null
           ? (json['property'] as List<dynamic>)
               .map<ManufacturedItemDefinitionProperty>(
-                (dynamic v) => ManufacturedItemDefinitionProperty.fromJson(
+                (v) => ManufacturedItemDefinitionProperty.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -154,7 +143,8 @@ class ManufacturedItemDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [ManufacturedItemDefinition] from a [String] or [YamlMap] object
+  /// Deserialize [ManufacturedItemDefinition] from a [String]
+  /// or [YamlMap] object
   factory ManufacturedItemDefinition.fromYaml(dynamic yaml) => yaml is String
       ? ManufacturedItemDefinition.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -164,10 +154,11 @@ class ManufacturedItemDefinition extends DomainResource {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ManufacturedItemDefinition cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ManufacturedItemDefinition cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ManufacturedItemDefinition] that takes in a [String]
+  /// Factory constructor for [ManufacturedItemDefinition]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ManufacturedItemDefinition.fromJsonString(String source) {
@@ -183,6 +174,15 @@ class ManufacturedItemDefinition extends DomainResource {
   @override
   String get fhirType => 'ManufacturedItemDefinition';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Unique identifier.
   final List<Identifier>? identifier;
@@ -191,9 +191,6 @@ class ManufacturedItemDefinition extends DomainResource {
   /// The status of this item. Enables tracking the life-cycle of the
   /// content.
   final PublicationStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [manufacturedDoseForm]
   /// Dose form as manufactured and before any transformation into the
@@ -231,9 +228,6 @@ class ManufacturedItemDefinition extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -284,16 +278,13 @@ class ManufacturedItemDefinition extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     PublicationStatus? status,
-    Element? statusElement,
     CodeableConcept? manufacturedDoseForm,
     CodeableConcept? unitOfPresentation,
     List<Reference>? manufacturer,
@@ -310,16 +301,13 @@ class ManufacturedItemDefinition extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       manufacturedDoseForm: manufacturedDoseForm ?? this.manufacturedDoseForm,
       unitOfPresentation: unitOfPresentation ?? this.unitOfPresentation,
       manufacturer: manufacturer ?? this.manufacturer,
@@ -342,19 +330,13 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
 
   ManufacturedItemDefinitionProperty({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
     this.valueCodeableConcept,
     this.valueQuantity,
     this.valueDate,
-
-    /// Extensions for [valueDate]
-    this.valueDateElement,
     this.valueBoolean,
-
-    /// Extensions for [valueBoolean]
-    this.valueBooleanElement,
     this.valueAttachment,
     super.userData,
     super.formatCommentsPre,
@@ -368,11 +350,15 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
   factory ManufacturedItemDefinitionProperty.fromJson(
       Map<String, dynamic> json) {
     return ManufacturedItemDefinitionProperty(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -381,7 +367,7 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -401,20 +387,16 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
             )
           : null,
       valueDate: json['valueDate'] != null
-          ? FhirDate.fromJson(json['valueDate'])
-          : null,
-      valueDateElement: json['_valueDate'] != null
-          ? Element.fromJson(
-              json['_valueDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['valueDate'],
+              '_value': json['_valueDate'],
+            })
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(
-              json['_valueBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['valueBoolean'],
+              '_value': json['_valueBoolean'],
+            })
           : null,
       valueAttachment: json['valueAttachment'] != null
           ? Attachment.fromJson(
@@ -424,7 +406,8 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     );
   }
 
-  /// Deserialize [ManufacturedItemDefinitionProperty] from a [String] or [YamlMap] object
+  /// Deserialize [ManufacturedItemDefinitionProperty] from a [String]
+  /// or [YamlMap] object
   factory ManufacturedItemDefinitionProperty.fromYaml(dynamic yaml) => yaml
           is String
       ? ManufacturedItemDefinitionProperty.fromJson(
@@ -435,10 +418,11 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ManufacturedItemDefinitionProperty cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ManufacturedItemDefinitionProperty cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ManufacturedItemDefinitionProperty] that takes in a [String]
+  /// Factory constructor for [ManufacturedItemDefinitionProperty]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ManufacturedItemDefinitionProperty.fromJsonString(String source) {
@@ -453,6 +437,15 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
 
   @override
   String get fhirType => 'ManufacturedItemDefinitionProperty';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// A code expressing the type of characteristic.
@@ -470,15 +463,9 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
   /// A value for the characteristic.
   final FhirDate? valueDate;
 
-  /// Extensions for [valueDate]
-  final Element? valueDateElement;
-
   /// [valueBoolean]
   /// A value for the characteristic.
   final FhirBoolean? valueBoolean;
-
-  /// Extensions for [valueBoolean]
-  final Element? valueBooleanElement;
 
   /// [valueAttachment]
   /// A value for the characteristic.
@@ -507,14 +494,8 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     if (valueDate?.value != null) {
       json['valueDate'] = valueDate!.toJson();
     }
-    if (valueDateElement != null) {
-      json['_valueDate'] = valueDateElement!.toJson();
-    }
     if (valueBoolean?.value != null) {
       json['valueBoolean'] = valueBoolean!.toJson();
-    }
-    if (valueBooleanElement != null) {
-      json['_valueBoolean'] = valueBooleanElement!.toJson();
     }
     if (valueAttachment != null) {
       json['valueAttachment'] = valueAttachment!.toJson();
@@ -533,9 +514,7 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
     CodeableConcept? valueCodeableConcept,
     Quantity? valueQuantity,
     FhirDate? valueDate,
-    Element? valueDateElement,
     FhirBoolean? valueBoolean,
-    Element? valueBooleanElement,
     Attachment? valueAttachment,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -552,9 +531,7 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
       valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueDate: valueDate ?? this.valueDate,
-      valueDateElement: valueDateElement ?? this.valueDateElement,
       valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueBooleanElement: valueBooleanElement ?? this.valueBooleanElement,
       valueAttachment: valueAttachment ?? this.valueAttachment,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

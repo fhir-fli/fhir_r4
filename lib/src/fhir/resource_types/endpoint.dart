@@ -14,43 +14,22 @@ class FhirEndpoint extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     required this.connectionType,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.managingOrganization,
     this.contact,
     this.period,
     required this.payloadType,
     this.payloadMimeType,
-
-    /// Extensions for [payloadMimeType]
-    this.payloadMimeTypeElement,
     required this.address,
-
-    /// Extensions for [address]
-    this.addressElement,
     this.header,
-
-    /// Extensions for [header]
-    this.headerElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -64,27 +43,27 @@ class FhirEndpoint extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FhirEndpoint.fromJson(Map<String, dynamic> json) {
     return FhirEndpoint(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -94,7 +73,7 @@ class FhirEndpoint extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -103,7 +82,7 @@ class FhirEndpoint extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -112,7 +91,7 @@ class FhirEndpoint extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -121,26 +100,24 @@ class FhirEndpoint extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: EndpointStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: EndpointStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       connectionType: Coding.fromJson(
         json['connectionType'] as Map<String, dynamic>,
       ),
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
       managingOrganization: json['managingOrganization'] != null
           ? Reference.fromJson(
@@ -150,7 +127,7 @@ class FhirEndpoint extends DomainResource {
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<ContactPoint>(
-                (dynamic v) => ContactPoint.fromJson(
+                (v) => ContactPoint.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -161,48 +138,29 @@ class FhirEndpoint extends DomainResource {
               json['period'] as Map<String, dynamic>,
             )
           : null,
-      payloadType: (json['payloadType'] as List<dynamic>)
-          .map<CodeableConcept>((dynamic v) =>
-              CodeableConcept.fromJson(v as Map<String, dynamic>))
-          .toList(),
-      payloadMimeType: json['payloadMimeType'] != null
-          ? (json['payloadMimeType'] as List<dynamic>)
-              .map<FhirCode>(
-                (dynamic v) => FhirCode.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      payloadMimeTypeElement: json['_payloadMimeType'] != null
-          ? (json['_payloadMimeType'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      address: FhirUrl.fromJson(json['address']),
-      addressElement: json['_address'] != null
-          ? Element.fromJson(
-              json['_address'] as Map<String, dynamic>,
-            )
-          : null,
-      header: json['header'] != null
-          ? (json['header'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      headerElement: json['_header'] != null
-          ? (json['_header'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      payloadType: ensureNonNullList((json['payloadType'] as List<dynamic>)
+          .map<CodeableConcept>(
+            (v) => CodeableConcept.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
+      payloadMimeType: parsePrimitiveList<FhirCode>(
+          json['payloadMimeType'] as List<dynamic>?,
+          json['_payloadMimeType'] as List<dynamic>?,
+          fromJson: FhirCode.fromJson),
+      address: FhirUrl.fromJson({
+        'value': json['address'],
+        '_value': json['_address'],
+      }),
+      header: parsePrimitiveList<FhirString>(
+          json['header'] as List<dynamic>?, json['_header'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
     );
   }
 
-  /// Deserialize [FhirEndpoint] from a [String] or [YamlMap] object
+  /// Deserialize [FhirEndpoint] from a [String]
+  /// or [YamlMap] object
   factory FhirEndpoint.fromYaml(dynamic yaml) => yaml is String
       ? FhirEndpoint.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -211,10 +169,11 @@ class FhirEndpoint extends DomainResource {
           ? FhirEndpoint.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('FhirEndpoint cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('FhirEndpoint cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [FhirEndpoint] that takes in a [String]
+  /// Factory constructor for [FhirEndpoint]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory FhirEndpoint.fromJsonString(String source) {
@@ -230,6 +189,15 @@ class FhirEndpoint extends DomainResource {
   @override
   String get fhirType => 'FhirEndpoint';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Identifier for the organization that is used to identify the endpoint
   /// across multiple disparate systems.
@@ -238,9 +206,6 @@ class FhirEndpoint extends DomainResource {
   /// [status]
   /// active | suspended | error | off | test.
   final EndpointStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [connectionType]
   /// A coded value that represents the technical details of the usage of
@@ -251,9 +216,6 @@ class FhirEndpoint extends DomainResource {
   /// [name]
   /// A friendly name that this endpoint can be referred to with.
   final FhirString? name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [managingOrganization]
   /// The organization that manages this endpoint (even if technically
@@ -282,22 +244,13 @@ class FhirEndpoint extends DomainResource {
   /// connectionType).
   final List<FhirCode>? payloadMimeType;
 
-  /// Extensions for [payloadMimeType]
-  final List<Element>? payloadMimeTypeElement;
-
   /// [address]
   /// The uri that describes the actual end-point to connect to.
   final FhirUrl address;
 
-  /// Extensions for [address]
-  final Element? addressElement;
-
   /// [header]
   /// Additional headers / information to send as part of the notification.
   final List<FhirString>? header;
-
-  /// Extensions for [header]
-  final List<Element>? headerElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -310,9 +263,6 @@ class FhirEndpoint extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -340,9 +290,6 @@ class FhirEndpoint extends DomainResource {
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (managingOrganization != null) {
       json['managingOrganization'] = managingOrganization!.toJson();
     }
@@ -358,19 +305,9 @@ class FhirEndpoint extends DomainResource {
       json['payloadMimeType'] =
           payloadMimeType!.map((FhirCode v) => v.toJson()).toList();
     }
-    if (payloadMimeTypeElement != null && payloadMimeTypeElement!.isNotEmpty) {
-      json['_payloadMimeType'] =
-          payloadMimeTypeElement!.map((Element v) => v.toJson()).toList();
-    }
     json['address'] = address.toJson();
-    if (addressElement != null) {
-      json['_address'] = addressElement!.toJson();
-    }
     if (header != null && header!.isNotEmpty) {
       json['header'] = header!.map((FhirString v) => v.toJson()).toList();
-    }
-    if (headerElement != null && headerElement!.isNotEmpty) {
-      json['_header'] = headerElement!.map((Element v) => v.toJson()).toList();
     }
     return json;
   }
@@ -382,29 +319,22 @@ class FhirEndpoint extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     EndpointStatus? status,
-    Element? statusElement,
     Coding? connectionType,
     FhirString? name,
-    Element? nameElement,
     Reference? managingOrganization,
     List<ContactPoint>? contact,
     Period? period,
     List<CodeableConcept>? payloadType,
     List<FhirCode>? payloadMimeType,
-    List<Element>? payloadMimeTypeElement,
     FhirUrl? address,
-    Element? addressElement,
     List<FhirString>? header,
-    List<Element>? headerElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -416,30 +346,22 @@ class FhirEndpoint extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       connectionType: connectionType ?? this.connectionType,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       managingOrganization: managingOrganization ?? this.managingOrganization,
       contact: contact ?? this.contact,
       period: period ?? this.period,
       payloadType: payloadType ?? this.payloadType,
       payloadMimeType: payloadMimeType ?? this.payloadMimeType,
-      payloadMimeTypeElement:
-          payloadMimeTypeElement ?? this.payloadMimeTypeElement,
       address: address ?? this.address,
-      addressElement: addressElement ?? this.addressElement,
       header: header ?? this.header,
-      headerElement: headerElement ?? this.headerElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

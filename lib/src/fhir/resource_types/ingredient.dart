@@ -11,29 +11,17 @@ class Ingredient extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.for_,
     required this.role,
     this.function_,
     this.allergenicIndicator,
-
-    /// Extensions for [allergenicIndicator]
-    this.allergenicIndicatorElement,
     this.manufacturer,
     required this.substance,
     super.userData,
@@ -49,27 +37,27 @@ class Ingredient extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Ingredient.fromJson(Map<String, dynamic> json) {
     return Ingredient(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -79,7 +67,7 @@ class Ingredient extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -88,7 +76,7 @@ class Ingredient extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -97,7 +85,7 @@ class Ingredient extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -108,16 +96,14 @@ class Ingredient extends DomainResource {
               json['identifier'] as Map<String, dynamic>,
             )
           : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: PublicationStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       for_: json['for'] != null
           ? (json['for'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -129,24 +115,22 @@ class Ingredient extends DomainResource {
       function_: json['function'] != null
           ? (json['function'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       allergenicIndicator: json['allergenicIndicator'] != null
-          ? FhirBoolean.fromJson(json['allergenicIndicator'])
-          : null,
-      allergenicIndicatorElement: json['_allergenicIndicator'] != null
-          ? Element.fromJson(
-              json['_allergenicIndicator'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['allergenicIndicator'],
+              '_value': json['_allergenicIndicator'],
+            })
           : null,
       manufacturer: json['manufacturer'] != null
           ? (json['manufacturer'] as List<dynamic>)
               .map<IngredientManufacturer>(
-                (dynamic v) => IngredientManufacturer.fromJson(
+                (v) => IngredientManufacturer.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -158,7 +142,8 @@ class Ingredient extends DomainResource {
     );
   }
 
-  /// Deserialize [Ingredient] from a [String] or [YamlMap] object
+  /// Deserialize [Ingredient] from a [String]
+  /// or [YamlMap] object
   factory Ingredient.fromYaml(dynamic yaml) => yaml is String
       ? Ingredient.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -167,10 +152,11 @@ class Ingredient extends DomainResource {
           ? Ingredient.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Ingredient cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Ingredient cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Ingredient] that takes in a [String]
+  /// Factory constructor for [Ingredient]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Ingredient.fromJsonString(String source) {
@@ -186,6 +172,15 @@ class Ingredient extends DomainResource {
   @override
   String get fhirType => 'Ingredient';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// The identifier(s) of this Ingredient that are assigned by business
   /// processes and/or used to refer to it when a direct URL reference to the
@@ -196,9 +191,6 @@ class Ingredient extends DomainResource {
   /// The status of this ingredient. Enables tracking the life-cycle of the
   /// content.
   final PublicationStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [for_]
   /// The product which this ingredient is a constituent part of.
@@ -221,9 +213,6 @@ class Ingredient extends DomainResource {
   /// is used to decribe that (rather than just a code), the allergen
   /// information should go there, not here.
   final FhirBoolean? allergenicIndicator;
-
-  /// Extensions for [allergenicIndicator]
-  final Element? allergenicIndicatorElement;
 
   /// [manufacturer]
   /// The organization(s) that manufacture this ingredient. Can be used to
@@ -249,9 +238,6 @@ class Ingredient extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -285,9 +271,6 @@ class Ingredient extends DomainResource {
     if (allergenicIndicator?.value != null) {
       json['allergenicIndicator'] = allergenicIndicator!.toJson();
     }
-    if (allergenicIndicatorElement != null) {
-      json['_allergenicIndicator'] = allergenicIndicatorElement!.toJson();
-    }
     if (manufacturer != null && manufacturer!.isNotEmpty) {
       json['manufacturer'] =
           manufacturer!.map((IngredientManufacturer v) => v.toJson()).toList();
@@ -303,21 +286,17 @@ class Ingredient extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Identifier? identifier,
     PublicationStatus? status,
-    Element? statusElement,
     List<Reference>? for_,
     CodeableConcept? role,
     List<CodeableConcept>? function_,
     FhirBoolean? allergenicIndicator,
-    Element? allergenicIndicatorElement,
     List<IngredientManufacturer>? manufacturer,
     IngredientSubstance? substance,
     Map<String, Object?>? userData,
@@ -331,22 +310,17 @@ class Ingredient extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       for_: for_ ?? this.for_,
       role: role ?? this.role,
       function_: function_ ?? this.function_,
       allergenicIndicator: allergenicIndicator ?? this.allergenicIndicator,
-      allergenicIndicatorElement:
-          allergenicIndicatorElement ?? this.allergenicIndicatorElement,
       manufacturer: manufacturer ?? this.manufacturer,
       substance: substance ?? this.substance,
       userData: userData ?? this.userData,
@@ -371,12 +345,9 @@ class IngredientManufacturer extends BackboneElement {
 
   IngredientManufacturer({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.role,
-
-    /// Extensions for [role]
-    this.roleElement,
     required this.manufacturer,
     super.userData,
     super.formatCommentsPre,
@@ -389,11 +360,15 @@ class IngredientManufacturer extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory IngredientManufacturer.fromJson(Map<String, dynamic> json) {
     return IngredientManufacturer(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -402,19 +377,17 @@ class IngredientManufacturer extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       role: json['role'] != null
-          ? IngredientManufacturerRole.fromJson(json['role'])
-          : null,
-      roleElement: json['_role'] != null
-          ? Element.fromJson(
-              json['_role'] as Map<String, dynamic>,
-            )
+          ? IngredientManufacturerRole.fromJson({
+              'value': json['role'],
+              '_value': json['_role'],
+            })
           : null,
       manufacturer: Reference.fromJson(
         json['manufacturer'] as Map<String, dynamic>,
@@ -422,7 +395,8 @@ class IngredientManufacturer extends BackboneElement {
     );
   }
 
-  /// Deserialize [IngredientManufacturer] from a [String] or [YamlMap] object
+  /// Deserialize [IngredientManufacturer] from a [String]
+  /// or [YamlMap] object
   factory IngredientManufacturer.fromYaml(dynamic yaml) => yaml is String
       ? IngredientManufacturer.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -432,10 +406,11 @@ class IngredientManufacturer extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'IngredientManufacturer cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'IngredientManufacturer cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [IngredientManufacturer] that takes in a [String]
+  /// Factory constructor for [IngredientManufacturer]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory IngredientManufacturer.fromJsonString(String source) {
@@ -451,15 +426,21 @@ class IngredientManufacturer extends BackboneElement {
   @override
   String get fhirType => 'IngredientManufacturer';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [role]
   /// The way in which this manufacturer is associated with the ingredient.
   /// For example whether it is a possible one (others allowed), or an
   /// exclusive authorized one for this ingredient. Note that this is not the
   /// manufacturing process role.
   final IngredientManufacturerRole? role;
-
-  /// Extensions for [role]
-  final Element? roleElement;
 
   /// [manufacturer]
   /// An organization that manufactures this ingredient.
@@ -493,7 +474,6 @@ class IngredientManufacturer extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     IngredientManufacturerRole? role,
-    Element? roleElement,
     Reference? manufacturer,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -507,7 +487,6 @@ class IngredientManufacturer extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       role: role ?? this.role,
-      roleElement: roleElement ?? this.roleElement,
       manufacturer: manufacturer ?? this.manufacturer,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -526,7 +505,7 @@ class IngredientSubstance extends BackboneElement {
 
   IngredientSubstance({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.code,
     this.strength,
@@ -541,11 +520,15 @@ class IngredientSubstance extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory IngredientSubstance.fromJson(Map<String, dynamic> json) {
     return IngredientSubstance(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -554,7 +537,7 @@ class IngredientSubstance extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -566,7 +549,7 @@ class IngredientSubstance extends BackboneElement {
       strength: json['strength'] != null
           ? (json['strength'] as List<dynamic>)
               .map<IngredientStrength>(
-                (dynamic v) => IngredientStrength.fromJson(
+                (v) => IngredientStrength.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -575,7 +558,8 @@ class IngredientSubstance extends BackboneElement {
     );
   }
 
-  /// Deserialize [IngredientSubstance] from a [String] or [YamlMap] object
+  /// Deserialize [IngredientSubstance] from a [String]
+  /// or [YamlMap] object
   factory IngredientSubstance.fromYaml(dynamic yaml) => yaml is String
       ? IngredientSubstance.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -585,10 +569,11 @@ class IngredientSubstance extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'IngredientSubstance cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'IngredientSubstance cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [IngredientSubstance] that takes in a [String]
+  /// Factory constructor for [IngredientSubstance]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory IngredientSubstance.fromJsonString(String source) {
@@ -603,6 +588,15 @@ class IngredientSubstance extends BackboneElement {
 
   @override
   String get fhirType => 'IngredientSubstance';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [code]
   /// A code or full resource that represents the ingredient's substance.
@@ -680,24 +674,15 @@ class IngredientStrength extends BackboneElement {
 
   IngredientStrength({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.presentationRatio,
     this.presentationRatioRange,
     this.textPresentation,
-
-    /// Extensions for [textPresentation]
-    this.textPresentationElement,
     this.concentrationRatio,
     this.concentrationRatioRange,
     this.textConcentration,
-
-    /// Extensions for [textConcentration]
-    this.textConcentrationElement,
     this.measurementPoint,
-
-    /// Extensions for [measurementPoint]
-    this.measurementPointElement,
     this.country,
     this.referenceStrength,
     super.userData,
@@ -711,11 +696,15 @@ class IngredientStrength extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory IngredientStrength.fromJson(Map<String, dynamic> json) {
     return IngredientStrength(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -724,7 +713,7 @@ class IngredientStrength extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -741,12 +730,10 @@ class IngredientStrength extends BackboneElement {
             )
           : null,
       textPresentation: json['textPresentation'] != null
-          ? FhirString.fromJson(json['textPresentation'])
-          : null,
-      textPresentationElement: json['_textPresentation'] != null
-          ? Element.fromJson(
-              json['_textPresentation'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['textPresentation'],
+              '_value': json['_textPresentation'],
+            })
           : null,
       concentrationRatio: json['concentrationRatio'] != null
           ? Ratio.fromJson(
@@ -759,25 +746,21 @@ class IngredientStrength extends BackboneElement {
             )
           : null,
       textConcentration: json['textConcentration'] != null
-          ? FhirString.fromJson(json['textConcentration'])
-          : null,
-      textConcentrationElement: json['_textConcentration'] != null
-          ? Element.fromJson(
-              json['_textConcentration'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['textConcentration'],
+              '_value': json['_textConcentration'],
+            })
           : null,
       measurementPoint: json['measurementPoint'] != null
-          ? FhirString.fromJson(json['measurementPoint'])
-          : null,
-      measurementPointElement: json['_measurementPoint'] != null
-          ? Element.fromJson(
-              json['_measurementPoint'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['measurementPoint'],
+              '_value': json['_measurementPoint'],
+            })
           : null,
       country: json['country'] != null
           ? (json['country'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -786,7 +769,7 @@ class IngredientStrength extends BackboneElement {
       referenceStrength: json['referenceStrength'] != null
           ? (json['referenceStrength'] as List<dynamic>)
               .map<IngredientReferenceStrength>(
-                (dynamic v) => IngredientReferenceStrength.fromJson(
+                (v) => IngredientReferenceStrength.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -795,7 +778,8 @@ class IngredientStrength extends BackboneElement {
     );
   }
 
-  /// Deserialize [IngredientStrength] from a [String] or [YamlMap] object
+  /// Deserialize [IngredientStrength] from a [String]
+  /// or [YamlMap] object
   factory IngredientStrength.fromYaml(dynamic yaml) => yaml is String
       ? IngredientStrength.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -804,11 +788,11 @@ class IngredientStrength extends BackboneElement {
           ? IngredientStrength.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'IngredientStrength cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('IngredientStrength cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [IngredientStrength] that takes in a [String]
+  /// Factory constructor for [IngredientStrength]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory IngredientStrength.fromJsonString(String source) {
@@ -823,6 +807,15 @@ class IngredientStrength extends BackboneElement {
 
   @override
   String get fhirType => 'IngredientStrength';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [presentationRatio]
   /// The quantity of substance in the unit of presentation, or in the volume
@@ -848,9 +841,6 @@ class IngredientStrength extends BackboneElement {
   /// ratio.
   final FhirString? textPresentation;
 
-  /// Extensions for [textPresentation]
-  final Element? textPresentationElement;
-
   /// [concentrationRatio]
   /// The strength per unitary volume (or mass).
   final Ratio? concentrationRatio;
@@ -865,18 +855,12 @@ class IngredientStrength extends BackboneElement {
   /// Strength.concentration as a ratio.
   final FhirString? textConcentration;
 
-  /// Extensions for [textConcentration]
-  final Element? textConcentrationElement;
-
   /// [measurementPoint]
   /// For when strength is measured at a particular point or distance. There
   /// are products where strength is measured at a particular point. For
   /// example, the strength of the ingredient in some inhalers is measured at
   /// a particular position relative to the point of aerosolization.
   final FhirString? measurementPoint;
-
-  /// Extensions for [measurementPoint]
-  final Element? measurementPointElement;
 
   /// [country]
   /// The country or countries for which the strength range applies.
@@ -914,9 +898,6 @@ class IngredientStrength extends BackboneElement {
     if (textPresentation?.value != null) {
       json['textPresentation'] = textPresentation!.toJson();
     }
-    if (textPresentationElement != null) {
-      json['_textPresentation'] = textPresentationElement!.toJson();
-    }
     if (concentrationRatio != null) {
       json['concentrationRatio'] = concentrationRatio!.toJson();
     }
@@ -926,14 +907,8 @@ class IngredientStrength extends BackboneElement {
     if (textConcentration?.value != null) {
       json['textConcentration'] = textConcentration!.toJson();
     }
-    if (textConcentrationElement != null) {
-      json['_textConcentration'] = textConcentrationElement!.toJson();
-    }
     if (measurementPoint?.value != null) {
       json['measurementPoint'] = measurementPoint!.toJson();
-    }
-    if (measurementPointElement != null) {
-      json['_measurementPoint'] = measurementPointElement!.toJson();
     }
     if (country != null && country!.isNotEmpty) {
       json['country'] =
@@ -957,13 +932,10 @@ class IngredientStrength extends BackboneElement {
     Ratio? presentationRatio,
     RatioRange? presentationRatioRange,
     FhirString? textPresentation,
-    Element? textPresentationElement,
     Ratio? concentrationRatio,
     RatioRange? concentrationRatioRange,
     FhirString? textConcentration,
-    Element? textConcentrationElement,
     FhirString? measurementPoint,
-    Element? measurementPointElement,
     List<CodeableConcept>? country,
     List<IngredientReferenceStrength>? referenceStrength,
     Map<String, Object?>? userData,
@@ -981,17 +953,11 @@ class IngredientStrength extends BackboneElement {
       presentationRatioRange:
           presentationRatioRange ?? this.presentationRatioRange,
       textPresentation: textPresentation ?? this.textPresentation,
-      textPresentationElement:
-          textPresentationElement ?? this.textPresentationElement,
       concentrationRatio: concentrationRatio ?? this.concentrationRatio,
       concentrationRatioRange:
           concentrationRatioRange ?? this.concentrationRatioRange,
       textConcentration: textConcentration ?? this.textConcentration,
-      textConcentrationElement:
-          textConcentrationElement ?? this.textConcentrationElement,
       measurementPoint: measurementPoint ?? this.measurementPoint,
-      measurementPointElement:
-          measurementPointElement ?? this.measurementPointElement,
       country: country ?? this.country,
       referenceStrength: referenceStrength ?? this.referenceStrength,
       userData: userData ?? this.userData,
@@ -1017,15 +983,12 @@ class IngredientReferenceStrength extends BackboneElement {
 
   IngredientReferenceStrength({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.substance,
     this.strengthRatio,
     this.strengthRatioRange,
     this.measurementPoint,
-
-    /// Extensions for [measurementPoint]
-    this.measurementPointElement,
     this.country,
     super.userData,
     super.formatCommentsPre,
@@ -1038,11 +1001,15 @@ class IngredientReferenceStrength extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory IngredientReferenceStrength.fromJson(Map<String, dynamic> json) {
     return IngredientReferenceStrength(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1051,7 +1018,7 @@ class IngredientReferenceStrength extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1073,17 +1040,15 @@ class IngredientReferenceStrength extends BackboneElement {
             )
           : null,
       measurementPoint: json['measurementPoint'] != null
-          ? FhirString.fromJson(json['measurementPoint'])
-          : null,
-      measurementPointElement: json['_measurementPoint'] != null
-          ? Element.fromJson(
-              json['_measurementPoint'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['measurementPoint'],
+              '_value': json['_measurementPoint'],
+            })
           : null,
       country: json['country'] != null
           ? (json['country'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1092,7 +1057,8 @@ class IngredientReferenceStrength extends BackboneElement {
     );
   }
 
-  /// Deserialize [IngredientReferenceStrength] from a [String] or [YamlMap] object
+  /// Deserialize [IngredientReferenceStrength] from a [String]
+  /// or [YamlMap] object
   factory IngredientReferenceStrength.fromYaml(dynamic yaml) => yaml is String
       ? IngredientReferenceStrength.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1102,10 +1068,11 @@ class IngredientReferenceStrength extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'IngredientReferenceStrength cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'IngredientReferenceStrength cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [IngredientReferenceStrength] that takes in a [String]
+  /// Factory constructor for [IngredientReferenceStrength]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory IngredientReferenceStrength.fromJsonString(String source) {
@@ -1120,6 +1087,15 @@ class IngredientReferenceStrength extends BackboneElement {
 
   @override
   String get fhirType => 'IngredientReferenceStrength';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [substance]
   /// Relevant reference substance.
@@ -1136,9 +1112,6 @@ class IngredientReferenceStrength extends BackboneElement {
   /// [measurementPoint]
   /// For when strength is measured at a particular point or distance.
   final FhirString? measurementPoint;
-
-  /// Extensions for [measurementPoint]
-  final Element? measurementPointElement;
 
   /// [country]
   /// The country or countries for which the strength range applies.
@@ -1169,9 +1142,6 @@ class IngredientReferenceStrength extends BackboneElement {
     if (measurementPoint?.value != null) {
       json['measurementPoint'] = measurementPoint!.toJson();
     }
-    if (measurementPointElement != null) {
-      json['_measurementPoint'] = measurementPointElement!.toJson();
-    }
     if (country != null && country!.isNotEmpty) {
       json['country'] =
           country!.map((CodeableConcept v) => v.toJson()).toList();
@@ -1190,7 +1160,6 @@ class IngredientReferenceStrength extends BackboneElement {
     Ratio? strengthRatio,
     RatioRange? strengthRatioRange,
     FhirString? measurementPoint,
-    Element? measurementPointElement,
     List<CodeableConcept>? country,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1207,8 +1176,6 @@ class IngredientReferenceStrength extends BackboneElement {
       strengthRatio: strengthRatio ?? this.strengthRatio,
       strengthRatioRange: strengthRatioRange ?? this.strengthRatioRange,
       measurementPoint: measurementPoint ?? this.measurementPoint,
-      measurementPointElement:
-          measurementPointElement ?? this.measurementPointElement,
       country: country ?? this.country,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

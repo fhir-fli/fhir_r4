@@ -15,88 +15,34 @@ class PlanDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.identifier,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     this.subtitle,
-
-    /// Extensions for [subtitle]
-    this.subtitleElement,
     this.type,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.experimental,
-
-    /// Extensions for [experimental]
-    this.experimentalElement,
     this.subjectCodeableConcept,
     this.subjectReference,
     this.subjectCanonical,
-
-    /// Extensions for [subjectCanonical]
-    this.subjectCanonicalElement,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.publisher,
-
-    /// Extensions for [publisher]
-    this.publisherElement,
     this.contact,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-
-    /// Extensions for [purpose]
-    this.purposeElement,
     this.usage,
-
-    /// Extensions for [usage]
-    this.usageElement,
     this.copyright,
-
-    /// Extensions for [copyright]
-    this.copyrightElement,
     this.approvalDate,
-
-    /// Extensions for [approvalDate]
-    this.approvalDateElement,
     this.lastReviewDate,
-
-    /// Extensions for [lastReviewDate]
-    this.lastReviewDateElement,
     this.effectivePeriod,
     this.topic,
     this.author,
@@ -105,9 +51,6 @@ class PlanDefinition extends DomainResource {
     this.endorser,
     this.relatedArtifact,
     this.library_,
-
-    /// Extensions for [library]
-    this.libraryElement,
     this.goal,
     this.action,
     super.userData,
@@ -123,27 +66,27 @@ class PlanDefinition extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinition.fromJson(Map<String, dynamic> json) {
     return PlanDefinition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -153,7 +96,7 @@ class PlanDefinition extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -162,7 +105,7 @@ class PlanDefinition extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -171,72 +114,65 @@ class PlanDefinition extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
+      url: json['url'] != null
+          ? FhirUri.fromJson({
+              'value': json['url'],
+              '_value': json['_url'],
+            })
           : null,
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
       subtitle: json['subtitle'] != null
-          ? FhirString.fromJson(json['subtitle'])
-          : null,
-      subtitleElement: json['_subtitle'] != null
-          ? Element.fromJson(
-              json['_subtitle'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['subtitle'],
+              '_value': json['_subtitle'],
+            })
           : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: PublicationStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson(json['experimental'])
-          : null,
-      experimentalElement: json['_experimental'] != null
-          ? Element.fromJson(
-              json['_experimental'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['experimental'],
+              '_value': json['_experimental'],
+            })
           : null,
       subjectCodeableConcept: json['subjectCodeableConcept'] != null
           ? CodeableConcept.fromJson(
@@ -249,48 +185,42 @@ class PlanDefinition extends DomainResource {
             )
           : null,
       subjectCanonical: json['subjectCanonical'] != null
-          ? SubjectType.fromJson(json['subjectCanonical'])
+          ? SubjectType.fromJson({
+              'value': json['subjectCanonical'],
+              '_value': json['_subjectCanonical'],
+            })
           : null,
-      subjectCanonicalElement: json['_subjectCanonical'] != null
-          ? Element.fromJson(
-              json['_subjectCanonical'] as Map<String, dynamic>,
-            )
-          : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       publisher: json['publisher'] != null
-          ? FhirString.fromJson(json['publisher'])
-          : null,
-      publisherElement: json['_publisher'] != null
-          ? Element.fromJson(
-              json['_publisher'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['publisher'],
+              '_value': json['_publisher'],
+            })
           : null,
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       useContext: json['useContext'] != null
           ? (json['useContext'] as List<dynamic>)
               .map<UsageContext>(
-                (dynamic v) => UsageContext.fromJson(
+                (v) => UsageContext.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -299,49 +229,41 @@ class PlanDefinition extends DomainResource {
       jurisdiction: json['jurisdiction'] != null
           ? (json['jurisdiction'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       purpose: json['purpose'] != null
-          ? FhirMarkdown.fromJson(json['purpose'])
+          ? FhirMarkdown.fromJson({
+              'value': json['purpose'],
+              '_value': json['_purpose'],
+            })
           : null,
-      purposeElement: json['_purpose'] != null
-          ? Element.fromJson(
-              json['_purpose'] as Map<String, dynamic>,
-            )
-          : null,
-      usage: json['usage'] != null ? FhirString.fromJson(json['usage']) : null,
-      usageElement: json['_usage'] != null
-          ? Element.fromJson(
-              json['_usage'] as Map<String, dynamic>,
-            )
+      usage: json['usage'] != null
+          ? FhirString.fromJson({
+              'value': json['usage'],
+              '_value': json['_usage'],
+            })
           : null,
       copyright: json['copyright'] != null
-          ? FhirMarkdown.fromJson(json['copyright'])
-          : null,
-      copyrightElement: json['_copyright'] != null
-          ? Element.fromJson(
-              json['_copyright'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['copyright'],
+              '_value': json['_copyright'],
+            })
           : null,
       approvalDate: json['approvalDate'] != null
-          ? FhirDate.fromJson(json['approvalDate'])
-          : null,
-      approvalDateElement: json['_approvalDate'] != null
-          ? Element.fromJson(
-              json['_approvalDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['approvalDate'],
+              '_value': json['_approvalDate'],
+            })
           : null,
       lastReviewDate: json['lastReviewDate'] != null
-          ? FhirDate.fromJson(json['lastReviewDate'])
-          : null,
-      lastReviewDateElement: json['_lastReviewDate'] != null
-          ? Element.fromJson(
-              json['_lastReviewDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['lastReviewDate'],
+              '_value': json['_lastReviewDate'],
+            })
           : null,
       effectivePeriod: json['effectivePeriod'] != null
           ? Period.fromJson(
@@ -351,7 +273,7 @@ class PlanDefinition extends DomainResource {
       topic: json['topic'] != null
           ? (json['topic'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -360,7 +282,7 @@ class PlanDefinition extends DomainResource {
       author: json['author'] != null
           ? (json['author'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -369,7 +291,7 @@ class PlanDefinition extends DomainResource {
       editor: json['editor'] != null
           ? (json['editor'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -378,7 +300,7 @@ class PlanDefinition extends DomainResource {
       reviewer: json['reviewer'] != null
           ? (json['reviewer'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -387,7 +309,7 @@ class PlanDefinition extends DomainResource {
       endorser: json['endorser'] != null
           ? (json['endorser'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -396,30 +318,19 @@ class PlanDefinition extends DomainResource {
       relatedArtifact: json['relatedArtifact'] != null
           ? (json['relatedArtifact'] as List<dynamic>)
               .map<RelatedArtifact>(
-                (dynamic v) => RelatedArtifact.fromJson(
+                (v) => RelatedArtifact.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      library_: json['library'] != null
-          ? (json['library'] as List<dynamic>)
-              .map<FhirCanonical>(
-                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      libraryElement: json['_library'] != null
-          ? (json['_library'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      library_: parsePrimitiveList<FhirCanonical>(
+          json['library'] as List<dynamic>?, json['_library'] as List<dynamic>?,
+          fromJson: FhirCanonical.fromJson),
       goal: json['goal'] != null
           ? (json['goal'] as List<dynamic>)
               .map<PlanDefinitionGoal>(
-                (dynamic v) => PlanDefinitionGoal.fromJson(
+                (v) => PlanDefinitionGoal.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -428,7 +339,7 @@ class PlanDefinition extends DomainResource {
       action: json['action'] != null
           ? (json['action'] as List<dynamic>)
               .map<PlanDefinitionAction>(
-                (dynamic v) => PlanDefinitionAction.fromJson(
+                (v) => PlanDefinitionAction.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -437,7 +348,8 @@ class PlanDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [PlanDefinition] from a [String] or [YamlMap] object
+  /// Deserialize [PlanDefinition] from a [String]
+  /// or [YamlMap] object
   factory PlanDefinition.fromYaml(dynamic yaml) => yaml is String
       ? PlanDefinition.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -446,11 +358,11 @@ class PlanDefinition extends DomainResource {
           ? PlanDefinition.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PlanDefinition cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('PlanDefinition cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PlanDefinition] that takes in a [String]
+  /// Factory constructor for [PlanDefinition]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PlanDefinition.fromJsonString(String source) {
@@ -466,6 +378,15 @@ class PlanDefinition extends DomainResource {
   @override
   String get fhirType => 'PlanDefinition';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [url]
   /// An absolute URI that is used to identify this plan definition when it
   /// is referenced in a specification, model, design or an instance; also
@@ -475,9 +396,6 @@ class PlanDefinition extends DomainResource {
   /// target of a canonical reference. It SHALL remain the same when the plan
   /// definition is stored on different servers.
   final FhirUri? url;
-
-  /// Extensions for [url]
-  final Element? urlElement;
 
   /// [identifier]
   /// A formal identifier that is used to identify this plan definition when
@@ -499,32 +417,20 @@ class PlanDefinition extends DomainResource {
   /// Note that a version is required for non-experimental active artifacts.
   final FhirString? version;
 
-  /// Extensions for [version]
-  final Element? versionElement;
-
   /// [name]
   /// A natural language name identifying the plan definition. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
   final FhirString? name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [title]
   /// A short, descriptive, user-friendly title for the plan definition.
   final FhirString? title;
-
-  /// Extensions for [title]
-  final Element? titleElement;
 
   /// [subtitle]
   /// An explanatory or alternate title for the plan definition giving
   /// additional information about its content.
   final FhirString? subtitle;
-
-  /// Extensions for [subtitle]
-  final Element? subtitleElement;
 
   /// [type]
   /// A high-level category for the plan definition that distinguishes the
@@ -536,17 +442,11 @@ class PlanDefinition extends DomainResource {
   /// the content.
   final PublicationStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [experimental]
   /// A Boolean value to indicate that this plan definition is authored for
   /// testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
   final FhirBoolean? experimental;
-
-  /// Extensions for [experimental]
-  final Element? experimentalElement;
 
   /// [subjectCodeableConcept]
   /// A code, group definition, or canonical reference that describes or
@@ -578,9 +478,6 @@ class PlanDefinition extends DomainResource {
   /// PackagedProductDefinition resource.
   final SubjectType? subjectCanonical;
 
-  /// Extensions for [subjectCanonical]
-  final Element? subjectCanonicalElement;
-
   /// [date]
   /// The date (and optionally time) when the plan definition was published.
   /// The date must change when the business version changes and it must
@@ -588,16 +485,10 @@ class PlanDefinition extends DomainResource {
   /// the substantive content of the plan definition changes.
   final FhirDateTime? date;
 
-  /// Extensions for [date]
-  final Element? dateElement;
-
   /// [publisher]
   /// The name of the organization or individual that published the plan
   /// definition.
   final FhirString? publisher;
-
-  /// Extensions for [publisher]
-  final Element? publisherElement;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
@@ -608,9 +499,6 @@ class PlanDefinition extends DomainResource {
   /// A free text natural language description of the plan definition from a
   /// consumer's perspective.
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -630,16 +518,10 @@ class PlanDefinition extends DomainResource {
   /// designed as it has.
   final FhirMarkdown? purpose;
 
-  /// Extensions for [purpose]
-  final Element? purposeElement;
-
   /// [usage]
   /// A detailed description of how the plan definition is used from a
   /// clinical perspective.
   final FhirString? usage;
-
-  /// Extensions for [usage]
-  final Element? usageElement;
 
   /// [copyright]
   /// A copyright statement relating to the plan definition and/or its
@@ -647,26 +529,17 @@ class PlanDefinition extends DomainResource {
   /// use and publishing of the plan definition.
   final FhirMarkdown? copyright;
 
-  /// Extensions for [copyright]
-  final Element? copyrightElement;
-
   /// [approvalDate]
   /// The date on which the resource content was approved by the publisher.
   /// Approval happens once when the content is officially approved for
   /// usage.
   final FhirDate? approvalDate;
 
-  /// Extensions for [approvalDate]
-  final Element? approvalDateElement;
-
   /// [lastReviewDate]
   /// The date on which the resource content was last reviewed. Review
   /// happens periodically after approval but does not change the original
   /// approval date.
   final FhirDate? lastReviewDate;
-
-  /// Extensions for [lastReviewDate]
-  final Element? lastReviewDateElement;
 
   /// [effectivePeriod]
   /// The period during which the plan definition content was or is planned
@@ -709,9 +582,6 @@ class PlanDefinition extends DomainResource {
   /// the plan definition.
   final List<FhirCanonical>? library_;
 
-  /// Extensions for [library]
-  final List<Element>? libraryElement;
-
   /// [goal]
   /// A goal describes an expected outcome that activities within the plan
   /// are intended to achieve. For example, weight loss, restoring an
@@ -740,9 +610,6 @@ class PlanDefinition extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -763,9 +630,6 @@ class PlanDefinition extends DomainResource {
     if (url?.value != null) {
       json['url'] = url!.toJson();
     }
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
-    }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
           identifier!.map((Identifier v) => v.toJson()).toList();
@@ -773,26 +637,14 @@ class PlanDefinition extends DomainResource {
     if (version?.value != null) {
       json['version'] = version!.toJson();
     }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
-    }
     if (name?.value != null) {
       json['name'] = name!.toJson();
-    }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
     }
     if (title?.value != null) {
       json['title'] = title!.toJson();
     }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
-    }
     if (subtitle?.value != null) {
       json['subtitle'] = subtitle!.toJson();
-    }
-    if (subtitleElement != null) {
-      json['_subtitle'] = subtitleElement!.toJson();
     }
     if (type != null) {
       json['type'] = type!.toJson();
@@ -800,9 +652,6 @@ class PlanDefinition extends DomainResource {
     json['status'] = status.toJson();
     if (experimental?.value != null) {
       json['experimental'] = experimental!.toJson();
-    }
-    if (experimentalElement != null) {
-      json['_experimental'] = experimentalElement!.toJson();
     }
     if (subjectCodeableConcept != null) {
       json['subjectCodeableConcept'] = subjectCodeableConcept!.toJson();
@@ -816,23 +665,14 @@ class PlanDefinition extends DomainResource {
     if (date?.value != null) {
       json['date'] = date!.toJson();
     }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (publisher?.value != null) {
       json['publisher'] = publisher!.toJson();
-    }
-    if (publisherElement != null) {
-      json['_publisher'] = publisherElement!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] =
@@ -845,32 +685,17 @@ class PlanDefinition extends DomainResource {
     if (purpose?.value != null) {
       json['purpose'] = purpose!.toJson();
     }
-    if (purposeElement != null) {
-      json['_purpose'] = purposeElement!.toJson();
-    }
     if (usage?.value != null) {
       json['usage'] = usage!.toJson();
-    }
-    if (usageElement != null) {
-      json['_usage'] = usageElement!.toJson();
     }
     if (copyright?.value != null) {
       json['copyright'] = copyright!.toJson();
     }
-    if (copyrightElement != null) {
-      json['_copyright'] = copyrightElement!.toJson();
-    }
     if (approvalDate?.value != null) {
       json['approvalDate'] = approvalDate!.toJson();
     }
-    if (approvalDateElement != null) {
-      json['_approvalDate'] = approvalDateElement!.toJson();
-    }
     if (lastReviewDate?.value != null) {
       json['lastReviewDate'] = lastReviewDate!.toJson();
-    }
-    if (lastReviewDateElement != null) {
-      json['_lastReviewDate'] = lastReviewDateElement!.toJson();
     }
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
@@ -899,10 +724,6 @@ class PlanDefinition extends DomainResource {
     if (library_ != null && library_!.isNotEmpty) {
       json['library'] = library_!.map((FhirCanonical v) => v.toJson()).toList();
     }
-    if (libraryElement != null && libraryElement!.isNotEmpty) {
-      json['_library'] =
-          libraryElement!.map((Element v) => v.toJson()).toList();
-    }
     if (goal != null && goal!.isNotEmpty) {
       json['goal'] = goal!.map((PlanDefinitionGoal v) => v.toJson()).toList();
     }
@@ -920,52 +741,34 @@ class PlanDefinition extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    Element? urlElement,
     List<Identifier>? identifier,
     FhirString? version,
-    Element? versionElement,
     FhirString? name,
-    Element? nameElement,
     FhirString? title,
-    Element? titleElement,
     FhirString? subtitle,
-    Element? subtitleElement,
     CodeableConcept? type,
     PublicationStatus? status,
-    Element? statusElement,
     FhirBoolean? experimental,
-    Element? experimentalElement,
     CodeableConcept? subjectCodeableConcept,
     Reference? subjectReference,
     SubjectType? subjectCanonical,
-    Element? subjectCanonicalElement,
     FhirDateTime? date,
-    Element? dateElement,
     FhirString? publisher,
-    Element? publisherElement,
     List<ContactDetail>? contact,
     FhirMarkdown? description,
-    Element? descriptionElement,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
     FhirMarkdown? purpose,
-    Element? purposeElement,
     FhirString? usage,
-    Element? usageElement,
     FhirMarkdown? copyright,
-    Element? copyrightElement,
     FhirDate? approvalDate,
-    Element? approvalDateElement,
     FhirDate? lastReviewDate,
-    Element? lastReviewDateElement,
     Period? effectivePeriod,
     List<CodeableConcept>? topic,
     List<ContactDetail>? author,
@@ -974,7 +777,6 @@ class PlanDefinition extends DomainResource {
     List<ContactDetail>? endorser,
     List<RelatedArtifact>? relatedArtifact,
     List<FhirCanonical>? library_,
-    List<Element>? libraryElement,
     List<PlanDefinitionGoal>? goal,
     List<PlanDefinitionAction>? action,
     Map<String, Object?>? userData,
@@ -988,55 +790,35 @@ class PlanDefinition extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       identifier: identifier ?? this.identifier,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       subtitle: subtitle ?? this.subtitle,
-      subtitleElement: subtitleElement ?? this.subtitleElement,
       type: type ?? this.type,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       experimental: experimental ?? this.experimental,
-      experimentalElement: experimentalElement ?? this.experimentalElement,
       subjectCodeableConcept:
           subjectCodeableConcept ?? this.subjectCodeableConcept,
       subjectReference: subjectReference ?? this.subjectReference,
       subjectCanonical: subjectCanonical ?? this.subjectCanonical,
-      subjectCanonicalElement:
-          subjectCanonicalElement ?? this.subjectCanonicalElement,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       publisher: publisher ?? this.publisher,
-      publisherElement: publisherElement ?? this.publisherElement,
       contact: contact ?? this.contact,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       useContext: useContext ?? this.useContext,
       jurisdiction: jurisdiction ?? this.jurisdiction,
       purpose: purpose ?? this.purpose,
-      purposeElement: purposeElement ?? this.purposeElement,
       usage: usage ?? this.usage,
-      usageElement: usageElement ?? this.usageElement,
       copyright: copyright ?? this.copyright,
-      copyrightElement: copyrightElement ?? this.copyrightElement,
       approvalDate: approvalDate ?? this.approvalDate,
-      approvalDateElement: approvalDateElement ?? this.approvalDateElement,
       lastReviewDate: lastReviewDate ?? this.lastReviewDate,
-      lastReviewDateElement:
-          lastReviewDateElement ?? this.lastReviewDateElement,
       effectivePeriod: effectivePeriod ?? this.effectivePeriod,
       topic: topic ?? this.topic,
       author: author ?? this.author,
@@ -1045,7 +827,6 @@ class PlanDefinition extends DomainResource {
       endorser: endorser ?? this.endorser,
       relatedArtifact: relatedArtifact ?? this.relatedArtifact,
       library_: library_ ?? this.library_,
-      libraryElement: libraryElement ?? this.libraryElement,
       goal: goal ?? this.goal,
       action: action ?? this.action,
       userData: userData ?? this.userData,
@@ -1069,7 +850,7 @@ class PlanDefinitionGoal extends BackboneElement {
 
   PlanDefinitionGoal({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.category,
     required this.description,
@@ -1089,11 +870,15 @@ class PlanDefinitionGoal extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinitionGoal.fromJson(Map<String, dynamic> json) {
     return PlanDefinitionGoal(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1102,7 +887,7 @@ class PlanDefinitionGoal extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1129,7 +914,7 @@ class PlanDefinitionGoal extends BackboneElement {
       addresses: json['addresses'] != null
           ? (json['addresses'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1138,7 +923,7 @@ class PlanDefinitionGoal extends BackboneElement {
       documentation: json['documentation'] != null
           ? (json['documentation'] as List<dynamic>)
               .map<RelatedArtifact>(
-                (dynamic v) => RelatedArtifact.fromJson(
+                (v) => RelatedArtifact.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1147,7 +932,7 @@ class PlanDefinitionGoal extends BackboneElement {
       target: json['target'] != null
           ? (json['target'] as List<dynamic>)
               .map<PlanDefinitionTarget>(
-                (dynamic v) => PlanDefinitionTarget.fromJson(
+                (v) => PlanDefinitionTarget.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1156,7 +941,8 @@ class PlanDefinitionGoal extends BackboneElement {
     );
   }
 
-  /// Deserialize [PlanDefinitionGoal] from a [String] or [YamlMap] object
+  /// Deserialize [PlanDefinitionGoal] from a [String]
+  /// or [YamlMap] object
   factory PlanDefinitionGoal.fromYaml(dynamic yaml) => yaml is String
       ? PlanDefinitionGoal.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1165,11 +951,11 @@ class PlanDefinitionGoal extends BackboneElement {
           ? PlanDefinitionGoal.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PlanDefinitionGoal cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('PlanDefinitionGoal cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PlanDefinitionGoal] that takes in a [String]
+  /// Factory constructor for [PlanDefinitionGoal]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PlanDefinitionGoal.fromJsonString(String source) {
@@ -1184,6 +970,15 @@ class PlanDefinitionGoal extends BackboneElement {
 
   @override
   String get fhirType => 'PlanDefinitionGoal';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [category]
   /// Indicates a category the goal falls within.
@@ -1307,7 +1102,7 @@ class PlanDefinitionTarget extends BackboneElement {
 
   PlanDefinitionTarget({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.measure,
     this.detailQuantity,
@@ -1325,11 +1120,15 @@ class PlanDefinitionTarget extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinitionTarget.fromJson(Map<String, dynamic> json) {
     return PlanDefinitionTarget(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1338,7 +1137,7 @@ class PlanDefinitionTarget extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1372,7 +1171,8 @@ class PlanDefinitionTarget extends BackboneElement {
     );
   }
 
-  /// Deserialize [PlanDefinitionTarget] from a [String] or [YamlMap] object
+  /// Deserialize [PlanDefinitionTarget] from a [String]
+  /// or [YamlMap] object
   factory PlanDefinitionTarget.fromYaml(dynamic yaml) => yaml is String
       ? PlanDefinitionTarget.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1382,10 +1182,11 @@ class PlanDefinitionTarget extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'PlanDefinitionTarget cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'PlanDefinitionTarget cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PlanDefinitionTarget] that takes in a [String]
+  /// Factory constructor for [PlanDefinitionTarget]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PlanDefinitionTarget.fromJsonString(String source) {
@@ -1400,6 +1201,15 @@ class PlanDefinitionTarget extends BackboneElement {
 
   @override
   String get fhirType => 'PlanDefinitionTarget';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [measure]
   /// The parameter whose value is to be tracked, e.g. body weight, blood
@@ -1522,50 +1332,26 @@ class PlanDefinitionAction extends BackboneElement {
 
   PlanDefinitionAction({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.prefix,
-
-    /// Extensions for [prefix]
-    this.prefixElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.textEquivalent,
-
-    /// Extensions for [textEquivalent]
-    this.textEquivalentElement,
     this.priority,
-
-    /// Extensions for [priority]
-    this.priorityElement,
     this.code,
     this.reason,
     this.documentation,
     this.goalId,
-
-    /// Extensions for [goalId]
-    this.goalIdElement,
     this.subjectCodeableConcept,
     this.subjectReference,
     this.subjectCanonical,
-
-    /// Extensions for [subjectCanonical]
-    this.subjectCanonicalElement,
     this.trigger,
     this.condition,
     this.input,
     this.output,
     this.relatedAction,
     this.timingDateTime,
-
-    /// Extensions for [timingDateTime]
-    this.timingDateTimeElement,
     this.timingAge,
     this.timingPeriod,
     this.timingDuration,
@@ -1574,37 +1360,13 @@ class PlanDefinitionAction extends BackboneElement {
     this.participant,
     this.type,
     this.groupingBehavior,
-
-    /// Extensions for [groupingBehavior]
-    this.groupingBehaviorElement,
     this.selectionBehavior,
-
-    /// Extensions for [selectionBehavior]
-    this.selectionBehaviorElement,
     this.requiredBehavior,
-
-    /// Extensions for [requiredBehavior]
-    this.requiredBehaviorElement,
     this.precheckBehavior,
-
-    /// Extensions for [precheckBehavior]
-    this.precheckBehaviorElement,
     this.cardinalityBehavior,
-
-    /// Extensions for [cardinalityBehavior]
-    this.cardinalityBehaviorElement,
     this.definitionCanonical,
-
-    /// Extensions for [definitionCanonical]
-    this.definitionCanonicalElement,
     this.definitionUri,
-
-    /// Extensions for [definitionUri]
-    this.definitionUriElement,
     this.transform,
-
-    /// Extensions for [transform]
-    this.transformElement,
     this.dynamicValue,
     this.action,
     super.userData,
@@ -1618,11 +1380,15 @@ class PlanDefinitionAction extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinitionAction.fromJson(Map<String, dynamic> json) {
     return PlanDefinitionAction(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1631,53 +1397,46 @@ class PlanDefinitionAction extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      prefix:
-          json['prefix'] != null ? FhirString.fromJson(json['prefix']) : null,
-      prefixElement: json['_prefix'] != null
-          ? Element.fromJson(
-              json['_prefix'] as Map<String, dynamic>,
-            )
+      prefix: json['prefix'] != null
+          ? FhirString.fromJson({
+              'value': json['prefix'],
+              '_value': json['_prefix'],
+            })
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       textEquivalent: json['textEquivalent'] != null
-          ? FhirString.fromJson(json['textEquivalent'])
-          : null,
-      textEquivalentElement: json['_textEquivalent'] != null
-          ? Element.fromJson(
-              json['_textEquivalent'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['textEquivalent'],
+              '_value': json['_textEquivalent'],
+            })
           : null,
       priority: json['priority'] != null
-          ? RequestPriority.fromJson(json['priority'])
-          : null,
-      priorityElement: json['_priority'] != null
-          ? Element.fromJson(
-              json['_priority'] as Map<String, dynamic>,
-            )
+          ? RequestPriority.fromJson({
+              'value': json['priority'],
+              '_value': json['_priority'],
+            })
           : null,
       code: json['code'] != null
           ? (json['code'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1686,7 +1445,7 @@ class PlanDefinitionAction extends BackboneElement {
       reason: json['reason'] != null
           ? (json['reason'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1695,26 +1454,15 @@ class PlanDefinitionAction extends BackboneElement {
       documentation: json['documentation'] != null
           ? (json['documentation'] as List<dynamic>)
               .map<RelatedArtifact>(
-                (dynamic v) => RelatedArtifact.fromJson(
+                (v) => RelatedArtifact.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      goalId: json['goalId'] != null
-          ? (json['goalId'] as List<dynamic>)
-              .map<FhirId>(
-                (dynamic v) => FhirId.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      goalIdElement: json['_goalId'] != null
-          ? (json['_goalId'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      goalId: parsePrimitiveList<FhirId>(
+          json['goalId'] as List<dynamic>?, json['_goalId'] as List<dynamic>?,
+          fromJson: FhirId.fromJson),
       subjectCodeableConcept: json['subjectCodeableConcept'] != null
           ? CodeableConcept.fromJson(
               json['subjectCodeableConcept'] as Map<String, dynamic>,
@@ -1726,17 +1474,15 @@ class PlanDefinitionAction extends BackboneElement {
             )
           : null,
       subjectCanonical: json['subjectCanonical'] != null
-          ? SubjectType.fromJson(json['subjectCanonical'])
-          : null,
-      subjectCanonicalElement: json['_subjectCanonical'] != null
-          ? Element.fromJson(
-              json['_subjectCanonical'] as Map<String, dynamic>,
-            )
+          ? SubjectType.fromJson({
+              'value': json['subjectCanonical'],
+              '_value': json['_subjectCanonical'],
+            })
           : null,
       trigger: json['trigger'] != null
           ? (json['trigger'] as List<dynamic>)
               .map<TriggerDefinition>(
-                (dynamic v) => TriggerDefinition.fromJson(
+                (v) => TriggerDefinition.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1745,7 +1491,7 @@ class PlanDefinitionAction extends BackboneElement {
       condition: json['condition'] != null
           ? (json['condition'] as List<dynamic>)
               .map<PlanDefinitionCondition>(
-                (dynamic v) => PlanDefinitionCondition.fromJson(
+                (v) => PlanDefinitionCondition.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1754,7 +1500,7 @@ class PlanDefinitionAction extends BackboneElement {
       input: json['input'] != null
           ? (json['input'] as List<dynamic>)
               .map<DataRequirement>(
-                (dynamic v) => DataRequirement.fromJson(
+                (v) => DataRequirement.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1763,7 +1509,7 @@ class PlanDefinitionAction extends BackboneElement {
       output: json['output'] != null
           ? (json['output'] as List<dynamic>)
               .map<DataRequirement>(
-                (dynamic v) => DataRequirement.fromJson(
+                (v) => DataRequirement.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1772,19 +1518,17 @@ class PlanDefinitionAction extends BackboneElement {
       relatedAction: json['relatedAction'] != null
           ? (json['relatedAction'] as List<dynamic>)
               .map<PlanDefinitionRelatedAction>(
-                (dynamic v) => PlanDefinitionRelatedAction.fromJson(
+                (v) => PlanDefinitionRelatedAction.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       timingDateTime: json['timingDateTime'] != null
-          ? FhirDateTime.fromJson(json['timingDateTime'])
-          : null,
-      timingDateTimeElement: json['_timingDateTime'] != null
-          ? Element.fromJson(
-              json['_timingDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['timingDateTime'],
+              '_value': json['_timingDateTime'],
+            })
           : null,
       timingAge: json['timingAge'] != null
           ? Age.fromJson(
@@ -1814,7 +1558,7 @@ class PlanDefinitionAction extends BackboneElement {
       participant: json['participant'] != null
           ? (json['participant'] as List<dynamic>)
               .map<PlanDefinitionParticipant>(
-                (dynamic v) => PlanDefinitionParticipant.fromJson(
+                (v) => PlanDefinitionParticipant.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1826,73 +1570,57 @@ class PlanDefinitionAction extends BackboneElement {
             )
           : null,
       groupingBehavior: json['groupingBehavior'] != null
-          ? ActionGroupingBehavior.fromJson(json['groupingBehavior'])
-          : null,
-      groupingBehaviorElement: json['_groupingBehavior'] != null
-          ? Element.fromJson(
-              json['_groupingBehavior'] as Map<String, dynamic>,
-            )
+          ? ActionGroupingBehavior.fromJson({
+              'value': json['groupingBehavior'],
+              '_value': json['_groupingBehavior'],
+            })
           : null,
       selectionBehavior: json['selectionBehavior'] != null
-          ? ActionSelectionBehavior.fromJson(json['selectionBehavior'])
-          : null,
-      selectionBehaviorElement: json['_selectionBehavior'] != null
-          ? Element.fromJson(
-              json['_selectionBehavior'] as Map<String, dynamic>,
-            )
+          ? ActionSelectionBehavior.fromJson({
+              'value': json['selectionBehavior'],
+              '_value': json['_selectionBehavior'],
+            })
           : null,
       requiredBehavior: json['requiredBehavior'] != null
-          ? ActionRequiredBehavior.fromJson(json['requiredBehavior'])
-          : null,
-      requiredBehaviorElement: json['_requiredBehavior'] != null
-          ? Element.fromJson(
-              json['_requiredBehavior'] as Map<String, dynamic>,
-            )
+          ? ActionRequiredBehavior.fromJson({
+              'value': json['requiredBehavior'],
+              '_value': json['_requiredBehavior'],
+            })
           : null,
       precheckBehavior: json['precheckBehavior'] != null
-          ? ActionPrecheckBehavior.fromJson(json['precheckBehavior'])
-          : null,
-      precheckBehaviorElement: json['_precheckBehavior'] != null
-          ? Element.fromJson(
-              json['_precheckBehavior'] as Map<String, dynamic>,
-            )
+          ? ActionPrecheckBehavior.fromJson({
+              'value': json['precheckBehavior'],
+              '_value': json['_precheckBehavior'],
+            })
           : null,
       cardinalityBehavior: json['cardinalityBehavior'] != null
-          ? ActionCardinalityBehavior.fromJson(json['cardinalityBehavior'])
-          : null,
-      cardinalityBehaviorElement: json['_cardinalityBehavior'] != null
-          ? Element.fromJson(
-              json['_cardinalityBehavior'] as Map<String, dynamic>,
-            )
+          ? ActionCardinalityBehavior.fromJson({
+              'value': json['cardinalityBehavior'],
+              '_value': json['_cardinalityBehavior'],
+            })
           : null,
       definitionCanonical: json['definitionCanonical'] != null
-          ? FhirCanonical.fromJson(json['definitionCanonical'])
-          : null,
-      definitionCanonicalElement: json['_definitionCanonical'] != null
-          ? Element.fromJson(
-              json['_definitionCanonical'] as Map<String, dynamic>,
-            )
+          ? FhirCanonical.fromJson({
+              'value': json['definitionCanonical'],
+              '_value': json['_definitionCanonical'],
+            })
           : null,
       definitionUri: json['definitionUri'] != null
-          ? FhirUri.fromJson(json['definitionUri'])
-          : null,
-      definitionUriElement: json['_definitionUri'] != null
-          ? Element.fromJson(
-              json['_definitionUri'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['definitionUri'],
+              '_value': json['_definitionUri'],
+            })
           : null,
       transform: json['transform'] != null
-          ? FhirCanonical.fromJson(json['transform'])
-          : null,
-      transformElement: json['_transform'] != null
-          ? Element.fromJson(
-              json['_transform'] as Map<String, dynamic>,
-            )
+          ? FhirCanonical.fromJson({
+              'value': json['transform'],
+              '_value': json['_transform'],
+            })
           : null,
       dynamicValue: json['dynamicValue'] != null
           ? (json['dynamicValue'] as List<dynamic>)
               .map<PlanDefinitionDynamicValue>(
-                (dynamic v) => PlanDefinitionDynamicValue.fromJson(
+                (v) => PlanDefinitionDynamicValue.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1901,7 +1629,7 @@ class PlanDefinitionAction extends BackboneElement {
       action: json['action'] != null
           ? (json['action'] as List<dynamic>)
               .map<PlanDefinitionAction>(
-                (dynamic v) => PlanDefinitionAction.fromJson(
+                (v) => PlanDefinitionAction.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1910,7 +1638,8 @@ class PlanDefinitionAction extends BackboneElement {
     );
   }
 
-  /// Deserialize [PlanDefinitionAction] from a [String] or [YamlMap] object
+  /// Deserialize [PlanDefinitionAction] from a [String]
+  /// or [YamlMap] object
   factory PlanDefinitionAction.fromYaml(dynamic yaml) => yaml is String
       ? PlanDefinitionAction.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1920,10 +1649,11 @@ class PlanDefinitionAction extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'PlanDefinitionAction cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'PlanDefinitionAction cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PlanDefinitionAction] that takes in a [String]
+  /// Factory constructor for [PlanDefinitionAction]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PlanDefinitionAction.fromJsonString(String source) {
@@ -1939,12 +1669,18 @@ class PlanDefinitionAction extends BackboneElement {
   @override
   String get fhirType => 'PlanDefinitionAction';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [prefix]
   /// A user-visible prefix for the action.
   final FhirString? prefix;
-
-  /// Extensions for [prefix]
-  final Element? prefixElement;
 
   /// [title]
   /// The textual description of the action displayed to a user. For example,
@@ -1952,16 +1688,10 @@ class PlanDefinitionAction extends BackboneElement {
   /// of the test such as Assay by HPLC.
   final FhirString? title;
 
-  /// Extensions for [title]
-  final Element? titleElement;
-
   /// [description]
   /// A brief description of the action used to provide a summary to display
   /// to the user.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [textEquivalent]
   /// A text equivalent of the action to be performed. This provides a
@@ -1970,16 +1700,10 @@ class PlanDefinitionAction extends BackboneElement {
   /// dynamically.
   final FhirString? textEquivalent;
 
-  /// Extensions for [textEquivalent]
-  final Element? textEquivalentElement;
-
   /// [priority]
   /// Indicates how quickly the action should be addressed with respect to
   /// other actions.
   final RequestPriority? priority;
-
-  /// Extensions for [priority]
-  final Element? priorityElement;
 
   /// [code]
   /// A code that provides a meaning, grouping, or classification for the
@@ -2005,9 +1729,6 @@ class PlanDefinitionAction extends BackboneElement {
   /// action (Test), so the goalId would be the unique id of a defined goal
   /// element establishing the acceptance criteria for the action.
   final List<FhirId>? goalId;
-
-  /// Extensions for [goalId]
-  final List<Element>? goalIdElement;
 
   /// [subjectCodeableConcept]
   /// A code, group definition, or canonical reference that describes the
@@ -2039,9 +1760,6 @@ class PlanDefinitionAction extends BackboneElement {
   /// PackagedProductDefinition resource.
   final SubjectType? subjectCanonical;
 
-  /// Extensions for [subjectCanonical]
-  final Element? subjectCanonicalElement;
-
   /// [trigger]
   /// A description of when the action should be triggered.
   final List<TriggerDefinition>? trigger;
@@ -2067,9 +1785,6 @@ class PlanDefinitionAction extends BackboneElement {
   /// [timingDateTime]
   /// An optional value describing when the action should be performed.
   final FhirDateTime? timingDateTime;
-
-  /// Extensions for [timingDateTime]
-  final Element? timingDateTimeElement;
 
   /// [timingAge]
   /// An optional value describing when the action should be performed.
@@ -2103,36 +1818,21 @@ class PlanDefinitionAction extends BackboneElement {
   /// Defines the grouping behavior for the action and its children.
   final ActionGroupingBehavior? groupingBehavior;
 
-  /// Extensions for [groupingBehavior]
-  final Element? groupingBehaviorElement;
-
   /// [selectionBehavior]
   /// Defines the selection behavior for the action and its children.
   final ActionSelectionBehavior? selectionBehavior;
-
-  /// Extensions for [selectionBehavior]
-  final Element? selectionBehaviorElement;
 
   /// [requiredBehavior]
   /// Defines the required behavior for the action.
   final ActionRequiredBehavior? requiredBehavior;
 
-  /// Extensions for [requiredBehavior]
-  final Element? requiredBehaviorElement;
-
   /// [precheckBehavior]
   /// Defines whether the action should usually be preselected.
   final ActionPrecheckBehavior? precheckBehavior;
 
-  /// Extensions for [precheckBehavior]
-  final Element? precheckBehaviorElement;
-
   /// [cardinalityBehavior]
   /// Defines whether the action can be selected multiple times.
   final ActionCardinalityBehavior? cardinalityBehavior;
-
-  /// Extensions for [cardinalityBehavior]
-  final Element? cardinalityBehaviorElement;
 
   /// [definitionCanonical]
   /// A reference to an ActivityDefinition that describes the action to be
@@ -2140,26 +1840,17 @@ class PlanDefinitionAction extends BackboneElement {
   /// to be taken.
   final FhirCanonical? definitionCanonical;
 
-  /// Extensions for [definitionCanonical]
-  final Element? definitionCanonicalElement;
-
   /// [definitionUri]
   /// A reference to an ActivityDefinition that describes the action to be
   /// taken in detail, or a PlanDefinition that describes a series of actions
   /// to be taken.
   final FhirUri? definitionUri;
 
-  /// Extensions for [definitionUri]
-  final Element? definitionUriElement;
-
   /// [transform]
   /// A reference to a StructureMap resource that defines a transform that
   /// can be executed to produce the intent resource using the
   /// ActivityDefinition instance as the input.
   final FhirCanonical? transform;
-
-  /// Extensions for [transform]
-  final Element? transformElement;
 
   /// [dynamicValue]
   /// Customizations that should be applied to the statically defined
@@ -2192,26 +1883,14 @@ class PlanDefinitionAction extends BackboneElement {
     if (prefix?.value != null) {
       json['prefix'] = prefix!.toJson();
     }
-    if (prefixElement != null) {
-      json['_prefix'] = prefixElement!.toJson();
-    }
     if (title?.value != null) {
       json['title'] = title!.toJson();
-    }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (textEquivalent?.value != null) {
       json['textEquivalent'] = textEquivalent!.toJson();
-    }
-    if (textEquivalentElement != null) {
-      json['_textEquivalent'] = textEquivalentElement!.toJson();
     }
     if (priority != null) {
       json['priority'] = priority!.toJson();
@@ -2228,9 +1907,6 @@ class PlanDefinitionAction extends BackboneElement {
     }
     if (goalId != null && goalId!.isNotEmpty) {
       json['goalId'] = goalId!.map((FhirId v) => v.toJson()).toList();
-    }
-    if (goalIdElement != null && goalIdElement!.isNotEmpty) {
-      json['_goalId'] = goalIdElement!.map((Element v) => v.toJson()).toList();
     }
     if (subjectCodeableConcept != null) {
       json['subjectCodeableConcept'] = subjectCodeableConcept!.toJson();
@@ -2262,9 +1938,6 @@ class PlanDefinitionAction extends BackboneElement {
     }
     if (timingDateTime?.value != null) {
       json['timingDateTime'] = timingDateTime!.toJson();
-    }
-    if (timingDateTimeElement != null) {
-      json['_timingDateTime'] = timingDateTimeElement!.toJson();
     }
     if (timingAge != null) {
       json['timingAge'] = timingAge!.toJson();
@@ -2307,20 +1980,11 @@ class PlanDefinitionAction extends BackboneElement {
     if (definitionCanonical?.value != null) {
       json['definitionCanonical'] = definitionCanonical!.toJson();
     }
-    if (definitionCanonicalElement != null) {
-      json['_definitionCanonical'] = definitionCanonicalElement!.toJson();
-    }
     if (definitionUri?.value != null) {
       json['definitionUri'] = definitionUri!.toJson();
     }
-    if (definitionUriElement != null) {
-      json['_definitionUri'] = definitionUriElement!.toJson();
-    }
     if (transform?.value != null) {
       json['transform'] = transform!.toJson();
-    }
-    if (transformElement != null) {
-      json['_transform'] = transformElement!.toJson();
     }
     if (dynamicValue != null && dynamicValue!.isNotEmpty) {
       json['dynamicValue'] = dynamicValue!
@@ -2342,31 +2006,23 @@ class PlanDefinitionAction extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? prefix,
-    Element? prefixElement,
     FhirString? title,
-    Element? titleElement,
     FhirString? description,
-    Element? descriptionElement,
     FhirString? textEquivalent,
-    Element? textEquivalentElement,
     RequestPriority? priority,
-    Element? priorityElement,
     List<CodeableConcept>? code,
     List<CodeableConcept>? reason,
     List<RelatedArtifact>? documentation,
     List<FhirId>? goalId,
-    List<Element>? goalIdElement,
     CodeableConcept? subjectCodeableConcept,
     Reference? subjectReference,
     SubjectType? subjectCanonical,
-    Element? subjectCanonicalElement,
     List<TriggerDefinition>? trigger,
     List<PlanDefinitionCondition>? condition,
     List<DataRequirement>? input,
     List<DataRequirement>? output,
     List<PlanDefinitionRelatedAction>? relatedAction,
     FhirDateTime? timingDateTime,
-    Element? timingDateTimeElement,
     Age? timingAge,
     Period? timingPeriod,
     FhirDuration? timingDuration,
@@ -2375,21 +2031,13 @@ class PlanDefinitionAction extends BackboneElement {
     List<PlanDefinitionParticipant>? participant,
     CodeableConcept? type,
     ActionGroupingBehavior? groupingBehavior,
-    Element? groupingBehaviorElement,
     ActionSelectionBehavior? selectionBehavior,
-    Element? selectionBehaviorElement,
     ActionRequiredBehavior? requiredBehavior,
-    Element? requiredBehaviorElement,
     ActionPrecheckBehavior? precheckBehavior,
-    Element? precheckBehaviorElement,
     ActionCardinalityBehavior? cardinalityBehavior,
-    Element? cardinalityBehaviorElement,
     FhirCanonical? definitionCanonical,
-    Element? definitionCanonicalElement,
     FhirUri? definitionUri,
-    Element? definitionUriElement,
     FhirCanonical? transform,
-    Element? transformElement,
     List<PlanDefinitionDynamicValue>? dynamicValue,
     List<PlanDefinitionAction>? action,
     Map<String, Object?>? userData,
@@ -2404,35 +2052,24 @@ class PlanDefinitionAction extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       prefix: prefix ?? this.prefix,
-      prefixElement: prefixElement ?? this.prefixElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       textEquivalent: textEquivalent ?? this.textEquivalent,
-      textEquivalentElement:
-          textEquivalentElement ?? this.textEquivalentElement,
       priority: priority ?? this.priority,
-      priorityElement: priorityElement ?? this.priorityElement,
       code: code ?? this.code,
       reason: reason ?? this.reason,
       documentation: documentation ?? this.documentation,
       goalId: goalId ?? this.goalId,
-      goalIdElement: goalIdElement ?? this.goalIdElement,
       subjectCodeableConcept:
           subjectCodeableConcept ?? this.subjectCodeableConcept,
       subjectReference: subjectReference ?? this.subjectReference,
       subjectCanonical: subjectCanonical ?? this.subjectCanonical,
-      subjectCanonicalElement:
-          subjectCanonicalElement ?? this.subjectCanonicalElement,
       trigger: trigger ?? this.trigger,
       condition: condition ?? this.condition,
       input: input ?? this.input,
       output: output ?? this.output,
       relatedAction: relatedAction ?? this.relatedAction,
       timingDateTime: timingDateTime ?? this.timingDateTime,
-      timingDateTimeElement:
-          timingDateTimeElement ?? this.timingDateTimeElement,
       timingAge: timingAge ?? this.timingAge,
       timingPeriod: timingPeriod ?? this.timingPeriod,
       timingDuration: timingDuration ?? this.timingDuration,
@@ -2441,27 +2078,13 @@ class PlanDefinitionAction extends BackboneElement {
       participant: participant ?? this.participant,
       type: type ?? this.type,
       groupingBehavior: groupingBehavior ?? this.groupingBehavior,
-      groupingBehaviorElement:
-          groupingBehaviorElement ?? this.groupingBehaviorElement,
       selectionBehavior: selectionBehavior ?? this.selectionBehavior,
-      selectionBehaviorElement:
-          selectionBehaviorElement ?? this.selectionBehaviorElement,
       requiredBehavior: requiredBehavior ?? this.requiredBehavior,
-      requiredBehaviorElement:
-          requiredBehaviorElement ?? this.requiredBehaviorElement,
       precheckBehavior: precheckBehavior ?? this.precheckBehavior,
-      precheckBehaviorElement:
-          precheckBehaviorElement ?? this.precheckBehaviorElement,
       cardinalityBehavior: cardinalityBehavior ?? this.cardinalityBehavior,
-      cardinalityBehaviorElement:
-          cardinalityBehaviorElement ?? this.cardinalityBehaviorElement,
       definitionCanonical: definitionCanonical ?? this.definitionCanonical,
-      definitionCanonicalElement:
-          definitionCanonicalElement ?? this.definitionCanonicalElement,
       definitionUri: definitionUri ?? this.definitionUri,
-      definitionUriElement: definitionUriElement ?? this.definitionUriElement,
       transform: transform ?? this.transform,
-      transformElement: transformElement ?? this.transformElement,
       dynamicValue: dynamicValue ?? this.dynamicValue,
       action: action ?? this.action,
       userData: userData ?? this.userData,
@@ -2482,12 +2105,9 @@ class PlanDefinitionCondition extends BackboneElement {
 
   PlanDefinitionCondition({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.kind,
-
-    /// Extensions for [kind]
-    this.kindElement,
     this.expression,
     super.userData,
     super.formatCommentsPre,
@@ -2500,11 +2120,15 @@ class PlanDefinitionCondition extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinitionCondition.fromJson(Map<String, dynamic> json) {
     return PlanDefinitionCondition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2513,18 +2137,16 @@ class PlanDefinitionCondition extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      kind: ActionConditionKind.fromJson(json['kind']),
-      kindElement: json['_kind'] != null
-          ? Element.fromJson(
-              json['_kind'] as Map<String, dynamic>,
-            )
-          : null,
+      kind: ActionConditionKind.fromJson({
+        'value': json['kind'],
+        '_value': json['_kind'],
+      }),
       expression: json['expression'] != null
           ? FhirExpression.fromJson(
               json['expression'] as Map<String, dynamic>,
@@ -2533,7 +2155,8 @@ class PlanDefinitionCondition extends BackboneElement {
     );
   }
 
-  /// Deserialize [PlanDefinitionCondition] from a [String] or [YamlMap] object
+  /// Deserialize [PlanDefinitionCondition] from a [String]
+  /// or [YamlMap] object
   factory PlanDefinitionCondition.fromYaml(dynamic yaml) => yaml is String
       ? PlanDefinitionCondition.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2543,10 +2166,11 @@ class PlanDefinitionCondition extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'PlanDefinitionCondition cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'PlanDefinitionCondition cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PlanDefinitionCondition] that takes in a [String]
+  /// Factory constructor for [PlanDefinitionCondition]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PlanDefinitionCondition.fromJsonString(String source) {
@@ -2562,12 +2186,18 @@ class PlanDefinitionCondition extends BackboneElement {
   @override
   String get fhirType => 'PlanDefinitionCondition';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [kind]
   /// The kind of condition.
   final ActionConditionKind kind;
-
-  /// Extensions for [kind]
-  final Element? kindElement;
 
   /// [expression]
   /// An expression that returns true or false, indicating whether the
@@ -2602,7 +2232,6 @@ class PlanDefinitionCondition extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     ActionConditionKind? kind,
-    Element? kindElement,
     FhirExpression? expression,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -2616,7 +2245,6 @@ class PlanDefinitionCondition extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       kind: kind ?? this.kind,
-      kindElement: kindElement ?? this.kindElement,
       expression: expression ?? this.expression,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -2636,16 +2264,10 @@ class PlanDefinitionRelatedAction extends BackboneElement {
 
   PlanDefinitionRelatedAction({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.actionId,
-
-    /// Extensions for [actionId]
-    this.actionIdElement,
     required this.relationship,
-
-    /// Extensions for [relationship]
-    this.relationshipElement,
     this.offsetDuration,
     this.offsetRange,
     super.userData,
@@ -2659,11 +2281,15 @@ class PlanDefinitionRelatedAction extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinitionRelatedAction.fromJson(Map<String, dynamic> json) {
     return PlanDefinitionRelatedAction(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2672,24 +2298,20 @@ class PlanDefinitionRelatedAction extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      actionId: FhirId.fromJson(json['actionId']),
-      actionIdElement: json['_actionId'] != null
-          ? Element.fromJson(
-              json['_actionId'] as Map<String, dynamic>,
-            )
-          : null,
-      relationship: ActionRelationshipType.fromJson(json['relationship']),
-      relationshipElement: json['_relationship'] != null
-          ? Element.fromJson(
-              json['_relationship'] as Map<String, dynamic>,
-            )
-          : null,
+      actionId: FhirId.fromJson({
+        'value': json['actionId'],
+        '_value': json['_actionId'],
+      }),
+      relationship: ActionRelationshipType.fromJson({
+        'value': json['relationship'],
+        '_value': json['_relationship'],
+      }),
       offsetDuration: json['offsetDuration'] != null
           ? FhirDuration.fromJson(
               json['offsetDuration'] as Map<String, dynamic>,
@@ -2703,7 +2325,8 @@ class PlanDefinitionRelatedAction extends BackboneElement {
     );
   }
 
-  /// Deserialize [PlanDefinitionRelatedAction] from a [String] or [YamlMap] object
+  /// Deserialize [PlanDefinitionRelatedAction] from a [String]
+  /// or [YamlMap] object
   factory PlanDefinitionRelatedAction.fromYaml(dynamic yaml) => yaml is String
       ? PlanDefinitionRelatedAction.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2713,10 +2336,11 @@ class PlanDefinitionRelatedAction extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'PlanDefinitionRelatedAction cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'PlanDefinitionRelatedAction cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PlanDefinitionRelatedAction] that takes in a [String]
+  /// Factory constructor for [PlanDefinitionRelatedAction]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PlanDefinitionRelatedAction.fromJsonString(String source) {
@@ -2732,19 +2356,22 @@ class PlanDefinitionRelatedAction extends BackboneElement {
   @override
   String get fhirType => 'PlanDefinitionRelatedAction';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [actionId]
   /// The element id of the related action.
   final FhirId actionId;
 
-  /// Extensions for [actionId]
-  final Element? actionIdElement;
-
   /// [relationship]
   /// The relationship of this action to the related action.
   final ActionRelationshipType relationship;
-
-  /// Extensions for [relationship]
-  final Element? relationshipElement;
 
   /// [offsetDuration]
   /// A duration or range of durations to apply to the relationship. For
@@ -2770,9 +2397,6 @@ class PlanDefinitionRelatedAction extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['actionId'] = actionId.toJson();
-    if (actionIdElement != null) {
-      json['_actionId'] = actionIdElement!.toJson();
-    }
     json['relationship'] = relationship.toJson();
     if (offsetDuration != null) {
       json['offsetDuration'] = offsetDuration!.toJson();
@@ -2791,9 +2415,7 @@ class PlanDefinitionRelatedAction extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirId? actionId,
-    Element? actionIdElement,
     ActionRelationshipType? relationship,
-    Element? relationshipElement,
     FhirDuration? offsetDuration,
     Range? offsetRange,
     Map<String, Object?>? userData,
@@ -2808,9 +2430,7 @@ class PlanDefinitionRelatedAction extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       actionId: actionId ?? this.actionId,
-      actionIdElement: actionIdElement ?? this.actionIdElement,
       relationship: relationship ?? this.relationship,
-      relationshipElement: relationshipElement ?? this.relationshipElement,
       offsetDuration: offsetDuration ?? this.offsetDuration,
       offsetRange: offsetRange ?? this.offsetRange,
       userData: userData ?? this.userData,
@@ -2830,12 +2450,9 @@ class PlanDefinitionParticipant extends BackboneElement {
 
   PlanDefinitionParticipant({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.role,
     super.userData,
     super.formatCommentsPre,
@@ -2848,11 +2465,15 @@ class PlanDefinitionParticipant extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinitionParticipant.fromJson(Map<String, dynamic> json) {
     return PlanDefinitionParticipant(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2861,18 +2482,16 @@ class PlanDefinitionParticipant extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      type: ActionParticipantType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
+      type: ActionParticipantType.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
       role: json['role'] != null
           ? CodeableConcept.fromJson(
               json['role'] as Map<String, dynamic>,
@@ -2881,7 +2500,8 @@ class PlanDefinitionParticipant extends BackboneElement {
     );
   }
 
-  /// Deserialize [PlanDefinitionParticipant] from a [String] or [YamlMap] object
+  /// Deserialize [PlanDefinitionParticipant] from a [String]
+  /// or [YamlMap] object
   factory PlanDefinitionParticipant.fromYaml(dynamic yaml) => yaml is String
       ? PlanDefinitionParticipant.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2891,10 +2511,11 @@ class PlanDefinitionParticipant extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'PlanDefinitionParticipant cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'PlanDefinitionParticipant cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PlanDefinitionParticipant] that takes in a [String]
+  /// Factory constructor for [PlanDefinitionParticipant]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PlanDefinitionParticipant.fromJsonString(String source) {
@@ -2910,12 +2531,18 @@ class PlanDefinitionParticipant extends BackboneElement {
   @override
   String get fhirType => 'PlanDefinitionParticipant';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// The type of participant in the action.
   final ActionParticipantType type;
-
-  /// Extensions for [type]
-  final Element? typeElement;
 
   /// [role]
   /// The role the participant should play in performing the described
@@ -2950,7 +2577,6 @@ class PlanDefinitionParticipant extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     ActionParticipantType? type,
-    Element? typeElement,
     CodeableConcept? role,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -2964,7 +2590,6 @@ class PlanDefinitionParticipant extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       role: role ?? this.role,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -2987,12 +2612,9 @@ class PlanDefinitionDynamicValue extends BackboneElement {
 
   PlanDefinitionDynamicValue({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.path,
-
-    /// Extensions for [path]
-    this.pathElement,
     this.expression,
     super.userData,
     super.formatCommentsPre,
@@ -3005,11 +2627,15 @@ class PlanDefinitionDynamicValue extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PlanDefinitionDynamicValue.fromJson(Map<String, dynamic> json) {
     return PlanDefinitionDynamicValue(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3018,17 +2644,17 @@ class PlanDefinitionDynamicValue extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      path: json['path'] != null ? FhirString.fromJson(json['path']) : null,
-      pathElement: json['_path'] != null
-          ? Element.fromJson(
-              json['_path'] as Map<String, dynamic>,
-            )
+      path: json['path'] != null
+          ? FhirString.fromJson({
+              'value': json['path'],
+              '_value': json['_path'],
+            })
           : null,
       expression: json['expression'] != null
           ? FhirExpression.fromJson(
@@ -3038,7 +2664,8 @@ class PlanDefinitionDynamicValue extends BackboneElement {
     );
   }
 
-  /// Deserialize [PlanDefinitionDynamicValue] from a [String] or [YamlMap] object
+  /// Deserialize [PlanDefinitionDynamicValue] from a [String]
+  /// or [YamlMap] object
   factory PlanDefinitionDynamicValue.fromYaml(dynamic yaml) => yaml is String
       ? PlanDefinitionDynamicValue.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -3048,10 +2675,11 @@ class PlanDefinitionDynamicValue extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'PlanDefinitionDynamicValue cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'PlanDefinitionDynamicValue cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PlanDefinitionDynamicValue] that takes in a [String]
+  /// Factory constructor for [PlanDefinitionDynamicValue]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PlanDefinitionDynamicValue.fromJsonString(String source) {
@@ -3067,6 +2695,15 @@ class PlanDefinitionDynamicValue extends BackboneElement {
   @override
   String get fhirType => 'PlanDefinitionDynamicValue';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [path]
   /// The path to the element to be customized. This is the path on the
   /// resource that will hold the result of the calculation defined by the
@@ -3078,9 +2715,6 @@ class PlanDefinitionDynamicValue extends BackboneElement {
   /// multiple-cardinality sub-elements (see the [Simple FHIRPath
   /// Profile](fhirpath.html#simple) for full details).
   final FhirString? path;
-
-  /// Extensions for [path]
-  final Element? pathElement;
 
   /// [expression]
   /// An expression specifying the value of the customized element.
@@ -3102,9 +2736,6 @@ class PlanDefinitionDynamicValue extends BackboneElement {
     if (path?.value != null) {
       json['path'] = path!.toJson();
     }
-    if (pathElement != null) {
-      json['_path'] = pathElement!.toJson();
-    }
     if (expression != null) {
       json['expression'] = expression!.toJson();
     }
@@ -3119,7 +2750,6 @@ class PlanDefinitionDynamicValue extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? path,
-    Element? pathElement,
     FhirExpression? expression,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -3133,7 +2763,6 @@ class PlanDefinitionDynamicValue extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       path: path ?? this.path,
-      pathElement: pathElement ?? this.pathElement,
       expression: expression ?? this.expression,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

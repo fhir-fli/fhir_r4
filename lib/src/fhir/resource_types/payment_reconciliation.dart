@@ -12,42 +12,21 @@ class PaymentReconciliation extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.period,
     required this.created,
-
-    /// Extensions for [created]
-    this.createdElement,
     this.paymentIssuer,
     this.request,
     this.requestor,
     this.outcome,
-
-    /// Extensions for [outcome]
-    this.outcomeElement,
     this.disposition,
-
-    /// Extensions for [disposition]
-    this.dispositionElement,
     required this.paymentDate,
-
-    /// Extensions for [paymentDate]
-    this.paymentDateElement,
     required this.paymentAmount,
     this.paymentIdentifier,
     this.detail,
@@ -66,27 +45,27 @@ class PaymentReconciliation extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PaymentReconciliation.fromJson(Map<String, dynamic> json) {
     return PaymentReconciliation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -96,7 +75,7 @@ class PaymentReconciliation extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -105,7 +84,7 @@ class PaymentReconciliation extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -114,7 +93,7 @@ class PaymentReconciliation extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -123,29 +102,25 @@ class PaymentReconciliation extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: FinancialResourceStatusCodes.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: FinancialResourceStatusCodes.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       period: json['period'] != null
           ? Period.fromJson(
               json['period'] as Map<String, dynamic>,
             )
           : null,
-      created: FhirDateTime.fromJson(json['created']),
-      createdElement: json['_created'] != null
-          ? Element.fromJson(
-              json['_created'] as Map<String, dynamic>,
-            )
-          : null,
+      created: FhirDateTime.fromJson({
+        'value': json['created'],
+        '_value': json['_created'],
+      }),
       paymentIssuer: json['paymentIssuer'] != null
           ? Reference.fromJson(
               json['paymentIssuer'] as Map<String, dynamic>,
@@ -162,27 +137,21 @@ class PaymentReconciliation extends DomainResource {
             )
           : null,
       outcome: json['outcome'] != null
-          ? RemittanceOutcome.fromJson(json['outcome'])
-          : null,
-      outcomeElement: json['_outcome'] != null
-          ? Element.fromJson(
-              json['_outcome'] as Map<String, dynamic>,
-            )
+          ? RemittanceOutcome.fromJson({
+              'value': json['outcome'],
+              '_value': json['_outcome'],
+            })
           : null,
       disposition: json['disposition'] != null
-          ? FhirString.fromJson(json['disposition'])
+          ? FhirString.fromJson({
+              'value': json['disposition'],
+              '_value': json['_disposition'],
+            })
           : null,
-      dispositionElement: json['_disposition'] != null
-          ? Element.fromJson(
-              json['_disposition'] as Map<String, dynamic>,
-            )
-          : null,
-      paymentDate: FhirDate.fromJson(json['paymentDate']),
-      paymentDateElement: json['_paymentDate'] != null
-          ? Element.fromJson(
-              json['_paymentDate'] as Map<String, dynamic>,
-            )
-          : null,
+      paymentDate: FhirDate.fromJson({
+        'value': json['paymentDate'],
+        '_value': json['_paymentDate'],
+      }),
       paymentAmount: Money.fromJson(
         json['paymentAmount'] as Map<String, dynamic>,
       ),
@@ -194,7 +163,7 @@ class PaymentReconciliation extends DomainResource {
       detail: json['detail'] != null
           ? (json['detail'] as List<dynamic>)
               .map<PaymentReconciliationDetail>(
-                (dynamic v) => PaymentReconciliationDetail.fromJson(
+                (v) => PaymentReconciliationDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -208,7 +177,7 @@ class PaymentReconciliation extends DomainResource {
       processNote: json['processNote'] != null
           ? (json['processNote'] as List<dynamic>)
               .map<PaymentReconciliationProcessNote>(
-                (dynamic v) => PaymentReconciliationProcessNote.fromJson(
+                (v) => PaymentReconciliationProcessNote.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -217,7 +186,8 @@ class PaymentReconciliation extends DomainResource {
     );
   }
 
-  /// Deserialize [PaymentReconciliation] from a [String] or [YamlMap] object
+  /// Deserialize [PaymentReconciliation] from a [String]
+  /// or [YamlMap] object
   factory PaymentReconciliation.fromYaml(dynamic yaml) => yaml is String
       ? PaymentReconciliation.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -227,10 +197,11 @@ class PaymentReconciliation extends DomainResource {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'PaymentReconciliation cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'PaymentReconciliation cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PaymentReconciliation] that takes in a [String]
+  /// Factory constructor for [PaymentReconciliation]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PaymentReconciliation.fromJsonString(String source) {
@@ -246,6 +217,15 @@ class PaymentReconciliation extends DomainResource {
   @override
   String get fhirType => 'PaymentReconciliation';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// A unique identifier assigned to this payment reconciliation.
   final List<Identifier>? identifier;
@@ -253,9 +233,6 @@ class PaymentReconciliation extends DomainResource {
   /// [status]
   /// The status of the resource instance.
   final FinancialResourceStatusCodes status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [period]
   /// The period of time for which payments have been gathered into this bulk
@@ -265,9 +242,6 @@ class PaymentReconciliation extends DomainResource {
   /// [created]
   /// The date when the resource was created.
   final FhirDateTime created;
-
-  /// Extensions for [created]
-  final Element? createdElement;
 
   /// [paymentIssuer]
   /// The party who generated the payment.
@@ -286,23 +260,14 @@ class PaymentReconciliation extends DomainResource {
   /// The outcome of a request for a reconciliation.
   final RemittanceOutcome? outcome;
 
-  /// Extensions for [outcome]
-  final Element? outcomeElement;
-
   /// [disposition]
   /// A human readable description of the status of the request for the
   /// reconciliation.
   final FhirString? disposition;
 
-  /// Extensions for [disposition]
-  final Element? dispositionElement;
-
   /// [paymentDate]
   /// The date of payment as indicated on the financial instrument.
   final FhirDate paymentDate;
-
-  /// Extensions for [paymentDate]
-  final Element? paymentDateElement;
 
   /// [paymentAmount]
   /// Total payment amount as indicated on the financial instrument.
@@ -338,9 +303,6 @@ class PaymentReconciliation extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -367,9 +329,6 @@ class PaymentReconciliation extends DomainResource {
       json['period'] = period!.toJson();
     }
     json['created'] = created.toJson();
-    if (createdElement != null) {
-      json['_created'] = createdElement!.toJson();
-    }
     if (paymentIssuer != null) {
       json['paymentIssuer'] = paymentIssuer!.toJson();
     }
@@ -385,13 +344,7 @@ class PaymentReconciliation extends DomainResource {
     if (disposition?.value != null) {
       json['disposition'] = disposition!.toJson();
     }
-    if (dispositionElement != null) {
-      json['_disposition'] = dispositionElement!.toJson();
-    }
     json['paymentDate'] = paymentDate.toJson();
-    if (paymentDateElement != null) {
-      json['_paymentDate'] = paymentDateElement!.toJson();
-    }
     json['paymentAmount'] = paymentAmount.toJson();
     if (paymentIdentifier != null) {
       json['paymentIdentifier'] = paymentIdentifier!.toJson();
@@ -418,28 +371,21 @@ class PaymentReconciliation extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     FinancialResourceStatusCodes? status,
-    Element? statusElement,
     Period? period,
     FhirDateTime? created,
-    Element? createdElement,
     Reference? paymentIssuer,
     Reference? request,
     Reference? requestor,
     RemittanceOutcome? outcome,
-    Element? outcomeElement,
     FhirString? disposition,
-    Element? dispositionElement,
     FhirDate? paymentDate,
-    Element? paymentDateElement,
     Money? paymentAmount,
     Identifier? paymentIdentifier,
     List<PaymentReconciliationDetail>? detail,
@@ -456,28 +402,21 @@ class PaymentReconciliation extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       period: period ?? this.period,
       created: created ?? this.created,
-      createdElement: createdElement ?? this.createdElement,
       paymentIssuer: paymentIssuer ?? this.paymentIssuer,
       request: request ?? this.request,
       requestor: requestor ?? this.requestor,
       outcome: outcome ?? this.outcome,
-      outcomeElement: outcomeElement ?? this.outcomeElement,
       disposition: disposition ?? this.disposition,
-      dispositionElement: dispositionElement ?? this.dispositionElement,
       paymentDate: paymentDate ?? this.paymentDate,
-      paymentDateElement: paymentDateElement ?? this.paymentDateElement,
       paymentAmount: paymentAmount ?? this.paymentAmount,
       paymentIdentifier: paymentIdentifier ?? this.paymentIdentifier,
       detail: detail ?? this.detail,
@@ -501,7 +440,7 @@ class PaymentReconciliationDetail extends BackboneElement {
 
   PaymentReconciliationDetail({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.predecessor,
@@ -510,9 +449,6 @@ class PaymentReconciliationDetail extends BackboneElement {
     this.submitter,
     this.response,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.responsible,
     this.payee,
     this.amount,
@@ -527,11 +463,15 @@ class PaymentReconciliationDetail extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PaymentReconciliationDetail.fromJson(Map<String, dynamic> json) {
     return PaymentReconciliationDetail(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -540,7 +480,7 @@ class PaymentReconciliationDetail extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -574,11 +514,11 @@ class PaymentReconciliationDetail extends BackboneElement {
               json['response'] as Map<String, dynamic>,
             )
           : null,
-      date: json['date'] != null ? FhirDate.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDate.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       responsible: json['responsible'] != null
           ? Reference.fromJson(
@@ -598,7 +538,8 @@ class PaymentReconciliationDetail extends BackboneElement {
     );
   }
 
-  /// Deserialize [PaymentReconciliationDetail] from a [String] or [YamlMap] object
+  /// Deserialize [PaymentReconciliationDetail] from a [String]
+  /// or [YamlMap] object
   factory PaymentReconciliationDetail.fromYaml(dynamic yaml) => yaml is String
       ? PaymentReconciliationDetail.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -608,10 +549,11 @@ class PaymentReconciliationDetail extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'PaymentReconciliationDetail cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'PaymentReconciliationDetail cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PaymentReconciliationDetail] that takes in a [String]
+  /// Factory constructor for [PaymentReconciliationDetail]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PaymentReconciliationDetail.fromJsonString(String source) {
@@ -626,6 +568,15 @@ class PaymentReconciliationDetail extends BackboneElement {
 
   @override
   String get fhirType => 'PaymentReconciliationDetail';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Unique identifier for the current payment item for the referenced
@@ -658,9 +609,6 @@ class PaymentReconciliationDetail extends BackboneElement {
   /// [date]
   /// The date from the response resource containing a commitment to pay.
   final FhirDate? date;
-
-  /// Extensions for [date]
-  final Element? dateElement;
 
   /// [responsible]
   /// A reference to the individual who is responsible for inquiries
@@ -707,9 +655,6 @@ class PaymentReconciliationDetail extends BackboneElement {
     if (date?.value != null) {
       json['date'] = date!.toJson();
     }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (responsible != null) {
       json['responsible'] = responsible!.toJson();
     }
@@ -736,7 +681,6 @@ class PaymentReconciliationDetail extends BackboneElement {
     Reference? submitter,
     Reference? response,
     FhirDate? date,
-    Element? dateElement,
     Reference? responsible,
     Reference? payee,
     Money? amount,
@@ -758,7 +702,6 @@ class PaymentReconciliationDetail extends BackboneElement {
       submitter: submitter ?? this.submitter,
       response: response ?? this.response,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       responsible: responsible ?? this.responsible,
       payee: payee ?? this.payee,
       amount: amount ?? this.amount,
@@ -780,16 +723,10 @@ class PaymentReconciliationProcessNote extends BackboneElement {
 
   PaymentReconciliationProcessNote({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.text,
-
-    /// Extensions for [text]
-    this.textElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -801,11 +738,15 @@ class PaymentReconciliationProcessNote extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PaymentReconciliationProcessNote.fromJson(Map<String, dynamic> json) {
     return PaymentReconciliationProcessNote(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -814,28 +755,29 @@ class PaymentReconciliationProcessNote extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      type: json['type'] != null ? NoteType.fromJson(json['type']) : null,
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
+      type: json['type'] != null
+          ? NoteType.fromJson({
+              'value': json['type'],
+              '_value': json['_type'],
+            })
           : null,
-      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
-      textElement: json['_text'] != null
-          ? Element.fromJson(
-              json['_text'] as Map<String, dynamic>,
-            )
+      text: json['text'] != null
+          ? FhirString.fromJson({
+              'value': json['text'],
+              '_value': json['_text'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [PaymentReconciliationProcessNote] from a [String] or [YamlMap] object
+  /// Deserialize [PaymentReconciliationProcessNote] from a [String]
+  /// or [YamlMap] object
   factory PaymentReconciliationProcessNote.fromYaml(dynamic yaml) => yaml
           is String
       ? PaymentReconciliationProcessNote.fromJson(
@@ -846,10 +788,11 @@ class PaymentReconciliationProcessNote extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'PaymentReconciliationProcessNote cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'PaymentReconciliationProcessNote cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PaymentReconciliationProcessNote] that takes in a [String]
+  /// Factory constructor for [PaymentReconciliationProcessNote]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PaymentReconciliationProcessNote.fromJsonString(String source) {
@@ -865,19 +808,22 @@ class PaymentReconciliationProcessNote extends BackboneElement {
   @override
   String get fhirType => 'PaymentReconciliationProcessNote';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// The business purpose of the note text.
   final NoteType? type;
 
-  /// Extensions for [type]
-  final Element? typeElement;
-
   /// [text]
   /// The explanation or description associated with the processing.
   final FhirString? text;
-
-  /// Extensions for [text]
-  final Element? textElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -898,9 +844,6 @@ class PaymentReconciliationProcessNote extends BackboneElement {
     if (text?.value != null) {
       json['text'] = text!.toJson();
     }
-    if (textElement != null) {
-      json['_text'] = textElement!.toJson();
-    }
     return json;
   }
 
@@ -912,9 +855,7 @@ class PaymentReconciliationProcessNote extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     NoteType? type,
-    Element? typeElement,
     FhirString? text,
-    Element? textElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -927,9 +868,7 @@ class PaymentReconciliationProcessNote extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       text: text ?? this.text,
-      textElement: textElement ?? this.textElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

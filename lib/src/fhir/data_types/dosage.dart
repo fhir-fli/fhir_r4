@@ -10,26 +10,14 @@ class Dosage extends BackboneType {
 
   Dosage({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.sequence,
-
-    /// Extensions for [sequence]
-    this.sequenceElement,
     this.text,
-
-    /// Extensions for [text]
-    this.textElement,
     this.additionalInstruction,
     this.patientInstruction,
-
-    /// Extensions for [patientInstruction]
-    this.patientInstructionElement,
     this.timing,
     this.asNeededBoolean,
-
-    /// Extensions for [asNeededBoolean]
-    this.asNeededBooleanElement,
     this.asNeededCodeableConcept,
     this.site,
     this.route,
@@ -49,11 +37,15 @@ class Dosage extends BackboneType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Dosage.fromJson(Map<String, dynamic> json) {
     return Dosage(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -62,42 +54,38 @@ class Dosage extends BackboneType {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       sequence: json['sequence'] != null
-          ? FhirInteger.fromJson(json['sequence'])
+          ? FhirInteger.fromJson({
+              'value': json['sequence'],
+              '_value': json['_sequence'],
+            })
           : null,
-      sequenceElement: json['_sequence'] != null
-          ? Element.fromJson(
-              json['_sequence'] as Map<String, dynamic>,
-            )
-          : null,
-      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
-      textElement: json['_text'] != null
-          ? Element.fromJson(
-              json['_text'] as Map<String, dynamic>,
-            )
+      text: json['text'] != null
+          ? FhirString.fromJson({
+              'value': json['text'],
+              '_value': json['_text'],
+            })
           : null,
       additionalInstruction: json['additionalInstruction'] != null
           ? (json['additionalInstruction'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       patientInstruction: json['patientInstruction'] != null
-          ? FhirString.fromJson(json['patientInstruction'])
-          : null,
-      patientInstructionElement: json['_patientInstruction'] != null
-          ? Element.fromJson(
-              json['_patientInstruction'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['patientInstruction'],
+              '_value': json['_patientInstruction'],
+            })
           : null,
       timing: json['timing'] != null
           ? Timing.fromJson(
@@ -105,12 +93,10 @@ class Dosage extends BackboneType {
             )
           : null,
       asNeededBoolean: json['asNeededBoolean'] != null
-          ? FhirBoolean.fromJson(json['asNeededBoolean'])
-          : null,
-      asNeededBooleanElement: json['_asNeededBoolean'] != null
-          ? Element.fromJson(
-              json['_asNeededBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['asNeededBoolean'],
+              '_value': json['_asNeededBoolean'],
+            })
           : null,
       asNeededCodeableConcept: json['asNeededCodeableConcept'] != null
           ? CodeableConcept.fromJson(
@@ -135,7 +121,7 @@ class Dosage extends BackboneType {
       doseAndRate: json['doseAndRate'] != null
           ? (json['doseAndRate'] as List<dynamic>)
               .map<DosageDoseAndRate>(
-                (dynamic v) => DosageDoseAndRate.fromJson(
+                (v) => DosageDoseAndRate.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -159,7 +145,8 @@ class Dosage extends BackboneType {
     );
   }
 
-  /// Deserialize [Dosage] from a [String] or [YamlMap] object
+  /// Deserialize [Dosage] from a [String]
+  /// or [YamlMap] object
   factory Dosage.fromYaml(dynamic yaml) => yaml is String
       ? Dosage.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -168,10 +155,11 @@ class Dosage extends BackboneType {
           ? Dosage.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Dosage cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Dosage cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Dosage] that takes in a [String]
+  /// Factory constructor for [Dosage]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Dosage.fromJsonString(String source) {
@@ -187,20 +175,23 @@ class Dosage extends BackboneType {
   @override
   String get fhirType => 'Dosage';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [sequence]
   /// Indicates the order in which the dosage instructions should be applied
   /// or interpreted.
   final FhirInteger? sequence;
 
-  /// Extensions for [sequence]
-  final Element? sequenceElement;
-
   /// [text]
   /// Free text dosage instructions e.g. SIG.
   final FhirString? text;
-
-  /// Extensions for [text]
-  final Element? textElement;
 
   /// [additionalInstruction]
   /// Supplemental instructions to the patient on how to take the medication
@@ -213,9 +204,6 @@ class Dosage extends BackboneType {
   /// Instructions in terms that are understood by the patient or consumer.
   final FhirString? patientInstruction;
 
-  /// Extensions for [patientInstruction]
-  final Element? patientInstructionElement;
-
   /// [timing]
   /// When medication should be administered.
   final Timing? timing;
@@ -225,9 +213,6 @@ class Dosage extends BackboneType {
   /// specific dosing schedule (Boolean option), or it indicates the
   /// precondition for taking the Medication (CodeableConcept).
   final FhirBoolean? asNeededBoolean;
-
-  /// Extensions for [asNeededBoolean]
-  final Element? asNeededBooleanElement;
 
   /// [asNeededCodeableConcept]
   /// Indicates whether the Medication is only taken when needed within a
@@ -279,14 +264,8 @@ class Dosage extends BackboneType {
     if (sequence?.value != null) {
       json['sequence'] = sequence!.toJson();
     }
-    if (sequenceElement != null) {
-      json['_sequence'] = sequenceElement!.toJson();
-    }
     if (text?.value != null) {
       json['text'] = text!.toJson();
-    }
-    if (textElement != null) {
-      json['_text'] = textElement!.toJson();
     }
     if (additionalInstruction != null && additionalInstruction!.isNotEmpty) {
       json['additionalInstruction'] = additionalInstruction!
@@ -296,17 +275,11 @@ class Dosage extends BackboneType {
     if (patientInstruction?.value != null) {
       json['patientInstruction'] = patientInstruction!.toJson();
     }
-    if (patientInstructionElement != null) {
-      json['_patientInstruction'] = patientInstructionElement!.toJson();
-    }
     if (timing != null) {
       json['timing'] = timing!.toJson();
     }
     if (asNeededBoolean?.value != null) {
       json['asNeededBoolean'] = asNeededBoolean!.toJson();
-    }
-    if (asNeededBooleanElement != null) {
-      json['_asNeededBoolean'] = asNeededBooleanElement!.toJson();
     }
     if (asNeededCodeableConcept != null) {
       json['asNeededCodeableConcept'] = asNeededCodeableConcept!.toJson();
@@ -344,15 +317,11 @@ class Dosage extends BackboneType {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirInteger? sequence,
-    Element? sequenceElement,
     FhirString? text,
-    Element? textElement,
     List<CodeableConcept>? additionalInstruction,
     FhirString? patientInstruction,
-    Element? patientInstructionElement,
     Timing? timing,
     FhirBoolean? asNeededBoolean,
-    Element? asNeededBooleanElement,
     CodeableConcept? asNeededCodeableConcept,
     CodeableConcept? site,
     CodeableConcept? route,
@@ -373,18 +342,12 @@ class Dosage extends BackboneType {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       sequence: sequence ?? this.sequence,
-      sequenceElement: sequenceElement ?? this.sequenceElement,
       text: text ?? this.text,
-      textElement: textElement ?? this.textElement,
       additionalInstruction:
           additionalInstruction ?? this.additionalInstruction,
       patientInstruction: patientInstruction ?? this.patientInstruction,
-      patientInstructionElement:
-          patientInstructionElement ?? this.patientInstructionElement,
       timing: timing ?? this.timing,
       asNeededBoolean: asNeededBoolean ?? this.asNeededBoolean,
-      asNeededBooleanElement:
-          asNeededBooleanElement ?? this.asNeededBooleanElement,
       asNeededCodeableConcept:
           asNeededCodeableConcept ?? this.asNeededCodeableConcept,
       site: site ?? this.site,
@@ -412,7 +375,7 @@ class DosageDoseAndRate extends Element {
 
   DosageDoseAndRate({
     super.id,
-    super.extension_,
+    this.extension_,
     this.type,
     this.doseRange,
     this.doseQuantity,
@@ -430,11 +393,15 @@ class DosageDoseAndRate extends Element {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DosageDoseAndRate.fromJson(Map<String, dynamic> json) {
     return DosageDoseAndRate(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -473,7 +440,8 @@ class DosageDoseAndRate extends Element {
     );
   }
 
-  /// Deserialize [DosageDoseAndRate] from a [String] or [YamlMap] object
+  /// Deserialize [DosageDoseAndRate] from a [String]
+  /// or [YamlMap] object
   factory DosageDoseAndRate.fromYaml(dynamic yaml) => yaml is String
       ? DosageDoseAndRate.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -482,11 +450,11 @@ class DosageDoseAndRate extends Element {
           ? DosageDoseAndRate.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DosageDoseAndRate cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('DosageDoseAndRate cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DosageDoseAndRate] that takes in a [String]
+  /// Factory constructor for [DosageDoseAndRate]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DosageDoseAndRate.fromJsonString(String source) {
@@ -501,6 +469,15 @@ class DosageDoseAndRate extends Element {
 
   @override
   String get fhirType => 'DosageDoseAndRate';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The kind of dose or rate specified, for example, ordered or calculated.

@@ -1,37 +1,49 @@
 import 'dart:convert';
-
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-/// FhirId is a type of string that is used in FHIR resources
+/// Extension to convert a [String] to a [FhirId].
 extension FhirIdExtension on String {
-  /// This method converts a Dart string to a FHIR id
+  /// Converts a [String] to a [FhirId].
   FhirId get toFhirId => FhirId(this);
 }
 
-/// This class represents the FHIR primitive type `id`
+/// Represents the FHIR primitive type `id`.
 class FhirId extends PrimitiveType<String> {
-  /// Constructor enforces valid input
-  FhirId(String input, [Element? element])
-      : value = _validateId(input),
-        super(element: element);
+  /// Public constructor with input validation.
+  FhirId(String? input, [Element? element])
+      : super(
+          input != null ? _validateId(input) : null,
+          element,
+        );
 
-  /// fromJson accepts dynamic input and validates
-  factory FhirId.fromJson(dynamic json) {
-    if (json is String) {
-      return FhirId(json);
+  /// Factory constructor to create [FhirId] from JSON input.
+  factory FhirId.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+
+    if (value == null) {
+      throw const FormatException('Invalid input for FhirId: value is null');
     }
-    throw FormatException('Invalid input for FhirId: $json');
+
+    return FhirId(value, element);
   }
 
-  /// fromYaml accepts dynamic input and validates
-  factory FhirId.fromYaml(dynamic yaml) => yaml is String
-      ? FhirId.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : throw const FormatException('Invalid YAML format for FhirId');
-  @override
-  final String value;
+  /// Factory constructor to create [FhirId] from YAML input.
+  static FhirId fromYaml(dynamic yaml) => yaml is String
+      ? FhirId.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+        )
+      : yaml is YamlMap
+          ? FhirId.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
+            )
+          : throw ArgumentError(
+              'FhirId cannot be constructed from provided input. '
+              'It must be a YAML string or YAML map.');
 
-  /// Static method to try parsing the input
+  /// Static method to try parsing the input.
   static FhirId? tryParse(dynamic input) {
     if (input is String) {
       try {
@@ -39,52 +51,95 @@ class FhirId extends PrimitiveType<String> {
       } catch (e) {
         return null;
       }
-    } else {
-      return null;
     }
+    return null;
   }
 
+  /// Ensures the input is a valid FHIR ID.
   static String _validateId(String input) {
-    if (RegExp(r'^[A-Za-z0-9\-\.]{1,64}$').hasMatch(input)) {
-      return input;
-    }
-    throw FormatException('Invalid FhirId: $input');
+    final regex = RegExp(r'^[A-Za-z0-9\-\.]{1,64}$');
+    if (regex.hasMatch(input)) return input;
+    throw FormatException('Invalid FhirId: "$input"');
   }
 
+  /// Boolean checks for the presence of a value only.
+  bool get valueOnly => value != null && element == null;
+
+  /// Boolean checks for the presence of an element only.
+  bool get elementOnly => value == null && element != null;
+
+  /// Boolean checks for the presence of both value and element.
+  bool get valueAndElement => value != null && element != null;
+
+  /// Returns the FHIR type as a [String].
   @override
   String get fhirType => 'id';
 
+  /// Serializes the instance to JSON with standardized keys.
   @override
-  String toJson() => value;
-  @override
-  String toYaml() => value;
-  @override
-  String toString() => value;
-  @override
-  String toJsonString() => jsonEncode(toJson());
+  Map<String, dynamic> toJson() {
+    return {
+      'value': value,
+      if (element != null) '_value': element!.toJson(),
+    };
+  }
 
+  /// Converts a list of JSON values to a list of [FhirId] instances.
+  static List<FhirId> fromJsonList(
+    List<dynamic> values,
+    List<dynamic>? elements,
+  ) {
+    if (elements != null && elements.length != values.length) {
+      throw const FormatException(
+        'Values and elements must have the same length',
+      );
+    }
+
+    return List.generate(values.length, (i) {
+      final value = values[i] as String?;
+      final element = elements?[i] != null
+          ? Element.fromJson(elements![i] as Map<String, dynamic>)
+          : null;
+      return FhirId(value, element);
+    });
+  }
+
+  /// Converts a list of [FhirId] instances to a JSON-compatible map.
+  static Map<String, dynamic> toJsonList(List<FhirId> ids) {
+    return {
+      'value': ids.map((id) => id.value).toList(),
+      '_value': ids.map((id) => id.element?.toJson()).toList(),
+    };
+  }
+
+  /// Provides a string representation of the instance.
+  @override
+  String toString() => value ?? '';
+
+  /// Overrides equality operator.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => value.hashCode;
-
-  @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  bool operator ==(Object other) => equals(other);
-
-  @override
-  bool equals(Object other) =>
+  bool operator ==(Object other) =>
       identical(this, other) ||
       (other is FhirId && other.value == value) ||
       (other is String && other == value);
 
+  /// Overrides `hashCode` for use in hash-based collections.
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => Object.hash(value, element);
+
+  /// Creates a deep copy of the instance.
   @override
   FhirId clone() => FhirId(value, element?.clone() as Element?);
 
+  /// Sets a property on the associated [Element], returning a new instance.
   @override
   FhirId setElement(String name, dynamic elementValue) {
     return FhirId(value, element?.setProperty(name, elementValue));
   }
 
+  /// Creates a modified copy of the instance with updated properties.
   @override
   FhirId copyWith({
     String? newValue,

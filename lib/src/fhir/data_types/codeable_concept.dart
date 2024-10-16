@@ -10,12 +10,9 @@ class CodeableConcept extends DataType {
 
   CodeableConcept({
     super.id,
-    super.extension_,
+    this.extension_,
     this.coding,
     this.text,
-
-    /// Extensions for [text]
-    this.textElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -27,11 +24,15 @@ class CodeableConcept extends DataType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CodeableConcept.fromJson(Map<String, dynamic> json) {
     return CodeableConcept(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -40,22 +41,23 @@ class CodeableConcept extends DataType {
       coding: json['coding'] != null
           ? (json['coding'] as List<dynamic>)
               .map<Coding>(
-                (dynamic v) => Coding.fromJson(
+                (v) => Coding.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
-      textElement: json['_text'] != null
-          ? Element.fromJson(
-              json['_text'] as Map<String, dynamic>,
-            )
+      text: json['text'] != null
+          ? FhirString.fromJson({
+              'value': json['text'],
+              '_value': json['_text'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [CodeableConcept] from a [String] or [YamlMap] object
+  /// Deserialize [CodeableConcept] from a [String]
+  /// or [YamlMap] object
   factory CodeableConcept.fromYaml(dynamic yaml) => yaml is String
       ? CodeableConcept.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -64,11 +66,11 @@ class CodeableConcept extends DataType {
           ? CodeableConcept.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CodeableConcept cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('CodeableConcept cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CodeableConcept] that takes in a [String]
+  /// Factory constructor for [CodeableConcept]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CodeableConcept.fromJsonString(String source) {
@@ -84,6 +86,15 @@ class CodeableConcept extends DataType {
   @override
   String get fhirType => 'CodeableConcept';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [coding]
   /// A reference to a code defined by a terminology system.
   final List<Coding>? coding;
@@ -93,9 +104,6 @@ class CodeableConcept extends DataType {
   /// by the user who entered the data and/or which represents the intended
   /// meaning of the user.
   final FhirString? text;
-
-  /// Extensions for [text]
-  final Element? textElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -112,9 +120,6 @@ class CodeableConcept extends DataType {
     if (text?.value != null) {
       json['text'] = text!.toJson();
     }
-    if (textElement != null) {
-      json['_text'] = textElement!.toJson();
-    }
     return json;
   }
 
@@ -126,7 +131,6 @@ class CodeableConcept extends DataType {
     List<FhirExtension>? extension_,
     List<Coding>? coding,
     FhirString? text,
-    Element? textElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -139,7 +143,6 @@ class CodeableConcept extends DataType {
       extension_: extension_ ?? this.extension_,
       coding: coding ?? this.coding,
       text: text ?? this.text,
-      textElement: textElement ?? this.textElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

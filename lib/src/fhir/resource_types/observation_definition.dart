@@ -12,33 +12,18 @@ class ObservationDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.category,
     required this.code,
     this.identifier,
     this.permittedDataType,
-
-    /// Extensions for [permittedDataType]
-    this.permittedDataTypeElement,
     this.multipleResultsAllowed,
-
-    /// Extensions for [multipleResultsAllowed]
-    this.multipleResultsAllowedElement,
     this.method,
     this.preferredReportName,
-
-    /// Extensions for [preferredReportName]
-    this.preferredReportNameElement,
     this.quantitativeDetails,
     this.qualifiedInterval,
     this.validCodedValueSet,
@@ -58,27 +43,27 @@ class ObservationDefinition extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationDefinition.fromJson(Map<String, dynamic> json) {
     return ObservationDefinition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -88,7 +73,7 @@ class ObservationDefinition extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -97,7 +82,7 @@ class ObservationDefinition extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -106,7 +91,7 @@ class ObservationDefinition extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -115,7 +100,7 @@ class ObservationDefinition extends DomainResource {
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -127,33 +112,21 @@ class ObservationDefinition extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      permittedDataType: json['permittedDataType'] != null
-          ? (json['permittedDataType'] as List<dynamic>)
-              .map<ObservationDataType>(
-                (dynamic v) => ObservationDataType.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      permittedDataTypeElement: json['_permittedDataType'] != null
-          ? (json['_permittedDataType'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      permittedDataType: parsePrimitiveList<ObservationDataType>(
+          json['permittedDataType'] as List<dynamic>?,
+          json['_permittedDataType'] as List<dynamic>?,
+          fromJson: ObservationDataType.fromJson),
       multipleResultsAllowed: json['multipleResultsAllowed'] != null
-          ? FhirBoolean.fromJson(json['multipleResultsAllowed'])
-          : null,
-      multipleResultsAllowedElement: json['_multipleResultsAllowed'] != null
-          ? Element.fromJson(
-              json['_multipleResultsAllowed'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['multipleResultsAllowed'],
+              '_value': json['_multipleResultsAllowed'],
+            })
           : null,
       method: json['method'] != null
           ? CodeableConcept.fromJson(
@@ -161,12 +134,10 @@ class ObservationDefinition extends DomainResource {
             )
           : null,
       preferredReportName: json['preferredReportName'] != null
-          ? FhirString.fromJson(json['preferredReportName'])
-          : null,
-      preferredReportNameElement: json['_preferredReportName'] != null
-          ? Element.fromJson(
-              json['_preferredReportName'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['preferredReportName'],
+              '_value': json['_preferredReportName'],
+            })
           : null,
       quantitativeDetails: json['quantitativeDetails'] != null
           ? ObservationDefinitionQuantitativeDetails.fromJson(
@@ -176,7 +147,7 @@ class ObservationDefinition extends DomainResource {
       qualifiedInterval: json['qualifiedInterval'] != null
           ? (json['qualifiedInterval'] as List<dynamic>)
               .map<ObservationDefinitionQualifiedInterval>(
-                (dynamic v) => ObservationDefinitionQualifiedInterval.fromJson(
+                (v) => ObservationDefinitionQualifiedInterval.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -205,7 +176,8 @@ class ObservationDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [ObservationDefinition] from a [String] or [YamlMap] object
+  /// Deserialize [ObservationDefinition] from a [String]
+  /// or [YamlMap] object
   factory ObservationDefinition.fromYaml(dynamic yaml) => yaml is String
       ? ObservationDefinition.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -215,10 +187,11 @@ class ObservationDefinition extends DomainResource {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ObservationDefinition cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ObservationDefinition cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ObservationDefinition] that takes in a [String]
+  /// Factory constructor for [ObservationDefinition]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ObservationDefinition.fromJsonString(String source) {
@@ -233,6 +206,15 @@ class ObservationDefinition extends DomainResource {
 
   @override
   String get fhirType => 'ObservationDefinition';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [category]
   /// A code that classifies the general type of observation.
@@ -252,16 +234,10 @@ class ObservationDefinition extends DomainResource {
   /// observations conforming to this ObservationDefinition.
   final List<ObservationDataType>? permittedDataType;
 
-  /// Extensions for [permittedDataType]
-  final List<Element>? permittedDataTypeElement;
-
   /// [multipleResultsAllowed]
   /// Multiple results allowed for observations conforming to this
   /// ObservationDefinition.
   final FhirBoolean? multipleResultsAllowed;
-
-  /// Extensions for [multipleResultsAllowed]
-  final Element? multipleResultsAllowedElement;
 
   /// [method]
   /// The method or technique used to perform the observation.
@@ -271,9 +247,6 @@ class ObservationDefinition extends DomainResource {
   /// The preferred name to be used when reporting the results of
   /// observations conforming to this ObservationDefinition.
   final FhirString? preferredReportName;
-
-  /// Extensions for [preferredReportName]
-  final Element? preferredReportNameElement;
 
   /// [quantitativeDetails]
   /// Characteristics for quantitative results of this observation.
@@ -316,9 +289,6 @@ class ObservationDefinition extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -353,17 +323,11 @@ class ObservationDefinition extends DomainResource {
     if (multipleResultsAllowed?.value != null) {
       json['multipleResultsAllowed'] = multipleResultsAllowed!.toJson();
     }
-    if (multipleResultsAllowedElement != null) {
-      json['_multipleResultsAllowed'] = multipleResultsAllowedElement!.toJson();
-    }
     if (method != null) {
       json['method'] = method!.toJson();
     }
     if (preferredReportName?.value != null) {
       json['preferredReportName'] = preferredReportName!.toJson();
-    }
-    if (preferredReportNameElement != null) {
-      json['_preferredReportName'] = preferredReportNameElement!.toJson();
     }
     if (quantitativeDetails != null) {
       json['quantitativeDetails'] = quantitativeDetails!.toJson();
@@ -395,9 +359,7 @@ class ObservationDefinition extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -406,12 +368,9 @@ class ObservationDefinition extends DomainResource {
     CodeableConcept? code,
     List<Identifier>? identifier,
     List<ObservationDataType>? permittedDataType,
-    List<Element>? permittedDataTypeElement,
     FhirBoolean? multipleResultsAllowed,
-    Element? multipleResultsAllowedElement,
     CodeableConcept? method,
     FhirString? preferredReportName,
-    Element? preferredReportNameElement,
     ObservationDefinitionQuantitativeDetails? quantitativeDetails,
     List<ObservationDefinitionQualifiedInterval>? qualifiedInterval,
     Reference? validCodedValueSet,
@@ -429,9 +388,7 @@ class ObservationDefinition extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -440,16 +397,10 @@ class ObservationDefinition extends DomainResource {
       code: code ?? this.code,
       identifier: identifier ?? this.identifier,
       permittedDataType: permittedDataType ?? this.permittedDataType,
-      permittedDataTypeElement:
-          permittedDataTypeElement ?? this.permittedDataTypeElement,
       multipleResultsAllowed:
           multipleResultsAllowed ?? this.multipleResultsAllowed,
-      multipleResultsAllowedElement:
-          multipleResultsAllowedElement ?? this.multipleResultsAllowedElement,
       method: method ?? this.method,
       preferredReportName: preferredReportName ?? this.preferredReportName,
-      preferredReportNameElement:
-          preferredReportNameElement ?? this.preferredReportNameElement,
       quantitativeDetails: quantitativeDetails ?? this.quantitativeDetails,
       qualifiedInterval: qualifiedInterval ?? this.qualifiedInterval,
       validCodedValueSet: validCodedValueSet ?? this.validCodedValueSet,
@@ -475,18 +426,12 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
 
   ObservationDefinitionQuantitativeDetails({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.customaryUnit,
     this.unit,
     this.conversionFactor,
-
-    /// Extensions for [conversionFactor]
-    this.conversionFactorElement,
     this.decimalPrecision,
-
-    /// Extensions for [decimalPrecision]
-    this.decimalPrecisionElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -499,11 +444,15 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   factory ObservationDefinitionQuantitativeDetails.fromJson(
       Map<String, dynamic> json) {
     return ObservationDefinitionQuantitativeDetails(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -512,7 +461,7 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -529,25 +478,22 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
             )
           : null,
       conversionFactor: json['conversionFactor'] != null
-          ? FhirDecimal.fromJson(json['conversionFactor'])
-          : null,
-      conversionFactorElement: json['_conversionFactor'] != null
-          ? Element.fromJson(
-              json['_conversionFactor'] as Map<String, dynamic>,
-            )
+          ? FhirDecimal.fromJson({
+              'value': json['conversionFactor'],
+              '_value': json['_conversionFactor'],
+            })
           : null,
       decimalPrecision: json['decimalPrecision'] != null
-          ? FhirInteger.fromJson(json['decimalPrecision'])
-          : null,
-      decimalPrecisionElement: json['_decimalPrecision'] != null
-          ? Element.fromJson(
-              json['_decimalPrecision'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['decimalPrecision'],
+              '_value': json['_decimalPrecision'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [ObservationDefinitionQuantitativeDetails] from a [String] or [YamlMap] object
+  /// Deserialize [ObservationDefinitionQuantitativeDetails] from a [String]
+  /// or [YamlMap] object
   factory ObservationDefinitionQuantitativeDetails.fromYaml(dynamic yaml) => yaml
           is String
       ? ObservationDefinitionQuantitativeDetails.fromJson(
@@ -558,10 +504,11 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ObservationDefinitionQuantitativeDetails cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ObservationDefinitionQuantitativeDetails cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ObservationDefinitionQuantitativeDetails] that takes in a [String]
+  /// Factory constructor for [ObservationDefinitionQuantitativeDetails]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ObservationDefinitionQuantitativeDetails.fromJsonString(
@@ -578,6 +525,15 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   @override
   String get fhirType => 'ObservationDefinitionQuantitativeDetails';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [customaryUnit]
   /// Customary unit used to report quantitative results of observations
   /// conforming to this ObservationDefinition.
@@ -593,16 +549,10 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
   /// with customary unit.
   final FhirDecimal? conversionFactor;
 
-  /// Extensions for [conversionFactor]
-  final Element? conversionFactorElement;
-
   /// [decimalPrecision]
   /// Number of digits after decimal separator when the results of such
   /// observations are of type Quantity.
   final FhirInteger? decimalPrecision;
-
-  /// Extensions for [decimalPrecision]
-  final Element? decimalPrecisionElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -626,14 +576,8 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     if (conversionFactor?.value != null) {
       json['conversionFactor'] = conversionFactor!.toJson();
     }
-    if (conversionFactorElement != null) {
-      json['_conversionFactor'] = conversionFactorElement!.toJson();
-    }
     if (decimalPrecision?.value != null) {
       json['decimalPrecision'] = decimalPrecision!.toJson();
-    }
-    if (decimalPrecisionElement != null) {
-      json['_decimalPrecision'] = decimalPrecisionElement!.toJson();
     }
     return json;
   }
@@ -649,9 +593,7 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
     CodeableConcept? customaryUnit,
     CodeableConcept? unit,
     FhirDecimal? conversionFactor,
-    Element? conversionFactorElement,
     FhirInteger? decimalPrecision,
-    Element? decimalPrecisionElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -666,11 +608,7 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
       customaryUnit: customaryUnit ?? this.customaryUnit,
       unit: unit ?? this.unit,
       conversionFactor: conversionFactor ?? this.conversionFactor,
-      conversionFactorElement:
-          conversionFactorElement ?? this.conversionFactorElement,
       decimalPrecision: decimalPrecision ?? this.decimalPrecision,
-      decimalPrecisionElement:
-          decimalPrecisionElement ?? this.decimalPrecisionElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -689,25 +627,16 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
 
   ObservationDefinitionQualifiedInterval({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.category,
-
-    /// Extensions for [category]
-    this.categoryElement,
     this.range,
     this.context,
     this.appliesTo,
     this.gender,
-
-    /// Extensions for [gender]
-    this.genderElement,
     this.age,
     this.gestationalAge,
     this.condition,
-
-    /// Extensions for [condition]
-    this.conditionElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -720,11 +649,15 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
   factory ObservationDefinitionQualifiedInterval.fromJson(
       Map<String, dynamic> json) {
     return ObservationDefinitionQualifiedInterval(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -733,19 +666,17 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       category: json['category'] != null
-          ? ObservationRangeCategory.fromJson(json['category'])
-          : null,
-      categoryElement: json['_category'] != null
-          ? Element.fromJson(
-              json['_category'] as Map<String, dynamic>,
-            )
+          ? ObservationRangeCategory.fromJson({
+              'value': json['category'],
+              '_value': json['_category'],
+            })
           : null,
       range: json['range'] != null
           ? Range.fromJson(
@@ -760,19 +691,17 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
       appliesTo: json['appliesTo'] != null
           ? (json['appliesTo'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       gender: json['gender'] != null
-          ? AdministrativeGender.fromJson(json['gender'])
-          : null,
-      genderElement: json['_gender'] != null
-          ? Element.fromJson(
-              json['_gender'] as Map<String, dynamic>,
-            )
+          ? AdministrativeGender.fromJson({
+              'value': json['gender'],
+              '_value': json['_gender'],
+            })
           : null,
       age: json['age'] != null
           ? Range.fromJson(
@@ -785,17 +714,16 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
             )
           : null,
       condition: json['condition'] != null
-          ? FhirString.fromJson(json['condition'])
-          : null,
-      conditionElement: json['_condition'] != null
-          ? Element.fromJson(
-              json['_condition'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['condition'],
+              '_value': json['_condition'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [ObservationDefinitionQualifiedInterval] from a [String] or [YamlMap] object
+  /// Deserialize [ObservationDefinitionQualifiedInterval] from a [String]
+  /// or [YamlMap] object
   factory ObservationDefinitionQualifiedInterval.fromYaml(dynamic yaml) => yaml
           is String
       ? ObservationDefinitionQualifiedInterval.fromJson(
@@ -806,10 +734,11 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ObservationDefinitionQualifiedInterval cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ObservationDefinitionQualifiedInterval cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ObservationDefinitionQualifiedInterval] that takes in a [String]
+  /// Factory constructor for [ObservationDefinitionQualifiedInterval]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ObservationDefinitionQualifiedInterval.fromJsonString(String source) {
@@ -825,13 +754,19 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
   @override
   String get fhirType => 'ObservationDefinitionQualifiedInterval';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [category]
   /// The category of interval of values for continuous or ordinal
   /// observations conforming to this ObservationDefinition.
   final ObservationRangeCategory? category;
-
-  /// Extensions for [category]
-  final Element? categoryElement;
 
   /// [range]
   /// The low and high values determining the interval. There may be only one
@@ -852,9 +787,6 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
   /// Sex of the population the range applies to.
   final AdministrativeGender? gender;
 
-  /// Extensions for [gender]
-  final Element? genderElement;
-
   /// [age]
   /// The age at which this reference range is applicable. This is a neonatal
   /// age (e.g. number of weeks at term) if the meaning says so.
@@ -868,9 +800,6 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
   /// [condition]
   /// Text based condition for which the reference range is valid.
   final FhirString? condition;
-
-  /// Extensions for [condition]
-  final Element? conditionElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -910,9 +839,6 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
     if (condition?.value != null) {
       json['condition'] = condition!.toJson();
     }
-    if (conditionElement != null) {
-      json['_condition'] = conditionElement!.toJson();
-    }
     return json;
   }
 
@@ -924,16 +850,13 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     ObservationRangeCategory? category,
-    Element? categoryElement,
     Range? range,
     CodeableConcept? context,
     List<CodeableConcept>? appliesTo,
     AdministrativeGender? gender,
-    Element? genderElement,
     Range? age,
     Range? gestationalAge,
     FhirString? condition,
-    Element? conditionElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -946,16 +869,13 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       category: category ?? this.category,
-      categoryElement: categoryElement ?? this.categoryElement,
       range: range ?? this.range,
       context: context ?? this.context,
       appliesTo: appliesTo ?? this.appliesTo,
       gender: gender ?? this.gender,
-      genderElement: genderElement ?? this.genderElement,
       age: age ?? this.age,
       gestationalAge: gestationalAge ?? this.gestationalAge,
       condition: condition ?? this.condition,
-      conditionElement: conditionElement ?? this.conditionElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

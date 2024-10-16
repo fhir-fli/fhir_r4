@@ -11,41 +11,23 @@ class PackagedProductDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.type,
     this.packageFor,
     this.status,
     this.statusDate,
-
-    /// Extensions for [statusDate]
-    this.statusDateElement,
     this.containedItemQuantity,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.legalStatusOfSupply,
     this.marketingStatus,
     this.characteristic,
     this.copackagedIndicator,
-
-    /// Extensions for [copackagedIndicator]
-    this.copackagedIndicatorElement,
     this.manufacturer,
     this.package,
     super.userData,
@@ -61,27 +43,27 @@ class PackagedProductDefinition extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinition.fromJson(Map<String, dynamic> json) {
     return PackagedProductDefinition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -91,7 +73,7 @@ class PackagedProductDefinition extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -100,7 +82,7 @@ class PackagedProductDefinition extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -109,7 +91,7 @@ class PackagedProductDefinition extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -118,17 +100,17 @@ class PackagedProductDefinition extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
@@ -138,7 +120,7 @@ class PackagedProductDefinition extends DomainResource {
       packageFor: json['packageFor'] != null
           ? (json['packageFor'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -150,35 +132,30 @@ class PackagedProductDefinition extends DomainResource {
             )
           : null,
       statusDate: json['statusDate'] != null
-          ? FhirDateTime.fromJson(json['statusDate'])
-          : null,
-      statusDateElement: json['_statusDate'] != null
-          ? Element.fromJson(
-              json['_statusDate'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['statusDate'],
+              '_value': json['_statusDate'],
+            })
           : null,
       containedItemQuantity: json['containedItemQuantity'] != null
           ? (json['containedItemQuantity'] as List<dynamic>)
               .map<Quantity>(
-                (dynamic v) => Quantity.fromJson(
+                (v) => Quantity.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       legalStatusOfSupply: json['legalStatusOfSupply'] != null
           ? (json['legalStatusOfSupply'] as List<dynamic>)
               .map<PackagedProductDefinitionLegalStatusOfSupply>(
-                (dynamic v) =>
-                    PackagedProductDefinitionLegalStatusOfSupply.fromJson(
+                (v) => PackagedProductDefinitionLegalStatusOfSupply.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -187,7 +164,7 @@ class PackagedProductDefinition extends DomainResource {
       marketingStatus: json['marketingStatus'] != null
           ? (json['marketingStatus'] as List<dynamic>)
               .map<MarketingStatus>(
-                (dynamic v) => MarketingStatus.fromJson(
+                (v) => MarketingStatus.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -196,24 +173,22 @@ class PackagedProductDefinition extends DomainResource {
       characteristic: json['characteristic'] != null
           ? (json['characteristic'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       copackagedIndicator: json['copackagedIndicator'] != null
-          ? FhirBoolean.fromJson(json['copackagedIndicator'])
-          : null,
-      copackagedIndicatorElement: json['_copackagedIndicator'] != null
-          ? Element.fromJson(
-              json['_copackagedIndicator'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['copackagedIndicator'],
+              '_value': json['_copackagedIndicator'],
+            })
           : null,
       manufacturer: json['manufacturer'] != null
           ? (json['manufacturer'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -227,7 +202,8 @@ class PackagedProductDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [PackagedProductDefinition] from a [String] or [YamlMap] object
+  /// Deserialize [PackagedProductDefinition] from a [String]
+  /// or [YamlMap] object
   factory PackagedProductDefinition.fromYaml(dynamic yaml) => yaml is String
       ? PackagedProductDefinition.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -237,10 +213,11 @@ class PackagedProductDefinition extends DomainResource {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'PackagedProductDefinition cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'PackagedProductDefinition cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PackagedProductDefinition] that takes in a [String]
+  /// Factory constructor for [PackagedProductDefinition]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PackagedProductDefinition.fromJsonString(String source) {
@@ -256,6 +233,15 @@ class PackagedProductDefinition extends DomainResource {
   @override
   String get fhirType => 'PackagedProductDefinition';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// A unique identifier for this package as whole. Unique instance
   /// identifiers assigned to a package by manufacturers, regulators, drug
@@ -266,9 +252,6 @@ class PackagedProductDefinition extends DomainResource {
   /// A name for this package. Typically what it would be listed as in a drug
   /// formulary or catalogue, inventory etc.
   final FhirString? name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [type]
   /// A high level category e.g. medicinal product, raw material,
@@ -288,9 +271,6 @@ class PackagedProductDefinition extends DomainResource {
   /// [statusDate]
   /// The date at which the given status became applicable.
   final FhirDateTime? statusDate;
-
-  /// Extensions for [statusDate]
-  final Element? statusDateElement;
 
   /// [containedItemQuantity]
   /// A total of the complete count of contained items of a particular
@@ -314,9 +294,6 @@ class PackagedProductDefinition extends DomainResource {
   /// product.
   final FhirMarkdown? description;
 
-  /// Extensions for [description]
-  final Element? descriptionElement;
-
   /// [legalStatusOfSupply]
   /// The legal status of supply of the packaged item as classified by the
   /// regulator.
@@ -336,9 +313,6 @@ class PackagedProductDefinition extends DomainResource {
   /// States whether a drug product is supplied with another item such as a
   /// diluent or adjuvant.
   final FhirBoolean? copackagedIndicator;
-
-  /// Extensions for [copackagedIndicator]
-  final Element? copackagedIndicatorElement;
 
   /// [manufacturer]
   /// Manufacturer of this package type. When there are multiple it means
@@ -362,9 +336,6 @@ class PackagedProductDefinition extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -390,9 +361,6 @@ class PackagedProductDefinition extends DomainResource {
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -406,18 +374,12 @@ class PackagedProductDefinition extends DomainResource {
     if (statusDate?.value != null) {
       json['statusDate'] = statusDate!.toJson();
     }
-    if (statusDateElement != null) {
-      json['_statusDate'] = statusDateElement!.toJson();
-    }
     if (containedItemQuantity != null && containedItemQuantity!.isNotEmpty) {
       json['containedItemQuantity'] =
           containedItemQuantity!.map((Quantity v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (legalStatusOfSupply != null && legalStatusOfSupply!.isNotEmpty) {
       json['legalStatusOfSupply'] = legalStatusOfSupply!
@@ -434,9 +396,6 @@ class PackagedProductDefinition extends DomainResource {
     }
     if (copackagedIndicator?.value != null) {
       json['copackagedIndicator'] = copackagedIndicator!.toJson();
-    }
-    if (copackagedIndicatorElement != null) {
-      json['_copackagedIndicator'] = copackagedIndicatorElement!.toJson();
     }
     if (manufacturer != null && manufacturer!.isNotEmpty) {
       json['manufacturer'] =
@@ -455,29 +414,23 @@ class PackagedProductDefinition extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     FhirString? name,
-    Element? nameElement,
     CodeableConcept? type,
     List<Reference>? packageFor,
     CodeableConcept? status,
     FhirDateTime? statusDate,
-    Element? statusDateElement,
     List<Quantity>? containedItemQuantity,
     FhirMarkdown? description,
-    Element? descriptionElement,
     List<PackagedProductDefinitionLegalStatusOfSupply>? legalStatusOfSupply,
     List<MarketingStatus>? marketingStatus,
     List<CodeableConcept>? characteristic,
     FhirBoolean? copackagedIndicator,
-    Element? copackagedIndicatorElement,
     List<Reference>? manufacturer,
     PackagedProductDefinitionPackage? package,
     Map<String, Object?>? userData,
@@ -491,31 +444,24 @@ class PackagedProductDefinition extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       type: type ?? this.type,
       packageFor: packageFor ?? this.packageFor,
       status: status ?? this.status,
       statusDate: statusDate ?? this.statusDate,
-      statusDateElement: statusDateElement ?? this.statusDateElement,
       containedItemQuantity:
           containedItemQuantity ?? this.containedItemQuantity,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       legalStatusOfSupply: legalStatusOfSupply ?? this.legalStatusOfSupply,
       marketingStatus: marketingStatus ?? this.marketingStatus,
       characteristic: characteristic ?? this.characteristic,
       copackagedIndicator: copackagedIndicator ?? this.copackagedIndicator,
-      copackagedIndicatorElement:
-          copackagedIndicatorElement ?? this.copackagedIndicatorElement,
       manufacturer: manufacturer ?? this.manufacturer,
       package: package ?? this.package,
       userData: userData ?? this.userData,
@@ -536,7 +482,7 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
 
   PackagedProductDefinitionLegalStatusOfSupply({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.code,
     this.jurisdiction,
@@ -552,11 +498,15 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
   factory PackagedProductDefinitionLegalStatusOfSupply.fromJson(
       Map<String, dynamic> json) {
     return PackagedProductDefinitionLegalStatusOfSupply(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -565,7 +515,7 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -584,7 +534,8 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
     );
   }
 
-  /// Deserialize [PackagedProductDefinitionLegalStatusOfSupply] from a [String] or [YamlMap] object
+  /// Deserialize [PackagedProductDefinitionLegalStatusOfSupply] from a [String]
+  /// or [YamlMap] object
   factory PackagedProductDefinitionLegalStatusOfSupply.fromYaml(dynamic yaml) =>
       yaml is String
           ? PackagedProductDefinitionLegalStatusOfSupply.fromJson(
@@ -595,10 +546,11 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
                   jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
                 )
               : throw ArgumentError(
-                  'PackagedProductDefinitionLegalStatusOfSupply cannot be constructed from input '
-                  'provided, it is neither a yaml string nor a yaml map.');
+                  'PackagedProductDefinitionLegalStatusOfSupply cannot be constructed from '
+                  'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PackagedProductDefinitionLegalStatusOfSupply] that takes in a [String]
+  /// Factory constructor for [PackagedProductDefinitionLegalStatusOfSupply]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PackagedProductDefinitionLegalStatusOfSupply.fromJsonString(
@@ -614,6 +566,15 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
 
   @override
   String get fhirType => 'PackagedProductDefinitionLegalStatusOfSupply';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [code]
   /// The actual status of supply. Conveys in what situation this package
@@ -689,14 +650,11 @@ class PackagedProductDefinitionPackage extends BackboneElement {
 
   PackagedProductDefinitionPackage({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.type,
     this.quantity,
-
-    /// Extensions for [quantity]
-    this.quantityElement,
     this.material,
     this.alternateMaterial,
     this.shelfLifeStorage,
@@ -715,11 +673,15 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionPackage.fromJson(Map<String, dynamic> json) {
     return PackagedProductDefinitionPackage(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -728,7 +690,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -737,7 +699,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -749,17 +711,15 @@ class PackagedProductDefinitionPackage extends BackboneElement {
             )
           : null,
       quantity: json['quantity'] != null
-          ? FhirInteger.fromJson(json['quantity'])
-          : null,
-      quantityElement: json['_quantity'] != null
-          ? Element.fromJson(
-              json['_quantity'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['quantity'],
+              '_value': json['_quantity'],
+            })
           : null,
       material: json['material'] != null
           ? (json['material'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -768,7 +728,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
       alternateMaterial: json['alternateMaterial'] != null
           ? (json['alternateMaterial'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -777,8 +737,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
       shelfLifeStorage: json['shelfLifeStorage'] != null
           ? (json['shelfLifeStorage'] as List<dynamic>)
               .map<PackagedProductDefinitionShelfLifeStorage>(
-                (dynamic v) =>
-                    PackagedProductDefinitionShelfLifeStorage.fromJson(
+                (v) => PackagedProductDefinitionShelfLifeStorage.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -787,7 +746,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
       manufacturer: json['manufacturer'] != null
           ? (json['manufacturer'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -796,7 +755,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
       property: json['property'] != null
           ? (json['property'] as List<dynamic>)
               .map<PackagedProductDefinitionProperty>(
-                (dynamic v) => PackagedProductDefinitionProperty.fromJson(
+                (v) => PackagedProductDefinitionProperty.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -805,7 +764,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
       containedItem: json['containedItem'] != null
           ? (json['containedItem'] as List<dynamic>)
               .map<PackagedProductDefinitionContainedItem>(
-                (dynamic v) => PackagedProductDefinitionContainedItem.fromJson(
+                (v) => PackagedProductDefinitionContainedItem.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -814,7 +773,7 @@ class PackagedProductDefinitionPackage extends BackboneElement {
       package: json['package'] != null
           ? (json['package'] as List<dynamic>)
               .map<PackagedProductDefinitionPackage>(
-                (dynamic v) => PackagedProductDefinitionPackage.fromJson(
+                (v) => PackagedProductDefinitionPackage.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -823,7 +782,8 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     );
   }
 
-  /// Deserialize [PackagedProductDefinitionPackage] from a [String] or [YamlMap] object
+  /// Deserialize [PackagedProductDefinitionPackage] from a [String]
+  /// or [YamlMap] object
   factory PackagedProductDefinitionPackage.fromYaml(dynamic yaml) => yaml
           is String
       ? PackagedProductDefinitionPackage.fromJson(
@@ -834,10 +794,11 @@ class PackagedProductDefinitionPackage extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'PackagedProductDefinitionPackage cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'PackagedProductDefinitionPackage cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PackagedProductDefinitionPackage] that takes in a [String]
+  /// Factory constructor for [PackagedProductDefinitionPackage]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PackagedProductDefinitionPackage.fromJsonString(String source) {
@@ -853,6 +814,15 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   @override
   String get fhirType => 'PackagedProductDefinitionPackage';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// An identifier that is specific to this particular part of the
   /// packaging. Including possibly Data Carrier Identifier (a GS1 barcode).
@@ -866,9 +836,6 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   /// The quantity of this level of packaging in the package that contains
   /// it. If specified, the outermost level is always 1.
   final FhirInteger? quantity;
-
-  /// Extensions for [quantity]
-  final Element? quantityElement;
 
   /// [material]
   /// Material type of the package item.
@@ -926,9 +893,6 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     if (quantity?.value != null) {
       json['quantity'] = quantity!.toJson();
     }
-    if (quantityElement != null) {
-      json['_quantity'] = quantityElement!.toJson();
-    }
     if (material != null && material!.isNotEmpty) {
       json['material'] =
           material!.map((CodeableConcept v) => v.toJson()).toList();
@@ -974,7 +938,6 @@ class PackagedProductDefinitionPackage extends BackboneElement {
     List<Identifier>? identifier,
     CodeableConcept? type,
     FhirInteger? quantity,
-    Element? quantityElement,
     List<CodeableConcept>? material,
     List<CodeableConcept>? alternateMaterial,
     List<PackagedProductDefinitionShelfLifeStorage>? shelfLifeStorage,
@@ -996,7 +959,6 @@ class PackagedProductDefinitionPackage extends BackboneElement {
       identifier: identifier ?? this.identifier,
       type: type ?? this.type,
       quantity: quantity ?? this.quantity,
-      quantityElement: quantityElement ?? this.quantityElement,
       material: material ?? this.material,
       alternateMaterial: alternateMaterial ?? this.alternateMaterial,
       shelfLifeStorage: shelfLifeStorage ?? this.shelfLifeStorage,
@@ -1021,14 +983,11 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
 
   PackagedProductDefinitionShelfLifeStorage({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.type,
     this.periodDuration,
     this.periodString,
-
-    /// Extensions for [periodString]
-    this.periodStringElement,
     this.specialPrecautionsForStorage,
     super.userData,
     super.formatCommentsPre,
@@ -1042,11 +1001,15 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   factory PackagedProductDefinitionShelfLifeStorage.fromJson(
       Map<String, dynamic> json) {
     return PackagedProductDefinitionShelfLifeStorage(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1055,7 +1018,7 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1072,17 +1035,15 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
             )
           : null,
       periodString: json['periodString'] != null
-          ? FhirString.fromJson(json['periodString'])
-          : null,
-      periodStringElement: json['_periodString'] != null
-          ? Element.fromJson(
-              json['_periodString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['periodString'],
+              '_value': json['_periodString'],
+            })
           : null,
       specialPrecautionsForStorage: json['specialPrecautionsForStorage'] != null
           ? (json['specialPrecautionsForStorage'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1091,7 +1052,8 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     );
   }
 
-  /// Deserialize [PackagedProductDefinitionShelfLifeStorage] from a [String] or [YamlMap] object
+  /// Deserialize [PackagedProductDefinitionShelfLifeStorage] from a [String]
+  /// or [YamlMap] object
   factory PackagedProductDefinitionShelfLifeStorage.fromYaml(dynamic yaml) => yaml
           is String
       ? PackagedProductDefinitionShelfLifeStorage.fromJson(
@@ -1102,10 +1064,11 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'PackagedProductDefinitionShelfLifeStorage cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'PackagedProductDefinitionShelfLifeStorage cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PackagedProductDefinitionShelfLifeStorage] that takes in a [String]
+  /// Factory constructor for [PackagedProductDefinitionShelfLifeStorage]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PackagedProductDefinitionShelfLifeStorage.fromJsonString(
@@ -1121,6 +1084,15 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
 
   @override
   String get fhirType => 'PackagedProductDefinitionShelfLifeStorage';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// This describes the shelf life, taking into account various scenarios
@@ -1146,9 +1118,6 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
   /// resulting terminology The symbol and the symbol identifier shall be
   /// used.
   final FhirString? periodString;
-
-  /// Extensions for [periodString]
-  final Element? periodStringElement;
 
   /// [specialPrecautionsForStorage]
   /// Special precautions for storage, if any, can be specified using an
@@ -1178,9 +1147,6 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     if (periodString?.value != null) {
       json['periodString'] = periodString!.toJson();
     }
-    if (periodStringElement != null) {
-      json['_periodString'] = periodStringElement!.toJson();
-    }
     if (specialPrecautionsForStorage != null &&
         specialPrecautionsForStorage!.isNotEmpty) {
       json['specialPrecautionsForStorage'] = specialPrecautionsForStorage!
@@ -1201,7 +1167,6 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
     CodeableConcept? type,
     FhirDuration? periodDuration,
     FhirString? periodString,
-    Element? periodStringElement,
     List<CodeableConcept>? specialPrecautionsForStorage,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1217,7 +1182,6 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
       type: type ?? this.type,
       periodDuration: periodDuration ?? this.periodDuration,
       periodString: periodString ?? this.periodString,
-      periodStringElement: periodStringElement ?? this.periodStringElement,
       specialPrecautionsForStorage:
           specialPrecautionsForStorage ?? this.specialPrecautionsForStorage,
       userData: userData ?? this.userData,
@@ -1237,19 +1201,13 @@ class PackagedProductDefinitionProperty extends BackboneElement {
 
   PackagedProductDefinitionProperty({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
     this.valueCodeableConcept,
     this.valueQuantity,
     this.valueDate,
-
-    /// Extensions for [valueDate]
-    this.valueDateElement,
     this.valueBoolean,
-
-    /// Extensions for [valueBoolean]
-    this.valueBooleanElement,
     this.valueAttachment,
     super.userData,
     super.formatCommentsPre,
@@ -1263,11 +1221,15 @@ class PackagedProductDefinitionProperty extends BackboneElement {
   factory PackagedProductDefinitionProperty.fromJson(
       Map<String, dynamic> json) {
     return PackagedProductDefinitionProperty(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1276,7 +1238,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1296,20 +1258,16 @@ class PackagedProductDefinitionProperty extends BackboneElement {
             )
           : null,
       valueDate: json['valueDate'] != null
-          ? FhirDate.fromJson(json['valueDate'])
-          : null,
-      valueDateElement: json['_valueDate'] != null
-          ? Element.fromJson(
-              json['_valueDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['valueDate'],
+              '_value': json['_valueDate'],
+            })
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(
-              json['_valueBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['valueBoolean'],
+              '_value': json['_valueBoolean'],
+            })
           : null,
       valueAttachment: json['valueAttachment'] != null
           ? Attachment.fromJson(
@@ -1319,7 +1277,8 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     );
   }
 
-  /// Deserialize [PackagedProductDefinitionProperty] from a [String] or [YamlMap] object
+  /// Deserialize [PackagedProductDefinitionProperty] from a [String]
+  /// or [YamlMap] object
   factory PackagedProductDefinitionProperty.fromYaml(dynamic yaml) => yaml
           is String
       ? PackagedProductDefinitionProperty.fromJson(
@@ -1330,10 +1289,11 @@ class PackagedProductDefinitionProperty extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'PackagedProductDefinitionProperty cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'PackagedProductDefinitionProperty cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PackagedProductDefinitionProperty] that takes in a [String]
+  /// Factory constructor for [PackagedProductDefinitionProperty]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PackagedProductDefinitionProperty.fromJsonString(String source) {
@@ -1348,6 +1308,15 @@ class PackagedProductDefinitionProperty extends BackboneElement {
 
   @override
   String get fhirType => 'PackagedProductDefinitionProperty';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// A code expressing the type of characteristic.
@@ -1365,15 +1334,9 @@ class PackagedProductDefinitionProperty extends BackboneElement {
   /// A value for the characteristic.
   final FhirDate? valueDate;
 
-  /// Extensions for [valueDate]
-  final Element? valueDateElement;
-
   /// [valueBoolean]
   /// A value for the characteristic.
   final FhirBoolean? valueBoolean;
-
-  /// Extensions for [valueBoolean]
-  final Element? valueBooleanElement;
 
   /// [valueAttachment]
   /// A value for the characteristic.
@@ -1402,14 +1365,8 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     if (valueDate?.value != null) {
       json['valueDate'] = valueDate!.toJson();
     }
-    if (valueDateElement != null) {
-      json['_valueDate'] = valueDateElement!.toJson();
-    }
     if (valueBoolean?.value != null) {
       json['valueBoolean'] = valueBoolean!.toJson();
-    }
-    if (valueBooleanElement != null) {
-      json['_valueBoolean'] = valueBooleanElement!.toJson();
     }
     if (valueAttachment != null) {
       json['valueAttachment'] = valueAttachment!.toJson();
@@ -1428,9 +1385,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
     CodeableConcept? valueCodeableConcept,
     Quantity? valueQuantity,
     FhirDate? valueDate,
-    Element? valueDateElement,
     FhirBoolean? valueBoolean,
-    Element? valueBooleanElement,
     Attachment? valueAttachment,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1447,9 +1402,7 @@ class PackagedProductDefinitionProperty extends BackboneElement {
       valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueDate: valueDate ?? this.valueDate,
-      valueDateElement: valueDateElement ?? this.valueDateElement,
       valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueBooleanElement: valueBooleanElement ?? this.valueBooleanElement,
       valueAttachment: valueAttachment ?? this.valueAttachment,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -1468,7 +1421,7 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
 
   PackagedProductDefinitionContainedItem({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.item,
     this.amount,
@@ -1484,11 +1437,15 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
   factory PackagedProductDefinitionContainedItem.fromJson(
       Map<String, dynamic> json) {
     return PackagedProductDefinitionContainedItem(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1497,7 +1454,7 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1514,7 +1471,8 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
     );
   }
 
-  /// Deserialize [PackagedProductDefinitionContainedItem] from a [String] or [YamlMap] object
+  /// Deserialize [PackagedProductDefinitionContainedItem] from a [String]
+  /// or [YamlMap] object
   factory PackagedProductDefinitionContainedItem.fromYaml(dynamic yaml) => yaml
           is String
       ? PackagedProductDefinitionContainedItem.fromJson(
@@ -1525,10 +1483,11 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'PackagedProductDefinitionContainedItem cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'PackagedProductDefinitionContainedItem cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PackagedProductDefinitionContainedItem] that takes in a [String]
+  /// Factory constructor for [PackagedProductDefinitionContainedItem]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PackagedProductDefinitionContainedItem.fromJsonString(String source) {
@@ -1543,6 +1502,15 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
 
   @override
   String get fhirType => 'PackagedProductDefinitionContainedItem';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [item]
   /// The actual item(s) of medication, as manufactured, or a device

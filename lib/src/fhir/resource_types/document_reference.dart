@@ -16,42 +16,24 @@ class DocumentReference extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.masterIdentifier,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.docStatus,
-
-    /// Extensions for [docStatus]
-    this.docStatusElement,
     this.type,
     this.category,
     this.subject,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.author,
     this.authenticator,
     this.custodian,
     this.relatesTo,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.securityLabel,
     required this.content,
     this.context,
@@ -68,27 +50,27 @@ class DocumentReference extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DocumentReference.fromJson(Map<String, dynamic> json) {
     return DocumentReference(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -98,7 +80,7 @@ class DocumentReference extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -107,7 +89,7 @@ class DocumentReference extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -116,7 +98,7 @@ class DocumentReference extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -130,25 +112,21 @@ class DocumentReference extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: DocumentReferenceStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: DocumentReferenceStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       docStatus: json['docStatus'] != null
-          ? CompositionStatus.fromJson(json['docStatus'])
-          : null,
-      docStatusElement: json['_docStatus'] != null
-          ? Element.fromJson(
-              json['_docStatus'] as Map<String, dynamic>,
-            )
+          ? CompositionStatus.fromJson({
+              'value': json['docStatus'],
+              '_value': json['_docStatus'],
+            })
           : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
@@ -158,7 +136,7 @@ class DocumentReference extends DomainResource {
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -169,16 +147,16 @@ class DocumentReference extends DomainResource {
               json['subject'] as Map<String, dynamic>,
             )
           : null,
-      date: json['date'] != null ? FhirInstant.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirInstant.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       author: json['author'] != null
           ? (json['author'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -197,33 +175,34 @@ class DocumentReference extends DomainResource {
       relatesTo: json['relatesTo'] != null
           ? (json['relatesTo'] as List<dynamic>)
               .map<DocumentReferenceRelatesTo>(
-                (dynamic v) => DocumentReferenceRelatesTo.fromJson(
+                (v) => DocumentReferenceRelatesTo.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       securityLabel: json['securityLabel'] != null
           ? (json['securityLabel'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      content: (json['content'] as List<dynamic>)
-          .map<DocumentReferenceContent>((dynamic v) =>
-              DocumentReferenceContent.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      content: ensureNonNullList((json['content'] as List<dynamic>)
+          .map<DocumentReferenceContent>(
+            (v) => DocumentReferenceContent.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
       context: json['context'] != null
           ? DocumentReferenceContext.fromJson(
               json['context'] as Map<String, dynamic>,
@@ -232,7 +211,8 @@ class DocumentReference extends DomainResource {
     );
   }
 
-  /// Deserialize [DocumentReference] from a [String] or [YamlMap] object
+  /// Deserialize [DocumentReference] from a [String]
+  /// or [YamlMap] object
   factory DocumentReference.fromYaml(dynamic yaml) => yaml is String
       ? DocumentReference.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -241,11 +221,11 @@ class DocumentReference extends DomainResource {
           ? DocumentReference.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DocumentReference cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('DocumentReference cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DocumentReference] that takes in a [String]
+  /// Factory constructor for [DocumentReference]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DocumentReference.fromJsonString(String source) {
@@ -260,6 +240,15 @@ class DocumentReference extends DomainResource {
 
   @override
   String get fhirType => 'DocumentReference';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [masterIdentifier]
   /// Document identifier as assigned by the source of the document. This
@@ -277,15 +266,9 @@ class DocumentReference extends DomainResource {
   /// The status of this document reference.
   final DocumentReferenceStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [docStatus]
   /// The status of the underlying document.
   final CompositionStatus? docStatus;
-
-  /// Extensions for [docStatus]
-  final Element? docStatusElement;
 
   /// [type]
   /// Specifies the particular kind of document referenced (e.g. History and
@@ -310,9 +293,6 @@ class DocumentReference extends DomainResource {
   /// When the document reference was created.
   final FhirInstant? date;
 
-  /// Extensions for [date]
-  final Element? dateElement;
-
   /// [author]
   /// Identifies who is responsible for adding the information to the
   /// document.
@@ -335,9 +315,6 @@ class DocumentReference extends DomainResource {
   /// [description]
   /// Human-readable description of the source document.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [securityLabel]
   /// A set of Security-Tag codes specifying the level of privacy/security of
@@ -367,9 +344,6 @@ class DocumentReference extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -412,9 +386,6 @@ class DocumentReference extends DomainResource {
     if (date?.value != null) {
       json['date'] = date!.toJson();
     }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (author != null && author!.isNotEmpty) {
       json['author'] = author!.map((Reference v) => v.toJson()).toList();
     }
@@ -430,9 +401,6 @@ class DocumentReference extends DomainResource {
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (securityLabel != null && securityLabel!.isNotEmpty) {
       json['securityLabel'] =
@@ -454,9 +422,7 @@ class DocumentReference extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -464,20 +430,16 @@ class DocumentReference extends DomainResource {
     Identifier? masterIdentifier,
     List<Identifier>? identifier,
     DocumentReferenceStatus? status,
-    Element? statusElement,
     CompositionStatus? docStatus,
-    Element? docStatusElement,
     CodeableConcept? type,
     List<CodeableConcept>? category,
     Reference? subject,
     FhirInstant? date,
-    Element? dateElement,
     List<Reference>? author,
     Reference? authenticator,
     Reference? custodian,
     List<DocumentReferenceRelatesTo>? relatesTo,
     FhirString? description,
-    Element? descriptionElement,
     List<CodeableConcept>? securityLabel,
     List<DocumentReferenceContent>? content,
     DocumentReferenceContext? context,
@@ -492,9 +454,7 @@ class DocumentReference extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -502,20 +462,16 @@ class DocumentReference extends DomainResource {
       masterIdentifier: masterIdentifier ?? this.masterIdentifier,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       docStatus: docStatus ?? this.docStatus,
-      docStatusElement: docStatusElement ?? this.docStatusElement,
       type: type ?? this.type,
       category: category ?? this.category,
       subject: subject ?? this.subject,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       author: author ?? this.author,
       authenticator: authenticator ?? this.authenticator,
       custodian: custodian ?? this.custodian,
       relatesTo: relatesTo ?? this.relatesTo,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       securityLabel: securityLabel ?? this.securityLabel,
       content: content ?? this.content,
       context: context ?? this.context,
@@ -537,12 +493,9 @@ class DocumentReferenceRelatesTo extends BackboneElement {
 
   DocumentReferenceRelatesTo({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.code,
-
-    /// Extensions for [code]
-    this.codeElement,
     required this.target,
     super.userData,
     super.formatCommentsPre,
@@ -555,11 +508,15 @@ class DocumentReferenceRelatesTo extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DocumentReferenceRelatesTo.fromJson(Map<String, dynamic> json) {
     return DocumentReferenceRelatesTo(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -568,25 +525,24 @@ class DocumentReferenceRelatesTo extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      code: DocumentRelationshipType.fromJson(json['code']),
-      codeElement: json['_code'] != null
-          ? Element.fromJson(
-              json['_code'] as Map<String, dynamic>,
-            )
-          : null,
+      code: DocumentRelationshipType.fromJson({
+        'value': json['code'],
+        '_value': json['_code'],
+      }),
       target: Reference.fromJson(
         json['target'] as Map<String, dynamic>,
       ),
     );
   }
 
-  /// Deserialize [DocumentReferenceRelatesTo] from a [String] or [YamlMap] object
+  /// Deserialize [DocumentReferenceRelatesTo] from a [String]
+  /// or [YamlMap] object
   factory DocumentReferenceRelatesTo.fromYaml(dynamic yaml) => yaml is String
       ? DocumentReferenceRelatesTo.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -596,10 +552,11 @@ class DocumentReferenceRelatesTo extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'DocumentReferenceRelatesTo cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'DocumentReferenceRelatesTo cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DocumentReferenceRelatesTo] that takes in a [String]
+  /// Factory constructor for [DocumentReferenceRelatesTo]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DocumentReferenceRelatesTo.fromJsonString(String source) {
@@ -615,12 +572,18 @@ class DocumentReferenceRelatesTo extends BackboneElement {
   @override
   String get fhirType => 'DocumentReferenceRelatesTo';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [code]
   /// The type of relationship that this document has with anther document.
   final DocumentRelationshipType code;
-
-  /// Extensions for [code]
-  final Element? codeElement;
 
   /// [target]
   /// The target document of this relationship.
@@ -652,7 +615,6 @@ class DocumentReferenceRelatesTo extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     DocumentRelationshipType? code,
-    Element? codeElement,
     Reference? target,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -666,7 +628,6 @@ class DocumentReferenceRelatesTo extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      codeElement: codeElement ?? this.codeElement,
       target: target ?? this.target,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -686,7 +647,7 @@ class DocumentReferenceContent extends BackboneElement {
 
   DocumentReferenceContent({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.attachment,
     this.format,
@@ -701,11 +662,15 @@ class DocumentReferenceContent extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DocumentReferenceContent.fromJson(Map<String, dynamic> json) {
     return DocumentReferenceContent(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -714,7 +679,7 @@ class DocumentReferenceContent extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -731,7 +696,8 @@ class DocumentReferenceContent extends BackboneElement {
     );
   }
 
-  /// Deserialize [DocumentReferenceContent] from a [String] or [YamlMap] object
+  /// Deserialize [DocumentReferenceContent] from a [String]
+  /// or [YamlMap] object
   factory DocumentReferenceContent.fromYaml(dynamic yaml) => yaml is String
       ? DocumentReferenceContent.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -741,10 +707,11 @@ class DocumentReferenceContent extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'DocumentReferenceContent cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'DocumentReferenceContent cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DocumentReferenceContent] that takes in a [String]
+  /// Factory constructor for [DocumentReferenceContent]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DocumentReferenceContent.fromJsonString(String source) {
@@ -759,6 +726,15 @@ class DocumentReferenceContent extends BackboneElement {
 
   @override
   String get fhirType => 'DocumentReferenceContent';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [attachment]
   /// The document or URL of the document along with critical metadata to
@@ -830,7 +806,7 @@ class DocumentReferenceContext extends BackboneElement {
 
   DocumentReferenceContext({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.encounter,
     this.event,
@@ -850,11 +826,15 @@ class DocumentReferenceContext extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DocumentReferenceContext.fromJson(Map<String, dynamic> json) {
     return DocumentReferenceContext(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -863,7 +843,7 @@ class DocumentReferenceContext extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -872,7 +852,7 @@ class DocumentReferenceContext extends BackboneElement {
       encounter: json['encounter'] != null
           ? (json['encounter'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -881,7 +861,7 @@ class DocumentReferenceContext extends BackboneElement {
       event: json['event'] != null
           ? (json['event'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -910,7 +890,7 @@ class DocumentReferenceContext extends BackboneElement {
       related: json['related'] != null
           ? (json['related'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -919,7 +899,8 @@ class DocumentReferenceContext extends BackboneElement {
     );
   }
 
-  /// Deserialize [DocumentReferenceContext] from a [String] or [YamlMap] object
+  /// Deserialize [DocumentReferenceContext] from a [String]
+  /// or [YamlMap] object
   factory DocumentReferenceContext.fromYaml(dynamic yaml) => yaml is String
       ? DocumentReferenceContext.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -929,10 +910,11 @@ class DocumentReferenceContext extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'DocumentReferenceContext cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'DocumentReferenceContext cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DocumentReferenceContext] that takes in a [String]
+  /// Factory constructor for [DocumentReferenceContext]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DocumentReferenceContext.fromJsonString(String source) {
@@ -947,6 +929,15 @@ class DocumentReferenceContext extends BackboneElement {
 
   @override
   String get fhirType => 'DocumentReferenceContext';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [encounter]
   /// Describes the clinical encounter or type of care that the document

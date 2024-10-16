@@ -10,32 +10,14 @@ class SampledData extends DataType {
 
   SampledData({
     super.id,
-    super.extension_,
+    this.extension_,
     required this.origin,
     required this.period,
-
-    /// Extensions for [period]
-    this.periodElement,
     this.factor,
-
-    /// Extensions for [factor]
-    this.factorElement,
     this.lowerLimit,
-
-    /// Extensions for [lowerLimit]
-    this.lowerLimitElement,
     this.upperLimit,
-
-    /// Extensions for [upperLimit]
-    this.upperLimitElement,
     required this.dimensions,
-
-    /// Extensions for [dimensions]
-    this.dimensionsElement,
     this.data,
-
-    /// Extensions for [data]
-    this.dataElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -47,11 +29,15 @@ class SampledData extends DataType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SampledData.fromJson(Map<String, dynamic> json) {
     return SampledData(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -60,51 +46,43 @@ class SampledData extends DataType {
       origin: Quantity.fromJson(
         json['origin'] as Map<String, dynamic>,
       ),
-      period: FhirDecimal.fromJson(json['period']),
-      periodElement: json['_period'] != null
-          ? Element.fromJson(
-              json['_period'] as Map<String, dynamic>,
-            )
-          : null,
-      factor:
-          json['factor'] != null ? FhirDecimal.fromJson(json['factor']) : null,
-      factorElement: json['_factor'] != null
-          ? Element.fromJson(
-              json['_factor'] as Map<String, dynamic>,
-            )
+      period: FhirDecimal.fromJson({
+        'value': json['period'],
+        '_value': json['_period'],
+      }),
+      factor: json['factor'] != null
+          ? FhirDecimal.fromJson({
+              'value': json['factor'],
+              '_value': json['_factor'],
+            })
           : null,
       lowerLimit: json['lowerLimit'] != null
-          ? FhirDecimal.fromJson(json['lowerLimit'])
-          : null,
-      lowerLimitElement: json['_lowerLimit'] != null
-          ? Element.fromJson(
-              json['_lowerLimit'] as Map<String, dynamic>,
-            )
+          ? FhirDecimal.fromJson({
+              'value': json['lowerLimit'],
+              '_value': json['_lowerLimit'],
+            })
           : null,
       upperLimit: json['upperLimit'] != null
-          ? FhirDecimal.fromJson(json['upperLimit'])
+          ? FhirDecimal.fromJson({
+              'value': json['upperLimit'],
+              '_value': json['_upperLimit'],
+            })
           : null,
-      upperLimitElement: json['_upperLimit'] != null
-          ? Element.fromJson(
-              json['_upperLimit'] as Map<String, dynamic>,
-            )
-          : null,
-      dimensions: FhirPositiveInt.fromJson(json['dimensions']),
-      dimensionsElement: json['_dimensions'] != null
-          ? Element.fromJson(
-              json['_dimensions'] as Map<String, dynamic>,
-            )
-          : null,
-      data: json['data'] != null ? FhirString.fromJson(json['data']) : null,
-      dataElement: json['_data'] != null
-          ? Element.fromJson(
-              json['_data'] as Map<String, dynamic>,
-            )
+      dimensions: FhirPositiveInt.fromJson({
+        'value': json['dimensions'],
+        '_value': json['_dimensions'],
+      }),
+      data: json['data'] != null
+          ? FhirString.fromJson({
+              'value': json['data'],
+              '_value': json['_data'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [SampledData] from a [String] or [YamlMap] object
+  /// Deserialize [SampledData] from a [String]
+  /// or [YamlMap] object
   factory SampledData.fromYaml(dynamic yaml) => yaml is String
       ? SampledData.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -113,10 +91,11 @@ class SampledData extends DataType {
           ? SampledData.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('SampledData cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('SampledData cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SampledData] that takes in a [String]
+  /// Factory constructor for [SampledData]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SampledData.fromJsonString(String source) {
@@ -132,6 +111,15 @@ class SampledData extends DataType {
   @override
   String get fhirType => 'SampledData';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [origin]
   /// The base quantity that a measured value of zero represents. In
   /// addition, this provides the units of the entire measurement series.
@@ -141,24 +129,15 @@ class SampledData extends DataType {
   /// The length of time between sampling times, measured in milliseconds.
   final FhirDecimal period;
 
-  /// Extensions for [period]
-  final Element? periodElement;
-
   /// [factor]
   /// A correction factor that is applied to the sampled data points before
   /// they are added to the origin.
   final FhirDecimal? factor;
 
-  /// Extensions for [factor]
-  final Element? factorElement;
-
   /// [lowerLimit]
   /// The lower limit of detection of the measured points. This is needed if
   /// any of the data points have the value "L" (lower than detection limit).
   final FhirDecimal? lowerLimit;
-
-  /// Extensions for [lowerLimit]
-  final Element? lowerLimitElement;
 
   /// [upperLimit]
   /// The upper limit of detection of the measured points. This is needed if
@@ -166,17 +145,11 @@ class SampledData extends DataType {
   /// limit).
   final FhirDecimal? upperLimit;
 
-  /// Extensions for [upperLimit]
-  final Element? upperLimitElement;
-
   /// [dimensions]
   /// The number of sample points at each time point. If this value is
   /// greater than one, then the dimensions will be interlaced - all the
   /// sample points for a point in time will be recorded at once.
   final FhirPositiveInt dimensions;
-
-  /// Extensions for [dimensions]
-  final Element? dimensionsElement;
 
   /// [data]
   /// A series of data points which are decimal values separated by a single
@@ -184,9 +157,6 @@ class SampledData extends DataType {
   /// detection limit) and "U" (above detection limit) can also be used in
   /// place of a decimal value.
   final FhirString? data;
-
-  /// Extensions for [data]
-  final Element? dataElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -199,36 +169,18 @@ class SampledData extends DataType {
     }
     json['origin'] = origin.toJson();
     json['period'] = period.toJson();
-    if (periodElement != null) {
-      json['_period'] = periodElement!.toJson();
-    }
     if (factor?.value != null) {
       json['factor'] = factor!.toJson();
-    }
-    if (factorElement != null) {
-      json['_factor'] = factorElement!.toJson();
     }
     if (lowerLimit?.value != null) {
       json['lowerLimit'] = lowerLimit!.toJson();
     }
-    if (lowerLimitElement != null) {
-      json['_lowerLimit'] = lowerLimitElement!.toJson();
-    }
     if (upperLimit?.value != null) {
       json['upperLimit'] = upperLimit!.toJson();
     }
-    if (upperLimitElement != null) {
-      json['_upperLimit'] = upperLimitElement!.toJson();
-    }
     json['dimensions'] = dimensions.toJson();
-    if (dimensionsElement != null) {
-      json['_dimensions'] = dimensionsElement!.toJson();
-    }
     if (data?.value != null) {
       json['data'] = data!.toJson();
-    }
-    if (dataElement != null) {
-      json['_data'] = dataElement!.toJson();
     }
     return json;
   }
@@ -241,17 +193,11 @@ class SampledData extends DataType {
     List<FhirExtension>? extension_,
     Quantity? origin,
     FhirDecimal? period,
-    Element? periodElement,
     FhirDecimal? factor,
-    Element? factorElement,
     FhirDecimal? lowerLimit,
-    Element? lowerLimitElement,
     FhirDecimal? upperLimit,
-    Element? upperLimitElement,
     FhirPositiveInt? dimensions,
-    Element? dimensionsElement,
     FhirString? data,
-    Element? dataElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -264,17 +210,11 @@ class SampledData extends DataType {
       extension_: extension_ ?? this.extension_,
       origin: origin ?? this.origin,
       period: period ?? this.period,
-      periodElement: periodElement ?? this.periodElement,
       factor: factor ?? this.factor,
-      factorElement: factorElement ?? this.factorElement,
       lowerLimit: lowerLimit ?? this.lowerLimit,
-      lowerLimitElement: lowerLimitElement ?? this.lowerLimitElement,
       upperLimit: upperLimit ?? this.upperLimit,
-      upperLimitElement: upperLimitElement ?? this.upperLimitElement,
       dimensions: dimensions ?? this.dimensions,
-      dimensionsElement: dimensionsElement ?? this.dimensionsElement,
       data: data ?? this.data,
-      dataElement: dataElement ?? this.dataElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

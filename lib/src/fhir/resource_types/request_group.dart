@@ -13,48 +13,24 @@ class RequestGroup extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-
-    /// Extensions for [instantiatesCanonical]
-    this.instantiatesCanonicalElement,
     this.instantiatesUri,
-
-    /// Extensions for [instantiatesUri]
-    this.instantiatesUriElement,
     this.basedOn,
     this.replaces,
     this.groupIdentifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     required this.intent,
-
-    /// Extensions for [intent]
-    this.intentElement,
     this.priority,
-
-    /// Extensions for [priority]
-    this.priorityElement,
     this.code,
     this.subject,
     this.encounter,
     this.authoredOn,
-
-    /// Extensions for [authoredOn]
-    this.authoredOnElement,
     this.author,
     this.reasonCode,
     this.reasonReference,
@@ -73,27 +49,27 @@ class RequestGroup extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RequestGroup.fromJson(Map<String, dynamic> json) {
     return RequestGroup(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -103,7 +79,7 @@ class RequestGroup extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -112,7 +88,7 @@ class RequestGroup extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -121,7 +97,7 @@ class RequestGroup extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -130,44 +106,24 @@ class RequestGroup extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      instantiatesCanonical: json['instantiatesCanonical'] != null
-          ? (json['instantiatesCanonical'] as List<dynamic>)
-              .map<FhirCanonical>(
-                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
-          ? (json['_instantiatesCanonical'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      instantiatesUri: json['instantiatesUri'] != null
-          ? (json['instantiatesUri'] as List<dynamic>)
-              .map<FhirUri>(
-                (dynamic v) => FhirUri.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      instantiatesUriElement: json['_instantiatesUri'] != null
-          ? (json['_instantiatesUri'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      instantiatesCanonical: parsePrimitiveList<FhirCanonical>(
+          json['instantiatesCanonical'] as List<dynamic>?,
+          json['_instantiatesCanonical'] as List<dynamic>?,
+          fromJson: FhirCanonical.fromJson),
+      instantiatesUri: parsePrimitiveList<FhirUri>(
+          json['instantiatesUri'] as List<dynamic>?,
+          json['_instantiatesUri'] as List<dynamic>?,
+          fromJson: FhirUri.fromJson),
       basedOn: json['basedOn'] != null
           ? (json['basedOn'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -176,7 +132,7 @@ class RequestGroup extends DomainResource {
       replaces: json['replaces'] != null
           ? (json['replaces'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -187,25 +143,19 @@ class RequestGroup extends DomainResource {
               json['groupIdentifier'] as Map<String, dynamic>,
             )
           : null,
-      status: RequestStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
-      intent: RequestIntent.fromJson(json['intent']),
-      intentElement: json['_intent'] != null
-          ? Element.fromJson(
-              json['_intent'] as Map<String, dynamic>,
-            )
-          : null,
+      status: RequestStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
+      intent: RequestIntent.fromJson({
+        'value': json['intent'],
+        '_value': json['_intent'],
+      }),
       priority: json['priority'] != null
-          ? RequestPriority.fromJson(json['priority'])
-          : null,
-      priorityElement: json['_priority'] != null
-          ? Element.fromJson(
-              json['_priority'] as Map<String, dynamic>,
-            )
+          ? RequestPriority.fromJson({
+              'value': json['priority'],
+              '_value': json['_priority'],
+            })
           : null,
       code: json['code'] != null
           ? CodeableConcept.fromJson(
@@ -223,12 +173,10 @@ class RequestGroup extends DomainResource {
             )
           : null,
       authoredOn: json['authoredOn'] != null
-          ? FhirDateTime.fromJson(json['authoredOn'])
-          : null,
-      authoredOnElement: json['_authoredOn'] != null
-          ? Element.fromJson(
-              json['_authoredOn'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['authoredOn'],
+              '_value': json['_authoredOn'],
+            })
           : null,
       author: json['author'] != null
           ? Reference.fromJson(
@@ -238,7 +186,7 @@ class RequestGroup extends DomainResource {
       reasonCode: json['reasonCode'] != null
           ? (json['reasonCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -247,7 +195,7 @@ class RequestGroup extends DomainResource {
       reasonReference: json['reasonReference'] != null
           ? (json['reasonReference'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -256,7 +204,7 @@ class RequestGroup extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -265,7 +213,7 @@ class RequestGroup extends DomainResource {
       action: json['action'] != null
           ? (json['action'] as List<dynamic>)
               .map<RequestGroupAction>(
-                (dynamic v) => RequestGroupAction.fromJson(
+                (v) => RequestGroupAction.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -274,7 +222,8 @@ class RequestGroup extends DomainResource {
     );
   }
 
-  /// Deserialize [RequestGroup] from a [String] or [YamlMap] object
+  /// Deserialize [RequestGroup] from a [String]
+  /// or [YamlMap] object
   factory RequestGroup.fromYaml(dynamic yaml) => yaml is String
       ? RequestGroup.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -283,10 +232,11 @@ class RequestGroup extends DomainResource {
           ? RequestGroup.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('RequestGroup cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('RequestGroup cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [RequestGroup] that takes in a [String]
+  /// Factory constructor for [RequestGroup]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory RequestGroup.fromJsonString(String source) {
@@ -302,6 +252,15 @@ class RequestGroup extends DomainResource {
   @override
   String get fhirType => 'RequestGroup';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Allows a service to provide a unique, business identifier for the
   /// request.
@@ -313,17 +272,11 @@ class RequestGroup extends DomainResource {
   /// this request.
   final List<FhirCanonical>? instantiatesCanonical;
 
-  /// Extensions for [instantiatesCanonical]
-  final List<Element>? instantiatesCanonicalElement;
-
   /// [instantiatesUri]
   /// A URL referencing an externally defined protocol, guideline, orderset
   /// or other definition that is adhered to in whole or in part by this
   /// request.
   final List<FhirUri>? instantiatesUri;
-
-  /// Extensions for [instantiatesUri]
-  final List<Element>? instantiatesUriElement;
 
   /// [basedOn]
   /// A plan, proposal or order that is fulfilled in whole or in part by this
@@ -346,24 +299,15 @@ class RequestGroup extends DomainResource {
   /// reflects the status of all the requests in the group.
   final RequestStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [intent]
   /// Indicates the level of authority/intentionality associated with the
   /// request and where the request fits into the workflow chain.
   final RequestIntent intent;
 
-  /// Extensions for [intent]
-  final Element? intentElement;
-
   /// [priority]
   /// Indicates how quickly the request should be addressed with respect to
   /// other requests.
   final RequestPriority? priority;
-
-  /// Extensions for [priority]
-  final Element? priorityElement;
 
   /// [code]
   /// A code that identifies what the overall request group is.
@@ -380,9 +324,6 @@ class RequestGroup extends DomainResource {
   /// [authoredOn]
   /// Indicates when the request group was created.
   final FhirDateTime? authoredOn;
-
-  /// Extensions for [authoredOn]
-  final Element? authoredOnElement;
 
   /// [author]
   /// Provides a reference to the author of the request group.
@@ -418,9 +359,6 @@ class RequestGroup extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -446,18 +384,9 @@ class RequestGroup extends DomainResource {
       json['instantiatesCanonical'] =
           instantiatesCanonical!.map((FhirCanonical v) => v.toJson()).toList();
     }
-    if (instantiatesCanonicalElement != null &&
-        instantiatesCanonicalElement!.isNotEmpty) {
-      json['_instantiatesCanonical'] =
-          instantiatesCanonicalElement!.map((Element v) => v.toJson()).toList();
-    }
     if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
       json['instantiatesUri'] =
           instantiatesUri!.map((FhirUri v) => v.toJson()).toList();
-    }
-    if (instantiatesUriElement != null && instantiatesUriElement!.isNotEmpty) {
-      json['_instantiatesUri'] =
-          instantiatesUriElement!.map((Element v) => v.toJson()).toList();
     }
     if (basedOn != null && basedOn!.isNotEmpty) {
       json['basedOn'] = basedOn!.map((Reference v) => v.toJson()).toList();
@@ -484,9 +413,6 @@ class RequestGroup extends DomainResource {
     }
     if (authoredOn?.value != null) {
       json['authoredOn'] = authoredOn!.toJson();
-    }
-    if (authoredOnElement != null) {
-      json['_authoredOn'] = authoredOnElement!.toJson();
     }
     if (author != null) {
       json['author'] = author!.toJson();
@@ -516,32 +442,24 @@ class RequestGroup extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     List<FhirCanonical>? instantiatesCanonical,
-    List<Element>? instantiatesCanonicalElement,
     List<FhirUri>? instantiatesUri,
-    List<Element>? instantiatesUriElement,
     List<Reference>? basedOn,
     List<Reference>? replaces,
     Identifier? groupIdentifier,
     RequestStatus? status,
-    Element? statusElement,
     RequestIntent? intent,
-    Element? intentElement,
     RequestPriority? priority,
-    Element? priorityElement,
     CodeableConcept? code,
     Reference? subject,
     Reference? encounter,
     FhirDateTime? authoredOn,
-    Element? authoredOnElement,
     Reference? author,
     List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
@@ -558,9 +476,7 @@ class RequestGroup extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -568,25 +484,17 @@ class RequestGroup extends DomainResource {
       identifier: identifier ?? this.identifier,
       instantiatesCanonical:
           instantiatesCanonical ?? this.instantiatesCanonical,
-      instantiatesCanonicalElement:
-          instantiatesCanonicalElement ?? this.instantiatesCanonicalElement,
       instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      instantiatesUriElement:
-          instantiatesUriElement ?? this.instantiatesUriElement,
       basedOn: basedOn ?? this.basedOn,
       replaces: replaces ?? this.replaces,
       groupIdentifier: groupIdentifier ?? this.groupIdentifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       intent: intent ?? this.intent,
-      intentElement: intentElement ?? this.intentElement,
       priority: priority ?? this.priority,
-      priorityElement: priorityElement ?? this.priorityElement,
       code: code ?? this.code,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
       authoredOn: authoredOn ?? this.authoredOn,
-      authoredOnElement: authoredOnElement ?? this.authoredOnElement,
       author: author ?? this.author,
       reasonCode: reasonCode ?? this.reasonCode,
       reasonReference: reasonReference ?? this.reasonReference,
@@ -609,36 +517,18 @@ class RequestGroupAction extends BackboneElement {
 
   RequestGroupAction({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.prefix,
-
-    /// Extensions for [prefix]
-    this.prefixElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.textEquivalent,
-
-    /// Extensions for [textEquivalent]
-    this.textEquivalentElement,
     this.priority,
-
-    /// Extensions for [priority]
-    this.priorityElement,
     this.code,
     this.documentation,
     this.condition,
     this.relatedAction,
     this.timingDateTime,
-
-    /// Extensions for [timingDateTime]
-    this.timingDateTimeElement,
     this.timingAge,
     this.timingPeriod,
     this.timingDuration,
@@ -647,25 +537,10 @@ class RequestGroupAction extends BackboneElement {
     this.participant,
     this.type,
     this.groupingBehavior,
-
-    /// Extensions for [groupingBehavior]
-    this.groupingBehaviorElement,
     this.selectionBehavior,
-
-    /// Extensions for [selectionBehavior]
-    this.selectionBehaviorElement,
     this.requiredBehavior,
-
-    /// Extensions for [requiredBehavior]
-    this.requiredBehaviorElement,
     this.precheckBehavior,
-
-    /// Extensions for [precheckBehavior]
-    this.precheckBehaviorElement,
     this.cardinalityBehavior,
-
-    /// Extensions for [cardinalityBehavior]
-    this.cardinalityBehaviorElement,
     this.resource,
     this.action,
     super.userData,
@@ -679,11 +554,15 @@ class RequestGroupAction extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RequestGroupAction.fromJson(Map<String, dynamic> json) {
     return RequestGroupAction(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -692,53 +571,46 @@ class RequestGroupAction extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      prefix:
-          json['prefix'] != null ? FhirString.fromJson(json['prefix']) : null,
-      prefixElement: json['_prefix'] != null
-          ? Element.fromJson(
-              json['_prefix'] as Map<String, dynamic>,
-            )
+      prefix: json['prefix'] != null
+          ? FhirString.fromJson({
+              'value': json['prefix'],
+              '_value': json['_prefix'],
+            })
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       textEquivalent: json['textEquivalent'] != null
-          ? FhirString.fromJson(json['textEquivalent'])
-          : null,
-      textEquivalentElement: json['_textEquivalent'] != null
-          ? Element.fromJson(
-              json['_textEquivalent'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['textEquivalent'],
+              '_value': json['_textEquivalent'],
+            })
           : null,
       priority: json['priority'] != null
-          ? RequestPriority.fromJson(json['priority'])
-          : null,
-      priorityElement: json['_priority'] != null
-          ? Element.fromJson(
-              json['_priority'] as Map<String, dynamic>,
-            )
+          ? RequestPriority.fromJson({
+              'value': json['priority'],
+              '_value': json['_priority'],
+            })
           : null,
       code: json['code'] != null
           ? (json['code'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -747,7 +619,7 @@ class RequestGroupAction extends BackboneElement {
       documentation: json['documentation'] != null
           ? (json['documentation'] as List<dynamic>)
               .map<RelatedArtifact>(
-                (dynamic v) => RelatedArtifact.fromJson(
+                (v) => RelatedArtifact.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -756,7 +628,7 @@ class RequestGroupAction extends BackboneElement {
       condition: json['condition'] != null
           ? (json['condition'] as List<dynamic>)
               .map<RequestGroupCondition>(
-                (dynamic v) => RequestGroupCondition.fromJson(
+                (v) => RequestGroupCondition.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -765,19 +637,17 @@ class RequestGroupAction extends BackboneElement {
       relatedAction: json['relatedAction'] != null
           ? (json['relatedAction'] as List<dynamic>)
               .map<RequestGroupRelatedAction>(
-                (dynamic v) => RequestGroupRelatedAction.fromJson(
+                (v) => RequestGroupRelatedAction.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       timingDateTime: json['timingDateTime'] != null
-          ? FhirDateTime.fromJson(json['timingDateTime'])
-          : null,
-      timingDateTimeElement: json['_timingDateTime'] != null
-          ? Element.fromJson(
-              json['_timingDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['timingDateTime'],
+              '_value': json['_timingDateTime'],
+            })
           : null,
       timingAge: json['timingAge'] != null
           ? Age.fromJson(
@@ -807,7 +677,7 @@ class RequestGroupAction extends BackboneElement {
       participant: json['participant'] != null
           ? (json['participant'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -819,44 +689,34 @@ class RequestGroupAction extends BackboneElement {
             )
           : null,
       groupingBehavior: json['groupingBehavior'] != null
-          ? ActionGroupingBehavior.fromJson(json['groupingBehavior'])
-          : null,
-      groupingBehaviorElement: json['_groupingBehavior'] != null
-          ? Element.fromJson(
-              json['_groupingBehavior'] as Map<String, dynamic>,
-            )
+          ? ActionGroupingBehavior.fromJson({
+              'value': json['groupingBehavior'],
+              '_value': json['_groupingBehavior'],
+            })
           : null,
       selectionBehavior: json['selectionBehavior'] != null
-          ? ActionSelectionBehavior.fromJson(json['selectionBehavior'])
-          : null,
-      selectionBehaviorElement: json['_selectionBehavior'] != null
-          ? Element.fromJson(
-              json['_selectionBehavior'] as Map<String, dynamic>,
-            )
+          ? ActionSelectionBehavior.fromJson({
+              'value': json['selectionBehavior'],
+              '_value': json['_selectionBehavior'],
+            })
           : null,
       requiredBehavior: json['requiredBehavior'] != null
-          ? ActionRequiredBehavior.fromJson(json['requiredBehavior'])
-          : null,
-      requiredBehaviorElement: json['_requiredBehavior'] != null
-          ? Element.fromJson(
-              json['_requiredBehavior'] as Map<String, dynamic>,
-            )
+          ? ActionRequiredBehavior.fromJson({
+              'value': json['requiredBehavior'],
+              '_value': json['_requiredBehavior'],
+            })
           : null,
       precheckBehavior: json['precheckBehavior'] != null
-          ? ActionPrecheckBehavior.fromJson(json['precheckBehavior'])
-          : null,
-      precheckBehaviorElement: json['_precheckBehavior'] != null
-          ? Element.fromJson(
-              json['_precheckBehavior'] as Map<String, dynamic>,
-            )
+          ? ActionPrecheckBehavior.fromJson({
+              'value': json['precheckBehavior'],
+              '_value': json['_precheckBehavior'],
+            })
           : null,
       cardinalityBehavior: json['cardinalityBehavior'] != null
-          ? ActionCardinalityBehavior.fromJson(json['cardinalityBehavior'])
-          : null,
-      cardinalityBehaviorElement: json['_cardinalityBehavior'] != null
-          ? Element.fromJson(
-              json['_cardinalityBehavior'] as Map<String, dynamic>,
-            )
+          ? ActionCardinalityBehavior.fromJson({
+              'value': json['cardinalityBehavior'],
+              '_value': json['_cardinalityBehavior'],
+            })
           : null,
       resource: json['resource'] != null
           ? Reference.fromJson(
@@ -866,7 +726,7 @@ class RequestGroupAction extends BackboneElement {
       action: json['action'] != null
           ? (json['action'] as List<dynamic>)
               .map<RequestGroupAction>(
-                (dynamic v) => RequestGroupAction.fromJson(
+                (v) => RequestGroupAction.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -875,7 +735,8 @@ class RequestGroupAction extends BackboneElement {
     );
   }
 
-  /// Deserialize [RequestGroupAction] from a [String] or [YamlMap] object
+  /// Deserialize [RequestGroupAction] from a [String]
+  /// or [YamlMap] object
   factory RequestGroupAction.fromYaml(dynamic yaml) => yaml is String
       ? RequestGroupAction.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -884,11 +745,11 @@ class RequestGroupAction extends BackboneElement {
           ? RequestGroupAction.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'RequestGroupAction cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('RequestGroupAction cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [RequestGroupAction] that takes in a [String]
+  /// Factory constructor for [RequestGroupAction]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory RequestGroupAction.fromJsonString(String source) {
@@ -904,27 +765,27 @@ class RequestGroupAction extends BackboneElement {
   @override
   String get fhirType => 'RequestGroupAction';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [prefix]
   /// A user-visible prefix for the action.
   final FhirString? prefix;
-
-  /// Extensions for [prefix]
-  final Element? prefixElement;
 
   /// [title]
   /// The title of the action displayed to a user.
   final FhirString? title;
 
-  /// Extensions for [title]
-  final Element? titleElement;
-
   /// [description]
   /// A short description of the action used to provide a summary to display
   /// to the user.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [textEquivalent]
   /// A text equivalent of the action to be performed. This provides a
@@ -933,16 +794,10 @@ class RequestGroupAction extends BackboneElement {
   /// dynamically.
   final FhirString? textEquivalent;
 
-  /// Extensions for [textEquivalent]
-  final Element? textEquivalentElement;
-
   /// [priority]
   /// Indicates how quickly the action should be addressed with respect to
   /// other actions.
   final RequestPriority? priority;
-
-  /// Extensions for [priority]
-  final Element? priorityElement;
 
   /// [code]
   /// A code that provides meaning for the action or action group. For
@@ -969,9 +824,6 @@ class RequestGroupAction extends BackboneElement {
   /// [timingDateTime]
   /// An optional value describing when the action should be performed.
   final FhirDateTime? timingDateTime;
-
-  /// Extensions for [timingDateTime]
-  final Element? timingDateTimeElement;
 
   /// [timingAge]
   /// An optional value describing when the action should be performed.
@@ -1005,36 +857,21 @@ class RequestGroupAction extends BackboneElement {
   /// Defines the grouping behavior for the action and its children.
   final ActionGroupingBehavior? groupingBehavior;
 
-  /// Extensions for [groupingBehavior]
-  final Element? groupingBehaviorElement;
-
   /// [selectionBehavior]
   /// Defines the selection behavior for the action and its children.
   final ActionSelectionBehavior? selectionBehavior;
-
-  /// Extensions for [selectionBehavior]
-  final Element? selectionBehaviorElement;
 
   /// [requiredBehavior]
   /// Defines expectations around whether an action is required.
   final ActionRequiredBehavior? requiredBehavior;
 
-  /// Extensions for [requiredBehavior]
-  final Element? requiredBehaviorElement;
-
   /// [precheckBehavior]
   /// Defines whether the action should usually be preselected.
   final ActionPrecheckBehavior? precheckBehavior;
 
-  /// Extensions for [precheckBehavior]
-  final Element? precheckBehaviorElement;
-
   /// [cardinalityBehavior]
   /// Defines whether the action can be selected multiple times.
   final ActionCardinalityBehavior? cardinalityBehavior;
-
-  /// Extensions for [cardinalityBehavior]
-  final Element? cardinalityBehaviorElement;
 
   /// [resource]
   /// The resource that is the target of the action (e.g.
@@ -1061,26 +898,14 @@ class RequestGroupAction extends BackboneElement {
     if (prefix?.value != null) {
       json['prefix'] = prefix!.toJson();
     }
-    if (prefixElement != null) {
-      json['_prefix'] = prefixElement!.toJson();
-    }
     if (title?.value != null) {
       json['title'] = title!.toJson();
-    }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (textEquivalent?.value != null) {
       json['textEquivalent'] = textEquivalent!.toJson();
-    }
-    if (textEquivalentElement != null) {
-      json['_textEquivalent'] = textEquivalentElement!.toJson();
     }
     if (priority != null) {
       json['priority'] = priority!.toJson();
@@ -1103,9 +928,6 @@ class RequestGroupAction extends BackboneElement {
     }
     if (timingDateTime?.value != null) {
       json['timingDateTime'] = timingDateTime!.toJson();
-    }
-    if (timingDateTimeElement != null) {
-      json['_timingDateTime'] = timingDateTimeElement!.toJson();
     }
     if (timingAge != null) {
       json['timingAge'] = timingAge!.toJson();
@@ -1162,21 +984,15 @@ class RequestGroupAction extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? prefix,
-    Element? prefixElement,
     FhirString? title,
-    Element? titleElement,
     FhirString? description,
-    Element? descriptionElement,
     FhirString? textEquivalent,
-    Element? textEquivalentElement,
     RequestPriority? priority,
-    Element? priorityElement,
     List<CodeableConcept>? code,
     List<RelatedArtifact>? documentation,
     List<RequestGroupCondition>? condition,
     List<RequestGroupRelatedAction>? relatedAction,
     FhirDateTime? timingDateTime,
-    Element? timingDateTimeElement,
     Age? timingAge,
     Period? timingPeriod,
     FhirDuration? timingDuration,
@@ -1185,15 +1001,10 @@ class RequestGroupAction extends BackboneElement {
     List<Reference>? participant,
     CodeableConcept? type,
     ActionGroupingBehavior? groupingBehavior,
-    Element? groupingBehaviorElement,
     ActionSelectionBehavior? selectionBehavior,
-    Element? selectionBehaviorElement,
     ActionRequiredBehavior? requiredBehavior,
-    Element? requiredBehaviorElement,
     ActionPrecheckBehavior? precheckBehavior,
-    Element? precheckBehaviorElement,
     ActionCardinalityBehavior? cardinalityBehavior,
-    Element? cardinalityBehaviorElement,
     Reference? resource,
     List<RequestGroupAction>? action,
     Map<String, Object?>? userData,
@@ -1208,23 +1019,15 @@ class RequestGroupAction extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       prefix: prefix ?? this.prefix,
-      prefixElement: prefixElement ?? this.prefixElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       textEquivalent: textEquivalent ?? this.textEquivalent,
-      textEquivalentElement:
-          textEquivalentElement ?? this.textEquivalentElement,
       priority: priority ?? this.priority,
-      priorityElement: priorityElement ?? this.priorityElement,
       code: code ?? this.code,
       documentation: documentation ?? this.documentation,
       condition: condition ?? this.condition,
       relatedAction: relatedAction ?? this.relatedAction,
       timingDateTime: timingDateTime ?? this.timingDateTime,
-      timingDateTimeElement:
-          timingDateTimeElement ?? this.timingDateTimeElement,
       timingAge: timingAge ?? this.timingAge,
       timingPeriod: timingPeriod ?? this.timingPeriod,
       timingDuration: timingDuration ?? this.timingDuration,
@@ -1233,20 +1036,10 @@ class RequestGroupAction extends BackboneElement {
       participant: participant ?? this.participant,
       type: type ?? this.type,
       groupingBehavior: groupingBehavior ?? this.groupingBehavior,
-      groupingBehaviorElement:
-          groupingBehaviorElement ?? this.groupingBehaviorElement,
       selectionBehavior: selectionBehavior ?? this.selectionBehavior,
-      selectionBehaviorElement:
-          selectionBehaviorElement ?? this.selectionBehaviorElement,
       requiredBehavior: requiredBehavior ?? this.requiredBehavior,
-      requiredBehaviorElement:
-          requiredBehaviorElement ?? this.requiredBehaviorElement,
       precheckBehavior: precheckBehavior ?? this.precheckBehavior,
-      precheckBehaviorElement:
-          precheckBehaviorElement ?? this.precheckBehaviorElement,
       cardinalityBehavior: cardinalityBehavior ?? this.cardinalityBehavior,
-      cardinalityBehaviorElement:
-          cardinalityBehaviorElement ?? this.cardinalityBehaviorElement,
       resource: resource ?? this.resource,
       action: action ?? this.action,
       userData: userData ?? this.userData,
@@ -1267,12 +1060,9 @@ class RequestGroupCondition extends BackboneElement {
 
   RequestGroupCondition({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.kind,
-
-    /// Extensions for [kind]
-    this.kindElement,
     this.expression,
     super.userData,
     super.formatCommentsPre,
@@ -1285,11 +1075,15 @@ class RequestGroupCondition extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RequestGroupCondition.fromJson(Map<String, dynamic> json) {
     return RequestGroupCondition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1298,18 +1092,16 @@ class RequestGroupCondition extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      kind: ActionConditionKind.fromJson(json['kind']),
-      kindElement: json['_kind'] != null
-          ? Element.fromJson(
-              json['_kind'] as Map<String, dynamic>,
-            )
-          : null,
+      kind: ActionConditionKind.fromJson({
+        'value': json['kind'],
+        '_value': json['_kind'],
+      }),
       expression: json['expression'] != null
           ? FhirExpression.fromJson(
               json['expression'] as Map<String, dynamic>,
@@ -1318,7 +1110,8 @@ class RequestGroupCondition extends BackboneElement {
     );
   }
 
-  /// Deserialize [RequestGroupCondition] from a [String] or [YamlMap] object
+  /// Deserialize [RequestGroupCondition] from a [String]
+  /// or [YamlMap] object
   factory RequestGroupCondition.fromYaml(dynamic yaml) => yaml is String
       ? RequestGroupCondition.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1328,10 +1121,11 @@ class RequestGroupCondition extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'RequestGroupCondition cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'RequestGroupCondition cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [RequestGroupCondition] that takes in a [String]
+  /// Factory constructor for [RequestGroupCondition]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory RequestGroupCondition.fromJsonString(String source) {
@@ -1347,12 +1141,18 @@ class RequestGroupCondition extends BackboneElement {
   @override
   String get fhirType => 'RequestGroupCondition';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [kind]
   /// The kind of condition.
   final ActionConditionKind kind;
-
-  /// Extensions for [kind]
-  final Element? kindElement;
 
   /// [expression]
   /// An expression that returns true or false, indicating whether or not the
@@ -1387,7 +1187,6 @@ class RequestGroupCondition extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     ActionConditionKind? kind,
-    Element? kindElement,
     FhirExpression? expression,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1401,7 +1200,6 @@ class RequestGroupCondition extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       kind: kind ?? this.kind,
-      kindElement: kindElement ?? this.kindElement,
       expression: expression ?? this.expression,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -1421,16 +1219,10 @@ class RequestGroupRelatedAction extends BackboneElement {
 
   RequestGroupRelatedAction({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.actionId,
-
-    /// Extensions for [actionId]
-    this.actionIdElement,
     required this.relationship,
-
-    /// Extensions for [relationship]
-    this.relationshipElement,
     this.offsetDuration,
     this.offsetRange,
     super.userData,
@@ -1444,11 +1236,15 @@ class RequestGroupRelatedAction extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RequestGroupRelatedAction.fromJson(Map<String, dynamic> json) {
     return RequestGroupRelatedAction(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1457,24 +1253,20 @@ class RequestGroupRelatedAction extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      actionId: FhirId.fromJson(json['actionId']),
-      actionIdElement: json['_actionId'] != null
-          ? Element.fromJson(
-              json['_actionId'] as Map<String, dynamic>,
-            )
-          : null,
-      relationship: ActionRelationshipType.fromJson(json['relationship']),
-      relationshipElement: json['_relationship'] != null
-          ? Element.fromJson(
-              json['_relationship'] as Map<String, dynamic>,
-            )
-          : null,
+      actionId: FhirId.fromJson({
+        'value': json['actionId'],
+        '_value': json['_actionId'],
+      }),
+      relationship: ActionRelationshipType.fromJson({
+        'value': json['relationship'],
+        '_value': json['_relationship'],
+      }),
       offsetDuration: json['offsetDuration'] != null
           ? FhirDuration.fromJson(
               json['offsetDuration'] as Map<String, dynamic>,
@@ -1488,7 +1280,8 @@ class RequestGroupRelatedAction extends BackboneElement {
     );
   }
 
-  /// Deserialize [RequestGroupRelatedAction] from a [String] or [YamlMap] object
+  /// Deserialize [RequestGroupRelatedAction] from a [String]
+  /// or [YamlMap] object
   factory RequestGroupRelatedAction.fromYaml(dynamic yaml) => yaml is String
       ? RequestGroupRelatedAction.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1498,10 +1291,11 @@ class RequestGroupRelatedAction extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'RequestGroupRelatedAction cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'RequestGroupRelatedAction cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [RequestGroupRelatedAction] that takes in a [String]
+  /// Factory constructor for [RequestGroupRelatedAction]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory RequestGroupRelatedAction.fromJsonString(String source) {
@@ -1517,19 +1311,22 @@ class RequestGroupRelatedAction extends BackboneElement {
   @override
   String get fhirType => 'RequestGroupRelatedAction';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [actionId]
   /// The element id of the action this is related to.
   final FhirId actionId;
 
-  /// Extensions for [actionId]
-  final Element? actionIdElement;
-
   /// [relationship]
   /// The relationship of this action to the related action.
   final ActionRelationshipType relationship;
-
-  /// Extensions for [relationship]
-  final Element? relationshipElement;
 
   /// [offsetDuration]
   /// A duration or range of durations to apply to the relationship. For
@@ -1555,9 +1352,6 @@ class RequestGroupRelatedAction extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['actionId'] = actionId.toJson();
-    if (actionIdElement != null) {
-      json['_actionId'] = actionIdElement!.toJson();
-    }
     json['relationship'] = relationship.toJson();
     if (offsetDuration != null) {
       json['offsetDuration'] = offsetDuration!.toJson();
@@ -1576,9 +1370,7 @@ class RequestGroupRelatedAction extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirId? actionId,
-    Element? actionIdElement,
     ActionRelationshipType? relationship,
-    Element? relationshipElement,
     FhirDuration? offsetDuration,
     Range? offsetRange,
     Map<String, Object?>? userData,
@@ -1593,9 +1385,7 @@ class RequestGroupRelatedAction extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       actionId: actionId ?? this.actionId,
-      actionIdElement: actionIdElement ?? this.actionIdElement,
       relationship: relationship ?? this.relationship,
-      relationshipElement: relationshipElement ?? this.relationshipElement,
       offsetDuration: offsetDuration ?? this.offsetDuration,
       offsetRange: offsetRange ?? this.offsetRange,
       userData: userData ?? this.userData,

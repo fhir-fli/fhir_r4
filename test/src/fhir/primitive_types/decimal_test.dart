@@ -140,17 +140,9 @@ void main() {
       expect(originalDecimal.value, equals(validDecimal));
     });
 
-    test('FhirDecimal setElement', () {
-      final originalDecimal = FhirDecimal(validDecimal);
-      final updatedDecimal =
-          originalDecimal.setElement('elementName', 'newElementValue');
-      expect(updatedDecimal.value, equals(validDecimal));
-      expect(updatedDecimal.element != originalDecimal.element, isTrue);
-    });
-
     test('FhirDecimal with Element', () {
       final fhirDecimal = FhirDecimal(validDecimal, element: element);
-      expect(fhirDecimal.element?.id, equals('testElement'));
+      expect(fhirDecimal.element?.id, equals(FhirString('testElement')));
     });
 
     test('FhirDecimal toJsonString', () {

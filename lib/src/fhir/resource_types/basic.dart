@@ -14,24 +14,15 @@ class Basic extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.code,
     this.subject,
     this.created,
-
-    /// Extensions for [created]
-    this.createdElement,
     this.author,
     super.userData,
     super.formatCommentsPre,
@@ -46,27 +37,27 @@ class Basic extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Basic.fromJson(Map<String, dynamic> json) {
     return Basic(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -76,7 +67,7 @@ class Basic extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -85,7 +76,7 @@ class Basic extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -94,7 +85,7 @@ class Basic extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -103,7 +94,7 @@ class Basic extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -117,12 +108,11 @@ class Basic extends DomainResource {
               json['subject'] as Map<String, dynamic>,
             )
           : null,
-      created:
-          json['created'] != null ? FhirDate.fromJson(json['created']) : null,
-      createdElement: json['_created'] != null
-          ? Element.fromJson(
-              json['_created'] as Map<String, dynamic>,
-            )
+      created: json['created'] != null
+          ? FhirDate.fromJson({
+              'value': json['created'],
+              '_value': json['_created'],
+            })
           : null,
       author: json['author'] != null
           ? Reference.fromJson(
@@ -132,7 +122,8 @@ class Basic extends DomainResource {
     );
   }
 
-  /// Deserialize [Basic] from a [String] or [YamlMap] object
+  /// Deserialize [Basic] from a [String]
+  /// or [YamlMap] object
   factory Basic.fromYaml(dynamic yaml) => yaml is String
       ? Basic.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -141,10 +132,11 @@ class Basic extends DomainResource {
           ? Basic.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Basic cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Basic cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Basic] that takes in a [String]
+  /// Factory constructor for [Basic]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Basic.fromJsonString(String source) {
@@ -159,6 +151,15 @@ class Basic extends DomainResource {
 
   @override
   String get fhirType => 'Basic';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifier assigned to the resource for business purposes, outside the
@@ -179,9 +180,6 @@ class Basic extends DomainResource {
   /// Identifies when the resource was first created.
   final FhirDate? created;
 
-  /// Extensions for [created]
-  final Element? createdElement;
-
   /// [author]
   /// Indicates who was responsible for creating the resource instance.
   final Reference? author;
@@ -197,9 +195,6 @@ class Basic extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -229,9 +224,6 @@ class Basic extends DomainResource {
     if (created?.value != null) {
       json['created'] = created!.toJson();
     }
-    if (createdElement != null) {
-      json['_created'] = createdElement!.toJson();
-    }
     if (author != null) {
       json['author'] = author!.toJson();
     }
@@ -245,9 +237,7 @@ class Basic extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -256,7 +246,6 @@ class Basic extends DomainResource {
     CodeableConcept? code,
     Reference? subject,
     FhirDate? created,
-    Element? createdElement,
     Reference? author,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -269,9 +258,7 @@ class Basic extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -280,7 +267,6 @@ class Basic extends DomainResource {
       code: code ?? this.code,
       subject: subject ?? this.subject,
       created: created ?? this.created,
-      createdElement: createdElement ?? this.createdElement,
       author: author ?? this.author,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

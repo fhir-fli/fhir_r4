@@ -11,37 +11,19 @@ class FhirList extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     required this.mode,
-
-    /// Extensions for [mode]
-    this.modeElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     this.code,
     this.subject,
     this.encounter,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.source,
     this.orderedBy,
     this.note,
@@ -60,27 +42,27 @@ class FhirList extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FhirList.fromJson(Map<String, dynamic> json) {
     return FhirList(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -90,7 +72,7 @@ class FhirList extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -99,7 +81,7 @@ class FhirList extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -108,7 +90,7 @@ class FhirList extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -117,29 +99,25 @@ class FhirList extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: ListStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
-      mode: ListMode.fromJson(json['mode']),
-      modeElement: json['_mode'] != null
-          ? Element.fromJson(
-              json['_mode'] as Map<String, dynamic>,
-            )
-          : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
+      status: ListStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
+      mode: ListMode.fromJson({
+        'value': json['mode'],
+        '_value': json['_mode'],
+      }),
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
       code: json['code'] != null
           ? CodeableConcept.fromJson(
@@ -156,11 +134,11 @@ class FhirList extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       source: json['source'] != null
           ? Reference.fromJson(
@@ -175,7 +153,7 @@ class FhirList extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -184,7 +162,7 @@ class FhirList extends DomainResource {
       entry: json['entry'] != null
           ? (json['entry'] as List<dynamic>)
               .map<ListEntry>(
-                (dynamic v) => ListEntry.fromJson(
+                (v) => ListEntry.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -198,7 +176,8 @@ class FhirList extends DomainResource {
     );
   }
 
-  /// Deserialize [FhirList] from a [String] or [YamlMap] object
+  /// Deserialize [FhirList] from a [String]
+  /// or [YamlMap] object
   factory FhirList.fromYaml(dynamic yaml) => yaml is String
       ? FhirList.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -207,10 +186,11 @@ class FhirList extends DomainResource {
           ? FhirList.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('FhirList cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('FhirList cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [FhirList] that takes in a [String]
+  /// Factory constructor for [FhirList]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory FhirList.fromJsonString(String source) {
@@ -226,6 +206,15 @@ class FhirList extends DomainResource {
   @override
   String get fhirType => 'FhirList';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Identifier for the List assigned for business purposes outside the
   /// context of FHIR.
@@ -235,9 +224,6 @@ class FhirList extends DomainResource {
   /// Indicates the current state of this list.
   final ListStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [mode]
   /// How this list was prepared - whether it is a working list that is
   /// suitable for being maintained on an ongoing basis, or if it represents
@@ -245,15 +231,9 @@ class FhirList extends DomainResource {
   /// prepared list where items may be marked as added, modified or deleted.
   final ListMode mode;
 
-  /// Extensions for [mode]
-  final Element? modeElement;
-
   /// [title]
   /// A label for the list assigned by the author.
   final FhirString? title;
-
-  /// Extensions for [title]
-  final Element? titleElement;
 
   /// [code]
   /// This code defines the purpose of the list - why it was created.
@@ -271,9 +251,6 @@ class FhirList extends DomainResource {
   /// [date]
   /// The date that the list was prepared.
   final FhirDateTime? date;
-
-  /// Extensions for [date]
-  final Element? dateElement;
 
   /// [source]
   /// The entity responsible for deciding what the contents of the list were.
@@ -309,9 +286,6 @@ class FhirList extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -338,9 +312,6 @@ class FhirList extends DomainResource {
     if (title?.value != null) {
       json['title'] = title!.toJson();
     }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
-    }
     if (code != null) {
       json['code'] = code!.toJson();
     }
@@ -352,9 +323,6 @@ class FhirList extends DomainResource {
     }
     if (date?.value != null) {
       json['date'] = date!.toJson();
-    }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
     }
     if (source != null) {
       json['source'] = source!.toJson();
@@ -381,25 +349,19 @@ class FhirList extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     ListStatus? status,
-    Element? statusElement,
     ListMode? mode,
-    Element? modeElement,
     FhirString? title,
-    Element? titleElement,
     CodeableConcept? code,
     Reference? subject,
     Reference? encounter,
     FhirDateTime? date,
-    Element? dateElement,
     Reference? source,
     CodeableConcept? orderedBy,
     List<Annotation>? note,
@@ -416,25 +378,19 @@ class FhirList extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       mode: mode ?? this.mode,
-      modeElement: modeElement ?? this.modeElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       code: code ?? this.code,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       source: source ?? this.source,
       orderedBy: orderedBy ?? this.orderedBy,
       note: note ?? this.note,
@@ -457,17 +413,11 @@ class ListEntry extends BackboneElement {
 
   ListEntry({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.flag,
     this.deleted,
-
-    /// Extensions for [deleted]
-    this.deletedElement,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     required this.item,
     super.userData,
     super.formatCommentsPre,
@@ -480,11 +430,15 @@ class ListEntry extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ListEntry.fromJson(Map<String, dynamic> json) {
     return ListEntry(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -493,7 +447,7 @@ class ListEntry extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -505,18 +459,16 @@ class ListEntry extends BackboneElement {
             )
           : null,
       deleted: json['deleted'] != null
-          ? FhirBoolean.fromJson(json['deleted'])
+          ? FhirBoolean.fromJson({
+              'value': json['deleted'],
+              '_value': json['_deleted'],
+            })
           : null,
-      deletedElement: json['_deleted'] != null
-          ? Element.fromJson(
-              json['_deleted'] as Map<String, dynamic>,
-            )
-          : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       item: Reference.fromJson(
         json['item'] as Map<String, dynamic>,
@@ -524,7 +476,8 @@ class ListEntry extends BackboneElement {
     );
   }
 
-  /// Deserialize [ListEntry] from a [String] or [YamlMap] object
+  /// Deserialize [ListEntry] from a [String]
+  /// or [YamlMap] object
   factory ListEntry.fromYaml(dynamic yaml) => yaml is String
       ? ListEntry.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -533,10 +486,11 @@ class ListEntry extends BackboneElement {
           ? ListEntry.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('ListEntry cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ListEntry cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ListEntry] that takes in a [String]
+  /// Factory constructor for [ListEntry]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ListEntry.fromJsonString(String source) {
@@ -552,6 +506,15 @@ class ListEntry extends BackboneElement {
   @override
   String get fhirType => 'ListEntry';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [flag]
   /// The flag allows the system constructing the list to indicate the role
   /// and significance of the item in the list.
@@ -561,15 +524,9 @@ class ListEntry extends BackboneElement {
   /// True if this item is marked as deleted in the list.
   final FhirBoolean? deleted;
 
-  /// Extensions for [deleted]
-  final Element? deletedElement;
-
   /// [date]
   /// When this item was added to the list.
   final FhirDateTime? date;
-
-  /// Extensions for [date]
-  final Element? dateElement;
 
   /// [item]
   /// A reference to the actual resource from which data was derived.
@@ -594,14 +551,8 @@ class ListEntry extends BackboneElement {
     if (deleted?.value != null) {
       json['deleted'] = deleted!.toJson();
     }
-    if (deletedElement != null) {
-      json['_deleted'] = deletedElement!.toJson();
-    }
     if (date?.value != null) {
       json['date'] = date!.toJson();
-    }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
     }
     json['item'] = item.toJson();
     return json;
@@ -616,9 +567,7 @@ class ListEntry extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? flag,
     FhirBoolean? deleted,
-    Element? deletedElement,
     FhirDateTime? date,
-    Element? dateElement,
     Reference? item,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -633,9 +582,7 @@ class ListEntry extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       flag: flag ?? this.flag,
       deleted: deleted ?? this.deleted,
-      deletedElement: deletedElement ?? this.deletedElement,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       item: item ?? this.item,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

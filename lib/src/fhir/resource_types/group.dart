@@ -14,39 +14,18 @@ class FhirGroup extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
-
-    /// Extensions for [active]
-    this.activeElement,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     required this.actual,
-
-    /// Extensions for [actual]
-    this.actualElement,
     this.code,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.quantity,
-
-    /// Extensions for [quantity]
-    this.quantityElement,
     this.managingEntity,
     this.characteristic,
     this.member,
@@ -63,27 +42,27 @@ class FhirGroup extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FhirGroup.fromJson(Map<String, dynamic> json) {
     return FhirGroup(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -93,7 +72,7 @@ class FhirGroup extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -102,7 +81,7 @@ class FhirGroup extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -111,7 +90,7 @@ class FhirGroup extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -120,49 +99,42 @@ class FhirGroup extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      active:
-          json['active'] != null ? FhirBoolean.fromJson(json['active']) : null,
-      activeElement: json['_active'] != null
-          ? Element.fromJson(
-              json['_active'] as Map<String, dynamic>,
-            )
+      active: json['active'] != null
+          ? FhirBoolean.fromJson({
+              'value': json['active'],
+              '_value': json['_active'],
+            })
           : null,
-      type: GroupType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
-      actual: FhirBoolean.fromJson(json['actual']),
-      actualElement: json['_actual'] != null
-          ? Element.fromJson(
-              json['_actual'] as Map<String, dynamic>,
-            )
-          : null,
+      type: GroupType.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
+      actual: FhirBoolean.fromJson({
+        'value': json['actual'],
+        '_value': json['_actual'],
+      }),
       code: json['code'] != null
           ? CodeableConcept.fromJson(
               json['code'] as Map<String, dynamic>,
             )
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
       quantity: json['quantity'] != null
-          ? FhirUnsignedInt.fromJson(json['quantity'])
-          : null,
-      quantityElement: json['_quantity'] != null
-          ? Element.fromJson(
-              json['_quantity'] as Map<String, dynamic>,
-            )
+          ? FhirUnsignedInt.fromJson({
+              'value': json['quantity'],
+              '_value': json['_quantity'],
+            })
           : null,
       managingEntity: json['managingEntity'] != null
           ? Reference.fromJson(
@@ -172,7 +144,7 @@ class FhirGroup extends DomainResource {
       characteristic: json['characteristic'] != null
           ? (json['characteristic'] as List<dynamic>)
               .map<GroupCharacteristic>(
-                (dynamic v) => GroupCharacteristic.fromJson(
+                (v) => GroupCharacteristic.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -181,7 +153,7 @@ class FhirGroup extends DomainResource {
       member: json['member'] != null
           ? (json['member'] as List<dynamic>)
               .map<GroupMember>(
-                (dynamic v) => GroupMember.fromJson(
+                (v) => GroupMember.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -190,7 +162,8 @@ class FhirGroup extends DomainResource {
     );
   }
 
-  /// Deserialize [FhirGroup] from a [String] or [YamlMap] object
+  /// Deserialize [FhirGroup] from a [String]
+  /// or [YamlMap] object
   factory FhirGroup.fromYaml(dynamic yaml) => yaml is String
       ? FhirGroup.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -199,10 +172,11 @@ class FhirGroup extends DomainResource {
           ? FhirGroup.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('FhirGroup cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('FhirGroup cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [FhirGroup] that takes in a [String]
+  /// Factory constructor for [FhirGroup]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory FhirGroup.fromJsonString(String source) {
@@ -218,6 +192,15 @@ class FhirGroup extends DomainResource {
   @override
   String get fhirType => 'FhirGroup';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// A unique business identifier for this group.
   final List<Identifier>? identifier;
@@ -227,24 +210,15 @@ class FhirGroup extends DomainResource {
   /// merely being retained for historical purposes.
   final FhirBoolean? active;
 
-  /// Extensions for [active]
-  final Element? activeElement;
-
   /// [type]
   /// Identifies the broad classification of the kind of resources the group
   /// includes.
   final GroupType type;
 
-  /// Extensions for [type]
-  final Element? typeElement;
-
   /// [actual]
   /// If true, indicates that the resource refers to a specific group of real
   /// individuals. If false, the group defines a set of intended individuals.
   final FhirBoolean actual;
-
-  /// Extensions for [actual]
-  final Element? actualElement;
 
   /// [code]
   /// Provides a specific type of resource the group includes; e.g. "cow",
@@ -256,15 +230,9 @@ class FhirGroup extends DomainResource {
   /// communication.
   final FhirString? name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [quantity]
   /// A count of the number of resource instances that are part of the group.
   final FhirUnsignedInt? quantity;
-
-  /// Extensions for [quantity]
-  final Element? quantityElement;
 
   /// [managingEntity]
   /// Entity responsible for defining and maintaining Group characteristics
@@ -292,9 +260,6 @@ class FhirGroup extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -319,28 +284,16 @@ class FhirGroup extends DomainResource {
     if (active?.value != null) {
       json['active'] = active!.toJson();
     }
-    if (activeElement != null) {
-      json['_active'] = activeElement!.toJson();
-    }
     json['type'] = type.toJson();
     json['actual'] = actual.toJson();
-    if (actualElement != null) {
-      json['_actual'] = actualElement!.toJson();
-    }
     if (code != null) {
       json['code'] = code!.toJson();
     }
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (quantity?.value != null) {
       json['quantity'] = quantity!.toJson();
-    }
-    if (quantityElement != null) {
-      json['_quantity'] = quantityElement!.toJson();
     }
     if (managingEntity != null) {
       json['managingEntity'] = managingEntity!.toJson();
@@ -362,25 +315,18 @@ class FhirGroup extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     FhirBoolean? active,
-    Element? activeElement,
     GroupType? type,
-    Element? typeElement,
     FhirBoolean? actual,
-    Element? actualElement,
     CodeableConcept? code,
     FhirString? name,
-    Element? nameElement,
     FhirUnsignedInt? quantity,
-    Element? quantityElement,
     Reference? managingEntity,
     List<GroupCharacteristic>? characteristic,
     List<GroupMember>? member,
@@ -395,25 +341,18 @@ class FhirGroup extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       active: active ?? this.active,
-      activeElement: activeElement ?? this.activeElement,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       actual: actual ?? this.actual,
-      actualElement: actualElement ?? this.actualElement,
       code: code ?? this.code,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       quantity: quantity ?? this.quantity,
-      quantityElement: quantityElement ?? this.quantityElement,
       managingEntity: managingEntity ?? this.managingEntity,
       characteristic: characteristic ?? this.characteristic,
       member: member ?? this.member,
@@ -435,21 +374,15 @@ class GroupCharacteristic extends BackboneElement {
 
   GroupCharacteristic({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.code,
     this.valueCodeableConcept,
     this.valueBoolean,
-
-    /// Extensions for [valueBoolean]
-    this.valueBooleanElement,
     this.valueQuantity,
     this.valueRange,
     this.valueReference,
     required this.exclude,
-
-    /// Extensions for [exclude]
-    this.excludeElement,
     this.period,
     super.userData,
     super.formatCommentsPre,
@@ -462,11 +395,15 @@ class GroupCharacteristic extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GroupCharacteristic.fromJson(Map<String, dynamic> json) {
     return GroupCharacteristic(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -475,7 +412,7 @@ class GroupCharacteristic extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -490,12 +427,10 @@ class GroupCharacteristic extends BackboneElement {
             )
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(
-              json['_valueBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['valueBoolean'],
+              '_value': json['_valueBoolean'],
+            })
           : null,
       valueQuantity: json['valueQuantity'] != null
           ? Quantity.fromJson(
@@ -512,12 +447,10 @@ class GroupCharacteristic extends BackboneElement {
               json['valueReference'] as Map<String, dynamic>,
             )
           : null,
-      exclude: FhirBoolean.fromJson(json['exclude']),
-      excludeElement: json['_exclude'] != null
-          ? Element.fromJson(
-              json['_exclude'] as Map<String, dynamic>,
-            )
-          : null,
+      exclude: FhirBoolean.fromJson({
+        'value': json['exclude'],
+        '_value': json['_exclude'],
+      }),
       period: json['period'] != null
           ? Period.fromJson(
               json['period'] as Map<String, dynamic>,
@@ -526,7 +459,8 @@ class GroupCharacteristic extends BackboneElement {
     );
   }
 
-  /// Deserialize [GroupCharacteristic] from a [String] or [YamlMap] object
+  /// Deserialize [GroupCharacteristic] from a [String]
+  /// or [YamlMap] object
   factory GroupCharacteristic.fromYaml(dynamic yaml) => yaml is String
       ? GroupCharacteristic.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -536,10 +470,11 @@ class GroupCharacteristic extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'GroupCharacteristic cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'GroupCharacteristic cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [GroupCharacteristic] that takes in a [String]
+  /// Factory constructor for [GroupCharacteristic]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory GroupCharacteristic.fromJsonString(String source) {
@@ -555,6 +490,15 @@ class GroupCharacteristic extends BackboneElement {
   @override
   String get fhirType => 'GroupCharacteristic';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [code]
   /// A code that identifies the kind of trait being asserted.
   final CodeableConcept code;
@@ -568,9 +512,6 @@ class GroupCharacteristic extends BackboneElement {
   /// The value of the trait that holds (or does not hold - see 'exclude')
   /// for members of the group.
   final FhirBoolean? valueBoolean;
-
-  /// Extensions for [valueBoolean]
-  final Element? valueBooleanElement;
 
   /// [valueQuantity]
   /// The value of the trait that holds (or does not hold - see 'exclude')
@@ -591,9 +532,6 @@ class GroupCharacteristic extends BackboneElement {
   /// If true, indicates the characteristic is one that is NOT held by
   /// members of the group.
   final FhirBoolean exclude;
-
-  /// Extensions for [exclude]
-  final Element? excludeElement;
 
   /// [period]
   /// The period over which the characteristic is tested; e.g. the patient
@@ -620,9 +558,6 @@ class GroupCharacteristic extends BackboneElement {
     if (valueBoolean?.value != null) {
       json['valueBoolean'] = valueBoolean!.toJson();
     }
-    if (valueBooleanElement != null) {
-      json['_valueBoolean'] = valueBooleanElement!.toJson();
-    }
     if (valueQuantity != null) {
       json['valueQuantity'] = valueQuantity!.toJson();
     }
@@ -633,9 +568,6 @@ class GroupCharacteristic extends BackboneElement {
       json['valueReference'] = valueReference!.toJson();
     }
     json['exclude'] = exclude.toJson();
-    if (excludeElement != null) {
-      json['_exclude'] = excludeElement!.toJson();
-    }
     if (period != null) {
       json['period'] = period!.toJson();
     }
@@ -652,12 +584,10 @@ class GroupCharacteristic extends BackboneElement {
     CodeableConcept? code,
     CodeableConcept? valueCodeableConcept,
     FhirBoolean? valueBoolean,
-    Element? valueBooleanElement,
     Quantity? valueQuantity,
     Range? valueRange,
     Reference? valueReference,
     FhirBoolean? exclude,
-    Element? excludeElement,
     Period? period,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -673,12 +603,10 @@ class GroupCharacteristic extends BackboneElement {
       code: code ?? this.code,
       valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
       valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueBooleanElement: valueBooleanElement ?? this.valueBooleanElement,
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueRange: valueRange ?? this.valueRange,
       valueReference: valueReference ?? this.valueReference,
       exclude: exclude ?? this.exclude,
-      excludeElement: excludeElement ?? this.excludeElement,
       period: period ?? this.period,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -697,14 +625,11 @@ class GroupMember extends BackboneElement {
 
   GroupMember({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.entity,
     this.period,
     this.inactive,
-
-    /// Extensions for [inactive]
-    this.inactiveElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -716,11 +641,15 @@ class GroupMember extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GroupMember.fromJson(Map<String, dynamic> json) {
     return GroupMember(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -729,7 +658,7 @@ class GroupMember extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -744,17 +673,16 @@ class GroupMember extends BackboneElement {
             )
           : null,
       inactive: json['inactive'] != null
-          ? FhirBoolean.fromJson(json['inactive'])
-          : null,
-      inactiveElement: json['_inactive'] != null
-          ? Element.fromJson(
-              json['_inactive'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['inactive'],
+              '_value': json['_inactive'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [GroupMember] from a [String] or [YamlMap] object
+  /// Deserialize [GroupMember] from a [String]
+  /// or [YamlMap] object
   factory GroupMember.fromYaml(dynamic yaml) => yaml is String
       ? GroupMember.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -763,10 +691,11 @@ class GroupMember extends BackboneElement {
           ? GroupMember.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('GroupMember cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('GroupMember cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [GroupMember] that takes in a [String]
+  /// Factory constructor for [GroupMember]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory GroupMember.fromJsonString(String source) {
@@ -782,6 +711,15 @@ class GroupMember extends BackboneElement {
   @override
   String get fhirType => 'GroupMember';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [entity]
   /// A reference to the entity that is a member of the group. Must be
   /// consistent with Group.type. If the entity is another group, then the
@@ -796,9 +734,6 @@ class GroupMember extends BackboneElement {
   /// A flag to indicate that the member is no longer in the group, but
   /// previously may have been a member.
   final FhirBoolean? inactive;
-
-  /// Extensions for [inactive]
-  final Element? inactiveElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -820,9 +755,6 @@ class GroupMember extends BackboneElement {
     if (inactive?.value != null) {
       json['inactive'] = inactive!.toJson();
     }
-    if (inactiveElement != null) {
-      json['_inactive'] = inactiveElement!.toJson();
-    }
     return json;
   }
 
@@ -836,7 +768,6 @@ class GroupMember extends BackboneElement {
     Reference? entity,
     Period? period,
     FhirBoolean? inactive,
-    Element? inactiveElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -851,7 +782,6 @@ class GroupMember extends BackboneElement {
       entity: entity ?? this.entity,
       period: period ?? this.period,
       inactive: inactive ?? this.inactive,
-      inactiveElement: inactiveElement ?? this.inactiveElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

@@ -16,36 +16,21 @@ class DiagnosticReport extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.basedOn,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.category,
     required this.code,
     this.subject,
     this.encounter,
     this.effectiveDateTime,
-
-    /// Extensions for [effectiveDateTime]
-    this.effectiveDateTimeElement,
     this.effectivePeriod,
     this.issued,
-
-    /// Extensions for [issued]
-    this.issuedElement,
     this.performer,
     this.resultsInterpreter,
     this.specimen,
@@ -53,9 +38,6 @@ class DiagnosticReport extends DomainResource {
     this.imagingStudy,
     this.media,
     this.conclusion,
-
-    /// Extensions for [conclusion]
-    this.conclusionElement,
     this.conclusionCode,
     this.presentedForm,
     super.userData,
@@ -71,27 +53,27 @@ class DiagnosticReport extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DiagnosticReport.fromJson(Map<String, dynamic> json) {
     return DiagnosticReport(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -101,7 +83,7 @@ class DiagnosticReport extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -110,7 +92,7 @@ class DiagnosticReport extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -119,7 +101,7 @@ class DiagnosticReport extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -128,7 +110,7 @@ class DiagnosticReport extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -137,22 +119,20 @@ class DiagnosticReport extends DomainResource {
       basedOn: json['basedOn'] != null
           ? (json['basedOn'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: DiagnosticReportStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: DiagnosticReportStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -172,29 +152,26 @@ class DiagnosticReport extends DomainResource {
             )
           : null,
       effectiveDateTime: json['effectiveDateTime'] != null
-          ? FhirDateTime.fromJson(json['effectiveDateTime'])
-          : null,
-      effectiveDateTimeElement: json['_effectiveDateTime'] != null
-          ? Element.fromJson(
-              json['_effectiveDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['effectiveDateTime'],
+              '_value': json['_effectiveDateTime'],
+            })
           : null,
       effectivePeriod: json['effectivePeriod'] != null
           ? Period.fromJson(
               json['effectivePeriod'] as Map<String, dynamic>,
             )
           : null,
-      issued:
-          json['issued'] != null ? FhirInstant.fromJson(json['issued']) : null,
-      issuedElement: json['_issued'] != null
-          ? Element.fromJson(
-              json['_issued'] as Map<String, dynamic>,
-            )
+      issued: json['issued'] != null
+          ? FhirInstant.fromJson({
+              'value': json['issued'],
+              '_value': json['_issued'],
+            })
           : null,
       performer: json['performer'] != null
           ? (json['performer'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -203,7 +180,7 @@ class DiagnosticReport extends DomainResource {
       resultsInterpreter: json['resultsInterpreter'] != null
           ? (json['resultsInterpreter'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -212,7 +189,7 @@ class DiagnosticReport extends DomainResource {
       specimen: json['specimen'] != null
           ? (json['specimen'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -221,7 +198,7 @@ class DiagnosticReport extends DomainResource {
       result: json['result'] != null
           ? (json['result'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -230,7 +207,7 @@ class DiagnosticReport extends DomainResource {
       imagingStudy: json['imagingStudy'] != null
           ? (json['imagingStudy'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -239,24 +216,22 @@ class DiagnosticReport extends DomainResource {
       media: json['media'] != null
           ? (json['media'] as List<dynamic>)
               .map<DiagnosticReportMedia>(
-                (dynamic v) => DiagnosticReportMedia.fromJson(
+                (v) => DiagnosticReportMedia.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       conclusion: json['conclusion'] != null
-          ? FhirString.fromJson(json['conclusion'])
-          : null,
-      conclusionElement: json['_conclusion'] != null
-          ? Element.fromJson(
-              json['_conclusion'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['conclusion'],
+              '_value': json['_conclusion'],
+            })
           : null,
       conclusionCode: json['conclusionCode'] != null
           ? (json['conclusionCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -265,7 +240,7 @@ class DiagnosticReport extends DomainResource {
       presentedForm: json['presentedForm'] != null
           ? (json['presentedForm'] as List<dynamic>)
               .map<Attachment>(
-                (dynamic v) => Attachment.fromJson(
+                (v) => Attachment.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -274,7 +249,8 @@ class DiagnosticReport extends DomainResource {
     );
   }
 
-  /// Deserialize [DiagnosticReport] from a [String] or [YamlMap] object
+  /// Deserialize [DiagnosticReport] from a [String]
+  /// or [YamlMap] object
   factory DiagnosticReport.fromYaml(dynamic yaml) => yaml is String
       ? DiagnosticReport.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -283,11 +259,11 @@ class DiagnosticReport extends DomainResource {
           ? DiagnosticReport.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DiagnosticReport cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('DiagnosticReport cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DiagnosticReport] that takes in a [String]
+  /// Factory constructor for [DiagnosticReport]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DiagnosticReport.fromJsonString(String source) {
@@ -303,6 +279,15 @@ class DiagnosticReport extends DomainResource {
   @override
   String get fhirType => 'DiagnosticReport';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Identifiers assigned to this report by the performer or other systems.
   final List<Identifier>? identifier;
@@ -314,9 +299,6 @@ class DiagnosticReport extends DomainResource {
   /// [status]
   /// The status of the diagnostic report.
   final DiagnosticReportStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [category]
   /// A code that classifies the clinical discipline, department or
@@ -347,9 +329,6 @@ class DiagnosticReport extends DomainResource {
   /// of the date/time is not known, only the date/time itself.
   final FhirDateTime? effectiveDateTime;
 
-  /// Extensions for [effectiveDateTime]
-  final Element? effectiveDateTimeElement;
-
   /// [effectivePeriod]
   /// The time or time-period the observed values are related to. When the
   /// subject of the report is a patient, this is usually either the time of
@@ -361,9 +340,6 @@ class DiagnosticReport extends DomainResource {
   /// The date and time that this version of the report was made available to
   /// providers, typically after the report was reviewed and verified.
   final FhirInstant? issued;
-
-  /// Extensions for [issued]
-  final Element? issuedElement;
 
   /// [performer]
   /// The diagnostic service that is responsible for issuing the report.
@@ -401,9 +377,6 @@ class DiagnosticReport extends DomainResource {
   /// (interpretation/impression) of the diagnostic report.
   final FhirString? conclusion;
 
-  /// Extensions for [conclusion]
-  final Element? conclusionElement;
-
   /// [conclusionCode]
   /// One or more codes that represent the summary conclusion
   /// (interpretation/impression) of the diagnostic report.
@@ -426,9 +399,6 @@ class DiagnosticReport extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -469,17 +439,11 @@ class DiagnosticReport extends DomainResource {
     if (effectiveDateTime?.value != null) {
       json['effectiveDateTime'] = effectiveDateTime!.toJson();
     }
-    if (effectiveDateTimeElement != null) {
-      json['_effectiveDateTime'] = effectiveDateTimeElement!.toJson();
-    }
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
     if (issued?.value != null) {
       json['issued'] = issued!.toJson();
-    }
-    if (issuedElement != null) {
-      json['_issued'] = issuedElement!.toJson();
     }
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((Reference v) => v.toJson()).toList();
@@ -505,9 +469,6 @@ class DiagnosticReport extends DomainResource {
     if (conclusion?.value != null) {
       json['conclusion'] = conclusion!.toJson();
     }
-    if (conclusionElement != null) {
-      json['_conclusion'] = conclusionElement!.toJson();
-    }
     if (conclusionCode != null && conclusionCode!.isNotEmpty) {
       json['conclusionCode'] =
           conclusionCode!.map((CodeableConcept v) => v.toJson()).toList();
@@ -526,9 +487,7 @@ class DiagnosticReport extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -536,16 +495,13 @@ class DiagnosticReport extends DomainResource {
     List<Identifier>? identifier,
     List<Reference>? basedOn,
     DiagnosticReportStatus? status,
-    Element? statusElement,
     List<CodeableConcept>? category,
     CodeableConcept? code,
     Reference? subject,
     Reference? encounter,
     FhirDateTime? effectiveDateTime,
-    Element? effectiveDateTimeElement,
     Period? effectivePeriod,
     FhirInstant? issued,
-    Element? issuedElement,
     List<Reference>? performer,
     List<Reference>? resultsInterpreter,
     List<Reference>? specimen,
@@ -553,7 +509,6 @@ class DiagnosticReport extends DomainResource {
     List<Reference>? imagingStudy,
     List<DiagnosticReportMedia>? media,
     FhirString? conclusion,
-    Element? conclusionElement,
     List<CodeableConcept>? conclusionCode,
     List<Attachment>? presentedForm,
     Map<String, Object?>? userData,
@@ -567,9 +522,7 @@ class DiagnosticReport extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -577,17 +530,13 @@ class DiagnosticReport extends DomainResource {
       identifier: identifier ?? this.identifier,
       basedOn: basedOn ?? this.basedOn,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       category: category ?? this.category,
       code: code ?? this.code,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
       effectiveDateTime: effectiveDateTime ?? this.effectiveDateTime,
-      effectiveDateTimeElement:
-          effectiveDateTimeElement ?? this.effectiveDateTimeElement,
       effectivePeriod: effectivePeriod ?? this.effectivePeriod,
       issued: issued ?? this.issued,
-      issuedElement: issuedElement ?? this.issuedElement,
       performer: performer ?? this.performer,
       resultsInterpreter: resultsInterpreter ?? this.resultsInterpreter,
       specimen: specimen ?? this.specimen,
@@ -595,7 +544,6 @@ class DiagnosticReport extends DomainResource {
       imagingStudy: imagingStudy ?? this.imagingStudy,
       media: media ?? this.media,
       conclusion: conclusion ?? this.conclusion,
-      conclusionElement: conclusionElement ?? this.conclusionElement,
       conclusionCode: conclusionCode ?? this.conclusionCode,
       presentedForm: presentedForm ?? this.presentedForm,
       userData: userData ?? this.userData,
@@ -617,12 +565,9 @@ class DiagnosticReportMedia extends BackboneElement {
 
   DiagnosticReportMedia({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.comment,
-
-    /// Extensions for [comment]
-    this.commentElement,
     required this.link,
     super.userData,
     super.formatCommentsPre,
@@ -635,11 +580,15 @@ class DiagnosticReportMedia extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DiagnosticReportMedia.fromJson(Map<String, dynamic> json) {
     return DiagnosticReportMedia(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -648,18 +597,17 @@ class DiagnosticReportMedia extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      comment:
-          json['comment'] != null ? FhirString.fromJson(json['comment']) : null,
-      commentElement: json['_comment'] != null
-          ? Element.fromJson(
-              json['_comment'] as Map<String, dynamic>,
-            )
+      comment: json['comment'] != null
+          ? FhirString.fromJson({
+              'value': json['comment'],
+              '_value': json['_comment'],
+            })
           : null,
       link: Reference.fromJson(
         json['link'] as Map<String, dynamic>,
@@ -667,7 +615,8 @@ class DiagnosticReportMedia extends BackboneElement {
     );
   }
 
-  /// Deserialize [DiagnosticReportMedia] from a [String] or [YamlMap] object
+  /// Deserialize [DiagnosticReportMedia] from a [String]
+  /// or [YamlMap] object
   factory DiagnosticReportMedia.fromYaml(dynamic yaml) => yaml is String
       ? DiagnosticReportMedia.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -677,10 +626,11 @@ class DiagnosticReportMedia extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'DiagnosticReportMedia cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'DiagnosticReportMedia cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DiagnosticReportMedia] that takes in a [String]
+  /// Factory constructor for [DiagnosticReportMedia]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DiagnosticReportMedia.fromJsonString(String source) {
@@ -696,14 +646,20 @@ class DiagnosticReportMedia extends BackboneElement {
   @override
   String get fhirType => 'DiagnosticReportMedia';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [comment]
   /// A comment about the image. Typically, this is used to provide an
   /// explanation for why the image is included, or to draw the viewer's
   /// attention to important features.
   final FhirString? comment;
-
-  /// Extensions for [comment]
-  final Element? commentElement;
 
   /// [link]
   /// Reference to the image source.
@@ -725,9 +681,6 @@ class DiagnosticReportMedia extends BackboneElement {
     if (comment?.value != null) {
       json['comment'] = comment!.toJson();
     }
-    if (commentElement != null) {
-      json['_comment'] = commentElement!.toJson();
-    }
     json['link'] = link.toJson();
     return json;
   }
@@ -740,7 +693,6 @@ class DiagnosticReportMedia extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? comment,
-    Element? commentElement,
     Reference? link,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -754,7 +706,6 @@ class DiagnosticReportMedia extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       comment: comment ?? this.comment,
-      commentElement: commentElement ?? this.commentElement,
       link: link ?? this.link,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

@@ -13,34 +13,19 @@ class Claim extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     required this.type,
     this.subType,
     required this.use,
-
-    /// Extensions for [use]
-    this.useElement,
     required this.patient,
     this.billablePeriod,
     required this.created,
-
-    /// Extensions for [created]
-    this.createdElement,
     this.enterer,
     this.insurer,
     required this.provider,
@@ -73,27 +58,27 @@ class Claim extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Claim.fromJson(Map<String, dynamic> json) {
     return Claim(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -103,7 +88,7 @@ class Claim extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -112,7 +97,7 @@ class Claim extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -121,7 +106,7 @@ class Claim extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -130,18 +115,16 @@ class Claim extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: FinancialResourceStatusCodes.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: FinancialResourceStatusCodes.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
@@ -150,12 +133,10 @@ class Claim extends DomainResource {
               json['subType'] as Map<String, dynamic>,
             )
           : null,
-      use: Use.fromJson(json['use']),
-      useElement: json['_use'] != null
-          ? Element.fromJson(
-              json['_use'] as Map<String, dynamic>,
-            )
-          : null,
+      use: Use.fromJson({
+        'value': json['use'],
+        '_value': json['_use'],
+      }),
       patient: Reference.fromJson(
         json['patient'] as Map<String, dynamic>,
       ),
@@ -164,12 +145,10 @@ class Claim extends DomainResource {
               json['billablePeriod'] as Map<String, dynamic>,
             )
           : null,
-      created: FhirDateTime.fromJson(json['created']),
-      createdElement: json['_created'] != null
-          ? Element.fromJson(
-              json['_created'] as Map<String, dynamic>,
-            )
-          : null,
+      created: FhirDateTime.fromJson({
+        'value': json['created'],
+        '_value': json['_created'],
+      }),
       enterer: json['enterer'] != null
           ? Reference.fromJson(
               json['enterer'] as Map<String, dynamic>,
@@ -194,7 +173,7 @@ class Claim extends DomainResource {
       related: json['related'] != null
           ? (json['related'] as List<dynamic>)
               .map<ClaimRelated>(
-                (dynamic v) => ClaimRelated.fromJson(
+                (v) => ClaimRelated.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -228,7 +207,7 @@ class Claim extends DomainResource {
       careTeam: json['careTeam'] != null
           ? (json['careTeam'] as List<dynamic>)
               .map<ClaimCareTeam>(
-                (dynamic v) => ClaimCareTeam.fromJson(
+                (v) => ClaimCareTeam.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -237,7 +216,7 @@ class Claim extends DomainResource {
       supportingInfo: json['supportingInfo'] != null
           ? (json['supportingInfo'] as List<dynamic>)
               .map<ClaimSupportingInfo>(
-                (dynamic v) => ClaimSupportingInfo.fromJson(
+                (v) => ClaimSupportingInfo.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -246,7 +225,7 @@ class Claim extends DomainResource {
       diagnosis: json['diagnosis'] != null
           ? (json['diagnosis'] as List<dynamic>)
               .map<ClaimDiagnosis>(
-                (dynamic v) => ClaimDiagnosis.fromJson(
+                (v) => ClaimDiagnosis.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -255,16 +234,19 @@ class Claim extends DomainResource {
       procedure: json['procedure'] != null
           ? (json['procedure'] as List<dynamic>)
               .map<ClaimProcedure>(
-                (dynamic v) => ClaimProcedure.fromJson(
+                (v) => ClaimProcedure.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      insurance: (json['insurance'] as List<dynamic>)
+      insurance: ensureNonNullList((json['insurance'] as List<dynamic>)
           .map<ClaimInsurance>(
-              (dynamic v) => ClaimInsurance.fromJson(v as Map<String, dynamic>))
-          .toList(),
+            (v) => ClaimInsurance.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
       accident: json['accident'] != null
           ? ClaimAccident.fromJson(
               json['accident'] as Map<String, dynamic>,
@@ -273,7 +255,7 @@ class Claim extends DomainResource {
       item: json['item'] != null
           ? (json['item'] as List<dynamic>)
               .map<ClaimItem>(
-                (dynamic v) => ClaimItem.fromJson(
+                (v) => ClaimItem.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -287,7 +269,8 @@ class Claim extends DomainResource {
     );
   }
 
-  /// Deserialize [Claim] from a [String] or [YamlMap] object
+  /// Deserialize [Claim] from a [String]
+  /// or [YamlMap] object
   factory Claim.fromYaml(dynamic yaml) => yaml is String
       ? Claim.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -296,10 +279,11 @@ class Claim extends DomainResource {
           ? Claim.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Claim cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Claim cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Claim] that takes in a [String]
+  /// Factory constructor for [Claim]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Claim.fromJsonString(String source) {
@@ -315,6 +299,15 @@ class Claim extends DomainResource {
   @override
   String get fhirType => 'Claim';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// A unique identifier assigned to this claim.
   final List<Identifier>? identifier;
@@ -322,9 +315,6 @@ class Claim extends DomainResource {
   /// [status]
   /// The status of the resource instance.
   final FinancialResourceStatusCodes status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [type]
   /// The category of claim, e.g. oral, pharmacy, vision, institutional,
@@ -344,9 +334,6 @@ class Claim extends DomainResource {
   /// services which could be provided in the future.
   final Use use;
 
-  /// Extensions for [use]
-  final Element? useElement;
-
   /// [patient]
   /// The party to whom the professional services and/or products have been
   /// supplied or are being considered and for whom actual or forecast
@@ -360,9 +347,6 @@ class Claim extends DomainResource {
   /// [created]
   /// The date this resource was created.
   final FhirDateTime created;
-
-  /// Extensions for [created]
-  final Element? createdElement;
 
   /// [enterer]
   /// Individual who created the claim, predetermination or preauthorization.
@@ -464,9 +448,6 @@ class Claim extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -499,9 +480,6 @@ class Claim extends DomainResource {
       json['billablePeriod'] = billablePeriod!.toJson();
     }
     json['created'] = created.toJson();
-    if (createdElement != null) {
-      json['_created'] = createdElement!.toJson();
-    }
     if (enterer != null) {
       json['enterer'] = enterer!.toJson();
     }
@@ -568,24 +546,19 @@ class Claim extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     FinancialResourceStatusCodes? status,
-    Element? statusElement,
     CodeableConcept? type,
     CodeableConcept? subType,
     Use? use,
-    Element? useElement,
     Reference? patient,
     Period? billablePeriod,
     FhirDateTime? created,
-    Element? createdElement,
     Reference? enterer,
     Reference? insurer,
     Reference? provider,
@@ -616,24 +589,19 @@ class Claim extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       type: type ?? this.type,
       subType: subType ?? this.subType,
       use: use ?? this.use,
-      useElement: useElement ?? this.useElement,
       patient: patient ?? this.patient,
       billablePeriod: billablePeriod ?? this.billablePeriod,
       created: created ?? this.created,
-      createdElement: createdElement ?? this.createdElement,
       enterer: enterer ?? this.enterer,
       insurer: insurer ?? this.insurer,
       provider: provider ?? this.provider,
@@ -671,7 +639,7 @@ class ClaimRelated extends BackboneElement {
 
   ClaimRelated({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.claim,
     this.relationship,
@@ -687,11 +655,15 @@ class ClaimRelated extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimRelated.fromJson(Map<String, dynamic> json) {
     return ClaimRelated(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -700,7 +672,7 @@ class ClaimRelated extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -724,7 +696,8 @@ class ClaimRelated extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimRelated] from a [String] or [YamlMap] object
+  /// Deserialize [ClaimRelated] from a [String]
+  /// or [YamlMap] object
   factory ClaimRelated.fromYaml(dynamic yaml) => yaml is String
       ? ClaimRelated.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -733,10 +706,11 @@ class ClaimRelated extends BackboneElement {
           ? ClaimRelated.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('ClaimRelated cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ClaimRelated cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClaimRelated] that takes in a [String]
+  /// Factory constructor for [ClaimRelated]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClaimRelated.fromJsonString(String source) {
@@ -751,6 +725,15 @@ class ClaimRelated extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimRelated';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [claim]
   /// Reference to a related claim.
@@ -832,7 +815,7 @@ class ClaimPayee extends BackboneElement {
 
   ClaimPayee({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
     this.party,
@@ -847,11 +830,15 @@ class ClaimPayee extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimPayee.fromJson(Map<String, dynamic> json) {
     return ClaimPayee(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -860,7 +847,7 @@ class ClaimPayee extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -877,7 +864,8 @@ class ClaimPayee extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimPayee] from a [String] or [YamlMap] object
+  /// Deserialize [ClaimPayee] from a [String]
+  /// or [YamlMap] object
   factory ClaimPayee.fromYaml(dynamic yaml) => yaml is String
       ? ClaimPayee.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -886,10 +874,11 @@ class ClaimPayee extends BackboneElement {
           ? ClaimPayee.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('ClaimPayee cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ClaimPayee cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClaimPayee] that takes in a [String]
+  /// Factory constructor for [ClaimPayee]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClaimPayee.fromJsonString(String source) {
@@ -904,6 +893,15 @@ class ClaimPayee extends BackboneElement {
 
   @override
   String get fhirType => 'ClaimPayee';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Type of Party to be reimbursed: subscriber, provider, other.
@@ -973,17 +971,11 @@ class ClaimCareTeam extends BackboneElement {
 
   ClaimCareTeam({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.sequence,
-
-    /// Extensions for [sequence]
-    this.sequenceElement,
     required this.provider,
     this.responsible,
-
-    /// Extensions for [responsible]
-    this.responsibleElement,
     this.role,
     this.qualification,
     super.userData,
@@ -997,11 +989,15 @@ class ClaimCareTeam extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimCareTeam.fromJson(Map<String, dynamic> json) {
     return ClaimCareTeam(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1010,28 +1006,24 @@ class ClaimCareTeam extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      sequence: FhirPositiveInt.fromJson(json['sequence']),
-      sequenceElement: json['_sequence'] != null
-          ? Element.fromJson(
-              json['_sequence'] as Map<String, dynamic>,
-            )
-          : null,
+      sequence: FhirPositiveInt.fromJson({
+        'value': json['sequence'],
+        '_value': json['_sequence'],
+      }),
       provider: Reference.fromJson(
         json['provider'] as Map<String, dynamic>,
       ),
       responsible: json['responsible'] != null
-          ? FhirBoolean.fromJson(json['responsible'])
-          : null,
-      responsibleElement: json['_responsible'] != null
-          ? Element.fromJson(
-              json['_responsible'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['responsible'],
+              '_value': json['_responsible'],
+            })
           : null,
       role: json['role'] != null
           ? CodeableConcept.fromJson(
@@ -1046,7 +1038,8 @@ class ClaimCareTeam extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimCareTeam] from a [String] or [YamlMap] object
+  /// Deserialize [ClaimCareTeam] from a [String]
+  /// or [YamlMap] object
   factory ClaimCareTeam.fromYaml(dynamic yaml) => yaml is String
       ? ClaimCareTeam.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1055,11 +1048,11 @@ class ClaimCareTeam extends BackboneElement {
           ? ClaimCareTeam.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClaimCareTeam cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ClaimCareTeam cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClaimCareTeam] that takes in a [String]
+  /// Factory constructor for [ClaimCareTeam]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClaimCareTeam.fromJsonString(String source) {
@@ -1075,12 +1068,18 @@ class ClaimCareTeam extends BackboneElement {
   @override
   String get fhirType => 'ClaimCareTeam';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [sequence]
   /// A number to uniquely identify care team entries.
   final FhirPositiveInt sequence;
-
-  /// Extensions for [sequence]
-  final Element? sequenceElement;
 
   /// [provider]
   /// Member of the team who provided the product or service.
@@ -1090,9 +1089,6 @@ class ClaimCareTeam extends BackboneElement {
   /// The party who is billing and/or responsible for the claimed products or
   /// services.
   final FhirBoolean? responsible;
-
-  /// Extensions for [responsible]
-  final Element? responsibleElement;
 
   /// [role]
   /// The lead, assisting or supervising practitioner and their discipline if
@@ -1118,15 +1114,9 @@ class ClaimCareTeam extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['sequence'] = sequence.toJson();
-    if (sequenceElement != null) {
-      json['_sequence'] = sequenceElement!.toJson();
-    }
     json['provider'] = provider.toJson();
     if (responsible?.value != null) {
       json['responsible'] = responsible!.toJson();
-    }
-    if (responsibleElement != null) {
-      json['_responsible'] = responsibleElement!.toJson();
     }
     if (role != null) {
       json['role'] = role!.toJson();
@@ -1145,10 +1135,8 @@ class ClaimCareTeam extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
-    Element? sequenceElement,
     Reference? provider,
     FhirBoolean? responsible,
-    Element? responsibleElement,
     CodeableConcept? role,
     CodeableConcept? qualification,
     Map<String, Object?>? userData,
@@ -1163,10 +1151,8 @@ class ClaimCareTeam extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       sequence: sequence ?? this.sequence,
-      sequenceElement: sequenceElement ?? this.sequenceElement,
       provider: provider ?? this.provider,
       responsible: responsible ?? this.responsible,
-      responsibleElement: responsibleElement ?? this.responsibleElement,
       role: role ?? this.role,
       qualification: qualification ?? this.qualification,
       userData: userData ?? this.userData,
@@ -1187,27 +1173,15 @@ class ClaimSupportingInfo extends BackboneElement {
 
   ClaimSupportingInfo({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.sequence,
-
-    /// Extensions for [sequence]
-    this.sequenceElement,
     required this.category,
     this.code,
     this.timingDate,
-
-    /// Extensions for [timingDate]
-    this.timingDateElement,
     this.timingPeriod,
     this.valueBoolean,
-
-    /// Extensions for [valueBoolean]
-    this.valueBooleanElement,
     this.valueString,
-
-    /// Extensions for [valueString]
-    this.valueStringElement,
     this.valueQuantity,
     this.valueAttachment,
     this.valueReference,
@@ -1223,11 +1197,15 @@ class ClaimSupportingInfo extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimSupportingInfo.fromJson(Map<String, dynamic> json) {
     return ClaimSupportingInfo(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1236,18 +1214,16 @@ class ClaimSupportingInfo extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      sequence: FhirPositiveInt.fromJson(json['sequence']),
-      sequenceElement: json['_sequence'] != null
-          ? Element.fromJson(
-              json['_sequence'] as Map<String, dynamic>,
-            )
-          : null,
+      sequence: FhirPositiveInt.fromJson({
+        'value': json['sequence'],
+        '_value': json['_sequence'],
+      }),
       category: CodeableConcept.fromJson(
         json['category'] as Map<String, dynamic>,
       ),
@@ -1257,12 +1233,10 @@ class ClaimSupportingInfo extends BackboneElement {
             )
           : null,
       timingDate: json['timingDate'] != null
-          ? FhirDate.fromJson(json['timingDate'])
-          : null,
-      timingDateElement: json['_timingDate'] != null
-          ? Element.fromJson(
-              json['_timingDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['timingDate'],
+              '_value': json['_timingDate'],
+            })
           : null,
       timingPeriod: json['timingPeriod'] != null
           ? Period.fromJson(
@@ -1270,20 +1244,16 @@ class ClaimSupportingInfo extends BackboneElement {
             )
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(
-              json['_valueBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['valueBoolean'],
+              '_value': json['_valueBoolean'],
+            })
           : null,
       valueString: json['valueString'] != null
-          ? FhirString.fromJson(json['valueString'])
-          : null,
-      valueStringElement: json['_valueString'] != null
-          ? Element.fromJson(
-              json['_valueString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['valueString'],
+              '_value': json['_valueString'],
+            })
           : null,
       valueQuantity: json['valueQuantity'] != null
           ? Quantity.fromJson(
@@ -1308,7 +1278,8 @@ class ClaimSupportingInfo extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimSupportingInfo] from a [String] or [YamlMap] object
+  /// Deserialize [ClaimSupportingInfo] from a [String]
+  /// or [YamlMap] object
   factory ClaimSupportingInfo.fromYaml(dynamic yaml) => yaml is String
       ? ClaimSupportingInfo.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1318,10 +1289,11 @@ class ClaimSupportingInfo extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ClaimSupportingInfo cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ClaimSupportingInfo cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClaimSupportingInfo] that takes in a [String]
+  /// Factory constructor for [ClaimSupportingInfo]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClaimSupportingInfo.fromJsonString(String source) {
@@ -1337,12 +1309,18 @@ class ClaimSupportingInfo extends BackboneElement {
   @override
   String get fhirType => 'ClaimSupportingInfo';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [sequence]
   /// A number to uniquely identify supporting information entries.
   final FhirPositiveInt sequence;
-
-  /// Extensions for [sequence]
-  final Element? sequenceElement;
 
   /// [category]
   /// The general class of the information supplied: information; exception;
@@ -1359,9 +1337,6 @@ class ClaimSupportingInfo extends BackboneElement {
   /// The date when or period to which this information refers.
   final FhirDate? timingDate;
 
-  /// Extensions for [timingDate]
-  final Element? timingDateElement;
-
   /// [timingPeriod]
   /// The date when or period to which this information refers.
   final Period? timingPeriod;
@@ -1372,17 +1347,11 @@ class ClaimSupportingInfo extends BackboneElement {
   /// data.
   final FhirBoolean? valueBoolean;
 
-  /// Extensions for [valueBoolean]
-  final Element? valueBooleanElement;
-
   /// [valueString]
   /// Additional data or information such as resources, documents, images
   /// etc. including references to the data or the actual inclusion of the
   /// data.
   final FhirString? valueString;
-
-  /// Extensions for [valueString]
-  final Element? valueStringElement;
 
   /// [valueQuantity]
   /// Additional data or information such as resources, documents, images
@@ -1421,9 +1390,6 @@ class ClaimSupportingInfo extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['sequence'] = sequence.toJson();
-    if (sequenceElement != null) {
-      json['_sequence'] = sequenceElement!.toJson();
-    }
     json['category'] = category.toJson();
     if (code != null) {
       json['code'] = code!.toJson();
@@ -1431,23 +1397,14 @@ class ClaimSupportingInfo extends BackboneElement {
     if (timingDate?.value != null) {
       json['timingDate'] = timingDate!.toJson();
     }
-    if (timingDateElement != null) {
-      json['_timingDate'] = timingDateElement!.toJson();
-    }
     if (timingPeriod != null) {
       json['timingPeriod'] = timingPeriod!.toJson();
     }
     if (valueBoolean?.value != null) {
       json['valueBoolean'] = valueBoolean!.toJson();
     }
-    if (valueBooleanElement != null) {
-      json['_valueBoolean'] = valueBooleanElement!.toJson();
-    }
     if (valueString?.value != null) {
       json['valueString'] = valueString!.toJson();
-    }
-    if (valueStringElement != null) {
-      json['_valueString'] = valueStringElement!.toJson();
     }
     if (valueQuantity != null) {
       json['valueQuantity'] = valueQuantity!.toJson();
@@ -1472,16 +1429,12 @@ class ClaimSupportingInfo extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
-    Element? sequenceElement,
     CodeableConcept? category,
     CodeableConcept? code,
     FhirDate? timingDate,
-    Element? timingDateElement,
     Period? timingPeriod,
     FhirBoolean? valueBoolean,
-    Element? valueBooleanElement,
     FhirString? valueString,
-    Element? valueStringElement,
     Quantity? valueQuantity,
     Attachment? valueAttachment,
     Reference? valueReference,
@@ -1498,16 +1451,12 @@ class ClaimSupportingInfo extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       sequence: sequence ?? this.sequence,
-      sequenceElement: sequenceElement ?? this.sequenceElement,
       category: category ?? this.category,
       code: code ?? this.code,
       timingDate: timingDate ?? this.timingDate,
-      timingDateElement: timingDateElement ?? this.timingDateElement,
       timingPeriod: timingPeriod ?? this.timingPeriod,
       valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueBooleanElement: valueBooleanElement ?? this.valueBooleanElement,
       valueString: valueString ?? this.valueString,
-      valueStringElement: valueStringElement ?? this.valueStringElement,
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueAttachment: valueAttachment ?? this.valueAttachment,
       valueReference: valueReference ?? this.valueReference,
@@ -1529,12 +1478,9 @@ class ClaimDiagnosis extends BackboneElement {
 
   ClaimDiagnosis({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.sequence,
-
-    /// Extensions for [sequence]
-    this.sequenceElement,
     this.diagnosisCodeableConcept,
     this.diagnosisReference,
     this.type,
@@ -1551,11 +1497,15 @@ class ClaimDiagnosis extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimDiagnosis.fromJson(Map<String, dynamic> json) {
     return ClaimDiagnosis(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1564,18 +1514,16 @@ class ClaimDiagnosis extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      sequence: FhirPositiveInt.fromJson(json['sequence']),
-      sequenceElement: json['_sequence'] != null
-          ? Element.fromJson(
-              json['_sequence'] as Map<String, dynamic>,
-            )
-          : null,
+      sequence: FhirPositiveInt.fromJson({
+        'value': json['sequence'],
+        '_value': json['_sequence'],
+      }),
       diagnosisCodeableConcept: json['diagnosisCodeableConcept'] != null
           ? CodeableConcept.fromJson(
               json['diagnosisCodeableConcept'] as Map<String, dynamic>,
@@ -1589,7 +1537,7 @@ class ClaimDiagnosis extends BackboneElement {
       type: json['type'] != null
           ? (json['type'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1608,7 +1556,8 @@ class ClaimDiagnosis extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimDiagnosis] from a [String] or [YamlMap] object
+  /// Deserialize [ClaimDiagnosis] from a [String]
+  /// or [YamlMap] object
   factory ClaimDiagnosis.fromYaml(dynamic yaml) => yaml is String
       ? ClaimDiagnosis.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1617,11 +1566,11 @@ class ClaimDiagnosis extends BackboneElement {
           ? ClaimDiagnosis.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClaimDiagnosis cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ClaimDiagnosis cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClaimDiagnosis] that takes in a [String]
+  /// Factory constructor for [ClaimDiagnosis]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClaimDiagnosis.fromJsonString(String source) {
@@ -1637,12 +1586,18 @@ class ClaimDiagnosis extends BackboneElement {
   @override
   String get fhirType => 'ClaimDiagnosis';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [sequence]
   /// A number to uniquely identify diagnosis entries.
   final FhirPositiveInt sequence;
-
-  /// Extensions for [sequence]
-  final Element? sequenceElement;
 
   /// [diagnosisCodeableConcept]
   /// The nature of illness or problem in a coded form or as a reference to
@@ -1683,9 +1638,6 @@ class ClaimDiagnosis extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['sequence'] = sequence.toJson();
-    if (sequenceElement != null) {
-      json['_sequence'] = sequenceElement!.toJson();
-    }
     if (diagnosisCodeableConcept != null) {
       json['diagnosisCodeableConcept'] = diagnosisCodeableConcept!.toJson();
     }
@@ -1712,7 +1664,6 @@ class ClaimDiagnosis extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
-    Element? sequenceElement,
     CodeableConcept? diagnosisCodeableConcept,
     Reference? diagnosisReference,
     List<CodeableConcept>? type,
@@ -1730,7 +1681,6 @@ class ClaimDiagnosis extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       sequence: sequence ?? this.sequence,
-      sequenceElement: sequenceElement ?? this.sequenceElement,
       diagnosisCodeableConcept:
           diagnosisCodeableConcept ?? this.diagnosisCodeableConcept,
       diagnosisReference: diagnosisReference ?? this.diagnosisReference,
@@ -1755,17 +1705,11 @@ class ClaimProcedure extends BackboneElement {
 
   ClaimProcedure({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.sequence,
-
-    /// Extensions for [sequence]
-    this.sequenceElement,
     this.type,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.procedureCodeableConcept,
     this.procedureReference,
     this.udi,
@@ -1780,11 +1724,15 @@ class ClaimProcedure extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimProcedure.fromJson(Map<String, dynamic> json) {
     return ClaimProcedure(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1793,32 +1741,30 @@ class ClaimProcedure extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      sequence: FhirPositiveInt.fromJson(json['sequence']),
-      sequenceElement: json['_sequence'] != null
-          ? Element.fromJson(
-              json['_sequence'] as Map<String, dynamic>,
-            )
-          : null,
+      sequence: FhirPositiveInt.fromJson({
+        'value': json['sequence'],
+        '_value': json['_sequence'],
+      }),
       type: json['type'] != null
           ? (json['type'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       procedureCodeableConcept: json['procedureCodeableConcept'] != null
           ? CodeableConcept.fromJson(
@@ -1833,7 +1779,7 @@ class ClaimProcedure extends BackboneElement {
       udi: json['udi'] != null
           ? (json['udi'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1842,7 +1788,8 @@ class ClaimProcedure extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimProcedure] from a [String] or [YamlMap] object
+  /// Deserialize [ClaimProcedure] from a [String]
+  /// or [YamlMap] object
   factory ClaimProcedure.fromYaml(dynamic yaml) => yaml is String
       ? ClaimProcedure.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1851,11 +1798,11 @@ class ClaimProcedure extends BackboneElement {
           ? ClaimProcedure.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClaimProcedure cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ClaimProcedure cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClaimProcedure] that takes in a [String]
+  /// Factory constructor for [ClaimProcedure]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClaimProcedure.fromJsonString(String source) {
@@ -1871,12 +1818,18 @@ class ClaimProcedure extends BackboneElement {
   @override
   String get fhirType => 'ClaimProcedure';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [sequence]
   /// A number to uniquely identify procedure entries.
   final FhirPositiveInt sequence;
-
-  /// Extensions for [sequence]
-  final Element? sequenceElement;
 
   /// [type]
   /// When the condition was observed or the relative ranking.
@@ -1885,9 +1838,6 @@ class ClaimProcedure extends BackboneElement {
   /// [date]
   /// Date and optionally time the procedure was performed.
   final FhirDateTime? date;
-
-  /// Extensions for [date]
-  final Element? dateElement;
 
   /// [procedureCodeableConcept]
   /// The code or reference to a Procedure resource which identifies the
@@ -1917,17 +1867,11 @@ class ClaimProcedure extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['sequence'] = sequence.toJson();
-    if (sequenceElement != null) {
-      json['_sequence'] = sequenceElement!.toJson();
-    }
     if (type != null && type!.isNotEmpty) {
       json['type'] = type!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (date?.value != null) {
       json['date'] = date!.toJson();
-    }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
     }
     if (procedureCodeableConcept != null) {
       json['procedureCodeableConcept'] = procedureCodeableConcept!.toJson();
@@ -1949,10 +1893,8 @@ class ClaimProcedure extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
-    Element? sequenceElement,
     List<CodeableConcept>? type,
     FhirDateTime? date,
-    Element? dateElement,
     CodeableConcept? procedureCodeableConcept,
     Reference? procedureReference,
     List<Reference>? udi,
@@ -1968,10 +1910,8 @@ class ClaimProcedure extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       sequence: sequence ?? this.sequence,
-      sequenceElement: sequenceElement ?? this.sequenceElement,
       type: type ?? this.type,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       procedureCodeableConcept:
           procedureCodeableConcept ?? this.procedureCodeableConcept,
       procedureReference: procedureReference ?? this.procedureReference,
@@ -1994,26 +1934,14 @@ class ClaimInsurance extends BackboneElement {
 
   ClaimInsurance({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.sequence,
-
-    /// Extensions for [sequence]
-    this.sequenceElement,
     required this.focal,
-
-    /// Extensions for [focal]
-    this.focalElement,
     this.identifier,
     required this.coverage,
     this.businessArrangement,
-
-    /// Extensions for [businessArrangement]
-    this.businessArrangementElement,
     this.preAuthRef,
-
-    /// Extensions for [preAuthRef]
-    this.preAuthRefElement,
     this.claimResponse,
     super.userData,
     super.formatCommentsPre,
@@ -2026,11 +1954,15 @@ class ClaimInsurance extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimInsurance.fromJson(Map<String, dynamic> json) {
     return ClaimInsurance(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2039,24 +1971,20 @@ class ClaimInsurance extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      sequence: FhirPositiveInt.fromJson(json['sequence']),
-      sequenceElement: json['_sequence'] != null
-          ? Element.fromJson(
-              json['_sequence'] as Map<String, dynamic>,
-            )
-          : null,
-      focal: FhirBoolean.fromJson(json['focal']),
-      focalElement: json['_focal'] != null
-          ? Element.fromJson(
-              json['_focal'] as Map<String, dynamic>,
-            )
-          : null,
+      sequence: FhirPositiveInt.fromJson({
+        'value': json['sequence'],
+        '_value': json['_sequence'],
+      }),
+      focal: FhirBoolean.fromJson({
+        'value': json['focal'],
+        '_value': json['_focal'],
+      }),
       identifier: json['identifier'] != null
           ? Identifier.fromJson(
               json['identifier'] as Map<String, dynamic>,
@@ -2066,27 +1994,15 @@ class ClaimInsurance extends BackboneElement {
         json['coverage'] as Map<String, dynamic>,
       ),
       businessArrangement: json['businessArrangement'] != null
-          ? FhirString.fromJson(json['businessArrangement'])
+          ? FhirString.fromJson({
+              'value': json['businessArrangement'],
+              '_value': json['_businessArrangement'],
+            })
           : null,
-      businessArrangementElement: json['_businessArrangement'] != null
-          ? Element.fromJson(
-              json['_businessArrangement'] as Map<String, dynamic>,
-            )
-          : null,
-      preAuthRef: json['preAuthRef'] != null
-          ? (json['preAuthRef'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      preAuthRefElement: json['_preAuthRef'] != null
-          ? (json['_preAuthRef'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      preAuthRef: parsePrimitiveList<FhirString>(
+          json['preAuthRef'] as List<dynamic>?,
+          json['_preAuthRef'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
       claimResponse: json['claimResponse'] != null
           ? Reference.fromJson(
               json['claimResponse'] as Map<String, dynamic>,
@@ -2095,7 +2011,8 @@ class ClaimInsurance extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimInsurance] from a [String] or [YamlMap] object
+  /// Deserialize [ClaimInsurance] from a [String]
+  /// or [YamlMap] object
   factory ClaimInsurance.fromYaml(dynamic yaml) => yaml is String
       ? ClaimInsurance.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2104,11 +2021,11 @@ class ClaimInsurance extends BackboneElement {
           ? ClaimInsurance.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClaimInsurance cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ClaimInsurance cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClaimInsurance] that takes in a [String]
+  /// Factory constructor for [ClaimInsurance]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClaimInsurance.fromJsonString(String source) {
@@ -2124,21 +2041,24 @@ class ClaimInsurance extends BackboneElement {
   @override
   String get fhirType => 'ClaimInsurance';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [sequence]
   /// A number to uniquely identify insurance entries and provide a sequence
   /// of coverages to convey coordination of benefit order.
   final FhirPositiveInt sequence;
 
-  /// Extensions for [sequence]
-  final Element? sequenceElement;
-
   /// [focal]
   /// A flag to indicate that this Coverage is to be used for adjudication of
   /// this claim when set to true.
   final FhirBoolean focal;
-
-  /// Extensions for [focal]
-  final Element? focalElement;
 
   /// [identifier]
   /// The business identifier to be used when the claim is sent for
@@ -2157,17 +2077,11 @@ class ClaimInsurance extends BackboneElement {
   /// insurer for special business processing purposes.
   final FhirString? businessArrangement;
 
-  /// Extensions for [businessArrangement]
-  final Element? businessArrangementElement;
-
   /// [preAuthRef]
   /// Reference numbers previously provided by the insurer to the provider to
   /// be quoted on subsequent claims containing services or products related
   /// to the prior authorization.
   final List<FhirString>? preAuthRef;
-
-  /// Extensions for [preAuthRef]
-  final List<Element>? preAuthRefElement;
 
   /// [claimResponse]
   /// The result of the adjudication of the line items for the Coverage
@@ -2188,13 +2102,7 @@ class ClaimInsurance extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['sequence'] = sequence.toJson();
-    if (sequenceElement != null) {
-      json['_sequence'] = sequenceElement!.toJson();
-    }
     json['focal'] = focal.toJson();
-    if (focalElement != null) {
-      json['_focal'] = focalElement!.toJson();
-    }
     if (identifier != null) {
       json['identifier'] = identifier!.toJson();
     }
@@ -2202,16 +2110,9 @@ class ClaimInsurance extends BackboneElement {
     if (businessArrangement?.value != null) {
       json['businessArrangement'] = businessArrangement!.toJson();
     }
-    if (businessArrangementElement != null) {
-      json['_businessArrangement'] = businessArrangementElement!.toJson();
-    }
     if (preAuthRef != null && preAuthRef!.isNotEmpty) {
       json['preAuthRef'] =
           preAuthRef!.map((FhirString v) => v.toJson()).toList();
-    }
-    if (preAuthRefElement != null && preAuthRefElement!.isNotEmpty) {
-      json['_preAuthRef'] =
-          preAuthRefElement!.map((Element v) => v.toJson()).toList();
     }
     if (claimResponse != null) {
       json['claimResponse'] = claimResponse!.toJson();
@@ -2227,15 +2128,11 @@ class ClaimInsurance extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
-    Element? sequenceElement,
     FhirBoolean? focal,
-    Element? focalElement,
     Identifier? identifier,
     Reference? coverage,
     FhirString? businessArrangement,
-    Element? businessArrangementElement,
     List<FhirString>? preAuthRef,
-    List<Element>? preAuthRefElement,
     Reference? claimResponse,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -2249,16 +2146,11 @@ class ClaimInsurance extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       sequence: sequence ?? this.sequence,
-      sequenceElement: sequenceElement ?? this.sequenceElement,
       focal: focal ?? this.focal,
-      focalElement: focalElement ?? this.focalElement,
       identifier: identifier ?? this.identifier,
       coverage: coverage ?? this.coverage,
       businessArrangement: businessArrangement ?? this.businessArrangement,
-      businessArrangementElement:
-          businessArrangementElement ?? this.businessArrangementElement,
       preAuthRef: preAuthRef ?? this.preAuthRef,
-      preAuthRefElement: preAuthRefElement ?? this.preAuthRefElement,
       claimResponse: claimResponse ?? this.claimResponse,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -2278,12 +2170,9 @@ class ClaimAccident extends BackboneElement {
 
   ClaimAccident({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.type,
     this.locationAddress,
     this.locationReference,
@@ -2298,11 +2187,15 @@ class ClaimAccident extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimAccident.fromJson(Map<String, dynamic> json) {
     return ClaimAccident(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2311,18 +2204,16 @@ class ClaimAccident extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      date: FhirDate.fromJson(json['date']),
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
-          : null,
+      date: FhirDate.fromJson({
+        'value': json['date'],
+        '_value': json['_date'],
+      }),
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
@@ -2341,7 +2232,8 @@ class ClaimAccident extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimAccident] from a [String] or [YamlMap] object
+  /// Deserialize [ClaimAccident] from a [String]
+  /// or [YamlMap] object
   factory ClaimAccident.fromYaml(dynamic yaml) => yaml is String
       ? ClaimAccident.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2350,11 +2242,11 @@ class ClaimAccident extends BackboneElement {
           ? ClaimAccident.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClaimAccident cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ClaimAccident cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClaimAccident] that takes in a [String]
+  /// Factory constructor for [ClaimAccident]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClaimAccident.fromJsonString(String source) {
@@ -2370,13 +2262,19 @@ class ClaimAccident extends BackboneElement {
   @override
   String get fhirType => 'ClaimAccident';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [date]
   /// Date of an accident event related to the products and services
   /// contained in the claim.
   final FhirDate date;
-
-  /// Extensions for [date]
-  final Element? dateElement;
 
   /// [type]
   /// The type or context of the accident event for the purposes of selection
@@ -2406,9 +2304,6 @@ class ClaimAccident extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['date'] = date.toJson();
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -2429,7 +2324,6 @@ class ClaimAccident extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirDate? date,
-    Element? dateElement,
     CodeableConcept? type,
     Address? locationAddress,
     Reference? locationReference,
@@ -2445,7 +2339,6 @@ class ClaimAccident extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       type: type ?? this.type,
       locationAddress: locationAddress ?? this.locationAddress,
       locationReference: locationReference ?? this.locationReference,
@@ -2467,37 +2360,19 @@ class ClaimItem extends BackboneElement {
 
   ClaimItem({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.sequence,
-
-    /// Extensions for [sequence]
-    this.sequenceElement,
     this.careTeamSequence,
-
-    /// Extensions for [careTeamSequence]
-    this.careTeamSequenceElement,
     this.diagnosisSequence,
-
-    /// Extensions for [diagnosisSequence]
-    this.diagnosisSequenceElement,
     this.procedureSequence,
-
-    /// Extensions for [procedureSequence]
-    this.procedureSequenceElement,
     this.informationSequence,
-
-    /// Extensions for [informationSequence]
-    this.informationSequenceElement,
     this.revenue,
     this.category,
     required this.productOrService,
     this.modifier,
     this.programCode,
     this.servicedDate,
-
-    /// Extensions for [servicedDate]
-    this.servicedDateElement,
     this.servicedPeriod,
     this.locationCodeableConcept,
     this.locationAddress,
@@ -2505,9 +2380,6 @@ class ClaimItem extends BackboneElement {
     this.quantity,
     this.unitPrice,
     this.factor,
-
-    /// Extensions for [factor]
-    this.factorElement,
     this.net,
     this.udi,
     this.bodySite,
@@ -2525,11 +2397,15 @@ class ClaimItem extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimItem.fromJson(Map<String, dynamic> json) {
     return ClaimItem(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2538,74 +2414,32 @@ class ClaimItem extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      sequence: FhirPositiveInt.fromJson(json['sequence']),
-      sequenceElement: json['_sequence'] != null
-          ? Element.fromJson(
-              json['_sequence'] as Map<String, dynamic>,
-            )
-          : null,
-      careTeamSequence: json['careTeamSequence'] != null
-          ? (json['careTeamSequence'] as List<dynamic>)
-              .map<FhirPositiveInt>(
-                (dynamic v) => FhirPositiveInt.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      careTeamSequenceElement: json['_careTeamSequence'] != null
-          ? (json['_careTeamSequence'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      diagnosisSequence: json['diagnosisSequence'] != null
-          ? (json['diagnosisSequence'] as List<dynamic>)
-              .map<FhirPositiveInt>(
-                (dynamic v) => FhirPositiveInt.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      diagnosisSequenceElement: json['_diagnosisSequence'] != null
-          ? (json['_diagnosisSequence'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      procedureSequence: json['procedureSequence'] != null
-          ? (json['procedureSequence'] as List<dynamic>)
-              .map<FhirPositiveInt>(
-                (dynamic v) => FhirPositiveInt.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      procedureSequenceElement: json['_procedureSequence'] != null
-          ? (json['_procedureSequence'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      informationSequence: json['informationSequence'] != null
-          ? (json['informationSequence'] as List<dynamic>)
-              .map<FhirPositiveInt>(
-                (dynamic v) => FhirPositiveInt.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      informationSequenceElement: json['_informationSequence'] != null
-          ? (json['_informationSequence'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      sequence: FhirPositiveInt.fromJson({
+        'value': json['sequence'],
+        '_value': json['_sequence'],
+      }),
+      careTeamSequence: parsePrimitiveList<FhirPositiveInt>(
+          json['careTeamSequence'] as List<dynamic>?,
+          json['_careTeamSequence'] as List<dynamic>?,
+          fromJson: FhirPositiveInt.fromJson),
+      diagnosisSequence: parsePrimitiveList<FhirPositiveInt>(
+          json['diagnosisSequence'] as List<dynamic>?,
+          json['_diagnosisSequence'] as List<dynamic>?,
+          fromJson: FhirPositiveInt.fromJson),
+      procedureSequence: parsePrimitiveList<FhirPositiveInt>(
+          json['procedureSequence'] as List<dynamic>?,
+          json['_procedureSequence'] as List<dynamic>?,
+          fromJson: FhirPositiveInt.fromJson),
+      informationSequence: parsePrimitiveList<FhirPositiveInt>(
+          json['informationSequence'] as List<dynamic>?,
+          json['_informationSequence'] as List<dynamic>?,
+          fromJson: FhirPositiveInt.fromJson),
       revenue: json['revenue'] != null
           ? CodeableConcept.fromJson(
               json['revenue'] as Map<String, dynamic>,
@@ -2622,7 +2456,7 @@ class ClaimItem extends BackboneElement {
       modifier: json['modifier'] != null
           ? (json['modifier'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2631,19 +2465,17 @@ class ClaimItem extends BackboneElement {
       programCode: json['programCode'] != null
           ? (json['programCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       servicedDate: json['servicedDate'] != null
-          ? FhirDate.fromJson(json['servicedDate'])
-          : null,
-      servicedDateElement: json['_servicedDate'] != null
-          ? Element.fromJson(
-              json['_servicedDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['servicedDate'],
+              '_value': json['_servicedDate'],
+            })
           : null,
       servicedPeriod: json['servicedPeriod'] != null
           ? Period.fromJson(
@@ -2675,12 +2507,11 @@ class ClaimItem extends BackboneElement {
               json['unitPrice'] as Map<String, dynamic>,
             )
           : null,
-      factor:
-          json['factor'] != null ? FhirDecimal.fromJson(json['factor']) : null,
-      factorElement: json['_factor'] != null
-          ? Element.fromJson(
-              json['_factor'] as Map<String, dynamic>,
-            )
+      factor: json['factor'] != null
+          ? FhirDecimal.fromJson({
+              'value': json['factor'],
+              '_value': json['_factor'],
+            })
           : null,
       net: json['net'] != null
           ? Money.fromJson(
@@ -2690,7 +2521,7 @@ class ClaimItem extends BackboneElement {
       udi: json['udi'] != null
           ? (json['udi'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2704,7 +2535,7 @@ class ClaimItem extends BackboneElement {
       subSite: json['subSite'] != null
           ? (json['subSite'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2713,7 +2544,7 @@ class ClaimItem extends BackboneElement {
       encounter: json['encounter'] != null
           ? (json['encounter'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2722,7 +2553,7 @@ class ClaimItem extends BackboneElement {
       detail: json['detail'] != null
           ? (json['detail'] as List<dynamic>)
               .map<ClaimDetail>(
-                (dynamic v) => ClaimDetail.fromJson(
+                (v) => ClaimDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2731,7 +2562,8 @@ class ClaimItem extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimItem] from a [String] or [YamlMap] object
+  /// Deserialize [ClaimItem] from a [String]
+  /// or [YamlMap] object
   factory ClaimItem.fromYaml(dynamic yaml) => yaml is String
       ? ClaimItem.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2740,10 +2572,11 @@ class ClaimItem extends BackboneElement {
           ? ClaimItem.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('ClaimItem cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ClaimItem cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClaimItem] that takes in a [String]
+  /// Factory constructor for [ClaimItem]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClaimItem.fromJsonString(String source) {
@@ -2759,41 +2592,35 @@ class ClaimItem extends BackboneElement {
   @override
   String get fhirType => 'ClaimItem';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [sequence]
   /// A number to uniquely identify item entries.
   final FhirPositiveInt sequence;
-
-  /// Extensions for [sequence]
-  final Element? sequenceElement;
 
   /// [careTeamSequence]
   /// CareTeam members related to this service or product.
   final List<FhirPositiveInt>? careTeamSequence;
 
-  /// Extensions for [careTeamSequence]
-  final List<Element>? careTeamSequenceElement;
-
   /// [diagnosisSequence]
   /// Diagnosis applicable for this service or product.
   final List<FhirPositiveInt>? diagnosisSequence;
-
-  /// Extensions for [diagnosisSequence]
-  final List<Element>? diagnosisSequenceElement;
 
   /// [procedureSequence]
   /// Procedures applicable for this service or product.
   final List<FhirPositiveInt>? procedureSequence;
 
-  /// Extensions for [procedureSequence]
-  final List<Element>? procedureSequenceElement;
-
   /// [informationSequence]
   /// Exceptions, special conditions and supporting information applicable
   /// for this service or product.
   final List<FhirPositiveInt>? informationSequence;
-
-  /// Extensions for [informationSequence]
-  final List<Element>? informationSequenceElement;
 
   /// [revenue]
   /// The type of revenue or cost center providing the product and/or
@@ -2824,9 +2651,6 @@ class ClaimItem extends BackboneElement {
   /// The date or dates when the service or product was supplied, performed
   /// or completed.
   final FhirDate? servicedDate;
-
-  /// Extensions for [servicedDate]
-  final Element? servicedDateElement;
 
   /// [servicedPeriod]
   /// The date or dates when the service or product was supplied, performed
@@ -2861,9 +2685,6 @@ class ClaimItem extends BackboneElement {
   /// of a Factor allows for a discount or surcharge multiplier to be applied
   /// to a monetary amount.
   final FhirDecimal? factor;
-
-  /// Extensions for [factor]
-  final Element? factorElement;
 
   /// [net]
   /// The quantity times the unit price for an additional service or product
@@ -2907,44 +2728,21 @@ class ClaimItem extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['sequence'] = sequence.toJson();
-    if (sequenceElement != null) {
-      json['_sequence'] = sequenceElement!.toJson();
-    }
     if (careTeamSequence != null && careTeamSequence!.isNotEmpty) {
       json['careTeamSequence'] =
           careTeamSequence!.map((FhirPositiveInt v) => v.toJson()).toList();
-    }
-    if (careTeamSequenceElement != null &&
-        careTeamSequenceElement!.isNotEmpty) {
-      json['_careTeamSequence'] =
-          careTeamSequenceElement!.map((Element v) => v.toJson()).toList();
     }
     if (diagnosisSequence != null && diagnosisSequence!.isNotEmpty) {
       json['diagnosisSequence'] =
           diagnosisSequence!.map((FhirPositiveInt v) => v.toJson()).toList();
     }
-    if (diagnosisSequenceElement != null &&
-        diagnosisSequenceElement!.isNotEmpty) {
-      json['_diagnosisSequence'] =
-          diagnosisSequenceElement!.map((Element v) => v.toJson()).toList();
-    }
     if (procedureSequence != null && procedureSequence!.isNotEmpty) {
       json['procedureSequence'] =
           procedureSequence!.map((FhirPositiveInt v) => v.toJson()).toList();
     }
-    if (procedureSequenceElement != null &&
-        procedureSequenceElement!.isNotEmpty) {
-      json['_procedureSequence'] =
-          procedureSequenceElement!.map((Element v) => v.toJson()).toList();
-    }
     if (informationSequence != null && informationSequence!.isNotEmpty) {
       json['informationSequence'] =
           informationSequence!.map((FhirPositiveInt v) => v.toJson()).toList();
-    }
-    if (informationSequenceElement != null &&
-        informationSequenceElement!.isNotEmpty) {
-      json['_informationSequence'] =
-          informationSequenceElement!.map((Element v) => v.toJson()).toList();
     }
     if (revenue != null) {
       json['revenue'] = revenue!.toJson();
@@ -2963,9 +2761,6 @@ class ClaimItem extends BackboneElement {
     }
     if (servicedDate?.value != null) {
       json['servicedDate'] = servicedDate!.toJson();
-    }
-    if (servicedDateElement != null) {
-      json['_servicedDate'] = servicedDateElement!.toJson();
     }
     if (servicedPeriod != null) {
       json['servicedPeriod'] = servicedPeriod!.toJson();
@@ -2987,9 +2782,6 @@ class ClaimItem extends BackboneElement {
     }
     if (factor?.value != null) {
       json['factor'] = factor!.toJson();
-    }
-    if (factorElement != null) {
-      json['_factor'] = factorElement!.toJson();
     }
     if (net != null) {
       json['net'] = net!.toJson();
@@ -3021,22 +2813,16 @@ class ClaimItem extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
-    Element? sequenceElement,
     List<FhirPositiveInt>? careTeamSequence,
-    List<Element>? careTeamSequenceElement,
     List<FhirPositiveInt>? diagnosisSequence,
-    List<Element>? diagnosisSequenceElement,
     List<FhirPositiveInt>? procedureSequence,
-    List<Element>? procedureSequenceElement,
     List<FhirPositiveInt>? informationSequence,
-    List<Element>? informationSequenceElement,
     CodeableConcept? revenue,
     CodeableConcept? category,
     CodeableConcept? productOrService,
     List<CodeableConcept>? modifier,
     List<CodeableConcept>? programCode,
     FhirDate? servicedDate,
-    Element? servicedDateElement,
     Period? servicedPeriod,
     CodeableConcept? locationCodeableConcept,
     Address? locationAddress,
@@ -3044,7 +2830,6 @@ class ClaimItem extends BackboneElement {
     Quantity? quantity,
     Money? unitPrice,
     FhirDecimal? factor,
-    Element? factorElement,
     Money? net,
     List<Reference>? udi,
     CodeableConcept? bodySite,
@@ -3063,26 +2848,16 @@ class ClaimItem extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       sequence: sequence ?? this.sequence,
-      sequenceElement: sequenceElement ?? this.sequenceElement,
       careTeamSequence: careTeamSequence ?? this.careTeamSequence,
-      careTeamSequenceElement:
-          careTeamSequenceElement ?? this.careTeamSequenceElement,
       diagnosisSequence: diagnosisSequence ?? this.diagnosisSequence,
-      diagnosisSequenceElement:
-          diagnosisSequenceElement ?? this.diagnosisSequenceElement,
       procedureSequence: procedureSequence ?? this.procedureSequence,
-      procedureSequenceElement:
-          procedureSequenceElement ?? this.procedureSequenceElement,
       informationSequence: informationSequence ?? this.informationSequence,
-      informationSequenceElement:
-          informationSequenceElement ?? this.informationSequenceElement,
       revenue: revenue ?? this.revenue,
       category: category ?? this.category,
       productOrService: productOrService ?? this.productOrService,
       modifier: modifier ?? this.modifier,
       programCode: programCode ?? this.programCode,
       servicedDate: servicedDate ?? this.servicedDate,
-      servicedDateElement: servicedDateElement ?? this.servicedDateElement,
       servicedPeriod: servicedPeriod ?? this.servicedPeriod,
       locationCodeableConcept:
           locationCodeableConcept ?? this.locationCodeableConcept,
@@ -3091,7 +2866,6 @@ class ClaimItem extends BackboneElement {
       quantity: quantity ?? this.quantity,
       unitPrice: unitPrice ?? this.unitPrice,
       factor: factor ?? this.factor,
-      factorElement: factorElement ?? this.factorElement,
       net: net ?? this.net,
       udi: udi ?? this.udi,
       bodySite: bodySite ?? this.bodySite,
@@ -3116,12 +2890,9 @@ class ClaimDetail extends BackboneElement {
 
   ClaimDetail({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.sequence,
-
-    /// Extensions for [sequence]
-    this.sequenceElement,
     this.revenue,
     this.category,
     required this.productOrService,
@@ -3130,9 +2901,6 @@ class ClaimDetail extends BackboneElement {
     this.quantity,
     this.unitPrice,
     this.factor,
-
-    /// Extensions for [factor]
-    this.factorElement,
     this.net,
     this.udi,
     this.subDetail,
@@ -3147,11 +2915,15 @@ class ClaimDetail extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimDetail.fromJson(Map<String, dynamic> json) {
     return ClaimDetail(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3160,18 +2932,16 @@ class ClaimDetail extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      sequence: FhirPositiveInt.fromJson(json['sequence']),
-      sequenceElement: json['_sequence'] != null
-          ? Element.fromJson(
-              json['_sequence'] as Map<String, dynamic>,
-            )
-          : null,
+      sequence: FhirPositiveInt.fromJson({
+        'value': json['sequence'],
+        '_value': json['_sequence'],
+      }),
       revenue: json['revenue'] != null
           ? CodeableConcept.fromJson(
               json['revenue'] as Map<String, dynamic>,
@@ -3188,7 +2958,7 @@ class ClaimDetail extends BackboneElement {
       modifier: json['modifier'] != null
           ? (json['modifier'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3197,7 +2967,7 @@ class ClaimDetail extends BackboneElement {
       programCode: json['programCode'] != null
           ? (json['programCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3213,12 +2983,11 @@ class ClaimDetail extends BackboneElement {
               json['unitPrice'] as Map<String, dynamic>,
             )
           : null,
-      factor:
-          json['factor'] != null ? FhirDecimal.fromJson(json['factor']) : null,
-      factorElement: json['_factor'] != null
-          ? Element.fromJson(
-              json['_factor'] as Map<String, dynamic>,
-            )
+      factor: json['factor'] != null
+          ? FhirDecimal.fromJson({
+              'value': json['factor'],
+              '_value': json['_factor'],
+            })
           : null,
       net: json['net'] != null
           ? Money.fromJson(
@@ -3228,7 +2997,7 @@ class ClaimDetail extends BackboneElement {
       udi: json['udi'] != null
           ? (json['udi'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3237,7 +3006,7 @@ class ClaimDetail extends BackboneElement {
       subDetail: json['subDetail'] != null
           ? (json['subDetail'] as List<dynamic>)
               .map<ClaimSubDetail>(
-                (dynamic v) => ClaimSubDetail.fromJson(
+                (v) => ClaimSubDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3246,7 +3015,8 @@ class ClaimDetail extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimDetail] from a [String] or [YamlMap] object
+  /// Deserialize [ClaimDetail] from a [String]
+  /// or [YamlMap] object
   factory ClaimDetail.fromYaml(dynamic yaml) => yaml is String
       ? ClaimDetail.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -3255,10 +3025,11 @@ class ClaimDetail extends BackboneElement {
           ? ClaimDetail.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('ClaimDetail cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ClaimDetail cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClaimDetail] that takes in a [String]
+  /// Factory constructor for [ClaimDetail]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClaimDetail.fromJsonString(String source) {
@@ -3274,12 +3045,18 @@ class ClaimDetail extends BackboneElement {
   @override
   String get fhirType => 'ClaimDetail';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [sequence]
   /// A number to uniquely identify item entries.
   final FhirPositiveInt sequence;
-
-  /// Extensions for [sequence]
-  final Element? sequenceElement;
 
   /// [revenue]
   /// The type of revenue or cost center providing the product and/or
@@ -3322,9 +3099,6 @@ class ClaimDetail extends BackboneElement {
   /// of a Factor allows for a discount or surcharge multiplier to be applied
   /// to a monetary amount.
   final FhirDecimal? factor;
-
-  /// Extensions for [factor]
-  final Element? factorElement;
 
   /// [net]
   /// The quantity times the unit price for an additional service or product
@@ -3354,9 +3128,6 @@ class ClaimDetail extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['sequence'] = sequence.toJson();
-    if (sequenceElement != null) {
-      json['_sequence'] = sequenceElement!.toJson();
-    }
     if (revenue != null) {
       json['revenue'] = revenue!.toJson();
     }
@@ -3381,9 +3152,6 @@ class ClaimDetail extends BackboneElement {
     if (factor?.value != null) {
       json['factor'] = factor!.toJson();
     }
-    if (factorElement != null) {
-      json['_factor'] = factorElement!.toJson();
-    }
     if (net != null) {
       json['net'] = net!.toJson();
     }
@@ -3405,7 +3173,6 @@ class ClaimDetail extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
-    Element? sequenceElement,
     CodeableConcept? revenue,
     CodeableConcept? category,
     CodeableConcept? productOrService,
@@ -3414,7 +3181,6 @@ class ClaimDetail extends BackboneElement {
     Quantity? quantity,
     Money? unitPrice,
     FhirDecimal? factor,
-    Element? factorElement,
     Money? net,
     List<Reference>? udi,
     List<ClaimSubDetail>? subDetail,
@@ -3430,7 +3196,6 @@ class ClaimDetail extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       sequence: sequence ?? this.sequence,
-      sequenceElement: sequenceElement ?? this.sequenceElement,
       revenue: revenue ?? this.revenue,
       category: category ?? this.category,
       productOrService: productOrService ?? this.productOrService,
@@ -3439,7 +3204,6 @@ class ClaimDetail extends BackboneElement {
       quantity: quantity ?? this.quantity,
       unitPrice: unitPrice ?? this.unitPrice,
       factor: factor ?? this.factor,
-      factorElement: factorElement ?? this.factorElement,
       net: net ?? this.net,
       udi: udi ?? this.udi,
       subDetail: subDetail ?? this.subDetail,
@@ -3461,12 +3225,9 @@ class ClaimSubDetail extends BackboneElement {
 
   ClaimSubDetail({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.sequence,
-
-    /// Extensions for [sequence]
-    this.sequenceElement,
     this.revenue,
     this.category,
     required this.productOrService,
@@ -3475,9 +3236,6 @@ class ClaimSubDetail extends BackboneElement {
     this.quantity,
     this.unitPrice,
     this.factor,
-
-    /// Extensions for [factor]
-    this.factorElement,
     this.net,
     this.udi,
     super.userData,
@@ -3491,11 +3249,15 @@ class ClaimSubDetail extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClaimSubDetail.fromJson(Map<String, dynamic> json) {
     return ClaimSubDetail(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3504,18 +3266,16 @@ class ClaimSubDetail extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      sequence: FhirPositiveInt.fromJson(json['sequence']),
-      sequenceElement: json['_sequence'] != null
-          ? Element.fromJson(
-              json['_sequence'] as Map<String, dynamic>,
-            )
-          : null,
+      sequence: FhirPositiveInt.fromJson({
+        'value': json['sequence'],
+        '_value': json['_sequence'],
+      }),
       revenue: json['revenue'] != null
           ? CodeableConcept.fromJson(
               json['revenue'] as Map<String, dynamic>,
@@ -3532,7 +3292,7 @@ class ClaimSubDetail extends BackboneElement {
       modifier: json['modifier'] != null
           ? (json['modifier'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3541,7 +3301,7 @@ class ClaimSubDetail extends BackboneElement {
       programCode: json['programCode'] != null
           ? (json['programCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3557,12 +3317,11 @@ class ClaimSubDetail extends BackboneElement {
               json['unitPrice'] as Map<String, dynamic>,
             )
           : null,
-      factor:
-          json['factor'] != null ? FhirDecimal.fromJson(json['factor']) : null,
-      factorElement: json['_factor'] != null
-          ? Element.fromJson(
-              json['_factor'] as Map<String, dynamic>,
-            )
+      factor: json['factor'] != null
+          ? FhirDecimal.fromJson({
+              'value': json['factor'],
+              '_value': json['_factor'],
+            })
           : null,
       net: json['net'] != null
           ? Money.fromJson(
@@ -3572,7 +3331,7 @@ class ClaimSubDetail extends BackboneElement {
       udi: json['udi'] != null
           ? (json['udi'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3581,7 +3340,8 @@ class ClaimSubDetail extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClaimSubDetail] from a [String] or [YamlMap] object
+  /// Deserialize [ClaimSubDetail] from a [String]
+  /// or [YamlMap] object
   factory ClaimSubDetail.fromYaml(dynamic yaml) => yaml is String
       ? ClaimSubDetail.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -3590,11 +3350,11 @@ class ClaimSubDetail extends BackboneElement {
           ? ClaimSubDetail.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClaimSubDetail cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ClaimSubDetail cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClaimSubDetail] that takes in a [String]
+  /// Factory constructor for [ClaimSubDetail]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClaimSubDetail.fromJsonString(String source) {
@@ -3610,12 +3370,18 @@ class ClaimSubDetail extends BackboneElement {
   @override
   String get fhirType => 'ClaimSubDetail';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [sequence]
   /// A number to uniquely identify item entries.
   final FhirPositiveInt sequence;
-
-  /// Extensions for [sequence]
-  final Element? sequenceElement;
 
   /// [revenue]
   /// The type of revenue or cost center providing the product and/or
@@ -3659,9 +3425,6 @@ class ClaimSubDetail extends BackboneElement {
   /// to a monetary amount.
   final FhirDecimal? factor;
 
-  /// Extensions for [factor]
-  final Element? factorElement;
-
   /// [net]
   /// The quantity times the unit price for an additional service or product
   /// or charge.
@@ -3685,9 +3448,6 @@ class ClaimSubDetail extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['sequence'] = sequence.toJson();
-    if (sequenceElement != null) {
-      json['_sequence'] = sequenceElement!.toJson();
-    }
     if (revenue != null) {
       json['revenue'] = revenue!.toJson();
     }
@@ -3712,9 +3472,6 @@ class ClaimSubDetail extends BackboneElement {
     if (factor?.value != null) {
       json['factor'] = factor!.toJson();
     }
-    if (factorElement != null) {
-      json['_factor'] = factorElement!.toJson();
-    }
     if (net != null) {
       json['net'] = net!.toJson();
     }
@@ -3732,7 +3489,6 @@ class ClaimSubDetail extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
-    Element? sequenceElement,
     CodeableConcept? revenue,
     CodeableConcept? category,
     CodeableConcept? productOrService,
@@ -3741,7 +3497,6 @@ class ClaimSubDetail extends BackboneElement {
     Quantity? quantity,
     Money? unitPrice,
     FhirDecimal? factor,
-    Element? factorElement,
     Money? net,
     List<Reference>? udi,
     Map<String, Object?>? userData,
@@ -3756,7 +3511,6 @@ class ClaimSubDetail extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       sequence: sequence ?? this.sequence,
-      sequenceElement: sequenceElement ?? this.sequenceElement,
       revenue: revenue ?? this.revenue,
       category: category ?? this.category,
       productOrService: productOrService ?? this.productOrService,
@@ -3765,7 +3519,6 @@ class ClaimSubDetail extends BackboneElement {
       quantity: quantity ?? this.quantity,
       unitPrice: unitPrice ?? this.unitPrice,
       factor: factor ?? this.factor,
-      factorElement: factorElement ?? this.factorElement,
       net: net ?? this.net,
       udi: udi ?? this.udi,
       userData: userData ?? this.userData,

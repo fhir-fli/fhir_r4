@@ -13,38 +13,20 @@ class GuidanceResponse extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.requestIdentifier,
     this.identifier,
     this.moduleUri,
-
-    /// Extensions for [moduleUri]
-    this.moduleUriElement,
     this.moduleCanonical,
-
-    /// Extensions for [moduleCanonical]
-    this.moduleCanonicalElement,
     this.moduleCodeableConcept,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.subject,
     this.encounter,
     this.occurrenceDateTime,
-
-    /// Extensions for [occurrenceDateTime]
-    this.occurrenceDateTimeElement,
     this.performer,
     this.reasonCode,
     this.reasonReference,
@@ -66,27 +48,27 @@ class GuidanceResponse extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GuidanceResponse.fromJson(Map<String, dynamic> json) {
     return GuidanceResponse(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -96,7 +78,7 @@ class GuidanceResponse extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -105,7 +87,7 @@ class GuidanceResponse extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -114,7 +96,7 @@ class GuidanceResponse extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -128,39 +110,33 @@ class GuidanceResponse extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       moduleUri: json['moduleUri'] != null
-          ? FhirUri.fromJson(json['moduleUri'])
-          : null,
-      moduleUriElement: json['_moduleUri'] != null
-          ? Element.fromJson(
-              json['_moduleUri'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['moduleUri'],
+              '_value': json['_moduleUri'],
+            })
           : null,
       moduleCanonical: json['moduleCanonical'] != null
-          ? FhirCanonical.fromJson(json['moduleCanonical'])
-          : null,
-      moduleCanonicalElement: json['_moduleCanonical'] != null
-          ? Element.fromJson(
-              json['_moduleCanonical'] as Map<String, dynamic>,
-            )
+          ? FhirCanonical.fromJson({
+              'value': json['moduleCanonical'],
+              '_value': json['_moduleCanonical'],
+            })
           : null,
       moduleCodeableConcept: json['moduleCodeableConcept'] != null
           ? CodeableConcept.fromJson(
               json['moduleCodeableConcept'] as Map<String, dynamic>,
             )
           : null,
-      status: GuidanceResponseStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: GuidanceResponseStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       subject: json['subject'] != null
           ? Reference.fromJson(
               json['subject'] as Map<String, dynamic>,
@@ -172,12 +148,10 @@ class GuidanceResponse extends DomainResource {
             )
           : null,
       occurrenceDateTime: json['occurrenceDateTime'] != null
-          ? FhirDateTime.fromJson(json['occurrenceDateTime'])
-          : null,
-      occurrenceDateTimeElement: json['_occurrenceDateTime'] != null
-          ? Element.fromJson(
-              json['_occurrenceDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['occurrenceDateTime'],
+              '_value': json['_occurrenceDateTime'],
+            })
           : null,
       performer: json['performer'] != null
           ? Reference.fromJson(
@@ -187,7 +161,7 @@ class GuidanceResponse extends DomainResource {
       reasonCode: json['reasonCode'] != null
           ? (json['reasonCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -196,7 +170,7 @@ class GuidanceResponse extends DomainResource {
       reasonReference: json['reasonReference'] != null
           ? (json['reasonReference'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -205,7 +179,7 @@ class GuidanceResponse extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -214,7 +188,7 @@ class GuidanceResponse extends DomainResource {
       evaluationMessage: json['evaluationMessage'] != null
           ? (json['evaluationMessage'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -233,7 +207,7 @@ class GuidanceResponse extends DomainResource {
       dataRequirement: json['dataRequirement'] != null
           ? (json['dataRequirement'] as List<dynamic>)
               .map<DataRequirement>(
-                (dynamic v) => DataRequirement.fromJson(
+                (v) => DataRequirement.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -242,7 +216,8 @@ class GuidanceResponse extends DomainResource {
     );
   }
 
-  /// Deserialize [GuidanceResponse] from a [String] or [YamlMap] object
+  /// Deserialize [GuidanceResponse] from a [String]
+  /// or [YamlMap] object
   factory GuidanceResponse.fromYaml(dynamic yaml) => yaml is String
       ? GuidanceResponse.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -251,11 +226,11 @@ class GuidanceResponse extends DomainResource {
           ? GuidanceResponse.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'GuidanceResponse cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('GuidanceResponse cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [GuidanceResponse] that takes in a [String]
+  /// Factory constructor for [GuidanceResponse]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory GuidanceResponse.fromJsonString(String source) {
@@ -270,6 +245,15 @@ class GuidanceResponse extends DomainResource {
 
   @override
   String get fhirType => 'GuidanceResponse';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [requestIdentifier]
   /// The identifier of the request associated with this response. If an
@@ -288,16 +272,10 @@ class GuidanceResponse extends DomainResource {
   /// that was requested.
   final FhirUri? moduleUri;
 
-  /// Extensions for [moduleUri]
-  final Element? moduleUriElement;
-
   /// [moduleCanonical]
   /// An identifier, CodeableConcept or canonical reference to the guidance
   /// that was requested.
   final FhirCanonical? moduleCanonical;
-
-  /// Extensions for [moduleCanonical]
-  final Element? moduleCanonicalElement;
 
   /// [moduleCodeableConcept]
   /// An identifier, CodeableConcept or canonical reference to the guidance
@@ -316,9 +294,6 @@ class GuidanceResponse extends DomainResource {
   /// contain a description of the additional requested information.
   final GuidanceResponseStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [subject]
   /// The patient for which the request was processed.
   final Reference? subject;
@@ -331,9 +306,6 @@ class GuidanceResponse extends DomainResource {
   /// [occurrenceDateTime]
   /// Indicates when the guidance response was processed.
   final FhirDateTime? occurrenceDateTime;
-
-  /// Extensions for [occurrenceDateTime]
-  final Element? occurrenceDateTimeElement;
 
   /// [performer]
   /// Provides a reference to the device that performed the guidance.
@@ -395,9 +367,6 @@ class GuidanceResponse extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -425,14 +394,8 @@ class GuidanceResponse extends DomainResource {
     if (moduleUri?.value != null) {
       json['moduleUri'] = moduleUri!.toJson();
     }
-    if (moduleUriElement != null) {
-      json['_moduleUri'] = moduleUriElement!.toJson();
-    }
     if (moduleCanonical?.value != null) {
       json['moduleCanonical'] = moduleCanonical!.toJson();
-    }
-    if (moduleCanonicalElement != null) {
-      json['_moduleCanonical'] = moduleCanonicalElement!.toJson();
     }
     if (moduleCodeableConcept != null) {
       json['moduleCodeableConcept'] = moduleCodeableConcept!.toJson();
@@ -446,9 +409,6 @@ class GuidanceResponse extends DomainResource {
     }
     if (occurrenceDateTime?.value != null) {
       json['occurrenceDateTime'] = occurrenceDateTime!.toJson();
-    }
-    if (occurrenceDateTimeElement != null) {
-      json['_occurrenceDateTime'] = occurrenceDateTimeElement!.toJson();
     }
     if (performer != null) {
       json['performer'] = performer!.toJson();
@@ -488,9 +448,7 @@ class GuidanceResponse extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -498,16 +456,12 @@ class GuidanceResponse extends DomainResource {
     Identifier? requestIdentifier,
     List<Identifier>? identifier,
     FhirUri? moduleUri,
-    Element? moduleUriElement,
     FhirCanonical? moduleCanonical,
-    Element? moduleCanonicalElement,
     CodeableConcept? moduleCodeableConcept,
     GuidanceResponseStatus? status,
-    Element? statusElement,
     Reference? subject,
     Reference? encounter,
     FhirDateTime? occurrenceDateTime,
-    Element? occurrenceDateTimeElement,
     Reference? performer,
     List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
@@ -527,9 +481,7 @@ class GuidanceResponse extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -537,19 +489,13 @@ class GuidanceResponse extends DomainResource {
       requestIdentifier: requestIdentifier ?? this.requestIdentifier,
       identifier: identifier ?? this.identifier,
       moduleUri: moduleUri ?? this.moduleUri,
-      moduleUriElement: moduleUriElement ?? this.moduleUriElement,
       moduleCanonical: moduleCanonical ?? this.moduleCanonical,
-      moduleCanonicalElement:
-          moduleCanonicalElement ?? this.moduleCanonicalElement,
       moduleCodeableConcept:
           moduleCodeableConcept ?? this.moduleCodeableConcept,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
       occurrenceDateTime: occurrenceDateTime ?? this.occurrenceDateTime,
-      occurrenceDateTimeElement:
-          occurrenceDateTimeElement ?? this.occurrenceDateTimeElement,
       performer: performer ?? this.performer,
       reasonCode: reasonCode ?? this.reasonCode,
       reasonReference: reasonReference ?? this.reasonReference,

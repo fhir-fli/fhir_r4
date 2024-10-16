@@ -12,33 +12,18 @@ class ResearchSubject extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.period,
     required this.study,
     required this.individual,
     this.assignedArm,
-
-    /// Extensions for [assignedArm]
-    this.assignedArmElement,
     this.actualArm,
-
-    /// Extensions for [actualArm]
-    this.actualArmElement,
     this.consent,
     super.userData,
     super.formatCommentsPre,
@@ -53,27 +38,27 @@ class ResearchSubject extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ResearchSubject.fromJson(Map<String, dynamic> json) {
     return ResearchSubject(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -83,7 +68,7 @@ class ResearchSubject extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -92,7 +77,7 @@ class ResearchSubject extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -101,7 +86,7 @@ class ResearchSubject extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -110,18 +95,16 @@ class ResearchSubject extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: ResearchSubjectStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: ResearchSubjectStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       period: json['period'] != null
           ? Period.fromJson(
               json['period'] as Map<String, dynamic>,
@@ -134,20 +117,16 @@ class ResearchSubject extends DomainResource {
         json['individual'] as Map<String, dynamic>,
       ),
       assignedArm: json['assignedArm'] != null
-          ? FhirString.fromJson(json['assignedArm'])
-          : null,
-      assignedArmElement: json['_assignedArm'] != null
-          ? Element.fromJson(
-              json['_assignedArm'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['assignedArm'],
+              '_value': json['_assignedArm'],
+            })
           : null,
       actualArm: json['actualArm'] != null
-          ? FhirString.fromJson(json['actualArm'])
-          : null,
-      actualArmElement: json['_actualArm'] != null
-          ? Element.fromJson(
-              json['_actualArm'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['actualArm'],
+              '_value': json['_actualArm'],
+            })
           : null,
       consent: json['consent'] != null
           ? Reference.fromJson(
@@ -157,7 +136,8 @@ class ResearchSubject extends DomainResource {
     );
   }
 
-  /// Deserialize [ResearchSubject] from a [String] or [YamlMap] object
+  /// Deserialize [ResearchSubject] from a [String]
+  /// or [YamlMap] object
   factory ResearchSubject.fromYaml(dynamic yaml) => yaml is String
       ? ResearchSubject.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -166,11 +146,11 @@ class ResearchSubject extends DomainResource {
           ? ResearchSubject.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ResearchSubject cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ResearchSubject cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ResearchSubject] that takes in a [String]
+  /// Factory constructor for [ResearchSubject]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ResearchSubject.fromJsonString(String source) {
@@ -186,6 +166,15 @@ class ResearchSubject extends DomainResource {
   @override
   String get fhirType => 'ResearchSubject';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Identifiers assigned to this research subject for a study.
   final List<Identifier>? identifier;
@@ -193,9 +182,6 @@ class ResearchSubject extends DomainResource {
   /// [status]
   /// The current state of the subject.
   final ResearchSubjectStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [period]
   /// The dates the subject began and ended their participation in the study.
@@ -214,16 +200,10 @@ class ResearchSubject extends DomainResource {
   /// part of this study.
   final FhirString? assignedArm;
 
-  /// Extensions for [assignedArm]
-  final Element? assignedArmElement;
-
   /// [actualArm]
   /// The name of the arm in the study the subject actually followed as part
   /// of this study.
   final FhirString? actualArm;
-
-  /// Extensions for [actualArm]
-  final Element? actualArmElement;
 
   /// [consent]
   /// A record of the patient's informed agreement to participate in the
@@ -241,9 +221,6 @@ class ResearchSubject extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -275,14 +252,8 @@ class ResearchSubject extends DomainResource {
     if (assignedArm?.value != null) {
       json['assignedArm'] = assignedArm!.toJson();
     }
-    if (assignedArmElement != null) {
-      json['_assignedArm'] = assignedArmElement!.toJson();
-    }
     if (actualArm?.value != null) {
       json['actualArm'] = actualArm!.toJson();
-    }
-    if (actualArmElement != null) {
-      json['_actualArm'] = actualArmElement!.toJson();
     }
     if (consent != null) {
       json['consent'] = consent!.toJson();
@@ -297,23 +268,18 @@ class ResearchSubject extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     ResearchSubjectStatus? status,
-    Element? statusElement,
     Period? period,
     Reference? study,
     Reference? individual,
     FhirString? assignedArm,
-    Element? assignedArmElement,
     FhirString? actualArm,
-    Element? actualArmElement,
     Reference? consent,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -326,23 +292,18 @@ class ResearchSubject extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       period: period ?? this.period,
       study: study ?? this.study,
       individual: individual ?? this.individual,
       assignedArm: assignedArm ?? this.assignedArm,
-      assignedArmElement: assignedArmElement ?? this.assignedArmElement,
       actualArm: actualArm ?? this.actualArm,
-      actualArmElement: actualArmElement ?? this.actualArmElement,
       consent: consent ?? this.consent,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

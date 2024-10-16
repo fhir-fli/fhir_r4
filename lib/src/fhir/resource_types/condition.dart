@@ -12,16 +12,10 @@ class Condition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.clinicalStatus,
@@ -33,31 +27,16 @@ class Condition extends DomainResource {
     required this.subject,
     this.encounter,
     this.onsetDateTime,
-
-    /// Extensions for [onsetDateTime]
-    this.onsetDateTimeElement,
     this.onsetAge,
     this.onsetPeriod,
     this.onsetRange,
     this.onsetString,
-
-    /// Extensions for [onsetString]
-    this.onsetStringElement,
     this.abatementDateTime,
-
-    /// Extensions for [abatementDateTime]
-    this.abatementDateTimeElement,
     this.abatementAge,
     this.abatementPeriod,
     this.abatementRange,
     this.abatementString,
-
-    /// Extensions for [abatementString]
-    this.abatementStringElement,
     this.recordedDate,
-
-    /// Extensions for [recordedDate]
-    this.recordedDateElement,
     this.recorder,
     this.asserter,
     this.stage,
@@ -76,27 +55,27 @@ class Condition extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Condition.fromJson(Map<String, dynamic> json) {
     return Condition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -106,7 +85,7 @@ class Condition extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -115,7 +94,7 @@ class Condition extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -124,7 +103,7 @@ class Condition extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -133,7 +112,7 @@ class Condition extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -152,7 +131,7 @@ class Condition extends DomainResource {
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -171,7 +150,7 @@ class Condition extends DomainResource {
       bodySite: json['bodySite'] != null
           ? (json['bodySite'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -186,12 +165,10 @@ class Condition extends DomainResource {
             )
           : null,
       onsetDateTime: json['onsetDateTime'] != null
-          ? FhirDateTime.fromJson(json['onsetDateTime'])
-          : null,
-      onsetDateTimeElement: json['_onsetDateTime'] != null
-          ? Element.fromJson(
-              json['_onsetDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['onsetDateTime'],
+              '_value': json['_onsetDateTime'],
+            })
           : null,
       onsetAge: json['onsetAge'] != null
           ? Age.fromJson(
@@ -209,20 +186,16 @@ class Condition extends DomainResource {
             )
           : null,
       onsetString: json['onsetString'] != null
-          ? FhirString.fromJson(json['onsetString'])
-          : null,
-      onsetStringElement: json['_onsetString'] != null
-          ? Element.fromJson(
-              json['_onsetString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['onsetString'],
+              '_value': json['_onsetString'],
+            })
           : null,
       abatementDateTime: json['abatementDateTime'] != null
-          ? FhirDateTime.fromJson(json['abatementDateTime'])
-          : null,
-      abatementDateTimeElement: json['_abatementDateTime'] != null
-          ? Element.fromJson(
-              json['_abatementDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['abatementDateTime'],
+              '_value': json['_abatementDateTime'],
+            })
           : null,
       abatementAge: json['abatementAge'] != null
           ? Age.fromJson(
@@ -240,20 +213,16 @@ class Condition extends DomainResource {
             )
           : null,
       abatementString: json['abatementString'] != null
-          ? FhirString.fromJson(json['abatementString'])
-          : null,
-      abatementStringElement: json['_abatementString'] != null
-          ? Element.fromJson(
-              json['_abatementString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['abatementString'],
+              '_value': json['_abatementString'],
+            })
           : null,
       recordedDate: json['recordedDate'] != null
-          ? FhirDateTime.fromJson(json['recordedDate'])
-          : null,
-      recordedDateElement: json['_recordedDate'] != null
-          ? Element.fromJson(
-              json['_recordedDate'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['recordedDate'],
+              '_value': json['_recordedDate'],
+            })
           : null,
       recorder: json['recorder'] != null
           ? Reference.fromJson(
@@ -268,7 +237,7 @@ class Condition extends DomainResource {
       stage: json['stage'] != null
           ? (json['stage'] as List<dynamic>)
               .map<ConditionStage>(
-                (dynamic v) => ConditionStage.fromJson(
+                (v) => ConditionStage.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -277,7 +246,7 @@ class Condition extends DomainResource {
       evidence: json['evidence'] != null
           ? (json['evidence'] as List<dynamic>)
               .map<ConditionEvidence>(
-                (dynamic v) => ConditionEvidence.fromJson(
+                (v) => ConditionEvidence.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -286,7 +255,7 @@ class Condition extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -295,7 +264,8 @@ class Condition extends DomainResource {
     );
   }
 
-  /// Deserialize [Condition] from a [String] or [YamlMap] object
+  /// Deserialize [Condition] from a [String]
+  /// or [YamlMap] object
   factory Condition.fromYaml(dynamic yaml) => yaml is String
       ? Condition.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -304,10 +274,11 @@ class Condition extends DomainResource {
           ? Condition.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Condition cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Condition cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Condition] that takes in a [String]
+  /// Factory constructor for [Condition]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Condition.fromJsonString(String source) {
@@ -322,6 +293,15 @@ class Condition extends DomainResource {
 
   @override
   String get fhirType => 'Condition';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Business identifiers assigned to this condition by the performer or
@@ -370,9 +350,6 @@ class Condition extends DomainResource {
   /// opinion of the clinician.
   final FhirDateTime? onsetDateTime;
 
-  /// Extensions for [onsetDateTime]
-  final Element? onsetDateTimeElement;
-
   /// [onsetAge]
   /// Estimated or actual date or date-time the condition began, in the
   /// opinion of the clinician.
@@ -393,18 +370,12 @@ class Condition extends DomainResource {
   /// opinion of the clinician.
   final FhirString? onsetString;
 
-  /// Extensions for [onsetString]
-  final Element? onsetStringElement;
-
   /// [abatementDateTime]
   /// The date or estimated date that the condition resolved or went into
   /// remission. This is called "abatement" because of the many overloaded
   /// connotations associated with "remission" or "resolution" - Conditions
   /// are never really resolved, but they can abate.
   final FhirDateTime? abatementDateTime;
-
-  /// Extensions for [abatementDateTime]
-  final Element? abatementDateTimeElement;
 
   /// [abatementAge]
   /// The date or estimated date that the condition resolved or went into
@@ -434,16 +405,10 @@ class Condition extends DomainResource {
   /// are never really resolved, but they can abate.
   final FhirString? abatementString;
 
-  /// Extensions for [abatementString]
-  final Element? abatementStringElement;
-
   /// [recordedDate]
   /// The recordedDate represents when this particular Condition record was
   /// created in the system, which is often a system-generated date.
   final FhirDateTime? recordedDate;
-
-  /// Extensions for [recordedDate]
-  final Element? recordedDateElement;
 
   /// [recorder]
   /// Individual who recorded the record and takes responsibility for its
@@ -482,9 +447,6 @@ class Condition extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -534,9 +496,6 @@ class Condition extends DomainResource {
     if (onsetDateTime?.value != null) {
       json['onsetDateTime'] = onsetDateTime!.toJson();
     }
-    if (onsetDateTimeElement != null) {
-      json['_onsetDateTime'] = onsetDateTimeElement!.toJson();
-    }
     if (onsetAge != null) {
       json['onsetAge'] = onsetAge!.toJson();
     }
@@ -549,14 +508,8 @@ class Condition extends DomainResource {
     if (onsetString?.value != null) {
       json['onsetString'] = onsetString!.toJson();
     }
-    if (onsetStringElement != null) {
-      json['_onsetString'] = onsetStringElement!.toJson();
-    }
     if (abatementDateTime?.value != null) {
       json['abatementDateTime'] = abatementDateTime!.toJson();
-    }
-    if (abatementDateTimeElement != null) {
-      json['_abatementDateTime'] = abatementDateTimeElement!.toJson();
     }
     if (abatementAge != null) {
       json['abatementAge'] = abatementAge!.toJson();
@@ -570,14 +523,8 @@ class Condition extends DomainResource {
     if (abatementString?.value != null) {
       json['abatementString'] = abatementString!.toJson();
     }
-    if (abatementStringElement != null) {
-      json['_abatementString'] = abatementStringElement!.toJson();
-    }
     if (recordedDate?.value != null) {
       json['recordedDate'] = recordedDate!.toJson();
-    }
-    if (recordedDateElement != null) {
-      json['_recordedDate'] = recordedDateElement!.toJson();
     }
     if (recorder != null) {
       json['recorder'] = recorder!.toJson();
@@ -605,9 +552,7 @@ class Condition extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -622,21 +567,16 @@ class Condition extends DomainResource {
     Reference? subject,
     Reference? encounter,
     FhirDateTime? onsetDateTime,
-    Element? onsetDateTimeElement,
     Age? onsetAge,
     Period? onsetPeriod,
     Range? onsetRange,
     FhirString? onsetString,
-    Element? onsetStringElement,
     FhirDateTime? abatementDateTime,
-    Element? abatementDateTimeElement,
     Age? abatementAge,
     Period? abatementPeriod,
     Range? abatementRange,
     FhirString? abatementString,
-    Element? abatementStringElement,
     FhirDateTime? recordedDate,
-    Element? recordedDateElement,
     Reference? recorder,
     Reference? asserter,
     List<ConditionStage>? stage,
@@ -653,9 +593,7 @@ class Condition extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -670,23 +608,16 @@ class Condition extends DomainResource {
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
       onsetDateTime: onsetDateTime ?? this.onsetDateTime,
-      onsetDateTimeElement: onsetDateTimeElement ?? this.onsetDateTimeElement,
       onsetAge: onsetAge ?? this.onsetAge,
       onsetPeriod: onsetPeriod ?? this.onsetPeriod,
       onsetRange: onsetRange ?? this.onsetRange,
       onsetString: onsetString ?? this.onsetString,
-      onsetStringElement: onsetStringElement ?? this.onsetStringElement,
       abatementDateTime: abatementDateTime ?? this.abatementDateTime,
-      abatementDateTimeElement:
-          abatementDateTimeElement ?? this.abatementDateTimeElement,
       abatementAge: abatementAge ?? this.abatementAge,
       abatementPeriod: abatementPeriod ?? this.abatementPeriod,
       abatementRange: abatementRange ?? this.abatementRange,
       abatementString: abatementString ?? this.abatementString,
-      abatementStringElement:
-          abatementStringElement ?? this.abatementStringElement,
       recordedDate: recordedDate ?? this.recordedDate,
-      recordedDateElement: recordedDateElement ?? this.recordedDateElement,
       recorder: recorder ?? this.recorder,
       asserter: asserter ?? this.asserter,
       stage: stage ?? this.stage,
@@ -710,7 +641,7 @@ class ConditionStage extends BackboneElement {
 
   ConditionStage({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.summary,
     this.assessment,
@@ -726,11 +657,15 @@ class ConditionStage extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConditionStage.fromJson(Map<String, dynamic> json) {
     return ConditionStage(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -739,7 +674,7 @@ class ConditionStage extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -753,7 +688,7 @@ class ConditionStage extends BackboneElement {
       assessment: json['assessment'] != null
           ? (json['assessment'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -767,7 +702,8 @@ class ConditionStage extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConditionStage] from a [String] or [YamlMap] object
+  /// Deserialize [ConditionStage] from a [String]
+  /// or [YamlMap] object
   factory ConditionStage.fromYaml(dynamic yaml) => yaml is String
       ? ConditionStage.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -776,11 +712,11 @@ class ConditionStage extends BackboneElement {
           ? ConditionStage.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ConditionStage cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ConditionStage cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ConditionStage] that takes in a [String]
+  /// Factory constructor for [ConditionStage]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ConditionStage.fromJsonString(String source) {
@@ -795,6 +731,15 @@ class ConditionStage extends BackboneElement {
 
   @override
   String get fhirType => 'ConditionStage';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [summary]
   /// A simple summary of the stage such as "Stage 3". The determination of
@@ -879,7 +824,7 @@ class ConditionEvidence extends BackboneElement {
 
   ConditionEvidence({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.code,
     this.detail,
@@ -894,11 +839,15 @@ class ConditionEvidence extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConditionEvidence.fromJson(Map<String, dynamic> json) {
     return ConditionEvidence(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -907,7 +856,7 @@ class ConditionEvidence extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -916,7 +865,7 @@ class ConditionEvidence extends BackboneElement {
       code: json['code'] != null
           ? (json['code'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -925,7 +874,7 @@ class ConditionEvidence extends BackboneElement {
       detail: json['detail'] != null
           ? (json['detail'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -934,7 +883,8 @@ class ConditionEvidence extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConditionEvidence] from a [String] or [YamlMap] object
+  /// Deserialize [ConditionEvidence] from a [String]
+  /// or [YamlMap] object
   factory ConditionEvidence.fromYaml(dynamic yaml) => yaml is String
       ? ConditionEvidence.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -943,11 +893,11 @@ class ConditionEvidence extends BackboneElement {
           ? ConditionEvidence.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ConditionEvidence cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ConditionEvidence cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ConditionEvidence] that takes in a [String]
+  /// Factory constructor for [ConditionEvidence]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ConditionEvidence.fromJsonString(String source) {
@@ -962,6 +912,15 @@ class ConditionEvidence extends BackboneElement {
 
   @override
   String get fhirType => 'ConditionEvidence';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [code]
   /// A manifestation or symptom that led to the recording of this condition.

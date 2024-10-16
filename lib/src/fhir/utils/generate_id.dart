@@ -3,6 +3,12 @@ import 'dart:math';
 import 'package:fhir_r4/src/fhir/r4.dart';
 import 'package:uuid/uuid.dart';
 
+/// Change a DateTime into a versionId
+extension DateTimeToVersionId on DateTime {
+  /// Converts a [DateTime] into a versionId string
+  String toVersionId() => toIso8601String().replaceAll(':', '.');
+}
+
 /// Generates a new UUID string
 String generateNewUuidString() => const Uuid().v4();
 

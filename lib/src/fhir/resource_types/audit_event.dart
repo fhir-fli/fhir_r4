@@ -13,36 +13,18 @@ class AuditEvent extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
     this.subtype,
     this.action,
-
-    /// Extensions for [action]
-    this.actionElement,
     this.period,
     required this.recorded,
-
-    /// Extensions for [recorded]
-    this.recordedElement,
     this.outcome,
-
-    /// Extensions for [outcome]
-    this.outcomeElement,
     this.outcomeDesc,
-
-    /// Extensions for [outcomeDesc]
-    this.outcomeDescElement,
     this.purposeOfEvent,
     required this.agent,
     required this.source,
@@ -60,27 +42,27 @@ class AuditEvent extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AuditEvent.fromJson(Map<String, dynamic> json) {
     return AuditEvent(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -90,7 +72,7 @@ class AuditEvent extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -99,7 +81,7 @@ class AuditEvent extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -108,7 +90,7 @@ class AuditEvent extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -120,67 +102,62 @@ class AuditEvent extends DomainResource {
       subtype: json['subtype'] != null
           ? (json['subtype'] as List<dynamic>)
               .map<Coding>(
-                (dynamic v) => Coding.fromJson(
+                (v) => Coding.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       action: json['action'] != null
-          ? AuditEventAction.fromJson(json['action'])
-          : null,
-      actionElement: json['_action'] != null
-          ? Element.fromJson(
-              json['_action'] as Map<String, dynamic>,
-            )
+          ? AuditEventAction.fromJson({
+              'value': json['action'],
+              '_value': json['_action'],
+            })
           : null,
       period: json['period'] != null
           ? Period.fromJson(
               json['period'] as Map<String, dynamic>,
             )
           : null,
-      recorded: FhirInstant.fromJson(json['recorded']),
-      recordedElement: json['_recorded'] != null
-          ? Element.fromJson(
-              json['_recorded'] as Map<String, dynamic>,
-            )
-          : null,
+      recorded: FhirInstant.fromJson({
+        'value': json['recorded'],
+        '_value': json['_recorded'],
+      }),
       outcome: json['outcome'] != null
-          ? AuditEventOutcome.fromJson(json['outcome'])
-          : null,
-      outcomeElement: json['_outcome'] != null
-          ? Element.fromJson(
-              json['_outcome'] as Map<String, dynamic>,
-            )
+          ? AuditEventOutcome.fromJson({
+              'value': json['outcome'],
+              '_value': json['_outcome'],
+            })
           : null,
       outcomeDesc: json['outcomeDesc'] != null
-          ? FhirString.fromJson(json['outcomeDesc'])
-          : null,
-      outcomeDescElement: json['_outcomeDesc'] != null
-          ? Element.fromJson(
-              json['_outcomeDesc'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['outcomeDesc'],
+              '_value': json['_outcomeDesc'],
+            })
           : null,
       purposeOfEvent: json['purposeOfEvent'] != null
           ? (json['purposeOfEvent'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      agent: (json['agent'] as List<dynamic>)
-          .map<AuditEventAgent>((dynamic v) =>
-              AuditEventAgent.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      agent: ensureNonNullList((json['agent'] as List<dynamic>)
+          .map<AuditEventAgent>(
+            (v) => AuditEventAgent.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
       source: AuditEventSource.fromJson(
         json['source'] as Map<String, dynamic>,
       ),
       entity: json['entity'] != null
           ? (json['entity'] as List<dynamic>)
               .map<AuditEventEntity>(
-                (dynamic v) => AuditEventEntity.fromJson(
+                (v) => AuditEventEntity.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -189,7 +166,8 @@ class AuditEvent extends DomainResource {
     );
   }
 
-  /// Deserialize [AuditEvent] from a [String] or [YamlMap] object
+  /// Deserialize [AuditEvent] from a [String]
+  /// or [YamlMap] object
   factory AuditEvent.fromYaml(dynamic yaml) => yaml is String
       ? AuditEvent.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -198,10 +176,11 @@ class AuditEvent extends DomainResource {
           ? AuditEvent.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('AuditEvent cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('AuditEvent cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [AuditEvent] that takes in a [String]
+  /// Factory constructor for [AuditEvent]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory AuditEvent.fromJsonString(String source) {
@@ -216,6 +195,15 @@ class AuditEvent extends DomainResource {
 
   @override
   String get fhirType => 'AuditEvent';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Identifier for a family of the event. For example, a menu item,
@@ -232,9 +220,6 @@ class AuditEvent extends DomainResource {
   /// the audit.
   final AuditEventAction? action;
 
-  /// Extensions for [action]
-  final Element? actionElement;
-
   /// [period]
   /// The period during which the activity occurred.
   final Period? period;
@@ -243,22 +228,13 @@ class AuditEvent extends DomainResource {
   /// The time when the event was recorded.
   final FhirInstant recorded;
 
-  /// Extensions for [recorded]
-  final Element? recordedElement;
-
   /// [outcome]
   /// Indicates whether the event succeeded or failed.
   final AuditEventOutcome? outcome;
 
-  /// Extensions for [outcome]
-  final Element? outcomeElement;
-
   /// [outcomeDesc]
   /// A free text description of the outcome of the event.
   final FhirString? outcomeDesc;
-
-  /// Extensions for [outcomeDesc]
-  final Element? outcomeDescElement;
 
   /// [purposeOfEvent]
   /// The purposeOfUse (reason) that was used during the event being
@@ -289,9 +265,6 @@ class AuditEvent extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -320,17 +293,11 @@ class AuditEvent extends DomainResource {
       json['period'] = period!.toJson();
     }
     json['recorded'] = recorded.toJson();
-    if (recordedElement != null) {
-      json['_recorded'] = recordedElement!.toJson();
-    }
     if (outcome != null) {
       json['outcome'] = outcome!.toJson();
     }
     if (outcomeDesc?.value != null) {
       json['outcomeDesc'] = outcomeDesc!.toJson();
-    }
-    if (outcomeDescElement != null) {
-      json['_outcomeDesc'] = outcomeDescElement!.toJson();
     }
     if (purposeOfEvent != null && purposeOfEvent!.isNotEmpty) {
       json['purposeOfEvent'] =
@@ -352,9 +319,7 @@ class AuditEvent extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -362,14 +327,10 @@ class AuditEvent extends DomainResource {
     Coding? type,
     List<Coding>? subtype,
     AuditEventAction? action,
-    Element? actionElement,
     Period? period,
     FhirInstant? recorded,
-    Element? recordedElement,
     AuditEventOutcome? outcome,
-    Element? outcomeElement,
     FhirString? outcomeDesc,
-    Element? outcomeDescElement,
     List<CodeableConcept>? purposeOfEvent,
     List<AuditEventAgent>? agent,
     AuditEventSource? source,
@@ -385,9 +346,7 @@ class AuditEvent extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -395,14 +354,10 @@ class AuditEvent extends DomainResource {
       type: type ?? this.type,
       subtype: subtype ?? this.subtype,
       action: action ?? this.action,
-      actionElement: actionElement ?? this.actionElement,
       period: period ?? this.period,
       recorded: recorded ?? this.recorded,
-      recordedElement: recordedElement ?? this.recordedElement,
       outcome: outcome ?? this.outcome,
-      outcomeElement: outcomeElement ?? this.outcomeElement,
       outcomeDesc: outcomeDesc ?? this.outcomeDesc,
-      outcomeDescElement: outcomeDescElement ?? this.outcomeDescElement,
       purposeOfEvent: purposeOfEvent ?? this.purposeOfEvent,
       agent: agent ?? this.agent,
       source: source ?? this.source,
@@ -424,28 +379,16 @@ class AuditEventAgent extends BackboneElement {
 
   AuditEventAgent({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.type,
     this.role,
     this.who,
     this.altId,
-
-    /// Extensions for [altId]
-    this.altIdElement,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     required this.requestor,
-
-    /// Extensions for [requestor]
-    this.requestorElement,
     this.location,
     this.policy,
-
-    /// Extensions for [policy]
-    this.policyElement,
     this.media,
     this.network,
     this.purposeOfUse,
@@ -460,11 +403,15 @@ class AuditEventAgent extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AuditEventAgent.fromJson(Map<String, dynamic> json) {
     return AuditEventAgent(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -473,7 +420,7 @@ class AuditEventAgent extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -487,7 +434,7 @@ class AuditEventAgent extends BackboneElement {
       role: json['role'] != null
           ? (json['role'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -498,43 +445,30 @@ class AuditEventAgent extends BackboneElement {
               json['who'] as Map<String, dynamic>,
             )
           : null,
-      altId: json['altId'] != null ? FhirString.fromJson(json['altId']) : null,
-      altIdElement: json['_altId'] != null
-          ? Element.fromJson(
-              json['_altId'] as Map<String, dynamic>,
-            )
+      altId: json['altId'] != null
+          ? FhirString.fromJson({
+              'value': json['altId'],
+              '_value': json['_altId'],
+            })
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
-      requestor: FhirBoolean.fromJson(json['requestor']),
-      requestorElement: json['_requestor'] != null
-          ? Element.fromJson(
-              json['_requestor'] as Map<String, dynamic>,
-            )
-          : null,
+      requestor: FhirBoolean.fromJson({
+        'value': json['requestor'],
+        '_value': json['_requestor'],
+      }),
       location: json['location'] != null
           ? Reference.fromJson(
               json['location'] as Map<String, dynamic>,
             )
           : null,
-      policy: json['policy'] != null
-          ? (json['policy'] as List<dynamic>)
-              .map<FhirUri>(
-                (dynamic v) => FhirUri.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      policyElement: json['_policy'] != null
-          ? (json['_policy'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      policy: parsePrimitiveList<FhirUri>(
+          json['policy'] as List<dynamic>?, json['_policy'] as List<dynamic>?,
+          fromJson: FhirUri.fromJson),
       media: json['media'] != null
           ? Coding.fromJson(
               json['media'] as Map<String, dynamic>,
@@ -548,7 +482,7 @@ class AuditEventAgent extends BackboneElement {
       purposeOfUse: json['purposeOfUse'] != null
           ? (json['purposeOfUse'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -557,7 +491,8 @@ class AuditEventAgent extends BackboneElement {
     );
   }
 
-  /// Deserialize [AuditEventAgent] from a [String] or [YamlMap] object
+  /// Deserialize [AuditEventAgent] from a [String]
+  /// or [YamlMap] object
   factory AuditEventAgent.fromYaml(dynamic yaml) => yaml is String
       ? AuditEventAgent.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -566,11 +501,11 @@ class AuditEventAgent extends BackboneElement {
           ? AuditEventAgent.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'AuditEventAgent cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('AuditEventAgent cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [AuditEventAgent] that takes in a [String]
+  /// Factory constructor for [AuditEventAgent]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory AuditEventAgent.fromJsonString(String source) {
@@ -585,6 +520,15 @@ class AuditEventAgent extends BackboneElement {
 
   @override
   String get fhirType => 'AuditEventAgent';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Specification of the participation type the user plays when performing
@@ -608,23 +552,14 @@ class AuditEventAgent extends BackboneElement {
   /// sign-on), if available.
   final FhirString? altId;
 
-  /// Extensions for [altId]
-  final Element? altIdElement;
-
   /// [name]
   /// Human-meaningful name for the agent.
   final FhirString? name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [requestor]
   /// Indicator that the user is or is not the requestor, or initiator, for
   /// the event being audited.
   final FhirBoolean requestor;
-
-  /// Extensions for [requestor]
-  final Element? requestorElement;
 
   /// [location]
   /// Where the event occurred.
@@ -636,9 +571,6 @@ class AuditEventAgent extends BackboneElement {
   /// such as patient consent, guarantor funding, etc. The policy would also
   /// indicate the security token used.
   final List<FhirUri>? policy;
-
-  /// Extensions for [policy]
-  final List<Element>? policyElement;
 
   /// [media]
   /// Type of media involved. Used when the event is about
@@ -680,27 +612,15 @@ class AuditEventAgent extends BackboneElement {
     if (altId?.value != null) {
       json['altId'] = altId!.toJson();
     }
-    if (altIdElement != null) {
-      json['_altId'] = altIdElement!.toJson();
-    }
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     json['requestor'] = requestor.toJson();
-    if (requestorElement != null) {
-      json['_requestor'] = requestorElement!.toJson();
-    }
     if (location != null) {
       json['location'] = location!.toJson();
     }
     if (policy != null && policy!.isNotEmpty) {
       json['policy'] = policy!.map((FhirUri v) => v.toJson()).toList();
-    }
-    if (policyElement != null && policyElement!.isNotEmpty) {
-      json['_policy'] = policyElement!.map((Element v) => v.toJson()).toList();
     }
     if (media != null) {
       json['media'] = media!.toJson();
@@ -726,14 +646,10 @@ class AuditEventAgent extends BackboneElement {
     List<CodeableConcept>? role,
     Reference? who,
     FhirString? altId,
-    Element? altIdElement,
     FhirString? name,
-    Element? nameElement,
     FhirBoolean? requestor,
-    Element? requestorElement,
     Reference? location,
     List<FhirUri>? policy,
-    List<Element>? policyElement,
     Coding? media,
     AuditEventNetwork? network,
     List<CodeableConcept>? purposeOfUse,
@@ -752,14 +668,10 @@ class AuditEventAgent extends BackboneElement {
       role: role ?? this.role,
       who: who ?? this.who,
       altId: altId ?? this.altId,
-      altIdElement: altIdElement ?? this.altIdElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       requestor: requestor ?? this.requestor,
-      requestorElement: requestorElement ?? this.requestorElement,
       location: location ?? this.location,
       policy: policy ?? this.policy,
-      policyElement: policyElement ?? this.policyElement,
       media: media ?? this.media,
       network: network ?? this.network,
       purposeOfUse: purposeOfUse ?? this.purposeOfUse,
@@ -781,16 +693,10 @@ class AuditEventNetwork extends BackboneElement {
 
   AuditEventNetwork({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.address,
-
-    /// Extensions for [address]
-    this.addressElement,
     this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -802,11 +708,15 @@ class AuditEventNetwork extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AuditEventNetwork.fromJson(Map<String, dynamic> json) {
     return AuditEventNetwork(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -815,31 +725,29 @@ class AuditEventNetwork extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      address:
-          json['address'] != null ? FhirString.fromJson(json['address']) : null,
-      addressElement: json['_address'] != null
-          ? Element.fromJson(
-              json['_address'] as Map<String, dynamic>,
-            )
+      address: json['address'] != null
+          ? FhirString.fromJson({
+              'value': json['address'],
+              '_value': json['_address'],
+            })
           : null,
       type: json['type'] != null
-          ? AuditEventAgentNetworkType.fromJson(json['type'])
-          : null,
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
+          ? AuditEventAgentNetworkType.fromJson({
+              'value': json['type'],
+              '_value': json['_type'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [AuditEventNetwork] from a [String] or [YamlMap] object
+  /// Deserialize [AuditEventNetwork] from a [String]
+  /// or [YamlMap] object
   factory AuditEventNetwork.fromYaml(dynamic yaml) => yaml is String
       ? AuditEventNetwork.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -848,11 +756,11 @@ class AuditEventNetwork extends BackboneElement {
           ? AuditEventNetwork.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'AuditEventNetwork cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('AuditEventNetwork cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [AuditEventNetwork] that takes in a [String]
+  /// Factory constructor for [AuditEventNetwork]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory AuditEventNetwork.fromJsonString(String source) {
@@ -868,21 +776,24 @@ class AuditEventNetwork extends BackboneElement {
   @override
   String get fhirType => 'AuditEventNetwork';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [address]
   /// An identifier for the network access point of the user device for the
   /// audit event.
   final FhirString? address;
 
-  /// Extensions for [address]
-  final Element? addressElement;
-
   /// [type]
   /// An identifier for the type of network access point that originated the
   /// audit event.
   final AuditEventAgentNetworkType? type;
-
-  /// Extensions for [type]
-  final Element? typeElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -900,9 +811,6 @@ class AuditEventNetwork extends BackboneElement {
     if (address?.value != null) {
       json['address'] = address!.toJson();
     }
-    if (addressElement != null) {
-      json['_address'] = addressElement!.toJson();
-    }
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -917,9 +825,7 @@ class AuditEventNetwork extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? address,
-    Element? addressElement,
     AuditEventAgentNetworkType? type,
-    Element? typeElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -932,9 +838,7 @@ class AuditEventNetwork extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       address: address ?? this.address,
-      addressElement: addressElement ?? this.addressElement,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -952,12 +856,9 @@ class AuditEventSource extends BackboneElement {
 
   AuditEventSource({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.site,
-
-    /// Extensions for [site]
-    this.siteElement,
     required this.observer,
     this.type,
     super.userData,
@@ -971,11 +872,15 @@ class AuditEventSource extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AuditEventSource.fromJson(Map<String, dynamic> json) {
     return AuditEventSource(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -984,17 +889,17 @@ class AuditEventSource extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      site: json['site'] != null ? FhirString.fromJson(json['site']) : null,
-      siteElement: json['_site'] != null
-          ? Element.fromJson(
-              json['_site'] as Map<String, dynamic>,
-            )
+      site: json['site'] != null
+          ? FhirString.fromJson({
+              'value': json['site'],
+              '_value': json['_site'],
+            })
           : null,
       observer: Reference.fromJson(
         json['observer'] as Map<String, dynamic>,
@@ -1002,7 +907,7 @@ class AuditEventSource extends BackboneElement {
       type: json['type'] != null
           ? (json['type'] as List<dynamic>)
               .map<Coding>(
-                (dynamic v) => Coding.fromJson(
+                (v) => Coding.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1011,7 +916,8 @@ class AuditEventSource extends BackboneElement {
     );
   }
 
-  /// Deserialize [AuditEventSource] from a [String] or [YamlMap] object
+  /// Deserialize [AuditEventSource] from a [String]
+  /// or [YamlMap] object
   factory AuditEventSource.fromYaml(dynamic yaml) => yaml is String
       ? AuditEventSource.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1020,11 +926,11 @@ class AuditEventSource extends BackboneElement {
           ? AuditEventSource.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'AuditEventSource cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('AuditEventSource cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [AuditEventSource] that takes in a [String]
+  /// Factory constructor for [AuditEventSource]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory AuditEventSource.fromJsonString(String source) {
@@ -1040,14 +946,20 @@ class AuditEventSource extends BackboneElement {
   @override
   String get fhirType => 'AuditEventSource';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [site]
   /// Logical source location within the healthcare enterprise network. For
   /// example, a hospital or other provider location within a multi-entity
   /// provider group.
   final FhirString? site;
-
-  /// Extensions for [site]
-  final Element? siteElement;
 
   /// [observer]
   /// Identifier of the source where the event was detected.
@@ -1073,9 +985,6 @@ class AuditEventSource extends BackboneElement {
     if (site?.value != null) {
       json['site'] = site!.toJson();
     }
-    if (siteElement != null) {
-      json['_site'] = siteElement!.toJson();
-    }
     json['observer'] = observer.toJson();
     if (type != null && type!.isNotEmpty) {
       json['type'] = type!.map((Coding v) => v.toJson()).toList();
@@ -1091,7 +1000,6 @@ class AuditEventSource extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? site,
-    Element? siteElement,
     Reference? observer,
     List<Coding>? type,
     Map<String, Object?>? userData,
@@ -1106,7 +1014,6 @@ class AuditEventSource extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       site: site ?? this.site,
-      siteElement: siteElement ?? this.siteElement,
       observer: observer ?? this.observer,
       type: type ?? this.type,
       userData: userData ?? this.userData,
@@ -1126,7 +1033,7 @@ class AuditEventEntity extends BackboneElement {
 
   AuditEventEntity({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.what,
     this.type,
@@ -1134,17 +1041,8 @@ class AuditEventEntity extends BackboneElement {
     this.lifecycle,
     this.securityLabel,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.query,
-
-    /// Extensions for [query]
-    this.queryElement,
     this.detail,
     super.userData,
     super.formatCommentsPre,
@@ -1157,11 +1055,15 @@ class AuditEventEntity extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AuditEventEntity.fromJson(Map<String, dynamic> json) {
     return AuditEventEntity(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1170,7 +1072,7 @@ class AuditEventEntity extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1199,38 +1101,34 @@ class AuditEventEntity extends BackboneElement {
       securityLabel: json['securityLabel'] != null
           ? (json['securityLabel'] as List<dynamic>)
               .map<Coding>(
-                (dynamic v) => Coding.fromJson(
+                (v) => Coding.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       query: json['query'] != null
-          ? FhirBase64Binary.fromJson(json['query'])
-          : null,
-      queryElement: json['_query'] != null
-          ? Element.fromJson(
-              json['_query'] as Map<String, dynamic>,
-            )
+          ? FhirBase64Binary.fromJson({
+              'value': json['query'],
+              '_value': json['_query'],
+            })
           : null,
       detail: json['detail'] != null
           ? (json['detail'] as List<dynamic>)
               .map<AuditEventDetail>(
-                (dynamic v) => AuditEventDetail.fromJson(
+                (v) => AuditEventDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1239,7 +1137,8 @@ class AuditEventEntity extends BackboneElement {
     );
   }
 
-  /// Deserialize [AuditEventEntity] from a [String] or [YamlMap] object
+  /// Deserialize [AuditEventEntity] from a [String]
+  /// or [YamlMap] object
   factory AuditEventEntity.fromYaml(dynamic yaml) => yaml is String
       ? AuditEventEntity.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1248,11 +1147,11 @@ class AuditEventEntity extends BackboneElement {
           ? AuditEventEntity.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'AuditEventEntity cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('AuditEventEntity cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [AuditEventEntity] that takes in a [String]
+  /// Factory constructor for [AuditEventEntity]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory AuditEventEntity.fromJsonString(String source) {
@@ -1267,6 +1166,15 @@ class AuditEventEntity extends BackboneElement {
 
   @override
   String get fhirType => 'AuditEventEntity';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [what]
   /// Identifies a specific instance of the entity. The reference should be
@@ -1294,22 +1202,13 @@ class AuditEventEntity extends BackboneElement {
   /// A name of the entity in the audit event.
   final FhirString? name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [description]
   /// Text that describes the entity in more detail.
   final FhirString? description;
 
-  /// Extensions for [description]
-  final Element? descriptionElement;
-
   /// [query]
   /// The query parameters for a query-type entities.
   final FhirBase64Binary? query;
-
-  /// Extensions for [query]
-  final Element? queryElement;
 
   /// [detail]
   /// Tagged value pairs for conveying additional information about the
@@ -1348,20 +1247,11 @@ class AuditEventEntity extends BackboneElement {
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (query?.value != null) {
       json['query'] = query!.toJson();
-    }
-    if (queryElement != null) {
-      json['_query'] = queryElement!.toJson();
     }
     if (detail != null && detail!.isNotEmpty) {
       json['detail'] = detail!.map((AuditEventDetail v) => v.toJson()).toList();
@@ -1382,11 +1272,8 @@ class AuditEventEntity extends BackboneElement {
     Coding? lifecycle,
     List<Coding>? securityLabel,
     FhirString? name,
-    Element? nameElement,
     FhirString? description,
-    Element? descriptionElement,
     FhirBase64Binary? query,
-    Element? queryElement,
     List<AuditEventDetail>? detail,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1405,11 +1292,8 @@ class AuditEventEntity extends BackboneElement {
       lifecycle: lifecycle ?? this.lifecycle,
       securityLabel: securityLabel ?? this.securityLabel,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       query: query ?? this.query,
-      queryElement: queryElement ?? this.queryElement,
       detail: detail ?? this.detail,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -1429,20 +1313,11 @@ class AuditEventDetail extends BackboneElement {
 
   AuditEventDetail({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.valueString,
-
-    /// Extensions for [valueString]
-    this.valueStringElement,
     this.valueBase64Binary,
-
-    /// Extensions for [valueBase64Binary]
-    this.valueBase64BinaryElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1454,11 +1329,15 @@ class AuditEventDetail extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AuditEventDetail.fromJson(Map<String, dynamic> json) {
     return AuditEventDetail(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1467,38 +1346,33 @@ class AuditEventDetail extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      type: FhirString.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
+      type: FhirString.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
       valueString: json['valueString'] != null
-          ? FhirString.fromJson(json['valueString'])
-          : null,
-      valueStringElement: json['_valueString'] != null
-          ? Element.fromJson(
-              json['_valueString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['valueString'],
+              '_value': json['_valueString'],
+            })
           : null,
       valueBase64Binary: json['valueBase64Binary'] != null
-          ? FhirBase64Binary.fromJson(json['valueBase64Binary'])
-          : null,
-      valueBase64BinaryElement: json['_valueBase64Binary'] != null
-          ? Element.fromJson(
-              json['_valueBase64Binary'] as Map<String, dynamic>,
-            )
+          ? FhirBase64Binary.fromJson({
+              'value': json['valueBase64Binary'],
+              '_value': json['_valueBase64Binary'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [AuditEventDetail] from a [String] or [YamlMap] object
+  /// Deserialize [AuditEventDetail] from a [String]
+  /// or [YamlMap] object
   factory AuditEventDetail.fromYaml(dynamic yaml) => yaml is String
       ? AuditEventDetail.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1507,11 +1381,11 @@ class AuditEventDetail extends BackboneElement {
           ? AuditEventDetail.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'AuditEventDetail cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('AuditEventDetail cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [AuditEventDetail] that takes in a [String]
+  /// Factory constructor for [AuditEventDetail]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory AuditEventDetail.fromJsonString(String source) {
@@ -1527,26 +1401,26 @@ class AuditEventDetail extends BackboneElement {
   @override
   String get fhirType => 'AuditEventDetail';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// The type of extra detail provided in the value.
   final FhirString type;
-
-  /// Extensions for [type]
-  final Element? typeElement;
 
   /// [valueString]
   /// The value of the extra detail.
   final FhirString? valueString;
 
-  /// Extensions for [valueString]
-  final Element? valueStringElement;
-
   /// [valueBase64Binary]
   /// The value of the extra detail.
   final FhirBase64Binary? valueBase64Binary;
-
-  /// Extensions for [valueBase64Binary]
-  final Element? valueBase64BinaryElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1562,20 +1436,11 @@ class AuditEventDetail extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['type'] = type.toJson();
-    if (typeElement != null) {
-      json['_type'] = typeElement!.toJson();
-    }
     if (valueString?.value != null) {
       json['valueString'] = valueString!.toJson();
     }
-    if (valueStringElement != null) {
-      json['_valueString'] = valueStringElement!.toJson();
-    }
     if (valueBase64Binary?.value != null) {
       json['valueBase64Binary'] = valueBase64Binary!.toJson();
-    }
-    if (valueBase64BinaryElement != null) {
-      json['_valueBase64Binary'] = valueBase64BinaryElement!.toJson();
     }
     return json;
   }
@@ -1588,11 +1453,8 @@ class AuditEventDetail extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? type,
-    Element? typeElement,
     FhirString? valueString,
-    Element? valueStringElement,
     FhirBase64Binary? valueBase64Binary,
-    Element? valueBase64BinaryElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1605,12 +1467,8 @@ class AuditEventDetail extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       valueString: valueString ?? this.valueString,
-      valueStringElement: valueStringElement ?? this.valueStringElement,
       valueBase64Binary: valueBase64Binary ?? this.valueBase64Binary,
-      valueBase64BinaryElement:
-          valueBase64BinaryElement ?? this.valueBase64BinaryElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

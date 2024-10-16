@@ -12,27 +12,12 @@ class FhirExpression extends DataType {
 
   FhirExpression({
     super.id,
-    super.extension_,
+    this.extension_,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     required this.language,
-
-    /// Extensions for [language]
-    this.languageElement,
     this.expression,
-
-    /// Extensions for [expression]
-    this.expressionElement,
     this.reference,
-
-    /// Extensions for [reference]
-    this.referenceElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -44,56 +29,53 @@ class FhirExpression extends DataType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FhirExpression.fromJson(Map<String, dynamic> json) {
     return FhirExpression(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirId.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
-      name: json['name'] != null ? FhirId.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
-          : null,
-      language: ExpressionLanguage.fromJson(json['language']),
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
-          : null,
+      language: ExpressionLanguage.fromJson({
+        'value': json['language'],
+        '_value': json['_language'],
+      }),
       expression: json['expression'] != null
-          ? FhirString.fromJson(json['expression'])
-          : null,
-      expressionElement: json['_expression'] != null
-          ? Element.fromJson(
-              json['_expression'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['expression'],
+              '_value': json['_expression'],
+            })
           : null,
       reference: json['reference'] != null
-          ? FhirUri.fromJson(json['reference'])
-          : null,
-      referenceElement: json['_reference'] != null
-          ? Element.fromJson(
-              json['_reference'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['reference'],
+              '_value': json['_reference'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [FhirExpression] from a [String] or [YamlMap] object
+  /// Deserialize [FhirExpression] from a [String]
+  /// or [YamlMap] object
   factory FhirExpression.fromYaml(dynamic yaml) => yaml is String
       ? FhirExpression.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -102,11 +84,11 @@ class FhirExpression extends DataType {
           ? FhirExpression.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'FhirExpression cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('FhirExpression cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [FhirExpression] that takes in a [String]
+  /// Factory constructor for [FhirExpression]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory FhirExpression.fromJsonString(String source) {
@@ -122,42 +104,36 @@ class FhirExpression extends DataType {
   @override
   String get fhirType => 'FhirExpression';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [description]
   /// A brief, natural language description of the condition that effectively
   /// communicates the intended semantics.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [name]
   /// A short name assigned to the expression to allow for multiple reuse of
   /// the expression in the context where it is defined.
   final FhirId? name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [language]
   /// The media type of the language for the expression.
   final ExpressionLanguage language;
-
-  /// Extensions for [language]
-  final Element? languageElement;
 
   /// [expression]
   /// An expression in the specified language that returns a value.
   final FhirString? expression;
 
-  /// Extensions for [expression]
-  final Element? expressionElement;
-
   /// [reference]
   /// A URI that defines where the expression is found.
   final FhirUri? reference;
-
-  /// Extensions for [reference]
-  final Element? referenceElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -171,27 +147,15 @@ class FhirExpression extends DataType {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (name?.value != null) {
       json['name'] = name!.toJson();
-    }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
     }
     json['language'] = language.toJson();
     if (expression?.value != null) {
       json['expression'] = expression!.toJson();
     }
-    if (expressionElement != null) {
-      json['_expression'] = expressionElement!.toJson();
-    }
     if (reference?.value != null) {
       json['reference'] = reference!.toJson();
-    }
-    if (referenceElement != null) {
-      json['_reference'] = referenceElement!.toJson();
     }
     return json;
   }
@@ -203,15 +167,10 @@ class FhirExpression extends DataType {
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirString? description,
-    Element? descriptionElement,
     FhirId? name,
-    Element? nameElement,
     ExpressionLanguage? language,
-    Element? languageElement,
     FhirString? expression,
-    Element? expressionElement,
     FhirUri? reference,
-    Element? referenceElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -223,15 +182,10 @@ class FhirExpression extends DataType {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       expression: expression ?? this.expression,
-      expressionElement: expressionElement ?? this.expressionElement,
       reference: reference ?? this.reference,
-      referenceElement: referenceElement ?? this.referenceElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

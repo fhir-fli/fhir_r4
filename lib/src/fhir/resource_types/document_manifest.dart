@@ -12,39 +12,21 @@ class DocumentManifest extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.masterIdentifier,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.type,
     this.subject,
     this.created,
-
-    /// Extensions for [created]
-    this.createdElement,
     this.author,
     this.recipient,
     this.source,
-
-    /// Extensions for [source]
-    this.sourceElement,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     required this.content,
     this.related,
     super.userData,
@@ -60,27 +42,27 @@ class DocumentManifest extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DocumentManifest.fromJson(Map<String, dynamic> json) {
     return DocumentManifest(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -90,7 +72,7 @@ class DocumentManifest extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -99,7 +81,7 @@ class DocumentManifest extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -108,7 +90,7 @@ class DocumentManifest extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -122,18 +104,16 @@ class DocumentManifest extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: DocumentReferenceStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: DocumentReferenceStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
@@ -145,17 +125,15 @@ class DocumentManifest extends DomainResource {
             )
           : null,
       created: json['created'] != null
-          ? FhirDateTime.fromJson(json['created'])
-          : null,
-      createdElement: json['_created'] != null
-          ? Element.fromJson(
-              json['_created'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['created'],
+              '_value': json['_created'],
+            })
           : null,
       author: json['author'] != null
           ? (json['author'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -164,34 +142,35 @@ class DocumentManifest extends DomainResource {
       recipient: json['recipient'] != null
           ? (json['recipient'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      source: json['source'] != null ? FhirUri.fromJson(json['source']) : null,
-      sourceElement: json['_source'] != null
-          ? Element.fromJson(
-              json['_source'] as Map<String, dynamic>,
-            )
+      source: json['source'] != null
+          ? FhirUri.fromJson({
+              'value': json['source'],
+              '_value': json['_source'],
+            })
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
-          : null,
-      content: (json['content'] as List<dynamic>)
+      content: ensureNonNullList((json['content'] as List<dynamic>)
           .map<Reference>(
-              (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-          .toList(),
+            (v) => Reference.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
       related: json['related'] != null
           ? (json['related'] as List<dynamic>)
               .map<DocumentManifestRelated>(
-                (dynamic v) => DocumentManifestRelated.fromJson(
+                (v) => DocumentManifestRelated.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -200,7 +179,8 @@ class DocumentManifest extends DomainResource {
     );
   }
 
-  /// Deserialize [DocumentManifest] from a [String] or [YamlMap] object
+  /// Deserialize [DocumentManifest] from a [String]
+  /// or [YamlMap] object
   factory DocumentManifest.fromYaml(dynamic yaml) => yaml is String
       ? DocumentManifest.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -209,11 +189,11 @@ class DocumentManifest extends DomainResource {
           ? DocumentManifest.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DocumentManifest cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('DocumentManifest cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DocumentManifest] that takes in a [String]
+  /// Factory constructor for [DocumentManifest]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DocumentManifest.fromJsonString(String source) {
@@ -229,6 +209,15 @@ class DocumentManifest extends DomainResource {
   @override
   String get fhirType => 'DocumentManifest';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [masterIdentifier]
   /// A single identifier that uniquely identifies this manifest. Principally
   /// used to refer to the manifest in non-FHIR contexts.
@@ -242,9 +231,6 @@ class DocumentManifest extends DomainResource {
   /// [status]
   /// The status of this document manifest.
   final DocumentReferenceStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [type]
   /// The code specifying the type of clinical activity that resulted in
@@ -266,9 +252,6 @@ class DocumentManifest extends DomainResource {
   /// time, since it may be modified, replicated, etc.).
   final FhirDateTime? created;
 
-  /// Extensions for [created]
-  final Element? createdElement;
-
   /// [author]
   /// Identifies who is the author of the manifest. Manifest author is not
   /// necessarly the author of the references included.
@@ -284,16 +267,10 @@ class DocumentManifest extends DomainResource {
   /// the document manifest.
   final FhirUri? source;
 
-  /// Extensions for [source]
-  final Element? sourceElement;
-
   /// [description]
   /// Human-readable description of the source document. This is sometimes
   /// known as the "title".
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [content]
   /// The list of Resources that consist of the parts of this manifest.
@@ -314,9 +291,6 @@ class DocumentManifest extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -352,9 +326,6 @@ class DocumentManifest extends DomainResource {
     if (created?.value != null) {
       json['created'] = created!.toJson();
     }
-    if (createdElement != null) {
-      json['_created'] = createdElement!.toJson();
-    }
     if (author != null && author!.isNotEmpty) {
       json['author'] = author!.map((Reference v) => v.toJson()).toList();
     }
@@ -364,14 +335,8 @@ class DocumentManifest extends DomainResource {
     if (source?.value != null) {
       json['source'] = source!.toJson();
     }
-    if (sourceElement != null) {
-      json['_source'] = sourceElement!.toJson();
-    }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     json['content'] =
         content.map<dynamic>((Reference v) => v.toJson()).toList();
@@ -389,9 +354,7 @@ class DocumentManifest extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -399,17 +362,13 @@ class DocumentManifest extends DomainResource {
     Identifier? masterIdentifier,
     List<Identifier>? identifier,
     DocumentReferenceStatus? status,
-    Element? statusElement,
     CodeableConcept? type,
     Reference? subject,
     FhirDateTime? created,
-    Element? createdElement,
     List<Reference>? author,
     List<Reference>? recipient,
     FhirUri? source,
-    Element? sourceElement,
     FhirString? description,
-    Element? descriptionElement,
     List<Reference>? content,
     List<DocumentManifestRelated>? related,
     Map<String, Object?>? userData,
@@ -423,9 +382,7 @@ class DocumentManifest extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -433,17 +390,13 @@ class DocumentManifest extends DomainResource {
       masterIdentifier: masterIdentifier ?? this.masterIdentifier,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       type: type ?? this.type,
       subject: subject ?? this.subject,
       created: created ?? this.created,
-      createdElement: createdElement ?? this.createdElement,
       author: author ?? this.author,
       recipient: recipient ?? this.recipient,
       source: source ?? this.source,
-      sourceElement: sourceElement ?? this.sourceElement,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       content: content ?? this.content,
       related: related ?? this.related,
       userData: userData ?? this.userData,
@@ -463,7 +416,7 @@ class DocumentManifestRelated extends BackboneElement {
 
   DocumentManifestRelated({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.ref,
@@ -478,11 +431,15 @@ class DocumentManifestRelated extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DocumentManifestRelated.fromJson(Map<String, dynamic> json) {
     return DocumentManifestRelated(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -491,7 +448,7 @@ class DocumentManifestRelated extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -510,7 +467,8 @@ class DocumentManifestRelated extends BackboneElement {
     );
   }
 
-  /// Deserialize [DocumentManifestRelated] from a [String] or [YamlMap] object
+  /// Deserialize [DocumentManifestRelated] from a [String]
+  /// or [YamlMap] object
   factory DocumentManifestRelated.fromYaml(dynamic yaml) => yaml is String
       ? DocumentManifestRelated.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -520,10 +478,11 @@ class DocumentManifestRelated extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'DocumentManifestRelated cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'DocumentManifestRelated cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DocumentManifestRelated] that takes in a [String]
+  /// Factory constructor for [DocumentManifestRelated]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DocumentManifestRelated.fromJsonString(String source) {
@@ -538,6 +497,15 @@ class DocumentManifestRelated extends BackboneElement {
 
   @override
   String get fhirType => 'DocumentManifestRelated';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Related identifier to this DocumentManifest. For example, Order

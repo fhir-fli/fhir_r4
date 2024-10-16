@@ -12,22 +12,13 @@ class PractitionerRole extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
-
-    /// Extensions for [active]
-    this.activeElement,
     this.period,
     this.practitioner,
     this.organization,
@@ -39,9 +30,6 @@ class PractitionerRole extends DomainResource {
     this.availableTime,
     this.notAvailable,
     this.availabilityExceptions,
-
-    /// Extensions for [availabilityExceptions]
-    this.availabilityExceptionsElement,
     this.endpoint,
     super.userData,
     super.formatCommentsPre,
@@ -56,27 +44,27 @@ class PractitionerRole extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PractitionerRole.fromJson(Map<String, dynamic> json) {
     return PractitionerRole(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -86,7 +74,7 @@ class PractitionerRole extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -95,7 +83,7 @@ class PractitionerRole extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -104,7 +92,7 @@ class PractitionerRole extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -113,18 +101,17 @@ class PractitionerRole extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      active:
-          json['active'] != null ? FhirBoolean.fromJson(json['active']) : null,
-      activeElement: json['_active'] != null
-          ? Element.fromJson(
-              json['_active'] as Map<String, dynamic>,
-            )
+      active: json['active'] != null
+          ? FhirBoolean.fromJson({
+              'value': json['active'],
+              '_value': json['_active'],
+            })
           : null,
       period: json['period'] != null
           ? Period.fromJson(
@@ -144,7 +131,7 @@ class PractitionerRole extends DomainResource {
       code: json['code'] != null
           ? (json['code'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -153,7 +140,7 @@ class PractitionerRole extends DomainResource {
       specialty: json['specialty'] != null
           ? (json['specialty'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -162,7 +149,7 @@ class PractitionerRole extends DomainResource {
       location: json['location'] != null
           ? (json['location'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -171,7 +158,7 @@ class PractitionerRole extends DomainResource {
       healthcareService: json['healthcareService'] != null
           ? (json['healthcareService'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -180,7 +167,7 @@ class PractitionerRole extends DomainResource {
       telecom: json['telecom'] != null
           ? (json['telecom'] as List<dynamic>)
               .map<ContactPoint>(
-                (dynamic v) => ContactPoint.fromJson(
+                (v) => ContactPoint.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -189,7 +176,7 @@ class PractitionerRole extends DomainResource {
       availableTime: json['availableTime'] != null
           ? (json['availableTime'] as List<dynamic>)
               .map<PractitionerRoleAvailableTime>(
-                (dynamic v) => PractitionerRoleAvailableTime.fromJson(
+                (v) => PractitionerRoleAvailableTime.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -198,24 +185,22 @@ class PractitionerRole extends DomainResource {
       notAvailable: json['notAvailable'] != null
           ? (json['notAvailable'] as List<dynamic>)
               .map<PractitionerRoleNotAvailable>(
-                (dynamic v) => PractitionerRoleNotAvailable.fromJson(
+                (v) => PractitionerRoleNotAvailable.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       availabilityExceptions: json['availabilityExceptions'] != null
-          ? FhirString.fromJson(json['availabilityExceptions'])
-          : null,
-      availabilityExceptionsElement: json['_availabilityExceptions'] != null
-          ? Element.fromJson(
-              json['_availabilityExceptions'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['availabilityExceptions'],
+              '_value': json['_availabilityExceptions'],
+            })
           : null,
       endpoint: json['endpoint'] != null
           ? (json['endpoint'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -224,7 +209,8 @@ class PractitionerRole extends DomainResource {
     );
   }
 
-  /// Deserialize [PractitionerRole] from a [String] or [YamlMap] object
+  /// Deserialize [PractitionerRole] from a [String]
+  /// or [YamlMap] object
   factory PractitionerRole.fromYaml(dynamic yaml) => yaml is String
       ? PractitionerRole.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -233,11 +219,11 @@ class PractitionerRole extends DomainResource {
           ? PractitionerRole.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PractitionerRole cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('PractitionerRole cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PractitionerRole] that takes in a [String]
+  /// Factory constructor for [PractitionerRole]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PractitionerRole.fromJsonString(String source) {
@@ -253,6 +239,15 @@ class PractitionerRole extends DomainResource {
   @override
   String get fhirType => 'PractitionerRole';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Business Identifiers that are specific to a role/location.
   final List<Identifier>? identifier;
@@ -260,9 +255,6 @@ class PractitionerRole extends DomainResource {
   /// [active]
   /// Whether this practitioner role record is in active use.
   final FhirBoolean? active;
-
-  /// Extensions for [active]
-  final Element? activeElement;
 
   /// [period]
   /// The period during which the person is authorized to act as a
@@ -317,9 +309,6 @@ class PractitionerRole extends DomainResource {
   /// Times.
   final FhirString? availabilityExceptions;
 
-  /// Extensions for [availabilityExceptions]
-  final Element? availabilityExceptionsElement;
-
   /// [endpoint]
   /// Technical endpoints providing access to services operated for the
   /// practitioner with this role.
@@ -336,9 +325,6 @@ class PractitionerRole extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -363,9 +349,6 @@ class PractitionerRole extends DomainResource {
     }
     if (active?.value != null) {
       json['active'] = active!.toJson();
-    }
-    if (activeElement != null) {
-      json['_active'] = activeElement!.toJson();
     }
     if (period != null) {
       json['period'] = period!.toJson();
@@ -406,9 +389,6 @@ class PractitionerRole extends DomainResource {
     if (availabilityExceptions?.value != null) {
       json['availabilityExceptions'] = availabilityExceptions!.toJson();
     }
-    if (availabilityExceptionsElement != null) {
-      json['_availabilityExceptions'] = availabilityExceptionsElement!.toJson();
-    }
     if (endpoint != null && endpoint!.isNotEmpty) {
       json['endpoint'] = endpoint!.map((Reference v) => v.toJson()).toList();
     }
@@ -422,16 +402,13 @@ class PractitionerRole extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     FhirBoolean? active,
-    Element? activeElement,
     Period? period,
     Reference? practitioner,
     Reference? organization,
@@ -443,7 +420,6 @@ class PractitionerRole extends DomainResource {
     List<PractitionerRoleAvailableTime>? availableTime,
     List<PractitionerRoleNotAvailable>? notAvailable,
     FhirString? availabilityExceptions,
-    Element? availabilityExceptionsElement,
     List<Reference>? endpoint,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -456,16 +432,13 @@ class PractitionerRole extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       active: active ?? this.active,
-      activeElement: activeElement ?? this.activeElement,
       period: period ?? this.period,
       practitioner: practitioner ?? this.practitioner,
       organization: organization ?? this.organization,
@@ -478,8 +451,6 @@ class PractitionerRole extends DomainResource {
       notAvailable: notAvailable ?? this.notAvailable,
       availabilityExceptions:
           availabilityExceptions ?? this.availabilityExceptions,
-      availabilityExceptionsElement:
-          availabilityExceptionsElement ?? this.availabilityExceptionsElement,
       endpoint: endpoint ?? this.endpoint,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -499,24 +470,12 @@ class PractitionerRoleAvailableTime extends BackboneElement {
 
   PractitionerRoleAvailableTime({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.daysOfWeek,
-
-    /// Extensions for [daysOfWeek]
-    this.daysOfWeekElement,
     this.allDay,
-
-    /// Extensions for [allDay]
-    this.allDayElement,
     this.availableStartTime,
-
-    /// Extensions for [availableStartTime]
-    this.availableStartTimeElement,
     this.availableEndTime,
-
-    /// Extensions for [availableEndTime]
-    this.availableEndTimeElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -528,11 +487,15 @@ class PractitionerRoleAvailableTime extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PractitionerRoleAvailableTime.fromJson(Map<String, dynamic> json) {
     return PractitionerRoleAvailableTime(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -541,53 +504,39 @@ class PractitionerRoleAvailableTime extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      daysOfWeek: json['daysOfWeek'] != null
-          ? (json['daysOfWeek'] as List<dynamic>)
-              .map<DaysOfWeek>(
-                (dynamic v) => DaysOfWeek.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      daysOfWeekElement: json['_daysOfWeek'] != null
-          ? (json['_daysOfWeek'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      allDay:
-          json['allDay'] != null ? FhirBoolean.fromJson(json['allDay']) : null,
-      allDayElement: json['_allDay'] != null
-          ? Element.fromJson(
-              json['_allDay'] as Map<String, dynamic>,
-            )
+      daysOfWeek: parsePrimitiveList<DaysOfWeek>(
+          json['daysOfWeek'] as List<dynamic>?,
+          json['_daysOfWeek'] as List<dynamic>?,
+          fromJson: DaysOfWeek.fromJson),
+      allDay: json['allDay'] != null
+          ? FhirBoolean.fromJson({
+              'value': json['allDay'],
+              '_value': json['_allDay'],
+            })
           : null,
       availableStartTime: json['availableStartTime'] != null
-          ? FhirTime.fromJson(json['availableStartTime'])
-          : null,
-      availableStartTimeElement: json['_availableStartTime'] != null
-          ? Element.fromJson(
-              json['_availableStartTime'] as Map<String, dynamic>,
-            )
+          ? FhirTime.fromJson({
+              'value': json['availableStartTime'],
+              '_value': json['_availableStartTime'],
+            })
           : null,
       availableEndTime: json['availableEndTime'] != null
-          ? FhirTime.fromJson(json['availableEndTime'])
-          : null,
-      availableEndTimeElement: json['_availableEndTime'] != null
-          ? Element.fromJson(
-              json['_availableEndTime'] as Map<String, dynamic>,
-            )
+          ? FhirTime.fromJson({
+              'value': json['availableEndTime'],
+              '_value': json['_availableEndTime'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [PractitionerRoleAvailableTime] from a [String] or [YamlMap] object
+  /// Deserialize [PractitionerRoleAvailableTime] from a [String]
+  /// or [YamlMap] object
   factory PractitionerRoleAvailableTime.fromYaml(dynamic yaml) => yaml is String
       ? PractitionerRoleAvailableTime.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -597,10 +546,11 @@ class PractitionerRoleAvailableTime extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'PractitionerRoleAvailableTime cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'PractitionerRoleAvailableTime cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PractitionerRoleAvailableTime] that takes in a [String]
+  /// Factory constructor for [PractitionerRoleAvailableTime]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PractitionerRoleAvailableTime.fromJsonString(String source) {
@@ -616,37 +566,34 @@ class PractitionerRoleAvailableTime extends BackboneElement {
   @override
   String get fhirType => 'PractitionerRoleAvailableTime';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [daysOfWeek]
   /// Indicates which days of the week are available between the start and
   /// end Times.
   final List<DaysOfWeek>? daysOfWeek;
-
-  /// Extensions for [daysOfWeek]
-  final List<Element>? daysOfWeekElement;
 
   /// [allDay]
   /// Is this always available? (hence times are irrelevant) e.g. 24 hour
   /// service.
   final FhirBoolean? allDay;
 
-  /// Extensions for [allDay]
-  final Element? allDayElement;
-
   /// [availableStartTime]
   /// The opening time of day. Note: If the AllDay flag is set, then this
   /// time is ignored.
   final FhirTime? availableStartTime;
 
-  /// Extensions for [availableStartTime]
-  final Element? availableStartTimeElement;
-
   /// [availableEndTime]
   /// The closing time of day. Note: If the AllDay flag is set, then this
   /// time is ignored.
   final FhirTime? availableEndTime;
-
-  /// Extensions for [availableEndTime]
-  final Element? availableEndTimeElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -668,20 +615,11 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     if (allDay?.value != null) {
       json['allDay'] = allDay!.toJson();
     }
-    if (allDayElement != null) {
-      json['_allDay'] = allDayElement!.toJson();
-    }
     if (availableStartTime?.value != null) {
       json['availableStartTime'] = availableStartTime!.toJson();
     }
-    if (availableStartTimeElement != null) {
-      json['_availableStartTime'] = availableStartTimeElement!.toJson();
-    }
     if (availableEndTime?.value != null) {
       json['availableEndTime'] = availableEndTime!.toJson();
-    }
-    if (availableEndTimeElement != null) {
-      json['_availableEndTime'] = availableEndTimeElement!.toJson();
     }
     return json;
   }
@@ -694,13 +632,9 @@ class PractitionerRoleAvailableTime extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<DaysOfWeek>? daysOfWeek,
-    List<Element>? daysOfWeekElement,
     FhirBoolean? allDay,
-    Element? allDayElement,
     FhirTime? availableStartTime,
-    Element? availableStartTimeElement,
     FhirTime? availableEndTime,
-    Element? availableEndTimeElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -713,15 +647,9 @@ class PractitionerRoleAvailableTime extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       daysOfWeek: daysOfWeek ?? this.daysOfWeek,
-      daysOfWeekElement: daysOfWeekElement ?? this.daysOfWeekElement,
       allDay: allDay ?? this.allDay,
-      allDayElement: allDayElement ?? this.allDayElement,
       availableStartTime: availableStartTime ?? this.availableStartTime,
-      availableStartTimeElement:
-          availableStartTimeElement ?? this.availableStartTimeElement,
       availableEndTime: availableEndTime ?? this.availableEndTime,
-      availableEndTimeElement:
-          availableEndTimeElement ?? this.availableEndTimeElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -740,12 +668,9 @@ class PractitionerRoleNotAvailable extends BackboneElement {
 
   PractitionerRoleNotAvailable({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.during,
     super.userData,
     super.formatCommentsPre,
@@ -758,11 +683,15 @@ class PractitionerRoleNotAvailable extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PractitionerRoleNotAvailable.fromJson(Map<String, dynamic> json) {
     return PractitionerRoleNotAvailable(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -771,18 +700,16 @@ class PractitionerRoleNotAvailable extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      description: FhirString.fromJson(json['description']),
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
-          : null,
+      description: FhirString.fromJson({
+        'value': json['description'],
+        '_value': json['_description'],
+      }),
       during: json['during'] != null
           ? Period.fromJson(
               json['during'] as Map<String, dynamic>,
@@ -791,7 +718,8 @@ class PractitionerRoleNotAvailable extends BackboneElement {
     );
   }
 
-  /// Deserialize [PractitionerRoleNotAvailable] from a [String] or [YamlMap] object
+  /// Deserialize [PractitionerRoleNotAvailable] from a [String]
+  /// or [YamlMap] object
   factory PractitionerRoleNotAvailable.fromYaml(dynamic yaml) => yaml is String
       ? PractitionerRoleNotAvailable.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -801,10 +729,11 @@ class PractitionerRoleNotAvailable extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'PractitionerRoleNotAvailable cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'PractitionerRoleNotAvailable cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PractitionerRoleNotAvailable] that takes in a [String]
+  /// Factory constructor for [PractitionerRoleNotAvailable]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PractitionerRoleNotAvailable.fromJsonString(String source) {
@@ -820,13 +749,19 @@ class PractitionerRoleNotAvailable extends BackboneElement {
   @override
   String get fhirType => 'PractitionerRoleNotAvailable';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [description]
   /// The reason that can be presented to the user as to why this time is not
   /// available.
   final FhirString description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [during]
   /// Service is not available (seasonally or for a public holiday) from this
@@ -847,9 +782,6 @@ class PractitionerRoleNotAvailable extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['description'] = description.toJson();
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (during != null) {
       json['during'] = during!.toJson();
     }
@@ -864,7 +796,6 @@ class PractitionerRoleNotAvailable extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? description,
-    Element? descriptionElement,
     Period? during,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -878,7 +809,6 @@ class PractitionerRoleNotAvailable extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       during: during ?? this.during,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

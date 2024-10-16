@@ -12,35 +12,20 @@ class Person extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.name,
     this.telecom,
     this.gender,
-
-    /// Extensions for [gender]
-    this.genderElement,
     this.birthDate,
-
-    /// Extensions for [birthDate]
-    this.birthDateElement,
     this.address,
     this.photo,
     this.managingOrganization,
     this.active,
-
-    /// Extensions for [active]
-    this.activeElement,
     this.link,
     super.userData,
     super.formatCommentsPre,
@@ -55,27 +40,27 @@ class Person extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Person.fromJson(Map<String, dynamic> json) {
     return Person(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -85,7 +70,7 @@ class Person extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -94,7 +79,7 @@ class Person extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -103,7 +88,7 @@ class Person extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -112,7 +97,7 @@ class Person extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -121,7 +106,7 @@ class Person extends DomainResource {
       name: json['name'] != null
           ? (json['name'] as List<dynamic>)
               .map<HumanName>(
-                (dynamic v) => HumanName.fromJson(
+                (v) => HumanName.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -130,32 +115,28 @@ class Person extends DomainResource {
       telecom: json['telecom'] != null
           ? (json['telecom'] as List<dynamic>)
               .map<ContactPoint>(
-                (dynamic v) => ContactPoint.fromJson(
+                (v) => ContactPoint.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       gender: json['gender'] != null
-          ? AdministrativeGender.fromJson(json['gender'])
-          : null,
-      genderElement: json['_gender'] != null
-          ? Element.fromJson(
-              json['_gender'] as Map<String, dynamic>,
-            )
+          ? AdministrativeGender.fromJson({
+              'value': json['gender'],
+              '_value': json['_gender'],
+            })
           : null,
       birthDate: json['birthDate'] != null
-          ? FhirDate.fromJson(json['birthDate'])
-          : null,
-      birthDateElement: json['_birthDate'] != null
-          ? Element.fromJson(
-              json['_birthDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['birthDate'],
+              '_value': json['_birthDate'],
+            })
           : null,
       address: json['address'] != null
           ? (json['address'] as List<dynamic>)
               .map<Address>(
-                (dynamic v) => Address.fromJson(
+                (v) => Address.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -171,17 +152,16 @@ class Person extends DomainResource {
               json['managingOrganization'] as Map<String, dynamic>,
             )
           : null,
-      active:
-          json['active'] != null ? FhirBoolean.fromJson(json['active']) : null,
-      activeElement: json['_active'] != null
-          ? Element.fromJson(
-              json['_active'] as Map<String, dynamic>,
-            )
+      active: json['active'] != null
+          ? FhirBoolean.fromJson({
+              'value': json['active'],
+              '_value': json['_active'],
+            })
           : null,
       link: json['link'] != null
           ? (json['link'] as List<dynamic>)
               .map<PersonLink>(
-                (dynamic v) => PersonLink.fromJson(
+                (v) => PersonLink.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -190,7 +170,8 @@ class Person extends DomainResource {
     );
   }
 
-  /// Deserialize [Person] from a [String] or [YamlMap] object
+  /// Deserialize [Person] from a [String]
+  /// or [YamlMap] object
   factory Person.fromYaml(dynamic yaml) => yaml is String
       ? Person.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -199,10 +180,11 @@ class Person extends DomainResource {
           ? Person.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Person cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Person cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Person] that takes in a [String]
+  /// Factory constructor for [Person]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Person.fromJsonString(String source) {
@@ -217,6 +199,15 @@ class Person extends DomainResource {
 
   @override
   String get fhirType => 'Person';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifier for a person within a particular scope.
@@ -235,15 +226,9 @@ class Person extends DomainResource {
   /// Administrative Gender.
   final AdministrativeGender? gender;
 
-  /// Extensions for [gender]
-  final Element? genderElement;
-
   /// [birthDate]
   /// The birth date for the person.
   final FhirDate? birthDate;
-
-  /// Extensions for [birthDate]
-  final Element? birthDateElement;
 
   /// [address]
   /// One or more addresses for the person.
@@ -262,9 +247,6 @@ class Person extends DomainResource {
   /// Whether this person's record is in active use.
   final FhirBoolean? active;
 
-  /// Extensions for [active]
-  final Element? activeElement;
-
   /// [link]
   /// Link to a resource that concerns the same actual person.
   final List<PersonLink>? link;
@@ -280,9 +262,6 @@ class Person extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -317,9 +296,6 @@ class Person extends DomainResource {
     if (birthDate?.value != null) {
       json['birthDate'] = birthDate!.toJson();
     }
-    if (birthDateElement != null) {
-      json['_birthDate'] = birthDateElement!.toJson();
-    }
     if (address != null && address!.isNotEmpty) {
       json['address'] = address!.map((Address v) => v.toJson()).toList();
     }
@@ -331,9 +307,6 @@ class Person extends DomainResource {
     }
     if (active?.value != null) {
       json['active'] = active!.toJson();
-    }
-    if (activeElement != null) {
-      json['_active'] = activeElement!.toJson();
     }
     if (link != null && link!.isNotEmpty) {
       json['link'] = link!.map((PersonLink v) => v.toJson()).toList();
@@ -348,9 +321,7 @@ class Person extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -359,14 +330,11 @@ class Person extends DomainResource {
     List<HumanName>? name,
     List<ContactPoint>? telecom,
     AdministrativeGender? gender,
-    Element? genderElement,
     FhirDate? birthDate,
-    Element? birthDateElement,
     List<Address>? address,
     Attachment? photo,
     Reference? managingOrganization,
     FhirBoolean? active,
-    Element? activeElement,
     List<PersonLink>? link,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -379,9 +347,7 @@ class Person extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -390,14 +356,11 @@ class Person extends DomainResource {
       name: name ?? this.name,
       telecom: telecom ?? this.telecom,
       gender: gender ?? this.gender,
-      genderElement: genderElement ?? this.genderElement,
       birthDate: birthDate ?? this.birthDate,
-      birthDateElement: birthDateElement ?? this.birthDateElement,
       address: address ?? this.address,
       photo: photo ?? this.photo,
       managingOrganization: managingOrganization ?? this.managingOrganization,
       active: active ?? this.active,
-      activeElement: activeElement ?? this.activeElement,
       link: link ?? this.link,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -416,13 +379,10 @@ class PersonLink extends BackboneElement {
 
   PersonLink({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.target,
     this.assurance,
-
-    /// Extensions for [assurance]
-    this.assuranceElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -434,11 +394,15 @@ class PersonLink extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PersonLink.fromJson(Map<String, dynamic> json) {
     return PersonLink(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -447,7 +411,7 @@ class PersonLink extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -457,17 +421,16 @@ class PersonLink extends BackboneElement {
         json['target'] as Map<String, dynamic>,
       ),
       assurance: json['assurance'] != null
-          ? IdentityAssuranceLevel.fromJson(json['assurance'])
-          : null,
-      assuranceElement: json['_assurance'] != null
-          ? Element.fromJson(
-              json['_assurance'] as Map<String, dynamic>,
-            )
+          ? IdentityAssuranceLevel.fromJson({
+              'value': json['assurance'],
+              '_value': json['_assurance'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [PersonLink] from a [String] or [YamlMap] object
+  /// Deserialize [PersonLink] from a [String]
+  /// or [YamlMap] object
   factory PersonLink.fromYaml(dynamic yaml) => yaml is String
       ? PersonLink.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -476,10 +439,11 @@ class PersonLink extends BackboneElement {
           ? PersonLink.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('PersonLink cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('PersonLink cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PersonLink] that takes in a [String]
+  /// Factory constructor for [PersonLink]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PersonLink.fromJsonString(String source) {
@@ -495,6 +459,15 @@ class PersonLink extends BackboneElement {
   @override
   String get fhirType => 'PersonLink';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [target]
   /// The resource to which this actual person is associated.
   final Reference target;
@@ -503,9 +476,6 @@ class PersonLink extends BackboneElement {
   /// Level of assurance that this link is associated with the target
   /// resource.
   final IdentityAssuranceLevel? assurance;
-
-  /// Extensions for [assurance]
-  final Element? assuranceElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -536,7 +506,6 @@ class PersonLink extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Reference? target,
     IdentityAssuranceLevel? assurance,
-    Element? assuranceElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -550,7 +519,6 @@ class PersonLink extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       target: target ?? this.target,
       assurance: assurance ?? this.assurance,
-      assuranceElement: assuranceElement ?? this.assuranceElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

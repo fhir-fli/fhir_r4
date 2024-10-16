@@ -12,35 +12,17 @@ class SubscriptionStatus extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.eventsSinceSubscriptionStart,
-
-    /// Extensions for [eventsSinceSubscriptionStart]
-    this.eventsSinceSubscriptionStartElement,
     this.notificationEvent,
     required this.subscription,
     this.topic,
-
-    /// Extensions for [topic]
-    this.topicElement,
     this.error,
     super.userData,
     super.formatCommentsPre,
@@ -55,27 +37,27 @@ class SubscriptionStatus extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionStatus.fromJson(Map<String, dynamic> json) {
     return SubscriptionStatus(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -85,7 +67,7 @@ class SubscriptionStatus extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -94,7 +76,7 @@ class SubscriptionStatus extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -103,39 +85,32 @@ class SubscriptionStatus extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       status: json['status'] != null
-          ? SubscriptionStatusCodes.fromJson(json['status'])
+          ? SubscriptionStatusCodes.fromJson({
+              'value': json['status'],
+              '_value': json['_status'],
+            })
           : null,
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
-      type: SubscriptionNotificationType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
+      type: SubscriptionNotificationType.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
       eventsSinceSubscriptionStart: json['eventsSinceSubscriptionStart'] != null
-          ? FhirString.fromJson(json['eventsSinceSubscriptionStart'])
+          ? FhirString.fromJson({
+              'value': json['eventsSinceSubscriptionStart'],
+              '_value': json['_eventsSinceSubscriptionStart'],
+            })
           : null,
-      eventsSinceSubscriptionStartElement:
-          json['_eventsSinceSubscriptionStart'] != null
-              ? Element.fromJson(
-                  json['_eventsSinceSubscriptionStart'] as Map<String, dynamic>,
-                )
-              : null,
       notificationEvent: json['notificationEvent'] != null
           ? (json['notificationEvent'] as List<dynamic>)
               .map<SubscriptionStatusNotificationEvent>(
-                (dynamic v) => SubscriptionStatusNotificationEvent.fromJson(
+                (v) => SubscriptionStatusNotificationEvent.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -144,17 +119,16 @@ class SubscriptionStatus extends DomainResource {
       subscription: Reference.fromJson(
         json['subscription'] as Map<String, dynamic>,
       ),
-      topic:
-          json['topic'] != null ? FhirCanonical.fromJson(json['topic']) : null,
-      topicElement: json['_topic'] != null
-          ? Element.fromJson(
-              json['_topic'] as Map<String, dynamic>,
-            )
+      topic: json['topic'] != null
+          ? FhirCanonical.fromJson({
+              'value': json['topic'],
+              '_value': json['_topic'],
+            })
           : null,
       error: json['error'] != null
           ? (json['error'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -163,7 +137,8 @@ class SubscriptionStatus extends DomainResource {
     );
   }
 
-  /// Deserialize [SubscriptionStatus] from a [String] or [YamlMap] object
+  /// Deserialize [SubscriptionStatus] from a [String]
+  /// or [YamlMap] object
   factory SubscriptionStatus.fromYaml(dynamic yaml) => yaml is String
       ? SubscriptionStatus.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -172,11 +147,11 @@ class SubscriptionStatus extends DomainResource {
           ? SubscriptionStatus.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubscriptionStatus cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('SubscriptionStatus cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubscriptionStatus] that takes in a [String]
+  /// Factory constructor for [SubscriptionStatus]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubscriptionStatus.fromJsonString(String source) {
@@ -192,20 +167,23 @@ class SubscriptionStatus extends DomainResource {
   @override
   String get fhirType => 'SubscriptionStatus';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [status]
   /// The status of the subscription, which marks the server state for
   /// managing the subscription.
   final SubscriptionStatusCodes? status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [type]
   /// The type of event being conveyed with this notificaiton.
   final SubscriptionNotificationType type;
-
-  /// Extensions for [type]
-  final Element? typeElement;
 
   /// [eventsSinceSubscriptionStart]
   /// The total number of actual events which have been generated since the
@@ -213,9 +191,6 @@ class SubscriptionStatus extends DomainResource {
   /// of how many have been successfully communicated. This number is NOT
   /// incremented for handshake and heartbeat notifications.
   final FhirString? eventsSinceSubscriptionStart;
-
-  /// Extensions for [eventsSinceSubscriptionStart]
-  final Element? eventsSinceSubscriptionStartElement;
 
   /// [notificationEvent]
   /// Detailed information about events relevant to this subscription
@@ -230,9 +205,6 @@ class SubscriptionStatus extends DomainResource {
   /// The reference to the SubscriptionTopic for the Subscription which
   /// generated this notification.
   final FhirCanonical? topic;
-
-  /// Extensions for [topic]
-  final Element? topicElement;
 
   /// [error]
   /// A record of errors that occurred when the server processed a
@@ -250,9 +222,6 @@ class SubscriptionStatus extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -279,10 +248,6 @@ class SubscriptionStatus extends DomainResource {
       json['eventsSinceSubscriptionStart'] =
           eventsSinceSubscriptionStart!.toJson();
     }
-    if (eventsSinceSubscriptionStartElement != null) {
-      json['_eventsSinceSubscriptionStart'] =
-          eventsSinceSubscriptionStartElement!.toJson();
-    }
     if (notificationEvent != null && notificationEvent!.isNotEmpty) {
       json['notificationEvent'] = notificationEvent!
           .map((SubscriptionStatusNotificationEvent v) => v.toJson())
@@ -291,9 +256,6 @@ class SubscriptionStatus extends DomainResource {
     json['subscription'] = subscription.toJson();
     if (topic?.value != null) {
       json['topic'] = topic!.toJson();
-    }
-    if (topicElement != null) {
-      json['_topic'] = topicElement!.toJson();
     }
     if (error != null && error!.isNotEmpty) {
       json['error'] = error!.map((CodeableConcept v) => v.toJson()).toList();
@@ -308,23 +270,17 @@ class SubscriptionStatus extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     SubscriptionStatusCodes? status,
-    Element? statusElement,
     SubscriptionNotificationType? type,
-    Element? typeElement,
     FhirString? eventsSinceSubscriptionStart,
-    Element? eventsSinceSubscriptionStartElement,
     List<SubscriptionStatusNotificationEvent>? notificationEvent,
     Reference? subscription,
     FhirCanonical? topic,
-    Element? topicElement,
     List<CodeableConcept>? error,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -337,26 +293,18 @@ class SubscriptionStatus extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       eventsSinceSubscriptionStart:
           eventsSinceSubscriptionStart ?? this.eventsSinceSubscriptionStart,
-      eventsSinceSubscriptionStartElement:
-          eventsSinceSubscriptionStartElement ??
-              this.eventsSinceSubscriptionStartElement,
       notificationEvent: notificationEvent ?? this.notificationEvent,
       subscription: subscription ?? this.subscription,
       topic: topic ?? this.topic,
-      topicElement: topicElement ?? this.topicElement,
       error: error ?? this.error,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -376,16 +324,10 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
 
   SubscriptionStatusNotificationEvent({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.eventNumber,
-
-    /// Extensions for [eventNumber]
-    this.eventNumberElement,
     this.timestamp,
-
-    /// Extensions for [timestamp]
-    this.timestampElement,
     this.focus,
     this.additionalContext,
     super.userData,
@@ -400,11 +342,15 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
   factory SubscriptionStatusNotificationEvent.fromJson(
       Map<String, dynamic> json) {
     return SubscriptionStatusNotificationEvent(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -413,25 +359,21 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      eventNumber: FhirString.fromJson(json['eventNumber']),
-      eventNumberElement: json['_eventNumber'] != null
-          ? Element.fromJson(
-              json['_eventNumber'] as Map<String, dynamic>,
-            )
-          : null,
+      eventNumber: FhirString.fromJson({
+        'value': json['eventNumber'],
+        '_value': json['_eventNumber'],
+      }),
       timestamp: json['timestamp'] != null
-          ? FhirInstant.fromJson(json['timestamp'])
-          : null,
-      timestampElement: json['_timestamp'] != null
-          ? Element.fromJson(
-              json['_timestamp'] as Map<String, dynamic>,
-            )
+          ? FhirInstant.fromJson({
+              'value': json['timestamp'],
+              '_value': json['_timestamp'],
+            })
           : null,
       focus: json['focus'] != null
           ? Reference.fromJson(
@@ -441,7 +383,7 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
       additionalContext: json['additionalContext'] != null
           ? (json['additionalContext'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -450,7 +392,8 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubscriptionStatusNotificationEvent] from a [String] or [YamlMap] object
+  /// Deserialize [SubscriptionStatusNotificationEvent] from a [String]
+  /// or [YamlMap] object
   factory SubscriptionStatusNotificationEvent.fromYaml(dynamic yaml) => yaml
           is String
       ? SubscriptionStatusNotificationEvent.fromJson(
@@ -461,10 +404,11 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'SubscriptionStatusNotificationEvent cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'SubscriptionStatusNotificationEvent cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubscriptionStatusNotificationEvent] that takes in a [String]
+  /// Factory constructor for [SubscriptionStatusNotificationEvent]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubscriptionStatusNotificationEvent.fromJsonString(String source) {
@@ -480,20 +424,23 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
   @override
   String get fhirType => 'SubscriptionStatusNotificationEvent';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [eventNumber]
   /// The sequential number of this event in this subscription context. Note
   /// that this value is a 64-bit integer value, encoded as a string.
   final FhirString eventNumber;
 
-  /// Extensions for [eventNumber]
-  final Element? eventNumberElement;
-
   /// [timestamp]
   /// The actual time this event occured on the server.
   final FhirInstant? timestamp;
-
-  /// Extensions for [timestamp]
-  final Element? timestampElement;
 
   /// [focus]
   /// The focus of this event. While this will usually be a reference to the
@@ -522,14 +469,8 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['eventNumber'] = eventNumber.toJson();
-    if (eventNumberElement != null) {
-      json['_eventNumber'] = eventNumberElement!.toJson();
-    }
     if (timestamp?.value != null) {
       json['timestamp'] = timestamp!.toJson();
-    }
-    if (timestampElement != null) {
-      json['_timestamp'] = timestampElement!.toJson();
     }
     if (focus != null) {
       json['focus'] = focus!.toJson();
@@ -549,9 +490,7 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? eventNumber,
-    Element? eventNumberElement,
     FhirInstant? timestamp,
-    Element? timestampElement,
     Reference? focus,
     List<Reference>? additionalContext,
     Map<String, Object?>? userData,
@@ -566,9 +505,7 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       eventNumber: eventNumber ?? this.eventNumber,
-      eventNumberElement: eventNumberElement ?? this.eventNumberElement,
       timestamp: timestamp ?? this.timestamp,
-      timestampElement: timestampElement ?? this.timestampElement,
       focus: focus ?? this.focus,
       additionalContext: additionalContext ?? this.additionalContext,
       userData: userData ?? this.userData,

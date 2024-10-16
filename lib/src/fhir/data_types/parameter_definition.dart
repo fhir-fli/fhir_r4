@@ -12,35 +12,14 @@ class ParameterDefinition extends DataType {
 
   ParameterDefinition({
     super.id,
-    super.extension_,
+    this.extension_,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     required this.use,
-
-    /// Extensions for [use]
-    this.useElement,
     this.min,
-
-    /// Extensions for [min]
-    this.minElement,
     this.max,
-
-    /// Extensions for [max]
-    this.maxElement,
     this.documentation,
-
-    /// Extensions for [documentation]
-    this.documentationElement,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.profile,
-
-    /// Extensions for [profile]
-    this.profileElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -52,66 +31,63 @@ class ParameterDefinition extends DataType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ParameterDefinition.fromJson(Map<String, dynamic> json) {
     return ParameterDefinition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: json['name'] != null ? FhirCode.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirCode.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
-      use: OperationParameterUse.fromJson(json['use']),
-      useElement: json['_use'] != null
-          ? Element.fromJson(
-              json['_use'] as Map<String, dynamic>,
-            )
+      use: OperationParameterUse.fromJson({
+        'value': json['use'],
+        '_value': json['_use'],
+      }),
+      min: json['min'] != null
+          ? FhirInteger.fromJson({
+              'value': json['min'],
+              '_value': json['_min'],
+            })
           : null,
-      min: json['min'] != null ? FhirInteger.fromJson(json['min']) : null,
-      minElement: json['_min'] != null
-          ? Element.fromJson(
-              json['_min'] as Map<String, dynamic>,
-            )
-          : null,
-      max: json['max'] != null ? FhirString.fromJson(json['max']) : null,
-      maxElement: json['_max'] != null
-          ? Element.fromJson(
-              json['_max'] as Map<String, dynamic>,
-            )
+      max: json['max'] != null
+          ? FhirString.fromJson({
+              'value': json['max'],
+              '_value': json['_max'],
+            })
           : null,
       documentation: json['documentation'] != null
-          ? FhirString.fromJson(json['documentation'])
+          ? FhirString.fromJson({
+              'value': json['documentation'],
+              '_value': json['_documentation'],
+            })
           : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(
-              json['_documentation'] as Map<String, dynamic>,
-            )
-          : null,
-      type: FHIRAllTypes.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
+      type: FHIRAllTypes.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
       profile: json['profile'] != null
-          ? FhirCanonical.fromJson(json['profile'])
-          : null,
-      profileElement: json['_profile'] != null
-          ? Element.fromJson(
-              json['_profile'] as Map<String, dynamic>,
-            )
+          ? FhirCanonical.fromJson({
+              'value': json['profile'],
+              '_value': json['_profile'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [ParameterDefinition] from a [String] or [YamlMap] object
+  /// Deserialize [ParameterDefinition] from a [String]
+  /// or [YamlMap] object
   factory ParameterDefinition.fromYaml(dynamic yaml) => yaml is String
       ? ParameterDefinition.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -121,10 +97,11 @@ class ParameterDefinition extends DataType {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ParameterDefinition cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ParameterDefinition cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ParameterDefinition] that takes in a [String]
+  /// Factory constructor for [ParameterDefinition]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ParameterDefinition.fromJsonString(String source) {
@@ -140,59 +117,47 @@ class ParameterDefinition extends DataType {
   @override
   String get fhirType => 'ParameterDefinition';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// The name of the parameter used to allow access to the value of the
   /// parameter in evaluation contexts.
   final FhirCode? name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [use]
   /// Whether the parameter is input or output for the module.
   final OperationParameterUse use;
-
-  /// Extensions for [use]
-  final Element? useElement;
 
   /// [min]
   /// The minimum number of times this parameter SHALL appear in the request
   /// or response.
   final FhirInteger? min;
 
-  /// Extensions for [min]
-  final Element? minElement;
-
   /// [max]
   /// The maximum number of times this element is permitted to appear in the
   /// request or response.
   final FhirString? max;
-
-  /// Extensions for [max]
-  final Element? maxElement;
 
   /// [documentation]
   /// A brief discussion of what the parameter is for and how it is used by
   /// the module.
   final FhirString? documentation;
 
-  /// Extensions for [documentation]
-  final Element? documentationElement;
-
   /// [type]
   /// The type of the parameter.
   final FHIRAllTypes type;
-
-  /// Extensions for [type]
-  final Element? typeElement;
 
   /// [profile]
   /// If specified, this indicates a profile that the input data must conform
   /// to, or that the output data will conform to.
   final FhirCanonical? profile;
-
-  /// Extensions for [profile]
-  final Element? profileElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -206,34 +171,19 @@ class ParameterDefinition extends DataType {
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     json['use'] = use.toJson();
     if (min?.value != null) {
       json['min'] = min!.toJson();
     }
-    if (minElement != null) {
-      json['_min'] = minElement!.toJson();
-    }
     if (max?.value != null) {
       json['max'] = max!.toJson();
-    }
-    if (maxElement != null) {
-      json['_max'] = maxElement!.toJson();
     }
     if (documentation?.value != null) {
       json['documentation'] = documentation!.toJson();
     }
-    if (documentationElement != null) {
-      json['_documentation'] = documentationElement!.toJson();
-    }
     json['type'] = type.toJson();
     if (profile?.value != null) {
       json['profile'] = profile!.toJson();
-    }
-    if (profileElement != null) {
-      json['_profile'] = profileElement!.toJson();
     }
     return json;
   }
@@ -245,19 +195,12 @@ class ParameterDefinition extends DataType {
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirCode? name,
-    Element? nameElement,
     OperationParameterUse? use,
-    Element? useElement,
     FhirInteger? min,
-    Element? minElement,
     FhirString? max,
-    Element? maxElement,
     FhirString? documentation,
-    Element? documentationElement,
     FHIRAllTypes? type,
-    Element? typeElement,
     FhirCanonical? profile,
-    Element? profileElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -269,19 +212,12 @@ class ParameterDefinition extends DataType {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       use: use ?? this.use,
-      useElement: useElement ?? this.useElement,
       min: min ?? this.min,
-      minElement: minElement ?? this.minElement,
       max: max ?? this.max,
-      maxElement: maxElement ?? this.maxElement,
       documentation: documentation ?? this.documentation,
-      documentationElement: documentationElement ?? this.documentationElement,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       profile: profile ?? this.profile,
-      profileElement: profileElement ?? this.profileElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

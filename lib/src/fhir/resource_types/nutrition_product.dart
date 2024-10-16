@@ -11,21 +11,12 @@ class NutritionProduct extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.category,
     this.code,
     this.manufacturer,
@@ -48,27 +39,27 @@ class NutritionProduct extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionProduct.fromJson(Map<String, dynamic> json) {
     return NutritionProduct(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -78,7 +69,7 @@ class NutritionProduct extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -87,7 +78,7 @@ class NutritionProduct extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -96,22 +87,20 @@ class NutritionProduct extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: NutritionProductStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: NutritionProductStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -125,7 +114,7 @@ class NutritionProduct extends DomainResource {
       manufacturer: json['manufacturer'] != null
           ? (json['manufacturer'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -134,7 +123,7 @@ class NutritionProduct extends DomainResource {
       nutrient: json['nutrient'] != null
           ? (json['nutrient'] as List<dynamic>)
               .map<NutritionProductNutrient>(
-                (dynamic v) => NutritionProductNutrient.fromJson(
+                (v) => NutritionProductNutrient.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -143,7 +132,7 @@ class NutritionProduct extends DomainResource {
       ingredient: json['ingredient'] != null
           ? (json['ingredient'] as List<dynamic>)
               .map<NutritionProductIngredient>(
-                (dynamic v) => NutritionProductIngredient.fromJson(
+                (v) => NutritionProductIngredient.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -152,7 +141,7 @@ class NutritionProduct extends DomainResource {
       knownAllergen: json['knownAllergen'] != null
           ? (json['knownAllergen'] as List<dynamic>)
               .map<CodeableReference>(
-                (dynamic v) => CodeableReference.fromJson(
+                (v) => CodeableReference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -161,7 +150,7 @@ class NutritionProduct extends DomainResource {
       productCharacteristic: json['productCharacteristic'] != null
           ? (json['productCharacteristic'] as List<dynamic>)
               .map<NutritionProductProductCharacteristic>(
-                (dynamic v) => NutritionProductProductCharacteristic.fromJson(
+                (v) => NutritionProductProductCharacteristic.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -175,7 +164,7 @@ class NutritionProduct extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -184,7 +173,8 @@ class NutritionProduct extends DomainResource {
     );
   }
 
-  /// Deserialize [NutritionProduct] from a [String] or [YamlMap] object
+  /// Deserialize [NutritionProduct] from a [String]
+  /// or [YamlMap] object
   factory NutritionProduct.fromYaml(dynamic yaml) => yaml is String
       ? NutritionProduct.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -193,11 +183,11 @@ class NutritionProduct extends DomainResource {
           ? NutritionProduct.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'NutritionProduct cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('NutritionProduct cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [NutritionProduct] that takes in a [String]
+  /// Factory constructor for [NutritionProduct]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory NutritionProduct.fromJsonString(String source) {
@@ -213,12 +203,18 @@ class NutritionProduct extends DomainResource {
   @override
   String get fhirType => 'NutritionProduct';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [status]
   /// The current state of the product.
   final NutritionProductStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [category]
   /// Nutrition products can have different classifications - according to
@@ -272,9 +268,6 @@ class NutritionProduct extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -339,15 +332,12 @@ class NutritionProduct extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     NutritionProductStatus? status,
-    Element? statusElement,
     List<CodeableConcept>? category,
     CodeableConcept? code,
     List<Reference>? manufacturer,
@@ -368,15 +358,12 @@ class NutritionProduct extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       category: category ?? this.category,
       code: code ?? this.code,
       manufacturer: manufacturer ?? this.manufacturer,
@@ -404,7 +391,7 @@ class NutritionProductNutrient extends BackboneElement {
 
   NutritionProductNutrient({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.item,
     this.amount,
@@ -419,11 +406,15 @@ class NutritionProductNutrient extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionProductNutrient.fromJson(Map<String, dynamic> json) {
     return NutritionProductNutrient(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -432,7 +423,7 @@ class NutritionProductNutrient extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -446,7 +437,7 @@ class NutritionProductNutrient extends BackboneElement {
       amount: json['amount'] != null
           ? (json['amount'] as List<dynamic>)
               .map<Ratio>(
-                (dynamic v) => Ratio.fromJson(
+                (v) => Ratio.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -455,7 +446,8 @@ class NutritionProductNutrient extends BackboneElement {
     );
   }
 
-  /// Deserialize [NutritionProductNutrient] from a [String] or [YamlMap] object
+  /// Deserialize [NutritionProductNutrient] from a [String]
+  /// or [YamlMap] object
   factory NutritionProductNutrient.fromYaml(dynamic yaml) => yaml is String
       ? NutritionProductNutrient.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -465,10 +457,11 @@ class NutritionProductNutrient extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'NutritionProductNutrient cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'NutritionProductNutrient cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [NutritionProductNutrient] that takes in a [String]
+  /// Factory constructor for [NutritionProductNutrient]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory NutritionProductNutrient.fromJsonString(String source) {
@@ -483,6 +476,15 @@ class NutritionProductNutrient extends BackboneElement {
 
   @override
   String get fhirType => 'NutritionProductNutrient';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [item]
   /// The (relevant) nutrients in the product.
@@ -554,7 +556,7 @@ class NutritionProductIngredient extends BackboneElement {
 
   NutritionProductIngredient({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.item,
     this.amount,
@@ -569,11 +571,15 @@ class NutritionProductIngredient extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionProductIngredient.fromJson(Map<String, dynamic> json) {
     return NutritionProductIngredient(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -582,7 +588,7 @@ class NutritionProductIngredient extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -594,7 +600,7 @@ class NutritionProductIngredient extends BackboneElement {
       amount: json['amount'] != null
           ? (json['amount'] as List<dynamic>)
               .map<Ratio>(
-                (dynamic v) => Ratio.fromJson(
+                (v) => Ratio.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -603,7 +609,8 @@ class NutritionProductIngredient extends BackboneElement {
     );
   }
 
-  /// Deserialize [NutritionProductIngredient] from a [String] or [YamlMap] object
+  /// Deserialize [NutritionProductIngredient] from a [String]
+  /// or [YamlMap] object
   factory NutritionProductIngredient.fromYaml(dynamic yaml) => yaml is String
       ? NutritionProductIngredient.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -613,10 +620,11 @@ class NutritionProductIngredient extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'NutritionProductIngredient cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'NutritionProductIngredient cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [NutritionProductIngredient] that takes in a [String]
+  /// Factory constructor for [NutritionProductIngredient]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory NutritionProductIngredient.fromJsonString(String source) {
@@ -631,6 +639,15 @@ class NutritionProductIngredient extends BackboneElement {
 
   @override
   String get fhirType => 'NutritionProductIngredient';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [item]
   /// The ingredient contained in the product.
@@ -699,24 +716,15 @@ class NutritionProductProductCharacteristic extends BackboneElement {
 
   NutritionProductProductCharacteristic({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
     this.valueCodeableConcept,
     this.valueString,
-
-    /// Extensions for [valueString]
-    this.valueStringElement,
     this.valueQuantity,
     this.valueBase64Binary,
-
-    /// Extensions for [valueBase64Binary]
-    this.valueBase64BinaryElement,
     this.valueAttachment,
     this.valueBoolean,
-
-    /// Extensions for [valueBoolean]
-    this.valueBooleanElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -729,11 +737,15 @@ class NutritionProductProductCharacteristic extends BackboneElement {
   factory NutritionProductProductCharacteristic.fromJson(
       Map<String, dynamic> json) {
     return NutritionProductProductCharacteristic(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -742,7 +754,7 @@ class NutritionProductProductCharacteristic extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -757,12 +769,10 @@ class NutritionProductProductCharacteristic extends BackboneElement {
             )
           : null,
       valueString: json['valueString'] != null
-          ? FhirString.fromJson(json['valueString'])
-          : null,
-      valueStringElement: json['_valueString'] != null
-          ? Element.fromJson(
-              json['_valueString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['valueString'],
+              '_value': json['_valueString'],
+            })
           : null,
       valueQuantity: json['valueQuantity'] != null
           ? Quantity.fromJson(
@@ -770,12 +780,10 @@ class NutritionProductProductCharacteristic extends BackboneElement {
             )
           : null,
       valueBase64Binary: json['valueBase64Binary'] != null
-          ? FhirBase64Binary.fromJson(json['valueBase64Binary'])
-          : null,
-      valueBase64BinaryElement: json['_valueBase64Binary'] != null
-          ? Element.fromJson(
-              json['_valueBase64Binary'] as Map<String, dynamic>,
-            )
+          ? FhirBase64Binary.fromJson({
+              'value': json['valueBase64Binary'],
+              '_value': json['_valueBase64Binary'],
+            })
           : null,
       valueAttachment: json['valueAttachment'] != null
           ? Attachment.fromJson(
@@ -783,17 +791,16 @@ class NutritionProductProductCharacteristic extends BackboneElement {
             )
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(
-              json['_valueBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['valueBoolean'],
+              '_value': json['_valueBoolean'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [NutritionProductProductCharacteristic] from a [String] or [YamlMap] object
+  /// Deserialize [NutritionProductProductCharacteristic] from a [String]
+  /// or [YamlMap] object
   factory NutritionProductProductCharacteristic.fromYaml(dynamic yaml) => yaml
           is String
       ? NutritionProductProductCharacteristic.fromJson(
@@ -804,10 +811,11 @@ class NutritionProductProductCharacteristic extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'NutritionProductProductCharacteristic cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'NutritionProductProductCharacteristic cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [NutritionProductProductCharacteristic] that takes in a [String]
+  /// Factory constructor for [NutritionProductProductCharacteristic]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory NutritionProductProductCharacteristic.fromJsonString(String source) {
@@ -823,6 +831,15 @@ class NutritionProductProductCharacteristic extends BackboneElement {
   @override
   String get fhirType => 'NutritionProductProductCharacteristic';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// A code specifying which characteristic of the product is being
   /// described (for example, colour, shape).
@@ -836,9 +853,6 @@ class NutritionProductProductCharacteristic extends BackboneElement {
   /// The actual characteristic value corresponding to the type.
   final FhirString? valueString;
 
-  /// Extensions for [valueString]
-  final Element? valueStringElement;
-
   /// [valueQuantity]
   /// The actual characteristic value corresponding to the type.
   final Quantity? valueQuantity;
@@ -847,9 +861,6 @@ class NutritionProductProductCharacteristic extends BackboneElement {
   /// The actual characteristic value corresponding to the type.
   final FhirBase64Binary? valueBase64Binary;
 
-  /// Extensions for [valueBase64Binary]
-  final Element? valueBase64BinaryElement;
-
   /// [valueAttachment]
   /// The actual characteristic value corresponding to the type.
   final Attachment? valueAttachment;
@@ -857,9 +868,6 @@ class NutritionProductProductCharacteristic extends BackboneElement {
   /// [valueBoolean]
   /// The actual characteristic value corresponding to the type.
   final FhirBoolean? valueBoolean;
-
-  /// Extensions for [valueBoolean]
-  final Element? valueBooleanElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -881,26 +889,17 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     if (valueString?.value != null) {
       json['valueString'] = valueString!.toJson();
     }
-    if (valueStringElement != null) {
-      json['_valueString'] = valueStringElement!.toJson();
-    }
     if (valueQuantity != null) {
       json['valueQuantity'] = valueQuantity!.toJson();
     }
     if (valueBase64Binary?.value != null) {
       json['valueBase64Binary'] = valueBase64Binary!.toJson();
     }
-    if (valueBase64BinaryElement != null) {
-      json['_valueBase64Binary'] = valueBase64BinaryElement!.toJson();
-    }
     if (valueAttachment != null) {
       json['valueAttachment'] = valueAttachment!.toJson();
     }
     if (valueBoolean?.value != null) {
       json['valueBoolean'] = valueBoolean!.toJson();
-    }
-    if (valueBooleanElement != null) {
-      json['_valueBoolean'] = valueBooleanElement!.toJson();
     }
     return json;
   }
@@ -915,13 +914,10 @@ class NutritionProductProductCharacteristic extends BackboneElement {
     CodeableConcept? type,
     CodeableConcept? valueCodeableConcept,
     FhirString? valueString,
-    Element? valueStringElement,
     Quantity? valueQuantity,
     FhirBase64Binary? valueBase64Binary,
-    Element? valueBase64BinaryElement,
     Attachment? valueAttachment,
     FhirBoolean? valueBoolean,
-    Element? valueBooleanElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -936,14 +932,10 @@ class NutritionProductProductCharacteristic extends BackboneElement {
       type: type ?? this.type,
       valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
       valueString: valueString ?? this.valueString,
-      valueStringElement: valueStringElement ?? this.valueStringElement,
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueBase64Binary: valueBase64Binary ?? this.valueBase64Binary,
-      valueBase64BinaryElement:
-          valueBase64BinaryElement ?? this.valueBase64BinaryElement,
       valueAttachment: valueAttachment ?? this.valueAttachment,
       valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueBooleanElement: valueBooleanElement ?? this.valueBooleanElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -962,22 +954,13 @@ class NutritionProductInstance extends BackboneElement {
 
   NutritionProductInstance({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.quantity,
     this.identifier,
     this.lotNumber,
-
-    /// Extensions for [lotNumber]
-    this.lotNumberElement,
     this.expiry,
-
-    /// Extensions for [expiry]
-    this.expiryElement,
     this.useBy,
-
-    /// Extensions for [useBy]
-    this.useByElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -989,11 +972,15 @@ class NutritionProductInstance extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory NutritionProductInstance.fromJson(Map<String, dynamic> json) {
     return NutritionProductInstance(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1002,7 +989,7 @@ class NutritionProductInstance extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1016,38 +1003,35 @@ class NutritionProductInstance extends BackboneElement {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       lotNumber: json['lotNumber'] != null
-          ? FhirString.fromJson(json['lotNumber'])
+          ? FhirString.fromJson({
+              'value': json['lotNumber'],
+              '_value': json['_lotNumber'],
+            })
           : null,
-      lotNumberElement: json['_lotNumber'] != null
-          ? Element.fromJson(
-              json['_lotNumber'] as Map<String, dynamic>,
-            )
+      expiry: json['expiry'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['expiry'],
+              '_value': json['_expiry'],
+            })
           : null,
-      expiry:
-          json['expiry'] != null ? FhirDateTime.fromJson(json['expiry']) : null,
-      expiryElement: json['_expiry'] != null
-          ? Element.fromJson(
-              json['_expiry'] as Map<String, dynamic>,
-            )
-          : null,
-      useBy:
-          json['useBy'] != null ? FhirDateTime.fromJson(json['useBy']) : null,
-      useByElement: json['_useBy'] != null
-          ? Element.fromJson(
-              json['_useBy'] as Map<String, dynamic>,
-            )
+      useBy: json['useBy'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['useBy'],
+              '_value': json['_useBy'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [NutritionProductInstance] from a [String] or [YamlMap] object
+  /// Deserialize [NutritionProductInstance] from a [String]
+  /// or [YamlMap] object
   factory NutritionProductInstance.fromYaml(dynamic yaml) => yaml is String
       ? NutritionProductInstance.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1057,10 +1041,11 @@ class NutritionProductInstance extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'NutritionProductInstance cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'NutritionProductInstance cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [NutritionProductInstance] that takes in a [String]
+  /// Factory constructor for [NutritionProductInstance]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory NutritionProductInstance.fromJsonString(String source) {
@@ -1076,6 +1061,15 @@ class NutritionProductInstance extends BackboneElement {
   @override
   String get fhirType => 'NutritionProductInstance';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [quantity]
   /// The amount of items or instances that the resource considers, for
   /// instance when referring to 2 identical units together.
@@ -1089,24 +1083,15 @@ class NutritionProductInstance extends BackboneElement {
   /// The identification of the batch or lot of the product.
   final FhirString? lotNumber;
 
-  /// Extensions for [lotNumber]
-  final Element? lotNumberElement;
-
   /// [expiry]
   /// The time after which the product is no longer expected to be in proper
   /// condition, or its use is not advised or not allowed.
   final FhirDateTime? expiry;
 
-  /// Extensions for [expiry]
-  final Element? expiryElement;
-
   /// [useBy]
   /// The time after which the product is no longer expected to be in proper
   /// condition, or its use is not advised or not allowed.
   final FhirDateTime? useBy;
-
-  /// Extensions for [useBy]
-  final Element? useByElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1131,20 +1116,11 @@ class NutritionProductInstance extends BackboneElement {
     if (lotNumber?.value != null) {
       json['lotNumber'] = lotNumber!.toJson();
     }
-    if (lotNumberElement != null) {
-      json['_lotNumber'] = lotNumberElement!.toJson();
-    }
     if (expiry?.value != null) {
       json['expiry'] = expiry!.toJson();
     }
-    if (expiryElement != null) {
-      json['_expiry'] = expiryElement!.toJson();
-    }
     if (useBy?.value != null) {
       json['useBy'] = useBy!.toJson();
-    }
-    if (useByElement != null) {
-      json['_useBy'] = useByElement!.toJson();
     }
     return json;
   }
@@ -1159,11 +1135,8 @@ class NutritionProductInstance extends BackboneElement {
     Quantity? quantity,
     List<Identifier>? identifier,
     FhirString? lotNumber,
-    Element? lotNumberElement,
     FhirDateTime? expiry,
-    Element? expiryElement,
     FhirDateTime? useBy,
-    Element? useByElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1178,11 +1151,8 @@ class NutritionProductInstance extends BackboneElement {
       quantity: quantity ?? this.quantity,
       identifier: identifier ?? this.identifier,
       lotNumber: lotNumber ?? this.lotNumber,
-      lotNumberElement: lotNumberElement ?? this.lotNumberElement,
       expiry: expiry ?? this.expiry,
-      expiryElement: expiryElement ?? this.expiryElement,
       useBy: useBy ?? this.useBy,
-      useByElement: useByElement ?? this.useByElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

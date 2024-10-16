@@ -11,31 +11,16 @@ class InsurancePlan extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.type,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.alias,
-
-    /// Extensions for [alias]
-    this.aliasElement,
     this.period,
     this.ownedBy,
     this.administeredBy,
@@ -58,27 +43,27 @@ class InsurancePlan extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlan.fromJson(Map<String, dynamic> json) {
     return InsurancePlan(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -88,7 +73,7 @@ class InsurancePlan extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -97,7 +82,7 @@ class InsurancePlan extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -106,7 +91,7 @@ class InsurancePlan extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -115,49 +100,36 @@ class InsurancePlan extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       status: json['status'] != null
-          ? PublicationStatus.fromJson(json['status'])
-          : null,
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
+          ? PublicationStatus.fromJson({
+              'value': json['status'],
+              '_value': json['_status'],
+            })
           : null,
       type: json['type'] != null
           ? (json['type'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
-      alias: json['alias'] != null
-          ? (json['alias'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      aliasElement: json['_alias'] != null
-          ? (json['_alias'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      alias: parsePrimitiveList<FhirString>(
+          json['alias'] as List<dynamic>?, json['_alias'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
       period: json['period'] != null
           ? Period.fromJson(
               json['period'] as Map<String, dynamic>,
@@ -176,7 +148,7 @@ class InsurancePlan extends DomainResource {
       coverageArea: json['coverageArea'] != null
           ? (json['coverageArea'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -185,7 +157,7 @@ class InsurancePlan extends DomainResource {
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<InsurancePlanContact>(
-                (dynamic v) => InsurancePlanContact.fromJson(
+                (v) => InsurancePlanContact.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -194,7 +166,7 @@ class InsurancePlan extends DomainResource {
       endpoint: json['endpoint'] != null
           ? (json['endpoint'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -203,7 +175,7 @@ class InsurancePlan extends DomainResource {
       network: json['network'] != null
           ? (json['network'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -212,7 +184,7 @@ class InsurancePlan extends DomainResource {
       coverage: json['coverage'] != null
           ? (json['coverage'] as List<dynamic>)
               .map<InsurancePlanCoverage>(
-                (dynamic v) => InsurancePlanCoverage.fromJson(
+                (v) => InsurancePlanCoverage.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -221,7 +193,7 @@ class InsurancePlan extends DomainResource {
       plan: json['plan'] != null
           ? (json['plan'] as List<dynamic>)
               .map<InsurancePlanPlan>(
-                (dynamic v) => InsurancePlanPlan.fromJson(
+                (v) => InsurancePlanPlan.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -230,7 +202,8 @@ class InsurancePlan extends DomainResource {
     );
   }
 
-  /// Deserialize [InsurancePlan] from a [String] or [YamlMap] object
+  /// Deserialize [InsurancePlan] from a [String]
+  /// or [YamlMap] object
   factory InsurancePlan.fromYaml(dynamic yaml) => yaml is String
       ? InsurancePlan.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -239,11 +212,11 @@ class InsurancePlan extends DomainResource {
           ? InsurancePlan.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'InsurancePlan cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('InsurancePlan cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [InsurancePlan] that takes in a [String]
+  /// Factory constructor for [InsurancePlan]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory InsurancePlan.fromJsonString(String source) {
@@ -259,6 +232,15 @@ class InsurancePlan extends DomainResource {
   @override
   String get fhirType => 'InsurancePlan';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Business identifiers assigned to this health insurance product which
   /// remain constant as the resource is updated and propagates from server
@@ -269,9 +251,6 @@ class InsurancePlan extends DomainResource {
   /// The current state of the health insurance product.
   final PublicationStatus? status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [type]
   /// The kind of health insurance product.
   final List<CodeableConcept>? type;
@@ -281,16 +260,10 @@ class InsurancePlan extends DomainResource {
   /// owner.
   final FhirString? name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [alias]
   /// A list of alternate names that the product is known as, or was known as
   /// in the past.
   final List<FhirString>? alias;
-
-  /// Extensions for [alias]
-  final List<Element>? aliasElement;
 
   /// [period]
   /// The period of time that the health insurance product is available.
@@ -347,9 +320,6 @@ class InsurancePlan extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -380,14 +350,8 @@ class InsurancePlan extends DomainResource {
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (alias != null && alias!.isNotEmpty) {
       json['alias'] = alias!.map((FhirString v) => v.toJson()).toList();
-    }
-    if (aliasElement != null && aliasElement!.isNotEmpty) {
-      json['_alias'] = aliasElement!.map((Element v) => v.toJson()).toList();
     }
     if (period != null) {
       json['period'] = period!.toJson();
@@ -429,21 +393,16 @@ class InsurancePlan extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     PublicationStatus? status,
-    Element? statusElement,
     List<CodeableConcept>? type,
     FhirString? name,
-    Element? nameElement,
     List<FhirString>? alias,
-    List<Element>? aliasElement,
     Period? period,
     Reference? ownedBy,
     Reference? administeredBy,
@@ -464,21 +423,16 @@ class InsurancePlan extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       type: type ?? this.type,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       alias: alias ?? this.alias,
-      aliasElement: aliasElement ?? this.aliasElement,
       period: period ?? this.period,
       ownedBy: ownedBy ?? this.ownedBy,
       administeredBy: administeredBy ?? this.administeredBy,
@@ -505,7 +459,7 @@ class InsurancePlanContact extends BackboneElement {
 
   InsurancePlanContact({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.purpose,
     this.name,
@@ -522,11 +476,15 @@ class InsurancePlanContact extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanContact.fromJson(Map<String, dynamic> json) {
     return InsurancePlanContact(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -535,7 +493,7 @@ class InsurancePlanContact extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -554,7 +512,7 @@ class InsurancePlanContact extends BackboneElement {
       telecom: json['telecom'] != null
           ? (json['telecom'] as List<dynamic>)
               .map<ContactPoint>(
-                (dynamic v) => ContactPoint.fromJson(
+                (v) => ContactPoint.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -568,7 +526,8 @@ class InsurancePlanContact extends BackboneElement {
     );
   }
 
-  /// Deserialize [InsurancePlanContact] from a [String] or [YamlMap] object
+  /// Deserialize [InsurancePlanContact] from a [String]
+  /// or [YamlMap] object
   factory InsurancePlanContact.fromYaml(dynamic yaml) => yaml is String
       ? InsurancePlanContact.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -578,10 +537,11 @@ class InsurancePlanContact extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'InsurancePlanContact cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'InsurancePlanContact cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [InsurancePlanContact] that takes in a [String]
+  /// Factory constructor for [InsurancePlanContact]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory InsurancePlanContact.fromJsonString(String source) {
@@ -596,6 +556,15 @@ class InsurancePlanContact extends BackboneElement {
 
   @override
   String get fhirType => 'InsurancePlanContact';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [purpose]
   /// Indicates a purpose for which the contact can be reached.
@@ -685,7 +654,7 @@ class InsurancePlanCoverage extends BackboneElement {
 
   InsurancePlanCoverage({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
     this.network,
@@ -701,11 +670,15 @@ class InsurancePlanCoverage extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanCoverage.fromJson(Map<String, dynamic> json) {
     return InsurancePlanCoverage(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -714,7 +687,7 @@ class InsurancePlanCoverage extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -726,20 +699,24 @@ class InsurancePlanCoverage extends BackboneElement {
       network: json['network'] != null
           ? (json['network'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      benefit: (json['benefit'] as List<dynamic>)
-          .map<InsurancePlanBenefit>((dynamic v) =>
-              InsurancePlanBenefit.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      benefit: ensureNonNullList((json['benefit'] as List<dynamic>)
+          .map<InsurancePlanBenefit>(
+            (v) => InsurancePlanBenefit.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
     );
   }
 
-  /// Deserialize [InsurancePlanCoverage] from a [String] or [YamlMap] object
+  /// Deserialize [InsurancePlanCoverage] from a [String]
+  /// or [YamlMap] object
   factory InsurancePlanCoverage.fromYaml(dynamic yaml) => yaml is String
       ? InsurancePlanCoverage.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -749,10 +726,11 @@ class InsurancePlanCoverage extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'InsurancePlanCoverage cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'InsurancePlanCoverage cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [InsurancePlanCoverage] that takes in a [String]
+  /// Factory constructor for [InsurancePlanCoverage]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory InsurancePlanCoverage.fromJsonString(String source) {
@@ -767,6 +745,15 @@ class InsurancePlanCoverage extends BackboneElement {
 
   @override
   String get fhirType => 'InsurancePlanCoverage';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Type of coverage (Medical; Dental; Mental Health; Substance Abuse;
@@ -844,13 +831,10 @@ class InsurancePlanBenefit extends BackboneElement {
 
   InsurancePlanBenefit({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
     this.requirement,
-
-    /// Extensions for [requirement]
-    this.requirementElement,
     this.limit,
     super.userData,
     super.formatCommentsPre,
@@ -863,11 +847,15 @@ class InsurancePlanBenefit extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanBenefit.fromJson(Map<String, dynamic> json) {
     return InsurancePlanBenefit(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -876,7 +864,7 @@ class InsurancePlanBenefit extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -886,17 +874,15 @@ class InsurancePlanBenefit extends BackboneElement {
         json['type'] as Map<String, dynamic>,
       ),
       requirement: json['requirement'] != null
-          ? FhirString.fromJson(json['requirement'])
-          : null,
-      requirementElement: json['_requirement'] != null
-          ? Element.fromJson(
-              json['_requirement'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['requirement'],
+              '_value': json['_requirement'],
+            })
           : null,
       limit: json['limit'] != null
           ? (json['limit'] as List<dynamic>)
               .map<InsurancePlanLimit>(
-                (dynamic v) => InsurancePlanLimit.fromJson(
+                (v) => InsurancePlanLimit.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -905,7 +891,8 @@ class InsurancePlanBenefit extends BackboneElement {
     );
   }
 
-  /// Deserialize [InsurancePlanBenefit] from a [String] or [YamlMap] object
+  /// Deserialize [InsurancePlanBenefit] from a [String]
+  /// or [YamlMap] object
   factory InsurancePlanBenefit.fromYaml(dynamic yaml) => yaml is String
       ? InsurancePlanBenefit.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -915,10 +902,11 @@ class InsurancePlanBenefit extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'InsurancePlanBenefit cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'InsurancePlanBenefit cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [InsurancePlanBenefit] that takes in a [String]
+  /// Factory constructor for [InsurancePlanBenefit]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory InsurancePlanBenefit.fromJsonString(String source) {
@@ -934,6 +922,15 @@ class InsurancePlanBenefit extends BackboneElement {
   @override
   String get fhirType => 'InsurancePlanBenefit';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// Type of benefit (primary care; speciality care; inpatient; outpatient).
   final CodeableConcept type;
@@ -941,9 +938,6 @@ class InsurancePlanBenefit extends BackboneElement {
   /// [requirement]
   /// The referral requirements to have access/coverage for this benefit.
   final FhirString? requirement;
-
-  /// Extensions for [requirement]
-  final Element? requirementElement;
 
   /// [limit]
   /// The specific limits on the benefit.
@@ -966,9 +960,6 @@ class InsurancePlanBenefit extends BackboneElement {
     if (requirement?.value != null) {
       json['requirement'] = requirement!.toJson();
     }
-    if (requirementElement != null) {
-      json['_requirement'] = requirementElement!.toJson();
-    }
     if (limit != null && limit!.isNotEmpty) {
       json['limit'] = limit!.map((InsurancePlanLimit v) => v.toJson()).toList();
     }
@@ -984,7 +975,6 @@ class InsurancePlanBenefit extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
     FhirString? requirement,
-    Element? requirementElement,
     List<InsurancePlanLimit>? limit,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -999,7 +989,6 @@ class InsurancePlanBenefit extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       requirement: requirement ?? this.requirement,
-      requirementElement: requirementElement ?? this.requirementElement,
       limit: limit ?? this.limit,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -1018,7 +1007,7 @@ class InsurancePlanLimit extends BackboneElement {
 
   InsurancePlanLimit({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.value,
     this.code,
@@ -1033,11 +1022,15 @@ class InsurancePlanLimit extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanLimit.fromJson(Map<String, dynamic> json) {
     return InsurancePlanLimit(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1046,7 +1039,7 @@ class InsurancePlanLimit extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1065,7 +1058,8 @@ class InsurancePlanLimit extends BackboneElement {
     );
   }
 
-  /// Deserialize [InsurancePlanLimit] from a [String] or [YamlMap] object
+  /// Deserialize [InsurancePlanLimit] from a [String]
+  /// or [YamlMap] object
   factory InsurancePlanLimit.fromYaml(dynamic yaml) => yaml is String
       ? InsurancePlanLimit.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1074,11 +1068,11 @@ class InsurancePlanLimit extends BackboneElement {
           ? InsurancePlanLimit.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'InsurancePlanLimit cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('InsurancePlanLimit cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [InsurancePlanLimit] that takes in a [String]
+  /// Factory constructor for [InsurancePlanLimit]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory InsurancePlanLimit.fromJsonString(String source) {
@@ -1093,6 +1087,15 @@ class InsurancePlanLimit extends BackboneElement {
 
   @override
   String get fhirType => 'InsurancePlanLimit';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [value]
   /// The maximum amount of a service item a plan will pay for a covered
@@ -1164,7 +1167,7 @@ class InsurancePlanPlan extends BackboneElement {
 
   InsurancePlanPlan({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.type,
@@ -1183,11 +1186,15 @@ class InsurancePlanPlan extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanPlan.fromJson(Map<String, dynamic> json) {
     return InsurancePlanPlan(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1196,7 +1203,7 @@ class InsurancePlanPlan extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1205,7 +1212,7 @@ class InsurancePlanPlan extends BackboneElement {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1219,7 +1226,7 @@ class InsurancePlanPlan extends BackboneElement {
       coverageArea: json['coverageArea'] != null
           ? (json['coverageArea'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1228,7 +1235,7 @@ class InsurancePlanPlan extends BackboneElement {
       network: json['network'] != null
           ? (json['network'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1237,7 +1244,7 @@ class InsurancePlanPlan extends BackboneElement {
       generalCost: json['generalCost'] != null
           ? (json['generalCost'] as List<dynamic>)
               .map<InsurancePlanGeneralCost>(
-                (dynamic v) => InsurancePlanGeneralCost.fromJson(
+                (v) => InsurancePlanGeneralCost.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1246,7 +1253,7 @@ class InsurancePlanPlan extends BackboneElement {
       specificCost: json['specificCost'] != null
           ? (json['specificCost'] as List<dynamic>)
               .map<InsurancePlanSpecificCost>(
-                (dynamic v) => InsurancePlanSpecificCost.fromJson(
+                (v) => InsurancePlanSpecificCost.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1255,7 +1262,8 @@ class InsurancePlanPlan extends BackboneElement {
     );
   }
 
-  /// Deserialize [InsurancePlanPlan] from a [String] or [YamlMap] object
+  /// Deserialize [InsurancePlanPlan] from a [String]
+  /// or [YamlMap] object
   factory InsurancePlanPlan.fromYaml(dynamic yaml) => yaml is String
       ? InsurancePlanPlan.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1264,11 +1272,11 @@ class InsurancePlanPlan extends BackboneElement {
           ? InsurancePlanPlan.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'InsurancePlanPlan cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('InsurancePlanPlan cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [InsurancePlanPlan] that takes in a [String]
+  /// Factory constructor for [InsurancePlanPlan]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory InsurancePlanPlan.fromJsonString(String source) {
@@ -1283,6 +1291,15 @@ class InsurancePlanPlan extends BackboneElement {
 
   @override
   String get fhirType => 'InsurancePlanPlan';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Business identifiers assigned to this health insurance plan which
@@ -1397,18 +1414,12 @@ class InsurancePlanGeneralCost extends BackboneElement {
 
   InsurancePlanGeneralCost({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.type,
     this.groupSize,
-
-    /// Extensions for [groupSize]
-    this.groupSizeElement,
     this.cost,
     this.comment,
-
-    /// Extensions for [comment]
-    this.commentElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1420,11 +1431,15 @@ class InsurancePlanGeneralCost extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanGeneralCost.fromJson(Map<String, dynamic> json) {
     return InsurancePlanGeneralCost(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1433,7 +1448,7 @@ class InsurancePlanGeneralCost extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1445,29 +1460,27 @@ class InsurancePlanGeneralCost extends BackboneElement {
             )
           : null,
       groupSize: json['groupSize'] != null
-          ? FhirPositiveInt.fromJson(json['groupSize'])
-          : null,
-      groupSizeElement: json['_groupSize'] != null
-          ? Element.fromJson(
-              json['_groupSize'] as Map<String, dynamic>,
-            )
+          ? FhirPositiveInt.fromJson({
+              'value': json['groupSize'],
+              '_value': json['_groupSize'],
+            })
           : null,
       cost: json['cost'] != null
           ? Money.fromJson(
               json['cost'] as Map<String, dynamic>,
             )
           : null,
-      comment:
-          json['comment'] != null ? FhirString.fromJson(json['comment']) : null,
-      commentElement: json['_comment'] != null
-          ? Element.fromJson(
-              json['_comment'] as Map<String, dynamic>,
-            )
+      comment: json['comment'] != null
+          ? FhirString.fromJson({
+              'value': json['comment'],
+              '_value': json['_comment'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [InsurancePlanGeneralCost] from a [String] or [YamlMap] object
+  /// Deserialize [InsurancePlanGeneralCost] from a [String]
+  /// or [YamlMap] object
   factory InsurancePlanGeneralCost.fromYaml(dynamic yaml) => yaml is String
       ? InsurancePlanGeneralCost.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1477,10 +1490,11 @@ class InsurancePlanGeneralCost extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'InsurancePlanGeneralCost cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'InsurancePlanGeneralCost cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [InsurancePlanGeneralCost] that takes in a [String]
+  /// Factory constructor for [InsurancePlanGeneralCost]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory InsurancePlanGeneralCost.fromJsonString(String source) {
@@ -1496,6 +1510,15 @@ class InsurancePlanGeneralCost extends BackboneElement {
   @override
   String get fhirType => 'InsurancePlanGeneralCost';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// Type of cost.
   final CodeableConcept? type;
@@ -1503,9 +1526,6 @@ class InsurancePlanGeneralCost extends BackboneElement {
   /// [groupSize]
   /// Number of participants enrolled in the plan.
   final FhirPositiveInt? groupSize;
-
-  /// Extensions for [groupSize]
-  final Element? groupSizeElement;
 
   /// [cost]
   /// Value of the cost.
@@ -1515,9 +1535,6 @@ class InsurancePlanGeneralCost extends BackboneElement {
   /// Additional information about the general costs associated with this
   /// plan.
   final FhirString? comment;
-
-  /// Extensions for [comment]
-  final Element? commentElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1538,17 +1555,11 @@ class InsurancePlanGeneralCost extends BackboneElement {
     if (groupSize?.value != null) {
       json['groupSize'] = groupSize!.toJson();
     }
-    if (groupSizeElement != null) {
-      json['_groupSize'] = groupSizeElement!.toJson();
-    }
     if (cost != null) {
       json['cost'] = cost!.toJson();
     }
     if (comment?.value != null) {
       json['comment'] = comment!.toJson();
-    }
-    if (commentElement != null) {
-      json['_comment'] = commentElement!.toJson();
     }
     return json;
   }
@@ -1562,10 +1573,8 @@ class InsurancePlanGeneralCost extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
     FhirPositiveInt? groupSize,
-    Element? groupSizeElement,
     Money? cost,
     FhirString? comment,
-    Element? commentElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1579,10 +1588,8 @@ class InsurancePlanGeneralCost extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       groupSize: groupSize ?? this.groupSize,
-      groupSizeElement: groupSizeElement ?? this.groupSizeElement,
       cost: cost ?? this.cost,
       comment: comment ?? this.comment,
-      commentElement: commentElement ?? this.commentElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1600,7 +1607,7 @@ class InsurancePlanSpecificCost extends BackboneElement {
 
   InsurancePlanSpecificCost({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.category,
     this.benefit,
@@ -1615,11 +1622,15 @@ class InsurancePlanSpecificCost extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanSpecificCost.fromJson(Map<String, dynamic> json) {
     return InsurancePlanSpecificCost(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1628,7 +1639,7 @@ class InsurancePlanSpecificCost extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1640,7 +1651,7 @@ class InsurancePlanSpecificCost extends BackboneElement {
       benefit: json['benefit'] != null
           ? (json['benefit'] as List<dynamic>)
               .map<InsurancePlanBenefit>(
-                (dynamic v) => InsurancePlanBenefit.fromJson(
+                (v) => InsurancePlanBenefit.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1649,7 +1660,8 @@ class InsurancePlanSpecificCost extends BackboneElement {
     );
   }
 
-  /// Deserialize [InsurancePlanSpecificCost] from a [String] or [YamlMap] object
+  /// Deserialize [InsurancePlanSpecificCost] from a [String]
+  /// or [YamlMap] object
   factory InsurancePlanSpecificCost.fromYaml(dynamic yaml) => yaml is String
       ? InsurancePlanSpecificCost.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1659,10 +1671,11 @@ class InsurancePlanSpecificCost extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'InsurancePlanSpecificCost cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'InsurancePlanSpecificCost cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [InsurancePlanSpecificCost] that takes in a [String]
+  /// Factory constructor for [InsurancePlanSpecificCost]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory InsurancePlanSpecificCost.fromJsonString(String source) {
@@ -1677,6 +1690,15 @@ class InsurancePlanSpecificCost extends BackboneElement {
 
   @override
   String get fhirType => 'InsurancePlanSpecificCost';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [category]
   /// General category of benefit (Medical; Dental; Vision; Drug; Mental
@@ -1747,7 +1769,7 @@ class InsurancePlanBenefit1 extends BackboneElement {
 
   InsurancePlanBenefit1({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
     this.cost,
@@ -1762,11 +1784,15 @@ class InsurancePlanBenefit1 extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanBenefit1.fromJson(Map<String, dynamic> json) {
     return InsurancePlanBenefit1(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1775,7 +1801,7 @@ class InsurancePlanBenefit1 extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1787,7 +1813,7 @@ class InsurancePlanBenefit1 extends BackboneElement {
       cost: json['cost'] != null
           ? (json['cost'] as List<dynamic>)
               .map<InsurancePlanCost>(
-                (dynamic v) => InsurancePlanCost.fromJson(
+                (v) => InsurancePlanCost.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1796,7 +1822,8 @@ class InsurancePlanBenefit1 extends BackboneElement {
     );
   }
 
-  /// Deserialize [InsurancePlanBenefit1] from a [String] or [YamlMap] object
+  /// Deserialize [InsurancePlanBenefit1] from a [String]
+  /// or [YamlMap] object
   factory InsurancePlanBenefit1.fromYaml(dynamic yaml) => yaml is String
       ? InsurancePlanBenefit1.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1806,10 +1833,11 @@ class InsurancePlanBenefit1 extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'InsurancePlanBenefit1 cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'InsurancePlanBenefit1 cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [InsurancePlanBenefit1] that takes in a [String]
+  /// Factory constructor for [InsurancePlanBenefit1]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory InsurancePlanBenefit1.fromJsonString(String source) {
@@ -1824,6 +1852,15 @@ class InsurancePlanBenefit1 extends BackboneElement {
 
   @override
   String get fhirType => 'InsurancePlanBenefit1';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Type of specific benefit (preventative; primary care office visit;
@@ -1893,7 +1930,7 @@ class InsurancePlanCost extends BackboneElement {
 
   InsurancePlanCost({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
     this.applicability,
@@ -1910,11 +1947,15 @@ class InsurancePlanCost extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InsurancePlanCost.fromJson(Map<String, dynamic> json) {
     return InsurancePlanCost(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1923,7 +1964,7 @@ class InsurancePlanCost extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1940,7 +1981,7 @@ class InsurancePlanCost extends BackboneElement {
       qualifiers: json['qualifiers'] != null
           ? (json['qualifiers'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1954,7 +1995,8 @@ class InsurancePlanCost extends BackboneElement {
     );
   }
 
-  /// Deserialize [InsurancePlanCost] from a [String] or [YamlMap] object
+  /// Deserialize [InsurancePlanCost] from a [String]
+  /// or [YamlMap] object
   factory InsurancePlanCost.fromYaml(dynamic yaml) => yaml is String
       ? InsurancePlanCost.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1963,11 +2005,11 @@ class InsurancePlanCost extends BackboneElement {
           ? InsurancePlanCost.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'InsurancePlanCost cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('InsurancePlanCost cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [InsurancePlanCost] that takes in a [String]
+  /// Factory constructor for [InsurancePlanCost]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory InsurancePlanCost.fromJsonString(String source) {
@@ -1982,6 +2024,15 @@ class InsurancePlanCost extends BackboneElement {
 
   @override
   String get fhirType => 'InsurancePlanCost';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Type of cost (copay; individual cap; family cap; coinsurance;

@@ -12,16 +12,10 @@ class DeviceMetric extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.type,
@@ -29,17 +23,8 @@ class DeviceMetric extends DomainResource {
     this.source,
     this.parent,
     this.operationalStatus,
-
-    /// Extensions for [operationalStatus]
-    this.operationalStatusElement,
     this.color,
-
-    /// Extensions for [color]
-    this.colorElement,
     required this.category,
-
-    /// Extensions for [category]
-    this.categoryElement,
     this.measurementPeriod,
     this.calibration,
     super.userData,
@@ -55,27 +40,27 @@ class DeviceMetric extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceMetric.fromJson(Map<String, dynamic> json) {
     return DeviceMetric(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -85,7 +70,7 @@ class DeviceMetric extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -94,7 +79,7 @@ class DeviceMetric extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -103,7 +88,7 @@ class DeviceMetric extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -112,7 +97,7 @@ class DeviceMetric extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -137,27 +122,21 @@ class DeviceMetric extends DomainResource {
             )
           : null,
       operationalStatus: json['operationalStatus'] != null
-          ? DeviceMetricOperationalStatus.fromJson(json['operationalStatus'])
-          : null,
-      operationalStatusElement: json['_operationalStatus'] != null
-          ? Element.fromJson(
-              json['_operationalStatus'] as Map<String, dynamic>,
-            )
+          ? DeviceMetricOperationalStatus.fromJson({
+              'value': json['operationalStatus'],
+              '_value': json['_operationalStatus'],
+            })
           : null,
       color: json['color'] != null
-          ? DeviceMetricColor.fromJson(json['color'])
+          ? DeviceMetricColor.fromJson({
+              'value': json['color'],
+              '_value': json['_color'],
+            })
           : null,
-      colorElement: json['_color'] != null
-          ? Element.fromJson(
-              json['_color'] as Map<String, dynamic>,
-            )
-          : null,
-      category: DeviceMetricCategory.fromJson(json['category']),
-      categoryElement: json['_category'] != null
-          ? Element.fromJson(
-              json['_category'] as Map<String, dynamic>,
-            )
-          : null,
+      category: DeviceMetricCategory.fromJson({
+        'value': json['category'],
+        '_value': json['_category'],
+      }),
       measurementPeriod: json['measurementPeriod'] != null
           ? Timing.fromJson(
               json['measurementPeriod'] as Map<String, dynamic>,
@@ -166,7 +145,7 @@ class DeviceMetric extends DomainResource {
       calibration: json['calibration'] != null
           ? (json['calibration'] as List<dynamic>)
               .map<DeviceMetricCalibration>(
-                (dynamic v) => DeviceMetricCalibration.fromJson(
+                (v) => DeviceMetricCalibration.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -175,7 +154,8 @@ class DeviceMetric extends DomainResource {
     );
   }
 
-  /// Deserialize [DeviceMetric] from a [String] or [YamlMap] object
+  /// Deserialize [DeviceMetric] from a [String]
+  /// or [YamlMap] object
   factory DeviceMetric.fromYaml(dynamic yaml) => yaml is String
       ? DeviceMetric.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -184,10 +164,11 @@ class DeviceMetric extends DomainResource {
           ? DeviceMetric.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('DeviceMetric cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('DeviceMetric cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DeviceMetric] that takes in a [String]
+  /// Factory constructor for [DeviceMetric]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DeviceMetric.fromJsonString(String source) {
@@ -202,6 +183,15 @@ class DeviceMetric extends DomainResource {
 
   @override
   String get fhirType => 'DeviceMetric';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Unique instance identifiers assigned to a device by the device or
@@ -239,9 +229,6 @@ class DeviceMetric extends DomainResource {
   /// Off, Standby, etc.
   final DeviceMetricOperationalStatus? operationalStatus;
 
-  /// Extensions for [operationalStatus]
-  final Element? operationalStatusElement;
-
   /// [color]
   /// Describes the color representation for the metric. This is often used
   /// to aid clinicians to track and identify parameter types by color. In
@@ -250,16 +237,10 @@ class DeviceMetric extends DomainResource {
   /// colors, such as HR-blue, BP-green, and PR and SpO2- magenta.
   final DeviceMetricColor? color;
 
-  /// Extensions for [color]
-  final Element? colorElement;
-
   /// [category]
   /// Indicates the category of the observation generation process. A
   /// DeviceMetric can be for example a setting, measurement, or calculation.
   final DeviceMetricCategory category;
-
-  /// Extensions for [category]
-  final Element? categoryElement;
 
   /// [measurementPeriod]
   /// Describes the measurement repetition time. This is not necessarily the
@@ -289,9 +270,6 @@ class DeviceMetric extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -348,9 +326,7 @@ class DeviceMetric extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -361,11 +337,8 @@ class DeviceMetric extends DomainResource {
     Reference? source,
     Reference? parent,
     DeviceMetricOperationalStatus? operationalStatus,
-    Element? operationalStatusElement,
     DeviceMetricColor? color,
-    Element? colorElement,
     DeviceMetricCategory? category,
-    Element? categoryElement,
     Timing? measurementPeriod,
     List<DeviceMetricCalibration>? calibration,
     Map<String, Object?>? userData,
@@ -379,9 +352,7 @@ class DeviceMetric extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -392,12 +363,8 @@ class DeviceMetric extends DomainResource {
       source: source ?? this.source,
       parent: parent ?? this.parent,
       operationalStatus: operationalStatus ?? this.operationalStatus,
-      operationalStatusElement:
-          operationalStatusElement ?? this.operationalStatusElement,
       color: color ?? this.color,
-      colorElement: colorElement ?? this.colorElement,
       category: category ?? this.category,
-      categoryElement: categoryElement ?? this.categoryElement,
       measurementPeriod: measurementPeriod ?? this.measurementPeriod,
       calibration: calibration ?? this.calibration,
       userData: userData ?? this.userData,
@@ -418,20 +385,11 @@ class DeviceMetricCalibration extends BackboneElement {
 
   DeviceMetricCalibration({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.state,
-
-    /// Extensions for [state]
-    this.stateElement,
     this.time,
-
-    /// Extensions for [time]
-    this.timeElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -443,11 +401,15 @@ class DeviceMetricCalibration extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceMetricCalibration.fromJson(Map<String, dynamic> json) {
     return DeviceMetricCalibration(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -456,38 +418,35 @@ class DeviceMetricCalibration extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       type: json['type'] != null
-          ? DeviceMetricCalibrationType.fromJson(json['type'])
-          : null,
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
+          ? DeviceMetricCalibrationType.fromJson({
+              'value': json['type'],
+              '_value': json['_type'],
+            })
           : null,
       state: json['state'] != null
-          ? DeviceMetricCalibrationState.fromJson(json['state'])
+          ? DeviceMetricCalibrationState.fromJson({
+              'value': json['state'],
+              '_value': json['_state'],
+            })
           : null,
-      stateElement: json['_state'] != null
-          ? Element.fromJson(
-              json['_state'] as Map<String, dynamic>,
-            )
-          : null,
-      time: json['time'] != null ? FhirInstant.fromJson(json['time']) : null,
-      timeElement: json['_time'] != null
-          ? Element.fromJson(
-              json['_time'] as Map<String, dynamic>,
-            )
+      time: json['time'] != null
+          ? FhirInstant.fromJson({
+              'value': json['time'],
+              '_value': json['_time'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [DeviceMetricCalibration] from a [String] or [YamlMap] object
+  /// Deserialize [DeviceMetricCalibration] from a [String]
+  /// or [YamlMap] object
   factory DeviceMetricCalibration.fromYaml(dynamic yaml) => yaml is String
       ? DeviceMetricCalibration.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -497,10 +456,11 @@ class DeviceMetricCalibration extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'DeviceMetricCalibration cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'DeviceMetricCalibration cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DeviceMetricCalibration] that takes in a [String]
+  /// Factory constructor for [DeviceMetricCalibration]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DeviceMetricCalibration.fromJsonString(String source) {
@@ -516,26 +476,26 @@ class DeviceMetricCalibration extends BackboneElement {
   @override
   String get fhirType => 'DeviceMetricCalibration';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// Describes the type of the calibration method.
   final DeviceMetricCalibrationType? type;
-
-  /// Extensions for [type]
-  final Element? typeElement;
 
   /// [state]
   /// Describes the state of the calibration.
   final DeviceMetricCalibrationState? state;
 
-  /// Extensions for [state]
-  final Element? stateElement;
-
   /// [time]
   /// Describes the time last calibration has been performed.
   final FhirInstant? time;
-
-  /// Extensions for [time]
-  final Element? timeElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -559,9 +519,6 @@ class DeviceMetricCalibration extends BackboneElement {
     if (time?.value != null) {
       json['time'] = time!.toJson();
     }
-    if (timeElement != null) {
-      json['_time'] = timeElement!.toJson();
-    }
     return json;
   }
 
@@ -573,11 +530,8 @@ class DeviceMetricCalibration extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     DeviceMetricCalibrationType? type,
-    Element? typeElement,
     DeviceMetricCalibrationState? state,
-    Element? stateElement,
     FhirInstant? time,
-    Element? timeElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -590,11 +544,8 @@ class DeviceMetricCalibration extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       state: state ?? this.state,
-      stateElement: stateElement ?? this.stateElement,
       time: time ?? this.time,
-      timeElement: timeElement ?? this.timeElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

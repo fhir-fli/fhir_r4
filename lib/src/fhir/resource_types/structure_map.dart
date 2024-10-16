@@ -12,70 +12,28 @@ class StructureMap extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.identifier,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.experimental,
-
-    /// Extensions for [experimental]
-    this.experimentalElement,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.publisher,
-
-    /// Extensions for [publisher]
-    this.publisherElement,
     this.contact,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-
-    /// Extensions for [purpose]
-    this.purposeElement,
     this.copyright,
-
-    /// Extensions for [copyright]
-    this.copyrightElement,
     this.structure,
     this.import_,
-
-    /// Extensions for [import]
-    this.importElement,
     required this.group,
     super.userData,
     super.formatCommentsPre,
@@ -90,27 +48,27 @@ class StructureMap extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMap.fromJson(Map<String, dynamic> json) {
     return StructureMap(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -120,7 +78,7 @@ class StructureMap extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -129,7 +87,7 @@ class StructureMap extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -138,95 +96,82 @@ class StructureMap extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      url: FhirUri.fromJson(json['url']),
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
-          : null,
+      url: FhirUri.fromJson({
+        'value': json['url'],
+        '_value': json['_url'],
+      }),
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
-      name: FhirString.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: FhirString.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
-          : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: PublicationStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson(json['experimental'])
+          ? FhirBoolean.fromJson({
+              'value': json['experimental'],
+              '_value': json['_experimental'],
+            })
           : null,
-      experimentalElement: json['_experimental'] != null
-          ? Element.fromJson(
-              json['_experimental'] as Map<String, dynamic>,
-            )
-          : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       publisher: json['publisher'] != null
-          ? FhirString.fromJson(json['publisher'])
-          : null,
-      publisherElement: json['_publisher'] != null
-          ? Element.fromJson(
-              json['_publisher'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['publisher'],
+              '_value': json['_publisher'],
+            })
           : null,
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       useContext: json['useContext'] != null
           ? (json['useContext'] as List<dynamic>)
               .map<UsageContext>(
-                (dynamic v) => UsageContext.fromJson(
+                (v) => UsageContext.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -235,59 +180,48 @@ class StructureMap extends DomainResource {
       jurisdiction: json['jurisdiction'] != null
           ? (json['jurisdiction'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       purpose: json['purpose'] != null
-          ? FhirMarkdown.fromJson(json['purpose'])
-          : null,
-      purposeElement: json['_purpose'] != null
-          ? Element.fromJson(
-              json['_purpose'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['purpose'],
+              '_value': json['_purpose'],
+            })
           : null,
       copyright: json['copyright'] != null
-          ? FhirMarkdown.fromJson(json['copyright'])
-          : null,
-      copyrightElement: json['_copyright'] != null
-          ? Element.fromJson(
-              json['_copyright'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['copyright'],
+              '_value': json['_copyright'],
+            })
           : null,
       structure: json['structure'] != null
           ? (json['structure'] as List<dynamic>)
               .map<StructureMapStructure>(
-                (dynamic v) => StructureMapStructure.fromJson(
+                (v) => StructureMapStructure.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      import_: json['import'] != null
-          ? (json['import'] as List<dynamic>)
-              .map<FhirCanonical>(
-                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      importElement: json['_import'] != null
-          ? (json['_import'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      group: (json['group'] as List<dynamic>)
-          .map<StructureMapGroup>((dynamic v) =>
-              StructureMapGroup.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      import_: parsePrimitiveList<FhirCanonical>(
+          json['import'] as List<dynamic>?, json['_import'] as List<dynamic>?,
+          fromJson: FhirCanonical.fromJson),
+      group: ensureNonNullList((json['group'] as List<dynamic>)
+          .map<StructureMapGroup>(
+            (v) => StructureMapGroup.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
     );
   }
 
-  /// Deserialize [StructureMap] from a [String] or [YamlMap] object
+  /// Deserialize [StructureMap] from a [String]
+  /// or [YamlMap] object
   factory StructureMap.fromYaml(dynamic yaml) => yaml is String
       ? StructureMap.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -296,10 +230,11 @@ class StructureMap extends DomainResource {
           ? StructureMap.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('StructureMap cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('StructureMap cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [StructureMap] that takes in a [String]
+  /// Factory constructor for [StructureMap]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory StructureMap.fromJsonString(String source) {
@@ -315,6 +250,15 @@ class StructureMap extends DomainResource {
   @override
   String get fhirType => 'StructureMap';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [url]
   /// An absolute URI that is used to identify this structure map when it is
   /// referenced in a specification, model, design or an instance; also
@@ -324,9 +268,6 @@ class StructureMap extends DomainResource {
   /// target of a canonical reference. It SHALL remain the same when the
   /// structure map is stored on different servers.
   final FhirUri url;
-
-  /// Extensions for [url]
-  final Element? urlElement;
 
   /// [identifier]
   /// A formal identifier that is used to identify this structure map when it
@@ -344,41 +285,26 @@ class StructureMap extends DomainResource {
   /// lexicographical sequence.
   final FhirString? version;
 
-  /// Extensions for [version]
-  final Element? versionElement;
-
   /// [name]
   /// A natural language name identifying the structure map. This name should
   /// be usable as an identifier for the module by machine processing
   /// applications such as code generation.
   final FhirString name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [title]
   /// A short, descriptive, user-friendly title for the structure map.
   final FhirString? title;
-
-  /// Extensions for [title]
-  final Element? titleElement;
 
   /// [status]
   /// The status of this structure map. Enables tracking the life-cycle of
   /// the content.
   final PublicationStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [experimental]
   /// A Boolean value to indicate that this structure map is authored for
   /// testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
   final FhirBoolean? experimental;
-
-  /// Extensions for [experimental]
-  final Element? experimentalElement;
 
   /// [date]
   /// The date (and optionally time) when the structure map was published.
@@ -387,16 +313,10 @@ class StructureMap extends DomainResource {
   /// the substantive content of the structure map changes.
   final FhirDateTime? date;
 
-  /// Extensions for [date]
-  final Element? dateElement;
-
   /// [publisher]
   /// The name of the organization or individual that published the structure
   /// map.
   final FhirString? publisher;
-
-  /// Extensions for [publisher]
-  final Element? publisherElement;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
@@ -407,9 +327,6 @@ class StructureMap extends DomainResource {
   /// A free text natural language description of the structure map from a
   /// consumer's perspective.
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -429,17 +346,11 @@ class StructureMap extends DomainResource {
   /// designed as it has.
   final FhirMarkdown? purpose;
 
-  /// Extensions for [purpose]
-  final Element? purposeElement;
-
   /// [copyright]
   /// A copyright statement relating to the structure map and/or its
   /// contents. Copyright statements are generally legal restrictions on the
   /// use and publishing of the structure map.
   final FhirMarkdown? copyright;
-
-  /// Extensions for [copyright]
-  final Element? copyrightElement;
 
   /// [structure]
   /// A structure definition used by this map. The structure definition may
@@ -450,9 +361,6 @@ class StructureMap extends DomainResource {
   /// [import_]
   /// Other maps used by this map (canonical URLs).
   final List<FhirCanonical>? import_;
-
-  /// Extensions for [import]
-  final List<Element>? importElement;
 
   /// [group]
   /// Organizes the mapping into manageable chunks for human review/ease of
@@ -470,9 +378,6 @@ class StructureMap extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -492,9 +397,6 @@ class StructureMap extends DomainResource {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['url'] = url.toJson();
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
-    }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
           identifier!.map((Identifier v) => v.toJson()).toList();
@@ -502,46 +404,25 @@ class StructureMap extends DomainResource {
     if (version?.value != null) {
       json['version'] = version!.toJson();
     }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
-    }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (title?.value != null) {
       json['title'] = title!.toJson();
-    }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
     }
     json['status'] = status.toJson();
     if (experimental?.value != null) {
       json['experimental'] = experimental!.toJson();
     }
-    if (experimentalElement != null) {
-      json['_experimental'] = experimentalElement!.toJson();
-    }
     if (date?.value != null) {
       json['date'] = date!.toJson();
     }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (publisher?.value != null) {
       json['publisher'] = publisher!.toJson();
-    }
-    if (publisherElement != null) {
-      json['_publisher'] = publisherElement!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] =
@@ -554,14 +435,8 @@ class StructureMap extends DomainResource {
     if (purpose?.value != null) {
       json['purpose'] = purpose!.toJson();
     }
-    if (purposeElement != null) {
-      json['_purpose'] = purposeElement!.toJson();
-    }
     if (copyright?.value != null) {
       json['copyright'] = copyright!.toJson();
-    }
-    if (copyrightElement != null) {
-      json['_copyright'] = copyrightElement!.toJson();
     }
     if (structure != null && structure!.isNotEmpty) {
       json['structure'] =
@@ -569,9 +444,6 @@ class StructureMap extends DomainResource {
     }
     if (import_ != null && import_!.isNotEmpty) {
       json['import'] = import_!.map((FhirCanonical v) => v.toJson()).toList();
-    }
-    if (importElement != null && importElement!.isNotEmpty) {
-      json['_import'] = importElement!.map((Element v) => v.toJson()).toList();
     }
     json['group'] =
         group.map<dynamic>((StructureMapGroup v) => v.toJson()).toList();
@@ -585,42 +457,28 @@ class StructureMap extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    Element? urlElement,
     List<Identifier>? identifier,
     FhirString? version,
-    Element? versionElement,
     FhirString? name,
-    Element? nameElement,
     FhirString? title,
-    Element? titleElement,
     PublicationStatus? status,
-    Element? statusElement,
     FhirBoolean? experimental,
-    Element? experimentalElement,
     FhirDateTime? date,
-    Element? dateElement,
     FhirString? publisher,
-    Element? publisherElement,
     List<ContactDetail>? contact,
     FhirMarkdown? description,
-    Element? descriptionElement,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
     FhirMarkdown? purpose,
-    Element? purposeElement,
     FhirMarkdown? copyright,
-    Element? copyrightElement,
     List<StructureMapStructure>? structure,
     List<FhirCanonical>? import_,
-    List<Element>? importElement,
     List<StructureMapGroup>? group,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -633,42 +491,28 @@ class StructureMap extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       identifier: identifier ?? this.identifier,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       experimental: experimental ?? this.experimental,
-      experimentalElement: experimentalElement ?? this.experimentalElement,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       publisher: publisher ?? this.publisher,
-      publisherElement: publisherElement ?? this.publisherElement,
       contact: contact ?? this.contact,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       useContext: useContext ?? this.useContext,
       jurisdiction: jurisdiction ?? this.jurisdiction,
       purpose: purpose ?? this.purpose,
-      purposeElement: purposeElement ?? this.purposeElement,
       copyright: copyright ?? this.copyright,
-      copyrightElement: copyrightElement ?? this.copyrightElement,
       structure: structure ?? this.structure,
       import_: import_ ?? this.import_,
-      importElement: importElement ?? this.importElement,
       group: group ?? this.group,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -689,24 +533,12 @@ class StructureMapStructure extends BackboneElement {
 
   StructureMapStructure({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     required this.mode,
-
-    /// Extensions for [mode]
-    this.modeElement,
     this.alias,
-
-    /// Extensions for [alias]
-    this.aliasElement,
     this.documentation,
-
-    /// Extensions for [documentation]
-    this.documentationElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -718,11 +550,15 @@ class StructureMapStructure extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapStructure.fromJson(Map<String, dynamic> json) {
     return StructureMapStructure(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -731,42 +567,37 @@ class StructureMapStructure extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      url: FhirCanonical.fromJson(json['url']),
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
-          : null,
-      mode: StructureMapModelMode.fromJson(json['mode']),
-      modeElement: json['_mode'] != null
-          ? Element.fromJson(
-              json['_mode'] as Map<String, dynamic>,
-            )
-          : null,
-      alias: json['alias'] != null ? FhirString.fromJson(json['alias']) : null,
-      aliasElement: json['_alias'] != null
-          ? Element.fromJson(
-              json['_alias'] as Map<String, dynamic>,
-            )
+      url: FhirCanonical.fromJson({
+        'value': json['url'],
+        '_value': json['_url'],
+      }),
+      mode: StructureMapModelMode.fromJson({
+        'value': json['mode'],
+        '_value': json['_mode'],
+      }),
+      alias: json['alias'] != null
+          ? FhirString.fromJson({
+              'value': json['alias'],
+              '_value': json['_alias'],
+            })
           : null,
       documentation: json['documentation'] != null
-          ? FhirString.fromJson(json['documentation'])
-          : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(
-              json['_documentation'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['documentation'],
+              '_value': json['_documentation'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [StructureMapStructure] from a [String] or [YamlMap] object
+  /// Deserialize [StructureMapStructure] from a [String]
+  /// or [YamlMap] object
   factory StructureMapStructure.fromYaml(dynamic yaml) => yaml is String
       ? StructureMapStructure.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -776,10 +607,11 @@ class StructureMapStructure extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'StructureMapStructure cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'StructureMapStructure cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [StructureMapStructure] that takes in a [String]
+  /// Factory constructor for [StructureMapStructure]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory StructureMapStructure.fromJsonString(String source) {
@@ -795,33 +627,30 @@ class StructureMapStructure extends BackboneElement {
   @override
   String get fhirType => 'StructureMapStructure';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [url]
   /// The canonical reference to the structure.
   final FhirCanonical url;
-
-  /// Extensions for [url]
-  final Element? urlElement;
 
   /// [mode]
   /// How the referenced structure is used in this mapping.
   final StructureMapModelMode mode;
 
-  /// Extensions for [mode]
-  final Element? modeElement;
-
   /// [alias]
   /// The name used for this type in the map.
   final FhirString? alias;
 
-  /// Extensions for [alias]
-  final Element? aliasElement;
-
   /// [documentation]
   /// Documentation that describes how the structure is used in the mapping.
   final FhirString? documentation;
-
-  /// Extensions for [documentation]
-  final Element? documentationElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -837,21 +666,12 @@ class StructureMapStructure extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['url'] = url.toJson();
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
-    }
     json['mode'] = mode.toJson();
     if (alias?.value != null) {
       json['alias'] = alias!.toJson();
     }
-    if (aliasElement != null) {
-      json['_alias'] = aliasElement!.toJson();
-    }
     if (documentation?.value != null) {
       json['documentation'] = documentation!.toJson();
-    }
-    if (documentationElement != null) {
-      json['_documentation'] = documentationElement!.toJson();
     }
     return json;
   }
@@ -864,13 +684,9 @@ class StructureMapStructure extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirCanonical? url,
-    Element? urlElement,
     StructureMapModelMode? mode,
-    Element? modeElement,
     FhirString? alias,
-    Element? aliasElement,
     FhirString? documentation,
-    Element? documentationElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -883,13 +699,9 @@ class StructureMapStructure extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       mode: mode ?? this.mode,
-      modeElement: modeElement ?? this.modeElement,
       alias: alias ?? this.alias,
-      aliasElement: aliasElement ?? this.aliasElement,
       documentation: documentation ?? this.documentation,
-      documentationElement: documentationElement ?? this.documentationElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -908,24 +720,12 @@ class StructureMapGroup extends BackboneElement {
 
   StructureMapGroup({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.extends_,
-
-    /// Extensions for [extends]
-    this.extendsElement,
     required this.typeMode,
-
-    /// Extensions for [typeMode]
-    this.typeModeElement,
     this.documentation,
-
-    /// Extensions for [documentation]
-    this.documentationElement,
     required this.input,
     required this.rule,
     super.userData,
@@ -939,11 +739,15 @@ class StructureMapGroup extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapGroup.fromJson(Map<String, dynamic> json) {
     return StructureMapGroup(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -952,51 +756,51 @@ class StructureMapGroup extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: FhirId.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: FhirId.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
+      extends_: json['extends'] != null
+          ? FhirId.fromJson({
+              'value': json['extends'],
+              '_value': json['_extends'],
+            })
           : null,
-      extends_:
-          json['extends'] != null ? FhirId.fromJson(json['extends']) : null,
-      extendsElement: json['_extends'] != null
-          ? Element.fromJson(
-              json['_extends'] as Map<String, dynamic>,
-            )
-          : null,
-      typeMode: StructureMapGroupTypeMode.fromJson(json['typeMode']),
-      typeModeElement: json['_typeMode'] != null
-          ? Element.fromJson(
-              json['_typeMode'] as Map<String, dynamic>,
-            )
-          : null,
+      typeMode: StructureMapGroupTypeMode.fromJson({
+        'value': json['typeMode'],
+        '_value': json['_typeMode'],
+      }),
       documentation: json['documentation'] != null
-          ? FhirString.fromJson(json['documentation'])
+          ? FhirString.fromJson({
+              'value': json['documentation'],
+              '_value': json['_documentation'],
+            })
           : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(
-              json['_documentation'] as Map<String, dynamic>,
-            )
-          : null,
-      input: (json['input'] as List<dynamic>)
-          .map<StructureMapInput>((dynamic v) =>
-              StructureMapInput.fromJson(v as Map<String, dynamic>))
-          .toList(),
-      rule: (json['rule'] as List<dynamic>)
-          .map<StructureMapRule>((dynamic v) =>
-              StructureMapRule.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      input: ensureNonNullList((json['input'] as List<dynamic>)
+          .map<StructureMapInput>(
+            (v) => StructureMapInput.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
+      rule: ensureNonNullList((json['rule'] as List<dynamic>)
+          .map<StructureMapRule>(
+            (v) => StructureMapRule.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
     );
   }
 
-  /// Deserialize [StructureMapGroup] from a [String] or [YamlMap] object
+  /// Deserialize [StructureMapGroup] from a [String]
+  /// or [YamlMap] object
   factory StructureMapGroup.fromYaml(dynamic yaml) => yaml is String
       ? StructureMapGroup.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1005,11 +809,11 @@ class StructureMapGroup extends BackboneElement {
           ? StructureMapGroup.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'StructureMapGroup cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('StructureMapGroup cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [StructureMapGroup] that takes in a [String]
+  /// Factory constructor for [StructureMapGroup]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory StructureMapGroup.fromJsonString(String source) {
@@ -1025,35 +829,32 @@ class StructureMapGroup extends BackboneElement {
   @override
   String get fhirType => 'StructureMapGroup';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// A unique name for the group for the convenience of human readers.
   final FhirId name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [extends_]
   /// Another group that this group adds rules to.
   final FhirId? extends_;
-
-  /// Extensions for [extends]
-  final Element? extendsElement;
 
   /// [typeMode]
   /// If this is the default rule set to apply for the source type or this
   /// combination of types.
   final StructureMapGroupTypeMode typeMode;
 
-  /// Extensions for [typeMode]
-  final Element? typeModeElement;
-
   /// [documentation]
   /// Additional supporting documentation that explains the purpose of the
   /// group and the types of mappings within it.
   final FhirString? documentation;
-
-  /// Extensions for [documentation]
-  final Element? documentationElement;
 
   /// [input]
   /// A name assigned to an instance of data. The instance must be provided
@@ -1078,21 +879,12 @@ class StructureMapGroup extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (extends_?.value != null) {
       json['extends'] = extends_!.toJson();
-    }
-    if (extendsElement != null) {
-      json['_extends'] = extendsElement!.toJson();
     }
     json['typeMode'] = typeMode.toJson();
     if (documentation?.value != null) {
       json['documentation'] = documentation!.toJson();
-    }
-    if (documentationElement != null) {
-      json['_documentation'] = documentationElement!.toJson();
     }
     json['input'] =
         input.map<dynamic>((StructureMapInput v) => v.toJson()).toList();
@@ -1109,13 +901,9 @@ class StructureMapGroup extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirId? name,
-    Element? nameElement,
     FhirId? extends_,
-    Element? extendsElement,
     StructureMapGroupTypeMode? typeMode,
-    Element? typeModeElement,
     FhirString? documentation,
-    Element? documentationElement,
     List<StructureMapInput>? input,
     List<StructureMapRule>? rule,
     Map<String, Object?>? userData,
@@ -1130,13 +918,9 @@ class StructureMapGroup extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       extends_: extends_ ?? this.extends_,
-      extendsElement: extendsElement ?? this.extendsElement,
       typeMode: typeMode ?? this.typeMode,
-      typeModeElement: typeModeElement ?? this.typeModeElement,
       documentation: documentation ?? this.documentation,
-      documentationElement: documentationElement ?? this.documentationElement,
       input: input ?? this.input,
       rule: rule ?? this.rule,
       userData: userData ?? this.userData,
@@ -1157,24 +941,12 @@ class StructureMapInput extends BackboneElement {
 
   StructureMapInput({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     required this.mode,
-
-    /// Extensions for [mode]
-    this.modeElement,
     this.documentation,
-
-    /// Extensions for [documentation]
-    this.documentationElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1186,11 +958,15 @@ class StructureMapInput extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapInput.fromJson(Map<String, dynamic> json) {
     return StructureMapInput(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1199,42 +975,37 @@ class StructureMapInput extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: FhirId.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: FhirId.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
+      type: json['type'] != null
+          ? FhirString.fromJson({
+              'value': json['type'],
+              '_value': json['_type'],
+            })
           : null,
-      type: json['type'] != null ? FhirString.fromJson(json['type']) : null,
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
-      mode: StructureMapInputMode.fromJson(json['mode']),
-      modeElement: json['_mode'] != null
-          ? Element.fromJson(
-              json['_mode'] as Map<String, dynamic>,
-            )
-          : null,
+      mode: StructureMapInputMode.fromJson({
+        'value': json['mode'],
+        '_value': json['_mode'],
+      }),
       documentation: json['documentation'] != null
-          ? FhirString.fromJson(json['documentation'])
-          : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(
-              json['_documentation'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['documentation'],
+              '_value': json['_documentation'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [StructureMapInput] from a [String] or [YamlMap] object
+  /// Deserialize [StructureMapInput] from a [String]
+  /// or [YamlMap] object
   factory StructureMapInput.fromYaml(dynamic yaml) => yaml is String
       ? StructureMapInput.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1243,11 +1014,11 @@ class StructureMapInput extends BackboneElement {
           ? StructureMapInput.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'StructureMapInput cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('StructureMapInput cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [StructureMapInput] that takes in a [String]
+  /// Factory constructor for [StructureMapInput]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory StructureMapInput.fromJsonString(String source) {
@@ -1263,33 +1034,30 @@ class StructureMapInput extends BackboneElement {
   @override
   String get fhirType => 'StructureMapInput';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// Name for this instance of data.
   final FhirId name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [type]
   /// Type for this instance of data.
   final FhirString? type;
 
-  /// Extensions for [type]
-  final Element? typeElement;
-
   /// [mode]
   /// Mode for this instance of data.
   final StructureMapInputMode mode;
 
-  /// Extensions for [mode]
-  final Element? modeElement;
-
   /// [documentation]
   /// Documentation for this instance of data.
   final FhirString? documentation;
-
-  /// Extensions for [documentation]
-  final Element? documentationElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1305,21 +1073,12 @@ class StructureMapInput extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (type?.value != null) {
       json['type'] = type!.toJson();
-    }
-    if (typeElement != null) {
-      json['_type'] = typeElement!.toJson();
     }
     json['mode'] = mode.toJson();
     if (documentation?.value != null) {
       json['documentation'] = documentation!.toJson();
-    }
-    if (documentationElement != null) {
-      json['_documentation'] = documentationElement!.toJson();
     }
     return json;
   }
@@ -1332,13 +1091,9 @@ class StructureMapInput extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirId? name,
-    Element? nameElement,
     FhirString? type,
-    Element? typeElement,
     StructureMapInputMode? mode,
-    Element? modeElement,
     FhirString? documentation,
-    Element? documentationElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1351,13 +1106,9 @@ class StructureMapInput extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       mode: mode ?? this.mode,
-      modeElement: modeElement ?? this.modeElement,
       documentation: documentation ?? this.documentation,
-      documentationElement: documentationElement ?? this.documentationElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1375,20 +1126,13 @@ class StructureMapRule extends BackboneElement {
 
   StructureMapRule({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     required this.source,
     this.target,
-    this.rule,
     this.dependent,
     this.documentation,
-
-    /// Extensions for [documentation]
-    this.documentationElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1400,11 +1144,15 @@ class StructureMapRule extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapRule.fromJson(Map<String, dynamic> json) {
     return StructureMapRule(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1413,35 +1161,27 @@ class StructureMapRule extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: FhirId.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
-          : null,
-      source: (json['source'] as List<dynamic>)
-          .map<StructureMapSource>((dynamic v) =>
-              StructureMapSource.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      name: FhirId.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
+      source: ensureNonNullList((json['source'] as List<dynamic>)
+          .map<StructureMapSource>(
+            (v) => StructureMapSource.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
       target: json['target'] != null
           ? (json['target'] as List<dynamic>)
               .map<StructureMapTarget>(
-                (dynamic v) => StructureMapTarget.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      rule: json['rule'] != null
-          ? (json['rule'] as List<dynamic>)
-              .map<StructureMapRule>(
-                (dynamic v) => StructureMapRule.fromJson(
+                (v) => StructureMapTarget.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1450,24 +1190,23 @@ class StructureMapRule extends BackboneElement {
       dependent: json['dependent'] != null
           ? (json['dependent'] as List<dynamic>)
               .map<StructureMapDependent>(
-                (dynamic v) => StructureMapDependent.fromJson(
+                (v) => StructureMapDependent.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       documentation: json['documentation'] != null
-          ? FhirString.fromJson(json['documentation'])
-          : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(
-              json['_documentation'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['documentation'],
+              '_value': json['_documentation'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [StructureMapRule] from a [String] or [YamlMap] object
+  /// Deserialize [StructureMapRule] from a [String]
+  /// or [YamlMap] object
   factory StructureMapRule.fromYaml(dynamic yaml) => yaml is String
       ? StructureMapRule.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1476,11 +1215,11 @@ class StructureMapRule extends BackboneElement {
           ? StructureMapRule.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'StructureMapRule cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('StructureMapRule cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [StructureMapRule] that takes in a [String]
+  /// Factory constructor for [StructureMapRule]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory StructureMapRule.fromJsonString(String source) {
@@ -1496,12 +1235,18 @@ class StructureMapRule extends BackboneElement {
   @override
   String get fhirType => 'StructureMapRule';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// Name of the rule for internal references.
   final FhirId name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [source]
   /// Source inputs to the mapping.
@@ -1511,10 +1256,6 @@ class StructureMapRule extends BackboneElement {
   /// Content to create because of this mapping rule.
   final List<StructureMapTarget>? target;
 
-  /// [rule]
-  /// Rules contained in this rule.
-  final List<StructureMapRule>? rule;
-
   /// [dependent]
   /// Which other rules to apply in the context of this rule.
   final List<StructureMapDependent>? dependent;
@@ -1522,9 +1263,6 @@ class StructureMapRule extends BackboneElement {
   /// [documentation]
   /// Documentation for this instance of data.
   final FhirString? documentation;
-
-  /// Extensions for [documentation]
-  final Element? documentationElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1540,17 +1278,11 @@ class StructureMapRule extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     json['source'] =
         source.map<dynamic>((StructureMapSource v) => v.toJson()).toList();
     if (target != null && target!.isNotEmpty) {
       json['target'] =
           target!.map((StructureMapTarget v) => v.toJson()).toList();
-    }
-    if (rule != null && rule!.isNotEmpty) {
-      json['rule'] = rule!.map((StructureMapRule v) => v.toJson()).toList();
     }
     if (dependent != null && dependent!.isNotEmpty) {
       json['dependent'] =
@@ -1558,9 +1290,6 @@ class StructureMapRule extends BackboneElement {
     }
     if (documentation?.value != null) {
       json['documentation'] = documentation!.toJson();
-    }
-    if (documentationElement != null) {
-      json['_documentation'] = documentationElement!.toJson();
     }
     return json;
   }
@@ -1573,13 +1302,10 @@ class StructureMapRule extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirId? name,
-    Element? nameElement,
     List<StructureMapSource>? source,
     List<StructureMapTarget>? target,
-    List<StructureMapRule>? rule,
     List<StructureMapDependent>? dependent,
     FhirString? documentation,
-    Element? documentationElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1592,13 +1318,10 @@ class StructureMapRule extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       source: source ?? this.source,
       target: target ?? this.target,
-      rule: rule ?? this.rule,
       dependent: dependent ?? this.dependent,
       documentation: documentation ?? this.documentation,
-      documentationElement: documentationElement ?? this.documentationElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1616,100 +1339,31 @@ class StructureMapSource extends BackboneElement {
 
   StructureMapSource({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.context,
-
-    /// Extensions for [context]
-    this.contextElement,
     this.min,
-
-    /// Extensions for [min]
-    this.minElement,
     this.max,
-
-    /// Extensions for [max]
-    this.maxElement,
     this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.defaultValueBase64Binary,
-
-    /// Extensions for [defaultValueBase64Binary]
-    this.defaultValueBase64BinaryElement,
     this.defaultValueBoolean,
-
-    /// Extensions for [defaultValueBoolean]
-    this.defaultValueBooleanElement,
     this.defaultValueCanonical,
-
-    /// Extensions for [defaultValueCanonical]
-    this.defaultValueCanonicalElement,
     this.defaultValueCode,
-
-    /// Extensions for [defaultValueCode]
-    this.defaultValueCodeElement,
     this.defaultValueDate,
-
-    /// Extensions for [defaultValueDate]
-    this.defaultValueDateElement,
     this.defaultValueDateTime,
-
-    /// Extensions for [defaultValueDateTime]
-    this.defaultValueDateTimeElement,
     this.defaultValueDecimal,
-
-    /// Extensions for [defaultValueDecimal]
-    this.defaultValueDecimalElement,
     this.defaultValueId,
-
-    /// Extensions for [defaultValueId]
-    this.defaultValueIdElement,
     this.defaultValueInstant,
-
-    /// Extensions for [defaultValueInstant]
-    this.defaultValueInstantElement,
     this.defaultValueInteger,
-
-    /// Extensions for [defaultValueInteger]
-    this.defaultValueIntegerElement,
     this.defaultValueMarkdown,
-
-    /// Extensions for [defaultValueMarkdown]
-    this.defaultValueMarkdownElement,
     this.defaultValueOid,
-
-    /// Extensions for [defaultValueOid]
-    this.defaultValueOidElement,
     this.defaultValuePositiveInt,
-
-    /// Extensions for [defaultValuePositiveInt]
-    this.defaultValuePositiveIntElement,
     this.defaultValueString,
-
-    /// Extensions for [defaultValueString]
-    this.defaultValueStringElement,
     this.defaultValueTime,
-
-    /// Extensions for [defaultValueTime]
-    this.defaultValueTimeElement,
     this.defaultValueUnsignedInt,
-
-    /// Extensions for [defaultValueUnsignedInt]
-    this.defaultValueUnsignedIntElement,
     this.defaultValueUri,
-
-    /// Extensions for [defaultValueUri]
-    this.defaultValueUriElement,
     this.defaultValueUrl,
-
-    /// Extensions for [defaultValueUrl]
-    this.defaultValueUrlElement,
     this.defaultValueUuid,
-
-    /// Extensions for [defaultValueUuid]
-    this.defaultValueUuidElement,
     this.defaultValueAddress,
     this.defaultValueAge,
     this.defaultValueAnnotation,
@@ -1742,29 +1396,11 @@ class StructureMapSource extends BackboneElement {
     this.defaultValueDosage,
     this.defaultValueMeta,
     this.element,
-
-    /// Extensions for [element]
-    this.elementElement,
     this.listMode,
-
-    /// Extensions for [listMode]
-    this.listModeElement,
     this.variable,
-
-    /// Extensions for [variable]
-    this.variableElement,
     this.condition,
-
-    /// Extensions for [condition]
-    this.conditionElement,
     this.check,
-
-    /// Extensions for [check]
-    this.checkElement,
     this.logMessage,
-
-    /// Extensions for [logMessage]
-    this.logMessageElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1776,11 +1412,15 @@ class StructureMapSource extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapSource.fromJson(Map<String, dynamic> json) {
     return StructureMapSource(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1789,187 +1429,147 @@ class StructureMapSource extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      context: FhirId.fromJson(json['context']),
-      contextElement: json['_context'] != null
-          ? Element.fromJson(
-              json['_context'] as Map<String, dynamic>,
-            )
+      context: FhirId.fromJson({
+        'value': json['context'],
+        '_value': json['_context'],
+      }),
+      min: json['min'] != null
+          ? FhirInteger.fromJson({
+              'value': json['min'],
+              '_value': json['_min'],
+            })
           : null,
-      min: json['min'] != null ? FhirInteger.fromJson(json['min']) : null,
-      minElement: json['_min'] != null
-          ? Element.fromJson(
-              json['_min'] as Map<String, dynamic>,
-            )
+      max: json['max'] != null
+          ? FhirString.fromJson({
+              'value': json['max'],
+              '_value': json['_max'],
+            })
           : null,
-      max: json['max'] != null ? FhirString.fromJson(json['max']) : null,
-      maxElement: json['_max'] != null
-          ? Element.fromJson(
-              json['_max'] as Map<String, dynamic>,
-            )
-          : null,
-      type: json['type'] != null ? FhirString.fromJson(json['type']) : null,
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
+      type: json['type'] != null
+          ? FhirString.fromJson({
+              'value': json['type'],
+              '_value': json['_type'],
+            })
           : null,
       defaultValueBase64Binary: json['defaultValueBase64Binary'] != null
-          ? FhirBase64Binary.fromJson(json['defaultValueBase64Binary'])
-          : null,
-      defaultValueBase64BinaryElement: json['_defaultValueBase64Binary'] != null
-          ? Element.fromJson(
-              json['_defaultValueBase64Binary'] as Map<String, dynamic>,
-            )
+          ? FhirBase64Binary.fromJson({
+              'value': json['defaultValueBase64Binary'],
+              '_value': json['_defaultValueBase64Binary'],
+            })
           : null,
       defaultValueBoolean: json['defaultValueBoolean'] != null
-          ? FhirBoolean.fromJson(json['defaultValueBoolean'])
-          : null,
-      defaultValueBooleanElement: json['_defaultValueBoolean'] != null
-          ? Element.fromJson(
-              json['_defaultValueBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['defaultValueBoolean'],
+              '_value': json['_defaultValueBoolean'],
+            })
           : null,
       defaultValueCanonical: json['defaultValueCanonical'] != null
-          ? FhirCanonical.fromJson(json['defaultValueCanonical'])
-          : null,
-      defaultValueCanonicalElement: json['_defaultValueCanonical'] != null
-          ? Element.fromJson(
-              json['_defaultValueCanonical'] as Map<String, dynamic>,
-            )
+          ? FhirCanonical.fromJson({
+              'value': json['defaultValueCanonical'],
+              '_value': json['_defaultValueCanonical'],
+            })
           : null,
       defaultValueCode: json['defaultValueCode'] != null
-          ? FhirCode.fromJson(json['defaultValueCode'])
-          : null,
-      defaultValueCodeElement: json['_defaultValueCode'] != null
-          ? Element.fromJson(
-              json['_defaultValueCode'] as Map<String, dynamic>,
-            )
+          ? FhirCode.fromJson({
+              'value': json['defaultValueCode'],
+              '_value': json['_defaultValueCode'],
+            })
           : null,
       defaultValueDate: json['defaultValueDate'] != null
-          ? FhirDate.fromJson(json['defaultValueDate'])
-          : null,
-      defaultValueDateElement: json['_defaultValueDate'] != null
-          ? Element.fromJson(
-              json['_defaultValueDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['defaultValueDate'],
+              '_value': json['_defaultValueDate'],
+            })
           : null,
       defaultValueDateTime: json['defaultValueDateTime'] != null
-          ? FhirDateTime.fromJson(json['defaultValueDateTime'])
-          : null,
-      defaultValueDateTimeElement: json['_defaultValueDateTime'] != null
-          ? Element.fromJson(
-              json['_defaultValueDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['defaultValueDateTime'],
+              '_value': json['_defaultValueDateTime'],
+            })
           : null,
       defaultValueDecimal: json['defaultValueDecimal'] != null
-          ? FhirDecimal.fromJson(json['defaultValueDecimal'])
-          : null,
-      defaultValueDecimalElement: json['_defaultValueDecimal'] != null
-          ? Element.fromJson(
-              json['_defaultValueDecimal'] as Map<String, dynamic>,
-            )
+          ? FhirDecimal.fromJson({
+              'value': json['defaultValueDecimal'],
+              '_value': json['_defaultValueDecimal'],
+            })
           : null,
       defaultValueId: json['defaultValueId'] != null
-          ? FhirId.fromJson(json['defaultValueId'])
-          : null,
-      defaultValueIdElement: json['_defaultValueId'] != null
-          ? Element.fromJson(
-              json['_defaultValueId'] as Map<String, dynamic>,
-            )
+          ? FhirId.fromJson({
+              'value': json['defaultValueId'],
+              '_value': json['_defaultValueId'],
+            })
           : null,
       defaultValueInstant: json['defaultValueInstant'] != null
-          ? FhirInstant.fromJson(json['defaultValueInstant'])
-          : null,
-      defaultValueInstantElement: json['_defaultValueInstant'] != null
-          ? Element.fromJson(
-              json['_defaultValueInstant'] as Map<String, dynamic>,
-            )
+          ? FhirInstant.fromJson({
+              'value': json['defaultValueInstant'],
+              '_value': json['_defaultValueInstant'],
+            })
           : null,
       defaultValueInteger: json['defaultValueInteger'] != null
-          ? FhirInteger.fromJson(json['defaultValueInteger'])
-          : null,
-      defaultValueIntegerElement: json['_defaultValueInteger'] != null
-          ? Element.fromJson(
-              json['_defaultValueInteger'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['defaultValueInteger'],
+              '_value': json['_defaultValueInteger'],
+            })
           : null,
       defaultValueMarkdown: json['defaultValueMarkdown'] != null
-          ? FhirMarkdown.fromJson(json['defaultValueMarkdown'])
-          : null,
-      defaultValueMarkdownElement: json['_defaultValueMarkdown'] != null
-          ? Element.fromJson(
-              json['_defaultValueMarkdown'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['defaultValueMarkdown'],
+              '_value': json['_defaultValueMarkdown'],
+            })
           : null,
       defaultValueOid: json['defaultValueOid'] != null
-          ? FhirOid.fromJson(json['defaultValueOid'])
-          : null,
-      defaultValueOidElement: json['_defaultValueOid'] != null
-          ? Element.fromJson(
-              json['_defaultValueOid'] as Map<String, dynamic>,
-            )
+          ? FhirOid.fromJson({
+              'value': json['defaultValueOid'],
+              '_value': json['_defaultValueOid'],
+            })
           : null,
       defaultValuePositiveInt: json['defaultValuePositiveInt'] != null
-          ? FhirPositiveInt.fromJson(json['defaultValuePositiveInt'])
-          : null,
-      defaultValuePositiveIntElement: json['_defaultValuePositiveInt'] != null
-          ? Element.fromJson(
-              json['_defaultValuePositiveInt'] as Map<String, dynamic>,
-            )
+          ? FhirPositiveInt.fromJson({
+              'value': json['defaultValuePositiveInt'],
+              '_value': json['_defaultValuePositiveInt'],
+            })
           : null,
       defaultValueString: json['defaultValueString'] != null
-          ? FhirString.fromJson(json['defaultValueString'])
-          : null,
-      defaultValueStringElement: json['_defaultValueString'] != null
-          ? Element.fromJson(
-              json['_defaultValueString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['defaultValueString'],
+              '_value': json['_defaultValueString'],
+            })
           : null,
       defaultValueTime: json['defaultValueTime'] != null
-          ? FhirTime.fromJson(json['defaultValueTime'])
-          : null,
-      defaultValueTimeElement: json['_defaultValueTime'] != null
-          ? Element.fromJson(
-              json['_defaultValueTime'] as Map<String, dynamic>,
-            )
+          ? FhirTime.fromJson({
+              'value': json['defaultValueTime'],
+              '_value': json['_defaultValueTime'],
+            })
           : null,
       defaultValueUnsignedInt: json['defaultValueUnsignedInt'] != null
-          ? FhirUnsignedInt.fromJson(json['defaultValueUnsignedInt'])
-          : null,
-      defaultValueUnsignedIntElement: json['_defaultValueUnsignedInt'] != null
-          ? Element.fromJson(
-              json['_defaultValueUnsignedInt'] as Map<String, dynamic>,
-            )
+          ? FhirUnsignedInt.fromJson({
+              'value': json['defaultValueUnsignedInt'],
+              '_value': json['_defaultValueUnsignedInt'],
+            })
           : null,
       defaultValueUri: json['defaultValueUri'] != null
-          ? FhirUri.fromJson(json['defaultValueUri'])
-          : null,
-      defaultValueUriElement: json['_defaultValueUri'] != null
-          ? Element.fromJson(
-              json['_defaultValueUri'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['defaultValueUri'],
+              '_value': json['_defaultValueUri'],
+            })
           : null,
       defaultValueUrl: json['defaultValueUrl'] != null
-          ? FhirUrl.fromJson(json['defaultValueUrl'])
-          : null,
-      defaultValueUrlElement: json['_defaultValueUrl'] != null
-          ? Element.fromJson(
-              json['_defaultValueUrl'] as Map<String, dynamic>,
-            )
+          ? FhirUrl.fromJson({
+              'value': json['defaultValueUrl'],
+              '_value': json['_defaultValueUrl'],
+            })
           : null,
       defaultValueUuid: json['defaultValueUuid'] != null
-          ? FhirUuid.fromJson(json['defaultValueUuid'])
-          : null,
-      defaultValueUuidElement: json['_defaultValueUuid'] != null
-          ? Element.fromJson(
-              json['_defaultValueUuid'] as Map<String, dynamic>,
-            )
+          ? FhirUuid.fromJson({
+              'value': json['defaultValueUuid'],
+              '_value': json['_defaultValueUuid'],
+            })
           : null,
       defaultValueAddress: json['defaultValueAddress'] != null
           ? Address.fromJson(
@@ -2129,54 +1729,47 @@ class StructureMapSource extends BackboneElement {
               json['defaultValueMeta'] as Map<String, dynamic>,
             )
           : null,
-      element:
-          json['element'] != null ? FhirString.fromJson(json['element']) : null,
-      elementElement: json['_element'] != null
-          ? Element.fromJson(
-              json['_element'] as Map<String, dynamic>,
-            )
+      element: json['element'] != null
+          ? FhirString.fromJson({
+              'value': json['element'],
+              '_value': json['_element'],
+            })
           : null,
       listMode: json['listMode'] != null
-          ? StructureMapSourceListMode.fromJson(json['listMode'])
+          ? StructureMapSourceListMode.fromJson({
+              'value': json['listMode'],
+              '_value': json['_listMode'],
+            })
           : null,
-      listModeElement: json['_listMode'] != null
-          ? Element.fromJson(
-              json['_listMode'] as Map<String, dynamic>,
-            )
-          : null,
-      variable:
-          json['variable'] != null ? FhirId.fromJson(json['variable']) : null,
-      variableElement: json['_variable'] != null
-          ? Element.fromJson(
-              json['_variable'] as Map<String, dynamic>,
-            )
+      variable: json['variable'] != null
+          ? FhirId.fromJson({
+              'value': json['variable'],
+              '_value': json['_variable'],
+            })
           : null,
       condition: json['condition'] != null
-          ? FhirString.fromJson(json['condition'])
+          ? FhirString.fromJson({
+              'value': json['condition'],
+              '_value': json['_condition'],
+            })
           : null,
-      conditionElement: json['_condition'] != null
-          ? Element.fromJson(
-              json['_condition'] as Map<String, dynamic>,
-            )
-          : null,
-      check: json['check'] != null ? FhirString.fromJson(json['check']) : null,
-      checkElement: json['_check'] != null
-          ? Element.fromJson(
-              json['_check'] as Map<String, dynamic>,
-            )
+      check: json['check'] != null
+          ? FhirString.fromJson({
+              'value': json['check'],
+              '_value': json['_check'],
+            })
           : null,
       logMessage: json['logMessage'] != null
-          ? FhirString.fromJson(json['logMessage'])
-          : null,
-      logMessageElement: json['_logMessage'] != null
-          ? Element.fromJson(
-              json['_logMessage'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['logMessage'],
+              '_value': json['_logMessage'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [StructureMapSource] from a [String] or [YamlMap] object
+  /// Deserialize [StructureMapSource] from a [String]
+  /// or [YamlMap] object
   factory StructureMapSource.fromYaml(dynamic yaml) => yaml is String
       ? StructureMapSource.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2185,11 +1778,11 @@ class StructureMapSource extends BackboneElement {
           ? StructureMapSource.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'StructureMapSource cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('StructureMapSource cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [StructureMapSource] that takes in a [String]
+  /// Factory constructor for [StructureMapSource]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory StructureMapSource.fromJsonString(String source) {
@@ -2205,20 +1798,23 @@ class StructureMapSource extends BackboneElement {
   @override
   String get fhirType => 'StructureMapSource';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [context]
   /// Type or variable this rule applies to.
   final FhirId context;
-
-  /// Extensions for [context]
-  final Element? contextElement;
 
   /// [min]
   /// Specified minimum cardinality for the element. This is optional; if
   /// present, it acts an implicit check on the input content.
   final FhirInteger? min;
-
-  /// Extensions for [min]
-  final Element? minElement;
 
   /// [max]
   /// Specified maximum cardinality for the element - a number or a "*". This
@@ -2226,149 +1822,86 @@ class StructureMapSource extends BackboneElement {
   /// (* just serves as documentation; it's the default value).
   final FhirString? max;
 
-  /// Extensions for [max]
-  final Element? maxElement;
-
   /// [type]
   /// Specified type for the element. This works as a condition on the
   /// mapping - use for polymorphic elements.
   final FhirString? type;
 
-  /// Extensions for [type]
-  final Element? typeElement;
-
   /// [defaultValueBase64Binary]
   /// A value to use if there is no existing value in the source object.
   final FhirBase64Binary? defaultValueBase64Binary;
-
-  /// Extensions for [defaultValueBase64Binary]
-  final Element? defaultValueBase64BinaryElement;
 
   /// [defaultValueBoolean]
   /// A value to use if there is no existing value in the source object.
   final FhirBoolean? defaultValueBoolean;
 
-  /// Extensions for [defaultValueBoolean]
-  final Element? defaultValueBooleanElement;
-
   /// [defaultValueCanonical]
   /// A value to use if there is no existing value in the source object.
   final FhirCanonical? defaultValueCanonical;
-
-  /// Extensions for [defaultValueCanonical]
-  final Element? defaultValueCanonicalElement;
 
   /// [defaultValueCode]
   /// A value to use if there is no existing value in the source object.
   final FhirCode? defaultValueCode;
 
-  /// Extensions for [defaultValueCode]
-  final Element? defaultValueCodeElement;
-
   /// [defaultValueDate]
   /// A value to use if there is no existing value in the source object.
   final FhirDate? defaultValueDate;
-
-  /// Extensions for [defaultValueDate]
-  final Element? defaultValueDateElement;
 
   /// [defaultValueDateTime]
   /// A value to use if there is no existing value in the source object.
   final FhirDateTime? defaultValueDateTime;
 
-  /// Extensions for [defaultValueDateTime]
-  final Element? defaultValueDateTimeElement;
-
   /// [defaultValueDecimal]
   /// A value to use if there is no existing value in the source object.
   final FhirDecimal? defaultValueDecimal;
-
-  /// Extensions for [defaultValueDecimal]
-  final Element? defaultValueDecimalElement;
 
   /// [defaultValueId]
   /// A value to use if there is no existing value in the source object.
   final FhirId? defaultValueId;
 
-  /// Extensions for [defaultValueId]
-  final Element? defaultValueIdElement;
-
   /// [defaultValueInstant]
   /// A value to use if there is no existing value in the source object.
   final FhirInstant? defaultValueInstant;
-
-  /// Extensions for [defaultValueInstant]
-  final Element? defaultValueInstantElement;
 
   /// [defaultValueInteger]
   /// A value to use if there is no existing value in the source object.
   final FhirInteger? defaultValueInteger;
 
-  /// Extensions for [defaultValueInteger]
-  final Element? defaultValueIntegerElement;
-
   /// [defaultValueMarkdown]
   /// A value to use if there is no existing value in the source object.
   final FhirMarkdown? defaultValueMarkdown;
-
-  /// Extensions for [defaultValueMarkdown]
-  final Element? defaultValueMarkdownElement;
 
   /// [defaultValueOid]
   /// A value to use if there is no existing value in the source object.
   final FhirOid? defaultValueOid;
 
-  /// Extensions for [defaultValueOid]
-  final Element? defaultValueOidElement;
-
   /// [defaultValuePositiveInt]
   /// A value to use if there is no existing value in the source object.
   final FhirPositiveInt? defaultValuePositiveInt;
-
-  /// Extensions for [defaultValuePositiveInt]
-  final Element? defaultValuePositiveIntElement;
 
   /// [defaultValueString]
   /// A value to use if there is no existing value in the source object.
   final FhirString? defaultValueString;
 
-  /// Extensions for [defaultValueString]
-  final Element? defaultValueStringElement;
-
   /// [defaultValueTime]
   /// A value to use if there is no existing value in the source object.
   final FhirTime? defaultValueTime;
-
-  /// Extensions for [defaultValueTime]
-  final Element? defaultValueTimeElement;
 
   /// [defaultValueUnsignedInt]
   /// A value to use if there is no existing value in the source object.
   final FhirUnsignedInt? defaultValueUnsignedInt;
 
-  /// Extensions for [defaultValueUnsignedInt]
-  final Element? defaultValueUnsignedIntElement;
-
   /// [defaultValueUri]
   /// A value to use if there is no existing value in the source object.
   final FhirUri? defaultValueUri;
-
-  /// Extensions for [defaultValueUri]
-  final Element? defaultValueUriElement;
 
   /// [defaultValueUrl]
   /// A value to use if there is no existing value in the source object.
   final FhirUrl? defaultValueUrl;
 
-  /// Extensions for [defaultValueUrl]
-  final Element? defaultValueUrlElement;
-
   /// [defaultValueUuid]
   /// A value to use if there is no existing value in the source object.
   final FhirUuid? defaultValueUuid;
-
-  /// Extensions for [defaultValueUuid]
-  final Element? defaultValueUuidElement;
 
   /// [defaultValueAddress]
   /// A value to use if there is no existing value in the source object.
@@ -2498,45 +2031,27 @@ class StructureMapSource extends BackboneElement {
   /// Optional field for this source.
   final FhirString? element;
 
-  /// Extensions for [element]
-  final Element? elementElement;
-
   /// [listMode]
   /// How to handle the list mode for this element.
   final StructureMapSourceListMode? listMode;
-
-  /// Extensions for [listMode]
-  final Element? listModeElement;
 
   /// [variable]
   /// Named context for field, if a field is specified.
   final FhirId? variable;
 
-  /// Extensions for [variable]
-  final Element? variableElement;
-
   /// [condition]
   /// FHIRPath expression - must be true or the rule does not apply.
   final FhirString? condition;
-
-  /// Extensions for [condition]
-  final Element? conditionElement;
 
   /// [check]
   /// FHIRPath expression - must be true or the mapping engine throws an
   /// error instead of completing.
   final FhirString? check;
 
-  /// Extensions for [check]
-  final Element? checkElement;
-
   /// [logMessage]
   /// A FHIRPath expression which specifies a message to put in the transform
   /// log when content matching the source rule is found.
   final FhirString? logMessage;
-
-  /// Extensions for [logMessage]
-  final Element? logMessageElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2552,143 +2067,71 @@ class StructureMapSource extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['context'] = context.toJson();
-    if (contextElement != null) {
-      json['_context'] = contextElement!.toJson();
-    }
     if (min?.value != null) {
       json['min'] = min!.toJson();
-    }
-    if (minElement != null) {
-      json['_min'] = minElement!.toJson();
     }
     if (max?.value != null) {
       json['max'] = max!.toJson();
     }
-    if (maxElement != null) {
-      json['_max'] = maxElement!.toJson();
-    }
     if (type?.value != null) {
       json['type'] = type!.toJson();
-    }
-    if (typeElement != null) {
-      json['_type'] = typeElement!.toJson();
     }
     if (defaultValueBase64Binary?.value != null) {
       json['defaultValueBase64Binary'] = defaultValueBase64Binary!.toJson();
     }
-    if (defaultValueBase64BinaryElement != null) {
-      json['_defaultValueBase64Binary'] =
-          defaultValueBase64BinaryElement!.toJson();
-    }
     if (defaultValueBoolean?.value != null) {
       json['defaultValueBoolean'] = defaultValueBoolean!.toJson();
-    }
-    if (defaultValueBooleanElement != null) {
-      json['_defaultValueBoolean'] = defaultValueBooleanElement!.toJson();
     }
     if (defaultValueCanonical?.value != null) {
       json['defaultValueCanonical'] = defaultValueCanonical!.toJson();
     }
-    if (defaultValueCanonicalElement != null) {
-      json['_defaultValueCanonical'] = defaultValueCanonicalElement!.toJson();
-    }
     if (defaultValueCode?.value != null) {
       json['defaultValueCode'] = defaultValueCode!.toJson();
-    }
-    if (defaultValueCodeElement != null) {
-      json['_defaultValueCode'] = defaultValueCodeElement!.toJson();
     }
     if (defaultValueDate?.value != null) {
       json['defaultValueDate'] = defaultValueDate!.toJson();
     }
-    if (defaultValueDateElement != null) {
-      json['_defaultValueDate'] = defaultValueDateElement!.toJson();
-    }
     if (defaultValueDateTime?.value != null) {
       json['defaultValueDateTime'] = defaultValueDateTime!.toJson();
-    }
-    if (defaultValueDateTimeElement != null) {
-      json['_defaultValueDateTime'] = defaultValueDateTimeElement!.toJson();
     }
     if (defaultValueDecimal?.value != null) {
       json['defaultValueDecimal'] = defaultValueDecimal!.toJson();
     }
-    if (defaultValueDecimalElement != null) {
-      json['_defaultValueDecimal'] = defaultValueDecimalElement!.toJson();
-    }
     if (defaultValueId?.value != null) {
       json['defaultValueId'] = defaultValueId!.toJson();
-    }
-    if (defaultValueIdElement != null) {
-      json['_defaultValueId'] = defaultValueIdElement!.toJson();
     }
     if (defaultValueInstant?.value != null) {
       json['defaultValueInstant'] = defaultValueInstant!.toJson();
     }
-    if (defaultValueInstantElement != null) {
-      json['_defaultValueInstant'] = defaultValueInstantElement!.toJson();
-    }
     if (defaultValueInteger?.value != null) {
       json['defaultValueInteger'] = defaultValueInteger!.toJson();
-    }
-    if (defaultValueIntegerElement != null) {
-      json['_defaultValueInteger'] = defaultValueIntegerElement!.toJson();
     }
     if (defaultValueMarkdown?.value != null) {
       json['defaultValueMarkdown'] = defaultValueMarkdown!.toJson();
     }
-    if (defaultValueMarkdownElement != null) {
-      json['_defaultValueMarkdown'] = defaultValueMarkdownElement!.toJson();
-    }
     if (defaultValueOid?.value != null) {
       json['defaultValueOid'] = defaultValueOid!.toJson();
-    }
-    if (defaultValueOidElement != null) {
-      json['_defaultValueOid'] = defaultValueOidElement!.toJson();
     }
     if (defaultValuePositiveInt?.value != null) {
       json['defaultValuePositiveInt'] = defaultValuePositiveInt!.toJson();
     }
-    if (defaultValuePositiveIntElement != null) {
-      json['_defaultValuePositiveInt'] =
-          defaultValuePositiveIntElement!.toJson();
-    }
     if (defaultValueString?.value != null) {
       json['defaultValueString'] = defaultValueString!.toJson();
-    }
-    if (defaultValueStringElement != null) {
-      json['_defaultValueString'] = defaultValueStringElement!.toJson();
     }
     if (defaultValueTime?.value != null) {
       json['defaultValueTime'] = defaultValueTime!.toJson();
     }
-    if (defaultValueTimeElement != null) {
-      json['_defaultValueTime'] = defaultValueTimeElement!.toJson();
-    }
     if (defaultValueUnsignedInt?.value != null) {
       json['defaultValueUnsignedInt'] = defaultValueUnsignedInt!.toJson();
-    }
-    if (defaultValueUnsignedIntElement != null) {
-      json['_defaultValueUnsignedInt'] =
-          defaultValueUnsignedIntElement!.toJson();
     }
     if (defaultValueUri?.value != null) {
       json['defaultValueUri'] = defaultValueUri!.toJson();
     }
-    if (defaultValueUriElement != null) {
-      json['_defaultValueUri'] = defaultValueUriElement!.toJson();
-    }
     if (defaultValueUrl?.value != null) {
       json['defaultValueUrl'] = defaultValueUrl!.toJson();
     }
-    if (defaultValueUrlElement != null) {
-      json['_defaultValueUrl'] = defaultValueUrlElement!.toJson();
-    }
     if (defaultValueUuid?.value != null) {
       json['defaultValueUuid'] = defaultValueUuid!.toJson();
-    }
-    if (defaultValueUuidElement != null) {
-      json['_defaultValueUuid'] = defaultValueUuidElement!.toJson();
     }
     if (defaultValueAddress != null) {
       json['defaultValueAddress'] = defaultValueAddress!.toJson();
@@ -2791,35 +2234,20 @@ class StructureMapSource extends BackboneElement {
     if (element?.value != null) {
       json['element'] = element!.toJson();
     }
-    if (elementElement != null) {
-      json['_element'] = elementElement!.toJson();
-    }
     if (listMode != null) {
       json['listMode'] = listMode!.toJson();
     }
     if (variable?.value != null) {
       json['variable'] = variable!.toJson();
     }
-    if (variableElement != null) {
-      json['_variable'] = variableElement!.toJson();
-    }
     if (condition?.value != null) {
       json['condition'] = condition!.toJson();
-    }
-    if (conditionElement != null) {
-      json['_condition'] = conditionElement!.toJson();
     }
     if (check?.value != null) {
       json['check'] = check!.toJson();
     }
-    if (checkElement != null) {
-      json['_check'] = checkElement!.toJson();
-    }
     if (logMessage?.value != null) {
       json['logMessage'] = logMessage!.toJson();
-    }
-    if (logMessageElement != null) {
-      json['_logMessage'] = logMessageElement!.toJson();
     }
     return json;
   }
@@ -2832,51 +2260,28 @@ class StructureMapSource extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirId? context,
-    Element? contextElement,
     FhirInteger? min,
-    Element? minElement,
     FhirString? max,
-    Element? maxElement,
     FhirString? type,
-    Element? typeElement,
     FhirBase64Binary? defaultValueBase64Binary,
-    Element? defaultValueBase64BinaryElement,
     FhirBoolean? defaultValueBoolean,
-    Element? defaultValueBooleanElement,
     FhirCanonical? defaultValueCanonical,
-    Element? defaultValueCanonicalElement,
     FhirCode? defaultValueCode,
-    Element? defaultValueCodeElement,
     FhirDate? defaultValueDate,
-    Element? defaultValueDateElement,
     FhirDateTime? defaultValueDateTime,
-    Element? defaultValueDateTimeElement,
     FhirDecimal? defaultValueDecimal,
-    Element? defaultValueDecimalElement,
     FhirId? defaultValueId,
-    Element? defaultValueIdElement,
     FhirInstant? defaultValueInstant,
-    Element? defaultValueInstantElement,
     FhirInteger? defaultValueInteger,
-    Element? defaultValueIntegerElement,
     FhirMarkdown? defaultValueMarkdown,
-    Element? defaultValueMarkdownElement,
     FhirOid? defaultValueOid,
-    Element? defaultValueOidElement,
     FhirPositiveInt? defaultValuePositiveInt,
-    Element? defaultValuePositiveIntElement,
     FhirString? defaultValueString,
-    Element? defaultValueStringElement,
     FhirTime? defaultValueTime,
-    Element? defaultValueTimeElement,
     FhirUnsignedInt? defaultValueUnsignedInt,
-    Element? defaultValueUnsignedIntElement,
     FhirUri? defaultValueUri,
-    Element? defaultValueUriElement,
     FhirUrl? defaultValueUrl,
-    Element? defaultValueUrlElement,
     FhirUuid? defaultValueUuid,
-    Element? defaultValueUuidElement,
     Address? defaultValueAddress,
     Age? defaultValueAge,
     Annotation? defaultValueAnnotation,
@@ -2909,17 +2314,11 @@ class StructureMapSource extends BackboneElement {
     Dosage? defaultValueDosage,
     FhirMeta? defaultValueMeta,
     FhirString? element,
-    Element? elementElement,
     StructureMapSourceListMode? listMode,
-    Element? listModeElement,
     FhirId? variable,
-    Element? variableElement,
     FhirString? condition,
-    Element? conditionElement,
     FhirString? check,
-    Element? checkElement,
     FhirString? logMessage,
-    Element? logMessageElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2932,74 +2331,32 @@ class StructureMapSource extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       context: context ?? this.context,
-      contextElement: contextElement ?? this.contextElement,
       min: min ?? this.min,
-      minElement: minElement ?? this.minElement,
       max: max ?? this.max,
-      maxElement: maxElement ?? this.maxElement,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       defaultValueBase64Binary:
           defaultValueBase64Binary ?? this.defaultValueBase64Binary,
-      defaultValueBase64BinaryElement: defaultValueBase64BinaryElement ??
-          this.defaultValueBase64BinaryElement,
       defaultValueBoolean: defaultValueBoolean ?? this.defaultValueBoolean,
-      defaultValueBooleanElement:
-          defaultValueBooleanElement ?? this.defaultValueBooleanElement,
       defaultValueCanonical:
           defaultValueCanonical ?? this.defaultValueCanonical,
-      defaultValueCanonicalElement:
-          defaultValueCanonicalElement ?? this.defaultValueCanonicalElement,
       defaultValueCode: defaultValueCode ?? this.defaultValueCode,
-      defaultValueCodeElement:
-          defaultValueCodeElement ?? this.defaultValueCodeElement,
       defaultValueDate: defaultValueDate ?? this.defaultValueDate,
-      defaultValueDateElement:
-          defaultValueDateElement ?? this.defaultValueDateElement,
       defaultValueDateTime: defaultValueDateTime ?? this.defaultValueDateTime,
-      defaultValueDateTimeElement:
-          defaultValueDateTimeElement ?? this.defaultValueDateTimeElement,
       defaultValueDecimal: defaultValueDecimal ?? this.defaultValueDecimal,
-      defaultValueDecimalElement:
-          defaultValueDecimalElement ?? this.defaultValueDecimalElement,
       defaultValueId: defaultValueId ?? this.defaultValueId,
-      defaultValueIdElement:
-          defaultValueIdElement ?? this.defaultValueIdElement,
       defaultValueInstant: defaultValueInstant ?? this.defaultValueInstant,
-      defaultValueInstantElement:
-          defaultValueInstantElement ?? this.defaultValueInstantElement,
       defaultValueInteger: defaultValueInteger ?? this.defaultValueInteger,
-      defaultValueIntegerElement:
-          defaultValueIntegerElement ?? this.defaultValueIntegerElement,
       defaultValueMarkdown: defaultValueMarkdown ?? this.defaultValueMarkdown,
-      defaultValueMarkdownElement:
-          defaultValueMarkdownElement ?? this.defaultValueMarkdownElement,
       defaultValueOid: defaultValueOid ?? this.defaultValueOid,
-      defaultValueOidElement:
-          defaultValueOidElement ?? this.defaultValueOidElement,
       defaultValuePositiveInt:
           defaultValuePositiveInt ?? this.defaultValuePositiveInt,
-      defaultValuePositiveIntElement:
-          defaultValuePositiveIntElement ?? this.defaultValuePositiveIntElement,
       defaultValueString: defaultValueString ?? this.defaultValueString,
-      defaultValueStringElement:
-          defaultValueStringElement ?? this.defaultValueStringElement,
       defaultValueTime: defaultValueTime ?? this.defaultValueTime,
-      defaultValueTimeElement:
-          defaultValueTimeElement ?? this.defaultValueTimeElement,
       defaultValueUnsignedInt:
           defaultValueUnsignedInt ?? this.defaultValueUnsignedInt,
-      defaultValueUnsignedIntElement:
-          defaultValueUnsignedIntElement ?? this.defaultValueUnsignedIntElement,
       defaultValueUri: defaultValueUri ?? this.defaultValueUri,
-      defaultValueUriElement:
-          defaultValueUriElement ?? this.defaultValueUriElement,
       defaultValueUrl: defaultValueUrl ?? this.defaultValueUrl,
-      defaultValueUrlElement:
-          defaultValueUrlElement ?? this.defaultValueUrlElement,
       defaultValueUuid: defaultValueUuid ?? this.defaultValueUuid,
-      defaultValueUuidElement:
-          defaultValueUuidElement ?? this.defaultValueUuidElement,
       defaultValueAddress: defaultValueAddress ?? this.defaultValueAddress,
       defaultValueAge: defaultValueAge ?? this.defaultValueAge,
       defaultValueAnnotation:
@@ -3049,17 +2406,11 @@ class StructureMapSource extends BackboneElement {
       defaultValueDosage: defaultValueDosage ?? this.defaultValueDosage,
       defaultValueMeta: defaultValueMeta ?? this.defaultValueMeta,
       element: element ?? this.element,
-      elementElement: elementElement ?? this.elementElement,
       listMode: listMode ?? this.listMode,
-      listModeElement: listModeElement ?? this.listModeElement,
       variable: variable ?? this.variable,
-      variableElement: variableElement ?? this.variableElement,
       condition: condition ?? this.condition,
-      conditionElement: conditionElement ?? this.conditionElement,
       check: check ?? this.check,
-      checkElement: checkElement ?? this.checkElement,
       logMessage: logMessage ?? this.logMessage,
-      logMessageElement: logMessageElement ?? this.logMessageElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -3077,36 +2428,15 @@ class StructureMapTarget extends BackboneElement {
 
   StructureMapTarget({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.context,
-
-    /// Extensions for [context]
-    this.contextElement,
     this.contextType,
-
-    /// Extensions for [contextType]
-    this.contextTypeElement,
     this.element,
-
-    /// Extensions for [element]
-    this.elementElement,
     this.variable,
-
-    /// Extensions for [variable]
-    this.variableElement,
     this.listMode,
-
-    /// Extensions for [listMode]
-    this.listModeElement,
     this.listRuleId,
-
-    /// Extensions for [listRuleId]
-    this.listRuleIdElement,
     this.transform,
-
-    /// Extensions for [transform]
-    this.transformElement,
     this.parameter,
     super.userData,
     super.formatCommentsPre,
@@ -3119,11 +2449,15 @@ class StructureMapTarget extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapTarget.fromJson(Map<String, dynamic> json) {
     return StructureMapTarget(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3132,76 +2466,56 @@ class StructureMapTarget extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      context:
-          json['context'] != null ? FhirId.fromJson(json['context']) : null,
-      contextElement: json['_context'] != null
-          ? Element.fromJson(
-              json['_context'] as Map<String, dynamic>,
-            )
+      context: json['context'] != null
+          ? FhirId.fromJson({
+              'value': json['context'],
+              '_value': json['_context'],
+            })
           : null,
       contextType: json['contextType'] != null
-          ? StructureMapContextType.fromJson(json['contextType'])
+          ? StructureMapContextType.fromJson({
+              'value': json['contextType'],
+              '_value': json['_contextType'],
+            })
           : null,
-      contextTypeElement: json['_contextType'] != null
-          ? Element.fromJson(
-              json['_contextType'] as Map<String, dynamic>,
-            )
+      element: json['element'] != null
+          ? FhirString.fromJson({
+              'value': json['element'],
+              '_value': json['_element'],
+            })
           : null,
-      element:
-          json['element'] != null ? FhirString.fromJson(json['element']) : null,
-      elementElement: json['_element'] != null
-          ? Element.fromJson(
-              json['_element'] as Map<String, dynamic>,
-            )
+      variable: json['variable'] != null
+          ? FhirId.fromJson({
+              'value': json['variable'],
+              '_value': json['_variable'],
+            })
           : null,
-      variable:
-          json['variable'] != null ? FhirId.fromJson(json['variable']) : null,
-      variableElement: json['_variable'] != null
-          ? Element.fromJson(
-              json['_variable'] as Map<String, dynamic>,
-            )
-          : null,
-      listMode: json['listMode'] != null
-          ? (json['listMode'] as List<dynamic>)
-              .map<StructureMapTargetListMode>(
-                (dynamic v) =>
-                    StructureMapTargetListMode.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      listModeElement: json['_listMode'] != null
-          ? (json['_listMode'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      listMode: parsePrimitiveList<StructureMapTargetListMode>(
+          json['listMode'] as List<dynamic>?,
+          json['_listMode'] as List<dynamic>?,
+          fromJson: StructureMapTargetListMode.fromJson),
       listRuleId: json['listRuleId'] != null
-          ? FhirId.fromJson(json['listRuleId'])
-          : null,
-      listRuleIdElement: json['_listRuleId'] != null
-          ? Element.fromJson(
-              json['_listRuleId'] as Map<String, dynamic>,
-            )
+          ? FhirId.fromJson({
+              'value': json['listRuleId'],
+              '_value': json['_listRuleId'],
+            })
           : null,
       transform: json['transform'] != null
-          ? StructureMapTransform.fromJson(json['transform'])
-          : null,
-      transformElement: json['_transform'] != null
-          ? Element.fromJson(
-              json['_transform'] as Map<String, dynamic>,
-            )
+          ? StructureMapTransform.fromJson({
+              'value': json['transform'],
+              '_value': json['_transform'],
+            })
           : null,
       parameter: json['parameter'] != null
           ? (json['parameter'] as List<dynamic>)
               .map<StructureMapParameter>(
-                (dynamic v) => StructureMapParameter.fromJson(
+                (v) => StructureMapParameter.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3210,7 +2524,8 @@ class StructureMapTarget extends BackboneElement {
     );
   }
 
-  /// Deserialize [StructureMapTarget] from a [String] or [YamlMap] object
+  /// Deserialize [StructureMapTarget] from a [String]
+  /// or [YamlMap] object
   factory StructureMapTarget.fromYaml(dynamic yaml) => yaml is String
       ? StructureMapTarget.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -3219,11 +2534,11 @@ class StructureMapTarget extends BackboneElement {
           ? StructureMapTarget.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'StructureMapTarget cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('StructureMapTarget cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [StructureMapTarget] that takes in a [String]
+  /// Factory constructor for [StructureMapTarget]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory StructureMapTarget.fromJsonString(String source) {
@@ -3239,54 +2554,42 @@ class StructureMapTarget extends BackboneElement {
   @override
   String get fhirType => 'StructureMapTarget';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [context]
   /// Type or variable this rule applies to.
   final FhirId? context;
-
-  /// Extensions for [context]
-  final Element? contextElement;
 
   /// [contextType]
   /// How to interpret the context.
   final StructureMapContextType? contextType;
 
-  /// Extensions for [contextType]
-  final Element? contextTypeElement;
-
   /// [element]
   /// Field to create in the context.
   final FhirString? element;
-
-  /// Extensions for [element]
-  final Element? elementElement;
 
   /// [variable]
   /// Named context for field, if desired, and a field is specified.
   final FhirId? variable;
 
-  /// Extensions for [variable]
-  final Element? variableElement;
-
   /// [listMode]
   /// If field is a list, how to manage the list.
   final List<StructureMapTargetListMode>? listMode;
-
-  /// Extensions for [listMode]
-  final List<Element>? listModeElement;
 
   /// [listRuleId]
   /// Internal rule reference for shared list items.
   final FhirId? listRuleId;
 
-  /// Extensions for [listRuleId]
-  final Element? listRuleIdElement;
-
   /// [transform]
   /// How the data is copied / created.
   final StructureMapTransform? transform;
-
-  /// Extensions for [transform]
-  final Element? transformElement;
 
   /// [parameter]
   /// Parameters to the transform.
@@ -3308,23 +2611,14 @@ class StructureMapTarget extends BackboneElement {
     if (context?.value != null) {
       json['context'] = context!.toJson();
     }
-    if (contextElement != null) {
-      json['_context'] = contextElement!.toJson();
-    }
     if (contextType != null) {
       json['contextType'] = contextType!.toJson();
     }
     if (element?.value != null) {
       json['element'] = element!.toJson();
     }
-    if (elementElement != null) {
-      json['_element'] = elementElement!.toJson();
-    }
     if (variable?.value != null) {
       json['variable'] = variable!.toJson();
-    }
-    if (variableElement != null) {
-      json['_variable'] = variableElement!.toJson();
     }
     if (listMode != null && listMode!.isNotEmpty) {
       json['listMode'] =
@@ -3332,9 +2626,6 @@ class StructureMapTarget extends BackboneElement {
     }
     if (listRuleId?.value != null) {
       json['listRuleId'] = listRuleId!.toJson();
-    }
-    if (listRuleIdElement != null) {
-      json['_listRuleId'] = listRuleIdElement!.toJson();
     }
     if (transform != null) {
       json['transform'] = transform!.toJson();
@@ -3354,19 +2645,12 @@ class StructureMapTarget extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirId? context,
-    Element? contextElement,
     StructureMapContextType? contextType,
-    Element? contextTypeElement,
     FhirString? element,
-    Element? elementElement,
     FhirId? variable,
-    Element? variableElement,
     List<StructureMapTargetListMode>? listMode,
-    List<Element>? listModeElement,
     FhirId? listRuleId,
-    Element? listRuleIdElement,
     StructureMapTransform? transform,
-    Element? transformElement,
     List<StructureMapParameter>? parameter,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -3380,19 +2664,12 @@ class StructureMapTarget extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       context: context ?? this.context,
-      contextElement: contextElement ?? this.contextElement,
       contextType: contextType ?? this.contextType,
-      contextTypeElement: contextTypeElement ?? this.contextTypeElement,
       element: element ?? this.element,
-      elementElement: elementElement ?? this.elementElement,
       variable: variable ?? this.variable,
-      variableElement: variableElement ?? this.variableElement,
       listMode: listMode ?? this.listMode,
-      listModeElement: listModeElement ?? this.listModeElement,
       listRuleId: listRuleId ?? this.listRuleId,
-      listRuleIdElement: listRuleIdElement ?? this.listRuleIdElement,
       transform: transform ?? this.transform,
-      transformElement: transformElement ?? this.transformElement,
       parameter: parameter ?? this.parameter,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -3411,28 +2688,13 @@ class StructureMapParameter extends BackboneElement {
 
   StructureMapParameter({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.valueId,
-
-    /// Extensions for [valueId]
-    this.valueIdElement,
     this.valueString,
-
-    /// Extensions for [valueString]
-    this.valueStringElement,
     this.valueBoolean,
-
-    /// Extensions for [valueBoolean]
-    this.valueBooleanElement,
     this.valueInteger,
-
-    /// Extensions for [valueInteger]
-    this.valueIntegerElement,
     this.valueDecimal,
-
-    /// Extensions for [valueDecimal]
-    this.valueDecimalElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -3444,11 +2706,15 @@ class StructureMapParameter extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapParameter.fromJson(Map<String, dynamic> json) {
     return StructureMapParameter(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3457,55 +2723,47 @@ class StructureMapParameter extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      valueId:
-          json['valueId'] != null ? FhirId.fromJson(json['valueId']) : null,
-      valueIdElement: json['_valueId'] != null
-          ? Element.fromJson(
-              json['_valueId'] as Map<String, dynamic>,
-            )
+      valueId: json['valueId'] != null
+          ? FhirId.fromJson({
+              'value': json['valueId'],
+              '_value': json['_valueId'],
+            })
           : null,
       valueString: json['valueString'] != null
-          ? FhirString.fromJson(json['valueString'])
-          : null,
-      valueStringElement: json['_valueString'] != null
-          ? Element.fromJson(
-              json['_valueString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['valueString'],
+              '_value': json['_valueString'],
+            })
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(
-              json['_valueBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['valueBoolean'],
+              '_value': json['_valueBoolean'],
+            })
           : null,
       valueInteger: json['valueInteger'] != null
-          ? FhirInteger.fromJson(json['valueInteger'])
-          : null,
-      valueIntegerElement: json['_valueInteger'] != null
-          ? Element.fromJson(
-              json['_valueInteger'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['valueInteger'],
+              '_value': json['_valueInteger'],
+            })
           : null,
       valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal.fromJson(json['valueDecimal'])
-          : null,
-      valueDecimalElement: json['_valueDecimal'] != null
-          ? Element.fromJson(
-              json['_valueDecimal'] as Map<String, dynamic>,
-            )
+          ? FhirDecimal.fromJson({
+              'value': json['valueDecimal'],
+              '_value': json['_valueDecimal'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [StructureMapParameter] from a [String] or [YamlMap] object
+  /// Deserialize [StructureMapParameter] from a [String]
+  /// or [YamlMap] object
   factory StructureMapParameter.fromYaml(dynamic yaml) => yaml is String
       ? StructureMapParameter.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -3515,10 +2773,11 @@ class StructureMapParameter extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'StructureMapParameter cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'StructureMapParameter cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [StructureMapParameter] that takes in a [String]
+  /// Factory constructor for [StructureMapParameter]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory StructureMapParameter.fromJsonString(String source) {
@@ -3534,40 +2793,34 @@ class StructureMapParameter extends BackboneElement {
   @override
   String get fhirType => 'StructureMapParameter';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [valueId]
   /// Parameter value - variable or literal.
   final FhirId? valueId;
-
-  /// Extensions for [valueId]
-  final Element? valueIdElement;
 
   /// [valueString]
   /// Parameter value - variable or literal.
   final FhirString? valueString;
 
-  /// Extensions for [valueString]
-  final Element? valueStringElement;
-
   /// [valueBoolean]
   /// Parameter value - variable or literal.
   final FhirBoolean? valueBoolean;
-
-  /// Extensions for [valueBoolean]
-  final Element? valueBooleanElement;
 
   /// [valueInteger]
   /// Parameter value - variable or literal.
   final FhirInteger? valueInteger;
 
-  /// Extensions for [valueInteger]
-  final Element? valueIntegerElement;
-
   /// [valueDecimal]
   /// Parameter value - variable or literal.
   final FhirDecimal? valueDecimal;
-
-  /// Extensions for [valueDecimal]
-  final Element? valueDecimalElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3585,32 +2838,17 @@ class StructureMapParameter extends BackboneElement {
     if (valueId?.value != null) {
       json['valueId'] = valueId!.toJson();
     }
-    if (valueIdElement != null) {
-      json['_valueId'] = valueIdElement!.toJson();
-    }
     if (valueString?.value != null) {
       json['valueString'] = valueString!.toJson();
-    }
-    if (valueStringElement != null) {
-      json['_valueString'] = valueStringElement!.toJson();
     }
     if (valueBoolean?.value != null) {
       json['valueBoolean'] = valueBoolean!.toJson();
     }
-    if (valueBooleanElement != null) {
-      json['_valueBoolean'] = valueBooleanElement!.toJson();
-    }
     if (valueInteger?.value != null) {
       json['valueInteger'] = valueInteger!.toJson();
     }
-    if (valueIntegerElement != null) {
-      json['_valueInteger'] = valueIntegerElement!.toJson();
-    }
     if (valueDecimal?.value != null) {
       json['valueDecimal'] = valueDecimal!.toJson();
-    }
-    if (valueDecimalElement != null) {
-      json['_valueDecimal'] = valueDecimalElement!.toJson();
     }
     return json;
   }
@@ -3623,15 +2861,10 @@ class StructureMapParameter extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirId? valueId,
-    Element? valueIdElement,
     FhirString? valueString,
-    Element? valueStringElement,
     FhirBoolean? valueBoolean,
-    Element? valueBooleanElement,
     FhirInteger? valueInteger,
-    Element? valueIntegerElement,
     FhirDecimal? valueDecimal,
-    Element? valueDecimalElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3644,15 +2877,10 @@ class StructureMapParameter extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       valueId: valueId ?? this.valueId,
-      valueIdElement: valueIdElement ?? this.valueIdElement,
       valueString: valueString ?? this.valueString,
-      valueStringElement: valueStringElement ?? this.valueStringElement,
       valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueBooleanElement: valueBooleanElement ?? this.valueBooleanElement,
       valueInteger: valueInteger ?? this.valueInteger,
-      valueIntegerElement: valueIntegerElement ?? this.valueIntegerElement,
       valueDecimal: valueDecimal ?? this.valueDecimal,
-      valueDecimalElement: valueDecimalElement ?? this.valueDecimalElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -3670,16 +2898,10 @@ class StructureMapDependent extends BackboneElement {
 
   StructureMapDependent({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     required this.variable,
-
-    /// Extensions for [variable]
-    this.variableElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -3691,11 +2913,15 @@ class StructureMapDependent extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureMapDependent.fromJson(Map<String, dynamic> json) {
     return StructureMapDependent(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3704,32 +2930,25 @@ class StructureMapDependent extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: FhirId.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
-          : null,
-      variable: (json['variable'] as List<dynamic>)
-          .map<FhirString>((dynamic v) => FhirString.fromJson(v as dynamic))
-          .toList(),
-      variableElement: json['_variable'] != null
-          ? (json['_variable'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      name: FhirId.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
+      variable: ensureNonNullList(parsePrimitiveList<FhirString>(
+          json['variable'] as List<dynamic>?,
+          json['_variable'] as List<dynamic>?,
+          fromJson: FhirString.fromJson)),
     );
   }
 
-  /// Deserialize [StructureMapDependent] from a [String] or [YamlMap] object
+  /// Deserialize [StructureMapDependent] from a [String]
+  /// or [YamlMap] object
   factory StructureMapDependent.fromYaml(dynamic yaml) => yaml is String
       ? StructureMapDependent.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -3739,10 +2958,11 @@ class StructureMapDependent extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'StructureMapDependent cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'StructureMapDependent cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [StructureMapDependent] that takes in a [String]
+  /// Factory constructor for [StructureMapDependent]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory StructureMapDependent.fromJsonString(String source) {
@@ -3758,19 +2978,22 @@ class StructureMapDependent extends BackboneElement {
   @override
   String get fhirType => 'StructureMapDependent';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// Name of a rule or group to apply.
   final FhirId name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [variable]
   /// Variable to pass to the rule or group.
   final List<FhirString> variable;
-
-  /// Extensions for [variable]
-  final List<Element>? variableElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3786,14 +3009,7 @@ class StructureMapDependent extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     json['variable'] = variable.map((FhirString v) => v.toJson()).toList();
-    if (variableElement != null && variableElement!.isNotEmpty) {
-      json['_variable'] =
-          variableElement!.map((Element v) => v.toJson()).toList();
-    }
     return json;
   }
 
@@ -3805,9 +3021,7 @@ class StructureMapDependent extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirId? name,
-    Element? nameElement,
     List<FhirString>? variable,
-    List<Element>? variableElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3820,9 +3034,7 @@ class StructureMapDependent extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       variable: variable ?? this.variable,
-      variableElement: variableElement ?? this.variableElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

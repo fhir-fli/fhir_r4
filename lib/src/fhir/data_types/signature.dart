@@ -14,26 +14,14 @@ class Signature extends DataType {
 
   Signature({
     super.id,
-    super.extension_,
+    this.extension_,
     required this.type,
     required this.when,
-
-    /// Extensions for [when]
-    this.whenElement,
     required this.who,
     this.onBehalfOf,
     this.targetFormat,
-
-    /// Extensions for [targetFormat]
-    this.targetFormatElement,
     this.sigFormat,
-
-    /// Extensions for [sigFormat]
-    this.sigFormatElement,
     this.data,
-
-    /// Extensions for [data]
-    this.dataElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -45,26 +33,31 @@ class Signature extends DataType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Signature.fromJson(Map<String, dynamic> json) {
     return Signature(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      type: (json['type'] as List<dynamic>)
+      type: ensureNonNullList((json['type'] as List<dynamic>)
           .map<Coding>(
-              (dynamic v) => Coding.fromJson(v as Map<String, dynamic>))
-          .toList(),
-      when: FhirInstant.fromJson(json['when']),
-      whenElement: json['_when'] != null
-          ? Element.fromJson(
-              json['_when'] as Map<String, dynamic>,
-            )
-          : null,
+            (v) => Coding.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
+      when: FhirInstant.fromJson({
+        'value': json['when'],
+        '_value': json['_when'],
+      }),
       who: Reference.fromJson(
         json['who'] as Map<String, dynamic>,
       ),
@@ -74,32 +67,28 @@ class Signature extends DataType {
             )
           : null,
       targetFormat: json['targetFormat'] != null
-          ? FhirCode.fromJson(json['targetFormat'])
-          : null,
-      targetFormatElement: json['_targetFormat'] != null
-          ? Element.fromJson(
-              json['_targetFormat'] as Map<String, dynamic>,
-            )
+          ? FhirCode.fromJson({
+              'value': json['targetFormat'],
+              '_value': json['_targetFormat'],
+            })
           : null,
       sigFormat: json['sigFormat'] != null
-          ? FhirCode.fromJson(json['sigFormat'])
+          ? FhirCode.fromJson({
+              'value': json['sigFormat'],
+              '_value': json['_sigFormat'],
+            })
           : null,
-      sigFormatElement: json['_sigFormat'] != null
-          ? Element.fromJson(
-              json['_sigFormat'] as Map<String, dynamic>,
-            )
-          : null,
-      data:
-          json['data'] != null ? FhirBase64Binary.fromJson(json['data']) : null,
-      dataElement: json['_data'] != null
-          ? Element.fromJson(
-              json['_data'] as Map<String, dynamic>,
-            )
+      data: json['data'] != null
+          ? FhirBase64Binary.fromJson({
+              'value': json['data'],
+              '_value': json['_data'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [Signature] from a [String] or [YamlMap] object
+  /// Deserialize [Signature] from a [String]
+  /// or [YamlMap] object
   factory Signature.fromYaml(dynamic yaml) => yaml is String
       ? Signature.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -108,10 +97,11 @@ class Signature extends DataType {
           ? Signature.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Signature cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Signature cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Signature] that takes in a [String]
+  /// Factory constructor for [Signature]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Signature.fromJsonString(String source) {
@@ -127,6 +117,15 @@ class Signature extends DataType {
   @override
   String get fhirType => 'Signature';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// An indication of the reason that the entity signed this document. This
   /// may be explicitly included as part of the signature information and can
@@ -137,9 +136,6 @@ class Signature extends DataType {
   /// [when]
   /// When the digital signature was signed.
   final FhirInstant when;
-
-  /// Extensions for [when]
-  final Element? whenElement;
 
   /// [who]
   /// A reference to an application-usable description of the identity that
@@ -156,9 +152,6 @@ class Signature extends DataType {
   /// signed by the signature.
   final FhirCode? targetFormat;
 
-  /// Extensions for [targetFormat]
-  final Element? targetFormatElement;
-
   /// [sigFormat]
   /// A mime type that indicates the technical format of the signature.
   /// Important mime types are application/signature+xml for X ML DigSig,
@@ -166,16 +159,10 @@ class Signature extends DataType {
   /// signature, etc.
   final FhirCode? sigFormat;
 
-  /// Extensions for [sigFormat]
-  final Element? sigFormatElement;
-
   /// [data]
   /// The base64 encoding of the Signature content. When signature is not
   /// recorded electronically this element would be empty.
   final FhirBase64Binary? data;
-
-  /// Extensions for [data]
-  final Element? dataElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -188,9 +175,6 @@ class Signature extends DataType {
     }
     json['type'] = type.map<dynamic>((Coding v) => v.toJson()).toList();
     json['when'] = when.toJson();
-    if (whenElement != null) {
-      json['_when'] = whenElement!.toJson();
-    }
     json['who'] = who.toJson();
     if (onBehalfOf != null) {
       json['onBehalfOf'] = onBehalfOf!.toJson();
@@ -198,20 +182,11 @@ class Signature extends DataType {
     if (targetFormat?.value != null) {
       json['targetFormat'] = targetFormat!.toJson();
     }
-    if (targetFormatElement != null) {
-      json['_targetFormat'] = targetFormatElement!.toJson();
-    }
     if (sigFormat?.value != null) {
       json['sigFormat'] = sigFormat!.toJson();
     }
-    if (sigFormatElement != null) {
-      json['_sigFormat'] = sigFormatElement!.toJson();
-    }
     if (data?.value != null) {
       json['data'] = data!.toJson();
-    }
-    if (dataElement != null) {
-      json['_data'] = dataElement!.toJson();
     }
     return json;
   }
@@ -224,15 +199,11 @@ class Signature extends DataType {
     List<FhirExtension>? extension_,
     List<Coding>? type,
     FhirInstant? when,
-    Element? whenElement,
     Reference? who,
     Reference? onBehalfOf,
     FhirCode? targetFormat,
-    Element? targetFormatElement,
     FhirCode? sigFormat,
-    Element? sigFormatElement,
     FhirBase64Binary? data,
-    Element? dataElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -245,15 +216,11 @@ class Signature extends DataType {
       extension_: extension_ ?? this.extension_,
       type: type ?? this.type,
       when: when ?? this.when,
-      whenElement: whenElement ?? this.whenElement,
       who: who ?? this.who,
       onBehalfOf: onBehalfOf ?? this.onBehalfOf,
       targetFormat: targetFormat ?? this.targetFormat,
-      targetFormatElement: targetFormatElement ?? this.targetFormatElement,
       sigFormat: sigFormat ?? this.sigFormat,
-      sigFormatElement: sigFormatElement ?? this.sigFormatElement,
       data: data ?? this.data,
-      dataElement: dataElement ?? this.dataElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

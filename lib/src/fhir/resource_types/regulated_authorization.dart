@@ -14,30 +14,18 @@ class RegulatedAuthorization extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.subject,
     this.type,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.region,
     this.status,
     this.statusDate,
-
-    /// Extensions for [statusDate]
-    this.statusDateElement,
     this.validityPeriod,
     this.indication,
     this.intendedUse,
@@ -58,27 +46,27 @@ class RegulatedAuthorization extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RegulatedAuthorization.fromJson(Map<String, dynamic> json) {
     return RegulatedAuthorization(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -88,7 +76,7 @@ class RegulatedAuthorization extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -97,7 +85,7 @@ class RegulatedAuthorization extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -106,7 +94,7 @@ class RegulatedAuthorization extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -115,7 +103,7 @@ class RegulatedAuthorization extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -124,7 +112,7 @@ class RegulatedAuthorization extends DomainResource {
       subject: json['subject'] != null
           ? (json['subject'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -136,17 +124,15 @@ class RegulatedAuthorization extends DomainResource {
             )
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       region: json['region'] != null
           ? (json['region'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -158,12 +144,10 @@ class RegulatedAuthorization extends DomainResource {
             )
           : null,
       statusDate: json['statusDate'] != null
-          ? FhirDateTime.fromJson(json['statusDate'])
-          : null,
-      statusDateElement: json['_statusDate'] != null
-          ? Element.fromJson(
-              json['_statusDate'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['statusDate'],
+              '_value': json['_statusDate'],
+            })
           : null,
       validityPeriod: json['validityPeriod'] != null
           ? Period.fromJson(
@@ -183,7 +167,7 @@ class RegulatedAuthorization extends DomainResource {
       basis: json['basis'] != null
           ? (json['basis'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -207,7 +191,8 @@ class RegulatedAuthorization extends DomainResource {
     );
   }
 
-  /// Deserialize [RegulatedAuthorization] from a [String] or [YamlMap] object
+  /// Deserialize [RegulatedAuthorization] from a [String]
+  /// or [YamlMap] object
   factory RegulatedAuthorization.fromYaml(dynamic yaml) => yaml is String
       ? RegulatedAuthorization.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -217,10 +202,11 @@ class RegulatedAuthorization extends DomainResource {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'RegulatedAuthorization cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'RegulatedAuthorization cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [RegulatedAuthorization] that takes in a [String]
+  /// Factory constructor for [RegulatedAuthorization]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory RegulatedAuthorization.fromJsonString(String source) {
@@ -235,6 +221,15 @@ class RegulatedAuthorization extends DomainResource {
 
   @override
   String get fhirType => 'RegulatedAuthorization';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Business identifier for the authorization, typically assigned by the
@@ -255,9 +250,6 @@ class RegulatedAuthorization extends DomainResource {
   /// General textual supporting information.
   final FhirMarkdown? description;
 
-  /// Extensions for [description]
-  final Element? descriptionElement;
-
   /// [region]
   /// The territory (e.g., country, jurisdiction etc.) in which the
   /// authorization has been granted.
@@ -271,9 +263,6 @@ class RegulatedAuthorization extends DomainResource {
   /// [statusDate]
   /// The date at which the current status was assigned.
   final FhirDateTime? statusDate;
-
-  /// Extensions for [statusDate]
-  final Element? statusDateElement;
 
   /// [validityPeriod]
   /// The time period in which the regulatory approval, clearance or
@@ -327,9 +316,6 @@ class RegulatedAuthorization extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -360,9 +346,6 @@ class RegulatedAuthorization extends DomainResource {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (region != null && region!.isNotEmpty) {
       json['region'] = region!.map((CodeableConcept v) => v.toJson()).toList();
     }
@@ -371,9 +354,6 @@ class RegulatedAuthorization extends DomainResource {
     }
     if (statusDate?.value != null) {
       json['statusDate'] = statusDate!.toJson();
-    }
-    if (statusDateElement != null) {
-      json['_statusDate'] = statusDateElement!.toJson();
     }
     if (validityPeriod != null) {
       json['validityPeriod'] = validityPeriod!.toJson();
@@ -406,9 +386,7 @@ class RegulatedAuthorization extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -417,11 +395,9 @@ class RegulatedAuthorization extends DomainResource {
     List<Reference>? subject,
     CodeableConcept? type,
     FhirMarkdown? description,
-    Element? descriptionElement,
     List<CodeableConcept>? region,
     CodeableConcept? status,
     FhirDateTime? statusDate,
-    Element? statusDateElement,
     Period? validityPeriod,
     CodeableReference? indication,
     CodeableConcept? intendedUse,
@@ -440,9 +416,7 @@ class RegulatedAuthorization extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -451,11 +425,9 @@ class RegulatedAuthorization extends DomainResource {
       subject: subject ?? this.subject,
       type: type ?? this.type,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       region: region ?? this.region,
       status: status ?? this.status,
       statusDate: statusDate ?? this.statusDate,
-      statusDateElement: statusDateElement ?? this.statusDateElement,
       validityPeriod: validityPeriod ?? this.validityPeriod,
       indication: indication ?? this.indication,
       intendedUse: intendedUse ?? this.intendedUse,
@@ -486,16 +458,13 @@ class RegulatedAuthorizationCase extends BackboneElement {
 
   RegulatedAuthorizationCase({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.type,
     this.status,
     this.datePeriod,
     this.dateDateTime,
-
-    /// Extensions for [dateDateTime]
-    this.dateDateTimeElement,
     this.application,
     super.userData,
     super.formatCommentsPre,
@@ -508,11 +477,15 @@ class RegulatedAuthorizationCase extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RegulatedAuthorizationCase.fromJson(Map<String, dynamic> json) {
     return RegulatedAuthorizationCase(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -521,7 +494,7 @@ class RegulatedAuthorizationCase extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -548,17 +521,15 @@ class RegulatedAuthorizationCase extends BackboneElement {
             )
           : null,
       dateDateTime: json['dateDateTime'] != null
-          ? FhirDateTime.fromJson(json['dateDateTime'])
-          : null,
-      dateDateTimeElement: json['_dateDateTime'] != null
-          ? Element.fromJson(
-              json['_dateDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['dateDateTime'],
+              '_value': json['_dateDateTime'],
+            })
           : null,
       application: json['application'] != null
           ? (json['application'] as List<dynamic>)
               .map<RegulatedAuthorizationCase>(
-                (dynamic v) => RegulatedAuthorizationCase.fromJson(
+                (v) => RegulatedAuthorizationCase.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -567,7 +538,8 @@ class RegulatedAuthorizationCase extends BackboneElement {
     );
   }
 
-  /// Deserialize [RegulatedAuthorizationCase] from a [String] or [YamlMap] object
+  /// Deserialize [RegulatedAuthorizationCase] from a [String]
+  /// or [YamlMap] object
   factory RegulatedAuthorizationCase.fromYaml(dynamic yaml) => yaml is String
       ? RegulatedAuthorizationCase.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -577,10 +549,11 @@ class RegulatedAuthorizationCase extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'RegulatedAuthorizationCase cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'RegulatedAuthorizationCase cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [RegulatedAuthorizationCase] that takes in a [String]
+  /// Factory constructor for [RegulatedAuthorizationCase]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory RegulatedAuthorizationCase.fromJsonString(String source) {
@@ -595,6 +568,15 @@ class RegulatedAuthorizationCase extends BackboneElement {
 
   @override
   String get fhirType => 'RegulatedAuthorizationCase';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifier by which this case can be referenced.
@@ -615,9 +597,6 @@ class RegulatedAuthorizationCase extends BackboneElement {
   /// [dateDateTime]
   /// Relevant date for this case.
   final FhirDateTime? dateDateTime;
-
-  /// Extensions for [dateDateTime]
-  final Element? dateDateTimeElement;
 
   /// [application]
   /// A regulatory submission from an organization to a regulator, as part of
@@ -655,9 +634,6 @@ class RegulatedAuthorizationCase extends BackboneElement {
     if (dateDateTime?.value != null) {
       json['dateDateTime'] = dateDateTime!.toJson();
     }
-    if (dateDateTimeElement != null) {
-      json['_dateDateTime'] = dateDateTimeElement!.toJson();
-    }
     if (application != null && application!.isNotEmpty) {
       json['application'] = application!
           .map((RegulatedAuthorizationCase v) => v.toJson())
@@ -678,7 +654,6 @@ class RegulatedAuthorizationCase extends BackboneElement {
     CodeableConcept? status,
     Period? datePeriod,
     FhirDateTime? dateDateTime,
-    Element? dateDateTimeElement,
     List<RegulatedAuthorizationCase>? application,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -696,7 +671,6 @@ class RegulatedAuthorizationCase extends BackboneElement {
       status: status ?? this.status,
       datePeriod: datePeriod ?? this.datePeriod,
       dateDateTime: dateDateTime ?? this.dateDateTime,
-      dateDateTimeElement: dateDateTimeElement ?? this.dateDateTimeElement,
       application: application ?? this.application,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

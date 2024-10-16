@@ -13,46 +13,25 @@ class Procedure extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-
-    /// Extensions for [instantiatesCanonical]
-    this.instantiatesCanonicalElement,
     this.instantiatesUri,
-
-    /// Extensions for [instantiatesUri]
-    this.instantiatesUriElement,
     this.basedOn,
     this.partOf,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.statusReason,
     this.category,
     this.code,
     required this.subject,
     this.encounter,
     this.performedDateTime,
-
-    /// Extensions for [performedDateTime]
-    this.performedDateTimeElement,
     this.performedPeriod,
     this.performedString,
-
-    /// Extensions for [performedString]
-    this.performedStringElement,
     this.performedAge,
     this.performedRange,
     this.recorder,
@@ -84,27 +63,27 @@ class Procedure extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Procedure.fromJson(Map<String, dynamic> json) {
     return Procedure(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -114,7 +93,7 @@ class Procedure extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -123,7 +102,7 @@ class Procedure extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -132,7 +111,7 @@ class Procedure extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -141,44 +120,24 @@ class Procedure extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      instantiatesCanonical: json['instantiatesCanonical'] != null
-          ? (json['instantiatesCanonical'] as List<dynamic>)
-              .map<FhirCanonical>(
-                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
-          ? (json['_instantiatesCanonical'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      instantiatesUri: json['instantiatesUri'] != null
-          ? (json['instantiatesUri'] as List<dynamic>)
-              .map<FhirUri>(
-                (dynamic v) => FhirUri.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      instantiatesUriElement: json['_instantiatesUri'] != null
-          ? (json['_instantiatesUri'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      instantiatesCanonical: parsePrimitiveList<FhirCanonical>(
+          json['instantiatesCanonical'] as List<dynamic>?,
+          json['_instantiatesCanonical'] as List<dynamic>?,
+          fromJson: FhirCanonical.fromJson),
+      instantiatesUri: parsePrimitiveList<FhirUri>(
+          json['instantiatesUri'] as List<dynamic>?,
+          json['_instantiatesUri'] as List<dynamic>?,
+          fromJson: FhirUri.fromJson),
       basedOn: json['basedOn'] != null
           ? (json['basedOn'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -187,18 +146,16 @@ class Procedure extends DomainResource {
       partOf: json['partOf'] != null
           ? (json['partOf'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: EventStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: EventStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       statusReason: json['statusReason'] != null
           ? CodeableConcept.fromJson(
               json['statusReason'] as Map<String, dynamic>,
@@ -223,12 +180,10 @@ class Procedure extends DomainResource {
             )
           : null,
       performedDateTime: json['performedDateTime'] != null
-          ? FhirDateTime.fromJson(json['performedDateTime'])
-          : null,
-      performedDateTimeElement: json['_performedDateTime'] != null
-          ? Element.fromJson(
-              json['_performedDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['performedDateTime'],
+              '_value': json['_performedDateTime'],
+            })
           : null,
       performedPeriod: json['performedPeriod'] != null
           ? Period.fromJson(
@@ -236,12 +191,10 @@ class Procedure extends DomainResource {
             )
           : null,
       performedString: json['performedString'] != null
-          ? FhirString.fromJson(json['performedString'])
-          : null,
-      performedStringElement: json['_performedString'] != null
-          ? Element.fromJson(
-              json['_performedString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['performedString'],
+              '_value': json['_performedString'],
+            })
           : null,
       performedAge: json['performedAge'] != null
           ? Age.fromJson(
@@ -266,7 +219,7 @@ class Procedure extends DomainResource {
       performer: json['performer'] != null
           ? (json['performer'] as List<dynamic>)
               .map<ProcedurePerformer>(
-                (dynamic v) => ProcedurePerformer.fromJson(
+                (v) => ProcedurePerformer.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -280,7 +233,7 @@ class Procedure extends DomainResource {
       reasonCode: json['reasonCode'] != null
           ? (json['reasonCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -289,7 +242,7 @@ class Procedure extends DomainResource {
       reasonReference: json['reasonReference'] != null
           ? (json['reasonReference'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -298,7 +251,7 @@ class Procedure extends DomainResource {
       bodySite: json['bodySite'] != null
           ? (json['bodySite'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -312,7 +265,7 @@ class Procedure extends DomainResource {
       report: json['report'] != null
           ? (json['report'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -321,7 +274,7 @@ class Procedure extends DomainResource {
       complication: json['complication'] != null
           ? (json['complication'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -330,7 +283,7 @@ class Procedure extends DomainResource {
       complicationDetail: json['complicationDetail'] != null
           ? (json['complicationDetail'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -339,7 +292,7 @@ class Procedure extends DomainResource {
       followUp: json['followUp'] != null
           ? (json['followUp'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -348,7 +301,7 @@ class Procedure extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -357,7 +310,7 @@ class Procedure extends DomainResource {
       focalDevice: json['focalDevice'] != null
           ? (json['focalDevice'] as List<dynamic>)
               .map<ProcedureFocalDevice>(
-                (dynamic v) => ProcedureFocalDevice.fromJson(
+                (v) => ProcedureFocalDevice.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -366,7 +319,7 @@ class Procedure extends DomainResource {
       usedReference: json['usedReference'] != null
           ? (json['usedReference'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -375,7 +328,7 @@ class Procedure extends DomainResource {
       usedCode: json['usedCode'] != null
           ? (json['usedCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -384,7 +337,8 @@ class Procedure extends DomainResource {
     );
   }
 
-  /// Deserialize [Procedure] from a [String] or [YamlMap] object
+  /// Deserialize [Procedure] from a [String]
+  /// or [YamlMap] object
   factory Procedure.fromYaml(dynamic yaml) => yaml is String
       ? Procedure.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -393,10 +347,11 @@ class Procedure extends DomainResource {
           ? Procedure.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Procedure cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Procedure cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Procedure] that takes in a [String]
+  /// Factory constructor for [Procedure]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Procedure.fromJsonString(String source) {
@@ -412,6 +367,15 @@ class Procedure extends DomainResource {
   @override
   String get fhirType => 'Procedure';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Business identifiers assigned to this procedure by the performer or
   /// other systems which remain constant as the resource is updated and is
@@ -424,17 +388,11 @@ class Procedure extends DomainResource {
   /// Procedure.
   final List<FhirCanonical>? instantiatesCanonical;
 
-  /// Extensions for [instantiatesCanonical]
-  final List<Element>? instantiatesCanonicalElement;
-
   /// [instantiatesUri]
   /// The URL pointing to an externally maintained protocol, guideline, order
   /// set or other definition that is adhered to in whole or in part by this
   /// Procedure.
   final List<FhirUri>? instantiatesUri;
-
-  /// Extensions for [instantiatesUri]
-  final List<Element>? instantiatesUriElement;
 
   /// [basedOn]
   /// A reference to a resource that contains details of the request for this
@@ -450,9 +408,6 @@ class Procedure extends DomainResource {
   /// A code specifying the state of the procedure. Generally, this will be
   /// the in-progress or completed state.
   final EventStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [statusReason]
   /// Captures the reason for the current state of the procedure.
@@ -484,9 +439,6 @@ class Procedure extends DomainResource {
   /// be captured.
   final FhirDateTime? performedDateTime;
 
-  /// Extensions for [performedDateTime]
-  final Element? performedDateTimeElement;
-
   /// [performedPeriod]
   /// Estimated or actual date, date-time, period, or age when the procedure
   /// was performed. Allows a period to support complex procedures that span
@@ -500,9 +452,6 @@ class Procedure extends DomainResource {
   /// more than one date, and also allows for the length of the procedure to
   /// be captured.
   final FhirString? performedString;
-
-  /// Extensions for [performedString]
-  final Element? performedStringElement;
 
   /// [performedAge]
   /// Estimated or actual date, date-time, period, or age when the procedure
@@ -609,9 +558,6 @@ class Procedure extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -637,18 +583,9 @@ class Procedure extends DomainResource {
       json['instantiatesCanonical'] =
           instantiatesCanonical!.map((FhirCanonical v) => v.toJson()).toList();
     }
-    if (instantiatesCanonicalElement != null &&
-        instantiatesCanonicalElement!.isNotEmpty) {
-      json['_instantiatesCanonical'] =
-          instantiatesCanonicalElement!.map((Element v) => v.toJson()).toList();
-    }
     if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
       json['instantiatesUri'] =
           instantiatesUri!.map((FhirUri v) => v.toJson()).toList();
-    }
-    if (instantiatesUriElement != null && instantiatesUriElement!.isNotEmpty) {
-      json['_instantiatesUri'] =
-          instantiatesUriElement!.map((Element v) => v.toJson()).toList();
     }
     if (basedOn != null && basedOn!.isNotEmpty) {
       json['basedOn'] = basedOn!.map((Reference v) => v.toJson()).toList();
@@ -673,17 +610,11 @@ class Procedure extends DomainResource {
     if (performedDateTime?.value != null) {
       json['performedDateTime'] = performedDateTime!.toJson();
     }
-    if (performedDateTimeElement != null) {
-      json['_performedDateTime'] = performedDateTimeElement!.toJson();
-    }
     if (performedPeriod != null) {
       json['performedPeriod'] = performedPeriod!.toJson();
     }
     if (performedString?.value != null) {
       json['performedString'] = performedString!.toJson();
-    }
-    if (performedStringElement != null) {
-      json['_performedString'] = performedStringElement!.toJson();
     }
     if (performedAge != null) {
       json['performedAge'] = performedAge!.toJson();
@@ -759,32 +690,25 @@ class Procedure extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     List<FhirCanonical>? instantiatesCanonical,
-    List<Element>? instantiatesCanonicalElement,
     List<FhirUri>? instantiatesUri,
-    List<Element>? instantiatesUriElement,
     List<Reference>? basedOn,
     List<Reference>? partOf,
     EventStatus? status,
-    Element? statusElement,
     CodeableConcept? statusReason,
     CodeableConcept? category,
     CodeableConcept? code,
     Reference? subject,
     Reference? encounter,
     FhirDateTime? performedDateTime,
-    Element? performedDateTimeElement,
     Period? performedPeriod,
     FhirString? performedString,
-    Element? performedStringElement,
     Age? performedAge,
     Range? performedRange,
     Reference? recorder,
@@ -814,9 +738,7 @@ class Procedure extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -824,27 +746,18 @@ class Procedure extends DomainResource {
       identifier: identifier ?? this.identifier,
       instantiatesCanonical:
           instantiatesCanonical ?? this.instantiatesCanonical,
-      instantiatesCanonicalElement:
-          instantiatesCanonicalElement ?? this.instantiatesCanonicalElement,
       instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      instantiatesUriElement:
-          instantiatesUriElement ?? this.instantiatesUriElement,
       basedOn: basedOn ?? this.basedOn,
       partOf: partOf ?? this.partOf,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       statusReason: statusReason ?? this.statusReason,
       category: category ?? this.category,
       code: code ?? this.code,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
       performedDateTime: performedDateTime ?? this.performedDateTime,
-      performedDateTimeElement:
-          performedDateTimeElement ?? this.performedDateTimeElement,
       performedPeriod: performedPeriod ?? this.performedPeriod,
       performedString: performedString ?? this.performedString,
-      performedStringElement:
-          performedStringElement ?? this.performedStringElement,
       performedAge: performedAge ?? this.performedAge,
       performedRange: performedRange ?? this.performedRange,
       recorder: recorder ?? this.recorder,
@@ -880,7 +793,7 @@ class ProcedurePerformer extends BackboneElement {
 
   ProcedurePerformer({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.function_,
     required this.actor,
@@ -896,11 +809,15 @@ class ProcedurePerformer extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProcedurePerformer.fromJson(Map<String, dynamic> json) {
     return ProcedurePerformer(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -909,7 +826,7 @@ class ProcedurePerformer extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -931,7 +848,8 @@ class ProcedurePerformer extends BackboneElement {
     );
   }
 
-  /// Deserialize [ProcedurePerformer] from a [String] or [YamlMap] object
+  /// Deserialize [ProcedurePerformer] from a [String]
+  /// or [YamlMap] object
   factory ProcedurePerformer.fromYaml(dynamic yaml) => yaml is String
       ? ProcedurePerformer.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -940,11 +858,11 @@ class ProcedurePerformer extends BackboneElement {
           ? ProcedurePerformer.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ProcedurePerformer cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ProcedurePerformer cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ProcedurePerformer] that takes in a [String]
+  /// Factory constructor for [ProcedurePerformer]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ProcedurePerformer.fromJsonString(String source) {
@@ -959,6 +877,15 @@ class ProcedurePerformer extends BackboneElement {
 
   @override
   String get fhirType => 'ProcedurePerformer';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [function_]
   /// Distinguishes the type of involvement of the performer in the
@@ -1039,7 +966,7 @@ class ProcedureFocalDevice extends BackboneElement {
 
   ProcedureFocalDevice({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.action,
     required this.manipulated,
@@ -1054,11 +981,15 @@ class ProcedureFocalDevice extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProcedureFocalDevice.fromJson(Map<String, dynamic> json) {
     return ProcedureFocalDevice(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1067,7 +998,7 @@ class ProcedureFocalDevice extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1084,7 +1015,8 @@ class ProcedureFocalDevice extends BackboneElement {
     );
   }
 
-  /// Deserialize [ProcedureFocalDevice] from a [String] or [YamlMap] object
+  /// Deserialize [ProcedureFocalDevice] from a [String]
+  /// or [YamlMap] object
   factory ProcedureFocalDevice.fromYaml(dynamic yaml) => yaml is String
       ? ProcedureFocalDevice.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1094,10 +1026,11 @@ class ProcedureFocalDevice extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ProcedureFocalDevice cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ProcedureFocalDevice cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ProcedureFocalDevice] that takes in a [String]
+  /// Factory constructor for [ProcedureFocalDevice]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ProcedureFocalDevice.fromJsonString(String source) {
@@ -1112,6 +1045,15 @@ class ProcedureFocalDevice extends BackboneElement {
 
   @override
   String get fhirType => 'ProcedureFocalDevice';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [action]
   /// The kind of change that happened to the device during the procedure.

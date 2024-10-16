@@ -13,87 +13,33 @@ class ActivityDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.identifier,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     this.subtitle,
-
-    /// Extensions for [subtitle]
-    this.subtitleElement,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.experimental,
-
-    /// Extensions for [experimental]
-    this.experimentalElement,
     this.subjectCodeableConcept,
     this.subjectReference,
     this.subjectCanonical,
-
-    /// Extensions for [subjectCanonical]
-    this.subjectCanonicalElement,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.publisher,
-
-    /// Extensions for [publisher]
-    this.publisherElement,
     this.contact,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-
-    /// Extensions for [purpose]
-    this.purposeElement,
     this.usage,
-
-    /// Extensions for [usage]
-    this.usageElement,
     this.copyright,
-
-    /// Extensions for [copyright]
-    this.copyrightElement,
     this.approvalDate,
-
-    /// Extensions for [approvalDate]
-    this.approvalDateElement,
     this.lastReviewDate,
-
-    /// Extensions for [lastReviewDate]
-    this.lastReviewDateElement,
     this.effectivePeriod,
     this.topic,
     this.author,
@@ -102,35 +48,14 @@ class ActivityDefinition extends DomainResource {
     this.endorser,
     this.relatedArtifact,
     this.library_,
-
-    /// Extensions for [library]
-    this.libraryElement,
     this.kind,
-
-    /// Extensions for [kind]
-    this.kindElement,
     this.profile,
-
-    /// Extensions for [profile]
-    this.profileElement,
     this.code,
     this.intent,
-
-    /// Extensions for [intent]
-    this.intentElement,
     this.priority,
-
-    /// Extensions for [priority]
-    this.priorityElement,
     this.doNotPerform,
-
-    /// Extensions for [doNotPerform]
-    this.doNotPerformElement,
     this.timingTiming,
     this.timingDateTime,
-
-    /// Extensions for [timingDateTime]
-    this.timingDateTimeElement,
     this.timingAge,
     this.timingPeriod,
     this.timingRange,
@@ -146,9 +71,6 @@ class ActivityDefinition extends DomainResource {
     this.observationRequirement,
     this.observationResultRequirement,
     this.transform,
-
-    /// Extensions for [transform]
-    this.transformElement,
     this.dynamicValue,
     super.userData,
     super.formatCommentsPre,
@@ -163,27 +85,27 @@ class ActivityDefinition extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ActivityDefinition.fromJson(Map<String, dynamic> json) {
     return ActivityDefinition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -193,7 +115,7 @@ class ActivityDefinition extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -202,7 +124,7 @@ class ActivityDefinition extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -211,67 +133,60 @@ class ActivityDefinition extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
+      url: json['url'] != null
+          ? FhirUri.fromJson({
+              'value': json['url'],
+              '_value': json['_url'],
+            })
           : null,
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
       subtitle: json['subtitle'] != null
-          ? FhirString.fromJson(json['subtitle'])
+          ? FhirString.fromJson({
+              'value': json['subtitle'],
+              '_value': json['_subtitle'],
+            })
           : null,
-      subtitleElement: json['_subtitle'] != null
-          ? Element.fromJson(
-              json['_subtitle'] as Map<String, dynamic>,
-            )
-          : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: PublicationStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson(json['experimental'])
-          : null,
-      experimentalElement: json['_experimental'] != null
-          ? Element.fromJson(
-              json['_experimental'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['experimental'],
+              '_value': json['_experimental'],
+            })
           : null,
       subjectCodeableConcept: json['subjectCodeableConcept'] != null
           ? CodeableConcept.fromJson(
@@ -284,48 +199,42 @@ class ActivityDefinition extends DomainResource {
             )
           : null,
       subjectCanonical: json['subjectCanonical'] != null
-          ? SubjectType.fromJson(json['subjectCanonical'])
+          ? SubjectType.fromJson({
+              'value': json['subjectCanonical'],
+              '_value': json['_subjectCanonical'],
+            })
           : null,
-      subjectCanonicalElement: json['_subjectCanonical'] != null
-          ? Element.fromJson(
-              json['_subjectCanonical'] as Map<String, dynamic>,
-            )
-          : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       publisher: json['publisher'] != null
-          ? FhirString.fromJson(json['publisher'])
-          : null,
-      publisherElement: json['_publisher'] != null
-          ? Element.fromJson(
-              json['_publisher'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['publisher'],
+              '_value': json['_publisher'],
+            })
           : null,
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       useContext: json['useContext'] != null
           ? (json['useContext'] as List<dynamic>)
               .map<UsageContext>(
-                (dynamic v) => UsageContext.fromJson(
+                (v) => UsageContext.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -334,49 +243,41 @@ class ActivityDefinition extends DomainResource {
       jurisdiction: json['jurisdiction'] != null
           ? (json['jurisdiction'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       purpose: json['purpose'] != null
-          ? FhirMarkdown.fromJson(json['purpose'])
+          ? FhirMarkdown.fromJson({
+              'value': json['purpose'],
+              '_value': json['_purpose'],
+            })
           : null,
-      purposeElement: json['_purpose'] != null
-          ? Element.fromJson(
-              json['_purpose'] as Map<String, dynamic>,
-            )
-          : null,
-      usage: json['usage'] != null ? FhirString.fromJson(json['usage']) : null,
-      usageElement: json['_usage'] != null
-          ? Element.fromJson(
-              json['_usage'] as Map<String, dynamic>,
-            )
+      usage: json['usage'] != null
+          ? FhirString.fromJson({
+              'value': json['usage'],
+              '_value': json['_usage'],
+            })
           : null,
       copyright: json['copyright'] != null
-          ? FhirMarkdown.fromJson(json['copyright'])
-          : null,
-      copyrightElement: json['_copyright'] != null
-          ? Element.fromJson(
-              json['_copyright'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['copyright'],
+              '_value': json['_copyright'],
+            })
           : null,
       approvalDate: json['approvalDate'] != null
-          ? FhirDate.fromJson(json['approvalDate'])
-          : null,
-      approvalDateElement: json['_approvalDate'] != null
-          ? Element.fromJson(
-              json['_approvalDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['approvalDate'],
+              '_value': json['_approvalDate'],
+            })
           : null,
       lastReviewDate: json['lastReviewDate'] != null
-          ? FhirDate.fromJson(json['lastReviewDate'])
-          : null,
-      lastReviewDateElement: json['_lastReviewDate'] != null
-          ? Element.fromJson(
-              json['_lastReviewDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['lastReviewDate'],
+              '_value': json['_lastReviewDate'],
+            })
           : null,
       effectivePeriod: json['effectivePeriod'] != null
           ? Period.fromJson(
@@ -386,7 +287,7 @@ class ActivityDefinition extends DomainResource {
       topic: json['topic'] != null
           ? (json['topic'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -395,7 +296,7 @@ class ActivityDefinition extends DomainResource {
       author: json['author'] != null
           ? (json['author'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -404,7 +305,7 @@ class ActivityDefinition extends DomainResource {
       editor: json['editor'] != null
           ? (json['editor'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -413,7 +314,7 @@ class ActivityDefinition extends DomainResource {
       reviewer: json['reviewer'] != null
           ? (json['reviewer'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -422,7 +323,7 @@ class ActivityDefinition extends DomainResource {
       endorser: json['endorser'] != null
           ? (json['endorser'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -431,41 +332,26 @@ class ActivityDefinition extends DomainResource {
       relatedArtifact: json['relatedArtifact'] != null
           ? (json['relatedArtifact'] as List<dynamic>)
               .map<RelatedArtifact>(
-                (dynamic v) => RelatedArtifact.fromJson(
+                (v) => RelatedArtifact.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      library_: json['library'] != null
-          ? (json['library'] as List<dynamic>)
-              .map<FhirCanonical>(
-                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      libraryElement: json['_library'] != null
-          ? (json['_library'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      library_: parsePrimitiveList<FhirCanonical>(
+          json['library'] as List<dynamic>?, json['_library'] as List<dynamic>?,
+          fromJson: FhirCanonical.fromJson),
       kind: json['kind'] != null
-          ? RequestResourceType.fromJson(json['kind'])
-          : null,
-      kindElement: json['_kind'] != null
-          ? Element.fromJson(
-              json['_kind'] as Map<String, dynamic>,
-            )
+          ? RequestResourceType.fromJson({
+              'value': json['kind'],
+              '_value': json['_kind'],
+            })
           : null,
       profile: json['profile'] != null
-          ? FhirCanonical.fromJson(json['profile'])
-          : null,
-      profileElement: json['_profile'] != null
-          ? Element.fromJson(
-              json['_profile'] as Map<String, dynamic>,
-            )
+          ? FhirCanonical.fromJson({
+              'value': json['profile'],
+              '_value': json['_profile'],
+            })
           : null,
       code: json['code'] != null
           ? CodeableConcept.fromJson(
@@ -473,28 +359,22 @@ class ActivityDefinition extends DomainResource {
             )
           : null,
       intent: json['intent'] != null
-          ? RequestIntent.fromJson(json['intent'])
-          : null,
-      intentElement: json['_intent'] != null
-          ? Element.fromJson(
-              json['_intent'] as Map<String, dynamic>,
-            )
+          ? RequestIntent.fromJson({
+              'value': json['intent'],
+              '_value': json['_intent'],
+            })
           : null,
       priority: json['priority'] != null
-          ? RequestPriority.fromJson(json['priority'])
-          : null,
-      priorityElement: json['_priority'] != null
-          ? Element.fromJson(
-              json['_priority'] as Map<String, dynamic>,
-            )
+          ? RequestPriority.fromJson({
+              'value': json['priority'],
+              '_value': json['_priority'],
+            })
           : null,
       doNotPerform: json['doNotPerform'] != null
-          ? FhirBoolean.fromJson(json['doNotPerform'])
-          : null,
-      doNotPerformElement: json['_doNotPerform'] != null
-          ? Element.fromJson(
-              json['_doNotPerform'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['doNotPerform'],
+              '_value': json['_doNotPerform'],
+            })
           : null,
       timingTiming: json['timingTiming'] != null
           ? Timing.fromJson(
@@ -502,12 +382,10 @@ class ActivityDefinition extends DomainResource {
             )
           : null,
       timingDateTime: json['timingDateTime'] != null
-          ? FhirDateTime.fromJson(json['timingDateTime'])
-          : null,
-      timingDateTimeElement: json['_timingDateTime'] != null
-          ? Element.fromJson(
-              json['_timingDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['timingDateTime'],
+              '_value': json['_timingDateTime'],
+            })
           : null,
       timingAge: json['timingAge'] != null
           ? Age.fromJson(
@@ -537,7 +415,7 @@ class ActivityDefinition extends DomainResource {
       participant: json['participant'] != null
           ? (json['participant'] as List<dynamic>)
               .map<ActivityDefinitionParticipant>(
-                (dynamic v) => ActivityDefinitionParticipant.fromJson(
+                (v) => ActivityDefinitionParticipant.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -561,7 +439,7 @@ class ActivityDefinition extends DomainResource {
       dosage: json['dosage'] != null
           ? (json['dosage'] as List<dynamic>)
               .map<Dosage>(
-                (dynamic v) => Dosage.fromJson(
+                (v) => Dosage.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -570,7 +448,7 @@ class ActivityDefinition extends DomainResource {
       bodySite: json['bodySite'] != null
           ? (json['bodySite'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -579,7 +457,7 @@ class ActivityDefinition extends DomainResource {
       specimenRequirement: json['specimenRequirement'] != null
           ? (json['specimenRequirement'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -588,7 +466,7 @@ class ActivityDefinition extends DomainResource {
       observationRequirement: json['observationRequirement'] != null
           ? (json['observationRequirement'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -597,24 +475,22 @@ class ActivityDefinition extends DomainResource {
       observationResultRequirement: json['observationResultRequirement'] != null
           ? (json['observationResultRequirement'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       transform: json['transform'] != null
-          ? FhirCanonical.fromJson(json['transform'])
-          : null,
-      transformElement: json['_transform'] != null
-          ? Element.fromJson(
-              json['_transform'] as Map<String, dynamic>,
-            )
+          ? FhirCanonical.fromJson({
+              'value': json['transform'],
+              '_value': json['_transform'],
+            })
           : null,
       dynamicValue: json['dynamicValue'] != null
           ? (json['dynamicValue'] as List<dynamic>)
               .map<ActivityDefinitionDynamicValue>(
-                (dynamic v) => ActivityDefinitionDynamicValue.fromJson(
+                (v) => ActivityDefinitionDynamicValue.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -623,7 +499,8 @@ class ActivityDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [ActivityDefinition] from a [String] or [YamlMap] object
+  /// Deserialize [ActivityDefinition] from a [String]
+  /// or [YamlMap] object
   factory ActivityDefinition.fromYaml(dynamic yaml) => yaml is String
       ? ActivityDefinition.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -632,11 +509,11 @@ class ActivityDefinition extends DomainResource {
           ? ActivityDefinition.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ActivityDefinition cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ActivityDefinition cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ActivityDefinition] that takes in a [String]
+  /// Factory constructor for [ActivityDefinition]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ActivityDefinition.fromJsonString(String source) {
@@ -652,6 +529,15 @@ class ActivityDefinition extends DomainResource {
   @override
   String get fhirType => 'ActivityDefinition';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [url]
   /// An absolute URI that is used to identify this activity definition when
   /// it is referenced in a specification, model, design or an instance; also
@@ -661,9 +547,6 @@ class ActivityDefinition extends DomainResource {
   /// the target of a canonical reference. It SHALL remain the same when the
   /// activity definition is stored on different servers.
   final FhirUri? url;
-
-  /// Extensions for [url]
-  final Element? urlElement;
 
   /// [identifier]
   /// A formal identifier that is used to identify this activity definition
@@ -685,49 +568,31 @@ class ActivityDefinition extends DomainResource {
   /// Note that a version is required for non-experimental active assets.
   final FhirString? version;
 
-  /// Extensions for [version]
-  final Element? versionElement;
-
   /// [name]
   /// A natural language name identifying the activity definition. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
   final FhirString? name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [title]
   /// A short, descriptive, user-friendly title for the activity definition.
   final FhirString? title;
-
-  /// Extensions for [title]
-  final Element? titleElement;
 
   /// [subtitle]
   /// An explanatory or alternate title for the activity definition giving
   /// additional information about its content.
   final FhirString? subtitle;
 
-  /// Extensions for [subtitle]
-  final Element? subtitleElement;
-
   /// [status]
   /// The status of this activity definition. Enables tracking the life-cycle
   /// of the content.
   final PublicationStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [experimental]
   /// A Boolean value to indicate that this activity definition is authored
   /// for testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
   final FhirBoolean? experimental;
-
-  /// Extensions for [experimental]
-  final Element? experimentalElement;
 
   /// [subjectCodeableConcept]
   /// A code, group definition, or canonical reference that describes or
@@ -759,9 +624,6 @@ class ActivityDefinition extends DomainResource {
   /// PackagedProductDefinition resource.
   final SubjectType? subjectCanonical;
 
-  /// Extensions for [subjectCanonical]
-  final Element? subjectCanonicalElement;
-
   /// [date]
   /// The date (and optionally time) when the activity definition was
   /// published. The date must change when the business version changes and
@@ -769,16 +631,10 @@ class ActivityDefinition extends DomainResource {
   /// change when the substantive content of the activity definition changes.
   final FhirDateTime? date;
 
-  /// Extensions for [date]
-  final Element? dateElement;
-
   /// [publisher]
   /// The name of the organization or individual that published the activity
   /// definition.
   final FhirString? publisher;
-
-  /// Extensions for [publisher]
-  final Element? publisherElement;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
@@ -789,9 +645,6 @@ class ActivityDefinition extends DomainResource {
   /// A free text natural language description of the activity definition
   /// from a consumer's perspective.
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -811,16 +664,10 @@ class ActivityDefinition extends DomainResource {
   /// been designed as it has.
   final FhirMarkdown? purpose;
 
-  /// Extensions for [purpose]
-  final Element? purposeElement;
-
   /// [usage]
   /// A detailed description of how the activity definition is used from a
   /// clinical perspective.
   final FhirString? usage;
-
-  /// Extensions for [usage]
-  final Element? usageElement;
 
   /// [copyright]
   /// A copyright statement relating to the activity definition and/or its
@@ -828,26 +675,17 @@ class ActivityDefinition extends DomainResource {
   /// use and publishing of the activity definition.
   final FhirMarkdown? copyright;
 
-  /// Extensions for [copyright]
-  final Element? copyrightElement;
-
   /// [approvalDate]
   /// The date on which the resource content was approved by the publisher.
   /// Approval happens once when the content is officially approved for
   /// usage.
   final FhirDate? approvalDate;
 
-  /// Extensions for [approvalDate]
-  final Element? approvalDateElement;
-
   /// [lastReviewDate]
   /// The date on which the resource content was last reviewed. Review
   /// happens periodically after approval but does not change the original
   /// approval date.
   final FhirDate? lastReviewDate;
-
-  /// Extensions for [lastReviewDate]
-  final Element? lastReviewDateElement;
 
   /// [effectivePeriod]
   /// The period during which the activity definition content was or is
@@ -890,9 +728,6 @@ class ActivityDefinition extends DomainResource {
   /// the activity definition.
   final List<FhirCanonical>? library_;
 
-  /// Extensions for [library]
-  final List<Element>? libraryElement;
-
   /// [kind]
   /// A description of the kind of resource the activity definition is
   /// representing. For example, a MedicationRequest, a ServiceRequest, or a
@@ -900,16 +735,10 @@ class ActivityDefinition extends DomainResource {
   /// resource.
   final RequestResourceType? kind;
 
-  /// Extensions for [kind]
-  final Element? kindElement;
-
   /// [profile]
   /// A profile to which the target of the activity definition is expected to
   /// conform.
   final FhirCanonical? profile;
-
-  /// Extensions for [profile]
-  final Element? profileElement;
 
   /// [code]
   /// Detailed description of the type of activity; e.g. What lab test, what
@@ -921,16 +750,10 @@ class ActivityDefinition extends DomainResource {
   /// activity and where the request should fit into the workflow chain.
   final RequestIntent? intent;
 
-  /// Extensions for [intent]
-  final Element? intentElement;
-
   /// [priority]
   /// Indicates how quickly the activity should be addressed with respect to
   /// other requests.
   final RequestPriority? priority;
-
-  /// Extensions for [priority]
-  final Element? priorityElement;
 
   /// [doNotPerform]
   /// Set this to true if the definition is to indicate that a particular
@@ -939,9 +762,6 @@ class ActivityDefinition extends DomainResource {
   /// with a doNotPerform of true would still indicate to NOT perform the
   /// action.
   final FhirBoolean? doNotPerform;
-
-  /// Extensions for [doNotPerform]
-  final Element? doNotPerformElement;
 
   /// [timingTiming]
   /// The period, timing or frequency upon which the described activity is to
@@ -952,9 +772,6 @@ class ActivityDefinition extends DomainResource {
   /// The period, timing or frequency upon which the described activity is to
   /// occur.
   final FhirDateTime? timingDateTime;
-
-  /// Extensions for [timingDateTime]
-  final Element? timingDateTimeElement;
 
   /// [timingAge]
   /// The period, timing or frequency upon which the described activity is to
@@ -1031,9 +848,6 @@ class ActivityDefinition extends DomainResource {
   /// ActivityDefinition instance as the input.
   final FhirCanonical? transform;
 
-  /// Extensions for [transform]
-  final Element? transformElement;
-
   /// [dynamicValue]
   /// Dynamic values that will be evaluated to produce values for elements of
   /// the resulting resource. For example, if the dosage of a medication must
@@ -1053,9 +867,6 @@ class ActivityDefinition extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -1077,9 +888,6 @@ class ActivityDefinition extends DomainResource {
     if (url?.value != null) {
       json['url'] = url!.toJson();
     }
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
-    }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
           identifier!.map((Identifier v) => v.toJson()).toList();
@@ -1087,33 +895,18 @@ class ActivityDefinition extends DomainResource {
     if (version?.value != null) {
       json['version'] = version!.toJson();
     }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
-    }
     if (name?.value != null) {
       json['name'] = name!.toJson();
-    }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
     }
     if (title?.value != null) {
       json['title'] = title!.toJson();
     }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
-    }
     if (subtitle?.value != null) {
       json['subtitle'] = subtitle!.toJson();
-    }
-    if (subtitleElement != null) {
-      json['_subtitle'] = subtitleElement!.toJson();
     }
     json['status'] = status.toJson();
     if (experimental?.value != null) {
       json['experimental'] = experimental!.toJson();
-    }
-    if (experimentalElement != null) {
-      json['_experimental'] = experimentalElement!.toJson();
     }
     if (subjectCodeableConcept != null) {
       json['subjectCodeableConcept'] = subjectCodeableConcept!.toJson();
@@ -1127,23 +920,14 @@ class ActivityDefinition extends DomainResource {
     if (date?.value != null) {
       json['date'] = date!.toJson();
     }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (publisher?.value != null) {
       json['publisher'] = publisher!.toJson();
-    }
-    if (publisherElement != null) {
-      json['_publisher'] = publisherElement!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] =
@@ -1156,32 +940,17 @@ class ActivityDefinition extends DomainResource {
     if (purpose?.value != null) {
       json['purpose'] = purpose!.toJson();
     }
-    if (purposeElement != null) {
-      json['_purpose'] = purposeElement!.toJson();
-    }
     if (usage?.value != null) {
       json['usage'] = usage!.toJson();
-    }
-    if (usageElement != null) {
-      json['_usage'] = usageElement!.toJson();
     }
     if (copyright?.value != null) {
       json['copyright'] = copyright!.toJson();
     }
-    if (copyrightElement != null) {
-      json['_copyright'] = copyrightElement!.toJson();
-    }
     if (approvalDate?.value != null) {
       json['approvalDate'] = approvalDate!.toJson();
     }
-    if (approvalDateElement != null) {
-      json['_approvalDate'] = approvalDateElement!.toJson();
-    }
     if (lastReviewDate?.value != null) {
       json['lastReviewDate'] = lastReviewDate!.toJson();
-    }
-    if (lastReviewDateElement != null) {
-      json['_lastReviewDate'] = lastReviewDateElement!.toJson();
     }
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
@@ -1210,18 +979,11 @@ class ActivityDefinition extends DomainResource {
     if (library_ != null && library_!.isNotEmpty) {
       json['library'] = library_!.map((FhirCanonical v) => v.toJson()).toList();
     }
-    if (libraryElement != null && libraryElement!.isNotEmpty) {
-      json['_library'] =
-          libraryElement!.map((Element v) => v.toJson()).toList();
-    }
     if (kind != null) {
       json['kind'] = kind!.toJson();
     }
     if (profile?.value != null) {
       json['profile'] = profile!.toJson();
-    }
-    if (profileElement != null) {
-      json['_profile'] = profileElement!.toJson();
     }
     if (code != null) {
       json['code'] = code!.toJson();
@@ -1235,17 +997,11 @@ class ActivityDefinition extends DomainResource {
     if (doNotPerform?.value != null) {
       json['doNotPerform'] = doNotPerform!.toJson();
     }
-    if (doNotPerformElement != null) {
-      json['_doNotPerform'] = doNotPerformElement!.toJson();
-    }
     if (timingTiming != null) {
       json['timingTiming'] = timingTiming!.toJson();
     }
     if (timingDateTime?.value != null) {
       json['timingDateTime'] = timingDateTime!.toJson();
-    }
-    if (timingDateTimeElement != null) {
-      json['_timingDateTime'] = timingDateTimeElement!.toJson();
     }
     if (timingAge != null) {
       json['timingAge'] = timingAge!.toJson();
@@ -1300,9 +1056,6 @@ class ActivityDefinition extends DomainResource {
     if (transform?.value != null) {
       json['transform'] = transform!.toJson();
     }
-    if (transformElement != null) {
-      json['_transform'] = transformElement!.toJson();
-    }
     if (dynamicValue != null && dynamicValue!.isNotEmpty) {
       json['dynamicValue'] = dynamicValue!
           .map((ActivityDefinitionDynamicValue v) => v.toJson())
@@ -1318,51 +1071,33 @@ class ActivityDefinition extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    Element? urlElement,
     List<Identifier>? identifier,
     FhirString? version,
-    Element? versionElement,
     FhirString? name,
-    Element? nameElement,
     FhirString? title,
-    Element? titleElement,
     FhirString? subtitle,
-    Element? subtitleElement,
     PublicationStatus? status,
-    Element? statusElement,
     FhirBoolean? experimental,
-    Element? experimentalElement,
     CodeableConcept? subjectCodeableConcept,
     Reference? subjectReference,
     SubjectType? subjectCanonical,
-    Element? subjectCanonicalElement,
     FhirDateTime? date,
-    Element? dateElement,
     FhirString? publisher,
-    Element? publisherElement,
     List<ContactDetail>? contact,
     FhirMarkdown? description,
-    Element? descriptionElement,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
     FhirMarkdown? purpose,
-    Element? purposeElement,
     FhirString? usage,
-    Element? usageElement,
     FhirMarkdown? copyright,
-    Element? copyrightElement,
     FhirDate? approvalDate,
-    Element? approvalDateElement,
     FhirDate? lastReviewDate,
-    Element? lastReviewDateElement,
     Period? effectivePeriod,
     List<CodeableConcept>? topic,
     List<ContactDetail>? author,
@@ -1371,21 +1106,14 @@ class ActivityDefinition extends DomainResource {
     List<ContactDetail>? endorser,
     List<RelatedArtifact>? relatedArtifact,
     List<FhirCanonical>? library_,
-    List<Element>? libraryElement,
     RequestResourceType? kind,
-    Element? kindElement,
     FhirCanonical? profile,
-    Element? profileElement,
     CodeableConcept? code,
     RequestIntent? intent,
-    Element? intentElement,
     RequestPriority? priority,
-    Element? priorityElement,
     FhirBoolean? doNotPerform,
-    Element? doNotPerformElement,
     Timing? timingTiming,
     FhirDateTime? timingDateTime,
-    Element? timingDateTimeElement,
     Age? timingAge,
     Period? timingPeriod,
     Range? timingRange,
@@ -1401,7 +1129,6 @@ class ActivityDefinition extends DomainResource {
     List<Reference>? observationRequirement,
     List<Reference>? observationResultRequirement,
     FhirCanonical? transform,
-    Element? transformElement,
     List<ActivityDefinitionDynamicValue>? dynamicValue,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1414,54 +1141,34 @@ class ActivityDefinition extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       identifier: identifier ?? this.identifier,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       subtitle: subtitle ?? this.subtitle,
-      subtitleElement: subtitleElement ?? this.subtitleElement,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       experimental: experimental ?? this.experimental,
-      experimentalElement: experimentalElement ?? this.experimentalElement,
       subjectCodeableConcept:
           subjectCodeableConcept ?? this.subjectCodeableConcept,
       subjectReference: subjectReference ?? this.subjectReference,
       subjectCanonical: subjectCanonical ?? this.subjectCanonical,
-      subjectCanonicalElement:
-          subjectCanonicalElement ?? this.subjectCanonicalElement,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       publisher: publisher ?? this.publisher,
-      publisherElement: publisherElement ?? this.publisherElement,
       contact: contact ?? this.contact,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       useContext: useContext ?? this.useContext,
       jurisdiction: jurisdiction ?? this.jurisdiction,
       purpose: purpose ?? this.purpose,
-      purposeElement: purposeElement ?? this.purposeElement,
       usage: usage ?? this.usage,
-      usageElement: usageElement ?? this.usageElement,
       copyright: copyright ?? this.copyright,
-      copyrightElement: copyrightElement ?? this.copyrightElement,
       approvalDate: approvalDate ?? this.approvalDate,
-      approvalDateElement: approvalDateElement ?? this.approvalDateElement,
       lastReviewDate: lastReviewDate ?? this.lastReviewDate,
-      lastReviewDateElement:
-          lastReviewDateElement ?? this.lastReviewDateElement,
       effectivePeriod: effectivePeriod ?? this.effectivePeriod,
       topic: topic ?? this.topic,
       author: author ?? this.author,
@@ -1470,22 +1177,14 @@ class ActivityDefinition extends DomainResource {
       endorser: endorser ?? this.endorser,
       relatedArtifact: relatedArtifact ?? this.relatedArtifact,
       library_: library_ ?? this.library_,
-      libraryElement: libraryElement ?? this.libraryElement,
       kind: kind ?? this.kind,
-      kindElement: kindElement ?? this.kindElement,
       profile: profile ?? this.profile,
-      profileElement: profileElement ?? this.profileElement,
       code: code ?? this.code,
       intent: intent ?? this.intent,
-      intentElement: intentElement ?? this.intentElement,
       priority: priority ?? this.priority,
-      priorityElement: priorityElement ?? this.priorityElement,
       doNotPerform: doNotPerform ?? this.doNotPerform,
-      doNotPerformElement: doNotPerformElement ?? this.doNotPerformElement,
       timingTiming: timingTiming ?? this.timingTiming,
       timingDateTime: timingDateTime ?? this.timingDateTime,
-      timingDateTimeElement:
-          timingDateTimeElement ?? this.timingDateTimeElement,
       timingAge: timingAge ?? this.timingAge,
       timingPeriod: timingPeriod ?? this.timingPeriod,
       timingRange: timingRange ?? this.timingRange,
@@ -1504,7 +1203,6 @@ class ActivityDefinition extends DomainResource {
       observationResultRequirement:
           observationResultRequirement ?? this.observationResultRequirement,
       transform: transform ?? this.transform,
-      transformElement: transformElement ?? this.transformElement,
       dynamicValue: dynamicValue ?? this.dynamicValue,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -1523,12 +1221,9 @@ class ActivityDefinitionParticipant extends BackboneElement {
 
   ActivityDefinitionParticipant({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.role,
     super.userData,
     super.formatCommentsPre,
@@ -1541,11 +1236,15 @@ class ActivityDefinitionParticipant extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ActivityDefinitionParticipant.fromJson(Map<String, dynamic> json) {
     return ActivityDefinitionParticipant(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1554,18 +1253,16 @@ class ActivityDefinitionParticipant extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      type: ActionParticipantType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
+      type: ActionParticipantType.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
       role: json['role'] != null
           ? CodeableConcept.fromJson(
               json['role'] as Map<String, dynamic>,
@@ -1574,7 +1271,8 @@ class ActivityDefinitionParticipant extends BackboneElement {
     );
   }
 
-  /// Deserialize [ActivityDefinitionParticipant] from a [String] or [YamlMap] object
+  /// Deserialize [ActivityDefinitionParticipant] from a [String]
+  /// or [YamlMap] object
   factory ActivityDefinitionParticipant.fromYaml(dynamic yaml) => yaml is String
       ? ActivityDefinitionParticipant.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1584,10 +1282,11 @@ class ActivityDefinitionParticipant extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ActivityDefinitionParticipant cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ActivityDefinitionParticipant cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ActivityDefinitionParticipant] that takes in a [String]
+  /// Factory constructor for [ActivityDefinitionParticipant]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ActivityDefinitionParticipant.fromJsonString(String source) {
@@ -1603,12 +1302,18 @@ class ActivityDefinitionParticipant extends BackboneElement {
   @override
   String get fhirType => 'ActivityDefinitionParticipant';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// The type of participant in the action.
   final ActionParticipantType type;
-
-  /// Extensions for [type]
-  final Element? typeElement;
 
   /// [role]
   /// The role the participant should play in performing the described
@@ -1643,7 +1348,6 @@ class ActivityDefinitionParticipant extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     ActionParticipantType? type,
-    Element? typeElement,
     CodeableConcept? role,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1657,7 +1361,6 @@ class ActivityDefinitionParticipant extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       role: role ?? this.role,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -1680,12 +1383,9 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
 
   ActivityDefinitionDynamicValue({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.path,
-
-    /// Extensions for [path]
-    this.pathElement,
     required this.expression,
     super.userData,
     super.formatCommentsPre,
@@ -1698,11 +1398,15 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ActivityDefinitionDynamicValue.fromJson(Map<String, dynamic> json) {
     return ActivityDefinitionDynamicValue(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1711,25 +1415,24 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      path: FhirString.fromJson(json['path']),
-      pathElement: json['_path'] != null
-          ? Element.fromJson(
-              json['_path'] as Map<String, dynamic>,
-            )
-          : null,
+      path: FhirString.fromJson({
+        'value': json['path'],
+        '_value': json['_path'],
+      }),
       expression: FhirExpression.fromJson(
         json['expression'] as Map<String, dynamic>,
       ),
     );
   }
 
-  /// Deserialize [ActivityDefinitionDynamicValue] from a [String] or [YamlMap] object
+  /// Deserialize [ActivityDefinitionDynamicValue] from a [String]
+  /// or [YamlMap] object
   factory ActivityDefinitionDynamicValue.fromYaml(dynamic yaml) => yaml
           is String
       ? ActivityDefinitionDynamicValue.fromJson(
@@ -1740,10 +1443,11 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ActivityDefinitionDynamicValue cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ActivityDefinitionDynamicValue cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ActivityDefinitionDynamicValue] that takes in a [String]
+  /// Factory constructor for [ActivityDefinitionDynamicValue]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ActivityDefinitionDynamicValue.fromJsonString(String source) {
@@ -1759,6 +1463,15 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
   @override
   String get fhirType => 'ActivityDefinitionDynamicValue';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [path]
   /// The path to the element to be customized. This is the path on the
   /// resource that will hold the result of the calculation defined by the
@@ -1770,9 +1483,6 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
   /// multiple-cardinality sub-elements (see the [Simple FHIRPath
   /// Profile](fhirpath.html#simple) for full details).
   final FhirString path;
-
-  /// Extensions for [path]
-  final Element? pathElement;
 
   /// [expression]
   /// An expression specifying the value of the customized element.
@@ -1792,9 +1502,6 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['path'] = path.toJson();
-    if (pathElement != null) {
-      json['_path'] = pathElement!.toJson();
-    }
     json['expression'] = expression.toJson();
     return json;
   }
@@ -1807,7 +1514,6 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? path,
-    Element? pathElement,
     FhirExpression? expression,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1821,7 +1527,6 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       path: path ?? this.path,
-      pathElement: pathElement ?? this.pathElement,
       expression: expression ?? this.expression,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

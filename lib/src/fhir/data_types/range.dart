@@ -9,7 +9,7 @@ class Range extends DataType {
 
   Range({
     super.id,
-    super.extension_,
+    this.extension_,
     this.low,
     this.high,
     super.userData,
@@ -23,11 +23,15 @@ class Range extends DataType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Range.fromJson(Map<String, dynamic> json) {
     return Range(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -46,7 +50,8 @@ class Range extends DataType {
     );
   }
 
-  /// Deserialize [Range] from a [String] or [YamlMap] object
+  /// Deserialize [Range] from a [String]
+  /// or [YamlMap] object
   factory Range.fromYaml(dynamic yaml) => yaml is String
       ? Range.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -55,10 +60,11 @@ class Range extends DataType {
           ? Range.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Range cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Range cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Range] that takes in a [String]
+  /// Factory constructor for [Range]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Range.fromJsonString(String source) {
@@ -73,6 +79,15 @@ class Range extends DataType {
 
   @override
   String get fhirType => 'Range';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [low]
   /// The low limit. The boundary is inclusive.

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
@@ -11,26 +10,38 @@ extension FhirCodeExtension on String {
 
 /// FHIR primitive type `code`
 class FhirCode extends PrimitiveType<String> {
-  /// Constructor enforces valid input
-  FhirCode(String input, [Element? element])
-      : value = _validateCode(input),
-        super(element: element);
+  /// Public constructor with input validation
+  FhirCode(String? input, [Element? element])
+      : super(
+          input == null ? null : _validateCode(input),
+          element,
+        );
 
-  /// fromJson accepts dynamic input and validates
-  factory FhirCode.fromJson(dynamic json) {
-    if (json is String) {
-      return FhirCode(json);
-    } else {
-      throw const FormatException('Invalid input for FhirCode');
+  /// Factory constructor to create [FhirCode] from JSON
+  factory FhirCode.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+
+    if (value == null) {
+      throw const FormatException('Invalid input for FhirCode: value is null');
     }
+
+    return FhirCode(value, element);
   }
 
-  /// fromYaml accepts dynamic input and validates
-  factory FhirCode.fromYaml(dynamic yaml) => yaml is String
-      ? FhirCode.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : throw const FormatException('Invalid Yaml format for FhirCode');
-  @override
-  final String value;
+  /// Factory constructor to create [FhirCode] from YAML
+  static FhirCode fromYaml(dynamic yaml) => yaml is String
+      ? FhirCode.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+        )
+      : yaml is YamlMap
+          ? FhirCode.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
+            )
+          : throw ArgumentError(
+              'FhirCode cannot be constructed from the provided input,'
+              ' it is neither a YAML string nor a YAML map.');
 
   /// Static method to try parsing the input
   static FhirCode? tryParse(dynamic input) {
@@ -40,9 +51,8 @@ class FhirCode extends PrimitiveType<String> {
       } catch (e) {
         return null;
       }
-    } else {
-      return null;
     }
+    return null;
   }
 
   /// Validation method for the FHIR Code format
@@ -50,48 +60,88 @@ class FhirCode extends PrimitiveType<String> {
     final regex = RegExp(r'^[^\s]+(\s[^\s]+)*$');
     if (regex.hasMatch(input)) {
       return input;
-    } else {
-      throw FormatException('Invalid FHIR Code: "$input"');
     }
+    throw FormatException('Invalid FHIR Code: "$input"');
   }
 
+  /// Boolean checks for the presence of a value only
+  bool get valueOnly => value != null && element == null;
+
+  /// Boolean checks for the presence of an element only
+  bool get elementOnly => value == null && element != null;
+
+  /// Boolean checks for the presence of both value and element
+  bool get valueAndElement => value != null && element != null;
+
+  /// Serializes the instance to JSON with standardized keys
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'value': value,
+      if (element != null) '_value': element!.toJson(),
+    };
+  }
+
+  /// Converts a list of JSON values to a list of [FhirCode] instances
+  static List<FhirCode> fromJsonList(
+    List<dynamic> values,
+    List<dynamic>? elements,
+  ) {
+    if (elements != null && elements.length != values.length) {
+      throw const FormatException(
+        'Values and elements must have the same length',
+      );
+    }
+
+    return List.generate(values.length, (i) {
+      final value = values[i] as String?;
+      final element = elements?[i] != null
+          ? Element.fromJson(elements![i] as Map<String, dynamic>)
+          : null;
+      return FhirCode(value, element);
+    });
+  }
+
+  /// Converts a list of [FhirCode] instances to a JSON-compatible map
+  static Map<String, dynamic> toJsonList(List<FhirCode> codes) {
+    return {
+      'value': codes.map((code) => code.value).toList(),
+      '_value': codes.map((code) => code.element?.toJson()).toList(),
+    };
+  }
+
+  /// Returns the FHIR type as a [String]
   @override
   String get fhirType => 'code';
 
+  /// Returns the [FhirCode] as a [String]
   @override
-  String toJson() => value;
+  String toString() => value ?? '';
 
-  @override
-  String toYaml() => value;
-
-  @override
-  String toString() => value;
-
-  @override
-  String toJsonString() => jsonEncode(toJson());
-
+  /// Overrides equality operator
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => value.hashCode;
-
-  @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  bool operator ==(Object other) => equals(other);
-
-  @override
-  bool equals(Object other) =>
+  bool operator ==(Object other) =>
       identical(this, other) ||
       (other is FhirCode && other.value == value) ||
       (other is String && other == value);
 
+  /// Overrides `hashCode` for use in hash-based collections
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => Object.hash(value, element);
+
+  /// Creates a deep copy of the instance
   @override
   FhirCode clone() => FhirCode(value, element?.clone() as Element?);
 
+  /// Sets a new element value and returns a modified instance
   @override
   FhirCode setElement(String name, dynamic elementValue) {
     return FhirCode(value, element?.setProperty(name, elementValue));
   }
 
+  /// Creates a modified copy with updated properties
   @override
   FhirCode copyWith({
     String? newValue,

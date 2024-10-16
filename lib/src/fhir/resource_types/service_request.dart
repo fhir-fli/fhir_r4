@@ -12,46 +12,22 @@ class ServiceRequest extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-
-    /// Extensions for [instantiatesCanonical]
-    this.instantiatesCanonicalElement,
     this.instantiatesUri,
-
-    /// Extensions for [instantiatesUri]
-    this.instantiatesUriElement,
     this.basedOn,
     this.replaces,
     this.requisition,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     required this.intent,
-
-    /// Extensions for [intent]
-    this.intentElement,
     this.category,
     this.priority,
-
-    /// Extensions for [priority]
-    this.priorityElement,
     this.doNotPerform,
-
-    /// Extensions for [doNotPerform]
-    this.doNotPerformElement,
     this.code,
     this.orderDetail,
     this.quantityQuantity,
@@ -60,20 +36,11 @@ class ServiceRequest extends DomainResource {
     required this.subject,
     this.encounter,
     this.occurrenceDateTime,
-
-    /// Extensions for [occurrenceDateTime]
-    this.occurrenceDateTimeElement,
     this.occurrencePeriod,
     this.occurrenceTiming,
     this.asNeededBoolean,
-
-    /// Extensions for [asNeededBoolean]
-    this.asNeededBooleanElement,
     this.asNeededCodeableConcept,
     this.authoredOn,
-
-    /// Extensions for [authoredOn]
-    this.authoredOnElement,
     this.requester,
     this.performerType,
     this.performer,
@@ -87,9 +54,6 @@ class ServiceRequest extends DomainResource {
     this.bodySite,
     this.note,
     this.patientInstruction,
-
-    /// Extensions for [patientInstruction]
-    this.patientInstructionElement,
     this.relevantHistory,
     super.userData,
     super.formatCommentsPre,
@@ -104,27 +68,27 @@ class ServiceRequest extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ServiceRequest.fromJson(Map<String, dynamic> json) {
     return ServiceRequest(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -134,7 +98,7 @@ class ServiceRequest extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -143,7 +107,7 @@ class ServiceRequest extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -152,7 +116,7 @@ class ServiceRequest extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -161,44 +125,24 @@ class ServiceRequest extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      instantiatesCanonical: json['instantiatesCanonical'] != null
-          ? (json['instantiatesCanonical'] as List<dynamic>)
-              .map<FhirCanonical>(
-                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
-          ? (json['_instantiatesCanonical'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      instantiatesUri: json['instantiatesUri'] != null
-          ? (json['instantiatesUri'] as List<dynamic>)
-              .map<FhirUri>(
-                (dynamic v) => FhirUri.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      instantiatesUriElement: json['_instantiatesUri'] != null
-          ? (json['_instantiatesUri'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      instantiatesCanonical: parsePrimitiveList<FhirCanonical>(
+          json['instantiatesCanonical'] as List<dynamic>?,
+          json['_instantiatesCanonical'] as List<dynamic>?,
+          fromJson: FhirCanonical.fromJson),
+      instantiatesUri: parsePrimitiveList<FhirUri>(
+          json['instantiatesUri'] as List<dynamic>?,
+          json['_instantiatesUri'] as List<dynamic>?,
+          fromJson: FhirUri.fromJson),
       basedOn: json['basedOn'] != null
           ? (json['basedOn'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -207,7 +151,7 @@ class ServiceRequest extends DomainResource {
       replaces: json['replaces'] != null
           ? (json['replaces'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -218,42 +162,34 @@ class ServiceRequest extends DomainResource {
               json['requisition'] as Map<String, dynamic>,
             )
           : null,
-      status: RequestStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
-      intent: RequestIntent.fromJson(json['intent']),
-      intentElement: json['_intent'] != null
-          ? Element.fromJson(
-              json['_intent'] as Map<String, dynamic>,
-            )
-          : null,
+      status: RequestStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
+      intent: RequestIntent.fromJson({
+        'value': json['intent'],
+        '_value': json['_intent'],
+      }),
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       priority: json['priority'] != null
-          ? RequestPriority.fromJson(json['priority'])
-          : null,
-      priorityElement: json['_priority'] != null
-          ? Element.fromJson(
-              json['_priority'] as Map<String, dynamic>,
-            )
+          ? RequestPriority.fromJson({
+              'value': json['priority'],
+              '_value': json['_priority'],
+            })
           : null,
       doNotPerform: json['doNotPerform'] != null
-          ? FhirBoolean.fromJson(json['doNotPerform'])
-          : null,
-      doNotPerformElement: json['_doNotPerform'] != null
-          ? Element.fromJson(
-              json['_doNotPerform'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['doNotPerform'],
+              '_value': json['_doNotPerform'],
+            })
           : null,
       code: json['code'] != null
           ? CodeableConcept.fromJson(
@@ -263,7 +199,7 @@ class ServiceRequest extends DomainResource {
       orderDetail: json['orderDetail'] != null
           ? (json['orderDetail'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -293,12 +229,10 @@ class ServiceRequest extends DomainResource {
             )
           : null,
       occurrenceDateTime: json['occurrenceDateTime'] != null
-          ? FhirDateTime.fromJson(json['occurrenceDateTime'])
-          : null,
-      occurrenceDateTimeElement: json['_occurrenceDateTime'] != null
-          ? Element.fromJson(
-              json['_occurrenceDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['occurrenceDateTime'],
+              '_value': json['_occurrenceDateTime'],
+            })
           : null,
       occurrencePeriod: json['occurrencePeriod'] != null
           ? Period.fromJson(
@@ -311,12 +245,10 @@ class ServiceRequest extends DomainResource {
             )
           : null,
       asNeededBoolean: json['asNeededBoolean'] != null
-          ? FhirBoolean.fromJson(json['asNeededBoolean'])
-          : null,
-      asNeededBooleanElement: json['_asNeededBoolean'] != null
-          ? Element.fromJson(
-              json['_asNeededBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['asNeededBoolean'],
+              '_value': json['_asNeededBoolean'],
+            })
           : null,
       asNeededCodeableConcept: json['asNeededCodeableConcept'] != null
           ? CodeableConcept.fromJson(
@@ -324,12 +256,10 @@ class ServiceRequest extends DomainResource {
             )
           : null,
       authoredOn: json['authoredOn'] != null
-          ? FhirDateTime.fromJson(json['authoredOn'])
-          : null,
-      authoredOnElement: json['_authoredOn'] != null
-          ? Element.fromJson(
-              json['_authoredOn'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['authoredOn'],
+              '_value': json['_authoredOn'],
+            })
           : null,
       requester: json['requester'] != null
           ? Reference.fromJson(
@@ -344,7 +274,7 @@ class ServiceRequest extends DomainResource {
       performer: json['performer'] != null
           ? (json['performer'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -353,7 +283,7 @@ class ServiceRequest extends DomainResource {
       locationCode: json['locationCode'] != null
           ? (json['locationCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -362,7 +292,7 @@ class ServiceRequest extends DomainResource {
       locationReference: json['locationReference'] != null
           ? (json['locationReference'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -371,7 +301,7 @@ class ServiceRequest extends DomainResource {
       reasonCode: json['reasonCode'] != null
           ? (json['reasonCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -380,7 +310,7 @@ class ServiceRequest extends DomainResource {
       reasonReference: json['reasonReference'] != null
           ? (json['reasonReference'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -389,7 +319,7 @@ class ServiceRequest extends DomainResource {
       insurance: json['insurance'] != null
           ? (json['insurance'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -398,7 +328,7 @@ class ServiceRequest extends DomainResource {
       supportingInfo: json['supportingInfo'] != null
           ? (json['supportingInfo'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -407,7 +337,7 @@ class ServiceRequest extends DomainResource {
       specimen: json['specimen'] != null
           ? (json['specimen'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -416,7 +346,7 @@ class ServiceRequest extends DomainResource {
       bodySite: json['bodySite'] != null
           ? (json['bodySite'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -425,24 +355,22 @@ class ServiceRequest extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       patientInstruction: json['patientInstruction'] != null
-          ? FhirString.fromJson(json['patientInstruction'])
-          : null,
-      patientInstructionElement: json['_patientInstruction'] != null
-          ? Element.fromJson(
-              json['_patientInstruction'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['patientInstruction'],
+              '_value': json['_patientInstruction'],
+            })
           : null,
       relevantHistory: json['relevantHistory'] != null
           ? (json['relevantHistory'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -451,7 +379,8 @@ class ServiceRequest extends DomainResource {
     );
   }
 
-  /// Deserialize [ServiceRequest] from a [String] or [YamlMap] object
+  /// Deserialize [ServiceRequest] from a [String]
+  /// or [YamlMap] object
   factory ServiceRequest.fromYaml(dynamic yaml) => yaml is String
       ? ServiceRequest.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -460,11 +389,11 @@ class ServiceRequest extends DomainResource {
           ? ServiceRequest.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ServiceRequest cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ServiceRequest cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ServiceRequest] that takes in a [String]
+  /// Factory constructor for [ServiceRequest]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ServiceRequest.fromJsonString(String source) {
@@ -480,6 +409,15 @@ class ServiceRequest extends DomainResource {
   @override
   String get fhirType => 'ServiceRequest';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Identifiers assigned to this order instance by the orderer and/or the
   /// receiver and/or order fulfiller.
@@ -491,17 +429,11 @@ class ServiceRequest extends DomainResource {
   /// ServiceRequest.
   final List<FhirCanonical>? instantiatesCanonical;
 
-  /// Extensions for [instantiatesCanonical]
-  final List<Element>? instantiatesCanonicalElement;
-
   /// [instantiatesUri]
   /// The URL pointing to an externally maintained protocol, guideline,
   /// orderset or other definition that is adhered to in whole or in part by
   /// this ServiceRequest.
   final List<FhirUri>? instantiatesUri;
-
-  /// Extensions for [instantiatesUri]
-  final List<Element>? instantiatesUriElement;
 
   /// [basedOn]
   /// Plan/proposal/order fulfilled by this request.
@@ -522,16 +454,10 @@ class ServiceRequest extends DomainResource {
   /// The status of the order.
   final RequestStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [intent]
   /// Whether the request is a proposal, plan, an original order or a reflex
   /// order.
   final RequestIntent intent;
-
-  /// Extensions for [intent]
-  final Element? intentElement;
 
   /// [category]
   /// A code that classifies the service for searching, sorting and display
@@ -543,16 +469,10 @@ class ServiceRequest extends DomainResource {
   /// respect to other requests.
   final RequestPriority? priority;
 
-  /// Extensions for [priority]
-  final Element? priorityElement;
-
   /// [doNotPerform]
   /// Set this to true if the record is saying that the service/procedure
   /// should NOT be performed.
   final FhirBoolean? doNotPerform;
-
-  /// Extensions for [doNotPerform]
-  final Element? doNotPerformElement;
 
   /// [code]
   /// A code that identifies a particular service (i.e., procedure,
@@ -602,9 +522,6 @@ class ServiceRequest extends DomainResource {
   /// The date/time at which the requested service should occur.
   final FhirDateTime? occurrenceDateTime;
 
-  /// Extensions for [occurrenceDateTime]
-  final Element? occurrenceDateTimeElement;
-
   /// [occurrencePeriod]
   /// The date/time at which the requested service should occur.
   final Period? occurrencePeriod;
@@ -618,9 +535,6 @@ class ServiceRequest extends DomainResource {
   /// performing the service. For example "pain", "on flare-up", etc.
   final FhirBoolean? asNeededBoolean;
 
-  /// Extensions for [asNeededBoolean]
-  final Element? asNeededBooleanElement;
-
   /// [asNeededCodeableConcept]
   /// If a CodeableConcept is present, it indicates the pre-condition for
   /// performing the service. For example "pain", "on flare-up", etc.
@@ -629,9 +543,6 @@ class ServiceRequest extends DomainResource {
   /// [authoredOn]
   /// When the request transitioned to being actionable.
   final FhirDateTime? authoredOn;
-
-  /// Extensions for [authoredOn]
-  final Element? authoredOnElement;
 
   /// [requester]
   /// The individual who initiated the request and has responsibility for its
@@ -704,9 +615,6 @@ class ServiceRequest extends DomainResource {
   /// Instructions in terms that are understood by the patient or consumer.
   final FhirString? patientInstruction;
 
-  /// Extensions for [patientInstruction]
-  final Element? patientInstructionElement;
-
   /// [relevantHistory]
   /// Key events in the history of the request.
   final List<Reference>? relevantHistory;
@@ -722,9 +630,6 @@ class ServiceRequest extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -751,18 +656,9 @@ class ServiceRequest extends DomainResource {
       json['instantiatesCanonical'] =
           instantiatesCanonical!.map((FhirCanonical v) => v.toJson()).toList();
     }
-    if (instantiatesCanonicalElement != null &&
-        instantiatesCanonicalElement!.isNotEmpty) {
-      json['_instantiatesCanonical'] =
-          instantiatesCanonicalElement!.map((Element v) => v.toJson()).toList();
-    }
     if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
       json['instantiatesUri'] =
           instantiatesUri!.map((FhirUri v) => v.toJson()).toList();
-    }
-    if (instantiatesUriElement != null && instantiatesUriElement!.isNotEmpty) {
-      json['_instantiatesUri'] =
-          instantiatesUriElement!.map((Element v) => v.toJson()).toList();
     }
     if (basedOn != null && basedOn!.isNotEmpty) {
       json['basedOn'] = basedOn!.map((Reference v) => v.toJson()).toList();
@@ -784,9 +680,6 @@ class ServiceRequest extends DomainResource {
     }
     if (doNotPerform?.value != null) {
       json['doNotPerform'] = doNotPerform!.toJson();
-    }
-    if (doNotPerformElement != null) {
-      json['_doNotPerform'] = doNotPerformElement!.toJson();
     }
     if (code != null) {
       json['code'] = code!.toJson();
@@ -811,9 +704,6 @@ class ServiceRequest extends DomainResource {
     if (occurrenceDateTime?.value != null) {
       json['occurrenceDateTime'] = occurrenceDateTime!.toJson();
     }
-    if (occurrenceDateTimeElement != null) {
-      json['_occurrenceDateTime'] = occurrenceDateTimeElement!.toJson();
-    }
     if (occurrencePeriod != null) {
       json['occurrencePeriod'] = occurrencePeriod!.toJson();
     }
@@ -823,17 +713,11 @@ class ServiceRequest extends DomainResource {
     if (asNeededBoolean?.value != null) {
       json['asNeededBoolean'] = asNeededBoolean!.toJson();
     }
-    if (asNeededBooleanElement != null) {
-      json['_asNeededBoolean'] = asNeededBooleanElement!.toJson();
-    }
     if (asNeededCodeableConcept != null) {
       json['asNeededCodeableConcept'] = asNeededCodeableConcept!.toJson();
     }
     if (authoredOn?.value != null) {
       json['authoredOn'] = authoredOn!.toJson();
-    }
-    if (authoredOnElement != null) {
-      json['_authoredOn'] = authoredOnElement!.toJson();
     }
     if (requester != null) {
       json['requester'] = requester!.toJson();
@@ -880,9 +764,6 @@ class ServiceRequest extends DomainResource {
     if (patientInstruction?.value != null) {
       json['patientInstruction'] = patientInstruction!.toJson();
     }
-    if (patientInstructionElement != null) {
-      json['_patientInstruction'] = patientInstructionElement!.toJson();
-    }
     if (relevantHistory != null && relevantHistory!.isNotEmpty) {
       json['relevantHistory'] =
           relevantHistory!.map((Reference v) => v.toJson()).toList();
@@ -897,30 +778,22 @@ class ServiceRequest extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     List<FhirCanonical>? instantiatesCanonical,
-    List<Element>? instantiatesCanonicalElement,
     List<FhirUri>? instantiatesUri,
-    List<Element>? instantiatesUriElement,
     List<Reference>? basedOn,
     List<Reference>? replaces,
     Identifier? requisition,
     RequestStatus? status,
-    Element? statusElement,
     RequestIntent? intent,
-    Element? intentElement,
     List<CodeableConcept>? category,
     RequestPriority? priority,
-    Element? priorityElement,
     FhirBoolean? doNotPerform,
-    Element? doNotPerformElement,
     CodeableConcept? code,
     List<CodeableConcept>? orderDetail,
     Quantity? quantityQuantity,
@@ -929,14 +802,11 @@ class ServiceRequest extends DomainResource {
     Reference? subject,
     Reference? encounter,
     FhirDateTime? occurrenceDateTime,
-    Element? occurrenceDateTimeElement,
     Period? occurrencePeriod,
     Timing? occurrenceTiming,
     FhirBoolean? asNeededBoolean,
-    Element? asNeededBooleanElement,
     CodeableConcept? asNeededCodeableConcept,
     FhirDateTime? authoredOn,
-    Element? authoredOnElement,
     Reference? requester,
     CodeableConcept? performerType,
     List<Reference>? performer,
@@ -950,7 +820,6 @@ class ServiceRequest extends DomainResource {
     List<CodeableConcept>? bodySite,
     List<Annotation>? note,
     FhirString? patientInstruction,
-    Element? patientInstructionElement,
     List<Reference>? relevantHistory,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -963,9 +832,7 @@ class ServiceRequest extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -973,23 +840,15 @@ class ServiceRequest extends DomainResource {
       identifier: identifier ?? this.identifier,
       instantiatesCanonical:
           instantiatesCanonical ?? this.instantiatesCanonical,
-      instantiatesCanonicalElement:
-          instantiatesCanonicalElement ?? this.instantiatesCanonicalElement,
       instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      instantiatesUriElement:
-          instantiatesUriElement ?? this.instantiatesUriElement,
       basedOn: basedOn ?? this.basedOn,
       replaces: replaces ?? this.replaces,
       requisition: requisition ?? this.requisition,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       intent: intent ?? this.intent,
-      intentElement: intentElement ?? this.intentElement,
       category: category ?? this.category,
       priority: priority ?? this.priority,
-      priorityElement: priorityElement ?? this.priorityElement,
       doNotPerform: doNotPerform ?? this.doNotPerform,
-      doNotPerformElement: doNotPerformElement ?? this.doNotPerformElement,
       code: code ?? this.code,
       orderDetail: orderDetail ?? this.orderDetail,
       quantityQuantity: quantityQuantity ?? this.quantityQuantity,
@@ -998,17 +857,12 @@ class ServiceRequest extends DomainResource {
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
       occurrenceDateTime: occurrenceDateTime ?? this.occurrenceDateTime,
-      occurrenceDateTimeElement:
-          occurrenceDateTimeElement ?? this.occurrenceDateTimeElement,
       occurrencePeriod: occurrencePeriod ?? this.occurrencePeriod,
       occurrenceTiming: occurrenceTiming ?? this.occurrenceTiming,
       asNeededBoolean: asNeededBoolean ?? this.asNeededBoolean,
-      asNeededBooleanElement:
-          asNeededBooleanElement ?? this.asNeededBooleanElement,
       asNeededCodeableConcept:
           asNeededCodeableConcept ?? this.asNeededCodeableConcept,
       authoredOn: authoredOn ?? this.authoredOn,
-      authoredOnElement: authoredOnElement ?? this.authoredOnElement,
       requester: requester ?? this.requester,
       performerType: performerType ?? this.performerType,
       performer: performer ?? this.performer,
@@ -1022,8 +876,6 @@ class ServiceRequest extends DomainResource {
       bodySite: bodySite ?? this.bodySite,
       note: note ?? this.note,
       patientInstruction: patientInstruction ?? this.patientInstruction,
-      patientInstructionElement:
-          patientInstructionElement ?? this.patientInstructionElement,
       relevantHistory: relevantHistory ?? this.relevantHistory,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

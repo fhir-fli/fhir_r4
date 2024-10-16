@@ -11,28 +11,16 @@ class Substance extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.category,
     required this.code,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.instance,
     this.ingredient,
     super.userData,
@@ -48,27 +36,27 @@ class Substance extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Substance.fromJson(Map<String, dynamic> json) {
     return Substance(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -78,7 +66,7 @@ class Substance extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -87,7 +75,7 @@ class Substance extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -96,7 +84,7 @@ class Substance extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -105,24 +93,22 @@ class Substance extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       status: json['status'] != null
-          ? FHIRSubstanceStatus.fromJson(json['status'])
-          : null,
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
+          ? FHIRSubstanceStatus.fromJson({
+              'value': json['status'],
+              '_value': json['_status'],
+            })
           : null,
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -132,17 +118,15 @@ class Substance extends DomainResource {
         json['code'] as Map<String, dynamic>,
       ),
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       instance: json['instance'] != null
           ? (json['instance'] as List<dynamic>)
               .map<SubstanceInstance>(
-                (dynamic v) => SubstanceInstance.fromJson(
+                (v) => SubstanceInstance.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -151,7 +135,7 @@ class Substance extends DomainResource {
       ingredient: json['ingredient'] != null
           ? (json['ingredient'] as List<dynamic>)
               .map<SubstanceIngredient>(
-                (dynamic v) => SubstanceIngredient.fromJson(
+                (v) => SubstanceIngredient.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -160,7 +144,8 @@ class Substance extends DomainResource {
     );
   }
 
-  /// Deserialize [Substance] from a [String] or [YamlMap] object
+  /// Deserialize [Substance] from a [String]
+  /// or [YamlMap] object
   factory Substance.fromYaml(dynamic yaml) => yaml is String
       ? Substance.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -169,10 +154,11 @@ class Substance extends DomainResource {
           ? Substance.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Substance cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Substance cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Substance] that takes in a [String]
+  /// Factory constructor for [Substance]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Substance.fromJsonString(String source) {
@@ -188,6 +174,15 @@ class Substance extends DomainResource {
   @override
   String get fhirType => 'Substance';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Unique identifier for the substance.
   final List<Identifier>? identifier;
@@ -195,9 +190,6 @@ class Substance extends DomainResource {
   /// [status]
   /// A code to indicate if the substance is actively used.
   final FHIRSubstanceStatus? status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [category]
   /// A code that classifies the general type of substance. This is used for
@@ -212,9 +204,6 @@ class Substance extends DomainResource {
   /// A description of the substance - its appearance, handling requirements,
   /// and other usage notes.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [instance]
   /// Substance may be used to describe a kind of substance, or a specific
@@ -236,9 +225,6 @@ class Substance extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -272,9 +258,6 @@ class Substance extends DomainResource {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (instance != null && instance!.isNotEmpty) {
       json['instance'] =
           instance!.map((SubstanceInstance v) => v.toJson()).toList();
@@ -293,20 +276,16 @@ class Substance extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     FHIRSubstanceStatus? status,
-    Element? statusElement,
     List<CodeableConcept>? category,
     CodeableConcept? code,
     FhirString? description,
-    Element? descriptionElement,
     List<SubstanceInstance>? instance,
     List<SubstanceIngredient>? ingredient,
     Map<String, Object?>? userData,
@@ -320,20 +299,16 @@ class Substance extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       category: category ?? this.category,
       code: code ?? this.code,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       instance: instance ?? this.instance,
       ingredient: ingredient ?? this.ingredient,
       userData: userData ?? this.userData,
@@ -354,13 +329,10 @@ class SubstanceInstance extends BackboneElement {
 
   SubstanceInstance({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.expiry,
-
-    /// Extensions for [expiry]
-    this.expiryElement,
     this.quantity,
     super.userData,
     super.formatCommentsPre,
@@ -373,11 +345,15 @@ class SubstanceInstance extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceInstance.fromJson(Map<String, dynamic> json) {
     return SubstanceInstance(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -386,7 +362,7 @@ class SubstanceInstance extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -397,12 +373,11 @@ class SubstanceInstance extends BackboneElement {
               json['identifier'] as Map<String, dynamic>,
             )
           : null,
-      expiry:
-          json['expiry'] != null ? FhirDateTime.fromJson(json['expiry']) : null,
-      expiryElement: json['_expiry'] != null
-          ? Element.fromJson(
-              json['_expiry'] as Map<String, dynamic>,
-            )
+      expiry: json['expiry'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['expiry'],
+              '_value': json['_expiry'],
+            })
           : null,
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
@@ -412,7 +387,8 @@ class SubstanceInstance extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceInstance] from a [String] or [YamlMap] object
+  /// Deserialize [SubstanceInstance] from a [String]
+  /// or [YamlMap] object
   factory SubstanceInstance.fromYaml(dynamic yaml) => yaml is String
       ? SubstanceInstance.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -421,11 +397,11 @@ class SubstanceInstance extends BackboneElement {
           ? SubstanceInstance.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubstanceInstance cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('SubstanceInstance cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubstanceInstance] that takes in a [String]
+  /// Factory constructor for [SubstanceInstance]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubstanceInstance.fromJsonString(String source) {
@@ -441,6 +417,15 @@ class SubstanceInstance extends BackboneElement {
   @override
   String get fhirType => 'SubstanceInstance';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Identifier associated with the package/container (usually a label
   /// affixed directly).
@@ -450,9 +435,6 @@ class SubstanceInstance extends BackboneElement {
   /// When the substance is no longer valid to use. For some substances, a
   /// single arbitrary date is used for expiry.
   final FhirDateTime? expiry;
-
-  /// Extensions for [expiry]
-  final Element? expiryElement;
 
   /// [quantity]
   /// The amount of the substance.
@@ -477,9 +459,6 @@ class SubstanceInstance extends BackboneElement {
     if (expiry?.value != null) {
       json['expiry'] = expiry!.toJson();
     }
-    if (expiryElement != null) {
-      json['_expiry'] = expiryElement!.toJson();
-    }
     if (quantity != null) {
       json['quantity'] = quantity!.toJson();
     }
@@ -495,7 +474,6 @@ class SubstanceInstance extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Identifier? identifier,
     FhirDateTime? expiry,
-    Element? expiryElement,
     Quantity? quantity,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -510,7 +488,6 @@ class SubstanceInstance extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       expiry: expiry ?? this.expiry,
-      expiryElement: expiryElement ?? this.expiryElement,
       quantity: quantity ?? this.quantity,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -529,7 +506,7 @@ class SubstanceIngredient extends BackboneElement {
 
   SubstanceIngredient({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.quantity,
     this.substanceCodeableConcept,
@@ -545,11 +522,15 @@ class SubstanceIngredient extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceIngredient.fromJson(Map<String, dynamic> json) {
     return SubstanceIngredient(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -558,7 +539,7 @@ class SubstanceIngredient extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -582,7 +563,8 @@ class SubstanceIngredient extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceIngredient] from a [String] or [YamlMap] object
+  /// Deserialize [SubstanceIngredient] from a [String]
+  /// or [YamlMap] object
   factory SubstanceIngredient.fromYaml(dynamic yaml) => yaml is String
       ? SubstanceIngredient.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -592,10 +574,11 @@ class SubstanceIngredient extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'SubstanceIngredient cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'SubstanceIngredient cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubstanceIngredient] that takes in a [String]
+  /// Factory constructor for [SubstanceIngredient]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubstanceIngredient.fromJsonString(String source) {
@@ -610,6 +593,15 @@ class SubstanceIngredient extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceIngredient';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [quantity]
   /// The amount of the ingredient in the substance - a concentration ratio.

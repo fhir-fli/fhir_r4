@@ -14,69 +14,27 @@ class ValueSet extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.identifier,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.experimental,
-
-    /// Extensions for [experimental]
-    this.experimentalElement,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.publisher,
-
-    /// Extensions for [publisher]
-    this.publisherElement,
     this.contact,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.immutable,
-
-    /// Extensions for [immutable]
-    this.immutableElement,
     this.purpose,
-
-    /// Extensions for [purpose]
-    this.purposeElement,
     this.copyright,
-
-    /// Extensions for [copyright]
-    this.copyrightElement,
     this.compose,
     this.expansion,
     super.userData,
@@ -92,27 +50,27 @@ class ValueSet extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSet.fromJson(Map<String, dynamic> json) {
     return ValueSet(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -122,7 +80,7 @@ class ValueSet extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -131,7 +89,7 @@ class ValueSet extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -140,95 +98,86 @@ class ValueSet extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
+      url: json['url'] != null
+          ? FhirUri.fromJson({
+              'value': json['url'],
+              '_value': json['_url'],
+            })
           : null,
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: PublicationStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson(json['experimental'])
+          ? FhirBoolean.fromJson({
+              'value': json['experimental'],
+              '_value': json['_experimental'],
+            })
           : null,
-      experimentalElement: json['_experimental'] != null
-          ? Element.fromJson(
-              json['_experimental'] as Map<String, dynamic>,
-            )
-          : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       publisher: json['publisher'] != null
-          ? FhirString.fromJson(json['publisher'])
-          : null,
-      publisherElement: json['_publisher'] != null
-          ? Element.fromJson(
-              json['_publisher'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['publisher'],
+              '_value': json['_publisher'],
+            })
           : null,
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       useContext: json['useContext'] != null
           ? (json['useContext'] as List<dynamic>)
               .map<UsageContext>(
-                (dynamic v) => UsageContext.fromJson(
+                (v) => UsageContext.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -237,35 +186,29 @@ class ValueSet extends DomainResource {
       jurisdiction: json['jurisdiction'] != null
           ? (json['jurisdiction'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       immutable: json['immutable'] != null
-          ? FhirBoolean.fromJson(json['immutable'])
-          : null,
-      immutableElement: json['_immutable'] != null
-          ? Element.fromJson(
-              json['_immutable'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['immutable'],
+              '_value': json['_immutable'],
+            })
           : null,
       purpose: json['purpose'] != null
-          ? FhirMarkdown.fromJson(json['purpose'])
-          : null,
-      purposeElement: json['_purpose'] != null
-          ? Element.fromJson(
-              json['_purpose'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['purpose'],
+              '_value': json['_purpose'],
+            })
           : null,
       copyright: json['copyright'] != null
-          ? FhirMarkdown.fromJson(json['copyright'])
-          : null,
-      copyrightElement: json['_copyright'] != null
-          ? Element.fromJson(
-              json['_copyright'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['copyright'],
+              '_value': json['_copyright'],
+            })
           : null,
       compose: json['compose'] != null
           ? ValueSetCompose.fromJson(
@@ -280,7 +223,8 @@ class ValueSet extends DomainResource {
     );
   }
 
-  /// Deserialize [ValueSet] from a [String] or [YamlMap] object
+  /// Deserialize [ValueSet] from a [String]
+  /// or [YamlMap] object
   factory ValueSet.fromYaml(dynamic yaml) => yaml is String
       ? ValueSet.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -289,10 +233,11 @@ class ValueSet extends DomainResource {
           ? ValueSet.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('ValueSet cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ValueSet cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ValueSet] that takes in a [String]
+  /// Factory constructor for [ValueSet]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ValueSet.fromJsonString(String source) {
@@ -308,6 +253,15 @@ class ValueSet extends DomainResource {
   @override
   String get fhirType => 'ValueSet';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [url]
   /// An absolute URI that is used to identify this value set when it is
   /// referenced in a specification, model, design or an instance; also
@@ -317,9 +271,6 @@ class ValueSet extends DomainResource {
   /// of a canonical reference. It SHALL remain the same when the value set
   /// is stored on different servers.
   final FhirUri? url;
-
-  /// Extensions for [url]
-  final Element? urlElement;
 
   /// [identifier]
   /// A formal identifier that is used to identify this value set when it is
@@ -336,24 +287,15 @@ class ValueSet extends DomainResource {
   /// expectation that versions can be placed in a lexicographical sequence.
   final FhirString? version;
 
-  /// Extensions for [version]
-  final Element? versionElement;
-
   /// [name]
   /// A natural language name identifying the value set. This name should be
   /// usable as an identifier for the module by machine processing
   /// applications such as code generation.
   final FhirString? name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [title]
   /// A short, descriptive, user-friendly title for the value set.
   final FhirString? title;
-
-  /// Extensions for [title]
-  final Element? titleElement;
 
   /// [status]
   /// The status of this value set. Enables tracking the life-cycle of the
@@ -362,33 +304,21 @@ class ValueSet extends DomainResource {
   /// Expansions do not have a state.
   final PublicationStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [experimental]
   /// A Boolean value to indicate that this value set is authored for testing
   /// purposes (or education/evaluation/marketing) and is not intended to be
   /// used for genuine usage.
   final FhirBoolean? experimental;
 
-  /// Extensions for [experimental]
-  final Element? experimentalElement;
-
   /// [date]
   /// The date (and optionally time) when the value set was created or
   /// revised (e.g. the 'content logical definition').
   final FhirDateTime? date;
 
-  /// Extensions for [date]
-  final Element? dateElement;
-
   /// [publisher]
   /// The name of the organization or individual that published the value
   /// set.
   final FhirString? publisher;
-
-  /// Extensions for [publisher]
-  final Element? publisherElement;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
@@ -401,9 +331,6 @@ class ValueSet extends DomainResource {
   /// meanings for concepts to be included within the Value Set Expansion,
   /// and also may specify the intended use and limitations of the Value Set.
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -423,25 +350,16 @@ class ValueSet extends DomainResource {
   /// definition can be created. Note: Other metadata might still change.
   final FhirBoolean? immutable;
 
-  /// Extensions for [immutable]
-  final Element? immutableElement;
-
   /// [purpose]
   /// Explanation of why this value set is needed and why it has been
   /// designed as it has.
   final FhirMarkdown? purpose;
-
-  /// Extensions for [purpose]
-  final Element? purposeElement;
 
   /// [copyright]
   /// A copyright statement relating to the value set and/or its contents.
   /// Copyright statements are generally legal restrictions on the use and
   /// publishing of the value set.
   final FhirMarkdown? copyright;
-
-  /// Extensions for [copyright]
-  final Element? copyrightElement;
 
   /// [compose]
   /// A set of criteria that define the contents of the value set by
@@ -468,9 +386,6 @@ class ValueSet extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -491,9 +406,6 @@ class ValueSet extends DomainResource {
     if (url?.value != null) {
       json['url'] = url!.toJson();
     }
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
-    }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
           identifier!.map((Identifier v) => v.toJson()).toList();
@@ -501,48 +413,27 @@ class ValueSet extends DomainResource {
     if (version?.value != null) {
       json['version'] = version!.toJson();
     }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
-    }
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (title?.value != null) {
       json['title'] = title!.toJson();
-    }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
     }
     json['status'] = status.toJson();
     if (experimental?.value != null) {
       json['experimental'] = experimental!.toJson();
     }
-    if (experimentalElement != null) {
-      json['_experimental'] = experimentalElement!.toJson();
-    }
     if (date?.value != null) {
       json['date'] = date!.toJson();
     }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (publisher?.value != null) {
       json['publisher'] = publisher!.toJson();
-    }
-    if (publisherElement != null) {
-      json['_publisher'] = publisherElement!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] =
@@ -555,20 +446,11 @@ class ValueSet extends DomainResource {
     if (immutable?.value != null) {
       json['immutable'] = immutable!.toJson();
     }
-    if (immutableElement != null) {
-      json['_immutable'] = immutableElement!.toJson();
-    }
     if (purpose?.value != null) {
       json['purpose'] = purpose!.toJson();
     }
-    if (purposeElement != null) {
-      json['_purpose'] = purposeElement!.toJson();
-    }
     if (copyright?.value != null) {
       json['copyright'] = copyright!.toJson();
-    }
-    if (copyrightElement != null) {
-      json['_copyright'] = copyrightElement!.toJson();
     }
     if (compose != null) {
       json['compose'] = compose!.toJson();
@@ -586,41 +468,27 @@ class ValueSet extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    Element? urlElement,
     List<Identifier>? identifier,
     FhirString? version,
-    Element? versionElement,
     FhirString? name,
-    Element? nameElement,
     FhirString? title,
-    Element? titleElement,
     PublicationStatus? status,
-    Element? statusElement,
     FhirBoolean? experimental,
-    Element? experimentalElement,
     FhirDateTime? date,
-    Element? dateElement,
     FhirString? publisher,
-    Element? publisherElement,
     List<ContactDetail>? contact,
     FhirMarkdown? description,
-    Element? descriptionElement,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
     FhirBoolean? immutable,
-    Element? immutableElement,
     FhirMarkdown? purpose,
-    Element? purposeElement,
     FhirMarkdown? copyright,
-    Element? copyrightElement,
     ValueSetCompose? compose,
     ValueSetExpansion? expansion,
     Map<String, Object?>? userData,
@@ -634,41 +502,27 @@ class ValueSet extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       identifier: identifier ?? this.identifier,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       experimental: experimental ?? this.experimental,
-      experimentalElement: experimentalElement ?? this.experimentalElement,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       publisher: publisher ?? this.publisher,
-      publisherElement: publisherElement ?? this.publisherElement,
       contact: contact ?? this.contact,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       useContext: useContext ?? this.useContext,
       jurisdiction: jurisdiction ?? this.jurisdiction,
       immutable: immutable ?? this.immutable,
-      immutableElement: immutableElement ?? this.immutableElement,
       purpose: purpose ?? this.purpose,
-      purposeElement: purposeElement ?? this.purposeElement,
       copyright: copyright ?? this.copyright,
-      copyrightElement: copyrightElement ?? this.copyrightElement,
       compose: compose ?? this.compose,
       expansion: expansion ?? this.expansion,
       userData: userData ?? this.userData,
@@ -691,18 +545,11 @@ class ValueSetCompose extends BackboneElement {
 
   ValueSetCompose({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.lockedDate,
-
-    /// Extensions for [lockedDate]
-    this.lockedDateElement,
     this.inactive,
-
-    /// Extensions for [inactive]
-    this.inactiveElement,
     required this.include,
-    this.exclude,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -714,11 +561,15 @@ class ValueSetCompose extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetCompose.fromJson(Map<String, dynamic> json) {
     return ValueSetCompose(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -727,45 +578,36 @@ class ValueSetCompose extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       lockedDate: json['lockedDate'] != null
-          ? FhirDate.fromJson(json['lockedDate'])
-          : null,
-      lockedDateElement: json['_lockedDate'] != null
-          ? Element.fromJson(
-              json['_lockedDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['lockedDate'],
+              '_value': json['_lockedDate'],
+            })
           : null,
       inactive: json['inactive'] != null
-          ? FhirBoolean.fromJson(json['inactive'])
+          ? FhirBoolean.fromJson({
+              'value': json['inactive'],
+              '_value': json['_inactive'],
+            })
           : null,
-      inactiveElement: json['_inactive'] != null
-          ? Element.fromJson(
-              json['_inactive'] as Map<String, dynamic>,
-            )
-          : null,
-      include: (json['include'] as List<dynamic>)
-          .map<ValueSetInclude>((dynamic v) =>
-              ValueSetInclude.fromJson(v as Map<String, dynamic>))
-          .toList(),
-      exclude: json['exclude'] != null
-          ? (json['exclude'] as List<dynamic>)
-              .map<ValueSetInclude>(
-                (dynamic v) => ValueSetInclude.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
+      include: ensureNonNullList((json['include'] as List<dynamic>)
+          .map<ValueSetInclude>(
+            (v) => ValueSetInclude.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
     );
   }
 
-  /// Deserialize [ValueSetCompose] from a [String] or [YamlMap] object
+  /// Deserialize [ValueSetCompose] from a [String]
+  /// or [YamlMap] object
   factory ValueSetCompose.fromYaml(dynamic yaml) => yaml is String
       ? ValueSetCompose.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -774,11 +616,11 @@ class ValueSetCompose extends BackboneElement {
           ? ValueSetCompose.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ValueSetCompose cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ValueSetCompose cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ValueSetCompose] that takes in a [String]
+  /// Factory constructor for [ValueSetCompose]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ValueSetCompose.fromJsonString(String source) {
@@ -794,15 +636,21 @@ class ValueSetCompose extends BackboneElement {
   @override
   String get fhirType => 'ValueSetCompose';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [lockedDate]
   /// The Locked Date is the effective date that is used to determine the
   /// version of all referenced Code Systems and Value Set Definitions
   /// included in the compose that are not already tied to a specific
   /// version.
   final FhirDate? lockedDate;
-
-  /// Extensions for [lockedDate]
-  final Element? lockedDateElement;
 
   /// [inactive]
   /// Whether inactive codes - codes that are not approved for current use -
@@ -813,17 +661,9 @@ class ValueSetCompose extends BackboneElement {
   /// generally, inactive codes would be expected to be included).
   final FhirBoolean? inactive;
 
-  /// Extensions for [inactive]
-  final Element? inactiveElement;
-
   /// [include]
   /// Include one or more codes from a code system or other value set(s).
   final List<ValueSetInclude> include;
-
-  /// [exclude]
-  /// Exclude one or more codes from the value set based on code system
-  /// filters and/or other value sets.
-  final List<ValueSetInclude>? exclude;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -841,21 +681,11 @@ class ValueSetCompose extends BackboneElement {
     if (lockedDate?.value != null) {
       json['lockedDate'] = lockedDate!.toJson();
     }
-    if (lockedDateElement != null) {
-      json['_lockedDate'] = lockedDateElement!.toJson();
-    }
     if (inactive?.value != null) {
       json['inactive'] = inactive!.toJson();
     }
-    if (inactiveElement != null) {
-      json['_inactive'] = inactiveElement!.toJson();
-    }
     json['include'] =
         include.map<dynamic>((ValueSetInclude v) => v.toJson()).toList();
-    if (exclude != null && exclude!.isNotEmpty) {
-      json['exclude'] =
-          exclude!.map((ValueSetInclude v) => v.toJson()).toList();
-    }
     return json;
   }
 
@@ -867,11 +697,8 @@ class ValueSetCompose extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirDate? lockedDate,
-    Element? lockedDateElement,
     FhirBoolean? inactive,
-    Element? inactiveElement,
     List<ValueSetInclude>? include,
-    List<ValueSetInclude>? exclude,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -884,11 +711,8 @@ class ValueSetCompose extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       lockedDate: lockedDate ?? this.lockedDate,
-      lockedDateElement: lockedDateElement ?? this.lockedDateElement,
       inactive: inactive ?? this.inactive,
-      inactiveElement: inactiveElement ?? this.inactiveElement,
       include: include ?? this.include,
-      exclude: exclude ?? this.exclude,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -906,22 +730,13 @@ class ValueSetInclude extends BackboneElement {
 
   ValueSetInclude({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.system,
-
-    /// Extensions for [system]
-    this.systemElement,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     this.concept,
     this.filter,
     this.valueSet,
-
-    /// Extensions for [valueSet]
-    this.valueSetElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -933,11 +748,15 @@ class ValueSetInclude extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetInclude.fromJson(Map<String, dynamic> json) {
     return ValueSetInclude(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -946,29 +765,28 @@ class ValueSetInclude extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      system: json['system'] != null ? FhirUri.fromJson(json['system']) : null,
-      systemElement: json['_system'] != null
-          ? Element.fromJson(
-              json['_system'] as Map<String, dynamic>,
-            )
+      system: json['system'] != null
+          ? FhirUri.fromJson({
+              'value': json['system'],
+              '_value': json['_system'],
+            })
           : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
       concept: json['concept'] != null
           ? (json['concept'] as List<dynamic>)
               .map<ValueSetConcept>(
-                (dynamic v) => ValueSetConcept.fromJson(
+                (v) => ValueSetConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -977,30 +795,21 @@ class ValueSetInclude extends BackboneElement {
       filter: json['filter'] != null
           ? (json['filter'] as List<dynamic>)
               .map<ValueSetFilter>(
-                (dynamic v) => ValueSetFilter.fromJson(
+                (v) => ValueSetFilter.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      valueSet: json['valueSet'] != null
-          ? (json['valueSet'] as List<dynamic>)
-              .map<FhirCanonical>(
-                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      valueSetElement: json['_valueSet'] != null
-          ? (json['_valueSet'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      valueSet: parsePrimitiveList<FhirCanonical>(
+          json['valueSet'] as List<dynamic>?,
+          json['_valueSet'] as List<dynamic>?,
+          fromJson: FhirCanonical.fromJson),
     );
   }
 
-  /// Deserialize [ValueSetInclude] from a [String] or [YamlMap] object
+  /// Deserialize [ValueSetInclude] from a [String]
+  /// or [YamlMap] object
   factory ValueSetInclude.fromYaml(dynamic yaml) => yaml is String
       ? ValueSetInclude.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1009,11 +818,11 @@ class ValueSetInclude extends BackboneElement {
           ? ValueSetInclude.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ValueSetInclude cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ValueSetInclude cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ValueSetInclude] that takes in a [String]
+  /// Factory constructor for [ValueSetInclude]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ValueSetInclude.fromJsonString(String source) {
@@ -1029,21 +838,24 @@ class ValueSetInclude extends BackboneElement {
   @override
   String get fhirType => 'ValueSetInclude';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [system]
   /// An absolute URI which is the code system from which the selected codes
   /// come from.
   final FhirUri? system;
 
-  /// Extensions for [system]
-  final Element? systemElement;
-
   /// [version]
   /// The version of the code system that the codes are selected from, or the
   /// special version '*' for all versions.
   final FhirString? version;
-
-  /// Extensions for [version]
-  final Element? versionElement;
 
   /// [concept]
   /// Specifies a concept to be included or excluded.
@@ -1062,9 +874,6 @@ class ValueSetInclude extends BackboneElement {
   /// ValueSet.url. If multiple value sets are specified this includes the
   /// union of the contents of all of the referenced value sets.
   final List<FhirCanonical>? valueSet;
-
-  /// Extensions for [valueSet]
-  final List<Element>? valueSetElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1082,14 +891,8 @@ class ValueSetInclude extends BackboneElement {
     if (system?.value != null) {
       json['system'] = system!.toJson();
     }
-    if (systemElement != null) {
-      json['_system'] = systemElement!.toJson();
-    }
     if (version?.value != null) {
       json['version'] = version!.toJson();
-    }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
     }
     if (concept != null && concept!.isNotEmpty) {
       json['concept'] =
@@ -1102,10 +905,6 @@ class ValueSetInclude extends BackboneElement {
       json['valueSet'] =
           valueSet!.map((FhirCanonical v) => v.toJson()).toList();
     }
-    if (valueSetElement != null && valueSetElement!.isNotEmpty) {
-      json['_valueSet'] =
-          valueSetElement!.map((Element v) => v.toJson()).toList();
-    }
     return json;
   }
 
@@ -1117,13 +916,10 @@ class ValueSetInclude extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? system,
-    Element? systemElement,
     FhirString? version,
-    Element? versionElement,
     List<ValueSetConcept>? concept,
     List<ValueSetFilter>? filter,
     List<FhirCanonical>? valueSet,
-    List<Element>? valueSetElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1136,13 +932,10 @@ class ValueSetInclude extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       system: system ?? this.system,
-      systemElement: systemElement ?? this.systemElement,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       concept: concept ?? this.concept,
       filter: filter ?? this.filter,
       valueSet: valueSet ?? this.valueSet,
-      valueSetElement: valueSetElement ?? this.valueSetElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1160,16 +953,10 @@ class ValueSetConcept extends BackboneElement {
 
   ValueSetConcept({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.code,
-
-    /// Extensions for [code]
-    this.codeElement,
     this.display,
-
-    /// Extensions for [display]
-    this.displayElement,
     this.designation,
     super.userData,
     super.formatCommentsPre,
@@ -1182,11 +969,15 @@ class ValueSetConcept extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetConcept.fromJson(Map<String, dynamic> json) {
     return ValueSetConcept(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1195,29 +986,26 @@ class ValueSetConcept extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      code: FhirCode.fromJson(json['code']),
-      codeElement: json['_code'] != null
-          ? Element.fromJson(
-              json['_code'] as Map<String, dynamic>,
-            )
-          : null,
-      display:
-          json['display'] != null ? FhirString.fromJson(json['display']) : null,
-      displayElement: json['_display'] != null
-          ? Element.fromJson(
-              json['_display'] as Map<String, dynamic>,
-            )
+      code: FhirCode.fromJson({
+        'value': json['code'],
+        '_value': json['_code'],
+      }),
+      display: json['display'] != null
+          ? FhirString.fromJson({
+              'value': json['display'],
+              '_value': json['_display'],
+            })
           : null,
       designation: json['designation'] != null
           ? (json['designation'] as List<dynamic>)
               .map<ValueSetDesignation>(
-                (dynamic v) => ValueSetDesignation.fromJson(
+                (v) => ValueSetDesignation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1226,7 +1014,8 @@ class ValueSetConcept extends BackboneElement {
     );
   }
 
-  /// Deserialize [ValueSetConcept] from a [String] or [YamlMap] object
+  /// Deserialize [ValueSetConcept] from a [String]
+  /// or [YamlMap] object
   factory ValueSetConcept.fromYaml(dynamic yaml) => yaml is String
       ? ValueSetConcept.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1235,11 +1024,11 @@ class ValueSetConcept extends BackboneElement {
           ? ValueSetConcept.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ValueSetConcept cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ValueSetConcept cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ValueSetConcept] that takes in a [String]
+  /// Factory constructor for [ValueSetConcept]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ValueSetConcept.fromJsonString(String source) {
@@ -1255,21 +1044,24 @@ class ValueSetConcept extends BackboneElement {
   @override
   String get fhirType => 'ValueSetConcept';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [code]
   /// Specifies a code for the concept to be included or excluded.
   final FhirCode code;
-
-  /// Extensions for [code]
-  final Element? codeElement;
 
   /// [display]
   /// The text to display to the user for this concept in the context of this
   /// valueset. If no display is provided, then applications using the value
   /// set use the display specified for the code by the system.
   final FhirString? display;
-
-  /// Extensions for [display]
-  final Element? displayElement;
 
   /// [designation]
   /// Additional representations for this concept when used in this value set
@@ -1291,14 +1083,8 @@ class ValueSetConcept extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['code'] = code.toJson();
-    if (codeElement != null) {
-      json['_code'] = codeElement!.toJson();
-    }
     if (display?.value != null) {
       json['display'] = display!.toJson();
-    }
-    if (displayElement != null) {
-      json['_display'] = displayElement!.toJson();
     }
     if (designation != null && designation!.isNotEmpty) {
       json['designation'] =
@@ -1315,9 +1101,7 @@ class ValueSetConcept extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirCode? code,
-    Element? codeElement,
     FhirString? display,
-    Element? displayElement,
     List<ValueSetDesignation>? designation,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1331,9 +1115,7 @@ class ValueSetConcept extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      codeElement: codeElement ?? this.codeElement,
       display: display ?? this.display,
-      displayElement: displayElement ?? this.displayElement,
       designation: designation ?? this.designation,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -1354,17 +1136,11 @@ class ValueSetDesignation extends BackboneElement {
 
   ValueSetDesignation({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.language,
-
-    /// Extensions for [language]
-    this.languageElement,
     this.use,
     required this.value,
-
-    /// Extensions for [value]
-    this.valueElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1376,11 +1152,15 @@ class ValueSetDesignation extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetDesignation.fromJson(Map<String, dynamic> json) {
     return ValueSetDesignation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1389,35 +1169,32 @@ class ValueSetDesignation extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       use: json['use'] != null
           ? Coding.fromJson(
               json['use'] as Map<String, dynamic>,
             )
           : null,
-      value: FhirString.fromJson(json['value']),
-      valueElement: json['_value'] != null
-          ? Element.fromJson(
-              json['_value'] as Map<String, dynamic>,
-            )
-          : null,
+      value: FhirString.fromJson({
+        'value': json['value'],
+        '_value': json['_value'],
+      }),
     );
   }
 
-  /// Deserialize [ValueSetDesignation] from a [String] or [YamlMap] object
+  /// Deserialize [ValueSetDesignation] from a [String]
+  /// or [YamlMap] object
   factory ValueSetDesignation.fromYaml(dynamic yaml) => yaml is String
       ? ValueSetDesignation.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1427,10 +1204,11 @@ class ValueSetDesignation extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ValueSetDesignation cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ValueSetDesignation cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ValueSetDesignation] that takes in a [String]
+  /// Factory constructor for [ValueSetDesignation]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ValueSetDesignation.fromJsonString(String source) {
@@ -1446,12 +1224,18 @@ class ValueSetDesignation extends BackboneElement {
   @override
   String get fhirType => 'ValueSetDesignation';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [language]
   /// The language this designation is defined for.
   final CommonLanguages? language;
-
-  /// Extensions for [language]
-  final Element? languageElement;
 
   /// [use]
   /// A code that represents types of uses of designations.
@@ -1460,9 +1244,6 @@ class ValueSetDesignation extends BackboneElement {
   /// [value]
   /// The text value for this designation.
   final FhirString value;
-
-  /// Extensions for [value]
-  final Element? valueElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1484,9 +1265,6 @@ class ValueSetDesignation extends BackboneElement {
       json['use'] = use!.toJson();
     }
     json['value'] = value.toJson();
-    if (valueElement != null) {
-      json['_value'] = valueElement!.toJson();
-    }
     return json;
   }
 
@@ -1498,10 +1276,8 @@ class ValueSetDesignation extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CommonLanguages? language,
-    Element? languageElement,
     Coding? use,
     FhirString? value,
-    Element? valueElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1514,10 +1290,8 @@ class ValueSetDesignation extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       use: use ?? this.use,
       value: value ?? this.value,
-      valueElement: valueElement ?? this.valueElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1538,20 +1312,11 @@ class ValueSetFilter extends BackboneElement {
 
   ValueSetFilter({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.property,
-
-    /// Extensions for [property]
-    this.propertyElement,
     required this.op,
-
-    /// Extensions for [op]
-    this.opElement,
     required this.value,
-
-    /// Extensions for [value]
-    this.valueElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1563,11 +1328,15 @@ class ValueSetFilter extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetFilter.fromJson(Map<String, dynamic> json) {
     return ValueSetFilter(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1576,34 +1345,29 @@ class ValueSetFilter extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      property: FhirCode.fromJson(json['property']),
-      propertyElement: json['_property'] != null
-          ? Element.fromJson(
-              json['_property'] as Map<String, dynamic>,
-            )
-          : null,
-      op: FilterOperator.fromJson(json['op']),
-      opElement: json['_op'] != null
-          ? Element.fromJson(
-              json['_op'] as Map<String, dynamic>,
-            )
-          : null,
-      value: FhirString.fromJson(json['value']),
-      valueElement: json['_value'] != null
-          ? Element.fromJson(
-              json['_value'] as Map<String, dynamic>,
-            )
-          : null,
+      property: FhirCode.fromJson({
+        'value': json['property'],
+        '_value': json['_property'],
+      }),
+      op: FilterOperator.fromJson({
+        'value': json['op'],
+        '_value': json['_op'],
+      }),
+      value: FhirString.fromJson({
+        'value': json['value'],
+        '_value': json['_value'],
+      }),
     );
   }
 
-  /// Deserialize [ValueSetFilter] from a [String] or [YamlMap] object
+  /// Deserialize [ValueSetFilter] from a [String]
+  /// or [YamlMap] object
   factory ValueSetFilter.fromYaml(dynamic yaml) => yaml is String
       ? ValueSetFilter.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1612,11 +1376,11 @@ class ValueSetFilter extends BackboneElement {
           ? ValueSetFilter.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ValueSetFilter cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ValueSetFilter cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ValueSetFilter] that takes in a [String]
+  /// Factory constructor for [ValueSetFilter]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ValueSetFilter.fromJsonString(String source) {
@@ -1632,20 +1396,23 @@ class ValueSetFilter extends BackboneElement {
   @override
   String get fhirType => 'ValueSetFilter';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [property]
   /// A code that identifies a property or a filter defined in the code
   /// system.
   final FhirCode property;
 
-  /// Extensions for [property]
-  final Element? propertyElement;
-
   /// [op]
   /// The kind of operation to perform as a part of the filter criteria.
   final FilterOperator op;
-
-  /// Extensions for [op]
-  final Element? opElement;
 
   /// [value]
   /// The match value may be either a code defined by the system, or a string
@@ -1655,9 +1422,6 @@ class ValueSetFilter extends BackboneElement {
   /// CodeSystem) when the operation is 'regex', or one of the values (true
   /// and false), when the operation is 'exists'.
   final FhirString value;
-
-  /// Extensions for [value]
-  final Element? valueElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1673,14 +1437,8 @@ class ValueSetFilter extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['property'] = property.toJson();
-    if (propertyElement != null) {
-      json['_property'] = propertyElement!.toJson();
-    }
     json['op'] = op.toJson();
     json['value'] = value.toJson();
-    if (valueElement != null) {
-      json['_value'] = valueElement!.toJson();
-    }
     return json;
   }
 
@@ -1692,11 +1450,8 @@ class ValueSetFilter extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirCode? property,
-    Element? propertyElement,
     FilterOperator? op,
-    Element? opElement,
     FhirString? value,
-    Element? valueElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1709,11 +1464,8 @@ class ValueSetFilter extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       property: property ?? this.property,
-      propertyElement: propertyElement ?? this.propertyElement,
       op: op ?? this.op,
-      opElement: opElement ?? this.opElement,
       value: value ?? this.value,
-      valueElement: valueElement ?? this.valueElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1733,24 +1485,12 @@ class ValueSetExpansion extends BackboneElement {
 
   ValueSetExpansion({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
-
-    /// Extensions for [identifier]
-    this.identifierElement,
     required this.timestamp,
-
-    /// Extensions for [timestamp]
-    this.timestampElement,
     this.total,
-
-    /// Extensions for [total]
-    this.totalElement,
     this.offset,
-
-    /// Extensions for [offset]
-    this.offsetElement,
     this.parameter,
     this.contains,
     super.userData,
@@ -1764,11 +1504,15 @@ class ValueSetExpansion extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetExpansion.fromJson(Map<String, dynamic> json) {
     return ValueSetExpansion(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1777,43 +1521,38 @@ class ValueSetExpansion extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       identifier: json['identifier'] != null
-          ? FhirUri.fromJson(json['identifier'])
+          ? FhirUri.fromJson({
+              'value': json['identifier'],
+              '_value': json['_identifier'],
+            })
           : null,
-      identifierElement: json['_identifier'] != null
-          ? Element.fromJson(
-              json['_identifier'] as Map<String, dynamic>,
-            )
+      timestamp: FhirDateTime.fromJson({
+        'value': json['timestamp'],
+        '_value': json['_timestamp'],
+      }),
+      total: json['total'] != null
+          ? FhirInteger.fromJson({
+              'value': json['total'],
+              '_value': json['_total'],
+            })
           : null,
-      timestamp: FhirDateTime.fromJson(json['timestamp']),
-      timestampElement: json['_timestamp'] != null
-          ? Element.fromJson(
-              json['_timestamp'] as Map<String, dynamic>,
-            )
-          : null,
-      total: json['total'] != null ? FhirInteger.fromJson(json['total']) : null,
-      totalElement: json['_total'] != null
-          ? Element.fromJson(
-              json['_total'] as Map<String, dynamic>,
-            )
-          : null,
-      offset:
-          json['offset'] != null ? FhirInteger.fromJson(json['offset']) : null,
-      offsetElement: json['_offset'] != null
-          ? Element.fromJson(
-              json['_offset'] as Map<String, dynamic>,
-            )
+      offset: json['offset'] != null
+          ? FhirInteger.fromJson({
+              'value': json['offset'],
+              '_value': json['_offset'],
+            })
           : null,
       parameter: json['parameter'] != null
           ? (json['parameter'] as List<dynamic>)
               .map<ValueSetParameter>(
-                (dynamic v) => ValueSetParameter.fromJson(
+                (v) => ValueSetParameter.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1822,7 +1561,7 @@ class ValueSetExpansion extends BackboneElement {
       contains: json['contains'] != null
           ? (json['contains'] as List<dynamic>)
               .map<ValueSetContains>(
-                (dynamic v) => ValueSetContains.fromJson(
+                (v) => ValueSetContains.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1831,7 +1570,8 @@ class ValueSetExpansion extends BackboneElement {
     );
   }
 
-  /// Deserialize [ValueSetExpansion] from a [String] or [YamlMap] object
+  /// Deserialize [ValueSetExpansion] from a [String]
+  /// or [YamlMap] object
   factory ValueSetExpansion.fromYaml(dynamic yaml) => yaml is String
       ? ValueSetExpansion.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1840,11 +1580,11 @@ class ValueSetExpansion extends BackboneElement {
           ? ValueSetExpansion.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ValueSetExpansion cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ValueSetExpansion cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ValueSetExpansion] that takes in a [String]
+  /// Factory constructor for [ValueSetExpansion]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ValueSetExpansion.fromJsonString(String source) {
@@ -1860,6 +1600,15 @@ class ValueSetExpansion extends BackboneElement {
   @override
   String get fhirType => 'ValueSetExpansion';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// An identifier that uniquely identifies this expansion of the valueset,
   /// based on a unique combination of the provided parameters, the system
@@ -1869,15 +1618,9 @@ class ValueSetExpansion extends BackboneElement {
   /// This is a business identifier.
   final FhirUri? identifier;
 
-  /// Extensions for [identifier]
-  final Element? identifierElement;
-
   /// [timestamp]
   /// The time at which the expansion was produced by the expanding system.
   final FhirDateTime timestamp;
-
-  /// Extensions for [timestamp]
-  final Element? timestampElement;
 
   /// [total]
   /// The total number of concepts in the expansion. If the number of concept
@@ -1885,17 +1628,11 @@ class ValueSetExpansion extends BackboneElement {
   /// can return more using the offset parameter.
   final FhirInteger? total;
 
-  /// Extensions for [total]
-  final Element? totalElement;
-
   /// [offset]
   /// If paging is being used, the offset at which this resource starts. I.e.
   /// this resource is a partial view into the expansion. If paging is not
   /// being used, this element SHALL NOT be present.
   final FhirInteger? offset;
-
-  /// Extensions for [offset]
-  final Element? offsetElement;
 
   /// [parameter]
   /// A parameter that controlled the expansion process. These parameters may
@@ -1923,24 +1660,12 @@ class ValueSetExpansion extends BackboneElement {
     if (identifier?.value != null) {
       json['identifier'] = identifier!.toJson();
     }
-    if (identifierElement != null) {
-      json['_identifier'] = identifierElement!.toJson();
-    }
     json['timestamp'] = timestamp.toJson();
-    if (timestampElement != null) {
-      json['_timestamp'] = timestampElement!.toJson();
-    }
     if (total?.value != null) {
       json['total'] = total!.toJson();
     }
-    if (totalElement != null) {
-      json['_total'] = totalElement!.toJson();
-    }
     if (offset?.value != null) {
       json['offset'] = offset!.toJson();
-    }
-    if (offsetElement != null) {
-      json['_offset'] = offsetElement!.toJson();
     }
     if (parameter != null && parameter!.isNotEmpty) {
       json['parameter'] =
@@ -1961,13 +1686,9 @@ class ValueSetExpansion extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? identifier,
-    Element? identifierElement,
     FhirDateTime? timestamp,
-    Element? timestampElement,
     FhirInteger? total,
-    Element? totalElement,
     FhirInteger? offset,
-    Element? offsetElement,
     List<ValueSetParameter>? parameter,
     List<ValueSetContains>? contains,
     Map<String, Object?>? userData,
@@ -1982,13 +1703,9 @@ class ValueSetExpansion extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
-      identifierElement: identifierElement ?? this.identifierElement,
       timestamp: timestamp ?? this.timestamp,
-      timestampElement: timestampElement ?? this.timestampElement,
       total: total ?? this.total,
-      totalElement: totalElement ?? this.totalElement,
       offset: offset ?? this.offset,
-      offsetElement: offsetElement ?? this.offsetElement,
       parameter: parameter ?? this.parameter,
       contains: contains ?? this.contains,
       userData: userData ?? this.userData,
@@ -2010,40 +1727,16 @@ class ValueSetParameter extends BackboneElement {
 
   ValueSetParameter({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.valueString,
-
-    /// Extensions for [valueString]
-    this.valueStringElement,
     this.valueBoolean,
-
-    /// Extensions for [valueBoolean]
-    this.valueBooleanElement,
     this.valueInteger,
-
-    /// Extensions for [valueInteger]
-    this.valueIntegerElement,
     this.valueDecimal,
-
-    /// Extensions for [valueDecimal]
-    this.valueDecimalElement,
     this.valueUri,
-
-    /// Extensions for [valueUri]
-    this.valueUriElement,
     this.valueCode,
-
-    /// Extensions for [valueCode]
-    this.valueCodeElement,
     this.valueDateTime,
-
-    /// Extensions for [valueDateTime]
-    this.valueDateTimeElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2055,11 +1748,15 @@ class ValueSetParameter extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetParameter.fromJson(Map<String, dynamic> json) {
     return ValueSetParameter(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2068,77 +1765,63 @@ class ValueSetParameter extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: FhirString.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
-          : null,
+      name: FhirString.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
       valueString: json['valueString'] != null
-          ? FhirString.fromJson(json['valueString'])
-          : null,
-      valueStringElement: json['_valueString'] != null
-          ? Element.fromJson(
-              json['_valueString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['valueString'],
+              '_value': json['_valueString'],
+            })
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(
-              json['_valueBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['valueBoolean'],
+              '_value': json['_valueBoolean'],
+            })
           : null,
       valueInteger: json['valueInteger'] != null
-          ? FhirInteger.fromJson(json['valueInteger'])
-          : null,
-      valueIntegerElement: json['_valueInteger'] != null
-          ? Element.fromJson(
-              json['_valueInteger'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['valueInteger'],
+              '_value': json['_valueInteger'],
+            })
           : null,
       valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal.fromJson(json['valueDecimal'])
+          ? FhirDecimal.fromJson({
+              'value': json['valueDecimal'],
+              '_value': json['_valueDecimal'],
+            })
           : null,
-      valueDecimalElement: json['_valueDecimal'] != null
-          ? Element.fromJson(
-              json['_valueDecimal'] as Map<String, dynamic>,
-            )
-          : null,
-      valueUri:
-          json['valueUri'] != null ? FhirUri.fromJson(json['valueUri']) : null,
-      valueUriElement: json['_valueUri'] != null
-          ? Element.fromJson(
-              json['_valueUri'] as Map<String, dynamic>,
-            )
+      valueUri: json['valueUri'] != null
+          ? FhirUri.fromJson({
+              'value': json['valueUri'],
+              '_value': json['_valueUri'],
+            })
           : null,
       valueCode: json['valueCode'] != null
-          ? FhirCode.fromJson(json['valueCode'])
-          : null,
-      valueCodeElement: json['_valueCode'] != null
-          ? Element.fromJson(
-              json['_valueCode'] as Map<String, dynamic>,
-            )
+          ? FhirCode.fromJson({
+              'value': json['valueCode'],
+              '_value': json['_valueCode'],
+            })
           : null,
       valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime.fromJson(json['valueDateTime'])
-          : null,
-      valueDateTimeElement: json['_valueDateTime'] != null
-          ? Element.fromJson(
-              json['_valueDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['valueDateTime'],
+              '_value': json['_valueDateTime'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [ValueSetParameter] from a [String] or [YamlMap] object
+  /// Deserialize [ValueSetParameter] from a [String]
+  /// or [YamlMap] object
   factory ValueSetParameter.fromYaml(dynamic yaml) => yaml is String
       ? ValueSetParameter.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2147,11 +1830,11 @@ class ValueSetParameter extends BackboneElement {
           ? ValueSetParameter.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ValueSetParameter cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ValueSetParameter cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ValueSetParameter] that takes in a [String]
+  /// Factory constructor for [ValueSetParameter]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ValueSetParameter.fromJsonString(String source) {
@@ -2167,63 +1850,48 @@ class ValueSetParameter extends BackboneElement {
   @override
   String get fhirType => 'ValueSetParameter';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// Name of the input parameter to the $expand operation; may be a
   /// server-assigned name for additional default or other server-supplied
   /// parameters used to control the expansion process.
   final FhirString name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [valueString]
   /// The value of the parameter.
   final FhirString? valueString;
-
-  /// Extensions for [valueString]
-  final Element? valueStringElement;
 
   /// [valueBoolean]
   /// The value of the parameter.
   final FhirBoolean? valueBoolean;
 
-  /// Extensions for [valueBoolean]
-  final Element? valueBooleanElement;
-
   /// [valueInteger]
   /// The value of the parameter.
   final FhirInteger? valueInteger;
-
-  /// Extensions for [valueInteger]
-  final Element? valueIntegerElement;
 
   /// [valueDecimal]
   /// The value of the parameter.
   final FhirDecimal? valueDecimal;
 
-  /// Extensions for [valueDecimal]
-  final Element? valueDecimalElement;
-
   /// [valueUri]
   /// The value of the parameter.
   final FhirUri? valueUri;
-
-  /// Extensions for [valueUri]
-  final Element? valueUriElement;
 
   /// [valueCode]
   /// The value of the parameter.
   final FhirCode? valueCode;
 
-  /// Extensions for [valueCode]
-  final Element? valueCodeElement;
-
   /// [valueDateTime]
   /// The value of the parameter.
   final FhirDateTime? valueDateTime;
-
-  /// Extensions for [valueDateTime]
-  final Element? valueDateTimeElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2239,50 +1907,26 @@ class ValueSetParameter extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (valueString?.value != null) {
       json['valueString'] = valueString!.toJson();
-    }
-    if (valueStringElement != null) {
-      json['_valueString'] = valueStringElement!.toJson();
     }
     if (valueBoolean?.value != null) {
       json['valueBoolean'] = valueBoolean!.toJson();
     }
-    if (valueBooleanElement != null) {
-      json['_valueBoolean'] = valueBooleanElement!.toJson();
-    }
     if (valueInteger?.value != null) {
       json['valueInteger'] = valueInteger!.toJson();
-    }
-    if (valueIntegerElement != null) {
-      json['_valueInteger'] = valueIntegerElement!.toJson();
     }
     if (valueDecimal?.value != null) {
       json['valueDecimal'] = valueDecimal!.toJson();
     }
-    if (valueDecimalElement != null) {
-      json['_valueDecimal'] = valueDecimalElement!.toJson();
-    }
     if (valueUri?.value != null) {
       json['valueUri'] = valueUri!.toJson();
-    }
-    if (valueUriElement != null) {
-      json['_valueUri'] = valueUriElement!.toJson();
     }
     if (valueCode?.value != null) {
       json['valueCode'] = valueCode!.toJson();
     }
-    if (valueCodeElement != null) {
-      json['_valueCode'] = valueCodeElement!.toJson();
-    }
     if (valueDateTime?.value != null) {
       json['valueDateTime'] = valueDateTime!.toJson();
-    }
-    if (valueDateTimeElement != null) {
-      json['_valueDateTime'] = valueDateTimeElement!.toJson();
     }
     return json;
   }
@@ -2295,21 +1939,13 @@ class ValueSetParameter extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    Element? nameElement,
     FhirString? valueString,
-    Element? valueStringElement,
     FhirBoolean? valueBoolean,
-    Element? valueBooleanElement,
     FhirInteger? valueInteger,
-    Element? valueIntegerElement,
     FhirDecimal? valueDecimal,
-    Element? valueDecimalElement,
     FhirUri? valueUri,
-    Element? valueUriElement,
     FhirCode? valueCode,
-    Element? valueCodeElement,
     FhirDateTime? valueDateTime,
-    Element? valueDateTimeElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2322,21 +1958,13 @@ class ValueSetParameter extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       valueString: valueString ?? this.valueString,
-      valueStringElement: valueStringElement ?? this.valueStringElement,
       valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueBooleanElement: valueBooleanElement ?? this.valueBooleanElement,
       valueInteger: valueInteger ?? this.valueInteger,
-      valueIntegerElement: valueIntegerElement ?? this.valueIntegerElement,
       valueDecimal: valueDecimal ?? this.valueDecimal,
-      valueDecimalElement: valueDecimalElement ?? this.valueDecimalElement,
       valueUri: valueUri ?? this.valueUri,
-      valueUriElement: valueUriElement ?? this.valueUriElement,
       valueCode: valueCode ?? this.valueCode,
-      valueCodeElement: valueCodeElement ?? this.valueCodeElement,
       valueDateTime: valueDateTime ?? this.valueDateTime,
-      valueDateTimeElement: valueDateTimeElement ?? this.valueDateTimeElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2354,34 +1982,14 @@ class ValueSetContains extends BackboneElement {
 
   ValueSetContains({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.system,
-
-    /// Extensions for [system]
-    this.systemElement,
     this.abstract_,
-
-    /// Extensions for [abstract]
-    this.abstractElement,
     this.inactive,
-
-    /// Extensions for [inactive]
-    this.inactiveElement,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     this.code,
-
-    /// Extensions for [code]
-    this.codeElement,
     this.display,
-
-    /// Extensions for [display]
-    this.displayElement,
-    this.designation,
-    this.contains,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2393,11 +2001,15 @@ class ValueSetContains extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ValueSetContains.fromJson(Map<String, dynamic> json) {
     return ValueSetContains(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2406,76 +2018,53 @@ class ValueSetContains extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      system: json['system'] != null ? FhirUri.fromJson(json['system']) : null,
-      systemElement: json['_system'] != null
-          ? Element.fromJson(
-              json['_system'] as Map<String, dynamic>,
-            )
+      system: json['system'] != null
+          ? FhirUri.fromJson({
+              'value': json['system'],
+              '_value': json['_system'],
+            })
           : null,
       abstract_: json['abstract'] != null
-          ? FhirBoolean.fromJson(json['abstract'])
-          : null,
-      abstractElement: json['_abstract'] != null
-          ? Element.fromJson(
-              json['_abstract'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['abstract'],
+              '_value': json['_abstract'],
+            })
           : null,
       inactive: json['inactive'] != null
-          ? FhirBoolean.fromJson(json['inactive'])
+          ? FhirBoolean.fromJson({
+              'value': json['inactive'],
+              '_value': json['_inactive'],
+            })
           : null,
-      inactiveElement: json['_inactive'] != null
-          ? Element.fromJson(
-              json['_inactive'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      code: json['code'] != null
+          ? FhirCode.fromJson({
+              'value': json['code'],
+              '_value': json['_code'],
+            })
           : null,
-      code: json['code'] != null ? FhirCode.fromJson(json['code']) : null,
-      codeElement: json['_code'] != null
-          ? Element.fromJson(
-              json['_code'] as Map<String, dynamic>,
-            )
-          : null,
-      display:
-          json['display'] != null ? FhirString.fromJson(json['display']) : null,
-      displayElement: json['_display'] != null
-          ? Element.fromJson(
-              json['_display'] as Map<String, dynamic>,
-            )
-          : null,
-      designation: json['designation'] != null
-          ? (json['designation'] as List<dynamic>)
-              .map<ValueSetDesignation>(
-                (dynamic v) => ValueSetDesignation.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      contains: json['contains'] != null
-          ? (json['contains'] as List<dynamic>)
-              .map<ValueSetContains>(
-                (dynamic v) => ValueSetContains.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
+      display: json['display'] != null
+          ? FhirString.fromJson({
+              'value': json['display'],
+              '_value': json['_display'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [ValueSetContains] from a [String] or [YamlMap] object
+  /// Deserialize [ValueSetContains] from a [String]
+  /// or [YamlMap] object
   factory ValueSetContains.fromYaml(dynamic yaml) => yaml is String
       ? ValueSetContains.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2484,11 +2073,11 @@ class ValueSetContains extends BackboneElement {
           ? ValueSetContains.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ValueSetContains cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ValueSetContains cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ValueSetContains] that takes in a [String]
+  /// Factory constructor for [ValueSetContains]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ValueSetContains.fromJsonString(String source) {
@@ -2504,22 +2093,25 @@ class ValueSetContains extends BackboneElement {
   @override
   String get fhirType => 'ValueSetContains';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [system]
   /// An absolute URI which is the code system in which the code for this
   /// item in the expansion is defined.
   final FhirUri? system;
-
-  /// Extensions for [system]
-  final Element? systemElement;
 
   /// [abstract_]
   /// If true, this entry is included in the expansion for navigational
   /// purposes, and the user cannot select the code directly as a proper
   /// value.
   final FhirBoolean? abstract_;
-
-  /// Extensions for [abstract]
-  final Element? abstractElement;
 
   /// [inactive]
   /// If the concept is inactive in the code system that defines it. Inactive
@@ -2529,9 +2121,6 @@ class ValueSetContains extends BackboneElement {
   /// context of use).
   final FhirBoolean? inactive;
 
-  /// Extensions for [inactive]
-  final Element? inactiveElement;
-
   /// [version]
   /// The version of the code system from this code was taken. Note that a
   /// well-maintained code system does not need the version reported, because
@@ -2540,35 +2129,15 @@ class ValueSetContains extends BackboneElement {
   /// consistent, the version SHOULD be exchanged.
   final FhirString? version;
 
-  /// Extensions for [version]
-  final Element? versionElement;
-
   /// [code]
   /// The code for this item in the expansion hierarchy. If this code is
   /// missing the entry in the hierarchy is a place holder (abstract) and
   /// does not represent a valid code in the value set.
   final FhirCode? code;
 
-  /// Extensions for [code]
-  final Element? codeElement;
-
   /// [display]
   /// The recommended display for this item in the expansion.
   final FhirString? display;
-
-  /// Extensions for [display]
-  final Element? displayElement;
-
-  /// [designation]
-  /// Additional representations for this item - other languages, aliases,
-  /// specialized purposes, used for particular purposes, etc. These are
-  /// relevant when the conditions of the expansion do not fix to a single
-  /// correct representation.
-  final List<ValueSetDesignation>? designation;
-
-  /// [contains]
-  /// Other codes and entries contained under this entry in the hierarchy.
-  final List<ValueSetContains>? contains;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2586,46 +2155,20 @@ class ValueSetContains extends BackboneElement {
     if (system?.value != null) {
       json['system'] = system!.toJson();
     }
-    if (systemElement != null) {
-      json['_system'] = systemElement!.toJson();
-    }
     if (abstract_?.value != null) {
       json['abstract'] = abstract_!.toJson();
-    }
-    if (abstractElement != null) {
-      json['_abstract'] = abstractElement!.toJson();
     }
     if (inactive?.value != null) {
       json['inactive'] = inactive!.toJson();
     }
-    if (inactiveElement != null) {
-      json['_inactive'] = inactiveElement!.toJson();
-    }
     if (version?.value != null) {
       json['version'] = version!.toJson();
-    }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
     }
     if (code?.value != null) {
       json['code'] = code!.toJson();
     }
-    if (codeElement != null) {
-      json['_code'] = codeElement!.toJson();
-    }
     if (display?.value != null) {
       json['display'] = display!.toJson();
-    }
-    if (displayElement != null) {
-      json['_display'] = displayElement!.toJson();
-    }
-    if (designation != null && designation!.isNotEmpty) {
-      json['designation'] =
-          designation!.map((ValueSetDesignation v) => v.toJson()).toList();
-    }
-    if (contains != null && contains!.isNotEmpty) {
-      json['contains'] =
-          contains!.map((ValueSetContains v) => v.toJson()).toList();
     }
     return json;
   }
@@ -2638,19 +2181,11 @@ class ValueSetContains extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? system,
-    Element? systemElement,
     FhirBoolean? abstract_,
-    Element? abstractElement,
     FhirBoolean? inactive,
-    Element? inactiveElement,
     FhirString? version,
-    Element? versionElement,
     FhirCode? code,
-    Element? codeElement,
     FhirString? display,
-    Element? displayElement,
-    List<ValueSetDesignation>? designation,
-    List<ValueSetContains>? contains,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2663,19 +2198,11 @@ class ValueSetContains extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       system: system ?? this.system,
-      systemElement: systemElement ?? this.systemElement,
       abstract_: abstract_ ?? this.abstract_,
-      abstractElement: abstractElement ?? this.abstractElement,
       inactive: inactive ?? this.inactive,
-      inactiveElement: inactiveElement ?? this.inactiveElement,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       code: code ?? this.code,
-      codeElement: codeElement ?? this.codeElement,
       display: display ?? this.display,
-      displayElement: displayElement ?? this.displayElement,
-      designation: designation ?? this.designation,
-      contains: contains ?? this.contains,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

@@ -11,26 +11,14 @@ class MolecularSequence extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     required this.coordinateSystem,
-
-    /// Extensions for [coordinateSystem]
-    this.coordinateSystemElement,
     this.patient,
     this.specimen,
     this.device,
@@ -39,14 +27,8 @@ class MolecularSequence extends DomainResource {
     this.referenceSeq,
     this.variant,
     this.observedSeq,
-
-    /// Extensions for [observedSeq]
-    this.observedSeqElement,
     this.quality,
     this.readCoverage,
-
-    /// Extensions for [readCoverage]
-    this.readCoverageElement,
     this.repository,
     this.pointer,
     this.structureVariant,
@@ -63,27 +45,27 @@ class MolecularSequence extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequence.fromJson(Map<String, dynamic> json) {
     return MolecularSequence(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -93,7 +75,7 @@ class MolecularSequence extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -102,7 +84,7 @@ class MolecularSequence extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -111,7 +93,7 @@ class MolecularSequence extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -120,24 +102,22 @@ class MolecularSequence extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      type: json['type'] != null ? SequenceType.fromJson(json['type']) : null,
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
+      type: json['type'] != null
+          ? SequenceType.fromJson({
+              'value': json['type'],
+              '_value': json['_type'],
+            })
           : null,
-      coordinateSystem: FhirInteger.fromJson(json['coordinateSystem']),
-      coordinateSystemElement: json['_coordinateSystem'] != null
-          ? Element.fromJson(
-              json['_coordinateSystem'] as Map<String, dynamic>,
-            )
-          : null,
+      coordinateSystem: FhirInteger.fromJson({
+        'value': json['coordinateSystem'],
+        '_value': json['_coordinateSystem'],
+      }),
       patient: json['patient'] != null
           ? Reference.fromJson(
               json['patient'] as Map<String, dynamic>,
@@ -171,41 +151,37 @@ class MolecularSequence extends DomainResource {
       variant: json['variant'] != null
           ? (json['variant'] as List<dynamic>)
               .map<MolecularSequenceVariant>(
-                (dynamic v) => MolecularSequenceVariant.fromJson(
+                (v) => MolecularSequenceVariant.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       observedSeq: json['observedSeq'] != null
-          ? FhirString.fromJson(json['observedSeq'])
-          : null,
-      observedSeqElement: json['_observedSeq'] != null
-          ? Element.fromJson(
-              json['_observedSeq'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['observedSeq'],
+              '_value': json['_observedSeq'],
+            })
           : null,
       quality: json['quality'] != null
           ? (json['quality'] as List<dynamic>)
               .map<MolecularSequenceQuality>(
-                (dynamic v) => MolecularSequenceQuality.fromJson(
+                (v) => MolecularSequenceQuality.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       readCoverage: json['readCoverage'] != null
-          ? FhirInteger.fromJson(json['readCoverage'])
-          : null,
-      readCoverageElement: json['_readCoverage'] != null
-          ? Element.fromJson(
-              json['_readCoverage'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['readCoverage'],
+              '_value': json['_readCoverage'],
+            })
           : null,
       repository: json['repository'] != null
           ? (json['repository'] as List<dynamic>)
               .map<MolecularSequenceRepository>(
-                (dynamic v) => MolecularSequenceRepository.fromJson(
+                (v) => MolecularSequenceRepository.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -214,7 +190,7 @@ class MolecularSequence extends DomainResource {
       pointer: json['pointer'] != null
           ? (json['pointer'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -223,7 +199,7 @@ class MolecularSequence extends DomainResource {
       structureVariant: json['structureVariant'] != null
           ? (json['structureVariant'] as List<dynamic>)
               .map<MolecularSequenceStructureVariant>(
-                (dynamic v) => MolecularSequenceStructureVariant.fromJson(
+                (v) => MolecularSequenceStructureVariant.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -232,7 +208,8 @@ class MolecularSequence extends DomainResource {
     );
   }
 
-  /// Deserialize [MolecularSequence] from a [String] or [YamlMap] object
+  /// Deserialize [MolecularSequence] from a [String]
+  /// or [YamlMap] object
   factory MolecularSequence.fromYaml(dynamic yaml) => yaml is String
       ? MolecularSequence.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -241,11 +218,11 @@ class MolecularSequence extends DomainResource {
           ? MolecularSequence.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MolecularSequence cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('MolecularSequence cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MolecularSequence] that takes in a [String]
+  /// Factory constructor for [MolecularSequence]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MolecularSequence.fromJsonString(String source) {
@@ -261,6 +238,15 @@ class MolecularSequence extends DomainResource {
   @override
   String get fhirType => 'MolecularSequence';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// A unique identifier for this particular sequence instance. This is a
   /// FHIR-defined id.
@@ -270,17 +256,11 @@ class MolecularSequence extends DomainResource {
   /// Amino Acid Sequence/ DNA Sequence / RNA Sequence.
   final SequenceType? type;
 
-  /// Extensions for [type]
-  final Element? typeElement;
-
   /// [coordinateSystem]
   /// Whether the sequence is numbered starting at 0 (0-based numbering or
   /// coordinates, inclusive start, exclusive end) or starting at 1 (1-based
   /// numbering, inclusive start and inclusive end).
   final FhirInteger coordinateSystem;
-
-  /// Extensions for [coordinateSystem]
-  final Element? coordinateSystemElement;
 
   /// [patient]
   /// The patient whose sequencing results are described by this resource.
@@ -321,9 +301,6 @@ class MolecularSequence extends DomainResource {
   /// referenceSeq.windowStart and end by referenceSeq.windowEnd.
   final FhirString? observedSeq;
 
-  /// Extensions for [observedSeq]
-  final Element? observedSeqElement;
-
   /// [quality]
   /// An experimental feature attribute that defines the quality of the
   /// feature in a quantitative way, such as a phred quality score
@@ -334,9 +311,6 @@ class MolecularSequence extends DomainResource {
   /// Coverage (read depth or depth) is the average number of reads
   /// representing a given nucleotide in the reconstructed sequence.
   final FhirInteger? readCoverage;
-
-  /// Extensions for [readCoverage]
-  final Element? readCoverageElement;
 
   /// [repository]
   /// Configurations of the external repository. The repository shall store
@@ -363,9 +337,6 @@ class MolecularSequence extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -391,9 +362,6 @@ class MolecularSequence extends DomainResource {
       json['type'] = type!.toJson();
     }
     json['coordinateSystem'] = coordinateSystem.toJson();
-    if (coordinateSystemElement != null) {
-      json['_coordinateSystem'] = coordinateSystemElement!.toJson();
-    }
     if (patient != null) {
       json['patient'] = patient!.toJson();
     }
@@ -419,18 +387,12 @@ class MolecularSequence extends DomainResource {
     if (observedSeq?.value != null) {
       json['observedSeq'] = observedSeq!.toJson();
     }
-    if (observedSeqElement != null) {
-      json['_observedSeq'] = observedSeqElement!.toJson();
-    }
     if (quality != null && quality!.isNotEmpty) {
       json['quality'] =
           quality!.map((MolecularSequenceQuality v) => v.toJson()).toList();
     }
     if (readCoverage?.value != null) {
       json['readCoverage'] = readCoverage!.toJson();
-    }
-    if (readCoverageElement != null) {
-      json['_readCoverage'] = readCoverageElement!.toJson();
     }
     if (repository != null && repository!.isNotEmpty) {
       json['repository'] = repository!
@@ -455,18 +417,14 @@ class MolecularSequence extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     SequenceType? type,
-    Element? typeElement,
     FhirInteger? coordinateSystem,
-    Element? coordinateSystemElement,
     Reference? patient,
     Reference? specimen,
     Reference? device,
@@ -475,10 +433,8 @@ class MolecularSequence extends DomainResource {
     MolecularSequenceReferenceSeq? referenceSeq,
     List<MolecularSequenceVariant>? variant,
     FhirString? observedSeq,
-    Element? observedSeqElement,
     List<MolecularSequenceQuality>? quality,
     FhirInteger? readCoverage,
-    Element? readCoverageElement,
     List<MolecularSequenceRepository>? repository,
     List<Reference>? pointer,
     List<MolecularSequenceStructureVariant>? structureVariant,
@@ -493,19 +449,14 @@ class MolecularSequence extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       coordinateSystem: coordinateSystem ?? this.coordinateSystem,
-      coordinateSystemElement:
-          coordinateSystemElement ?? this.coordinateSystemElement,
       patient: patient ?? this.patient,
       specimen: specimen ?? this.specimen,
       device: device ?? this.device,
@@ -514,10 +465,8 @@ class MolecularSequence extends DomainResource {
       referenceSeq: referenceSeq ?? this.referenceSeq,
       variant: variant ?? this.variant,
       observedSeq: observedSeq ?? this.observedSeq,
-      observedSeqElement: observedSeqElement ?? this.observedSeqElement,
       quality: quality ?? this.quality,
       readCoverage: readCoverage ?? this.readCoverage,
-      readCoverageElement: readCoverageElement ?? this.readCoverageElement,
       repository: repository ?? this.repository,
       pointer: pointer ?? this.pointer,
       structureVariant: structureVariant ?? this.structureVariant,
@@ -539,35 +488,17 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
 
   MolecularSequenceReferenceSeq({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.chromosome,
     this.genomeBuild,
-
-    /// Extensions for [genomeBuild]
-    this.genomeBuildElement,
     this.orientation,
-
-    /// Extensions for [orientation]
-    this.orientationElement,
     this.referenceSeqId,
     this.referenceSeqPointer,
     this.referenceSeqString,
-
-    /// Extensions for [referenceSeqString]
-    this.referenceSeqStringElement,
     this.strand,
-
-    /// Extensions for [strand]
-    this.strandElement,
     this.windowStart,
-
-    /// Extensions for [windowStart]
-    this.windowStartElement,
     this.windowEnd,
-
-    /// Extensions for [windowEnd]
-    this.windowEndElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -579,11 +510,15 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceReferenceSeq.fromJson(Map<String, dynamic> json) {
     return MolecularSequenceReferenceSeq(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -592,7 +527,7 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -604,20 +539,16 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
             )
           : null,
       genomeBuild: json['genomeBuild'] != null
-          ? FhirString.fromJson(json['genomeBuild'])
-          : null,
-      genomeBuildElement: json['_genomeBuild'] != null
-          ? Element.fromJson(
-              json['_genomeBuild'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['genomeBuild'],
+              '_value': json['_genomeBuild'],
+            })
           : null,
       orientation: json['orientation'] != null
-          ? OrientationType.fromJson(json['orientation'])
-          : null,
-      orientationElement: json['_orientation'] != null
-          ? Element.fromJson(
-              json['_orientation'] as Map<String, dynamic>,
-            )
+          ? OrientationType.fromJson({
+              'value': json['orientation'],
+              '_value': json['_orientation'],
+            })
           : null,
       referenceSeqId: json['referenceSeqId'] != null
           ? CodeableConcept.fromJson(
@@ -630,40 +561,34 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
             )
           : null,
       referenceSeqString: json['referenceSeqString'] != null
-          ? FhirString.fromJson(json['referenceSeqString'])
+          ? FhirString.fromJson({
+              'value': json['referenceSeqString'],
+              '_value': json['_referenceSeqString'],
+            })
           : null,
-      referenceSeqStringElement: json['_referenceSeqString'] != null
-          ? Element.fromJson(
-              json['_referenceSeqString'] as Map<String, dynamic>,
-            )
-          : null,
-      strand:
-          json['strand'] != null ? StrandType.fromJson(json['strand']) : null,
-      strandElement: json['_strand'] != null
-          ? Element.fromJson(
-              json['_strand'] as Map<String, dynamic>,
-            )
+      strand: json['strand'] != null
+          ? StrandType.fromJson({
+              'value': json['strand'],
+              '_value': json['_strand'],
+            })
           : null,
       windowStart: json['windowStart'] != null
-          ? FhirInteger.fromJson(json['windowStart'])
-          : null,
-      windowStartElement: json['_windowStart'] != null
-          ? Element.fromJson(
-              json['_windowStart'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['windowStart'],
+              '_value': json['_windowStart'],
+            })
           : null,
       windowEnd: json['windowEnd'] != null
-          ? FhirInteger.fromJson(json['windowEnd'])
-          : null,
-      windowEndElement: json['_windowEnd'] != null
-          ? Element.fromJson(
-              json['_windowEnd'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['windowEnd'],
+              '_value': json['_windowEnd'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [MolecularSequenceReferenceSeq] from a [String] or [YamlMap] object
+  /// Deserialize [MolecularSequenceReferenceSeq] from a [String]
+  /// or [YamlMap] object
   factory MolecularSequenceReferenceSeq.fromYaml(dynamic yaml) => yaml is String
       ? MolecularSequenceReferenceSeq.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -673,10 +598,11 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'MolecularSequenceReferenceSeq cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'MolecularSequenceReferenceSeq cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MolecularSequenceReferenceSeq] that takes in a [String]
+  /// Factory constructor for [MolecularSequenceReferenceSeq]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MolecularSequenceReferenceSeq.fromJsonString(String source) {
@@ -692,6 +618,15 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   @override
   String get fhirType => 'MolecularSequenceReferenceSeq';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [chromosome]
   /// Structural unit composed of a nucleic acid molecule which controls its
   /// own replication through the interaction of specific proteins at one or
@@ -705,18 +640,12 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   /// primary build was used.
   final FhirString? genomeBuild;
 
-  /// Extensions for [genomeBuild]
-  final Element? genomeBuildElement;
-
   /// [orientation]
   /// A relative reference to a DNA strand based on gene orientation. The
   /// strand that contains the open reading frame of the gene is the "sense"
   /// strand, and the opposite complementary strand is the "antisense"
   /// strand.
   final OrientationType? orientation;
-
-  /// Extensions for [orientation]
-  final Element? orientationElement;
 
   /// [referenceSeqId]
   /// Reference identifier of reference sequence submitted to NCBI. It must
@@ -733,17 +662,11 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   /// A string like "ACGT".
   final FhirString? referenceSeqString;
 
-  /// Extensions for [referenceSeqString]
-  final Element? referenceSeqStringElement;
-
   /// [strand]
   /// An absolute reference to a strand. The Watson strand is the strand
   /// whose 5'-end is on the short arm of the chromosome, and the Crick
   /// strand as the one whose 5'-end is on the long arm.
   final StrandType? strand;
-
-  /// Extensions for [strand]
-  final Element? strandElement;
 
   /// [windowStart]
   /// Start position of the window on the reference sequence. If the
@@ -751,18 +674,12 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   /// inclusive.
   final FhirInteger? windowStart;
 
-  /// Extensions for [windowStart]
-  final Element? windowStartElement;
-
   /// [windowEnd]
   /// End position of the window on the reference sequence. If the coordinate
   /// system is 0-based then end is exclusive and does not include the last
   /// position. If the coordinate system is 1-base, then end is inclusive and
   /// includes the last position.
   final FhirInteger? windowEnd;
-
-  /// Extensions for [windowEnd]
-  final Element? windowEndElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -783,9 +700,6 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     if (genomeBuild?.value != null) {
       json['genomeBuild'] = genomeBuild!.toJson();
     }
-    if (genomeBuildElement != null) {
-      json['_genomeBuild'] = genomeBuildElement!.toJson();
-    }
     if (orientation != null) {
       json['orientation'] = orientation!.toJson();
     }
@@ -798,23 +712,14 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     if (referenceSeqString?.value != null) {
       json['referenceSeqString'] = referenceSeqString!.toJson();
     }
-    if (referenceSeqStringElement != null) {
-      json['_referenceSeqString'] = referenceSeqStringElement!.toJson();
-    }
     if (strand != null) {
       json['strand'] = strand!.toJson();
     }
     if (windowStart?.value != null) {
       json['windowStart'] = windowStart!.toJson();
     }
-    if (windowStartElement != null) {
-      json['_windowStart'] = windowStartElement!.toJson();
-    }
     if (windowEnd?.value != null) {
       json['windowEnd'] = windowEnd!.toJson();
-    }
-    if (windowEndElement != null) {
-      json['_windowEnd'] = windowEndElement!.toJson();
     }
     return json;
   }
@@ -828,19 +733,13 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? chromosome,
     FhirString? genomeBuild,
-    Element? genomeBuildElement,
     OrientationType? orientation,
-    Element? orientationElement,
     CodeableConcept? referenceSeqId,
     Reference? referenceSeqPointer,
     FhirString? referenceSeqString,
-    Element? referenceSeqStringElement,
     StrandType? strand,
-    Element? strandElement,
     FhirInteger? windowStart,
-    Element? windowStartElement,
     FhirInteger? windowEnd,
-    Element? windowEndElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -854,20 +753,13 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       chromosome: chromosome ?? this.chromosome,
       genomeBuild: genomeBuild ?? this.genomeBuild,
-      genomeBuildElement: genomeBuildElement ?? this.genomeBuildElement,
       orientation: orientation ?? this.orientation,
-      orientationElement: orientationElement ?? this.orientationElement,
       referenceSeqId: referenceSeqId ?? this.referenceSeqId,
       referenceSeqPointer: referenceSeqPointer ?? this.referenceSeqPointer,
       referenceSeqString: referenceSeqString ?? this.referenceSeqString,
-      referenceSeqStringElement:
-          referenceSeqStringElement ?? this.referenceSeqStringElement,
       strand: strand ?? this.strand,
-      strandElement: strandElement ?? this.strandElement,
       windowStart: windowStart ?? this.windowStart,
-      windowStartElement: windowStartElement ?? this.windowStartElement,
       windowEnd: windowEnd ?? this.windowEnd,
-      windowEndElement: windowEndElement ?? this.windowEndElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -889,28 +781,13 @@ class MolecularSequenceVariant extends BackboneElement {
 
   MolecularSequenceVariant({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.start,
-
-    /// Extensions for [start]
-    this.startElement,
     this.end,
-
-    /// Extensions for [end]
-    this.endElement,
     this.observedAllele,
-
-    /// Extensions for [observedAllele]
-    this.observedAlleleElement,
     this.referenceAllele,
-
-    /// Extensions for [referenceAllele]
-    this.referenceAlleleElement,
     this.cigar,
-
-    /// Extensions for [cigar]
-    this.cigarElement,
     this.variantPointer,
     super.userData,
     super.formatCommentsPre,
@@ -923,11 +800,15 @@ class MolecularSequenceVariant extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceVariant.fromJson(Map<String, dynamic> json) {
     return MolecularSequenceVariant(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -936,45 +817,41 @@ class MolecularSequenceVariant extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      start: json['start'] != null ? FhirInteger.fromJson(json['start']) : null,
-      startElement: json['_start'] != null
-          ? Element.fromJson(
-              json['_start'] as Map<String, dynamic>,
-            )
+      start: json['start'] != null
+          ? FhirInteger.fromJson({
+              'value': json['start'],
+              '_value': json['_start'],
+            })
           : null,
-      end: json['end'] != null ? FhirInteger.fromJson(json['end']) : null,
-      endElement: json['_end'] != null
-          ? Element.fromJson(
-              json['_end'] as Map<String, dynamic>,
-            )
+      end: json['end'] != null
+          ? FhirInteger.fromJson({
+              'value': json['end'],
+              '_value': json['_end'],
+            })
           : null,
       observedAllele: json['observedAllele'] != null
-          ? FhirString.fromJson(json['observedAllele'])
-          : null,
-      observedAlleleElement: json['_observedAllele'] != null
-          ? Element.fromJson(
-              json['_observedAllele'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['observedAllele'],
+              '_value': json['_observedAllele'],
+            })
           : null,
       referenceAllele: json['referenceAllele'] != null
-          ? FhirString.fromJson(json['referenceAllele'])
+          ? FhirString.fromJson({
+              'value': json['referenceAllele'],
+              '_value': json['_referenceAllele'],
+            })
           : null,
-      referenceAlleleElement: json['_referenceAllele'] != null
-          ? Element.fromJson(
-              json['_referenceAllele'] as Map<String, dynamic>,
-            )
-          : null,
-      cigar: json['cigar'] != null ? FhirString.fromJson(json['cigar']) : null,
-      cigarElement: json['_cigar'] != null
-          ? Element.fromJson(
-              json['_cigar'] as Map<String, dynamic>,
-            )
+      cigar: json['cigar'] != null
+          ? FhirString.fromJson({
+              'value': json['cigar'],
+              '_value': json['_cigar'],
+            })
           : null,
       variantPointer: json['variantPointer'] != null
           ? Reference.fromJson(
@@ -984,7 +861,8 @@ class MolecularSequenceVariant extends BackboneElement {
     );
   }
 
-  /// Deserialize [MolecularSequenceVariant] from a [String] or [YamlMap] object
+  /// Deserialize [MolecularSequenceVariant] from a [String]
+  /// or [YamlMap] object
   factory MolecularSequenceVariant.fromYaml(dynamic yaml) => yaml is String
       ? MolecularSequenceVariant.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -994,10 +872,11 @@ class MolecularSequenceVariant extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'MolecularSequenceVariant cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'MolecularSequenceVariant cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MolecularSequenceVariant] that takes in a [String]
+  /// Factory constructor for [MolecularSequenceVariant]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MolecularSequenceVariant.fromJsonString(String source) {
@@ -1013,14 +892,20 @@ class MolecularSequenceVariant extends BackboneElement {
   @override
   String get fhirType => 'MolecularSequenceVariant';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [start]
   /// Start position of the variant on the reference sequence. If the
   /// coordinate system is either 0-based or 1-based, then start position is
   /// inclusive.
   final FhirInteger? start;
-
-  /// Extensions for [start]
-  final Element? startElement;
 
   /// [end]
   /// End position of the variant on the reference sequence. If the
@@ -1028,9 +913,6 @@ class MolecularSequenceVariant extends BackboneElement {
   /// the last position. If the coordinate system is 1-base, then end is
   /// inclusive and includes the last position.
   final FhirInteger? end;
-
-  /// Extensions for [end]
-  final Element? endElement;
 
   /// [observedAllele]
   /// An allele is one of a set of coexisting sequence variants of a gene
@@ -1042,9 +924,6 @@ class MolecularSequenceVariant extends BackboneElement {
   /// variant.start and variant.end.
   final FhirString? observedAllele;
 
-  /// Extensions for [observedAllele]
-  final Element? observedAlleleElement;
-
   /// [referenceAllele]
   /// An allele is one of a set of coexisting sequence variants of a gene
   /// ([SO:0001023](http://www.sequenceontology.org/browser/current_svn/term/SO:0001023)).
@@ -1055,17 +934,11 @@ class MolecularSequenceVariant extends BackboneElement {
   /// variant.start and variant.end.
   final FhirString? referenceAllele;
 
-  /// Extensions for [referenceAllele]
-  final Element? referenceAlleleElement;
-
   /// [cigar]
   /// Extended CIGAR string for aligning the sequence with reference bases.
   /// See detailed documentation
   /// [here](http://support.illumina.com/help/SequencingAnalysisWorkflow/Content/Vault/Informatics/Sequencing_Analysis/CASAVA/swSEQ_mCA_ExtendedCIGARFormat.htm).
   final FhirString? cigar;
-
-  /// Extensions for [cigar]
-  final Element? cigarElement;
 
   /// [variantPointer]
   /// A pointer to an Observation containing variant information.
@@ -1087,32 +960,17 @@ class MolecularSequenceVariant extends BackboneElement {
     if (start?.value != null) {
       json['start'] = start!.toJson();
     }
-    if (startElement != null) {
-      json['_start'] = startElement!.toJson();
-    }
     if (end?.value != null) {
       json['end'] = end!.toJson();
-    }
-    if (endElement != null) {
-      json['_end'] = endElement!.toJson();
     }
     if (observedAllele?.value != null) {
       json['observedAllele'] = observedAllele!.toJson();
     }
-    if (observedAlleleElement != null) {
-      json['_observedAllele'] = observedAlleleElement!.toJson();
-    }
     if (referenceAllele?.value != null) {
       json['referenceAllele'] = referenceAllele!.toJson();
     }
-    if (referenceAlleleElement != null) {
-      json['_referenceAllele'] = referenceAlleleElement!.toJson();
-    }
     if (cigar?.value != null) {
       json['cigar'] = cigar!.toJson();
-    }
-    if (cigarElement != null) {
-      json['_cigar'] = cigarElement!.toJson();
     }
     if (variantPointer != null) {
       json['variantPointer'] = variantPointer!.toJson();
@@ -1128,15 +986,10 @@ class MolecularSequenceVariant extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirInteger? start,
-    Element? startElement,
     FhirInteger? end,
-    Element? endElement,
     FhirString? observedAllele,
-    Element? observedAlleleElement,
     FhirString? referenceAllele,
-    Element? referenceAlleleElement,
     FhirString? cigar,
-    Element? cigarElement,
     Reference? variantPointer,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1150,17 +1003,10 @@ class MolecularSequenceVariant extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       start: start ?? this.start,
-      startElement: startElement ?? this.startElement,
       end: end ?? this.end,
-      endElement: endElement ?? this.endElement,
       observedAllele: observedAllele ?? this.observedAllele,
-      observedAlleleElement:
-          observedAlleleElement ?? this.observedAlleleElement,
       referenceAllele: referenceAllele ?? this.referenceAllele,
-      referenceAlleleElement:
-          referenceAlleleElement ?? this.referenceAlleleElement,
       cigar: cigar ?? this.cigar,
-      cigarElement: cigarElement ?? this.cigarElement,
       variantPointer: variantPointer ?? this.variantPointer,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -1181,55 +1027,22 @@ class MolecularSequenceQuality extends BackboneElement {
 
   MolecularSequenceQuality({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.standardSequence,
     this.start,
-
-    /// Extensions for [start]
-    this.startElement,
     this.end,
-
-    /// Extensions for [end]
-    this.endElement,
     this.score,
     this.method,
     this.truthTP,
-
-    /// Extensions for [truthTP]
-    this.truthTPElement,
     this.queryTP,
-
-    /// Extensions for [queryTP]
-    this.queryTPElement,
     this.truthFN,
-
-    /// Extensions for [truthFN]
-    this.truthFNElement,
     this.queryFP,
-
-    /// Extensions for [queryFP]
-    this.queryFPElement,
     this.gtFP,
-
-    /// Extensions for [gtFP]
-    this.gtFPElement,
     this.precision,
-
-    /// Extensions for [precision]
-    this.precisionElement,
     this.recall,
-
-    /// Extensions for [recall]
-    this.recallElement,
     this.fScore,
-
-    /// Extensions for [fScore]
-    this.fScoreElement,
     this.roc,
     super.userData,
     super.formatCommentsPre,
@@ -1242,11 +1055,15 @@ class MolecularSequenceQuality extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceQuality.fromJson(Map<String, dynamic> json) {
     return MolecularSequenceQuality(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1255,34 +1072,32 @@ class MolecularSequenceQuality extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      type: QualityType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
+      type: QualityType.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
       standardSequence: json['standardSequence'] != null
           ? CodeableConcept.fromJson(
               json['standardSequence'] as Map<String, dynamic>,
             )
           : null,
-      start: json['start'] != null ? FhirInteger.fromJson(json['start']) : null,
-      startElement: json['_start'] != null
-          ? Element.fromJson(
-              json['_start'] as Map<String, dynamic>,
-            )
+      start: json['start'] != null
+          ? FhirInteger.fromJson({
+              'value': json['start'],
+              '_value': json['_start'],
+            })
           : null,
-      end: json['end'] != null ? FhirInteger.fromJson(json['end']) : null,
-      endElement: json['_end'] != null
-          ? Element.fromJson(
-              json['_end'] as Map<String, dynamic>,
-            )
+      end: json['end'] != null
+          ? FhirInteger.fromJson({
+              'value': json['end'],
+              '_value': json['_end'],
+            })
           : null,
       score: json['score'] != null
           ? Quantity.fromJson(
@@ -1295,64 +1110,52 @@ class MolecularSequenceQuality extends BackboneElement {
             )
           : null,
       truthTP: json['truthTP'] != null
-          ? FhirDecimal.fromJson(json['truthTP'])
-          : null,
-      truthTPElement: json['_truthTP'] != null
-          ? Element.fromJson(
-              json['_truthTP'] as Map<String, dynamic>,
-            )
+          ? FhirDecimal.fromJson({
+              'value': json['truthTP'],
+              '_value': json['_truthTP'],
+            })
           : null,
       queryTP: json['queryTP'] != null
-          ? FhirDecimal.fromJson(json['queryTP'])
-          : null,
-      queryTPElement: json['_queryTP'] != null
-          ? Element.fromJson(
-              json['_queryTP'] as Map<String, dynamic>,
-            )
+          ? FhirDecimal.fromJson({
+              'value': json['queryTP'],
+              '_value': json['_queryTP'],
+            })
           : null,
       truthFN: json['truthFN'] != null
-          ? FhirDecimal.fromJson(json['truthFN'])
-          : null,
-      truthFNElement: json['_truthFN'] != null
-          ? Element.fromJson(
-              json['_truthFN'] as Map<String, dynamic>,
-            )
+          ? FhirDecimal.fromJson({
+              'value': json['truthFN'],
+              '_value': json['_truthFN'],
+            })
           : null,
       queryFP: json['queryFP'] != null
-          ? FhirDecimal.fromJson(json['queryFP'])
+          ? FhirDecimal.fromJson({
+              'value': json['queryFP'],
+              '_value': json['_queryFP'],
+            })
           : null,
-      queryFPElement: json['_queryFP'] != null
-          ? Element.fromJson(
-              json['_queryFP'] as Map<String, dynamic>,
-            )
-          : null,
-      gtFP: json['gtFP'] != null ? FhirDecimal.fromJson(json['gtFP']) : null,
-      gtFPElement: json['_gtFP'] != null
-          ? Element.fromJson(
-              json['_gtFP'] as Map<String, dynamic>,
-            )
+      gtFP: json['gtFP'] != null
+          ? FhirDecimal.fromJson({
+              'value': json['gtFP'],
+              '_value': json['_gtFP'],
+            })
           : null,
       precision: json['precision'] != null
-          ? FhirDecimal.fromJson(json['precision'])
+          ? FhirDecimal.fromJson({
+              'value': json['precision'],
+              '_value': json['_precision'],
+            })
           : null,
-      precisionElement: json['_precision'] != null
-          ? Element.fromJson(
-              json['_precision'] as Map<String, dynamic>,
-            )
+      recall: json['recall'] != null
+          ? FhirDecimal.fromJson({
+              'value': json['recall'],
+              '_value': json['_recall'],
+            })
           : null,
-      recall:
-          json['recall'] != null ? FhirDecimal.fromJson(json['recall']) : null,
-      recallElement: json['_recall'] != null
-          ? Element.fromJson(
-              json['_recall'] as Map<String, dynamic>,
-            )
-          : null,
-      fScore:
-          json['fScore'] != null ? FhirDecimal.fromJson(json['fScore']) : null,
-      fScoreElement: json['_fScore'] != null
-          ? Element.fromJson(
-              json['_fScore'] as Map<String, dynamic>,
-            )
+      fScore: json['fScore'] != null
+          ? FhirDecimal.fromJson({
+              'value': json['fScore'],
+              '_value': json['_fScore'],
+            })
           : null,
       roc: json['roc'] != null
           ? MolecularSequenceRoc.fromJson(
@@ -1362,7 +1165,8 @@ class MolecularSequenceQuality extends BackboneElement {
     );
   }
 
-  /// Deserialize [MolecularSequenceQuality] from a [String] or [YamlMap] object
+  /// Deserialize [MolecularSequenceQuality] from a [String]
+  /// or [YamlMap] object
   factory MolecularSequenceQuality.fromYaml(dynamic yaml) => yaml is String
       ? MolecularSequenceQuality.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1372,10 +1176,11 @@ class MolecularSequenceQuality extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'MolecularSequenceQuality cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'MolecularSequenceQuality cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MolecularSequenceQuality] that takes in a [String]
+  /// Factory constructor for [MolecularSequenceQuality]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MolecularSequenceQuality.fromJsonString(String source) {
@@ -1391,12 +1196,18 @@ class MolecularSequenceQuality extends BackboneElement {
   @override
   String get fhirType => 'MolecularSequenceQuality';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// INDEL / SNP / Undefined variant.
   final QualityType type;
-
-  /// Extensions for [type]
-  final Element? typeElement;
 
   /// [standardSequence]
   /// Gold standard sequence used for comparing against.
@@ -1407,18 +1218,12 @@ class MolecularSequenceQuality extends BackboneElement {
   /// 0-based or 1-based, then start position is inclusive.
   final FhirInteger? start;
 
-  /// Extensions for [start]
-  final Element? startElement;
-
   /// [end]
   /// End position of the sequence. If the coordinate system is 0-based then
   /// end is exclusive and does not include the last position. If the
   /// coordinate system is 1-base, then end is inclusive and includes the
   /// last position.
   final FhirInteger? end;
-
-  /// Extensions for [end]
-  final Element? endElement;
 
   /// [score]
   /// The score of an experimentally derived feature such as a p-value
@@ -1436,18 +1241,12 @@ class MolecularSequenceQuality extends BackboneElement {
   /// site, and for which there is an accurate genotype call for the event.
   final FhirDecimal? truthTP;
 
-  /// Extensions for [truthTP]
-  final Element? truthTPElement;
-
   /// [queryTP]
   /// True positives, from the perspective of the query data, i.e. the number
   /// of sites in the Query Call Set for which there are paths through the
   /// Truth Call Set that are consistent with all of the alleles at this
   /// site, and for which there is an accurate genotype call for the event.
   final FhirDecimal? queryTP;
-
-  /// Extensions for [queryTP]
-  final Element? queryTPElement;
 
   /// [truthFN]
   /// False negatives, i.e. the number of sites in the Truth Call Set for
@@ -1457,9 +1256,6 @@ class MolecularSequenceQuality extends BackboneElement {
   /// incorrect genotype are counted here.
   final FhirDecimal? truthFN;
 
-  /// Extensions for [truthFN]
-  final Element? truthFNElement;
-
   /// [queryFP]
   /// False positives, i.e. the number of sites in the Query Call Set for
   /// which there is no path through the Truth Call Set that is consistent
@@ -1467,39 +1263,24 @@ class MolecularSequenceQuality extends BackboneElement {
   /// counted here.
   final FhirDecimal? queryFP;
 
-  /// Extensions for [queryFP]
-  final Element? queryFPElement;
-
   /// [gtFP]
   /// The number of false positives where the non-REF alleles in the Truth
   /// and Query Call Sets match (i.e. cases where the truth is 1/1 and the
   /// query is 0/1 or similar).
   final FhirDecimal? gtFP;
 
-  /// Extensions for [gtFP]
-  final Element? gtFPElement;
-
   /// [precision]
   /// QUERY.TP / (QUERY.TP + QUERY.FP).
   final FhirDecimal? precision;
-
-  /// Extensions for [precision]
-  final Element? precisionElement;
 
   /// [recall]
   /// TRUTH.TP / (TRUTH.TP + TRUTH.FN).
   final FhirDecimal? recall;
 
-  /// Extensions for [recall]
-  final Element? recallElement;
-
   /// [fScore]
   /// Harmonic mean of Recall and Precision, computed as: 2 * precision *
   /// recall / (precision + recall).
   final FhirDecimal? fScore;
-
-  /// Extensions for [fScore]
-  final Element? fScoreElement;
 
   /// [roc]
   /// Receiver Operator Characteristic (ROC) Curve to give
@@ -1526,14 +1307,8 @@ class MolecularSequenceQuality extends BackboneElement {
     if (start?.value != null) {
       json['start'] = start!.toJson();
     }
-    if (startElement != null) {
-      json['_start'] = startElement!.toJson();
-    }
     if (end?.value != null) {
       json['end'] = end!.toJson();
-    }
-    if (endElement != null) {
-      json['_end'] = endElement!.toJson();
     }
     if (score != null) {
       json['score'] = score!.toJson();
@@ -1544,50 +1319,26 @@ class MolecularSequenceQuality extends BackboneElement {
     if (truthTP?.value != null) {
       json['truthTP'] = truthTP!.toJson();
     }
-    if (truthTPElement != null) {
-      json['_truthTP'] = truthTPElement!.toJson();
-    }
     if (queryTP?.value != null) {
       json['queryTP'] = queryTP!.toJson();
-    }
-    if (queryTPElement != null) {
-      json['_queryTP'] = queryTPElement!.toJson();
     }
     if (truthFN?.value != null) {
       json['truthFN'] = truthFN!.toJson();
     }
-    if (truthFNElement != null) {
-      json['_truthFN'] = truthFNElement!.toJson();
-    }
     if (queryFP?.value != null) {
       json['queryFP'] = queryFP!.toJson();
-    }
-    if (queryFPElement != null) {
-      json['_queryFP'] = queryFPElement!.toJson();
     }
     if (gtFP?.value != null) {
       json['gtFP'] = gtFP!.toJson();
     }
-    if (gtFPElement != null) {
-      json['_gtFP'] = gtFPElement!.toJson();
-    }
     if (precision?.value != null) {
       json['precision'] = precision!.toJson();
-    }
-    if (precisionElement != null) {
-      json['_precision'] = precisionElement!.toJson();
     }
     if (recall?.value != null) {
       json['recall'] = recall!.toJson();
     }
-    if (recallElement != null) {
-      json['_recall'] = recallElement!.toJson();
-    }
     if (fScore?.value != null) {
       json['fScore'] = fScore!.toJson();
-    }
-    if (fScoreElement != null) {
-      json['_fScore'] = fScoreElement!.toJson();
     }
     if (roc != null) {
       json['roc'] = roc!.toJson();
@@ -1603,30 +1354,19 @@ class MolecularSequenceQuality extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     QualityType? type,
-    Element? typeElement,
     CodeableConcept? standardSequence,
     FhirInteger? start,
-    Element? startElement,
     FhirInteger? end,
-    Element? endElement,
     Quantity? score,
     CodeableConcept? method,
     FhirDecimal? truthTP,
-    Element? truthTPElement,
     FhirDecimal? queryTP,
-    Element? queryTPElement,
     FhirDecimal? truthFN,
-    Element? truthFNElement,
     FhirDecimal? queryFP,
-    Element? queryFPElement,
     FhirDecimal? gtFP,
-    Element? gtFPElement,
     FhirDecimal? precision,
-    Element? precisionElement,
     FhirDecimal? recall,
-    Element? recallElement,
     FhirDecimal? fScore,
-    Element? fScoreElement,
     MolecularSequenceRoc? roc,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1640,30 +1380,19 @@ class MolecularSequenceQuality extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       standardSequence: standardSequence ?? this.standardSequence,
       start: start ?? this.start,
-      startElement: startElement ?? this.startElement,
       end: end ?? this.end,
-      endElement: endElement ?? this.endElement,
       score: score ?? this.score,
       method: method ?? this.method,
       truthTP: truthTP ?? this.truthTP,
-      truthTPElement: truthTPElement ?? this.truthTPElement,
       queryTP: queryTP ?? this.queryTP,
-      queryTPElement: queryTPElement ?? this.queryTPElement,
       truthFN: truthFN ?? this.truthFN,
-      truthFNElement: truthFNElement ?? this.truthFNElement,
       queryFP: queryFP ?? this.queryFP,
-      queryFPElement: queryFPElement ?? this.queryFPElement,
       gtFP: gtFP ?? this.gtFP,
-      gtFPElement: gtFPElement ?? this.gtFPElement,
       precision: precision ?? this.precision,
-      precisionElement: precisionElement ?? this.precisionElement,
       recall: recall ?? this.recall,
-      recallElement: recallElement ?? this.recallElement,
       fScore: fScore ?? this.fScore,
-      fScoreElement: fScoreElement ?? this.fScoreElement,
       roc: roc ?? this.roc,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -1683,36 +1412,15 @@ class MolecularSequenceRoc extends BackboneElement {
 
   MolecularSequenceRoc({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.score,
-
-    /// Extensions for [score]
-    this.scoreElement,
     this.numTP,
-
-    /// Extensions for [numTP]
-    this.numTPElement,
     this.numFP,
-
-    /// Extensions for [numFP]
-    this.numFPElement,
     this.numFN,
-
-    /// Extensions for [numFN]
-    this.numFNElement,
     this.precision,
-
-    /// Extensions for [precision]
-    this.precisionElement,
     this.sensitivity,
-
-    /// Extensions for [sensitivity]
-    this.sensitivityElement,
     this.fMeasure,
-
-    /// Extensions for [fMeasure]
-    this.fMeasureElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1724,11 +1432,15 @@ class MolecularSequenceRoc extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceRoc.fromJson(Map<String, dynamic> json) {
     return MolecularSequenceRoc(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1737,114 +1449,41 @@ class MolecularSequenceRoc extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      score: json['score'] != null
-          ? (json['score'] as List<dynamic>)
-              .map<FhirInteger>(
-                (dynamic v) => FhirInteger.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      scoreElement: json['_score'] != null
-          ? (json['_score'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      numTP: json['numTP'] != null
-          ? (json['numTP'] as List<dynamic>)
-              .map<FhirInteger>(
-                (dynamic v) => FhirInteger.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      numTPElement: json['_numTP'] != null
-          ? (json['_numTP'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      numFP: json['numFP'] != null
-          ? (json['numFP'] as List<dynamic>)
-              .map<FhirInteger>(
-                (dynamic v) => FhirInteger.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      numFPElement: json['_numFP'] != null
-          ? (json['_numFP'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      numFN: json['numFN'] != null
-          ? (json['numFN'] as List<dynamic>)
-              .map<FhirInteger>(
-                (dynamic v) => FhirInteger.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      numFNElement: json['_numFN'] != null
-          ? (json['_numFN'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      precision: json['precision'] != null
-          ? (json['precision'] as List<dynamic>)
-              .map<FhirDecimal>(
-                (dynamic v) => FhirDecimal.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      precisionElement: json['_precision'] != null
-          ? (json['_precision'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      sensitivity: json['sensitivity'] != null
-          ? (json['sensitivity'] as List<dynamic>)
-              .map<FhirDecimal>(
-                (dynamic v) => FhirDecimal.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      sensitivityElement: json['_sensitivity'] != null
-          ? (json['_sensitivity'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      fMeasure: json['fMeasure'] != null
-          ? (json['fMeasure'] as List<dynamic>)
-              .map<FhirDecimal>(
-                (dynamic v) => FhirDecimal.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      fMeasureElement: json['_fMeasure'] != null
-          ? (json['_fMeasure'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      score: parsePrimitiveList<FhirInteger>(
+          json['score'] as List<dynamic>?, json['_score'] as List<dynamic>?,
+          fromJson: FhirInteger.fromJson),
+      numTP: parsePrimitiveList<FhirInteger>(
+          json['numTP'] as List<dynamic>?, json['_numTP'] as List<dynamic>?,
+          fromJson: FhirInteger.fromJson),
+      numFP: parsePrimitiveList<FhirInteger>(
+          json['numFP'] as List<dynamic>?, json['_numFP'] as List<dynamic>?,
+          fromJson: FhirInteger.fromJson),
+      numFN: parsePrimitiveList<FhirInteger>(
+          json['numFN'] as List<dynamic>?, json['_numFN'] as List<dynamic>?,
+          fromJson: FhirInteger.fromJson),
+      precision: parsePrimitiveList<FhirDecimal>(
+          json['precision'] as List<dynamic>?,
+          json['_precision'] as List<dynamic>?,
+          fromJson: FhirDecimal.fromJson),
+      sensitivity: parsePrimitiveList<FhirDecimal>(
+          json['sensitivity'] as List<dynamic>?,
+          json['_sensitivity'] as List<dynamic>?,
+          fromJson: FhirDecimal.fromJson),
+      fMeasure: parsePrimitiveList<FhirDecimal>(
+          json['fMeasure'] as List<dynamic>?,
+          json['_fMeasure'] as List<dynamic>?,
+          fromJson: FhirDecimal.fromJson),
     );
   }
 
-  /// Deserialize [MolecularSequenceRoc] from a [String] or [YamlMap] object
+  /// Deserialize [MolecularSequenceRoc] from a [String]
+  /// or [YamlMap] object
   factory MolecularSequenceRoc.fromYaml(dynamic yaml) => yaml is String
       ? MolecularSequenceRoc.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1854,10 +1493,11 @@ class MolecularSequenceRoc extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'MolecularSequenceRoc cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'MolecularSequenceRoc cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MolecularSequenceRoc] that takes in a [String]
+  /// Factory constructor for [MolecularSequenceRoc]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MolecularSequenceRoc.fromJsonString(String source) {
@@ -1873,61 +1513,49 @@ class MolecularSequenceRoc extends BackboneElement {
   @override
   String get fhirType => 'MolecularSequenceRoc';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [score]
   /// Invidual data point representing the GQ (genotype quality) score
   /// threshold.
   final List<FhirInteger>? score;
-
-  /// Extensions for [score]
-  final List<Element>? scoreElement;
 
   /// [numTP]
   /// The number of true positives if the GQ score threshold was set to
   /// "score" field value.
   final List<FhirInteger>? numTP;
 
-  /// Extensions for [numTP]
-  final List<Element>? numTPElement;
-
   /// [numFP]
   /// The number of false positives if the GQ score threshold was set to
   /// "score" field value.
   final List<FhirInteger>? numFP;
-
-  /// Extensions for [numFP]
-  final List<Element>? numFPElement;
 
   /// [numFN]
   /// The number of false negatives if the GQ score threshold was set to
   /// "score" field value.
   final List<FhirInteger>? numFN;
 
-  /// Extensions for [numFN]
-  final List<Element>? numFNElement;
-
   /// [precision]
   /// Calculated precision if the GQ score threshold was set to "score" field
   /// value.
   final List<FhirDecimal>? precision;
-
-  /// Extensions for [precision]
-  final List<Element>? precisionElement;
 
   /// [sensitivity]
   /// Calculated sensitivity if the GQ score threshold was set to "score"
   /// field value.
   final List<FhirDecimal>? sensitivity;
 
-  /// Extensions for [sensitivity]
-  final List<Element>? sensitivityElement;
-
   /// [fMeasure]
   /// Calculated fScore if the GQ score threshold was set to "score" field
   /// value.
   final List<FhirDecimal>? fMeasure;
-
-  /// Extensions for [fMeasure]
-  final List<Element>? fMeasureElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1945,49 +1573,25 @@ class MolecularSequenceRoc extends BackboneElement {
     if (score != null && score!.isNotEmpty) {
       json['score'] = score!.map((FhirInteger v) => v.toJson()).toList();
     }
-    if (scoreElement != null && scoreElement!.isNotEmpty) {
-      json['_score'] = scoreElement!.map((Element v) => v.toJson()).toList();
-    }
     if (numTP != null && numTP!.isNotEmpty) {
       json['numTP'] = numTP!.map((FhirInteger v) => v.toJson()).toList();
-    }
-    if (numTPElement != null && numTPElement!.isNotEmpty) {
-      json['_numTP'] = numTPElement!.map((Element v) => v.toJson()).toList();
     }
     if (numFP != null && numFP!.isNotEmpty) {
       json['numFP'] = numFP!.map((FhirInteger v) => v.toJson()).toList();
     }
-    if (numFPElement != null && numFPElement!.isNotEmpty) {
-      json['_numFP'] = numFPElement!.map((Element v) => v.toJson()).toList();
-    }
     if (numFN != null && numFN!.isNotEmpty) {
       json['numFN'] = numFN!.map((FhirInteger v) => v.toJson()).toList();
-    }
-    if (numFNElement != null && numFNElement!.isNotEmpty) {
-      json['_numFN'] = numFNElement!.map((Element v) => v.toJson()).toList();
     }
     if (precision != null && precision!.isNotEmpty) {
       json['precision'] =
           precision!.map((FhirDecimal v) => v.toJson()).toList();
     }
-    if (precisionElement != null && precisionElement!.isNotEmpty) {
-      json['_precision'] =
-          precisionElement!.map((Element v) => v.toJson()).toList();
-    }
     if (sensitivity != null && sensitivity!.isNotEmpty) {
       json['sensitivity'] =
           sensitivity!.map((FhirDecimal v) => v.toJson()).toList();
     }
-    if (sensitivityElement != null && sensitivityElement!.isNotEmpty) {
-      json['_sensitivity'] =
-          sensitivityElement!.map((Element v) => v.toJson()).toList();
-    }
     if (fMeasure != null && fMeasure!.isNotEmpty) {
       json['fMeasure'] = fMeasure!.map((FhirDecimal v) => v.toJson()).toList();
-    }
-    if (fMeasureElement != null && fMeasureElement!.isNotEmpty) {
-      json['_fMeasure'] =
-          fMeasureElement!.map((Element v) => v.toJson()).toList();
     }
     return json;
   }
@@ -2000,19 +1604,12 @@ class MolecularSequenceRoc extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<FhirInteger>? score,
-    List<Element>? scoreElement,
     List<FhirInteger>? numTP,
-    List<Element>? numTPElement,
     List<FhirInteger>? numFP,
-    List<Element>? numFPElement,
     List<FhirInteger>? numFN,
-    List<Element>? numFNElement,
     List<FhirDecimal>? precision,
-    List<Element>? precisionElement,
     List<FhirDecimal>? sensitivity,
-    List<Element>? sensitivityElement,
     List<FhirDecimal>? fMeasure,
-    List<Element>? fMeasureElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2025,19 +1622,12 @@ class MolecularSequenceRoc extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       score: score ?? this.score,
-      scoreElement: scoreElement ?? this.scoreElement,
       numTP: numTP ?? this.numTP,
-      numTPElement: numTPElement ?? this.numTPElement,
       numFP: numFP ?? this.numFP,
-      numFPElement: numFPElement ?? this.numFPElement,
       numFN: numFN ?? this.numFN,
-      numFNElement: numFNElement ?? this.numFNElement,
       precision: precision ?? this.precision,
-      precisionElement: precisionElement ?? this.precisionElement,
       sensitivity: sensitivity ?? this.sensitivity,
-      sensitivityElement: sensitivityElement ?? this.sensitivityElement,
       fMeasure: fMeasure ?? this.fMeasure,
-      fMeasureElement: fMeasureElement ?? this.fMeasureElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2056,32 +1646,14 @@ class MolecularSequenceRepository extends BackboneElement {
 
   MolecularSequenceRepository({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.datasetId,
-
-    /// Extensions for [datasetId]
-    this.datasetIdElement,
     this.variantsetId,
-
-    /// Extensions for [variantsetId]
-    this.variantsetIdElement,
     this.readsetId,
-
-    /// Extensions for [readsetId]
-    this.readsetIdElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2093,11 +1665,15 @@ class MolecularSequenceRepository extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceRepository.fromJson(Map<String, dynamic> json) {
     return MolecularSequenceRepository(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2106,58 +1682,51 @@ class MolecularSequenceRepository extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      type: RepositoryType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
+      type: RepositoryType.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
+      url: json['url'] != null
+          ? FhirUri.fromJson({
+              'value': json['url'],
+              '_value': json['_url'],
+            })
           : null,
-      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
-          : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
       datasetId: json['datasetId'] != null
-          ? FhirString.fromJson(json['datasetId'])
-          : null,
-      datasetIdElement: json['_datasetId'] != null
-          ? Element.fromJson(
-              json['_datasetId'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['datasetId'],
+              '_value': json['_datasetId'],
+            })
           : null,
       variantsetId: json['variantsetId'] != null
-          ? FhirString.fromJson(json['variantsetId'])
-          : null,
-      variantsetIdElement: json['_variantsetId'] != null
-          ? Element.fromJson(
-              json['_variantsetId'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['variantsetId'],
+              '_value': json['_variantsetId'],
+            })
           : null,
       readsetId: json['readsetId'] != null
-          ? FhirString.fromJson(json['readsetId'])
-          : null,
-      readsetIdElement: json['_readsetId'] != null
-          ? Element.fromJson(
-              json['_readsetId'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['readsetId'],
+              '_value': json['_readsetId'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [MolecularSequenceRepository] from a [String] or [YamlMap] object
+  /// Deserialize [MolecularSequenceRepository] from a [String]
+  /// or [YamlMap] object
   factory MolecularSequenceRepository.fromYaml(dynamic yaml) => yaml is String
       ? MolecularSequenceRepository.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2167,10 +1736,11 @@ class MolecularSequenceRepository extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'MolecularSequenceRepository cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'MolecularSequenceRepository cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MolecularSequenceRepository] that takes in a [String]
+  /// Factory constructor for [MolecularSequenceRepository]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MolecularSequenceRepository.fromJsonString(String source) {
@@ -2186,29 +1756,29 @@ class MolecularSequenceRepository extends BackboneElement {
   @override
   String get fhirType => 'MolecularSequenceRepository';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// Click and see / RESTful API / Need login to see / RESTful API with
   /// authentication / Other ways to see resource.
   final RepositoryType type;
-
-  /// Extensions for [type]
-  final Element? typeElement;
 
   /// [url]
   /// URI of an external repository which contains further details about the
   /// genetics data.
   final FhirUri? url;
 
-  /// Extensions for [url]
-  final Element? urlElement;
-
   /// [name]
   /// URI of an external repository which contains further details about the
   /// genetics data.
   final FhirString? name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [datasetId]
   /// Id of the variant in this external repository. The server will
@@ -2216,24 +1786,15 @@ class MolecularSequenceRepository extends BackboneElement {
   /// external repository.
   final FhirString? datasetId;
 
-  /// Extensions for [datasetId]
-  final Element? datasetIdElement;
-
   /// [variantsetId]
   /// Id of the variantset in this external repository. The server will
   /// understand how to use this id to call for more info about variantsets
   /// in external repository.
   final FhirString? variantsetId;
 
-  /// Extensions for [variantsetId]
-  final Element? variantsetIdElement;
-
   /// [readsetId]
   /// Id of the read in this external repository.
   final FhirString? readsetId;
-
-  /// Extensions for [readsetId]
-  final Element? readsetIdElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2252,32 +1813,17 @@ class MolecularSequenceRepository extends BackboneElement {
     if (url?.value != null) {
       json['url'] = url!.toJson();
     }
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
-    }
     if (name?.value != null) {
       json['name'] = name!.toJson();
-    }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
     }
     if (datasetId?.value != null) {
       json['datasetId'] = datasetId!.toJson();
     }
-    if (datasetIdElement != null) {
-      json['_datasetId'] = datasetIdElement!.toJson();
-    }
     if (variantsetId?.value != null) {
       json['variantsetId'] = variantsetId!.toJson();
     }
-    if (variantsetIdElement != null) {
-      json['_variantsetId'] = variantsetIdElement!.toJson();
-    }
     if (readsetId?.value != null) {
       json['readsetId'] = readsetId!.toJson();
-    }
-    if (readsetIdElement != null) {
-      json['_readsetId'] = readsetIdElement!.toJson();
     }
     return json;
   }
@@ -2290,17 +1836,11 @@ class MolecularSequenceRepository extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     RepositoryType? type,
-    Element? typeElement,
     FhirUri? url,
-    Element? urlElement,
     FhirString? name,
-    Element? nameElement,
     FhirString? datasetId,
-    Element? datasetIdElement,
     FhirString? variantsetId,
-    Element? variantsetIdElement,
     FhirString? readsetId,
-    Element? readsetIdElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2313,17 +1853,11 @@ class MolecularSequenceRepository extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       datasetId: datasetId ?? this.datasetId,
-      datasetIdElement: datasetIdElement ?? this.datasetIdElement,
       variantsetId: variantsetId ?? this.variantsetId,
-      variantsetIdElement: variantsetIdElement ?? this.variantsetIdElement,
       readsetId: readsetId ?? this.readsetId,
-      readsetIdElement: readsetIdElement ?? this.readsetIdElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2341,17 +1875,11 @@ class MolecularSequenceStructureVariant extends BackboneElement {
 
   MolecularSequenceStructureVariant({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.variantType,
     this.exact,
-
-    /// Extensions for [exact]
-    this.exactElement,
     this.length,
-
-    /// Extensions for [length]
-    this.lengthElement,
     this.outer,
     this.inner,
     super.userData,
@@ -2366,11 +1894,15 @@ class MolecularSequenceStructureVariant extends BackboneElement {
   factory MolecularSequenceStructureVariant.fromJson(
       Map<String, dynamic> json) {
     return MolecularSequenceStructureVariant(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2379,7 +1911,7 @@ class MolecularSequenceStructureVariant extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2390,18 +1922,17 @@ class MolecularSequenceStructureVariant extends BackboneElement {
               json['variantType'] as Map<String, dynamic>,
             )
           : null,
-      exact: json['exact'] != null ? FhirBoolean.fromJson(json['exact']) : null,
-      exactElement: json['_exact'] != null
-          ? Element.fromJson(
-              json['_exact'] as Map<String, dynamic>,
-            )
+      exact: json['exact'] != null
+          ? FhirBoolean.fromJson({
+              'value': json['exact'],
+              '_value': json['_exact'],
+            })
           : null,
-      length:
-          json['length'] != null ? FhirInteger.fromJson(json['length']) : null,
-      lengthElement: json['_length'] != null
-          ? Element.fromJson(
-              json['_length'] as Map<String, dynamic>,
-            )
+      length: json['length'] != null
+          ? FhirInteger.fromJson({
+              'value': json['length'],
+              '_value': json['_length'],
+            })
           : null,
       outer: json['outer'] != null
           ? MolecularSequenceOuter.fromJson(
@@ -2416,7 +1947,8 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     );
   }
 
-  /// Deserialize [MolecularSequenceStructureVariant] from a [String] or [YamlMap] object
+  /// Deserialize [MolecularSequenceStructureVariant] from a [String]
+  /// or [YamlMap] object
   factory MolecularSequenceStructureVariant.fromYaml(dynamic yaml) => yaml
           is String
       ? MolecularSequenceStructureVariant.fromJson(
@@ -2427,10 +1959,11 @@ class MolecularSequenceStructureVariant extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'MolecularSequenceStructureVariant cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'MolecularSequenceStructureVariant cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MolecularSequenceStructureVariant] that takes in a [String]
+  /// Factory constructor for [MolecularSequenceStructureVariant]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MolecularSequenceStructureVariant.fromJsonString(String source) {
@@ -2446,6 +1979,15 @@ class MolecularSequenceStructureVariant extends BackboneElement {
   @override
   String get fhirType => 'MolecularSequenceStructureVariant';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [variantType]
   /// Information about chromosome structure variation DNA change type.
   final CodeableConcept? variantType;
@@ -2455,15 +1997,9 @@ class MolecularSequenceStructureVariant extends BackboneElement {
   /// meaning.
   final FhirBoolean? exact;
 
-  /// Extensions for [exact]
-  final Element? exactElement;
-
   /// [length]
   /// Length of the variant chromosome.
   final FhirInteger? length;
-
-  /// Extensions for [length]
-  final Element? lengthElement;
 
   /// [outer]
   /// Structural variant outer.
@@ -2492,14 +2028,8 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     if (exact?.value != null) {
       json['exact'] = exact!.toJson();
     }
-    if (exactElement != null) {
-      json['_exact'] = exactElement!.toJson();
-    }
     if (length?.value != null) {
       json['length'] = length!.toJson();
-    }
-    if (lengthElement != null) {
-      json['_length'] = lengthElement!.toJson();
     }
     if (outer != null) {
       json['outer'] = outer!.toJson();
@@ -2519,9 +2049,7 @@ class MolecularSequenceStructureVariant extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? variantType,
     FhirBoolean? exact,
-    Element? exactElement,
     FhirInteger? length,
-    Element? lengthElement,
     MolecularSequenceOuter? outer,
     MolecularSequenceInner? inner,
     Map<String, Object?>? userData,
@@ -2537,9 +2065,7 @@ class MolecularSequenceStructureVariant extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       variantType: variantType ?? this.variantType,
       exact: exact ?? this.exact,
-      exactElement: exactElement ?? this.exactElement,
       length: length ?? this.length,
-      lengthElement: lengthElement ?? this.lengthElement,
       outer: outer ?? this.outer,
       inner: inner ?? this.inner,
       userData: userData ?? this.userData,
@@ -2559,16 +2085,10 @@ class MolecularSequenceOuter extends BackboneElement {
 
   MolecularSequenceOuter({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.start,
-
-    /// Extensions for [start]
-    this.startElement,
     this.end,
-
-    /// Extensions for [end]
-    this.endElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2580,11 +2100,15 @@ class MolecularSequenceOuter extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceOuter.fromJson(Map<String, dynamic> json) {
     return MolecularSequenceOuter(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2593,28 +2117,29 @@ class MolecularSequenceOuter extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      start: json['start'] != null ? FhirInteger.fromJson(json['start']) : null,
-      startElement: json['_start'] != null
-          ? Element.fromJson(
-              json['_start'] as Map<String, dynamic>,
-            )
+      start: json['start'] != null
+          ? FhirInteger.fromJson({
+              'value': json['start'],
+              '_value': json['_start'],
+            })
           : null,
-      end: json['end'] != null ? FhirInteger.fromJson(json['end']) : null,
-      endElement: json['_end'] != null
-          ? Element.fromJson(
-              json['_end'] as Map<String, dynamic>,
-            )
+      end: json['end'] != null
+          ? FhirInteger.fromJson({
+              'value': json['end'],
+              '_value': json['_end'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [MolecularSequenceOuter] from a [String] or [YamlMap] object
+  /// Deserialize [MolecularSequenceOuter] from a [String]
+  /// or [YamlMap] object
   factory MolecularSequenceOuter.fromYaml(dynamic yaml) => yaml is String
       ? MolecularSequenceOuter.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2624,10 +2149,11 @@ class MolecularSequenceOuter extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'MolecularSequenceOuter cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'MolecularSequenceOuter cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MolecularSequenceOuter] that takes in a [String]
+  /// Factory constructor for [MolecularSequenceOuter]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MolecularSequenceOuter.fromJsonString(String source) {
@@ -2643,13 +2169,19 @@ class MolecularSequenceOuter extends BackboneElement {
   @override
   String get fhirType => 'MolecularSequenceOuter';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [start]
   /// Structural variant outer start. If the coordinate system is either
   /// 0-based or 1-based, then start position is inclusive.
   final FhirInteger? start;
-
-  /// Extensions for [start]
-  final Element? startElement;
 
   /// [end]
   /// Structural variant outer end. If the coordinate system is 0-based then
@@ -2657,9 +2189,6 @@ class MolecularSequenceOuter extends BackboneElement {
   /// coordinate system is 1-base, then end is inclusive and includes the
   /// last position.
   final FhirInteger? end;
-
-  /// Extensions for [end]
-  final Element? endElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2677,14 +2206,8 @@ class MolecularSequenceOuter extends BackboneElement {
     if (start?.value != null) {
       json['start'] = start!.toJson();
     }
-    if (startElement != null) {
-      json['_start'] = startElement!.toJson();
-    }
     if (end?.value != null) {
       json['end'] = end!.toJson();
-    }
-    if (endElement != null) {
-      json['_end'] = endElement!.toJson();
     }
     return json;
   }
@@ -2697,9 +2220,7 @@ class MolecularSequenceOuter extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirInteger? start,
-    Element? startElement,
     FhirInteger? end,
-    Element? endElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2712,9 +2233,7 @@ class MolecularSequenceOuter extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       start: start ?? this.start,
-      startElement: startElement ?? this.startElement,
       end: end ?? this.end,
-      endElement: endElement ?? this.endElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2732,16 +2251,10 @@ class MolecularSequenceInner extends BackboneElement {
 
   MolecularSequenceInner({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.start,
-
-    /// Extensions for [start]
-    this.startElement,
     this.end,
-
-    /// Extensions for [end]
-    this.endElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2753,11 +2266,15 @@ class MolecularSequenceInner extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceInner.fromJson(Map<String, dynamic> json) {
     return MolecularSequenceInner(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2766,28 +2283,29 @@ class MolecularSequenceInner extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      start: json['start'] != null ? FhirInteger.fromJson(json['start']) : null,
-      startElement: json['_start'] != null
-          ? Element.fromJson(
-              json['_start'] as Map<String, dynamic>,
-            )
+      start: json['start'] != null
+          ? FhirInteger.fromJson({
+              'value': json['start'],
+              '_value': json['_start'],
+            })
           : null,
-      end: json['end'] != null ? FhirInteger.fromJson(json['end']) : null,
-      endElement: json['_end'] != null
-          ? Element.fromJson(
-              json['_end'] as Map<String, dynamic>,
-            )
+      end: json['end'] != null
+          ? FhirInteger.fromJson({
+              'value': json['end'],
+              '_value': json['_end'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [MolecularSequenceInner] from a [String] or [YamlMap] object
+  /// Deserialize [MolecularSequenceInner] from a [String]
+  /// or [YamlMap] object
   factory MolecularSequenceInner.fromYaml(dynamic yaml) => yaml is String
       ? MolecularSequenceInner.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2797,10 +2315,11 @@ class MolecularSequenceInner extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'MolecularSequenceInner cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'MolecularSequenceInner cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MolecularSequenceInner] that takes in a [String]
+  /// Factory constructor for [MolecularSequenceInner]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MolecularSequenceInner.fromJsonString(String source) {
@@ -2816,13 +2335,19 @@ class MolecularSequenceInner extends BackboneElement {
   @override
   String get fhirType => 'MolecularSequenceInner';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [start]
   /// Structural variant inner start. If the coordinate system is either
   /// 0-based or 1-based, then start position is inclusive.
   final FhirInteger? start;
-
-  /// Extensions for [start]
-  final Element? startElement;
 
   /// [end]
   /// Structural variant inner end. If the coordinate system is 0-based then
@@ -2830,9 +2355,6 @@ class MolecularSequenceInner extends BackboneElement {
   /// coordinate system is 1-base, then end is inclusive and includes the
   /// last position.
   final FhirInteger? end;
-
-  /// Extensions for [end]
-  final Element? endElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2850,14 +2372,8 @@ class MolecularSequenceInner extends BackboneElement {
     if (start?.value != null) {
       json['start'] = start!.toJson();
     }
-    if (startElement != null) {
-      json['_start'] = startElement!.toJson();
-    }
     if (end?.value != null) {
       json['end'] = end!.toJson();
-    }
-    if (endElement != null) {
-      json['_end'] = endElement!.toJson();
     }
     return json;
   }
@@ -2870,9 +2386,7 @@ class MolecularSequenceInner extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirInteger? start,
-    Element? startElement,
     FhirInteger? end,
-    Element? endElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2885,9 +2399,7 @@ class MolecularSequenceInner extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       start: start ?? this.start,
-      startElement: startElement ?? this.startElement,
       end: end ?? this.end,
-      endElement: endElement ?? this.endElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

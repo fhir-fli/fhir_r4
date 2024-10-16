@@ -12,9 +12,7 @@ abstract class Resource extends FhirBase {
     this.id,
     this.meta,
     this.implicitRules,
-    this.implicitRulesElement,
     this.language,
-    this.languageElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -48,16 +46,10 @@ abstract class Resource extends FhirBase {
   /// special rules along with other profiles etc.
   final FhirUri? implicitRules;
 
-  /// Extensions for implicitRules
-  final Element? implicitRulesElement;
-
   /// The base language in which the resource is written.
   /// This should be the language of the text value in the content element
   /// when a text value is present.
   final CommonLanguages? language;
-
-  /// Extensions for language
-  final Element? languageElement;
 
   /// Acts like a constructor, returns a [Resource], accepts a
   /// [String] as an argument, mostly because I got tired of typing it out
@@ -99,9 +91,7 @@ abstract class Resource extends FhirBase {
     writeNotNull('id', id);
     writeNotNull('meta', meta?.toJson());
     writeNotNull('implicitRules', implicitRules?.toJson());
-    writeNotNull('_implicitRules', implicitRulesElement?.toJson());
     writeNotNull('language', language?.toJson());
-    writeNotNull('_language', languageElement?.toJson());
     return val;
   }
 
@@ -142,9 +132,7 @@ abstract class Resource extends FhirBase {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,

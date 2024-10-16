@@ -20,39 +20,21 @@ class Composition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     required this.type,
     this.category,
     this.subject,
     this.encounter,
     required this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     required this.author,
     required this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     this.confidentiality,
-
-    /// Extensions for [confidentiality]
-    this.confidentialityElement,
     this.attester,
     this.custodian,
     this.relatesTo,
@@ -71,27 +53,27 @@ class Composition extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Composition.fromJson(Map<String, dynamic> json) {
     return Composition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -101,7 +83,7 @@ class Composition extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -110,7 +92,7 @@ class Composition extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -119,7 +101,7 @@ class Composition extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -130,19 +112,17 @@ class Composition extends DomainResource {
               json['identifier'] as Map<String, dynamic>,
             )
           : null,
-      status: CompositionStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: CompositionStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -158,34 +138,31 @@ class Composition extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      date: FhirDateTime.fromJson(json['date']),
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
-          : null,
-      author: (json['author'] as List<dynamic>)
+      date: FhirDateTime.fromJson({
+        'value': json['date'],
+        '_value': json['_date'],
+      }),
+      author: ensureNonNullList((json['author'] as List<dynamic>)
           .map<Reference>(
-              (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-          .toList(),
-      title: FhirString.fromJson(json['title']),
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
-          : null,
+            (v) => Reference.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
+      title: FhirString.fromJson({
+        'value': json['title'],
+        '_value': json['_title'],
+      }),
       confidentiality: json['confidentiality'] != null
-          ? FhirCode.fromJson(json['confidentiality'])
-          : null,
-      confidentialityElement: json['_confidentiality'] != null
-          ? Element.fromJson(
-              json['_confidentiality'] as Map<String, dynamic>,
-            )
+          ? FhirCode.fromJson({
+              'value': json['confidentiality'],
+              '_value': json['_confidentiality'],
+            })
           : null,
       attester: json['attester'] != null
           ? (json['attester'] as List<dynamic>)
               .map<CompositionAttester>(
-                (dynamic v) => CompositionAttester.fromJson(
+                (v) => CompositionAttester.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -199,7 +176,7 @@ class Composition extends DomainResource {
       relatesTo: json['relatesTo'] != null
           ? (json['relatesTo'] as List<dynamic>)
               .map<CompositionRelatesTo>(
-                (dynamic v) => CompositionRelatesTo.fromJson(
+                (v) => CompositionRelatesTo.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -208,7 +185,7 @@ class Composition extends DomainResource {
       event: json['event'] != null
           ? (json['event'] as List<dynamic>)
               .map<CompositionEvent>(
-                (dynamic v) => CompositionEvent.fromJson(
+                (v) => CompositionEvent.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -217,7 +194,7 @@ class Composition extends DomainResource {
       section: json['section'] != null
           ? (json['section'] as List<dynamic>)
               .map<CompositionSection>(
-                (dynamic v) => CompositionSection.fromJson(
+                (v) => CompositionSection.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -226,7 +203,8 @@ class Composition extends DomainResource {
     );
   }
 
-  /// Deserialize [Composition] from a [String] or [YamlMap] object
+  /// Deserialize [Composition] from a [String]
+  /// or [YamlMap] object
   factory Composition.fromYaml(dynamic yaml) => yaml is String
       ? Composition.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -235,10 +213,11 @@ class Composition extends DomainResource {
           ? Composition.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Composition cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Composition cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Composition] that takes in a [String]
+  /// Factory constructor for [Composition]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Composition.fromJsonString(String source) {
@@ -254,6 +233,15 @@ class Composition extends DomainResource {
   @override
   String get fhirType => 'Composition';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// A version-independent identifier for the Composition. This identifier
   /// stays constant as the composition is changed over time.
@@ -263,9 +251,6 @@ class Composition extends DomainResource {
   /// The workflow/clinical status of this composition. The status is a
   /// marker for the clinical standing of the document.
   final CompositionStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [type]
   /// Specifies the particular kind of composition (e.g. History and
@@ -296,9 +281,6 @@ class Composition extends DomainResource {
   /// changed by the author.
   final FhirDateTime date;
 
-  /// Extensions for [date]
-  final Element? dateElement;
-
   /// [author]
   /// Identifies who is responsible for the information in the composition,
   /// not necessarily who typed it in.
@@ -308,15 +290,9 @@ class Composition extends DomainResource {
   /// Official human-readable label for the composition.
   final FhirString title;
 
-  /// Extensions for [title]
-  final Element? titleElement;
-
   /// [confidentiality]
   /// The code specifying the level of confidentiality of the Composition.
   final FhirCode? confidentiality;
-
-  /// Extensions for [confidentiality]
-  final Element? confidentialityElement;
 
   /// [attester]
   /// A participant who has attested to the accuracy of the
@@ -354,9 +330,6 @@ class Composition extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -390,19 +363,10 @@ class Composition extends DomainResource {
       json['encounter'] = encounter!.toJson();
     }
     json['date'] = date.toJson();
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     json['author'] = author.map<dynamic>((Reference v) => v.toJson()).toList();
     json['title'] = title.toJson();
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
-    }
     if (confidentiality?.value != null) {
       json['confidentiality'] = confidentiality!.toJson();
-    }
-    if (confidentialityElement != null) {
-      json['_confidentiality'] = confidentialityElement!.toJson();
     }
     if (attester != null && attester!.isNotEmpty) {
       json['attester'] =
@@ -432,27 +396,21 @@ class Composition extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Identifier? identifier,
     CompositionStatus? status,
-    Element? statusElement,
     CodeableConcept? type,
     List<CodeableConcept>? category,
     Reference? subject,
     Reference? encounter,
     FhirDateTime? date,
-    Element? dateElement,
     List<Reference>? author,
     FhirString? title,
-    Element? titleElement,
     FhirCode? confidentiality,
-    Element? confidentialityElement,
     List<CompositionAttester>? attester,
     Reference? custodian,
     List<CompositionRelatesTo>? relatesTo,
@@ -469,28 +427,21 @@ class Composition extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       type: type ?? this.type,
       category: category ?? this.category,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       author: author ?? this.author,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       confidentiality: confidentiality ?? this.confidentiality,
-      confidentialityElement:
-          confidentialityElement ?? this.confidentialityElement,
       attester: attester ?? this.attester,
       custodian: custodian ?? this.custodian,
       relatesTo: relatesTo ?? this.relatesTo,
@@ -514,16 +465,10 @@ class CompositionAttester extends BackboneElement {
 
   CompositionAttester({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.mode,
-
-    /// Extensions for [mode]
-    this.modeElement,
     this.time,
-
-    /// Extensions for [time]
-    this.timeElement,
     this.party,
     super.userData,
     super.formatCommentsPre,
@@ -536,11 +481,15 @@ class CompositionAttester extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CompositionAttester.fromJson(Map<String, dynamic> json) {
     return CompositionAttester(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -549,23 +498,21 @@ class CompositionAttester extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      mode: CompositionAttestationMode.fromJson(json['mode']),
-      modeElement: json['_mode'] != null
-          ? Element.fromJson(
-              json['_mode'] as Map<String, dynamic>,
-            )
-          : null,
-      time: json['time'] != null ? FhirDateTime.fromJson(json['time']) : null,
-      timeElement: json['_time'] != null
-          ? Element.fromJson(
-              json['_time'] as Map<String, dynamic>,
-            )
+      mode: CompositionAttestationMode.fromJson({
+        'value': json['mode'],
+        '_value': json['_mode'],
+      }),
+      time: json['time'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['time'],
+              '_value': json['_time'],
+            })
           : null,
       party: json['party'] != null
           ? Reference.fromJson(
@@ -575,7 +522,8 @@ class CompositionAttester extends BackboneElement {
     );
   }
 
-  /// Deserialize [CompositionAttester] from a [String] or [YamlMap] object
+  /// Deserialize [CompositionAttester] from a [String]
+  /// or [YamlMap] object
   factory CompositionAttester.fromYaml(dynamic yaml) => yaml is String
       ? CompositionAttester.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -585,10 +533,11 @@ class CompositionAttester extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'CompositionAttester cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'CompositionAttester cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CompositionAttester] that takes in a [String]
+  /// Factory constructor for [CompositionAttester]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CompositionAttester.fromJsonString(String source) {
@@ -604,19 +553,22 @@ class CompositionAttester extends BackboneElement {
   @override
   String get fhirType => 'CompositionAttester';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [mode]
   /// The type of attestation the authenticator offers.
   final CompositionAttestationMode mode;
 
-  /// Extensions for [mode]
-  final Element? modeElement;
-
   /// [time]
   /// When the composition was attested by the party.
   final FhirDateTime? time;
-
-  /// Extensions for [time]
-  final Element? timeElement;
 
   /// [party]
   /// Who attested the composition in the specified way.
@@ -639,9 +591,6 @@ class CompositionAttester extends BackboneElement {
     if (time?.value != null) {
       json['time'] = time!.toJson();
     }
-    if (timeElement != null) {
-      json['_time'] = timeElement!.toJson();
-    }
     if (party != null) {
       json['party'] = party!.toJson();
     }
@@ -656,9 +605,7 @@ class CompositionAttester extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CompositionAttestationMode? mode,
-    Element? modeElement,
     FhirDateTime? time,
-    Element? timeElement,
     Reference? party,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -672,9 +619,7 @@ class CompositionAttester extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       mode: mode ?? this.mode,
-      modeElement: modeElement ?? this.modeElement,
       time: time ?? this.time,
-      timeElement: timeElement ?? this.timeElement,
       party: party ?? this.party,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -694,12 +639,9 @@ class CompositionRelatesTo extends BackboneElement {
 
   CompositionRelatesTo({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.code,
-
-    /// Extensions for [code]
-    this.codeElement,
     this.targetIdentifier,
     this.targetReference,
     super.userData,
@@ -713,11 +655,15 @@ class CompositionRelatesTo extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CompositionRelatesTo.fromJson(Map<String, dynamic> json) {
     return CompositionRelatesTo(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -726,18 +672,16 @@ class CompositionRelatesTo extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      code: DocumentRelationshipType.fromJson(json['code']),
-      codeElement: json['_code'] != null
-          ? Element.fromJson(
-              json['_code'] as Map<String, dynamic>,
-            )
-          : null,
+      code: DocumentRelationshipType.fromJson({
+        'value': json['code'],
+        '_value': json['_code'],
+      }),
       targetIdentifier: json['targetIdentifier'] != null
           ? Identifier.fromJson(
               json['targetIdentifier'] as Map<String, dynamic>,
@@ -751,7 +695,8 @@ class CompositionRelatesTo extends BackboneElement {
     );
   }
 
-  /// Deserialize [CompositionRelatesTo] from a [String] or [YamlMap] object
+  /// Deserialize [CompositionRelatesTo] from a [String]
+  /// or [YamlMap] object
   factory CompositionRelatesTo.fromYaml(dynamic yaml) => yaml is String
       ? CompositionRelatesTo.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -761,10 +706,11 @@ class CompositionRelatesTo extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'CompositionRelatesTo cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'CompositionRelatesTo cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CompositionRelatesTo] that takes in a [String]
+  /// Factory constructor for [CompositionRelatesTo]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CompositionRelatesTo.fromJsonString(String source) {
@@ -780,13 +726,19 @@ class CompositionRelatesTo extends BackboneElement {
   @override
   String get fhirType => 'CompositionRelatesTo';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [code]
   /// The type of relationship that this composition has with anther
   /// composition or document.
   final DocumentRelationshipType code;
-
-  /// Extensions for [code]
-  final Element? codeElement;
 
   /// [targetIdentifier]
   /// The target composition/document of this relationship.
@@ -827,7 +779,6 @@ class CompositionRelatesTo extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     DocumentRelationshipType? code,
-    Element? codeElement,
     Identifier? targetIdentifier,
     Reference? targetReference,
     Map<String, Object?>? userData,
@@ -842,7 +793,6 @@ class CompositionRelatesTo extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      codeElement: codeElement ?? this.codeElement,
       targetIdentifier: targetIdentifier ?? this.targetIdentifier,
       targetReference: targetReference ?? this.targetReference,
       userData: userData ?? this.userData,
@@ -863,7 +813,7 @@ class CompositionEvent extends BackboneElement {
 
   CompositionEvent({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.code,
     this.period,
@@ -879,11 +829,15 @@ class CompositionEvent extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CompositionEvent.fromJson(Map<String, dynamic> json) {
     return CompositionEvent(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -892,7 +846,7 @@ class CompositionEvent extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -901,7 +855,7 @@ class CompositionEvent extends BackboneElement {
       code: json['code'] != null
           ? (json['code'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -915,7 +869,7 @@ class CompositionEvent extends BackboneElement {
       detail: json['detail'] != null
           ? (json['detail'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -924,7 +878,8 @@ class CompositionEvent extends BackboneElement {
     );
   }
 
-  /// Deserialize [CompositionEvent] from a [String] or [YamlMap] object
+  /// Deserialize [CompositionEvent] from a [String]
+  /// or [YamlMap] object
   factory CompositionEvent.fromYaml(dynamic yaml) => yaml is String
       ? CompositionEvent.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -933,11 +888,11 @@ class CompositionEvent extends BackboneElement {
           ? CompositionEvent.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CompositionEvent cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('CompositionEvent cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CompositionEvent] that takes in a [String]
+  /// Factory constructor for [CompositionEvent]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CompositionEvent.fromJsonString(String source) {
@@ -952,6 +907,15 @@ class CompositionEvent extends BackboneElement {
 
   @override
   String get fhirType => 'CompositionEvent';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [code]
   /// This list of codes represents the main clinical acts, such as a
@@ -1039,20 +1003,14 @@ class CompositionSection extends BackboneElement {
 
   CompositionSection({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     this.code,
     this.author,
     this.focus,
     this.text,
     this.mode,
-
-    /// Extensions for [mode]
-    this.modeElement,
     this.orderedBy,
     this.entry,
     this.emptyReason,
@@ -1068,11 +1026,15 @@ class CompositionSection extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CompositionSection.fromJson(Map<String, dynamic> json) {
     return CompositionSection(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1081,17 +1043,17 @@ class CompositionSection extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
       code: json['code'] != null
           ? CodeableConcept.fromJson(
@@ -1101,7 +1063,7 @@ class CompositionSection extends BackboneElement {
       author: json['author'] != null
           ? (json['author'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1117,11 +1079,11 @@ class CompositionSection extends BackboneElement {
               json['text'] as Map<String, dynamic>,
             )
           : null,
-      mode: json['mode'] != null ? ListMode.fromJson(json['mode']) : null,
-      modeElement: json['_mode'] != null
-          ? Element.fromJson(
-              json['_mode'] as Map<String, dynamic>,
-            )
+      mode: json['mode'] != null
+          ? ListMode.fromJson({
+              'value': json['mode'],
+              '_value': json['_mode'],
+            })
           : null,
       orderedBy: json['orderedBy'] != null
           ? CodeableConcept.fromJson(
@@ -1131,7 +1093,7 @@ class CompositionSection extends BackboneElement {
       entry: json['entry'] != null
           ? (json['entry'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1145,7 +1107,7 @@ class CompositionSection extends BackboneElement {
       section: json['section'] != null
           ? (json['section'] as List<dynamic>)
               .map<CompositionSection>(
-                (dynamic v) => CompositionSection.fromJson(
+                (v) => CompositionSection.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1154,7 +1116,8 @@ class CompositionSection extends BackboneElement {
     );
   }
 
-  /// Deserialize [CompositionSection] from a [String] or [YamlMap] object
+  /// Deserialize [CompositionSection] from a [String]
+  /// or [YamlMap] object
   factory CompositionSection.fromYaml(dynamic yaml) => yaml is String
       ? CompositionSection.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1163,11 +1126,11 @@ class CompositionSection extends BackboneElement {
           ? CompositionSection.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CompositionSection cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('CompositionSection cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CompositionSection] that takes in a [String]
+  /// Factory constructor for [CompositionSection]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CompositionSection.fromJsonString(String source) {
@@ -1183,14 +1146,20 @@ class CompositionSection extends BackboneElement {
   @override
   String get fhirType => 'CompositionSection';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [title]
   /// The label for this particular section. This will be part of the
   /// rendered content for the document, and is often used to build a table
   /// of contents.
   final FhirString? title;
-
-  /// Extensions for [title]
-  final Element? titleElement;
 
   /// [code]
   /// A code identifying the kind of content contained within the section.
@@ -1229,9 +1198,6 @@ class CompositionSection extends BackboneElement {
   /// prepared list where items may be marked as added, modified or deleted.
   final ListMode? mode;
 
-  /// Extensions for [mode]
-  final Element? modeElement;
-
   /// [orderedBy]
   /// Specifies the order applied to the items in the section entries.
   final CodeableConcept? orderedBy;
@@ -1265,9 +1231,6 @@ class CompositionSection extends BackboneElement {
     }
     if (title?.value != null) {
       json['title'] = title!.toJson();
-    }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
     }
     if (code != null) {
       json['code'] = code!.toJson();
@@ -1308,13 +1271,11 @@ class CompositionSection extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? title,
-    Element? titleElement,
     CodeableConcept? code,
     List<Reference>? author,
     Reference? focus,
     Narrative? text,
     ListMode? mode,
-    Element? modeElement,
     CodeableConcept? orderedBy,
     List<Reference>? entry,
     CodeableConcept? emptyReason,
@@ -1331,13 +1292,11 @@ class CompositionSection extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       code: code ?? this.code,
       author: author ?? this.author,
       focus: focus ?? this.focus,
       text: text ?? this.text,
       mode: mode ?? this.mode,
-      modeElement: modeElement ?? this.modeElement,
       orderedBy: orderedBy ?? this.orderedBy,
       entry: entry ?? this.entry,
       emptyReason: emptyReason ?? this.emptyReason,

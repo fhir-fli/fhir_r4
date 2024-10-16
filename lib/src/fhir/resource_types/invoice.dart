@@ -12,44 +12,25 @@ class Invoice extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.cancelledReason,
-
-    /// Extensions for [cancelledReason]
-    this.cancelledReasonElement,
     this.type,
     this.subject,
     this.recipient,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.participant,
     this.issuer,
     this.account,
     this.lineItem,
-    this.totalPriceComponent,
     this.totalNet,
     this.totalGross,
     this.paymentTerms,
-
-    /// Extensions for [paymentTerms]
-    this.paymentTermsElement,
     this.note,
     super.userData,
     super.formatCommentsPre,
@@ -64,27 +45,27 @@ class Invoice extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Invoice.fromJson(Map<String, dynamic> json) {
     return Invoice(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -94,7 +75,7 @@ class Invoice extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -103,7 +84,7 @@ class Invoice extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -112,7 +93,7 @@ class Invoice extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -121,25 +102,21 @@ class Invoice extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: InvoiceStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: InvoiceStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       cancelledReason: json['cancelledReason'] != null
-          ? FhirString.fromJson(json['cancelledReason'])
-          : null,
-      cancelledReasonElement: json['_cancelledReason'] != null
-          ? Element.fromJson(
-              json['_cancelledReason'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['cancelledReason'],
+              '_value': json['_cancelledReason'],
+            })
           : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
@@ -156,16 +133,16 @@ class Invoice extends DomainResource {
               json['recipient'] as Map<String, dynamic>,
             )
           : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       participant: json['participant'] != null
           ? (json['participant'] as List<dynamic>)
               .map<InvoiceParticipant>(
-                (dynamic v) => InvoiceParticipant.fromJson(
+                (v) => InvoiceParticipant.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -184,16 +161,7 @@ class Invoice extends DomainResource {
       lineItem: json['lineItem'] != null
           ? (json['lineItem'] as List<dynamic>)
               .map<InvoiceLineItem>(
-                (dynamic v) => InvoiceLineItem.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      totalPriceComponent: json['totalPriceComponent'] != null
-          ? (json['totalPriceComponent'] as List<dynamic>)
-              .map<InvoicePriceComponent>(
-                (dynamic v) => InvoicePriceComponent.fromJson(
+                (v) => InvoiceLineItem.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -210,17 +178,15 @@ class Invoice extends DomainResource {
             )
           : null,
       paymentTerms: json['paymentTerms'] != null
-          ? FhirMarkdown.fromJson(json['paymentTerms'])
-          : null,
-      paymentTermsElement: json['_paymentTerms'] != null
-          ? Element.fromJson(
-              json['_paymentTerms'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['paymentTerms'],
+              '_value': json['_paymentTerms'],
+            })
           : null,
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -229,7 +195,8 @@ class Invoice extends DomainResource {
     );
   }
 
-  /// Deserialize [Invoice] from a [String] or [YamlMap] object
+  /// Deserialize [Invoice] from a [String]
+  /// or [YamlMap] object
   factory Invoice.fromYaml(dynamic yaml) => yaml is String
       ? Invoice.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -238,10 +205,11 @@ class Invoice extends DomainResource {
           ? Invoice.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Invoice cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Invoice cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Invoice] that takes in a [String]
+  /// Factory constructor for [Invoice]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Invoice.fromJsonString(String source) {
@@ -257,6 +225,15 @@ class Invoice extends DomainResource {
   @override
   String get fhirType => 'Invoice';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Identifier of this Invoice, often used for reference in correspondence
   /// about this invoice or for tracking of payments.
@@ -266,16 +243,10 @@ class Invoice extends DomainResource {
   /// The current state of the Invoice.
   final InvoiceStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [cancelledReason]
   /// In case of Invoice cancellation a reason must be given (entered in
   /// error, superseded by corrected invoice etc.).
   final FhirString? cancelledReason;
-
-  /// Extensions for [cancelledReason]
-  final Element? cancelledReasonElement;
 
   /// [type]
   /// Type of Invoice depending on domain, realm an usage (e.g.
@@ -296,9 +267,6 @@ class Invoice extends DomainResource {
   /// Date/time(s) of when this Invoice was posted.
   final FhirDateTime? date;
 
-  /// Extensions for [date]
-  final Element? dateElement;
-
   /// [participant]
   /// Indicates who or what performed or participated in the charged service.
   final List<InvoiceParticipant>? participant;
@@ -317,13 +285,6 @@ class Invoice extends DomainResource {
   /// ChargeItem resource.
   final List<InvoiceLineItem>? lineItem;
 
-  /// [totalPriceComponent]
-  /// The total amount for the Invoice may be calculated as the sum of the
-  /// line items with surcharges/deductions that apply in certain conditions.
-  /// The priceComponent element can be used to offer transparency to the
-  /// recipient of the Invoice of how the total price was calculated.
-  final List<InvoicePriceComponent>? totalPriceComponent;
-
   /// [totalNet]
   /// Invoice total , taxes excluded.
   final Money? totalNet;
@@ -336,9 +297,6 @@ class Invoice extends DomainResource {
   /// Payment details such as banking details, period of payment,
   /// deductibles, methods of payment.
   final FhirMarkdown? paymentTerms;
-
-  /// Extensions for [paymentTerms]
-  final Element? paymentTermsElement;
 
   /// [note]
   /// Comments made about the invoice by the issuer, subject, or other
@@ -356,9 +314,6 @@ class Invoice extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -385,9 +340,6 @@ class Invoice extends DomainResource {
     if (cancelledReason?.value != null) {
       json['cancelledReason'] = cancelledReason!.toJson();
     }
-    if (cancelledReasonElement != null) {
-      json['_cancelledReason'] = cancelledReasonElement!.toJson();
-    }
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -399,9 +351,6 @@ class Invoice extends DomainResource {
     }
     if (date?.value != null) {
       json['date'] = date!.toJson();
-    }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
     }
     if (participant != null && participant!.isNotEmpty) {
       json['participant'] =
@@ -417,11 +366,6 @@ class Invoice extends DomainResource {
       json['lineItem'] =
           lineItem!.map((InvoiceLineItem v) => v.toJson()).toList();
     }
-    if (totalPriceComponent != null && totalPriceComponent!.isNotEmpty) {
-      json['totalPriceComponent'] = totalPriceComponent!
-          .map((InvoicePriceComponent v) => v.toJson())
-          .toList();
-    }
     if (totalNet != null) {
       json['totalNet'] = totalNet!.toJson();
     }
@@ -430,9 +374,6 @@ class Invoice extends DomainResource {
     }
     if (paymentTerms?.value != null) {
       json['paymentTerms'] = paymentTerms!.toJson();
-    }
-    if (paymentTermsElement != null) {
-      json['_paymentTerms'] = paymentTermsElement!.toJson();
     }
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((Annotation v) => v.toJson()).toList();
@@ -447,32 +388,25 @@ class Invoice extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     InvoiceStatus? status,
-    Element? statusElement,
     FhirString? cancelledReason,
-    Element? cancelledReasonElement,
     CodeableConcept? type,
     Reference? subject,
     Reference? recipient,
     FhirDateTime? date,
-    Element? dateElement,
     List<InvoiceParticipant>? participant,
     Reference? issuer,
     Reference? account,
     List<InvoiceLineItem>? lineItem,
-    List<InvoicePriceComponent>? totalPriceComponent,
     Money? totalNet,
     Money? totalGross,
     FhirMarkdown? paymentTerms,
-    Element? paymentTermsElement,
     List<Annotation>? note,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -485,33 +419,25 @@ class Invoice extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       cancelledReason: cancelledReason ?? this.cancelledReason,
-      cancelledReasonElement:
-          cancelledReasonElement ?? this.cancelledReasonElement,
       type: type ?? this.type,
       subject: subject ?? this.subject,
       recipient: recipient ?? this.recipient,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       participant: participant ?? this.participant,
       issuer: issuer ?? this.issuer,
       account: account ?? this.account,
       lineItem: lineItem ?? this.lineItem,
-      totalPriceComponent: totalPriceComponent ?? this.totalPriceComponent,
       totalNet: totalNet ?? this.totalNet,
       totalGross: totalGross ?? this.totalGross,
       paymentTerms: paymentTerms ?? this.paymentTerms,
-      paymentTermsElement: paymentTermsElement ?? this.paymentTermsElement,
       note: note ?? this.note,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -530,7 +456,7 @@ class InvoiceParticipant extends BackboneElement {
 
   InvoiceParticipant({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.role,
     required this.actor,
@@ -545,11 +471,15 @@ class InvoiceParticipant extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InvoiceParticipant.fromJson(Map<String, dynamic> json) {
     return InvoiceParticipant(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -558,7 +488,7 @@ class InvoiceParticipant extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -575,7 +505,8 @@ class InvoiceParticipant extends BackboneElement {
     );
   }
 
-  /// Deserialize [InvoiceParticipant] from a [String] or [YamlMap] object
+  /// Deserialize [InvoiceParticipant] from a [String]
+  /// or [YamlMap] object
   factory InvoiceParticipant.fromYaml(dynamic yaml) => yaml is String
       ? InvoiceParticipant.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -584,11 +515,11 @@ class InvoiceParticipant extends BackboneElement {
           ? InvoiceParticipant.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'InvoiceParticipant cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('InvoiceParticipant cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [InvoiceParticipant] that takes in a [String]
+  /// Factory constructor for [InvoiceParticipant]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory InvoiceParticipant.fromJsonString(String source) {
@@ -603,6 +534,15 @@ class InvoiceParticipant extends BackboneElement {
 
   @override
   String get fhirType => 'InvoiceParticipant';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [role]
   /// Describes the type of involvement (e.g. transcriptionist, creator
@@ -676,12 +616,9 @@ class InvoiceLineItem extends BackboneElement {
 
   InvoiceLineItem({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.sequence,
-
-    /// Extensions for [sequence]
-    this.sequenceElement,
     this.chargeItemReference,
     this.chargeItemCodeableConcept,
     this.priceComponent,
@@ -696,11 +633,15 @@ class InvoiceLineItem extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InvoiceLineItem.fromJson(Map<String, dynamic> json) {
     return InvoiceLineItem(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -709,19 +650,17 @@ class InvoiceLineItem extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       sequence: json['sequence'] != null
-          ? FhirPositiveInt.fromJson(json['sequence'])
-          : null,
-      sequenceElement: json['_sequence'] != null
-          ? Element.fromJson(
-              json['_sequence'] as Map<String, dynamic>,
-            )
+          ? FhirPositiveInt.fromJson({
+              'value': json['sequence'],
+              '_value': json['_sequence'],
+            })
           : null,
       chargeItemReference: json['chargeItemReference'] != null
           ? Reference.fromJson(
@@ -736,7 +675,7 @@ class InvoiceLineItem extends BackboneElement {
       priceComponent: json['priceComponent'] != null
           ? (json['priceComponent'] as List<dynamic>)
               .map<InvoicePriceComponent>(
-                (dynamic v) => InvoicePriceComponent.fromJson(
+                (v) => InvoicePriceComponent.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -745,7 +684,8 @@ class InvoiceLineItem extends BackboneElement {
     );
   }
 
-  /// Deserialize [InvoiceLineItem] from a [String] or [YamlMap] object
+  /// Deserialize [InvoiceLineItem] from a [String]
+  /// or [YamlMap] object
   factory InvoiceLineItem.fromYaml(dynamic yaml) => yaml is String
       ? InvoiceLineItem.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -754,11 +694,11 @@ class InvoiceLineItem extends BackboneElement {
           ? InvoiceLineItem.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'InvoiceLineItem cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('InvoiceLineItem cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [InvoiceLineItem] that takes in a [String]
+  /// Factory constructor for [InvoiceLineItem]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory InvoiceLineItem.fromJsonString(String source) {
@@ -774,12 +714,18 @@ class InvoiceLineItem extends BackboneElement {
   @override
   String get fhirType => 'InvoiceLineItem';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [sequence]
   /// Sequence in which the items appear on the invoice.
   final FhirPositiveInt? sequence;
-
-  /// Extensions for [sequence]
-  final Element? sequenceElement;
 
   /// [chargeItemReference]
   /// The ChargeItem contains information such as the billing code, date,
@@ -820,9 +766,6 @@ class InvoiceLineItem extends BackboneElement {
     if (sequence?.value != null) {
       json['sequence'] = sequence!.toJson();
     }
-    if (sequenceElement != null) {
-      json['_sequence'] = sequenceElement!.toJson();
-    }
     if (chargeItemReference != null) {
       json['chargeItemReference'] = chargeItemReference!.toJson();
     }
@@ -844,7 +787,6 @@ class InvoiceLineItem extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? sequence,
-    Element? sequenceElement,
     Reference? chargeItemReference,
     CodeableConcept? chargeItemCodeableConcept,
     List<InvoicePriceComponent>? priceComponent,
@@ -860,7 +802,6 @@ class InvoiceLineItem extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       sequence: sequence ?? this.sequence,
-      sequenceElement: sequenceElement ?? this.sequenceElement,
       chargeItemReference: chargeItemReference ?? this.chargeItemReference,
       chargeItemCodeableConcept:
           chargeItemCodeableConcept ?? this.chargeItemCodeableConcept,
@@ -887,17 +828,11 @@ class InvoicePriceComponent extends BackboneElement {
 
   InvoicePriceComponent({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.code,
     this.factor,
-
-    /// Extensions for [factor]
-    this.factorElement,
     this.amount,
     super.userData,
     super.formatCommentsPre,
@@ -910,11 +845,15 @@ class InvoicePriceComponent extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory InvoicePriceComponent.fromJson(Map<String, dynamic> json) {
     return InvoicePriceComponent(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -923,29 +862,26 @@ class InvoicePriceComponent extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      type: InvoicePriceComponentType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
+      type: InvoicePriceComponentType.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
       code: json['code'] != null
           ? CodeableConcept.fromJson(
               json['code'] as Map<String, dynamic>,
             )
           : null,
-      factor:
-          json['factor'] != null ? FhirDecimal.fromJson(json['factor']) : null,
-      factorElement: json['_factor'] != null
-          ? Element.fromJson(
-              json['_factor'] as Map<String, dynamic>,
-            )
+      factor: json['factor'] != null
+          ? FhirDecimal.fromJson({
+              'value': json['factor'],
+              '_value': json['_factor'],
+            })
           : null,
       amount: json['amount'] != null
           ? Money.fromJson(
@@ -955,7 +891,8 @@ class InvoicePriceComponent extends BackboneElement {
     );
   }
 
-  /// Deserialize [InvoicePriceComponent] from a [String] or [YamlMap] object
+  /// Deserialize [InvoicePriceComponent] from a [String]
+  /// or [YamlMap] object
   factory InvoicePriceComponent.fromYaml(dynamic yaml) => yaml is String
       ? InvoicePriceComponent.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -965,10 +902,11 @@ class InvoicePriceComponent extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'InvoicePriceComponent cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'InvoicePriceComponent cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [InvoicePriceComponent] that takes in a [String]
+  /// Factory constructor for [InvoicePriceComponent]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory InvoicePriceComponent.fromJsonString(String source) {
@@ -984,12 +922,18 @@ class InvoicePriceComponent extends BackboneElement {
   @override
   String get fhirType => 'InvoicePriceComponent';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// This code identifies the type of the component.
   final InvoicePriceComponentType type;
-
-  /// Extensions for [type]
-  final Element? typeElement;
 
   /// [code]
   /// A code that identifies the component. Codes may be used to
@@ -1000,9 +944,6 @@ class InvoicePriceComponent extends BackboneElement {
   /// The factor that has been applied on the base price for calculating this
   /// component.
   final FhirDecimal? factor;
-
-  /// Extensions for [factor]
-  final Element? factorElement;
 
   /// [amount]
   /// The amount calculated for this component.
@@ -1028,9 +969,6 @@ class InvoicePriceComponent extends BackboneElement {
     if (factor?.value != null) {
       json['factor'] = factor!.toJson();
     }
-    if (factorElement != null) {
-      json['_factor'] = factorElement!.toJson();
-    }
     if (amount != null) {
       json['amount'] = amount!.toJson();
     }
@@ -1045,10 +983,8 @@ class InvoicePriceComponent extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     InvoicePriceComponentType? type,
-    Element? typeElement,
     CodeableConcept? code,
     FhirDecimal? factor,
-    Element? factorElement,
     Money? amount,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1062,10 +998,8 @@ class InvoicePriceComponent extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       code: code ?? this.code,
       factor: factor ?? this.factor,
-      factorElement: factorElement ?? this.factorElement,
       amount: amount ?? this.amount,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

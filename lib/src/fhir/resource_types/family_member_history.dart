@@ -12,75 +12,33 @@ class FamilyMemberHistory extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-
-    /// Extensions for [instantiatesCanonical]
-    this.instantiatesCanonicalElement,
     this.instantiatesUri,
-
-    /// Extensions for [instantiatesUri]
-    this.instantiatesUriElement,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.dataAbsentReason,
     required this.patient,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     required this.relationship,
     this.sex,
     this.bornPeriod,
     this.bornDate,
-
-    /// Extensions for [bornDate]
-    this.bornDateElement,
     this.bornString,
-
-    /// Extensions for [bornString]
-    this.bornStringElement,
     this.ageAge,
     this.ageRange,
     this.ageString,
-
-    /// Extensions for [ageString]
-    this.ageStringElement,
     this.estimatedAge,
-
-    /// Extensions for [estimatedAge]
-    this.estimatedAgeElement,
     this.deceasedBoolean,
-
-    /// Extensions for [deceasedBoolean]
-    this.deceasedBooleanElement,
     this.deceasedAge,
     this.deceasedRange,
     this.deceasedDate,
-
-    /// Extensions for [deceasedDate]
-    this.deceasedDateElement,
     this.deceasedString,
-
-    /// Extensions for [deceasedString]
-    this.deceasedStringElement,
     this.reasonCode,
     this.reasonReference,
     this.note,
@@ -98,27 +56,27 @@ class FamilyMemberHistory extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FamilyMemberHistory.fromJson(Map<String, dynamic> json) {
     return FamilyMemberHistory(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -128,7 +86,7 @@ class FamilyMemberHistory extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -137,7 +95,7 @@ class FamilyMemberHistory extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -146,7 +104,7 @@ class FamilyMemberHistory extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -155,46 +113,24 @@ class FamilyMemberHistory extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      instantiatesCanonical: json['instantiatesCanonical'] != null
-          ? (json['instantiatesCanonical'] as List<dynamic>)
-              .map<FhirCanonical>(
-                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
-          ? (json['_instantiatesCanonical'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      instantiatesUri: json['instantiatesUri'] != null
-          ? (json['instantiatesUri'] as List<dynamic>)
-              .map<FhirUri>(
-                (dynamic v) => FhirUri.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      instantiatesUriElement: json['_instantiatesUri'] != null
-          ? (json['_instantiatesUri'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      status: FamilyHistoryStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      instantiatesCanonical: parsePrimitiveList<FhirCanonical>(
+          json['instantiatesCanonical'] as List<dynamic>?,
+          json['_instantiatesCanonical'] as List<dynamic>?,
+          fromJson: FhirCanonical.fromJson),
+      instantiatesUri: parsePrimitiveList<FhirUri>(
+          json['instantiatesUri'] as List<dynamic>?,
+          json['_instantiatesUri'] as List<dynamic>?,
+          fromJson: FhirUri.fromJson),
+      status: FamilyHistoryStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       dataAbsentReason: json['dataAbsentReason'] != null
           ? CodeableConcept.fromJson(
               json['dataAbsentReason'] as Map<String, dynamic>,
@@ -203,17 +139,17 @@ class FamilyMemberHistory extends DomainResource {
       patient: Reference.fromJson(
         json['patient'] as Map<String, dynamic>,
       ),
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
       relationship: CodeableConcept.fromJson(
         json['relationship'] as Map<String, dynamic>,
@@ -228,20 +164,17 @@ class FamilyMemberHistory extends DomainResource {
               json['bornPeriod'] as Map<String, dynamic>,
             )
           : null,
-      bornDate:
-          json['bornDate'] != null ? FhirDate.fromJson(json['bornDate']) : null,
-      bornDateElement: json['_bornDate'] != null
-          ? Element.fromJson(
-              json['_bornDate'] as Map<String, dynamic>,
-            )
+      bornDate: json['bornDate'] != null
+          ? FhirDate.fromJson({
+              'value': json['bornDate'],
+              '_value': json['_bornDate'],
+            })
           : null,
       bornString: json['bornString'] != null
-          ? FhirString.fromJson(json['bornString'])
-          : null,
-      bornStringElement: json['_bornString'] != null
-          ? Element.fromJson(
-              json['_bornString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['bornString'],
+              '_value': json['_bornString'],
+            })
           : null,
       ageAge: json['ageAge'] != null
           ? Age.fromJson(
@@ -254,28 +187,22 @@ class FamilyMemberHistory extends DomainResource {
             )
           : null,
       ageString: json['ageString'] != null
-          ? FhirString.fromJson(json['ageString'])
-          : null,
-      ageStringElement: json['_ageString'] != null
-          ? Element.fromJson(
-              json['_ageString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['ageString'],
+              '_value': json['_ageString'],
+            })
           : null,
       estimatedAge: json['estimatedAge'] != null
-          ? FhirBoolean.fromJson(json['estimatedAge'])
-          : null,
-      estimatedAgeElement: json['_estimatedAge'] != null
-          ? Element.fromJson(
-              json['_estimatedAge'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['estimatedAge'],
+              '_value': json['_estimatedAge'],
+            })
           : null,
       deceasedBoolean: json['deceasedBoolean'] != null
-          ? FhirBoolean.fromJson(json['deceasedBoolean'])
-          : null,
-      deceasedBooleanElement: json['_deceasedBoolean'] != null
-          ? Element.fromJson(
-              json['_deceasedBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['deceasedBoolean'],
+              '_value': json['_deceasedBoolean'],
+            })
           : null,
       deceasedAge: json['deceasedAge'] != null
           ? Age.fromJson(
@@ -288,25 +215,21 @@ class FamilyMemberHistory extends DomainResource {
             )
           : null,
       deceasedDate: json['deceasedDate'] != null
-          ? FhirDate.fromJson(json['deceasedDate'])
-          : null,
-      deceasedDateElement: json['_deceasedDate'] != null
-          ? Element.fromJson(
-              json['_deceasedDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['deceasedDate'],
+              '_value': json['_deceasedDate'],
+            })
           : null,
       deceasedString: json['deceasedString'] != null
-          ? FhirString.fromJson(json['deceasedString'])
-          : null,
-      deceasedStringElement: json['_deceasedString'] != null
-          ? Element.fromJson(
-              json['_deceasedString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['deceasedString'],
+              '_value': json['_deceasedString'],
+            })
           : null,
       reasonCode: json['reasonCode'] != null
           ? (json['reasonCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -315,7 +238,7 @@ class FamilyMemberHistory extends DomainResource {
       reasonReference: json['reasonReference'] != null
           ? (json['reasonReference'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -324,7 +247,7 @@ class FamilyMemberHistory extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -333,7 +256,7 @@ class FamilyMemberHistory extends DomainResource {
       condition: json['condition'] != null
           ? (json['condition'] as List<dynamic>)
               .map<FamilyMemberHistoryCondition>(
-                (dynamic v) => FamilyMemberHistoryCondition.fromJson(
+                (v) => FamilyMemberHistoryCondition.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -342,7 +265,8 @@ class FamilyMemberHistory extends DomainResource {
     );
   }
 
-  /// Deserialize [FamilyMemberHistory] from a [String] or [YamlMap] object
+  /// Deserialize [FamilyMemberHistory] from a [String]
+  /// or [YamlMap] object
   factory FamilyMemberHistory.fromYaml(dynamic yaml) => yaml is String
       ? FamilyMemberHistory.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -352,10 +276,11 @@ class FamilyMemberHistory extends DomainResource {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'FamilyMemberHistory cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'FamilyMemberHistory cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [FamilyMemberHistory] that takes in a [String]
+  /// Factory constructor for [FamilyMemberHistory]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory FamilyMemberHistory.fromJsonString(String source) {
@@ -371,6 +296,15 @@ class FamilyMemberHistory extends DomainResource {
   @override
   String get fhirType => 'FamilyMemberHistory';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Business identifiers assigned to this family member history by the
   /// performer or other systems which remain constant as the resource is
@@ -383,25 +317,16 @@ class FamilyMemberHistory extends DomainResource {
   /// FamilyMemberHistory.
   final List<FhirCanonical>? instantiatesCanonical;
 
-  /// Extensions for [instantiatesCanonical]
-  final List<Element>? instantiatesCanonicalElement;
-
   /// [instantiatesUri]
   /// The URL pointing to an externally maintained protocol, guideline,
   /// orderset or other definition that is adhered to in whole or in part by
   /// this FamilyMemberHistory.
   final List<FhirUri>? instantiatesUri;
 
-  /// Extensions for [instantiatesUri]
-  final List<Element>? instantiatesUriElement;
-
   /// [status]
   /// A code specifying the status of the record of the family history of a
   /// specific family member.
   final FamilyHistoryStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [dataAbsentReason]
   /// Describes why the family member's history is not available.
@@ -416,16 +341,10 @@ class FamilyMemberHistory extends DomainResource {
   /// recorded or last updated.
   final FhirDateTime? date;
 
-  /// Extensions for [date]
-  final Element? dateElement;
-
   /// [name]
   /// This will either be a name or a description; e.g. "Aunt Susan", "my
   /// cousin with the red hair".
   final FhirString? name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [relationship]
   /// The type of relationship this person has to the patient (father,
@@ -444,15 +363,9 @@ class FamilyMemberHistory extends DomainResource {
   /// The actual or approximate date of birth of the relative.
   final FhirDate? bornDate;
 
-  /// Extensions for [bornDate]
-  final Element? bornDateElement;
-
   /// [bornString]
   /// The actual or approximate date of birth of the relative.
   final FhirString? bornString;
-
-  /// Extensions for [bornString]
-  final Element? bornStringElement;
 
   /// [ageAge]
   /// The age of the relative at the time the family member history is
@@ -469,23 +382,14 @@ class FamilyMemberHistory extends DomainResource {
   /// recorded.
   final FhirString? ageString;
 
-  /// Extensions for [ageString]
-  final Element? ageStringElement;
-
   /// [estimatedAge]
   /// If true, indicates that the age value specified is an estimated value.
   final FhirBoolean? estimatedAge;
-
-  /// Extensions for [estimatedAge]
-  final Element? estimatedAgeElement;
 
   /// [deceasedBoolean]
   /// Deceased flag or the actual or approximate age of the relative at the
   /// time of death for the family member history record.
   final FhirBoolean? deceasedBoolean;
-
-  /// Extensions for [deceasedBoolean]
-  final Element? deceasedBooleanElement;
 
   /// [deceasedAge]
   /// Deceased flag or the actual or approximate age of the relative at the
@@ -502,16 +406,10 @@ class FamilyMemberHistory extends DomainResource {
   /// time of death for the family member history record.
   final FhirDate? deceasedDate;
 
-  /// Extensions for [deceasedDate]
-  final Element? deceasedDateElement;
-
   /// [deceasedString]
   /// Deceased flag or the actual or approximate age of the relative at the
   /// time of death for the family member history record.
   final FhirString? deceasedString;
-
-  /// Extensions for [deceasedString]
-  final Element? deceasedStringElement;
 
   /// [reasonCode]
   /// Describes why the family member history occurred in coded or textual
@@ -548,9 +446,6 @@ class FamilyMemberHistory extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -576,18 +471,9 @@ class FamilyMemberHistory extends DomainResource {
       json['instantiatesCanonical'] =
           instantiatesCanonical!.map((FhirCanonical v) => v.toJson()).toList();
     }
-    if (instantiatesCanonicalElement != null &&
-        instantiatesCanonicalElement!.isNotEmpty) {
-      json['_instantiatesCanonical'] =
-          instantiatesCanonicalElement!.map((Element v) => v.toJson()).toList();
-    }
     if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
       json['instantiatesUri'] =
           instantiatesUri!.map((FhirUri v) => v.toJson()).toList();
-    }
-    if (instantiatesUriElement != null && instantiatesUriElement!.isNotEmpty) {
-      json['_instantiatesUri'] =
-          instantiatesUriElement!.map((Element v) => v.toJson()).toList();
     }
     json['status'] = status.toJson();
     if (dataAbsentReason != null) {
@@ -597,14 +483,8 @@ class FamilyMemberHistory extends DomainResource {
     if (date?.value != null) {
       json['date'] = date!.toJson();
     }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (name?.value != null) {
       json['name'] = name!.toJson();
-    }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
     }
     json['relationship'] = relationship.toJson();
     if (sex != null) {
@@ -616,14 +496,8 @@ class FamilyMemberHistory extends DomainResource {
     if (bornDate?.value != null) {
       json['bornDate'] = bornDate!.toJson();
     }
-    if (bornDateElement != null) {
-      json['_bornDate'] = bornDateElement!.toJson();
-    }
     if (bornString?.value != null) {
       json['bornString'] = bornString!.toJson();
-    }
-    if (bornStringElement != null) {
-      json['_bornString'] = bornStringElement!.toJson();
     }
     if (ageAge != null) {
       json['ageAge'] = ageAge!.toJson();
@@ -634,20 +508,11 @@ class FamilyMemberHistory extends DomainResource {
     if (ageString?.value != null) {
       json['ageString'] = ageString!.toJson();
     }
-    if (ageStringElement != null) {
-      json['_ageString'] = ageStringElement!.toJson();
-    }
     if (estimatedAge?.value != null) {
       json['estimatedAge'] = estimatedAge!.toJson();
     }
-    if (estimatedAgeElement != null) {
-      json['_estimatedAge'] = estimatedAgeElement!.toJson();
-    }
     if (deceasedBoolean?.value != null) {
       json['deceasedBoolean'] = deceasedBoolean!.toJson();
-    }
-    if (deceasedBooleanElement != null) {
-      json['_deceasedBoolean'] = deceasedBooleanElement!.toJson();
     }
     if (deceasedAge != null) {
       json['deceasedAge'] = deceasedAge!.toJson();
@@ -658,14 +523,8 @@ class FamilyMemberHistory extends DomainResource {
     if (deceasedDate?.value != null) {
       json['deceasedDate'] = deceasedDate!.toJson();
     }
-    if (deceasedDateElement != null) {
-      json['_deceasedDate'] = deceasedDateElement!.toJson();
-    }
     if (deceasedString?.value != null) {
       json['deceasedString'] = deceasedString!.toJson();
-    }
-    if (deceasedStringElement != null) {
-      json['_deceasedString'] = deceasedStringElement!.toJson();
     }
     if (reasonCode != null && reasonCode!.isNotEmpty) {
       json['reasonCode'] =
@@ -693,47 +552,33 @@ class FamilyMemberHistory extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     List<FhirCanonical>? instantiatesCanonical,
-    List<Element>? instantiatesCanonicalElement,
     List<FhirUri>? instantiatesUri,
-    List<Element>? instantiatesUriElement,
     FamilyHistoryStatus? status,
-    Element? statusElement,
     CodeableConcept? dataAbsentReason,
     Reference? patient,
     FhirDateTime? date,
-    Element? dateElement,
     FhirString? name,
-    Element? nameElement,
     CodeableConcept? relationship,
     CodeableConcept? sex,
     Period? bornPeriod,
     FhirDate? bornDate,
-    Element? bornDateElement,
     FhirString? bornString,
-    Element? bornStringElement,
     Age? ageAge,
     Range? ageRange,
     FhirString? ageString,
-    Element? ageStringElement,
     FhirBoolean? estimatedAge,
-    Element? estimatedAgeElement,
     FhirBoolean? deceasedBoolean,
-    Element? deceasedBooleanElement,
     Age? deceasedAge,
     Range? deceasedRange,
     FhirDate? deceasedDate,
-    Element? deceasedDateElement,
     FhirString? deceasedString,
-    Element? deceasedStringElement,
     List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
     List<Annotation>? note,
@@ -749,9 +594,7 @@ class FamilyMemberHistory extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -759,42 +602,26 @@ class FamilyMemberHistory extends DomainResource {
       identifier: identifier ?? this.identifier,
       instantiatesCanonical:
           instantiatesCanonical ?? this.instantiatesCanonical,
-      instantiatesCanonicalElement:
-          instantiatesCanonicalElement ?? this.instantiatesCanonicalElement,
       instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      instantiatesUriElement:
-          instantiatesUriElement ?? this.instantiatesUriElement,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       dataAbsentReason: dataAbsentReason ?? this.dataAbsentReason,
       patient: patient ?? this.patient,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       relationship: relationship ?? this.relationship,
       sex: sex ?? this.sex,
       bornPeriod: bornPeriod ?? this.bornPeriod,
       bornDate: bornDate ?? this.bornDate,
-      bornDateElement: bornDateElement ?? this.bornDateElement,
       bornString: bornString ?? this.bornString,
-      bornStringElement: bornStringElement ?? this.bornStringElement,
       ageAge: ageAge ?? this.ageAge,
       ageRange: ageRange ?? this.ageRange,
       ageString: ageString ?? this.ageString,
-      ageStringElement: ageStringElement ?? this.ageStringElement,
       estimatedAge: estimatedAge ?? this.estimatedAge,
-      estimatedAgeElement: estimatedAgeElement ?? this.estimatedAgeElement,
       deceasedBoolean: deceasedBoolean ?? this.deceasedBoolean,
-      deceasedBooleanElement:
-          deceasedBooleanElement ?? this.deceasedBooleanElement,
       deceasedAge: deceasedAge ?? this.deceasedAge,
       deceasedRange: deceasedRange ?? this.deceasedRange,
       deceasedDate: deceasedDate ?? this.deceasedDate,
-      deceasedDateElement: deceasedDateElement ?? this.deceasedDateElement,
       deceasedString: deceasedString ?? this.deceasedString,
-      deceasedStringElement:
-          deceasedStringElement ?? this.deceasedStringElement,
       reasonCode: reasonCode ?? this.reasonCode,
       reasonReference: reasonReference ?? this.reasonReference,
       note: note ?? this.note,
@@ -819,21 +646,15 @@ class FamilyMemberHistoryCondition extends BackboneElement {
 
   FamilyMemberHistoryCondition({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.code,
     this.outcome,
     this.contributedToDeath,
-
-    /// Extensions for [contributedToDeath]
-    this.contributedToDeathElement,
     this.onsetAge,
     this.onsetRange,
     this.onsetPeriod,
     this.onsetString,
-
-    /// Extensions for [onsetString]
-    this.onsetStringElement,
     this.note,
     super.userData,
     super.formatCommentsPre,
@@ -846,11 +667,15 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory FamilyMemberHistoryCondition.fromJson(Map<String, dynamic> json) {
     return FamilyMemberHistoryCondition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -859,7 +684,7 @@ class FamilyMemberHistoryCondition extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -874,12 +699,10 @@ class FamilyMemberHistoryCondition extends BackboneElement {
             )
           : null,
       contributedToDeath: json['contributedToDeath'] != null
-          ? FhirBoolean.fromJson(json['contributedToDeath'])
-          : null,
-      contributedToDeathElement: json['_contributedToDeath'] != null
-          ? Element.fromJson(
-              json['_contributedToDeath'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['contributedToDeath'],
+              '_value': json['_contributedToDeath'],
+            })
           : null,
       onsetAge: json['onsetAge'] != null
           ? Age.fromJson(
@@ -897,17 +720,15 @@ class FamilyMemberHistoryCondition extends BackboneElement {
             )
           : null,
       onsetString: json['onsetString'] != null
-          ? FhirString.fromJson(json['onsetString'])
-          : null,
-      onsetStringElement: json['_onsetString'] != null
-          ? Element.fromJson(
-              json['_onsetString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['onsetString'],
+              '_value': json['_onsetString'],
+            })
           : null,
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -916,7 +737,8 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     );
   }
 
-  /// Deserialize [FamilyMemberHistoryCondition] from a [String] or [YamlMap] object
+  /// Deserialize [FamilyMemberHistoryCondition] from a [String]
+  /// or [YamlMap] object
   factory FamilyMemberHistoryCondition.fromYaml(dynamic yaml) => yaml is String
       ? FamilyMemberHistoryCondition.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -926,10 +748,11 @@ class FamilyMemberHistoryCondition extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'FamilyMemberHistoryCondition cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'FamilyMemberHistoryCondition cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [FamilyMemberHistoryCondition] that takes in a [String]
+  /// Factory constructor for [FamilyMemberHistoryCondition]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory FamilyMemberHistoryCondition.fromJsonString(String source) {
@@ -944,6 +767,15 @@ class FamilyMemberHistoryCondition extends BackboneElement {
 
   @override
   String get fhirType => 'FamilyMemberHistoryCondition';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [code]
   /// The actual condition specified. Could be a coded condition (like MI or
@@ -961,9 +793,6 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   /// This condition contributed to the cause of death of the related person.
   /// If contributedToDeath is not populated, then it is unknown.
   final FhirBoolean? contributedToDeath;
-
-  /// Extensions for [contributedToDeath]
-  final Element? contributedToDeathElement;
 
   /// [onsetAge]
   /// Either the age of onset, range of approximate age or descriptive string
@@ -988,9 +817,6 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   /// can be recorded. For conditions with multiple occurrences, this
   /// describes the first known occurrence.
   final FhirString? onsetString;
-
-  /// Extensions for [onsetString]
-  final Element? onsetStringElement;
 
   /// [note]
   /// An area where general notes can be placed about this specific
@@ -1017,9 +843,6 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     if (contributedToDeath?.value != null) {
       json['contributedToDeath'] = contributedToDeath!.toJson();
     }
-    if (contributedToDeathElement != null) {
-      json['_contributedToDeath'] = contributedToDeathElement!.toJson();
-    }
     if (onsetAge != null) {
       json['onsetAge'] = onsetAge!.toJson();
     }
@@ -1031,9 +854,6 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     }
     if (onsetString?.value != null) {
       json['onsetString'] = onsetString!.toJson();
-    }
-    if (onsetStringElement != null) {
-      json['_onsetString'] = onsetStringElement!.toJson();
     }
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((Annotation v) => v.toJson()).toList();
@@ -1051,12 +871,10 @@ class FamilyMemberHistoryCondition extends BackboneElement {
     CodeableConcept? code,
     CodeableConcept? outcome,
     FhirBoolean? contributedToDeath,
-    Element? contributedToDeathElement,
     Age? onsetAge,
     Range? onsetRange,
     Period? onsetPeriod,
     FhirString? onsetString,
-    Element? onsetStringElement,
     List<Annotation>? note,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1072,13 +890,10 @@ class FamilyMemberHistoryCondition extends BackboneElement {
       code: code ?? this.code,
       outcome: outcome ?? this.outcome,
       contributedToDeath: contributedToDeath ?? this.contributedToDeath,
-      contributedToDeathElement:
-          contributedToDeathElement ?? this.contributedToDeathElement,
       onsetAge: onsetAge ?? this.onsetAge,
       onsetRange: onsetRange ?? this.onsetRange,
       onsetPeriod: onsetPeriod ?? this.onsetPeriod,
       onsetString: onsetString ?? this.onsetString,
-      onsetStringElement: onsetStringElement ?? this.onsetStringElement,
       note: note ?? this.note,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

@@ -12,27 +12,12 @@ class Quantity extends DataType {
 
   Quantity({
     super.id,
-    super.extension_,
+    this.extension_,
     this.value,
-
-    /// Extensions for [value]
-    this.valueElement,
     this.comparator,
-
-    /// Extensions for [comparator]
-    this.comparatorElement,
     this.unit,
-
-    /// Extensions for [unit]
-    this.unitElement,
     this.system,
-
-    /// Extensions for [system]
-    this.systemElement,
     this.code,
-
-    /// Extensions for [code]
-    this.codeElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -44,52 +29,55 @@ class Quantity extends DataType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Quantity.fromJson(Map<String, dynamic> json) {
     return Quantity(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      value: json['value'] != null ? FhirDecimal.fromJson(json['value']) : null,
-      valueElement: json['_value'] != null
-          ? Element.fromJson(
-              json['_value'] as Map<String, dynamic>,
-            )
+      value: json['value'] != null
+          ? FhirDecimal.fromJson({
+              'value': json['value'],
+              '_value': json['_value'],
+            })
           : null,
       comparator: json['comparator'] != null
-          ? QuantityComparator.fromJson(json['comparator'])
+          ? QuantityComparator.fromJson({
+              'value': json['comparator'],
+              '_value': json['_comparator'],
+            })
           : null,
-      comparatorElement: json['_comparator'] != null
-          ? Element.fromJson(
-              json['_comparator'] as Map<String, dynamic>,
-            )
+      unit: json['unit'] != null
+          ? FhirString.fromJson({
+              'value': json['unit'],
+              '_value': json['_unit'],
+            })
           : null,
-      unit: json['unit'] != null ? FhirString.fromJson(json['unit']) : null,
-      unitElement: json['_unit'] != null
-          ? Element.fromJson(
-              json['_unit'] as Map<String, dynamic>,
-            )
+      system: json['system'] != null
+          ? FhirUri.fromJson({
+              'value': json['system'],
+              '_value': json['_system'],
+            })
           : null,
-      system: json['system'] != null ? FhirUri.fromJson(json['system']) : null,
-      systemElement: json['_system'] != null
-          ? Element.fromJson(
-              json['_system'] as Map<String, dynamic>,
-            )
-          : null,
-      code: json['code'] != null ? FhirCode.fromJson(json['code']) : null,
-      codeElement: json['_code'] != null
-          ? Element.fromJson(
-              json['_code'] as Map<String, dynamic>,
-            )
+      code: json['code'] != null
+          ? FhirCode.fromJson({
+              'value': json['code'],
+              '_value': json['_code'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [Quantity] from a [String] or [YamlMap] object
+  /// Deserialize [Quantity] from a [String]
+  /// or [YamlMap] object
   factory Quantity.fromYaml(dynamic yaml) => yaml is String
       ? Quantity.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -98,10 +86,11 @@ class Quantity extends DataType {
           ? Quantity.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Quantity cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Quantity cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Quantity] that takes in a [String]
+  /// Factory constructor for [Quantity]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Quantity.fromJsonString(String source) {
@@ -117,13 +106,19 @@ class Quantity extends DataType {
   @override
   String get fhirType => 'Quantity';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [value]
   /// The value of the measured amount. The value includes an implicit
   /// precision in the presentation of the value.
   final FhirDecimal? value;
-
-  /// Extensions for [value]
-  final Element? valueElement;
 
   /// [comparator]
   /// How the value should be understood and represented - whether the actual
@@ -132,31 +127,19 @@ class Quantity extends DataType {
   /// value.
   final QuantityComparator? comparator;
 
-  /// Extensions for [comparator]
-  final Element? comparatorElement;
-
   /// [unit]
   /// A human-readable form of the unit.
   final FhirString? unit;
-
-  /// Extensions for [unit]
-  final Element? unitElement;
 
   /// [system]
   /// The identification of the system that provides the coded form of the
   /// unit.
   final FhirUri? system;
 
-  /// Extensions for [system]
-  final Element? systemElement;
-
   /// [code]
   /// A computer processable form of the unit in some unit representation
   /// system.
   final FhirCode? code;
-
-  /// Extensions for [code]
-  final Element? codeElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -170,29 +153,17 @@ class Quantity extends DataType {
     if (value?.value != null) {
       json['value'] = value!.toJson();
     }
-    if (valueElement != null) {
-      json['_value'] = valueElement!.toJson();
-    }
     if (comparator != null) {
       json['comparator'] = comparator!.toJson();
     }
     if (unit?.value != null) {
       json['unit'] = unit!.toJson();
     }
-    if (unitElement != null) {
-      json['_unit'] = unitElement!.toJson();
-    }
     if (system?.value != null) {
       json['system'] = system!.toJson();
     }
-    if (systemElement != null) {
-      json['_system'] = systemElement!.toJson();
-    }
     if (code?.value != null) {
       json['code'] = code!.toJson();
-    }
-    if (codeElement != null) {
-      json['_code'] = codeElement!.toJson();
     }
     return json;
   }
@@ -204,15 +175,10 @@ class Quantity extends DataType {
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirDecimal? value,
-    Element? valueElement,
     QuantityComparator? comparator,
-    Element? comparatorElement,
     FhirString? unit,
-    Element? unitElement,
     FhirUri? system,
-    Element? systemElement,
     FhirCode? code,
-    Element? codeElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -224,15 +190,10 @@ class Quantity extends DataType {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       value: value ?? this.value,
-      valueElement: valueElement ?? this.valueElement,
       comparator: comparator ?? this.comparator,
-      comparatorElement: comparatorElement ?? this.comparatorElement,
       unit: unit ?? this.unit,
-      unitElement: unitElement ?? this.unitElement,
       system: system ?? this.system,
-      systemElement: systemElement ?? this.systemElement,
       code: code ?? this.code,
-      codeElement: codeElement ?? this.codeElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

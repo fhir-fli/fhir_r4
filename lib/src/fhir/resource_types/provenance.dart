@@ -21,31 +21,16 @@ class Provenance extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.target,
     this.occurredPeriod,
     this.occurredDateTime,
-
-    /// Extensions for [occurredDateTime]
-    this.occurredDateTimeElement,
     required this.recorded,
-
-    /// Extensions for [recorded]
-    this.recordedElement,
     this.policy,
-
-    /// Extensions for [policy]
-    this.policyElement,
     this.location,
     this.reason,
     this.activity,
@@ -65,27 +50,27 @@ class Provenance extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Provenance.fromJson(Map<String, dynamic> json) {
     return Provenance(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -95,7 +80,7 @@ class Provenance extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -104,7 +89,7 @@ class Provenance extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -113,49 +98,37 @@ class Provenance extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      target: (json['target'] as List<dynamic>)
+      target: ensureNonNullList((json['target'] as List<dynamic>)
           .map<Reference>(
-              (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-          .toList(),
+            (v) => Reference.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
       occurredPeriod: json['occurredPeriod'] != null
           ? Period.fromJson(
               json['occurredPeriod'] as Map<String, dynamic>,
             )
           : null,
       occurredDateTime: json['occurredDateTime'] != null
-          ? FhirDateTime.fromJson(json['occurredDateTime'])
+          ? FhirDateTime.fromJson({
+              'value': json['occurredDateTime'],
+              '_value': json['_occurredDateTime'],
+            })
           : null,
-      occurredDateTimeElement: json['_occurredDateTime'] != null
-          ? Element.fromJson(
-              json['_occurredDateTime'] as Map<String, dynamic>,
-            )
-          : null,
-      recorded: FhirInstant.fromJson(json['recorded']),
-      recordedElement: json['_recorded'] != null
-          ? Element.fromJson(
-              json['_recorded'] as Map<String, dynamic>,
-            )
-          : null,
-      policy: json['policy'] != null
-          ? (json['policy'] as List<dynamic>)
-              .map<FhirUri>(
-                (dynamic v) => FhirUri.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      policyElement: json['_policy'] != null
-          ? (json['_policy'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      recorded: FhirInstant.fromJson({
+        'value': json['recorded'],
+        '_value': json['_recorded'],
+      }),
+      policy: parsePrimitiveList<FhirUri>(
+          json['policy'] as List<dynamic>?, json['_policy'] as List<dynamic>?,
+          fromJson: FhirUri.fromJson),
       location: json['location'] != null
           ? Reference.fromJson(
               json['location'] as Map<String, dynamic>,
@@ -164,7 +137,7 @@ class Provenance extends DomainResource {
       reason: json['reason'] != null
           ? (json['reason'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -175,14 +148,17 @@ class Provenance extends DomainResource {
               json['activity'] as Map<String, dynamic>,
             )
           : null,
-      agent: (json['agent'] as List<dynamic>)
-          .map<ProvenanceAgent>((dynamic v) =>
-              ProvenanceAgent.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      agent: ensureNonNullList((json['agent'] as List<dynamic>)
+          .map<ProvenanceAgent>(
+            (v) => ProvenanceAgent.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
       entity: json['entity'] != null
           ? (json['entity'] as List<dynamic>)
               .map<ProvenanceEntity>(
-                (dynamic v) => ProvenanceEntity.fromJson(
+                (v) => ProvenanceEntity.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -191,7 +167,7 @@ class Provenance extends DomainResource {
       signature: json['signature'] != null
           ? (json['signature'] as List<dynamic>)
               .map<Signature>(
-                (dynamic v) => Signature.fromJson(
+                (v) => Signature.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -200,7 +176,8 @@ class Provenance extends DomainResource {
     );
   }
 
-  /// Deserialize [Provenance] from a [String] or [YamlMap] object
+  /// Deserialize [Provenance] from a [String]
+  /// or [YamlMap] object
   factory Provenance.fromYaml(dynamic yaml) => yaml is String
       ? Provenance.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -209,10 +186,11 @@ class Provenance extends DomainResource {
           ? Provenance.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Provenance cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Provenance cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Provenance] that takes in a [String]
+  /// Factory constructor for [Provenance]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Provenance.fromJsonString(String source) {
@@ -228,6 +206,15 @@ class Provenance extends DomainResource {
   @override
   String get fhirType => 'Provenance';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [target]
   /// The Reference(s) that were generated or updated by the activity
   /// described in this resource. A provenance can point to more than one
@@ -242,24 +229,15 @@ class Provenance extends DomainResource {
   /// The period during which the activity occurred.
   final FhirDateTime? occurredDateTime;
 
-  /// Extensions for [occurredDateTime]
-  final Element? occurredDateTimeElement;
-
   /// [recorded]
   /// The instant of time at which the activity was recorded.
   final FhirInstant recorded;
-
-  /// Extensions for [recorded]
-  final Element? recordedElement;
 
   /// [policy]
   /// Policy or plan the activity was defined by. Typically, a single
   /// activity may have multiple applicable policy documents, such as patient
   /// consent, guarantor funding, etc.
   final List<FhirUri>? policy;
-
-  /// Extensions for [policy]
-  final List<Element>? policyElement;
 
   /// [location]
   /// Where the activity occurred, if relevant.
@@ -301,9 +279,6 @@ class Provenance extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -328,18 +303,9 @@ class Provenance extends DomainResource {
     if (occurredDateTime?.value != null) {
       json['occurredDateTime'] = occurredDateTime!.toJson();
     }
-    if (occurredDateTimeElement != null) {
-      json['_occurredDateTime'] = occurredDateTimeElement!.toJson();
-    }
     json['recorded'] = recorded.toJson();
-    if (recordedElement != null) {
-      json['_recorded'] = recordedElement!.toJson();
-    }
     if (policy != null && policy!.isNotEmpty) {
       json['policy'] = policy!.map((FhirUri v) => v.toJson()).toList();
-    }
-    if (policyElement != null && policyElement!.isNotEmpty) {
-      json['_policy'] = policyElement!.map((Element v) => v.toJson()).toList();
     }
     if (location != null) {
       json['location'] = location!.toJson();
@@ -368,9 +334,7 @@ class Provenance extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -378,11 +342,8 @@ class Provenance extends DomainResource {
     List<Reference>? target,
     Period? occurredPeriod,
     FhirDateTime? occurredDateTime,
-    Element? occurredDateTimeElement,
     FhirInstant? recorded,
-    Element? recordedElement,
     List<FhirUri>? policy,
-    List<Element>? policyElement,
     Reference? location,
     List<CodeableConcept>? reason,
     CodeableConcept? activity,
@@ -400,9 +361,7 @@ class Provenance extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -410,12 +369,8 @@ class Provenance extends DomainResource {
       target: target ?? this.target,
       occurredPeriod: occurredPeriod ?? this.occurredPeriod,
       occurredDateTime: occurredDateTime ?? this.occurredDateTime,
-      occurredDateTimeElement:
-          occurredDateTimeElement ?? this.occurredDateTimeElement,
       recorded: recorded ?? this.recorded,
-      recordedElement: recordedElement ?? this.recordedElement,
       policy: policy ?? this.policy,
-      policyElement: policyElement ?? this.policyElement,
       location: location ?? this.location,
       reason: reason ?? this.reason,
       activity: activity ?? this.activity,
@@ -440,7 +395,7 @@ class ProvenanceAgent extends BackboneElement {
 
   ProvenanceAgent({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.type,
     this.role,
@@ -457,11 +412,15 @@ class ProvenanceAgent extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProvenanceAgent.fromJson(Map<String, dynamic> json) {
     return ProvenanceAgent(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -470,7 +429,7 @@ class ProvenanceAgent extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -484,7 +443,7 @@ class ProvenanceAgent extends BackboneElement {
       role: json['role'] != null
           ? (json['role'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -501,7 +460,8 @@ class ProvenanceAgent extends BackboneElement {
     );
   }
 
-  /// Deserialize [ProvenanceAgent] from a [String] or [YamlMap] object
+  /// Deserialize [ProvenanceAgent] from a [String]
+  /// or [YamlMap] object
   factory ProvenanceAgent.fromYaml(dynamic yaml) => yaml is String
       ? ProvenanceAgent.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -510,11 +470,11 @@ class ProvenanceAgent extends BackboneElement {
           ? ProvenanceAgent.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ProvenanceAgent cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ProvenanceAgent cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ProvenanceAgent] that takes in a [String]
+  /// Factory constructor for [ProvenanceAgent]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ProvenanceAgent.fromJsonString(String source) {
@@ -529,6 +489,15 @@ class ProvenanceAgent extends BackboneElement {
 
   @override
   String get fhirType => 'ProvenanceAgent';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The participation the agent had with respect to the activity.
@@ -616,12 +585,9 @@ class ProvenanceEntity extends BackboneElement {
 
   ProvenanceEntity({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.role,
-
-    /// Extensions for [role]
-    this.roleElement,
     required this.what,
     this.agent,
     super.userData,
@@ -635,11 +601,15 @@ class ProvenanceEntity extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ProvenanceEntity.fromJson(Map<String, dynamic> json) {
     return ProvenanceEntity(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -648,25 +618,23 @@ class ProvenanceEntity extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      role: ProvenanceEntityRole.fromJson(json['role']),
-      roleElement: json['_role'] != null
-          ? Element.fromJson(
-              json['_role'] as Map<String, dynamic>,
-            )
-          : null,
+      role: ProvenanceEntityRole.fromJson({
+        'value': json['role'],
+        '_value': json['_role'],
+      }),
       what: Reference.fromJson(
         json['what'] as Map<String, dynamic>,
       ),
       agent: json['agent'] != null
           ? (json['agent'] as List<dynamic>)
               .map<ProvenanceAgent>(
-                (dynamic v) => ProvenanceAgent.fromJson(
+                (v) => ProvenanceAgent.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -675,7 +643,8 @@ class ProvenanceEntity extends BackboneElement {
     );
   }
 
-  /// Deserialize [ProvenanceEntity] from a [String] or [YamlMap] object
+  /// Deserialize [ProvenanceEntity] from a [String]
+  /// or [YamlMap] object
   factory ProvenanceEntity.fromYaml(dynamic yaml) => yaml is String
       ? ProvenanceEntity.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -684,11 +653,11 @@ class ProvenanceEntity extends BackboneElement {
           ? ProvenanceEntity.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ProvenanceEntity cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ProvenanceEntity cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ProvenanceEntity] that takes in a [String]
+  /// Factory constructor for [ProvenanceEntity]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ProvenanceEntity.fromJsonString(String source) {
@@ -704,12 +673,18 @@ class ProvenanceEntity extends BackboneElement {
   @override
   String get fhirType => 'ProvenanceEntity';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [role]
   /// How the entity was used during the activity.
   final ProvenanceEntityRole role;
-
-  /// Extensions for [role]
-  final Element? roleElement;
 
   /// [what]
   /// Identity of the Entity used. May be a logical or physical uri and maybe
@@ -752,7 +727,6 @@ class ProvenanceEntity extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     ProvenanceEntityRole? role,
-    Element? roleElement,
     Reference? what,
     List<ProvenanceAgent>? agent,
     Map<String, Object?>? userData,
@@ -767,7 +741,6 @@ class ProvenanceEntity extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       role: role ?? this.role,
-      roleElement: roleElement ?? this.roleElement,
       what: what ?? this.what,
       agent: agent ?? this.agent,
       userData: userData ?? this.userData,

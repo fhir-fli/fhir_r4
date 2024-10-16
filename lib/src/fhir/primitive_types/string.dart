@@ -1,83 +1,99 @@
 import 'dart:convert';
-
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:yaml/yaml.dart';
 
-/// A string is a sequence of characters used to represent text.
+/// Extension to convert a [String] to [FhirString].
 extension FhirStringExtension on String {
   /// Returns a [FhirString] object from a [String].
   FhirString get toFhirString => FhirString(this);
 }
 
-/// FhirString is a string of characters used to represent text.
+/// [FhirString] represents a string used in FHIR resources.
 class FhirString extends PrimitiveType<String> {
-  /// FhirString is a string of characters used to represent text.
-  FhirString(String input, [Element? element])
-      : value = input,
-        super(element: element);
+  /// Constructs a [FhirString] with validation.
+  FhirString(super.input, [super.element]);
 
-  /// FhirString is a string of characters used to represent text.
-  factory FhirString.fromJson(dynamic json) {
-    if (json is String) {
-      return FhirString(json);
+  /// Factory constructor to create [FhirString] from JSON.
+  factory FhirString.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+
+    if (value == null) {
+      throw const FormatException(
+        'Invalid input for FhirString: value is null',
+      );
     }
-    throw FormatException('Invalid input for FhirString: $json');
+
+    return FhirString(value, element);
   }
 
-  /// FhirString is a string of characters used to represent text.
-  factory FhirString.fromYaml(dynamic yaml) => yaml is String
-      ? FhirString.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))))
-      : throw const FormatException('Invalid YAML format for FhirString');
-  @override
-  final String value;
+  /// Factory constructor to create [FhirString] from YAML.
+  factory FhirString.fromYaml(dynamic yaml) {
+    return yaml is String
+        ? FhirString.fromJson(
+            jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+          )
+        : yaml is YamlMap
+            ? FhirString.fromJson(
+                jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
+              )
+            : throw const FormatException('Invalid YAML format for FhirString');
+  }
 
-  /// Returns the FhirString object from a [String].
+  /// Attempts to parse the input and return a [FhirString].
   static FhirString? tryParse(dynamic input) {
     if (input is String) {
       try {
         return FhirString(input);
-      } catch (e) {
+      } catch (_) {
         return null;
       }
-    } else {
-      return null;
     }
+    return null;
   }
 
+  /// Returns the FHIR type as 'string'.
   @override
   String get fhirType => 'string';
 
+  /// Serializes the instance to JSON with standardized keys.
   @override
-  String toJson() => value;
-  @override
-  String toYaml() => value;
-  @override
-  String toString() => value;
-  @override
-  String toJsonString() => jsonEncode(toJson());
+  Map<String, dynamic> toJson() {
+    return {
+      'value': value,
+      if (element != null) '_value': element!.toJson(),
+    };
+  }
 
+  /// Provides a string representation of the value.
+  @override
+  String toString() => value ?? '';
+
+  /// Overrides equality operator.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => value.hashCode;
-
-  @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  bool operator ==(Object other) => equals(other);
-
-  @override
-  bool equals(Object other) =>
+  bool operator ==(Object other) =>
       identical(this, other) ||
       (other is FhirString && other.value == value) ||
       (other is String && other == value);
 
+  /// Overrides the `hashCode` for use in hash-based collections.
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => Object.hash(value, element);
+
+  /// Clones the current [FhirString] instance.
   @override
   FhirString clone() => FhirString(value, element?.clone() as Element?);
 
+  /// Sets a property on the associated [Element] and returns a new instance.
   @override
   FhirString setElement(String name, dynamic elementValue) {
     return FhirString(value, element?.setProperty(name, elementValue));
   }
 
+  /// Creates a modified copy with updated properties.
   @override
   FhirString copyWith({
     String? newValue,
@@ -103,21 +119,27 @@ class FhirString extends PrimitiveType<String> {
     );
   }
 
-  /// Returns the character at the specified index.
-  int get length => value.length;
+  /// Returns the length of the string.
+  int? get length => value?.length;
 
-  /// Returns the character at the specified index.
-  bool get isEmptyString => value.isEmpty;
+  /// Checks if the string is empty.
+  bool? get isEmptyString => value?.isEmpty;
 
-  /// Returns the character at the specified index.
-  bool get isNotEmpty => value.isNotEmpty;
+  /// Checks if the string is not empty.
+  bool? get isNotEmpty => value?.isNotEmpty;
 
-  /// Returns the character at the specified index.
-  String operator +(String other) => value + other;
+  /// Concatenates two strings, treating null as an empty string.
+  String operator +(String other) => (value ?? '') + other;
 
-  /// Returns the character at the specified index.
-  String substring(int start, [int? end]) => value.substring(start, end);
+  /// Extracts a substring.
+  String? substring(int start, [int? end]) => value?.substring(start, end);
 
-  /// Returns the character at the specified index.
-  String trim() => value.trim();
+  /// Trims leading and trailing whitespace from the string.
+  String? trim() => value?.trim();
+
+  @override
+  bool equals(Object other) =>
+      identical(this, other) ||
+      (other is FhirString && other.value == value) ||
+      (other is String && other == value);
 }

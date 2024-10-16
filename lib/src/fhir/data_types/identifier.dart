@@ -10,20 +10,11 @@ class Identifier extends DataType {
 
   Identifier({
     super.id,
-    super.extension_,
+    this.extension_,
     this.use,
-
-    /// Extensions for [use]
-    this.useElement,
     this.type,
     this.system,
-
-    /// Extensions for [system]
-    this.systemElement,
     this.value,
-
-    /// Extensions for [value]
-    this.valueElement,
     this.period,
     this.assigner,
     super.userData,
@@ -37,38 +28,42 @@ class Identifier extends DataType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Identifier.fromJson(Map<String, dynamic> json) {
     return Identifier(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      use: json['use'] != null ? IdentifierUse.fromJson(json['use']) : null,
-      useElement: json['_use'] != null
-          ? Element.fromJson(
-              json['_use'] as Map<String, dynamic>,
-            )
+      use: json['use'] != null
+          ? IdentifierUse.fromJson({
+              'value': json['use'],
+              '_value': json['_use'],
+            })
           : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      system: json['system'] != null ? FhirUri.fromJson(json['system']) : null,
-      systemElement: json['_system'] != null
-          ? Element.fromJson(
-              json['_system'] as Map<String, dynamic>,
-            )
+      system: json['system'] != null
+          ? FhirUri.fromJson({
+              'value': json['system'],
+              '_value': json['_system'],
+            })
           : null,
-      value: json['value'] != null ? FhirString.fromJson(json['value']) : null,
-      valueElement: json['_value'] != null
-          ? Element.fromJson(
-              json['_value'] as Map<String, dynamic>,
-            )
+      value: json['value'] != null
+          ? FhirString.fromJson({
+              'value': json['value'],
+              '_value': json['_value'],
+            })
           : null,
       period: json['period'] != null
           ? Period.fromJson(
@@ -83,7 +78,8 @@ class Identifier extends DataType {
     );
   }
 
-  /// Deserialize [Identifier] from a [String] or [YamlMap] object
+  /// Deserialize [Identifier] from a [String]
+  /// or [YamlMap] object
   factory Identifier.fromYaml(dynamic yaml) => yaml is String
       ? Identifier.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -92,10 +88,11 @@ class Identifier extends DataType {
           ? Identifier.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Identifier cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Identifier cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Identifier] that takes in a [String]
+  /// Factory constructor for [Identifier]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Identifier.fromJsonString(String source) {
@@ -111,12 +108,18 @@ class Identifier extends DataType {
   @override
   String get fhirType => 'Identifier';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [use]
   /// The purpose of this identifier.
   final IdentifierUse? use;
-
-  /// Extensions for [use]
-  final Element? useElement;
 
   /// [type]
   /// A coded type for the identifier that can be used to determine which
@@ -128,16 +131,10 @@ class Identifier extends DataType {
   /// a set values that are unique.
   final FhirUri? system;
 
-  /// Extensions for [system]
-  final Element? systemElement;
-
   /// [value]
   /// The portion of the identifier typically relevant to the user and which
   /// is unique within the context of the system.
   final FhirString? value;
-
-  /// Extensions for [value]
-  final Element? valueElement;
 
   /// [period]
   /// Time period during which identifier is/was valid for use.
@@ -165,14 +162,8 @@ class Identifier extends DataType {
     if (system?.value != null) {
       json['system'] = system!.toJson();
     }
-    if (systemElement != null) {
-      json['_system'] = systemElement!.toJson();
-    }
     if (value?.value != null) {
       json['value'] = value!.toJson();
-    }
-    if (valueElement != null) {
-      json['_value'] = valueElement!.toJson();
     }
     if (period != null) {
       json['period'] = period!.toJson();
@@ -190,12 +181,9 @@ class Identifier extends DataType {
     FhirString? id,
     List<FhirExtension>? extension_,
     IdentifierUse? use,
-    Element? useElement,
     CodeableConcept? type,
     FhirUri? system,
-    Element? systemElement,
     FhirString? value,
-    Element? valueElement,
     Period? period,
     Reference? assigner,
     Map<String, Object?>? userData,
@@ -209,12 +197,9 @@ class Identifier extends DataType {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       use: use ?? this.use,
-      useElement: useElement ?? this.useElement,
       type: type ?? this.type,
       system: system ?? this.system,
-      systemElement: systemElement ?? this.systemElement,
       value: value ?? this.value,
-      valueElement: valueElement ?? this.valueElement,
       period: period ?? this.period,
       assigner: assigner ?? this.assigner,
       userData: userData ?? this.userData,

@@ -13,13 +13,7 @@ class Parameters extends Resource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     this.parameter,
     super.userData,
     super.formatCommentsPre,
@@ -34,32 +28,32 @@ class Parameters extends Resource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Parameters.fromJson(Map<String, dynamic> json) {
     return Parameters(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       parameter: json['parameter'] != null
           ? (json['parameter'] as List<dynamic>)
               .map<ParametersParameter>(
-                (dynamic v) => ParametersParameter.fromJson(
+                (v) => ParametersParameter.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -68,7 +62,8 @@ class Parameters extends Resource {
     );
   }
 
-  /// Deserialize [Parameters] from a [String] or [YamlMap] object
+  /// Deserialize [Parameters] from a [String]
+  /// or [YamlMap] object
   factory Parameters.fromYaml(dynamic yaml) => yaml is String
       ? Parameters.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -77,10 +72,11 @@ class Parameters extends Resource {
           ? Parameters.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Parameters cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Parameters cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Parameters] that takes in a [String]
+  /// Factory constructor for [Parameters]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Parameters.fromJsonString(String source) {
@@ -112,9 +108,6 @@ class Parameters extends Resource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -132,9 +125,7 @@ class Parameters extends Resource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     List<ParametersParameter>? parameter,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -147,9 +138,7 @@ class Parameters extends Resource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       parameter: parameter ?? this.parameter,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -168,88 +157,28 @@ class ParametersParameter extends BackboneElement {
 
   ParametersParameter({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.valueBase64Binary,
-
-    /// Extensions for [valueBase64Binary]
-    this.valueBase64BinaryElement,
     this.valueBoolean,
-
-    /// Extensions for [valueBoolean]
-    this.valueBooleanElement,
     this.valueCanonical,
-
-    /// Extensions for [valueCanonical]
-    this.valueCanonicalElement,
     this.valueCode,
-
-    /// Extensions for [valueCode]
-    this.valueCodeElement,
     this.valueDate,
-
-    /// Extensions for [valueDate]
-    this.valueDateElement,
     this.valueDateTime,
-
-    /// Extensions for [valueDateTime]
-    this.valueDateTimeElement,
     this.valueDecimal,
-
-    /// Extensions for [valueDecimal]
-    this.valueDecimalElement,
     this.valueId,
-
-    /// Extensions for [valueId]
-    this.valueIdElement,
     this.valueInstant,
-
-    /// Extensions for [valueInstant]
-    this.valueInstantElement,
     this.valueInteger,
-
-    /// Extensions for [valueInteger]
-    this.valueIntegerElement,
     this.valueMarkdown,
-
-    /// Extensions for [valueMarkdown]
-    this.valueMarkdownElement,
     this.valueOid,
-
-    /// Extensions for [valueOid]
-    this.valueOidElement,
     this.valuePositiveInt,
-
-    /// Extensions for [valuePositiveInt]
-    this.valuePositiveIntElement,
     this.valueString,
-
-    /// Extensions for [valueString]
-    this.valueStringElement,
     this.valueTime,
-
-    /// Extensions for [valueTime]
-    this.valueTimeElement,
     this.valueUnsignedInt,
-
-    /// Extensions for [valueUnsignedInt]
-    this.valueUnsignedIntElement,
     this.valueUri,
-
-    /// Extensions for [valueUri]
-    this.valueUriElement,
     this.valueUrl,
-
-    /// Extensions for [valueUrl]
-    this.valueUrlElement,
     this.valueUuid,
-
-    /// Extensions for [valueUuid]
-    this.valueUuidElement,
     this.valueAddress,
     this.valueAge,
     this.valueAnnotation,
@@ -294,11 +223,15 @@ class ParametersParameter extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ParametersParameter.fromJson(Map<String, dynamic> json) {
     return ParametersParameter(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -307,165 +240,129 @@ class ParametersParameter extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: FhirString.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
-          : null,
+      name: FhirString.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
       valueBase64Binary: json['valueBase64Binary'] != null
-          ? FhirBase64Binary.fromJson(json['valueBase64Binary'])
-          : null,
-      valueBase64BinaryElement: json['_valueBase64Binary'] != null
-          ? Element.fromJson(
-              json['_valueBase64Binary'] as Map<String, dynamic>,
-            )
+          ? FhirBase64Binary.fromJson({
+              'value': json['valueBase64Binary'],
+              '_value': json['_valueBase64Binary'],
+            })
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(
-              json['_valueBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['valueBoolean'],
+              '_value': json['_valueBoolean'],
+            })
           : null,
       valueCanonical: json['valueCanonical'] != null
-          ? FhirCanonical.fromJson(json['valueCanonical'])
-          : null,
-      valueCanonicalElement: json['_valueCanonical'] != null
-          ? Element.fromJson(
-              json['_valueCanonical'] as Map<String, dynamic>,
-            )
+          ? FhirCanonical.fromJson({
+              'value': json['valueCanonical'],
+              '_value': json['_valueCanonical'],
+            })
           : null,
       valueCode: json['valueCode'] != null
-          ? FhirCode.fromJson(json['valueCode'])
-          : null,
-      valueCodeElement: json['_valueCode'] != null
-          ? Element.fromJson(
-              json['_valueCode'] as Map<String, dynamic>,
-            )
+          ? FhirCode.fromJson({
+              'value': json['valueCode'],
+              '_value': json['_valueCode'],
+            })
           : null,
       valueDate: json['valueDate'] != null
-          ? FhirDate.fromJson(json['valueDate'])
-          : null,
-      valueDateElement: json['_valueDate'] != null
-          ? Element.fromJson(
-              json['_valueDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['valueDate'],
+              '_value': json['_valueDate'],
+            })
           : null,
       valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime.fromJson(json['valueDateTime'])
-          : null,
-      valueDateTimeElement: json['_valueDateTime'] != null
-          ? Element.fromJson(
-              json['_valueDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['valueDateTime'],
+              '_value': json['_valueDateTime'],
+            })
           : null,
       valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal.fromJson(json['valueDecimal'])
+          ? FhirDecimal.fromJson({
+              'value': json['valueDecimal'],
+              '_value': json['_valueDecimal'],
+            })
           : null,
-      valueDecimalElement: json['_valueDecimal'] != null
-          ? Element.fromJson(
-              json['_valueDecimal'] as Map<String, dynamic>,
-            )
-          : null,
-      valueId:
-          json['valueId'] != null ? FhirId.fromJson(json['valueId']) : null,
-      valueIdElement: json['_valueId'] != null
-          ? Element.fromJson(
-              json['_valueId'] as Map<String, dynamic>,
-            )
+      valueId: json['valueId'] != null
+          ? FhirId.fromJson({
+              'value': json['valueId'],
+              '_value': json['_valueId'],
+            })
           : null,
       valueInstant: json['valueInstant'] != null
-          ? FhirInstant.fromJson(json['valueInstant'])
-          : null,
-      valueInstantElement: json['_valueInstant'] != null
-          ? Element.fromJson(
-              json['_valueInstant'] as Map<String, dynamic>,
-            )
+          ? FhirInstant.fromJson({
+              'value': json['valueInstant'],
+              '_value': json['_valueInstant'],
+            })
           : null,
       valueInteger: json['valueInteger'] != null
-          ? FhirInteger.fromJson(json['valueInteger'])
-          : null,
-      valueIntegerElement: json['_valueInteger'] != null
-          ? Element.fromJson(
-              json['_valueInteger'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['valueInteger'],
+              '_value': json['_valueInteger'],
+            })
           : null,
       valueMarkdown: json['valueMarkdown'] != null
-          ? FhirMarkdown.fromJson(json['valueMarkdown'])
+          ? FhirMarkdown.fromJson({
+              'value': json['valueMarkdown'],
+              '_value': json['_valueMarkdown'],
+            })
           : null,
-      valueMarkdownElement: json['_valueMarkdown'] != null
-          ? Element.fromJson(
-              json['_valueMarkdown'] as Map<String, dynamic>,
-            )
-          : null,
-      valueOid:
-          json['valueOid'] != null ? FhirOid.fromJson(json['valueOid']) : null,
-      valueOidElement: json['_valueOid'] != null
-          ? Element.fromJson(
-              json['_valueOid'] as Map<String, dynamic>,
-            )
+      valueOid: json['valueOid'] != null
+          ? FhirOid.fromJson({
+              'value': json['valueOid'],
+              '_value': json['_valueOid'],
+            })
           : null,
       valuePositiveInt: json['valuePositiveInt'] != null
-          ? FhirPositiveInt.fromJson(json['valuePositiveInt'])
-          : null,
-      valuePositiveIntElement: json['_valuePositiveInt'] != null
-          ? Element.fromJson(
-              json['_valuePositiveInt'] as Map<String, dynamic>,
-            )
+          ? FhirPositiveInt.fromJson({
+              'value': json['valuePositiveInt'],
+              '_value': json['_valuePositiveInt'],
+            })
           : null,
       valueString: json['valueString'] != null
-          ? FhirString.fromJson(json['valueString'])
-          : null,
-      valueStringElement: json['_valueString'] != null
-          ? Element.fromJson(
-              json['_valueString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['valueString'],
+              '_value': json['_valueString'],
+            })
           : null,
       valueTime: json['valueTime'] != null
-          ? FhirTime.fromJson(json['valueTime'])
-          : null,
-      valueTimeElement: json['_valueTime'] != null
-          ? Element.fromJson(
-              json['_valueTime'] as Map<String, dynamic>,
-            )
+          ? FhirTime.fromJson({
+              'value': json['valueTime'],
+              '_value': json['_valueTime'],
+            })
           : null,
       valueUnsignedInt: json['valueUnsignedInt'] != null
-          ? FhirUnsignedInt.fromJson(json['valueUnsignedInt'])
+          ? FhirUnsignedInt.fromJson({
+              'value': json['valueUnsignedInt'],
+              '_value': json['_valueUnsignedInt'],
+            })
           : null,
-      valueUnsignedIntElement: json['_valueUnsignedInt'] != null
-          ? Element.fromJson(
-              json['_valueUnsignedInt'] as Map<String, dynamic>,
-            )
+      valueUri: json['valueUri'] != null
+          ? FhirUri.fromJson({
+              'value': json['valueUri'],
+              '_value': json['_valueUri'],
+            })
           : null,
-      valueUri:
-          json['valueUri'] != null ? FhirUri.fromJson(json['valueUri']) : null,
-      valueUriElement: json['_valueUri'] != null
-          ? Element.fromJson(
-              json['_valueUri'] as Map<String, dynamic>,
-            )
-          : null,
-      valueUrl:
-          json['valueUrl'] != null ? FhirUrl.fromJson(json['valueUrl']) : null,
-      valueUrlElement: json['_valueUrl'] != null
-          ? Element.fromJson(
-              json['_valueUrl'] as Map<String, dynamic>,
-            )
+      valueUrl: json['valueUrl'] != null
+          ? FhirUrl.fromJson({
+              'value': json['valueUrl'],
+              '_value': json['_valueUrl'],
+            })
           : null,
       valueUuid: json['valueUuid'] != null
-          ? FhirUuid.fromJson(json['valueUuid'])
-          : null,
-      valueUuidElement: json['_valueUuid'] != null
-          ? Element.fromJson(
-              json['_valueUuid'] as Map<String, dynamic>,
-            )
+          ? FhirUuid.fromJson({
+              'value': json['valueUuid'],
+              '_value': json['_valueUuid'],
+            })
           : null,
       valueAddress: json['valueAddress'] != null
           ? Address.fromJson(
@@ -630,7 +527,7 @@ class ParametersParameter extends BackboneElement {
       part_: json['part'] != null
           ? (json['part'] as List<dynamic>)
               .map<ParametersParameter>(
-                (dynamic v) => ParametersParameter.fromJson(
+                (v) => ParametersParameter.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -639,7 +536,8 @@ class ParametersParameter extends BackboneElement {
     );
   }
 
-  /// Deserialize [ParametersParameter] from a [String] or [YamlMap] object
+  /// Deserialize [ParametersParameter] from a [String]
+  /// or [YamlMap] object
   factory ParametersParameter.fromYaml(dynamic yaml) => yaml is String
       ? ParametersParameter.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -649,10 +547,11 @@ class ParametersParameter extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ParametersParameter cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ParametersParameter cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ParametersParameter] that takes in a [String]
+  /// Factory constructor for [ParametersParameter]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ParametersParameter.fromJsonString(String source) {
@@ -668,145 +567,94 @@ class ParametersParameter extends BackboneElement {
   @override
   String get fhirType => 'ParametersParameter';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// The name of the parameter (reference to the operation definition).
   final FhirString name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [valueBase64Binary]
   /// Conveys the content if the parameter is a data type.
   final FhirBase64Binary? valueBase64Binary;
 
-  /// Extensions for [valueBase64Binary]
-  final Element? valueBase64BinaryElement;
-
   /// [valueBoolean]
   /// Conveys the content if the parameter is a data type.
   final FhirBoolean? valueBoolean;
-
-  /// Extensions for [valueBoolean]
-  final Element? valueBooleanElement;
 
   /// [valueCanonical]
   /// Conveys the content if the parameter is a data type.
   final FhirCanonical? valueCanonical;
 
-  /// Extensions for [valueCanonical]
-  final Element? valueCanonicalElement;
-
   /// [valueCode]
   /// Conveys the content if the parameter is a data type.
   final FhirCode? valueCode;
-
-  /// Extensions for [valueCode]
-  final Element? valueCodeElement;
 
   /// [valueDate]
   /// Conveys the content if the parameter is a data type.
   final FhirDate? valueDate;
 
-  /// Extensions for [valueDate]
-  final Element? valueDateElement;
-
   /// [valueDateTime]
   /// Conveys the content if the parameter is a data type.
   final FhirDateTime? valueDateTime;
-
-  /// Extensions for [valueDateTime]
-  final Element? valueDateTimeElement;
 
   /// [valueDecimal]
   /// Conveys the content if the parameter is a data type.
   final FhirDecimal? valueDecimal;
 
-  /// Extensions for [valueDecimal]
-  final Element? valueDecimalElement;
-
   /// [valueId]
   /// Conveys the content if the parameter is a data type.
   final FhirId? valueId;
-
-  /// Extensions for [valueId]
-  final Element? valueIdElement;
 
   /// [valueInstant]
   /// Conveys the content if the parameter is a data type.
   final FhirInstant? valueInstant;
 
-  /// Extensions for [valueInstant]
-  final Element? valueInstantElement;
-
   /// [valueInteger]
   /// Conveys the content if the parameter is a data type.
   final FhirInteger? valueInteger;
-
-  /// Extensions for [valueInteger]
-  final Element? valueIntegerElement;
 
   /// [valueMarkdown]
   /// Conveys the content if the parameter is a data type.
   final FhirMarkdown? valueMarkdown;
 
-  /// Extensions for [valueMarkdown]
-  final Element? valueMarkdownElement;
-
   /// [valueOid]
   /// Conveys the content if the parameter is a data type.
   final FhirOid? valueOid;
-
-  /// Extensions for [valueOid]
-  final Element? valueOidElement;
 
   /// [valuePositiveInt]
   /// Conveys the content if the parameter is a data type.
   final FhirPositiveInt? valuePositiveInt;
 
-  /// Extensions for [valuePositiveInt]
-  final Element? valuePositiveIntElement;
-
   /// [valueString]
   /// Conveys the content if the parameter is a data type.
   final FhirString? valueString;
-
-  /// Extensions for [valueString]
-  final Element? valueStringElement;
 
   /// [valueTime]
   /// Conveys the content if the parameter is a data type.
   final FhirTime? valueTime;
 
-  /// Extensions for [valueTime]
-  final Element? valueTimeElement;
-
   /// [valueUnsignedInt]
   /// Conveys the content if the parameter is a data type.
   final FhirUnsignedInt? valueUnsignedInt;
-
-  /// Extensions for [valueUnsignedInt]
-  final Element? valueUnsignedIntElement;
 
   /// [valueUri]
   /// Conveys the content if the parameter is a data type.
   final FhirUri? valueUri;
 
-  /// Extensions for [valueUri]
-  final Element? valueUriElement;
-
   /// [valueUrl]
   /// Conveys the content if the parameter is a data type.
   final FhirUrl? valueUrl;
 
-  /// Extensions for [valueUrl]
-  final Element? valueUrlElement;
-
   /// [valueUuid]
   /// Conveys the content if the parameter is a data type.
   final FhirUuid? valueUuid;
-
-  /// Extensions for [valueUuid]
-  final Element? valueUuidElement;
 
   /// [valueAddress]
   /// Conveys the content if the parameter is a data type.
@@ -954,122 +802,62 @@ class ParametersParameter extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (valueBase64Binary?.value != null) {
       json['valueBase64Binary'] = valueBase64Binary!.toJson();
-    }
-    if (valueBase64BinaryElement != null) {
-      json['_valueBase64Binary'] = valueBase64BinaryElement!.toJson();
     }
     if (valueBoolean?.value != null) {
       json['valueBoolean'] = valueBoolean!.toJson();
     }
-    if (valueBooleanElement != null) {
-      json['_valueBoolean'] = valueBooleanElement!.toJson();
-    }
     if (valueCanonical?.value != null) {
       json['valueCanonical'] = valueCanonical!.toJson();
-    }
-    if (valueCanonicalElement != null) {
-      json['_valueCanonical'] = valueCanonicalElement!.toJson();
     }
     if (valueCode?.value != null) {
       json['valueCode'] = valueCode!.toJson();
     }
-    if (valueCodeElement != null) {
-      json['_valueCode'] = valueCodeElement!.toJson();
-    }
     if (valueDate?.value != null) {
       json['valueDate'] = valueDate!.toJson();
-    }
-    if (valueDateElement != null) {
-      json['_valueDate'] = valueDateElement!.toJson();
     }
     if (valueDateTime?.value != null) {
       json['valueDateTime'] = valueDateTime!.toJson();
     }
-    if (valueDateTimeElement != null) {
-      json['_valueDateTime'] = valueDateTimeElement!.toJson();
-    }
     if (valueDecimal?.value != null) {
       json['valueDecimal'] = valueDecimal!.toJson();
-    }
-    if (valueDecimalElement != null) {
-      json['_valueDecimal'] = valueDecimalElement!.toJson();
     }
     if (valueId?.value != null) {
       json['valueId'] = valueId!.toJson();
     }
-    if (valueIdElement != null) {
-      json['_valueId'] = valueIdElement!.toJson();
-    }
     if (valueInstant?.value != null) {
       json['valueInstant'] = valueInstant!.toJson();
-    }
-    if (valueInstantElement != null) {
-      json['_valueInstant'] = valueInstantElement!.toJson();
     }
     if (valueInteger?.value != null) {
       json['valueInteger'] = valueInteger!.toJson();
     }
-    if (valueIntegerElement != null) {
-      json['_valueInteger'] = valueIntegerElement!.toJson();
-    }
     if (valueMarkdown?.value != null) {
       json['valueMarkdown'] = valueMarkdown!.toJson();
-    }
-    if (valueMarkdownElement != null) {
-      json['_valueMarkdown'] = valueMarkdownElement!.toJson();
     }
     if (valueOid?.value != null) {
       json['valueOid'] = valueOid!.toJson();
     }
-    if (valueOidElement != null) {
-      json['_valueOid'] = valueOidElement!.toJson();
-    }
     if (valuePositiveInt?.value != null) {
       json['valuePositiveInt'] = valuePositiveInt!.toJson();
-    }
-    if (valuePositiveIntElement != null) {
-      json['_valuePositiveInt'] = valuePositiveIntElement!.toJson();
     }
     if (valueString?.value != null) {
       json['valueString'] = valueString!.toJson();
     }
-    if (valueStringElement != null) {
-      json['_valueString'] = valueStringElement!.toJson();
-    }
     if (valueTime?.value != null) {
       json['valueTime'] = valueTime!.toJson();
-    }
-    if (valueTimeElement != null) {
-      json['_valueTime'] = valueTimeElement!.toJson();
     }
     if (valueUnsignedInt?.value != null) {
       json['valueUnsignedInt'] = valueUnsignedInt!.toJson();
     }
-    if (valueUnsignedIntElement != null) {
-      json['_valueUnsignedInt'] = valueUnsignedIntElement!.toJson();
-    }
     if (valueUri?.value != null) {
       json['valueUri'] = valueUri!.toJson();
-    }
-    if (valueUriElement != null) {
-      json['_valueUri'] = valueUriElement!.toJson();
     }
     if (valueUrl?.value != null) {
       json['valueUrl'] = valueUrl!.toJson();
     }
-    if (valueUrlElement != null) {
-      json['_valueUrl'] = valueUrlElement!.toJson();
-    }
     if (valueUuid?.value != null) {
       json['valueUuid'] = valueUuid!.toJson();
-    }
-    if (valueUuidElement != null) {
-      json['_valueUuid'] = valueUuidElement!.toJson();
     }
     if (valueAddress != null) {
       json['valueAddress'] = valueAddress!.toJson();
@@ -1181,45 +969,25 @@ class ParametersParameter extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    Element? nameElement,
     FhirBase64Binary? valueBase64Binary,
-    Element? valueBase64BinaryElement,
     FhirBoolean? valueBoolean,
-    Element? valueBooleanElement,
     FhirCanonical? valueCanonical,
-    Element? valueCanonicalElement,
     FhirCode? valueCode,
-    Element? valueCodeElement,
     FhirDate? valueDate,
-    Element? valueDateElement,
     FhirDateTime? valueDateTime,
-    Element? valueDateTimeElement,
     FhirDecimal? valueDecimal,
-    Element? valueDecimalElement,
     FhirId? valueId,
-    Element? valueIdElement,
     FhirInstant? valueInstant,
-    Element? valueInstantElement,
     FhirInteger? valueInteger,
-    Element? valueIntegerElement,
     FhirMarkdown? valueMarkdown,
-    Element? valueMarkdownElement,
     FhirOid? valueOid,
-    Element? valueOidElement,
     FhirPositiveInt? valuePositiveInt,
-    Element? valuePositiveIntElement,
     FhirString? valueString,
-    Element? valueStringElement,
     FhirTime? valueTime,
-    Element? valueTimeElement,
     FhirUnsignedInt? valueUnsignedInt,
-    Element? valueUnsignedIntElement,
     FhirUri? valueUri,
-    Element? valueUriElement,
     FhirUrl? valueUrl,
-    Element? valueUrlElement,
     FhirUuid? valueUuid,
-    Element? valueUuidElement,
     Address? valueAddress,
     Age? valueAge,
     Annotation? valueAnnotation,
@@ -1265,49 +1033,25 @@ class ParametersParameter extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       valueBase64Binary: valueBase64Binary ?? this.valueBase64Binary,
-      valueBase64BinaryElement:
-          valueBase64BinaryElement ?? this.valueBase64BinaryElement,
       valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueBooleanElement: valueBooleanElement ?? this.valueBooleanElement,
       valueCanonical: valueCanonical ?? this.valueCanonical,
-      valueCanonicalElement:
-          valueCanonicalElement ?? this.valueCanonicalElement,
       valueCode: valueCode ?? this.valueCode,
-      valueCodeElement: valueCodeElement ?? this.valueCodeElement,
       valueDate: valueDate ?? this.valueDate,
-      valueDateElement: valueDateElement ?? this.valueDateElement,
       valueDateTime: valueDateTime ?? this.valueDateTime,
-      valueDateTimeElement: valueDateTimeElement ?? this.valueDateTimeElement,
       valueDecimal: valueDecimal ?? this.valueDecimal,
-      valueDecimalElement: valueDecimalElement ?? this.valueDecimalElement,
       valueId: valueId ?? this.valueId,
-      valueIdElement: valueIdElement ?? this.valueIdElement,
       valueInstant: valueInstant ?? this.valueInstant,
-      valueInstantElement: valueInstantElement ?? this.valueInstantElement,
       valueInteger: valueInteger ?? this.valueInteger,
-      valueIntegerElement: valueIntegerElement ?? this.valueIntegerElement,
       valueMarkdown: valueMarkdown ?? this.valueMarkdown,
-      valueMarkdownElement: valueMarkdownElement ?? this.valueMarkdownElement,
       valueOid: valueOid ?? this.valueOid,
-      valueOidElement: valueOidElement ?? this.valueOidElement,
       valuePositiveInt: valuePositiveInt ?? this.valuePositiveInt,
-      valuePositiveIntElement:
-          valuePositiveIntElement ?? this.valuePositiveIntElement,
       valueString: valueString ?? this.valueString,
-      valueStringElement: valueStringElement ?? this.valueStringElement,
       valueTime: valueTime ?? this.valueTime,
-      valueTimeElement: valueTimeElement ?? this.valueTimeElement,
       valueUnsignedInt: valueUnsignedInt ?? this.valueUnsignedInt,
-      valueUnsignedIntElement:
-          valueUnsignedIntElement ?? this.valueUnsignedIntElement,
       valueUri: valueUri ?? this.valueUri,
-      valueUriElement: valueUriElement ?? this.valueUriElement,
       valueUrl: valueUrl ?? this.valueUrl,
-      valueUrlElement: valueUrlElement ?? this.valueUrlElement,
       valueUuid: valueUuid ?? this.valueUuid,
-      valueUuidElement: valueUuidElement ?? this.valueUuidElement,
       valueAddress: valueAddress ?? this.valueAddress,
       valueAge: valueAge ?? this.valueAge,
       valueAnnotation: valueAnnotation ?? this.valueAnnotation,

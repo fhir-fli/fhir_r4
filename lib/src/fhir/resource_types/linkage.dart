@@ -12,21 +12,12 @@ class Linkage extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.active,
-
-    /// Extensions for [active]
-    this.activeElement,
     this.author,
     required this.item,
     super.userData,
@@ -42,27 +33,27 @@ class Linkage extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Linkage.fromJson(Map<String, dynamic> json) {
     return Linkage(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -72,7 +63,7 @@ class Linkage extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -81,7 +72,7 @@ class Linkage extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -90,32 +81,35 @@ class Linkage extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      active:
-          json['active'] != null ? FhirBoolean.fromJson(json['active']) : null,
-      activeElement: json['_active'] != null
-          ? Element.fromJson(
-              json['_active'] as Map<String, dynamic>,
-            )
+      active: json['active'] != null
+          ? FhirBoolean.fromJson({
+              'value': json['active'],
+              '_value': json['_active'],
+            })
           : null,
       author: json['author'] != null
           ? Reference.fromJson(
               json['author'] as Map<String, dynamic>,
             )
           : null,
-      item: (json['item'] as List<dynamic>)
+      item: ensureNonNullList((json['item'] as List<dynamic>)
           .map<LinkageItem>(
-              (dynamic v) => LinkageItem.fromJson(v as Map<String, dynamic>))
-          .toList(),
+            (v) => LinkageItem.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
     );
   }
 
-  /// Deserialize [Linkage] from a [String] or [YamlMap] object
+  /// Deserialize [Linkage] from a [String]
+  /// or [YamlMap] object
   factory Linkage.fromYaml(dynamic yaml) => yaml is String
       ? Linkage.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -124,10 +118,11 @@ class Linkage extends DomainResource {
           ? Linkage.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Linkage cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Linkage cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Linkage] that takes in a [String]
+  /// Factory constructor for [Linkage]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Linkage.fromJsonString(String source) {
@@ -143,13 +138,19 @@ class Linkage extends DomainResource {
   @override
   String get fhirType => 'Linkage';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [active]
   /// Indicates whether the asserted set of linkages are considered to be "in
   /// effect".
   final FhirBoolean? active;
-
-  /// Extensions for [active]
-  final Element? activeElement;
 
   /// [author]
   /// Identifies the user or organization responsible for asserting the
@@ -175,9 +176,6 @@ class Linkage extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -198,9 +196,6 @@ class Linkage extends DomainResource {
     if (active?.value != null) {
       json['active'] = active!.toJson();
     }
-    if (activeElement != null) {
-      json['_active'] = activeElement!.toJson();
-    }
     if (author != null) {
       json['author'] = author!.toJson();
     }
@@ -215,15 +210,12 @@ class Linkage extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirBoolean? active,
-    Element? activeElement,
     Reference? author,
     List<LinkageItem>? item,
     Map<String, Object?>? userData,
@@ -237,15 +229,12 @@ class Linkage extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       active: active ?? this.active,
-      activeElement: activeElement ?? this.activeElement,
       author: author ?? this.author,
       item: item ?? this.item,
       userData: userData ?? this.userData,
@@ -267,12 +256,9 @@ class LinkageItem extends BackboneElement {
 
   LinkageItem({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     required this.resource,
     super.userData,
     super.formatCommentsPre,
@@ -285,11 +271,15 @@ class LinkageItem extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory LinkageItem.fromJson(Map<String, dynamic> json) {
     return LinkageItem(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -298,25 +288,24 @@ class LinkageItem extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      type: LinkageType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
+      type: LinkageType.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
       resource: Reference.fromJson(
         json['resource'] as Map<String, dynamic>,
       ),
     );
   }
 
-  /// Deserialize [LinkageItem] from a [String] or [YamlMap] object
+  /// Deserialize [LinkageItem] from a [String]
+  /// or [YamlMap] object
   factory LinkageItem.fromYaml(dynamic yaml) => yaml is String
       ? LinkageItem.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -325,10 +314,11 @@ class LinkageItem extends BackboneElement {
           ? LinkageItem.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('LinkageItem cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('LinkageItem cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [LinkageItem] that takes in a [String]
+  /// Factory constructor for [LinkageItem]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory LinkageItem.fromJsonString(String source) {
@@ -344,13 +334,19 @@ class LinkageItem extends BackboneElement {
   @override
   String get fhirType => 'LinkageItem';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// Distinguishes which item is "source of truth" (if any) and which items
   /// are no longer considered to be current representations.
   final LinkageType type;
-
-  /// Extensions for [type]
-  final Element? typeElement;
 
   /// [resource]
   /// The resource instance being linked as part of the group.
@@ -382,7 +378,6 @@ class LinkageItem extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     LinkageType? type,
-    Element? typeElement,
     Reference? resource,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -396,7 +391,6 @@ class LinkageItem extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       resource: resource ?? this.resource,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

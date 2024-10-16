@@ -14,31 +14,16 @@ class Organization extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
-
-    /// Extensions for [active]
-    this.activeElement,
     this.type,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.alias,
-
-    /// Extensions for [alias]
-    this.aliasElement,
     this.telecom,
     this.address,
     this.partOf,
@@ -57,27 +42,27 @@ class Organization extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Organization.fromJson(Map<String, dynamic> json) {
     return Organization(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -87,7 +72,7 @@ class Organization extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -96,7 +81,7 @@ class Organization extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -105,7 +90,7 @@ class Organization extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -114,52 +99,40 @@ class Organization extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      active:
-          json['active'] != null ? FhirBoolean.fromJson(json['active']) : null,
-      activeElement: json['_active'] != null
-          ? Element.fromJson(
-              json['_active'] as Map<String, dynamic>,
-            )
+      active: json['active'] != null
+          ? FhirBoolean.fromJson({
+              'value': json['active'],
+              '_value': json['_active'],
+            })
           : null,
       type: json['type'] != null
           ? (json['type'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
-      alias: json['alias'] != null
-          ? (json['alias'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      aliasElement: json['_alias'] != null
-          ? (json['_alias'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      alias: parsePrimitiveList<FhirString>(
+          json['alias'] as List<dynamic>?, json['_alias'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
       telecom: json['telecom'] != null
           ? (json['telecom'] as List<dynamic>)
               .map<ContactPoint>(
-                (dynamic v) => ContactPoint.fromJson(
+                (v) => ContactPoint.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -168,7 +141,7 @@ class Organization extends DomainResource {
       address: json['address'] != null
           ? (json['address'] as List<dynamic>)
               .map<Address>(
-                (dynamic v) => Address.fromJson(
+                (v) => Address.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -182,7 +155,7 @@ class Organization extends DomainResource {
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<OrganizationContact>(
-                (dynamic v) => OrganizationContact.fromJson(
+                (v) => OrganizationContact.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -191,7 +164,7 @@ class Organization extends DomainResource {
       endpoint: json['endpoint'] != null
           ? (json['endpoint'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -200,7 +173,8 @@ class Organization extends DomainResource {
     );
   }
 
-  /// Deserialize [Organization] from a [String] or [YamlMap] object
+  /// Deserialize [Organization] from a [String]
+  /// or [YamlMap] object
   factory Organization.fromYaml(dynamic yaml) => yaml is String
       ? Organization.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -209,10 +183,11 @@ class Organization extends DomainResource {
           ? Organization.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Organization cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Organization cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Organization] that takes in a [String]
+  /// Factory constructor for [Organization]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Organization.fromJsonString(String source) {
@@ -228,6 +203,15 @@ class Organization extends DomainResource {
   @override
   String get fhirType => 'Organization';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Identifier for the organization that is used to identify the
   /// organization across multiple disparate systems.
@@ -237,9 +221,6 @@ class Organization extends DomainResource {
   /// Whether the organization's record is still in active use.
   final FhirBoolean? active;
 
-  /// Extensions for [active]
-  final Element? activeElement;
-
   /// [type]
   /// The kind(s) of organization that this is.
   final List<CodeableConcept>? type;
@@ -248,16 +229,10 @@ class Organization extends DomainResource {
   /// A name associated with the organization.
   final FhirString? name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [alias]
   /// A list of alternate names that the organization is known as, or was
   /// known as in the past.
   final List<FhirString>? alias;
-
-  /// Extensions for [alias]
-  final List<Element>? aliasElement;
 
   /// [telecom]
   /// A contact detail for the organization.
@@ -292,9 +267,6 @@ class Organization extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -319,23 +291,14 @@ class Organization extends DomainResource {
     if (active?.value != null) {
       json['active'] = active!.toJson();
     }
-    if (activeElement != null) {
-      json['_active'] = activeElement!.toJson();
-    }
     if (type != null && type!.isNotEmpty) {
       json['type'] = type!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (alias != null && alias!.isNotEmpty) {
       json['alias'] = alias!.map((FhirString v) => v.toJson()).toList();
-    }
-    if (aliasElement != null && aliasElement!.isNotEmpty) {
-      json['_alias'] = aliasElement!.map((Element v) => v.toJson()).toList();
     }
     if (telecom != null && telecom!.isNotEmpty) {
       json['telecom'] = telecom!.map((ContactPoint v) => v.toJson()).toList();
@@ -363,21 +326,16 @@ class Organization extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     FhirBoolean? active,
-    Element? activeElement,
     List<CodeableConcept>? type,
     FhirString? name,
-    Element? nameElement,
     List<FhirString>? alias,
-    List<Element>? aliasElement,
     List<ContactPoint>? telecom,
     List<Address>? address,
     Reference? partOf,
@@ -394,21 +352,16 @@ class Organization extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       active: active ?? this.active,
-      activeElement: activeElement ?? this.activeElement,
       type: type ?? this.type,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       alias: alias ?? this.alias,
-      aliasElement: aliasElement ?? this.aliasElement,
       telecom: telecom ?? this.telecom,
       address: address ?? this.address,
       partOf: partOf ?? this.partOf,
@@ -431,7 +384,7 @@ class OrganizationContact extends BackboneElement {
 
   OrganizationContact({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.purpose,
     this.name,
@@ -448,11 +401,15 @@ class OrganizationContact extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OrganizationContact.fromJson(Map<String, dynamic> json) {
     return OrganizationContact(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -461,7 +418,7 @@ class OrganizationContact extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -480,7 +437,7 @@ class OrganizationContact extends BackboneElement {
       telecom: json['telecom'] != null
           ? (json['telecom'] as List<dynamic>)
               .map<ContactPoint>(
-                (dynamic v) => ContactPoint.fromJson(
+                (v) => ContactPoint.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -494,7 +451,8 @@ class OrganizationContact extends BackboneElement {
     );
   }
 
-  /// Deserialize [OrganizationContact] from a [String] or [YamlMap] object
+  /// Deserialize [OrganizationContact] from a [String]
+  /// or [YamlMap] object
   factory OrganizationContact.fromYaml(dynamic yaml) => yaml is String
       ? OrganizationContact.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -504,10 +462,11 @@ class OrganizationContact extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'OrganizationContact cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'OrganizationContact cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [OrganizationContact] that takes in a [String]
+  /// Factory constructor for [OrganizationContact]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory OrganizationContact.fromJsonString(String source) {
@@ -522,6 +481,15 @@ class OrganizationContact extends BackboneElement {
 
   @override
   String get fhirType => 'OrganizationContact';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [purpose]
   /// Indicates a purpose for which the contact can be reached.

@@ -9,7 +9,7 @@ class Population extends BackboneType {
 
   Population({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.ageRange,
     this.ageCodeableConcept,
@@ -27,11 +27,15 @@ class Population extends BackboneType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Population.fromJson(Map<String, dynamic> json) {
     return Population(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -40,7 +44,7 @@ class Population extends BackboneType {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -74,7 +78,8 @@ class Population extends BackboneType {
     );
   }
 
-  /// Deserialize [Population] from a [String] or [YamlMap] object
+  /// Deserialize [Population] from a [String]
+  /// or [YamlMap] object
   factory Population.fromYaml(dynamic yaml) => yaml is String
       ? Population.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -83,10 +88,11 @@ class Population extends BackboneType {
           ? Population.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Population cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Population cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Population] that takes in a [String]
+  /// Factory constructor for [Population]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Population.fromJsonString(String source) {
@@ -101,6 +107,15 @@ class Population extends BackboneType {
 
   @override
   String get fhirType => 'Population';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [ageRange]
   /// The age of the specific population.

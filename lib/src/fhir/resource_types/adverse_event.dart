@@ -14,38 +14,20 @@ class AdverseEvent extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.actuality,
-
-    /// Extensions for [actuality]
-    this.actualityElement,
     this.category,
     this.event,
     required this.subject,
     this.encounter,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.detected,
-
-    /// Extensions for [detected]
-    this.detectedElement,
     this.recordedDate,
-
-    /// Extensions for [recordedDate]
-    this.recordedDateElement,
     this.resultingCondition,
     this.location,
     this.seriousness,
@@ -70,27 +52,27 @@ class AdverseEvent extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdverseEvent.fromJson(Map<String, dynamic> json) {
     return AdverseEvent(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -100,7 +82,7 @@ class AdverseEvent extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -109,7 +91,7 @@ class AdverseEvent extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -118,7 +100,7 @@ class AdverseEvent extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -129,16 +111,14 @@ class AdverseEvent extends DomainResource {
               json['identifier'] as Map<String, dynamic>,
             )
           : null,
-      actuality: AdverseEventActuality.fromJson(json['actuality']),
-      actualityElement: json['_actuality'] != null
-          ? Element.fromJson(
-              json['_actuality'] as Map<String, dynamic>,
-            )
-          : null,
+      actuality: AdverseEventActuality.fromJson({
+        'value': json['actuality'],
+        '_value': json['_actuality'],
+      }),
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -157,32 +137,28 @@ class AdverseEvent extends DomainResource {
               json['encounter'] as Map<String, dynamic>,
             )
           : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       detected: json['detected'] != null
-          ? FhirDateTime.fromJson(json['detected'])
-          : null,
-      detectedElement: json['_detected'] != null
-          ? Element.fromJson(
-              json['_detected'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['detected'],
+              '_value': json['_detected'],
+            })
           : null,
       recordedDate: json['recordedDate'] != null
-          ? FhirDateTime.fromJson(json['recordedDate'])
-          : null,
-      recordedDateElement: json['_recordedDate'] != null
-          ? Element.fromJson(
-              json['_recordedDate'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['recordedDate'],
+              '_value': json['_recordedDate'],
+            })
           : null,
       resultingCondition: json['resultingCondition'] != null
           ? (json['resultingCondition'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -216,7 +192,7 @@ class AdverseEvent extends DomainResource {
       contributor: json['contributor'] != null
           ? (json['contributor'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -225,7 +201,7 @@ class AdverseEvent extends DomainResource {
       suspectEntity: json['suspectEntity'] != null
           ? (json['suspectEntity'] as List<dynamic>)
               .map<AdverseEventSuspectEntity>(
-                (dynamic v) => AdverseEventSuspectEntity.fromJson(
+                (v) => AdverseEventSuspectEntity.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -234,7 +210,7 @@ class AdverseEvent extends DomainResource {
       subjectMedicalHistory: json['subjectMedicalHistory'] != null
           ? (json['subjectMedicalHistory'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -243,7 +219,7 @@ class AdverseEvent extends DomainResource {
       referenceDocument: json['referenceDocument'] != null
           ? (json['referenceDocument'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -252,7 +228,7 @@ class AdverseEvent extends DomainResource {
       study: json['study'] != null
           ? (json['study'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -261,7 +237,8 @@ class AdverseEvent extends DomainResource {
     );
   }
 
-  /// Deserialize [AdverseEvent] from a [String] or [YamlMap] object
+  /// Deserialize [AdverseEvent] from a [String]
+  /// or [YamlMap] object
   factory AdverseEvent.fromYaml(dynamic yaml) => yaml is String
       ? AdverseEvent.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -270,10 +247,11 @@ class AdverseEvent extends DomainResource {
           ? AdverseEvent.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('AdverseEvent cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('AdverseEvent cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [AdverseEvent] that takes in a [String]
+  /// Factory constructor for [AdverseEvent]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory AdverseEvent.fromJsonString(String source) {
@@ -289,6 +267,15 @@ class AdverseEvent extends DomainResource {
   @override
   String get fhirType => 'AdverseEvent';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Business identifiers assigned to this adverse event by the performer or
   /// other systems which remain constant as the resource is updated and
@@ -300,9 +287,6 @@ class AdverseEvent extends DomainResource {
   /// that this is independent of whether anyone was affected or harmed or
   /// how severely.
   final AdverseEventActuality actuality;
-
-  /// Extensions for [actuality]
-  final Element? actualityElement;
 
   /// [category]
   /// The overall type of event, intended for search and filtering purposes.
@@ -326,23 +310,14 @@ class AdverseEvent extends DomainResource {
   /// The date (and perhaps time) when the adverse event occurred.
   final FhirDateTime? date;
 
-  /// Extensions for [date]
-  final Element? dateElement;
-
   /// [detected]
   /// Estimated or actual date the AdverseEvent began, in the opinion of the
   /// reporter.
   final FhirDateTime? detected;
 
-  /// Extensions for [detected]
-  final Element? detectedElement;
-
   /// [recordedDate]
   /// The date on which the existence of the AdverseEvent was first recorded.
   final FhirDateTime? recordedDate;
-
-  /// Extensions for [recordedDate]
-  final Element? recordedDateElement;
 
   /// [resultingCondition]
   /// Includes information about the reaction that occurred as a result of
@@ -411,9 +386,6 @@ class AdverseEvent extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -449,20 +421,11 @@ class AdverseEvent extends DomainResource {
     if (date?.value != null) {
       json['date'] = date!.toJson();
     }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (detected?.value != null) {
       json['detected'] = detected!.toJson();
     }
-    if (detectedElement != null) {
-      json['_detected'] = detectedElement!.toJson();
-    }
     if (recordedDate?.value != null) {
       json['recordedDate'] = recordedDate!.toJson();
-    }
-    if (recordedDateElement != null) {
-      json['_recordedDate'] = recordedDateElement!.toJson();
     }
     if (resultingCondition != null && resultingCondition!.isNotEmpty) {
       json['resultingCondition'] =
@@ -513,26 +476,20 @@ class AdverseEvent extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Identifier? identifier,
     AdverseEventActuality? actuality,
-    Element? actualityElement,
     List<CodeableConcept>? category,
     CodeableConcept? event,
     Reference? subject,
     Reference? encounter,
     FhirDateTime? date,
-    Element? dateElement,
     FhirDateTime? detected,
-    Element? detectedElement,
     FhirDateTime? recordedDate,
-    Element? recordedDateElement,
     List<Reference>? resultingCondition,
     Reference? location,
     CodeableConcept? seriousness,
@@ -555,26 +512,20 @@ class AdverseEvent extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       actuality: actuality ?? this.actuality,
-      actualityElement: actualityElement ?? this.actualityElement,
       category: category ?? this.category,
       event: event ?? this.event,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       detected: detected ?? this.detected,
-      detectedElement: detectedElement ?? this.detectedElement,
       recordedDate: recordedDate ?? this.recordedDate,
-      recordedDateElement: recordedDateElement ?? this.recordedDateElement,
       resultingCondition: resultingCondition ?? this.resultingCondition,
       location: location ?? this.location,
       seriousness: seriousness ?? this.seriousness,
@@ -605,7 +556,7 @@ class AdverseEventSuspectEntity extends BackboneElement {
 
   AdverseEventSuspectEntity({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.instance,
     this.causality,
@@ -620,11 +571,15 @@ class AdverseEventSuspectEntity extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdverseEventSuspectEntity.fromJson(Map<String, dynamic> json) {
     return AdverseEventSuspectEntity(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -633,7 +588,7 @@ class AdverseEventSuspectEntity extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -645,7 +600,7 @@ class AdverseEventSuspectEntity extends BackboneElement {
       causality: json['causality'] != null
           ? (json['causality'] as List<dynamic>)
               .map<AdverseEventCausality>(
-                (dynamic v) => AdverseEventCausality.fromJson(
+                (v) => AdverseEventCausality.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -654,7 +609,8 @@ class AdverseEventSuspectEntity extends BackboneElement {
     );
   }
 
-  /// Deserialize [AdverseEventSuspectEntity] from a [String] or [YamlMap] object
+  /// Deserialize [AdverseEventSuspectEntity] from a [String]
+  /// or [YamlMap] object
   factory AdverseEventSuspectEntity.fromYaml(dynamic yaml) => yaml is String
       ? AdverseEventSuspectEntity.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -664,10 +620,11 @@ class AdverseEventSuspectEntity extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'AdverseEventSuspectEntity cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'AdverseEventSuspectEntity cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [AdverseEventSuspectEntity] that takes in a [String]
+  /// Factory constructor for [AdverseEventSuspectEntity]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory AdverseEventSuspectEntity.fromJsonString(String source) {
@@ -682,6 +639,15 @@ class AdverseEventSuspectEntity extends BackboneElement {
 
   @override
   String get fhirType => 'AdverseEventSuspectEntity';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [instance]
   /// Identifies the actual instance of what caused the adverse event. May be
@@ -753,13 +719,10 @@ class AdverseEventCausality extends BackboneElement {
 
   AdverseEventCausality({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.assessment,
     this.productRelatedness,
-
-    /// Extensions for [productRelatedness]
-    this.productRelatednessElement,
     this.author,
     this.method,
     super.userData,
@@ -773,11 +736,15 @@ class AdverseEventCausality extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdverseEventCausality.fromJson(Map<String, dynamic> json) {
     return AdverseEventCausality(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -786,7 +753,7 @@ class AdverseEventCausality extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -798,12 +765,10 @@ class AdverseEventCausality extends BackboneElement {
             )
           : null,
       productRelatedness: json['productRelatedness'] != null
-          ? FhirString.fromJson(json['productRelatedness'])
-          : null,
-      productRelatednessElement: json['_productRelatedness'] != null
-          ? Element.fromJson(
-              json['_productRelatedness'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['productRelatedness'],
+              '_value': json['_productRelatedness'],
+            })
           : null,
       author: json['author'] != null
           ? Reference.fromJson(
@@ -818,7 +783,8 @@ class AdverseEventCausality extends BackboneElement {
     );
   }
 
-  /// Deserialize [AdverseEventCausality] from a [String] or [YamlMap] object
+  /// Deserialize [AdverseEventCausality] from a [String]
+  /// or [YamlMap] object
   factory AdverseEventCausality.fromYaml(dynamic yaml) => yaml is String
       ? AdverseEventCausality.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -828,10 +794,11 @@ class AdverseEventCausality extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'AdverseEventCausality cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'AdverseEventCausality cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [AdverseEventCausality] that takes in a [String]
+  /// Factory constructor for [AdverseEventCausality]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory AdverseEventCausality.fromJsonString(String source) {
@@ -847,6 +814,15 @@ class AdverseEventCausality extends BackboneElement {
   @override
   String get fhirType => 'AdverseEventCausality';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [assessment]
   /// Assessment of if the entity caused the event.
   final CodeableConcept? assessment;
@@ -854,9 +830,6 @@ class AdverseEventCausality extends BackboneElement {
   /// [productRelatedness]
   /// AdverseEvent.suspectEntity.causalityProductRelatedness.
   final FhirString? productRelatedness;
-
-  /// Extensions for [productRelatedness]
-  final Element? productRelatednessElement;
 
   /// [author]
   /// AdverseEvent.suspectEntity.causalityAuthor.
@@ -885,9 +858,6 @@ class AdverseEventCausality extends BackboneElement {
     if (productRelatedness?.value != null) {
       json['productRelatedness'] = productRelatedness!.toJson();
     }
-    if (productRelatednessElement != null) {
-      json['_productRelatedness'] = productRelatednessElement!.toJson();
-    }
     if (author != null) {
       json['author'] = author!.toJson();
     }
@@ -906,7 +876,6 @@ class AdverseEventCausality extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? assessment,
     FhirString? productRelatedness,
-    Element? productRelatednessElement,
     Reference? author,
     CodeableConcept? method,
     Map<String, Object?>? userData,
@@ -922,8 +891,6 @@ class AdverseEventCausality extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       assessment: assessment ?? this.assessment,
       productRelatedness: productRelatedness ?? this.productRelatedness,
-      productRelatednessElement:
-          productRelatednessElement ?? this.productRelatednessElement,
       author: author ?? this.author,
       method: method ?? this.method,
       userData: userData ?? this.userData,

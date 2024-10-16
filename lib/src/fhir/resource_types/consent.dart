@@ -14,29 +14,17 @@ class Consent extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     required this.scope,
     required this.category,
     this.patient,
     this.dateTime,
-
-    /// Extensions for [dateTime]
-    this.dateTimeElement,
     this.performer,
     this.organization,
     this.sourceAttachment,
@@ -57,27 +45,27 @@ class Consent extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Consent.fromJson(Map<String, dynamic> json) {
     return Consent(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -87,7 +75,7 @@ class Consent extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -96,7 +84,7 @@ class Consent extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -105,7 +93,7 @@ class Consent extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -114,42 +102,41 @@ class Consent extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: ConsentState.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: ConsentState.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       scope: CodeableConcept.fromJson(
         json['scope'] as Map<String, dynamic>,
       ),
-      category: (json['category'] as List<dynamic>)
-          .map<CodeableConcept>((dynamic v) =>
-              CodeableConcept.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      category: ensureNonNullList((json['category'] as List<dynamic>)
+          .map<CodeableConcept>(
+            (v) => CodeableConcept.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
       patient: json['patient'] != null
           ? Reference.fromJson(
               json['patient'] as Map<String, dynamic>,
             )
           : null,
       dateTime: json['dateTime'] != null
-          ? FhirDateTime.fromJson(json['dateTime'])
-          : null,
-      dateTimeElement: json['_dateTime'] != null
-          ? Element.fromJson(
-              json['_dateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['dateTime'],
+              '_value': json['_dateTime'],
+            })
           : null,
       performer: json['performer'] != null
           ? (json['performer'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -158,7 +145,7 @@ class Consent extends DomainResource {
       organization: json['organization'] != null
           ? (json['organization'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -177,7 +164,7 @@ class Consent extends DomainResource {
       policy: json['policy'] != null
           ? (json['policy'] as List<dynamic>)
               .map<ConsentPolicy>(
-                (dynamic v) => ConsentPolicy.fromJson(
+                (v) => ConsentPolicy.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -186,7 +173,7 @@ class Consent extends DomainResource {
       verification: json['verification'] != null
           ? (json['verification'] as List<dynamic>)
               .map<ConsentVerification>(
-                (dynamic v) => ConsentVerification.fromJson(
+                (v) => ConsentVerification.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -200,7 +187,8 @@ class Consent extends DomainResource {
     );
   }
 
-  /// Deserialize [Consent] from a [String] or [YamlMap] object
+  /// Deserialize [Consent] from a [String]
+  /// or [YamlMap] object
   factory Consent.fromYaml(dynamic yaml) => yaml is String
       ? Consent.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -209,10 +197,11 @@ class Consent extends DomainResource {
           ? Consent.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Consent cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Consent cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Consent] that takes in a [String]
+  /// Factory constructor for [Consent]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Consent.fromJsonString(String source) {
@@ -228,6 +217,15 @@ class Consent extends DomainResource {
   @override
   String get fhirType => 'Consent';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Unique identifier for this copy of the Consent Statement.
   final List<Identifier>? identifier;
@@ -235,9 +233,6 @@ class Consent extends DomainResource {
   /// [status]
   /// Indicates the current state of this consent.
   final ConsentState status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [scope]
   /// A selector of the type of consent being presented: ADR, Privacy,
@@ -256,9 +251,6 @@ class Consent extends DomainResource {
   /// [dateTime]
   /// When this Consent was issued / created / indexed.
   final FhirDateTime? dateTime;
-
-  /// Extensions for [dateTime]
-  final Element? dateTimeElement;
 
   /// [performer]
   /// Either the Grantor, which is the entity responsible for granting the
@@ -316,9 +308,6 @@ class Consent extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -349,9 +338,6 @@ class Consent extends DomainResource {
     }
     if (dateTime?.value != null) {
       json['dateTime'] = dateTime!.toJson();
-    }
-    if (dateTimeElement != null) {
-      json['_dateTime'] = dateTimeElement!.toJson();
     }
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((Reference v) => v.toJson()).toList();
@@ -386,21 +372,17 @@ class Consent extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     ConsentState? status,
-    Element? statusElement,
     CodeableConcept? scope,
     List<CodeableConcept>? category,
     Reference? patient,
     FhirDateTime? dateTime,
-    Element? dateTimeElement,
     List<Reference>? performer,
     List<Reference>? organization,
     Attachment? sourceAttachment,
@@ -419,21 +401,17 @@ class Consent extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       scope: scope ?? this.scope,
       category: category ?? this.category,
       patient: patient ?? this.patient,
       dateTime: dateTime ?? this.dateTime,
-      dateTimeElement: dateTimeElement ?? this.dateTimeElement,
       performer: performer ?? this.performer,
       organization: organization ?? this.organization,
       sourceAttachment: sourceAttachment ?? this.sourceAttachment,
@@ -460,16 +438,10 @@ class ConsentPolicy extends BackboneElement {
 
   ConsentPolicy({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.authority,
-
-    /// Extensions for [authority]
-    this.authorityElement,
     this.uri,
-
-    /// Extensions for [uri]
-    this.uriElement,
     this.policyRule,
     super.userData,
     super.formatCommentsPre,
@@ -482,11 +454,15 @@ class ConsentPolicy extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConsentPolicy.fromJson(Map<String, dynamic> json) {
     return ConsentPolicy(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -495,25 +471,23 @@ class ConsentPolicy extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       authority: json['authority'] != null
-          ? FhirUri.fromJson(json['authority'])
+          ? FhirUri.fromJson({
+              'value': json['authority'],
+              '_value': json['_authority'],
+            })
           : null,
-      authorityElement: json['_authority'] != null
-          ? Element.fromJson(
-              json['_authority'] as Map<String, dynamic>,
-            )
-          : null,
-      uri: json['uri'] != null ? FhirUri.fromJson(json['uri']) : null,
-      uriElement: json['_uri'] != null
-          ? Element.fromJson(
-              json['_uri'] as Map<String, dynamic>,
-            )
+      uri: json['uri'] != null
+          ? FhirUri.fromJson({
+              'value': json['uri'],
+              '_value': json['_uri'],
+            })
           : null,
       policyRule: json['policyRule'] != null
           ? CodeableConcept.fromJson(
@@ -523,7 +497,8 @@ class ConsentPolicy extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConsentPolicy] from a [String] or [YamlMap] object
+  /// Deserialize [ConsentPolicy] from a [String]
+  /// or [YamlMap] object
   factory ConsentPolicy.fromYaml(dynamic yaml) => yaml is String
       ? ConsentPolicy.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -532,11 +507,11 @@ class ConsentPolicy extends BackboneElement {
           ? ConsentPolicy.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ConsentPolicy cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ConsentPolicy cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ConsentPolicy] that takes in a [String]
+  /// Factory constructor for [ConsentPolicy]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ConsentPolicy.fromJsonString(String source) {
@@ -552,22 +527,25 @@ class ConsentPolicy extends BackboneElement {
   @override
   String get fhirType => 'ConsentPolicy';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [authority]
   /// Entity or Organization having regulatory jurisdiction or accountability
   /// for enforcing policies pertaining to Consent Directives.
   final FhirUri? authority;
-
-  /// Extensions for [authority]
-  final Element? authorityElement;
 
   /// [uri]
   /// The references to the policies that are included in this consent scope.
   /// Policies may be organizational, but are often defined jurisdictionally,
   /// or in law.
   final FhirUri? uri;
-
-  /// Extensions for [uri]
-  final Element? uriElement;
 
   /// [policyRule]
   /// A reference to the specific base computable regulation or policy.
@@ -589,14 +567,8 @@ class ConsentPolicy extends BackboneElement {
     if (authority?.value != null) {
       json['authority'] = authority!.toJson();
     }
-    if (authorityElement != null) {
-      json['_authority'] = authorityElement!.toJson();
-    }
     if (uri?.value != null) {
       json['uri'] = uri!.toJson();
-    }
-    if (uriElement != null) {
-      json['_uri'] = uriElement!.toJson();
     }
     if (policyRule != null) {
       json['policyRule'] = policyRule!.toJson();
@@ -612,9 +584,7 @@ class ConsentPolicy extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? authority,
-    Element? authorityElement,
     FhirUri? uri,
-    Element? uriElement,
     CodeableConcept? policyRule,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -628,9 +598,7 @@ class ConsentPolicy extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       authority: authority ?? this.authority,
-      authorityElement: authorityElement ?? this.authorityElement,
       uri: uri ?? this.uri,
-      uriElement: uriElement ?? this.uriElement,
       policyRule: policyRule ?? this.policyRule,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -651,17 +619,11 @@ class ConsentVerification extends BackboneElement {
 
   ConsentVerification({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.verified,
-
-    /// Extensions for [verified]
-    this.verifiedElement,
     this.verifiedWith,
     this.verificationDate,
-
-    /// Extensions for [verificationDate]
-    this.verificationDateElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -673,11 +635,15 @@ class ConsentVerification extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConsentVerification.fromJson(Map<String, dynamic> json) {
     return ConsentVerification(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -686,35 +652,32 @@ class ConsentVerification extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      verified: FhirBoolean.fromJson(json['verified']),
-      verifiedElement: json['_verified'] != null
-          ? Element.fromJson(
-              json['_verified'] as Map<String, dynamic>,
-            )
-          : null,
+      verified: FhirBoolean.fromJson({
+        'value': json['verified'],
+        '_value': json['_verified'],
+      }),
       verifiedWith: json['verifiedWith'] != null
           ? Reference.fromJson(
               json['verifiedWith'] as Map<String, dynamic>,
             )
           : null,
       verificationDate: json['verificationDate'] != null
-          ? FhirDateTime.fromJson(json['verificationDate'])
-          : null,
-      verificationDateElement: json['_verificationDate'] != null
-          ? Element.fromJson(
-              json['_verificationDate'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['verificationDate'],
+              '_value': json['_verificationDate'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [ConsentVerification] from a [String] or [YamlMap] object
+  /// Deserialize [ConsentVerification] from a [String]
+  /// or [YamlMap] object
   factory ConsentVerification.fromYaml(dynamic yaml) => yaml is String
       ? ConsentVerification.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -724,10 +687,11 @@ class ConsentVerification extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ConsentVerification cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ConsentVerification cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ConsentVerification] that takes in a [String]
+  /// Factory constructor for [ConsentVerification]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ConsentVerification.fromJsonString(String source) {
@@ -743,12 +707,18 @@ class ConsentVerification extends BackboneElement {
   @override
   String get fhirType => 'ConsentVerification';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [verified]
   /// Has the instruction been verified.
   final FhirBoolean verified;
-
-  /// Extensions for [verified]
-  final Element? verifiedElement;
 
   /// [verifiedWith]
   /// Who verified the instruction (Patient, Relative or other Authorized
@@ -758,9 +728,6 @@ class ConsentVerification extends BackboneElement {
   /// [verificationDate]
   /// Date verification was collected.
   final FhirDateTime? verificationDate;
-
-  /// Extensions for [verificationDate]
-  final Element? verificationDateElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -776,17 +743,11 @@ class ConsentVerification extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['verified'] = verified.toJson();
-    if (verifiedElement != null) {
-      json['_verified'] = verifiedElement!.toJson();
-    }
     if (verifiedWith != null) {
       json['verifiedWith'] = verifiedWith!.toJson();
     }
     if (verificationDate?.value != null) {
       json['verificationDate'] = verificationDate!.toJson();
-    }
-    if (verificationDateElement != null) {
-      json['_verificationDate'] = verificationDateElement!.toJson();
     }
     return json;
   }
@@ -799,10 +760,8 @@ class ConsentVerification extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirBoolean? verified,
-    Element? verifiedElement,
     Reference? verifiedWith,
     FhirDateTime? verificationDate,
-    Element? verificationDateElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -815,11 +774,8 @@ class ConsentVerification extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       verified: verified ?? this.verified,
-      verifiedElement: verifiedElement ?? this.verifiedElement,
       verifiedWith: verifiedWith ?? this.verifiedWith,
       verificationDate: verificationDate ?? this.verificationDate,
-      verificationDateElement:
-          verificationDateElement ?? this.verificationDateElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -838,12 +794,9 @@ class ConsentProvision extends BackboneElement {
 
   ConsentProvision({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.period,
     this.actor,
     this.action,
@@ -865,11 +818,15 @@ class ConsentProvision extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConsentProvision.fromJson(Map<String, dynamic> json) {
     return ConsentProvision(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -878,19 +835,17 @@ class ConsentProvision extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       type: json['type'] != null
-          ? ConsentProvisionType.fromJson(json['type'])
-          : null,
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
+          ? ConsentProvisionType.fromJson({
+              'value': json['type'],
+              '_value': json['_type'],
+            })
           : null,
       period: json['period'] != null
           ? Period.fromJson(
@@ -900,7 +855,7 @@ class ConsentProvision extends BackboneElement {
       actor: json['actor'] != null
           ? (json['actor'] as List<dynamic>)
               .map<ConsentActor>(
-                (dynamic v) => ConsentActor.fromJson(
+                (v) => ConsentActor.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -909,7 +864,7 @@ class ConsentProvision extends BackboneElement {
       action: json['action'] != null
           ? (json['action'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -918,7 +873,7 @@ class ConsentProvision extends BackboneElement {
       securityLabel: json['securityLabel'] != null
           ? (json['securityLabel'] as List<dynamic>)
               .map<Coding>(
-                (dynamic v) => Coding.fromJson(
+                (v) => Coding.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -927,7 +882,7 @@ class ConsentProvision extends BackboneElement {
       purpose: json['purpose'] != null
           ? (json['purpose'] as List<dynamic>)
               .map<Coding>(
-                (dynamic v) => Coding.fromJson(
+                (v) => Coding.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -936,7 +891,7 @@ class ConsentProvision extends BackboneElement {
       class_: json['class'] != null
           ? (json['class'] as List<dynamic>)
               .map<Coding>(
-                (dynamic v) => Coding.fromJson(
+                (v) => Coding.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -945,7 +900,7 @@ class ConsentProvision extends BackboneElement {
       code: json['code'] != null
           ? (json['code'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -959,7 +914,7 @@ class ConsentProvision extends BackboneElement {
       data: json['data'] != null
           ? (json['data'] as List<dynamic>)
               .map<ConsentData>(
-                (dynamic v) => ConsentData.fromJson(
+                (v) => ConsentData.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -968,7 +923,7 @@ class ConsentProvision extends BackboneElement {
       provision: json['provision'] != null
           ? (json['provision'] as List<dynamic>)
               .map<ConsentProvision>(
-                (dynamic v) => ConsentProvision.fromJson(
+                (v) => ConsentProvision.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -977,7 +932,8 @@ class ConsentProvision extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConsentProvision] from a [String] or [YamlMap] object
+  /// Deserialize [ConsentProvision] from a [String]
+  /// or [YamlMap] object
   factory ConsentProvision.fromYaml(dynamic yaml) => yaml is String
       ? ConsentProvision.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -986,11 +942,11 @@ class ConsentProvision extends BackboneElement {
           ? ConsentProvision.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ConsentProvision cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ConsentProvision cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ConsentProvision] that takes in a [String]
+  /// Factory constructor for [ConsentProvision]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ConsentProvision.fromJsonString(String source) {
@@ -1006,13 +962,19 @@ class ConsentProvision extends BackboneElement {
   @override
   String get fhirType => 'ConsentProvision';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// Action to take - permit or deny - when the rule conditions are met. Not
   /// permitted in root rule, required in all nested rules.
   final ConsentProvisionType? type;
-
-  /// Extensions for [type]
-  final Element? typeElement;
 
   /// [period]
   /// The timeframe in this rule is valid.
@@ -1120,7 +1082,6 @@ class ConsentProvision extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     ConsentProvisionType? type,
-    Element? typeElement,
     Period? period,
     List<ConsentActor>? actor,
     List<CodeableConcept>? action,
@@ -1143,7 +1104,6 @@ class ConsentProvision extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       period: period ?? this.period,
       actor: actor ?? this.actor,
       action: action ?? this.action,
@@ -1172,7 +1132,7 @@ class ConsentActor extends BackboneElement {
 
   ConsentActor({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.role,
     required this.reference,
@@ -1187,11 +1147,15 @@ class ConsentActor extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConsentActor.fromJson(Map<String, dynamic> json) {
     return ConsentActor(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1200,7 +1164,7 @@ class ConsentActor extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1215,7 +1179,8 @@ class ConsentActor extends BackboneElement {
     );
   }
 
-  /// Deserialize [ConsentActor] from a [String] or [YamlMap] object
+  /// Deserialize [ConsentActor] from a [String]
+  /// or [YamlMap] object
   factory ConsentActor.fromYaml(dynamic yaml) => yaml is String
       ? ConsentActor.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1224,10 +1189,11 @@ class ConsentActor extends BackboneElement {
           ? ConsentActor.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('ConsentActor cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ConsentActor cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ConsentActor] that takes in a [String]
+  /// Factory constructor for [ConsentActor]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ConsentActor.fromJsonString(String source) {
@@ -1242,6 +1208,15 @@ class ConsentActor extends BackboneElement {
 
   @override
   String get fhirType => 'ConsentActor';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [role]
   /// How the individual is involved in the resources content that is
@@ -1312,12 +1287,9 @@ class ConsentData extends BackboneElement {
 
   ConsentData({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.meaning,
-
-    /// Extensions for [meaning]
-    this.meaningElement,
     required this.reference,
     super.userData,
     super.formatCommentsPre,
@@ -1330,11 +1302,15 @@ class ConsentData extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ConsentData.fromJson(Map<String, dynamic> json) {
     return ConsentData(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1343,25 +1319,24 @@ class ConsentData extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      meaning: ConsentDataMeaning.fromJson(json['meaning']),
-      meaningElement: json['_meaning'] != null
-          ? Element.fromJson(
-              json['_meaning'] as Map<String, dynamic>,
-            )
-          : null,
+      meaning: ConsentDataMeaning.fromJson({
+        'value': json['meaning'],
+        '_value': json['_meaning'],
+      }),
       reference: Reference.fromJson(
         json['reference'] as Map<String, dynamic>,
       ),
     );
   }
 
-  /// Deserialize [ConsentData] from a [String] or [YamlMap] object
+  /// Deserialize [ConsentData] from a [String]
+  /// or [YamlMap] object
   factory ConsentData.fromYaml(dynamic yaml) => yaml is String
       ? ConsentData.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1370,10 +1345,11 @@ class ConsentData extends BackboneElement {
           ? ConsentData.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('ConsentData cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ConsentData cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ConsentData] that takes in a [String]
+  /// Factory constructor for [ConsentData]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ConsentData.fromJsonString(String source) {
@@ -1389,13 +1365,19 @@ class ConsentData extends BackboneElement {
   @override
   String get fhirType => 'ConsentData';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [meaning]
   /// How the resource reference is interpreted when testing consent
   /// restrictions.
   final ConsentDataMeaning meaning;
-
-  /// Extensions for [meaning]
-  final Element? meaningElement;
 
   /// [reference]
   /// A reference to a specific resource that defines which resources are
@@ -1428,7 +1410,6 @@ class ConsentData extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     ConsentDataMeaning? meaning,
-    Element? meaningElement,
     Reference? reference,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1442,7 +1423,6 @@ class ConsentData extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       meaning: meaning ?? this.meaning,
-      meaningElement: meaningElement ?? this.meaningElement,
       reference: reference ?? this.reference,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

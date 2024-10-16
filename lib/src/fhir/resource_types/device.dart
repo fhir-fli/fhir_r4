@@ -13,58 +13,25 @@ class Device extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.definition,
     this.udiCarrier,
     this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.statusReason,
     this.distinctIdentifier,
-
-    /// Extensions for [distinctIdentifier]
-    this.distinctIdentifierElement,
     this.manufacturer,
-
-    /// Extensions for [manufacturer]
-    this.manufacturerElement,
     this.manufactureDate,
-
-    /// Extensions for [manufactureDate]
-    this.manufactureDateElement,
     this.expirationDate,
-
-    /// Extensions for [expirationDate]
-    this.expirationDateElement,
     this.lotNumber,
-
-    /// Extensions for [lotNumber]
-    this.lotNumberElement,
     this.serialNumber,
-
-    /// Extensions for [serialNumber]
-    this.serialNumberElement,
     this.deviceName,
     this.modelNumber,
-
-    /// Extensions for [modelNumber]
-    this.modelNumberElement,
     this.partNumber,
-
-    /// Extensions for [partNumber]
-    this.partNumberElement,
     this.type,
     this.specialization,
     this.version,
@@ -74,9 +41,6 @@ class Device extends DomainResource {
     this.contact,
     this.location,
     this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.note,
     this.safety,
     this.parent,
@@ -93,27 +57,27 @@ class Device extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Device.fromJson(Map<String, dynamic> json) {
     return Device(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -123,7 +87,7 @@ class Device extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -132,7 +96,7 @@ class Device extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -141,7 +105,7 @@ class Device extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -150,7 +114,7 @@ class Device extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -164,101 +128,83 @@ class Device extends DomainResource {
       udiCarrier: json['udiCarrier'] != null
           ? (json['udiCarrier'] as List<dynamic>)
               .map<DeviceUdiCarrier>(
-                (dynamic v) => DeviceUdiCarrier.fromJson(
+                (v) => DeviceUdiCarrier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       status: json['status'] != null
-          ? FHIRDeviceStatus.fromJson(json['status'])
-          : null,
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
+          ? FHIRDeviceStatus.fromJson({
+              'value': json['status'],
+              '_value': json['_status'],
+            })
           : null,
       statusReason: json['statusReason'] != null
           ? (json['statusReason'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       distinctIdentifier: json['distinctIdentifier'] != null
-          ? FhirString.fromJson(json['distinctIdentifier'])
-          : null,
-      distinctIdentifierElement: json['_distinctIdentifier'] != null
-          ? Element.fromJson(
-              json['_distinctIdentifier'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['distinctIdentifier'],
+              '_value': json['_distinctIdentifier'],
+            })
           : null,
       manufacturer: json['manufacturer'] != null
-          ? FhirString.fromJson(json['manufacturer'])
-          : null,
-      manufacturerElement: json['_manufacturer'] != null
-          ? Element.fromJson(
-              json['_manufacturer'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['manufacturer'],
+              '_value': json['_manufacturer'],
+            })
           : null,
       manufactureDate: json['manufactureDate'] != null
-          ? FhirDateTime.fromJson(json['manufactureDate'])
-          : null,
-      manufactureDateElement: json['_manufactureDate'] != null
-          ? Element.fromJson(
-              json['_manufactureDate'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['manufactureDate'],
+              '_value': json['_manufactureDate'],
+            })
           : null,
       expirationDate: json['expirationDate'] != null
-          ? FhirDateTime.fromJson(json['expirationDate'])
-          : null,
-      expirationDateElement: json['_expirationDate'] != null
-          ? Element.fromJson(
-              json['_expirationDate'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['expirationDate'],
+              '_value': json['_expirationDate'],
+            })
           : null,
       lotNumber: json['lotNumber'] != null
-          ? FhirString.fromJson(json['lotNumber'])
-          : null,
-      lotNumberElement: json['_lotNumber'] != null
-          ? Element.fromJson(
-              json['_lotNumber'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['lotNumber'],
+              '_value': json['_lotNumber'],
+            })
           : null,
       serialNumber: json['serialNumber'] != null
-          ? FhirString.fromJson(json['serialNumber'])
-          : null,
-      serialNumberElement: json['_serialNumber'] != null
-          ? Element.fromJson(
-              json['_serialNumber'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['serialNumber'],
+              '_value': json['_serialNumber'],
+            })
           : null,
       deviceName: json['deviceName'] != null
           ? (json['deviceName'] as List<dynamic>)
               .map<DeviceDeviceName>(
-                (dynamic v) => DeviceDeviceName.fromJson(
+                (v) => DeviceDeviceName.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       modelNumber: json['modelNumber'] != null
-          ? FhirString.fromJson(json['modelNumber'])
-          : null,
-      modelNumberElement: json['_modelNumber'] != null
-          ? Element.fromJson(
-              json['_modelNumber'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['modelNumber'],
+              '_value': json['_modelNumber'],
+            })
           : null,
       partNumber: json['partNumber'] != null
-          ? FhirString.fromJson(json['partNumber'])
-          : null,
-      partNumberElement: json['_partNumber'] != null
-          ? Element.fromJson(
-              json['_partNumber'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['partNumber'],
+              '_value': json['_partNumber'],
+            })
           : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
@@ -268,7 +214,7 @@ class Device extends DomainResource {
       specialization: json['specialization'] != null
           ? (json['specialization'] as List<dynamic>)
               .map<DeviceSpecialization>(
-                (dynamic v) => DeviceSpecialization.fromJson(
+                (v) => DeviceSpecialization.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -277,7 +223,7 @@ class Device extends DomainResource {
       version: json['version'] != null
           ? (json['version'] as List<dynamic>)
               .map<DeviceVersion>(
-                (dynamic v) => DeviceVersion.fromJson(
+                (v) => DeviceVersion.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -286,7 +232,7 @@ class Device extends DomainResource {
       property: json['property'] != null
           ? (json['property'] as List<dynamic>)
               .map<DeviceProperty>(
-                (dynamic v) => DeviceProperty.fromJson(
+                (v) => DeviceProperty.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -305,7 +251,7 @@ class Device extends DomainResource {
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<ContactPoint>(
-                (dynamic v) => ContactPoint.fromJson(
+                (v) => ContactPoint.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -316,16 +262,16 @@ class Device extends DomainResource {
               json['location'] as Map<String, dynamic>,
             )
           : null,
-      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
+      url: json['url'] != null
+          ? FhirUri.fromJson({
+              'value': json['url'],
+              '_value': json['_url'],
+            })
           : null,
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -334,7 +280,7 @@ class Device extends DomainResource {
       safety: json['safety'] != null
           ? (json['safety'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -348,7 +294,8 @@ class Device extends DomainResource {
     );
   }
 
-  /// Deserialize [Device] from a [String] or [YamlMap] object
+  /// Deserialize [Device] from a [String]
+  /// or [YamlMap] object
   factory Device.fromYaml(dynamic yaml) => yaml is String
       ? Device.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -357,10 +304,11 @@ class Device extends DomainResource {
           ? Device.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Device cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Device cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Device] that takes in a [String]
+  /// Factory constructor for [Device]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Device.fromJsonString(String source) {
@@ -375,6 +323,15 @@ class Device extends DomainResource {
 
   @override
   String get fhirType => 'Device';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Unique instance identifiers assigned to a device by manufacturers other
@@ -396,9 +353,6 @@ class Device extends DomainResource {
   /// Status of the Device availability.
   final FHIRDeviceStatus? status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [statusReason]
   /// Reason for the dtatus of the Device availability.
   final List<CodeableConcept>? statusReason;
@@ -408,45 +362,27 @@ class Device extends DomainResource {
   /// human cell, tissue, or cellular and tissue-based product.
   final FhirString? distinctIdentifier;
 
-  /// Extensions for [distinctIdentifier]
-  final Element? distinctIdentifierElement;
-
   /// [manufacturer]
   /// A name of the manufacturer.
   final FhirString? manufacturer;
 
-  /// Extensions for [manufacturer]
-  final Element? manufacturerElement;
-
   /// [manufactureDate]
   /// The date and time when the device was manufactured.
   final FhirDateTime? manufactureDate;
-
-  /// Extensions for [manufactureDate]
-  final Element? manufactureDateElement;
 
   /// [expirationDate]
   /// The date and time beyond which this device is no longer valid or should
   /// not be used (if applicable).
   final FhirDateTime? expirationDate;
 
-  /// Extensions for [expirationDate]
-  final Element? expirationDateElement;
-
   /// [lotNumber]
   /// Lot number assigned by the manufacturer.
   final FhirString? lotNumber;
-
-  /// Extensions for [lotNumber]
-  final Element? lotNumberElement;
 
   /// [serialNumber]
   /// The serial number assigned by the organization when the device was
   /// manufactured.
   final FhirString? serialNumber;
-
-  /// Extensions for [serialNumber]
-  final Element? serialNumberElement;
 
   /// [deviceName]
   /// This represents the manufacturer's name of the device as provided by
@@ -459,15 +395,9 @@ class Device extends DomainResource {
   /// The manufacturer's model number for the device.
   final FhirString? modelNumber;
 
-  /// Extensions for [modelNumber]
-  final Element? modelNumberElement;
-
   /// [partNumber]
   /// The part number or catalog number of the device.
   final FhirString? partNumber;
-
-  /// Extensions for [partNumber]
-  final Element? partNumberElement;
 
   /// [type]
   /// The kind or type of device.
@@ -511,9 +441,6 @@ class Device extends DomainResource {
   /// A network address on which the device may be contacted directly.
   final FhirUri? url;
 
-  /// Extensions for [url]
-  final Element? urlElement;
-
   /// [note]
   /// Descriptive information, usage information or implantation information
   /// that is not captured in an existing element.
@@ -539,9 +466,6 @@ class Device extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -581,38 +505,20 @@ class Device extends DomainResource {
     if (distinctIdentifier?.value != null) {
       json['distinctIdentifier'] = distinctIdentifier!.toJson();
     }
-    if (distinctIdentifierElement != null) {
-      json['_distinctIdentifier'] = distinctIdentifierElement!.toJson();
-    }
     if (manufacturer?.value != null) {
       json['manufacturer'] = manufacturer!.toJson();
-    }
-    if (manufacturerElement != null) {
-      json['_manufacturer'] = manufacturerElement!.toJson();
     }
     if (manufactureDate?.value != null) {
       json['manufactureDate'] = manufactureDate!.toJson();
     }
-    if (manufactureDateElement != null) {
-      json['_manufactureDate'] = manufactureDateElement!.toJson();
-    }
     if (expirationDate?.value != null) {
       json['expirationDate'] = expirationDate!.toJson();
-    }
-    if (expirationDateElement != null) {
-      json['_expirationDate'] = expirationDateElement!.toJson();
     }
     if (lotNumber?.value != null) {
       json['lotNumber'] = lotNumber!.toJson();
     }
-    if (lotNumberElement != null) {
-      json['_lotNumber'] = lotNumberElement!.toJson();
-    }
     if (serialNumber?.value != null) {
       json['serialNumber'] = serialNumber!.toJson();
-    }
-    if (serialNumberElement != null) {
-      json['_serialNumber'] = serialNumberElement!.toJson();
     }
     if (deviceName != null && deviceName!.isNotEmpty) {
       json['deviceName'] =
@@ -621,14 +527,8 @@ class Device extends DomainResource {
     if (modelNumber?.value != null) {
       json['modelNumber'] = modelNumber!.toJson();
     }
-    if (modelNumberElement != null) {
-      json['_modelNumber'] = modelNumberElement!.toJson();
-    }
     if (partNumber?.value != null) {
       json['partNumber'] = partNumber!.toJson();
-    }
-    if (partNumberElement != null) {
-      json['_partNumber'] = partNumberElement!.toJson();
     }
     if (type != null) {
       json['type'] = type!.toJson();
@@ -659,9 +559,6 @@ class Device extends DomainResource {
     if (url?.value != null) {
       json['url'] = url!.toJson();
     }
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
-    }
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((Annotation v) => v.toJson()).toList();
     }
@@ -681,9 +578,7 @@ class Device extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -692,25 +587,16 @@ class Device extends DomainResource {
     Reference? definition,
     List<DeviceUdiCarrier>? udiCarrier,
     FHIRDeviceStatus? status,
-    Element? statusElement,
     List<CodeableConcept>? statusReason,
     FhirString? distinctIdentifier,
-    Element? distinctIdentifierElement,
     FhirString? manufacturer,
-    Element? manufacturerElement,
     FhirDateTime? manufactureDate,
-    Element? manufactureDateElement,
     FhirDateTime? expirationDate,
-    Element? expirationDateElement,
     FhirString? lotNumber,
-    Element? lotNumberElement,
     FhirString? serialNumber,
-    Element? serialNumberElement,
     List<DeviceDeviceName>? deviceName,
     FhirString? modelNumber,
-    Element? modelNumberElement,
     FhirString? partNumber,
-    Element? partNumberElement,
     CodeableConcept? type,
     List<DeviceSpecialization>? specialization,
     List<DeviceVersion>? version,
@@ -720,7 +606,6 @@ class Device extends DomainResource {
     List<ContactPoint>? contact,
     Reference? location,
     FhirUri? url,
-    Element? urlElement,
     List<Annotation>? note,
     List<CodeableConcept>? safety,
     Reference? parent,
@@ -735,9 +620,7 @@ class Device extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -746,28 +629,16 @@ class Device extends DomainResource {
       definition: definition ?? this.definition,
       udiCarrier: udiCarrier ?? this.udiCarrier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       statusReason: statusReason ?? this.statusReason,
       distinctIdentifier: distinctIdentifier ?? this.distinctIdentifier,
-      distinctIdentifierElement:
-          distinctIdentifierElement ?? this.distinctIdentifierElement,
       manufacturer: manufacturer ?? this.manufacturer,
-      manufacturerElement: manufacturerElement ?? this.manufacturerElement,
       manufactureDate: manufactureDate ?? this.manufactureDate,
-      manufactureDateElement:
-          manufactureDateElement ?? this.manufactureDateElement,
       expirationDate: expirationDate ?? this.expirationDate,
-      expirationDateElement:
-          expirationDateElement ?? this.expirationDateElement,
       lotNumber: lotNumber ?? this.lotNumber,
-      lotNumberElement: lotNumberElement ?? this.lotNumberElement,
       serialNumber: serialNumber ?? this.serialNumber,
-      serialNumberElement: serialNumberElement ?? this.serialNumberElement,
       deviceName: deviceName ?? this.deviceName,
       modelNumber: modelNumber ?? this.modelNumber,
-      modelNumberElement: modelNumberElement ?? this.modelNumberElement,
       partNumber: partNumber ?? this.partNumber,
-      partNumberElement: partNumberElement ?? this.partNumberElement,
       type: type ?? this.type,
       specialization: specialization ?? this.specialization,
       version: version ?? this.version,
@@ -777,7 +648,6 @@ class Device extends DomainResource {
       contact: contact ?? this.contact,
       location: location ?? this.location,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       note: note ?? this.note,
       safety: safety ?? this.safety,
       parent: parent ?? this.parent,
@@ -801,32 +671,14 @@ class DeviceUdiCarrier extends BackboneElement {
 
   DeviceUdiCarrier({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.deviceIdentifier,
-
-    /// Extensions for [deviceIdentifier]
-    this.deviceIdentifierElement,
     this.issuer,
-
-    /// Extensions for [issuer]
-    this.issuerElement,
     this.jurisdiction,
-
-    /// Extensions for [jurisdiction]
-    this.jurisdictionElement,
     this.carrierAIDC,
-
-    /// Extensions for [carrierAIDC]
-    this.carrierAIDCElement,
     this.carrierHRF,
-
-    /// Extensions for [carrierHRF]
-    this.carrierHRFElement,
     this.entryType,
-
-    /// Extensions for [entryType]
-    this.entryTypeElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -838,11 +690,15 @@ class DeviceUdiCarrier extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceUdiCarrier.fromJson(Map<String, dynamic> json) {
     return DeviceUdiCarrier(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -851,62 +707,53 @@ class DeviceUdiCarrier extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       deviceIdentifier: json['deviceIdentifier'] != null
-          ? FhirString.fromJson(json['deviceIdentifier'])
+          ? FhirString.fromJson({
+              'value': json['deviceIdentifier'],
+              '_value': json['_deviceIdentifier'],
+            })
           : null,
-      deviceIdentifierElement: json['_deviceIdentifier'] != null
-          ? Element.fromJson(
-              json['_deviceIdentifier'] as Map<String, dynamic>,
-            )
-          : null,
-      issuer: json['issuer'] != null ? FhirUri.fromJson(json['issuer']) : null,
-      issuerElement: json['_issuer'] != null
-          ? Element.fromJson(
-              json['_issuer'] as Map<String, dynamic>,
-            )
+      issuer: json['issuer'] != null
+          ? FhirUri.fromJson({
+              'value': json['issuer'],
+              '_value': json['_issuer'],
+            })
           : null,
       jurisdiction: json['jurisdiction'] != null
-          ? FhirUri.fromJson(json['jurisdiction'])
-          : null,
-      jurisdictionElement: json['_jurisdiction'] != null
-          ? Element.fromJson(
-              json['_jurisdiction'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['jurisdiction'],
+              '_value': json['_jurisdiction'],
+            })
           : null,
       carrierAIDC: json['carrierAIDC'] != null
-          ? FhirBase64Binary.fromJson(json['carrierAIDC'])
-          : null,
-      carrierAIDCElement: json['_carrierAIDC'] != null
-          ? Element.fromJson(
-              json['_carrierAIDC'] as Map<String, dynamic>,
-            )
+          ? FhirBase64Binary.fromJson({
+              'value': json['carrierAIDC'],
+              '_value': json['_carrierAIDC'],
+            })
           : null,
       carrierHRF: json['carrierHRF'] != null
-          ? FhirString.fromJson(json['carrierHRF'])
-          : null,
-      carrierHRFElement: json['_carrierHRF'] != null
-          ? Element.fromJson(
-              json['_carrierHRF'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['carrierHRF'],
+              '_value': json['_carrierHRF'],
+            })
           : null,
       entryType: json['entryType'] != null
-          ? UDIEntryType.fromJson(json['entryType'])
-          : null,
-      entryTypeElement: json['_entryType'] != null
-          ? Element.fromJson(
-              json['_entryType'] as Map<String, dynamic>,
-            )
+          ? UDIEntryType.fromJson({
+              'value': json['entryType'],
+              '_value': json['_entryType'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [DeviceUdiCarrier] from a [String] or [YamlMap] object
+  /// Deserialize [DeviceUdiCarrier] from a [String]
+  /// or [YamlMap] object
   factory DeviceUdiCarrier.fromYaml(dynamic yaml) => yaml is String
       ? DeviceUdiCarrier.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -915,11 +762,11 @@ class DeviceUdiCarrier extends BackboneElement {
           ? DeviceUdiCarrier.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DeviceUdiCarrier cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('DeviceUdiCarrier cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DeviceUdiCarrier] that takes in a [String]
+  /// Factory constructor for [DeviceUdiCarrier]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DeviceUdiCarrier.fromJsonString(String source) {
@@ -935,13 +782,19 @@ class DeviceUdiCarrier extends BackboneElement {
   @override
   String get fhirType => 'DeviceUdiCarrier';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [deviceIdentifier]
   /// The device identifier (DI) is a mandatory, fixed portion of a UDI that
   /// identifies the labeler and the specific version or model of a device.
   final FhirString? deviceIdentifier;
-
-  /// Extensions for [deviceIdentifier]
-  final Element? deviceIdentifierElement;
 
   /// [issuer]
   /// Organization that is charged with issuing UDIs for devices. For
@@ -956,9 +809,6 @@ class DeviceUdiCarrier extends BackboneElement {
   /// http://hl7.org/fhir/NamingSystem/iccbba-other-di.
   final FhirUri? issuer;
 
-  /// Extensions for [issuer]
-  final Element? issuerElement;
-
   /// [jurisdiction]
   /// The identity of the authoritative source for UDI generation within a
   /// jurisdiction. All UDIs are globally unique within a single namespace
@@ -966,9 +816,6 @@ class DeviceUdiCarrier extends BackboneElement {
   /// devices managed in the U.S. by the FDA, the value is
   /// http://hl7.org/fhir/NamingSystem/fda-udi.
   final FhirUri? jurisdiction;
-
-  /// Extensions for [jurisdiction]
-  final Element? jurisdictionElement;
 
   /// [carrierAIDC]
   /// The full UDI carrier of the Automatic Identification and Data Capture
@@ -978,23 +825,14 @@ class DeviceUdiCarrier extends BackboneElement {
   /// data through XML, AIDC Formats *SHALL* be base64 encoded.
   final FhirBase64Binary? carrierAIDC;
 
-  /// Extensions for [carrierAIDC]
-  final Element? carrierAIDCElement;
-
   /// [carrierHRF]
   /// The full UDI carrier as the human readable form (HRF) representation of
   /// the barcode string as printed on the packaging of the device.
   final FhirString? carrierHRF;
 
-  /// Extensions for [carrierHRF]
-  final Element? carrierHRFElement;
-
   /// [entryType]
   /// A coded entry to indicate how the data was entered.
   final UDIEntryType? entryType;
-
-  /// Extensions for [entryType]
-  final Element? entryTypeElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1012,32 +850,17 @@ class DeviceUdiCarrier extends BackboneElement {
     if (deviceIdentifier?.value != null) {
       json['deviceIdentifier'] = deviceIdentifier!.toJson();
     }
-    if (deviceIdentifierElement != null) {
-      json['_deviceIdentifier'] = deviceIdentifierElement!.toJson();
-    }
     if (issuer?.value != null) {
       json['issuer'] = issuer!.toJson();
-    }
-    if (issuerElement != null) {
-      json['_issuer'] = issuerElement!.toJson();
     }
     if (jurisdiction?.value != null) {
       json['jurisdiction'] = jurisdiction!.toJson();
     }
-    if (jurisdictionElement != null) {
-      json['_jurisdiction'] = jurisdictionElement!.toJson();
-    }
     if (carrierAIDC?.value != null) {
       json['carrierAIDC'] = carrierAIDC!.toJson();
     }
-    if (carrierAIDCElement != null) {
-      json['_carrierAIDC'] = carrierAIDCElement!.toJson();
-    }
     if (carrierHRF?.value != null) {
       json['carrierHRF'] = carrierHRF!.toJson();
-    }
-    if (carrierHRFElement != null) {
-      json['_carrierHRF'] = carrierHRFElement!.toJson();
     }
     if (entryType != null) {
       json['entryType'] = entryType!.toJson();
@@ -1053,17 +876,11 @@ class DeviceUdiCarrier extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? deviceIdentifier,
-    Element? deviceIdentifierElement,
     FhirUri? issuer,
-    Element? issuerElement,
     FhirUri? jurisdiction,
-    Element? jurisdictionElement,
     FhirBase64Binary? carrierAIDC,
-    Element? carrierAIDCElement,
     FhirString? carrierHRF,
-    Element? carrierHRFElement,
     UDIEntryType? entryType,
-    Element? entryTypeElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1076,18 +893,11 @@ class DeviceUdiCarrier extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       deviceIdentifier: deviceIdentifier ?? this.deviceIdentifier,
-      deviceIdentifierElement:
-          deviceIdentifierElement ?? this.deviceIdentifierElement,
       issuer: issuer ?? this.issuer,
-      issuerElement: issuerElement ?? this.issuerElement,
       jurisdiction: jurisdiction ?? this.jurisdiction,
-      jurisdictionElement: jurisdictionElement ?? this.jurisdictionElement,
       carrierAIDC: carrierAIDC ?? this.carrierAIDC,
-      carrierAIDCElement: carrierAIDCElement ?? this.carrierAIDCElement,
       carrierHRF: carrierHRF ?? this.carrierHRF,
-      carrierHRFElement: carrierHRFElement ?? this.carrierHRFElement,
       entryType: entryType ?? this.entryType,
-      entryTypeElement: entryTypeElement ?? this.entryTypeElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1108,16 +918,10 @@ class DeviceDeviceName extends BackboneElement {
 
   DeviceDeviceName({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1129,11 +933,15 @@ class DeviceDeviceName extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceDeviceName.fromJson(Map<String, dynamic> json) {
     return DeviceDeviceName(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1142,28 +950,25 @@ class DeviceDeviceName extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: FhirString.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
-          : null,
-      type: DeviceNameType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
+      name: FhirString.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
+      type: DeviceNameType.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
     );
   }
 
-  /// Deserialize [DeviceDeviceName] from a [String] or [YamlMap] object
+  /// Deserialize [DeviceDeviceName] from a [String]
+  /// or [YamlMap] object
   factory DeviceDeviceName.fromYaml(dynamic yaml) => yaml is String
       ? DeviceDeviceName.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1172,11 +977,11 @@ class DeviceDeviceName extends BackboneElement {
           ? DeviceDeviceName.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DeviceDeviceName cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('DeviceDeviceName cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DeviceDeviceName] that takes in a [String]
+  /// Factory constructor for [DeviceDeviceName]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DeviceDeviceName.fromJsonString(String source) {
@@ -1192,21 +997,24 @@ class DeviceDeviceName extends BackboneElement {
   @override
   String get fhirType => 'DeviceDeviceName';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// The name that identifies the device.
   final FhirString name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [type]
   /// The type of deviceName.
   /// UDILabelName | UserFriendlyName | PatientReportedName |
   /// ManufactureDeviceName | ModelName.
   final DeviceNameType type;
-
-  /// Extensions for [type]
-  final Element? typeElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1222,9 +1030,6 @@ class DeviceDeviceName extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     json['type'] = type.toJson();
     return json;
   }
@@ -1237,9 +1042,7 @@ class DeviceDeviceName extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    Element? nameElement,
     DeviceNameType? type,
-    Element? typeElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1252,9 +1055,7 @@ class DeviceDeviceName extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1274,13 +1075,10 @@ class DeviceSpecialization extends BackboneElement {
 
   DeviceSpecialization({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.systemType,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1292,11 +1090,15 @@ class DeviceSpecialization extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceSpecialization.fromJson(Map<String, dynamic> json) {
     return DeviceSpecialization(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1305,7 +1107,7 @@ class DeviceSpecialization extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1314,17 +1116,17 @@ class DeviceSpecialization extends BackboneElement {
       systemType: CodeableConcept.fromJson(
         json['systemType'] as Map<String, dynamic>,
       ),
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [DeviceSpecialization] from a [String] or [YamlMap] object
+  /// Deserialize [DeviceSpecialization] from a [String]
+  /// or [YamlMap] object
   factory DeviceSpecialization.fromYaml(dynamic yaml) => yaml is String
       ? DeviceSpecialization.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1334,10 +1136,11 @@ class DeviceSpecialization extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'DeviceSpecialization cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'DeviceSpecialization cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DeviceSpecialization] that takes in a [String]
+  /// Factory constructor for [DeviceSpecialization]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DeviceSpecialization.fromJsonString(String source) {
@@ -1353,6 +1156,15 @@ class DeviceSpecialization extends BackboneElement {
   @override
   String get fhirType => 'DeviceSpecialization';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [systemType]
   /// The standard that is used to operate and communicate.
   final CodeableConcept systemType;
@@ -1360,9 +1172,6 @@ class DeviceSpecialization extends BackboneElement {
   /// [version]
   /// The version of the standard that is used to operate and communicate.
   final FhirString? version;
-
-  /// Extensions for [version]
-  final Element? versionElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1381,9 +1190,6 @@ class DeviceSpecialization extends BackboneElement {
     if (version?.value != null) {
       json['version'] = version!.toJson();
     }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
-    }
     return json;
   }
 
@@ -1396,7 +1202,6 @@ class DeviceSpecialization extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? systemType,
     FhirString? version,
-    Element? versionElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1410,7 +1215,6 @@ class DeviceSpecialization extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       systemType: systemType ?? this.systemType,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1429,14 +1233,11 @@ class DeviceVersion extends BackboneElement {
 
   DeviceVersion({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.type,
     this.component,
     required this.value,
-
-    /// Extensions for [value]
-    this.valueElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1448,11 +1249,15 @@ class DeviceVersion extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceVersion.fromJson(Map<String, dynamic> json) {
     return DeviceVersion(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1461,7 +1266,7 @@ class DeviceVersion extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1477,16 +1282,15 @@ class DeviceVersion extends BackboneElement {
               json['component'] as Map<String, dynamic>,
             )
           : null,
-      value: FhirString.fromJson(json['value']),
-      valueElement: json['_value'] != null
-          ? Element.fromJson(
-              json['_value'] as Map<String, dynamic>,
-            )
-          : null,
+      value: FhirString.fromJson({
+        'value': json['value'],
+        '_value': json['_value'],
+      }),
     );
   }
 
-  /// Deserialize [DeviceVersion] from a [String] or [YamlMap] object
+  /// Deserialize [DeviceVersion] from a [String]
+  /// or [YamlMap] object
   factory DeviceVersion.fromYaml(dynamic yaml) => yaml is String
       ? DeviceVersion.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1495,11 +1299,11 @@ class DeviceVersion extends BackboneElement {
           ? DeviceVersion.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DeviceVersion cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('DeviceVersion cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DeviceVersion] that takes in a [String]
+  /// Factory constructor for [DeviceVersion]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DeviceVersion.fromJsonString(String source) {
@@ -1515,6 +1319,15 @@ class DeviceVersion extends BackboneElement {
   @override
   String get fhirType => 'DeviceVersion';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// The type of the device version, e.g. manufacturer, approved, internal.
   final CodeableConcept? type;
@@ -1526,9 +1339,6 @@ class DeviceVersion extends BackboneElement {
   /// [value]
   /// The version text.
   final FhirString value;
-
-  /// Extensions for [value]
-  final Element? valueElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1550,9 +1360,6 @@ class DeviceVersion extends BackboneElement {
       json['component'] = component!.toJson();
     }
     json['value'] = value.toJson();
-    if (valueElement != null) {
-      json['_value'] = valueElement!.toJson();
-    }
     return json;
   }
 
@@ -1566,7 +1373,6 @@ class DeviceVersion extends BackboneElement {
     CodeableConcept? type,
     Identifier? component,
     FhirString? value,
-    Element? valueElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1581,7 +1387,6 @@ class DeviceVersion extends BackboneElement {
       type: type ?? this.type,
       component: component ?? this.component,
       value: value ?? this.value,
-      valueElement: valueElement ?? this.valueElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1600,7 +1405,7 @@ class DeviceProperty extends BackboneElement {
 
   DeviceProperty({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
     this.valueQuantity,
@@ -1616,11 +1421,15 @@ class DeviceProperty extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceProperty.fromJson(Map<String, dynamic> json) {
     return DeviceProperty(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1629,7 +1438,7 @@ class DeviceProperty extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1641,7 +1450,7 @@ class DeviceProperty extends BackboneElement {
       valueQuantity: json['valueQuantity'] != null
           ? (json['valueQuantity'] as List<dynamic>)
               .map<Quantity>(
-                (dynamic v) => Quantity.fromJson(
+                (v) => Quantity.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1650,7 +1459,7 @@ class DeviceProperty extends BackboneElement {
       valueCode: json['valueCode'] != null
           ? (json['valueCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1659,7 +1468,8 @@ class DeviceProperty extends BackboneElement {
     );
   }
 
-  /// Deserialize [DeviceProperty] from a [String] or [YamlMap] object
+  /// Deserialize [DeviceProperty] from a [String]
+  /// or [YamlMap] object
   factory DeviceProperty.fromYaml(dynamic yaml) => yaml is String
       ? DeviceProperty.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1668,11 +1478,11 @@ class DeviceProperty extends BackboneElement {
           ? DeviceProperty.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DeviceProperty cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('DeviceProperty cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DeviceProperty] that takes in a [String]
+  /// Factory constructor for [DeviceProperty]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DeviceProperty.fromJsonString(String source) {
@@ -1687,6 +1497,15 @@ class DeviceProperty extends BackboneElement {
 
   @override
   String get fhirType => 'DeviceProperty';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Code that specifies the property DeviceDefinitionPropetyCode

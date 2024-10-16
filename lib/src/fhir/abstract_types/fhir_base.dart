@@ -17,7 +17,7 @@ abstract class FhirBase {
   });
 
   /// Factory constructor for [FhirBase] that takes in a [dynamic]
-  factory FhirBase.fromJson(dynamic json) =>
+  factory FhirBase.fromJson(Map<String, dynamic> json) =>
       throw UnimplementedError('FhirBase.fromJson $json');
 
   /// Returns a [String] representation of the type of the object
@@ -44,7 +44,7 @@ abstract class FhirBase {
   /// Returns a [Map] representation of the object, usually. As
   /// [PrimitiveType]s also override this method, it says returning a dynamic,
   /// but it's usually a [Map] representation.
-  dynamic toJson() {
+  Map<String, dynamic> toJson() {
     final json = <String, Object?>{};
     namedChildren?.forEach((String key, FhirBase child) {
       json[key] = child.toJson();
@@ -53,23 +53,14 @@ abstract class FhirBase {
   }
 
   /// Returns a [Map] representation of the object with the type
-  dynamic toJsonWithType() {
-    final dynamic json = toJson();
-    if (json is Map<String, Object?>) {
-      json['fhirType'] = fhirType;
-    }
+  Map<String, dynamic> toJsonWithType() {
+    final json = toJson();
+    json['fhirType'] = fhirType;
     return json;
   }
 
   /// Produces a Yaml formatted String version of the object
-  dynamic toYaml() {
-    final dynamic json = toJson();
-    if (json is Map<String, Object?>) {
-      return json2yaml(json);
-    } else {
-      return json;
-    }
-  }
+  String toYaml() => json2yaml(toJson());
 
   /// Produces a Json formatted String version of the object
   String toJsonString() => jsonEncode(toJson());

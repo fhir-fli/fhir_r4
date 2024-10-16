@@ -214,10 +214,10 @@ class FhirDb {
     }
 
     await _ensureInit(pw: pw);
-    final exists = resource.id != null &&
+    final exists = resource.id?.value != null &&
         await this.exists(
           resourceType: resource.resourceType,
-          id: resource.id!.value,
+          id: resource.id!.value!,
           pw: pw,
         );
 
@@ -282,10 +282,10 @@ class FhirDb {
     Resource resource,
     String? pw,
   ) async {
-    if (resource.id != null) {
+    if (resource.id?.value != null) {
       final oldResource = await get(
         resourceType: resource.resourceType,
-        id: resource.id!.value,
+        id: resource.id!.value!,
         pw: pw,
       );
       if (oldResource != null) {
@@ -469,7 +469,7 @@ class FhirDb {
   ) async {
     final result = await get(
       resourceType: resource.resourceType,
-      id: resource.id!.value,
+      id: resource.id!.value!,
       pw: pw,
     );
     return result == null ? <Resource>[] : <Resource>[result];
@@ -566,7 +566,7 @@ class FhirDb {
     if (resource != null && resource.id != null) {
       return _deleteById(
         resourceType: resource.resourceType,
-        id: resource.id!.value,
+        id: resource.id!.value!,
         pw: pw,
       );
     } else if (resourceType != null && id != null) {
@@ -758,6 +758,7 @@ class FhirDb {
         .toList();
   }
 
+  /// function used to get a specific resource from the db
   Future<bool> clearSync({
     String? pw,
   }) async {
@@ -777,11 +778,12 @@ class FhirDb {
     }
   }
 
+  /// function used to get a specific resource from the db
   BehaviorSubject<Resource?> listenSync({
     String? pw,
   }) {
     final subject = BehaviorSubject<Resource?>();
-    final box = Hive.box('sync');
+    final box = Hive.box<Map<dynamic, dynamic>>('sync');
 
     final stream = box.watch();
     final subscription = stream.listen(
@@ -834,6 +836,7 @@ class FhirDb {
     }
   }
 
+  /// This function is used to read a specific object from the general store
   Future<Object?> readGeneral({
     required int key,
     String? pw,
@@ -849,6 +852,7 @@ class FhirDb {
     return box.get(key);
   }
 
+  /// This function is used to read all objects from the general store
   Future<Iterable<Object>> getAllGeneral({
     String? pw,
   }) async {
@@ -864,6 +868,7 @@ class FhirDb {
     return boxData.values;
   }
 
+  /// This function is used to search for a specific object in the general store
   Future<Iterable<Object>> searchGeneral({
     required bool Function(Object) finder,
     String? pw,
@@ -876,11 +881,12 @@ class FhirDb {
     } else {
       box = Hive.box('general');
     }
-    final boxData = box.toMap();
-    boxData.removeWhere((dynamic key, Object value) => !finder(value));
+    final boxData = box.toMap()
+      ..removeWhere((dynamic key, Object value) => !finder(value));
     return boxData.values;
   }
 
+  /// This function is used to update a specific object in the general store
   Future<bool> deletefromGeneral({
     required int key,
     String? pw,
@@ -907,6 +913,7 @@ class FhirDb {
   }) async =>
       clearGeneral(pw: pw);
 
+  /// Deletes everything stored in the general store
   Future<bool> clearGeneral({
     String? pw,
   }) async {
@@ -926,6 +933,8 @@ class FhirDb {
     }
   }
 
+  /// ************************************************************************
+  /// The following functions are for listening to the database
   BehaviorSubject<dynamic> generalSubject({
     String? pw,
   }) {
@@ -949,11 +958,13 @@ class FhirDb {
               subject.close, // Close the BehaviorSubject on stream completion.
         );
 
-        // Ensure the subscription is cancelled when the BehaviorSubject is closed.
+        // Ensure the subscription is cancelled when the BehaviorSubject
+        //is closed.
         subject.onCancel = subscription.cancel;
       }).catchError((Object e) {
-        subject.addError(e); // Handle errors from _getBox.
-        subject.close();
+        subject
+          ..addError(e)
+          ..close();
       });
     });
     return subject;

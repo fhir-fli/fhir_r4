@@ -12,69 +12,36 @@ class Observation extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.basedOn,
     this.partOf,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.category,
     required this.code,
     this.subject,
     this.focus,
     this.encounter,
     this.effectiveDateTime,
-
-    /// Extensions for [effectiveDateTime]
-    this.effectiveDateTimeElement,
     this.effectivePeriod,
     this.effectiveTiming,
     this.effectiveInstant,
-
-    /// Extensions for [effectiveInstant]
-    this.effectiveInstantElement,
     this.issued,
-
-    /// Extensions for [issued]
-    this.issuedElement,
     this.performer,
     this.valueQuantity,
     this.valueCodeableConcept,
     this.valueString,
-
-    /// Extensions for [valueString]
-    this.valueStringElement,
     this.valueBoolean,
-
-    /// Extensions for [valueBoolean]
-    this.valueBooleanElement,
     this.valueInteger,
-
-    /// Extensions for [valueInteger]
-    this.valueIntegerElement,
     this.valueRange,
     this.valueRatio,
     this.valueSampledData,
     this.valueTime,
-
-    /// Extensions for [valueTime]
-    this.valueTimeElement,
     this.valueDateTime,
-
-    /// Extensions for [valueDateTime]
-    this.valueDateTimeElement,
     this.valuePeriod,
     this.dataAbsentReason,
     this.interpretation,
@@ -100,27 +67,27 @@ class Observation extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Observation.fromJson(Map<String, dynamic> json) {
     return Observation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -130,7 +97,7 @@ class Observation extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -139,7 +106,7 @@ class Observation extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -148,7 +115,7 @@ class Observation extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -157,7 +124,7 @@ class Observation extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -166,7 +133,7 @@ class Observation extends DomainResource {
       basedOn: json['basedOn'] != null
           ? (json['basedOn'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -175,22 +142,20 @@ class Observation extends DomainResource {
       partOf: json['partOf'] != null
           ? (json['partOf'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: ObservationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: ObservationStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -207,7 +172,7 @@ class Observation extends DomainResource {
       focus: json['focus'] != null
           ? (json['focus'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -219,12 +184,10 @@ class Observation extends DomainResource {
             )
           : null,
       effectiveDateTime: json['effectiveDateTime'] != null
-          ? FhirDateTime.fromJson(json['effectiveDateTime'])
-          : null,
-      effectiveDateTimeElement: json['_effectiveDateTime'] != null
-          ? Element.fromJson(
-              json['_effectiveDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['effectiveDateTime'],
+              '_value': json['_effectiveDateTime'],
+            })
           : null,
       effectivePeriod: json['effectivePeriod'] != null
           ? Period.fromJson(
@@ -237,24 +200,21 @@ class Observation extends DomainResource {
             )
           : null,
       effectiveInstant: json['effectiveInstant'] != null
-          ? FhirInstant.fromJson(json['effectiveInstant'])
+          ? FhirInstant.fromJson({
+              'value': json['effectiveInstant'],
+              '_value': json['_effectiveInstant'],
+            })
           : null,
-      effectiveInstantElement: json['_effectiveInstant'] != null
-          ? Element.fromJson(
-              json['_effectiveInstant'] as Map<String, dynamic>,
-            )
-          : null,
-      issued:
-          json['issued'] != null ? FhirInstant.fromJson(json['issued']) : null,
-      issuedElement: json['_issued'] != null
-          ? Element.fromJson(
-              json['_issued'] as Map<String, dynamic>,
-            )
+      issued: json['issued'] != null
+          ? FhirInstant.fromJson({
+              'value': json['issued'],
+              '_value': json['_issued'],
+            })
           : null,
       performer: json['performer'] != null
           ? (json['performer'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -271,28 +231,22 @@ class Observation extends DomainResource {
             )
           : null,
       valueString: json['valueString'] != null
-          ? FhirString.fromJson(json['valueString'])
-          : null,
-      valueStringElement: json['_valueString'] != null
-          ? Element.fromJson(
-              json['_valueString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['valueString'],
+              '_value': json['_valueString'],
+            })
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(
-              json['_valueBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['valueBoolean'],
+              '_value': json['_valueBoolean'],
+            })
           : null,
       valueInteger: json['valueInteger'] != null
-          ? FhirInteger.fromJson(json['valueInteger'])
-          : null,
-      valueIntegerElement: json['_valueInteger'] != null
-          ? Element.fromJson(
-              json['_valueInteger'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['valueInteger'],
+              '_value': json['_valueInteger'],
+            })
           : null,
       valueRange: json['valueRange'] != null
           ? Range.fromJson(
@@ -310,20 +264,16 @@ class Observation extends DomainResource {
             )
           : null,
       valueTime: json['valueTime'] != null
-          ? FhirTime.fromJson(json['valueTime'])
-          : null,
-      valueTimeElement: json['_valueTime'] != null
-          ? Element.fromJson(
-              json['_valueTime'] as Map<String, dynamic>,
-            )
+          ? FhirTime.fromJson({
+              'value': json['valueTime'],
+              '_value': json['_valueTime'],
+            })
           : null,
       valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime.fromJson(json['valueDateTime'])
-          : null,
-      valueDateTimeElement: json['_valueDateTime'] != null
-          ? Element.fromJson(
-              json['_valueDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['valueDateTime'],
+              '_value': json['_valueDateTime'],
+            })
           : null,
       valuePeriod: json['valuePeriod'] != null
           ? Period.fromJson(
@@ -338,7 +288,7 @@ class Observation extends DomainResource {
       interpretation: json['interpretation'] != null
           ? (json['interpretation'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -347,7 +297,7 @@ class Observation extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -376,7 +326,7 @@ class Observation extends DomainResource {
       referenceRange: json['referenceRange'] != null
           ? (json['referenceRange'] as List<dynamic>)
               .map<ObservationReferenceRange>(
-                (dynamic v) => ObservationReferenceRange.fromJson(
+                (v) => ObservationReferenceRange.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -385,7 +335,7 @@ class Observation extends DomainResource {
       hasMember: json['hasMember'] != null
           ? (json['hasMember'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -394,7 +344,7 @@ class Observation extends DomainResource {
       derivedFrom: json['derivedFrom'] != null
           ? (json['derivedFrom'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -403,7 +353,7 @@ class Observation extends DomainResource {
       component: json['component'] != null
           ? (json['component'] as List<dynamic>)
               .map<ObservationComponent>(
-                (dynamic v) => ObservationComponent.fromJson(
+                (v) => ObservationComponent.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -412,7 +362,8 @@ class Observation extends DomainResource {
     );
   }
 
-  /// Deserialize [Observation] from a [String] or [YamlMap] object
+  /// Deserialize [Observation] from a [String]
+  /// or [YamlMap] object
   factory Observation.fromYaml(dynamic yaml) => yaml is String
       ? Observation.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -421,10 +372,11 @@ class Observation extends DomainResource {
           ? Observation.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Observation cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Observation cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Observation] that takes in a [String]
+  /// Factory constructor for [Observation]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Observation.fromJsonString(String source) {
@@ -439,6 +391,15 @@ class Observation extends DomainResource {
 
   @override
   String get fhirType => 'Observation';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// A unique identifier assigned to this observation.
@@ -458,9 +419,6 @@ class Observation extends DomainResource {
   /// [status]
   /// The status of the result value.
   final ObservationStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [category]
   /// A code that classifies the general type of observation being made.
@@ -505,9 +463,6 @@ class Observation extends DomainResource {
   /// the date/time is not known, only the date/time itself.
   final FhirDateTime? effectiveDateTime;
 
-  /// Extensions for [effectiveDateTime]
-  final Element? effectiveDateTimeElement;
-
   /// [effectivePeriod]
   /// The time or time-period the observed value is asserted as being true.
   /// For biological subjects - e.g. human patients - this is usually called
@@ -532,16 +487,10 @@ class Observation extends DomainResource {
   /// the date/time is not known, only the date/time itself.
   final FhirInstant? effectiveInstant;
 
-  /// Extensions for [effectiveInstant]
-  final Element? effectiveInstantElement;
-
   /// [issued]
   /// The date and time this version of the observation was made available to
   /// providers, typically after the results have been reviewed and verified.
   final FhirInstant? issued;
-
-  /// Extensions for [issued]
-  final Element? issuedElement;
 
   /// [performer]
   /// Who was responsible for asserting the observed value as "true".
@@ -562,24 +511,15 @@ class Observation extends DomainResource {
   /// the information has a simple value.
   final FhirString? valueString;
 
-  /// Extensions for [valueString]
-  final Element? valueStringElement;
-
   /// [valueBoolean]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
   final FhirBoolean? valueBoolean;
 
-  /// Extensions for [valueBoolean]
-  final Element? valueBooleanElement;
-
   /// [valueInteger]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
   final FhirInteger? valueInteger;
-
-  /// Extensions for [valueInteger]
-  final Element? valueIntegerElement;
 
   /// [valueRange]
   /// The information determined as a result of making the observation, if
@@ -601,16 +541,10 @@ class Observation extends DomainResource {
   /// the information has a simple value.
   final FhirTime? valueTime;
 
-  /// Extensions for [valueTime]
-  final Element? valueTimeElement;
-
   /// [valueDateTime]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
   final FhirDateTime? valueDateTime;
-
-  /// Extensions for [valueDateTime]
-  final Element? valueDateTimeElement;
 
   /// [valuePeriod]
   /// The information determined as a result of making the observation, if
@@ -687,9 +621,6 @@ class Observation extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -735,9 +666,6 @@ class Observation extends DomainResource {
     if (effectiveDateTime?.value != null) {
       json['effectiveDateTime'] = effectiveDateTime!.toJson();
     }
-    if (effectiveDateTimeElement != null) {
-      json['_effectiveDateTime'] = effectiveDateTimeElement!.toJson();
-    }
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
@@ -747,14 +675,8 @@ class Observation extends DomainResource {
     if (effectiveInstant?.value != null) {
       json['effectiveInstant'] = effectiveInstant!.toJson();
     }
-    if (effectiveInstantElement != null) {
-      json['_effectiveInstant'] = effectiveInstantElement!.toJson();
-    }
     if (issued?.value != null) {
       json['issued'] = issued!.toJson();
-    }
-    if (issuedElement != null) {
-      json['_issued'] = issuedElement!.toJson();
     }
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] = performer!.map((Reference v) => v.toJson()).toList();
@@ -768,20 +690,11 @@ class Observation extends DomainResource {
     if (valueString?.value != null) {
       json['valueString'] = valueString!.toJson();
     }
-    if (valueStringElement != null) {
-      json['_valueString'] = valueStringElement!.toJson();
-    }
     if (valueBoolean?.value != null) {
       json['valueBoolean'] = valueBoolean!.toJson();
     }
-    if (valueBooleanElement != null) {
-      json['_valueBoolean'] = valueBooleanElement!.toJson();
-    }
     if (valueInteger?.value != null) {
       json['valueInteger'] = valueInteger!.toJson();
-    }
-    if (valueIntegerElement != null) {
-      json['_valueInteger'] = valueIntegerElement!.toJson();
     }
     if (valueRange != null) {
       json['valueRange'] = valueRange!.toJson();
@@ -795,14 +708,8 @@ class Observation extends DomainResource {
     if (valueTime?.value != null) {
       json['valueTime'] = valueTime!.toJson();
     }
-    if (valueTimeElement != null) {
-      json['_valueTime'] = valueTimeElement!.toJson();
-    }
     if (valueDateTime?.value != null) {
       json['valueDateTime'] = valueDateTime!.toJson();
-    }
-    if (valueDateTimeElement != null) {
-      json['_valueDateTime'] = valueDateTimeElement!.toJson();
     }
     if (valuePeriod != null) {
       json['valuePeriod'] = valuePeriod!.toJson();
@@ -855,9 +762,7 @@ class Observation extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -866,36 +771,27 @@ class Observation extends DomainResource {
     List<Reference>? basedOn,
     List<Reference>? partOf,
     ObservationStatus? status,
-    Element? statusElement,
     List<CodeableConcept>? category,
     CodeableConcept? code,
     Reference? subject,
     List<Reference>? focus,
     Reference? encounter,
     FhirDateTime? effectiveDateTime,
-    Element? effectiveDateTimeElement,
     Period? effectivePeriod,
     Timing? effectiveTiming,
     FhirInstant? effectiveInstant,
-    Element? effectiveInstantElement,
     FhirInstant? issued,
-    Element? issuedElement,
     List<Reference>? performer,
     Quantity? valueQuantity,
     CodeableConcept? valueCodeableConcept,
     FhirString? valueString,
-    Element? valueStringElement,
     FhirBoolean? valueBoolean,
-    Element? valueBooleanElement,
     FhirInteger? valueInteger,
-    Element? valueIntegerElement,
     Range? valueRange,
     Ratio? valueRatio,
     SampledData? valueSampledData,
     FhirTime? valueTime,
-    Element? valueTimeElement,
     FhirDateTime? valueDateTime,
-    Element? valueDateTimeElement,
     Period? valuePeriod,
     CodeableConcept? dataAbsentReason,
     List<CodeableConcept>? interpretation,
@@ -919,9 +815,7 @@ class Observation extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -930,38 +824,27 @@ class Observation extends DomainResource {
       basedOn: basedOn ?? this.basedOn,
       partOf: partOf ?? this.partOf,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       category: category ?? this.category,
       code: code ?? this.code,
       subject: subject ?? this.subject,
       focus: focus ?? this.focus,
       encounter: encounter ?? this.encounter,
       effectiveDateTime: effectiveDateTime ?? this.effectiveDateTime,
-      effectiveDateTimeElement:
-          effectiveDateTimeElement ?? this.effectiveDateTimeElement,
       effectivePeriod: effectivePeriod ?? this.effectivePeriod,
       effectiveTiming: effectiveTiming ?? this.effectiveTiming,
       effectiveInstant: effectiveInstant ?? this.effectiveInstant,
-      effectiveInstantElement:
-          effectiveInstantElement ?? this.effectiveInstantElement,
       issued: issued ?? this.issued,
-      issuedElement: issuedElement ?? this.issuedElement,
       performer: performer ?? this.performer,
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
       valueString: valueString ?? this.valueString,
-      valueStringElement: valueStringElement ?? this.valueStringElement,
       valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueBooleanElement: valueBooleanElement ?? this.valueBooleanElement,
       valueInteger: valueInteger ?? this.valueInteger,
-      valueIntegerElement: valueIntegerElement ?? this.valueIntegerElement,
       valueRange: valueRange ?? this.valueRange,
       valueRatio: valueRatio ?? this.valueRatio,
       valueSampledData: valueSampledData ?? this.valueSampledData,
       valueTime: valueTime ?? this.valueTime,
-      valueTimeElement: valueTimeElement ?? this.valueTimeElement,
       valueDateTime: valueDateTime ?? this.valueDateTime,
-      valueDateTimeElement: valueDateTimeElement ?? this.valueDateTimeElement,
       valuePeriod: valuePeriod ?? this.valuePeriod,
       dataAbsentReason: dataAbsentReason ?? this.dataAbsentReason,
       interpretation: interpretation ?? this.interpretation,
@@ -994,7 +877,7 @@ class ObservationReferenceRange extends BackboneElement {
 
   ObservationReferenceRange({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.low,
     this.high,
@@ -1002,9 +885,6 @@ class ObservationReferenceRange extends BackboneElement {
     this.appliesTo,
     this.age,
     this.text,
-
-    /// Extensions for [text]
-    this.textElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1016,11 +896,15 @@ class ObservationReferenceRange extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationReferenceRange.fromJson(Map<String, dynamic> json) {
     return ObservationReferenceRange(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1029,7 +913,7 @@ class ObservationReferenceRange extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1053,7 +937,7 @@ class ObservationReferenceRange extends BackboneElement {
       appliesTo: json['appliesTo'] != null
           ? (json['appliesTo'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1064,16 +948,17 @@ class ObservationReferenceRange extends BackboneElement {
               json['age'] as Map<String, dynamic>,
             )
           : null,
-      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
-      textElement: json['_text'] != null
-          ? Element.fromJson(
-              json['_text'] as Map<String, dynamic>,
-            )
+      text: json['text'] != null
+          ? FhirString.fromJson({
+              'value': json['text'],
+              '_value': json['_text'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [ObservationReferenceRange] from a [String] or [YamlMap] object
+  /// Deserialize [ObservationReferenceRange] from a [String]
+  /// or [YamlMap] object
   factory ObservationReferenceRange.fromYaml(dynamic yaml) => yaml is String
       ? ObservationReferenceRange.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1083,10 +968,11 @@ class ObservationReferenceRange extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ObservationReferenceRange cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ObservationReferenceRange cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ObservationReferenceRange] that takes in a [String]
+  /// Factory constructor for [ObservationReferenceRange]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ObservationReferenceRange.fromJsonString(String source) {
@@ -1101,6 +987,15 @@ class ObservationReferenceRange extends BackboneElement {
 
   @override
   String get fhirType => 'ObservationReferenceRange';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [low]
   /// The value of the low bound of the reference range. The low bound of the
@@ -1141,9 +1036,6 @@ class ObservationReferenceRange extends BackboneElement {
   /// would be a reference value of "Negative" or a list or table of
   /// "normals".
   final FhirString? text;
-
-  /// Extensions for [text]
-  final Element? textElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1177,9 +1069,6 @@ class ObservationReferenceRange extends BackboneElement {
     if (text?.value != null) {
       json['text'] = text!.toJson();
     }
-    if (textElement != null) {
-      json['_text'] = textElement!.toJson();
-    }
     return json;
   }
 
@@ -1196,7 +1085,6 @@ class ObservationReferenceRange extends BackboneElement {
     List<CodeableConcept>? appliesTo,
     Range? age,
     FhirString? text,
-    Element? textElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1214,7 +1102,6 @@ class ObservationReferenceRange extends BackboneElement {
       appliesTo: appliesTo ?? this.appliesTo,
       age: age ?? this.age,
       text: text ?? this.text,
-      textElement: textElement ?? this.textElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1236,34 +1123,19 @@ class ObservationComponent extends BackboneElement {
 
   ObservationComponent({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.code,
     this.valueQuantity,
     this.valueCodeableConcept,
     this.valueString,
-
-    /// Extensions for [valueString]
-    this.valueStringElement,
     this.valueBoolean,
-
-    /// Extensions for [valueBoolean]
-    this.valueBooleanElement,
     this.valueInteger,
-
-    /// Extensions for [valueInteger]
-    this.valueIntegerElement,
     this.valueRange,
     this.valueRatio,
     this.valueSampledData,
     this.valueTime,
-
-    /// Extensions for [valueTime]
-    this.valueTimeElement,
     this.valueDateTime,
-
-    /// Extensions for [valueDateTime]
-    this.valueDateTimeElement,
     this.valuePeriod,
     this.dataAbsentReason,
     this.interpretation,
@@ -1279,11 +1151,15 @@ class ObservationComponent extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationComponent.fromJson(Map<String, dynamic> json) {
     return ObservationComponent(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1292,7 +1168,7 @@ class ObservationComponent extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1312,28 +1188,22 @@ class ObservationComponent extends BackboneElement {
             )
           : null,
       valueString: json['valueString'] != null
-          ? FhirString.fromJson(json['valueString'])
-          : null,
-      valueStringElement: json['_valueString'] != null
-          ? Element.fromJson(
-              json['_valueString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['valueString'],
+              '_value': json['_valueString'],
+            })
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(
-              json['_valueBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['valueBoolean'],
+              '_value': json['_valueBoolean'],
+            })
           : null,
       valueInteger: json['valueInteger'] != null
-          ? FhirInteger.fromJson(json['valueInteger'])
-          : null,
-      valueIntegerElement: json['_valueInteger'] != null
-          ? Element.fromJson(
-              json['_valueInteger'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['valueInteger'],
+              '_value': json['_valueInteger'],
+            })
           : null,
       valueRange: json['valueRange'] != null
           ? Range.fromJson(
@@ -1351,20 +1221,16 @@ class ObservationComponent extends BackboneElement {
             )
           : null,
       valueTime: json['valueTime'] != null
-          ? FhirTime.fromJson(json['valueTime'])
-          : null,
-      valueTimeElement: json['_valueTime'] != null
-          ? Element.fromJson(
-              json['_valueTime'] as Map<String, dynamic>,
-            )
+          ? FhirTime.fromJson({
+              'value': json['valueTime'],
+              '_value': json['_valueTime'],
+            })
           : null,
       valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime.fromJson(json['valueDateTime'])
-          : null,
-      valueDateTimeElement: json['_valueDateTime'] != null
-          ? Element.fromJson(
-              json['_valueDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['valueDateTime'],
+              '_value': json['_valueDateTime'],
+            })
           : null,
       valuePeriod: json['valuePeriod'] != null
           ? Period.fromJson(
@@ -1379,7 +1245,7 @@ class ObservationComponent extends BackboneElement {
       interpretation: json['interpretation'] != null
           ? (json['interpretation'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1388,7 +1254,7 @@ class ObservationComponent extends BackboneElement {
       referenceRange: json['referenceRange'] != null
           ? (json['referenceRange'] as List<dynamic>)
               .map<ObservationReferenceRange>(
-                (dynamic v) => ObservationReferenceRange.fromJson(
+                (v) => ObservationReferenceRange.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1397,7 +1263,8 @@ class ObservationComponent extends BackboneElement {
     );
   }
 
-  /// Deserialize [ObservationComponent] from a [String] or [YamlMap] object
+  /// Deserialize [ObservationComponent] from a [String]
+  /// or [YamlMap] object
   factory ObservationComponent.fromYaml(dynamic yaml) => yaml is String
       ? ObservationComponent.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1407,10 +1274,11 @@ class ObservationComponent extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ObservationComponent cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ObservationComponent cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ObservationComponent] that takes in a [String]
+  /// Factory constructor for [ObservationComponent]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ObservationComponent.fromJsonString(String source) {
@@ -1425,6 +1293,15 @@ class ObservationComponent extends BackboneElement {
 
   @override
   String get fhirType => 'ObservationComponent';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [code]
   /// Describes what was observed. Sometimes this is called the observation
@@ -1446,24 +1323,15 @@ class ObservationComponent extends BackboneElement {
   /// the information has a simple value.
   final FhirString? valueString;
 
-  /// Extensions for [valueString]
-  final Element? valueStringElement;
-
   /// [valueBoolean]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
   final FhirBoolean? valueBoolean;
 
-  /// Extensions for [valueBoolean]
-  final Element? valueBooleanElement;
-
   /// [valueInteger]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
   final FhirInteger? valueInteger;
-
-  /// Extensions for [valueInteger]
-  final Element? valueIntegerElement;
 
   /// [valueRange]
   /// The information determined as a result of making the observation, if
@@ -1485,16 +1353,10 @@ class ObservationComponent extends BackboneElement {
   /// the information has a simple value.
   final FhirTime? valueTime;
 
-  /// Extensions for [valueTime]
-  final Element? valueTimeElement;
-
   /// [valueDateTime]
   /// The information determined as a result of making the observation, if
   /// the information has a simple value.
   final FhirDateTime? valueDateTime;
-
-  /// Extensions for [valueDateTime]
-  final Element? valueDateTimeElement;
 
   /// [valuePeriod]
   /// The information determined as a result of making the observation, if
@@ -1539,20 +1401,11 @@ class ObservationComponent extends BackboneElement {
     if (valueString?.value != null) {
       json['valueString'] = valueString!.toJson();
     }
-    if (valueStringElement != null) {
-      json['_valueString'] = valueStringElement!.toJson();
-    }
     if (valueBoolean?.value != null) {
       json['valueBoolean'] = valueBoolean!.toJson();
     }
-    if (valueBooleanElement != null) {
-      json['_valueBoolean'] = valueBooleanElement!.toJson();
-    }
     if (valueInteger?.value != null) {
       json['valueInteger'] = valueInteger!.toJson();
-    }
-    if (valueIntegerElement != null) {
-      json['_valueInteger'] = valueIntegerElement!.toJson();
     }
     if (valueRange != null) {
       json['valueRange'] = valueRange!.toJson();
@@ -1566,14 +1419,8 @@ class ObservationComponent extends BackboneElement {
     if (valueTime?.value != null) {
       json['valueTime'] = valueTime!.toJson();
     }
-    if (valueTimeElement != null) {
-      json['_valueTime'] = valueTimeElement!.toJson();
-    }
     if (valueDateTime?.value != null) {
       json['valueDateTime'] = valueDateTime!.toJson();
-    }
-    if (valueDateTimeElement != null) {
-      json['_valueDateTime'] = valueDateTimeElement!.toJson();
     }
     if (valuePeriod != null) {
       json['valuePeriod'] = valuePeriod!.toJson();
@@ -1604,18 +1451,13 @@ class ObservationComponent extends BackboneElement {
     Quantity? valueQuantity,
     CodeableConcept? valueCodeableConcept,
     FhirString? valueString,
-    Element? valueStringElement,
     FhirBoolean? valueBoolean,
-    Element? valueBooleanElement,
     FhirInteger? valueInteger,
-    Element? valueIntegerElement,
     Range? valueRange,
     Ratio? valueRatio,
     SampledData? valueSampledData,
     FhirTime? valueTime,
-    Element? valueTimeElement,
     FhirDateTime? valueDateTime,
-    Element? valueDateTimeElement,
     Period? valuePeriod,
     CodeableConcept? dataAbsentReason,
     List<CodeableConcept>? interpretation,
@@ -1635,18 +1477,13 @@ class ObservationComponent extends BackboneElement {
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
       valueString: valueString ?? this.valueString,
-      valueStringElement: valueStringElement ?? this.valueStringElement,
       valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueBooleanElement: valueBooleanElement ?? this.valueBooleanElement,
       valueInteger: valueInteger ?? this.valueInteger,
-      valueIntegerElement: valueIntegerElement ?? this.valueIntegerElement,
       valueRange: valueRange ?? this.valueRange,
       valueRatio: valueRatio ?? this.valueRatio,
       valueSampledData: valueSampledData ?? this.valueSampledData,
       valueTime: valueTime ?? this.valueTime,
-      valueTimeElement: valueTimeElement ?? this.valueTimeElement,
       valueDateTime: valueDateTime ?? this.valueDateTime,
-      valueDateTimeElement: valueDateTimeElement ?? this.valueDateTimeElement,
       valuePeriod: valuePeriod ?? this.valuePeriod,
       dataAbsentReason: dataAbsentReason ?? this.dataAbsentReason,
       interpretation: interpretation ?? this.interpretation,

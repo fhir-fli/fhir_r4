@@ -12,32 +12,20 @@ class RiskAssessment extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.basedOn,
     this.parent,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.method,
     this.code,
     required this.subject,
     this.encounter,
     this.occurrenceDateTime,
-
-    /// Extensions for [occurrenceDateTime]
-    this.occurrenceDateTimeElement,
     this.occurrencePeriod,
     this.condition,
     this.performer,
@@ -46,9 +34,6 @@ class RiskAssessment extends DomainResource {
     this.basis,
     this.prediction,
     this.mitigation,
-
-    /// Extensions for [mitigation]
-    this.mitigationElement,
     this.note,
     super.userData,
     super.formatCommentsPre,
@@ -63,27 +48,27 @@ class RiskAssessment extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RiskAssessment.fromJson(Map<String, dynamic> json) {
     return RiskAssessment(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -93,7 +78,7 @@ class RiskAssessment extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -102,7 +87,7 @@ class RiskAssessment extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -111,7 +96,7 @@ class RiskAssessment extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -120,7 +105,7 @@ class RiskAssessment extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -136,12 +121,10 @@ class RiskAssessment extends DomainResource {
               json['parent'] as Map<String, dynamic>,
             )
           : null,
-      status: ObservationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: ObservationStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       method: json['method'] != null
           ? CodeableConcept.fromJson(
               json['method'] as Map<String, dynamic>,
@@ -161,12 +144,10 @@ class RiskAssessment extends DomainResource {
             )
           : null,
       occurrenceDateTime: json['occurrenceDateTime'] != null
-          ? FhirDateTime.fromJson(json['occurrenceDateTime'])
-          : null,
-      occurrenceDateTimeElement: json['_occurrenceDateTime'] != null
-          ? Element.fromJson(
-              json['_occurrenceDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['occurrenceDateTime'],
+              '_value': json['_occurrenceDateTime'],
+            })
           : null,
       occurrencePeriod: json['occurrencePeriod'] != null
           ? Period.fromJson(
@@ -186,7 +167,7 @@ class RiskAssessment extends DomainResource {
       reasonCode: json['reasonCode'] != null
           ? (json['reasonCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -195,7 +176,7 @@ class RiskAssessment extends DomainResource {
       reasonReference: json['reasonReference'] != null
           ? (json['reasonReference'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -204,7 +185,7 @@ class RiskAssessment extends DomainResource {
       basis: json['basis'] != null
           ? (json['basis'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -213,24 +194,22 @@ class RiskAssessment extends DomainResource {
       prediction: json['prediction'] != null
           ? (json['prediction'] as List<dynamic>)
               .map<RiskAssessmentPrediction>(
-                (dynamic v) => RiskAssessmentPrediction.fromJson(
+                (v) => RiskAssessmentPrediction.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       mitigation: json['mitigation'] != null
-          ? FhirString.fromJson(json['mitigation'])
-          : null,
-      mitigationElement: json['_mitigation'] != null
-          ? Element.fromJson(
-              json['_mitigation'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['mitigation'],
+              '_value': json['_mitigation'],
+            })
           : null,
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -239,7 +218,8 @@ class RiskAssessment extends DomainResource {
     );
   }
 
-  /// Deserialize [RiskAssessment] from a [String] or [YamlMap] object
+  /// Deserialize [RiskAssessment] from a [String]
+  /// or [YamlMap] object
   factory RiskAssessment.fromYaml(dynamic yaml) => yaml is String
       ? RiskAssessment.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -248,11 +228,11 @@ class RiskAssessment extends DomainResource {
           ? RiskAssessment.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'RiskAssessment cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('RiskAssessment cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [RiskAssessment] that takes in a [String]
+  /// Factory constructor for [RiskAssessment]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory RiskAssessment.fromJsonString(String source) {
@@ -267,6 +247,15 @@ class RiskAssessment extends DomainResource {
 
   @override
   String get fhirType => 'RiskAssessment';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Business identifier assigned to the risk assessment.
@@ -285,9 +274,6 @@ class RiskAssessment extends DomainResource {
   /// The status of the RiskAssessment, using the same statuses as an
   /// Observation.
   final ObservationStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [method]
   /// The algorithm, process or mechanism used to evaluate the risk.
@@ -308,9 +294,6 @@ class RiskAssessment extends DomainResource {
   /// [occurrenceDateTime]
   /// The date (and possibly time) the risk assessment was performed.
   final FhirDateTime? occurrenceDateTime;
-
-  /// Extensions for [occurrenceDateTime]
-  final Element? occurrenceDateTimeElement;
 
   /// [occurrencePeriod]
   /// The date (and possibly time) the risk assessment was performed.
@@ -347,9 +330,6 @@ class RiskAssessment extends DomainResource {
   /// risk(s).
   final FhirString? mitigation;
 
-  /// Extensions for [mitigation]
-  final Element? mitigationElement;
-
   /// [note]
   /// Additional comments about the risk assessment.
   final List<Annotation>? note;
@@ -365,9 +345,6 @@ class RiskAssessment extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -410,9 +387,6 @@ class RiskAssessment extends DomainResource {
     if (occurrenceDateTime?.value != null) {
       json['occurrenceDateTime'] = occurrenceDateTime!.toJson();
     }
-    if (occurrenceDateTimeElement != null) {
-      json['_occurrenceDateTime'] = occurrenceDateTimeElement!.toJson();
-    }
     if (occurrencePeriod != null) {
       json['occurrencePeriod'] = occurrencePeriod!.toJson();
     }
@@ -440,9 +414,6 @@ class RiskAssessment extends DomainResource {
     if (mitigation?.value != null) {
       json['mitigation'] = mitigation!.toJson();
     }
-    if (mitigationElement != null) {
-      json['_mitigation'] = mitigationElement!.toJson();
-    }
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((Annotation v) => v.toJson()).toList();
     }
@@ -456,9 +427,7 @@ class RiskAssessment extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -467,13 +436,11 @@ class RiskAssessment extends DomainResource {
     Reference? basedOn,
     Reference? parent,
     ObservationStatus? status,
-    Element? statusElement,
     CodeableConcept? method,
     CodeableConcept? code,
     Reference? subject,
     Reference? encounter,
     FhirDateTime? occurrenceDateTime,
-    Element? occurrenceDateTimeElement,
     Period? occurrencePeriod,
     Reference? condition,
     Reference? performer,
@@ -482,7 +449,6 @@ class RiskAssessment extends DomainResource {
     List<Reference>? basis,
     List<RiskAssessmentPrediction>? prediction,
     FhirString? mitigation,
-    Element? mitigationElement,
     List<Annotation>? note,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -495,9 +461,7 @@ class RiskAssessment extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -506,14 +470,11 @@ class RiskAssessment extends DomainResource {
       basedOn: basedOn ?? this.basedOn,
       parent: parent ?? this.parent,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       method: method ?? this.method,
       code: code ?? this.code,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
       occurrenceDateTime: occurrenceDateTime ?? this.occurrenceDateTime,
-      occurrenceDateTimeElement:
-          occurrenceDateTimeElement ?? this.occurrenceDateTimeElement,
       occurrencePeriod: occurrencePeriod ?? this.occurrencePeriod,
       condition: condition ?? this.condition,
       performer: performer ?? this.performer,
@@ -522,7 +483,6 @@ class RiskAssessment extends DomainResource {
       basis: basis ?? this.basis,
       prediction: prediction ?? this.prediction,
       mitigation: mitigation ?? this.mitigation,
-      mitigationElement: mitigationElement ?? this.mitigationElement,
       note: note ?? this.note,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -541,25 +501,16 @@ class RiskAssessmentPrediction extends BackboneElement {
 
   RiskAssessmentPrediction({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.outcome,
     this.probabilityDecimal,
-
-    /// Extensions for [probabilityDecimal]
-    this.probabilityDecimalElement,
     this.probabilityRange,
     this.qualitativeRisk,
     this.relativeRisk,
-
-    /// Extensions for [relativeRisk]
-    this.relativeRiskElement,
     this.whenPeriod,
     this.whenRange,
     this.rationale,
-
-    /// Extensions for [rationale]
-    this.rationaleElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -571,11 +522,15 @@ class RiskAssessmentPrediction extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory RiskAssessmentPrediction.fromJson(Map<String, dynamic> json) {
     return RiskAssessmentPrediction(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -584,7 +539,7 @@ class RiskAssessmentPrediction extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -596,12 +551,10 @@ class RiskAssessmentPrediction extends BackboneElement {
             )
           : null,
       probabilityDecimal: json['probabilityDecimal'] != null
-          ? FhirDecimal.fromJson(json['probabilityDecimal'])
-          : null,
-      probabilityDecimalElement: json['_probabilityDecimal'] != null
-          ? Element.fromJson(
-              json['_probabilityDecimal'] as Map<String, dynamic>,
-            )
+          ? FhirDecimal.fromJson({
+              'value': json['probabilityDecimal'],
+              '_value': json['_probabilityDecimal'],
+            })
           : null,
       probabilityRange: json['probabilityRange'] != null
           ? Range.fromJson(
@@ -614,12 +567,10 @@ class RiskAssessmentPrediction extends BackboneElement {
             )
           : null,
       relativeRisk: json['relativeRisk'] != null
-          ? FhirDecimal.fromJson(json['relativeRisk'])
-          : null,
-      relativeRiskElement: json['_relativeRisk'] != null
-          ? Element.fromJson(
-              json['_relativeRisk'] as Map<String, dynamic>,
-            )
+          ? FhirDecimal.fromJson({
+              'value': json['relativeRisk'],
+              '_value': json['_relativeRisk'],
+            })
           : null,
       whenPeriod: json['whenPeriod'] != null
           ? Period.fromJson(
@@ -632,17 +583,16 @@ class RiskAssessmentPrediction extends BackboneElement {
             )
           : null,
       rationale: json['rationale'] != null
-          ? FhirString.fromJson(json['rationale'])
-          : null,
-      rationaleElement: json['_rationale'] != null
-          ? Element.fromJson(
-              json['_rationale'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['rationale'],
+              '_value': json['_rationale'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [RiskAssessmentPrediction] from a [String] or [YamlMap] object
+  /// Deserialize [RiskAssessmentPrediction] from a [String]
+  /// or [YamlMap] object
   factory RiskAssessmentPrediction.fromYaml(dynamic yaml) => yaml is String
       ? RiskAssessmentPrediction.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -652,10 +602,11 @@ class RiskAssessmentPrediction extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'RiskAssessmentPrediction cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'RiskAssessmentPrediction cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [RiskAssessmentPrediction] that takes in a [String]
+  /// Factory constructor for [RiskAssessmentPrediction]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory RiskAssessmentPrediction.fromJsonString(String source) {
@@ -671,6 +622,15 @@ class RiskAssessmentPrediction extends BackboneElement {
   @override
   String get fhirType => 'RiskAssessmentPrediction';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [outcome]
   /// One of the potential outcomes for the patient (e.g. remission, death, a
   /// particular condition).
@@ -679,9 +639,6 @@ class RiskAssessmentPrediction extends BackboneElement {
   /// [probabilityDecimal]
   /// Indicates how likely the outcome is (in the specified timeframe).
   final FhirDecimal? probabilityDecimal;
-
-  /// Extensions for [probabilityDecimal]
-  final Element? probabilityDecimalElement;
 
   /// [probabilityRange]
   /// Indicates how likely the outcome is (in the specified timeframe).
@@ -699,9 +656,6 @@ class RiskAssessmentPrediction extends BackboneElement {
   /// than 1 = lower risk.).
   final FhirDecimal? relativeRisk;
 
-  /// Extensions for [relativeRisk]
-  final Element? relativeRiskElement;
-
   /// [whenPeriod]
   /// Indicates the period of time or age range of the subject to which the
   /// specified probability applies.
@@ -715,9 +669,6 @@ class RiskAssessmentPrediction extends BackboneElement {
   /// [rationale]
   /// Additional information explaining the basis for the prediction.
   final FhirString? rationale;
-
-  /// Extensions for [rationale]
-  final Element? rationaleElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -738,9 +689,6 @@ class RiskAssessmentPrediction extends BackboneElement {
     if (probabilityDecimal?.value != null) {
       json['probabilityDecimal'] = probabilityDecimal!.toJson();
     }
-    if (probabilityDecimalElement != null) {
-      json['_probabilityDecimal'] = probabilityDecimalElement!.toJson();
-    }
     if (probabilityRange != null) {
       json['probabilityRange'] = probabilityRange!.toJson();
     }
@@ -750,9 +698,6 @@ class RiskAssessmentPrediction extends BackboneElement {
     if (relativeRisk?.value != null) {
       json['relativeRisk'] = relativeRisk!.toJson();
     }
-    if (relativeRiskElement != null) {
-      json['_relativeRisk'] = relativeRiskElement!.toJson();
-    }
     if (whenPeriod != null) {
       json['whenPeriod'] = whenPeriod!.toJson();
     }
@@ -761,9 +706,6 @@ class RiskAssessmentPrediction extends BackboneElement {
     }
     if (rationale?.value != null) {
       json['rationale'] = rationale!.toJson();
-    }
-    if (rationaleElement != null) {
-      json['_rationale'] = rationaleElement!.toJson();
     }
     return json;
   }
@@ -777,15 +719,12 @@ class RiskAssessmentPrediction extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? outcome,
     FhirDecimal? probabilityDecimal,
-    Element? probabilityDecimalElement,
     Range? probabilityRange,
     CodeableConcept? qualitativeRisk,
     FhirDecimal? relativeRisk,
-    Element? relativeRiskElement,
     Period? whenPeriod,
     Range? whenRange,
     FhirString? rationale,
-    Element? rationaleElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -799,16 +738,12 @@ class RiskAssessmentPrediction extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       outcome: outcome ?? this.outcome,
       probabilityDecimal: probabilityDecimal ?? this.probabilityDecimal,
-      probabilityDecimalElement:
-          probabilityDecimalElement ?? this.probabilityDecimalElement,
       probabilityRange: probabilityRange ?? this.probabilityRange,
       qualitativeRisk: qualitativeRisk ?? this.qualitativeRisk,
       relativeRisk: relativeRisk ?? this.relativeRisk,
-      relativeRiskElement: relativeRiskElement ?? this.relativeRiskElement,
       whenPeriod: whenPeriod ?? this.whenPeriod,
       whenRange: whenRange ?? this.whenRange,
       rationale: rationale ?? this.rationale,
-      rationaleElement: rationaleElement ?? this.rationaleElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

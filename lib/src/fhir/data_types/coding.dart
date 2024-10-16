@@ -9,27 +9,12 @@ class Coding extends DataType {
 
   Coding({
     super.id,
-    super.extension_,
+    this.extension_,
     this.system,
-
-    /// Extensions for [system]
-    this.systemElement,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     this.code,
-
-    /// Extensions for [code]
-    this.codeElement,
     this.display,
-
-    /// Extensions for [display]
-    this.displayElement,
     this.userSelected,
-
-    /// Extensions for [userSelected]
-    this.userSelectedElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -41,54 +26,55 @@ class Coding extends DataType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Coding.fromJson(Map<String, dynamic> json) {
     return Coding(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      system: json['system'] != null ? FhirUri.fromJson(json['system']) : null,
-      systemElement: json['_system'] != null
-          ? Element.fromJson(
-              json['_system'] as Map<String, dynamic>,
-            )
+      system: json['system'] != null
+          ? FhirUri.fromJson({
+              'value': json['system'],
+              '_value': json['_system'],
+            })
           : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
-      code: json['code'] != null ? FhirCode.fromJson(json['code']) : null,
-      codeElement: json['_code'] != null
-          ? Element.fromJson(
-              json['_code'] as Map<String, dynamic>,
-            )
+      code: json['code'] != null
+          ? FhirCode.fromJson({
+              'value': json['code'],
+              '_value': json['_code'],
+            })
           : null,
-      display:
-          json['display'] != null ? FhirString.fromJson(json['display']) : null,
-      displayElement: json['_display'] != null
-          ? Element.fromJson(
-              json['_display'] as Map<String, dynamic>,
-            )
+      display: json['display'] != null
+          ? FhirString.fromJson({
+              'value': json['display'],
+              '_value': json['_display'],
+            })
           : null,
       userSelected: json['userSelected'] != null
-          ? FhirBoolean.fromJson(json['userSelected'])
-          : null,
-      userSelectedElement: json['_userSelected'] != null
-          ? Element.fromJson(
-              json['_userSelected'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['userSelected'],
+              '_value': json['_userSelected'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [Coding] from a [String] or [YamlMap] object
+  /// Deserialize [Coding] from a [String]
+  /// or [YamlMap] object
   factory Coding.fromYaml(dynamic yaml) => yaml is String
       ? Coding.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -97,10 +83,11 @@ class Coding extends DataType {
           ? Coding.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Coding cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Coding cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Coding] that takes in a [String]
+  /// Factory constructor for [Coding]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Coding.fromJsonString(String source) {
@@ -116,13 +103,19 @@ class Coding extends DataType {
   @override
   String get fhirType => 'Coding';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [system]
   /// The identification of the code system that defines the meaning of the
   /// symbol in the code.
   final FhirUri? system;
-
-  /// Extensions for [system]
-  final Element? systemElement;
 
   /// [version]
   /// The version of the code system which was used when choosing this code.
@@ -132,33 +125,21 @@ class Coding extends DataType {
   /// not guaranteed to be consistent, the version SHOULD be exchanged.
   final FhirString? version;
 
-  /// Extensions for [version]
-  final Element? versionElement;
-
   /// [code]
   /// A symbol in syntax defined by the system. The symbol may be a
   /// predefined code or an expression in a syntax defined by the coding
   /// system (e.g. post-coordination).
   final FhirCode? code;
 
-  /// Extensions for [code]
-  final Element? codeElement;
-
   /// [display]
   /// A representation of the meaning of the code in the system, following
   /// the rules of the system.
   final FhirString? display;
 
-  /// Extensions for [display]
-  final Element? displayElement;
-
   /// [userSelected]
   /// Indicates that this coding was chosen by a user directly - e.g. off a
   /// pick list of available items (codes or displays).
   final FhirBoolean? userSelected;
-
-  /// Extensions for [userSelected]
-  final Element? userSelectedElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -172,32 +153,17 @@ class Coding extends DataType {
     if (system?.value != null) {
       json['system'] = system!.toJson();
     }
-    if (systemElement != null) {
-      json['_system'] = systemElement!.toJson();
-    }
     if (version?.value != null) {
       json['version'] = version!.toJson();
-    }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
     }
     if (code?.value != null) {
       json['code'] = code!.toJson();
     }
-    if (codeElement != null) {
-      json['_code'] = codeElement!.toJson();
-    }
     if (display?.value != null) {
       json['display'] = display!.toJson();
     }
-    if (displayElement != null) {
-      json['_display'] = displayElement!.toJson();
-    }
     if (userSelected?.value != null) {
       json['userSelected'] = userSelected!.toJson();
-    }
-    if (userSelectedElement != null) {
-      json['_userSelected'] = userSelectedElement!.toJson();
     }
     return json;
   }
@@ -209,15 +175,10 @@ class Coding extends DataType {
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirUri? system,
-    Element? systemElement,
     FhirString? version,
-    Element? versionElement,
     FhirCode? code,
-    Element? codeElement,
     FhirString? display,
-    Element? displayElement,
     FhirBoolean? userSelected,
-    Element? userSelectedElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -229,15 +190,10 @@ class Coding extends DataType {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       system: system ?? this.system,
-      systemElement: systemElement ?? this.systemElement,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       code: code ?? this.code,
-      codeElement: codeElement ?? this.codeElement,
       display: display ?? this.display,
-      displayElement: displayElement ?? this.displayElement,
       userSelected: userSelected ?? this.userSelected,
-      userSelectedElement: userSelectedElement ?? this.userSelectedElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

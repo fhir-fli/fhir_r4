@@ -17,28 +17,16 @@ class ResearchStudy extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     this.protocol,
     this.partOf,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.primaryPurposeType,
     this.phase,
     this.category,
@@ -49,9 +37,6 @@ class ResearchStudy extends DomainResource {
     this.keyword,
     this.location,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.enrollment,
     this.period,
     this.sponsor,
@@ -74,27 +59,27 @@ class ResearchStudy extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ResearchStudy.fromJson(Map<String, dynamic> json) {
     return ResearchStudy(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -104,7 +89,7 @@ class ResearchStudy extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -113,7 +98,7 @@ class ResearchStudy extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -122,7 +107,7 @@ class ResearchStudy extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -131,22 +116,22 @@ class ResearchStudy extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
       protocol: json['protocol'] != null
           ? (json['protocol'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -155,18 +140,16 @@ class ResearchStudy extends DomainResource {
       partOf: json['partOf'] != null
           ? (json['partOf'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: ResearchStudyStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: ResearchStudyStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       primaryPurposeType: json['primaryPurposeType'] != null
           ? CodeableConcept.fromJson(
               json['primaryPurposeType'] as Map<String, dynamic>,
@@ -180,7 +163,7 @@ class ResearchStudy extends DomainResource {
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -189,7 +172,7 @@ class ResearchStudy extends DomainResource {
       focus: json['focus'] != null
           ? (json['focus'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -198,7 +181,7 @@ class ResearchStudy extends DomainResource {
       condition: json['condition'] != null
           ? (json['condition'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -207,7 +190,7 @@ class ResearchStudy extends DomainResource {
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -216,7 +199,7 @@ class ResearchStudy extends DomainResource {
       relatedArtifact: json['relatedArtifact'] != null
           ? (json['relatedArtifact'] as List<dynamic>)
               .map<RelatedArtifact>(
-                (dynamic v) => RelatedArtifact.fromJson(
+                (v) => RelatedArtifact.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -225,7 +208,7 @@ class ResearchStudy extends DomainResource {
       keyword: json['keyword'] != null
           ? (json['keyword'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -234,24 +217,22 @@ class ResearchStudy extends DomainResource {
       location: json['location'] != null
           ? (json['location'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       enrollment: json['enrollment'] != null
           ? (json['enrollment'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -275,7 +256,7 @@ class ResearchStudy extends DomainResource {
       site: json['site'] != null
           ? (json['site'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -289,7 +270,7 @@ class ResearchStudy extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -298,7 +279,7 @@ class ResearchStudy extends DomainResource {
       arm: json['arm'] != null
           ? (json['arm'] as List<dynamic>)
               .map<ResearchStudyArm>(
-                (dynamic v) => ResearchStudyArm.fromJson(
+                (v) => ResearchStudyArm.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -307,7 +288,7 @@ class ResearchStudy extends DomainResource {
       objective: json['objective'] != null
           ? (json['objective'] as List<dynamic>)
               .map<ResearchStudyObjective>(
-                (dynamic v) => ResearchStudyObjective.fromJson(
+                (v) => ResearchStudyObjective.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -316,7 +297,8 @@ class ResearchStudy extends DomainResource {
     );
   }
 
-  /// Deserialize [ResearchStudy] from a [String] or [YamlMap] object
+  /// Deserialize [ResearchStudy] from a [String]
+  /// or [YamlMap] object
   factory ResearchStudy.fromYaml(dynamic yaml) => yaml is String
       ? ResearchStudy.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -325,11 +307,11 @@ class ResearchStudy extends DomainResource {
           ? ResearchStudy.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ResearchStudy cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ResearchStudy cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ResearchStudy] that takes in a [String]
+  /// Factory constructor for [ResearchStudy]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ResearchStudy.fromJsonString(String source) {
@@ -345,6 +327,15 @@ class ResearchStudy extends DomainResource {
   @override
   String get fhirType => 'ResearchStudy';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Identifiers assigned to this research study by the sponsor or other
   /// systems.
@@ -353,9 +344,6 @@ class ResearchStudy extends DomainResource {
   /// [title]
   /// A short, descriptive user-friendly label for the study.
   final FhirString? title;
-
-  /// Extensions for [title]
-  final Element? titleElement;
 
   /// [protocol]
   /// The set of steps expected to be performed as part of the execution of
@@ -370,9 +358,6 @@ class ResearchStudy extends DomainResource {
   /// [status]
   /// The current state of the study.
   final ResearchStudyStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [primaryPurposeType]
   /// The type of study based upon the intent of the study's activities. A
@@ -424,9 +409,6 @@ class ResearchStudy extends DomainResource {
   /// [description]
   /// A full description of how the study is being conducted.
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [enrollment]
   /// Reference to a Group that defines the criteria for and quantity of
@@ -489,9 +471,6 @@ class ResearchStudy extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -515,9 +494,6 @@ class ResearchStudy extends DomainResource {
     }
     if (title?.value != null) {
       json['title'] = title!.toJson();
-    }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
     }
     if (protocol != null && protocol!.isNotEmpty) {
       json['protocol'] = protocol!.map((Reference v) => v.toJson()).toList();
@@ -561,9 +537,6 @@ class ResearchStudy extends DomainResource {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (enrollment != null && enrollment!.isNotEmpty) {
       json['enrollment'] =
           enrollment!.map((Reference v) => v.toJson()).toList();
@@ -603,20 +576,16 @@ class ResearchStudy extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     FhirString? title,
-    Element? titleElement,
     List<Reference>? protocol,
     List<Reference>? partOf,
     ResearchStudyStatus? status,
-    Element? statusElement,
     CodeableConcept? primaryPurposeType,
     CodeableConcept? phase,
     List<CodeableConcept>? category,
@@ -627,7 +596,6 @@ class ResearchStudy extends DomainResource {
     List<CodeableConcept>? keyword,
     List<CodeableConcept>? location,
     FhirMarkdown? description,
-    Element? descriptionElement,
     List<Reference>? enrollment,
     Period? period,
     Reference? sponsor,
@@ -648,20 +616,16 @@ class ResearchStudy extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       protocol: protocol ?? this.protocol,
       partOf: partOf ?? this.partOf,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       primaryPurposeType: primaryPurposeType ?? this.primaryPurposeType,
       phase: phase ?? this.phase,
       category: category ?? this.category,
@@ -672,7 +636,6 @@ class ResearchStudy extends DomainResource {
       keyword: keyword ?? this.keyword,
       location: location ?? this.location,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       enrollment: enrollment ?? this.enrollment,
       period: period ?? this.period,
       sponsor: sponsor ?? this.sponsor,
@@ -702,17 +665,11 @@ class ResearchStudyArm extends BackboneElement {
 
   ResearchStudyArm({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.type,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -724,11 +681,15 @@ class ResearchStudyArm extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ResearchStudyArm.fromJson(Map<String, dynamic> json) {
     return ResearchStudyArm(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -737,35 +698,32 @@ class ResearchStudyArm extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: FhirString.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
-          : null,
+      name: FhirString.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
             )
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [ResearchStudyArm] from a [String] or [YamlMap] object
+  /// Deserialize [ResearchStudyArm] from a [String]
+  /// or [YamlMap] object
   factory ResearchStudyArm.fromYaml(dynamic yaml) => yaml is String
       ? ResearchStudyArm.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -774,11 +732,11 @@ class ResearchStudyArm extends BackboneElement {
           ? ResearchStudyArm.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ResearchStudyArm cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ResearchStudyArm cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ResearchStudyArm] that takes in a [String]
+  /// Factory constructor for [ResearchStudyArm]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ResearchStudyArm.fromJsonString(String source) {
@@ -794,12 +752,18 @@ class ResearchStudyArm extends BackboneElement {
   @override
   String get fhirType => 'ResearchStudyArm';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// Unique, human-readable label for this arm of the study.
   final FhirString name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [type]
   /// Categorization of study arm, e.g. experimental, active comparator,
@@ -810,9 +774,6 @@ class ResearchStudyArm extends BackboneElement {
   /// A succinct description of the path through the study that would be
   /// followed by a subject adhering to this arm.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -828,17 +789,11 @@ class ResearchStudyArm extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (type != null) {
       json['type'] = type!.toJson();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     return json;
   }
@@ -851,10 +806,8 @@ class ResearchStudyArm extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    Element? nameElement,
     CodeableConcept? type,
     FhirString? description,
-    Element? descriptionElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -867,10 +820,8 @@ class ResearchStudyArm extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       type: type ?? this.type,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -890,12 +841,9 @@ class ResearchStudyObjective extends BackboneElement {
 
   ResearchStudyObjective({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.type,
     super.userData,
     super.formatCommentsPre,
@@ -908,11 +856,15 @@ class ResearchStudyObjective extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ResearchStudyObjective.fromJson(Map<String, dynamic> json) {
     return ResearchStudyObjective(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -921,17 +873,17 @@ class ResearchStudyObjective extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
@@ -941,7 +893,8 @@ class ResearchStudyObjective extends BackboneElement {
     );
   }
 
-  /// Deserialize [ResearchStudyObjective] from a [String] or [YamlMap] object
+  /// Deserialize [ResearchStudyObjective] from a [String]
+  /// or [YamlMap] object
   factory ResearchStudyObjective.fromYaml(dynamic yaml) => yaml is String
       ? ResearchStudyObjective.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -951,10 +904,11 @@ class ResearchStudyObjective extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ResearchStudyObjective cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ResearchStudyObjective cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ResearchStudyObjective] that takes in a [String]
+  /// Factory constructor for [ResearchStudyObjective]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ResearchStudyObjective.fromJsonString(String source) {
@@ -970,12 +924,18 @@ class ResearchStudyObjective extends BackboneElement {
   @override
   String get fhirType => 'ResearchStudyObjective';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// Unique, human-readable label for this objective of the study.
   final FhirString? name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [type]
   /// The kind of study objective.
@@ -997,9 +957,6 @@ class ResearchStudyObjective extends BackboneElement {
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -1014,7 +971,6 @@ class ResearchStudyObjective extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    Element? nameElement,
     CodeableConcept? type,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1028,7 +984,6 @@ class ResearchStudyObjective extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       type: type ?? this.type,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

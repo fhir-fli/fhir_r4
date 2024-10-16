@@ -12,34 +12,19 @@ class PaymentNotice extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.request,
     this.response,
     required this.created,
-
-    /// Extensions for [created]
-    this.createdElement,
     this.provider,
     required this.payment,
     this.paymentDate,
-
-    /// Extensions for [paymentDate]
-    this.paymentDateElement,
     this.payee,
     required this.recipient,
     required this.amount,
@@ -57,27 +42,27 @@ class PaymentNotice extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PaymentNotice.fromJson(Map<String, dynamic> json) {
     return PaymentNotice(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -87,7 +72,7 @@ class PaymentNotice extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -96,7 +81,7 @@ class PaymentNotice extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -105,7 +90,7 @@ class PaymentNotice extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -114,18 +99,16 @@ class PaymentNotice extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: FinancialResourceStatusCodes.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: FinancialResourceStatusCodes.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       request: json['request'] != null
           ? Reference.fromJson(
               json['request'] as Map<String, dynamic>,
@@ -136,12 +119,10 @@ class PaymentNotice extends DomainResource {
               json['response'] as Map<String, dynamic>,
             )
           : null,
-      created: FhirDateTime.fromJson(json['created']),
-      createdElement: json['_created'] != null
-          ? Element.fromJson(
-              json['_created'] as Map<String, dynamic>,
-            )
-          : null,
+      created: FhirDateTime.fromJson({
+        'value': json['created'],
+        '_value': json['_created'],
+      }),
       provider: json['provider'] != null
           ? Reference.fromJson(
               json['provider'] as Map<String, dynamic>,
@@ -151,12 +132,10 @@ class PaymentNotice extends DomainResource {
         json['payment'] as Map<String, dynamic>,
       ),
       paymentDate: json['paymentDate'] != null
-          ? FhirDate.fromJson(json['paymentDate'])
-          : null,
-      paymentDateElement: json['_paymentDate'] != null
-          ? Element.fromJson(
-              json['_paymentDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['paymentDate'],
+              '_value': json['_paymentDate'],
+            })
           : null,
       payee: json['payee'] != null
           ? Reference.fromJson(
@@ -177,7 +156,8 @@ class PaymentNotice extends DomainResource {
     );
   }
 
-  /// Deserialize [PaymentNotice] from a [String] or [YamlMap] object
+  /// Deserialize [PaymentNotice] from a [String]
+  /// or [YamlMap] object
   factory PaymentNotice.fromYaml(dynamic yaml) => yaml is String
       ? PaymentNotice.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -186,11 +166,11 @@ class PaymentNotice extends DomainResource {
           ? PaymentNotice.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'PaymentNotice cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('PaymentNotice cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PaymentNotice] that takes in a [String]
+  /// Factory constructor for [PaymentNotice]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PaymentNotice.fromJsonString(String source) {
@@ -206,6 +186,15 @@ class PaymentNotice extends DomainResource {
   @override
   String get fhirType => 'PaymentNotice';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// A unique identifier assigned to this payment notice.
   final List<Identifier>? identifier;
@@ -213,9 +202,6 @@ class PaymentNotice extends DomainResource {
   /// [status]
   /// The status of the resource instance.
   final FinancialResourceStatusCodes status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [request]
   /// Reference of resource for which payment is being made.
@@ -229,9 +215,6 @@ class PaymentNotice extends DomainResource {
   /// The date when this resource was created.
   final FhirDateTime created;
 
-  /// Extensions for [created]
-  final Element? createdElement;
-
   /// [provider]
   /// The practitioner who is responsible for the services rendered to the
   /// patient.
@@ -244,9 +227,6 @@ class PaymentNotice extends DomainResource {
   /// [paymentDate]
   /// The date when the above payment action occurred.
   final FhirDate? paymentDate;
-
-  /// Extensions for [paymentDate]
-  final Element? paymentDateElement;
 
   /// [payee]
   /// The party who will receive or has received payment that is the subject
@@ -277,9 +257,6 @@ class PaymentNotice extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -309,18 +286,12 @@ class PaymentNotice extends DomainResource {
       json['response'] = response!.toJson();
     }
     json['created'] = created.toJson();
-    if (createdElement != null) {
-      json['_created'] = createdElement!.toJson();
-    }
     if (provider != null) {
       json['provider'] = provider!.toJson();
     }
     json['payment'] = payment.toJson();
     if (paymentDate?.value != null) {
       json['paymentDate'] = paymentDate!.toJson();
-    }
-    if (paymentDateElement != null) {
-      json['_paymentDate'] = paymentDateElement!.toJson();
     }
     if (payee != null) {
       json['payee'] = payee!.toJson();
@@ -340,24 +311,19 @@ class PaymentNotice extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     FinancialResourceStatusCodes? status,
-    Element? statusElement,
     Reference? request,
     Reference? response,
     FhirDateTime? created,
-    Element? createdElement,
     Reference? provider,
     Reference? payment,
     FhirDate? paymentDate,
-    Element? paymentDateElement,
     Reference? payee,
     Reference? recipient,
     Money? amount,
@@ -373,24 +339,19 @@ class PaymentNotice extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       request: request ?? this.request,
       response: response ?? this.response,
       created: created ?? this.created,
-      createdElement: createdElement ?? this.createdElement,
       provider: provider ?? this.provider,
       payment: payment ?? this.payment,
       paymentDate: paymentDate ?? this.paymentDate,
-      paymentDateElement: paymentDateElement ?? this.paymentDateElement,
       payee: payee ?? this.payee,
       recipient: recipient ?? this.recipient,
       amount: amount ?? this.amount,

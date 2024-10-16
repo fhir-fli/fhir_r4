@@ -10,20 +10,11 @@ class Annotation extends DataType {
 
   Annotation({
     super.id,
-    super.extension_,
+    this.extension_,
     this.authorReference,
     this.authorString,
-
-    /// Extensions for [authorString]
-    this.authorStringElement,
     this.time,
-
-    /// Extensions for [time]
-    this.timeElement,
     required this.text,
-
-    /// Extensions for [text]
-    this.textElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -35,11 +26,15 @@ class Annotation extends DataType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Annotation.fromJson(Map<String, dynamic> json) {
     return Annotation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -51,29 +46,26 @@ class Annotation extends DataType {
             )
           : null,
       authorString: json['authorString'] != null
-          ? FhirString.fromJson(json['authorString'])
+          ? FhirString.fromJson({
+              'value': json['authorString'],
+              '_value': json['_authorString'],
+            })
           : null,
-      authorStringElement: json['_authorString'] != null
-          ? Element.fromJson(
-              json['_authorString'] as Map<String, dynamic>,
-            )
+      time: json['time'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['time'],
+              '_value': json['_time'],
+            })
           : null,
-      time: json['time'] != null ? FhirDateTime.fromJson(json['time']) : null,
-      timeElement: json['_time'] != null
-          ? Element.fromJson(
-              json['_time'] as Map<String, dynamic>,
-            )
-          : null,
-      text: FhirMarkdown.fromJson(json['text']),
-      textElement: json['_text'] != null
-          ? Element.fromJson(
-              json['_text'] as Map<String, dynamic>,
-            )
-          : null,
+      text: FhirMarkdown.fromJson({
+        'value': json['text'],
+        '_value': json['_text'],
+      }),
     );
   }
 
-  /// Deserialize [Annotation] from a [String] or [YamlMap] object
+  /// Deserialize [Annotation] from a [String]
+  /// or [YamlMap] object
   factory Annotation.fromYaml(dynamic yaml) => yaml is String
       ? Annotation.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -82,10 +74,11 @@ class Annotation extends DataType {
           ? Annotation.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Annotation cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Annotation cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Annotation] that takes in a [String]
+  /// Factory constructor for [Annotation]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Annotation.fromJsonString(String source) {
@@ -101,6 +94,15 @@ class Annotation extends DataType {
   @override
   String get fhirType => 'Annotation';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [authorReference]
   /// The individual responsible for making the annotation.
   final Reference? authorReference;
@@ -109,22 +111,13 @@ class Annotation extends DataType {
   /// The individual responsible for making the annotation.
   final FhirString? authorString;
 
-  /// Extensions for [authorString]
-  final Element? authorStringElement;
-
   /// [time]
   /// Indicates when this particular annotation was made.
   final FhirDateTime? time;
 
-  /// Extensions for [time]
-  final Element? timeElement;
-
   /// [text]
   /// The text of the annotation in markdown format.
   final FhirMarkdown text;
-
-  /// Extensions for [text]
-  final Element? textElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -141,19 +134,10 @@ class Annotation extends DataType {
     if (authorString?.value != null) {
       json['authorString'] = authorString!.toJson();
     }
-    if (authorStringElement != null) {
-      json['_authorString'] = authorStringElement!.toJson();
-    }
     if (time?.value != null) {
       json['time'] = time!.toJson();
     }
-    if (timeElement != null) {
-      json['_time'] = timeElement!.toJson();
-    }
     json['text'] = text.toJson();
-    if (textElement != null) {
-      json['_text'] = textElement!.toJson();
-    }
     return json;
   }
 
@@ -165,11 +149,8 @@ class Annotation extends DataType {
     List<FhirExtension>? extension_,
     Reference? authorReference,
     FhirString? authorString,
-    Element? authorStringElement,
     FhirDateTime? time,
-    Element? timeElement,
     FhirMarkdown? text,
-    Element? textElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -182,11 +163,8 @@ class Annotation extends DataType {
       extension_: extension_ ?? this.extension_,
       authorReference: authorReference ?? this.authorReference,
       authorString: authorString ?? this.authorString,
-      authorStringElement: authorStringElement ?? this.authorStringElement,
       time: time ?? this.time,
-      timeElement: timeElement ?? this.timeElement,
       text: text ?? this.text,
-      textElement: textElement ?? this.textElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

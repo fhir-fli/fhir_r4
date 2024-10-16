@@ -1,86 +1,98 @@
 import 'package:fhir_r4/fhir_r4.dart';
 
-/// This class represents the FHIR primitive type `integer`
+/// Abstract base class for all FHIR primitive types
 abstract class PrimitiveType<T> extends FhirBase {
   /// Main constructor for [PrimitiveType<T> ]
-  PrimitiveType({T? value, String? stringValue, this.element})
-      : _value = value,
-        _stringValue = stringValue;
+  PrimitiveType(this.value, [this.element]);
 
   @override
   String get fhirType => 'PrimitiveType';
-  final T? _value;
-  final String? _stringValue;
 
-  /// Optional metadata element
-  final Element? element; // Optional metadata element
+  /// The primitive value (nullable)
+  final T? value;
 
-  /// Method to convert the value into its string representation
-  String? encode() => toString();
+  /// Optional metadata element (nullable)
+  final Element? element;
 
-  /// Method to convert the string representation into the value
-  dynamic get value => _value;
+  /// Boolean getter to determine if the value is present
+  bool get hasValue => value != null;
 
-  /// Method to convert the string representation into the value
-  String? get valueAsString => _stringValue;
+  /// Boolean getter to determine if the element is present
+  bool get hasElement => element != null;
 
-  /// Method to convert the string representation into the value
-  bool get hasValue => _stringValue?.isNotEmpty ?? false;
+  /// Boolean getter to determine if both value and element are present
+  bool get hasValueAndElement => hasValue && hasElement;
 
-  /// Method to convert the string representation into the value
-  bool get hasPrimitiveValue => _stringValue != null && _stringValue.isNotEmpty;
-
+  /// Converts the instance to JSON, handling both value and element
   @override
-  String primitiveValue() => _stringValue ?? '';
-
-  /// Adjust toJson to handle both value and element
-  @override
-  dynamic toJson() {
-    final json = <String, Object>{};
-    if (_value != null) {
-      json['value'] = _value;
-    }
-    if (element != null) {
-      json['element'] = element!.toJson();
-    }
+  Map<String, dynamic> toJson() {
+    final json = <String, dynamic>{};
+    if (value != null) json['value'] = value;
+    if (element != null) json['_value'] = element!.toJson();
     return json;
   }
 
-  /// Converts the PrimitiveType to YAML
-  @override
-  dynamic toYaml() => json2yaml(toJson() as Map<String, dynamic>);
-
-  @override
-  bool equalsDeep(FhirBase? other) {
-    return other != null &&
-        other is PrimitiveType<T> &&
-        value == other.value &&
-        valueAsString == other.valueAsString;
-  }
-
-  /// Helper method to compare PrimitiveType objects
-  bool equalsShallow(PrimitiveType<T> other) {
-    return value == other.value;
-  }
-
-  @override
-  String toString() => '$runtimeType[$valueAsString]';
-
-  /// Helper method to compare PrimitiveType objects
-  bool equals(Object other);
-
-  /// Retrieves a property by its name and hash.
+  /// Retrieves a property by its name and hash
   dynamic getProperty(int hash, String name) {
     if (hash == _computeHash('value')) {
-      return this;
-    } else {
-      return element?.getPropertyByHash(hash);
+      return value;
     }
+    return element?.getPropertyByHash(hash);
   }
 
-  /// Sets a property value.
+  /// Helper method to compute hash codes
+  int _computeHash(String name) => name.hashCode;
+
+  /// Sets a property value, returning a new instance with the updated element
   PrimitiveType<T> setElement(String name, dynamic elementValue);
 
-  /// Helper method to compute hash codes.
-  int _computeHash(String name) => name.hashCode;
+  /// Checks equality between two instances (deep comparison)
+  @override
+  bool equalsDeep(FhirBase? other) {
+    return other is PrimitiveType<T> &&
+        value == other.value &&
+        element == other.element &&
+        userData == other.userData;
+  }
+
+  /// Checks equality between two instances (shallow comparison)
+  bool equalsShallow(PrimitiveType<T> other) => value == other.value;
+
+  /// Overrides `==` for equality comparison
+  bool equals(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! PrimitiveType<T>) return false;
+    return value == other.value && element == other.element;
+  }
+
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) => equals(other);
+
+  /// Overrides `hashCode` for use in hash-based collections
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => Object.hash(value, element);
+
+  /// Provides a string representation of the instance
+  @override
+  String toString() =>
+      value != null ? '$runtimeType[$value]' : super.toString();
+
+  /// Clone method to create a deep copy of the instance
+  @override
+  PrimitiveType<T> clone();
+
+  /// CopyWith method to create a modified copy of the instance
+  @override
+  PrimitiveType<T> copyWith({
+    T? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    List<String>? formatCommentsPost,
+    List<String>? formatCommentsPre,
+    Map<String, FhirBase>? namedChildren,
+  });
 }

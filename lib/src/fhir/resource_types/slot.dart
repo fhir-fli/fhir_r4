@@ -12,16 +12,10 @@ class Slot extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.serviceCategory,
@@ -30,25 +24,10 @@ class Slot extends DomainResource {
     this.appointmentType,
     required this.schedule,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     required this.start,
-
-    /// Extensions for [start]
-    this.startElement,
     required this.end,
-
-    /// Extensions for [end]
-    this.endElement,
     this.overbooked,
-
-    /// Extensions for [overbooked]
-    this.overbookedElement,
     this.comment,
-
-    /// Extensions for [comment]
-    this.commentElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -62,27 +41,27 @@ class Slot extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Slot.fromJson(Map<String, dynamic> json) {
     return Slot(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -92,7 +71,7 @@ class Slot extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -101,7 +80,7 @@ class Slot extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -110,7 +89,7 @@ class Slot extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -119,7 +98,7 @@ class Slot extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -128,7 +107,7 @@ class Slot extends DomainResource {
       serviceCategory: json['serviceCategory'] != null
           ? (json['serviceCategory'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -137,7 +116,7 @@ class Slot extends DomainResource {
       serviceType: json['serviceType'] != null
           ? (json['serviceType'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -146,7 +125,7 @@ class Slot extends DomainResource {
       specialty: json['specialty'] != null
           ? (json['specialty'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -160,43 +139,35 @@ class Slot extends DomainResource {
       schedule: Reference.fromJson(
         json['schedule'] as Map<String, dynamic>,
       ),
-      status: SlotStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
-      start: FhirInstant.fromJson(json['start']),
-      startElement: json['_start'] != null
-          ? Element.fromJson(
-              json['_start'] as Map<String, dynamic>,
-            )
-          : null,
-      end: FhirInstant.fromJson(json['end']),
-      endElement: json['_end'] != null
-          ? Element.fromJson(
-              json['_end'] as Map<String, dynamic>,
-            )
-          : null,
+      status: SlotStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
+      start: FhirInstant.fromJson({
+        'value': json['start'],
+        '_value': json['_start'],
+      }),
+      end: FhirInstant.fromJson({
+        'value': json['end'],
+        '_value': json['_end'],
+      }),
       overbooked: json['overbooked'] != null
-          ? FhirBoolean.fromJson(json['overbooked'])
+          ? FhirBoolean.fromJson({
+              'value': json['overbooked'],
+              '_value': json['_overbooked'],
+            })
           : null,
-      overbookedElement: json['_overbooked'] != null
-          ? Element.fromJson(
-              json['_overbooked'] as Map<String, dynamic>,
-            )
-          : null,
-      comment:
-          json['comment'] != null ? FhirString.fromJson(json['comment']) : null,
-      commentElement: json['_comment'] != null
-          ? Element.fromJson(
-              json['_comment'] as Map<String, dynamic>,
-            )
+      comment: json['comment'] != null
+          ? FhirString.fromJson({
+              'value': json['comment'],
+              '_value': json['_comment'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [Slot] from a [String] or [YamlMap] object
+  /// Deserialize [Slot] from a [String]
+  /// or [YamlMap] object
   factory Slot.fromYaml(dynamic yaml) => yaml is String
       ? Slot.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -205,10 +176,11 @@ class Slot extends DomainResource {
           ? Slot.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Slot cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Slot cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Slot] that takes in a [String]
+  /// Factory constructor for [Slot]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Slot.fromJsonString(String source) {
@@ -223,6 +195,15 @@ class Slot extends DomainResource {
 
   @override
   String get fhirType => 'Slot';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// External Ids for this item.
@@ -259,38 +240,23 @@ class Slot extends DomainResource {
   /// busy | free | busy-unavailable | busy-tentative | entered-in-error.
   final SlotStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [start]
   /// Date/Time that the slot is to begin.
   final FhirInstant start;
 
-  /// Extensions for [start]
-  final Element? startElement;
-
   /// [end]
   /// Date/Time that the slot is to conclude.
   final FhirInstant end;
-
-  /// Extensions for [end]
-  final Element? endElement;
 
   /// [overbooked]
   /// This slot has already been overbooked, appointments are unlikely to be
   /// accepted for this time.
   final FhirBoolean? overbooked;
 
-  /// Extensions for [overbooked]
-  final Element? overbookedElement;
-
   /// [comment]
   /// Comments on the slot to describe any extended information. Such as
   /// custom constraints on the slot.
   final FhirString? comment;
-
-  /// Extensions for [comment]
-  final Element? commentElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -303,9 +269,6 @@ class Slot extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -346,24 +309,12 @@ class Slot extends DomainResource {
     json['schedule'] = schedule.toJson();
     json['status'] = status.toJson();
     json['start'] = start.toJson();
-    if (startElement != null) {
-      json['_start'] = startElement!.toJson();
-    }
     json['end'] = end.toJson();
-    if (endElement != null) {
-      json['_end'] = endElement!.toJson();
-    }
     if (overbooked?.value != null) {
       json['overbooked'] = overbooked!.toJson();
     }
-    if (overbookedElement != null) {
-      json['_overbooked'] = overbookedElement!.toJson();
-    }
     if (comment?.value != null) {
       json['comment'] = comment!.toJson();
-    }
-    if (commentElement != null) {
-      json['_comment'] = commentElement!.toJson();
     }
     return json;
   }
@@ -375,9 +326,7 @@ class Slot extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -389,15 +338,10 @@ class Slot extends DomainResource {
     CodeableConcept? appointmentType,
     Reference? schedule,
     SlotStatus? status,
-    Element? statusElement,
     FhirInstant? start,
-    Element? startElement,
     FhirInstant? end,
-    Element? endElement,
     FhirBoolean? overbooked,
-    Element? overbookedElement,
     FhirString? comment,
-    Element? commentElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -409,9 +353,7 @@ class Slot extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -423,15 +365,10 @@ class Slot extends DomainResource {
       appointmentType: appointmentType ?? this.appointmentType,
       schedule: schedule ?? this.schedule,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       start: start ?? this.start,
-      startElement: startElement ?? this.startElement,
       end: end ?? this.end,
-      endElement: endElement ?? this.endElement,
       overbooked: overbooked ?? this.overbooked,
-      overbookedElement: overbookedElement ?? this.overbookedElement,
       comment: comment ?? this.comment,
-      commentElement: commentElement ?? this.commentElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

@@ -10,15 +10,9 @@ class Narrative extends DataType {
 
   Narrative({
     super.id,
-    super.extension_,
+    this.extension_,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     required this.div,
-
-    /// Extensions for [div]
-    this.divElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -30,32 +24,33 @@ class Narrative extends DataType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Narrative.fromJson(Map<String, dynamic> json) {
     return Narrative(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: NarrativeStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
-      div: FhirXhtml.fromJson(json['div']),
-      divElement: json['_div'] != null
-          ? Element.fromJson(
-              json['_div'] as Map<String, dynamic>,
-            )
-          : null,
+      status: NarrativeStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
+      div: FhirXhtml.fromJson({
+        'value': json['div'],
+        '_value': json['_div'],
+      }),
     );
   }
 
-  /// Deserialize [Narrative] from a [String] or [YamlMap] object
+  /// Deserialize [Narrative] from a [String]
+  /// or [YamlMap] object
   factory Narrative.fromYaml(dynamic yaml) => yaml is String
       ? Narrative.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -64,10 +59,11 @@ class Narrative extends DataType {
           ? Narrative.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Narrative cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Narrative cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Narrative] that takes in a [String]
+  /// Factory constructor for [Narrative]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Narrative.fromJsonString(String source) {
@@ -83,21 +79,24 @@ class Narrative extends DataType {
   @override
   String get fhirType => 'Narrative';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [status]
   /// The status of the narrative - whether it's entirely generated (from
   /// just the defined data or the extensions too), or whether a human
   /// authored it and it may contain additional data.
   final NarrativeStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [div]
   /// The actual narrative content, a stripped down version of XHTML.
   final FhirXhtml div;
-
-  /// Extensions for [div]
-  final Element? divElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -110,9 +109,6 @@ class Narrative extends DataType {
     }
     json['status'] = status.toJson();
     json['div'] = div.toJson();
-    if (divElement != null) {
-      json['_div'] = divElement!.toJson();
-    }
     return json;
   }
 
@@ -123,9 +119,7 @@ class Narrative extends DataType {
     FhirString? id,
     List<FhirExtension>? extension_,
     NarrativeStatus? status,
-    Element? statusElement,
     FhirXhtml? div,
-    Element? divElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -137,9 +131,7 @@ class Narrative extends DataType {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       div: div ?? this.div,
-      divElement: divElement ?? this.divElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

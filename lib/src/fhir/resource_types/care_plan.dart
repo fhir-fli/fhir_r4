@@ -14,53 +14,26 @@ class CarePlan extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-
-    /// Extensions for [instantiatesCanonical]
-    this.instantiatesCanonicalElement,
     this.instantiatesUri,
-
-    /// Extensions for [instantiatesUri]
-    this.instantiatesUriElement,
     this.basedOn,
     this.replaces,
     this.partOf,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     required this.intent,
-
-    /// Extensions for [intent]
-    this.intentElement,
     this.category,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     required this.subject,
     this.encounter,
     this.period,
     this.created,
-
-    /// Extensions for [created]
-    this.createdElement,
     this.author,
     this.contributor,
     this.careTeam,
@@ -82,27 +55,27 @@ class CarePlan extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CarePlan.fromJson(Map<String, dynamic> json) {
     return CarePlan(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -112,7 +85,7 @@ class CarePlan extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -121,7 +94,7 @@ class CarePlan extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -130,7 +103,7 @@ class CarePlan extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -139,44 +112,24 @@ class CarePlan extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      instantiatesCanonical: json['instantiatesCanonical'] != null
-          ? (json['instantiatesCanonical'] as List<dynamic>)
-              .map<FhirCanonical>(
-                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
-          ? (json['_instantiatesCanonical'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      instantiatesUri: json['instantiatesUri'] != null
-          ? (json['instantiatesUri'] as List<dynamic>)
-              .map<FhirUri>(
-                (dynamic v) => FhirUri.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      instantiatesUriElement: json['_instantiatesUri'] != null
-          ? (json['_instantiatesUri'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      instantiatesCanonical: parsePrimitiveList<FhirCanonical>(
+          json['instantiatesCanonical'] as List<dynamic>?,
+          json['_instantiatesCanonical'] as List<dynamic>?,
+          fromJson: FhirCanonical.fromJson),
+      instantiatesUri: parsePrimitiveList<FhirUri>(
+          json['instantiatesUri'] as List<dynamic>?,
+          json['_instantiatesUri'] as List<dynamic>?,
+          fromJson: FhirUri.fromJson),
       basedOn: json['basedOn'] != null
           ? (json['basedOn'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -185,7 +138,7 @@ class CarePlan extends DomainResource {
       replaces: json['replaces'] != null
           ? (json['replaces'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -194,46 +147,40 @@ class CarePlan extends DomainResource {
       partOf: json['partOf'] != null
           ? (json['partOf'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: RequestStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
-      intent: CarePlanIntent.fromJson(json['intent']),
-      intentElement: json['_intent'] != null
-          ? Element.fromJson(
-              json['_intent'] as Map<String, dynamic>,
-            )
-          : null,
+      status: RequestStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
+      intent: CarePlanIntent.fromJson({
+        'value': json['intent'],
+        '_value': json['_intent'],
+      }),
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
@@ -249,12 +196,10 @@ class CarePlan extends DomainResource {
             )
           : null,
       created: json['created'] != null
-          ? FhirDateTime.fromJson(json['created'])
-          : null,
-      createdElement: json['_created'] != null
-          ? Element.fromJson(
-              json['_created'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['created'],
+              '_value': json['_created'],
+            })
           : null,
       author: json['author'] != null
           ? Reference.fromJson(
@@ -264,7 +209,7 @@ class CarePlan extends DomainResource {
       contributor: json['contributor'] != null
           ? (json['contributor'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -273,7 +218,7 @@ class CarePlan extends DomainResource {
       careTeam: json['careTeam'] != null
           ? (json['careTeam'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -282,7 +227,7 @@ class CarePlan extends DomainResource {
       addresses: json['addresses'] != null
           ? (json['addresses'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -291,7 +236,7 @@ class CarePlan extends DomainResource {
       supportingInfo: json['supportingInfo'] != null
           ? (json['supportingInfo'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -300,7 +245,7 @@ class CarePlan extends DomainResource {
       goal: json['goal'] != null
           ? (json['goal'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -309,7 +254,7 @@ class CarePlan extends DomainResource {
       activity: json['activity'] != null
           ? (json['activity'] as List<dynamic>)
               .map<CarePlanActivity>(
-                (dynamic v) => CarePlanActivity.fromJson(
+                (v) => CarePlanActivity.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -318,7 +263,7 @@ class CarePlan extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -327,7 +272,8 @@ class CarePlan extends DomainResource {
     );
   }
 
-  /// Deserialize [CarePlan] from a [String] or [YamlMap] object
+  /// Deserialize [CarePlan] from a [String]
+  /// or [YamlMap] object
   factory CarePlan.fromYaml(dynamic yaml) => yaml is String
       ? CarePlan.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -336,10 +282,11 @@ class CarePlan extends DomainResource {
           ? CarePlan.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('CarePlan cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('CarePlan cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CarePlan] that takes in a [String]
+  /// Factory constructor for [CarePlan]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CarePlan.fromJsonString(String source) {
@@ -355,6 +302,15 @@ class CarePlan extends DomainResource {
   @override
   String get fhirType => 'CarePlan';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Business identifiers assigned to this care plan by the performer or
   /// other systems which remain constant as the resource is updated and
@@ -367,17 +323,11 @@ class CarePlan extends DomainResource {
   /// CarePlan.
   final List<FhirCanonical>? instantiatesCanonical;
 
-  /// Extensions for [instantiatesCanonical]
-  final List<Element>? instantiatesCanonicalElement;
-
   /// [instantiatesUri]
   /// The URL pointing to an externally maintained protocol, guideline,
   /// questionnaire or other definition that is adhered to in whole or in
   /// part by this CarePlan.
   final List<FhirUri>? instantiatesUri;
-
-  /// Extensions for [instantiatesUri]
-  final List<Element>? instantiatesUriElement;
 
   /// [basedOn]
   /// A care plan that is fulfilled in whole or in part by this care plan.
@@ -398,16 +348,10 @@ class CarePlan extends DomainResource {
   /// future intentions or is now a historical record.
   final RequestStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [intent]
   /// Indicates the level of authority/intentionality associated with the
   /// care plan and where the care plan fits into the workflow chain.
   final CarePlanIntent intent;
-
-  /// Extensions for [intent]
-  final Element? intentElement;
 
   /// [category]
   /// Identifies what "kind" of plan this is to support differentiation
@@ -419,15 +363,9 @@ class CarePlan extends DomainResource {
   /// Human-friendly name for the care plan.
   final FhirString? title;
 
-  /// Extensions for [title]
-  final Element? titleElement;
-
   /// [description]
   /// A description of the scope and nature of the plan.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [subject]
   /// Identifies the patient or group whose intended care is described by the
@@ -448,9 +386,6 @@ class CarePlan extends DomainResource {
   /// Represents when this particular CarePlan record was created in the
   /// system, which is often a system-generated date.
   final FhirDateTime? created;
-
-  /// Extensions for [created]
-  final Element? createdElement;
 
   /// [author]
   /// When populated, the author is responsible for the care plan. The care
@@ -504,9 +439,6 @@ class CarePlan extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -532,18 +464,9 @@ class CarePlan extends DomainResource {
       json['instantiatesCanonical'] =
           instantiatesCanonical!.map((FhirCanonical v) => v.toJson()).toList();
     }
-    if (instantiatesCanonicalElement != null &&
-        instantiatesCanonicalElement!.isNotEmpty) {
-      json['_instantiatesCanonical'] =
-          instantiatesCanonicalElement!.map((Element v) => v.toJson()).toList();
-    }
     if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
       json['instantiatesUri'] =
           instantiatesUri!.map((FhirUri v) => v.toJson()).toList();
-    }
-    if (instantiatesUriElement != null && instantiatesUriElement!.isNotEmpty) {
-      json['_instantiatesUri'] =
-          instantiatesUriElement!.map((Element v) => v.toJson()).toList();
     }
     if (basedOn != null && basedOn!.isNotEmpty) {
       json['basedOn'] = basedOn!.map((Reference v) => v.toJson()).toList();
@@ -563,14 +486,8 @@ class CarePlan extends DomainResource {
     if (title?.value != null) {
       json['title'] = title!.toJson();
     }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
-    }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     json['subject'] = subject.toJson();
     if (encounter != null) {
@@ -581,9 +498,6 @@ class CarePlan extends DomainResource {
     }
     if (created?.value != null) {
       json['created'] = created!.toJson();
-    }
-    if (createdElement != null) {
-      json['_created'] = createdElement!.toJson();
     }
     if (author != null) {
       json['author'] = author!.toJson();
@@ -622,35 +536,26 @@ class CarePlan extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     List<FhirCanonical>? instantiatesCanonical,
-    List<Element>? instantiatesCanonicalElement,
     List<FhirUri>? instantiatesUri,
-    List<Element>? instantiatesUriElement,
     List<Reference>? basedOn,
     List<Reference>? replaces,
     List<Reference>? partOf,
     RequestStatus? status,
-    Element? statusElement,
     CarePlanIntent? intent,
-    Element? intentElement,
     List<CodeableConcept>? category,
     FhirString? title,
-    Element? titleElement,
     FhirString? description,
-    Element? descriptionElement,
     Reference? subject,
     Reference? encounter,
     Period? period,
     FhirDateTime? created,
-    Element? createdElement,
     Reference? author,
     List<Reference>? contributor,
     List<Reference>? careTeam,
@@ -670,9 +575,7 @@ class CarePlan extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -680,28 +583,19 @@ class CarePlan extends DomainResource {
       identifier: identifier ?? this.identifier,
       instantiatesCanonical:
           instantiatesCanonical ?? this.instantiatesCanonical,
-      instantiatesCanonicalElement:
-          instantiatesCanonicalElement ?? this.instantiatesCanonicalElement,
       instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      instantiatesUriElement:
-          instantiatesUriElement ?? this.instantiatesUriElement,
       basedOn: basedOn ?? this.basedOn,
       replaces: replaces ?? this.replaces,
       partOf: partOf ?? this.partOf,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       intent: intent ?? this.intent,
-      intentElement: intentElement ?? this.intentElement,
       category: category ?? this.category,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
       period: period ?? this.period,
       created: created ?? this.created,
-      createdElement: createdElement ?? this.createdElement,
       author: author ?? this.author,
       contributor: contributor ?? this.contributor,
       careTeam: careTeam ?? this.careTeam,
@@ -729,7 +623,7 @@ class CarePlanActivity extends BackboneElement {
 
   CarePlanActivity({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.outcomeCodeableConcept,
     this.outcomeReference,
@@ -747,11 +641,15 @@ class CarePlanActivity extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CarePlanActivity.fromJson(Map<String, dynamic> json) {
     return CarePlanActivity(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -760,7 +658,7 @@ class CarePlanActivity extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -769,7 +667,7 @@ class CarePlanActivity extends BackboneElement {
       outcomeCodeableConcept: json['outcomeCodeableConcept'] != null
           ? (json['outcomeCodeableConcept'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -778,7 +676,7 @@ class CarePlanActivity extends BackboneElement {
       outcomeReference: json['outcomeReference'] != null
           ? (json['outcomeReference'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -787,7 +685,7 @@ class CarePlanActivity extends BackboneElement {
       progress: json['progress'] != null
           ? (json['progress'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -806,7 +704,8 @@ class CarePlanActivity extends BackboneElement {
     );
   }
 
-  /// Deserialize [CarePlanActivity] from a [String] or [YamlMap] object
+  /// Deserialize [CarePlanActivity] from a [String]
+  /// or [YamlMap] object
   factory CarePlanActivity.fromYaml(dynamic yaml) => yaml is String
       ? CarePlanActivity.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -815,11 +714,11 @@ class CarePlanActivity extends BackboneElement {
           ? CarePlanActivity.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CarePlanActivity cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('CarePlanActivity cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CarePlanActivity] that takes in a [String]
+  /// Factory constructor for [CarePlanActivity]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CarePlanActivity.fromJsonString(String source) {
@@ -834,6 +733,15 @@ class CarePlanActivity extends BackboneElement {
 
   @override
   String get fhirType => 'CarePlanActivity';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [outcomeCodeableConcept]
   /// Identifies the outcome at the point when the status of the activity is
@@ -946,39 +854,21 @@ class CarePlanDetail extends BackboneElement {
 
   CarePlanDetail({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.kind,
-
-    /// Extensions for [kind]
-    this.kindElement,
     this.instantiatesCanonical,
-
-    /// Extensions for [instantiatesCanonical]
-    this.instantiatesCanonicalElement,
     this.instantiatesUri,
-
-    /// Extensions for [instantiatesUri]
-    this.instantiatesUriElement,
     this.code,
     this.reasonCode,
     this.reasonReference,
     this.goal,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.statusReason,
     this.doNotPerform,
-
-    /// Extensions for [doNotPerform]
-    this.doNotPerformElement,
     this.scheduledTiming,
     this.scheduledPeriod,
     this.scheduledString,
-
-    /// Extensions for [scheduledString]
-    this.scheduledStringElement,
     this.location,
     this.performer,
     this.productCodeableConcept,
@@ -986,9 +876,6 @@ class CarePlanDetail extends BackboneElement {
     this.dailyAmount,
     this.quantity,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1000,11 +887,15 @@ class CarePlanDetail extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CarePlanDetail.fromJson(Map<String, dynamic> json) {
     return CarePlanDetail(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1013,48 +904,26 @@ class CarePlanDetail extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       kind: json['kind'] != null
-          ? CarePlanActivityKind.fromJson(json['kind'])
+          ? CarePlanActivityKind.fromJson({
+              'value': json['kind'],
+              '_value': json['_kind'],
+            })
           : null,
-      kindElement: json['_kind'] != null
-          ? Element.fromJson(
-              json['_kind'] as Map<String, dynamic>,
-            )
-          : null,
-      instantiatesCanonical: json['instantiatesCanonical'] != null
-          ? (json['instantiatesCanonical'] as List<dynamic>)
-              .map<FhirCanonical>(
-                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
-          ? (json['_instantiatesCanonical'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      instantiatesUri: json['instantiatesUri'] != null
-          ? (json['instantiatesUri'] as List<dynamic>)
-              .map<FhirUri>(
-                (dynamic v) => FhirUri.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      instantiatesUriElement: json['_instantiatesUri'] != null
-          ? (json['_instantiatesUri'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      instantiatesCanonical: parsePrimitiveList<FhirCanonical>(
+          json['instantiatesCanonical'] as List<dynamic>?,
+          json['_instantiatesCanonical'] as List<dynamic>?,
+          fromJson: FhirCanonical.fromJson),
+      instantiatesUri: parsePrimitiveList<FhirUri>(
+          json['instantiatesUri'] as List<dynamic>?,
+          json['_instantiatesUri'] as List<dynamic>?,
+          fromJson: FhirUri.fromJson),
       code: json['code'] != null
           ? CodeableConcept.fromJson(
               json['code'] as Map<String, dynamic>,
@@ -1063,7 +932,7 @@ class CarePlanDetail extends BackboneElement {
       reasonCode: json['reasonCode'] != null
           ? (json['reasonCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1072,7 +941,7 @@ class CarePlanDetail extends BackboneElement {
       reasonReference: json['reasonReference'] != null
           ? (json['reasonReference'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1081,30 +950,26 @@ class CarePlanDetail extends BackboneElement {
       goal: json['goal'] != null
           ? (json['goal'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: CarePlanActivityStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: CarePlanActivityStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       statusReason: json['statusReason'] != null
           ? CodeableConcept.fromJson(
               json['statusReason'] as Map<String, dynamic>,
             )
           : null,
       doNotPerform: json['doNotPerform'] != null
-          ? FhirBoolean.fromJson(json['doNotPerform'])
-          : null,
-      doNotPerformElement: json['_doNotPerform'] != null
-          ? Element.fromJson(
-              json['_doNotPerform'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['doNotPerform'],
+              '_value': json['_doNotPerform'],
+            })
           : null,
       scheduledTiming: json['scheduledTiming'] != null
           ? Timing.fromJson(
@@ -1117,12 +982,10 @@ class CarePlanDetail extends BackboneElement {
             )
           : null,
       scheduledString: json['scheduledString'] != null
-          ? FhirString.fromJson(json['scheduledString'])
-          : null,
-      scheduledStringElement: json['_scheduledString'] != null
-          ? Element.fromJson(
-              json['_scheduledString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['scheduledString'],
+              '_value': json['_scheduledString'],
+            })
           : null,
       location: json['location'] != null
           ? Reference.fromJson(
@@ -1132,7 +995,7 @@ class CarePlanDetail extends BackboneElement {
       performer: json['performer'] != null
           ? (json['performer'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1159,17 +1022,16 @@ class CarePlanDetail extends BackboneElement {
             )
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [CarePlanDetail] from a [String] or [YamlMap] object
+  /// Deserialize [CarePlanDetail] from a [String]
+  /// or [YamlMap] object
   factory CarePlanDetail.fromYaml(dynamic yaml) => yaml is String
       ? CarePlanDetail.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1178,11 +1040,11 @@ class CarePlanDetail extends BackboneElement {
           ? CarePlanDetail.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CarePlanDetail cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('CarePlanDetail cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CarePlanDetail] that takes in a [String]
+  /// Factory constructor for [CarePlanDetail]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CarePlanDetail.fromJsonString(String source) {
@@ -1198,6 +1060,15 @@ class CarePlanDetail extends BackboneElement {
   @override
   String get fhirType => 'CarePlanDetail';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [kind]
   /// A description of the kind of resource the in-line definition of a care
   /// plan activity is representing. The CarePlan.activity.detail is an
@@ -1206,26 +1077,17 @@ class CarePlanDetail extends BackboneElement {
   /// ServiceRequest, or a CommunicationRequest.
   final CarePlanActivityKind? kind;
 
-  /// Extensions for [kind]
-  final Element? kindElement;
-
   /// [instantiatesCanonical]
   /// The URL pointing to a FHIR-defined protocol, guideline, questionnaire
   /// or other definition that is adhered to in whole or in part by this
   /// CarePlan activity.
   final List<FhirCanonical>? instantiatesCanonical;
 
-  /// Extensions for [instantiatesCanonical]
-  final List<Element>? instantiatesCanonicalElement;
-
   /// [instantiatesUri]
   /// The URL pointing to an externally maintained protocol, guideline,
   /// questionnaire or other definition that is adhered to in whole or in
   /// part by this CarePlan activity.
   final List<FhirUri>? instantiatesUri;
-
-  /// Extensions for [instantiatesUri]
-  final List<Element>? instantiatesUriElement;
 
   /// [code]
   /// Detailed description of the type of planned activity; e.g. what lab
@@ -1253,9 +1115,6 @@ class CarePlanDetail extends BackboneElement {
   /// Identifies what progress is being made for the specific activity.
   final CarePlanActivityStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [statusReason]
   /// Provides reason why the activity isn't yet started, is on hold, was
   /// cancelled, etc.
@@ -1267,9 +1126,6 @@ class CarePlanDetail extends BackboneElement {
   /// that the described activity is one that should be engaged in when
   /// following the plan.
   final FhirBoolean? doNotPerform;
-
-  /// Extensions for [doNotPerform]
-  final Element? doNotPerformElement;
 
   /// [scheduledTiming]
   /// The period, timing or frequency upon which the described activity is to
@@ -1285,9 +1141,6 @@ class CarePlanDetail extends BackboneElement {
   /// The period, timing or frequency upon which the described activity is to
   /// occur.
   final FhirString? scheduledString;
-
-  /// Extensions for [scheduledString]
-  final Element? scheduledStringElement;
 
   /// [location]
   /// Identifies the facility where the activity will occur; e.g. home,
@@ -1324,9 +1177,6 @@ class CarePlanDetail extends BackboneElement {
   /// may convey specifics about the activity such as body site, method,
   /// route, etc.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1348,18 +1198,9 @@ class CarePlanDetail extends BackboneElement {
       json['instantiatesCanonical'] =
           instantiatesCanonical!.map((FhirCanonical v) => v.toJson()).toList();
     }
-    if (instantiatesCanonicalElement != null &&
-        instantiatesCanonicalElement!.isNotEmpty) {
-      json['_instantiatesCanonical'] =
-          instantiatesCanonicalElement!.map((Element v) => v.toJson()).toList();
-    }
     if (instantiatesUri != null && instantiatesUri!.isNotEmpty) {
       json['instantiatesUri'] =
           instantiatesUri!.map((FhirUri v) => v.toJson()).toList();
-    }
-    if (instantiatesUriElement != null && instantiatesUriElement!.isNotEmpty) {
-      json['_instantiatesUri'] =
-          instantiatesUriElement!.map((Element v) => v.toJson()).toList();
     }
     if (code != null) {
       json['code'] = code!.toJson();
@@ -1382,9 +1223,6 @@ class CarePlanDetail extends BackboneElement {
     if (doNotPerform?.value != null) {
       json['doNotPerform'] = doNotPerform!.toJson();
     }
-    if (doNotPerformElement != null) {
-      json['_doNotPerform'] = doNotPerformElement!.toJson();
-    }
     if (scheduledTiming != null) {
       json['scheduledTiming'] = scheduledTiming!.toJson();
     }
@@ -1393,9 +1231,6 @@ class CarePlanDetail extends BackboneElement {
     }
     if (scheduledString?.value != null) {
       json['scheduledString'] = scheduledString!.toJson();
-    }
-    if (scheduledStringElement != null) {
-      json['_scheduledString'] = scheduledStringElement!.toJson();
     }
     if (location != null) {
       json['location'] = location!.toJson();
@@ -1418,9 +1253,6 @@ class CarePlanDetail extends BackboneElement {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     return json;
   }
 
@@ -1432,24 +1264,18 @@ class CarePlanDetail extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CarePlanActivityKind? kind,
-    Element? kindElement,
     List<FhirCanonical>? instantiatesCanonical,
-    List<Element>? instantiatesCanonicalElement,
     List<FhirUri>? instantiatesUri,
-    List<Element>? instantiatesUriElement,
     CodeableConcept? code,
     List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
     List<Reference>? goal,
     CarePlanActivityStatus? status,
-    Element? statusElement,
     CodeableConcept? statusReason,
     FhirBoolean? doNotPerform,
-    Element? doNotPerformElement,
     Timing? scheduledTiming,
     Period? scheduledPeriod,
     FhirString? scheduledString,
-    Element? scheduledStringElement,
     Reference? location,
     List<Reference>? performer,
     CodeableConcept? productCodeableConcept,
@@ -1457,7 +1283,6 @@ class CarePlanDetail extends BackboneElement {
     Quantity? dailyAmount,
     Quantity? quantity,
     FhirString? description,
-    Element? descriptionElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1470,28 +1295,19 @@ class CarePlanDetail extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       kind: kind ?? this.kind,
-      kindElement: kindElement ?? this.kindElement,
       instantiatesCanonical:
           instantiatesCanonical ?? this.instantiatesCanonical,
-      instantiatesCanonicalElement:
-          instantiatesCanonicalElement ?? this.instantiatesCanonicalElement,
       instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      instantiatesUriElement:
-          instantiatesUriElement ?? this.instantiatesUriElement,
       code: code ?? this.code,
       reasonCode: reasonCode ?? this.reasonCode,
       reasonReference: reasonReference ?? this.reasonReference,
       goal: goal ?? this.goal,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       statusReason: statusReason ?? this.statusReason,
       doNotPerform: doNotPerform ?? this.doNotPerform,
-      doNotPerformElement: doNotPerformElement ?? this.doNotPerformElement,
       scheduledTiming: scheduledTiming ?? this.scheduledTiming,
       scheduledPeriod: scheduledPeriod ?? this.scheduledPeriod,
       scheduledString: scheduledString ?? this.scheduledString,
-      scheduledStringElement:
-          scheduledStringElement ?? this.scheduledStringElement,
       location: location ?? this.location,
       performer: performer ?? this.performer,
       productCodeableConcept:
@@ -1500,7 +1316,6 @@ class CarePlanDetail extends BackboneElement {
       dailyAmount: dailyAmount ?? this.dailyAmount,
       quantity: quantity ?? this.quantity,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

@@ -9,15 +9,9 @@ class Period extends DataType {
 
   Period({
     super.id,
-    super.extension_,
+    this.extension_,
     this.start,
-
-    /// Extensions for [start]
-    this.startElement,
     this.end,
-
-    /// Extensions for [end]
-    this.endElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -29,33 +23,37 @@ class Period extends DataType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Period.fromJson(Map<String, dynamic> json) {
     return Period(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      start:
-          json['start'] != null ? FhirDateTime.fromJson(json['start']) : null,
-      startElement: json['_start'] != null
-          ? Element.fromJson(
-              json['_start'] as Map<String, dynamic>,
-            )
+      start: json['start'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['start'],
+              '_value': json['_start'],
+            })
           : null,
-      end: json['end'] != null ? FhirDateTime.fromJson(json['end']) : null,
-      endElement: json['_end'] != null
-          ? Element.fromJson(
-              json['_end'] as Map<String, dynamic>,
-            )
+      end: json['end'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['end'],
+              '_value': json['_end'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [Period] from a [String] or [YamlMap] object
+  /// Deserialize [Period] from a [String]
+  /// or [YamlMap] object
   factory Period.fromYaml(dynamic yaml) => yaml is String
       ? Period.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -64,10 +62,11 @@ class Period extends DataType {
           ? Period.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Period cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Period cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Period] that takes in a [String]
+  /// Factory constructor for [Period]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Period.fromJsonString(String source) {
@@ -83,12 +82,18 @@ class Period extends DataType {
   @override
   String get fhirType => 'Period';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [start]
   /// The start of the period. The boundary is inclusive.
   final FhirDateTime? start;
-
-  /// Extensions for [start]
-  final Element? startElement;
 
   /// [end]
   /// The end of the period. If the end of the period is missing, it means no
@@ -96,9 +101,6 @@ class Period extends DataType {
   /// start may be in the past, and the end date in the future, which means
   /// that period is expected/planned to end at that time.
   final FhirDateTime? end;
-
-  /// Extensions for [end]
-  final Element? endElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -112,14 +114,8 @@ class Period extends DataType {
     if (start?.value != null) {
       json['start'] = start!.toJson();
     }
-    if (startElement != null) {
-      json['_start'] = startElement!.toJson();
-    }
     if (end?.value != null) {
       json['end'] = end!.toJson();
-    }
-    if (endElement != null) {
-      json['_end'] = endElement!.toJson();
     }
     return json;
   }
@@ -131,9 +127,7 @@ class Period extends DataType {
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirDateTime? start,
-    Element? startElement,
     FhirDateTime? end,
-    Element? endElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -145,9 +139,7 @@ class Period extends DataType {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       start: start ?? this.start,
-      startElement: startElement ?? this.startElement,
       end: end ?? this.end,
-      endElement: endElement ?? this.endElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

@@ -93,7 +93,7 @@ class Element extends FhirBase {
   }
 
   /// Getter for checking if the element has an id
-  bool get hasId => id != null && (id!.value.isNotEmpty);
+  bool get hasId => id?.value != null && (id!.value!.isNotEmpty);
 
   /// Extension handling methods
   bool hasExtension() => extension_?.isNotEmpty ?? false;

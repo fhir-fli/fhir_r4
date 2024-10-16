@@ -13,22 +13,13 @@ class Encounter extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.statusHistory,
     required this.class_,
     this.classHistory,
@@ -63,27 +54,27 @@ class Encounter extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Encounter.fromJson(Map<String, dynamic> json) {
     return Encounter(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -93,7 +84,7 @@ class Encounter extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -102,7 +93,7 @@ class Encounter extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -111,7 +102,7 @@ class Encounter extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -120,22 +111,20 @@ class Encounter extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: EncounterStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: EncounterStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       statusHistory: json['statusHistory'] != null
           ? (json['statusHistory'] as List<dynamic>)
               .map<EncounterStatusHistory>(
-                (dynamic v) => EncounterStatusHistory.fromJson(
+                (v) => EncounterStatusHistory.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -147,7 +136,7 @@ class Encounter extends DomainResource {
       classHistory: json['classHistory'] != null
           ? (json['classHistory'] as List<dynamic>)
               .map<EncounterClassHistory>(
-                (dynamic v) => EncounterClassHistory.fromJson(
+                (v) => EncounterClassHistory.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -156,7 +145,7 @@ class Encounter extends DomainResource {
       type: json['type'] != null
           ? (json['type'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -180,7 +169,7 @@ class Encounter extends DomainResource {
       episodeOfCare: json['episodeOfCare'] != null
           ? (json['episodeOfCare'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -189,7 +178,7 @@ class Encounter extends DomainResource {
       basedOn: json['basedOn'] != null
           ? (json['basedOn'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -198,7 +187,7 @@ class Encounter extends DomainResource {
       participant: json['participant'] != null
           ? (json['participant'] as List<dynamic>)
               .map<EncounterParticipant>(
-                (dynamic v) => EncounterParticipant.fromJson(
+                (v) => EncounterParticipant.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -207,7 +196,7 @@ class Encounter extends DomainResource {
       appointment: json['appointment'] != null
           ? (json['appointment'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -226,7 +215,7 @@ class Encounter extends DomainResource {
       reasonCode: json['reasonCode'] != null
           ? (json['reasonCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -235,7 +224,7 @@ class Encounter extends DomainResource {
       reasonReference: json['reasonReference'] != null
           ? (json['reasonReference'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -244,7 +233,7 @@ class Encounter extends DomainResource {
       diagnosis: json['diagnosis'] != null
           ? (json['diagnosis'] as List<dynamic>)
               .map<EncounterDiagnosis>(
-                (dynamic v) => EncounterDiagnosis.fromJson(
+                (v) => EncounterDiagnosis.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -253,7 +242,7 @@ class Encounter extends DomainResource {
       account: json['account'] != null
           ? (json['account'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -267,7 +256,7 @@ class Encounter extends DomainResource {
       location: json['location'] != null
           ? (json['location'] as List<dynamic>)
               .map<EncounterLocation>(
-                (dynamic v) => EncounterLocation.fromJson(
+                (v) => EncounterLocation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -286,7 +275,8 @@ class Encounter extends DomainResource {
     );
   }
 
-  /// Deserialize [Encounter] from a [String] or [YamlMap] object
+  /// Deserialize [Encounter] from a [String]
+  /// or [YamlMap] object
   factory Encounter.fromYaml(dynamic yaml) => yaml is String
       ? Encounter.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -295,10 +285,11 @@ class Encounter extends DomainResource {
           ? Encounter.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Encounter cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Encounter cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Encounter] that takes in a [String]
+  /// Factory constructor for [Encounter]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Encounter.fromJsonString(String source) {
@@ -314,6 +305,15 @@ class Encounter extends DomainResource {
   @override
   String get fhirType => 'Encounter';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Identifier(s) by which this encounter is known.
   final List<Identifier>? identifier;
@@ -322,9 +322,6 @@ class Encounter extends DomainResource {
   /// planned | arrived | triaged | in-progress | onleave | finished |
   /// cancelled +.
   final EncounterStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [statusHistory]
   /// The status history permits the encounter resource to contain the status
@@ -451,9 +448,6 @@ class Encounter extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -556,16 +550,13 @@ class Encounter extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     EncounterStatus? status,
-    Element? statusElement,
     List<EncounterStatusHistory>? statusHistory,
     Coding? class_,
     List<EncounterClassHistory>? classHistory,
@@ -598,16 +589,13 @@ class Encounter extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       statusHistory: statusHistory ?? this.statusHistory,
       class_: class_ ?? this.class_,
       classHistory: classHistory ?? this.classHistory,
@@ -648,12 +636,9 @@ class EncounterStatusHistory extends BackboneElement {
 
   EncounterStatusHistory({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     required this.period,
     super.userData,
     super.formatCommentsPre,
@@ -666,11 +651,15 @@ class EncounterStatusHistory extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EncounterStatusHistory.fromJson(Map<String, dynamic> json) {
     return EncounterStatusHistory(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -679,25 +668,24 @@ class EncounterStatusHistory extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: EncounterStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: EncounterStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       period: Period.fromJson(
         json['period'] as Map<String, dynamic>,
       ),
     );
   }
 
-  /// Deserialize [EncounterStatusHistory] from a [String] or [YamlMap] object
+  /// Deserialize [EncounterStatusHistory] from a [String]
+  /// or [YamlMap] object
   factory EncounterStatusHistory.fromYaml(dynamic yaml) => yaml is String
       ? EncounterStatusHistory.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -707,10 +695,11 @@ class EncounterStatusHistory extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'EncounterStatusHistory cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'EncounterStatusHistory cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [EncounterStatusHistory] that takes in a [String]
+  /// Factory constructor for [EncounterStatusHistory]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory EncounterStatusHistory.fromJsonString(String source) {
@@ -726,13 +715,19 @@ class EncounterStatusHistory extends BackboneElement {
   @override
   String get fhirType => 'EncounterStatusHistory';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [status]
   /// planned | arrived | triaged | in-progress | onleave | finished |
   /// cancelled +.
   final EncounterStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [period]
   /// The time that the episode was in the specified status.
@@ -764,7 +759,6 @@ class EncounterStatusHistory extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     EncounterStatus? status,
-    Element? statusElement,
     Period? period,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -778,7 +772,6 @@ class EncounterStatusHistory extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       period: period ?? this.period,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -803,7 +796,7 @@ class EncounterClassHistory extends BackboneElement {
 
   EncounterClassHistory({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.class_,
     required this.period,
@@ -818,11 +811,15 @@ class EncounterClassHistory extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EncounterClassHistory.fromJson(Map<String, dynamic> json) {
     return EncounterClassHistory(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -831,7 +828,7 @@ class EncounterClassHistory extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -846,7 +843,8 @@ class EncounterClassHistory extends BackboneElement {
     );
   }
 
-  /// Deserialize [EncounterClassHistory] from a [String] or [YamlMap] object
+  /// Deserialize [EncounterClassHistory] from a [String]
+  /// or [YamlMap] object
   factory EncounterClassHistory.fromYaml(dynamic yaml) => yaml is String
       ? EncounterClassHistory.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -856,10 +854,11 @@ class EncounterClassHistory extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'EncounterClassHistory cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'EncounterClassHistory cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [EncounterClassHistory] that takes in a [String]
+  /// Factory constructor for [EncounterClassHistory]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory EncounterClassHistory.fromJsonString(String source) {
@@ -874,6 +873,15 @@ class EncounterClassHistory extends BackboneElement {
 
   @override
   String get fhirType => 'EncounterClassHistory';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [class_]
   /// inpatient | outpatient | ambulatory | emergency +.
@@ -940,7 +948,7 @@ class EncounterParticipant extends BackboneElement {
 
   EncounterParticipant({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.type,
     this.period,
@@ -956,11 +964,15 @@ class EncounterParticipant extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EncounterParticipant.fromJson(Map<String, dynamic> json) {
     return EncounterParticipant(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -969,7 +981,7 @@ class EncounterParticipant extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -978,7 +990,7 @@ class EncounterParticipant extends BackboneElement {
       type: json['type'] != null
           ? (json['type'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -997,7 +1009,8 @@ class EncounterParticipant extends BackboneElement {
     );
   }
 
-  /// Deserialize [EncounterParticipant] from a [String] or [YamlMap] object
+  /// Deserialize [EncounterParticipant] from a [String]
+  /// or [YamlMap] object
   factory EncounterParticipant.fromYaml(dynamic yaml) => yaml is String
       ? EncounterParticipant.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1007,10 +1020,11 @@ class EncounterParticipant extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'EncounterParticipant cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'EncounterParticipant cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [EncounterParticipant] that takes in a [String]
+  /// Factory constructor for [EncounterParticipant]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory EncounterParticipant.fromJsonString(String source) {
@@ -1025,6 +1039,15 @@ class EncounterParticipant extends BackboneElement {
 
   @override
   String get fhirType => 'EncounterParticipant';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Role of participant in encounter.
@@ -1106,14 +1129,11 @@ class EncounterDiagnosis extends BackboneElement {
 
   EncounterDiagnosis({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.condition,
     this.use,
     this.rank,
-
-    /// Extensions for [rank]
-    this.rankElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1125,11 +1145,15 @@ class EncounterDiagnosis extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EncounterDiagnosis.fromJson(Map<String, dynamic> json) {
     return EncounterDiagnosis(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1138,7 +1162,7 @@ class EncounterDiagnosis extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1152,17 +1176,17 @@ class EncounterDiagnosis extends BackboneElement {
               json['use'] as Map<String, dynamic>,
             )
           : null,
-      rank:
-          json['rank'] != null ? FhirPositiveInt.fromJson(json['rank']) : null,
-      rankElement: json['_rank'] != null
-          ? Element.fromJson(
-              json['_rank'] as Map<String, dynamic>,
-            )
+      rank: json['rank'] != null
+          ? FhirPositiveInt.fromJson({
+              'value': json['rank'],
+              '_value': json['_rank'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [EncounterDiagnosis] from a [String] or [YamlMap] object
+  /// Deserialize [EncounterDiagnosis] from a [String]
+  /// or [YamlMap] object
   factory EncounterDiagnosis.fromYaml(dynamic yaml) => yaml is String
       ? EncounterDiagnosis.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1171,11 +1195,11 @@ class EncounterDiagnosis extends BackboneElement {
           ? EncounterDiagnosis.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'EncounterDiagnosis cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('EncounterDiagnosis cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [EncounterDiagnosis] that takes in a [String]
+  /// Factory constructor for [EncounterDiagnosis]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory EncounterDiagnosis.fromJsonString(String source) {
@@ -1190,6 +1214,15 @@ class EncounterDiagnosis extends BackboneElement {
 
   @override
   String get fhirType => 'EncounterDiagnosis';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [condition]
   /// Reason the encounter takes place, as specified using information from
@@ -1206,9 +1239,6 @@ class EncounterDiagnosis extends BackboneElement {
   /// [rank]
   /// Ranking of the diagnosis (for each role type).
   final FhirPositiveInt? rank;
-
-  /// Extensions for [rank]
-  final Element? rankElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1230,9 +1260,6 @@ class EncounterDiagnosis extends BackboneElement {
     if (rank?.value != null) {
       json['rank'] = rank!.toJson();
     }
-    if (rankElement != null) {
-      json['_rank'] = rankElement!.toJson();
-    }
     return json;
   }
 
@@ -1246,7 +1273,6 @@ class EncounterDiagnosis extends BackboneElement {
     Reference? condition,
     CodeableConcept? use,
     FhirPositiveInt? rank,
-    Element? rankElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1261,7 +1287,6 @@ class EncounterDiagnosis extends BackboneElement {
       condition: condition ?? this.condition,
       use: use ?? this.use,
       rank: rank ?? this.rank,
-      rankElement: rankElement ?? this.rankElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1279,7 +1304,7 @@ class EncounterHospitalization extends BackboneElement {
 
   EncounterHospitalization({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.preAdmissionIdentifier,
     this.origin,
@@ -1301,11 +1326,15 @@ class EncounterHospitalization extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EncounterHospitalization.fromJson(Map<String, dynamic> json) {
     return EncounterHospitalization(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1314,7 +1343,7 @@ class EncounterHospitalization extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1343,7 +1372,7 @@ class EncounterHospitalization extends BackboneElement {
       dietPreference: json['dietPreference'] != null
           ? (json['dietPreference'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1352,7 +1381,7 @@ class EncounterHospitalization extends BackboneElement {
       specialCourtesy: json['specialCourtesy'] != null
           ? (json['specialCourtesy'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1361,7 +1390,7 @@ class EncounterHospitalization extends BackboneElement {
       specialArrangement: json['specialArrangement'] != null
           ? (json['specialArrangement'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1380,7 +1409,8 @@ class EncounterHospitalization extends BackboneElement {
     );
   }
 
-  /// Deserialize [EncounterHospitalization] from a [String] or [YamlMap] object
+  /// Deserialize [EncounterHospitalization] from a [String]
+  /// or [YamlMap] object
   factory EncounterHospitalization.fromYaml(dynamic yaml) => yaml is String
       ? EncounterHospitalization.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1390,10 +1420,11 @@ class EncounterHospitalization extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'EncounterHospitalization cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'EncounterHospitalization cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [EncounterHospitalization] that takes in a [String]
+  /// Factory constructor for [EncounterHospitalization]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory EncounterHospitalization.fromJsonString(String source) {
@@ -1408,6 +1439,15 @@ class EncounterHospitalization extends BackboneElement {
 
   @override
   String get fhirType => 'EncounterHospitalization';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [preAdmissionIdentifier]
   /// Pre-admission identifier.
@@ -1546,13 +1586,10 @@ class EncounterLocation extends BackboneElement {
 
   EncounterLocation({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.location,
     this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.physicalType,
     this.period,
     super.userData,
@@ -1566,11 +1603,15 @@ class EncounterLocation extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EncounterLocation.fromJson(Map<String, dynamic> json) {
     return EncounterLocation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1579,7 +1620,7 @@ class EncounterLocation extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1589,12 +1630,10 @@ class EncounterLocation extends BackboneElement {
         json['location'] as Map<String, dynamic>,
       ),
       status: json['status'] != null
-          ? EncounterLocationStatus.fromJson(json['status'])
-          : null,
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
+          ? EncounterLocationStatus.fromJson({
+              'value': json['status'],
+              '_value': json['_status'],
+            })
           : null,
       physicalType: json['physicalType'] != null
           ? CodeableConcept.fromJson(
@@ -1609,7 +1648,8 @@ class EncounterLocation extends BackboneElement {
     );
   }
 
-  /// Deserialize [EncounterLocation] from a [String] or [YamlMap] object
+  /// Deserialize [EncounterLocation] from a [String]
+  /// or [YamlMap] object
   factory EncounterLocation.fromYaml(dynamic yaml) => yaml is String
       ? EncounterLocation.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1618,11 +1658,11 @@ class EncounterLocation extends BackboneElement {
           ? EncounterLocation.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'EncounterLocation cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('EncounterLocation cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [EncounterLocation] that takes in a [String]
+  /// Factory constructor for [EncounterLocation]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory EncounterLocation.fromJsonString(String source) {
@@ -1638,6 +1678,15 @@ class EncounterLocation extends BackboneElement {
   @override
   String get fhirType => 'EncounterLocation';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [location]
   /// The location where the encounter takes place.
   final Reference location;
@@ -1647,9 +1696,6 @@ class EncounterLocation extends BackboneElement {
   /// during the period specified. If the participant is no longer at the
   /// location, then the period will have an end date/time.
   final EncounterLocationStatus? status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [physicalType]
   /// This will be used to specify the required levels (bed/ward/room/etc.)
@@ -1695,7 +1741,6 @@ class EncounterLocation extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Reference? location,
     EncounterLocationStatus? status,
-    Element? statusElement,
     CodeableConcept? physicalType,
     Period? period,
     Map<String, Object?>? userData,
@@ -1711,7 +1756,6 @@ class EncounterLocation extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       location: location ?? this.location,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       physicalType: physicalType ?? this.physicalType,
       period: period ?? this.period,
       userData: userData ?? this.userData,

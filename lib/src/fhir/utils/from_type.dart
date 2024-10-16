@@ -2164,44 +2164,67 @@ FhirBase? fromType(dynamic value, String type) {
     case 'Resource':
       return value is! Map<String, dynamic> ? null : Resource.fromJson(value);
     case 'base64Binary':
-      return FhirBase64Binary.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : FhirBase64Binary.fromJson(value);
     case 'boolean':
-      return FhirBoolean.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : FhirBoolean.fromJson(value);
     case 'canonical':
-      return FhirCanonical.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : FhirCanonical.fromJson(value);
     case 'code':
-      return FhirCode.fromJson(value);
+      return value is! Map<String, dynamic> ? null : FhirCode.fromJson(value);
     case 'date':
-      return value is! String ? null : FhirDate.fromJson(value);
+      return value is! Map<String, dynamic> ? null : FhirDate.fromJson(value);
     case 'dateTime':
-      return value is! String ? null : FhirDateTime.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : FhirDateTime.fromJson(value);
     case 'decimal':
-      return FhirDecimal.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : FhirDecimal.fromJson(value);
     case 'id':
-      return FhirId.fromJson(value);
+      return value is! Map<String, dynamic> ? null : FhirId.fromJson(value);
     case 'instant':
-      return value is! String ? null : FhirInstant.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : FhirInstant.fromJson(value);
     case 'integer':
-      return FhirInteger.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : FhirInteger.fromJson(value);
     case 'integer64':
-      return FhirInteger64.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : FhirInteger64.fromJson(value);
     case 'markdown':
-      return FhirMarkdown.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : FhirMarkdown.fromJson(value);
     case 'oid':
-      return FhirOid.fromJson(value);
+      return value is! Map<String, dynamic> ? null : FhirOid.fromJson(value);
     case 'positiveInt':
-      return FhirPositiveInt.fromJson(value);
-// case 'string': return value;
+      return value is! Map<String, dynamic>
+          ? null
+          : FhirPositiveInt.fromJson(value);
+    case 'string':
+      return value is! Map<String, dynamic> ? null : FhirString.fromJson(value);
     case 'time':
-      return FhirTime.fromJson(value);
+      return value is! Map<String, dynamic> ? null : FhirTime.fromJson(value);
     case 'unsignedInt':
-      return FhirUnsignedInt.fromJson(value);
+      return value is! Map<String, dynamic>
+          ? null
+          : FhirUnsignedInt.fromJson(value);
     case 'uri':
-      return FhirUri.fromJson(value);
+      return value is! Map<String, dynamic> ? null : FhirUri.fromJson(value);
     case 'url':
-      return FhirUrl.fromJson(value);
+      return value is! Map<String, dynamic> ? null : FhirUrl.fromJson(value);
     case 'uuid':
-      return FhirUuid.fromJson(value);
+      return value is! Map<String, dynamic> ? null : FhirUuid.fromJson(value);
     case 'BackboneType':
       return value is! Map<String, dynamic>
           ? null

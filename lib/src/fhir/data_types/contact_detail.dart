@@ -9,11 +9,8 @@ class ContactDetail extends DataType {
 
   ContactDetail({
     super.id,
-    super.extension_,
+    this.extension_,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.telecom,
     super.userData,
     super.formatCommentsPre,
@@ -26,26 +23,30 @@ class ContactDetail extends DataType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContactDetail.fromJson(Map<String, dynamic> json) {
     return ContactDetail(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
       telecom: json['telecom'] != null
           ? (json['telecom'] as List<dynamic>)
               .map<ContactPoint>(
-                (dynamic v) => ContactPoint.fromJson(
+                (v) => ContactPoint.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -54,7 +55,8 @@ class ContactDetail extends DataType {
     );
   }
 
-  /// Deserialize [ContactDetail] from a [String] or [YamlMap] object
+  /// Deserialize [ContactDetail] from a [String]
+  /// or [YamlMap] object
   factory ContactDetail.fromYaml(dynamic yaml) => yaml is String
       ? ContactDetail.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -63,11 +65,11 @@ class ContactDetail extends DataType {
           ? ContactDetail.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ContactDetail cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ContactDetail cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ContactDetail] that takes in a [String]
+  /// Factory constructor for [ContactDetail]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ContactDetail.fromJsonString(String source) {
@@ -83,12 +85,18 @@ class ContactDetail extends DataType {
   @override
   String get fhirType => 'ContactDetail';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// The name of an individual to contact.
   final FhirString? name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [telecom]
   /// The contact details for the individual (if a name was provided) or the
@@ -107,9 +115,6 @@ class ContactDetail extends DataType {
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (telecom != null && telecom!.isNotEmpty) {
       json['telecom'] = telecom!.map((ContactPoint v) => v.toJson()).toList();
     }
@@ -123,7 +128,6 @@ class ContactDetail extends DataType {
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirString? name,
-    Element? nameElement,
     List<ContactPoint>? telecom,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -136,7 +140,6 @@ class ContactDetail extends DataType {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       telecom: telecom ?? this.telecom,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

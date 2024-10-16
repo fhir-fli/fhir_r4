@@ -12,39 +12,21 @@ class CatalogEntry extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.type,
     required this.orderable,
-
-    /// Extensions for [orderable]
-    this.orderableElement,
     required this.referencedItem,
     this.additionalIdentifier,
     this.classification,
     this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.validityPeriod,
     this.validTo,
-
-    /// Extensions for [validTo]
-    this.validToElement,
     this.lastUpdated,
-
-    /// Extensions for [lastUpdated]
-    this.lastUpdatedElement,
     this.additionalCharacteristic,
     this.additionalClassification,
     this.relatedEntry,
@@ -61,27 +43,27 @@ class CatalogEntry extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CatalogEntry.fromJson(Map<String, dynamic> json) {
     return CatalogEntry(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -91,7 +73,7 @@ class CatalogEntry extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -100,7 +82,7 @@ class CatalogEntry extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -109,7 +91,7 @@ class CatalogEntry extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -118,7 +100,7 @@ class CatalogEntry extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -129,19 +111,17 @@ class CatalogEntry extends DomainResource {
               json['type'] as Map<String, dynamic>,
             )
           : null,
-      orderable: FhirBoolean.fromJson(json['orderable']),
-      orderableElement: json['_orderable'] != null
-          ? Element.fromJson(
-              json['_orderable'] as Map<String, dynamic>,
-            )
-          : null,
+      orderable: FhirBoolean.fromJson({
+        'value': json['orderable'],
+        '_value': json['_orderable'],
+      }),
       referencedItem: Reference.fromJson(
         json['referencedItem'] as Map<String, dynamic>,
       ),
       additionalIdentifier: json['additionalIdentifier'] != null
           ? (json['additionalIdentifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -150,19 +130,17 @@ class CatalogEntry extends DomainResource {
       classification: json['classification'] != null
           ? (json['classification'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       status: json['status'] != null
-          ? PublicationStatus.fromJson(json['status'])
-          : null,
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
+          ? PublicationStatus.fromJson({
+              'value': json['status'],
+              '_value': json['_status'],
+            })
           : null,
       validityPeriod: json['validityPeriod'] != null
           ? Period.fromJson(
@@ -170,25 +148,21 @@ class CatalogEntry extends DomainResource {
             )
           : null,
       validTo: json['validTo'] != null
-          ? FhirDateTime.fromJson(json['validTo'])
-          : null,
-      validToElement: json['_validTo'] != null
-          ? Element.fromJson(
-              json['_validTo'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['validTo'],
+              '_value': json['_validTo'],
+            })
           : null,
       lastUpdated: json['lastUpdated'] != null
-          ? FhirDateTime.fromJson(json['lastUpdated'])
-          : null,
-      lastUpdatedElement: json['_lastUpdated'] != null
-          ? Element.fromJson(
-              json['_lastUpdated'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['lastUpdated'],
+              '_value': json['_lastUpdated'],
+            })
           : null,
       additionalCharacteristic: json['additionalCharacteristic'] != null
           ? (json['additionalCharacteristic'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -197,7 +171,7 @@ class CatalogEntry extends DomainResource {
       additionalClassification: json['additionalClassification'] != null
           ? (json['additionalClassification'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -206,7 +180,7 @@ class CatalogEntry extends DomainResource {
       relatedEntry: json['relatedEntry'] != null
           ? (json['relatedEntry'] as List<dynamic>)
               .map<CatalogEntryRelatedEntry>(
-                (dynamic v) => CatalogEntryRelatedEntry.fromJson(
+                (v) => CatalogEntryRelatedEntry.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -215,7 +189,8 @@ class CatalogEntry extends DomainResource {
     );
   }
 
-  /// Deserialize [CatalogEntry] from a [String] or [YamlMap] object
+  /// Deserialize [CatalogEntry] from a [String]
+  /// or [YamlMap] object
   factory CatalogEntry.fromYaml(dynamic yaml) => yaml is String
       ? CatalogEntry.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -224,10 +199,11 @@ class CatalogEntry extends DomainResource {
           ? CatalogEntry.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('CatalogEntry cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('CatalogEntry cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CatalogEntry] that takes in a [String]
+  /// Factory constructor for [CatalogEntry]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CatalogEntry.fromJsonString(String source) {
@@ -243,6 +219,15 @@ class CatalogEntry extends DomainResource {
   @override
   String get fhirType => 'CatalogEntry';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Used in supporting different identifiers for the same product, e.g.
   /// manufacturer code and retailer code.
@@ -255,9 +240,6 @@ class CatalogEntry extends DomainResource {
   /// [orderable]
   /// Whether the entry represents an orderable item.
   final FhirBoolean orderable;
-
-  /// Extensions for [orderable]
-  final Element? orderableElement;
 
   /// [referencedItem]
   /// The item in a catalog or definition.
@@ -276,9 +258,6 @@ class CatalogEntry extends DomainResource {
   /// getting list of medications even if not prescribable.
   final PublicationStatus? status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [validityPeriod]
   /// The time period in which this catalog entry is expected to be active.
   final Period? validityPeriod;
@@ -287,16 +266,10 @@ class CatalogEntry extends DomainResource {
   /// The date until which this catalog entry is expected to be active.
   final FhirDateTime? validTo;
 
-  /// Extensions for [validTo]
-  final Element? validToElement;
-
   /// [lastUpdated]
   /// Typically date of issue is different from the beginning of the
   /// validity. This can be used to see when an item was last updated.
   final FhirDateTime? lastUpdated;
-
-  /// Extensions for [lastUpdated]
-  final Element? lastUpdatedElement;
 
   /// [additionalCharacteristic]
   /// Used for examplefor Out of Formulary, or any specifics.
@@ -323,9 +296,6 @@ class CatalogEntry extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -351,9 +321,6 @@ class CatalogEntry extends DomainResource {
       json['type'] = type!.toJson();
     }
     json['orderable'] = orderable.toJson();
-    if (orderableElement != null) {
-      json['_orderable'] = orderableElement!.toJson();
-    }
     json['referencedItem'] = referencedItem.toJson();
     if (additionalIdentifier != null && additionalIdentifier!.isNotEmpty) {
       json['additionalIdentifier'] =
@@ -372,14 +339,8 @@ class CatalogEntry extends DomainResource {
     if (validTo?.value != null) {
       json['validTo'] = validTo!.toJson();
     }
-    if (validToElement != null) {
-      json['_validTo'] = validToElement!.toJson();
-    }
     if (lastUpdated?.value != null) {
       json['lastUpdated'] = lastUpdated!.toJson();
-    }
-    if (lastUpdatedElement != null) {
-      json['_lastUpdated'] = lastUpdatedElement!.toJson();
     }
     if (additionalCharacteristic != null &&
         additionalCharacteristic!.isNotEmpty) {
@@ -408,9 +369,7 @@ class CatalogEntry extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -418,17 +377,13 @@ class CatalogEntry extends DomainResource {
     List<Identifier>? identifier,
     CodeableConcept? type,
     FhirBoolean? orderable,
-    Element? orderableElement,
     Reference? referencedItem,
     List<Identifier>? additionalIdentifier,
     List<CodeableConcept>? classification,
     PublicationStatus? status,
-    Element? statusElement,
     Period? validityPeriod,
     FhirDateTime? validTo,
-    Element? validToElement,
     FhirDateTime? lastUpdated,
-    Element? lastUpdatedElement,
     List<CodeableConcept>? additionalCharacteristic,
     List<CodeableConcept>? additionalClassification,
     List<CatalogEntryRelatedEntry>? relatedEntry,
@@ -443,9 +398,7 @@ class CatalogEntry extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -453,17 +406,13 @@ class CatalogEntry extends DomainResource {
       identifier: identifier ?? this.identifier,
       type: type ?? this.type,
       orderable: orderable ?? this.orderable,
-      orderableElement: orderableElement ?? this.orderableElement,
       referencedItem: referencedItem ?? this.referencedItem,
       additionalIdentifier: additionalIdentifier ?? this.additionalIdentifier,
       classification: classification ?? this.classification,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       validityPeriod: validityPeriod ?? this.validityPeriod,
       validTo: validTo ?? this.validTo,
-      validToElement: validToElement ?? this.validToElement,
       lastUpdated: lastUpdated ?? this.lastUpdated,
-      lastUpdatedElement: lastUpdatedElement ?? this.lastUpdatedElement,
       additionalCharacteristic:
           additionalCharacteristic ?? this.additionalCharacteristic,
       additionalClassification:
@@ -487,12 +436,9 @@ class CatalogEntryRelatedEntry extends BackboneElement {
 
   CatalogEntryRelatedEntry({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.relationtype,
-
-    /// Extensions for [relationtype]
-    this.relationtypeElement,
     required this.item,
     super.userData,
     super.formatCommentsPre,
@@ -505,11 +451,15 @@ class CatalogEntryRelatedEntry extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CatalogEntryRelatedEntry.fromJson(Map<String, dynamic> json) {
     return CatalogEntryRelatedEntry(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -518,25 +468,24 @@ class CatalogEntryRelatedEntry extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      relationtype: CatalogEntryRelationType.fromJson(json['relationtype']),
-      relationtypeElement: json['_relationtype'] != null
-          ? Element.fromJson(
-              json['_relationtype'] as Map<String, dynamic>,
-            )
-          : null,
+      relationtype: CatalogEntryRelationType.fromJson({
+        'value': json['relationtype'],
+        '_value': json['_relationtype'],
+      }),
       item: Reference.fromJson(
         json['item'] as Map<String, dynamic>,
       ),
     );
   }
 
-  /// Deserialize [CatalogEntryRelatedEntry] from a [String] or [YamlMap] object
+  /// Deserialize [CatalogEntryRelatedEntry] from a [String]
+  /// or [YamlMap] object
   factory CatalogEntryRelatedEntry.fromYaml(dynamic yaml) => yaml is String
       ? CatalogEntryRelatedEntry.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -546,10 +495,11 @@ class CatalogEntryRelatedEntry extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'CatalogEntryRelatedEntry cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'CatalogEntryRelatedEntry cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CatalogEntryRelatedEntry] that takes in a [String]
+  /// Factory constructor for [CatalogEntryRelatedEntry]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CatalogEntryRelatedEntry.fromJsonString(String source) {
@@ -565,13 +515,19 @@ class CatalogEntryRelatedEntry extends BackboneElement {
   @override
   String get fhirType => 'CatalogEntryRelatedEntry';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [relationtype]
   /// The type of relation to the related item: child, parent,
   /// packageContent, containerPackage, usedIn, uses, requires, etc.
   final CatalogEntryRelationType relationtype;
-
-  /// Extensions for [relationtype]
-  final Element? relationtypeElement;
 
   /// [item]
   /// The reference to the related item.
@@ -603,7 +559,6 @@ class CatalogEntryRelatedEntry extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     CatalogEntryRelationType? relationtype,
-    Element? relationtypeElement,
     Reference? item,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -617,7 +572,6 @@ class CatalogEntryRelatedEntry extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       relationtype: relationtype ?? this.relationtype,
-      relationtypeElement: relationtypeElement ?? this.relationtypeElement,
       item: item ?? this.item,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

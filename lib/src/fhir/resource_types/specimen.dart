@@ -11,29 +11,17 @@ class Specimen extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.accessionIdentifier,
     this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.type,
     this.subject,
     this.receivedTime,
-
-    /// Extensions for [receivedTime]
-    this.receivedTimeElement,
     this.parent,
     this.request,
     this.collection,
@@ -54,27 +42,27 @@ class Specimen extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Specimen.fromJson(Map<String, dynamic> json) {
     return Specimen(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -84,7 +72,7 @@ class Specimen extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -93,7 +81,7 @@ class Specimen extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -102,7 +90,7 @@ class Specimen extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -111,7 +99,7 @@ class Specimen extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -123,12 +111,10 @@ class Specimen extends DomainResource {
             )
           : null,
       status: json['status'] != null
-          ? SpecimenStatus.fromJson(json['status'])
-          : null,
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
+          ? SpecimenStatus.fromJson({
+              'value': json['status'],
+              '_value': json['_status'],
+            })
           : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
@@ -141,17 +127,15 @@ class Specimen extends DomainResource {
             )
           : null,
       receivedTime: json['receivedTime'] != null
-          ? FhirDateTime.fromJson(json['receivedTime'])
-          : null,
-      receivedTimeElement: json['_receivedTime'] != null
-          ? Element.fromJson(
-              json['_receivedTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['receivedTime'],
+              '_value': json['_receivedTime'],
+            })
           : null,
       parent: json['parent'] != null
           ? (json['parent'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -160,7 +144,7 @@ class Specimen extends DomainResource {
       request: json['request'] != null
           ? (json['request'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -174,7 +158,7 @@ class Specimen extends DomainResource {
       processing: json['processing'] != null
           ? (json['processing'] as List<dynamic>)
               .map<SpecimenProcessing>(
-                (dynamic v) => SpecimenProcessing.fromJson(
+                (v) => SpecimenProcessing.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -183,7 +167,7 @@ class Specimen extends DomainResource {
       container: json['container'] != null
           ? (json['container'] as List<dynamic>)
               .map<SpecimenContainer>(
-                (dynamic v) => SpecimenContainer.fromJson(
+                (v) => SpecimenContainer.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -192,7 +176,7 @@ class Specimen extends DomainResource {
       condition: json['condition'] != null
           ? (json['condition'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -201,7 +185,7 @@ class Specimen extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -210,7 +194,8 @@ class Specimen extends DomainResource {
     );
   }
 
-  /// Deserialize [Specimen] from a [String] or [YamlMap] object
+  /// Deserialize [Specimen] from a [String]
+  /// or [YamlMap] object
   factory Specimen.fromYaml(dynamic yaml) => yaml is String
       ? Specimen.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -219,10 +204,11 @@ class Specimen extends DomainResource {
           ? Specimen.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Specimen cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Specimen cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Specimen] that takes in a [String]
+  /// Factory constructor for [Specimen]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Specimen.fromJsonString(String source) {
@@ -238,6 +224,15 @@ class Specimen extends DomainResource {
   @override
   String get fhirType => 'Specimen';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Id for specimen.
   final List<Identifier>? identifier;
@@ -252,9 +247,6 @@ class Specimen extends DomainResource {
   /// The availability of the specimen.
   final SpecimenStatus? status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [type]
   /// The kind of material that forms the specimen.
   final CodeableConcept? type;
@@ -268,9 +260,6 @@ class Specimen extends DomainResource {
   /// [receivedTime]
   /// Time when specimen was received for processing or testing.
   final FhirDateTime? receivedTime;
-
-  /// Extensions for [receivedTime]
-  final Element? receivedTimeElement;
 
   /// [parent]
   /// Reference to the parent (source) specimen which is used when the
@@ -317,9 +306,6 @@ class Specimen extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -356,9 +342,6 @@ class Specimen extends DomainResource {
     if (receivedTime?.value != null) {
       json['receivedTime'] = receivedTime!.toJson();
     }
-    if (receivedTimeElement != null) {
-      json['_receivedTime'] = receivedTimeElement!.toJson();
-    }
     if (parent != null && parent!.isNotEmpty) {
       json['parent'] = parent!.map((Reference v) => v.toJson()).toList();
     }
@@ -393,9 +376,7 @@ class Specimen extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -403,11 +384,9 @@ class Specimen extends DomainResource {
     List<Identifier>? identifier,
     Identifier? accessionIdentifier,
     SpecimenStatus? status,
-    Element? statusElement,
     CodeableConcept? type,
     Reference? subject,
     FhirDateTime? receivedTime,
-    Element? receivedTimeElement,
     List<Reference>? parent,
     List<Reference>? request,
     SpecimenCollection? collection,
@@ -426,9 +405,7 @@ class Specimen extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -436,11 +413,9 @@ class Specimen extends DomainResource {
       identifier: identifier ?? this.identifier,
       accessionIdentifier: accessionIdentifier ?? this.accessionIdentifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       type: type ?? this.type,
       subject: subject ?? this.subject,
       receivedTime: receivedTime ?? this.receivedTime,
-      receivedTimeElement: receivedTimeElement ?? this.receivedTimeElement,
       parent: parent ?? this.parent,
       request: request ?? this.request,
       collection: collection ?? this.collection,
@@ -465,13 +440,10 @@ class SpecimenCollection extends BackboneElement {
 
   SpecimenCollection({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.collector,
     this.collectedDateTime,
-
-    /// Extensions for [collectedDateTime]
-    this.collectedDateTimeElement,
     this.collectedPeriod,
     this.duration,
     this.quantity,
@@ -490,11 +462,15 @@ class SpecimenCollection extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenCollection.fromJson(Map<String, dynamic> json) {
     return SpecimenCollection(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -503,7 +479,7 @@ class SpecimenCollection extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -515,12 +491,10 @@ class SpecimenCollection extends BackboneElement {
             )
           : null,
       collectedDateTime: json['collectedDateTime'] != null
-          ? FhirDateTime.fromJson(json['collectedDateTime'])
-          : null,
-      collectedDateTimeElement: json['_collectedDateTime'] != null
-          ? Element.fromJson(
-              json['_collectedDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['collectedDateTime'],
+              '_value': json['_collectedDateTime'],
+            })
           : null,
       collectedPeriod: json['collectedPeriod'] != null
           ? Period.fromJson(
@@ -560,7 +534,8 @@ class SpecimenCollection extends BackboneElement {
     );
   }
 
-  /// Deserialize [SpecimenCollection] from a [String] or [YamlMap] object
+  /// Deserialize [SpecimenCollection] from a [String]
+  /// or [YamlMap] object
   factory SpecimenCollection.fromYaml(dynamic yaml) => yaml is String
       ? SpecimenCollection.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -569,11 +544,11 @@ class SpecimenCollection extends BackboneElement {
           ? SpecimenCollection.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SpecimenCollection cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('SpecimenCollection cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SpecimenCollection] that takes in a [String]
+  /// Factory constructor for [SpecimenCollection]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SpecimenCollection.fromJsonString(String source) {
@@ -589,6 +564,15 @@ class SpecimenCollection extends BackboneElement {
   @override
   String get fhirType => 'SpecimenCollection';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [collector]
   /// Person who collected the specimen.
   final Reference? collector;
@@ -597,9 +581,6 @@ class SpecimenCollection extends BackboneElement {
   /// Time when specimen was collected from subject - the physiologically
   /// relevant time.
   final FhirDateTime? collectedDateTime;
-
-  /// Extensions for [collectedDateTime]
-  final Element? collectedDateTimeElement;
 
   /// [collectedPeriod]
   /// Time when specimen was collected from subject - the physiologically
@@ -655,9 +636,6 @@ class SpecimenCollection extends BackboneElement {
     if (collectedDateTime?.value != null) {
       json['collectedDateTime'] = collectedDateTime!.toJson();
     }
-    if (collectedDateTimeElement != null) {
-      json['_collectedDateTime'] = collectedDateTimeElement!.toJson();
-    }
     if (collectedPeriod != null) {
       json['collectedPeriod'] = collectedPeriod!.toJson();
     }
@@ -692,7 +670,6 @@ class SpecimenCollection extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Reference? collector,
     FhirDateTime? collectedDateTime,
-    Element? collectedDateTimeElement,
     Period? collectedPeriod,
     FhirDuration? duration,
     Quantity? quantity,
@@ -713,8 +690,6 @@ class SpecimenCollection extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       collector: collector ?? this.collector,
       collectedDateTime: collectedDateTime ?? this.collectedDateTime,
-      collectedDateTimeElement:
-          collectedDateTimeElement ?? this.collectedDateTimeElement,
       collectedPeriod: collectedPeriod ?? this.collectedPeriod,
       duration: duration ?? this.duration,
       quantity: quantity ?? this.quantity,
@@ -741,18 +716,12 @@ class SpecimenProcessing extends BackboneElement {
 
   SpecimenProcessing({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.procedure,
     this.additive,
     this.timeDateTime,
-
-    /// Extensions for [timeDateTime]
-    this.timeDateTimeElement,
     this.timePeriod,
     super.userData,
     super.formatCommentsPre,
@@ -765,11 +734,15 @@ class SpecimenProcessing extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenProcessing.fromJson(Map<String, dynamic> json) {
     return SpecimenProcessing(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -778,19 +751,17 @@ class SpecimenProcessing extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       procedure: json['procedure'] != null
           ? CodeableConcept.fromJson(
@@ -800,19 +771,17 @@ class SpecimenProcessing extends BackboneElement {
       additive: json['additive'] != null
           ? (json['additive'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       timeDateTime: json['timeDateTime'] != null
-          ? FhirDateTime.fromJson(json['timeDateTime'])
-          : null,
-      timeDateTimeElement: json['_timeDateTime'] != null
-          ? Element.fromJson(
-              json['_timeDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['timeDateTime'],
+              '_value': json['_timeDateTime'],
+            })
           : null,
       timePeriod: json['timePeriod'] != null
           ? Period.fromJson(
@@ -822,7 +791,8 @@ class SpecimenProcessing extends BackboneElement {
     );
   }
 
-  /// Deserialize [SpecimenProcessing] from a [String] or [YamlMap] object
+  /// Deserialize [SpecimenProcessing] from a [String]
+  /// or [YamlMap] object
   factory SpecimenProcessing.fromYaml(dynamic yaml) => yaml is String
       ? SpecimenProcessing.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -831,11 +801,11 @@ class SpecimenProcessing extends BackboneElement {
           ? SpecimenProcessing.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SpecimenProcessing cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('SpecimenProcessing cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SpecimenProcessing] that takes in a [String]
+  /// Factory constructor for [SpecimenProcessing]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SpecimenProcessing.fromJsonString(String source) {
@@ -851,12 +821,18 @@ class SpecimenProcessing extends BackboneElement {
   @override
   String get fhirType => 'SpecimenProcessing';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [description]
   /// Textual description of procedure.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [procedure]
   /// A coded value specifying the procedure used to process the specimen.
@@ -871,9 +847,6 @@ class SpecimenProcessing extends BackboneElement {
   /// For example the time of sample fixation or the period of time the
   /// sample was in formalin.
   final FhirDateTime? timeDateTime;
-
-  /// Extensions for [timeDateTime]
-  final Element? timeDateTimeElement;
 
   /// [timePeriod]
   /// A record of the time or period when the specimen processing occurred.
@@ -897,9 +870,6 @@ class SpecimenProcessing extends BackboneElement {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (procedure != null) {
       json['procedure'] = procedure!.toJson();
     }
@@ -908,9 +878,6 @@ class SpecimenProcessing extends BackboneElement {
     }
     if (timeDateTime?.value != null) {
       json['timeDateTime'] = timeDateTime!.toJson();
-    }
-    if (timeDateTimeElement != null) {
-      json['_timeDateTime'] = timeDateTimeElement!.toJson();
     }
     if (timePeriod != null) {
       json['timePeriod'] = timePeriod!.toJson();
@@ -926,11 +893,9 @@ class SpecimenProcessing extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? description,
-    Element? descriptionElement,
     CodeableConcept? procedure,
     List<Reference>? additive,
     FhirDateTime? timeDateTime,
-    Element? timeDateTimeElement,
     Period? timePeriod,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -944,11 +909,9 @@ class SpecimenProcessing extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       procedure: procedure ?? this.procedure,
       additive: additive ?? this.additive,
       timeDateTime: timeDateTime ?? this.timeDateTime,
-      timeDateTimeElement: timeDateTimeElement ?? this.timeDateTimeElement,
       timePeriod: timePeriod ?? this.timePeriod,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -968,13 +931,10 @@ class SpecimenContainer extends BackboneElement {
 
   SpecimenContainer({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.type,
     this.capacity,
     this.specimenQuantity,
@@ -991,11 +951,15 @@ class SpecimenContainer extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SpecimenContainer.fromJson(Map<String, dynamic> json) {
     return SpecimenContainer(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1004,7 +968,7 @@ class SpecimenContainer extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1013,19 +977,17 @@ class SpecimenContainer extends BackboneElement {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       type: json['type'] != null
           ? CodeableConcept.fromJson(
@@ -1055,7 +1017,8 @@ class SpecimenContainer extends BackboneElement {
     );
   }
 
-  /// Deserialize [SpecimenContainer] from a [String] or [YamlMap] object
+  /// Deserialize [SpecimenContainer] from a [String]
+  /// or [YamlMap] object
   factory SpecimenContainer.fromYaml(dynamic yaml) => yaml is String
       ? SpecimenContainer.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1064,11 +1027,11 @@ class SpecimenContainer extends BackboneElement {
           ? SpecimenContainer.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SpecimenContainer cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('SpecimenContainer cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SpecimenContainer] that takes in a [String]
+  /// Factory constructor for [SpecimenContainer]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SpecimenContainer.fromJsonString(String source) {
@@ -1084,6 +1047,15 @@ class SpecimenContainer extends BackboneElement {
   @override
   String get fhirType => 'SpecimenContainer';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Id for container. There may be multiple; a manufacturer's bar code, lab
   /// assigned identifier, etc. The container ID may differ from the specimen
@@ -1093,9 +1065,6 @@ class SpecimenContainer extends BackboneElement {
   /// [description]
   /// Textual description of the container.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [type]
   /// The type of container associated with the specimen (e.g. slide,
@@ -1141,9 +1110,6 @@ class SpecimenContainer extends BackboneElement {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -1171,7 +1137,6 @@ class SpecimenContainer extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     FhirString? description,
-    Element? descriptionElement,
     CodeableConcept? type,
     Quantity? capacity,
     Quantity? specimenQuantity,
@@ -1190,7 +1155,6 @@ class SpecimenContainer extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       type: type ?? this.type,
       capacity: capacity ?? this.capacity,
       specimenQuantity: specimenQuantity ?? this.specimenQuantity,

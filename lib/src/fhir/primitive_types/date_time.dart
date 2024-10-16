@@ -18,32 +18,6 @@ extension FhirDateTimeStringExtension on String {
 /// [FhirDateTime] represents FHIR-compliant date and time, extending
 /// [FhirDateTimeBase].
 class FhirDateTime extends FhirDateTimeBase {
-  /// Factory constructor to create a [FhirDateTime] from a JSON input.
-  ///
-  /// The input must be a [String], otherwise throws a [FormatException].
-  factory FhirDateTime.fromJson(dynamic json, {Element? element}) {
-    if (json is String) {
-      return FhirDateTime.fromString(json, element);
-    } else {
-      throw const FormatException(
-        'Invalid input for FhirDateTime: Input must be a String',
-      );
-    }
-  }
-
-  /// Factory constructor to create a [FhirDateTime] from a YAML input.
-  ///
-  /// The input must be a valid YAML string or [YamlMap].
-  factory FhirDateTime.fromYaml(dynamic yaml) {
-    if (yaml is String) {
-      return FhirDateTime.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))));
-    } else if (yaml is YamlMap) {
-      return FhirDateTime.fromJson(jsonDecode(jsonEncode(yaml)));
-    } else {
-      throw FormatException('Invalid Yaml format for FhirDateTime: "$yaml".');
-    }
-  }
-
   /// Factory constructor to create a [FhirDateTime] from individual units.
   ///
   /// Requires the [year] to be specified, while other components like [month],
@@ -102,6 +76,39 @@ class FhirDateTime extends FhirDateTimeBase {
   factory FhirDateTime.fromDateTime(DateTime inValue, [Element? element]) =>
       FhirDateTimeBase.constructor<FhirDateTime>(inValue, element)
           as FhirDateTime;
+
+  /// Factory constructor to create a [FhirDateTime] from a JSON input.
+  ///
+  /// The input must be a [String], otherwise throws a [FormatException].
+  factory FhirDateTime.fromJson(Map<String, dynamic> json) {
+    final value = json['value'];
+    final element = json['_value'] is Map<String, dynamic>
+        ? Element.fromJson(json['_value'] as Map<String, dynamic>)
+        : null;
+
+    if (value is String) {
+      return FhirDateTime.fromString(value, element);
+    } else if (value is DateTime) {
+      return FhirDateTime.fromDateTime(value, element);
+    } else {
+      throw const FormatException(
+        'Invalid input for FhirDateTime: Input must be a String',
+      );
+    }
+  }
+
+  /// Factory constructor to create [FhirDateTime] from YAML
+  static FhirDateTime fromYaml(dynamic yaml) => yaml is String
+      ? FhirDateTime.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+        )
+      : yaml is YamlMap
+          ? FhirDateTime.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
+            )
+          : throw ArgumentError(
+              'FhirDateTime cannot be constructed from the provided input,'
+              ' it is neither a YAML string nor a YAML map.');
 
   /// Tries to parse a value as [FhirDateTime], returns `null` if parsing fails.
   static FhirDateTime? tryParse(dynamic value) {
@@ -185,6 +192,8 @@ class FhirDateTime extends FhirDateTimeBase {
     List<dynamic>? annotations,
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
+    Element? element,
+    DateTime? newValue,
   }) {
     return FhirDateTime.fromDateTime(
       value,

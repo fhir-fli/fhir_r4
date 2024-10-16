@@ -12,65 +12,26 @@ class TestScript extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.identifier,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.experimental,
-
-    /// Extensions for [experimental]
-    this.experimentalElement,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.publisher,
-
-    /// Extensions for [publisher]
-    this.publisherElement,
     this.contact,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-
-    /// Extensions for [purpose]
-    this.purposeElement,
     this.copyright,
-
-    /// Extensions for [copyright]
-    this.copyrightElement,
     this.origin,
     this.destination,
     this.metadata,
@@ -93,27 +54,27 @@ class TestScript extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScript.fromJson(Map<String, dynamic> json) {
     return TestScript(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -123,7 +84,7 @@ class TestScript extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -132,7 +93,7 @@ class TestScript extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -141,91 +102,78 @@ class TestScript extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      url: FhirUri.fromJson(json['url']),
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
-          : null,
+      url: FhirUri.fromJson({
+        'value': json['url'],
+        '_value': json['_url'],
+      }),
       identifier: json['identifier'] != null
           ? Identifier.fromJson(
               json['identifier'] as Map<String, dynamic>,
             )
           : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
-      name: FhirString.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: FhirString.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
-          : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: PublicationStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson(json['experimental'])
+          ? FhirBoolean.fromJson({
+              'value': json['experimental'],
+              '_value': json['_experimental'],
+            })
           : null,
-      experimentalElement: json['_experimental'] != null
-          ? Element.fromJson(
-              json['_experimental'] as Map<String, dynamic>,
-            )
-          : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       publisher: json['publisher'] != null
-          ? FhirString.fromJson(json['publisher'])
-          : null,
-      publisherElement: json['_publisher'] != null
-          ? Element.fromJson(
-              json['_publisher'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['publisher'],
+              '_value': json['_publisher'],
+            })
           : null,
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       useContext: json['useContext'] != null
           ? (json['useContext'] as List<dynamic>)
               .map<UsageContext>(
-                (dynamic v) => UsageContext.fromJson(
+                (v) => UsageContext.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -234,32 +182,28 @@ class TestScript extends DomainResource {
       jurisdiction: json['jurisdiction'] != null
           ? (json['jurisdiction'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       purpose: json['purpose'] != null
-          ? FhirMarkdown.fromJson(json['purpose'])
-          : null,
-      purposeElement: json['_purpose'] != null
-          ? Element.fromJson(
-              json['_purpose'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['purpose'],
+              '_value': json['_purpose'],
+            })
           : null,
       copyright: json['copyright'] != null
-          ? FhirMarkdown.fromJson(json['copyright'])
-          : null,
-      copyrightElement: json['_copyright'] != null
-          ? Element.fromJson(
-              json['_copyright'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['copyright'],
+              '_value': json['_copyright'],
+            })
           : null,
       origin: json['origin'] != null
           ? (json['origin'] as List<dynamic>)
               .map<TestScriptOrigin>(
-                (dynamic v) => TestScriptOrigin.fromJson(
+                (v) => TestScriptOrigin.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -268,7 +212,7 @@ class TestScript extends DomainResource {
       destination: json['destination'] != null
           ? (json['destination'] as List<dynamic>)
               .map<TestScriptDestination>(
-                (dynamic v) => TestScriptDestination.fromJson(
+                (v) => TestScriptDestination.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -282,7 +226,7 @@ class TestScript extends DomainResource {
       fixture: json['fixture'] != null
           ? (json['fixture'] as List<dynamic>)
               .map<TestScriptFixture>(
-                (dynamic v) => TestScriptFixture.fromJson(
+                (v) => TestScriptFixture.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -291,7 +235,7 @@ class TestScript extends DomainResource {
       profile: json['profile'] != null
           ? (json['profile'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -300,7 +244,7 @@ class TestScript extends DomainResource {
       variable: json['variable'] != null
           ? (json['variable'] as List<dynamic>)
               .map<TestScriptVariable>(
-                (dynamic v) => TestScriptVariable.fromJson(
+                (v) => TestScriptVariable.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -314,7 +258,7 @@ class TestScript extends DomainResource {
       test: json['test'] != null
           ? (json['test'] as List<dynamic>)
               .map<TestScriptTest>(
-                (dynamic v) => TestScriptTest.fromJson(
+                (v) => TestScriptTest.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -328,7 +272,8 @@ class TestScript extends DomainResource {
     );
   }
 
-  /// Deserialize [TestScript] from a [String] or [YamlMap] object
+  /// Deserialize [TestScript] from a [String]
+  /// or [YamlMap] object
   factory TestScript.fromYaml(dynamic yaml) => yaml is String
       ? TestScript.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -337,10 +282,11 @@ class TestScript extends DomainResource {
           ? TestScript.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('TestScript cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('TestScript cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TestScript] that takes in a [String]
+  /// Factory constructor for [TestScript]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TestScript.fromJsonString(String source) {
@@ -356,6 +302,15 @@ class TestScript extends DomainResource {
   @override
   String get fhirType => 'TestScript';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [url]
   /// An absolute URI that is used to identify this test script when it is
   /// referenced in a specification, model, design or an instance; also
@@ -365,9 +320,6 @@ class TestScript extends DomainResource {
   /// target of a canonical reference. It SHALL remain the same when the test
   /// script is stored on different servers.
   final FhirUri url;
-
-  /// Extensions for [url]
-  final Element? urlElement;
 
   /// [identifier]
   /// A formal identifier that is used to identify this test script when it
@@ -384,41 +336,26 @@ class TestScript extends DomainResource {
   /// expectation that versions can be placed in a lexicographical sequence.
   final FhirString? version;
 
-  /// Extensions for [version]
-  final Element? versionElement;
-
   /// [name]
   /// A natural language name identifying the test script. This name should
   /// be usable as an identifier for the module by machine processing
   /// applications such as code generation.
   final FhirString name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [title]
   /// A short, descriptive, user-friendly title for the test script.
   final FhirString? title;
-
-  /// Extensions for [title]
-  final Element? titleElement;
 
   /// [status]
   /// The status of this test script. Enables tracking the life-cycle of the
   /// content.
   final PublicationStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [experimental]
   /// A Boolean value to indicate that this test script is authored for
   /// testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
   final FhirBoolean? experimental;
-
-  /// Extensions for [experimental]
-  final Element? experimentalElement;
 
   /// [date]
   /// The date (and optionally time) when the test script was published. The
@@ -427,16 +364,10 @@ class TestScript extends DomainResource {
   /// substantive content of the test script changes.
   final FhirDateTime? date;
 
-  /// Extensions for [date]
-  final Element? dateElement;
-
   /// [publisher]
   /// The name of the organization or individual that published the test
   /// script.
   final FhirString? publisher;
-
-  /// Extensions for [publisher]
-  final Element? publisherElement;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
@@ -447,9 +378,6 @@ class TestScript extends DomainResource {
   /// A free text natural language description of the test script from a
   /// consumer's perspective.
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -469,17 +397,11 @@ class TestScript extends DomainResource {
   /// designed as it has.
   final FhirMarkdown? purpose;
 
-  /// Extensions for [purpose]
-  final Element? purposeElement;
-
   /// [copyright]
   /// A copyright statement relating to the test script and/or its contents.
   /// Copyright statements are generally legal restrictions on the use and
   /// publishing of the test script.
   final FhirMarkdown? copyright;
-
-  /// Extensions for [copyright]
-  final Element? copyrightElement;
 
   /// [origin]
   /// An abstract server used in operations within this test script in the
@@ -535,9 +457,6 @@ class TestScript extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -556,55 +475,31 @@ class TestScript extends DomainResource {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['url'] = url.toJson();
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
-    }
     if (identifier != null) {
       json['identifier'] = identifier!.toJson();
     }
     if (version?.value != null) {
       json['version'] = version!.toJson();
     }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
-    }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (title?.value != null) {
       json['title'] = title!.toJson();
-    }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
     }
     json['status'] = status.toJson();
     if (experimental?.value != null) {
       json['experimental'] = experimental!.toJson();
     }
-    if (experimentalElement != null) {
-      json['_experimental'] = experimentalElement!.toJson();
-    }
     if (date?.value != null) {
       json['date'] = date!.toJson();
     }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (publisher?.value != null) {
       json['publisher'] = publisher!.toJson();
-    }
-    if (publisherElement != null) {
-      json['_publisher'] = publisherElement!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] =
@@ -617,14 +512,8 @@ class TestScript extends DomainResource {
     if (purpose?.value != null) {
       json['purpose'] = purpose!.toJson();
     }
-    if (purposeElement != null) {
-      json['_purpose'] = purposeElement!.toJson();
-    }
     if (copyright?.value != null) {
       json['copyright'] = copyright!.toJson();
-    }
-    if (copyrightElement != null) {
-      json['_copyright'] = copyrightElement!.toJson();
     }
     if (origin != null && origin!.isNotEmpty) {
       json['origin'] = origin!.map((TestScriptOrigin v) => v.toJson()).toList();
@@ -666,39 +555,26 @@ class TestScript extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    Element? urlElement,
     Identifier? identifier,
     FhirString? version,
-    Element? versionElement,
     FhirString? name,
-    Element? nameElement,
     FhirString? title,
-    Element? titleElement,
     PublicationStatus? status,
-    Element? statusElement,
     FhirBoolean? experimental,
-    Element? experimentalElement,
     FhirDateTime? date,
-    Element? dateElement,
     FhirString? publisher,
-    Element? publisherElement,
     List<ContactDetail>? contact,
     FhirMarkdown? description,
-    Element? descriptionElement,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
     FhirMarkdown? purpose,
-    Element? purposeElement,
     FhirMarkdown? copyright,
-    Element? copyrightElement,
     List<TestScriptOrigin>? origin,
     List<TestScriptDestination>? destination,
     TestScriptMetadata? metadata,
@@ -719,39 +595,26 @@ class TestScript extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       identifier: identifier ?? this.identifier,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       experimental: experimental ?? this.experimental,
-      experimentalElement: experimentalElement ?? this.experimentalElement,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       publisher: publisher ?? this.publisher,
-      publisherElement: publisherElement ?? this.publisherElement,
       contact: contact ?? this.contact,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       useContext: useContext ?? this.useContext,
       jurisdiction: jurisdiction ?? this.jurisdiction,
       purpose: purpose ?? this.purpose,
-      purposeElement: purposeElement ?? this.purposeElement,
       copyright: copyright ?? this.copyright,
-      copyrightElement: copyrightElement ?? this.copyrightElement,
       origin: origin ?? this.origin,
       destination: destination ?? this.destination,
       metadata: metadata ?? this.metadata,
@@ -779,12 +642,9 @@ class TestScriptOrigin extends BackboneElement {
 
   TestScriptOrigin({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.index,
-
-    /// Extensions for [index]
-    this.indexElement,
     required this.profile,
     super.userData,
     super.formatCommentsPre,
@@ -797,11 +657,15 @@ class TestScriptOrigin extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptOrigin.fromJson(Map<String, dynamic> json) {
     return TestScriptOrigin(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -810,25 +674,24 @@ class TestScriptOrigin extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      index: FhirInteger.fromJson(json['index']),
-      indexElement: json['_index'] != null
-          ? Element.fromJson(
-              json['_index'] as Map<String, dynamic>,
-            )
-          : null,
+      index: FhirInteger.fromJson({
+        'value': json['index'],
+        '_value': json['_index'],
+      }),
       profile: Coding.fromJson(
         json['profile'] as Map<String, dynamic>,
       ),
     );
   }
 
-  /// Deserialize [TestScriptOrigin] from a [String] or [YamlMap] object
+  /// Deserialize [TestScriptOrigin] from a [String]
+  /// or [YamlMap] object
   factory TestScriptOrigin.fromYaml(dynamic yaml) => yaml is String
       ? TestScriptOrigin.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -837,11 +700,11 @@ class TestScriptOrigin extends BackboneElement {
           ? TestScriptOrigin.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TestScriptOrigin cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('TestScriptOrigin cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TestScriptOrigin] that takes in a [String]
+  /// Factory constructor for [TestScriptOrigin]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TestScriptOrigin.fromJsonString(String source) {
@@ -857,13 +720,19 @@ class TestScriptOrigin extends BackboneElement {
   @override
   String get fhirType => 'TestScriptOrigin';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [index]
   /// Abstract name given to an origin server in this test script. The name
   /// is provided as a number starting at 1.
   final FhirInteger index;
-
-  /// Extensions for [index]
-  final Element? indexElement;
 
   /// [profile]
   /// The type of origin profile the test system supports.
@@ -883,9 +752,6 @@ class TestScriptOrigin extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['index'] = index.toJson();
-    if (indexElement != null) {
-      json['_index'] = indexElement!.toJson();
-    }
     json['profile'] = profile.toJson();
     return json;
   }
@@ -898,7 +764,6 @@ class TestScriptOrigin extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirInteger? index,
-    Element? indexElement,
     Coding? profile,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -912,7 +777,6 @@ class TestScriptOrigin extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       index: index ?? this.index,
-      indexElement: indexElement ?? this.indexElement,
       profile: profile ?? this.profile,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -932,12 +796,9 @@ class TestScriptDestination extends BackboneElement {
 
   TestScriptDestination({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.index,
-
-    /// Extensions for [index]
-    this.indexElement,
     required this.profile,
     super.userData,
     super.formatCommentsPre,
@@ -950,11 +811,15 @@ class TestScriptDestination extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptDestination.fromJson(Map<String, dynamic> json) {
     return TestScriptDestination(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -963,25 +828,24 @@ class TestScriptDestination extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      index: FhirInteger.fromJson(json['index']),
-      indexElement: json['_index'] != null
-          ? Element.fromJson(
-              json['_index'] as Map<String, dynamic>,
-            )
-          : null,
+      index: FhirInteger.fromJson({
+        'value': json['index'],
+        '_value': json['_index'],
+      }),
       profile: Coding.fromJson(
         json['profile'] as Map<String, dynamic>,
       ),
     );
   }
 
-  /// Deserialize [TestScriptDestination] from a [String] or [YamlMap] object
+  /// Deserialize [TestScriptDestination] from a [String]
+  /// or [YamlMap] object
   factory TestScriptDestination.fromYaml(dynamic yaml) => yaml is String
       ? TestScriptDestination.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -991,10 +855,11 @@ class TestScriptDestination extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'TestScriptDestination cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'TestScriptDestination cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TestScriptDestination] that takes in a [String]
+  /// Factory constructor for [TestScriptDestination]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TestScriptDestination.fromJsonString(String source) {
@@ -1010,13 +875,19 @@ class TestScriptDestination extends BackboneElement {
   @override
   String get fhirType => 'TestScriptDestination';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [index]
   /// Abstract name given to a destination server in this test script. The
   /// name is provided as a number starting at 1.
   final FhirInteger index;
-
-  /// Extensions for [index]
-  final Element? indexElement;
 
   /// [profile]
   /// The type of destination profile the test system supports.
@@ -1036,9 +907,6 @@ class TestScriptDestination extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['index'] = index.toJson();
-    if (indexElement != null) {
-      json['_index'] = indexElement!.toJson();
-    }
     json['profile'] = profile.toJson();
     return json;
   }
@@ -1051,7 +919,6 @@ class TestScriptDestination extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirInteger? index,
-    Element? indexElement,
     Coding? profile,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1065,7 +932,6 @@ class TestScriptDestination extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       index: index ?? this.index,
-      indexElement: indexElement ?? this.indexElement,
       profile: profile ?? this.profile,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -1085,7 +951,7 @@ class TestScriptMetadata extends BackboneElement {
 
   TestScriptMetadata({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.link,
     required this.capability,
@@ -1100,11 +966,15 @@ class TestScriptMetadata extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptMetadata.fromJson(Map<String, dynamic> json) {
     return TestScriptMetadata(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1113,7 +983,7 @@ class TestScriptMetadata extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1122,20 +992,24 @@ class TestScriptMetadata extends BackboneElement {
       link: json['link'] != null
           ? (json['link'] as List<dynamic>)
               .map<TestScriptLink>(
-                (dynamic v) => TestScriptLink.fromJson(
+                (v) => TestScriptLink.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      capability: (json['capability'] as List<dynamic>)
-          .map<TestScriptCapability>((dynamic v) =>
-              TestScriptCapability.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      capability: ensureNonNullList((json['capability'] as List<dynamic>)
+          .map<TestScriptCapability>(
+            (v) => TestScriptCapability.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
     );
   }
 
-  /// Deserialize [TestScriptMetadata] from a [String] or [YamlMap] object
+  /// Deserialize [TestScriptMetadata] from a [String]
+  /// or [YamlMap] object
   factory TestScriptMetadata.fromYaml(dynamic yaml) => yaml is String
       ? TestScriptMetadata.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1144,11 +1018,11 @@ class TestScriptMetadata extends BackboneElement {
           ? TestScriptMetadata.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TestScriptMetadata cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('TestScriptMetadata cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TestScriptMetadata] that takes in a [String]
+  /// Factory constructor for [TestScriptMetadata]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TestScriptMetadata.fromJsonString(String source) {
@@ -1163,6 +1037,15 @@ class TestScriptMetadata extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptMetadata';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [link]
   /// A link to the FHIR specification that this test is covering.
@@ -1234,16 +1117,10 @@ class TestScriptLink extends BackboneElement {
 
   TestScriptLink({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1255,11 +1132,15 @@ class TestScriptLink extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptLink.fromJson(Map<String, dynamic> json) {
     return TestScriptLink(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1268,30 +1149,27 @@ class TestScriptLink extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      url: FhirUri.fromJson(json['url']),
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
-          : null,
+      url: FhirUri.fromJson({
+        'value': json['url'],
+        '_value': json['_url'],
+      }),
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [TestScriptLink] from a [String] or [YamlMap] object
+  /// Deserialize [TestScriptLink] from a [String]
+  /// or [YamlMap] object
   factory TestScriptLink.fromYaml(dynamic yaml) => yaml is String
       ? TestScriptLink.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1300,11 +1178,11 @@ class TestScriptLink extends BackboneElement {
           ? TestScriptLink.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TestScriptLink cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('TestScriptLink cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TestScriptLink] that takes in a [String]
+  /// Factory constructor for [TestScriptLink]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TestScriptLink.fromJsonString(String source) {
@@ -1320,20 +1198,23 @@ class TestScriptLink extends BackboneElement {
   @override
   String get fhirType => 'TestScriptLink';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [url]
   /// URL to a particular requirement or feature within the FHIR
   /// specification.
   final FhirUri url;
 
-  /// Extensions for [url]
-  final Element? urlElement;
-
   /// [description]
   /// Short description of the link.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1349,14 +1230,8 @@ class TestScriptLink extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['url'] = url.toJson();
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
-    }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     return json;
   }
@@ -1369,9 +1244,7 @@ class TestScriptLink extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    Element? urlElement,
     FhirString? description,
-    Element? descriptionElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1384,9 +1257,7 @@ class TestScriptLink extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1405,36 +1276,15 @@ class TestScriptCapability extends BackboneElement {
 
   TestScriptCapability({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.required_,
-
-    /// Extensions for [required]
-    this.requiredElement,
     required this.validated,
-
-    /// Extensions for [validated]
-    this.validatedElement,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.origin,
-
-    /// Extensions for [origin]
-    this.originElement,
     this.destination,
-
-    /// Extensions for [destination]
-    this.destinationElement,
     this.link,
-
-    /// Extensions for [link]
-    this.linkElement,
     required this.capabilities,
-
-    /// Extensions for [capabilities]
-    this.capabilitiesElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1446,11 +1296,15 @@ class TestScriptCapability extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptCapability.fromJson(Map<String, dynamic> json) {
     return TestScriptCapability(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1459,78 +1313,47 @@ class TestScriptCapability extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      required_: FhirBoolean.fromJson(json['required']),
-      requiredElement: json['_required'] != null
-          ? Element.fromJson(
-              json['_required'] as Map<String, dynamic>,
-            )
-          : null,
-      validated: FhirBoolean.fromJson(json['validated']),
-      validatedElement: json['_validated'] != null
-          ? Element.fromJson(
-              json['_validated'] as Map<String, dynamic>,
-            )
-          : null,
+      required_: FhirBoolean.fromJson({
+        'value': json['required'],
+        '_value': json['_required'],
+      }),
+      validated: FhirBoolean.fromJson({
+        'value': json['validated'],
+        '_value': json['_validated'],
+      }),
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
-          : null,
-      origin: json['origin'] != null
-          ? (json['origin'] as List<dynamic>)
-              .map<FhirInteger>(
-                (dynamic v) => FhirInteger.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      originElement: json['_origin'] != null
-          ? (json['_origin'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      origin: parsePrimitiveList<FhirInteger>(
+          json['origin'] as List<dynamic>?, json['_origin'] as List<dynamic>?,
+          fromJson: FhirInteger.fromJson),
       destination: json['destination'] != null
-          ? FhirInteger.fromJson(json['destination'])
+          ? FhirInteger.fromJson({
+              'value': json['destination'],
+              '_value': json['_destination'],
+            })
           : null,
-      destinationElement: json['_destination'] != null
-          ? Element.fromJson(
-              json['_destination'] as Map<String, dynamic>,
-            )
-          : null,
-      link: json['link'] != null
-          ? (json['link'] as List<dynamic>)
-              .map<FhirUri>(
-                (dynamic v) => FhirUri.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      linkElement: json['_link'] != null
-          ? (json['_link'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      capabilities: FhirCanonical.fromJson(json['capabilities']),
-      capabilitiesElement: json['_capabilities'] != null
-          ? Element.fromJson(
-              json['_capabilities'] as Map<String, dynamic>,
-            )
-          : null,
+      link: parsePrimitiveList<FhirUri>(
+          json['link'] as List<dynamic>?, json['_link'] as List<dynamic>?,
+          fromJson: FhirUri.fromJson),
+      capabilities: FhirCanonical.fromJson({
+        'value': json['capabilities'],
+        '_value': json['_capabilities'],
+      }),
     );
   }
 
-  /// Deserialize [TestScriptCapability] from a [String] or [YamlMap] object
+  /// Deserialize [TestScriptCapability] from a [String]
+  /// or [YamlMap] object
   factory TestScriptCapability.fromYaml(dynamic yaml) => yaml is String
       ? TestScriptCapability.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1540,10 +1363,11 @@ class TestScriptCapability extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'TestScriptCapability cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'TestScriptCapability cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TestScriptCapability] that takes in a [String]
+  /// Factory constructor for [TestScriptCapability]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TestScriptCapability.fromJsonString(String source) {
@@ -1559,60 +1383,48 @@ class TestScriptCapability extends BackboneElement {
   @override
   String get fhirType => 'TestScriptCapability';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [required_]
   /// Whether or not the test execution will require the given capabilities
   /// of the server in order for this test script to execute.
   final FhirBoolean required_;
-
-  /// Extensions for [required]
-  final Element? requiredElement;
 
   /// [validated]
   /// Whether or not the test execution will validate the given capabilities
   /// of the server in order for this test script to execute.
   final FhirBoolean validated;
 
-  /// Extensions for [validated]
-  final Element? validatedElement;
-
   /// [description]
   /// Description of the capabilities that this test script is requiring the
   /// server to support.
   final FhirString? description;
 
-  /// Extensions for [description]
-  final Element? descriptionElement;
-
   /// [origin]
   /// Which origin server these requirements apply to.
   final List<FhirInteger>? origin;
 
-  /// Extensions for [origin]
-  final List<Element>? originElement;
-
   /// [destination]
   /// Which server these requirements apply to.
   final FhirInteger? destination;
-
-  /// Extensions for [destination]
-  final Element? destinationElement;
 
   /// [link]
   /// Links to the FHIR specification that describes this interaction and the
   /// resources involved in more detail.
   final List<FhirUri>? link;
 
-  /// Extensions for [link]
-  final List<Element>? linkElement;
-
   /// [capabilities]
   /// Minimum capabilities required of server for test script to execute
   /// successfully. If server does not meet at a minimum the referenced
   /// capability statement, then all tests in this script are skipped.
   final FhirCanonical capabilities;
-
-  /// Extensions for [capabilities]
-  final Element? capabilitiesElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1628,41 +1440,20 @@ class TestScriptCapability extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['required'] = required_.toJson();
-    if (requiredElement != null) {
-      json['_required'] = requiredElement!.toJson();
-    }
     json['validated'] = validated.toJson();
-    if (validatedElement != null) {
-      json['_validated'] = validatedElement!.toJson();
-    }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (origin != null && origin!.isNotEmpty) {
       json['origin'] = origin!.map((FhirInteger v) => v.toJson()).toList();
     }
-    if (originElement != null && originElement!.isNotEmpty) {
-      json['_origin'] = originElement!.map((Element v) => v.toJson()).toList();
-    }
     if (destination?.value != null) {
       json['destination'] = destination!.toJson();
-    }
-    if (destinationElement != null) {
-      json['_destination'] = destinationElement!.toJson();
     }
     if (link != null && link!.isNotEmpty) {
       json['link'] = link!.map((FhirUri v) => v.toJson()).toList();
     }
-    if (linkElement != null && linkElement!.isNotEmpty) {
-      json['_link'] = linkElement!.map((Element v) => v.toJson()).toList();
-    }
     json['capabilities'] = capabilities.toJson();
-    if (capabilitiesElement != null) {
-      json['_capabilities'] = capabilitiesElement!.toJson();
-    }
     return json;
   }
 
@@ -1674,19 +1465,12 @@ class TestScriptCapability extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirBoolean? required_,
-    Element? requiredElement,
     FhirBoolean? validated,
-    Element? validatedElement,
     FhirString? description,
-    Element? descriptionElement,
     List<FhirInteger>? origin,
-    List<Element>? originElement,
     FhirInteger? destination,
-    Element? destinationElement,
     List<FhirUri>? link,
-    List<Element>? linkElement,
     FhirCanonical? capabilities,
-    Element? capabilitiesElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1699,19 +1483,12 @@ class TestScriptCapability extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       required_: required_ ?? this.required_,
-      requiredElement: requiredElement ?? this.requiredElement,
       validated: validated ?? this.validated,
-      validatedElement: validatedElement ?? this.validatedElement,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       origin: origin ?? this.origin,
-      originElement: originElement ?? this.originElement,
       destination: destination ?? this.destination,
-      destinationElement: destinationElement ?? this.destinationElement,
       link: link ?? this.link,
-      linkElement: linkElement ?? this.linkElement,
       capabilities: capabilities ?? this.capabilities,
-      capabilitiesElement: capabilitiesElement ?? this.capabilitiesElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1730,16 +1507,10 @@ class TestScriptFixture extends BackboneElement {
 
   TestScriptFixture({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.autocreate,
-
-    /// Extensions for [autocreate]
-    this.autocreateElement,
     required this.autodelete,
-
-    /// Extensions for [autodelete]
-    this.autodeleteElement,
     this.resource,
     super.userData,
     super.formatCommentsPre,
@@ -1752,11 +1523,15 @@ class TestScriptFixture extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptFixture.fromJson(Map<String, dynamic> json) {
     return TestScriptFixture(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1765,24 +1540,20 @@ class TestScriptFixture extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      autocreate: FhirBoolean.fromJson(json['autocreate']),
-      autocreateElement: json['_autocreate'] != null
-          ? Element.fromJson(
-              json['_autocreate'] as Map<String, dynamic>,
-            )
-          : null,
-      autodelete: FhirBoolean.fromJson(json['autodelete']),
-      autodeleteElement: json['_autodelete'] != null
-          ? Element.fromJson(
-              json['_autodelete'] as Map<String, dynamic>,
-            )
-          : null,
+      autocreate: FhirBoolean.fromJson({
+        'value': json['autocreate'],
+        '_value': json['_autocreate'],
+      }),
+      autodelete: FhirBoolean.fromJson({
+        'value': json['autodelete'],
+        '_value': json['_autodelete'],
+      }),
       resource: json['resource'] != null
           ? Reference.fromJson(
               json['resource'] as Map<String, dynamic>,
@@ -1791,7 +1562,8 @@ class TestScriptFixture extends BackboneElement {
     );
   }
 
-  /// Deserialize [TestScriptFixture] from a [String] or [YamlMap] object
+  /// Deserialize [TestScriptFixture] from a [String]
+  /// or [YamlMap] object
   factory TestScriptFixture.fromYaml(dynamic yaml) => yaml is String
       ? TestScriptFixture.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1800,11 +1572,11 @@ class TestScriptFixture extends BackboneElement {
           ? TestScriptFixture.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TestScriptFixture cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('TestScriptFixture cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TestScriptFixture] that takes in a [String]
+  /// Factory constructor for [TestScriptFixture]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TestScriptFixture.fromJsonString(String source) {
@@ -1820,6 +1592,15 @@ class TestScriptFixture extends BackboneElement {
   @override
   String get fhirType => 'TestScriptFixture';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [autocreate]
   /// Whether or not to implicitly create the fixture during setup. If true,
   /// the fixture is automatically created on each server being tested during
@@ -1827,18 +1608,12 @@ class TestScriptFixture extends BackboneElement {
   /// the TestScript.setup section.
   final FhirBoolean autocreate;
 
-  /// Extensions for [autocreate]
-  final Element? autocreateElement;
-
   /// [autodelete]
   /// Whether or not to implicitly delete the fixture during teardown. If
   /// true, the fixture is automatically deleted on each server being tested
   /// during teardown, therefore no delete operation is required for this
   /// fixture in the TestScript.teardown section.
   final FhirBoolean autodelete;
-
-  /// Extensions for [autodelete]
-  final Element? autodeleteElement;
 
   /// [resource]
   /// Reference to the resource (containing the contents of the resource
@@ -1859,13 +1634,7 @@ class TestScriptFixture extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['autocreate'] = autocreate.toJson();
-    if (autocreateElement != null) {
-      json['_autocreate'] = autocreateElement!.toJson();
-    }
     json['autodelete'] = autodelete.toJson();
-    if (autodeleteElement != null) {
-      json['_autodelete'] = autodeleteElement!.toJson();
-    }
     if (resource != null) {
       json['resource'] = resource!.toJson();
     }
@@ -1880,9 +1649,7 @@ class TestScriptFixture extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirBoolean? autocreate,
-    Element? autocreateElement,
     FhirBoolean? autodelete,
-    Element? autodeleteElement,
     Reference? resource,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1896,9 +1663,7 @@ class TestScriptFixture extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       autocreate: autocreate ?? this.autocreate,
-      autocreateElement: autocreateElement ?? this.autocreateElement,
       autodelete: autodelete ?? this.autodelete,
-      autodeleteElement: autodeleteElement ?? this.autodeleteElement,
       resource: resource ?? this.resource,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -1918,40 +1683,16 @@ class TestScriptVariable extends BackboneElement {
 
   TestScriptVariable({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.defaultValue,
-
-    /// Extensions for [defaultValue]
-    this.defaultValueElement,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.expression,
-
-    /// Extensions for [expression]
-    this.expressionElement,
     this.headerField,
-
-    /// Extensions for [headerField]
-    this.headerFieldElement,
     this.hint,
-
-    /// Extensions for [hint]
-    this.hintElement,
     this.path,
-
-    /// Extensions for [path]
-    this.pathElement,
     this.sourceId,
-
-    /// Extensions for [sourceId]
-    this.sourceIdElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1963,11 +1704,15 @@ class TestScriptVariable extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptVariable.fromJson(Map<String, dynamic> json) {
     return TestScriptVariable(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1976,73 +1721,63 @@ class TestScriptVariable extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: FhirString.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
-          : null,
+      name: FhirString.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
       defaultValue: json['defaultValue'] != null
-          ? FhirString.fromJson(json['defaultValue'])
-          : null,
-      defaultValueElement: json['_defaultValue'] != null
-          ? Element.fromJson(
-              json['_defaultValue'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['defaultValue'],
+              '_value': json['_defaultValue'],
+            })
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       expression: json['expression'] != null
-          ? FhirString.fromJson(json['expression'])
-          : null,
-      expressionElement: json['_expression'] != null
-          ? Element.fromJson(
-              json['_expression'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['expression'],
+              '_value': json['_expression'],
+            })
           : null,
       headerField: json['headerField'] != null
-          ? FhirString.fromJson(json['headerField'])
+          ? FhirString.fromJson({
+              'value': json['headerField'],
+              '_value': json['_headerField'],
+            })
           : null,
-      headerFieldElement: json['_headerField'] != null
-          ? Element.fromJson(
-              json['_headerField'] as Map<String, dynamic>,
-            )
+      hint: json['hint'] != null
+          ? FhirString.fromJson({
+              'value': json['hint'],
+              '_value': json['_hint'],
+            })
           : null,
-      hint: json['hint'] != null ? FhirString.fromJson(json['hint']) : null,
-      hintElement: json['_hint'] != null
-          ? Element.fromJson(
-              json['_hint'] as Map<String, dynamic>,
-            )
+      path: json['path'] != null
+          ? FhirString.fromJson({
+              'value': json['path'],
+              '_value': json['_path'],
+            })
           : null,
-      path: json['path'] != null ? FhirString.fromJson(json['path']) : null,
-      pathElement: json['_path'] != null
-          ? Element.fromJson(
-              json['_path'] as Map<String, dynamic>,
-            )
-          : null,
-      sourceId:
-          json['sourceId'] != null ? FhirId.fromJson(json['sourceId']) : null,
-      sourceIdElement: json['_sourceId'] != null
-          ? Element.fromJson(
-              json['_sourceId'] as Map<String, dynamic>,
-            )
+      sourceId: json['sourceId'] != null
+          ? FhirId.fromJson({
+              'value': json['sourceId'],
+              '_value': json['_sourceId'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [TestScriptVariable] from a [String] or [YamlMap] object
+  /// Deserialize [TestScriptVariable] from a [String]
+  /// or [YamlMap] object
   factory TestScriptVariable.fromYaml(dynamic yaml) => yaml is String
       ? TestScriptVariable.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2051,11 +1786,11 @@ class TestScriptVariable extends BackboneElement {
           ? TestScriptVariable.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TestScriptVariable cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('TestScriptVariable cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TestScriptVariable] that takes in a [String]
+  /// Factory constructor for [TestScriptVariable]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TestScriptVariable.fromJsonString(String source) {
@@ -2071,27 +1806,27 @@ class TestScriptVariable extends BackboneElement {
   @override
   String get fhirType => 'TestScriptVariable';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// Descriptive name for this variable.
   final FhirString name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [defaultValue]
   /// A default, hard-coded, or user-defined value for this variable.
   final FhirString? defaultValue;
 
-  /// Extensions for [defaultValue]
-  final Element? defaultValueElement;
-
   /// [description]
   /// A free text natural language description of the variable and its
   /// purpose.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [expression]
   /// The FHIRPath expression to evaluate against the fixture body. When
@@ -2099,24 +1834,15 @@ class TestScriptVariable extends BackboneElement {
   /// path must be specified.
   final FhirString? expression;
 
-  /// Extensions for [expression]
-  final Element? expressionElement;
-
   /// [headerField]
   /// Will be used to grab the HTTP header field value from the headers that
   /// sourceId is pointing to.
   final FhirString? headerField;
 
-  /// Extensions for [headerField]
-  final Element? headerFieldElement;
-
   /// [hint]
   /// Displayable text string with hint help information to the user when
   /// entering a default value.
   final FhirString? hint;
-
-  /// Extensions for [hint]
-  final Element? hintElement;
 
   /// [path]
   /// XPath or JSONPath to evaluate against the fixture body. When variables
@@ -2124,16 +1850,10 @@ class TestScriptVariable extends BackboneElement {
   /// specified.
   final FhirString? path;
 
-  /// Extensions for [path]
-  final Element? pathElement;
-
   /// [sourceId]
   /// Fixture to evaluate the XPath/JSONPath expression or the headerField
   /// against within this variable.
   final FhirId? sourceId;
-
-  /// Extensions for [sourceId]
-  final Element? sourceIdElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2149,50 +1869,26 @@ class TestScriptVariable extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (defaultValue?.value != null) {
       json['defaultValue'] = defaultValue!.toJson();
-    }
-    if (defaultValueElement != null) {
-      json['_defaultValue'] = defaultValueElement!.toJson();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (expression?.value != null) {
       json['expression'] = expression!.toJson();
-    }
-    if (expressionElement != null) {
-      json['_expression'] = expressionElement!.toJson();
     }
     if (headerField?.value != null) {
       json['headerField'] = headerField!.toJson();
     }
-    if (headerFieldElement != null) {
-      json['_headerField'] = headerFieldElement!.toJson();
-    }
     if (hint?.value != null) {
       json['hint'] = hint!.toJson();
-    }
-    if (hintElement != null) {
-      json['_hint'] = hintElement!.toJson();
     }
     if (path?.value != null) {
       json['path'] = path!.toJson();
     }
-    if (pathElement != null) {
-      json['_path'] = pathElement!.toJson();
-    }
     if (sourceId?.value != null) {
       json['sourceId'] = sourceId!.toJson();
-    }
-    if (sourceIdElement != null) {
-      json['_sourceId'] = sourceIdElement!.toJson();
     }
     return json;
   }
@@ -2205,21 +1901,13 @@ class TestScriptVariable extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    Element? nameElement,
     FhirString? defaultValue,
-    Element? defaultValueElement,
     FhirString? description,
-    Element? descriptionElement,
     FhirString? expression,
-    Element? expressionElement,
     FhirString? headerField,
-    Element? headerFieldElement,
     FhirString? hint,
-    Element? hintElement,
     FhirString? path,
-    Element? pathElement,
     FhirId? sourceId,
-    Element? sourceIdElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2232,21 +1920,13 @@ class TestScriptVariable extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       defaultValue: defaultValue ?? this.defaultValue,
-      defaultValueElement: defaultValueElement ?? this.defaultValueElement,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       expression: expression ?? this.expression,
-      expressionElement: expressionElement ?? this.expressionElement,
       headerField: headerField ?? this.headerField,
-      headerFieldElement: headerFieldElement ?? this.headerFieldElement,
       hint: hint ?? this.hint,
-      hintElement: hintElement ?? this.hintElement,
       path: path ?? this.path,
-      pathElement: pathElement ?? this.pathElement,
       sourceId: sourceId ?? this.sourceId,
-      sourceIdElement: sourceIdElement ?? this.sourceIdElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2264,7 +1944,7 @@ class TestScriptSetup extends BackboneElement {
 
   TestScriptSetup({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.action,
     super.userData,
@@ -2278,11 +1958,15 @@ class TestScriptSetup extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptSetup.fromJson(Map<String, dynamic> json) {
     return TestScriptSetup(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2291,20 +1975,24 @@ class TestScriptSetup extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      action: (json['action'] as List<dynamic>)
-          .map<TestScriptAction>((dynamic v) =>
-              TestScriptAction.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      action: ensureNonNullList((json['action'] as List<dynamic>)
+          .map<TestScriptAction>(
+            (v) => TestScriptAction.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
     );
   }
 
-  /// Deserialize [TestScriptSetup] from a [String] or [YamlMap] object
+  /// Deserialize [TestScriptSetup] from a [String]
+  /// or [YamlMap] object
   factory TestScriptSetup.fromYaml(dynamic yaml) => yaml is String
       ? TestScriptSetup.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2313,11 +2001,11 @@ class TestScriptSetup extends BackboneElement {
           ? TestScriptSetup.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TestScriptSetup cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('TestScriptSetup cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TestScriptSetup] that takes in a [String]
+  /// Factory constructor for [TestScriptSetup]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TestScriptSetup.fromJsonString(String source) {
@@ -2332,6 +2020,15 @@ class TestScriptSetup extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptSetup';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [action]
   /// Action would contain either an operation or an assertion.
@@ -2392,7 +2089,7 @@ class TestScriptAction extends BackboneElement {
 
   TestScriptAction({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.operation,
     this.assert_,
@@ -2407,11 +2104,15 @@ class TestScriptAction extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptAction.fromJson(Map<String, dynamic> json) {
     return TestScriptAction(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2420,7 +2121,7 @@ class TestScriptAction extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2439,7 +2140,8 @@ class TestScriptAction extends BackboneElement {
     );
   }
 
-  /// Deserialize [TestScriptAction] from a [String] or [YamlMap] object
+  /// Deserialize [TestScriptAction] from a [String]
+  /// or [YamlMap] object
   factory TestScriptAction.fromYaml(dynamic yaml) => yaml is String
       ? TestScriptAction.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2448,11 +2150,11 @@ class TestScriptAction extends BackboneElement {
           ? TestScriptAction.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TestScriptAction cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('TestScriptAction cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TestScriptAction] that takes in a [String]
+  /// Factory constructor for [TestScriptAction]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TestScriptAction.fromJsonString(String source) {
@@ -2467,6 +2169,15 @@ class TestScriptAction extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptAction';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [operation]
   /// The operation to perform.
@@ -2538,70 +2249,25 @@ class TestScriptOperation extends BackboneElement {
 
   TestScriptOperation({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.type,
     this.resource,
-
-    /// Extensions for [resource]
-    this.resourceElement,
     this.label,
-
-    /// Extensions for [label]
-    this.labelElement,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.accept,
-
-    /// Extensions for [accept]
-    this.acceptElement,
     this.contentType,
-
-    /// Extensions for [contentType]
-    this.contentTypeElement,
     this.destination,
-
-    /// Extensions for [destination]
-    this.destinationElement,
     required this.encodeRequestUrl,
-
-    /// Extensions for [encodeRequestUrl]
-    this.encodeRequestUrlElement,
     this.method,
-
-    /// Extensions for [method]
-    this.methodElement,
     this.origin,
-
-    /// Extensions for [origin]
-    this.originElement,
     this.params,
-
-    /// Extensions for [params]
-    this.paramsElement,
     this.requestHeader,
     this.requestId,
-
-    /// Extensions for [requestId]
-    this.requestIdElement,
     this.responseId,
-
-    /// Extensions for [responseId]
-    this.responseIdElement,
     this.sourceId,
-
-    /// Extensions for [sourceId]
-    this.sourceIdElement,
     this.targetId,
-
-    /// Extensions for [targetId]
-    this.targetIdElement,
     this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2613,11 +2279,15 @@ class TestScriptOperation extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptOperation.fromJson(Map<String, dynamic> json) {
     return TestScriptOperation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2626,7 +2296,7 @@ class TestScriptOperation extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2638,125 +2308,107 @@ class TestScriptOperation extends BackboneElement {
             )
           : null,
       resource: json['resource'] != null
-          ? FHIRDefinedType.fromJson(json['resource'])
+          ? FHIRDefinedType.fromJson({
+              'value': json['resource'],
+              '_value': json['_resource'],
+            })
           : null,
-      resourceElement: json['_resource'] != null
-          ? Element.fromJson(
-              json['_resource'] as Map<String, dynamic>,
-            )
-          : null,
-      label: json['label'] != null ? FhirString.fromJson(json['label']) : null,
-      labelElement: json['_label'] != null
-          ? Element.fromJson(
-              json['_label'] as Map<String, dynamic>,
-            )
+      label: json['label'] != null
+          ? FhirString.fromJson({
+              'value': json['label'],
+              '_value': json['_label'],
+            })
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
-          : null,
-      accept: json['accept'] != null ? FhirCode.fromJson(json['accept']) : null,
-      acceptElement: json['_accept'] != null
-          ? Element.fromJson(
-              json['_accept'] as Map<String, dynamic>,
-            )
+      accept: json['accept'] != null
+          ? FhirCode.fromJson({
+              'value': json['accept'],
+              '_value': json['_accept'],
+            })
           : null,
       contentType: json['contentType'] != null
-          ? FhirCode.fromJson(json['contentType'])
-          : null,
-      contentTypeElement: json['_contentType'] != null
-          ? Element.fromJson(
-              json['_contentType'] as Map<String, dynamic>,
-            )
+          ? FhirCode.fromJson({
+              'value': json['contentType'],
+              '_value': json['_contentType'],
+            })
           : null,
       destination: json['destination'] != null
-          ? FhirInteger.fromJson(json['destination'])
+          ? FhirInteger.fromJson({
+              'value': json['destination'],
+              '_value': json['_destination'],
+            })
           : null,
-      destinationElement: json['_destination'] != null
-          ? Element.fromJson(
-              json['_destination'] as Map<String, dynamic>,
-            )
-          : null,
-      encodeRequestUrl: FhirBoolean.fromJson(json['encodeRequestUrl']),
-      encodeRequestUrlElement: json['_encodeRequestUrl'] != null
-          ? Element.fromJson(
-              json['_encodeRequestUrl'] as Map<String, dynamic>,
-            )
-          : null,
+      encodeRequestUrl: FhirBoolean.fromJson({
+        'value': json['encodeRequestUrl'],
+        '_value': json['_encodeRequestUrl'],
+      }),
       method: json['method'] != null
-          ? TestScriptRequestMethodCode.fromJson(json['method'])
+          ? TestScriptRequestMethodCode.fromJson({
+              'value': json['method'],
+              '_value': json['_method'],
+            })
           : null,
-      methodElement: json['_method'] != null
-          ? Element.fromJson(
-              json['_method'] as Map<String, dynamic>,
-            )
+      origin: json['origin'] != null
+          ? FhirInteger.fromJson({
+              'value': json['origin'],
+              '_value': json['_origin'],
+            })
           : null,
-      origin:
-          json['origin'] != null ? FhirInteger.fromJson(json['origin']) : null,
-      originElement: json['_origin'] != null
-          ? Element.fromJson(
-              json['_origin'] as Map<String, dynamic>,
-            )
-          : null,
-      params:
-          json['params'] != null ? FhirString.fromJson(json['params']) : null,
-      paramsElement: json['_params'] != null
-          ? Element.fromJson(
-              json['_params'] as Map<String, dynamic>,
-            )
+      params: json['params'] != null
+          ? FhirString.fromJson({
+              'value': json['params'],
+              '_value': json['_params'],
+            })
           : null,
       requestHeader: json['requestHeader'] != null
           ? (json['requestHeader'] as List<dynamic>)
               .map<TestScriptRequestHeader>(
-                (dynamic v) => TestScriptRequestHeader.fromJson(
+                (v) => TestScriptRequestHeader.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      requestId:
-          json['requestId'] != null ? FhirId.fromJson(json['requestId']) : null,
-      requestIdElement: json['_requestId'] != null
-          ? Element.fromJson(
-              json['_requestId'] as Map<String, dynamic>,
-            )
+      requestId: json['requestId'] != null
+          ? FhirId.fromJson({
+              'value': json['requestId'],
+              '_value': json['_requestId'],
+            })
           : null,
       responseId: json['responseId'] != null
-          ? FhirId.fromJson(json['responseId'])
+          ? FhirId.fromJson({
+              'value': json['responseId'],
+              '_value': json['_responseId'],
+            })
           : null,
-      responseIdElement: json['_responseId'] != null
-          ? Element.fromJson(
-              json['_responseId'] as Map<String, dynamic>,
-            )
+      sourceId: json['sourceId'] != null
+          ? FhirId.fromJson({
+              'value': json['sourceId'],
+              '_value': json['_sourceId'],
+            })
           : null,
-      sourceId:
-          json['sourceId'] != null ? FhirId.fromJson(json['sourceId']) : null,
-      sourceIdElement: json['_sourceId'] != null
-          ? Element.fromJson(
-              json['_sourceId'] as Map<String, dynamic>,
-            )
+      targetId: json['targetId'] != null
+          ? FhirId.fromJson({
+              'value': json['targetId'],
+              '_value': json['_targetId'],
+            })
           : null,
-      targetId:
-          json['targetId'] != null ? FhirId.fromJson(json['targetId']) : null,
-      targetIdElement: json['_targetId'] != null
-          ? Element.fromJson(
-              json['_targetId'] as Map<String, dynamic>,
-            )
-          : null,
-      url: json['url'] != null ? FhirString.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
+      url: json['url'] != null
+          ? FhirString.fromJson({
+              'value': json['url'],
+              '_value': json['_url'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [TestScriptOperation] from a [String] or [YamlMap] object
+  /// Deserialize [TestScriptOperation] from a [String]
+  /// or [YamlMap] object
   factory TestScriptOperation.fromYaml(dynamic yaml) => yaml is String
       ? TestScriptOperation.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2766,10 +2418,11 @@ class TestScriptOperation extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'TestScriptOperation cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'TestScriptOperation cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TestScriptOperation] that takes in a [String]
+  /// Factory constructor for [TestScriptOperation]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TestScriptOperation.fromJsonString(String source) {
@@ -2785,6 +2438,15 @@ class TestScriptOperation extends BackboneElement {
   @override
   String get fhirType => 'TestScriptOperation';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// Server interaction or operation type.
   final Coding? type;
@@ -2793,46 +2455,28 @@ class TestScriptOperation extends BackboneElement {
   /// The type of the resource. See http://build.fhir.org/resourcelist.html.
   final FHIRDefinedType? resource;
 
-  /// Extensions for [resource]
-  final Element? resourceElement;
-
   /// [label]
   /// The label would be used for tracking/logging purposes by test engines.
   final FhirString? label;
-
-  /// Extensions for [label]
-  final Element? labelElement;
 
   /// [description]
   /// The description would be used by test engines for tracking and
   /// reporting purposes.
   final FhirString? description;
 
-  /// Extensions for [description]
-  final Element? descriptionElement;
-
   /// [accept]
   /// The mime-type to use for RESTful operation in the 'Accept' header.
   final FhirCode? accept;
-
-  /// Extensions for [accept]
-  final Element? acceptElement;
 
   /// [contentType]
   /// The mime-type to use for RESTful operation in the 'Content-Type'
   /// header.
   final FhirCode? contentType;
 
-  /// Extensions for [contentType]
-  final Element? contentTypeElement;
-
   /// [destination]
   /// The server where the request message is destined for. Must be one of
   /// the server numbers listed in TestScript.destination section.
   final FhirInteger? destination;
-
-  /// Extensions for [destination]
-  final Element? destinationElement;
 
   /// [encodeRequestUrl]
   /// Whether or not to implicitly send the request url in encoded format.
@@ -2841,32 +2485,20 @@ class TestScriptOperation extends BackboneElement {
   /// url paths.
   final FhirBoolean encodeRequestUrl;
 
-  /// Extensions for [encodeRequestUrl]
-  final Element? encodeRequestUrlElement;
-
   /// [method]
   /// The HTTP method the test engine MUST use for this operation regardless
   /// of any other operation details.
   final TestScriptRequestMethodCode? method;
-
-  /// Extensions for [method]
-  final Element? methodElement;
 
   /// [origin]
   /// The server where the request message originates from. Must be one of
   /// the server numbers listed in TestScript.origin section.
   final FhirInteger? origin;
 
-  /// Extensions for [origin]
-  final Element? originElement;
-
   /// [params]
   /// Path plus parameters after [type]. Used to set parts of the request URL
   /// explicitly.
   final FhirString? params;
-
-  /// Extensions for [params]
-  final Element? paramsElement;
 
   /// [requestHeader]
   /// Header elements would be used to set HTTP headers.
@@ -2876,37 +2508,22 @@ class TestScriptOperation extends BackboneElement {
   /// The fixture id (maybe new) to map to the request.
   final FhirId? requestId;
 
-  /// Extensions for [requestId]
-  final Element? requestIdElement;
-
   /// [responseId]
   /// The fixture id (maybe new) to map to the response.
   final FhirId? responseId;
 
-  /// Extensions for [responseId]
-  final Element? responseIdElement;
-
   /// [sourceId]
   /// The id of the fixture used as the body of a PUT or POST request.
   final FhirId? sourceId;
-
-  /// Extensions for [sourceId]
-  final Element? sourceIdElement;
 
   /// [targetId]
   /// Id of fixture used for extracting the [id], [type], and [vid] for GET
   /// requests.
   final FhirId? targetId;
 
-  /// Extensions for [targetId]
-  final Element? targetIdElement;
-
   /// [url]
   /// Complete request URL.
   final FhirString? url;
-
-  /// Extensions for [url]
-  final Element? urlElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2930,51 +2547,27 @@ class TestScriptOperation extends BackboneElement {
     if (label?.value != null) {
       json['label'] = label!.toJson();
     }
-    if (labelElement != null) {
-      json['_label'] = labelElement!.toJson();
-    }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (accept?.value != null) {
       json['accept'] = accept!.toJson();
     }
-    if (acceptElement != null) {
-      json['_accept'] = acceptElement!.toJson();
-    }
     if (contentType?.value != null) {
       json['contentType'] = contentType!.toJson();
-    }
-    if (contentTypeElement != null) {
-      json['_contentType'] = contentTypeElement!.toJson();
     }
     if (destination?.value != null) {
       json['destination'] = destination!.toJson();
     }
-    if (destinationElement != null) {
-      json['_destination'] = destinationElement!.toJson();
-    }
     json['encodeRequestUrl'] = encodeRequestUrl.toJson();
-    if (encodeRequestUrlElement != null) {
-      json['_encodeRequestUrl'] = encodeRequestUrlElement!.toJson();
-    }
     if (method != null) {
       json['method'] = method!.toJson();
     }
     if (origin?.value != null) {
       json['origin'] = origin!.toJson();
     }
-    if (originElement != null) {
-      json['_origin'] = originElement!.toJson();
-    }
     if (params?.value != null) {
       json['params'] = params!.toJson();
-    }
-    if (paramsElement != null) {
-      json['_params'] = paramsElement!.toJson();
     }
     if (requestHeader != null && requestHeader!.isNotEmpty) {
       json['requestHeader'] = requestHeader!
@@ -2984,32 +2577,17 @@ class TestScriptOperation extends BackboneElement {
     if (requestId?.value != null) {
       json['requestId'] = requestId!.toJson();
     }
-    if (requestIdElement != null) {
-      json['_requestId'] = requestIdElement!.toJson();
-    }
     if (responseId?.value != null) {
       json['responseId'] = responseId!.toJson();
-    }
-    if (responseIdElement != null) {
-      json['_responseId'] = responseIdElement!.toJson();
     }
     if (sourceId?.value != null) {
       json['sourceId'] = sourceId!.toJson();
     }
-    if (sourceIdElement != null) {
-      json['_sourceId'] = sourceIdElement!.toJson();
-    }
     if (targetId?.value != null) {
       json['targetId'] = targetId!.toJson();
     }
-    if (targetIdElement != null) {
-      json['_targetId'] = targetIdElement!.toJson();
-    }
     if (url?.value != null) {
       json['url'] = url!.toJson();
-    }
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
     }
     return json;
   }
@@ -3023,36 +2601,21 @@ class TestScriptOperation extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Coding? type,
     FHIRDefinedType? resource,
-    Element? resourceElement,
     FhirString? label,
-    Element? labelElement,
     FhirString? description,
-    Element? descriptionElement,
     FhirCode? accept,
-    Element? acceptElement,
     FhirCode? contentType,
-    Element? contentTypeElement,
     FhirInteger? destination,
-    Element? destinationElement,
     FhirBoolean? encodeRequestUrl,
-    Element? encodeRequestUrlElement,
     TestScriptRequestMethodCode? method,
-    Element? methodElement,
     FhirInteger? origin,
-    Element? originElement,
     FhirString? params,
-    Element? paramsElement,
     List<TestScriptRequestHeader>? requestHeader,
     FhirId? requestId,
-    Element? requestIdElement,
     FhirId? responseId,
-    Element? responseIdElement,
     FhirId? sourceId,
-    Element? sourceIdElement,
     FhirId? targetId,
-    Element? targetIdElement,
     FhirString? url,
-    Element? urlElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3066,37 +2629,21 @@ class TestScriptOperation extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       resource: resource ?? this.resource,
-      resourceElement: resourceElement ?? this.resourceElement,
       label: label ?? this.label,
-      labelElement: labelElement ?? this.labelElement,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       accept: accept ?? this.accept,
-      acceptElement: acceptElement ?? this.acceptElement,
       contentType: contentType ?? this.contentType,
-      contentTypeElement: contentTypeElement ?? this.contentTypeElement,
       destination: destination ?? this.destination,
-      destinationElement: destinationElement ?? this.destinationElement,
       encodeRequestUrl: encodeRequestUrl ?? this.encodeRequestUrl,
-      encodeRequestUrlElement:
-          encodeRequestUrlElement ?? this.encodeRequestUrlElement,
       method: method ?? this.method,
-      methodElement: methodElement ?? this.methodElement,
       origin: origin ?? this.origin,
-      originElement: originElement ?? this.originElement,
       params: params ?? this.params,
-      paramsElement: paramsElement ?? this.paramsElement,
       requestHeader: requestHeader ?? this.requestHeader,
       requestId: requestId ?? this.requestId,
-      requestIdElement: requestIdElement ?? this.requestIdElement,
       responseId: responseId ?? this.responseId,
-      responseIdElement: responseIdElement ?? this.responseIdElement,
       sourceId: sourceId ?? this.sourceId,
-      sourceIdElement: sourceIdElement ?? this.sourceIdElement,
       targetId: targetId ?? this.targetId,
-      targetIdElement: targetIdElement ?? this.targetIdElement,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -3114,16 +2661,10 @@ class TestScriptRequestHeader extends BackboneElement {
 
   TestScriptRequestHeader({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.field,
-
-    /// Extensions for [field]
-    this.fieldElement,
     required this.value,
-
-    /// Extensions for [value]
-    this.valueElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -3135,11 +2676,15 @@ class TestScriptRequestHeader extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptRequestHeader.fromJson(Map<String, dynamic> json) {
     return TestScriptRequestHeader(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3148,28 +2693,25 @@ class TestScriptRequestHeader extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      field: FhirString.fromJson(json['field']),
-      fieldElement: json['_field'] != null
-          ? Element.fromJson(
-              json['_field'] as Map<String, dynamic>,
-            )
-          : null,
-      value: FhirString.fromJson(json['value']),
-      valueElement: json['_value'] != null
-          ? Element.fromJson(
-              json['_value'] as Map<String, dynamic>,
-            )
-          : null,
+      field: FhirString.fromJson({
+        'value': json['field'],
+        '_value': json['_field'],
+      }),
+      value: FhirString.fromJson({
+        'value': json['value'],
+        '_value': json['_value'],
+      }),
     );
   }
 
-  /// Deserialize [TestScriptRequestHeader] from a [String] or [YamlMap] object
+  /// Deserialize [TestScriptRequestHeader] from a [String]
+  /// or [YamlMap] object
   factory TestScriptRequestHeader.fromYaml(dynamic yaml) => yaml is String
       ? TestScriptRequestHeader.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -3179,10 +2721,11 @@ class TestScriptRequestHeader extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'TestScriptRequestHeader cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'TestScriptRequestHeader cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TestScriptRequestHeader] that takes in a [String]
+  /// Factory constructor for [TestScriptRequestHeader]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TestScriptRequestHeader.fromJsonString(String source) {
@@ -3198,19 +2741,22 @@ class TestScriptRequestHeader extends BackboneElement {
   @override
   String get fhirType => 'TestScriptRequestHeader';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [field]
   /// The HTTP header field e.g. "Accept".
   final FhirString field;
 
-  /// Extensions for [field]
-  final Element? fieldElement;
-
   /// [value]
   /// The value of the header e.g. "application/fhir+xml".
   final FhirString value;
-
-  /// Extensions for [value]
-  final Element? valueElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3226,13 +2772,7 @@ class TestScriptRequestHeader extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['field'] = field.toJson();
-    if (fieldElement != null) {
-      json['_field'] = fieldElement!.toJson();
-    }
     json['value'] = value.toJson();
-    if (valueElement != null) {
-      json['_value'] = valueElement!.toJson();
-    }
     return json;
   }
 
@@ -3244,9 +2784,7 @@ class TestScriptRequestHeader extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? field,
-    Element? fieldElement,
     FhirString? value,
-    Element? valueElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3259,9 +2797,7 @@ class TestScriptRequestHeader extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       field: field ?? this.field,
-      fieldElement: fieldElement ?? this.fieldElement,
       value: value ?? this.value,
-      valueElement: valueElement ?? this.valueElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -3280,96 +2816,30 @@ class TestScriptAssert extends BackboneElement {
 
   TestScriptAssert({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.label,
-
-    /// Extensions for [label]
-    this.labelElement,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.direction,
-
-    /// Extensions for [direction]
-    this.directionElement,
     this.compareToSourceId,
-
-    /// Extensions for [compareToSourceId]
-    this.compareToSourceIdElement,
     this.compareToSourceExpression,
-
-    /// Extensions for [compareToSourceExpression]
-    this.compareToSourceExpressionElement,
     this.compareToSourcePath,
-
-    /// Extensions for [compareToSourcePath]
-    this.compareToSourcePathElement,
     this.contentType,
-
-    /// Extensions for [contentType]
-    this.contentTypeElement,
     this.expression,
-
-    /// Extensions for [expression]
-    this.expressionElement,
     this.headerField,
-
-    /// Extensions for [headerField]
-    this.headerFieldElement,
     this.minimumId,
-
-    /// Extensions for [minimumId]
-    this.minimumIdElement,
     this.navigationLinks,
-
-    /// Extensions for [navigationLinks]
-    this.navigationLinksElement,
     this.operator_,
-
-    /// Extensions for [operator]
-    this.operatorElement,
     this.path,
-
-    /// Extensions for [path]
-    this.pathElement,
     this.requestMethod,
-
-    /// Extensions for [requestMethod]
-    this.requestMethodElement,
     this.requestURL,
-
-    /// Extensions for [requestURL]
-    this.requestURLElement,
     this.resource,
-
-    /// Extensions for [resource]
-    this.resourceElement,
     this.response,
-
-    /// Extensions for [response]
-    this.responseElement,
     this.responseCode,
-
-    /// Extensions for [responseCode]
-    this.responseCodeElement,
     this.sourceId,
-
-    /// Extensions for [sourceId]
-    this.sourceIdElement,
     this.validateProfileId,
-
-    /// Extensions for [validateProfileId]
-    this.validateProfileIdElement,
     this.value,
-
-    /// Extensions for [value]
-    this.valueElement,
     required this.warningOnly,
-
-    /// Extensions for [warningOnly]
-    this.warningOnlyElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -3381,11 +2851,15 @@ class TestScriptAssert extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptAssert.fromJson(Map<String, dynamic> json) {
     return TestScriptAssert(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3394,184 +2868,147 @@ class TestScriptAssert extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      label: json['label'] != null ? FhirString.fromJson(json['label']) : null,
-      labelElement: json['_label'] != null
-          ? Element.fromJson(
-              json['_label'] as Map<String, dynamic>,
-            )
+      label: json['label'] != null
+          ? FhirString.fromJson({
+              'value': json['label'],
+              '_value': json['_label'],
+            })
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       direction: json['direction'] != null
-          ? AssertionDirectionType.fromJson(json['direction'])
-          : null,
-      directionElement: json['_direction'] != null
-          ? Element.fromJson(
-              json['_direction'] as Map<String, dynamic>,
-            )
+          ? AssertionDirectionType.fromJson({
+              'value': json['direction'],
+              '_value': json['_direction'],
+            })
           : null,
       compareToSourceId: json['compareToSourceId'] != null
-          ? FhirString.fromJson(json['compareToSourceId'])
-          : null,
-      compareToSourceIdElement: json['_compareToSourceId'] != null
-          ? Element.fromJson(
-              json['_compareToSourceId'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['compareToSourceId'],
+              '_value': json['_compareToSourceId'],
+            })
           : null,
       compareToSourceExpression: json['compareToSourceExpression'] != null
-          ? FhirString.fromJson(json['compareToSourceExpression'])
+          ? FhirString.fromJson({
+              'value': json['compareToSourceExpression'],
+              '_value': json['_compareToSourceExpression'],
+            })
           : null,
-      compareToSourceExpressionElement:
-          json['_compareToSourceExpression'] != null
-              ? Element.fromJson(
-                  json['_compareToSourceExpression'] as Map<String, dynamic>,
-                )
-              : null,
       compareToSourcePath: json['compareToSourcePath'] != null
-          ? FhirString.fromJson(json['compareToSourcePath'])
-          : null,
-      compareToSourcePathElement: json['_compareToSourcePath'] != null
-          ? Element.fromJson(
-              json['_compareToSourcePath'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['compareToSourcePath'],
+              '_value': json['_compareToSourcePath'],
+            })
           : null,
       contentType: json['contentType'] != null
-          ? FhirCode.fromJson(json['contentType'])
-          : null,
-      contentTypeElement: json['_contentType'] != null
-          ? Element.fromJson(
-              json['_contentType'] as Map<String, dynamic>,
-            )
+          ? FhirCode.fromJson({
+              'value': json['contentType'],
+              '_value': json['_contentType'],
+            })
           : null,
       expression: json['expression'] != null
-          ? FhirString.fromJson(json['expression'])
-          : null,
-      expressionElement: json['_expression'] != null
-          ? Element.fromJson(
-              json['_expression'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['expression'],
+              '_value': json['_expression'],
+            })
           : null,
       headerField: json['headerField'] != null
-          ? FhirString.fromJson(json['headerField'])
-          : null,
-      headerFieldElement: json['_headerField'] != null
-          ? Element.fromJson(
-              json['_headerField'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['headerField'],
+              '_value': json['_headerField'],
+            })
           : null,
       minimumId: json['minimumId'] != null
-          ? FhirString.fromJson(json['minimumId'])
-          : null,
-      minimumIdElement: json['_minimumId'] != null
-          ? Element.fromJson(
-              json['_minimumId'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['minimumId'],
+              '_value': json['_minimumId'],
+            })
           : null,
       navigationLinks: json['navigationLinks'] != null
-          ? FhirBoolean.fromJson(json['navigationLinks'])
-          : null,
-      navigationLinksElement: json['_navigationLinks'] != null
-          ? Element.fromJson(
-              json['_navigationLinks'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['navigationLinks'],
+              '_value': json['_navigationLinks'],
+            })
           : null,
       operator_: json['operator'] != null
-          ? AssertionOperatorType.fromJson(json['operator'])
+          ? AssertionOperatorType.fromJson({
+              'value': json['operator'],
+              '_value': json['_operator'],
+            })
           : null,
-      operatorElement: json['_operator'] != null
-          ? Element.fromJson(
-              json['_operator'] as Map<String, dynamic>,
-            )
-          : null,
-      path: json['path'] != null ? FhirString.fromJson(json['path']) : null,
-      pathElement: json['_path'] != null
-          ? Element.fromJson(
-              json['_path'] as Map<String, dynamic>,
-            )
+      path: json['path'] != null
+          ? FhirString.fromJson({
+              'value': json['path'],
+              '_value': json['_path'],
+            })
           : null,
       requestMethod: json['requestMethod'] != null
-          ? TestScriptRequestMethodCode.fromJson(json['requestMethod'])
-          : null,
-      requestMethodElement: json['_requestMethod'] != null
-          ? Element.fromJson(
-              json['_requestMethod'] as Map<String, dynamic>,
-            )
+          ? TestScriptRequestMethodCode.fromJson({
+              'value': json['requestMethod'],
+              '_value': json['_requestMethod'],
+            })
           : null,
       requestURL: json['requestURL'] != null
-          ? FhirString.fromJson(json['requestURL'])
-          : null,
-      requestURLElement: json['_requestURL'] != null
-          ? Element.fromJson(
-              json['_requestURL'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['requestURL'],
+              '_value': json['_requestURL'],
+            })
           : null,
       resource: json['resource'] != null
-          ? FHIRDefinedType.fromJson(json['resource'])
-          : null,
-      resourceElement: json['_resource'] != null
-          ? Element.fromJson(
-              json['_resource'] as Map<String, dynamic>,
-            )
+          ? FHIRDefinedType.fromJson({
+              'value': json['resource'],
+              '_value': json['_resource'],
+            })
           : null,
       response: json['response'] != null
-          ? AssertionResponseTypes.fromJson(json['response'])
-          : null,
-      responseElement: json['_response'] != null
-          ? Element.fromJson(
-              json['_response'] as Map<String, dynamic>,
-            )
+          ? AssertionResponseTypes.fromJson({
+              'value': json['response'],
+              '_value': json['_response'],
+            })
           : null,
       responseCode: json['responseCode'] != null
-          ? FhirString.fromJson(json['responseCode'])
+          ? FhirString.fromJson({
+              'value': json['responseCode'],
+              '_value': json['_responseCode'],
+            })
           : null,
-      responseCodeElement: json['_responseCode'] != null
-          ? Element.fromJson(
-              json['_responseCode'] as Map<String, dynamic>,
-            )
-          : null,
-      sourceId:
-          json['sourceId'] != null ? FhirId.fromJson(json['sourceId']) : null,
-      sourceIdElement: json['_sourceId'] != null
-          ? Element.fromJson(
-              json['_sourceId'] as Map<String, dynamic>,
-            )
+      sourceId: json['sourceId'] != null
+          ? FhirId.fromJson({
+              'value': json['sourceId'],
+              '_value': json['_sourceId'],
+            })
           : null,
       validateProfileId: json['validateProfileId'] != null
-          ? FhirId.fromJson(json['validateProfileId'])
+          ? FhirId.fromJson({
+              'value': json['validateProfileId'],
+              '_value': json['_validateProfileId'],
+            })
           : null,
-      validateProfileIdElement: json['_validateProfileId'] != null
-          ? Element.fromJson(
-              json['_validateProfileId'] as Map<String, dynamic>,
-            )
+      value: json['value'] != null
+          ? FhirString.fromJson({
+              'value': json['value'],
+              '_value': json['_value'],
+            })
           : null,
-      value: json['value'] != null ? FhirString.fromJson(json['value']) : null,
-      valueElement: json['_value'] != null
-          ? Element.fromJson(
-              json['_value'] as Map<String, dynamic>,
-            )
-          : null,
-      warningOnly: FhirBoolean.fromJson(json['warningOnly']),
-      warningOnlyElement: json['_warningOnly'] != null
-          ? Element.fromJson(
-              json['_warningOnly'] as Map<String, dynamic>,
-            )
-          : null,
+      warningOnly: FhirBoolean.fromJson({
+        'value': json['warningOnly'],
+        '_value': json['_warningOnly'],
+      }),
     );
   }
 
-  /// Deserialize [TestScriptAssert] from a [String] or [YamlMap] object
+  /// Deserialize [TestScriptAssert] from a [String]
+  /// or [YamlMap] object
   factory TestScriptAssert.fromYaml(dynamic yaml) => yaml is String
       ? TestScriptAssert.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -3580,11 +3017,11 @@ class TestScriptAssert extends BackboneElement {
           ? TestScriptAssert.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TestScriptAssert cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('TestScriptAssert cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TestScriptAssert] that takes in a [String]
+  /// Factory constructor for [TestScriptAssert]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TestScriptAssert.fromJsonString(String source) {
@@ -3600,35 +3037,32 @@ class TestScriptAssert extends BackboneElement {
   @override
   String get fhirType => 'TestScriptAssert';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [label]
   /// The label would be used for tracking/logging purposes by test engines.
   final FhirString? label;
-
-  /// Extensions for [label]
-  final Element? labelElement;
 
   /// [description]
   /// The description would be used by test engines for tracking and
   /// reporting purposes.
   final FhirString? description;
 
-  /// Extensions for [description]
-  final Element? descriptionElement;
-
   /// [direction]
   /// The direction to use for the assertion.
   final AssertionDirectionType? direction;
-
-  /// Extensions for [direction]
-  final Element? directionElement;
 
   /// [compareToSourceId]
   /// Id of the source fixture used as the contents to be evaluated by either
   /// the "source/expression" or "sourceId/path" definition.
   final FhirString? compareToSourceId;
-
-  /// Extensions for [compareToSourceId]
-  final Element? compareToSourceIdElement;
 
   /// [compareToSourceExpression]
   /// The FHIRPath expression to evaluate against the source fixture. When
@@ -3636,94 +3070,58 @@ class TestScriptAssert extends BackboneElement {
   /// compareToSourcePath must be defined, but not both.
   final FhirString? compareToSourceExpression;
 
-  /// Extensions for [compareToSourceExpression]
-  final Element? compareToSourceExpressionElement;
-
   /// [compareToSourcePath]
   /// XPath or JSONPath expression to evaluate against the source fixture.
   /// When compareToSourceId is defined, either compareToSourceExpression or
   /// compareToSourcePath must be defined, but not both.
   final FhirString? compareToSourcePath;
 
-  /// Extensions for [compareToSourcePath]
-  final Element? compareToSourcePathElement;
-
   /// [contentType]
   /// The mime-type contents to compare against the request or response
   /// message 'Content-Type' header.
   final FhirCode? contentType;
-
-  /// Extensions for [contentType]
-  final Element? contentTypeElement;
 
   /// [expression]
   /// The FHIRPath expression to be evaluated against the request or response
   /// message contents - HTTP headers and payload.
   final FhirString? expression;
 
-  /// Extensions for [expression]
-  final Element? expressionElement;
-
   /// [headerField]
   /// The HTTP header field name e.g. 'Location'.
   final FhirString? headerField;
-
-  /// Extensions for [headerField]
-  final Element? headerFieldElement;
 
   /// [minimumId]
   /// The ID of a fixture. Asserts that the response contains at a minimum
   /// the fixture specified by minimumId.
   final FhirString? minimumId;
 
-  /// Extensions for [minimumId]
-  final Element? minimumIdElement;
-
   /// [navigationLinks]
   /// Whether or not the test execution performs validation on the bundle
   /// navigation links.
   final FhirBoolean? navigationLinks;
-
-  /// Extensions for [navigationLinks]
-  final Element? navigationLinksElement;
 
   /// [operator_]
   /// The operator type defines the conditional behavior of the assert. If
   /// not defined, the default is equals.
   final AssertionOperatorType? operator_;
 
-  /// Extensions for [operator]
-  final Element? operatorElement;
-
   /// [path]
   /// The XPath or JSONPath expression to be evaluated against the fixture
   /// representing the response received from server.
   final FhirString? path;
-
-  /// Extensions for [path]
-  final Element? pathElement;
 
   /// [requestMethod]
   /// The request method or HTTP operation code to compare against that used
   /// by the client system under test.
   final TestScriptRequestMethodCode? requestMethod;
 
-  /// Extensions for [requestMethod]
-  final Element? requestMethodElement;
-
   /// [requestURL]
   /// The value to use in a comparison against the request URL path string.
   final FhirString? requestURL;
 
-  /// Extensions for [requestURL]
-  final Element? requestURLElement;
-
   /// [resource]
   /// The type of the resource. See http://build.fhir.org/resourcelist.html.
   final FHIRDefinedType? resource;
-
-  /// Extensions for [resource]
-  final Element? resourceElement;
 
   /// [response]
   /// okay | created | noContent | notModified | bad | forbidden | notFound |
@@ -3731,45 +3129,27 @@ class TestScriptAssert extends BackboneElement {
   /// unprocessable.
   final AssertionResponseTypes? response;
 
-  /// Extensions for [response]
-  final Element? responseElement;
-
   /// [responseCode]
   /// The value of the HTTP response code to be tested.
   final FhirString? responseCode;
-
-  /// Extensions for [responseCode]
-  final Element? responseCodeElement;
 
   /// [sourceId]
   /// Fixture to evaluate the XPath/JSONPath expression or the headerField
   /// against.
   final FhirId? sourceId;
 
-  /// Extensions for [sourceId]
-  final Element? sourceIdElement;
-
   /// [validateProfileId]
   /// The ID of the Profile to validate against.
   final FhirId? validateProfileId;
-
-  /// Extensions for [validateProfileId]
-  final Element? validateProfileIdElement;
 
   /// [value]
   /// The value to compare to.
   final FhirString? value;
 
-  /// Extensions for [value]
-  final Element? valueElement;
-
   /// [warningOnly]
   /// Whether or not the test execution will produce a warning only on error
   /// for this assert.
   final FhirBoolean warningOnly;
-
-  /// Extensions for [warningOnly]
-  final Element? warningOnlyElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3787,14 +3167,8 @@ class TestScriptAssert extends BackboneElement {
     if (label?.value != null) {
       json['label'] = label!.toJson();
     }
-    if (labelElement != null) {
-      json['_label'] = labelElement!.toJson();
-    }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (direction != null) {
       json['direction'] = direction!.toJson();
@@ -3802,51 +3176,26 @@ class TestScriptAssert extends BackboneElement {
     if (compareToSourceId?.value != null) {
       json['compareToSourceId'] = compareToSourceId!.toJson();
     }
-    if (compareToSourceIdElement != null) {
-      json['_compareToSourceId'] = compareToSourceIdElement!.toJson();
-    }
     if (compareToSourceExpression?.value != null) {
       json['compareToSourceExpression'] = compareToSourceExpression!.toJson();
-    }
-    if (compareToSourceExpressionElement != null) {
-      json['_compareToSourceExpression'] =
-          compareToSourceExpressionElement!.toJson();
     }
     if (compareToSourcePath?.value != null) {
       json['compareToSourcePath'] = compareToSourcePath!.toJson();
     }
-    if (compareToSourcePathElement != null) {
-      json['_compareToSourcePath'] = compareToSourcePathElement!.toJson();
-    }
     if (contentType?.value != null) {
       json['contentType'] = contentType!.toJson();
-    }
-    if (contentTypeElement != null) {
-      json['_contentType'] = contentTypeElement!.toJson();
     }
     if (expression?.value != null) {
       json['expression'] = expression!.toJson();
     }
-    if (expressionElement != null) {
-      json['_expression'] = expressionElement!.toJson();
-    }
     if (headerField?.value != null) {
       json['headerField'] = headerField!.toJson();
-    }
-    if (headerFieldElement != null) {
-      json['_headerField'] = headerFieldElement!.toJson();
     }
     if (minimumId?.value != null) {
       json['minimumId'] = minimumId!.toJson();
     }
-    if (minimumIdElement != null) {
-      json['_minimumId'] = minimumIdElement!.toJson();
-    }
     if (navigationLinks?.value != null) {
       json['navigationLinks'] = navigationLinks!.toJson();
-    }
-    if (navigationLinksElement != null) {
-      json['_navigationLinks'] = navigationLinksElement!.toJson();
     }
     if (operator_ != null) {
       json['operator'] = operator_!.toJson();
@@ -3854,17 +3203,11 @@ class TestScriptAssert extends BackboneElement {
     if (path?.value != null) {
       json['path'] = path!.toJson();
     }
-    if (pathElement != null) {
-      json['_path'] = pathElement!.toJson();
-    }
     if (requestMethod != null) {
       json['requestMethod'] = requestMethod!.toJson();
     }
     if (requestURL?.value != null) {
       json['requestURL'] = requestURL!.toJson();
-    }
-    if (requestURLElement != null) {
-      json['_requestURL'] = requestURLElement!.toJson();
     }
     if (resource != null) {
       json['resource'] = resource!.toJson();
@@ -3875,31 +3218,16 @@ class TestScriptAssert extends BackboneElement {
     if (responseCode?.value != null) {
       json['responseCode'] = responseCode!.toJson();
     }
-    if (responseCodeElement != null) {
-      json['_responseCode'] = responseCodeElement!.toJson();
-    }
     if (sourceId?.value != null) {
       json['sourceId'] = sourceId!.toJson();
-    }
-    if (sourceIdElement != null) {
-      json['_sourceId'] = sourceIdElement!.toJson();
     }
     if (validateProfileId?.value != null) {
       json['validateProfileId'] = validateProfileId!.toJson();
     }
-    if (validateProfileIdElement != null) {
-      json['_validateProfileId'] = validateProfileIdElement!.toJson();
-    }
     if (value?.value != null) {
       json['value'] = value!.toJson();
     }
-    if (valueElement != null) {
-      json['_value'] = valueElement!.toJson();
-    }
     json['warningOnly'] = warningOnly.toJson();
-    if (warningOnlyElement != null) {
-      json['_warningOnly'] = warningOnlyElement!.toJson();
-    }
     return json;
   }
 
@@ -3911,49 +3239,27 @@ class TestScriptAssert extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? label,
-    Element? labelElement,
     FhirString? description,
-    Element? descriptionElement,
     AssertionDirectionType? direction,
-    Element? directionElement,
     FhirString? compareToSourceId,
-    Element? compareToSourceIdElement,
     FhirString? compareToSourceExpression,
-    Element? compareToSourceExpressionElement,
     FhirString? compareToSourcePath,
-    Element? compareToSourcePathElement,
     FhirCode? contentType,
-    Element? contentTypeElement,
     FhirString? expression,
-    Element? expressionElement,
     FhirString? headerField,
-    Element? headerFieldElement,
     FhirString? minimumId,
-    Element? minimumIdElement,
     FhirBoolean? navigationLinks,
-    Element? navigationLinksElement,
     AssertionOperatorType? operator_,
-    Element? operatorElement,
     FhirString? path,
-    Element? pathElement,
     TestScriptRequestMethodCode? requestMethod,
-    Element? requestMethodElement,
     FhirString? requestURL,
-    Element? requestURLElement,
     FHIRDefinedType? resource,
-    Element? resourceElement,
     AssertionResponseTypes? response,
-    Element? responseElement,
     FhirString? responseCode,
-    Element? responseCodeElement,
     FhirId? sourceId,
-    Element? sourceIdElement,
     FhirId? validateProfileId,
-    Element? validateProfileIdElement,
     FhirString? value,
-    Element? valueElement,
     FhirBoolean? warningOnly,
-    Element? warningOnlyElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3966,55 +3272,28 @@ class TestScriptAssert extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       label: label ?? this.label,
-      labelElement: labelElement ?? this.labelElement,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       direction: direction ?? this.direction,
-      directionElement: directionElement ?? this.directionElement,
       compareToSourceId: compareToSourceId ?? this.compareToSourceId,
-      compareToSourceIdElement:
-          compareToSourceIdElement ?? this.compareToSourceIdElement,
       compareToSourceExpression:
           compareToSourceExpression ?? this.compareToSourceExpression,
-      compareToSourceExpressionElement: compareToSourceExpressionElement ??
-          this.compareToSourceExpressionElement,
       compareToSourcePath: compareToSourcePath ?? this.compareToSourcePath,
-      compareToSourcePathElement:
-          compareToSourcePathElement ?? this.compareToSourcePathElement,
       contentType: contentType ?? this.contentType,
-      contentTypeElement: contentTypeElement ?? this.contentTypeElement,
       expression: expression ?? this.expression,
-      expressionElement: expressionElement ?? this.expressionElement,
       headerField: headerField ?? this.headerField,
-      headerFieldElement: headerFieldElement ?? this.headerFieldElement,
       minimumId: minimumId ?? this.minimumId,
-      minimumIdElement: minimumIdElement ?? this.minimumIdElement,
       navigationLinks: navigationLinks ?? this.navigationLinks,
-      navigationLinksElement:
-          navigationLinksElement ?? this.navigationLinksElement,
       operator_: operator_ ?? this.operator_,
-      operatorElement: operatorElement ?? this.operatorElement,
       path: path ?? this.path,
-      pathElement: pathElement ?? this.pathElement,
       requestMethod: requestMethod ?? this.requestMethod,
-      requestMethodElement: requestMethodElement ?? this.requestMethodElement,
       requestURL: requestURL ?? this.requestURL,
-      requestURLElement: requestURLElement ?? this.requestURLElement,
       resource: resource ?? this.resource,
-      resourceElement: resourceElement ?? this.resourceElement,
       response: response ?? this.response,
-      responseElement: responseElement ?? this.responseElement,
       responseCode: responseCode ?? this.responseCode,
-      responseCodeElement: responseCodeElement ?? this.responseCodeElement,
       sourceId: sourceId ?? this.sourceId,
-      sourceIdElement: sourceIdElement ?? this.sourceIdElement,
       validateProfileId: validateProfileId ?? this.validateProfileId,
-      validateProfileIdElement:
-          validateProfileIdElement ?? this.validateProfileIdElement,
       value: value ?? this.value,
-      valueElement: valueElement ?? this.valueElement,
       warningOnly: warningOnly ?? this.warningOnly,
-      warningOnlyElement: warningOnlyElement ?? this.warningOnlyElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -4032,16 +3311,10 @@ class TestScriptTest extends BackboneElement {
 
   TestScriptTest({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     required this.action,
     super.userData,
     super.formatCommentsPre,
@@ -4054,11 +3327,15 @@ class TestScriptTest extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptTest.fromJson(Map<String, dynamic> json) {
     return TestScriptTest(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -4067,34 +3344,36 @@ class TestScriptTest extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
-          : null,
-      action: (json['action'] as List<dynamic>)
-          .map<TestScriptAction>((dynamic v) =>
-              TestScriptAction.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      action: ensureNonNullList((json['action'] as List<dynamic>)
+          .map<TestScriptAction>(
+            (v) => TestScriptAction.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
     );
   }
 
-  /// Deserialize [TestScriptTest] from a [String] or [YamlMap] object
+  /// Deserialize [TestScriptTest] from a [String]
+  /// or [YamlMap] object
   factory TestScriptTest.fromYaml(dynamic yaml) => yaml is String
       ? TestScriptTest.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -4103,11 +3382,11 @@ class TestScriptTest extends BackboneElement {
           ? TestScriptTest.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TestScriptTest cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('TestScriptTest cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TestScriptTest] that takes in a [String]
+  /// Factory constructor for [TestScriptTest]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TestScriptTest.fromJsonString(String source) {
@@ -4123,21 +3402,24 @@ class TestScriptTest extends BackboneElement {
   @override
   String get fhirType => 'TestScriptTest';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// The name of this test used for tracking/logging purposes by test
   /// engines.
   final FhirString? name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [description]
   /// A short description of the test used by test engines for tracking and
   /// reporting purposes.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [action]
   /// Action would contain either an operation or an assertion.
@@ -4159,14 +3441,8 @@ class TestScriptTest extends BackboneElement {
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     json['action'] =
         action.map<dynamic>((TestScriptAction v) => v.toJson()).toList();
@@ -4181,9 +3457,7 @@ class TestScriptTest extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    Element? nameElement,
     FhirString? description,
-    Element? descriptionElement,
     List<TestScriptAction>? action,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -4197,9 +3471,7 @@ class TestScriptTest extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       action: action ?? this.action,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -4218,10 +3490,8 @@ class TestScriptAction1 extends BackboneElement {
 
   TestScriptAction1({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
-    this.operation,
-    this.assert_,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -4233,11 +3503,15 @@ class TestScriptAction1 extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptAction1.fromJson(Map<String, dynamic> json) {
     return TestScriptAction1(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -4246,26 +3520,17 @@ class TestScriptAction1 extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      operation: json['operation'] != null
-          ? TestScriptOperation.fromJson(
-              json['operation'] as Map<String, dynamic>,
-            )
-          : null,
-      assert_: json['assert'] != null
-          ? TestScriptAssert.fromJson(
-              json['assert'] as Map<String, dynamic>,
-            )
-          : null,
     );
   }
 
-  /// Deserialize [TestScriptAction1] from a [String] or [YamlMap] object
+  /// Deserialize [TestScriptAction1] from a [String]
+  /// or [YamlMap] object
   factory TestScriptAction1.fromYaml(dynamic yaml) => yaml is String
       ? TestScriptAction1.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -4274,11 +3539,11 @@ class TestScriptAction1 extends BackboneElement {
           ? TestScriptAction1.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TestScriptAction1 cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('TestScriptAction1 cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TestScriptAction1] that takes in a [String]
+  /// Factory constructor for [TestScriptAction1]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TestScriptAction1.fromJsonString(String source) {
@@ -4294,14 +3559,14 @@ class TestScriptAction1 extends BackboneElement {
   @override
   String get fhirType => 'TestScriptAction1';
 
-  /// [operation]
-  /// An operation would involve a REST request to a server.
-  final TestScriptOperation? operation;
-
-  /// [assert_]
-  /// Evaluates the results of previous operations to determine if the server
-  /// under test behaves appropriately.
-  final TestScriptAssert? assert_;
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4316,12 +3581,6 @@ class TestScriptAction1 extends BackboneElement {
       json['modifierExtension'] =
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
-    if (operation != null) {
-      json['operation'] = operation!.toJson();
-    }
-    if (assert_ != null) {
-      json['assert'] = assert_!.toJson();
-    }
     return json;
   }
 
@@ -4332,8 +3591,6 @@ class TestScriptAction1 extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    TestScriptOperation? operation,
-    TestScriptAssert? assert_,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4345,8 +3602,6 @@ class TestScriptAction1 extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      operation: operation ?? this.operation,
-      assert_: assert_ ?? this.assert_,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -4365,7 +3620,7 @@ class TestScriptTeardown extends BackboneElement {
 
   TestScriptTeardown({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.action,
     super.userData,
@@ -4379,11 +3634,15 @@ class TestScriptTeardown extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptTeardown.fromJson(Map<String, dynamic> json) {
     return TestScriptTeardown(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -4392,20 +3651,24 @@ class TestScriptTeardown extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      action: (json['action'] as List<dynamic>)
-          .map<TestScriptAction>((dynamic v) =>
-              TestScriptAction.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      action: ensureNonNullList((json['action'] as List<dynamic>)
+          .map<TestScriptAction>(
+            (v) => TestScriptAction.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
     );
   }
 
-  /// Deserialize [TestScriptTeardown] from a [String] or [YamlMap] object
+  /// Deserialize [TestScriptTeardown] from a [String]
+  /// or [YamlMap] object
   factory TestScriptTeardown.fromYaml(dynamic yaml) => yaml is String
       ? TestScriptTeardown.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -4414,11 +3677,11 @@ class TestScriptTeardown extends BackboneElement {
           ? TestScriptTeardown.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TestScriptTeardown cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('TestScriptTeardown cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TestScriptTeardown] that takes in a [String]
+  /// Factory constructor for [TestScriptTeardown]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TestScriptTeardown.fromJsonString(String source) {
@@ -4433,6 +3696,15 @@ class TestScriptTeardown extends BackboneElement {
 
   @override
   String get fhirType => 'TestScriptTeardown';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [action]
   /// The teardown action will only contain an operation.
@@ -4493,9 +3765,8 @@ class TestScriptAction2 extends BackboneElement {
 
   TestScriptAction2({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
-    required this.operation,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -4507,11 +3778,15 @@ class TestScriptAction2 extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TestScriptAction2.fromJson(Map<String, dynamic> json) {
     return TestScriptAction2(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -4520,19 +3795,17 @@ class TestScriptAction2 extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      operation: TestScriptOperation.fromJson(
-        json['operation'] as Map<String, dynamic>,
-      ),
     );
   }
 
-  /// Deserialize [TestScriptAction2] from a [String] or [YamlMap] object
+  /// Deserialize [TestScriptAction2] from a [String]
+  /// or [YamlMap] object
   factory TestScriptAction2.fromYaml(dynamic yaml) => yaml is String
       ? TestScriptAction2.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -4541,11 +3814,11 @@ class TestScriptAction2 extends BackboneElement {
           ? TestScriptAction2.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TestScriptAction2 cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('TestScriptAction2 cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TestScriptAction2] that takes in a [String]
+  /// Factory constructor for [TestScriptAction2]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TestScriptAction2.fromJsonString(String source) {
@@ -4561,9 +3834,14 @@ class TestScriptAction2 extends BackboneElement {
   @override
   String get fhirType => 'TestScriptAction2';
 
-  /// [operation]
-  /// An operation would involve a REST request to a server.
-  final TestScriptOperation operation;
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4578,7 +3856,6 @@ class TestScriptAction2 extends BackboneElement {
       json['modifierExtension'] =
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
-    json['operation'] = operation.toJson();
     return json;
   }
 
@@ -4589,7 +3866,6 @@ class TestScriptAction2 extends BackboneElement {
     FhirString? id,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
-    TestScriptOperation? operation,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4601,7 +3877,6 @@ class TestScriptAction2 extends BackboneElement {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
-      operation: operation ?? this.operation,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

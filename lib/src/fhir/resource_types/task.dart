@@ -11,60 +11,30 @@ class Task extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.instantiatesCanonical,
-
-    /// Extensions for [instantiatesCanonical]
-    this.instantiatesCanonicalElement,
     this.instantiatesUri,
-
-    /// Extensions for [instantiatesUri]
-    this.instantiatesUriElement,
     this.basedOn,
     this.groupIdentifier,
     this.partOf,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.statusReason,
     this.businessStatus,
     required this.intent,
-
-    /// Extensions for [intent]
-    this.intentElement,
     this.priority,
-
-    /// Extensions for [priority]
-    this.priorityElement,
     this.code,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.focus,
     this.for_,
     this.encounter,
     this.executionPeriod,
     this.authoredOn,
-
-    /// Extensions for [authoredOn]
-    this.authoredOnElement,
     this.lastModified,
-
-    /// Extensions for [lastModified]
-    this.lastModifiedElement,
     this.requester,
     this.performerType,
     this.owner,
@@ -90,27 +60,27 @@ class Task extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Task.fromJson(Map<String, dynamic> json) {
     return Task(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -120,7 +90,7 @@ class Task extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -129,7 +99,7 @@ class Task extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -138,7 +108,7 @@ class Task extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -147,32 +117,28 @@ class Task extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       instantiatesCanonical: json['instantiatesCanonical'] != null
-          ? FhirCanonical.fromJson(json['instantiatesCanonical'])
-          : null,
-      instantiatesCanonicalElement: json['_instantiatesCanonical'] != null
-          ? Element.fromJson(
-              json['_instantiatesCanonical'] as Map<String, dynamic>,
-            )
+          ? FhirCanonical.fromJson({
+              'value': json['instantiatesCanonical'],
+              '_value': json['_instantiatesCanonical'],
+            })
           : null,
       instantiatesUri: json['instantiatesUri'] != null
-          ? FhirUri.fromJson(json['instantiatesUri'])
-          : null,
-      instantiatesUriElement: json['_instantiatesUri'] != null
-          ? Element.fromJson(
-              json['_instantiatesUri'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['instantiatesUri'],
+              '_value': json['_instantiatesUri'],
+            })
           : null,
       basedOn: json['basedOn'] != null
           ? (json['basedOn'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -186,18 +152,16 @@ class Task extends DomainResource {
       partOf: json['partOf'] != null
           ? (json['partOf'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: TaskStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: TaskStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       statusReason: json['statusReason'] != null
           ? CodeableConcept.fromJson(
               json['statusReason'] as Map<String, dynamic>,
@@ -208,19 +172,15 @@ class Task extends DomainResource {
               json['businessStatus'] as Map<String, dynamic>,
             )
           : null,
-      intent: TaskIntent.fromJson(json['intent']),
-      intentElement: json['_intent'] != null
-          ? Element.fromJson(
-              json['_intent'] as Map<String, dynamic>,
-            )
-          : null,
+      intent: TaskIntent.fromJson({
+        'value': json['intent'],
+        '_value': json['_intent'],
+      }),
       priority: json['priority'] != null
-          ? RequestPriority.fromJson(json['priority'])
-          : null,
-      priorityElement: json['_priority'] != null
-          ? Element.fromJson(
-              json['_priority'] as Map<String, dynamic>,
-            )
+          ? RequestPriority.fromJson({
+              'value': json['priority'],
+              '_value': json['_priority'],
+            })
           : null,
       code: json['code'] != null
           ? CodeableConcept.fromJson(
@@ -228,12 +188,10 @@ class Task extends DomainResource {
             )
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       focus: json['focus'] != null
           ? Reference.fromJson(
@@ -256,20 +214,16 @@ class Task extends DomainResource {
             )
           : null,
       authoredOn: json['authoredOn'] != null
-          ? FhirDateTime.fromJson(json['authoredOn'])
-          : null,
-      authoredOnElement: json['_authoredOn'] != null
-          ? Element.fromJson(
-              json['_authoredOn'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['authoredOn'],
+              '_value': json['_authoredOn'],
+            })
           : null,
       lastModified: json['lastModified'] != null
-          ? FhirDateTime.fromJson(json['lastModified'])
-          : null,
-      lastModifiedElement: json['_lastModified'] != null
-          ? Element.fromJson(
-              json['_lastModified'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['lastModified'],
+              '_value': json['_lastModified'],
+            })
           : null,
       requester: json['requester'] != null
           ? Reference.fromJson(
@@ -279,7 +233,7 @@ class Task extends DomainResource {
       performerType: json['performerType'] != null
           ? (json['performerType'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -308,7 +262,7 @@ class Task extends DomainResource {
       insurance: json['insurance'] != null
           ? (json['insurance'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -317,7 +271,7 @@ class Task extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -326,7 +280,7 @@ class Task extends DomainResource {
       relevantHistory: json['relevantHistory'] != null
           ? (json['relevantHistory'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -340,7 +294,7 @@ class Task extends DomainResource {
       input: json['input'] != null
           ? (json['input'] as List<dynamic>)
               .map<TaskInput>(
-                (dynamic v) => TaskInput.fromJson(
+                (v) => TaskInput.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -349,7 +303,7 @@ class Task extends DomainResource {
       output: json['output'] != null
           ? (json['output'] as List<dynamic>)
               .map<TaskOutput>(
-                (dynamic v) => TaskOutput.fromJson(
+                (v) => TaskOutput.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -358,7 +312,8 @@ class Task extends DomainResource {
     );
   }
 
-  /// Deserialize [Task] from a [String] or [YamlMap] object
+  /// Deserialize [Task] from a [String]
+  /// or [YamlMap] object
   factory Task.fromYaml(dynamic yaml) => yaml is String
       ? Task.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -367,10 +322,11 @@ class Task extends DomainResource {
           ? Task.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Task cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Task cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Task] that takes in a [String]
+  /// Factory constructor for [Task]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Task.fromJsonString(String source) {
@@ -386,6 +342,15 @@ class Task extends DomainResource {
   @override
   String get fhirType => 'Task';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// The business identifier for this task.
   final List<Identifier>? identifier;
@@ -395,17 +360,11 @@ class Task extends DomainResource {
   /// other definition that is adhered to in whole or in part by this Task.
   final FhirCanonical? instantiatesCanonical;
 
-  /// Extensions for [instantiatesCanonical]
-  final Element? instantiatesCanonicalElement;
-
   /// [instantiatesUri]
   /// The URL pointing to an *externally* maintained protocol, guideline,
   /// orderset or other definition that is adhered to in whole or in part by
   /// this Task.
   final FhirUri? instantiatesUri;
-
-  /// Extensions for [instantiatesUri]
-  final Element? instantiatesUriElement;
 
   /// [basedOn]
   /// BasedOn refers to a higher-level authorization that triggered the
@@ -430,9 +389,6 @@ class Task extends DomainResource {
   /// The current status of the task.
   final TaskStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [statusReason]
   /// An explanation as to why this task is held, failed, was refused, etc.
   final CodeableConcept? statusReason;
@@ -446,16 +402,10 @@ class Task extends DomainResource {
   /// i+R[9]Cs this a proposed task, a planned task, an actionable task, etc.
   final TaskIntent intent;
 
-  /// Extensions for [intent]
-  final Element? intentElement;
-
   /// [priority]
   /// Indicates how quickly the Task should be addressed with respect to
   /// other requests.
   final RequestPriority? priority;
-
-  /// Extensions for [priority]
-  final Element? priorityElement;
 
   /// [code]
   /// A name or code (or both) briefly describing what the task involves.
@@ -464,9 +414,6 @@ class Task extends DomainResource {
   /// [description]
   /// A free-text description of what is to be performed.
   final FhirString? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [focus]
   /// The request being actioned or the resource being manipulated by this
@@ -493,15 +440,9 @@ class Task extends DomainResource {
   /// The date and time this task was created.
   final FhirDateTime? authoredOn;
 
-  /// Extensions for [authoredOn]
-  final Element? authoredOnElement;
-
   /// [lastModified]
   /// The date and time of last modification to this task.
   final FhirDateTime? lastModified;
-
-  /// Extensions for [lastModified]
-  final Element? lastModifiedElement;
 
   /// [requester]
   /// The creator of the task.
@@ -570,9 +511,6 @@ class Task extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -597,14 +535,8 @@ class Task extends DomainResource {
     if (instantiatesCanonical?.value != null) {
       json['instantiatesCanonical'] = instantiatesCanonical!.toJson();
     }
-    if (instantiatesCanonicalElement != null) {
-      json['_instantiatesCanonical'] = instantiatesCanonicalElement!.toJson();
-    }
     if (instantiatesUri?.value != null) {
       json['instantiatesUri'] = instantiatesUri!.toJson();
-    }
-    if (instantiatesUriElement != null) {
-      json['_instantiatesUri'] = instantiatesUriElement!.toJson();
     }
     if (basedOn != null && basedOn!.isNotEmpty) {
       json['basedOn'] = basedOn!.map((Reference v) => v.toJson()).toList();
@@ -632,9 +564,6 @@ class Task extends DomainResource {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (focus != null) {
       json['focus'] = focus!.toJson();
     }
@@ -650,14 +579,8 @@ class Task extends DomainResource {
     if (authoredOn?.value != null) {
       json['authoredOn'] = authoredOn!.toJson();
     }
-    if (authoredOnElement != null) {
-      json['_authoredOn'] = authoredOnElement!.toJson();
-    }
     if (lastModified?.value != null) {
       json['lastModified'] = lastModified!.toJson();
-    }
-    if (lastModifiedElement != null) {
-      json['_lastModified'] = lastModifiedElement!.toJson();
     }
     if (requester != null) {
       json['requester'] = requester!.toJson();
@@ -707,40 +630,30 @@ class Task extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     FhirCanonical? instantiatesCanonical,
-    Element? instantiatesCanonicalElement,
     FhirUri? instantiatesUri,
-    Element? instantiatesUriElement,
     List<Reference>? basedOn,
     Identifier? groupIdentifier,
     List<Reference>? partOf,
     TaskStatus? status,
-    Element? statusElement,
     CodeableConcept? statusReason,
     CodeableConcept? businessStatus,
     TaskIntent? intent,
-    Element? intentElement,
     RequestPriority? priority,
-    Element? priorityElement,
     CodeableConcept? code,
     FhirString? description,
-    Element? descriptionElement,
     Reference? focus,
     Reference? for_,
     Reference? encounter,
     Period? executionPeriod,
     FhirDateTime? authoredOn,
-    Element? authoredOnElement,
     FhirDateTime? lastModified,
-    Element? lastModifiedElement,
     Reference? requester,
     List<CodeableConcept>? performerType,
     Reference? owner,
@@ -764,9 +677,7 @@ class Task extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -774,33 +685,23 @@ class Task extends DomainResource {
       identifier: identifier ?? this.identifier,
       instantiatesCanonical:
           instantiatesCanonical ?? this.instantiatesCanonical,
-      instantiatesCanonicalElement:
-          instantiatesCanonicalElement ?? this.instantiatesCanonicalElement,
       instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      instantiatesUriElement:
-          instantiatesUriElement ?? this.instantiatesUriElement,
       basedOn: basedOn ?? this.basedOn,
       groupIdentifier: groupIdentifier ?? this.groupIdentifier,
       partOf: partOf ?? this.partOf,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       statusReason: statusReason ?? this.statusReason,
       businessStatus: businessStatus ?? this.businessStatus,
       intent: intent ?? this.intent,
-      intentElement: intentElement ?? this.intentElement,
       priority: priority ?? this.priority,
-      priorityElement: priorityElement ?? this.priorityElement,
       code: code ?? this.code,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       focus: focus ?? this.focus,
       for_: for_ ?? this.for_,
       encounter: encounter ?? this.encounter,
       executionPeriod: executionPeriod ?? this.executionPeriod,
       authoredOn: authoredOn ?? this.authoredOn,
-      authoredOnElement: authoredOnElement ?? this.authoredOnElement,
       lastModified: lastModified ?? this.lastModified,
-      lastModifiedElement: lastModifiedElement ?? this.lastModifiedElement,
       requester: requester ?? this.requester,
       performerType: performerType ?? this.performerType,
       owner: owner ?? this.owner,
@@ -833,12 +734,9 @@ class TaskRestriction extends BackboneElement {
 
   TaskRestriction({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.repetitions,
-
-    /// Extensions for [repetitions]
-    this.repetitionsElement,
     this.period,
     this.recipient,
     super.userData,
@@ -852,11 +750,15 @@ class TaskRestriction extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TaskRestriction.fromJson(Map<String, dynamic> json) {
     return TaskRestriction(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -865,19 +767,17 @@ class TaskRestriction extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       repetitions: json['repetitions'] != null
-          ? FhirPositiveInt.fromJson(json['repetitions'])
-          : null,
-      repetitionsElement: json['_repetitions'] != null
-          ? Element.fromJson(
-              json['_repetitions'] as Map<String, dynamic>,
-            )
+          ? FhirPositiveInt.fromJson({
+              'value': json['repetitions'],
+              '_value': json['_repetitions'],
+            })
           : null,
       period: json['period'] != null
           ? Period.fromJson(
@@ -887,7 +787,7 @@ class TaskRestriction extends BackboneElement {
       recipient: json['recipient'] != null
           ? (json['recipient'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -896,7 +796,8 @@ class TaskRestriction extends BackboneElement {
     );
   }
 
-  /// Deserialize [TaskRestriction] from a [String] or [YamlMap] object
+  /// Deserialize [TaskRestriction] from a [String]
+  /// or [YamlMap] object
   factory TaskRestriction.fromYaml(dynamic yaml) => yaml is String
       ? TaskRestriction.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -905,11 +806,11 @@ class TaskRestriction extends BackboneElement {
           ? TaskRestriction.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'TaskRestriction cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('TaskRestriction cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TaskRestriction] that takes in a [String]
+  /// Factory constructor for [TaskRestriction]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TaskRestriction.fromJsonString(String source) {
@@ -925,12 +826,18 @@ class TaskRestriction extends BackboneElement {
   @override
   String get fhirType => 'TaskRestriction';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [repetitions]
   /// Indicates the number of times the requested action should occur.
   final FhirPositiveInt? repetitions;
-
-  /// Extensions for [repetitions]
-  final Element? repetitionsElement;
 
   /// [period]
   /// Over what time-period is fulfillment sought.
@@ -957,9 +864,6 @@ class TaskRestriction extends BackboneElement {
     if (repetitions?.value != null) {
       json['repetitions'] = repetitions!.toJson();
     }
-    if (repetitionsElement != null) {
-      json['_repetitions'] = repetitionsElement!.toJson();
-    }
     if (period != null) {
       json['period'] = period!.toJson();
     }
@@ -977,7 +881,6 @@ class TaskRestriction extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirPositiveInt? repetitions,
-    Element? repetitionsElement,
     Period? period,
     List<Reference>? recipient,
     Map<String, Object?>? userData,
@@ -992,7 +895,6 @@ class TaskRestriction extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       repetitions: repetitions ?? this.repetitions,
-      repetitionsElement: repetitionsElement ?? this.repetitionsElement,
       period: period ?? this.period,
       recipient: recipient ?? this.recipient,
       userData: userData ?? this.userData,
@@ -1012,85 +914,28 @@ class TaskInput extends BackboneElement {
 
   TaskInput({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
     this.valueBase64Binary,
-
-    /// Extensions for [valueBase64Binary]
-    this.valueBase64BinaryElement,
     this.valueBoolean,
-
-    /// Extensions for [valueBoolean]
-    this.valueBooleanElement,
     this.valueCanonical,
-
-    /// Extensions for [valueCanonical]
-    this.valueCanonicalElement,
     this.valueCode,
-
-    /// Extensions for [valueCode]
-    this.valueCodeElement,
     this.valueDate,
-
-    /// Extensions for [valueDate]
-    this.valueDateElement,
     this.valueDateTime,
-
-    /// Extensions for [valueDateTime]
-    this.valueDateTimeElement,
     this.valueDecimal,
-
-    /// Extensions for [valueDecimal]
-    this.valueDecimalElement,
     this.valueId,
-
-    /// Extensions for [valueId]
-    this.valueIdElement,
     this.valueInstant,
-
-    /// Extensions for [valueInstant]
-    this.valueInstantElement,
     this.valueInteger,
-
-    /// Extensions for [valueInteger]
-    this.valueIntegerElement,
     this.valueMarkdown,
-
-    /// Extensions for [valueMarkdown]
-    this.valueMarkdownElement,
     this.valueOid,
-
-    /// Extensions for [valueOid]
-    this.valueOidElement,
     this.valuePositiveInt,
-
-    /// Extensions for [valuePositiveInt]
-    this.valuePositiveIntElement,
     this.valueString,
-
-    /// Extensions for [valueString]
-    this.valueStringElement,
     this.valueTime,
-
-    /// Extensions for [valueTime]
-    this.valueTimeElement,
     this.valueUnsignedInt,
-
-    /// Extensions for [valueUnsignedInt]
-    this.valueUnsignedIntElement,
     this.valueUri,
-
-    /// Extensions for [valueUri]
-    this.valueUriElement,
     this.valueUrl,
-
-    /// Extensions for [valueUrl]
-    this.valueUrlElement,
     this.valueUuid,
-
-    /// Extensions for [valueUuid]
-    this.valueUuidElement,
     this.valueAddress,
     this.valueAge,
     this.valueAnnotation,
@@ -1133,11 +978,15 @@ class TaskInput extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TaskInput.fromJson(Map<String, dynamic> json) {
     return TaskInput(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1146,7 +995,7 @@ class TaskInput extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1156,152 +1005,118 @@ class TaskInput extends BackboneElement {
         json['type'] as Map<String, dynamic>,
       ),
       valueBase64Binary: json['valueBase64Binary'] != null
-          ? FhirBase64Binary.fromJson(json['valueBase64Binary'])
-          : null,
-      valueBase64BinaryElement: json['_valueBase64Binary'] != null
-          ? Element.fromJson(
-              json['_valueBase64Binary'] as Map<String, dynamic>,
-            )
+          ? FhirBase64Binary.fromJson({
+              'value': json['valueBase64Binary'],
+              '_value': json['_valueBase64Binary'],
+            })
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(
-              json['_valueBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['valueBoolean'],
+              '_value': json['_valueBoolean'],
+            })
           : null,
       valueCanonical: json['valueCanonical'] != null
-          ? FhirCanonical.fromJson(json['valueCanonical'])
-          : null,
-      valueCanonicalElement: json['_valueCanonical'] != null
-          ? Element.fromJson(
-              json['_valueCanonical'] as Map<String, dynamic>,
-            )
+          ? FhirCanonical.fromJson({
+              'value': json['valueCanonical'],
+              '_value': json['_valueCanonical'],
+            })
           : null,
       valueCode: json['valueCode'] != null
-          ? FhirCode.fromJson(json['valueCode'])
-          : null,
-      valueCodeElement: json['_valueCode'] != null
-          ? Element.fromJson(
-              json['_valueCode'] as Map<String, dynamic>,
-            )
+          ? FhirCode.fromJson({
+              'value': json['valueCode'],
+              '_value': json['_valueCode'],
+            })
           : null,
       valueDate: json['valueDate'] != null
-          ? FhirDate.fromJson(json['valueDate'])
-          : null,
-      valueDateElement: json['_valueDate'] != null
-          ? Element.fromJson(
-              json['_valueDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['valueDate'],
+              '_value': json['_valueDate'],
+            })
           : null,
       valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime.fromJson(json['valueDateTime'])
-          : null,
-      valueDateTimeElement: json['_valueDateTime'] != null
-          ? Element.fromJson(
-              json['_valueDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['valueDateTime'],
+              '_value': json['_valueDateTime'],
+            })
           : null,
       valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal.fromJson(json['valueDecimal'])
+          ? FhirDecimal.fromJson({
+              'value': json['valueDecimal'],
+              '_value': json['_valueDecimal'],
+            })
           : null,
-      valueDecimalElement: json['_valueDecimal'] != null
-          ? Element.fromJson(
-              json['_valueDecimal'] as Map<String, dynamic>,
-            )
-          : null,
-      valueId:
-          json['valueId'] != null ? FhirId.fromJson(json['valueId']) : null,
-      valueIdElement: json['_valueId'] != null
-          ? Element.fromJson(
-              json['_valueId'] as Map<String, dynamic>,
-            )
+      valueId: json['valueId'] != null
+          ? FhirId.fromJson({
+              'value': json['valueId'],
+              '_value': json['_valueId'],
+            })
           : null,
       valueInstant: json['valueInstant'] != null
-          ? FhirInstant.fromJson(json['valueInstant'])
-          : null,
-      valueInstantElement: json['_valueInstant'] != null
-          ? Element.fromJson(
-              json['_valueInstant'] as Map<String, dynamic>,
-            )
+          ? FhirInstant.fromJson({
+              'value': json['valueInstant'],
+              '_value': json['_valueInstant'],
+            })
           : null,
       valueInteger: json['valueInteger'] != null
-          ? FhirInteger.fromJson(json['valueInteger'])
-          : null,
-      valueIntegerElement: json['_valueInteger'] != null
-          ? Element.fromJson(
-              json['_valueInteger'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['valueInteger'],
+              '_value': json['_valueInteger'],
+            })
           : null,
       valueMarkdown: json['valueMarkdown'] != null
-          ? FhirMarkdown.fromJson(json['valueMarkdown'])
+          ? FhirMarkdown.fromJson({
+              'value': json['valueMarkdown'],
+              '_value': json['_valueMarkdown'],
+            })
           : null,
-      valueMarkdownElement: json['_valueMarkdown'] != null
-          ? Element.fromJson(
-              json['_valueMarkdown'] as Map<String, dynamic>,
-            )
-          : null,
-      valueOid:
-          json['valueOid'] != null ? FhirOid.fromJson(json['valueOid']) : null,
-      valueOidElement: json['_valueOid'] != null
-          ? Element.fromJson(
-              json['_valueOid'] as Map<String, dynamic>,
-            )
+      valueOid: json['valueOid'] != null
+          ? FhirOid.fromJson({
+              'value': json['valueOid'],
+              '_value': json['_valueOid'],
+            })
           : null,
       valuePositiveInt: json['valuePositiveInt'] != null
-          ? FhirPositiveInt.fromJson(json['valuePositiveInt'])
-          : null,
-      valuePositiveIntElement: json['_valuePositiveInt'] != null
-          ? Element.fromJson(
-              json['_valuePositiveInt'] as Map<String, dynamic>,
-            )
+          ? FhirPositiveInt.fromJson({
+              'value': json['valuePositiveInt'],
+              '_value': json['_valuePositiveInt'],
+            })
           : null,
       valueString: json['valueString'] != null
-          ? FhirString.fromJson(json['valueString'])
-          : null,
-      valueStringElement: json['_valueString'] != null
-          ? Element.fromJson(
-              json['_valueString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['valueString'],
+              '_value': json['_valueString'],
+            })
           : null,
       valueTime: json['valueTime'] != null
-          ? FhirTime.fromJson(json['valueTime'])
-          : null,
-      valueTimeElement: json['_valueTime'] != null
-          ? Element.fromJson(
-              json['_valueTime'] as Map<String, dynamic>,
-            )
+          ? FhirTime.fromJson({
+              'value': json['valueTime'],
+              '_value': json['_valueTime'],
+            })
           : null,
       valueUnsignedInt: json['valueUnsignedInt'] != null
-          ? FhirUnsignedInt.fromJson(json['valueUnsignedInt'])
+          ? FhirUnsignedInt.fromJson({
+              'value': json['valueUnsignedInt'],
+              '_value': json['_valueUnsignedInt'],
+            })
           : null,
-      valueUnsignedIntElement: json['_valueUnsignedInt'] != null
-          ? Element.fromJson(
-              json['_valueUnsignedInt'] as Map<String, dynamic>,
-            )
+      valueUri: json['valueUri'] != null
+          ? FhirUri.fromJson({
+              'value': json['valueUri'],
+              '_value': json['_valueUri'],
+            })
           : null,
-      valueUri:
-          json['valueUri'] != null ? FhirUri.fromJson(json['valueUri']) : null,
-      valueUriElement: json['_valueUri'] != null
-          ? Element.fromJson(
-              json['_valueUri'] as Map<String, dynamic>,
-            )
-          : null,
-      valueUrl:
-          json['valueUrl'] != null ? FhirUrl.fromJson(json['valueUrl']) : null,
-      valueUrlElement: json['_valueUrl'] != null
-          ? Element.fromJson(
-              json['_valueUrl'] as Map<String, dynamic>,
-            )
+      valueUrl: json['valueUrl'] != null
+          ? FhirUrl.fromJson({
+              'value': json['valueUrl'],
+              '_value': json['_valueUrl'],
+            })
           : null,
       valueUuid: json['valueUuid'] != null
-          ? FhirUuid.fromJson(json['valueUuid'])
-          : null,
-      valueUuidElement: json['_valueUuid'] != null
-          ? Element.fromJson(
-              json['_valueUuid'] as Map<String, dynamic>,
-            )
+          ? FhirUuid.fromJson({
+              'value': json['valueUuid'],
+              '_value': json['_valueUuid'],
+            })
           : null,
       valueAddress: json['valueAddress'] != null
           ? Address.fromJson(
@@ -1461,7 +1276,8 @@ class TaskInput extends BackboneElement {
     );
   }
 
-  /// Deserialize [TaskInput] from a [String] or [YamlMap] object
+  /// Deserialize [TaskInput] from a [String]
+  /// or [YamlMap] object
   factory TaskInput.fromYaml(dynamic yaml) => yaml is String
       ? TaskInput.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1470,10 +1286,11 @@ class TaskInput extends BackboneElement {
           ? TaskInput.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('TaskInput cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('TaskInput cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TaskInput] that takes in a [String]
+  /// Factory constructor for [TaskInput]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TaskInput.fromJsonString(String source) {
@@ -1489,6 +1306,15 @@ class TaskInput extends BackboneElement {
   @override
   String get fhirType => 'TaskInput';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// A code or description indicating how the input is intended to be used
   /// as part of the task execution.
@@ -1498,134 +1324,77 @@ class TaskInput extends BackboneElement {
   /// The value of the input parameter as a basic type.
   final FhirBase64Binary? valueBase64Binary;
 
-  /// Extensions for [valueBase64Binary]
-  final Element? valueBase64BinaryElement;
-
   /// [valueBoolean]
   /// The value of the input parameter as a basic type.
   final FhirBoolean? valueBoolean;
-
-  /// Extensions for [valueBoolean]
-  final Element? valueBooleanElement;
 
   /// [valueCanonical]
   /// The value of the input parameter as a basic type.
   final FhirCanonical? valueCanonical;
 
-  /// Extensions for [valueCanonical]
-  final Element? valueCanonicalElement;
-
   /// [valueCode]
   /// The value of the input parameter as a basic type.
   final FhirCode? valueCode;
-
-  /// Extensions for [valueCode]
-  final Element? valueCodeElement;
 
   /// [valueDate]
   /// The value of the input parameter as a basic type.
   final FhirDate? valueDate;
 
-  /// Extensions for [valueDate]
-  final Element? valueDateElement;
-
   /// [valueDateTime]
   /// The value of the input parameter as a basic type.
   final FhirDateTime? valueDateTime;
-
-  /// Extensions for [valueDateTime]
-  final Element? valueDateTimeElement;
 
   /// [valueDecimal]
   /// The value of the input parameter as a basic type.
   final FhirDecimal? valueDecimal;
 
-  /// Extensions for [valueDecimal]
-  final Element? valueDecimalElement;
-
   /// [valueId]
   /// The value of the input parameter as a basic type.
   final FhirId? valueId;
-
-  /// Extensions for [valueId]
-  final Element? valueIdElement;
 
   /// [valueInstant]
   /// The value of the input parameter as a basic type.
   final FhirInstant? valueInstant;
 
-  /// Extensions for [valueInstant]
-  final Element? valueInstantElement;
-
   /// [valueInteger]
   /// The value of the input parameter as a basic type.
   final FhirInteger? valueInteger;
-
-  /// Extensions for [valueInteger]
-  final Element? valueIntegerElement;
 
   /// [valueMarkdown]
   /// The value of the input parameter as a basic type.
   final FhirMarkdown? valueMarkdown;
 
-  /// Extensions for [valueMarkdown]
-  final Element? valueMarkdownElement;
-
   /// [valueOid]
   /// The value of the input parameter as a basic type.
   final FhirOid? valueOid;
-
-  /// Extensions for [valueOid]
-  final Element? valueOidElement;
 
   /// [valuePositiveInt]
   /// The value of the input parameter as a basic type.
   final FhirPositiveInt? valuePositiveInt;
 
-  /// Extensions for [valuePositiveInt]
-  final Element? valuePositiveIntElement;
-
   /// [valueString]
   /// The value of the input parameter as a basic type.
   final FhirString? valueString;
-
-  /// Extensions for [valueString]
-  final Element? valueStringElement;
 
   /// [valueTime]
   /// The value of the input parameter as a basic type.
   final FhirTime? valueTime;
 
-  /// Extensions for [valueTime]
-  final Element? valueTimeElement;
-
   /// [valueUnsignedInt]
   /// The value of the input parameter as a basic type.
   final FhirUnsignedInt? valueUnsignedInt;
-
-  /// Extensions for [valueUnsignedInt]
-  final Element? valueUnsignedIntElement;
 
   /// [valueUri]
   /// The value of the input parameter as a basic type.
   final FhirUri? valueUri;
 
-  /// Extensions for [valueUri]
-  final Element? valueUriElement;
-
   /// [valueUrl]
   /// The value of the input parameter as a basic type.
   final FhirUrl? valueUrl;
 
-  /// Extensions for [valueUrl]
-  final Element? valueUrlElement;
-
   /// [valueUuid]
   /// The value of the input parameter as a basic type.
   final FhirUuid? valueUuid;
-
-  /// Extensions for [valueUuid]
-  final Element? valueUuidElement;
 
   /// [valueAddress]
   /// The value of the input parameter as a basic type.
@@ -1768,116 +1537,59 @@ class TaskInput extends BackboneElement {
     if (valueBase64Binary?.value != null) {
       json['valueBase64Binary'] = valueBase64Binary!.toJson();
     }
-    if (valueBase64BinaryElement != null) {
-      json['_valueBase64Binary'] = valueBase64BinaryElement!.toJson();
-    }
     if (valueBoolean?.value != null) {
       json['valueBoolean'] = valueBoolean!.toJson();
-    }
-    if (valueBooleanElement != null) {
-      json['_valueBoolean'] = valueBooleanElement!.toJson();
     }
     if (valueCanonical?.value != null) {
       json['valueCanonical'] = valueCanonical!.toJson();
     }
-    if (valueCanonicalElement != null) {
-      json['_valueCanonical'] = valueCanonicalElement!.toJson();
-    }
     if (valueCode?.value != null) {
       json['valueCode'] = valueCode!.toJson();
-    }
-    if (valueCodeElement != null) {
-      json['_valueCode'] = valueCodeElement!.toJson();
     }
     if (valueDate?.value != null) {
       json['valueDate'] = valueDate!.toJson();
     }
-    if (valueDateElement != null) {
-      json['_valueDate'] = valueDateElement!.toJson();
-    }
     if (valueDateTime?.value != null) {
       json['valueDateTime'] = valueDateTime!.toJson();
-    }
-    if (valueDateTimeElement != null) {
-      json['_valueDateTime'] = valueDateTimeElement!.toJson();
     }
     if (valueDecimal?.value != null) {
       json['valueDecimal'] = valueDecimal!.toJson();
     }
-    if (valueDecimalElement != null) {
-      json['_valueDecimal'] = valueDecimalElement!.toJson();
-    }
     if (valueId?.value != null) {
       json['valueId'] = valueId!.toJson();
-    }
-    if (valueIdElement != null) {
-      json['_valueId'] = valueIdElement!.toJson();
     }
     if (valueInstant?.value != null) {
       json['valueInstant'] = valueInstant!.toJson();
     }
-    if (valueInstantElement != null) {
-      json['_valueInstant'] = valueInstantElement!.toJson();
-    }
     if (valueInteger?.value != null) {
       json['valueInteger'] = valueInteger!.toJson();
-    }
-    if (valueIntegerElement != null) {
-      json['_valueInteger'] = valueIntegerElement!.toJson();
     }
     if (valueMarkdown?.value != null) {
       json['valueMarkdown'] = valueMarkdown!.toJson();
     }
-    if (valueMarkdownElement != null) {
-      json['_valueMarkdown'] = valueMarkdownElement!.toJson();
-    }
     if (valueOid?.value != null) {
       json['valueOid'] = valueOid!.toJson();
-    }
-    if (valueOidElement != null) {
-      json['_valueOid'] = valueOidElement!.toJson();
     }
     if (valuePositiveInt?.value != null) {
       json['valuePositiveInt'] = valuePositiveInt!.toJson();
     }
-    if (valuePositiveIntElement != null) {
-      json['_valuePositiveInt'] = valuePositiveIntElement!.toJson();
-    }
     if (valueString?.value != null) {
       json['valueString'] = valueString!.toJson();
-    }
-    if (valueStringElement != null) {
-      json['_valueString'] = valueStringElement!.toJson();
     }
     if (valueTime?.value != null) {
       json['valueTime'] = valueTime!.toJson();
     }
-    if (valueTimeElement != null) {
-      json['_valueTime'] = valueTimeElement!.toJson();
-    }
     if (valueUnsignedInt?.value != null) {
       json['valueUnsignedInt'] = valueUnsignedInt!.toJson();
-    }
-    if (valueUnsignedIntElement != null) {
-      json['_valueUnsignedInt'] = valueUnsignedIntElement!.toJson();
     }
     if (valueUri?.value != null) {
       json['valueUri'] = valueUri!.toJson();
     }
-    if (valueUriElement != null) {
-      json['_valueUri'] = valueUriElement!.toJson();
-    }
     if (valueUrl?.value != null) {
       json['valueUrl'] = valueUrl!.toJson();
     }
-    if (valueUrlElement != null) {
-      json['_valueUrl'] = valueUrlElement!.toJson();
-    }
     if (valueUuid?.value != null) {
       json['valueUuid'] = valueUuid!.toJson();
-    }
-    if (valueUuidElement != null) {
-      json['_valueUuid'] = valueUuidElement!.toJson();
     }
     if (valueAddress != null) {
       json['valueAddress'] = valueAddress!.toJson();
@@ -1984,43 +1696,24 @@ class TaskInput extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
     FhirBase64Binary? valueBase64Binary,
-    Element? valueBase64BinaryElement,
     FhirBoolean? valueBoolean,
-    Element? valueBooleanElement,
     FhirCanonical? valueCanonical,
-    Element? valueCanonicalElement,
     FhirCode? valueCode,
-    Element? valueCodeElement,
     FhirDate? valueDate,
-    Element? valueDateElement,
     FhirDateTime? valueDateTime,
-    Element? valueDateTimeElement,
     FhirDecimal? valueDecimal,
-    Element? valueDecimalElement,
     FhirId? valueId,
-    Element? valueIdElement,
     FhirInstant? valueInstant,
-    Element? valueInstantElement,
     FhirInteger? valueInteger,
-    Element? valueIntegerElement,
     FhirMarkdown? valueMarkdown,
-    Element? valueMarkdownElement,
     FhirOid? valueOid,
-    Element? valueOidElement,
     FhirPositiveInt? valuePositiveInt,
-    Element? valuePositiveIntElement,
     FhirString? valueString,
-    Element? valueStringElement,
     FhirTime? valueTime,
-    Element? valueTimeElement,
     FhirUnsignedInt? valueUnsignedInt,
-    Element? valueUnsignedIntElement,
     FhirUri? valueUri,
-    Element? valueUriElement,
     FhirUrl? valueUrl,
-    Element? valueUrlElement,
     FhirUuid? valueUuid,
-    Element? valueUuidElement,
     Address? valueAddress,
     Age? valueAge,
     Annotation? valueAnnotation,
@@ -2065,47 +1758,24 @@ class TaskInput extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       valueBase64Binary: valueBase64Binary ?? this.valueBase64Binary,
-      valueBase64BinaryElement:
-          valueBase64BinaryElement ?? this.valueBase64BinaryElement,
       valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueBooleanElement: valueBooleanElement ?? this.valueBooleanElement,
       valueCanonical: valueCanonical ?? this.valueCanonical,
-      valueCanonicalElement:
-          valueCanonicalElement ?? this.valueCanonicalElement,
       valueCode: valueCode ?? this.valueCode,
-      valueCodeElement: valueCodeElement ?? this.valueCodeElement,
       valueDate: valueDate ?? this.valueDate,
-      valueDateElement: valueDateElement ?? this.valueDateElement,
       valueDateTime: valueDateTime ?? this.valueDateTime,
-      valueDateTimeElement: valueDateTimeElement ?? this.valueDateTimeElement,
       valueDecimal: valueDecimal ?? this.valueDecimal,
-      valueDecimalElement: valueDecimalElement ?? this.valueDecimalElement,
       valueId: valueId ?? this.valueId,
-      valueIdElement: valueIdElement ?? this.valueIdElement,
       valueInstant: valueInstant ?? this.valueInstant,
-      valueInstantElement: valueInstantElement ?? this.valueInstantElement,
       valueInteger: valueInteger ?? this.valueInteger,
-      valueIntegerElement: valueIntegerElement ?? this.valueIntegerElement,
       valueMarkdown: valueMarkdown ?? this.valueMarkdown,
-      valueMarkdownElement: valueMarkdownElement ?? this.valueMarkdownElement,
       valueOid: valueOid ?? this.valueOid,
-      valueOidElement: valueOidElement ?? this.valueOidElement,
       valuePositiveInt: valuePositiveInt ?? this.valuePositiveInt,
-      valuePositiveIntElement:
-          valuePositiveIntElement ?? this.valuePositiveIntElement,
       valueString: valueString ?? this.valueString,
-      valueStringElement: valueStringElement ?? this.valueStringElement,
       valueTime: valueTime ?? this.valueTime,
-      valueTimeElement: valueTimeElement ?? this.valueTimeElement,
       valueUnsignedInt: valueUnsignedInt ?? this.valueUnsignedInt,
-      valueUnsignedIntElement:
-          valueUnsignedIntElement ?? this.valueUnsignedIntElement,
       valueUri: valueUri ?? this.valueUri,
-      valueUriElement: valueUriElement ?? this.valueUriElement,
       valueUrl: valueUrl ?? this.valueUrl,
-      valueUrlElement: valueUrlElement ?? this.valueUrlElement,
       valueUuid: valueUuid ?? this.valueUuid,
-      valueUuidElement: valueUuidElement ?? this.valueUuidElement,
       valueAddress: valueAddress ?? this.valueAddress,
       valueAge: valueAge ?? this.valueAge,
       valueAnnotation: valueAnnotation ?? this.valueAnnotation,
@@ -2156,85 +1826,28 @@ class TaskOutput extends BackboneElement {
 
   TaskOutput({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
     this.valueBase64Binary,
-
-    /// Extensions for [valueBase64Binary]
-    this.valueBase64BinaryElement,
     this.valueBoolean,
-
-    /// Extensions for [valueBoolean]
-    this.valueBooleanElement,
     this.valueCanonical,
-
-    /// Extensions for [valueCanonical]
-    this.valueCanonicalElement,
     this.valueCode,
-
-    /// Extensions for [valueCode]
-    this.valueCodeElement,
     this.valueDate,
-
-    /// Extensions for [valueDate]
-    this.valueDateElement,
     this.valueDateTime,
-
-    /// Extensions for [valueDateTime]
-    this.valueDateTimeElement,
     this.valueDecimal,
-
-    /// Extensions for [valueDecimal]
-    this.valueDecimalElement,
     this.valueId,
-
-    /// Extensions for [valueId]
-    this.valueIdElement,
     this.valueInstant,
-
-    /// Extensions for [valueInstant]
-    this.valueInstantElement,
     this.valueInteger,
-
-    /// Extensions for [valueInteger]
-    this.valueIntegerElement,
     this.valueMarkdown,
-
-    /// Extensions for [valueMarkdown]
-    this.valueMarkdownElement,
     this.valueOid,
-
-    /// Extensions for [valueOid]
-    this.valueOidElement,
     this.valuePositiveInt,
-
-    /// Extensions for [valuePositiveInt]
-    this.valuePositiveIntElement,
     this.valueString,
-
-    /// Extensions for [valueString]
-    this.valueStringElement,
     this.valueTime,
-
-    /// Extensions for [valueTime]
-    this.valueTimeElement,
     this.valueUnsignedInt,
-
-    /// Extensions for [valueUnsignedInt]
-    this.valueUnsignedIntElement,
     this.valueUri,
-
-    /// Extensions for [valueUri]
-    this.valueUriElement,
     this.valueUrl,
-
-    /// Extensions for [valueUrl]
-    this.valueUrlElement,
     this.valueUuid,
-
-    /// Extensions for [valueUuid]
-    this.valueUuidElement,
     this.valueAddress,
     this.valueAge,
     this.valueAnnotation,
@@ -2277,11 +1890,15 @@ class TaskOutput extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TaskOutput.fromJson(Map<String, dynamic> json) {
     return TaskOutput(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2290,7 +1907,7 @@ class TaskOutput extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2300,152 +1917,118 @@ class TaskOutput extends BackboneElement {
         json['type'] as Map<String, dynamic>,
       ),
       valueBase64Binary: json['valueBase64Binary'] != null
-          ? FhirBase64Binary.fromJson(json['valueBase64Binary'])
-          : null,
-      valueBase64BinaryElement: json['_valueBase64Binary'] != null
-          ? Element.fromJson(
-              json['_valueBase64Binary'] as Map<String, dynamic>,
-            )
+          ? FhirBase64Binary.fromJson({
+              'value': json['valueBase64Binary'],
+              '_value': json['_valueBase64Binary'],
+            })
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(
-              json['_valueBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['valueBoolean'],
+              '_value': json['_valueBoolean'],
+            })
           : null,
       valueCanonical: json['valueCanonical'] != null
-          ? FhirCanonical.fromJson(json['valueCanonical'])
-          : null,
-      valueCanonicalElement: json['_valueCanonical'] != null
-          ? Element.fromJson(
-              json['_valueCanonical'] as Map<String, dynamic>,
-            )
+          ? FhirCanonical.fromJson({
+              'value': json['valueCanonical'],
+              '_value': json['_valueCanonical'],
+            })
           : null,
       valueCode: json['valueCode'] != null
-          ? FhirCode.fromJson(json['valueCode'])
-          : null,
-      valueCodeElement: json['_valueCode'] != null
-          ? Element.fromJson(
-              json['_valueCode'] as Map<String, dynamic>,
-            )
+          ? FhirCode.fromJson({
+              'value': json['valueCode'],
+              '_value': json['_valueCode'],
+            })
           : null,
       valueDate: json['valueDate'] != null
-          ? FhirDate.fromJson(json['valueDate'])
-          : null,
-      valueDateElement: json['_valueDate'] != null
-          ? Element.fromJson(
-              json['_valueDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['valueDate'],
+              '_value': json['_valueDate'],
+            })
           : null,
       valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime.fromJson(json['valueDateTime'])
-          : null,
-      valueDateTimeElement: json['_valueDateTime'] != null
-          ? Element.fromJson(
-              json['_valueDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['valueDateTime'],
+              '_value': json['_valueDateTime'],
+            })
           : null,
       valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal.fromJson(json['valueDecimal'])
+          ? FhirDecimal.fromJson({
+              'value': json['valueDecimal'],
+              '_value': json['_valueDecimal'],
+            })
           : null,
-      valueDecimalElement: json['_valueDecimal'] != null
-          ? Element.fromJson(
-              json['_valueDecimal'] as Map<String, dynamic>,
-            )
-          : null,
-      valueId:
-          json['valueId'] != null ? FhirId.fromJson(json['valueId']) : null,
-      valueIdElement: json['_valueId'] != null
-          ? Element.fromJson(
-              json['_valueId'] as Map<String, dynamic>,
-            )
+      valueId: json['valueId'] != null
+          ? FhirId.fromJson({
+              'value': json['valueId'],
+              '_value': json['_valueId'],
+            })
           : null,
       valueInstant: json['valueInstant'] != null
-          ? FhirInstant.fromJson(json['valueInstant'])
-          : null,
-      valueInstantElement: json['_valueInstant'] != null
-          ? Element.fromJson(
-              json['_valueInstant'] as Map<String, dynamic>,
-            )
+          ? FhirInstant.fromJson({
+              'value': json['valueInstant'],
+              '_value': json['_valueInstant'],
+            })
           : null,
       valueInteger: json['valueInteger'] != null
-          ? FhirInteger.fromJson(json['valueInteger'])
-          : null,
-      valueIntegerElement: json['_valueInteger'] != null
-          ? Element.fromJson(
-              json['_valueInteger'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['valueInteger'],
+              '_value': json['_valueInteger'],
+            })
           : null,
       valueMarkdown: json['valueMarkdown'] != null
-          ? FhirMarkdown.fromJson(json['valueMarkdown'])
+          ? FhirMarkdown.fromJson({
+              'value': json['valueMarkdown'],
+              '_value': json['_valueMarkdown'],
+            })
           : null,
-      valueMarkdownElement: json['_valueMarkdown'] != null
-          ? Element.fromJson(
-              json['_valueMarkdown'] as Map<String, dynamic>,
-            )
-          : null,
-      valueOid:
-          json['valueOid'] != null ? FhirOid.fromJson(json['valueOid']) : null,
-      valueOidElement: json['_valueOid'] != null
-          ? Element.fromJson(
-              json['_valueOid'] as Map<String, dynamic>,
-            )
+      valueOid: json['valueOid'] != null
+          ? FhirOid.fromJson({
+              'value': json['valueOid'],
+              '_value': json['_valueOid'],
+            })
           : null,
       valuePositiveInt: json['valuePositiveInt'] != null
-          ? FhirPositiveInt.fromJson(json['valuePositiveInt'])
-          : null,
-      valuePositiveIntElement: json['_valuePositiveInt'] != null
-          ? Element.fromJson(
-              json['_valuePositiveInt'] as Map<String, dynamic>,
-            )
+          ? FhirPositiveInt.fromJson({
+              'value': json['valuePositiveInt'],
+              '_value': json['_valuePositiveInt'],
+            })
           : null,
       valueString: json['valueString'] != null
-          ? FhirString.fromJson(json['valueString'])
-          : null,
-      valueStringElement: json['_valueString'] != null
-          ? Element.fromJson(
-              json['_valueString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['valueString'],
+              '_value': json['_valueString'],
+            })
           : null,
       valueTime: json['valueTime'] != null
-          ? FhirTime.fromJson(json['valueTime'])
-          : null,
-      valueTimeElement: json['_valueTime'] != null
-          ? Element.fromJson(
-              json['_valueTime'] as Map<String, dynamic>,
-            )
+          ? FhirTime.fromJson({
+              'value': json['valueTime'],
+              '_value': json['_valueTime'],
+            })
           : null,
       valueUnsignedInt: json['valueUnsignedInt'] != null
-          ? FhirUnsignedInt.fromJson(json['valueUnsignedInt'])
+          ? FhirUnsignedInt.fromJson({
+              'value': json['valueUnsignedInt'],
+              '_value': json['_valueUnsignedInt'],
+            })
           : null,
-      valueUnsignedIntElement: json['_valueUnsignedInt'] != null
-          ? Element.fromJson(
-              json['_valueUnsignedInt'] as Map<String, dynamic>,
-            )
+      valueUri: json['valueUri'] != null
+          ? FhirUri.fromJson({
+              'value': json['valueUri'],
+              '_value': json['_valueUri'],
+            })
           : null,
-      valueUri:
-          json['valueUri'] != null ? FhirUri.fromJson(json['valueUri']) : null,
-      valueUriElement: json['_valueUri'] != null
-          ? Element.fromJson(
-              json['_valueUri'] as Map<String, dynamic>,
-            )
-          : null,
-      valueUrl:
-          json['valueUrl'] != null ? FhirUrl.fromJson(json['valueUrl']) : null,
-      valueUrlElement: json['_valueUrl'] != null
-          ? Element.fromJson(
-              json['_valueUrl'] as Map<String, dynamic>,
-            )
+      valueUrl: json['valueUrl'] != null
+          ? FhirUrl.fromJson({
+              'value': json['valueUrl'],
+              '_value': json['_valueUrl'],
+            })
           : null,
       valueUuid: json['valueUuid'] != null
-          ? FhirUuid.fromJson(json['valueUuid'])
-          : null,
-      valueUuidElement: json['_valueUuid'] != null
-          ? Element.fromJson(
-              json['_valueUuid'] as Map<String, dynamic>,
-            )
+          ? FhirUuid.fromJson({
+              'value': json['valueUuid'],
+              '_value': json['_valueUuid'],
+            })
           : null,
       valueAddress: json['valueAddress'] != null
           ? Address.fromJson(
@@ -2605,7 +2188,8 @@ class TaskOutput extends BackboneElement {
     );
   }
 
-  /// Deserialize [TaskOutput] from a [String] or [YamlMap] object
+  /// Deserialize [TaskOutput] from a [String]
+  /// or [YamlMap] object
   factory TaskOutput.fromYaml(dynamic yaml) => yaml is String
       ? TaskOutput.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2614,10 +2198,11 @@ class TaskOutput extends BackboneElement {
           ? TaskOutput.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('TaskOutput cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('TaskOutput cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [TaskOutput] that takes in a [String]
+  /// Factory constructor for [TaskOutput]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory TaskOutput.fromJsonString(String source) {
@@ -2633,6 +2218,15 @@ class TaskOutput extends BackboneElement {
   @override
   String get fhirType => 'TaskOutput';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// The name of the Output parameter.
   final CodeableConcept type;
@@ -2641,134 +2235,77 @@ class TaskOutput extends BackboneElement {
   /// The value of the Output parameter as a basic type.
   final FhirBase64Binary? valueBase64Binary;
 
-  /// Extensions for [valueBase64Binary]
-  final Element? valueBase64BinaryElement;
-
   /// [valueBoolean]
   /// The value of the Output parameter as a basic type.
   final FhirBoolean? valueBoolean;
-
-  /// Extensions for [valueBoolean]
-  final Element? valueBooleanElement;
 
   /// [valueCanonical]
   /// The value of the Output parameter as a basic type.
   final FhirCanonical? valueCanonical;
 
-  /// Extensions for [valueCanonical]
-  final Element? valueCanonicalElement;
-
   /// [valueCode]
   /// The value of the Output parameter as a basic type.
   final FhirCode? valueCode;
-
-  /// Extensions for [valueCode]
-  final Element? valueCodeElement;
 
   /// [valueDate]
   /// The value of the Output parameter as a basic type.
   final FhirDate? valueDate;
 
-  /// Extensions for [valueDate]
-  final Element? valueDateElement;
-
   /// [valueDateTime]
   /// The value of the Output parameter as a basic type.
   final FhirDateTime? valueDateTime;
-
-  /// Extensions for [valueDateTime]
-  final Element? valueDateTimeElement;
 
   /// [valueDecimal]
   /// The value of the Output parameter as a basic type.
   final FhirDecimal? valueDecimal;
 
-  /// Extensions for [valueDecimal]
-  final Element? valueDecimalElement;
-
   /// [valueId]
   /// The value of the Output parameter as a basic type.
   final FhirId? valueId;
-
-  /// Extensions for [valueId]
-  final Element? valueIdElement;
 
   /// [valueInstant]
   /// The value of the Output parameter as a basic type.
   final FhirInstant? valueInstant;
 
-  /// Extensions for [valueInstant]
-  final Element? valueInstantElement;
-
   /// [valueInteger]
   /// The value of the Output parameter as a basic type.
   final FhirInteger? valueInteger;
-
-  /// Extensions for [valueInteger]
-  final Element? valueIntegerElement;
 
   /// [valueMarkdown]
   /// The value of the Output parameter as a basic type.
   final FhirMarkdown? valueMarkdown;
 
-  /// Extensions for [valueMarkdown]
-  final Element? valueMarkdownElement;
-
   /// [valueOid]
   /// The value of the Output parameter as a basic type.
   final FhirOid? valueOid;
-
-  /// Extensions for [valueOid]
-  final Element? valueOidElement;
 
   /// [valuePositiveInt]
   /// The value of the Output parameter as a basic type.
   final FhirPositiveInt? valuePositiveInt;
 
-  /// Extensions for [valuePositiveInt]
-  final Element? valuePositiveIntElement;
-
   /// [valueString]
   /// The value of the Output parameter as a basic type.
   final FhirString? valueString;
-
-  /// Extensions for [valueString]
-  final Element? valueStringElement;
 
   /// [valueTime]
   /// The value of the Output parameter as a basic type.
   final FhirTime? valueTime;
 
-  /// Extensions for [valueTime]
-  final Element? valueTimeElement;
-
   /// [valueUnsignedInt]
   /// The value of the Output parameter as a basic type.
   final FhirUnsignedInt? valueUnsignedInt;
-
-  /// Extensions for [valueUnsignedInt]
-  final Element? valueUnsignedIntElement;
 
   /// [valueUri]
   /// The value of the Output parameter as a basic type.
   final FhirUri? valueUri;
 
-  /// Extensions for [valueUri]
-  final Element? valueUriElement;
-
   /// [valueUrl]
   /// The value of the Output parameter as a basic type.
   final FhirUrl? valueUrl;
 
-  /// Extensions for [valueUrl]
-  final Element? valueUrlElement;
-
   /// [valueUuid]
   /// The value of the Output parameter as a basic type.
   final FhirUuid? valueUuid;
-
-  /// Extensions for [valueUuid]
-  final Element? valueUuidElement;
 
   /// [valueAddress]
   /// The value of the Output parameter as a basic type.
@@ -2911,116 +2448,59 @@ class TaskOutput extends BackboneElement {
     if (valueBase64Binary?.value != null) {
       json['valueBase64Binary'] = valueBase64Binary!.toJson();
     }
-    if (valueBase64BinaryElement != null) {
-      json['_valueBase64Binary'] = valueBase64BinaryElement!.toJson();
-    }
     if (valueBoolean?.value != null) {
       json['valueBoolean'] = valueBoolean!.toJson();
-    }
-    if (valueBooleanElement != null) {
-      json['_valueBoolean'] = valueBooleanElement!.toJson();
     }
     if (valueCanonical?.value != null) {
       json['valueCanonical'] = valueCanonical!.toJson();
     }
-    if (valueCanonicalElement != null) {
-      json['_valueCanonical'] = valueCanonicalElement!.toJson();
-    }
     if (valueCode?.value != null) {
       json['valueCode'] = valueCode!.toJson();
-    }
-    if (valueCodeElement != null) {
-      json['_valueCode'] = valueCodeElement!.toJson();
     }
     if (valueDate?.value != null) {
       json['valueDate'] = valueDate!.toJson();
     }
-    if (valueDateElement != null) {
-      json['_valueDate'] = valueDateElement!.toJson();
-    }
     if (valueDateTime?.value != null) {
       json['valueDateTime'] = valueDateTime!.toJson();
-    }
-    if (valueDateTimeElement != null) {
-      json['_valueDateTime'] = valueDateTimeElement!.toJson();
     }
     if (valueDecimal?.value != null) {
       json['valueDecimal'] = valueDecimal!.toJson();
     }
-    if (valueDecimalElement != null) {
-      json['_valueDecimal'] = valueDecimalElement!.toJson();
-    }
     if (valueId?.value != null) {
       json['valueId'] = valueId!.toJson();
-    }
-    if (valueIdElement != null) {
-      json['_valueId'] = valueIdElement!.toJson();
     }
     if (valueInstant?.value != null) {
       json['valueInstant'] = valueInstant!.toJson();
     }
-    if (valueInstantElement != null) {
-      json['_valueInstant'] = valueInstantElement!.toJson();
-    }
     if (valueInteger?.value != null) {
       json['valueInteger'] = valueInteger!.toJson();
-    }
-    if (valueIntegerElement != null) {
-      json['_valueInteger'] = valueIntegerElement!.toJson();
     }
     if (valueMarkdown?.value != null) {
       json['valueMarkdown'] = valueMarkdown!.toJson();
     }
-    if (valueMarkdownElement != null) {
-      json['_valueMarkdown'] = valueMarkdownElement!.toJson();
-    }
     if (valueOid?.value != null) {
       json['valueOid'] = valueOid!.toJson();
-    }
-    if (valueOidElement != null) {
-      json['_valueOid'] = valueOidElement!.toJson();
     }
     if (valuePositiveInt?.value != null) {
       json['valuePositiveInt'] = valuePositiveInt!.toJson();
     }
-    if (valuePositiveIntElement != null) {
-      json['_valuePositiveInt'] = valuePositiveIntElement!.toJson();
-    }
     if (valueString?.value != null) {
       json['valueString'] = valueString!.toJson();
-    }
-    if (valueStringElement != null) {
-      json['_valueString'] = valueStringElement!.toJson();
     }
     if (valueTime?.value != null) {
       json['valueTime'] = valueTime!.toJson();
     }
-    if (valueTimeElement != null) {
-      json['_valueTime'] = valueTimeElement!.toJson();
-    }
     if (valueUnsignedInt?.value != null) {
       json['valueUnsignedInt'] = valueUnsignedInt!.toJson();
-    }
-    if (valueUnsignedIntElement != null) {
-      json['_valueUnsignedInt'] = valueUnsignedIntElement!.toJson();
     }
     if (valueUri?.value != null) {
       json['valueUri'] = valueUri!.toJson();
     }
-    if (valueUriElement != null) {
-      json['_valueUri'] = valueUriElement!.toJson();
-    }
     if (valueUrl?.value != null) {
       json['valueUrl'] = valueUrl!.toJson();
     }
-    if (valueUrlElement != null) {
-      json['_valueUrl'] = valueUrlElement!.toJson();
-    }
     if (valueUuid?.value != null) {
       json['valueUuid'] = valueUuid!.toJson();
-    }
-    if (valueUuidElement != null) {
-      json['_valueUuid'] = valueUuidElement!.toJson();
     }
     if (valueAddress != null) {
       json['valueAddress'] = valueAddress!.toJson();
@@ -3127,43 +2607,24 @@ class TaskOutput extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
     FhirBase64Binary? valueBase64Binary,
-    Element? valueBase64BinaryElement,
     FhirBoolean? valueBoolean,
-    Element? valueBooleanElement,
     FhirCanonical? valueCanonical,
-    Element? valueCanonicalElement,
     FhirCode? valueCode,
-    Element? valueCodeElement,
     FhirDate? valueDate,
-    Element? valueDateElement,
     FhirDateTime? valueDateTime,
-    Element? valueDateTimeElement,
     FhirDecimal? valueDecimal,
-    Element? valueDecimalElement,
     FhirId? valueId,
-    Element? valueIdElement,
     FhirInstant? valueInstant,
-    Element? valueInstantElement,
     FhirInteger? valueInteger,
-    Element? valueIntegerElement,
     FhirMarkdown? valueMarkdown,
-    Element? valueMarkdownElement,
     FhirOid? valueOid,
-    Element? valueOidElement,
     FhirPositiveInt? valuePositiveInt,
-    Element? valuePositiveIntElement,
     FhirString? valueString,
-    Element? valueStringElement,
     FhirTime? valueTime,
-    Element? valueTimeElement,
     FhirUnsignedInt? valueUnsignedInt,
-    Element? valueUnsignedIntElement,
     FhirUri? valueUri,
-    Element? valueUriElement,
     FhirUrl? valueUrl,
-    Element? valueUrlElement,
     FhirUuid? valueUuid,
-    Element? valueUuidElement,
     Address? valueAddress,
     Age? valueAge,
     Annotation? valueAnnotation,
@@ -3208,47 +2669,24 @@ class TaskOutput extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       valueBase64Binary: valueBase64Binary ?? this.valueBase64Binary,
-      valueBase64BinaryElement:
-          valueBase64BinaryElement ?? this.valueBase64BinaryElement,
       valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueBooleanElement: valueBooleanElement ?? this.valueBooleanElement,
       valueCanonical: valueCanonical ?? this.valueCanonical,
-      valueCanonicalElement:
-          valueCanonicalElement ?? this.valueCanonicalElement,
       valueCode: valueCode ?? this.valueCode,
-      valueCodeElement: valueCodeElement ?? this.valueCodeElement,
       valueDate: valueDate ?? this.valueDate,
-      valueDateElement: valueDateElement ?? this.valueDateElement,
       valueDateTime: valueDateTime ?? this.valueDateTime,
-      valueDateTimeElement: valueDateTimeElement ?? this.valueDateTimeElement,
       valueDecimal: valueDecimal ?? this.valueDecimal,
-      valueDecimalElement: valueDecimalElement ?? this.valueDecimalElement,
       valueId: valueId ?? this.valueId,
-      valueIdElement: valueIdElement ?? this.valueIdElement,
       valueInstant: valueInstant ?? this.valueInstant,
-      valueInstantElement: valueInstantElement ?? this.valueInstantElement,
       valueInteger: valueInteger ?? this.valueInteger,
-      valueIntegerElement: valueIntegerElement ?? this.valueIntegerElement,
       valueMarkdown: valueMarkdown ?? this.valueMarkdown,
-      valueMarkdownElement: valueMarkdownElement ?? this.valueMarkdownElement,
       valueOid: valueOid ?? this.valueOid,
-      valueOidElement: valueOidElement ?? this.valueOidElement,
       valuePositiveInt: valuePositiveInt ?? this.valuePositiveInt,
-      valuePositiveIntElement:
-          valuePositiveIntElement ?? this.valuePositiveIntElement,
       valueString: valueString ?? this.valueString,
-      valueStringElement: valueStringElement ?? this.valueStringElement,
       valueTime: valueTime ?? this.valueTime,
-      valueTimeElement: valueTimeElement ?? this.valueTimeElement,
       valueUnsignedInt: valueUnsignedInt ?? this.valueUnsignedInt,
-      valueUnsignedIntElement:
-          valueUnsignedIntElement ?? this.valueUnsignedIntElement,
       valueUri: valueUri ?? this.valueUri,
-      valueUriElement: valueUriElement ?? this.valueUriElement,
       valueUrl: valueUrl ?? this.valueUrl,
-      valueUrlElement: valueUrlElement ?? this.valueUrlElement,
       valueUuid: valueUuid ?? this.valueUuid,
-      valueUuidElement: valueUuidElement ?? this.valueUuidElement,
       valueAddress: valueAddress ?? this.valueAddress,
       valueAge: valueAge ?? this.valueAge,
       valueAnnotation: valueAnnotation ?? this.valueAnnotation,

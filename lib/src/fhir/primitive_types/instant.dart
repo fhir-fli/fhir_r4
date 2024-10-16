@@ -17,30 +17,6 @@ extension FhirInstantStringExtension on String {
 
 /// [FhirInstant] represents an instant in time as defined by the FHIR spec.
 class FhirInstant extends FhirDateTimeBase {
-  /// Factory constructor to create a [FhirInstant] from JSON.
-  ///
-  /// Only accepts a String and validates it.
-  factory FhirInstant.fromJson(dynamic json, {Element? element}) {
-    if (json is String) {
-      return FhirInstant.fromString(json, element);
-    } else {
-      throw const FormatException(
-        'Invalid input for FhirInstant: Input must be a String',
-      );
-    }
-  }
-
-  /// Factory constructor to create a [FhirInstant] from YAML input.
-  factory FhirInstant.fromYaml(dynamic yaml) {
-    if (yaml is String) {
-      return FhirInstant.fromJson(jsonDecode(jsonEncode(loadYaml(yaml))));
-    } else if (yaml is YamlMap) {
-      return FhirInstant.fromJson(jsonDecode(jsonEncode(yaml)));
-    } else {
-      throw FormatException('Invalid Yaml format for FhirInstant: "$yaml".');
-    }
-  }
-
   /// Factory constructor to create a [FhirInstant] from individual units.
   factory FhirInstant.fromUnits({
     required int year,
@@ -93,6 +69,39 @@ class FhirInstant extends FhirDateTimeBase {
   factory FhirInstant.fromDateTime(DateTime inValue, [Element? element]) =>
       FhirDateTimeBase.constructor<FhirInstant>(inValue, element)
           as FhirInstant;
+
+  /// Factory constructor to create a [FhirInstantTime] from a JSON input.
+  ///
+  /// The input must be a [String], otherwise throws a [FormatException].
+  factory FhirInstant.fromJson(Map<String, dynamic> json) {
+    final value = json['value'];
+    final element = json['_value'] is Map<String, dynamic>
+        ? Element.fromJson(json['_value'] as Map<String, dynamic>)
+        : null;
+
+    if (value is String) {
+      return FhirInstant.fromString(value, element);
+    } else if (value is DateTime) {
+      return FhirInstant.fromDateTime(value, element);
+    } else {
+      throw const FormatException(
+        'Invalid input for FhirInstant: Input must be a String',
+      );
+    }
+  }
+
+  /// Factory constructor to create [FhirInstant] from YAML
+  static FhirInstant fromYaml(dynamic yaml) => yaml is String
+      ? FhirInstant.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+        )
+      : yaml is YamlMap
+          ? FhirInstant.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
+            )
+          : throw ArgumentError(
+              'FhirInstant cannot be constructed from the provided input,'
+              ' it is neither a YAML string nor a YAML map.');
 
   /// Tries to parse a value into a [FhirInstant].
   ///
@@ -169,6 +178,8 @@ class FhirInstant extends FhirDateTimeBase {
     List<dynamic>? annotations,
     List<FhirBase>? children,
     Map<String, FhirBase>? namedChildren,
+    Element? element,
+    DateTime? newValue,
   }) {
     return FhirInstant.fromBase(
       year: year,

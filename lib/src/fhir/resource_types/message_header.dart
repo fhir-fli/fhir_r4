@@ -15,22 +15,13 @@ class MessageHeader extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.eventCoding,
     this.eventUri,
-
-    /// Extensions for [eventUri]
-    this.eventUriElement,
     this.destination,
     this.sender,
     this.enterer,
@@ -41,9 +32,6 @@ class MessageHeader extends DomainResource {
     this.response,
     this.focus,
     this.definition,
-
-    /// Extensions for [definition]
-    this.definitionElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -57,27 +45,27 @@ class MessageHeader extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageHeader.fromJson(Map<String, dynamic> json) {
     return MessageHeader(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -87,7 +75,7 @@ class MessageHeader extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -96,7 +84,7 @@ class MessageHeader extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -105,7 +93,7 @@ class MessageHeader extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -116,17 +104,16 @@ class MessageHeader extends DomainResource {
               json['eventCoding'] as Map<String, dynamic>,
             )
           : null,
-      eventUri:
-          json['eventUri'] != null ? FhirUri.fromJson(json['eventUri']) : null,
-      eventUriElement: json['_eventUri'] != null
-          ? Element.fromJson(
-              json['_eventUri'] as Map<String, dynamic>,
-            )
+      eventUri: json['eventUri'] != null
+          ? FhirUri.fromJson({
+              'value': json['eventUri'],
+              '_value': json['_eventUri'],
+            })
           : null,
       destination: json['destination'] != null
           ? (json['destination'] as List<dynamic>)
               .map<MessageHeaderDestination>(
-                (dynamic v) => MessageHeaderDestination.fromJson(
+                (v) => MessageHeaderDestination.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -168,24 +155,23 @@ class MessageHeader extends DomainResource {
       focus: json['focus'] != null
           ? (json['focus'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       definition: json['definition'] != null
-          ? FhirCanonical.fromJson(json['definition'])
-          : null,
-      definitionElement: json['_definition'] != null
-          ? Element.fromJson(
-              json['_definition'] as Map<String, dynamic>,
-            )
+          ? FhirCanonical.fromJson({
+              'value': json['definition'],
+              '_value': json['_definition'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [MessageHeader] from a [String] or [YamlMap] object
+  /// Deserialize [MessageHeader] from a [String]
+  /// or [YamlMap] object
   factory MessageHeader.fromYaml(dynamic yaml) => yaml is String
       ? MessageHeader.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -194,11 +180,11 @@ class MessageHeader extends DomainResource {
           ? MessageHeader.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MessageHeader cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('MessageHeader cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MessageHeader] that takes in a [String]
+  /// Factory constructor for [MessageHeader]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MessageHeader.fromJsonString(String source) {
@@ -213,6 +199,15 @@ class MessageHeader extends DomainResource {
 
   @override
   String get fhirType => 'MessageHeader';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [eventCoding]
   /// Code that identifies the event this message represents and connects it
@@ -229,9 +224,6 @@ class MessageHeader extends DomainResource {
   /// "http://terminology.hl7.org/CodeSystem/message-events". Alternatively
   /// uri to the EventDefinition.
   final FhirUri? eventUri;
-
-  /// Extensions for [eventUri]
-  final Element? eventUriElement;
 
   /// [destination]
   /// The destination application which the message is intended for.
@@ -282,9 +274,6 @@ class MessageHeader extends DomainResource {
   /// [definition]
   /// Permanent link to the MessageDefinition for this message.
   final FhirCanonical? definition;
-
-  /// Extensions for [definition]
-  final Element? definitionElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -297,9 +286,6 @@ class MessageHeader extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -323,9 +309,6 @@ class MessageHeader extends DomainResource {
     }
     if (eventUri?.value != null) {
       json['eventUri'] = eventUri!.toJson();
-    }
-    if (eventUriElement != null) {
-      json['_eventUri'] = eventUriElement!.toJson();
     }
     if (destination != null && destination!.isNotEmpty) {
       json['destination'] =
@@ -356,9 +339,6 @@ class MessageHeader extends DomainResource {
     if (definition?.value != null) {
       json['definition'] = definition!.toJson();
     }
-    if (definitionElement != null) {
-      json['_definition'] = definitionElement!.toJson();
-    }
     return json;
   }
 
@@ -369,16 +349,13 @@ class MessageHeader extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     Coding? eventCoding,
     FhirUri? eventUri,
-    Element? eventUriElement,
     List<MessageHeaderDestination>? destination,
     Reference? sender,
     Reference? enterer,
@@ -389,7 +366,6 @@ class MessageHeader extends DomainResource {
     MessageHeaderResponse? response,
     List<Reference>? focus,
     FhirCanonical? definition,
-    Element? definitionElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -401,16 +377,13 @@ class MessageHeader extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       eventCoding: eventCoding ?? this.eventCoding,
       eventUri: eventUri ?? this.eventUri,
-      eventUriElement: eventUriElement ?? this.eventUriElement,
       destination: destination ?? this.destination,
       sender: sender ?? this.sender,
       enterer: enterer ?? this.enterer,
@@ -421,7 +394,6 @@ class MessageHeader extends DomainResource {
       response: response ?? this.response,
       focus: focus ?? this.focus,
       definition: definition ?? this.definition,
-      definitionElement: definitionElement ?? this.definitionElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -439,17 +411,11 @@ class MessageHeaderDestination extends BackboneElement {
 
   MessageHeaderDestination({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.target,
     required this.endpoint,
-
-    /// Extensions for [endpoint]
-    this.endpointElement,
     this.receiver,
     super.userData,
     super.formatCommentsPre,
@@ -462,11 +428,15 @@ class MessageHeaderDestination extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageHeaderDestination.fromJson(Map<String, dynamic> json) {
     return MessageHeaderDestination(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -475,29 +445,27 @@ class MessageHeaderDestination extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
       target: json['target'] != null
           ? Reference.fromJson(
               json['target'] as Map<String, dynamic>,
             )
           : null,
-      endpoint: FhirUrl.fromJson(json['endpoint']),
-      endpointElement: json['_endpoint'] != null
-          ? Element.fromJson(
-              json['_endpoint'] as Map<String, dynamic>,
-            )
-          : null,
+      endpoint: FhirUrl.fromJson({
+        'value': json['endpoint'],
+        '_value': json['_endpoint'],
+      }),
       receiver: json['receiver'] != null
           ? Reference.fromJson(
               json['receiver'] as Map<String, dynamic>,
@@ -506,7 +474,8 @@ class MessageHeaderDestination extends BackboneElement {
     );
   }
 
-  /// Deserialize [MessageHeaderDestination] from a [String] or [YamlMap] object
+  /// Deserialize [MessageHeaderDestination] from a [String]
+  /// or [YamlMap] object
   factory MessageHeaderDestination.fromYaml(dynamic yaml) => yaml is String
       ? MessageHeaderDestination.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -516,10 +485,11 @@ class MessageHeaderDestination extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'MessageHeaderDestination cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'MessageHeaderDestination cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MessageHeaderDestination] that takes in a [String]
+  /// Factory constructor for [MessageHeaderDestination]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MessageHeaderDestination.fromJsonString(String source) {
@@ -535,12 +505,18 @@ class MessageHeaderDestination extends BackboneElement {
   @override
   String get fhirType => 'MessageHeaderDestination';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// Human-readable name for the target system.
   final FhirString? name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [target]
   /// Identifies the target end system in situations where the initial
@@ -550,9 +526,6 @@ class MessageHeaderDestination extends BackboneElement {
   /// [endpoint]
   /// Indicates where the message should be routed to.
   final FhirUrl endpoint;
-
-  /// Extensions for [endpoint]
-  final Element? endpointElement;
 
   /// [receiver]
   /// Allows data conveyed by a message to be addressed to a particular
@@ -576,16 +549,10 @@ class MessageHeaderDestination extends BackboneElement {
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (target != null) {
       json['target'] = target!.toJson();
     }
     json['endpoint'] = endpoint.toJson();
-    if (endpointElement != null) {
-      json['_endpoint'] = endpointElement!.toJson();
-    }
     if (receiver != null) {
       json['receiver'] = receiver!.toJson();
     }
@@ -600,10 +567,8 @@ class MessageHeaderDestination extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    Element? nameElement,
     Reference? target,
     FhirUrl? endpoint,
-    Element? endpointElement,
     Reference? receiver,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -617,10 +582,8 @@ class MessageHeaderDestination extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       target: target ?? this.target,
       endpoint: endpoint ?? this.endpoint,
-      endpointElement: endpointElement ?? this.endpointElement,
       receiver: receiver ?? this.receiver,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -639,25 +602,13 @@ class MessageHeaderSource extends BackboneElement {
 
   MessageHeaderSource({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.software,
-
-    /// Extensions for [software]
-    this.softwareElement,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     this.contact,
     required this.endpoint,
-
-    /// Extensions for [endpoint]
-    this.endpointElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -669,11 +620,15 @@ class MessageHeaderSource extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageHeaderSource.fromJson(Map<String, dynamic> json) {
     return MessageHeaderSource(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -682,48 +637,44 @@ class MessageHeaderSource extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
       software: json['software'] != null
-          ? FhirString.fromJson(json['software'])
+          ? FhirString.fromJson({
+              'value': json['software'],
+              '_value': json['_software'],
+            })
           : null,
-      softwareElement: json['_software'] != null
-          ? Element.fromJson(
-              json['_software'] as Map<String, dynamic>,
-            )
-          : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
       contact: json['contact'] != null
           ? ContactPoint.fromJson(
               json['contact'] as Map<String, dynamic>,
             )
           : null,
-      endpoint: FhirUrl.fromJson(json['endpoint']),
-      endpointElement: json['_endpoint'] != null
-          ? Element.fromJson(
-              json['_endpoint'] as Map<String, dynamic>,
-            )
-          : null,
+      endpoint: FhirUrl.fromJson({
+        'value': json['endpoint'],
+        '_value': json['_endpoint'],
+      }),
     );
   }
 
-  /// Deserialize [MessageHeaderSource] from a [String] or [YamlMap] object
+  /// Deserialize [MessageHeaderSource] from a [String]
+  /// or [YamlMap] object
   factory MessageHeaderSource.fromYaml(dynamic yaml) => yaml is String
       ? MessageHeaderSource.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -733,10 +684,11 @@ class MessageHeaderSource extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'MessageHeaderSource cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'MessageHeaderSource cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MessageHeaderSource] that takes in a [String]
+  /// Factory constructor for [MessageHeaderSource]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MessageHeaderSource.fromJsonString(String source) {
@@ -752,27 +704,27 @@ class MessageHeaderSource extends BackboneElement {
   @override
   String get fhirType => 'MessageHeaderSource';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// Human-readable name for the source system.
   final FhirString? name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [software]
   /// May include configuration or other information useful in debugging.
   final FhirString? software;
 
-  /// Extensions for [software]
-  final Element? softwareElement;
-
   /// [version]
   /// Can convey versions of multiple systems in situations where a message
   /// passes through multiple hands.
   final FhirString? version;
-
-  /// Extensions for [version]
-  final Element? versionElement;
 
   /// [contact]
   /// An e-mail, phone, website or other contact point to use to resolve
@@ -782,9 +734,6 @@ class MessageHeaderSource extends BackboneElement {
   /// [endpoint]
   /// Identifies the routing target to send acknowledgements to.
   final FhirUrl endpoint;
-
-  /// Extensions for [endpoint]
-  final Element? endpointElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -802,28 +751,16 @@ class MessageHeaderSource extends BackboneElement {
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (software?.value != null) {
       json['software'] = software!.toJson();
     }
-    if (softwareElement != null) {
-      json['_software'] = softwareElement!.toJson();
-    }
     if (version?.value != null) {
       json['version'] = version!.toJson();
-    }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
     }
     if (contact != null) {
       json['contact'] = contact!.toJson();
     }
     json['endpoint'] = endpoint.toJson();
-    if (endpointElement != null) {
-      json['_endpoint'] = endpointElement!.toJson();
-    }
     return json;
   }
 
@@ -835,14 +772,10 @@ class MessageHeaderSource extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    Element? nameElement,
     FhirString? software,
-    Element? softwareElement,
     FhirString? version,
-    Element? versionElement,
     ContactPoint? contact,
     FhirUrl? endpoint,
-    Element? endpointElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -855,14 +788,10 @@ class MessageHeaderSource extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       software: software ?? this.software,
-      softwareElement: softwareElement ?? this.softwareElement,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       contact: contact ?? this.contact,
       endpoint: endpoint ?? this.endpoint,
-      endpointElement: endpointElement ?? this.endpointElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -881,16 +810,10 @@ class MessageHeaderResponse extends BackboneElement {
 
   MessageHeaderResponse({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.identifier,
-
-    /// Extensions for [identifier]
-    this.identifierElement,
     required this.code,
-
-    /// Extensions for [code]
-    this.codeElement,
     this.details,
     super.userData,
     super.formatCommentsPre,
@@ -903,11 +826,15 @@ class MessageHeaderResponse extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MessageHeaderResponse.fromJson(Map<String, dynamic> json) {
     return MessageHeaderResponse(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -916,24 +843,20 @@ class MessageHeaderResponse extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      identifier: FhirId.fromJson(json['identifier']),
-      identifierElement: json['_identifier'] != null
-          ? Element.fromJson(
-              json['_identifier'] as Map<String, dynamic>,
-            )
-          : null,
-      code: ResponseType.fromJson(json['code']),
-      codeElement: json['_code'] != null
-          ? Element.fromJson(
-              json['_code'] as Map<String, dynamic>,
-            )
-          : null,
+      identifier: FhirId.fromJson({
+        'value': json['identifier'],
+        '_value': json['_identifier'],
+      }),
+      code: ResponseType.fromJson({
+        'value': json['code'],
+        '_value': json['_code'],
+      }),
       details: json['details'] != null
           ? Reference.fromJson(
               json['details'] as Map<String, dynamic>,
@@ -942,7 +865,8 @@ class MessageHeaderResponse extends BackboneElement {
     );
   }
 
-  /// Deserialize [MessageHeaderResponse] from a [String] or [YamlMap] object
+  /// Deserialize [MessageHeaderResponse] from a [String]
+  /// or [YamlMap] object
   factory MessageHeaderResponse.fromYaml(dynamic yaml) => yaml is String
       ? MessageHeaderResponse.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -952,10 +876,11 @@ class MessageHeaderResponse extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'MessageHeaderResponse cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'MessageHeaderResponse cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MessageHeaderResponse] that takes in a [String]
+  /// Factory constructor for [MessageHeaderResponse]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MessageHeaderResponse.fromJsonString(String source) {
@@ -971,21 +896,24 @@ class MessageHeaderResponse extends BackboneElement {
   @override
   String get fhirType => 'MessageHeaderResponse';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// The MessageHeader.id of the message to which this message is a
   /// response.
   final FhirId identifier;
 
-  /// Extensions for [identifier]
-  final Element? identifierElement;
-
   /// [code]
   /// Code that identifies the type of response to the message - whether it
   /// was successful or not, and whether it should be resent or not.
   final ResponseType code;
-
-  /// Extensions for [code]
-  final Element? codeElement;
 
   /// [details]
   /// Full details of any issues found in the message.
@@ -1005,9 +933,6 @@ class MessageHeaderResponse extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['identifier'] = identifier.toJson();
-    if (identifierElement != null) {
-      json['_identifier'] = identifierElement!.toJson();
-    }
     json['code'] = code.toJson();
     if (details != null) {
       json['details'] = details!.toJson();
@@ -1023,9 +948,7 @@ class MessageHeaderResponse extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirId? identifier,
-    Element? identifierElement,
     ResponseType? code,
-    Element? codeElement,
     Reference? details,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1039,9 +962,7 @@ class MessageHeaderResponse extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
-      identifierElement: identifierElement ?? this.identifierElement,
       code: code ?? this.code,
-      codeElement: codeElement ?? this.codeElement,
       details: details ?? this.details,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

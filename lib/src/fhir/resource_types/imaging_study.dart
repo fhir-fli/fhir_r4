@@ -16,41 +16,23 @@ class ImagingStudy extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.modality,
     required this.subject,
     this.encounter,
     this.started,
-
-    /// Extensions for [started]
-    this.startedElement,
     this.basedOn,
     this.referrer,
     this.interpreter,
     this.endpoint,
     this.numberOfSeries,
-
-    /// Extensions for [numberOfSeries]
-    this.numberOfSeriesElement,
     this.numberOfInstances,
-
-    /// Extensions for [numberOfInstances]
-    this.numberOfInstancesElement,
     this.procedureReference,
     this.procedureCode,
     this.location,
@@ -58,9 +40,6 @@ class ImagingStudy extends DomainResource {
     this.reasonReference,
     this.note,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.series,
     super.userData,
     super.formatCommentsPre,
@@ -75,27 +54,27 @@ class ImagingStudy extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImagingStudy.fromJson(Map<String, dynamic> json) {
     return ImagingStudy(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -105,7 +84,7 @@ class ImagingStudy extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -114,7 +93,7 @@ class ImagingStudy extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -123,7 +102,7 @@ class ImagingStudy extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -132,22 +111,20 @@ class ImagingStudy extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: ImagingStudyStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: ImagingStudyStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       modality: json['modality'] != null
           ? (json['modality'] as List<dynamic>)
               .map<Coding>(
-                (dynamic v) => Coding.fromJson(
+                (v) => Coding.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -162,17 +139,15 @@ class ImagingStudy extends DomainResource {
             )
           : null,
       started: json['started'] != null
-          ? FhirDateTime.fromJson(json['started'])
-          : null,
-      startedElement: json['_started'] != null
-          ? Element.fromJson(
-              json['_started'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['started'],
+              '_value': json['_started'],
+            })
           : null,
       basedOn: json['basedOn'] != null
           ? (json['basedOn'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -186,7 +161,7 @@ class ImagingStudy extends DomainResource {
       interpreter: json['interpreter'] != null
           ? (json['interpreter'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -195,27 +170,23 @@ class ImagingStudy extends DomainResource {
       endpoint: json['endpoint'] != null
           ? (json['endpoint'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       numberOfSeries: json['numberOfSeries'] != null
-          ? FhirUnsignedInt.fromJson(json['numberOfSeries'])
-          : null,
-      numberOfSeriesElement: json['_numberOfSeries'] != null
-          ? Element.fromJson(
-              json['_numberOfSeries'] as Map<String, dynamic>,
-            )
+          ? FhirUnsignedInt.fromJson({
+              'value': json['numberOfSeries'],
+              '_value': json['_numberOfSeries'],
+            })
           : null,
       numberOfInstances: json['numberOfInstances'] != null
-          ? FhirUnsignedInt.fromJson(json['numberOfInstances'])
-          : null,
-      numberOfInstancesElement: json['_numberOfInstances'] != null
-          ? Element.fromJson(
-              json['_numberOfInstances'] as Map<String, dynamic>,
-            )
+          ? FhirUnsignedInt.fromJson({
+              'value': json['numberOfInstances'],
+              '_value': json['_numberOfInstances'],
+            })
           : null,
       procedureReference: json['procedureReference'] != null
           ? Reference.fromJson(
@@ -225,7 +196,7 @@ class ImagingStudy extends DomainResource {
       procedureCode: json['procedureCode'] != null
           ? (json['procedureCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -239,7 +210,7 @@ class ImagingStudy extends DomainResource {
       reasonCode: json['reasonCode'] != null
           ? (json['reasonCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -248,7 +219,7 @@ class ImagingStudy extends DomainResource {
       reasonReference: json['reasonReference'] != null
           ? (json['reasonReference'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -257,24 +228,22 @@ class ImagingStudy extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       series: json['series'] != null
           ? (json['series'] as List<dynamic>)
               .map<ImagingStudySeries>(
-                (dynamic v) => ImagingStudySeries.fromJson(
+                (v) => ImagingStudySeries.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -283,7 +252,8 @@ class ImagingStudy extends DomainResource {
     );
   }
 
-  /// Deserialize [ImagingStudy] from a [String] or [YamlMap] object
+  /// Deserialize [ImagingStudy] from a [String]
+  /// or [YamlMap] object
   factory ImagingStudy.fromYaml(dynamic yaml) => yaml is String
       ? ImagingStudy.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -292,10 +262,11 @@ class ImagingStudy extends DomainResource {
           ? ImagingStudy.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('ImagingStudy cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ImagingStudy cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ImagingStudy] that takes in a [String]
+  /// Factory constructor for [ImagingStudy]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ImagingStudy.fromJsonString(String source) {
@@ -311,6 +282,15 @@ class ImagingStudy extends DomainResource {
   @override
   String get fhirType => 'ImagingStudy';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Identifiers for the ImagingStudy such as DICOM Study Instance UID, and
   /// Accession Number.
@@ -319,9 +299,6 @@ class ImagingStudy extends DomainResource {
   /// [status]
   /// The current state of the ImagingStudy.
   final ImagingStudyStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [modality]
   /// A list of all the series.modality values that are actual acquisition
@@ -341,9 +318,6 @@ class ImagingStudy extends DomainResource {
   /// [started]
   /// Date and time the study started.
   final FhirDateTime? started;
-
-  /// Extensions for [started]
-  final Element? startedElement;
 
   /// [basedOn]
   /// A list of the diagnostic requests that resulted in this imaging study
@@ -373,18 +347,12 @@ class ImagingStudy extends DomainResource {
   /// present if any series elements are present.
   final FhirUnsignedInt? numberOfSeries;
 
-  /// Extensions for [numberOfSeries]
-  final Element? numberOfSeriesElement;
-
   /// [numberOfInstances]
   /// Number of SOP Instances in Study. This value given may be larger than
   /// the number of instance elements this resource contains due to resource
   /// availability, security, or other factors. This element should be
   /// present if any instance elements are present.
   final FhirUnsignedInt? numberOfInstances;
-
-  /// Extensions for [numberOfInstances]
-  final Element? numberOfInstancesElement;
 
   /// [procedureReference]
   /// The procedure which this ImagingStudy was part of.
@@ -419,9 +387,6 @@ class ImagingStudy extends DomainResource {
   /// description or classification of the Study (component) performed.
   final FhirString? description;
 
-  /// Extensions for [description]
-  final Element? descriptionElement;
-
   /// [series]
   /// Each study has one or more series of images or other content.
   final List<ImagingStudySeries>? series;
@@ -437,9 +402,6 @@ class ImagingStudy extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -473,9 +435,6 @@ class ImagingStudy extends DomainResource {
     if (started?.value != null) {
       json['started'] = started!.toJson();
     }
-    if (startedElement != null) {
-      json['_started'] = startedElement!.toJson();
-    }
     if (basedOn != null && basedOn!.isNotEmpty) {
       json['basedOn'] = basedOn!.map((Reference v) => v.toJson()).toList();
     }
@@ -492,14 +451,8 @@ class ImagingStudy extends DomainResource {
     if (numberOfSeries?.value != null) {
       json['numberOfSeries'] = numberOfSeries!.toJson();
     }
-    if (numberOfSeriesElement != null) {
-      json['_numberOfSeries'] = numberOfSeriesElement!.toJson();
-    }
     if (numberOfInstances?.value != null) {
       json['numberOfInstances'] = numberOfInstances!.toJson();
-    }
-    if (numberOfInstancesElement != null) {
-      json['_numberOfInstances'] = numberOfInstancesElement!.toJson();
     }
     if (procedureReference != null) {
       json['procedureReference'] = procedureReference!.toJson();
@@ -525,9 +478,6 @@ class ImagingStudy extends DomainResource {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (series != null && series!.isNotEmpty) {
       json['series'] =
           series!.map((ImagingStudySeries v) => v.toJson()).toList();
@@ -542,29 +492,23 @@ class ImagingStudy extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     ImagingStudyStatus? status,
-    Element? statusElement,
     List<Coding>? modality,
     Reference? subject,
     Reference? encounter,
     FhirDateTime? started,
-    Element? startedElement,
     List<Reference>? basedOn,
     Reference? referrer,
     List<Reference>? interpreter,
     List<Reference>? endpoint,
     FhirUnsignedInt? numberOfSeries,
-    Element? numberOfSeriesElement,
     FhirUnsignedInt? numberOfInstances,
-    Element? numberOfInstancesElement,
     Reference? procedureReference,
     List<CodeableConcept>? procedureCode,
     Reference? location,
@@ -572,7 +516,6 @@ class ImagingStudy extends DomainResource {
     List<Reference>? reasonReference,
     List<Annotation>? note,
     FhirString? description,
-    Element? descriptionElement,
     List<ImagingStudySeries>? series,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -585,31 +528,23 @@ class ImagingStudy extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       modality: modality ?? this.modality,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
       started: started ?? this.started,
-      startedElement: startedElement ?? this.startedElement,
       basedOn: basedOn ?? this.basedOn,
       referrer: referrer ?? this.referrer,
       interpreter: interpreter ?? this.interpreter,
       endpoint: endpoint ?? this.endpoint,
       numberOfSeries: numberOfSeries ?? this.numberOfSeries,
-      numberOfSeriesElement:
-          numberOfSeriesElement ?? this.numberOfSeriesElement,
       numberOfInstances: numberOfInstances ?? this.numberOfInstances,
-      numberOfInstancesElement:
-          numberOfInstancesElement ?? this.numberOfInstancesElement,
       procedureReference: procedureReference ?? this.procedureReference,
       procedureCode: procedureCode ?? this.procedureCode,
       location: location ?? this.location,
@@ -617,7 +552,6 @@ class ImagingStudy extends DomainResource {
       reasonReference: reasonReference ?? this.reasonReference,
       note: note ?? this.note,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       series: series ?? this.series,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -636,33 +570,18 @@ class ImagingStudySeries extends BackboneElement {
 
   ImagingStudySeries({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.uid,
-
-    /// Extensions for [uid]
-    this.uidElement,
     this.number,
-
-    /// Extensions for [number]
-    this.numberElement,
     required this.modality,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.numberOfInstances,
-
-    /// Extensions for [numberOfInstances]
-    this.numberOfInstancesElement,
     this.endpoint,
     this.bodySite,
     this.laterality,
     this.specimen,
     this.started,
-
-    /// Extensions for [started]
-    this.startedElement,
     this.performer,
     this.instance,
     super.userData,
@@ -676,11 +595,15 @@ class ImagingStudySeries extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImagingStudySeries.fromJson(Map<String, dynamic> json) {
     return ImagingStudySeries(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -689,49 +612,41 @@ class ImagingStudySeries extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      uid: FhirId.fromJson(json['uid']),
-      uidElement: json['_uid'] != null
-          ? Element.fromJson(
-              json['_uid'] as Map<String, dynamic>,
-            )
-          : null,
+      uid: FhirId.fromJson({
+        'value': json['uid'],
+        '_value': json['_uid'],
+      }),
       number: json['number'] != null
-          ? FhirUnsignedInt.fromJson(json['number'])
-          : null,
-      numberElement: json['_number'] != null
-          ? Element.fromJson(
-              json['_number'] as Map<String, dynamic>,
-            )
+          ? FhirUnsignedInt.fromJson({
+              'value': json['number'],
+              '_value': json['_number'],
+            })
           : null,
       modality: Coding.fromJson(
         json['modality'] as Map<String, dynamic>,
       ),
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       numberOfInstances: json['numberOfInstances'] != null
-          ? FhirUnsignedInt.fromJson(json['numberOfInstances'])
-          : null,
-      numberOfInstancesElement: json['_numberOfInstances'] != null
-          ? Element.fromJson(
-              json['_numberOfInstances'] as Map<String, dynamic>,
-            )
+          ? FhirUnsignedInt.fromJson({
+              'value': json['numberOfInstances'],
+              '_value': json['_numberOfInstances'],
+            })
           : null,
       endpoint: json['endpoint'] != null
           ? (json['endpoint'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -750,24 +665,22 @@ class ImagingStudySeries extends BackboneElement {
       specimen: json['specimen'] != null
           ? (json['specimen'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       started: json['started'] != null
-          ? FhirDateTime.fromJson(json['started'])
-          : null,
-      startedElement: json['_started'] != null
-          ? Element.fromJson(
-              json['_started'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['started'],
+              '_value': json['_started'],
+            })
           : null,
       performer: json['performer'] != null
           ? (json['performer'] as List<dynamic>)
               .map<ImagingStudyPerformer>(
-                (dynamic v) => ImagingStudyPerformer.fromJson(
+                (v) => ImagingStudyPerformer.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -776,7 +689,7 @@ class ImagingStudySeries extends BackboneElement {
       instance: json['instance'] != null
           ? (json['instance'] as List<dynamic>)
               .map<ImagingStudyInstance>(
-                (dynamic v) => ImagingStudyInstance.fromJson(
+                (v) => ImagingStudyInstance.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -785,7 +698,8 @@ class ImagingStudySeries extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImagingStudySeries] from a [String] or [YamlMap] object
+  /// Deserialize [ImagingStudySeries] from a [String]
+  /// or [YamlMap] object
   factory ImagingStudySeries.fromYaml(dynamic yaml) => yaml is String
       ? ImagingStudySeries.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -794,11 +708,11 @@ class ImagingStudySeries extends BackboneElement {
           ? ImagingStudySeries.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ImagingStudySeries cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ImagingStudySeries cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ImagingStudySeries] that takes in a [String]
+  /// Factory constructor for [ImagingStudySeries]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ImagingStudySeries.fromJsonString(String source) {
@@ -814,19 +728,22 @@ class ImagingStudySeries extends BackboneElement {
   @override
   String get fhirType => 'ImagingStudySeries';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [uid]
   /// The DICOM Series Instance UID for the series.
   final FhirId uid;
 
-  /// Extensions for [uid]
-  final Element? uidElement;
-
   /// [number]
   /// The numeric identifier of this series in the study.
   final FhirUnsignedInt? number;
-
-  /// Extensions for [number]
-  final Element? numberElement;
 
   /// [modality]
   /// The modality of this series sequence.
@@ -836,18 +753,12 @@ class ImagingStudySeries extends BackboneElement {
   /// A description of the series.
   final FhirString? description;
 
-  /// Extensions for [description]
-  final Element? descriptionElement;
-
   /// [numberOfInstances]
   /// Number of SOP Instances in the Study. The value given may be larger
   /// than the number of instance elements this resource contains due to
   /// resource availability, security, or other factors. This element should
   /// be present if any instance elements are present.
   final FhirUnsignedInt? numberOfInstances;
-
-  /// Extensions for [numberOfInstances]
-  final Element? numberOfInstancesElement;
 
   /// [endpoint]
   /// The network service providing access (e.g., query, view, or retrieval)
@@ -879,9 +790,6 @@ class ImagingStudySeries extends BackboneElement {
   /// The date and time the series was started.
   final FhirDateTime? started;
 
-  /// Extensions for [started]
-  final Element? startedElement;
-
   /// [performer]
   /// Indicates who or what performed the series and how they were involved.
   final List<ImagingStudyPerformer>? performer;
@@ -905,27 +813,15 @@ class ImagingStudySeries extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['uid'] = uid.toJson();
-    if (uidElement != null) {
-      json['_uid'] = uidElement!.toJson();
-    }
     if (number?.value != null) {
       json['number'] = number!.toJson();
-    }
-    if (numberElement != null) {
-      json['_number'] = numberElement!.toJson();
     }
     json['modality'] = modality.toJson();
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (numberOfInstances?.value != null) {
       json['numberOfInstances'] = numberOfInstances!.toJson();
-    }
-    if (numberOfInstancesElement != null) {
-      json['_numberOfInstances'] = numberOfInstancesElement!.toJson();
     }
     if (endpoint != null && endpoint!.isNotEmpty) {
       json['endpoint'] = endpoint!.map((Reference v) => v.toJson()).toList();
@@ -941,9 +837,6 @@ class ImagingStudySeries extends BackboneElement {
     }
     if (started?.value != null) {
       json['started'] = started!.toJson();
-    }
-    if (startedElement != null) {
-      json['_started'] = startedElement!.toJson();
     }
     if (performer != null && performer!.isNotEmpty) {
       json['performer'] =
@@ -964,20 +857,15 @@ class ImagingStudySeries extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirId? uid,
-    Element? uidElement,
     FhirUnsignedInt? number,
-    Element? numberElement,
     Coding? modality,
     FhirString? description,
-    Element? descriptionElement,
     FhirUnsignedInt? numberOfInstances,
-    Element? numberOfInstancesElement,
     List<Reference>? endpoint,
     Coding? bodySite,
     Coding? laterality,
     List<Reference>? specimen,
     FhirDateTime? started,
-    Element? startedElement,
     List<ImagingStudyPerformer>? performer,
     List<ImagingStudyInstance>? instance,
     Map<String, Object?>? userData,
@@ -992,21 +880,15 @@ class ImagingStudySeries extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       uid: uid ?? this.uid,
-      uidElement: uidElement ?? this.uidElement,
       number: number ?? this.number,
-      numberElement: numberElement ?? this.numberElement,
       modality: modality ?? this.modality,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       numberOfInstances: numberOfInstances ?? this.numberOfInstances,
-      numberOfInstancesElement:
-          numberOfInstancesElement ?? this.numberOfInstancesElement,
       endpoint: endpoint ?? this.endpoint,
       bodySite: bodySite ?? this.bodySite,
       laterality: laterality ?? this.laterality,
       specimen: specimen ?? this.specimen,
       started: started ?? this.started,
-      startedElement: startedElement ?? this.startedElement,
       performer: performer ?? this.performer,
       instance: instance ?? this.instance,
       userData: userData ?? this.userData,
@@ -1026,7 +908,7 @@ class ImagingStudyPerformer extends BackboneElement {
 
   ImagingStudyPerformer({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.function_,
     required this.actor,
@@ -1041,11 +923,15 @@ class ImagingStudyPerformer extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImagingStudyPerformer.fromJson(Map<String, dynamic> json) {
     return ImagingStudyPerformer(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1054,7 +940,7 @@ class ImagingStudyPerformer extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1071,7 +957,8 @@ class ImagingStudyPerformer extends BackboneElement {
     );
   }
 
-  /// Deserialize [ImagingStudyPerformer] from a [String] or [YamlMap] object
+  /// Deserialize [ImagingStudyPerformer] from a [String]
+  /// or [YamlMap] object
   factory ImagingStudyPerformer.fromYaml(dynamic yaml) => yaml is String
       ? ImagingStudyPerformer.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1081,10 +968,11 @@ class ImagingStudyPerformer extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ImagingStudyPerformer cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ImagingStudyPerformer cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ImagingStudyPerformer] that takes in a [String]
+  /// Factory constructor for [ImagingStudyPerformer]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ImagingStudyPerformer.fromJsonString(String source) {
@@ -1099,6 +987,15 @@ class ImagingStudyPerformer extends BackboneElement {
 
   @override
   String get fhirType => 'ImagingStudyPerformer';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [function_]
   /// Distinguishes the type of involvement of the performer in the series.
@@ -1168,21 +1065,12 @@ class ImagingStudyInstance extends BackboneElement {
 
   ImagingStudyInstance({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.uid,
-
-    /// Extensions for [uid]
-    this.uidElement,
     required this.sopClass,
     this.number,
-
-    /// Extensions for [number]
-    this.numberElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1194,11 +1082,15 @@ class ImagingStudyInstance extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImagingStudyInstance.fromJson(Map<String, dynamic> json) {
     return ImagingStudyInstance(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1207,39 +1099,36 @@ class ImagingStudyInstance extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      uid: FhirId.fromJson(json['uid']),
-      uidElement: json['_uid'] != null
-          ? Element.fromJson(
-              json['_uid'] as Map<String, dynamic>,
-            )
-          : null,
+      uid: FhirId.fromJson({
+        'value': json['uid'],
+        '_value': json['_uid'],
+      }),
       sopClass: Coding.fromJson(
         json['sopClass'] as Map<String, dynamic>,
       ),
       number: json['number'] != null
-          ? FhirUnsignedInt.fromJson(json['number'])
+          ? FhirUnsignedInt.fromJson({
+              'value': json['number'],
+              '_value': json['_number'],
+            })
           : null,
-      numberElement: json['_number'] != null
-          ? Element.fromJson(
-              json['_number'] as Map<String, dynamic>,
-            )
-          : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [ImagingStudyInstance] from a [String] or [YamlMap] object
+  /// Deserialize [ImagingStudyInstance] from a [String]
+  /// or [YamlMap] object
   factory ImagingStudyInstance.fromYaml(dynamic yaml) => yaml is String
       ? ImagingStudyInstance.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1249,10 +1138,11 @@ class ImagingStudyInstance extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ImagingStudyInstance cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ImagingStudyInstance cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ImagingStudyInstance] that takes in a [String]
+  /// Factory constructor for [ImagingStudyInstance]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ImagingStudyInstance.fromJsonString(String source) {
@@ -1268,12 +1158,18 @@ class ImagingStudyInstance extends BackboneElement {
   @override
   String get fhirType => 'ImagingStudyInstance';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [uid]
   /// The DICOM SOP Instance UID for this image or other DICOM content.
   final FhirId uid;
-
-  /// Extensions for [uid]
-  final Element? uidElement;
 
   /// [sopClass]
   /// DICOM instance type.
@@ -1283,15 +1179,9 @@ class ImagingStudyInstance extends BackboneElement {
   /// The number of instance in the series.
   final FhirUnsignedInt? number;
 
-  /// Extensions for [number]
-  final Element? numberElement;
-
   /// [title]
   /// The description of the instance.
   final FhirString? title;
-
-  /// Extensions for [title]
-  final Element? titleElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1307,21 +1197,12 @@ class ImagingStudyInstance extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['uid'] = uid.toJson();
-    if (uidElement != null) {
-      json['_uid'] = uidElement!.toJson();
-    }
     json['sopClass'] = sopClass.toJson();
     if (number?.value != null) {
       json['number'] = number!.toJson();
     }
-    if (numberElement != null) {
-      json['_number'] = numberElement!.toJson();
-    }
     if (title?.value != null) {
       json['title'] = title!.toJson();
-    }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
     }
     return json;
   }
@@ -1334,12 +1215,9 @@ class ImagingStudyInstance extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirId? uid,
-    Element? uidElement,
     Coding? sopClass,
     FhirUnsignedInt? number,
-    Element? numberElement,
     FhirString? title,
-    Element? titleElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1352,12 +1230,9 @@ class ImagingStudyInstance extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       uid: uid ?? this.uid,
-      uidElement: uidElement ?? this.uidElement,
       sopClass: sopClass ?? this.sopClass,
       number: number ?? this.number,
-      numberElement: numberElement ?? this.numberElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

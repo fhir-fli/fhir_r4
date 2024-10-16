@@ -12,62 +12,32 @@ class Media extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.basedOn,
     this.partOf,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.type,
     this.modality,
     this.view,
     this.subject,
     this.encounter,
     this.createdDateTime,
-
-    /// Extensions for [createdDateTime]
-    this.createdDateTimeElement,
     this.createdPeriod,
     this.issued,
-
-    /// Extensions for [issued]
-    this.issuedElement,
     this.operator_,
     this.reasonCode,
     this.bodySite,
     this.deviceName,
-
-    /// Extensions for [deviceName]
-    this.deviceNameElement,
     this.device,
     this.height,
-
-    /// Extensions for [height]
-    this.heightElement,
     this.width,
-
-    /// Extensions for [width]
-    this.widthElement,
     this.frames,
-
-    /// Extensions for [frames]
-    this.framesElement,
     this.duration,
-
-    /// Extensions for [duration]
-    this.durationElement,
     required this.content,
     this.note,
     super.userData,
@@ -83,27 +53,27 @@ class Media extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Media.fromJson(Map<String, dynamic> json) {
     return Media(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -113,7 +83,7 @@ class Media extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -122,7 +92,7 @@ class Media extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -131,7 +101,7 @@ class Media extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -140,7 +110,7 @@ class Media extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -149,7 +119,7 @@ class Media extends DomainResource {
       basedOn: json['basedOn'] != null
           ? (json['basedOn'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -158,18 +128,16 @@ class Media extends DomainResource {
       partOf: json['partOf'] != null
           ? (json['partOf'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: EventStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: EventStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
@@ -196,24 +164,21 @@ class Media extends DomainResource {
             )
           : null,
       createdDateTime: json['createdDateTime'] != null
-          ? FhirDateTime.fromJson(json['createdDateTime'])
-          : null,
-      createdDateTimeElement: json['_createdDateTime'] != null
-          ? Element.fromJson(
-              json['_createdDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['createdDateTime'],
+              '_value': json['_createdDateTime'],
+            })
           : null,
       createdPeriod: json['createdPeriod'] != null
           ? Period.fromJson(
               json['createdPeriod'] as Map<String, dynamic>,
             )
           : null,
-      issued:
-          json['issued'] != null ? FhirInstant.fromJson(json['issued']) : null,
-      issuedElement: json['_issued'] != null
-          ? Element.fromJson(
-              json['_issued'] as Map<String, dynamic>,
-            )
+      issued: json['issued'] != null
+          ? FhirInstant.fromJson({
+              'value': json['issued'],
+              '_value': json['_issued'],
+            })
           : null,
       operator_: json['operator'] != null
           ? Reference.fromJson(
@@ -223,7 +188,7 @@ class Media extends DomainResource {
       reasonCode: json['reasonCode'] != null
           ? (json['reasonCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -235,12 +200,10 @@ class Media extends DomainResource {
             )
           : null,
       deviceName: json['deviceName'] != null
-          ? FhirString.fromJson(json['deviceName'])
-          : null,
-      deviceNameElement: json['_deviceName'] != null
-          ? Element.fromJson(
-              json['_deviceName'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['deviceName'],
+              '_value': json['_deviceName'],
+            })
           : null,
       device: json['device'] != null
           ? Reference.fromJson(
@@ -248,36 +211,28 @@ class Media extends DomainResource {
             )
           : null,
       height: json['height'] != null
-          ? FhirPositiveInt.fromJson(json['height'])
-          : null,
-      heightElement: json['_height'] != null
-          ? Element.fromJson(
-              json['_height'] as Map<String, dynamic>,
-            )
+          ? FhirPositiveInt.fromJson({
+              'value': json['height'],
+              '_value': json['_height'],
+            })
           : null,
       width: json['width'] != null
-          ? FhirPositiveInt.fromJson(json['width'])
-          : null,
-      widthElement: json['_width'] != null
-          ? Element.fromJson(
-              json['_width'] as Map<String, dynamic>,
-            )
+          ? FhirPositiveInt.fromJson({
+              'value': json['width'],
+              '_value': json['_width'],
+            })
           : null,
       frames: json['frames'] != null
-          ? FhirPositiveInt.fromJson(json['frames'])
-          : null,
-      framesElement: json['_frames'] != null
-          ? Element.fromJson(
-              json['_frames'] as Map<String, dynamic>,
-            )
+          ? FhirPositiveInt.fromJson({
+              'value': json['frames'],
+              '_value': json['_frames'],
+            })
           : null,
       duration: json['duration'] != null
-          ? FhirDecimal.fromJson(json['duration'])
-          : null,
-      durationElement: json['_duration'] != null
-          ? Element.fromJson(
-              json['_duration'] as Map<String, dynamic>,
-            )
+          ? FhirDecimal.fromJson({
+              'value': json['duration'],
+              '_value': json['_duration'],
+            })
           : null,
       content: Attachment.fromJson(
         json['content'] as Map<String, dynamic>,
@@ -285,7 +240,7 @@ class Media extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -294,7 +249,8 @@ class Media extends DomainResource {
     );
   }
 
-  /// Deserialize [Media] from a [String] or [YamlMap] object
+  /// Deserialize [Media] from a [String]
+  /// or [YamlMap] object
   factory Media.fromYaml(dynamic yaml) => yaml is String
       ? Media.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -303,10 +259,11 @@ class Media extends DomainResource {
           ? Media.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Media cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Media cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Media] that takes in a [String]
+  /// Factory constructor for [Media]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Media.fromJsonString(String source) {
@@ -321,6 +278,15 @@ class Media extends DomainResource {
 
   @override
   String get fhirType => 'Media';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Identifiers associated with the image - these may include identifiers
@@ -341,9 +307,6 @@ class Media extends DomainResource {
   /// [status]
   /// The current state of the {{title}}.
   final EventStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [type]
   /// A code that classifies whether the media is an image, video or audio
@@ -372,9 +335,6 @@ class Media extends DomainResource {
   /// The date and time(s) at which the media was collected.
   final FhirDateTime? createdDateTime;
 
-  /// Extensions for [createdDateTime]
-  final Element? createdDateTimeElement;
-
   /// [createdPeriod]
   /// The date and time(s) at which the media was collected.
   final Period? createdPeriod;
@@ -383,9 +343,6 @@ class Media extends DomainResource {
   /// The date and time this version of the media was made available to
   /// providers, typically after having been reviewed.
   final FhirInstant? issued;
-
-  /// Extensions for [issued]
-  final Element? issuedElement;
 
   /// [operator_]
   /// The person who administered the collection of the image.
@@ -405,9 +362,6 @@ class Media extends DomainResource {
   /// make the recording.
   final FhirString? deviceName;
 
-  /// Extensions for [deviceName]
-  final Element? deviceNameElement;
-
   /// [device]
   /// The device used to collect the media.
   final Reference? device;
@@ -416,15 +370,9 @@ class Media extends DomainResource {
   /// Height of the image in pixels (photo/video).
   final FhirPositiveInt? height;
 
-  /// Extensions for [height]
-  final Element? heightElement;
-
   /// [width]
   /// Width of the image in pixels (photo/video).
   final FhirPositiveInt? width;
-
-  /// Extensions for [width]
-  final Element? widthElement;
 
   /// [frames]
   /// The number of frames in a photo. This is used with a multi-page fax, or
@@ -434,15 +382,9 @@ class Media extends DomainResource {
   /// capable rendering widget is required.
   final FhirPositiveInt? frames;
 
-  /// Extensions for [frames]
-  final Element? framesElement;
-
   /// [duration]
   /// The duration of the recording in seconds - for audio and video.
   final FhirDecimal? duration;
-
-  /// Extensions for [duration]
-  final Element? durationElement;
 
   /// [content]
   /// The actual content of the media - inline or by direct reference to the
@@ -465,9 +407,6 @@ class Media extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -515,17 +454,11 @@ class Media extends DomainResource {
     if (createdDateTime?.value != null) {
       json['createdDateTime'] = createdDateTime!.toJson();
     }
-    if (createdDateTimeElement != null) {
-      json['_createdDateTime'] = createdDateTimeElement!.toJson();
-    }
     if (createdPeriod != null) {
       json['createdPeriod'] = createdPeriod!.toJson();
     }
     if (issued?.value != null) {
       json['issued'] = issued!.toJson();
-    }
-    if (issuedElement != null) {
-      json['_issued'] = issuedElement!.toJson();
     }
     if (operator_ != null) {
       json['operator'] = operator_!.toJson();
@@ -540,35 +473,20 @@ class Media extends DomainResource {
     if (deviceName?.value != null) {
       json['deviceName'] = deviceName!.toJson();
     }
-    if (deviceNameElement != null) {
-      json['_deviceName'] = deviceNameElement!.toJson();
-    }
     if (device != null) {
       json['device'] = device!.toJson();
     }
     if (height?.value != null) {
       json['height'] = height!.toJson();
     }
-    if (heightElement != null) {
-      json['_height'] = heightElement!.toJson();
-    }
     if (width?.value != null) {
       json['width'] = width!.toJson();
-    }
-    if (widthElement != null) {
-      json['_width'] = widthElement!.toJson();
     }
     if (frames?.value != null) {
       json['frames'] = frames!.toJson();
     }
-    if (framesElement != null) {
-      json['_frames'] = framesElement!.toJson();
-    }
     if (duration?.value != null) {
       json['duration'] = duration!.toJson();
-    }
-    if (durationElement != null) {
-      json['_duration'] = durationElement!.toJson();
     }
     json['content'] = content.toJson();
     if (note != null && note!.isNotEmpty) {
@@ -584,9 +502,7 @@ class Media extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -595,31 +511,23 @@ class Media extends DomainResource {
     List<Reference>? basedOn,
     List<Reference>? partOf,
     EventStatus? status,
-    Element? statusElement,
     CodeableConcept? type,
     CodeableConcept? modality,
     CodeableConcept? view,
     Reference? subject,
     Reference? encounter,
     FhirDateTime? createdDateTime,
-    Element? createdDateTimeElement,
     Period? createdPeriod,
     FhirInstant? issued,
-    Element? issuedElement,
     Reference? operator_,
     List<CodeableConcept>? reasonCode,
     CodeableConcept? bodySite,
     FhirString? deviceName,
-    Element? deviceNameElement,
     Reference? device,
     FhirPositiveInt? height,
-    Element? heightElement,
     FhirPositiveInt? width,
-    Element? widthElement,
     FhirPositiveInt? frames,
-    Element? framesElement,
     FhirDecimal? duration,
-    Element? durationElement,
     Attachment? content,
     List<Annotation>? note,
     Map<String, Object?>? userData,
@@ -633,9 +541,7 @@ class Media extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -644,32 +550,23 @@ class Media extends DomainResource {
       basedOn: basedOn ?? this.basedOn,
       partOf: partOf ?? this.partOf,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       type: type ?? this.type,
       modality: modality ?? this.modality,
       view: view ?? this.view,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
       createdDateTime: createdDateTime ?? this.createdDateTime,
-      createdDateTimeElement:
-          createdDateTimeElement ?? this.createdDateTimeElement,
       createdPeriod: createdPeriod ?? this.createdPeriod,
       issued: issued ?? this.issued,
-      issuedElement: issuedElement ?? this.issuedElement,
       operator_: operator_ ?? this.operator_,
       reasonCode: reasonCode ?? this.reasonCode,
       bodySite: bodySite ?? this.bodySite,
       deviceName: deviceName ?? this.deviceName,
-      deviceNameElement: deviceNameElement ?? this.deviceNameElement,
       device: device ?? this.device,
       height: height ?? this.height,
-      heightElement: heightElement ?? this.heightElement,
       width: width ?? this.width,
-      widthElement: widthElement ?? this.widthElement,
       frames: frames ?? this.frames,
-      framesElement: framesElement ?? this.framesElement,
       duration: duration ?? this.duration,
-      durationElement: durationElement ?? this.durationElement,
       content: content ?? this.content,
       note: note ?? this.note,
       userData: userData ?? this.userData,

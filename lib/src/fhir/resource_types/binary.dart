@@ -13,22 +13,10 @@ class Binary extends Resource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     required this.contentType,
-
-    /// Extensions for [contentType]
-    this.contentTypeElement,
     this.securityContext,
     this.data,
-
-    /// Extensions for [data]
-    this.dataElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -42,50 +30,48 @@ class Binary extends Resource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Binary.fromJson(Map<String, dynamic> json) {
     return Binary(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
-          : null,
-      contentType: FhirCode.fromJson(json['contentType']),
-      contentTypeElement: json['_contentType'] != null
-          ? Element.fromJson(
-              json['_contentType'] as Map<String, dynamic>,
-            )
-          : null,
+      contentType: FhirCode.fromJson({
+        'value': json['contentType'],
+        '_value': json['_contentType'],
+      }),
       securityContext: json['securityContext'] != null
           ? Reference.fromJson(
               json['securityContext'] as Map<String, dynamic>,
             )
           : null,
-      data:
-          json['data'] != null ? FhirBase64Binary.fromJson(json['data']) : null,
-      dataElement: json['_data'] != null
-          ? Element.fromJson(
-              json['_data'] as Map<String, dynamic>,
-            )
+      data: json['data'] != null
+          ? FhirBase64Binary.fromJson({
+              'value': json['data'],
+              '_value': json['_data'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [Binary] from a [String] or [YamlMap] object
+  /// Deserialize [Binary] from a [String]
+  /// or [YamlMap] object
   factory Binary.fromYaml(dynamic yaml) => yaml is String
       ? Binary.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -94,10 +80,11 @@ class Binary extends Resource {
           ? Binary.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Binary cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Binary cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Binary] that takes in a [String]
+  /// Factory constructor for [Binary]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Binary.fromJsonString(String source) {
@@ -118,9 +105,6 @@ class Binary extends Resource {
   /// 13).
   final FhirCode contentType;
 
-  /// Extensions for [contentType]
-  final Element? contentTypeElement;
-
   /// [securityContext]
   /// This element identifies another resource that can be used as a proxy of
   /// the security sensitivity to use when deciding and enforcing access
@@ -138,9 +122,6 @@ class Binary extends Resource {
   /// [data]
   /// The actual content, base64 encoded.
   final FhirBase64Binary? data;
-
-  /// Extensions for [data]
-  final Element? dataElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -154,24 +135,15 @@ class Binary extends Resource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
     json['contentType'] = contentType.toJson();
-    if (contentTypeElement != null) {
-      json['_contentType'] = contentTypeElement!.toJson();
-    }
     if (securityContext != null) {
       json['securityContext'] = securityContext!.toJson();
     }
     if (data?.value != null) {
       json['data'] = data!.toJson();
-    }
-    if (dataElement != null) {
-      json['_data'] = dataElement!.toJson();
     }
     return json;
   }
@@ -183,14 +155,10 @@ class Binary extends Resource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     FhirCode? contentType,
-    Element? contentTypeElement,
     Reference? securityContext,
     FhirBase64Binary? data,
-    Element? dataElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -202,14 +170,10 @@ class Binary extends Resource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       contentType: contentType ?? this.contentType,
-      contentTypeElement: contentTypeElement ?? this.contentTypeElement,
       securityContext: securityContext ?? this.securityContext,
       data: data ?? this.data,
-      dataElement: dataElement ?? this.dataElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

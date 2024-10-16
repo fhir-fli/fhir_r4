@@ -12,30 +12,18 @@ class SubstanceDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     this.status,
     this.classification,
     this.domain,
     this.grade,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.informationSource,
     this.note,
     this.manufacturer,
@@ -61,27 +49,27 @@ class SubstanceDefinition extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinition.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -91,7 +79,7 @@ class SubstanceDefinition extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -100,7 +88,7 @@ class SubstanceDefinition extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -109,7 +97,7 @@ class SubstanceDefinition extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -118,18 +106,17 @@ class SubstanceDefinition extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
       status: json['status'] != null
           ? CodeableConcept.fromJson(
@@ -139,7 +126,7 @@ class SubstanceDefinition extends DomainResource {
       classification: json['classification'] != null
           ? (json['classification'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -153,24 +140,22 @@ class SubstanceDefinition extends DomainResource {
       grade: json['grade'] != null
           ? (json['grade'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       informationSource: json['informationSource'] != null
           ? (json['informationSource'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -179,7 +164,7 @@ class SubstanceDefinition extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -188,7 +173,7 @@ class SubstanceDefinition extends DomainResource {
       manufacturer: json['manufacturer'] != null
           ? (json['manufacturer'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -197,7 +182,7 @@ class SubstanceDefinition extends DomainResource {
       supplier: json['supplier'] != null
           ? (json['supplier'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -206,7 +191,7 @@ class SubstanceDefinition extends DomainResource {
       moiety: json['moiety'] != null
           ? (json['moiety'] as List<dynamic>)
               .map<SubstanceDefinitionMoiety>(
-                (dynamic v) => SubstanceDefinitionMoiety.fromJson(
+                (v) => SubstanceDefinitionMoiety.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -215,7 +200,7 @@ class SubstanceDefinition extends DomainResource {
       property: json['property'] != null
           ? (json['property'] as List<dynamic>)
               .map<SubstanceDefinitionProperty>(
-                (dynamic v) => SubstanceDefinitionProperty.fromJson(
+                (v) => SubstanceDefinitionProperty.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -224,7 +209,7 @@ class SubstanceDefinition extends DomainResource {
       molecularWeight: json['molecularWeight'] != null
           ? (json['molecularWeight'] as List<dynamic>)
               .map<SubstanceDefinitionMolecularWeight>(
-                (dynamic v) => SubstanceDefinitionMolecularWeight.fromJson(
+                (v) => SubstanceDefinitionMolecularWeight.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -238,7 +223,7 @@ class SubstanceDefinition extends DomainResource {
       code: json['code'] != null
           ? (json['code'] as List<dynamic>)
               .map<SubstanceDefinitionCode>(
-                (dynamic v) => SubstanceDefinitionCode.fromJson(
+                (v) => SubstanceDefinitionCode.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -247,7 +232,7 @@ class SubstanceDefinition extends DomainResource {
       name: json['name'] != null
           ? (json['name'] as List<dynamic>)
               .map<SubstanceDefinitionName>(
-                (dynamic v) => SubstanceDefinitionName.fromJson(
+                (v) => SubstanceDefinitionName.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -256,7 +241,7 @@ class SubstanceDefinition extends DomainResource {
       relationship: json['relationship'] != null
           ? (json['relationship'] as List<dynamic>)
               .map<SubstanceDefinitionRelationship>(
-                (dynamic v) => SubstanceDefinitionRelationship.fromJson(
+                (v) => SubstanceDefinitionRelationship.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -270,7 +255,8 @@ class SubstanceDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [SubstanceDefinition] from a [String] or [YamlMap] object
+  /// Deserialize [SubstanceDefinition] from a [String]
+  /// or [YamlMap] object
   factory SubstanceDefinition.fromYaml(dynamic yaml) => yaml is String
       ? SubstanceDefinition.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -280,10 +266,11 @@ class SubstanceDefinition extends DomainResource {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'SubstanceDefinition cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'SubstanceDefinition cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubstanceDefinition] that takes in a [String]
+  /// Factory constructor for [SubstanceDefinition]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubstanceDefinition.fromJsonString(String source) {
@@ -299,6 +286,15 @@ class SubstanceDefinition extends DomainResource {
   @override
   String get fhirType => 'SubstanceDefinition';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Identifier by which this substance is known.
   final List<Identifier>? identifier;
@@ -306,9 +302,6 @@ class SubstanceDefinition extends DomainResource {
   /// [version]
   /// A business level version identifier of the substance.
   final FhirString? version;
-
-  /// Extensions for [version]
-  final Element? versionElement;
 
   /// [status]
   /// Status of substance within the catalogue e.g. active, retired.
@@ -333,9 +326,6 @@ class SubstanceDefinition extends DomainResource {
   /// [description]
   /// Textual description of the substance.
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [informationSource]
   /// Supporting literature.
@@ -402,9 +392,6 @@ class SubstanceDefinition extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -429,9 +416,6 @@ class SubstanceDefinition extends DomainResource {
     if (version?.value != null) {
       json['version'] = version!.toJson();
     }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
-    }
     if (status != null) {
       json['status'] = status!.toJson();
     }
@@ -447,9 +431,6 @@ class SubstanceDefinition extends DomainResource {
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (informationSource != null && informationSource!.isNotEmpty) {
       json['informationSource'] =
@@ -507,22 +488,18 @@ class SubstanceDefinition extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     FhirString? version,
-    Element? versionElement,
     CodeableConcept? status,
     List<CodeableConcept>? classification,
     CodeableConcept? domain,
     List<CodeableConcept>? grade,
     FhirMarkdown? description,
-    Element? descriptionElement,
     List<Reference>? informationSource,
     List<Annotation>? note,
     List<Reference>? manufacturer,
@@ -546,22 +523,18 @@ class SubstanceDefinition extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       status: status ?? this.status,
       classification: classification ?? this.classification,
       domain: domain ?? this.domain,
       grade: grade ?? this.grade,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       informationSource: informationSource ?? this.informationSource,
       note: note ?? this.note,
       manufacturer: manufacturer ?? this.manufacturer,
@@ -591,25 +564,16 @@ class SubstanceDefinitionMoiety extends BackboneElement {
 
   SubstanceDefinitionMoiety({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.role,
     this.identifier,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.stereochemistry,
     this.opticalActivity,
     this.molecularFormula,
-
-    /// Extensions for [molecularFormula]
-    this.molecularFormulaElement,
     this.amountQuantity,
     this.amountString,
-
-    /// Extensions for [amountString]
-    this.amountStringElement,
     this.measurementType,
     super.userData,
     super.formatCommentsPre,
@@ -622,11 +586,15 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionMoiety.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionMoiety(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -635,7 +603,7 @@ class SubstanceDefinitionMoiety extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -651,11 +619,11 @@ class SubstanceDefinitionMoiety extends BackboneElement {
               json['identifier'] as Map<String, dynamic>,
             )
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
       stereochemistry: json['stereochemistry'] != null
           ? CodeableConcept.fromJson(
@@ -668,12 +636,10 @@ class SubstanceDefinitionMoiety extends BackboneElement {
             )
           : null,
       molecularFormula: json['molecularFormula'] != null
-          ? FhirString.fromJson(json['molecularFormula'])
-          : null,
-      molecularFormulaElement: json['_molecularFormula'] != null
-          ? Element.fromJson(
-              json['_molecularFormula'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['molecularFormula'],
+              '_value': json['_molecularFormula'],
+            })
           : null,
       amountQuantity: json['amountQuantity'] != null
           ? Quantity.fromJson(
@@ -681,12 +647,10 @@ class SubstanceDefinitionMoiety extends BackboneElement {
             )
           : null,
       amountString: json['amountString'] != null
-          ? FhirString.fromJson(json['amountString'])
-          : null,
-      amountStringElement: json['_amountString'] != null
-          ? Element.fromJson(
-              json['_amountString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['amountString'],
+              '_value': json['_amountString'],
+            })
           : null,
       measurementType: json['measurementType'] != null
           ? CodeableConcept.fromJson(
@@ -696,7 +660,8 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionMoiety] from a [String] or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionMoiety] from a [String]
+  /// or [YamlMap] object
   factory SubstanceDefinitionMoiety.fromYaml(dynamic yaml) => yaml is String
       ? SubstanceDefinitionMoiety.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -706,10 +671,11 @@ class SubstanceDefinitionMoiety extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'SubstanceDefinitionMoiety cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'SubstanceDefinitionMoiety cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubstanceDefinitionMoiety] that takes in a [String]
+  /// Factory constructor for [SubstanceDefinitionMoiety]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubstanceDefinitionMoiety.fromJsonString(String source) {
@@ -725,6 +691,15 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   @override
   String get fhirType => 'SubstanceDefinitionMoiety';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [role]
   /// Role that the moiety is playing.
   final CodeableConcept? role;
@@ -736,9 +711,6 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   /// [name]
   /// Textual name for this moiety substance.
   final FhirString? name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [stereochemistry]
   /// Stereochemistry type.
@@ -753,9 +725,6 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   /// the Hill system.
   final FhirString? molecularFormula;
 
-  /// Extensions for [molecularFormula]
-  final Element? molecularFormulaElement;
-
   /// [amountQuantity]
   /// Quantitative value for this moiety.
   final Quantity? amountQuantity;
@@ -763,9 +732,6 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   /// [amountString]
   /// Quantitative value for this moiety.
   final FhirString? amountString;
-
-  /// Extensions for [amountString]
-  final Element? amountStringElement;
 
   /// [measurementType]
   /// The measurement type of the quantitative value. In capturing the actual
@@ -796,9 +762,6 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (stereochemistry != null) {
       json['stereochemistry'] = stereochemistry!.toJson();
     }
@@ -808,17 +771,11 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     if (molecularFormula?.value != null) {
       json['molecularFormula'] = molecularFormula!.toJson();
     }
-    if (molecularFormulaElement != null) {
-      json['_molecularFormula'] = molecularFormulaElement!.toJson();
-    }
     if (amountQuantity != null) {
       json['amountQuantity'] = amountQuantity!.toJson();
     }
     if (amountString?.value != null) {
       json['amountString'] = amountString!.toJson();
-    }
-    if (amountStringElement != null) {
-      json['_amountString'] = amountStringElement!.toJson();
     }
     if (measurementType != null) {
       json['measurementType'] = measurementType!.toJson();
@@ -836,14 +793,11 @@ class SubstanceDefinitionMoiety extends BackboneElement {
     CodeableConcept? role,
     Identifier? identifier,
     FhirString? name,
-    Element? nameElement,
     CodeableConcept? stereochemistry,
     CodeableConcept? opticalActivity,
     FhirString? molecularFormula,
-    Element? molecularFormulaElement,
     Quantity? amountQuantity,
     FhirString? amountString,
-    Element? amountStringElement,
     CodeableConcept? measurementType,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -859,15 +813,11 @@ class SubstanceDefinitionMoiety extends BackboneElement {
       role: role ?? this.role,
       identifier: identifier ?? this.identifier,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       stereochemistry: stereochemistry ?? this.stereochemistry,
       opticalActivity: opticalActivity ?? this.opticalActivity,
       molecularFormula: molecularFormula ?? this.molecularFormula,
-      molecularFormulaElement:
-          molecularFormulaElement ?? this.molecularFormulaElement,
       amountQuantity: amountQuantity ?? this.amountQuantity,
       amountString: amountString ?? this.amountString,
-      amountStringElement: amountStringElement ?? this.amountStringElement,
       measurementType: measurementType ?? this.measurementType,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -886,19 +836,13 @@ class SubstanceDefinitionProperty extends BackboneElement {
 
   SubstanceDefinitionProperty({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
     this.valueCodeableConcept,
     this.valueQuantity,
     this.valueDate,
-
-    /// Extensions for [valueDate]
-    this.valueDateElement,
     this.valueBoolean,
-
-    /// Extensions for [valueBoolean]
-    this.valueBooleanElement,
     this.valueAttachment,
     super.userData,
     super.formatCommentsPre,
@@ -911,11 +855,15 @@ class SubstanceDefinitionProperty extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionProperty.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionProperty(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -924,7 +872,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -944,20 +892,16 @@ class SubstanceDefinitionProperty extends BackboneElement {
             )
           : null,
       valueDate: json['valueDate'] != null
-          ? FhirDate.fromJson(json['valueDate'])
-          : null,
-      valueDateElement: json['_valueDate'] != null
-          ? Element.fromJson(
-              json['_valueDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['valueDate'],
+              '_value': json['_valueDate'],
+            })
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(
-              json['_valueBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['valueBoolean'],
+              '_value': json['_valueBoolean'],
+            })
           : null,
       valueAttachment: json['valueAttachment'] != null
           ? Attachment.fromJson(
@@ -967,7 +911,8 @@ class SubstanceDefinitionProperty extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionProperty] from a [String] or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionProperty] from a [String]
+  /// or [YamlMap] object
   factory SubstanceDefinitionProperty.fromYaml(dynamic yaml) => yaml is String
       ? SubstanceDefinitionProperty.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -977,10 +922,11 @@ class SubstanceDefinitionProperty extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'SubstanceDefinitionProperty cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'SubstanceDefinitionProperty cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubstanceDefinitionProperty] that takes in a [String]
+  /// Factory constructor for [SubstanceDefinitionProperty]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubstanceDefinitionProperty.fromJsonString(String source) {
@@ -995,6 +941,15 @@ class SubstanceDefinitionProperty extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceDefinitionProperty';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// A code expressing the type of property.
@@ -1012,15 +967,9 @@ class SubstanceDefinitionProperty extends BackboneElement {
   /// A value for the property.
   final FhirDate? valueDate;
 
-  /// Extensions for [valueDate]
-  final Element? valueDateElement;
-
   /// [valueBoolean]
   /// A value for the property.
   final FhirBoolean? valueBoolean;
-
-  /// Extensions for [valueBoolean]
-  final Element? valueBooleanElement;
 
   /// [valueAttachment]
   /// A value for the property.
@@ -1049,14 +998,8 @@ class SubstanceDefinitionProperty extends BackboneElement {
     if (valueDate?.value != null) {
       json['valueDate'] = valueDate!.toJson();
     }
-    if (valueDateElement != null) {
-      json['_valueDate'] = valueDateElement!.toJson();
-    }
     if (valueBoolean?.value != null) {
       json['valueBoolean'] = valueBoolean!.toJson();
-    }
-    if (valueBooleanElement != null) {
-      json['_valueBoolean'] = valueBooleanElement!.toJson();
     }
     if (valueAttachment != null) {
       json['valueAttachment'] = valueAttachment!.toJson();
@@ -1075,9 +1018,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
     CodeableConcept? valueCodeableConcept,
     Quantity? valueQuantity,
     FhirDate? valueDate,
-    Element? valueDateElement,
     FhirBoolean? valueBoolean,
-    Element? valueBooleanElement,
     Attachment? valueAttachment,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1094,9 +1035,7 @@ class SubstanceDefinitionProperty extends BackboneElement {
       valueCodeableConcept: valueCodeableConcept ?? this.valueCodeableConcept,
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueDate: valueDate ?? this.valueDate,
-      valueDateElement: valueDateElement ?? this.valueDateElement,
       valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueBooleanElement: valueBooleanElement ?? this.valueBooleanElement,
       valueAttachment: valueAttachment ?? this.valueAttachment,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -1116,7 +1055,7 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
 
   SubstanceDefinitionMolecularWeight({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.method,
     this.type,
@@ -1133,11 +1072,15 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
   factory SubstanceDefinitionMolecularWeight.fromJson(
       Map<String, dynamic> json) {
     return SubstanceDefinitionMolecularWeight(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1146,7 +1089,7 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1168,7 +1111,8 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionMolecularWeight] from a [String] or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionMolecularWeight] from a [String]
+  /// or [YamlMap] object
   factory SubstanceDefinitionMolecularWeight.fromYaml(dynamic yaml) => yaml
           is String
       ? SubstanceDefinitionMolecularWeight.fromJson(
@@ -1179,10 +1123,11 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'SubstanceDefinitionMolecularWeight cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'SubstanceDefinitionMolecularWeight cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubstanceDefinitionMolecularWeight] that takes in a [String]
+  /// Factory constructor for [SubstanceDefinitionMolecularWeight]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubstanceDefinitionMolecularWeight.fromJsonString(String source) {
@@ -1197,6 +1142,15 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceDefinitionMolecularWeight';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [method]
   /// The method by which the molecular weight was determined.
@@ -1278,18 +1232,12 @@ class SubstanceDefinitionStructure extends BackboneElement {
 
   SubstanceDefinitionStructure({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.stereochemistry,
     this.opticalActivity,
     this.molecularFormula,
-
-    /// Extensions for [molecularFormula]
-    this.molecularFormulaElement,
     this.molecularFormulaByMoiety,
-
-    /// Extensions for [molecularFormulaByMoiety]
-    this.molecularFormulaByMoietyElement,
     this.molecularWeight,
     this.technique,
     this.sourceDocument,
@@ -1305,11 +1253,15 @@ class SubstanceDefinitionStructure extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionStructure.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionStructure(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1318,7 +1270,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1335,20 +1287,16 @@ class SubstanceDefinitionStructure extends BackboneElement {
             )
           : null,
       molecularFormula: json['molecularFormula'] != null
-          ? FhirString.fromJson(json['molecularFormula'])
-          : null,
-      molecularFormulaElement: json['_molecularFormula'] != null
-          ? Element.fromJson(
-              json['_molecularFormula'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['molecularFormula'],
+              '_value': json['_molecularFormula'],
+            })
           : null,
       molecularFormulaByMoiety: json['molecularFormulaByMoiety'] != null
-          ? FhirString.fromJson(json['molecularFormulaByMoiety'])
-          : null,
-      molecularFormulaByMoietyElement: json['_molecularFormulaByMoiety'] != null
-          ? Element.fromJson(
-              json['_molecularFormulaByMoiety'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['molecularFormulaByMoiety'],
+              '_value': json['_molecularFormulaByMoiety'],
+            })
           : null,
       molecularWeight: json['molecularWeight'] != null
           ? SubstanceDefinitionMolecularWeight.fromJson(
@@ -1358,7 +1306,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
       technique: json['technique'] != null
           ? (json['technique'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1367,7 +1315,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
       sourceDocument: json['sourceDocument'] != null
           ? (json['sourceDocument'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1376,7 +1324,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
       representation: json['representation'] != null
           ? (json['representation'] as List<dynamic>)
               .map<SubstanceDefinitionRepresentation>(
-                (dynamic v) => SubstanceDefinitionRepresentation.fromJson(
+                (v) => SubstanceDefinitionRepresentation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1385,7 +1333,8 @@ class SubstanceDefinitionStructure extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionStructure] from a [String] or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionStructure] from a [String]
+  /// or [YamlMap] object
   factory SubstanceDefinitionStructure.fromYaml(dynamic yaml) => yaml is String
       ? SubstanceDefinitionStructure.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1395,10 +1344,11 @@ class SubstanceDefinitionStructure extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'SubstanceDefinitionStructure cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'SubstanceDefinitionStructure cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubstanceDefinitionStructure] that takes in a [String]
+  /// Factory constructor for [SubstanceDefinitionStructure]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubstanceDefinitionStructure.fromJsonString(String source) {
@@ -1414,6 +1364,15 @@ class SubstanceDefinitionStructure extends BackboneElement {
   @override
   String get fhirType => 'SubstanceDefinitionStructure';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [stereochemistry]
   /// Stereochemistry type.
   final CodeableConcept? stereochemistry;
@@ -1426,16 +1385,10 @@ class SubstanceDefinitionStructure extends BackboneElement {
   /// Molecular formula of this substance, typically using the Hill system.
   final FhirString? molecularFormula;
 
-  /// Extensions for [molecularFormula]
-  final Element? molecularFormulaElement;
-
   /// [molecularFormulaByMoiety]
   /// Specified per moiety according to the Hill system, i.e. first C, then
   /// H, then alphabetical, each moiety separated by a dot.
   final FhirString? molecularFormulaByMoiety;
-
-  /// Extensions for [molecularFormulaByMoiety]
-  final Element? molecularFormulaByMoietyElement;
 
   /// [molecularWeight]
   /// The molecular weight or weight range (for proteins, polymers or nucleic
@@ -1478,15 +1431,8 @@ class SubstanceDefinitionStructure extends BackboneElement {
     if (molecularFormula?.value != null) {
       json['molecularFormula'] = molecularFormula!.toJson();
     }
-    if (molecularFormulaElement != null) {
-      json['_molecularFormula'] = molecularFormulaElement!.toJson();
-    }
     if (molecularFormulaByMoiety?.value != null) {
       json['molecularFormulaByMoiety'] = molecularFormulaByMoiety!.toJson();
-    }
-    if (molecularFormulaByMoietyElement != null) {
-      json['_molecularFormulaByMoiety'] =
-          molecularFormulaByMoietyElement!.toJson();
     }
     if (molecularWeight != null) {
       json['molecularWeight'] = molecularWeight!.toJson();
@@ -1517,9 +1463,7 @@ class SubstanceDefinitionStructure extends BackboneElement {
     CodeableConcept? stereochemistry,
     CodeableConcept? opticalActivity,
     FhirString? molecularFormula,
-    Element? molecularFormulaElement,
     FhirString? molecularFormulaByMoiety,
-    Element? molecularFormulaByMoietyElement,
     SubstanceDefinitionMolecularWeight? molecularWeight,
     List<CodeableConcept>? technique,
     List<Reference>? sourceDocument,
@@ -1538,12 +1482,8 @@ class SubstanceDefinitionStructure extends BackboneElement {
       stereochemistry: stereochemistry ?? this.stereochemistry,
       opticalActivity: opticalActivity ?? this.opticalActivity,
       molecularFormula: molecularFormula ?? this.molecularFormula,
-      molecularFormulaElement:
-          molecularFormulaElement ?? this.molecularFormulaElement,
       molecularFormulaByMoiety:
           molecularFormulaByMoiety ?? this.molecularFormulaByMoiety,
-      molecularFormulaByMoietyElement: molecularFormulaByMoietyElement ??
-          this.molecularFormulaByMoietyElement,
       molecularWeight: molecularWeight ?? this.molecularWeight,
       technique: technique ?? this.technique,
       sourceDocument: sourceDocument ?? this.sourceDocument,
@@ -1565,13 +1505,10 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
 
   SubstanceDefinitionRepresentation({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.type,
     this.representation,
-
-    /// Extensions for [representation]
-    this.representationElement,
     this.format,
     this.document,
     super.userData,
@@ -1586,11 +1523,15 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
   factory SubstanceDefinitionRepresentation.fromJson(
       Map<String, dynamic> json) {
     return SubstanceDefinitionRepresentation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1599,7 +1540,7 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1611,12 +1552,10 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
             )
           : null,
       representation: json['representation'] != null
-          ? FhirString.fromJson(json['representation'])
-          : null,
-      representationElement: json['_representation'] != null
-          ? Element.fromJson(
-              json['_representation'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['representation'],
+              '_value': json['_representation'],
+            })
           : null,
       format: json['format'] != null
           ? CodeableConcept.fromJson(
@@ -1631,7 +1570,8 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionRepresentation] from a [String] or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionRepresentation] from a [String]
+  /// or [YamlMap] object
   factory SubstanceDefinitionRepresentation.fromYaml(dynamic yaml) => yaml
           is String
       ? SubstanceDefinitionRepresentation.fromJson(
@@ -1642,10 +1582,11 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'SubstanceDefinitionRepresentation cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'SubstanceDefinitionRepresentation cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubstanceDefinitionRepresentation] that takes in a [String]
+  /// Factory constructor for [SubstanceDefinitionRepresentation]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubstanceDefinitionRepresentation.fromJsonString(String source) {
@@ -1661,6 +1602,15 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
   @override
   String get fhirType => 'SubstanceDefinitionRepresentation';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// The kind of structural representation (e.g. full, partial).
   final CodeableConcept? type;
@@ -1669,9 +1619,6 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
   /// The structural representation or characterization as a text string in a
   /// standard format.
   final FhirString? representation;
-
-  /// Extensions for [representation]
-  final Element? representationElement;
 
   /// [format]
   /// The format of the representation e.g. InChI, SMILES, MOLFILE, CDX, SDF,
@@ -1704,9 +1651,6 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     if (representation?.value != null) {
       json['representation'] = representation!.toJson();
     }
-    if (representationElement != null) {
-      json['_representation'] = representationElement!.toJson();
-    }
     if (format != null) {
       json['format'] = format!.toJson();
     }
@@ -1725,7 +1669,6 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
     FhirString? representation,
-    Element? representationElement,
     CodeableConcept? format,
     Reference? document,
     Map<String, Object?>? userData,
@@ -1741,8 +1684,6 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       representation: representation ?? this.representation,
-      representationElement:
-          representationElement ?? this.representationElement,
       format: format ?? this.format,
       document: document ?? this.document,
       userData: userData ?? this.userData,
@@ -1762,14 +1703,11 @@ class SubstanceDefinitionCode extends BackboneElement {
 
   SubstanceDefinitionCode({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.code,
     this.status,
     this.statusDate,
-
-    /// Extensions for [statusDate]
-    this.statusDateElement,
     this.note,
     this.source,
     super.userData,
@@ -1783,11 +1721,15 @@ class SubstanceDefinitionCode extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionCode.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionCode(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1796,7 +1738,7 @@ class SubstanceDefinitionCode extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1813,17 +1755,15 @@ class SubstanceDefinitionCode extends BackboneElement {
             )
           : null,
       statusDate: json['statusDate'] != null
-          ? FhirDateTime.fromJson(json['statusDate'])
-          : null,
-      statusDateElement: json['_statusDate'] != null
-          ? Element.fromJson(
-              json['_statusDate'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['statusDate'],
+              '_value': json['_statusDate'],
+            })
           : null,
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1832,7 +1772,7 @@ class SubstanceDefinitionCode extends BackboneElement {
       source: json['source'] != null
           ? (json['source'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1841,7 +1781,8 @@ class SubstanceDefinitionCode extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionCode] from a [String] or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionCode] from a [String]
+  /// or [YamlMap] object
   factory SubstanceDefinitionCode.fromYaml(dynamic yaml) => yaml is String
       ? SubstanceDefinitionCode.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1851,10 +1792,11 @@ class SubstanceDefinitionCode extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'SubstanceDefinitionCode cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'SubstanceDefinitionCode cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubstanceDefinitionCode] that takes in a [String]
+  /// Factory constructor for [SubstanceDefinitionCode]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubstanceDefinitionCode.fromJsonString(String source) {
@@ -1870,6 +1812,15 @@ class SubstanceDefinitionCode extends BackboneElement {
   @override
   String get fhirType => 'SubstanceDefinitionCode';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [code]
   /// The specific code.
   final CodeableConcept? code;
@@ -1882,9 +1833,6 @@ class SubstanceDefinitionCode extends BackboneElement {
   /// The date at which the code status was changed as part of the
   /// terminology maintenance.
   final FhirDateTime? statusDate;
-
-  /// Extensions for [statusDate]
-  final Element? statusDateElement;
 
   /// [note]
   /// Any comment can be provided in this field, if necessary.
@@ -1916,9 +1864,6 @@ class SubstanceDefinitionCode extends BackboneElement {
     if (statusDate?.value != null) {
       json['statusDate'] = statusDate!.toJson();
     }
-    if (statusDateElement != null) {
-      json['_statusDate'] = statusDateElement!.toJson();
-    }
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((Annotation v) => v.toJson()).toList();
     }
@@ -1938,7 +1883,6 @@ class SubstanceDefinitionCode extends BackboneElement {
     CodeableConcept? code,
     CodeableConcept? status,
     FhirDateTime? statusDate,
-    Element? statusDateElement,
     List<Annotation>? note,
     List<Reference>? source,
     Map<String, Object?>? userData,
@@ -1955,7 +1899,6 @@ class SubstanceDefinitionCode extends BackboneElement {
       code: code ?? this.code,
       status: status ?? this.status,
       statusDate: statusDate ?? this.statusDate,
-      statusDateElement: statusDateElement ?? this.statusDateElement,
       note: note ?? this.note,
       source: source ?? this.source,
       userData: userData ?? this.userData,
@@ -1975,18 +1918,12 @@ class SubstanceDefinitionName extends BackboneElement {
 
   SubstanceDefinitionName({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.type,
     this.status,
     this.preferred,
-
-    /// Extensions for [preferred]
-    this.preferredElement,
     this.language,
     this.domain,
     this.jurisdiction,
@@ -2005,11 +1942,15 @@ class SubstanceDefinitionName extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionName.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionName(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2018,18 +1959,16 @@ class SubstanceDefinitionName extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: FhirString.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
-          : null,
+      name: FhirString.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
@@ -2041,17 +1980,15 @@ class SubstanceDefinitionName extends BackboneElement {
             )
           : null,
       preferred: json['preferred'] != null
-          ? FhirBoolean.fromJson(json['preferred'])
-          : null,
-      preferredElement: json['_preferred'] != null
-          ? Element.fromJson(
-              json['_preferred'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['preferred'],
+              '_value': json['_preferred'],
+            })
           : null,
       language: json['language'] != null
           ? (json['language'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2060,7 +1997,7 @@ class SubstanceDefinitionName extends BackboneElement {
       domain: json['domain'] != null
           ? (json['domain'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2069,7 +2006,7 @@ class SubstanceDefinitionName extends BackboneElement {
       jurisdiction: json['jurisdiction'] != null
           ? (json['jurisdiction'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2078,7 +2015,7 @@ class SubstanceDefinitionName extends BackboneElement {
       synonym: json['synonym'] != null
           ? (json['synonym'] as List<dynamic>)
               .map<SubstanceDefinitionName>(
-                (dynamic v) => SubstanceDefinitionName.fromJson(
+                (v) => SubstanceDefinitionName.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2087,7 +2024,7 @@ class SubstanceDefinitionName extends BackboneElement {
       translation: json['translation'] != null
           ? (json['translation'] as List<dynamic>)
               .map<SubstanceDefinitionName>(
-                (dynamic v) => SubstanceDefinitionName.fromJson(
+                (v) => SubstanceDefinitionName.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2096,7 +2033,7 @@ class SubstanceDefinitionName extends BackboneElement {
       official: json['official'] != null
           ? (json['official'] as List<dynamic>)
               .map<SubstanceDefinitionOfficial>(
-                (dynamic v) => SubstanceDefinitionOfficial.fromJson(
+                (v) => SubstanceDefinitionOfficial.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2105,7 +2042,7 @@ class SubstanceDefinitionName extends BackboneElement {
       source: json['source'] != null
           ? (json['source'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2114,7 +2051,8 @@ class SubstanceDefinitionName extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionName] from a [String] or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionName] from a [String]
+  /// or [YamlMap] object
   factory SubstanceDefinitionName.fromYaml(dynamic yaml) => yaml is String
       ? SubstanceDefinitionName.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2124,10 +2062,11 @@ class SubstanceDefinitionName extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'SubstanceDefinitionName cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'SubstanceDefinitionName cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubstanceDefinitionName] that takes in a [String]
+  /// Factory constructor for [SubstanceDefinitionName]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubstanceDefinitionName.fromJsonString(String source) {
@@ -2143,12 +2082,18 @@ class SubstanceDefinitionName extends BackboneElement {
   @override
   String get fhirType => 'SubstanceDefinitionName';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// The actual name.
   final FhirString name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [type]
   /// Name type, for example 'systematic', 'scientific, 'brand'.
@@ -2161,9 +2106,6 @@ class SubstanceDefinitionName extends BackboneElement {
   /// [preferred]
   /// If this is the preferred name for this substance.
   final FhirBoolean? preferred;
-
-  /// Extensions for [preferred]
-  final Element? preferredElement;
 
   /// [language]
   /// Human language that the name is written in.
@@ -2209,9 +2151,6 @@ class SubstanceDefinitionName extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (type != null) {
       json['type'] = type!.toJson();
     }
@@ -2220,9 +2159,6 @@ class SubstanceDefinitionName extends BackboneElement {
     }
     if (preferred?.value != null) {
       json['preferred'] = preferred!.toJson();
-    }
-    if (preferredElement != null) {
-      json['_preferred'] = preferredElement!.toJson();
     }
     if (language != null && language!.isNotEmpty) {
       json['language'] =
@@ -2261,11 +2197,9 @@ class SubstanceDefinitionName extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    Element? nameElement,
     CodeableConcept? type,
     CodeableConcept? status,
     FhirBoolean? preferred,
-    Element? preferredElement,
     List<CodeableConcept>? language,
     List<CodeableConcept>? domain,
     List<CodeableConcept>? jurisdiction,
@@ -2285,11 +2219,9 @@ class SubstanceDefinitionName extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       type: type ?? this.type,
       status: status ?? this.status,
       preferred: preferred ?? this.preferred,
-      preferredElement: preferredElement ?? this.preferredElement,
       language: language ?? this.language,
       domain: domain ?? this.domain,
       jurisdiction: jurisdiction ?? this.jurisdiction,
@@ -2314,14 +2246,11 @@ class SubstanceDefinitionOfficial extends BackboneElement {
 
   SubstanceDefinitionOfficial({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.authority,
     this.status,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2333,11 +2262,15 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionOfficial.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionOfficial(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2346,7 +2279,7 @@ class SubstanceDefinitionOfficial extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2362,16 +2295,17 @@ class SubstanceDefinitionOfficial extends BackboneElement {
               json['status'] as Map<String, dynamic>,
             )
           : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [SubstanceDefinitionOfficial] from a [String] or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionOfficial] from a [String]
+  /// or [YamlMap] object
   factory SubstanceDefinitionOfficial.fromYaml(dynamic yaml) => yaml is String
       ? SubstanceDefinitionOfficial.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2381,10 +2315,11 @@ class SubstanceDefinitionOfficial extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'SubstanceDefinitionOfficial cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'SubstanceDefinitionOfficial cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubstanceDefinitionOfficial] that takes in a [String]
+  /// Factory constructor for [SubstanceDefinitionOfficial]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubstanceDefinitionOfficial.fromJsonString(String source) {
@@ -2400,6 +2335,15 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   @override
   String get fhirType => 'SubstanceDefinitionOfficial';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [authority]
   /// Which authority uses this official name.
   final CodeableConcept? authority;
@@ -2412,9 +2356,6 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   /// [date]
   /// Date of the official name change.
   final FhirDateTime? date;
-
-  /// Extensions for [date]
-  final Element? dateElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2438,9 +2379,6 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     if (date?.value != null) {
       json['date'] = date!.toJson();
     }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     return json;
   }
 
@@ -2454,7 +2392,6 @@ class SubstanceDefinitionOfficial extends BackboneElement {
     CodeableConcept? authority,
     CodeableConcept? status,
     FhirDateTime? date,
-    Element? dateElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2469,7 +2406,6 @@ class SubstanceDefinitionOfficial extends BackboneElement {
       authority: authority ?? this.authority,
       status: status ?? this.status,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2488,21 +2424,15 @@ class SubstanceDefinitionRelationship extends BackboneElement {
 
   SubstanceDefinitionRelationship({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.substanceDefinitionReference,
     this.substanceDefinitionCodeableConcept,
     required this.type,
     this.isDefining,
-
-    /// Extensions for [isDefining]
-    this.isDefiningElement,
     this.amountQuantity,
     this.amountRatio,
     this.amountString,
-
-    /// Extensions for [amountString]
-    this.amountStringElement,
     this.ratioHighLimitAmount,
     this.comparator,
     this.source,
@@ -2517,11 +2447,15 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionRelationship.fromJson(Map<String, dynamic> json) {
     return SubstanceDefinitionRelationship(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2530,7 +2464,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2552,12 +2486,10 @@ class SubstanceDefinitionRelationship extends BackboneElement {
         json['type'] as Map<String, dynamic>,
       ),
       isDefining: json['isDefining'] != null
-          ? FhirBoolean.fromJson(json['isDefining'])
-          : null,
-      isDefiningElement: json['_isDefining'] != null
-          ? Element.fromJson(
-              json['_isDefining'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['isDefining'],
+              '_value': json['_isDefining'],
+            })
           : null,
       amountQuantity: json['amountQuantity'] != null
           ? Quantity.fromJson(
@@ -2570,12 +2502,10 @@ class SubstanceDefinitionRelationship extends BackboneElement {
             )
           : null,
       amountString: json['amountString'] != null
-          ? FhirString.fromJson(json['amountString'])
-          : null,
-      amountStringElement: json['_amountString'] != null
-          ? Element.fromJson(
-              json['_amountString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['amountString'],
+              '_value': json['_amountString'],
+            })
           : null,
       ratioHighLimitAmount: json['ratioHighLimitAmount'] != null
           ? Ratio.fromJson(
@@ -2590,7 +2520,7 @@ class SubstanceDefinitionRelationship extends BackboneElement {
       source: json['source'] != null
           ? (json['source'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2599,7 +2529,8 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionRelationship] from a [String] or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionRelationship] from a [String]
+  /// or [YamlMap] object
   factory SubstanceDefinitionRelationship.fromYaml(dynamic yaml) => yaml
           is String
       ? SubstanceDefinitionRelationship.fromJson(
@@ -2610,10 +2541,11 @@ class SubstanceDefinitionRelationship extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'SubstanceDefinitionRelationship cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'SubstanceDefinitionRelationship cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubstanceDefinitionRelationship] that takes in a [String]
+  /// Factory constructor for [SubstanceDefinitionRelationship]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubstanceDefinitionRelationship.fromJsonString(String source) {
@@ -2628,6 +2560,15 @@ class SubstanceDefinitionRelationship extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceDefinitionRelationship';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [substanceDefinitionReference]
   /// A pointer to another substance, as a resource or just a
@@ -2650,9 +2591,6 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   /// possible substance relationships.
   final FhirBoolean? isDefining;
 
-  /// Extensions for [isDefining]
-  final Element? isDefiningElement;
-
   /// [amountQuantity]
   /// A numeric factor for the relationship, for instance to express that the
   /// salt of a substance has some percentage of the active substance in
@@ -2670,9 +2608,6 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   /// salt of a substance has some percentage of the active substance in
   /// relation to some other.
   final FhirString? amountString;
-
-  /// Extensions for [amountString]
-  final Element? amountStringElement;
 
   /// [ratioHighLimitAmount]
   /// For use when the numeric has an uncertain range.
@@ -2712,9 +2647,6 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     if (isDefining?.value != null) {
       json['isDefining'] = isDefining!.toJson();
     }
-    if (isDefiningElement != null) {
-      json['_isDefining'] = isDefiningElement!.toJson();
-    }
     if (amountQuantity != null) {
       json['amountQuantity'] = amountQuantity!.toJson();
     }
@@ -2723,9 +2655,6 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     }
     if (amountString?.value != null) {
       json['amountString'] = amountString!.toJson();
-    }
-    if (amountStringElement != null) {
-      json['_amountString'] = amountStringElement!.toJson();
     }
     if (ratioHighLimitAmount != null) {
       json['ratioHighLimitAmount'] = ratioHighLimitAmount!.toJson();
@@ -2750,11 +2679,9 @@ class SubstanceDefinitionRelationship extends BackboneElement {
     CodeableConcept? substanceDefinitionCodeableConcept,
     CodeableConcept? type,
     FhirBoolean? isDefining,
-    Element? isDefiningElement,
     Quantity? amountQuantity,
     Ratio? amountRatio,
     FhirString? amountString,
-    Element? amountStringElement,
     Ratio? ratioHighLimitAmount,
     CodeableConcept? comparator,
     List<Reference>? source,
@@ -2775,11 +2702,9 @@ class SubstanceDefinitionRelationship extends BackboneElement {
           this.substanceDefinitionCodeableConcept,
       type: type ?? this.type,
       isDefining: isDefining ?? this.isDefining,
-      isDefiningElement: isDefiningElement ?? this.isDefiningElement,
       amountQuantity: amountQuantity ?? this.amountQuantity,
       amountRatio: amountRatio ?? this.amountRatio,
       amountString: amountString ?? this.amountString,
-      amountStringElement: amountStringElement ?? this.amountStringElement,
       ratioHighLimitAmount: ratioHighLimitAmount ?? this.ratioHighLimitAmount,
       comparator: comparator ?? this.comparator,
       source: source ?? this.source,
@@ -2800,7 +2725,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
 
   SubstanceDefinitionSourceMaterial({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.type,
     this.genus,
@@ -2819,11 +2744,15 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
   factory SubstanceDefinitionSourceMaterial.fromJson(
       Map<String, dynamic> json) {
     return SubstanceDefinitionSourceMaterial(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2832,7 +2761,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2861,7 +2790,7 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
       countryOfOrigin: json['countryOfOrigin'] != null
           ? (json['countryOfOrigin'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2870,7 +2799,8 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
     );
   }
 
-  /// Deserialize [SubstanceDefinitionSourceMaterial] from a [String] or [YamlMap] object
+  /// Deserialize [SubstanceDefinitionSourceMaterial] from a [String]
+  /// or [YamlMap] object
   factory SubstanceDefinitionSourceMaterial.fromYaml(dynamic yaml) => yaml
           is String
       ? SubstanceDefinitionSourceMaterial.fromJson(
@@ -2881,10 +2811,11 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'SubstanceDefinitionSourceMaterial cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'SubstanceDefinitionSourceMaterial cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubstanceDefinitionSourceMaterial] that takes in a [String]
+  /// Factory constructor for [SubstanceDefinitionSourceMaterial]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubstanceDefinitionSourceMaterial.fromJsonString(String source) {
@@ -2899,6 +2830,15 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
 
   @override
   String get fhirType => 'SubstanceDefinitionSourceMaterial';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// A classification that provides the origin of the raw material. Example:

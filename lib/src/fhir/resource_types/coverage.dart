@@ -12,51 +12,27 @@ class Coverage extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.type,
     this.policyHolder,
     this.subscriber,
     this.subscriberId,
-
-    /// Extensions for [subscriberId]
-    this.subscriberIdElement,
     required this.beneficiary,
     this.dependent,
-
-    /// Extensions for [dependent]
-    this.dependentElement,
     this.relationship,
     this.period,
     required this.payor,
     this.class_,
     this.order,
-
-    /// Extensions for [order]
-    this.orderElement,
     this.network,
-
-    /// Extensions for [network]
-    this.networkElement,
     this.costToBeneficiary,
     this.subrogation,
-
-    /// Extensions for [subrogation]
-    this.subrogationElement,
     this.contract,
     super.userData,
     super.formatCommentsPre,
@@ -71,27 +47,27 @@ class Coverage extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Coverage.fromJson(Map<String, dynamic> json) {
     return Coverage(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -101,7 +77,7 @@ class Coverage extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -110,7 +86,7 @@ class Coverage extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -119,7 +95,7 @@ class Coverage extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -128,18 +104,16 @@ class Coverage extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: FinancialResourceStatusCodes.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: FinancialResourceStatusCodes.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       type: json['type'] != null
           ? CodeableConcept.fromJson(
               json['type'] as Map<String, dynamic>,
@@ -156,23 +130,19 @@ class Coverage extends DomainResource {
             )
           : null,
       subscriberId: json['subscriberId'] != null
-          ? FhirString.fromJson(json['subscriberId'])
-          : null,
-      subscriberIdElement: json['_subscriberId'] != null
-          ? Element.fromJson(
-              json['_subscriberId'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['subscriberId'],
+              '_value': json['_subscriberId'],
+            })
           : null,
       beneficiary: Reference.fromJson(
         json['beneficiary'] as Map<String, dynamic>,
       ),
       dependent: json['dependent'] != null
-          ? FhirString.fromJson(json['dependent'])
-          : null,
-      dependentElement: json['_dependent'] != null
-          ? Element.fromJson(
-              json['_dependent'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['dependent'],
+              '_value': json['_dependent'],
+            })
           : null,
       relationship: json['relationship'] != null
           ? CodeableConcept.fromJson(
@@ -184,55 +154,53 @@ class Coverage extends DomainResource {
               json['period'] as Map<String, dynamic>,
             )
           : null,
-      payor: (json['payor'] as List<dynamic>)
+      payor: ensureNonNullList((json['payor'] as List<dynamic>)
           .map<Reference>(
-              (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-          .toList(),
+            (v) => Reference.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
       class_: json['class'] != null
           ? (json['class'] as List<dynamic>)
               .map<CoverageClass>(
-                (dynamic v) => CoverageClass.fromJson(
+                (v) => CoverageClass.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       order: json['order'] != null
-          ? FhirPositiveInt.fromJson(json['order'])
+          ? FhirPositiveInt.fromJson({
+              'value': json['order'],
+              '_value': json['_order'],
+            })
           : null,
-      orderElement: json['_order'] != null
-          ? Element.fromJson(
-              json['_order'] as Map<String, dynamic>,
-            )
-          : null,
-      network:
-          json['network'] != null ? FhirString.fromJson(json['network']) : null,
-      networkElement: json['_network'] != null
-          ? Element.fromJson(
-              json['_network'] as Map<String, dynamic>,
-            )
+      network: json['network'] != null
+          ? FhirString.fromJson({
+              'value': json['network'],
+              '_value': json['_network'],
+            })
           : null,
       costToBeneficiary: json['costToBeneficiary'] != null
           ? (json['costToBeneficiary'] as List<dynamic>)
               .map<CoverageCostToBeneficiary>(
-                (dynamic v) => CoverageCostToBeneficiary.fromJson(
+                (v) => CoverageCostToBeneficiary.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       subrogation: json['subrogation'] != null
-          ? FhirBoolean.fromJson(json['subrogation'])
-          : null,
-      subrogationElement: json['_subrogation'] != null
-          ? Element.fromJson(
-              json['_subrogation'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['subrogation'],
+              '_value': json['_subrogation'],
+            })
           : null,
       contract: json['contract'] != null
           ? (json['contract'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -241,7 +209,8 @@ class Coverage extends DomainResource {
     );
   }
 
-  /// Deserialize [Coverage] from a [String] or [YamlMap] object
+  /// Deserialize [Coverage] from a [String]
+  /// or [YamlMap] object
   factory Coverage.fromYaml(dynamic yaml) => yaml is String
       ? Coverage.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -250,10 +219,11 @@ class Coverage extends DomainResource {
           ? Coverage.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Coverage cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Coverage cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Coverage] that takes in a [String]
+  /// Factory constructor for [Coverage]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Coverage.fromJsonString(String source) {
@@ -269,6 +239,15 @@ class Coverage extends DomainResource {
   @override
   String get fhirType => 'Coverage';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// A unique identifier assigned to this coverage.
   final List<Identifier>? identifier;
@@ -276,9 +255,6 @@ class Coverage extends DomainResource {
   /// [status]
   /// The status of the resource instance.
   final FinancialResourceStatusCodes status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [type]
   /// The type of coverage: social program, medical plan, accident coverage
@@ -300,9 +276,6 @@ class Coverage extends DomainResource {
   /// The insurer assigned ID for the Subscriber.
   final FhirString? subscriberId;
 
-  /// Extensions for [subscriberId]
-  final Element? subscriberIdElement;
-
   /// [beneficiary]
   /// The party who benefits from the insurance coverage; the patient when
   /// products and/or services are provided.
@@ -311,9 +284,6 @@ class Coverage extends DomainResource {
   /// [dependent]
   /// A unique identifier for a dependent under the coverage.
   final FhirString? dependent;
-
-  /// Extensions for [dependent]
-  final Element? dependentElement;
 
   /// [relationship]
   /// The relationship of beneficiary (patient) to the subscriber.
@@ -341,18 +311,12 @@ class Coverage extends DomainResource {
   /// positioning of coverages depends upon the episode of care.
   final FhirPositiveInt? order;
 
-  /// Extensions for [order]
-  final Element? orderElement;
-
   /// [network]
   /// The insurer-specific identifier for the insurer-defined network of
   /// providers to which the beneficiary may seek treatment which will be
   /// covered at the 'in-network' rate, otherwise 'out of network' terms and
   /// conditions apply.
   final FhirString? network;
-
-  /// Extensions for [network]
-  final Element? networkElement;
 
   /// [costToBeneficiary]
   /// A suite of codes indicating the cost category and associated amount
@@ -365,9 +329,6 @@ class Coverage extends DomainResource {
   /// for adjudication but to provide insurers with the details to recover
   /// costs.
   final FhirBoolean? subrogation;
-
-  /// Extensions for [subrogation]
-  final Element? subrogationElement;
 
   /// [contract]
   /// The policy(s) which constitute this insurance coverage.
@@ -384,9 +345,6 @@ class Coverage extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -422,15 +380,9 @@ class Coverage extends DomainResource {
     if (subscriberId?.value != null) {
       json['subscriberId'] = subscriberId!.toJson();
     }
-    if (subscriberIdElement != null) {
-      json['_subscriberId'] = subscriberIdElement!.toJson();
-    }
     json['beneficiary'] = beneficiary.toJson();
     if (dependent?.value != null) {
       json['dependent'] = dependent!.toJson();
-    }
-    if (dependentElement != null) {
-      json['_dependent'] = dependentElement!.toJson();
     }
     if (relationship != null) {
       json['relationship'] = relationship!.toJson();
@@ -445,14 +397,8 @@ class Coverage extends DomainResource {
     if (order?.value != null) {
       json['order'] = order!.toJson();
     }
-    if (orderElement != null) {
-      json['_order'] = orderElement!.toJson();
-    }
     if (network?.value != null) {
       json['network'] = network!.toJson();
-    }
-    if (networkElement != null) {
-      json['_network'] = networkElement!.toJson();
     }
     if (costToBeneficiary != null && costToBeneficiary!.isNotEmpty) {
       json['costToBeneficiary'] = costToBeneficiary!
@@ -461,9 +407,6 @@ class Coverage extends DomainResource {
     }
     if (subrogation?.value != null) {
       json['subrogation'] = subrogation!.toJson();
-    }
-    if (subrogationElement != null) {
-      json['_subrogation'] = subrogationElement!.toJson();
     }
     if (contract != null && contract!.isNotEmpty) {
       json['contract'] = contract!.map((Reference v) => v.toJson()).toList();
@@ -478,35 +421,27 @@ class Coverage extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     FinancialResourceStatusCodes? status,
-    Element? statusElement,
     CodeableConcept? type,
     Reference? policyHolder,
     Reference? subscriber,
     FhirString? subscriberId,
-    Element? subscriberIdElement,
     Reference? beneficiary,
     FhirString? dependent,
-    Element? dependentElement,
     CodeableConcept? relationship,
     Period? period,
     List<Reference>? payor,
     List<CoverageClass>? class_,
     FhirPositiveInt? order,
-    Element? orderElement,
     FhirString? network,
-    Element? networkElement,
     List<CoverageCostToBeneficiary>? costToBeneficiary,
     FhirBoolean? subrogation,
-    Element? subrogationElement,
     List<Reference>? contract,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -519,35 +454,27 @@ class Coverage extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       type: type ?? this.type,
       policyHolder: policyHolder ?? this.policyHolder,
       subscriber: subscriber ?? this.subscriber,
       subscriberId: subscriberId ?? this.subscriberId,
-      subscriberIdElement: subscriberIdElement ?? this.subscriberIdElement,
       beneficiary: beneficiary ?? this.beneficiary,
       dependent: dependent ?? this.dependent,
-      dependentElement: dependentElement ?? this.dependentElement,
       relationship: relationship ?? this.relationship,
       period: period ?? this.period,
       payor: payor ?? this.payor,
       class_: class_ ?? this.class_,
       order: order ?? this.order,
-      orderElement: orderElement ?? this.orderElement,
       network: network ?? this.network,
-      networkElement: networkElement ?? this.networkElement,
       costToBeneficiary: costToBeneficiary ?? this.costToBeneficiary,
       subrogation: subrogation ?? this.subrogation,
-      subrogationElement: subrogationElement ?? this.subrogationElement,
       contract: contract ?? this.contract,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -566,17 +493,11 @@ class CoverageClass extends BackboneElement {
 
   CoverageClass({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
     required this.value,
-
-    /// Extensions for [value]
-    this.valueElement,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -588,11 +509,15 @@ class CoverageClass extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageClass.fromJson(Map<String, dynamic> json) {
     return CoverageClass(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -601,7 +526,7 @@ class CoverageClass extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -610,22 +535,21 @@ class CoverageClass extends BackboneElement {
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
       ),
-      value: FhirString.fromJson(json['value']),
-      valueElement: json['_value'] != null
-          ? Element.fromJson(
-              json['_value'] as Map<String, dynamic>,
-            )
-          : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      value: FhirString.fromJson({
+        'value': json['value'],
+        '_value': json['_value'],
+      }),
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [CoverageClass] from a [String] or [YamlMap] object
+  /// Deserialize [CoverageClass] from a [String]
+  /// or [YamlMap] object
   factory CoverageClass.fromYaml(dynamic yaml) => yaml is String
       ? CoverageClass.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -634,11 +558,11 @@ class CoverageClass extends BackboneElement {
           ? CoverageClass.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CoverageClass cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('CoverageClass cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CoverageClass] that takes in a [String]
+  /// Factory constructor for [CoverageClass]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CoverageClass.fromJsonString(String source) {
@@ -654,6 +578,15 @@ class CoverageClass extends BackboneElement {
   @override
   String get fhirType => 'CoverageClass';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// The type of classification for which an insurer-specific class label or
   /// number and optional name is provided, for example may be used to
@@ -664,15 +597,9 @@ class CoverageClass extends BackboneElement {
   /// The alphanumeric string value associated with the insurer issued label.
   final FhirString value;
 
-  /// Extensions for [value]
-  final Element? valueElement;
-
   /// [name]
   /// A short description for the class.
   final FhirString? name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -689,14 +616,8 @@ class CoverageClass extends BackboneElement {
     }
     json['type'] = type.toJson();
     json['value'] = value.toJson();
-    if (valueElement != null) {
-      json['_value'] = valueElement!.toJson();
-    }
     if (name?.value != null) {
       json['name'] = name!.toJson();
-    }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
     }
     return json;
   }
@@ -710,9 +631,7 @@ class CoverageClass extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? type,
     FhirString? value,
-    Element? valueElement,
     FhirString? name,
-    Element? nameElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -726,9 +645,7 @@ class CoverageClass extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
       value: value ?? this.value,
-      valueElement: valueElement ?? this.valueElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -748,7 +665,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
 
   CoverageCostToBeneficiary({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.type,
     this.valueQuantity,
@@ -765,11 +682,15 @@ class CoverageCostToBeneficiary extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageCostToBeneficiary.fromJson(Map<String, dynamic> json) {
     return CoverageCostToBeneficiary(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -778,7 +699,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -802,7 +723,7 @@ class CoverageCostToBeneficiary extends BackboneElement {
       exception: json['exception'] != null
           ? (json['exception'] as List<dynamic>)
               .map<CoverageException>(
-                (dynamic v) => CoverageException.fromJson(
+                (v) => CoverageException.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -811,7 +732,8 @@ class CoverageCostToBeneficiary extends BackboneElement {
     );
   }
 
-  /// Deserialize [CoverageCostToBeneficiary] from a [String] or [YamlMap] object
+  /// Deserialize [CoverageCostToBeneficiary] from a [String]
+  /// or [YamlMap] object
   factory CoverageCostToBeneficiary.fromYaml(dynamic yaml) => yaml is String
       ? CoverageCostToBeneficiary.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -821,10 +743,11 @@ class CoverageCostToBeneficiary extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'CoverageCostToBeneficiary cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'CoverageCostToBeneficiary cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CoverageCostToBeneficiary] that takes in a [String]
+  /// Factory constructor for [CoverageCostToBeneficiary]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CoverageCostToBeneficiary.fromJsonString(String source) {
@@ -839,6 +762,15 @@ class CoverageCostToBeneficiary extends BackboneElement {
 
   @override
   String get fhirType => 'CoverageCostToBeneficiary';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The category of patient centric costs associated with treatment.
@@ -930,7 +862,7 @@ class CoverageException extends BackboneElement {
 
   CoverageException({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
     this.period,
@@ -945,11 +877,15 @@ class CoverageException extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageException.fromJson(Map<String, dynamic> json) {
     return CoverageException(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -958,7 +894,7 @@ class CoverageException extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -975,7 +911,8 @@ class CoverageException extends BackboneElement {
     );
   }
 
-  /// Deserialize [CoverageException] from a [String] or [YamlMap] object
+  /// Deserialize [CoverageException] from a [String]
+  /// or [YamlMap] object
   factory CoverageException.fromYaml(dynamic yaml) => yaml is String
       ? CoverageException.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -984,11 +921,11 @@ class CoverageException extends BackboneElement {
           ? CoverageException.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'CoverageException cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('CoverageException cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CoverageException] that takes in a [String]
+  /// Factory constructor for [CoverageException]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CoverageException.fromJsonString(String source) {
@@ -1003,6 +940,15 @@ class CoverageException extends BackboneElement {
 
   @override
   String get fhirType => 'CoverageException';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// The code for the specific exception.

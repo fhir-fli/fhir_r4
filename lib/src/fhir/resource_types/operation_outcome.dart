@@ -12,16 +12,10 @@ class OperationOutcome extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.issue,
     super.userData,
@@ -37,27 +31,27 @@ class OperationOutcome extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationOutcome.fromJson(Map<String, dynamic> json) {
     return OperationOutcome(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -67,7 +61,7 @@ class OperationOutcome extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -76,7 +70,7 @@ class OperationOutcome extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -85,20 +79,24 @@ class OperationOutcome extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      issue: (json['issue'] as List<dynamic>)
-          .map<OperationOutcomeIssue>((dynamic v) =>
-              OperationOutcomeIssue.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      issue: ensureNonNullList((json['issue'] as List<dynamic>)
+          .map<OperationOutcomeIssue>(
+            (v) => OperationOutcomeIssue.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
     );
   }
 
-  /// Deserialize [OperationOutcome] from a [String] or [YamlMap] object
+  /// Deserialize [OperationOutcome] from a [String]
+  /// or [YamlMap] object
   factory OperationOutcome.fromYaml(dynamic yaml) => yaml is String
       ? OperationOutcome.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -107,11 +105,11 @@ class OperationOutcome extends DomainResource {
           ? OperationOutcome.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'OperationOutcome cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('OperationOutcome cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [OperationOutcome] that takes in a [String]
+  /// Factory constructor for [OperationOutcome]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory OperationOutcome.fromJsonString(String source) {
@@ -126,6 +124,15 @@ class OperationOutcome extends DomainResource {
 
   @override
   String get fhirType => 'OperationOutcome';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [issue]
   /// An error, warning, or information message that results from a system
@@ -143,9 +150,6 @@ class OperationOutcome extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -176,9 +180,7 @@ class OperationOutcome extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
@@ -195,9 +197,7 @@ class OperationOutcome extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
@@ -221,29 +221,14 @@ class OperationOutcomeIssue extends BackboneElement {
 
   OperationOutcomeIssue({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.severity,
-
-    /// Extensions for [severity]
-    this.severityElement,
     required this.code,
-
-    /// Extensions for [code]
-    this.codeElement,
     this.details,
     this.diagnostics,
-
-    /// Extensions for [diagnostics]
-    this.diagnosticsElement,
     this.location,
-
-    /// Extensions for [location]
-    this.locationElement,
     this.expression,
-
-    /// Extensions for [expression]
-    this.expressionElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -255,11 +240,15 @@ class OperationOutcomeIssue extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationOutcomeIssue.fromJson(Map<String, dynamic> json) {
     return OperationOutcomeIssue(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -268,69 +257,44 @@ class OperationOutcomeIssue extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      severity: IssueSeverity.fromJson(json['severity']),
-      severityElement: json['_severity'] != null
-          ? Element.fromJson(
-              json['_severity'] as Map<String, dynamic>,
-            )
-          : null,
-      code: IssueType.fromJson(json['code']),
-      codeElement: json['_code'] != null
-          ? Element.fromJson(
-              json['_code'] as Map<String, dynamic>,
-            )
-          : null,
+      severity: IssueSeverity.fromJson({
+        'value': json['severity'],
+        '_value': json['_severity'],
+      }),
+      code: IssueType.fromJson({
+        'value': json['code'],
+        '_value': json['_code'],
+      }),
       details: json['details'] != null
           ? CodeableConcept.fromJson(
               json['details'] as Map<String, dynamic>,
             )
           : null,
       diagnostics: json['diagnostics'] != null
-          ? FhirString.fromJson(json['diagnostics'])
+          ? FhirString.fromJson({
+              'value': json['diagnostics'],
+              '_value': json['_diagnostics'],
+            })
           : null,
-      diagnosticsElement: json['_diagnostics'] != null
-          ? Element.fromJson(
-              json['_diagnostics'] as Map<String, dynamic>,
-            )
-          : null,
-      location: json['location'] != null
-          ? (json['location'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      locationElement: json['_location'] != null
-          ? (json['_location'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      expression: json['expression'] != null
-          ? (json['expression'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      expressionElement: json['_expression'] != null
-          ? (json['_expression'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      location: parsePrimitiveList<FhirString>(
+          json['location'] as List<dynamic>?,
+          json['_location'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
+      expression: parsePrimitiveList<FhirString>(
+          json['expression'] as List<dynamic>?,
+          json['_expression'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
     );
   }
 
-  /// Deserialize [OperationOutcomeIssue] from a [String] or [YamlMap] object
+  /// Deserialize [OperationOutcomeIssue] from a [String]
+  /// or [YamlMap] object
   factory OperationOutcomeIssue.fromYaml(dynamic yaml) => yaml is String
       ? OperationOutcomeIssue.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -340,10 +304,11 @@ class OperationOutcomeIssue extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'OperationOutcomeIssue cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'OperationOutcomeIssue cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [OperationOutcomeIssue] that takes in a [String]
+  /// Factory constructor for [OperationOutcomeIssue]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory OperationOutcomeIssue.fromJsonString(String source) {
@@ -359,13 +324,19 @@ class OperationOutcomeIssue extends BackboneElement {
   @override
   String get fhirType => 'OperationOutcomeIssue';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [severity]
   /// Indicates whether the issue indicates a variation from successful
   /// processing.
   final IssueSeverity severity;
-
-  /// Extensions for [severity]
-  final Element? severityElement;
 
   /// [code]
   /// Describes the type of the issue. The system that creates an
@@ -373,9 +344,6 @@ class OperationOutcomeIssue extends BackboneElement {
   /// IssueType value set, and may additional provide its own code for the
   /// error in the details element.
   final IssueType code;
-
-  /// Extensions for [code]
-  final Element? codeElement;
 
   /// [details]
   /// Additional details about the error. This may be a text description of
@@ -385,9 +353,6 @@ class OperationOutcomeIssue extends BackboneElement {
   /// [diagnostics]
   /// Additional diagnostic information about the issue.
   final FhirString? diagnostics;
-
-  /// Extensions for [diagnostics]
-  final Element? diagnosticsElement;
 
   /// [location]
   /// This element is deprecated because it is XML specific. It is replaced
@@ -400,18 +365,12 @@ class OperationOutcomeIssue extends BackboneElement {
   /// to be raised. For HTTP errors, will be "http." + the parameter name.
   final List<FhirString>? location;
 
-  /// Extensions for [location]
-  final List<Element>? locationElement;
-
   /// [expression]
   /// A [simple subset of FHIRPath](fhirpath.html#simple) limited to element
   /// names, repetition indicators and the default child accessor that
   /// identifies one of the elements in the resource that caused this issue
   /// to be raised.
   final List<FhirString>? expression;
-
-  /// Extensions for [expression]
-  final List<Element>? expressionElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -434,23 +393,12 @@ class OperationOutcomeIssue extends BackboneElement {
     if (diagnostics?.value != null) {
       json['diagnostics'] = diagnostics!.toJson();
     }
-    if (diagnosticsElement != null) {
-      json['_diagnostics'] = diagnosticsElement!.toJson();
-    }
     if (location != null && location!.isNotEmpty) {
       json['location'] = location!.map((FhirString v) => v.toJson()).toList();
-    }
-    if (locationElement != null && locationElement!.isNotEmpty) {
-      json['_location'] =
-          locationElement!.map((Element v) => v.toJson()).toList();
     }
     if (expression != null && expression!.isNotEmpty) {
       json['expression'] =
           expression!.map((FhirString v) => v.toJson()).toList();
-    }
-    if (expressionElement != null && expressionElement!.isNotEmpty) {
-      json['_expression'] =
-          expressionElement!.map((Element v) => v.toJson()).toList();
     }
     return json;
   }
@@ -463,16 +411,11 @@ class OperationOutcomeIssue extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     IssueSeverity? severity,
-    Element? severityElement,
     IssueType? code,
-    Element? codeElement,
     CodeableConcept? details,
     FhirString? diagnostics,
-    Element? diagnosticsElement,
     List<FhirString>? location,
-    List<Element>? locationElement,
     List<FhirString>? expression,
-    List<Element>? expressionElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -485,16 +428,11 @@ class OperationOutcomeIssue extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       severity: severity ?? this.severity,
-      severityElement: severityElement ?? this.severityElement,
       code: code ?? this.code,
-      codeElement: codeElement ?? this.codeElement,
       details: details ?? this.details,
       diagnostics: diagnostics ?? this.diagnostics,
-      diagnosticsElement: diagnosticsElement ?? this.diagnosticsElement,
       location: location ?? this.location,
-      locationElement: locationElement ?? this.locationElement,
       expression: expression ?? this.expression,
-      expressionElement: expressionElement ?? this.expressionElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

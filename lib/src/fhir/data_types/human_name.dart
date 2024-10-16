@@ -9,31 +9,13 @@ class HumanName extends DataType {
 
   HumanName({
     super.id,
-    super.extension_,
+    this.extension_,
     this.use,
-
-    /// Extensions for [use]
-    this.useElement,
     this.text,
-
-    /// Extensions for [text]
-    this.textElement,
     this.family,
-
-    /// Extensions for [family]
-    this.familyElement,
     this.given,
-
-    /// Extensions for [given]
-    this.givenElement,
     this.prefix,
-
-    /// Extensions for [prefix]
-    this.prefixElement,
     this.suffix,
-
-    /// Extensions for [suffix]
-    this.suffixElement,
     this.period,
     super.userData,
     super.formatCommentsPre,
@@ -46,77 +28,47 @@ class HumanName extends DataType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory HumanName.fromJson(Map<String, dynamic> json) {
     return HumanName(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      use: json['use'] != null ? NameUse.fromJson(json['use']) : null,
-      useElement: json['_use'] != null
-          ? Element.fromJson(
-              json['_use'] as Map<String, dynamic>,
-            )
+      use: json['use'] != null
+          ? NameUse.fromJson({
+              'value': json['use'],
+              '_value': json['_use'],
+            })
           : null,
-      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
-      textElement: json['_text'] != null
-          ? Element.fromJson(
-              json['_text'] as Map<String, dynamic>,
-            )
+      text: json['text'] != null
+          ? FhirString.fromJson({
+              'value': json['text'],
+              '_value': json['_text'],
+            })
           : null,
-      family:
-          json['family'] != null ? FhirString.fromJson(json['family']) : null,
-      familyElement: json['_family'] != null
-          ? Element.fromJson(
-              json['_family'] as Map<String, dynamic>,
-            )
+      family: json['family'] != null
+          ? FhirString.fromJson({
+              'value': json['family'],
+              '_value': json['_family'],
+            })
           : null,
-      given: json['given'] != null
-          ? (json['given'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      givenElement: json['_given'] != null
-          ? (json['_given'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      prefix: json['prefix'] != null
-          ? (json['prefix'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      prefixElement: json['_prefix'] != null
-          ? (json['_prefix'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      suffix: json['suffix'] != null
-          ? (json['suffix'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      suffixElement: json['_suffix'] != null
-          ? (json['_suffix'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      given: parsePrimitiveList<FhirString>(
+          json['given'] as List<dynamic>?, json['_given'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
+      prefix: parsePrimitiveList<FhirString>(
+          json['prefix'] as List<dynamic>?, json['_prefix'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
+      suffix: parsePrimitiveList<FhirString>(
+          json['suffix'] as List<dynamic>?, json['_suffix'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
       period: json['period'] != null
           ? Period.fromJson(
               json['period'] as Map<String, dynamic>,
@@ -125,7 +77,8 @@ class HumanName extends DataType {
     );
   }
 
-  /// Deserialize [HumanName] from a [String] or [YamlMap] object
+  /// Deserialize [HumanName] from a [String]
+  /// or [YamlMap] object
   factory HumanName.fromYaml(dynamic yaml) => yaml is String
       ? HumanName.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -134,10 +87,11 @@ class HumanName extends DataType {
           ? HumanName.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('HumanName cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('HumanName cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [HumanName] that takes in a [String]
+  /// Factory constructor for [HumanName]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory HumanName.fromJsonString(String source) {
@@ -153,12 +107,18 @@ class HumanName extends DataType {
   @override
   String get fhirType => 'HumanName';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [use]
   /// Identifies the purpose for this name.
   final NameUse? use;
-
-  /// Extensions for [use]
-  final Element? useElement;
 
   /// [text]
   /// Specifies the entire name as it should be displayed e.g. on an
@@ -166,23 +126,14 @@ class HumanName extends DataType {
   /// specific parts.
   final FhirString? text;
 
-  /// Extensions for [text]
-  final Element? textElement;
-
   /// [family]
   /// The part of a name that links to the genealogy. In some cultures (e.g.
   /// Eritrea) the family name of a son is the first name of his father.
   final FhirString? family;
 
-  /// Extensions for [family]
-  final Element? familyElement;
-
   /// [given]
   /// Given name.
   final List<FhirString>? given;
-
-  /// Extensions for [given]
-  final List<Element>? givenElement;
 
   /// [prefix]
   /// Part of the name that is acquired as a title due to academic, legal,
@@ -190,17 +141,11 @@ class HumanName extends DataType {
   /// the name.
   final List<FhirString>? prefix;
 
-  /// Extensions for [prefix]
-  final List<Element>? prefixElement;
-
   /// [suffix]
   /// Part of the name that is acquired as a title due to academic, legal,
   /// employment or nobility status, etc. and that appears at the end of the
   /// name.
   final List<FhirString>? suffix;
-
-  /// Extensions for [suffix]
-  final List<Element>? suffixElement;
 
   /// [period]
   /// Indicates the period of time when this name was valid for the named
@@ -222,32 +167,17 @@ class HumanName extends DataType {
     if (text?.value != null) {
       json['text'] = text!.toJson();
     }
-    if (textElement != null) {
-      json['_text'] = textElement!.toJson();
-    }
     if (family?.value != null) {
       json['family'] = family!.toJson();
-    }
-    if (familyElement != null) {
-      json['_family'] = familyElement!.toJson();
     }
     if (given != null && given!.isNotEmpty) {
       json['given'] = given!.map((FhirString v) => v.toJson()).toList();
     }
-    if (givenElement != null && givenElement!.isNotEmpty) {
-      json['_given'] = givenElement!.map((Element v) => v.toJson()).toList();
-    }
     if (prefix != null && prefix!.isNotEmpty) {
       json['prefix'] = prefix!.map((FhirString v) => v.toJson()).toList();
     }
-    if (prefixElement != null && prefixElement!.isNotEmpty) {
-      json['_prefix'] = prefixElement!.map((Element v) => v.toJson()).toList();
-    }
     if (suffix != null && suffix!.isNotEmpty) {
       json['suffix'] = suffix!.map((FhirString v) => v.toJson()).toList();
-    }
-    if (suffixElement != null && suffixElement!.isNotEmpty) {
-      json['_suffix'] = suffixElement!.map((Element v) => v.toJson()).toList();
     }
     if (period != null) {
       json['period'] = period!.toJson();
@@ -262,17 +192,11 @@ class HumanName extends DataType {
     FhirString? id,
     List<FhirExtension>? extension_,
     NameUse? use,
-    Element? useElement,
     FhirString? text,
-    Element? textElement,
     FhirString? family,
-    Element? familyElement,
     List<FhirString>? given,
-    List<Element>? givenElement,
     List<FhirString>? prefix,
-    List<Element>? prefixElement,
     List<FhirString>? suffix,
-    List<Element>? suffixElement,
     Period? period,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -285,17 +209,11 @@ class HumanName extends DataType {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       use: use ?? this.use,
-      useElement: useElement ?? this.useElement,
       text: text ?? this.text,
-      textElement: textElement ?? this.textElement,
       family: family ?? this.family,
-      familyElement: familyElement ?? this.familyElement,
       given: given ?? this.given,
-      givenElement: givenElement ?? this.givenElement,
       prefix: prefix ?? this.prefix,
-      prefixElement: prefixElement ?? this.prefixElement,
       suffix: suffix ?? this.suffix,
-      suffixElement: suffixElement ?? this.suffixElement,
       period: period ?? this.period,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

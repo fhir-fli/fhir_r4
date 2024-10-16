@@ -18,51 +18,27 @@ class ClinicalImpression extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.statusReason,
     this.code,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     required this.subject,
     this.encounter,
     this.effectiveDateTime,
-
-    /// Extensions for [effectiveDateTime]
-    this.effectiveDateTimeElement,
     this.effectivePeriod,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.assessor,
     this.previous,
     this.problem,
     this.investigation,
     this.protocol,
-
-    /// Extensions for [protocol]
-    this.protocolElement,
     this.summary,
-
-    /// Extensions for [summary]
-    this.summaryElement,
     this.finding,
     this.prognosisCodeableConcept,
     this.prognosisReference,
@@ -81,27 +57,27 @@ class ClinicalImpression extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalImpression.fromJson(Map<String, dynamic> json) {
     return ClinicalImpression(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -111,7 +87,7 @@ class ClinicalImpression extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -120,7 +96,7 @@ class ClinicalImpression extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -129,7 +105,7 @@ class ClinicalImpression extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -138,18 +114,16 @@ class ClinicalImpression extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: ClinicalImpressionStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: ClinicalImpressionStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       statusReason: json['statusReason'] != null
           ? CodeableConcept.fromJson(
               json['statusReason'] as Map<String, dynamic>,
@@ -161,12 +135,10 @@ class ClinicalImpression extends DomainResource {
             )
           : null,
       description: json['description'] != null
-          ? FhirString.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       subject: Reference.fromJson(
         json['subject'] as Map<String, dynamic>,
@@ -177,23 +149,21 @@ class ClinicalImpression extends DomainResource {
             )
           : null,
       effectiveDateTime: json['effectiveDateTime'] != null
-          ? FhirDateTime.fromJson(json['effectiveDateTime'])
-          : null,
-      effectiveDateTimeElement: json['_effectiveDateTime'] != null
-          ? Element.fromJson(
-              json['_effectiveDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['effectiveDateTime'],
+              '_value': json['_effectiveDateTime'],
+            })
           : null,
       effectivePeriod: json['effectivePeriod'] != null
           ? Period.fromJson(
               json['effectivePeriod'] as Map<String, dynamic>,
             )
           : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       assessor: json['assessor'] != null
           ? Reference.fromJson(
@@ -208,7 +178,7 @@ class ClinicalImpression extends DomainResource {
       problem: json['problem'] != null
           ? (json['problem'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -217,37 +187,25 @@ class ClinicalImpression extends DomainResource {
       investigation: json['investigation'] != null
           ? (json['investigation'] as List<dynamic>)
               .map<ClinicalImpressionInvestigation>(
-                (dynamic v) => ClinicalImpressionInvestigation.fromJson(
+                (v) => ClinicalImpressionInvestigation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      protocol: json['protocol'] != null
-          ? (json['protocol'] as List<dynamic>)
-              .map<FhirUri>(
-                (dynamic v) => FhirUri.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      protocolElement: json['_protocol'] != null
-          ? (json['_protocol'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      summary:
-          json['summary'] != null ? FhirString.fromJson(json['summary']) : null,
-      summaryElement: json['_summary'] != null
-          ? Element.fromJson(
-              json['_summary'] as Map<String, dynamic>,
-            )
+      protocol: parsePrimitiveList<FhirUri>(json['protocol'] as List<dynamic>?,
+          json['_protocol'] as List<dynamic>?,
+          fromJson: FhirUri.fromJson),
+      summary: json['summary'] != null
+          ? FhirString.fromJson({
+              'value': json['summary'],
+              '_value': json['_summary'],
+            })
           : null,
       finding: json['finding'] != null
           ? (json['finding'] as List<dynamic>)
               .map<ClinicalImpressionFinding>(
-                (dynamic v) => ClinicalImpressionFinding.fromJson(
+                (v) => ClinicalImpressionFinding.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -256,7 +214,7 @@ class ClinicalImpression extends DomainResource {
       prognosisCodeableConcept: json['prognosisCodeableConcept'] != null
           ? (json['prognosisCodeableConcept'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -265,7 +223,7 @@ class ClinicalImpression extends DomainResource {
       prognosisReference: json['prognosisReference'] != null
           ? (json['prognosisReference'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -274,7 +232,7 @@ class ClinicalImpression extends DomainResource {
       supportingInfo: json['supportingInfo'] != null
           ? (json['supportingInfo'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -283,7 +241,7 @@ class ClinicalImpression extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -292,7 +250,8 @@ class ClinicalImpression extends DomainResource {
     );
   }
 
-  /// Deserialize [ClinicalImpression] from a [String] or [YamlMap] object
+  /// Deserialize [ClinicalImpression] from a [String]
+  /// or [YamlMap] object
   factory ClinicalImpression.fromYaml(dynamic yaml) => yaml is String
       ? ClinicalImpression.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -301,11 +260,11 @@ class ClinicalImpression extends DomainResource {
           ? ClinicalImpression.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ClinicalImpression cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ClinicalImpression cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClinicalImpression] that takes in a [String]
+  /// Factory constructor for [ClinicalImpression]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClinicalImpression.fromJsonString(String source) {
@@ -321,6 +280,15 @@ class ClinicalImpression extends DomainResource {
   @override
   String get fhirType => 'ClinicalImpression';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Business identifiers assigned to this clinical impression by the
   /// performer or other systems which remain constant as the resource is
@@ -330,9 +298,6 @@ class ClinicalImpression extends DomainResource {
   /// [status]
   /// Identifies the workflow status of the assessment.
   final ClinicalImpressionStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [statusReason]
   /// Captures the reason for the current state of the ClinicalImpression.
@@ -347,9 +312,6 @@ class ClinicalImpression extends DomainResource {
   /// it was performed, and what patient events/status prompted it.
   final FhirString? description;
 
-  /// Extensions for [description]
-  final Element? descriptionElement;
-
   /// [subject]
   /// The patient or group of individuals assessed as part of this record.
   final Reference subject;
@@ -363,9 +325,6 @@ class ClinicalImpression extends DomainResource {
   /// The point in time or period over which the subject was assessed.
   final FhirDateTime? effectiveDateTime;
 
-  /// Extensions for [effectiveDateTime]
-  final Element? effectiveDateTimeElement;
-
   /// [effectivePeriod]
   /// The point in time or period over which the subject was assessed.
   final Period? effectivePeriod;
@@ -373,9 +332,6 @@ class ClinicalImpression extends DomainResource {
   /// [date]
   /// Indicates when the documentation of the assessment was complete.
   final FhirDateTime? date;
-
-  /// Extensions for [date]
-  final Element? dateElement;
 
   /// [assessor]
   /// The clinician performing the assessment.
@@ -406,15 +362,9 @@ class ClinicalImpression extends DomainResource {
   /// diagnosis.
   final List<FhirUri>? protocol;
 
-  /// Extensions for [protocol]
-  final List<Element>? protocolElement;
-
   /// [summary]
   /// A text summary of the investigations and the diagnosis.
   final FhirString? summary;
-
-  /// Extensions for [summary]
-  final Element? summaryElement;
 
   /// [finding]
   /// Specific findings or diagnoses that were considered likely or relevant
@@ -451,9 +401,6 @@ class ClinicalImpression extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -485,9 +432,6 @@ class ClinicalImpression extends DomainResource {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     json['subject'] = subject.toJson();
     if (encounter != null) {
       json['encounter'] = encounter!.toJson();
@@ -495,17 +439,11 @@ class ClinicalImpression extends DomainResource {
     if (effectiveDateTime?.value != null) {
       json['effectiveDateTime'] = effectiveDateTime!.toJson();
     }
-    if (effectiveDateTimeElement != null) {
-      json['_effectiveDateTime'] = effectiveDateTimeElement!.toJson();
-    }
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
     }
     if (date?.value != null) {
       json['date'] = date!.toJson();
-    }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
     }
     if (assessor != null) {
       json['assessor'] = assessor!.toJson();
@@ -524,15 +462,8 @@ class ClinicalImpression extends DomainResource {
     if (protocol != null && protocol!.isNotEmpty) {
       json['protocol'] = protocol!.map((FhirUri v) => v.toJson()).toList();
     }
-    if (protocolElement != null && protocolElement!.isNotEmpty) {
-      json['_protocol'] =
-          protocolElement!.map((Element v) => v.toJson()).toList();
-    }
     if (summary?.value != null) {
       json['summary'] = summary!.toJson();
-    }
-    if (summaryElement != null) {
-      json['_summary'] = summaryElement!.toJson();
     }
     if (finding != null && finding!.isNotEmpty) {
       json['finding'] =
@@ -565,35 +496,27 @@ class ClinicalImpression extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     ClinicalImpressionStatus? status,
-    Element? statusElement,
     CodeableConcept? statusReason,
     CodeableConcept? code,
     FhirString? description,
-    Element? descriptionElement,
     Reference? subject,
     Reference? encounter,
     FhirDateTime? effectiveDateTime,
-    Element? effectiveDateTimeElement,
     Period? effectivePeriod,
     FhirDateTime? date,
-    Element? dateElement,
     Reference? assessor,
     Reference? previous,
     List<Reference>? problem,
     List<ClinicalImpressionInvestigation>? investigation,
     List<FhirUri>? protocol,
-    List<Element>? protocolElement,
     FhirString? summary,
-    Element? summaryElement,
     List<ClinicalImpressionFinding>? finding,
     List<CodeableConcept>? prognosisCodeableConcept,
     List<Reference>? prognosisReference,
@@ -610,36 +533,27 @@ class ClinicalImpression extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       statusReason: statusReason ?? this.statusReason,
       code: code ?? this.code,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       subject: subject ?? this.subject,
       encounter: encounter ?? this.encounter,
       effectiveDateTime: effectiveDateTime ?? this.effectiveDateTime,
-      effectiveDateTimeElement:
-          effectiveDateTimeElement ?? this.effectiveDateTimeElement,
       effectivePeriod: effectivePeriod ?? this.effectivePeriod,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       assessor: assessor ?? this.assessor,
       previous: previous ?? this.previous,
       problem: problem ?? this.problem,
       investigation: investigation ?? this.investigation,
       protocol: protocol ?? this.protocol,
-      protocolElement: protocolElement ?? this.protocolElement,
       summary: summary ?? this.summary,
-      summaryElement: summaryElement ?? this.summaryElement,
       finding: finding ?? this.finding,
       prognosisCodeableConcept:
           prognosisCodeableConcept ?? this.prognosisCodeableConcept,
@@ -667,7 +581,7 @@ class ClinicalImpressionInvestigation extends BackboneElement {
 
   ClinicalImpressionInvestigation({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.code,
     this.item,
@@ -682,11 +596,15 @@ class ClinicalImpressionInvestigation extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalImpressionInvestigation.fromJson(Map<String, dynamic> json) {
     return ClinicalImpressionInvestigation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -695,7 +613,7 @@ class ClinicalImpressionInvestigation extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -707,7 +625,7 @@ class ClinicalImpressionInvestigation extends BackboneElement {
       item: json['item'] != null
           ? (json['item'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -716,7 +634,8 @@ class ClinicalImpressionInvestigation extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClinicalImpressionInvestigation] from a [String] or [YamlMap] object
+  /// Deserialize [ClinicalImpressionInvestigation] from a [String]
+  /// or [YamlMap] object
   factory ClinicalImpressionInvestigation.fromYaml(dynamic yaml) => yaml
           is String
       ? ClinicalImpressionInvestigation.fromJson(
@@ -727,10 +646,11 @@ class ClinicalImpressionInvestigation extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ClinicalImpressionInvestigation cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ClinicalImpressionInvestigation cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClinicalImpressionInvestigation] that takes in a [String]
+  /// Factory constructor for [ClinicalImpressionInvestigation]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClinicalImpressionInvestigation.fromJsonString(String source) {
@@ -745,6 +665,15 @@ class ClinicalImpressionInvestigation extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalImpressionInvestigation';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [code]
   /// A name/code for the group ("set") of investigations. Typically, this
@@ -817,14 +746,11 @@ class ClinicalImpressionFinding extends BackboneElement {
 
   ClinicalImpressionFinding({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.itemCodeableConcept,
     this.itemReference,
     this.basis,
-
-    /// Extensions for [basis]
-    this.basisElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -836,11 +762,15 @@ class ClinicalImpressionFinding extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalImpressionFinding.fromJson(Map<String, dynamic> json) {
     return ClinicalImpressionFinding(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -849,7 +779,7 @@ class ClinicalImpressionFinding extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -865,16 +795,17 @@ class ClinicalImpressionFinding extends BackboneElement {
               json['itemReference'] as Map<String, dynamic>,
             )
           : null,
-      basis: json['basis'] != null ? FhirString.fromJson(json['basis']) : null,
-      basisElement: json['_basis'] != null
-          ? Element.fromJson(
-              json['_basis'] as Map<String, dynamic>,
-            )
+      basis: json['basis'] != null
+          ? FhirString.fromJson({
+              'value': json['basis'],
+              '_value': json['_basis'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [ClinicalImpressionFinding] from a [String] or [YamlMap] object
+  /// Deserialize [ClinicalImpressionFinding] from a [String]
+  /// or [YamlMap] object
   factory ClinicalImpressionFinding.fromYaml(dynamic yaml) => yaml is String
       ? ClinicalImpressionFinding.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -884,10 +815,11 @@ class ClinicalImpressionFinding extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ClinicalImpressionFinding cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ClinicalImpressionFinding cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClinicalImpressionFinding] that takes in a [String]
+  /// Factory constructor for [ClinicalImpressionFinding]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClinicalImpressionFinding.fromJsonString(String source) {
@@ -903,6 +835,15 @@ class ClinicalImpressionFinding extends BackboneElement {
   @override
   String get fhirType => 'ClinicalImpressionFinding';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [itemCodeableConcept]
   /// Specific text or code for finding or diagnosis, which may include
   /// ruled-out or resolved conditions.
@@ -916,9 +857,6 @@ class ClinicalImpressionFinding extends BackboneElement {
   /// [basis]
   /// Which investigations support finding or diagnosis.
   final FhirString? basis;
-
-  /// Extensions for [basis]
-  final Element? basisElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -942,9 +880,6 @@ class ClinicalImpressionFinding extends BackboneElement {
     if (basis?.value != null) {
       json['basis'] = basis!.toJson();
     }
-    if (basisElement != null) {
-      json['_basis'] = basisElement!.toJson();
-    }
     return json;
   }
 
@@ -958,7 +893,6 @@ class ClinicalImpressionFinding extends BackboneElement {
     CodeableConcept? itemCodeableConcept,
     Reference? itemReference,
     FhirString? basis,
-    Element? basisElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -973,7 +907,6 @@ class ClinicalImpressionFinding extends BackboneElement {
       itemCodeableConcept: itemCodeableConcept ?? this.itemCodeableConcept,
       itemReference: itemReference ?? this.itemReference,
       basis: basis ?? this.basis,
-      basisElement: basisElement ?? this.basisElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

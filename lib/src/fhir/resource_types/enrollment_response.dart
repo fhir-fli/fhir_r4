@@ -12,35 +12,17 @@ class EnrollmentResponse extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.request,
     this.outcome,
-
-    /// Extensions for [outcome]
-    this.outcomeElement,
     this.disposition,
-
-    /// Extensions for [disposition]
-    this.dispositionElement,
     this.created,
-
-    /// Extensions for [created]
-    this.createdElement,
     this.organization,
     this.requestProvider,
     super.userData,
@@ -56,27 +38,27 @@ class EnrollmentResponse extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory EnrollmentResponse.fromJson(Map<String, dynamic> json) {
     return EnrollmentResponse(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -86,7 +68,7 @@ class EnrollmentResponse extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -95,7 +77,7 @@ class EnrollmentResponse extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -104,7 +86,7 @@ class EnrollmentResponse extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -113,19 +95,17 @@ class EnrollmentResponse extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       status: json['status'] != null
-          ? FinancialResourceStatusCodes.fromJson(json['status'])
-          : null,
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
+          ? FinancialResourceStatusCodes.fromJson({
+              'value': json['status'],
+              '_value': json['_status'],
+            })
           : null,
       request: json['request'] != null
           ? Reference.fromJson(
@@ -133,28 +113,22 @@ class EnrollmentResponse extends DomainResource {
             )
           : null,
       outcome: json['outcome'] != null
-          ? RemittanceOutcome.fromJson(json['outcome'])
-          : null,
-      outcomeElement: json['_outcome'] != null
-          ? Element.fromJson(
-              json['_outcome'] as Map<String, dynamic>,
-            )
+          ? RemittanceOutcome.fromJson({
+              'value': json['outcome'],
+              '_value': json['_outcome'],
+            })
           : null,
       disposition: json['disposition'] != null
-          ? FhirString.fromJson(json['disposition'])
-          : null,
-      dispositionElement: json['_disposition'] != null
-          ? Element.fromJson(
-              json['_disposition'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['disposition'],
+              '_value': json['_disposition'],
+            })
           : null,
       created: json['created'] != null
-          ? FhirDateTime.fromJson(json['created'])
-          : null,
-      createdElement: json['_created'] != null
-          ? Element.fromJson(
-              json['_created'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['created'],
+              '_value': json['_created'],
+            })
           : null,
       organization: json['organization'] != null
           ? Reference.fromJson(
@@ -169,7 +143,8 @@ class EnrollmentResponse extends DomainResource {
     );
   }
 
-  /// Deserialize [EnrollmentResponse] from a [String] or [YamlMap] object
+  /// Deserialize [EnrollmentResponse] from a [String]
+  /// or [YamlMap] object
   factory EnrollmentResponse.fromYaml(dynamic yaml) => yaml is String
       ? EnrollmentResponse.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -178,11 +153,11 @@ class EnrollmentResponse extends DomainResource {
           ? EnrollmentResponse.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'EnrollmentResponse cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('EnrollmentResponse cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [EnrollmentResponse] that takes in a [String]
+  /// Factory constructor for [EnrollmentResponse]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory EnrollmentResponse.fromJsonString(String source) {
@@ -198,6 +173,15 @@ class EnrollmentResponse extends DomainResource {
   @override
   String get fhirType => 'EnrollmentResponse';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// The Response business identifier.
   final List<Identifier>? identifier;
@@ -205,9 +189,6 @@ class EnrollmentResponse extends DomainResource {
   /// [status]
   /// The status of the resource instance.
   final FinancialResourceStatusCodes? status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [request]
   /// Original request resource reference.
@@ -217,23 +198,14 @@ class EnrollmentResponse extends DomainResource {
   /// Processing status: error, complete.
   final RemittanceOutcome? outcome;
 
-  /// Extensions for [outcome]
-  final Element? outcomeElement;
-
   /// [disposition]
   /// A description of the status of the adjudication.
   final FhirString? disposition;
-
-  /// Extensions for [disposition]
-  final Element? dispositionElement;
 
   /// [created]
   /// The date when the enclosed suite of services were performed or
   /// completed.
   final FhirDateTime? created;
-
-  /// Extensions for [created]
-  final Element? createdElement;
 
   /// [organization]
   /// The Insurer who produced this adjudicated response.
@@ -255,9 +227,6 @@ class EnrollmentResponse extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -292,14 +261,8 @@ class EnrollmentResponse extends DomainResource {
     if (disposition?.value != null) {
       json['disposition'] = disposition!.toJson();
     }
-    if (dispositionElement != null) {
-      json['_disposition'] = dispositionElement!.toJson();
-    }
     if (created?.value != null) {
       json['created'] = created!.toJson();
-    }
-    if (createdElement != null) {
-      json['_created'] = createdElement!.toJson();
     }
     if (organization != null) {
       json['organization'] = organization!.toJson();
@@ -317,23 +280,17 @@ class EnrollmentResponse extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     FinancialResourceStatusCodes? status,
-    Element? statusElement,
     Reference? request,
     RemittanceOutcome? outcome,
-    Element? outcomeElement,
     FhirString? disposition,
-    Element? dispositionElement,
     FhirDateTime? created,
-    Element? createdElement,
     Reference? organization,
     Reference? requestProvider,
     Map<String, Object?>? userData,
@@ -347,23 +304,17 @@ class EnrollmentResponse extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       request: request ?? this.request,
       outcome: outcome ?? this.outcome,
-      outcomeElement: outcomeElement ?? this.outcomeElement,
       disposition: disposition ?? this.disposition,
-      dispositionElement: dispositionElement ?? this.dispositionElement,
       created: created ?? this.created,
-      createdElement: createdElement ?? this.createdElement,
       organization: organization ?? this.organization,
       requestProvider: requestProvider ?? this.requestProvider,
       userData: userData ?? this.userData,

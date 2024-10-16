@@ -11,16 +11,13 @@ class MarketingStatus extends BackboneType {
 
   MarketingStatus({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.country,
     this.jurisdiction,
     required this.status,
     this.dateRange,
     this.restoreDate,
-
-    /// Extensions for [restoreDate]
-    this.restoreDateElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -32,11 +29,15 @@ class MarketingStatus extends BackboneType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MarketingStatus.fromJson(Map<String, dynamic> json) {
     return MarketingStatus(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -45,7 +46,7 @@ class MarketingStatus extends BackboneType {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -70,17 +71,16 @@ class MarketingStatus extends BackboneType {
             )
           : null,
       restoreDate: json['restoreDate'] != null
-          ? FhirDateTime.fromJson(json['restoreDate'])
-          : null,
-      restoreDateElement: json['_restoreDate'] != null
-          ? Element.fromJson(
-              json['_restoreDate'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['restoreDate'],
+              '_value': json['_restoreDate'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [MarketingStatus] from a [String] or [YamlMap] object
+  /// Deserialize [MarketingStatus] from a [String]
+  /// or [YamlMap] object
   factory MarketingStatus.fromYaml(dynamic yaml) => yaml is String
       ? MarketingStatus.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -89,11 +89,11 @@ class MarketingStatus extends BackboneType {
           ? MarketingStatus.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'MarketingStatus cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('MarketingStatus cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [MarketingStatus] that takes in a [String]
+  /// Factory constructor for [MarketingStatus]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory MarketingStatus.fromJsonString(String source) {
@@ -108,6 +108,15 @@ class MarketingStatus extends BackboneType {
 
   @override
   String get fhirType => 'MarketingStatus';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [country]
   /// The country in which the marketing authorisation has been granted shall
@@ -148,9 +157,6 @@ class MarketingStatus extends BackboneType {
   /// refers to the release of the Medicinal Product into the distribution
   /// chain.
   final FhirDateTime? restoreDate;
-
-  /// Extensions for [restoreDate]
-  final Element? restoreDateElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -178,9 +184,6 @@ class MarketingStatus extends BackboneType {
     if (restoreDate?.value != null) {
       json['restoreDate'] = restoreDate!.toJson();
     }
-    if (restoreDateElement != null) {
-      json['_restoreDate'] = restoreDateElement!.toJson();
-    }
     return json;
   }
 
@@ -196,7 +199,6 @@ class MarketingStatus extends BackboneType {
     CodeableConcept? status,
     Period? dateRange,
     FhirDateTime? restoreDate,
-    Element? restoreDateElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -213,7 +215,6 @@ class MarketingStatus extends BackboneType {
       status: status ?? this.status,
       dateRange: dateRange ?? this.dateRange,
       restoreDate: restoreDate ?? this.restoreDate,
-      restoreDateElement: restoreDateElement ?? this.restoreDateElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

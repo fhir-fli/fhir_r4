@@ -14,44 +14,23 @@ class DetectedIssue extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.code,
     this.severity,
-
-    /// Extensions for [severity]
-    this.severityElement,
     this.patient,
     this.identifiedDateTime,
-
-    /// Extensions for [identifiedDateTime]
-    this.identifiedDateTimeElement,
     this.identifiedPeriod,
     this.author,
     this.implicated,
     this.evidence,
     this.detail,
-
-    /// Extensions for [detail]
-    this.detailElement,
     this.reference,
-
-    /// Extensions for [reference]
-    this.referenceElement,
     this.mitigation,
     super.userData,
     super.formatCommentsPre,
@@ -66,27 +45,27 @@ class DetectedIssue extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DetectedIssue.fromJson(Map<String, dynamic> json) {
     return DetectedIssue(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -96,7 +75,7 @@ class DetectedIssue extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -105,7 +84,7 @@ class DetectedIssue extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -114,7 +93,7 @@ class DetectedIssue extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -123,30 +102,26 @@ class DetectedIssue extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      status: ObservationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: ObservationStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       code: json['code'] != null
           ? CodeableConcept.fromJson(
               json['code'] as Map<String, dynamic>,
             )
           : null,
       severity: json['severity'] != null
-          ? DetectedIssueSeverity.fromJson(json['severity'])
-          : null,
-      severityElement: json['_severity'] != null
-          ? Element.fromJson(
-              json['_severity'] as Map<String, dynamic>,
-            )
+          ? DetectedIssueSeverity.fromJson({
+              'value': json['severity'],
+              '_value': json['_severity'],
+            })
           : null,
       patient: json['patient'] != null
           ? Reference.fromJson(
@@ -154,12 +129,10 @@ class DetectedIssue extends DomainResource {
             )
           : null,
       identifiedDateTime: json['identifiedDateTime'] != null
-          ? FhirDateTime.fromJson(json['identifiedDateTime'])
-          : null,
-      identifiedDateTimeElement: json['_identifiedDateTime'] != null
-          ? Element.fromJson(
-              json['_identifiedDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['identifiedDateTime'],
+              '_value': json['_identifiedDateTime'],
+            })
           : null,
       identifiedPeriod: json['identifiedPeriod'] != null
           ? Period.fromJson(
@@ -174,7 +147,7 @@ class DetectedIssue extends DomainResource {
       implicated: json['implicated'] != null
           ? (json['implicated'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -183,31 +156,28 @@ class DetectedIssue extends DomainResource {
       evidence: json['evidence'] != null
           ? (json['evidence'] as List<dynamic>)
               .map<DetectedIssueEvidence>(
-                (dynamic v) => DetectedIssueEvidence.fromJson(
+                (v) => DetectedIssueEvidence.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      detail:
-          json['detail'] != null ? FhirString.fromJson(json['detail']) : null,
-      detailElement: json['_detail'] != null
-          ? Element.fromJson(
-              json['_detail'] as Map<String, dynamic>,
-            )
+      detail: json['detail'] != null
+          ? FhirString.fromJson({
+              'value': json['detail'],
+              '_value': json['_detail'],
+            })
           : null,
       reference: json['reference'] != null
-          ? FhirUri.fromJson(json['reference'])
-          : null,
-      referenceElement: json['_reference'] != null
-          ? Element.fromJson(
-              json['_reference'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['reference'],
+              '_value': json['_reference'],
+            })
           : null,
       mitigation: json['mitigation'] != null
           ? (json['mitigation'] as List<dynamic>)
               .map<DetectedIssueMitigation>(
-                (dynamic v) => DetectedIssueMitigation.fromJson(
+                (v) => DetectedIssueMitigation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -216,7 +186,8 @@ class DetectedIssue extends DomainResource {
     );
   }
 
-  /// Deserialize [DetectedIssue] from a [String] or [YamlMap] object
+  /// Deserialize [DetectedIssue] from a [String]
+  /// or [YamlMap] object
   factory DetectedIssue.fromYaml(dynamic yaml) => yaml is String
       ? DetectedIssue.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -225,11 +196,11 @@ class DetectedIssue extends DomainResource {
           ? DetectedIssue.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'DetectedIssue cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('DetectedIssue cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DetectedIssue] that takes in a [String]
+  /// Factory constructor for [DetectedIssue]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DetectedIssue.fromJsonString(String source) {
@@ -245,6 +216,15 @@ class DetectedIssue extends DomainResource {
   @override
   String get fhirType => 'DetectedIssue';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Business identifier associated with the detected issue record.
   final List<Identifier>? identifier;
@@ -252,9 +232,6 @@ class DetectedIssue extends DomainResource {
   /// [status]
   /// Indicates the status of the detected issue.
   final ObservationStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [code]
   /// Identifies the general type of issue identified.
@@ -265,9 +242,6 @@ class DetectedIssue extends DomainResource {
   /// based on the potential impact on the patient.
   final DetectedIssueSeverity? severity;
 
-  /// Extensions for [severity]
-  final Element? severityElement;
-
   /// [patient]
   /// Indicates the patient whose record the detected issue is associated
   /// with.
@@ -276,9 +250,6 @@ class DetectedIssue extends DomainResource {
   /// [identifiedDateTime]
   /// The date or period when the detected issue was initially identified.
   final FhirDateTime? identifiedDateTime;
-
-  /// Extensions for [identifiedDateTime]
-  final Element? identifiedDateTimeElement;
 
   /// [identifiedPeriod]
   /// The date or period when the detected issue was initially identified.
@@ -305,16 +276,10 @@ class DetectedIssue extends DomainResource {
   /// A textual explanation of the detected issue.
   final FhirString? detail;
 
-  /// Extensions for [detail]
-  final Element? detailElement;
-
   /// [reference]
   /// The literature, knowledge-base or similar reference that describes the
   /// propensity for the detected issue identified.
   final FhirUri? reference;
-
-  /// Extensions for [reference]
-  final Element? referenceElement;
 
   /// [mitigation]
   /// Indicates an action that has been taken or is committed to reduce or
@@ -334,9 +299,6 @@ class DetectedIssue extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -372,9 +334,6 @@ class DetectedIssue extends DomainResource {
     if (identifiedDateTime?.value != null) {
       json['identifiedDateTime'] = identifiedDateTime!.toJson();
     }
-    if (identifiedDateTimeElement != null) {
-      json['_identifiedDateTime'] = identifiedDateTimeElement!.toJson();
-    }
     if (identifiedPeriod != null) {
       json['identifiedPeriod'] = identifiedPeriod!.toJson();
     }
@@ -392,14 +351,8 @@ class DetectedIssue extends DomainResource {
     if (detail?.value != null) {
       json['detail'] = detail!.toJson();
     }
-    if (detailElement != null) {
-      json['_detail'] = detailElement!.toJson();
-    }
     if (reference?.value != null) {
       json['reference'] = reference!.toJson();
-    }
-    if (referenceElement != null) {
-      json['_reference'] = referenceElement!.toJson();
     }
     if (mitigation != null && mitigation!.isNotEmpty) {
       json['mitigation'] =
@@ -415,30 +368,23 @@ class DetectedIssue extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     ObservationStatus? status,
-    Element? statusElement,
     CodeableConcept? code,
     DetectedIssueSeverity? severity,
-    Element? severityElement,
     Reference? patient,
     FhirDateTime? identifiedDateTime,
-    Element? identifiedDateTimeElement,
     Period? identifiedPeriod,
     Reference? author,
     List<Reference>? implicated,
     List<DetectedIssueEvidence>? evidence,
     FhirString? detail,
-    Element? detailElement,
     FhirUri? reference,
-    Element? referenceElement,
     List<DetectedIssueMitigation>? mitigation,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -451,31 +397,23 @@ class DetectedIssue extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       code: code ?? this.code,
       severity: severity ?? this.severity,
-      severityElement: severityElement ?? this.severityElement,
       patient: patient ?? this.patient,
       identifiedDateTime: identifiedDateTime ?? this.identifiedDateTime,
-      identifiedDateTimeElement:
-          identifiedDateTimeElement ?? this.identifiedDateTimeElement,
       identifiedPeriod: identifiedPeriod ?? this.identifiedPeriod,
       author: author ?? this.author,
       implicated: implicated ?? this.implicated,
       evidence: evidence ?? this.evidence,
       detail: detail ?? this.detail,
-      detailElement: detailElement ?? this.detailElement,
       reference: reference ?? this.reference,
-      referenceElement: referenceElement ?? this.referenceElement,
       mitigation: mitigation ?? this.mitigation,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -496,7 +434,7 @@ class DetectedIssueEvidence extends BackboneElement {
 
   DetectedIssueEvidence({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.code,
     this.detail,
@@ -511,11 +449,15 @@ class DetectedIssueEvidence extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DetectedIssueEvidence.fromJson(Map<String, dynamic> json) {
     return DetectedIssueEvidence(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -524,7 +466,7 @@ class DetectedIssueEvidence extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -533,7 +475,7 @@ class DetectedIssueEvidence extends BackboneElement {
       code: json['code'] != null
           ? (json['code'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -542,7 +484,7 @@ class DetectedIssueEvidence extends BackboneElement {
       detail: json['detail'] != null
           ? (json['detail'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -551,7 +493,8 @@ class DetectedIssueEvidence extends BackboneElement {
     );
   }
 
-  /// Deserialize [DetectedIssueEvidence] from a [String] or [YamlMap] object
+  /// Deserialize [DetectedIssueEvidence] from a [String]
+  /// or [YamlMap] object
   factory DetectedIssueEvidence.fromYaml(dynamic yaml) => yaml is String
       ? DetectedIssueEvidence.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -561,10 +504,11 @@ class DetectedIssueEvidence extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'DetectedIssueEvidence cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'DetectedIssueEvidence cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DetectedIssueEvidence] that takes in a [String]
+  /// Factory constructor for [DetectedIssueEvidence]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DetectedIssueEvidence.fromJsonString(String source) {
@@ -579,6 +523,15 @@ class DetectedIssueEvidence extends BackboneElement {
 
   @override
   String get fhirType => 'DetectedIssueEvidence';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [code]
   /// A manifestation that led to the recording of this detected issue.
@@ -653,13 +606,10 @@ class DetectedIssueMitigation extends BackboneElement {
 
   DetectedIssueMitigation({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.action,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.author,
     super.userData,
     super.formatCommentsPre,
@@ -672,11 +622,15 @@ class DetectedIssueMitigation extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DetectedIssueMitigation.fromJson(Map<String, dynamic> json) {
     return DetectedIssueMitigation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -685,7 +639,7 @@ class DetectedIssueMitigation extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -694,11 +648,11 @@ class DetectedIssueMitigation extends BackboneElement {
       action: CodeableConcept.fromJson(
         json['action'] as Map<String, dynamic>,
       ),
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       author: json['author'] != null
           ? Reference.fromJson(
@@ -708,7 +662,8 @@ class DetectedIssueMitigation extends BackboneElement {
     );
   }
 
-  /// Deserialize [DetectedIssueMitigation] from a [String] or [YamlMap] object
+  /// Deserialize [DetectedIssueMitigation] from a [String]
+  /// or [YamlMap] object
   factory DetectedIssueMitigation.fromYaml(dynamic yaml) => yaml is String
       ? DetectedIssueMitigation.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -718,10 +673,11 @@ class DetectedIssueMitigation extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'DetectedIssueMitigation cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'DetectedIssueMitigation cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [DetectedIssueMitigation] that takes in a [String]
+  /// Factory constructor for [DetectedIssueMitigation]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory DetectedIssueMitigation.fromJsonString(String source) {
@@ -737,6 +693,15 @@ class DetectedIssueMitigation extends BackboneElement {
   @override
   String get fhirType => 'DetectedIssueMitigation';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [action]
   /// Describes the action that was taken or the observation that was made
   /// that reduces/eliminates the risk associated with the identified issue.
@@ -745,9 +710,6 @@ class DetectedIssueMitigation extends BackboneElement {
   /// [date]
   /// Indicates when the mitigating action was documented.
   final FhirDateTime? date;
-
-  /// Extensions for [date]
-  final Element? dateElement;
 
   /// [author]
   /// Identifies the practitioner who determined the mitigation and takes
@@ -771,9 +733,6 @@ class DetectedIssueMitigation extends BackboneElement {
     if (date?.value != null) {
       json['date'] = date!.toJson();
     }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (author != null) {
       json['author'] = author!.toJson();
     }
@@ -789,7 +748,6 @@ class DetectedIssueMitigation extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     CodeableConcept? action,
     FhirDateTime? date,
-    Element? dateElement,
     Reference? author,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -804,7 +762,6 @@ class DetectedIssueMitigation extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       action: action ?? this.action,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       author: author ?? this.author,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

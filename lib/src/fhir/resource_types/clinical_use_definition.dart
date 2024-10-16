@@ -13,22 +13,13 @@ class ClinicalUseDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.category,
     this.subject,
     this.status,
@@ -51,27 +42,27 @@ class ClinicalUseDefinition extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinition.fromJson(Map<String, dynamic> json) {
     return ClinicalUseDefinition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -81,7 +72,7 @@ class ClinicalUseDefinition extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -90,7 +81,7 @@ class ClinicalUseDefinition extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -99,7 +90,7 @@ class ClinicalUseDefinition extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -108,22 +99,20 @@ class ClinicalUseDefinition extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      type: ClinicalUseDefinitionType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
+      type: ClinicalUseDefinitionType.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -132,7 +121,7 @@ class ClinicalUseDefinition extends DomainResource {
       subject: json['subject'] != null
           ? (json['subject'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -161,7 +150,7 @@ class ClinicalUseDefinition extends DomainResource {
       population: json['population'] != null
           ? (json['population'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -180,7 +169,8 @@ class ClinicalUseDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [ClinicalUseDefinition] from a [String] or [YamlMap] object
+  /// Deserialize [ClinicalUseDefinition] from a [String]
+  /// or [YamlMap] object
   factory ClinicalUseDefinition.fromYaml(dynamic yaml) => yaml is String
       ? ClinicalUseDefinition.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -190,10 +180,11 @@ class ClinicalUseDefinition extends DomainResource {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ClinicalUseDefinition cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ClinicalUseDefinition cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClinicalUseDefinition] that takes in a [String]
+  /// Factory constructor for [ClinicalUseDefinition]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClinicalUseDefinition.fromJsonString(String source) {
@@ -209,6 +200,15 @@ class ClinicalUseDefinition extends DomainResource {
   @override
   String get fhirType => 'ClinicalUseDefinition';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Business identifier for this issue.
   final List<Identifier>? identifier;
@@ -217,9 +217,6 @@ class ClinicalUseDefinition extends DomainResource {
   /// indication | contraindication | interaction | undesirable-effect |
   /// warning.
   final ClinicalUseDefinitionType type;
-
-  /// Extensions for [type]
-  final Element? typeElement;
 
   /// [category]
   /// A categorisation of the issue, primarily for dividing warnings into
@@ -274,9 +271,6 @@ class ClinicalUseDefinition extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -339,16 +333,13 @@ class ClinicalUseDefinition extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     ClinicalUseDefinitionType? type,
-    Element? typeElement,
     List<CodeableConcept>? category,
     List<Reference>? subject,
     CodeableConcept? status,
@@ -369,16 +360,13 @@ class ClinicalUseDefinition extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       category: category ?? this.category,
       subject: subject ?? this.subject,
       status: status ?? this.status,
@@ -405,7 +393,7 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
 
   ClinicalUseDefinitionContraindication({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.diseaseSymptomProcedure,
     this.diseaseStatus,
@@ -424,11 +412,15 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
   factory ClinicalUseDefinitionContraindication.fromJson(
       Map<String, dynamic> json) {
     return ClinicalUseDefinitionContraindication(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -437,7 +429,7 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -456,7 +448,7 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
       comorbidity: json['comorbidity'] != null
           ? (json['comorbidity'] as List<dynamic>)
               .map<CodeableReference>(
-                (dynamic v) => CodeableReference.fromJson(
+                (v) => CodeableReference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -465,7 +457,7 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
       indication: json['indication'] != null
           ? (json['indication'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -474,7 +466,7 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
       otherTherapy: json['otherTherapy'] != null
           ? (json['otherTherapy'] as List<dynamic>)
               .map<ClinicalUseDefinitionOtherTherapy>(
-                (dynamic v) => ClinicalUseDefinitionOtherTherapy.fromJson(
+                (v) => ClinicalUseDefinitionOtherTherapy.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -483,7 +475,8 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClinicalUseDefinitionContraindication] from a [String] or [YamlMap] object
+  /// Deserialize [ClinicalUseDefinitionContraindication] from a [String]
+  /// or [YamlMap] object
   factory ClinicalUseDefinitionContraindication.fromYaml(dynamic yaml) => yaml
           is String
       ? ClinicalUseDefinitionContraindication.fromJson(
@@ -494,10 +487,11 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ClinicalUseDefinitionContraindication cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ClinicalUseDefinitionContraindication cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClinicalUseDefinitionContraindication] that takes in a [String]
+  /// Factory constructor for [ClinicalUseDefinitionContraindication]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClinicalUseDefinitionContraindication.fromJsonString(String source) {
@@ -512,6 +506,15 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalUseDefinitionContraindication';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [diseaseSymptomProcedure]
   /// The situation that is being documented as contraindicating against this
@@ -618,7 +621,7 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
 
   ClinicalUseDefinitionOtherTherapy({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.relationshipType,
     required this.therapy,
@@ -634,11 +637,15 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
   factory ClinicalUseDefinitionOtherTherapy.fromJson(
       Map<String, dynamic> json) {
     return ClinicalUseDefinitionOtherTherapy(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -647,7 +654,7 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -662,7 +669,8 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClinicalUseDefinitionOtherTherapy] from a [String] or [YamlMap] object
+  /// Deserialize [ClinicalUseDefinitionOtherTherapy] from a [String]
+  /// or [YamlMap] object
   factory ClinicalUseDefinitionOtherTherapy.fromYaml(dynamic yaml) => yaml
           is String
       ? ClinicalUseDefinitionOtherTherapy.fromJson(
@@ -673,10 +681,11 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ClinicalUseDefinitionOtherTherapy cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ClinicalUseDefinitionOtherTherapy cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClinicalUseDefinitionOtherTherapy] that takes in a [String]
+  /// Factory constructor for [ClinicalUseDefinitionOtherTherapy]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClinicalUseDefinitionOtherTherapy.fromJsonString(String source) {
@@ -691,6 +700,15 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalUseDefinitionOtherTherapy';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [relationshipType]
   /// The type of relationship between the medicinal product indication or
@@ -759,7 +777,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
 
   ClinicalUseDefinitionIndication({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.diseaseSymptomProcedure,
     this.diseaseStatus,
@@ -767,11 +785,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     this.intendedEffect,
     this.durationRange,
     this.durationString,
-
-    /// Extensions for [durationString]
-    this.durationStringElement,
     this.undesirableEffect,
-    this.otherTherapy,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -783,11 +797,15 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionIndication.fromJson(Map<String, dynamic> json) {
     return ClinicalUseDefinitionIndication(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -796,7 +814,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -815,7 +833,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
       comorbidity: json['comorbidity'] != null
           ? (json['comorbidity'] as List<dynamic>)
               .map<CodeableReference>(
-                (dynamic v) => CodeableReference.fromJson(
+                (v) => CodeableReference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -832,26 +850,15 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
             )
           : null,
       durationString: json['durationString'] != null
-          ? FhirString.fromJson(json['durationString'])
-          : null,
-      durationStringElement: json['_durationString'] != null
-          ? Element.fromJson(
-              json['_durationString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['durationString'],
+              '_value': json['_durationString'],
+            })
           : null,
       undesirableEffect: json['undesirableEffect'] != null
           ? (json['undesirableEffect'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      otherTherapy: json['otherTherapy'] != null
-          ? (json['otherTherapy'] as List<dynamic>)
-              .map<ClinicalUseDefinitionOtherTherapy>(
-                (dynamic v) => ClinicalUseDefinitionOtherTherapy.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -860,7 +867,8 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClinicalUseDefinitionIndication] from a [String] or [YamlMap] object
+  /// Deserialize [ClinicalUseDefinitionIndication] from a [String]
+  /// or [YamlMap] object
   factory ClinicalUseDefinitionIndication.fromYaml(dynamic yaml) => yaml
           is String
       ? ClinicalUseDefinitionIndication.fromJson(
@@ -871,10 +879,11 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ClinicalUseDefinitionIndication cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ClinicalUseDefinitionIndication cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClinicalUseDefinitionIndication] that takes in a [String]
+  /// Factory constructor for [ClinicalUseDefinitionIndication]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClinicalUseDefinitionIndication.fromJsonString(String source) {
@@ -889,6 +898,15 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalUseDefinitionIndication';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [diseaseSymptomProcedure]
   /// The situation that is being documented as an indicaton for this item.
@@ -922,18 +940,10 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
   /// (from 7 days until less than 6 months).
   final FhirString? durationString;
 
-  /// Extensions for [durationString]
-  final Element? durationStringElement;
-
   /// [undesirableEffect]
   /// An unwanted side effect or negative outcome that may happen if you use
   /// the drug (or other subject of this resource) for this indication.
   final List<Reference>? undesirableEffect;
-
-  /// [otherTherapy]
-  /// Information about the use of the medicinal product in relation to other
-  /// therapies described as part of the indication.
-  final List<ClinicalUseDefinitionOtherTherapy>? otherTherapy;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -967,17 +977,9 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     if (durationString?.value != null) {
       json['durationString'] = durationString!.toJson();
     }
-    if (durationStringElement != null) {
-      json['_durationString'] = durationStringElement!.toJson();
-    }
     if (undesirableEffect != null && undesirableEffect!.isNotEmpty) {
       json['undesirableEffect'] =
           undesirableEffect!.map((Reference v) => v.toJson()).toList();
-    }
-    if (otherTherapy != null && otherTherapy!.isNotEmpty) {
-      json['otherTherapy'] = otherTherapy!
-          .map((ClinicalUseDefinitionOtherTherapy v) => v.toJson())
-          .toList();
     }
     return json;
   }
@@ -995,9 +997,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
     CodeableReference? intendedEffect,
     Range? durationRange,
     FhirString? durationString,
-    Element? durationStringElement,
     List<Reference>? undesirableEffect,
-    List<ClinicalUseDefinitionOtherTherapy>? otherTherapy,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1016,10 +1016,7 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
       intendedEffect: intendedEffect ?? this.intendedEffect,
       durationRange: durationRange ?? this.durationRange,
       durationString: durationString ?? this.durationString,
-      durationStringElement:
-          durationStringElement ?? this.durationStringElement,
       undesirableEffect: undesirableEffect ?? this.undesirableEffect,
-      otherTherapy: otherTherapy ?? this.otherTherapy,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1037,7 +1034,7 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
 
   ClinicalUseDefinitionInteraction({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.interactant,
     this.type,
@@ -1055,11 +1052,15 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionInteraction.fromJson(Map<String, dynamic> json) {
     return ClinicalUseDefinitionInteraction(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1068,7 +1069,7 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1077,7 +1078,7 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
       interactant: json['interactant'] != null
           ? (json['interactant'] as List<dynamic>)
               .map<ClinicalUseDefinitionInteractant>(
-                (dynamic v) => ClinicalUseDefinitionInteractant.fromJson(
+                (v) => ClinicalUseDefinitionInteractant.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1101,7 +1102,7 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
       management: json['management'] != null
           ? (json['management'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1110,7 +1111,8 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClinicalUseDefinitionInteraction] from a [String] or [YamlMap] object
+  /// Deserialize [ClinicalUseDefinitionInteraction] from a [String]
+  /// or [YamlMap] object
   factory ClinicalUseDefinitionInteraction.fromYaml(dynamic yaml) => yaml
           is String
       ? ClinicalUseDefinitionInteraction.fromJson(
@@ -1121,10 +1123,11 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ClinicalUseDefinitionInteraction cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ClinicalUseDefinitionInteraction cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClinicalUseDefinitionInteraction] that takes in a [String]
+  /// Factory constructor for [ClinicalUseDefinitionInteraction]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClinicalUseDefinitionInteraction.fromJsonString(String source) {
@@ -1139,6 +1142,15 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalUseDefinitionInteraction';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [interactant]
   /// The specific medication, food, substance or laboratory test that
@@ -1243,7 +1255,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
 
   ClinicalUseDefinitionInteractant({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.itemReference,
     this.itemCodeableConcept,
@@ -1258,11 +1270,15 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionInteractant.fromJson(Map<String, dynamic> json) {
     return ClinicalUseDefinitionInteractant(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1271,7 +1287,7 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1290,7 +1306,8 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClinicalUseDefinitionInteractant] from a [String] or [YamlMap] object
+  /// Deserialize [ClinicalUseDefinitionInteractant] from a [String]
+  /// or [YamlMap] object
   factory ClinicalUseDefinitionInteractant.fromYaml(dynamic yaml) => yaml
           is String
       ? ClinicalUseDefinitionInteractant.fromJson(
@@ -1301,10 +1318,11 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ClinicalUseDefinitionInteractant cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ClinicalUseDefinitionInteractant cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClinicalUseDefinitionInteractant] that takes in a [String]
+  /// Factory constructor for [ClinicalUseDefinitionInteractant]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClinicalUseDefinitionInteractant.fromJsonString(String source) {
@@ -1319,6 +1337,15 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalUseDefinitionInteractant';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [itemReference]
   /// The specific medication, food or laboratory test that interacts.
@@ -1390,7 +1417,7 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
 
   ClinicalUseDefinitionUndesirableEffect({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.symptomConditionEffect,
     this.classification,
@@ -1407,11 +1434,15 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
   factory ClinicalUseDefinitionUndesirableEffect.fromJson(
       Map<String, dynamic> json) {
     return ClinicalUseDefinitionUndesirableEffect(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1420,7 +1451,7 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1444,7 +1475,8 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClinicalUseDefinitionUndesirableEffect] from a [String] or [YamlMap] object
+  /// Deserialize [ClinicalUseDefinitionUndesirableEffect] from a [String]
+  /// or [YamlMap] object
   factory ClinicalUseDefinitionUndesirableEffect.fromYaml(dynamic yaml) => yaml
           is String
       ? ClinicalUseDefinitionUndesirableEffect.fromJson(
@@ -1455,10 +1487,11 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ClinicalUseDefinitionUndesirableEffect cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ClinicalUseDefinitionUndesirableEffect cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClinicalUseDefinitionUndesirableEffect] that takes in a [String]
+  /// Factory constructor for [ClinicalUseDefinitionUndesirableEffect]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClinicalUseDefinitionUndesirableEffect.fromJsonString(String source) {
@@ -1473,6 +1506,15 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
 
   @override
   String get fhirType => 'ClinicalUseDefinitionUndesirableEffect';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [symptomConditionEffect]
   /// The situation in which the undesirable effect may manifest.
@@ -1557,12 +1599,9 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
 
   ClinicalUseDefinitionWarning({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.code,
     super.userData,
     super.formatCommentsPre,
@@ -1575,11 +1614,15 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionWarning.fromJson(Map<String, dynamic> json) {
     return ClinicalUseDefinitionWarning(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1588,19 +1631,17 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       code: json['code'] != null
           ? CodeableConcept.fromJson(
@@ -1610,7 +1651,8 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
     );
   }
 
-  /// Deserialize [ClinicalUseDefinitionWarning] from a [String] or [YamlMap] object
+  /// Deserialize [ClinicalUseDefinitionWarning] from a [String]
+  /// or [YamlMap] object
   factory ClinicalUseDefinitionWarning.fromYaml(dynamic yaml) => yaml is String
       ? ClinicalUseDefinitionWarning.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1620,10 +1662,11 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ClinicalUseDefinitionWarning cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ClinicalUseDefinitionWarning cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ClinicalUseDefinitionWarning] that takes in a [String]
+  /// Factory constructor for [ClinicalUseDefinitionWarning]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ClinicalUseDefinitionWarning.fromJsonString(String source) {
@@ -1639,12 +1682,18 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
   @override
   String get fhirType => 'ClinicalUseDefinitionWarning';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [description]
   /// A textual definition of this warning, with formatting.
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [code]
   /// A coded or unformatted textual definition of this warning.
@@ -1666,9 +1715,6 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (code != null) {
       json['code'] = code!.toJson();
     }
@@ -1683,7 +1729,6 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirMarkdown? description,
-    Element? descriptionElement,
     CodeableConcept? code,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -1697,7 +1742,6 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       code: code ?? this.code,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

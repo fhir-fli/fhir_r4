@@ -1,190 +1,253 @@
 import 'dart:convert';
 import 'package:fhir_r4/fhir_r4.dart';
+import 'package:yaml/yaml.dart';
 
-/// Abstract class representing a FHIR number type, which could either be an
-/// integer or a decimal. This class extends [PrimitiveType] and implements
-/// [Comparable].
-abstract class FhirNumber extends PrimitiveType<num>
+/// Abstract class representing a FHIR number type, which could be an
+/// integer or a decimal. Extends [PrimitiveType] and implements [Comparable].
+abstract class FhirNumber extends PrimitiveType<num?>
     implements Comparable<FhirNumber> {
-  /// Constructor that accepts a [num] value and optionally an [element].
-  FhirNumber(this.valueNumber, {super.element});
+  /// Constructor accepting a [num] value and an optional [element].
+  FhirNumber(super.value, [super.element]);
 
-  /// Factory constructor that returns either a [FhirInteger] or [FhirDecimal]
-  /// based on the type of the [value].
-  factory FhirNumber.fromNum(num value) {
-    if (value is int) {
-      return FhirInteger(value);
+  /// Factory to create either a [FhirInteger] or [FhirDecimal] based on input.
+  factory FhirNumber.fromNum(num? value, [Element? element]) {
+    if (value == null) {
+      throw const FormatException(
+        'FhirNumber cannot be created with a null value',
+      );
     }
-    return FhirDecimal(value);
+    return value is int
+        ? FhirInteger(value, element)
+        : FhirDecimal(value, element);
   }
 
-  /// The FHIR type, which is always 'number' for this abstract class.
+  /// Factory constructor to create a [FhirNumber] from JSON input.
+  factory FhirNumber.fromJson(Map<String, dynamic> json) {
+    final value = json['value'] as num?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
+
+    if (value == null) {
+      throw const FormatException(
+        'Invalid input for FhirNumber: value is null',
+      );
+    }
+    return FhirNumber.fromNum(value, element);
+  }
+
+  /// Factory constructor to create a [FhirNumber] from YAML input.
+  static FhirNumber fromYaml(dynamic yaml) => yaml is String
+      ? FhirNumber.fromJson(
+          jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, dynamic>,
+        )
+      : yaml is YamlMap
+          ? FhirNumber.fromJson(
+              jsonDecode(jsonEncode(yaml)) as Map<String, dynamic>,
+            )
+          : throw ArgumentError('Input must be a YAML string or YAML map.');
+
+  /// Returns the FHIR type: 'number'.
   @override
   String get fhirType => 'number';
 
-  /// The [num] value stored in this [FhirNumber].
-  final num valueNumber;
-
-  /// The getter for the [valueNumber] stored in this [FhirNumber].
+  /// Converts this instance to JSON with standardized keys.
   @override
-  num get value => valueNumber;
+  Map<String, dynamic> toJson() => {
+        'value': value,
+        if (element != null) '_value': element!.toJson(),
+      };
 
-  /// Converts the [FhirNumber] to a string.
+  /// Converts a list of JSON values to a list of [FhirNumber] instances.
+  static List<FhirNumber> fromJsonList(
+    List<dynamic> values,
+    List<dynamic>? elements,
+  ) {
+    if (elements != null && elements.length != values.length) {
+      throw const FormatException(
+        'Values and elements must have the same length.',
+      );
+    }
+
+    return List.generate(values.length, (i) {
+      final value = values[i] as num?;
+      final element = elements?[i] != null
+          ? Element.fromJson(elements![i] as Map<String, dynamic>)
+          : null;
+      return FhirNumber.fromNum(value, element);
+    });
+  }
+
+  /// Converts a list of [FhirNumber] instances to a JSON map.
+  static Map<String, dynamic> toJsonList(List<FhirNumber> numbers) => {
+        'value': numbers.map((n) => n.value).toList(),
+        '_value': numbers.map((n) => n.element?.toJson()).toList(),
+      };
+
+  /// String representation of the instance.
   @override
-  String toString() => valueNumber.toString();
+  String toString() => value?.toString() ?? 'null';
 
-  /// Converts the [FhirNumber] to JSON format.
-  @override
-  num toJson() => valueNumber;
-
-  /// Converts the [FhirNumber] to YAML format.
-  @override
-  num toYaml() => valueNumber;
-
-  /// Converts the [FhirNumber] to a JSON string.
-  @override
-  String toJsonString() => jsonEncode(toJson());
-
-  /// Hash code for the [FhirNumber], based on the [value].
+  /// Overrides equality operator.
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  int get hashCode => value.hashCode;
-
-  /// Compares equality between this [FhirNumber] and [other].
-  @override
-  // ignore: avoid_equals_and_hash_code_on_mutable_classes
-  bool operator ==(Object other) => equals(other);
-
-  /// Checks if this [FhirNumber] is equal to [other].
-  @override
-  bool equals(Object other) =>
+  bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is FhirNumber && other.valueNumber == valueNumber) ||
-      (other is num && other == valueNumber);
+      (other is FhirNumber && other.value == value) ||
+      (other is num && other == value);
 
-  /// Compares this [FhirNumber] to [other] for ordering.
+  /// Hash code for use in hash-based collections.
+  @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  int get hashCode => Object.hash(value, element);
+
+  /// Compares this instance with another [FhirNumber].
   @override
   int compareTo(FhirNumber other) {
-    return valueNumber.compareTo(other.valueNumber);
+    if (value == null || other.value == null) return 0;
+    return value!.compareTo(other.value!);
   }
 
-  /// Greater-than comparison between this [FhirNumber] and [other].
-  bool operator >(Object other) {
-    if (other is FhirNumber) {
-      return valueNumber > other.valueNumber;
-    } else if (other is num) {
-      return valueNumber > other;
-    }
-    throw InvalidTypes<FhirNumber>('Comparison with invalid types');
+  /// Arithmetic Operators
+
+  /// Addition operator.
+  FhirNumber? operator +(Object other) =>
+      _operateOrNull(other, (a, b) => a + b);
+
+  /// Subtraction operator.
+  FhirNumber? operator -(Object other) =>
+      _operateOrNull(other, (a, b) => a - b);
+
+  /// Multiplication operator.
+  FhirNumber? operator *(Object other) =>
+      _operateOrNull(other, (a, b) => a * b);
+
+  /// Division operator.
+  FhirNumber? operator /(Object other) =>
+      _operateOrNull(other, (a, b) => a / b);
+
+  /// Modulo operator.
+  FhirNumber? operator %(Object other) =>
+      _operateOrNull(other, (a, b) => a % b);
+
+  /// Truncating division operator.
+  FhirNumber? operator ~/(Object other) =>
+      _operateOrNull(other, (a, b) => a ~/ b);
+
+  /// Unary minus operator.
+  FhirNumber? operator -() =>
+      value == null ? null : FhirNumber.fromNum(-value!);
+
+  /// Comparison Operators
+
+  /// Equality operator.
+  bool operator >(Object other) => _compareOrFalse(other, (a, b) => a > b);
+
+  /// Greater than or equal to operator.
+  bool operator >=(Object other) => _compareOrFalse(other, (a, b) => a >= b);
+
+  /// Less than operator.
+  bool operator <(Object other) => _compareOrFalse(other, (a, b) => a < b);
+
+  /// Less than or equal to operator.
+  bool operator <=(Object other) => _compareOrFalse(other, (a, b) => a <= b);
+
+  // Helper Methods
+
+  bool _bothNonNull(Object other) =>
+      value != null && _extractValue(other) != null;
+
+  FhirNumber? _operateOrNull(Object other, num Function(num, num) operation) {
+    if (!_bothNonNull(other)) return null;
+    final otherValue = _extractValue(other)!;
+    return FhirNumber.fromNum(operation(value!, otherValue));
   }
 
-  /// Greater-than or equal-to comparison between this [FhirNumber] and [other].
-  bool operator >=(Object other) => this == other || this > other;
-
-  /// Less-than comparison between this [FhirNumber] and [other].
-  bool operator <(Object other) {
-    if (other is FhirNumber) {
-      return valueNumber < other.valueNumber;
-    } else if (other is num) {
-      return valueNumber < other;
-    }
-    throw InvalidTypes<FhirNumber>('Comparison with invalid types');
+  bool _compareOrFalse(Object other, bool Function(num, num) comparison) {
+    return _bothNonNull(other) && comparison(value!, _extractValue(other)!);
   }
 
-  /// Less-than or equal-to comparison between this [FhirNumber] and [other].
-  bool operator <=(Object other) => this == other || this < other;
-
-  /// Addition of two [FhirNumber] values or [num] values.
-  FhirNumber operator +(Object other) {
-    final otherValue = other is FhirNumber ? other.valueNumber : other as num;
-    return FhirNumber.fromNum(valueNumber + otherValue);
+  num? _extractValue(Object other) {
+    if (other is FhirNumber) return other.value;
+    if (other is num) return other;
+    throw ArgumentError('Expected FhirNumber or num, but got: $other.');
   }
 
-  /// Subtraction of two [FhirNumber] values or [num] values.
-  FhirNumber operator -(Object other) {
-    final otherValue = other is FhirNumber ? other.valueNumber : other as num;
-    return FhirNumber.fromNum(valueNumber - otherValue);
-  }
+  // Additional Methods
 
-  /// Multiplication of two [FhirNumber] values or [num] values.
-  FhirNumber operator *(Object other) {
-    final otherValue = other is FhirNumber ? other.valueNumber : other as num;
-    return FhirNumber.fromNum(valueNumber * otherValue);
-  }
+  /// Returns the absolute value of the number.
+  num? abs() => value?.abs();
 
-  /// Division of two [FhirNumber] values or [num] values.
-  FhirNumber operator /(Object other) {
-    final otherValue = other is FhirNumber ? other.valueNumber : other as num;
-    return FhirNumber.fromNum(valueNumber / otherValue);
-  }
+  /// Returns the sign of the number.
+  num? get sign => value?.sign;
 
-  /// Modulo operation between two [FhirNumber] values or [num] values.
-  FhirNumber operator %(Object other) {
-    final otherValue = other is FhirNumber ? other.valueNumber : other as num;
-    return FhirNumber.fromNum(valueNumber % otherValue);
-  }
+  /// Returns the remainder of the division of this number by [other].
+  num? clamp(num lowerLimit, num upperLimit) =>
+      value?.clamp(lowerLimit, upperLimit);
 
-  /// Integer division between two [FhirNumber] values or [num] values.
-  FhirNumber operator ~/(Object other) {
-    final otherValue = other is FhirNumber ? other.valueNumber : other as num;
-    return FhirNumber.fromNum(valueNumber ~/ otherValue);
-  }
+  /// Returns the integer value closest to this number.
+  int? round() => value?.round();
 
-  /// Unary negation for a [FhirNumber] value.
-  FhirNumber operator -() {
-    return FhirNumber.fromNum(-valueNumber);
-  }
+  /// Returns the greatest integer no greater than this number.
+  int? floor() => value?.floor();
 
-  /// Returns the absolute value of this [FhirNumber].
-  num abs() => valueNumber.abs();
+  /// Returns the smallest integer no smaller than this number.
+  int? ceil() => value?.ceil();
 
-  /// Returns the sign of this [FhirNumber].
-  num get sign => valueNumber.sign;
+  /// Returns the integer obtained by discarding any fractional digits.
+  int? truncate() => value?.truncate();
 
-  /// Clamps this [FhirNumber] to a range between [lowerLimit] and [upperLimit].
-  num clamp(num lowerLimit, num upperLimit) {
-    return valueNumber.clamp(lowerLimit, upperLimit);
-  }
+  /// Returns the number rounded to the nearest integer.
+  double? roundToDouble() => value?.roundToDouble();
 
-  /// Rounds the [FhirNumber] to the nearest integer.
-  int round() => valueNumber.round();
+  /// Returns the greatest double value no greater than this number.
+  double? floorToDouble() => value?.floorToDouble();
 
-  /// Returns the largest integer less than or equal to the [FhirNumber].
-  int floor() => valueNumber.floor();
+  /// Returns the smallest double value no smaller than this number.
+  double? ceilToDouble() => value?.ceilToDouble();
 
-  /// Returns the smallest integer greater than or equal to the [FhirNumber].
-  int ceil() => valueNumber.ceil();
+  /// Returns the double obtained by discarding any fractional digits.
+  double? truncateToDouble() => value?.truncateToDouble();
 
-  /// Truncates the [FhirNumber] to the nearest integer.
-  int truncate() => valueNumber.truncate();
+  /// Returns the number raised to the power of [exponent].
+  String? toStringAsFixed(int fractionDigits) =>
+      value?.toStringAsFixed(fractionDigits);
 
-  /// Returns the [FhirNumber] rounded to a double.
-  double roundToDouble() => valueNumber.roundToDouble();
+  /// Returns the number in exponential notation.
+  String? toStringAsExponential([int? fractionDigits]) =>
+      value?.toStringAsExponential(fractionDigits);
 
-  /// Returns the [FhirNumber] floored to a double.
-  double floorToDouble() => valueNumber.floorToDouble();
+  /// Returns the number in decimal notation.
+  String? toStringAsPrecision(int precision) =>
+      value?.toStringAsPrecision(precision);
 
-  /// Returns the [FhirNumber] ceiled to a double.
-  double ceilToDouble() => valueNumber.ceilToDouble();
-
-  /// Returns the [FhirNumber] truncated to a double.
-  double truncateToDouble() => valueNumber.truncateToDouble();
-
-  /// Converts the [FhirNumber] to a string with [fractionDigits].
-  String toStringAsFixed(int fractionDigits) =>
-      valueNumber.toStringAsFixed(fractionDigits);
-
-  /// Converts the [FhirNumber] to a string in exponential notation.
-  String toStringAsExponential([int? fractionDigits]) =>
-      valueNumber.toStringAsExponential(fractionDigits);
-
-  /// Converts the [FhirNumber] to a string with [precision] digits.
-  String toStringAsPrecision(int precision) =>
-      valueNumber.toStringAsPrecision(precision);
-
-  /// Sets an element value to the [FhirNumber] object.
   @override
-  FhirNumber setElement(String name, dynamic elementValue) {
-    throw UnimplementedError();
+  FhirNumber clone() => FhirNumber.fromNum(value, element?.clone() as Element?);
+
+  @override
+  FhirNumber setElement(String name, dynamic elementValue) =>
+      FhirNumber.fromNum(value, element?.setProperty(name, elementValue));
+
+  @override
+  FhirNumber copyWith({
+    num? newValue,
+    Element? element,
+    Map<String, Object?>? userData,
+    List<String>? formatCommentsPre,
+    List<String>? formatCommentsPost,
+    List<dynamic>? annotations,
+    List<FhirBase>? children,
+    Map<String, FhirBase>? namedChildren,
+  }) {
+    return FhirNumber.fromNum(
+      newValue ?? value,
+      element?.copyWith(
+        userData: userData,
+        formatCommentsPre: formatCommentsPre,
+        formatCommentsPost: formatCommentsPost,
+        annotations: annotations,
+        children: children,
+        namedChildren: namedChildren,
+      ),
+    );
   }
 }

@@ -12,73 +12,28 @@ class SubscriptionTopic extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.identifier,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     this.derivedFrom,
-
-    /// Extensions for [derivedFrom]
-    this.derivedFromElement,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.experimental,
-
-    /// Extensions for [experimental]
-    this.experimentalElement,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.publisher,
-
-    /// Extensions for [publisher]
-    this.publisherElement,
     this.contact,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-
-    /// Extensions for [purpose]
-    this.purposeElement,
     this.copyright,
-
-    /// Extensions for [copyright]
-    this.copyrightElement,
     this.approvalDate,
-
-    /// Extensions for [approvalDate]
-    this.approvalDateElement,
     this.lastReviewDate,
-
-    /// Extensions for [lastReviewDate]
-    this.lastReviewDateElement,
     this.effectivePeriod,
     this.resourceTrigger,
     this.eventTrigger,
@@ -97,27 +52,27 @@ class SubscriptionTopic extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopic.fromJson(Map<String, dynamic> json) {
     return SubscriptionTopic(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -127,7 +82,7 @@ class SubscriptionTopic extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -136,7 +91,7 @@ class SubscriptionTopic extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -145,103 +100,82 @@ class SubscriptionTopic extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      url: FhirUri.fromJson(json['url']),
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
-          : null,
+      url: FhirUri.fromJson({
+        'value': json['url'],
+        '_value': json['_url'],
+      }),
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
-      derivedFrom: json['derivedFrom'] != null
-          ? (json['derivedFrom'] as List<dynamic>)
-              .map<FhirCanonical>(
-                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      derivedFromElement: json['_derivedFrom'] != null
-          ? (json['_derivedFrom'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      derivedFrom: parsePrimitiveList<FhirCanonical>(
+          json['derivedFrom'] as List<dynamic>?,
+          json['_derivedFrom'] as List<dynamic>?,
+          fromJson: FhirCanonical.fromJson),
+      status: PublicationStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson(json['experimental'])
+          ? FhirBoolean.fromJson({
+              'value': json['experimental'],
+              '_value': json['_experimental'],
+            })
           : null,
-      experimentalElement: json['_experimental'] != null
-          ? Element.fromJson(
-              json['_experimental'] as Map<String, dynamic>,
-            )
-          : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       publisher: json['publisher'] != null
-          ? FhirString.fromJson(json['publisher'])
-          : null,
-      publisherElement: json['_publisher'] != null
-          ? Element.fromJson(
-              json['_publisher'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['publisher'],
+              '_value': json['_publisher'],
+            })
           : null,
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       useContext: json['useContext'] != null
           ? (json['useContext'] as List<dynamic>)
               .map<UsageContext>(
-                (dynamic v) => UsageContext.fromJson(
+                (v) => UsageContext.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -250,43 +184,35 @@ class SubscriptionTopic extends DomainResource {
       jurisdiction: json['jurisdiction'] != null
           ? (json['jurisdiction'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       purpose: json['purpose'] != null
-          ? FhirMarkdown.fromJson(json['purpose'])
-          : null,
-      purposeElement: json['_purpose'] != null
-          ? Element.fromJson(
-              json['_purpose'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['purpose'],
+              '_value': json['_purpose'],
+            })
           : null,
       copyright: json['copyright'] != null
-          ? FhirMarkdown.fromJson(json['copyright'])
-          : null,
-      copyrightElement: json['_copyright'] != null
-          ? Element.fromJson(
-              json['_copyright'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['copyright'],
+              '_value': json['_copyright'],
+            })
           : null,
       approvalDate: json['approvalDate'] != null
-          ? FhirDate.fromJson(json['approvalDate'])
-          : null,
-      approvalDateElement: json['_approvalDate'] != null
-          ? Element.fromJson(
-              json['_approvalDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['approvalDate'],
+              '_value': json['_approvalDate'],
+            })
           : null,
       lastReviewDate: json['lastReviewDate'] != null
-          ? FhirDate.fromJson(json['lastReviewDate'])
-          : null,
-      lastReviewDateElement: json['_lastReviewDate'] != null
-          ? Element.fromJson(
-              json['_lastReviewDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['lastReviewDate'],
+              '_value': json['_lastReviewDate'],
+            })
           : null,
       effectivePeriod: json['effectivePeriod'] != null
           ? Period.fromJson(
@@ -296,7 +222,7 @@ class SubscriptionTopic extends DomainResource {
       resourceTrigger: json['resourceTrigger'] != null
           ? (json['resourceTrigger'] as List<dynamic>)
               .map<SubscriptionTopicResourceTrigger>(
-                (dynamic v) => SubscriptionTopicResourceTrigger.fromJson(
+                (v) => SubscriptionTopicResourceTrigger.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -305,7 +231,7 @@ class SubscriptionTopic extends DomainResource {
       eventTrigger: json['eventTrigger'] != null
           ? (json['eventTrigger'] as List<dynamic>)
               .map<SubscriptionTopicEventTrigger>(
-                (dynamic v) => SubscriptionTopicEventTrigger.fromJson(
+                (v) => SubscriptionTopicEventTrigger.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -314,7 +240,7 @@ class SubscriptionTopic extends DomainResource {
       canFilterBy: json['canFilterBy'] != null
           ? (json['canFilterBy'] as List<dynamic>)
               .map<SubscriptionTopicCanFilterBy>(
-                (dynamic v) => SubscriptionTopicCanFilterBy.fromJson(
+                (v) => SubscriptionTopicCanFilterBy.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -323,7 +249,7 @@ class SubscriptionTopic extends DomainResource {
       notificationShape: json['notificationShape'] != null
           ? (json['notificationShape'] as List<dynamic>)
               .map<SubscriptionTopicNotificationShape>(
-                (dynamic v) => SubscriptionTopicNotificationShape.fromJson(
+                (v) => SubscriptionTopicNotificationShape.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -332,7 +258,8 @@ class SubscriptionTopic extends DomainResource {
     );
   }
 
-  /// Deserialize [SubscriptionTopic] from a [String] or [YamlMap] object
+  /// Deserialize [SubscriptionTopic] from a [String]
+  /// or [YamlMap] object
   factory SubscriptionTopic.fromYaml(dynamic yaml) => yaml is String
       ? SubscriptionTopic.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -341,11 +268,11 @@ class SubscriptionTopic extends DomainResource {
           ? SubscriptionTopic.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SubscriptionTopic cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('SubscriptionTopic cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubscriptionTopic] that takes in a [String]
+  /// Factory constructor for [SubscriptionTopic]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubscriptionTopic.fromJsonString(String source) {
@@ -361,6 +288,15 @@ class SubscriptionTopic extends DomainResource {
   @override
   String get fhirType => 'SubscriptionTopic';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [url]
   /// An absolute URI that is used to identify this subscription topic when
   /// it is referenced in a specification, model, design or an instance; also
@@ -370,9 +306,6 @@ class SubscriptionTopic extends DomainResource {
   /// the target of a canonical reference. It SHALL remain the same when the
   /// subscription topic is stored on different servers.
   final FhirUri url;
-
-  /// Extensions for [url]
-  final Element? urlElement;
 
   /// [identifier]
   /// Business identifiers assigned to this subscription topic by the
@@ -389,31 +322,19 @@ class SubscriptionTopic extends DomainResource {
   /// There is also no expectation that versions are orderable.
   final FhirString? version;
 
-  /// Extensions for [version]
-  final Element? versionElement;
-
   /// [title]
   /// A short, descriptive, user-friendly title for the SubscriptionTopic,
   /// for example, "admission".
   final FhirString? title;
-
-  /// Extensions for [title]
-  final Element? titleElement;
 
   /// [derivedFrom]
   /// The canonical URL pointing to another FHIR-defined SubscriptionTopic
   /// that is adhered to in whole or in part by this SubscriptionTopic.
   final List<FhirCanonical>? derivedFrom;
 
-  /// Extensions for [derivedFrom]
-  final List<Element>? derivedFromElement;
-
   /// [status]
   /// The current state of the SubscriptionTopic.
   final PublicationStatus status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [experimental]
   /// A flag to indicate that this TopSubscriptionTopicic is authored for
@@ -421,25 +342,16 @@ class SubscriptionTopic extends DomainResource {
   /// intended to be used for genuine usage.
   final FhirBoolean? experimental;
 
-  /// Extensions for [experimental]
-  final Element? experimentalElement;
-
   /// [date]
   /// For draft definitions, indicates the date of initial creation. For
   /// active definitions, represents the date of activation. For withdrawn
   /// definitions, indicates the date of withdrawal.
   final FhirDateTime? date;
 
-  /// Extensions for [date]
-  final Element? dateElement;
-
   /// [publisher]
   /// Helps establish the "authority/credibility" of the SubscriptionTopic.
   /// May also allow for contact.
   final FhirString? publisher;
-
-  /// Extensions for [publisher]
-  final Element? publisherElement;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
@@ -450,9 +362,6 @@ class SubscriptionTopic extends DomainResource {
   /// A free text natural language description of the Topic from the
   /// consumer's perspective.
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -469,17 +378,11 @@ class SubscriptionTopic extends DomainResource {
   /// has.
   final FhirMarkdown? purpose;
 
-  /// Extensions for [purpose]
-  final Element? purposeElement;
-
   /// [copyright]
   /// A copyright statement relating to the SubscriptionTopic and/or its
   /// contents. Copyright statements are generally legal restrictions on the
   /// use and publishing of the SubscriptionTopic.
   final FhirMarkdown? copyright;
-
-  /// Extensions for [copyright]
-  final Element? copyrightElement;
 
   /// [approvalDate]
   /// The date on which the asset content was approved by the publisher.
@@ -487,16 +390,10 @@ class SubscriptionTopic extends DomainResource {
   /// usage.
   final FhirDate? approvalDate;
 
-  /// Extensions for [approvalDate]
-  final Element? approvalDateElement;
-
   /// [lastReviewDate]
   /// The date on which the asset content was last reviewed. Review happens
   /// periodically after that, but doesn't change the original approval date.
   final FhirDate? lastReviewDate;
-
-  /// Extensions for [lastReviewDate]
-  final Element? lastReviewDateElement;
 
   /// [effectivePeriod]
   /// The period during which the SubscriptionTopic content was or is planned
@@ -540,9 +437,6 @@ class SubscriptionTopic extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -561,9 +455,6 @@ class SubscriptionTopic extends DomainResource {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['url'] = url.toJson();
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
-    }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
           identifier!.map((Identifier v) => v.toJson()).toList();
@@ -571,50 +462,28 @@ class SubscriptionTopic extends DomainResource {
     if (version?.value != null) {
       json['version'] = version!.toJson();
     }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
-    }
     if (title?.value != null) {
       json['title'] = title!.toJson();
-    }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
     }
     if (derivedFrom != null && derivedFrom!.isNotEmpty) {
       json['derivedFrom'] =
           derivedFrom!.map((FhirCanonical v) => v.toJson()).toList();
     }
-    if (derivedFromElement != null && derivedFromElement!.isNotEmpty) {
-      json['_derivedFrom'] =
-          derivedFromElement!.map((Element v) => v.toJson()).toList();
-    }
     json['status'] = status.toJson();
     if (experimental?.value != null) {
       json['experimental'] = experimental!.toJson();
     }
-    if (experimentalElement != null) {
-      json['_experimental'] = experimentalElement!.toJson();
-    }
     if (date?.value != null) {
       json['date'] = date!.toJson();
     }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (publisher?.value != null) {
       json['publisher'] = publisher!.toJson();
-    }
-    if (publisherElement != null) {
-      json['_publisher'] = publisherElement!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] =
@@ -627,26 +496,14 @@ class SubscriptionTopic extends DomainResource {
     if (purpose?.value != null) {
       json['purpose'] = purpose!.toJson();
     }
-    if (purposeElement != null) {
-      json['_purpose'] = purposeElement!.toJson();
-    }
     if (copyright?.value != null) {
       json['copyright'] = copyright!.toJson();
-    }
-    if (copyrightElement != null) {
-      json['_copyright'] = copyrightElement!.toJson();
     }
     if (approvalDate?.value != null) {
       json['approvalDate'] = approvalDate!.toJson();
     }
-    if (approvalDateElement != null) {
-      json['_approvalDate'] = approvalDateElement!.toJson();
-    }
     if (lastReviewDate?.value != null) {
       json['lastReviewDate'] = lastReviewDate!.toJson();
-    }
-    if (lastReviewDateElement != null) {
-      json['_lastReviewDate'] = lastReviewDateElement!.toJson();
     }
     if (effectivePeriod != null) {
       json['effectivePeriod'] = effectivePeriod!.toJson();
@@ -681,43 +538,28 @@ class SubscriptionTopic extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    Element? urlElement,
     List<Identifier>? identifier,
     FhirString? version,
-    Element? versionElement,
     FhirString? title,
-    Element? titleElement,
     List<FhirCanonical>? derivedFrom,
-    List<Element>? derivedFromElement,
     PublicationStatus? status,
-    Element? statusElement,
     FhirBoolean? experimental,
-    Element? experimentalElement,
     FhirDateTime? date,
-    Element? dateElement,
     FhirString? publisher,
-    Element? publisherElement,
     List<ContactDetail>? contact,
     FhirMarkdown? description,
-    Element? descriptionElement,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
     FhirMarkdown? purpose,
-    Element? purposeElement,
     FhirMarkdown? copyright,
-    Element? copyrightElement,
     FhirDate? approvalDate,
-    Element? approvalDateElement,
     FhirDate? lastReviewDate,
-    Element? lastReviewDateElement,
     Period? effectivePeriod,
     List<SubscriptionTopicResourceTrigger>? resourceTrigger,
     List<SubscriptionTopicEventTrigger>? eventTrigger,
@@ -734,44 +576,28 @@ class SubscriptionTopic extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       identifier: identifier ?? this.identifier,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       derivedFrom: derivedFrom ?? this.derivedFrom,
-      derivedFromElement: derivedFromElement ?? this.derivedFromElement,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       experimental: experimental ?? this.experimental,
-      experimentalElement: experimentalElement ?? this.experimentalElement,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       publisher: publisher ?? this.publisher,
-      publisherElement: publisherElement ?? this.publisherElement,
       contact: contact ?? this.contact,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       useContext: useContext ?? this.useContext,
       jurisdiction: jurisdiction ?? this.jurisdiction,
       purpose: purpose ?? this.purpose,
-      purposeElement: purposeElement ?? this.purposeElement,
       copyright: copyright ?? this.copyright,
-      copyrightElement: copyrightElement ?? this.copyrightElement,
       approvalDate: approvalDate ?? this.approvalDate,
-      approvalDateElement: approvalDateElement ?? this.approvalDateElement,
       lastReviewDate: lastReviewDate ?? this.lastReviewDate,
-      lastReviewDateElement:
-          lastReviewDateElement ?? this.lastReviewDateElement,
       effectivePeriod: effectivePeriod ?? this.effectivePeriod,
       resourceTrigger: resourceTrigger ?? this.resourceTrigger,
       eventTrigger: eventTrigger ?? this.eventTrigger,
@@ -799,25 +625,13 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
 
   SubscriptionTopicResourceTrigger({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     required this.resource,
-
-    /// Extensions for [resource]
-    this.resourceElement,
     this.supportedInteraction,
-
-    /// Extensions for [supportedInteraction]
-    this.supportedInteractionElement,
     this.queryCriteria,
     this.fhirPathCriteria,
-
-    /// Extensions for [fhirPathCriteria]
-    this.fhirPathCriteriaElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -829,11 +643,15 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicResourceTrigger.fromJson(Map<String, dynamic> json) {
     return SubscriptionTopicResourceTrigger(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -842,57 +660,42 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
-          : null,
-      resource: FHIRDefinedType.fromJson(json['resource']),
-      resourceElement: json['_resource'] != null
-          ? Element.fromJson(
-              json['_resource'] as Map<String, dynamic>,
-            )
-          : null,
-      supportedInteraction: json['supportedInteraction'] != null
-          ? (json['supportedInteraction'] as List<dynamic>)
-              .map<InteractionTrigger>(
-                (dynamic v) => InteractionTrigger.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      supportedInteractionElement: json['_supportedInteraction'] != null
-          ? (json['_supportedInteraction'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      resource: FHIRDefinedType.fromJson({
+        'value': json['resource'],
+        '_value': json['_resource'],
+      }),
+      supportedInteraction: parsePrimitiveList<InteractionTrigger>(
+          json['supportedInteraction'] as List<dynamic>?,
+          json['_supportedInteraction'] as List<dynamic>?,
+          fromJson: InteractionTrigger.fromJson),
       queryCriteria: json['queryCriteria'] != null
           ? SubscriptionTopicQueryCriteria.fromJson(
               json['queryCriteria'] as Map<String, dynamic>,
             )
           : null,
       fhirPathCriteria: json['fhirPathCriteria'] != null
-          ? FhirString.fromJson(json['fhirPathCriteria'])
-          : null,
-      fhirPathCriteriaElement: json['_fhirPathCriteria'] != null
-          ? Element.fromJson(
-              json['_fhirPathCriteria'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['fhirPathCriteria'],
+              '_value': json['_fhirPathCriteria'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [SubscriptionTopicResourceTrigger] from a [String] or [YamlMap] object
+  /// Deserialize [SubscriptionTopicResourceTrigger] from a [String]
+  /// or [YamlMap] object
   factory SubscriptionTopicResourceTrigger.fromYaml(dynamic yaml) => yaml
           is String
       ? SubscriptionTopicResourceTrigger.fromJson(
@@ -903,10 +706,11 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'SubscriptionTopicResourceTrigger cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'SubscriptionTopicResourceTrigger cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubscriptionTopicResourceTrigger] that takes in a [String]
+  /// Factory constructor for [SubscriptionTopicResourceTrigger]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubscriptionTopicResourceTrigger.fromJsonString(String source) {
@@ -922,14 +726,20 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
   @override
   String get fhirType => 'SubscriptionTopicResourceTrigger';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [description]
   /// The human readable description of this resource trigger for the
   /// SubscriptionTopic - for example, "An Encounter enters the 'in-progress'
   /// state".
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [resource]
   /// URL of the Resource that is the type used in this resource trigger.
@@ -941,17 +751,11 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
   /// href="elementdefinition-definitions.html#ElementDefinition.type.code">ElementDefinition.type.code</a>.
   final FHIRDefinedType resource;
 
-  /// Extensions for [resource]
-  final Element? resourceElement;
-
   /// [supportedInteraction]
   /// The FHIR RESTful interaction which can be used to trigger a
   /// notification for the SubscriptionTopic. Multiple values are considered
   /// OR joined (e.g., CREATE or UPDATE).
   final List<InteractionTrigger>? supportedInteraction;
-
-  /// Extensions for [supportedInteraction]
-  final List<Element>? supportedInteractionElement;
 
   /// [queryCriteria]
   /// The FHIR query based rules that the server should use to determine when
@@ -962,9 +766,6 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
   /// The FHIRPath based rules that the server should use to determine when
   /// to trigger a notification for this topic.
   final FhirString? fhirPathCriteria;
-
-  /// Extensions for [fhirPathCriteria]
-  final Element? fhirPathCriteriaElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -982,9 +783,6 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     json['resource'] = resource.toJson();
     if (supportedInteraction != null && supportedInteraction!.isNotEmpty) {
       json['supportedInteraction'] = supportedInteraction!
@@ -997,9 +795,6 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
     if (fhirPathCriteria?.value != null) {
       json['fhirPathCriteria'] = fhirPathCriteria!.toJson();
     }
-    if (fhirPathCriteriaElement != null) {
-      json['_fhirPathCriteria'] = fhirPathCriteriaElement!.toJson();
-    }
     return json;
   }
 
@@ -1011,14 +806,10 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirMarkdown? description,
-    Element? descriptionElement,
     FHIRDefinedType? resource,
-    Element? resourceElement,
     List<InteractionTrigger>? supportedInteraction,
-    List<Element>? supportedInteractionElement,
     SubscriptionTopicQueryCriteria? queryCriteria,
     FhirString? fhirPathCriteria,
-    Element? fhirPathCriteriaElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1031,16 +822,10 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       resource: resource ?? this.resource,
-      resourceElement: resourceElement ?? this.resourceElement,
       supportedInteraction: supportedInteraction ?? this.supportedInteraction,
-      supportedInteractionElement:
-          supportedInteractionElement ?? this.supportedInteractionElement,
       queryCriteria: queryCriteria ?? this.queryCriteria,
       fhirPathCriteria: fhirPathCriteria ?? this.fhirPathCriteria,
-      fhirPathCriteriaElement:
-          fhirPathCriteriaElement ?? this.fhirPathCriteriaElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1059,28 +844,13 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
 
   SubscriptionTopicQueryCriteria({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.previous,
-
-    /// Extensions for [previous]
-    this.previousElement,
     this.resultForCreate,
-
-    /// Extensions for [resultForCreate]
-    this.resultForCreateElement,
     this.current,
-
-    /// Extensions for [current]
-    this.currentElement,
     this.resultForDelete,
-
-    /// Extensions for [resultForDelete]
-    this.resultForDeleteElement,
     this.requireBoth,
-
-    /// Extensions for [requireBoth]
-    this.requireBothElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1092,11 +862,15 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicQueryCriteria.fromJson(Map<String, dynamic> json) {
     return SubscriptionTopicQueryCriteria(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1105,55 +879,47 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       previous: json['previous'] != null
-          ? FhirString.fromJson(json['previous'])
-          : null,
-      previousElement: json['_previous'] != null
-          ? Element.fromJson(
-              json['_previous'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['previous'],
+              '_value': json['_previous'],
+            })
           : null,
       resultForCreate: json['resultForCreate'] != null
-          ? CriteriaNotExistsBehavior.fromJson(json['resultForCreate'])
+          ? CriteriaNotExistsBehavior.fromJson({
+              'value': json['resultForCreate'],
+              '_value': json['_resultForCreate'],
+            })
           : null,
-      resultForCreateElement: json['_resultForCreate'] != null
-          ? Element.fromJson(
-              json['_resultForCreate'] as Map<String, dynamic>,
-            )
-          : null,
-      current:
-          json['current'] != null ? FhirString.fromJson(json['current']) : null,
-      currentElement: json['_current'] != null
-          ? Element.fromJson(
-              json['_current'] as Map<String, dynamic>,
-            )
+      current: json['current'] != null
+          ? FhirString.fromJson({
+              'value': json['current'],
+              '_value': json['_current'],
+            })
           : null,
       resultForDelete: json['resultForDelete'] != null
-          ? CriteriaNotExistsBehavior.fromJson(json['resultForDelete'])
-          : null,
-      resultForDeleteElement: json['_resultForDelete'] != null
-          ? Element.fromJson(
-              json['_resultForDelete'] as Map<String, dynamic>,
-            )
+          ? CriteriaNotExistsBehavior.fromJson({
+              'value': json['resultForDelete'],
+              '_value': json['_resultForDelete'],
+            })
           : null,
       requireBoth: json['requireBoth'] != null
-          ? FhirBoolean.fromJson(json['requireBoth'])
-          : null,
-      requireBothElement: json['_requireBoth'] != null
-          ? Element.fromJson(
-              json['_requireBoth'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['requireBoth'],
+              '_value': json['_requireBoth'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [SubscriptionTopicQueryCriteria] from a [String] or [YamlMap] object
+  /// Deserialize [SubscriptionTopicQueryCriteria] from a [String]
+  /// or [YamlMap] object
   factory SubscriptionTopicQueryCriteria.fromYaml(dynamic yaml) => yaml
           is String
       ? SubscriptionTopicQueryCriteria.fromJson(
@@ -1164,10 +930,11 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'SubscriptionTopicQueryCriteria cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'SubscriptionTopicQueryCriteria cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubscriptionTopicQueryCriteria] that takes in a [String]
+  /// Factory constructor for [SubscriptionTopicQueryCriteria]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubscriptionTopicQueryCriteria.fromJsonString(String source) {
@@ -1183,46 +950,40 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
   @override
   String get fhirType => 'SubscriptionTopicQueryCriteria';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [previous]
   /// The FHIR query based rules are applied to the previous resource state
   /// (e.g., state before an update).
   final FhirString? previous;
-
-  /// Extensions for [previous]
-  final Element? previousElement;
 
   /// [resultForCreate]
   /// For "create" interactions, should the "previous" criteria count as an
   /// automatic pass or an automatic fail.
   final CriteriaNotExistsBehavior? resultForCreate;
 
-  /// Extensions for [resultForCreate]
-  final Element? resultForCreateElement;
-
   /// [current]
   /// The FHIR query based rules are applied to the current resource state
   /// (e.g., state after an update).
   final FhirString? current;
-
-  /// Extensions for [current]
-  final Element? currentElement;
 
   /// [resultForDelete]
   /// For "delete" interactions, should the "current" criteria count as an
   /// automatic pass or an automatic fail.
   final CriteriaNotExistsBehavior? resultForDelete;
 
-  /// Extensions for [resultForDelete]
-  final Element? resultForDeleteElement;
-
   /// [requireBoth]
   /// If set to true, both current and previous criteria must evaluate true
   /// to trigger a notification for this topic. Otherwise a notification for
   /// this topic will be triggered if either one evaluates to true.
   final FhirBoolean? requireBoth;
-
-  /// Extensions for [requireBoth]
-  final Element? requireBothElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1240,26 +1001,17 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
     if (previous?.value != null) {
       json['previous'] = previous!.toJson();
     }
-    if (previousElement != null) {
-      json['_previous'] = previousElement!.toJson();
-    }
     if (resultForCreate != null) {
       json['resultForCreate'] = resultForCreate!.toJson();
     }
     if (current?.value != null) {
       json['current'] = current!.toJson();
     }
-    if (currentElement != null) {
-      json['_current'] = currentElement!.toJson();
-    }
     if (resultForDelete != null) {
       json['resultForDelete'] = resultForDelete!.toJson();
     }
     if (requireBoth?.value != null) {
       json['requireBoth'] = requireBoth!.toJson();
-    }
-    if (requireBothElement != null) {
-      json['_requireBoth'] = requireBothElement!.toJson();
     }
     return json;
   }
@@ -1272,15 +1024,10 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? previous,
-    Element? previousElement,
     CriteriaNotExistsBehavior? resultForCreate,
-    Element? resultForCreateElement,
     FhirString? current,
-    Element? currentElement,
     CriteriaNotExistsBehavior? resultForDelete,
-    Element? resultForDeleteElement,
     FhirBoolean? requireBoth,
-    Element? requireBothElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1293,17 +1040,10 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       previous: previous ?? this.previous,
-      previousElement: previousElement ?? this.previousElement,
       resultForCreate: resultForCreate ?? this.resultForCreate,
-      resultForCreateElement:
-          resultForCreateElement ?? this.resultForCreateElement,
       current: current ?? this.current,
-      currentElement: currentElement ?? this.currentElement,
       resultForDelete: resultForDelete ?? this.resultForDelete,
-      resultForDeleteElement:
-          resultForDeleteElement ?? this.resultForDeleteElement,
       requireBoth: requireBoth ?? this.requireBoth,
-      requireBothElement: requireBothElement ?? this.requireBothElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1321,17 +1061,11 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
 
   SubscriptionTopicEventTrigger({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     required this.event,
     required this.resource,
-
-    /// Extensions for [resource]
-    this.resourceElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1343,11 +1077,15 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicEventTrigger.fromJson(Map<String, dynamic> json) {
     return SubscriptionTopicEventTrigger(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1356,33 +1094,30 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       event: CodeableConcept.fromJson(
         json['event'] as Map<String, dynamic>,
       ),
-      resource: FHIRDefinedType.fromJson(json['resource']),
-      resourceElement: json['_resource'] != null
-          ? Element.fromJson(
-              json['_resource'] as Map<String, dynamic>,
-            )
-          : null,
+      resource: FHIRDefinedType.fromJson({
+        'value': json['resource'],
+        '_value': json['_resource'],
+      }),
     );
   }
 
-  /// Deserialize [SubscriptionTopicEventTrigger] from a [String] or [YamlMap] object
+  /// Deserialize [SubscriptionTopicEventTrigger] from a [String]
+  /// or [YamlMap] object
   factory SubscriptionTopicEventTrigger.fromYaml(dynamic yaml) => yaml is String
       ? SubscriptionTopicEventTrigger.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1392,10 +1127,11 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'SubscriptionTopicEventTrigger cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'SubscriptionTopicEventTrigger cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubscriptionTopicEventTrigger] that takes in a [String]
+  /// Factory constructor for [SubscriptionTopicEventTrigger]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubscriptionTopicEventTrigger.fromJsonString(String source) {
@@ -1411,15 +1147,21 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
   @override
   String get fhirType => 'SubscriptionTopicEventTrigger';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [description]
   /// The human readable description of an event to trigger a notification
   /// for the SubscriptionTopic - for example, "Patient Admission, as defined
   /// in HL7v2 via message ADT^A01". Multiple values are considered OR joined
   /// (e.g., matching any single event listed).
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [event]
   /// A well-defined event which can be used to trigger notifications from
@@ -1435,9 +1177,6 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
   /// information, see <a
   /// href="elementdefinition-definitions.html#ElementDefinition.type.code">ElementDefinition.type.code</a>.
   final FHIRDefinedType resource;
-
-  /// Extensions for [resource]
-  final Element? resourceElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1455,9 +1194,6 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     json['event'] = event.toJson();
     json['resource'] = resource.toJson();
     return json;
@@ -1471,10 +1207,8 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirMarkdown? description,
-    Element? descriptionElement,
     CodeableConcept? event,
     FHIRDefinedType? resource,
-    Element? resourceElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1487,10 +1221,8 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       event: event ?? this.event,
       resource: resource ?? this.resource,
-      resourceElement: resourceElement ?? this.resourceElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1511,28 +1243,13 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
 
   SubscriptionTopicCanFilterBy({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.resource,
-
-    /// Extensions for [resource]
-    this.resourceElement,
     required this.filterParameter,
-
-    /// Extensions for [filterParameter]
-    this.filterParameterElement,
     this.filterDefinition,
-
-    /// Extensions for [filterDefinition]
-    this.filterDefinitionElement,
     this.modifier,
-
-    /// Extensions for [modifier]
-    this.modifierElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1544,11 +1261,15 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicCanFilterBy.fromJson(Map<String, dynamic> json) {
     return SubscriptionTopicCanFilterBy(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1557,61 +1278,43 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       resource: json['resource'] != null
-          ? FHIRDefinedType.fromJson(json['resource'])
+          ? FHIRDefinedType.fromJson({
+              'value': json['resource'],
+              '_value': json['_resource'],
+            })
           : null,
-      resourceElement: json['_resource'] != null
-          ? Element.fromJson(
-              json['_resource'] as Map<String, dynamic>,
-            )
-          : null,
-      filterParameter: FhirString.fromJson(json['filterParameter']),
-      filterParameterElement: json['_filterParameter'] != null
-          ? Element.fromJson(
-              json['_filterParameter'] as Map<String, dynamic>,
-            )
-          : null,
+      filterParameter: FhirString.fromJson({
+        'value': json['filterParameter'],
+        '_value': json['_filterParameter'],
+      }),
       filterDefinition: json['filterDefinition'] != null
-          ? FhirUri.fromJson(json['filterDefinition'])
+          ? FhirUri.fromJson({
+              'value': json['filterDefinition'],
+              '_value': json['_filterDefinition'],
+            })
           : null,
-      filterDefinitionElement: json['_filterDefinition'] != null
-          ? Element.fromJson(
-              json['_filterDefinition'] as Map<String, dynamic>,
-            )
-          : null,
-      modifier: json['modifier'] != null
-          ? (json['modifier'] as List<dynamic>)
-              .map<SubscriptionSearchModifier>(
-                (dynamic v) =>
-                    SubscriptionSearchModifier.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      modifierElement: json['_modifier'] != null
-          ? (json['_modifier'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      modifier: parsePrimitiveList<SubscriptionSearchModifier>(
+          json['modifier'] as List<dynamic>?,
+          json['_modifier'] as List<dynamic>?,
+          fromJson: SubscriptionSearchModifier.fromJson),
     );
   }
 
-  /// Deserialize [SubscriptionTopicCanFilterBy] from a [String] or [YamlMap] object
+  /// Deserialize [SubscriptionTopicCanFilterBy] from a [String]
+  /// or [YamlMap] object
   factory SubscriptionTopicCanFilterBy.fromYaml(dynamic yaml) => yaml is String
       ? SubscriptionTopicCanFilterBy.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1621,10 +1324,11 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'SubscriptionTopicCanFilterBy cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'SubscriptionTopicCanFilterBy cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubscriptionTopicCanFilterBy] that takes in a [String]
+  /// Factory constructor for [SubscriptionTopicCanFilterBy]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubscriptionTopicCanFilterBy.fromJsonString(String source) {
@@ -1640,12 +1344,18 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
   @override
   String get fhirType => 'SubscriptionTopicCanFilterBy';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [description]
   /// Description of how this filtering parameter is intended to be used.
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [resource]
   /// URL of the Resource that is the type used in this filter. This is the
@@ -1655,18 +1365,12 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
   /// SubscriptionTopic.eventTrigger.resource when they are present.
   final FHIRDefinedType? resource;
 
-  /// Extensions for [resource]
-  final Element? resourceElement;
-
   /// [filterParameter]
   /// Either the canonical URL to a search parameter (like
   /// "http://hl7.org/fhir/SearchParameter/encounter-patient") or
   /// topic-defined parameter (like "hub.event") which is a label for the
   /// filter.
   final FhirString filterParameter;
-
-  /// Extensions for [filterParameter]
-  final Element? filterParameterElement;
 
   /// [filterDefinition]
   /// Either the canonical URL to a search parameter (like
@@ -1675,18 +1379,12 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
   /// "http://example.org/concepts/shared-common-event").
   final FhirUri? filterDefinition;
 
-  /// Extensions for [filterDefinition]
-  final Element? filterDefinitionElement;
-
   /// [modifier]
   /// Allowable operators to apply when determining matches (Search
   /// Modifiers). If the filterParameter is a SearchParameter, this list of
   /// modifiers SHALL be a strict subset of the modifiers defined on that
   /// SearchParameter.
   final List<SubscriptionSearchModifier>? modifier;
-
-  /// Extensions for [modifier]
-  final List<Element>? modifierElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1704,21 +1402,12 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     if (description?.value != null) {
       json['description'] = description!.toJson();
     }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (resource != null) {
       json['resource'] = resource!.toJson();
     }
     json['filterParameter'] = filterParameter.toJson();
-    if (filterParameterElement != null) {
-      json['_filterParameter'] = filterParameterElement!.toJson();
-    }
     if (filterDefinition?.value != null) {
       json['filterDefinition'] = filterDefinition!.toJson();
-    }
-    if (filterDefinitionElement != null) {
-      json['_filterDefinition'] = filterDefinitionElement!.toJson();
     }
     if (modifier != null && modifier!.isNotEmpty) {
       json['modifier'] =
@@ -1735,15 +1424,10 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirMarkdown? description,
-    Element? descriptionElement,
     FHIRDefinedType? resource,
-    Element? resourceElement,
     FhirString? filterParameter,
-    Element? filterParameterElement,
     FhirUri? filterDefinition,
-    Element? filterDefinitionElement,
     List<SubscriptionSearchModifier>? modifier,
-    List<Element>? modifierElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1756,17 +1440,10 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       resource: resource ?? this.resource,
-      resourceElement: resourceElement ?? this.resourceElement,
       filterParameter: filterParameter ?? this.filterParameter,
-      filterParameterElement:
-          filterParameterElement ?? this.filterParameterElement,
       filterDefinition: filterDefinition ?? this.filterDefinition,
-      filterDefinitionElement:
-          filterDefinitionElement ?? this.filterDefinitionElement,
       modifier: modifier ?? this.modifier,
-      modifierElement: modifierElement ?? this.modifierElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1785,20 +1462,11 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
 
   SubscriptionTopicNotificationShape({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.resource,
-
-    /// Extensions for [resource]
-    this.resourceElement,
     this.include,
-
-    /// Extensions for [include]
-    this.includeElement,
     this.revInclude,
-
-    /// Extensions for [revInclude]
-    this.revIncludeElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1811,11 +1479,15 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   factory SubscriptionTopicNotificationShape.fromJson(
       Map<String, dynamic> json) {
     return SubscriptionTopicNotificationShape(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1824,50 +1496,28 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      resource: FHIRDefinedType.fromJson(json['resource']),
-      resourceElement: json['_resource'] != null
-          ? Element.fromJson(
-              json['_resource'] as Map<String, dynamic>,
-            )
-          : null,
-      include: json['include'] != null
-          ? (json['include'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      includeElement: json['_include'] != null
-          ? (json['_include'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      revInclude: json['revInclude'] != null
-          ? (json['revInclude'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      revIncludeElement: json['_revInclude'] != null
-          ? (json['_revInclude'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      resource: FHIRDefinedType.fromJson({
+        'value': json['resource'],
+        '_value': json['_resource'],
+      }),
+      include: parsePrimitiveList<FhirString>(
+          json['include'] as List<dynamic>?, json['_include'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
+      revInclude: parsePrimitiveList<FhirString>(
+          json['revInclude'] as List<dynamic>?,
+          json['_revInclude'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
     );
   }
 
-  /// Deserialize [SubscriptionTopicNotificationShape] from a [String] or [YamlMap] object
+  /// Deserialize [SubscriptionTopicNotificationShape] from a [String]
+  /// or [YamlMap] object
   factory SubscriptionTopicNotificationShape.fromYaml(dynamic yaml) => yaml
           is String
       ? SubscriptionTopicNotificationShape.fromJson(
@@ -1878,10 +1528,11 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'SubscriptionTopicNotificationShape cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'SubscriptionTopicNotificationShape cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SubscriptionTopicNotificationShape] that takes in a [String]
+  /// Factory constructor for [SubscriptionTopicNotificationShape]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SubscriptionTopicNotificationShape.fromJsonString(String source) {
@@ -1897,6 +1548,15 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   @override
   String get fhirType => 'SubscriptionTopicNotificationShape';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [resource]
   /// URL of the Resource that is the type used in this shape. This is the
   /// "focus" of the topic (or one of them if there are more than one) and
@@ -1906,9 +1566,6 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   /// SubscriptionTopic.eventTrigger.resource when they are present.
   final FHIRDefinedType resource;
 
-  /// Extensions for [resource]
-  final Element? resourceElement;
-
   /// [include]
   /// Search-style _include directives, rooted in the resource for this
   /// shape. Servers SHOULD include resources listed here, if they exist and
@@ -1917,9 +1574,6 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   /// them.
   final List<FhirString>? include;
 
-  /// Extensions for [include]
-  final List<Element>? includeElement;
-
   /// [revInclude]
   /// Search-style _revinclude directives, rooted in the resource for this
   /// shape. Servers SHOULD include resources listed here, if they exist and
@@ -1927,9 +1581,6 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
   /// receive these additional resources, but SHALL function properly without
   /// them.
   final List<FhirString>? revInclude;
-
-  /// Extensions for [revInclude]
-  final List<Element>? revIncludeElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1948,17 +1599,9 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
     if (include != null && include!.isNotEmpty) {
       json['include'] = include!.map((FhirString v) => v.toJson()).toList();
     }
-    if (includeElement != null && includeElement!.isNotEmpty) {
-      json['_include'] =
-          includeElement!.map((Element v) => v.toJson()).toList();
-    }
     if (revInclude != null && revInclude!.isNotEmpty) {
       json['revInclude'] =
           revInclude!.map((FhirString v) => v.toJson()).toList();
-    }
-    if (revIncludeElement != null && revIncludeElement!.isNotEmpty) {
-      json['_revInclude'] =
-          revIncludeElement!.map((Element v) => v.toJson()).toList();
     }
     return json;
   }
@@ -1971,11 +1614,8 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FHIRDefinedType? resource,
-    Element? resourceElement,
     List<FhirString>? include,
-    List<Element>? includeElement,
     List<FhirString>? revInclude,
-    List<Element>? revIncludeElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1988,11 +1628,8 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       resource: resource ?? this.resource,
-      resourceElement: resourceElement ?? this.resourceElement,
       include: include ?? this.include,
-      includeElement: includeElement ?? this.includeElement,
       revInclude: revInclude ?? this.revInclude,
-      revIncludeElement: revIncludeElement ?? this.revIncludeElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

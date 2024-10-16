@@ -9,20 +9,11 @@ class Reference extends DataType {
 
   Reference({
     super.id,
-    super.extension_,
+    this.extension_,
     this.reference,
-
-    /// Extensions for [reference]
-    this.referenceElement,
     this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.identifier,
     this.display,
-
-    /// Extensions for [display]
-    this.displayElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -34,46 +25,48 @@ class Reference extends DataType {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Reference.fromJson(Map<String, dynamic> json) {
     return Reference(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       reference: json['reference'] != null
-          ? FhirString.fromJson(json['reference'])
+          ? FhirString.fromJson({
+              'value': json['reference'],
+              '_value': json['_reference'],
+            })
           : null,
-      referenceElement: json['_reference'] != null
-          ? Element.fromJson(
-              json['_reference'] as Map<String, dynamic>,
-            )
-          : null,
-      type: json['type'] != null ? FhirUri.fromJson(json['type']) : null,
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
+      type: json['type'] != null
+          ? FhirUri.fromJson({
+              'value': json['type'],
+              '_value': json['_type'],
+            })
           : null,
       identifier: json['identifier'] != null
           ? Identifier.fromJson(
               json['identifier'] as Map<String, dynamic>,
             )
           : null,
-      display:
-          json['display'] != null ? FhirString.fromJson(json['display']) : null,
-      displayElement: json['_display'] != null
-          ? Element.fromJson(
-              json['_display'] as Map<String, dynamic>,
-            )
+      display: json['display'] != null
+          ? FhirString.fromJson({
+              'value': json['display'],
+              '_value': json['_display'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [Reference] from a [String] or [YamlMap] object
+  /// Deserialize [Reference] from a [String]
+  /// or [YamlMap] object
   factory Reference.fromYaml(dynamic yaml) => yaml is String
       ? Reference.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -82,10 +75,11 @@ class Reference extends DataType {
           ? Reference.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Reference cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Reference cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Reference] that takes in a [String]
+  /// Factory constructor for [Reference]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Reference.fromJsonString(String source) {
@@ -101,6 +95,15 @@ class Reference extends DataType {
   @override
   String get fhirType => 'Reference';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [reference]
   /// A reference to a location at which the other resource is found. The
   /// reference may be a relative reference, in which case it is relative to
@@ -110,9 +113,6 @@ class Reference extends DataType {
   /// be assumed to be version specific. Internal fragment references (start
   /// with '#') refer to contained resources.
   final FhirString? reference;
-
-  /// Extensions for [reference]
-  final Element? referenceElement;
 
   /// [type]
   /// The expected type of the target of the reference. If both
@@ -126,9 +126,6 @@ class Reference extends DataType {
   /// only allowed for logical models (and can only be used in references in
   /// logical models, not resources).
   final FhirUri? type;
-
-  /// Extensions for [type]
-  final Element? typeElement;
 
   /// [identifier]
   /// An identifier for the target resource. This is used when there is no
@@ -146,9 +143,6 @@ class Reference extends DataType {
   /// Plain text narrative that identifies the resource in addition to the
   /// resource reference.
   final FhirString? display;
-
-  /// Extensions for [display]
-  final Element? displayElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -162,23 +156,14 @@ class Reference extends DataType {
     if (reference?.value != null) {
       json['reference'] = reference!.toJson();
     }
-    if (referenceElement != null) {
-      json['_reference'] = referenceElement!.toJson();
-    }
     if (type?.value != null) {
       json['type'] = type!.toJson();
-    }
-    if (typeElement != null) {
-      json['_type'] = typeElement!.toJson();
     }
     if (identifier != null) {
       json['identifier'] = identifier!.toJson();
     }
     if (display?.value != null) {
       json['display'] = display!.toJson();
-    }
-    if (displayElement != null) {
-      json['_display'] = displayElement!.toJson();
     }
     return json;
   }
@@ -190,12 +175,9 @@ class Reference extends DataType {
     FhirString? id,
     List<FhirExtension>? extension_,
     FhirString? reference,
-    Element? referenceElement,
     FhirUri? type,
-    Element? typeElement,
     Identifier? identifier,
     FhirString? display,
-    Element? displayElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -207,12 +189,9 @@ class Reference extends DataType {
       id: id ?? this.id,
       extension_: extension_ ?? this.extension_,
       reference: reference ?? this.reference,
-      referenceElement: referenceElement ?? this.referenceElement,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       identifier: identifier ?? this.identifier,
       display: display ?? this.display,
-      displayElement: displayElement ?? this.displayElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

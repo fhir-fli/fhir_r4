@@ -12,41 +12,20 @@ class Contract extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.legalState,
     this.instantiatesCanonical,
     this.instantiatesUri,
-
-    /// Extensions for [instantiatesUri]
-    this.instantiatesUriElement,
     this.contentDerivative,
     this.issued,
-
-    /// Extensions for [issued]
-    this.issuedElement,
     this.applies,
     this.expirationType,
     this.subject,
@@ -54,21 +33,9 @@ class Contract extends DomainResource {
     this.domain,
     this.site,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     this.subtitle,
-
-    /// Extensions for [subtitle]
-    this.subtitleElement,
     this.alias,
-
-    /// Extensions for [alias]
-    this.aliasElement,
     this.author,
     this.scope,
     this.topicCodeableConcept,
@@ -96,27 +63,27 @@ class Contract extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Contract.fromJson(Map<String, dynamic> json) {
     return Contract(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -126,7 +93,7 @@ class Contract extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -135,7 +102,7 @@ class Contract extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -144,7 +111,7 @@ class Contract extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -153,32 +120,29 @@ class Contract extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
+      url: json['url'] != null
+          ? FhirUri.fromJson({
+              'value': json['url'],
+              '_value': json['_url'],
+            })
           : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
       status: json['status'] != null
-          ? ContractResourceStatusCodes.fromJson(json['status'])
-          : null,
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
+          ? ContractResourceStatusCodes.fromJson({
+              'value': json['status'],
+              '_value': json['_status'],
+            })
           : null,
       legalState: json['legalState'] != null
           ? CodeableConcept.fromJson(
@@ -191,24 +155,21 @@ class Contract extends DomainResource {
             )
           : null,
       instantiatesUri: json['instantiatesUri'] != null
-          ? FhirUri.fromJson(json['instantiatesUri'])
-          : null,
-      instantiatesUriElement: json['_instantiatesUri'] != null
-          ? Element.fromJson(
-              json['_instantiatesUri'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['instantiatesUri'],
+              '_value': json['_instantiatesUri'],
+            })
           : null,
       contentDerivative: json['contentDerivative'] != null
           ? CodeableConcept.fromJson(
               json['contentDerivative'] as Map<String, dynamic>,
             )
           : null,
-      issued:
-          json['issued'] != null ? FhirDateTime.fromJson(json['issued']) : null,
-      issuedElement: json['_issued'] != null
-          ? Element.fromJson(
-              json['_issued'] as Map<String, dynamic>,
-            )
+      issued: json['issued'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['issued'],
+              '_value': json['_issued'],
+            })
           : null,
       applies: json['applies'] != null
           ? Period.fromJson(
@@ -223,7 +184,7 @@ class Contract extends DomainResource {
       subject: json['subject'] != null
           ? (json['subject'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -232,7 +193,7 @@ class Contract extends DomainResource {
       authority: json['authority'] != null
           ? (json['authority'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -241,7 +202,7 @@ class Contract extends DomainResource {
       domain: json['domain'] != null
           ? (json['domain'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -250,46 +211,33 @@ class Contract extends DomainResource {
       site: json['site'] != null
           ? (json['site'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
       subtitle: json['subtitle'] != null
-          ? FhirString.fromJson(json['subtitle'])
+          ? FhirString.fromJson({
+              'value': json['subtitle'],
+              '_value': json['_subtitle'],
+            })
           : null,
-      subtitleElement: json['_subtitle'] != null
-          ? Element.fromJson(
-              json['_subtitle'] as Map<String, dynamic>,
-            )
-          : null,
-      alias: json['alias'] != null
-          ? (json['alias'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      aliasElement: json['_alias'] != null
-          ? (json['_alias'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      alias: parsePrimitiveList<FhirString>(
+          json['alias'] as List<dynamic>?, json['_alias'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
       author: json['author'] != null
           ? Reference.fromJson(
               json['author'] as Map<String, dynamic>,
@@ -318,7 +266,7 @@ class Contract extends DomainResource {
       subType: json['subType'] != null
           ? (json['subType'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -332,7 +280,7 @@ class Contract extends DomainResource {
       term: json['term'] != null
           ? (json['term'] as List<dynamic>)
               .map<ContractTerm>(
-                (dynamic v) => ContractTerm.fromJson(
+                (v) => ContractTerm.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -341,7 +289,7 @@ class Contract extends DomainResource {
       supportingInfo: json['supportingInfo'] != null
           ? (json['supportingInfo'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -350,7 +298,7 @@ class Contract extends DomainResource {
       relevantHistory: json['relevantHistory'] != null
           ? (json['relevantHistory'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -359,7 +307,7 @@ class Contract extends DomainResource {
       signer: json['signer'] != null
           ? (json['signer'] as List<dynamic>)
               .map<ContractSigner>(
-                (dynamic v) => ContractSigner.fromJson(
+                (v) => ContractSigner.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -368,7 +316,7 @@ class Contract extends DomainResource {
       friendly: json['friendly'] != null
           ? (json['friendly'] as List<dynamic>)
               .map<ContractFriendly>(
-                (dynamic v) => ContractFriendly.fromJson(
+                (v) => ContractFriendly.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -377,7 +325,7 @@ class Contract extends DomainResource {
       legal: json['legal'] != null
           ? (json['legal'] as List<dynamic>)
               .map<ContractLegal>(
-                (dynamic v) => ContractLegal.fromJson(
+                (v) => ContractLegal.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -386,7 +334,7 @@ class Contract extends DomainResource {
       rule: json['rule'] != null
           ? (json['rule'] as List<dynamic>)
               .map<ContractRule>(
-                (dynamic v) => ContractRule.fromJson(
+                (v) => ContractRule.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -395,7 +343,8 @@ class Contract extends DomainResource {
     );
   }
 
-  /// Deserialize [Contract] from a [String] or [YamlMap] object
+  /// Deserialize [Contract] from a [String]
+  /// or [YamlMap] object
   factory Contract.fromYaml(dynamic yaml) => yaml is String
       ? Contract.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -404,10 +353,11 @@ class Contract extends DomainResource {
           ? Contract.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Contract cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Contract cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Contract] that takes in a [String]
+  /// Factory constructor for [Contract]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Contract.fromJsonString(String source) {
@@ -423,6 +373,15 @@ class Contract extends DomainResource {
   @override
   String get fhirType => 'Contract';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Unique identifier for this Contract or a derivative that references a
   /// Source Contract.
@@ -433,23 +392,14 @@ class Contract extends DomainResource {
   /// unique).
   final FhirUri? url;
 
-  /// Extensions for [url]
-  final Element? urlElement;
-
   /// [version]
   /// An edition identifier used for business purposes to label business
   /// significant variants.
   final FhirString? version;
 
-  /// Extensions for [version]
-  final Element? versionElement;
-
   /// [status]
   /// The status of the resource instance.
   final ContractResourceStatusCodes? status;
-
-  /// Extensions for [status]
-  final Element? statusElement;
 
   /// [legalState]
   /// Legal states of the formation of a legal instrument, which is a
@@ -469,9 +419,6 @@ class Contract extends DomainResource {
   /// to in whole or in part by this Contract.
   final FhirUri? instantiatesUri;
 
-  /// Extensions for [instantiatesUri]
-  final Element? instantiatesUriElement;
-
   /// [contentDerivative]
   /// The minimal content derived from the basal information source at a
   /// specific stage in its lifecycle.
@@ -480,9 +427,6 @@ class Contract extends DomainResource {
   /// [issued]
   /// When this Contract was issued.
   final FhirDateTime? issued;
-
-  /// Extensions for [issued]
-  final Element? issuedElement;
 
   /// [applies]
   /// Relevant time or time-period when this Contract is applicable.
@@ -524,17 +468,11 @@ class Contract extends DomainResource {
   /// code generation.
   final FhirString? name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [title]
   /// A short, descriptive, user-friendly title for this Contract definition,
   /// derivative, or instance in any legal state.t giving additional
   /// information about its content.
   final FhirString? title;
-
-  /// Extensions for [title]
-  final Element? titleElement;
 
   /// [subtitle]
   /// An explanatory or alternate user-friendly title for this Contract
@@ -542,17 +480,11 @@ class Contract extends DomainResource {
   /// additional information about its content.
   final FhirString? subtitle;
 
-  /// Extensions for [subtitle]
-  final Element? subtitleElement;
-
   /// [alias]
   /// Alternative representation of the title for this Contract definition,
   /// derivative, or instance in any legal state., e.g., a domain specific
   /// contract number related to legislation.
   final List<FhirString>? alias;
-
-  /// Extensions for [alias]
-  final List<Element>? aliasElement;
 
   /// [author]
   /// The individual or organization that authored the Contract definition,
@@ -651,9 +583,6 @@ class Contract extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -678,14 +607,8 @@ class Contract extends DomainResource {
     if (url?.value != null) {
       json['url'] = url!.toJson();
     }
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
-    }
     if (version?.value != null) {
       json['version'] = version!.toJson();
-    }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
     }
     if (status != null) {
       json['status'] = status!.toJson();
@@ -699,17 +622,11 @@ class Contract extends DomainResource {
     if (instantiatesUri?.value != null) {
       json['instantiatesUri'] = instantiatesUri!.toJson();
     }
-    if (instantiatesUriElement != null) {
-      json['_instantiatesUri'] = instantiatesUriElement!.toJson();
-    }
     if (contentDerivative != null) {
       json['contentDerivative'] = contentDerivative!.toJson();
     }
     if (issued?.value != null) {
       json['issued'] = issued!.toJson();
-    }
-    if (issuedElement != null) {
-      json['_issued'] = issuedElement!.toJson();
     }
     if (applies != null) {
       json['applies'] = applies!.toJson();
@@ -732,26 +649,14 @@ class Contract extends DomainResource {
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (title?.value != null) {
       json['title'] = title!.toJson();
-    }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
     }
     if (subtitle?.value != null) {
       json['subtitle'] = subtitle!.toJson();
     }
-    if (subtitleElement != null) {
-      json['_subtitle'] = subtitleElement!.toJson();
-    }
     if (alias != null && alias!.isNotEmpty) {
       json['alias'] = alias!.map((FhirString v) => v.toJson()).toList();
-    }
-    if (aliasElement != null && aliasElement!.isNotEmpty) {
-      json['_alias'] = aliasElement!.map((Element v) => v.toJson()).toList();
     }
     if (author != null) {
       json['author'] = author!.toJson();
@@ -809,27 +714,20 @@ class Contract extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     FhirUri? url,
-    Element? urlElement,
     FhirString? version,
-    Element? versionElement,
     ContractResourceStatusCodes? status,
-    Element? statusElement,
     CodeableConcept? legalState,
     Reference? instantiatesCanonical,
     FhirUri? instantiatesUri,
-    Element? instantiatesUriElement,
     CodeableConcept? contentDerivative,
     FhirDateTime? issued,
-    Element? issuedElement,
     Period? applies,
     CodeableConcept? expirationType,
     List<Reference>? subject,
@@ -837,13 +735,9 @@ class Contract extends DomainResource {
     List<Reference>? domain,
     List<Reference>? site,
     FhirString? name,
-    Element? nameElement,
     FhirString? title,
-    Element? titleElement,
     FhirString? subtitle,
-    Element? subtitleElement,
     List<FhirString>? alias,
-    List<Element>? aliasElement,
     Reference? author,
     CodeableConcept? scope,
     CodeableConcept? topicCodeableConcept,
@@ -869,29 +763,21 @@ class Contract extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       legalState: legalState ?? this.legalState,
       instantiatesCanonical:
           instantiatesCanonical ?? this.instantiatesCanonical,
       instantiatesUri: instantiatesUri ?? this.instantiatesUri,
-      instantiatesUriElement:
-          instantiatesUriElement ?? this.instantiatesUriElement,
       contentDerivative: contentDerivative ?? this.contentDerivative,
       issued: issued ?? this.issued,
-      issuedElement: issuedElement ?? this.issuedElement,
       applies: applies ?? this.applies,
       expirationType: expirationType ?? this.expirationType,
       subject: subject ?? this.subject,
@@ -899,13 +785,9 @@ class Contract extends DomainResource {
       domain: domain ?? this.domain,
       site: site ?? this.site,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       subtitle: subtitle ?? this.subtitle,
-      subtitleElement: subtitleElement ?? this.subtitleElement,
       alias: alias ?? this.alias,
-      aliasElement: aliasElement ?? this.aliasElement,
       author: author ?? this.author,
       scope: scope ?? this.scope,
       topicCodeableConcept: topicCodeableConcept ?? this.topicCodeableConcept,
@@ -939,23 +821,14 @@ class ContractContentDefinition extends BackboneElement {
 
   ContractContentDefinition({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
     this.subType,
     this.publisher,
     this.publicationDate,
-
-    /// Extensions for [publicationDate]
-    this.publicationDateElement,
     required this.publicationStatus,
-
-    /// Extensions for [publicationStatus]
-    this.publicationStatusElement,
     this.copyright,
-
-    /// Extensions for [copyright]
-    this.copyrightElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -967,11 +840,15 @@ class ContractContentDefinition extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractContentDefinition.fromJson(Map<String, dynamic> json) {
     return ContractContentDefinition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -980,7 +857,7 @@ class ContractContentDefinition extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1000,32 +877,26 @@ class ContractContentDefinition extends BackboneElement {
             )
           : null,
       publicationDate: json['publicationDate'] != null
-          ? FhirDateTime.fromJson(json['publicationDate'])
+          ? FhirDateTime.fromJson({
+              'value': json['publicationDate'],
+              '_value': json['_publicationDate'],
+            })
           : null,
-      publicationDateElement: json['_publicationDate'] != null
-          ? Element.fromJson(
-              json['_publicationDate'] as Map<String, dynamic>,
-            )
-          : null,
-      publicationStatus: ContractResourcePublicationStatusCodes.fromJson(
-          json['publicationStatus']),
-      publicationStatusElement: json['_publicationStatus'] != null
-          ? Element.fromJson(
-              json['_publicationStatus'] as Map<String, dynamic>,
-            )
-          : null,
+      publicationStatus: ContractResourcePublicationStatusCodes.fromJson({
+        'value': json['publicationStatus'],
+        '_value': json['_publicationStatus'],
+      }),
       copyright: json['copyright'] != null
-          ? FhirMarkdown.fromJson(json['copyright'])
-          : null,
-      copyrightElement: json['_copyright'] != null
-          ? Element.fromJson(
-              json['_copyright'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['copyright'],
+              '_value': json['_copyright'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [ContractContentDefinition] from a [String] or [YamlMap] object
+  /// Deserialize [ContractContentDefinition] from a [String]
+  /// or [YamlMap] object
   factory ContractContentDefinition.fromYaml(dynamic yaml) => yaml is String
       ? ContractContentDefinition.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1035,10 +906,11 @@ class ContractContentDefinition extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ContractContentDefinition cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ContractContentDefinition cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ContractContentDefinition] that takes in a [String]
+  /// Factory constructor for [ContractContentDefinition]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ContractContentDefinition.fromJsonString(String source) {
@@ -1053,6 +925,15 @@ class ContractContentDefinition extends BackboneElement {
 
   @override
   String get fhirType => 'ContractContentDefinition';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Precusory content structure and use, i.e., a boilerplate, template,
@@ -1076,26 +957,17 @@ class ContractContentDefinition extends BackboneElement {
   /// substantive content of the contract changes.
   final FhirDateTime? publicationDate;
 
-  /// Extensions for [publicationDate]
-  final Element? publicationDateElement;
-
   /// [publicationStatus]
   /// amended | appended | cancelled | disputed | entered-in-error |
   /// executable | executed | negotiable | offered | policy | rejected |
   /// renewed | revoked | resolved | terminated.
   final ContractResourcePublicationStatusCodes publicationStatus;
 
-  /// Extensions for [publicationStatus]
-  final Element? publicationStatusElement;
-
   /// [copyright]
   /// A copyright statement relating to Contract precursor content. Copyright
   /// statements are generally legal restrictions on the use and publishing
   /// of the Contract precursor content.
   final FhirMarkdown? copyright;
-
-  /// Extensions for [copyright]
-  final Element? copyrightElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1120,15 +992,9 @@ class ContractContentDefinition extends BackboneElement {
     if (publicationDate?.value != null) {
       json['publicationDate'] = publicationDate!.toJson();
     }
-    if (publicationDateElement != null) {
-      json['_publicationDate'] = publicationDateElement!.toJson();
-    }
     json['publicationStatus'] = publicationStatus.toJson();
     if (copyright?.value != null) {
       json['copyright'] = copyright!.toJson();
-    }
-    if (copyrightElement != null) {
-      json['_copyright'] = copyrightElement!.toJson();
     }
     return json;
   }
@@ -1144,11 +1010,8 @@ class ContractContentDefinition extends BackboneElement {
     CodeableConcept? subType,
     Reference? publisher,
     FhirDateTime? publicationDate,
-    Element? publicationDateElement,
     ContractResourcePublicationStatusCodes? publicationStatus,
-    Element? publicationStatusElement,
     FhirMarkdown? copyright,
-    Element? copyrightElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1164,13 +1027,8 @@ class ContractContentDefinition extends BackboneElement {
       subType: subType ?? this.subType,
       publisher: publisher ?? this.publisher,
       publicationDate: publicationDate ?? this.publicationDate,
-      publicationDateElement:
-          publicationDateElement ?? this.publicationDateElement,
       publicationStatus: publicationStatus ?? this.publicationStatus,
-      publicationStatusElement:
-          publicationStatusElement ?? this.publicationStatusElement,
       copyright: copyright ?? this.copyright,
-      copyrightElement: copyrightElement ?? this.copyrightElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1189,22 +1047,16 @@ class ContractTerm extends BackboneElement {
 
   ContractTerm({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.issued,
-
-    /// Extensions for [issued]
-    this.issuedElement,
     this.applies,
     this.topicCodeableConcept,
     this.topicReference,
     this.type,
     this.subType,
     this.text,
-
-    /// Extensions for [text]
-    this.textElement,
     this.securityLabel,
     required this.offer,
     this.asset,
@@ -1221,11 +1073,15 @@ class ContractTerm extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractTerm.fromJson(Map<String, dynamic> json) {
     return ContractTerm(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1234,7 +1090,7 @@ class ContractTerm extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1245,12 +1101,11 @@ class ContractTerm extends BackboneElement {
               json['identifier'] as Map<String, dynamic>,
             )
           : null,
-      issued:
-          json['issued'] != null ? FhirDateTime.fromJson(json['issued']) : null,
-      issuedElement: json['_issued'] != null
-          ? Element.fromJson(
-              json['_issued'] as Map<String, dynamic>,
-            )
+      issued: json['issued'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['issued'],
+              '_value': json['_issued'],
+            })
           : null,
       applies: json['applies'] != null
           ? Period.fromJson(
@@ -1277,16 +1132,16 @@ class ContractTerm extends BackboneElement {
               json['subType'] as Map<String, dynamic>,
             )
           : null,
-      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
-      textElement: json['_text'] != null
-          ? Element.fromJson(
-              json['_text'] as Map<String, dynamic>,
-            )
+      text: json['text'] != null
+          ? FhirString.fromJson({
+              'value': json['text'],
+              '_value': json['_text'],
+            })
           : null,
       securityLabel: json['securityLabel'] != null
           ? (json['securityLabel'] as List<dynamic>)
               .map<ContractSecurityLabel>(
-                (dynamic v) => ContractSecurityLabel.fromJson(
+                (v) => ContractSecurityLabel.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1298,7 +1153,7 @@ class ContractTerm extends BackboneElement {
       asset: json['asset'] != null
           ? (json['asset'] as List<dynamic>)
               .map<ContractAsset>(
-                (dynamic v) => ContractAsset.fromJson(
+                (v) => ContractAsset.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1307,7 +1162,7 @@ class ContractTerm extends BackboneElement {
       action: json['action'] != null
           ? (json['action'] as List<dynamic>)
               .map<ContractAction>(
-                (dynamic v) => ContractAction.fromJson(
+                (v) => ContractAction.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1316,7 +1171,7 @@ class ContractTerm extends BackboneElement {
       group: json['group'] != null
           ? (json['group'] as List<dynamic>)
               .map<ContractTerm>(
-                (dynamic v) => ContractTerm.fromJson(
+                (v) => ContractTerm.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1325,7 +1180,8 @@ class ContractTerm extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractTerm] from a [String] or [YamlMap] object
+  /// Deserialize [ContractTerm] from a [String]
+  /// or [YamlMap] object
   factory ContractTerm.fromYaml(dynamic yaml) => yaml is String
       ? ContractTerm.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1334,10 +1190,11 @@ class ContractTerm extends BackboneElement {
           ? ContractTerm.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('ContractTerm cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ContractTerm cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ContractTerm] that takes in a [String]
+  /// Factory constructor for [ContractTerm]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ContractTerm.fromJsonString(String source) {
@@ -1353,6 +1210,15 @@ class ContractTerm extends BackboneElement {
   @override
   String get fhirType => 'ContractTerm';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Unique identifier for this particular Contract Provision.
   final Identifier? identifier;
@@ -1360,9 +1226,6 @@ class ContractTerm extends BackboneElement {
   /// [issued]
   /// When this Contract Provision was issued.
   final FhirDateTime? issued;
-
-  /// Extensions for [issued]
-  final Element? issuedElement;
 
   /// [applies]
   /// Relevant time or time-period when this Contract Provision is
@@ -1392,9 +1255,6 @@ class ContractTerm extends BackboneElement {
   /// [text]
   /// Statement of a provision in a policy or a contract.
   final FhirString? text;
-
-  /// Extensions for [text]
-  final Element? textElement;
 
   /// [securityLabel]
   /// Security labels that protect the handling of information about the term
@@ -1437,9 +1297,6 @@ class ContractTerm extends BackboneElement {
     if (issued?.value != null) {
       json['issued'] = issued!.toJson();
     }
-    if (issuedElement != null) {
-      json['_issued'] = issuedElement!.toJson();
-    }
     if (applies != null) {
       json['applies'] = applies!.toJson();
     }
@@ -1457,9 +1314,6 @@ class ContractTerm extends BackboneElement {
     }
     if (text?.value != null) {
       json['text'] = text!.toJson();
-    }
-    if (textElement != null) {
-      json['_text'] = textElement!.toJson();
     }
     if (securityLabel != null && securityLabel!.isNotEmpty) {
       json['securityLabel'] =
@@ -1487,14 +1341,12 @@ class ContractTerm extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Identifier? identifier,
     FhirDateTime? issued,
-    Element? issuedElement,
     Period? applies,
     CodeableConcept? topicCodeableConcept,
     Reference? topicReference,
     CodeableConcept? type,
     CodeableConcept? subType,
     FhirString? text,
-    Element? textElement,
     List<ContractSecurityLabel>? securityLabel,
     ContractOffer? offer,
     List<ContractAsset>? asset,
@@ -1513,14 +1365,12 @@ class ContractTerm extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       issued: issued ?? this.issued,
-      issuedElement: issuedElement ?? this.issuedElement,
       applies: applies ?? this.applies,
       topicCodeableConcept: topicCodeableConcept ?? this.topicCodeableConcept,
       topicReference: topicReference ?? this.topicReference,
       type: type ?? this.type,
       subType: subType ?? this.subType,
       text: text ?? this.text,
-      textElement: textElement ?? this.textElement,
       securityLabel: securityLabel ?? this.securityLabel,
       offer: offer ?? this.offer,
       asset: asset ?? this.asset,
@@ -1544,12 +1394,9 @@ class ContractSecurityLabel extends BackboneElement {
 
   ContractSecurityLabel({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.number,
-
-    /// Extensions for [number]
-    this.numberElement,
     required this.classification,
     this.category,
     this.control,
@@ -1564,11 +1411,15 @@ class ContractSecurityLabel extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractSecurityLabel.fromJson(Map<String, dynamic> json) {
     return ContractSecurityLabel(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1577,33 +1428,22 @@ class ContractSecurityLabel extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      number: json['number'] != null
-          ? (json['number'] as List<dynamic>)
-              .map<FhirUnsignedInt>(
-                (dynamic v) => FhirUnsignedInt.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      numberElement: json['_number'] != null
-          ? (json['_number'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      number: parsePrimitiveList<FhirUnsignedInt>(
+          json['number'] as List<dynamic>?, json['_number'] as List<dynamic>?,
+          fromJson: FhirUnsignedInt.fromJson),
       classification: Coding.fromJson(
         json['classification'] as Map<String, dynamic>,
       ),
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<Coding>(
-                (dynamic v) => Coding.fromJson(
+                (v) => Coding.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1612,7 +1452,7 @@ class ContractSecurityLabel extends BackboneElement {
       control: json['control'] != null
           ? (json['control'] as List<dynamic>)
               .map<Coding>(
-                (dynamic v) => Coding.fromJson(
+                (v) => Coding.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1621,7 +1461,8 @@ class ContractSecurityLabel extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractSecurityLabel] from a [String] or [YamlMap] object
+  /// Deserialize [ContractSecurityLabel] from a [String]
+  /// or [YamlMap] object
   factory ContractSecurityLabel.fromYaml(dynamic yaml) => yaml is String
       ? ContractSecurityLabel.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1631,10 +1472,11 @@ class ContractSecurityLabel extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'ContractSecurityLabel cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'ContractSecurityLabel cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ContractSecurityLabel] that takes in a [String]
+  /// Factory constructor for [ContractSecurityLabel]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ContractSecurityLabel.fromJsonString(String source) {
@@ -1650,13 +1492,19 @@ class ContractSecurityLabel extends BackboneElement {
   @override
   String get fhirType => 'ContractSecurityLabel';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [number]
   /// Number used to link this term or term element to the applicable
   /// Security Label.
   final List<FhirUnsignedInt>? number;
-
-  /// Extensions for [number]
-  final List<Element>? numberElement;
 
   /// [classification]
   /// Security label privacy tag that species the level of confidentiality
@@ -1689,9 +1537,6 @@ class ContractSecurityLabel extends BackboneElement {
     if (number != null && number!.isNotEmpty) {
       json['number'] = number!.map((FhirUnsignedInt v) => v.toJson()).toList();
     }
-    if (numberElement != null && numberElement!.isNotEmpty) {
-      json['_number'] = numberElement!.map((Element v) => v.toJson()).toList();
-    }
     json['classification'] = classification.toJson();
     if (category != null && category!.isNotEmpty) {
       json['category'] = category!.map((Coding v) => v.toJson()).toList();
@@ -1710,7 +1555,6 @@ class ContractSecurityLabel extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<FhirUnsignedInt>? number,
-    List<Element>? numberElement,
     Coding? classification,
     List<Coding>? category,
     List<Coding>? control,
@@ -1726,7 +1570,6 @@ class ContractSecurityLabel extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       number: number ?? this.number,
-      numberElement: numberElement ?? this.numberElement,
       classification: classification ?? this.classification,
       category: category ?? this.category,
       control: control ?? this.control,
@@ -1747,7 +1590,7 @@ class ContractOffer extends BackboneElement {
 
   ContractOffer({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.party,
@@ -1757,17 +1600,8 @@ class ContractOffer extends BackboneElement {
     this.decisionMode,
     this.answer,
     this.text,
-
-    /// Extensions for [text]
-    this.textElement,
     this.linkId,
-
-    /// Extensions for [linkId]
-    this.linkIdElement,
     this.securityLabelNumber,
-
-    /// Extensions for [securityLabelNumber]
-    this.securityLabelNumberElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1779,11 +1613,15 @@ class ContractOffer extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractOffer.fromJson(Map<String, dynamic> json) {
     return ContractOffer(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1792,7 +1630,7 @@ class ContractOffer extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1801,7 +1639,7 @@ class ContractOffer extends BackboneElement {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1810,7 +1648,7 @@ class ContractOffer extends BackboneElement {
       party: json['party'] != null
           ? (json['party'] as List<dynamic>)
               .map<ContractParty>(
-                (dynamic v) => ContractParty.fromJson(
+                (v) => ContractParty.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1834,7 +1672,7 @@ class ContractOffer extends BackboneElement {
       decisionMode: json['decisionMode'] != null
           ? (json['decisionMode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1843,50 +1681,30 @@ class ContractOffer extends BackboneElement {
       answer: json['answer'] != null
           ? (json['answer'] as List<dynamic>)
               .map<ContractAnswer>(
-                (dynamic v) => ContractAnswer.fromJson(
+                (v) => ContractAnswer.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
-      textElement: json['_text'] != null
-          ? Element.fromJson(
-              json['_text'] as Map<String, dynamic>,
-            )
+      text: json['text'] != null
+          ? FhirString.fromJson({
+              'value': json['text'],
+              '_value': json['_text'],
+            })
           : null,
-      linkId: json['linkId'] != null
-          ? (json['linkId'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      linkIdElement: json['_linkId'] != null
-          ? (json['_linkId'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      securityLabelNumber: json['securityLabelNumber'] != null
-          ? (json['securityLabelNumber'] as List<dynamic>)
-              .map<FhirUnsignedInt>(
-                (dynamic v) => FhirUnsignedInt.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      securityLabelNumberElement: json['_securityLabelNumber'] != null
-          ? (json['_securityLabelNumber'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      linkId: parsePrimitiveList<FhirString>(
+          json['linkId'] as List<dynamic>?, json['_linkId'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
+      securityLabelNumber: parsePrimitiveList<FhirUnsignedInt>(
+          json['securityLabelNumber'] as List<dynamic>?,
+          json['_securityLabelNumber'] as List<dynamic>?,
+          fromJson: FhirUnsignedInt.fromJson),
     );
   }
 
-  /// Deserialize [ContractOffer] from a [String] or [YamlMap] object
+  /// Deserialize [ContractOffer] from a [String]
+  /// or [YamlMap] object
   factory ContractOffer.fromYaml(dynamic yaml) => yaml is String
       ? ContractOffer.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1895,11 +1713,11 @@ class ContractOffer extends BackboneElement {
           ? ContractOffer.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ContractOffer cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ContractOffer cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ContractOffer] that takes in a [String]
+  /// Factory constructor for [ContractOffer]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ContractOffer.fromJsonString(String source) {
@@ -1914,6 +1732,15 @@ class ContractOffer extends BackboneElement {
 
   @override
   String get fhirType => 'ContractOffer';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// Unique identifier for this particular Contract Provision.
@@ -1951,23 +1778,14 @@ class ContractOffer extends BackboneElement {
   /// Human readable form of this Contract Offer.
   final FhirString? text;
 
-  /// Extensions for [text]
-  final Element? textElement;
-
   /// [linkId]
   /// The id of the clause or question text of the offer in the referenced
   /// questionnaire/response.
   final List<FhirString>? linkId;
 
-  /// Extensions for [linkId]
-  final List<Element>? linkIdElement;
-
   /// [securityLabelNumber]
   /// Security labels that protects the offer.
   final List<FhirUnsignedInt>? securityLabelNumber;
-
-  /// Extensions for [securityLabelNumber]
-  final List<Element>? securityLabelNumberElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2008,23 +1826,12 @@ class ContractOffer extends BackboneElement {
     if (text?.value != null) {
       json['text'] = text!.toJson();
     }
-    if (textElement != null) {
-      json['_text'] = textElement!.toJson();
-    }
     if (linkId != null && linkId!.isNotEmpty) {
       json['linkId'] = linkId!.map((FhirString v) => v.toJson()).toList();
-    }
-    if (linkIdElement != null && linkIdElement!.isNotEmpty) {
-      json['_linkId'] = linkIdElement!.map((Element v) => v.toJson()).toList();
     }
     if (securityLabelNumber != null && securityLabelNumber!.isNotEmpty) {
       json['securityLabelNumber'] =
           securityLabelNumber!.map((FhirUnsignedInt v) => v.toJson()).toList();
-    }
-    if (securityLabelNumberElement != null &&
-        securityLabelNumberElement!.isNotEmpty) {
-      json['_securityLabelNumber'] =
-          securityLabelNumberElement!.map((Element v) => v.toJson()).toList();
     }
     return json;
   }
@@ -2044,11 +1851,8 @@ class ContractOffer extends BackboneElement {
     List<CodeableConcept>? decisionMode,
     List<ContractAnswer>? answer,
     FhirString? text,
-    Element? textElement,
     List<FhirString>? linkId,
-    List<Element>? linkIdElement,
     List<FhirUnsignedInt>? securityLabelNumber,
-    List<Element>? securityLabelNumberElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2068,12 +1872,8 @@ class ContractOffer extends BackboneElement {
       decisionMode: decisionMode ?? this.decisionMode,
       answer: answer ?? this.answer,
       text: text ?? this.text,
-      textElement: textElement ?? this.textElement,
       linkId: linkId ?? this.linkId,
-      linkIdElement: linkIdElement ?? this.linkIdElement,
       securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
-      securityLabelNumberElement:
-          securityLabelNumberElement ?? this.securityLabelNumberElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2091,7 +1891,7 @@ class ContractParty extends BackboneElement {
 
   ContractParty({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.reference,
     required this.role,
@@ -2106,11 +1906,15 @@ class ContractParty extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractParty.fromJson(Map<String, dynamic> json) {
     return ContractParty(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2119,23 +1923,27 @@ class ContractParty extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      reference: (json['reference'] as List<dynamic>)
+      reference: ensureNonNullList((json['reference'] as List<dynamic>)
           .map<Reference>(
-              (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-          .toList(),
+            (v) => Reference.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
       role: CodeableConcept.fromJson(
         json['role'] as Map<String, dynamic>,
       ),
     );
   }
 
-  /// Deserialize [ContractParty] from a [String] or [YamlMap] object
+  /// Deserialize [ContractParty] from a [String]
+  /// or [YamlMap] object
   factory ContractParty.fromYaml(dynamic yaml) => yaml is String
       ? ContractParty.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2144,11 +1952,11 @@ class ContractParty extends BackboneElement {
           ? ContractParty.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ContractParty cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ContractParty cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ContractParty] that takes in a [String]
+  /// Factory constructor for [ContractParty]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ContractParty.fromJsonString(String source) {
@@ -2163,6 +1971,15 @@ class ContractParty extends BackboneElement {
 
   @override
   String get fhirType => 'ContractParty';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [reference]
   /// Participant in the offer.
@@ -2230,40 +2047,16 @@ class ContractAnswer extends BackboneElement {
 
   ContractAnswer({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.valueBoolean,
-
-    /// Extensions for [valueBoolean]
-    this.valueBooleanElement,
     this.valueDecimal,
-
-    /// Extensions for [valueDecimal]
-    this.valueDecimalElement,
     this.valueInteger,
-
-    /// Extensions for [valueInteger]
-    this.valueIntegerElement,
     this.valueDate,
-
-    /// Extensions for [valueDate]
-    this.valueDateElement,
     this.valueDateTime,
-
-    /// Extensions for [valueDateTime]
-    this.valueDateTimeElement,
     this.valueTime,
-
-    /// Extensions for [valueTime]
-    this.valueTimeElement,
     this.valueString,
-
-    /// Extensions for [valueString]
-    this.valueStringElement,
     this.valueUri,
-
-    /// Extensions for [valueUri]
-    this.valueUriElement,
     this.valueAttachment,
     this.valueCoding,
     this.valueQuantity,
@@ -2279,11 +2072,15 @@ class ContractAnswer extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractAnswer.fromJson(Map<String, dynamic> json) {
     return ContractAnswer(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2292,74 +2089,59 @@ class ContractAnswer extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(
-              json['_valueBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['valueBoolean'],
+              '_value': json['_valueBoolean'],
+            })
           : null,
       valueDecimal: json['valueDecimal'] != null
-          ? FhirDecimal.fromJson(json['valueDecimal'])
-          : null,
-      valueDecimalElement: json['_valueDecimal'] != null
-          ? Element.fromJson(
-              json['_valueDecimal'] as Map<String, dynamic>,
-            )
+          ? FhirDecimal.fromJson({
+              'value': json['valueDecimal'],
+              '_value': json['_valueDecimal'],
+            })
           : null,
       valueInteger: json['valueInteger'] != null
-          ? FhirInteger.fromJson(json['valueInteger'])
-          : null,
-      valueIntegerElement: json['_valueInteger'] != null
-          ? Element.fromJson(
-              json['_valueInteger'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['valueInteger'],
+              '_value': json['_valueInteger'],
+            })
           : null,
       valueDate: json['valueDate'] != null
-          ? FhirDate.fromJson(json['valueDate'])
-          : null,
-      valueDateElement: json['_valueDate'] != null
-          ? Element.fromJson(
-              json['_valueDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['valueDate'],
+              '_value': json['_valueDate'],
+            })
           : null,
       valueDateTime: json['valueDateTime'] != null
-          ? FhirDateTime.fromJson(json['valueDateTime'])
-          : null,
-      valueDateTimeElement: json['_valueDateTime'] != null
-          ? Element.fromJson(
-              json['_valueDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['valueDateTime'],
+              '_value': json['_valueDateTime'],
+            })
           : null,
       valueTime: json['valueTime'] != null
-          ? FhirTime.fromJson(json['valueTime'])
-          : null,
-      valueTimeElement: json['_valueTime'] != null
-          ? Element.fromJson(
-              json['_valueTime'] as Map<String, dynamic>,
-            )
+          ? FhirTime.fromJson({
+              'value': json['valueTime'],
+              '_value': json['_valueTime'],
+            })
           : null,
       valueString: json['valueString'] != null
-          ? FhirString.fromJson(json['valueString'])
+          ? FhirString.fromJson({
+              'value': json['valueString'],
+              '_value': json['_valueString'],
+            })
           : null,
-      valueStringElement: json['_valueString'] != null
-          ? Element.fromJson(
-              json['_valueString'] as Map<String, dynamic>,
-            )
-          : null,
-      valueUri:
-          json['valueUri'] != null ? FhirUri.fromJson(json['valueUri']) : null,
-      valueUriElement: json['_valueUri'] != null
-          ? Element.fromJson(
-              json['_valueUri'] as Map<String, dynamic>,
-            )
+      valueUri: json['valueUri'] != null
+          ? FhirUri.fromJson({
+              'value': json['valueUri'],
+              '_value': json['_valueUri'],
+            })
           : null,
       valueAttachment: json['valueAttachment'] != null
           ? Attachment.fromJson(
@@ -2384,7 +2166,8 @@ class ContractAnswer extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractAnswer] from a [String] or [YamlMap] object
+  /// Deserialize [ContractAnswer] from a [String]
+  /// or [YamlMap] object
   factory ContractAnswer.fromYaml(dynamic yaml) => yaml is String
       ? ContractAnswer.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2393,11 +2176,11 @@ class ContractAnswer extends BackboneElement {
           ? ContractAnswer.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ContractAnswer cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ContractAnswer cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ContractAnswer] that takes in a [String]
+  /// Factory constructor for [ContractAnswer]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ContractAnswer.fromJsonString(String source) {
@@ -2413,15 +2196,21 @@ class ContractAnswer extends BackboneElement {
   @override
   String get fhirType => 'ContractAnswer';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [valueBoolean]
   /// Response to an offer clause or question text, which enables selection
   /// of values to be agreed to, e.g., the period of participation, the date
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
   final FhirBoolean? valueBoolean;
-
-  /// Extensions for [valueBoolean]
-  final Element? valueBooleanElement;
 
   /// [valueDecimal]
   /// Response to an offer clause or question text, which enables selection
@@ -2430,18 +2219,12 @@ class ContractAnswer extends BackboneElement {
   /// may be used for further research.
   final FhirDecimal? valueDecimal;
 
-  /// Extensions for [valueDecimal]
-  final Element? valueDecimalElement;
-
   /// [valueInteger]
   /// Response to an offer clause or question text, which enables selection
   /// of values to be agreed to, e.g., the period of participation, the date
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
   final FhirInteger? valueInteger;
-
-  /// Extensions for [valueInteger]
-  final Element? valueIntegerElement;
 
   /// [valueDate]
   /// Response to an offer clause or question text, which enables selection
@@ -2450,18 +2233,12 @@ class ContractAnswer extends BackboneElement {
   /// may be used for further research.
   final FhirDate? valueDate;
 
-  /// Extensions for [valueDate]
-  final Element? valueDateElement;
-
   /// [valueDateTime]
   /// Response to an offer clause or question text, which enables selection
   /// of values to be agreed to, e.g., the period of participation, the date
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
   final FhirDateTime? valueDateTime;
-
-  /// Extensions for [valueDateTime]
-  final Element? valueDateTimeElement;
 
   /// [valueTime]
   /// Response to an offer clause or question text, which enables selection
@@ -2470,9 +2247,6 @@ class ContractAnswer extends BackboneElement {
   /// may be used for further research.
   final FhirTime? valueTime;
 
-  /// Extensions for [valueTime]
-  final Element? valueTimeElement;
-
   /// [valueString]
   /// Response to an offer clause or question text, which enables selection
   /// of values to be agreed to, e.g., the period of participation, the date
@@ -2480,18 +2254,12 @@ class ContractAnswer extends BackboneElement {
   /// may be used for further research.
   final FhirString? valueString;
 
-  /// Extensions for [valueString]
-  final Element? valueStringElement;
-
   /// [valueUri]
   /// Response to an offer clause or question text, which enables selection
   /// of values to be agreed to, e.g., the period of participation, the date
   /// of occupancy of a rental, warrently duration, or whether biospecimen
   /// may be used for further research.
   final FhirUri? valueUri;
-
-  /// Extensions for [valueUri]
-  final Element? valueUriElement;
 
   /// [valueAttachment]
   /// Response to an offer clause or question text, which enables selection
@@ -2537,50 +2305,26 @@ class ContractAnswer extends BackboneElement {
     if (valueBoolean?.value != null) {
       json['valueBoolean'] = valueBoolean!.toJson();
     }
-    if (valueBooleanElement != null) {
-      json['_valueBoolean'] = valueBooleanElement!.toJson();
-    }
     if (valueDecimal?.value != null) {
       json['valueDecimal'] = valueDecimal!.toJson();
-    }
-    if (valueDecimalElement != null) {
-      json['_valueDecimal'] = valueDecimalElement!.toJson();
     }
     if (valueInteger?.value != null) {
       json['valueInteger'] = valueInteger!.toJson();
     }
-    if (valueIntegerElement != null) {
-      json['_valueInteger'] = valueIntegerElement!.toJson();
-    }
     if (valueDate?.value != null) {
       json['valueDate'] = valueDate!.toJson();
-    }
-    if (valueDateElement != null) {
-      json['_valueDate'] = valueDateElement!.toJson();
     }
     if (valueDateTime?.value != null) {
       json['valueDateTime'] = valueDateTime!.toJson();
     }
-    if (valueDateTimeElement != null) {
-      json['_valueDateTime'] = valueDateTimeElement!.toJson();
-    }
     if (valueTime?.value != null) {
       json['valueTime'] = valueTime!.toJson();
-    }
-    if (valueTimeElement != null) {
-      json['_valueTime'] = valueTimeElement!.toJson();
     }
     if (valueString?.value != null) {
       json['valueString'] = valueString!.toJson();
     }
-    if (valueStringElement != null) {
-      json['_valueString'] = valueStringElement!.toJson();
-    }
     if (valueUri?.value != null) {
       json['valueUri'] = valueUri!.toJson();
-    }
-    if (valueUriElement != null) {
-      json['_valueUri'] = valueUriElement!.toJson();
     }
     if (valueAttachment != null) {
       json['valueAttachment'] = valueAttachment!.toJson();
@@ -2605,21 +2349,13 @@ class ContractAnswer extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirBoolean? valueBoolean,
-    Element? valueBooleanElement,
     FhirDecimal? valueDecimal,
-    Element? valueDecimalElement,
     FhirInteger? valueInteger,
-    Element? valueIntegerElement,
     FhirDate? valueDate,
-    Element? valueDateElement,
     FhirDateTime? valueDateTime,
-    Element? valueDateTimeElement,
     FhirTime? valueTime,
-    Element? valueTimeElement,
     FhirString? valueString,
-    Element? valueStringElement,
     FhirUri? valueUri,
-    Element? valueUriElement,
     Attachment? valueAttachment,
     Coding? valueCoding,
     Quantity? valueQuantity,
@@ -2636,21 +2372,13 @@ class ContractAnswer extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueBooleanElement: valueBooleanElement ?? this.valueBooleanElement,
       valueDecimal: valueDecimal ?? this.valueDecimal,
-      valueDecimalElement: valueDecimalElement ?? this.valueDecimalElement,
       valueInteger: valueInteger ?? this.valueInteger,
-      valueIntegerElement: valueIntegerElement ?? this.valueIntegerElement,
       valueDate: valueDate ?? this.valueDate,
-      valueDateElement: valueDateElement ?? this.valueDateElement,
       valueDateTime: valueDateTime ?? this.valueDateTime,
-      valueDateTimeElement: valueDateTimeElement ?? this.valueDateTimeElement,
       valueTime: valueTime ?? this.valueTime,
-      valueTimeElement: valueTimeElement ?? this.valueTimeElement,
       valueString: valueString ?? this.valueString,
-      valueStringElement: valueStringElement ?? this.valueStringElement,
       valueUri: valueUri ?? this.valueUri,
-      valueUriElement: valueUriElement ?? this.valueUriElement,
       valueAttachment: valueAttachment ?? this.valueAttachment,
       valueCoding: valueCoding ?? this.valueCoding,
       valueQuantity: valueQuantity ?? this.valueQuantity,
@@ -2672,7 +2400,7 @@ class ContractAsset extends BackboneElement {
 
   ContractAsset({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.scope,
     this.type,
@@ -2681,25 +2409,12 @@ class ContractAsset extends BackboneElement {
     this.relationship,
     this.context,
     this.condition,
-
-    /// Extensions for [condition]
-    this.conditionElement,
     this.periodType,
     this.period,
     this.usePeriod,
     this.text,
-
-    /// Extensions for [text]
-    this.textElement,
     this.linkId,
-
-    /// Extensions for [linkId]
-    this.linkIdElement,
-    this.answer,
     this.securityLabelNumber,
-
-    /// Extensions for [securityLabelNumber]
-    this.securityLabelNumberElement,
     this.valuedItem,
     super.userData,
     super.formatCommentsPre,
@@ -2712,11 +2427,15 @@ class ContractAsset extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractAsset.fromJson(Map<String, dynamic> json) {
     return ContractAsset(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2725,7 +2444,7 @@ class ContractAsset extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2739,7 +2458,7 @@ class ContractAsset extends BackboneElement {
       type: json['type'] != null
           ? (json['type'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2748,7 +2467,7 @@ class ContractAsset extends BackboneElement {
       typeReference: json['typeReference'] != null
           ? (json['typeReference'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2757,7 +2476,7 @@ class ContractAsset extends BackboneElement {
       subtype: json['subtype'] != null
           ? (json['subtype'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2771,24 +2490,22 @@ class ContractAsset extends BackboneElement {
       context: json['context'] != null
           ? (json['context'] as List<dynamic>)
               .map<ContractContext>(
-                (dynamic v) => ContractContext.fromJson(
+                (v) => ContractContext.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       condition: json['condition'] != null
-          ? FhirString.fromJson(json['condition'])
-          : null,
-      conditionElement: json['_condition'] != null
-          ? Element.fromJson(
-              json['_condition'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['condition'],
+              '_value': json['_condition'],
+            })
           : null,
       periodType: json['periodType'] != null
           ? (json['periodType'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2797,7 +2514,7 @@ class ContractAsset extends BackboneElement {
       period: json['period'] != null
           ? (json['period'] as List<dynamic>)
               .map<Period>(
-                (dynamic v) => Period.fromJson(
+                (v) => Period.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2806,59 +2523,29 @@ class ContractAsset extends BackboneElement {
       usePeriod: json['usePeriod'] != null
           ? (json['usePeriod'] as List<dynamic>)
               .map<Period>(
-                (dynamic v) => Period.fromJson(
+                (v) => Period.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
-      textElement: json['_text'] != null
-          ? Element.fromJson(
-              json['_text'] as Map<String, dynamic>,
-            )
+      text: json['text'] != null
+          ? FhirString.fromJson({
+              'value': json['text'],
+              '_value': json['_text'],
+            })
           : null,
-      linkId: json['linkId'] != null
-          ? (json['linkId'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      linkIdElement: json['_linkId'] != null
-          ? (json['_linkId'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      answer: json['answer'] != null
-          ? (json['answer'] as List<dynamic>)
-              .map<ContractAnswer>(
-                (dynamic v) => ContractAnswer.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      securityLabelNumber: json['securityLabelNumber'] != null
-          ? (json['securityLabelNumber'] as List<dynamic>)
-              .map<FhirUnsignedInt>(
-                (dynamic v) => FhirUnsignedInt.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      securityLabelNumberElement: json['_securityLabelNumber'] != null
-          ? (json['_securityLabelNumber'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      linkId: parsePrimitiveList<FhirString>(
+          json['linkId'] as List<dynamic>?, json['_linkId'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
+      securityLabelNumber: parsePrimitiveList<FhirUnsignedInt>(
+          json['securityLabelNumber'] as List<dynamic>?,
+          json['_securityLabelNumber'] as List<dynamic>?,
+          fromJson: FhirUnsignedInt.fromJson),
       valuedItem: json['valuedItem'] != null
           ? (json['valuedItem'] as List<dynamic>)
               .map<ContractValuedItem>(
-                (dynamic v) => ContractValuedItem.fromJson(
+                (v) => ContractValuedItem.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2867,7 +2554,8 @@ class ContractAsset extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractAsset] from a [String] or [YamlMap] object
+  /// Deserialize [ContractAsset] from a [String]
+  /// or [YamlMap] object
   factory ContractAsset.fromYaml(dynamic yaml) => yaml is String
       ? ContractAsset.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2876,11 +2564,11 @@ class ContractAsset extends BackboneElement {
           ? ContractAsset.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ContractAsset cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ContractAsset cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ContractAsset] that takes in a [String]
+  /// Factory constructor for [ContractAsset]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ContractAsset.fromJsonString(String source) {
@@ -2895,6 +2583,15 @@ class ContractAsset extends BackboneElement {
 
   @override
   String get fhirType => 'ContractAsset';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [scope]
   /// Differentiates the kind of the asset .
@@ -2927,9 +2624,6 @@ class ContractAsset extends BackboneElement {
   /// factor in its valuation.
   final FhirString? condition;
 
-  /// Extensions for [condition]
-  final Element? conditionElement;
-
   /// [periodType]
   /// Type of Asset availability for use or ownership.
   final List<CodeableConcept>? periodType;
@@ -2948,27 +2642,14 @@ class ContractAsset extends BackboneElement {
   /// contract.
   final FhirString? text;
 
-  /// Extensions for [text]
-  final Element? textElement;
-
   /// [linkId]
   /// Id [identifier??] of the clause or question text about the asset in the
   /// referenced form or QuestionnaireResponse.
   final List<FhirString>? linkId;
 
-  /// Extensions for [linkId]
-  final List<Element>? linkIdElement;
-
-  /// [answer]
-  /// Response to assets.
-  final List<ContractAnswer>? answer;
-
   /// [securityLabelNumber]
   /// Security labels that protects the asset.
   final List<FhirUnsignedInt>? securityLabelNumber;
-
-  /// Extensions for [securityLabelNumber]
-  final List<Element>? securityLabelNumberElement;
 
   /// [valuedItem]
   /// Contract Valued Item List.
@@ -3011,9 +2692,6 @@ class ContractAsset extends BackboneElement {
     if (condition?.value != null) {
       json['condition'] = condition!.toJson();
     }
-    if (conditionElement != null) {
-      json['_condition'] = conditionElement!.toJson();
-    }
     if (periodType != null && periodType!.isNotEmpty) {
       json['periodType'] =
           periodType!.map((CodeableConcept v) => v.toJson()).toList();
@@ -3027,26 +2705,12 @@ class ContractAsset extends BackboneElement {
     if (text?.value != null) {
       json['text'] = text!.toJson();
     }
-    if (textElement != null) {
-      json['_text'] = textElement!.toJson();
-    }
     if (linkId != null && linkId!.isNotEmpty) {
       json['linkId'] = linkId!.map((FhirString v) => v.toJson()).toList();
-    }
-    if (linkIdElement != null && linkIdElement!.isNotEmpty) {
-      json['_linkId'] = linkIdElement!.map((Element v) => v.toJson()).toList();
-    }
-    if (answer != null && answer!.isNotEmpty) {
-      json['answer'] = answer!.map((ContractAnswer v) => v.toJson()).toList();
     }
     if (securityLabelNumber != null && securityLabelNumber!.isNotEmpty) {
       json['securityLabelNumber'] =
           securityLabelNumber!.map((FhirUnsignedInt v) => v.toJson()).toList();
-    }
-    if (securityLabelNumberElement != null &&
-        securityLabelNumberElement!.isNotEmpty) {
-      json['_securityLabelNumber'] =
-          securityLabelNumberElement!.map((Element v) => v.toJson()).toList();
     }
     if (valuedItem != null && valuedItem!.isNotEmpty) {
       json['valuedItem'] =
@@ -3069,17 +2733,12 @@ class ContractAsset extends BackboneElement {
     Coding? relationship,
     List<ContractContext>? context,
     FhirString? condition,
-    Element? conditionElement,
     List<CodeableConcept>? periodType,
     List<Period>? period,
     List<Period>? usePeriod,
     FhirString? text,
-    Element? textElement,
     List<FhirString>? linkId,
-    List<Element>? linkIdElement,
-    List<ContractAnswer>? answer,
     List<FhirUnsignedInt>? securityLabelNumber,
-    List<Element>? securityLabelNumberElement,
     List<ContractValuedItem>? valuedItem,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -3099,18 +2758,12 @@ class ContractAsset extends BackboneElement {
       relationship: relationship ?? this.relationship,
       context: context ?? this.context,
       condition: condition ?? this.condition,
-      conditionElement: conditionElement ?? this.conditionElement,
       periodType: periodType ?? this.periodType,
       period: period ?? this.period,
       usePeriod: usePeriod ?? this.usePeriod,
       text: text ?? this.text,
-      textElement: textElement ?? this.textElement,
       linkId: linkId ?? this.linkId,
-      linkIdElement: linkIdElement ?? this.linkIdElement,
-      answer: answer ?? this.answer,
       securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
-      securityLabelNumberElement:
-          securityLabelNumberElement ?? this.securityLabelNumberElement,
       valuedItem: valuedItem ?? this.valuedItem,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -3129,14 +2782,11 @@ class ContractContext extends BackboneElement {
 
   ContractContext({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.reference,
     this.code,
     this.text,
-
-    /// Extensions for [text]
-    this.textElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -3148,11 +2798,15 @@ class ContractContext extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractContext.fromJson(Map<String, dynamic> json) {
     return ContractContext(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3161,7 +2815,7 @@ class ContractContext extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3175,22 +2829,23 @@ class ContractContext extends BackboneElement {
       code: json['code'] != null
           ? (json['code'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      text: json['text'] != null ? FhirString.fromJson(json['text']) : null,
-      textElement: json['_text'] != null
-          ? Element.fromJson(
-              json['_text'] as Map<String, dynamic>,
-            )
+      text: json['text'] != null
+          ? FhirString.fromJson({
+              'value': json['text'],
+              '_value': json['_text'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [ContractContext] from a [String] or [YamlMap] object
+  /// Deserialize [ContractContext] from a [String]
+  /// or [YamlMap] object
   factory ContractContext.fromYaml(dynamic yaml) => yaml is String
       ? ContractContext.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -3199,11 +2854,11 @@ class ContractContext extends BackboneElement {
           ? ContractContext.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ContractContext cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ContractContext cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ContractContext] that takes in a [String]
+  /// Factory constructor for [ContractContext]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ContractContext.fromJsonString(String source) {
@@ -3219,6 +2874,15 @@ class ContractContext extends BackboneElement {
   @override
   String get fhirType => 'ContractContext';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [reference]
   /// Asset context reference may include the creator, custodian, or owning
   /// Person or Organization (e.g., bank, repository), location held, e.g.,
@@ -3233,9 +2897,6 @@ class ContractContext extends BackboneElement {
   /// [text]
   /// Context description.
   final FhirString? text;
-
-  /// Extensions for [text]
-  final Element? textElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3259,9 +2920,6 @@ class ContractContext extends BackboneElement {
     if (text?.value != null) {
       json['text'] = text!.toJson();
     }
-    if (textElement != null) {
-      json['_text'] = textElement!.toJson();
-    }
     return json;
   }
 
@@ -3275,7 +2933,6 @@ class ContractContext extends BackboneElement {
     Reference? reference,
     List<CodeableConcept>? code,
     FhirString? text,
-    Element? textElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3290,7 +2947,6 @@ class ContractContext extends BackboneElement {
       reference: reference ?? this.reference,
       code: code ?? this.code,
       text: text ?? this.text,
-      textElement: textElement ?? this.textElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -3308,44 +2964,23 @@ class ContractValuedItem extends BackboneElement {
 
   ContractValuedItem({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.entityCodeableConcept,
     this.entityReference,
     this.identifier,
     this.effectiveTime,
-
-    /// Extensions for [effectiveTime]
-    this.effectiveTimeElement,
     this.quantity,
     this.unitPrice,
     this.factor,
-
-    /// Extensions for [factor]
-    this.factorElement,
     this.points,
-
-    /// Extensions for [points]
-    this.pointsElement,
     this.net,
     this.payment,
-
-    /// Extensions for [payment]
-    this.paymentElement,
     this.paymentDate,
-
-    /// Extensions for [paymentDate]
-    this.paymentDateElement,
     this.responsible,
     this.recipient,
     this.linkId,
-
-    /// Extensions for [linkId]
-    this.linkIdElement,
     this.securityLabelNumber,
-
-    /// Extensions for [securityLabelNumber]
-    this.securityLabelNumberElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -3357,11 +2992,15 @@ class ContractValuedItem extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractValuedItem.fromJson(Map<String, dynamic> json) {
     return ContractValuedItem(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3370,7 +3009,7 @@ class ContractValuedItem extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3392,12 +3031,10 @@ class ContractValuedItem extends BackboneElement {
             )
           : null,
       effectiveTime: json['effectiveTime'] != null
-          ? FhirDateTime.fromJson(json['effectiveTime'])
-          : null,
-      effectiveTimeElement: json['_effectiveTime'] != null
-          ? Element.fromJson(
-              json['_effectiveTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['effectiveTime'],
+              '_value': json['_effectiveTime'],
+            })
           : null,
       quantity: json['quantity'] != null
           ? Quantity.fromJson(
@@ -3409,39 +3046,34 @@ class ContractValuedItem extends BackboneElement {
               json['unitPrice'] as Map<String, dynamic>,
             )
           : null,
-      factor:
-          json['factor'] != null ? FhirDecimal.fromJson(json['factor']) : null,
-      factorElement: json['_factor'] != null
-          ? Element.fromJson(
-              json['_factor'] as Map<String, dynamic>,
-            )
+      factor: json['factor'] != null
+          ? FhirDecimal.fromJson({
+              'value': json['factor'],
+              '_value': json['_factor'],
+            })
           : null,
-      points:
-          json['points'] != null ? FhirDecimal.fromJson(json['points']) : null,
-      pointsElement: json['_points'] != null
-          ? Element.fromJson(
-              json['_points'] as Map<String, dynamic>,
-            )
+      points: json['points'] != null
+          ? FhirDecimal.fromJson({
+              'value': json['points'],
+              '_value': json['_points'],
+            })
           : null,
       net: json['net'] != null
           ? Money.fromJson(
               json['net'] as Map<String, dynamic>,
             )
           : null,
-      payment:
-          json['payment'] != null ? FhirString.fromJson(json['payment']) : null,
-      paymentElement: json['_payment'] != null
-          ? Element.fromJson(
-              json['_payment'] as Map<String, dynamic>,
-            )
+      payment: json['payment'] != null
+          ? FhirString.fromJson({
+              'value': json['payment'],
+              '_value': json['_payment'],
+            })
           : null,
       paymentDate: json['paymentDate'] != null
-          ? FhirDateTime.fromJson(json['paymentDate'])
-          : null,
-      paymentDateElement: json['_paymentDate'] != null
-          ? Element.fromJson(
-              json['_paymentDate'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['paymentDate'],
+              '_value': json['_paymentDate'],
+            })
           : null,
       responsible: json['responsible'] != null
           ? Reference.fromJson(
@@ -3453,38 +3085,18 @@ class ContractValuedItem extends BackboneElement {
               json['recipient'] as Map<String, dynamic>,
             )
           : null,
-      linkId: json['linkId'] != null
-          ? (json['linkId'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      linkIdElement: json['_linkId'] != null
-          ? (json['_linkId'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      securityLabelNumber: json['securityLabelNumber'] != null
-          ? (json['securityLabelNumber'] as List<dynamic>)
-              .map<FhirUnsignedInt>(
-                (dynamic v) => FhirUnsignedInt.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      securityLabelNumberElement: json['_securityLabelNumber'] != null
-          ? (json['_securityLabelNumber'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      linkId: parsePrimitiveList<FhirString>(
+          json['linkId'] as List<dynamic>?, json['_linkId'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
+      securityLabelNumber: parsePrimitiveList<FhirUnsignedInt>(
+          json['securityLabelNumber'] as List<dynamic>?,
+          json['_securityLabelNumber'] as List<dynamic>?,
+          fromJson: FhirUnsignedInt.fromJson),
     );
   }
 
-  /// Deserialize [ContractValuedItem] from a [String] or [YamlMap] object
+  /// Deserialize [ContractValuedItem] from a [String]
+  /// or [YamlMap] object
   factory ContractValuedItem.fromYaml(dynamic yaml) => yaml is String
       ? ContractValuedItem.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -3493,11 +3105,11 @@ class ContractValuedItem extends BackboneElement {
           ? ContractValuedItem.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ContractValuedItem cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ContractValuedItem cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ContractValuedItem] that takes in a [String]
+  /// Factory constructor for [ContractValuedItem]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ContractValuedItem.fromJsonString(String source) {
@@ -3512,6 +3124,15 @@ class ContractValuedItem extends BackboneElement {
 
   @override
   String get fhirType => 'ContractValuedItem';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [entityCodeableConcept]
   /// Specific type of Contract Valued Item that may be priced.
@@ -3530,9 +3151,6 @@ class ContractValuedItem extends BackboneElement {
   /// effective.
   final FhirDateTime? effectiveTime;
 
-  /// Extensions for [effectiveTime]
-  final Element? effectiveTimeElement;
-
   /// [quantity]
   /// Specifies the units by which the Contract Valued Item is measured or
   /// counted, and quantifies the countable or measurable Contract Valued
@@ -3550,9 +3168,6 @@ class ContractValuedItem extends BackboneElement {
   /// monetary amount.
   final FhirDecimal? factor;
 
-  /// Extensions for [factor]
-  final Element? factorElement;
-
   /// [points]
   /// An amount that expresses the weighting (based on difficulty, cost
   /// and/or resource intensiveness) associated with the Contract Valued Item
@@ -3560,9 +3175,6 @@ class ContractValuedItem extends BackboneElement {
   /// for a Contract Valued Item, such that a monetary amount can be assigned
   /// to each point.
   final FhirDecimal? points;
-
-  /// Extensions for [points]
-  final Element? pointsElement;
 
   /// [net]
   /// Expresses the product of the Contract Valued Item unitQuantity and the
@@ -3575,15 +3187,9 @@ class ContractValuedItem extends BackboneElement {
   /// Terms of valuation.
   final FhirString? payment;
 
-  /// Extensions for [payment]
-  final Element? paymentElement;
-
   /// [paymentDate]
   /// When payment is due.
   final FhirDateTime? paymentDate;
-
-  /// Extensions for [paymentDate]
-  final Element? paymentDateElement;
 
   /// [responsible]
   /// Who will make payment.
@@ -3598,16 +3204,10 @@ class ContractValuedItem extends BackboneElement {
   /// valuedItem in the referenced form or QuestionnaireResponse.
   final List<FhirString>? linkId;
 
-  /// Extensions for [linkId]
-  final List<Element>? linkIdElement;
-
   /// [securityLabelNumber]
   /// A set of security labels that define which terms are controlled by this
   /// condition.
   final List<FhirUnsignedInt>? securityLabelNumber;
-
-  /// Extensions for [securityLabelNumber]
-  final List<Element>? securityLabelNumberElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3634,9 +3234,6 @@ class ContractValuedItem extends BackboneElement {
     if (effectiveTime?.value != null) {
       json['effectiveTime'] = effectiveTime!.toJson();
     }
-    if (effectiveTimeElement != null) {
-      json['_effectiveTime'] = effectiveTimeElement!.toJson();
-    }
     if (quantity != null) {
       json['quantity'] = quantity!.toJson();
     }
@@ -3646,14 +3243,8 @@ class ContractValuedItem extends BackboneElement {
     if (factor?.value != null) {
       json['factor'] = factor!.toJson();
     }
-    if (factorElement != null) {
-      json['_factor'] = factorElement!.toJson();
-    }
     if (points?.value != null) {
       json['points'] = points!.toJson();
-    }
-    if (pointsElement != null) {
-      json['_points'] = pointsElement!.toJson();
     }
     if (net != null) {
       json['net'] = net!.toJson();
@@ -3661,14 +3252,8 @@ class ContractValuedItem extends BackboneElement {
     if (payment?.value != null) {
       json['payment'] = payment!.toJson();
     }
-    if (paymentElement != null) {
-      json['_payment'] = paymentElement!.toJson();
-    }
     if (paymentDate?.value != null) {
       json['paymentDate'] = paymentDate!.toJson();
-    }
-    if (paymentDateElement != null) {
-      json['_paymentDate'] = paymentDateElement!.toJson();
     }
     if (responsible != null) {
       json['responsible'] = responsible!.toJson();
@@ -3679,17 +3264,9 @@ class ContractValuedItem extends BackboneElement {
     if (linkId != null && linkId!.isNotEmpty) {
       json['linkId'] = linkId!.map((FhirString v) => v.toJson()).toList();
     }
-    if (linkIdElement != null && linkIdElement!.isNotEmpty) {
-      json['_linkId'] = linkIdElement!.map((Element v) => v.toJson()).toList();
-    }
     if (securityLabelNumber != null && securityLabelNumber!.isNotEmpty) {
       json['securityLabelNumber'] =
           securityLabelNumber!.map((FhirUnsignedInt v) => v.toJson()).toList();
-    }
-    if (securityLabelNumberElement != null &&
-        securityLabelNumberElement!.isNotEmpty) {
-      json['_securityLabelNumber'] =
-          securityLabelNumberElement!.map((Element v) => v.toJson()).toList();
     }
     return json;
   }
@@ -3705,24 +3282,17 @@ class ContractValuedItem extends BackboneElement {
     Reference? entityReference,
     Identifier? identifier,
     FhirDateTime? effectiveTime,
-    Element? effectiveTimeElement,
     Quantity? quantity,
     Money? unitPrice,
     FhirDecimal? factor,
-    Element? factorElement,
     FhirDecimal? points,
-    Element? pointsElement,
     Money? net,
     FhirString? payment,
-    Element? paymentElement,
     FhirDateTime? paymentDate,
-    Element? paymentDateElement,
     Reference? responsible,
     Reference? recipient,
     List<FhirString>? linkId,
-    List<Element>? linkIdElement,
     List<FhirUnsignedInt>? securityLabelNumber,
-    List<Element>? securityLabelNumberElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3739,25 +3309,17 @@ class ContractValuedItem extends BackboneElement {
       entityReference: entityReference ?? this.entityReference,
       identifier: identifier ?? this.identifier,
       effectiveTime: effectiveTime ?? this.effectiveTime,
-      effectiveTimeElement: effectiveTimeElement ?? this.effectiveTimeElement,
       quantity: quantity ?? this.quantity,
       unitPrice: unitPrice ?? this.unitPrice,
       factor: factor ?? this.factor,
-      factorElement: factorElement ?? this.factorElement,
       points: points ?? this.points,
-      pointsElement: pointsElement ?? this.pointsElement,
       net: net ?? this.net,
       payment: payment ?? this.payment,
-      paymentElement: paymentElement ?? this.paymentElement,
       paymentDate: paymentDate ?? this.paymentDate,
-      paymentDateElement: paymentDateElement ?? this.paymentDateElement,
       responsible: responsible ?? this.responsible,
       recipient: recipient ?? this.recipient,
       linkId: linkId ?? this.linkId,
-      linkIdElement: linkIdElement ?? this.linkIdElement,
       securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
-      securityLabelNumberElement:
-          securityLabelNumberElement ?? this.securityLabelNumberElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -3776,58 +3338,31 @@ class ContractAction extends BackboneElement {
 
   ContractAction({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.doNotPerform,
-
-    /// Extensions for [doNotPerform]
-    this.doNotPerformElement,
     required this.type,
     this.subject,
     required this.intent,
     this.linkId,
-
-    /// Extensions for [linkId]
-    this.linkIdElement,
     required this.status,
     this.context,
     this.contextLinkId,
-
-    /// Extensions for [contextLinkId]
-    this.contextLinkIdElement,
     this.occurrenceDateTime,
-
-    /// Extensions for [occurrenceDateTime]
-    this.occurrenceDateTimeElement,
     this.occurrencePeriod,
     this.occurrenceTiming,
     this.requester,
     this.requesterLinkId,
-
-    /// Extensions for [requesterLinkId]
-    this.requesterLinkIdElement,
     this.performerType,
     this.performerRole,
     this.performer,
     this.performerLinkId,
-
-    /// Extensions for [performerLinkId]
-    this.performerLinkIdElement,
     this.reasonCode,
     this.reasonReference,
     this.reason,
-
-    /// Extensions for [reason]
-    this.reasonElement,
     this.reasonLinkId,
-
-    /// Extensions for [reasonLinkId]
-    this.reasonLinkIdElement,
     this.note,
     this.securityLabelNumber,
-
-    /// Extensions for [securityLabelNumber]
-    this.securityLabelNumberElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -3839,11 +3374,15 @@ class ContractAction extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractAction.fromJson(Map<String, dynamic> json) {
     return ContractAction(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3852,19 +3391,17 @@ class ContractAction extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       doNotPerform: json['doNotPerform'] != null
-          ? FhirBoolean.fromJson(json['doNotPerform'])
-          : null,
-      doNotPerformElement: json['_doNotPerform'] != null
-          ? Element.fromJson(
-              json['_doNotPerform'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['doNotPerform'],
+              '_value': json['_doNotPerform'],
+            })
           : null,
       type: CodeableConcept.fromJson(
         json['type'] as Map<String, dynamic>,
@@ -3872,7 +3409,7 @@ class ContractAction extends BackboneElement {
       subject: json['subject'] != null
           ? (json['subject'] as List<dynamic>)
               .map<ContractSubject>(
-                (dynamic v) => ContractSubject.fromJson(
+                (v) => ContractSubject.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3881,20 +3418,9 @@ class ContractAction extends BackboneElement {
       intent: CodeableConcept.fromJson(
         json['intent'] as Map<String, dynamic>,
       ),
-      linkId: json['linkId'] != null
-          ? (json['linkId'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      linkIdElement: json['_linkId'] != null
-          ? (json['_linkId'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      linkId: parsePrimitiveList<FhirString>(
+          json['linkId'] as List<dynamic>?, json['_linkId'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
       status: CodeableConcept.fromJson(
         json['status'] as Map<String, dynamic>,
       ),
@@ -3903,27 +3429,15 @@ class ContractAction extends BackboneElement {
               json['context'] as Map<String, dynamic>,
             )
           : null,
-      contextLinkId: json['contextLinkId'] != null
-          ? (json['contextLinkId'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      contextLinkIdElement: json['_contextLinkId'] != null
-          ? (json['_contextLinkId'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      contextLinkId: parsePrimitiveList<FhirString>(
+          json['contextLinkId'] as List<dynamic>?,
+          json['_contextLinkId'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
       occurrenceDateTime: json['occurrenceDateTime'] != null
-          ? FhirDateTime.fromJson(json['occurrenceDateTime'])
-          : null,
-      occurrenceDateTimeElement: json['_occurrenceDateTime'] != null
-          ? Element.fromJson(
-              json['_occurrenceDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['occurrenceDateTime'],
+              '_value': json['_occurrenceDateTime'],
+            })
           : null,
       occurrencePeriod: json['occurrencePeriod'] != null
           ? Period.fromJson(
@@ -3938,30 +3452,20 @@ class ContractAction extends BackboneElement {
       requester: json['requester'] != null
           ? (json['requester'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      requesterLinkId: json['requesterLinkId'] != null
-          ? (json['requesterLinkId'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      requesterLinkIdElement: json['_requesterLinkId'] != null
-          ? (json['_requesterLinkId'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      requesterLinkId: parsePrimitiveList<FhirString>(
+          json['requesterLinkId'] as List<dynamic>?,
+          json['_requesterLinkId'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
       performerType: json['performerType'] != null
           ? (json['performerType'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3977,24 +3481,14 @@ class ContractAction extends BackboneElement {
               json['performer'] as Map<String, dynamic>,
             )
           : null,
-      performerLinkId: json['performerLinkId'] != null
-          ? (json['performerLinkId'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      performerLinkIdElement: json['_performerLinkId'] != null
-          ? (json['_performerLinkId'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      performerLinkId: parsePrimitiveList<FhirString>(
+          json['performerLinkId'] as List<dynamic>?,
+          json['_performerLinkId'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
       reasonCode: json['reasonCode'] != null
           ? (json['reasonCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -4003,67 +3497,37 @@ class ContractAction extends BackboneElement {
       reasonReference: json['reasonReference'] != null
           ? (json['reasonReference'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      reason: json['reason'] != null
-          ? (json['reason'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      reasonElement: json['_reason'] != null
-          ? (json['_reason'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      reasonLinkId: json['reasonLinkId'] != null
-          ? (json['reasonLinkId'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      reasonLinkIdElement: json['_reasonLinkId'] != null
-          ? (json['_reasonLinkId'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      reason: parsePrimitiveList<FhirString>(
+          json['reason'] as List<dynamic>?, json['_reason'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
+      reasonLinkId: parsePrimitiveList<FhirString>(
+          json['reasonLinkId'] as List<dynamic>?,
+          json['_reasonLinkId'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      securityLabelNumber: json['securityLabelNumber'] != null
-          ? (json['securityLabelNumber'] as List<dynamic>)
-              .map<FhirUnsignedInt>(
-                (dynamic v) => FhirUnsignedInt.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      securityLabelNumberElement: json['_securityLabelNumber'] != null
-          ? (json['_securityLabelNumber'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      securityLabelNumber: parsePrimitiveList<FhirUnsignedInt>(
+          json['securityLabelNumber'] as List<dynamic>?,
+          json['_securityLabelNumber'] as List<dynamic>?,
+          fromJson: FhirUnsignedInt.fromJson),
     );
   }
 
-  /// Deserialize [ContractAction] from a [String] or [YamlMap] object
+  /// Deserialize [ContractAction] from a [String]
+  /// or [YamlMap] object
   factory ContractAction.fromYaml(dynamic yaml) => yaml is String
       ? ContractAction.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -4072,11 +3536,11 @@ class ContractAction extends BackboneElement {
           ? ContractAction.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ContractAction cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ContractAction cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ContractAction] that takes in a [String]
+  /// Factory constructor for [ContractAction]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ContractAction.fromJsonString(String source) {
@@ -4092,12 +3556,18 @@ class ContractAction extends BackboneElement {
   @override
   String get fhirType => 'ContractAction';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [doNotPerform]
   /// True if the term prohibits the action.
   final FhirBoolean? doNotPerform;
-
-  /// Extensions for [doNotPerform]
-  final Element? doNotPerformElement;
 
   /// [type]
   /// Activity or service obligation to be done or not done, performed or not
@@ -4117,9 +3587,6 @@ class ContractAction extends BackboneElement {
   /// in the referenced form or QuestionnaireResponse.
   final List<FhirString>? linkId;
 
-  /// Extensions for [linkId]
-  final List<Element>? linkIdElement;
-
   /// [status]
   /// Current state of the term action.
   final CodeableConcept status;
@@ -4135,15 +3602,9 @@ class ContractAction extends BackboneElement {
   /// QuestionnaireResponse.
   final List<FhirString>? contextLinkId;
 
-  /// Extensions for [contextLinkId]
-  final List<Element>? contextLinkIdElement;
-
   /// [occurrenceDateTime]
   /// When action happens.
   final FhirDateTime? occurrenceDateTime;
-
-  /// Extensions for [occurrenceDateTime]
-  final Element? occurrenceDateTimeElement;
 
   /// [occurrencePeriod]
   /// When action happens.
@@ -4163,9 +3624,6 @@ class ContractAction extends BackboneElement {
   /// requester of this action in the referenced form or
   /// QuestionnaireResponse.
   final List<FhirString>? requesterLinkId;
-
-  /// Extensions for [requesterLinkId]
-  final List<Element>? requesterLinkIdElement;
 
   /// [performerType]
   /// The type of individual that is desired or required to perform or not
@@ -4188,9 +3646,6 @@ class ContractAction extends BackboneElement {
   /// QuestionnaireResponse.
   final List<FhirString>? performerLinkId;
 
-  /// Extensions for [performerLinkId]
-  final List<Element>? performerLinkIdElement;
-
   /// [reasonCode]
   /// Rationale for the action to be performed or not performed. Describes
   /// why the action is permitted or prohibited.
@@ -4206,17 +3661,11 @@ class ContractAction extends BackboneElement {
   /// form.
   final List<FhirString>? reason;
 
-  /// Extensions for [reason]
-  final List<Element>? reasonElement;
-
   /// [reasonLinkId]
   /// Id [identifier??] of the clause or question text related to the reason
   /// type or reference of this action in the referenced form or
   /// QuestionnaireResponse.
   final List<FhirString>? reasonLinkId;
-
-  /// Extensions for [reasonLinkId]
-  final List<Element>? reasonLinkIdElement;
 
   /// [note]
   /// Comments made about the term action made by the requester, performer,
@@ -4226,9 +3675,6 @@ class ContractAction extends BackboneElement {
   /// [securityLabelNumber]
   /// Security labels that protects the action.
   final List<FhirUnsignedInt>? securityLabelNumber;
-
-  /// Extensions for [securityLabelNumber]
-  final List<Element>? securityLabelNumberElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -4246,9 +3692,6 @@ class ContractAction extends BackboneElement {
     if (doNotPerform?.value != null) {
       json['doNotPerform'] = doNotPerform!.toJson();
     }
-    if (doNotPerformElement != null) {
-      json['_doNotPerform'] = doNotPerformElement!.toJson();
-    }
     json['type'] = type.toJson();
     if (subject != null && subject!.isNotEmpty) {
       json['subject'] =
@@ -4258,9 +3701,6 @@ class ContractAction extends BackboneElement {
     if (linkId != null && linkId!.isNotEmpty) {
       json['linkId'] = linkId!.map((FhirString v) => v.toJson()).toList();
     }
-    if (linkIdElement != null && linkIdElement!.isNotEmpty) {
-      json['_linkId'] = linkIdElement!.map((Element v) => v.toJson()).toList();
-    }
     json['status'] = status.toJson();
     if (context != null) {
       json['context'] = context!.toJson();
@@ -4269,15 +3709,8 @@ class ContractAction extends BackboneElement {
       json['contextLinkId'] =
           contextLinkId!.map((FhirString v) => v.toJson()).toList();
     }
-    if (contextLinkIdElement != null && contextLinkIdElement!.isNotEmpty) {
-      json['_contextLinkId'] =
-          contextLinkIdElement!.map((Element v) => v.toJson()).toList();
-    }
     if (occurrenceDateTime?.value != null) {
       json['occurrenceDateTime'] = occurrenceDateTime!.toJson();
-    }
-    if (occurrenceDateTimeElement != null) {
-      json['_occurrenceDateTime'] = occurrenceDateTimeElement!.toJson();
     }
     if (occurrencePeriod != null) {
       json['occurrencePeriod'] = occurrencePeriod!.toJson();
@@ -4291,10 +3724,6 @@ class ContractAction extends BackboneElement {
     if (requesterLinkId != null && requesterLinkId!.isNotEmpty) {
       json['requesterLinkId'] =
           requesterLinkId!.map((FhirString v) => v.toJson()).toList();
-    }
-    if (requesterLinkIdElement != null && requesterLinkIdElement!.isNotEmpty) {
-      json['_requesterLinkId'] =
-          requesterLinkIdElement!.map((Element v) => v.toJson()).toList();
     }
     if (performerType != null && performerType!.isNotEmpty) {
       json['performerType'] =
@@ -4310,10 +3739,6 @@ class ContractAction extends BackboneElement {
       json['performerLinkId'] =
           performerLinkId!.map((FhirString v) => v.toJson()).toList();
     }
-    if (performerLinkIdElement != null && performerLinkIdElement!.isNotEmpty) {
-      json['_performerLinkId'] =
-          performerLinkIdElement!.map((Element v) => v.toJson()).toList();
-    }
     if (reasonCode != null && reasonCode!.isNotEmpty) {
       json['reasonCode'] =
           reasonCode!.map((CodeableConcept v) => v.toJson()).toList();
@@ -4325,16 +3750,9 @@ class ContractAction extends BackboneElement {
     if (reason != null && reason!.isNotEmpty) {
       json['reason'] = reason!.map((FhirString v) => v.toJson()).toList();
     }
-    if (reasonElement != null && reasonElement!.isNotEmpty) {
-      json['_reason'] = reasonElement!.map((Element v) => v.toJson()).toList();
-    }
     if (reasonLinkId != null && reasonLinkId!.isNotEmpty) {
       json['reasonLinkId'] =
           reasonLinkId!.map((FhirString v) => v.toJson()).toList();
-    }
-    if (reasonLinkIdElement != null && reasonLinkIdElement!.isNotEmpty) {
-      json['_reasonLinkId'] =
-          reasonLinkIdElement!.map((Element v) => v.toJson()).toList();
     }
     if (note != null && note!.isNotEmpty) {
       json['note'] = note!.map((Annotation v) => v.toJson()).toList();
@@ -4342,11 +3760,6 @@ class ContractAction extends BackboneElement {
     if (securityLabelNumber != null && securityLabelNumber!.isNotEmpty) {
       json['securityLabelNumber'] =
           securityLabelNumber!.map((FhirUnsignedInt v) => v.toJson()).toList();
-    }
-    if (securityLabelNumberElement != null &&
-        securityLabelNumberElement!.isNotEmpty) {
-      json['_securityLabelNumber'] =
-          securityLabelNumberElement!.map((Element v) => v.toJson()).toList();
     }
     return json;
   }
@@ -4359,37 +3772,28 @@ class ContractAction extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirBoolean? doNotPerform,
-    Element? doNotPerformElement,
     CodeableConcept? type,
     List<ContractSubject>? subject,
     CodeableConcept? intent,
     List<FhirString>? linkId,
-    List<Element>? linkIdElement,
     CodeableConcept? status,
     Reference? context,
     List<FhirString>? contextLinkId,
-    List<Element>? contextLinkIdElement,
     FhirDateTime? occurrenceDateTime,
-    Element? occurrenceDateTimeElement,
     Period? occurrencePeriod,
     Timing? occurrenceTiming,
     List<Reference>? requester,
     List<FhirString>? requesterLinkId,
-    List<Element>? requesterLinkIdElement,
     List<CodeableConcept>? performerType,
     CodeableConcept? performerRole,
     Reference? performer,
     List<FhirString>? performerLinkId,
-    List<Element>? performerLinkIdElement,
     List<CodeableConcept>? reasonCode,
     List<Reference>? reasonReference,
     List<FhirString>? reason,
-    List<Element>? reasonElement,
     List<FhirString>? reasonLinkId,
-    List<Element>? reasonLinkIdElement,
     List<Annotation>? note,
     List<FhirUnsignedInt>? securityLabelNumber,
-    List<Element>? securityLabelNumberElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -4402,41 +3806,28 @@ class ContractAction extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       doNotPerform: doNotPerform ?? this.doNotPerform,
-      doNotPerformElement: doNotPerformElement ?? this.doNotPerformElement,
       type: type ?? this.type,
       subject: subject ?? this.subject,
       intent: intent ?? this.intent,
       linkId: linkId ?? this.linkId,
-      linkIdElement: linkIdElement ?? this.linkIdElement,
       status: status ?? this.status,
       context: context ?? this.context,
       contextLinkId: contextLinkId ?? this.contextLinkId,
-      contextLinkIdElement: contextLinkIdElement ?? this.contextLinkIdElement,
       occurrenceDateTime: occurrenceDateTime ?? this.occurrenceDateTime,
-      occurrenceDateTimeElement:
-          occurrenceDateTimeElement ?? this.occurrenceDateTimeElement,
       occurrencePeriod: occurrencePeriod ?? this.occurrencePeriod,
       occurrenceTiming: occurrenceTiming ?? this.occurrenceTiming,
       requester: requester ?? this.requester,
       requesterLinkId: requesterLinkId ?? this.requesterLinkId,
-      requesterLinkIdElement:
-          requesterLinkIdElement ?? this.requesterLinkIdElement,
       performerType: performerType ?? this.performerType,
       performerRole: performerRole ?? this.performerRole,
       performer: performer ?? this.performer,
       performerLinkId: performerLinkId ?? this.performerLinkId,
-      performerLinkIdElement:
-          performerLinkIdElement ?? this.performerLinkIdElement,
       reasonCode: reasonCode ?? this.reasonCode,
       reasonReference: reasonReference ?? this.reasonReference,
       reason: reason ?? this.reason,
-      reasonElement: reasonElement ?? this.reasonElement,
       reasonLinkId: reasonLinkId ?? this.reasonLinkId,
-      reasonLinkIdElement: reasonLinkIdElement ?? this.reasonLinkIdElement,
       note: note ?? this.note,
       securityLabelNumber: securityLabelNumber ?? this.securityLabelNumber,
-      securityLabelNumberElement:
-          securityLabelNumberElement ?? this.securityLabelNumberElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -4454,7 +3845,7 @@ class ContractSubject extends BackboneElement {
 
   ContractSubject({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.reference,
     this.role,
@@ -4469,11 +3860,15 @@ class ContractSubject extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractSubject.fromJson(Map<String, dynamic> json) {
     return ContractSubject(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -4482,16 +3877,19 @@ class ContractSubject extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      reference: (json['reference'] as List<dynamic>)
+      reference: ensureNonNullList((json['reference'] as List<dynamic>)
           .map<Reference>(
-              (dynamic v) => Reference.fromJson(v as Map<String, dynamic>))
-          .toList(),
+            (v) => Reference.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
       role: json['role'] != null
           ? CodeableConcept.fromJson(
               json['role'] as Map<String, dynamic>,
@@ -4500,7 +3898,8 @@ class ContractSubject extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractSubject] from a [String] or [YamlMap] object
+  /// Deserialize [ContractSubject] from a [String]
+  /// or [YamlMap] object
   factory ContractSubject.fromYaml(dynamic yaml) => yaml is String
       ? ContractSubject.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -4509,11 +3908,11 @@ class ContractSubject extends BackboneElement {
           ? ContractSubject.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ContractSubject cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ContractSubject cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ContractSubject] that takes in a [String]
+  /// Factory constructor for [ContractSubject]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ContractSubject.fromJsonString(String source) {
@@ -4528,6 +3927,15 @@ class ContractSubject extends BackboneElement {
 
   @override
   String get fhirType => 'ContractSubject';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [reference]
   /// The entity the action is performed or not performed on or for.
@@ -4600,7 +4008,7 @@ class ContractSigner extends BackboneElement {
 
   ContractSigner({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
     required this.party,
@@ -4616,11 +4024,15 @@ class ContractSigner extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractSigner.fromJson(Map<String, dynamic> json) {
     return ContractSigner(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -4629,7 +4041,7 @@ class ContractSigner extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -4641,14 +4053,18 @@ class ContractSigner extends BackboneElement {
       party: Reference.fromJson(
         json['party'] as Map<String, dynamic>,
       ),
-      signature: (json['signature'] as List<dynamic>)
+      signature: ensureNonNullList((json['signature'] as List<dynamic>)
           .map<Signature>(
-              (dynamic v) => Signature.fromJson(v as Map<String, dynamic>))
-          .toList(),
+            (v) => Signature.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
     );
   }
 
-  /// Deserialize [ContractSigner] from a [String] or [YamlMap] object
+  /// Deserialize [ContractSigner] from a [String]
+  /// or [YamlMap] object
   factory ContractSigner.fromYaml(dynamic yaml) => yaml is String
       ? ContractSigner.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -4657,11 +4073,11 @@ class ContractSigner extends BackboneElement {
           ? ContractSigner.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ContractSigner cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ContractSigner cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ContractSigner] that takes in a [String]
+  /// Factory constructor for [ContractSigner]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ContractSigner.fromJsonString(String source) {
@@ -4676,6 +4092,15 @@ class ContractSigner extends BackboneElement {
 
   @override
   String get fhirType => 'ContractSigner';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [type]
   /// Role of this Contract signer, e.g. notary, grantee.
@@ -4756,7 +4181,7 @@ class ContractFriendly extends BackboneElement {
 
   ContractFriendly({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.contentAttachment,
     this.contentReference,
@@ -4771,11 +4196,15 @@ class ContractFriendly extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractFriendly.fromJson(Map<String, dynamic> json) {
     return ContractFriendly(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -4784,7 +4213,7 @@ class ContractFriendly extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -4803,7 +4232,8 @@ class ContractFriendly extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractFriendly] from a [String] or [YamlMap] object
+  /// Deserialize [ContractFriendly] from a [String]
+  /// or [YamlMap] object
   factory ContractFriendly.fromYaml(dynamic yaml) => yaml is String
       ? ContractFriendly.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -4812,11 +4242,11 @@ class ContractFriendly extends BackboneElement {
           ? ContractFriendly.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ContractFriendly cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ContractFriendly cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ContractFriendly] that takes in a [String]
+  /// Factory constructor for [ContractFriendly]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ContractFriendly.fromJsonString(String source) {
@@ -4831,6 +4261,15 @@ class ContractFriendly extends BackboneElement {
 
   @override
   String get fhirType => 'ContractFriendly';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [contentAttachment]
   /// Human readable rendering of this Contract in a format and
@@ -4905,7 +4344,7 @@ class ContractLegal extends BackboneElement {
 
   ContractLegal({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.contentAttachment,
     this.contentReference,
@@ -4922,11 +4361,15 @@ class ContractLegal extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractLegal.fromJson(Map<String, dynamic> json) {
     return ContractLegal(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -4935,7 +4378,7 @@ class ContractLegal extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -4964,7 +4407,8 @@ class ContractLegal extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractLegal] from a [String] or [YamlMap] object
+  /// Deserialize [ContractLegal] from a [String]
+  /// or [YamlMap] object
   factory ContractLegal.fromYaml(dynamic yaml) => yaml is String
       ? ContractLegal.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -4973,11 +4417,11 @@ class ContractLegal extends BackboneElement {
           ? ContractLegal.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'ContractLegal cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ContractLegal cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ContractLegal] that takes in a [String]
+  /// Factory constructor for [ContractLegal]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ContractLegal.fromJsonString(String source) {
@@ -4992,6 +4436,15 @@ class ContractLegal extends BackboneElement {
 
   @override
   String get fhirType => 'ContractLegal';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [contentAttachment]
   /// Contract legal text in human renderable form.
@@ -5089,7 +4542,7 @@ class ContractRule extends BackboneElement {
 
   ContractRule({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.contentAttachment,
     this.contentReference,
@@ -5104,11 +4557,15 @@ class ContractRule extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ContractRule.fromJson(Map<String, dynamic> json) {
     return ContractRule(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -5117,7 +4574,7 @@ class ContractRule extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -5136,7 +4593,8 @@ class ContractRule extends BackboneElement {
     );
   }
 
-  /// Deserialize [ContractRule] from a [String] or [YamlMap] object
+  /// Deserialize [ContractRule] from a [String]
+  /// or [YamlMap] object
   factory ContractRule.fromYaml(dynamic yaml) => yaml is String
       ? ContractRule.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -5145,10 +4603,11 @@ class ContractRule extends BackboneElement {
           ? ContractRule.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('ContractRule cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('ContractRule cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [ContractRule] that takes in a [String]
+  /// Factory constructor for [ContractRule]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory ContractRule.fromJsonString(String source) {
@@ -5163,6 +4622,15 @@ class ContractRule extends BackboneElement {
 
   @override
   String get fhirType => 'ContractRule';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [contentAttachment]
   /// Computable Contract conveyed using a policy rule language (e.g. XACML,

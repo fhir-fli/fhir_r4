@@ -11,9 +11,7 @@ abstract class DomainResource extends Resource {
     super.id,
     super.meta,
     super.implicitRules,
-    super.implicitRulesElement,
     super.language,
-    super.languageElement,
     this.text,
     this.contained,
     this.extension_,
@@ -80,9 +78,7 @@ abstract class DomainResource extends Resource {
     writeNotNull('id', id);
     writeNotNull('meta', meta?.toJson());
     writeNotNull('implicitRules', implicitRules?.toJson());
-    writeNotNull('_implicitRules', implicitRulesElement?.toJson());
     writeNotNull('language', language?.toJson());
-    writeNotNull('_language', languageElement?.toJson());
     writeNotNull('text', text?.toJson());
     writeNotNull(
       'contained',
@@ -138,9 +134,7 @@ abstract class DomainResource extends Resource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,

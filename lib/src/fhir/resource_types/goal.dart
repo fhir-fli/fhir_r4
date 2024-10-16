@@ -14,41 +14,23 @@ class Goal extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.lifecycleStatus,
-
-    /// Extensions for [lifecycleStatus]
-    this.lifecycleStatusElement,
     this.achievementStatus,
     this.category,
     this.priority,
     required this.description,
     required this.subject,
     this.startDate,
-
-    /// Extensions for [startDate]
-    this.startDateElement,
     this.startCodeableConcept,
     this.target,
     this.statusDate,
-
-    /// Extensions for [statusDate]
-    this.statusDateElement,
     this.statusReason,
-
-    /// Extensions for [statusReason]
-    this.statusReasonElement,
     this.expressedBy,
     this.addresses,
     this.note,
@@ -67,27 +49,27 @@ class Goal extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Goal.fromJson(Map<String, dynamic> json) {
     return Goal(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -97,7 +79,7 @@ class Goal extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -106,7 +88,7 @@ class Goal extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -115,7 +97,7 @@ class Goal extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -124,18 +106,16 @@ class Goal extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      lifecycleStatus: GoalLifecycleStatus.fromJson(json['lifecycleStatus']),
-      lifecycleStatusElement: json['_lifecycleStatus'] != null
-          ? Element.fromJson(
-              json['_lifecycleStatus'] as Map<String, dynamic>,
-            )
-          : null,
+      lifecycleStatus: GoalLifecycleStatus.fromJson({
+        'value': json['lifecycleStatus'],
+        '_value': json['_lifecycleStatus'],
+      }),
       achievementStatus: json['achievementStatus'] != null
           ? CodeableConcept.fromJson(
               json['achievementStatus'] as Map<String, dynamic>,
@@ -144,7 +124,7 @@ class Goal extends DomainResource {
       category: json['category'] != null
           ? (json['category'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -162,12 +142,10 @@ class Goal extends DomainResource {
         json['subject'] as Map<String, dynamic>,
       ),
       startDate: json['startDate'] != null
-          ? GoalStartEvent.fromJson(json['startDate'])
-          : null,
-      startDateElement: json['_startDate'] != null
-          ? Element.fromJson(
-              json['_startDate'] as Map<String, dynamic>,
-            )
+          ? GoalStartEvent.fromJson({
+              'value': json['startDate'],
+              '_value': json['_startDate'],
+            })
           : null,
       startCodeableConcept: json['startCodeableConcept'] != null
           ? CodeableConcept.fromJson(
@@ -177,27 +155,23 @@ class Goal extends DomainResource {
       target: json['target'] != null
           ? (json['target'] as List<dynamic>)
               .map<GoalTarget>(
-                (dynamic v) => GoalTarget.fromJson(
+                (v) => GoalTarget.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       statusDate: json['statusDate'] != null
-          ? FhirDate.fromJson(json['statusDate'])
-          : null,
-      statusDateElement: json['_statusDate'] != null
-          ? Element.fromJson(
-              json['_statusDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['statusDate'],
+              '_value': json['_statusDate'],
+            })
           : null,
       statusReason: json['statusReason'] != null
-          ? FhirString.fromJson(json['statusReason'])
-          : null,
-      statusReasonElement: json['_statusReason'] != null
-          ? Element.fromJson(
-              json['_statusReason'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['statusReason'],
+              '_value': json['_statusReason'],
+            })
           : null,
       expressedBy: json['expressedBy'] != null
           ? Reference.fromJson(
@@ -207,7 +181,7 @@ class Goal extends DomainResource {
       addresses: json['addresses'] != null
           ? (json['addresses'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -216,7 +190,7 @@ class Goal extends DomainResource {
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
-                (dynamic v) => Annotation.fromJson(
+                (v) => Annotation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -225,7 +199,7 @@ class Goal extends DomainResource {
       outcomeCode: json['outcomeCode'] != null
           ? (json['outcomeCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -234,7 +208,7 @@ class Goal extends DomainResource {
       outcomeReference: json['outcomeReference'] != null
           ? (json['outcomeReference'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -243,7 +217,8 @@ class Goal extends DomainResource {
     );
   }
 
-  /// Deserialize [Goal] from a [String] or [YamlMap] object
+  /// Deserialize [Goal] from a [String]
+  /// or [YamlMap] object
   factory Goal.fromYaml(dynamic yaml) => yaml is String
       ? Goal.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -252,10 +227,11 @@ class Goal extends DomainResource {
           ? Goal.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Goal cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Goal cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Goal] that takes in a [String]
+  /// Factory constructor for [Goal]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Goal.fromJsonString(String source) {
@@ -271,6 +247,15 @@ class Goal extends DomainResource {
   @override
   String get fhirType => 'Goal';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Business identifiers assigned to this goal by the performer or other
   /// systems which remain constant as the resource is updated and propagates
@@ -280,9 +265,6 @@ class Goal extends DomainResource {
   /// [lifecycleStatus]
   /// The state of the goal throughout its lifecycle.
   final GoalLifecycleStatus lifecycleStatus;
-
-  /// Extensions for [lifecycleStatus]
-  final Element? lifecycleStatusElement;
 
   /// [achievementStatus]
   /// Describes the progression, or lack thereof, towards the goal against
@@ -313,9 +295,6 @@ class Goal extends DomainResource {
   /// The date or event after which the goal should begin being pursued.
   final GoalStartEvent? startDate;
 
-  /// Extensions for [startDate]
-  final Element? startDateElement;
-
   /// [startCodeableConcept]
   /// The date or event after which the goal should begin being pursued.
   final CodeableConcept? startCodeableConcept;
@@ -329,15 +308,9 @@ class Goal extends DomainResource {
   /// achieved, when cancelled, etc.
   final FhirDate? statusDate;
 
-  /// Extensions for [statusDate]
-  final Element? statusDateElement;
-
   /// [statusReason]
   /// Captures the reason for the current status.
   final FhirString? statusReason;
-
-  /// Extensions for [statusReason]
-  final Element? statusReasonElement;
 
   /// [expressedBy]
   /// Indicates whose goal this is - patient goal, practitioner goal, etc.
@@ -372,9 +345,6 @@ class Goal extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -422,14 +392,8 @@ class Goal extends DomainResource {
     if (statusDate?.value != null) {
       json['statusDate'] = statusDate!.toJson();
     }
-    if (statusDateElement != null) {
-      json['_statusDate'] = statusDateElement!.toJson();
-    }
     if (statusReason?.value != null) {
       json['statusReason'] = statusReason!.toJson();
-    }
-    if (statusReasonElement != null) {
-      json['_statusReason'] = statusReasonElement!.toJson();
     }
     if (expressedBy != null) {
       json['expressedBy'] = expressedBy!.toJson();
@@ -458,29 +422,23 @@ class Goal extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     GoalLifecycleStatus? lifecycleStatus,
-    Element? lifecycleStatusElement,
     CodeableConcept? achievementStatus,
     List<CodeableConcept>? category,
     CodeableConcept? priority,
     CodeableConcept? description,
     Reference? subject,
     GoalStartEvent? startDate,
-    Element? startDateElement,
     CodeableConcept? startCodeableConcept,
     List<GoalTarget>? target,
     FhirDate? statusDate,
-    Element? statusDateElement,
     FhirString? statusReason,
-    Element? statusReasonElement,
     Reference? expressedBy,
     List<Reference>? addresses,
     List<Annotation>? note,
@@ -497,30 +455,23 @@ class Goal extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       lifecycleStatus: lifecycleStatus ?? this.lifecycleStatus,
-      lifecycleStatusElement:
-          lifecycleStatusElement ?? this.lifecycleStatusElement,
       achievementStatus: achievementStatus ?? this.achievementStatus,
       category: category ?? this.category,
       priority: priority ?? this.priority,
       description: description ?? this.description,
       subject: subject ?? this.subject,
       startDate: startDate ?? this.startDate,
-      startDateElement: startDateElement ?? this.startDateElement,
       startCodeableConcept: startCodeableConcept ?? this.startCodeableConcept,
       target: target ?? this.target,
       statusDate: statusDate ?? this.statusDate,
-      statusDateElement: statusDateElement ?? this.statusDateElement,
       statusReason: statusReason ?? this.statusReason,
-      statusReasonElement: statusReasonElement ?? this.statusReasonElement,
       expressedBy: expressedBy ?? this.expressedBy,
       addresses: addresses ?? this.addresses,
       note: note ?? this.note,
@@ -543,29 +494,17 @@ class GoalTarget extends BackboneElement {
 
   GoalTarget({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.measure,
     this.detailQuantity,
     this.detailRange,
     this.detailCodeableConcept,
     this.detailString,
-
-    /// Extensions for [detailString]
-    this.detailStringElement,
     this.detailBoolean,
-
-    /// Extensions for [detailBoolean]
-    this.detailBooleanElement,
     this.detailInteger,
-
-    /// Extensions for [detailInteger]
-    this.detailIntegerElement,
     this.detailRatio,
     this.dueDate,
-
-    /// Extensions for [dueDate]
-    this.dueDateElement,
     this.dueDuration,
     super.userData,
     super.formatCommentsPre,
@@ -578,11 +517,15 @@ class GoalTarget extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory GoalTarget.fromJson(Map<String, dynamic> json) {
     return GoalTarget(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -591,7 +534,7 @@ class GoalTarget extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -618,40 +561,33 @@ class GoalTarget extends BackboneElement {
             )
           : null,
       detailString: json['detailString'] != null
-          ? FhirString.fromJson(json['detailString'])
-          : null,
-      detailStringElement: json['_detailString'] != null
-          ? Element.fromJson(
-              json['_detailString'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['detailString'],
+              '_value': json['_detailString'],
+            })
           : null,
       detailBoolean: json['detailBoolean'] != null
-          ? FhirBoolean.fromJson(json['detailBoolean'])
-          : null,
-      detailBooleanElement: json['_detailBoolean'] != null
-          ? Element.fromJson(
-              json['_detailBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['detailBoolean'],
+              '_value': json['_detailBoolean'],
+            })
           : null,
       detailInteger: json['detailInteger'] != null
-          ? FhirInteger.fromJson(json['detailInteger'])
-          : null,
-      detailIntegerElement: json['_detailInteger'] != null
-          ? Element.fromJson(
-              json['_detailInteger'] as Map<String, dynamic>,
-            )
+          ? FhirInteger.fromJson({
+              'value': json['detailInteger'],
+              '_value': json['_detailInteger'],
+            })
           : null,
       detailRatio: json['detailRatio'] != null
           ? Ratio.fromJson(
               json['detailRatio'] as Map<String, dynamic>,
             )
           : null,
-      dueDate:
-          json['dueDate'] != null ? FhirDate.fromJson(json['dueDate']) : null,
-      dueDateElement: json['_dueDate'] != null
-          ? Element.fromJson(
-              json['_dueDate'] as Map<String, dynamic>,
-            )
+      dueDate: json['dueDate'] != null
+          ? FhirDate.fromJson({
+              'value': json['dueDate'],
+              '_value': json['_dueDate'],
+            })
           : null,
       dueDuration: json['dueDuration'] != null
           ? FhirDuration.fromJson(
@@ -661,7 +597,8 @@ class GoalTarget extends BackboneElement {
     );
   }
 
-  /// Deserialize [GoalTarget] from a [String] or [YamlMap] object
+  /// Deserialize [GoalTarget] from a [String]
+  /// or [YamlMap] object
   factory GoalTarget.fromYaml(dynamic yaml) => yaml is String
       ? GoalTarget.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -670,10 +607,11 @@ class GoalTarget extends BackboneElement {
           ? GoalTarget.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('GoalTarget cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('GoalTarget cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [GoalTarget] that takes in a [String]
+  /// Factory constructor for [GoalTarget]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory GoalTarget.fromJsonString(String source) {
@@ -688,6 +626,15 @@ class GoalTarget extends BackboneElement {
 
   @override
   String get fhirType => 'GoalTarget';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [measure]
   /// The parameter whose value is being tracked, e.g. body weight, blood
@@ -730,9 +677,6 @@ class GoalTarget extends BackboneElement {
   /// the goal is achieved at any focus value at or above the low value.
   final FhirString? detailString;
 
-  /// Extensions for [detailString]
-  final Element? detailStringElement;
-
   /// [detailBoolean]
   /// The target value of the focus to be achieved to signify the fulfillment
   /// of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both
@@ -742,9 +686,6 @@ class GoalTarget extends BackboneElement {
   /// the goal is achieved at any focus value at or above the low value.
   final FhirBoolean? detailBoolean;
 
-  /// Extensions for [detailBoolean]
-  final Element? detailBooleanElement;
-
   /// [detailInteger]
   /// The target value of the focus to be achieved to signify the fulfillment
   /// of the goal, e.g. 150 pounds, 7.0%. Either the high or low or both
@@ -753,9 +694,6 @@ class GoalTarget extends BackboneElement {
   /// high value. Similarly, if the high value is missing, it indicates that
   /// the goal is achieved at any focus value at or above the low value.
   final FhirInteger? detailInteger;
-
-  /// Extensions for [detailInteger]
-  final Element? detailIntegerElement;
 
   /// [detailRatio]
   /// The target value of the focus to be achieved to signify the fulfillment
@@ -770,9 +708,6 @@ class GoalTarget extends BackboneElement {
   /// Indicates either the date or the duration after start by which the goal
   /// should be met.
   final FhirDate? dueDate;
-
-  /// Extensions for [dueDate]
-  final Element? dueDateElement;
 
   /// [dueDuration]
   /// Indicates either the date or the duration after start by which the goal
@@ -807,29 +742,17 @@ class GoalTarget extends BackboneElement {
     if (detailString?.value != null) {
       json['detailString'] = detailString!.toJson();
     }
-    if (detailStringElement != null) {
-      json['_detailString'] = detailStringElement!.toJson();
-    }
     if (detailBoolean?.value != null) {
       json['detailBoolean'] = detailBoolean!.toJson();
     }
-    if (detailBooleanElement != null) {
-      json['_detailBoolean'] = detailBooleanElement!.toJson();
-    }
     if (detailInteger?.value != null) {
       json['detailInteger'] = detailInteger!.toJson();
-    }
-    if (detailIntegerElement != null) {
-      json['_detailInteger'] = detailIntegerElement!.toJson();
     }
     if (detailRatio != null) {
       json['detailRatio'] = detailRatio!.toJson();
     }
     if (dueDate?.value != null) {
       json['dueDate'] = dueDate!.toJson();
-    }
-    if (dueDateElement != null) {
-      json['_dueDate'] = dueDateElement!.toJson();
     }
     if (dueDuration != null) {
       json['dueDuration'] = dueDuration!.toJson();
@@ -849,14 +772,10 @@ class GoalTarget extends BackboneElement {
     Range? detailRange,
     CodeableConcept? detailCodeableConcept,
     FhirString? detailString,
-    Element? detailStringElement,
     FhirBoolean? detailBoolean,
-    Element? detailBooleanElement,
     FhirInteger? detailInteger,
-    Element? detailIntegerElement,
     Ratio? detailRatio,
     FhirDate? dueDate,
-    Element? dueDateElement,
     FhirDuration? dueDuration,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -875,14 +794,10 @@ class GoalTarget extends BackboneElement {
       detailCodeableConcept:
           detailCodeableConcept ?? this.detailCodeableConcept,
       detailString: detailString ?? this.detailString,
-      detailStringElement: detailStringElement ?? this.detailStringElement,
       detailBoolean: detailBoolean ?? this.detailBoolean,
-      detailBooleanElement: detailBooleanElement ?? this.detailBooleanElement,
       detailInteger: detailInteger ?? this.detailInteger,
-      detailIntegerElement: detailIntegerElement ?? this.detailIntegerElement,
       detailRatio: detailRatio ?? this.detailRatio,
       dueDate: dueDate ?? this.dueDate,
-      dueDateElement: dueDateElement ?? this.dueDateElement,
       dueDuration: dueDuration ?? this.dueDuration,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,

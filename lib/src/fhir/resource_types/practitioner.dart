@@ -12,33 +12,18 @@ class Practitioner extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.active,
-
-    /// Extensions for [active]
-    this.activeElement,
     this.name,
     this.telecom,
     this.address,
     this.gender,
-
-    /// Extensions for [gender]
-    this.genderElement,
     this.birthDate,
-
-    /// Extensions for [birthDate]
-    this.birthDateElement,
     this.photo,
     this.qualification,
     this.communication,
@@ -55,27 +40,27 @@ class Practitioner extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory Practitioner.fromJson(Map<String, dynamic> json) {
     return Practitioner(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -85,7 +70,7 @@ class Practitioner extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -94,7 +79,7 @@ class Practitioner extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -103,7 +88,7 @@ class Practitioner extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -112,23 +97,22 @@ class Practitioner extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      active:
-          json['active'] != null ? FhirBoolean.fromJson(json['active']) : null,
-      activeElement: json['_active'] != null
-          ? Element.fromJson(
-              json['_active'] as Map<String, dynamic>,
-            )
+      active: json['active'] != null
+          ? FhirBoolean.fromJson({
+              'value': json['active'],
+              '_value': json['_active'],
+            })
           : null,
       name: json['name'] != null
           ? (json['name'] as List<dynamic>)
               .map<HumanName>(
-                (dynamic v) => HumanName.fromJson(
+                (v) => HumanName.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -137,7 +121,7 @@ class Practitioner extends DomainResource {
       telecom: json['telecom'] != null
           ? (json['telecom'] as List<dynamic>)
               .map<ContactPoint>(
-                (dynamic v) => ContactPoint.fromJson(
+                (v) => ContactPoint.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -146,32 +130,28 @@ class Practitioner extends DomainResource {
       address: json['address'] != null
           ? (json['address'] as List<dynamic>)
               .map<Address>(
-                (dynamic v) => Address.fromJson(
+                (v) => Address.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       gender: json['gender'] != null
-          ? AdministrativeGender.fromJson(json['gender'])
-          : null,
-      genderElement: json['_gender'] != null
-          ? Element.fromJson(
-              json['_gender'] as Map<String, dynamic>,
-            )
+          ? AdministrativeGender.fromJson({
+              'value': json['gender'],
+              '_value': json['_gender'],
+            })
           : null,
       birthDate: json['birthDate'] != null
-          ? FhirDate.fromJson(json['birthDate'])
-          : null,
-      birthDateElement: json['_birthDate'] != null
-          ? Element.fromJson(
-              json['_birthDate'] as Map<String, dynamic>,
-            )
+          ? FhirDate.fromJson({
+              'value': json['birthDate'],
+              '_value': json['_birthDate'],
+            })
           : null,
       photo: json['photo'] != null
           ? (json['photo'] as List<dynamic>)
               .map<Attachment>(
-                (dynamic v) => Attachment.fromJson(
+                (v) => Attachment.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -180,7 +160,7 @@ class Practitioner extends DomainResource {
       qualification: json['qualification'] != null
           ? (json['qualification'] as List<dynamic>)
               .map<PractitionerQualification>(
-                (dynamic v) => PractitionerQualification.fromJson(
+                (v) => PractitionerQualification.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -189,7 +169,7 @@ class Practitioner extends DomainResource {
       communication: json['communication'] != null
           ? (json['communication'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -198,7 +178,8 @@ class Practitioner extends DomainResource {
     );
   }
 
-  /// Deserialize [Practitioner] from a [String] or [YamlMap] object
+  /// Deserialize [Practitioner] from a [String]
+  /// or [YamlMap] object
   factory Practitioner.fromYaml(dynamic yaml) => yaml is String
       ? Practitioner.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -207,10 +188,11 @@ class Practitioner extends DomainResource {
           ? Practitioner.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError('Practitioner cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('Practitioner cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [Practitioner] that takes in a [String]
+  /// Factory constructor for [Practitioner]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory Practitioner.fromJsonString(String source) {
@@ -226,6 +208,15 @@ class Practitioner extends DomainResource {
   @override
   String get fhirType => 'Practitioner';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// An identifier that applies to this person in this role.
   final List<Identifier>? identifier;
@@ -233,9 +224,6 @@ class Practitioner extends DomainResource {
   /// [active]
   /// Whether this practitioner's record is in active use.
   final FhirBoolean? active;
-
-  /// Extensions for [active]
-  final Element? activeElement;
 
   /// [name]
   /// The name(s) associated with the practitioner.
@@ -257,15 +245,9 @@ class Practitioner extends DomainResource {
   /// have for administration and record keeping purposes.
   final AdministrativeGender? gender;
 
-  /// Extensions for [gender]
-  final Element? genderElement;
-
   /// [birthDate]
   /// The date of birth for the practitioner.
   final FhirDate? birthDate;
-
-  /// Extensions for [birthDate]
-  final Element? birthDateElement;
 
   /// [photo]
   /// Image of the person.
@@ -294,9 +276,6 @@ class Practitioner extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -321,9 +300,6 @@ class Practitioner extends DomainResource {
     if (active?.value != null) {
       json['active'] = active!.toJson();
     }
-    if (activeElement != null) {
-      json['_active'] = activeElement!.toJson();
-    }
     if (name != null && name!.isNotEmpty) {
       json['name'] = name!.map((HumanName v) => v.toJson()).toList();
     }
@@ -338,9 +314,6 @@ class Practitioner extends DomainResource {
     }
     if (birthDate?.value != null) {
       json['birthDate'] = birthDate!.toJson();
-    }
-    if (birthDateElement != null) {
-      json['_birthDate'] = birthDateElement!.toJson();
     }
     if (photo != null && photo!.isNotEmpty) {
       json['photo'] = photo!.map((Attachment v) => v.toJson()).toList();
@@ -364,23 +337,18 @@ class Practitioner extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     FhirBoolean? active,
-    Element? activeElement,
     List<HumanName>? name,
     List<ContactPoint>? telecom,
     List<Address>? address,
     AdministrativeGender? gender,
-    Element? genderElement,
     FhirDate? birthDate,
-    Element? birthDateElement,
     List<Attachment>? photo,
     List<PractitionerQualification>? qualification,
     List<CodeableConcept>? communication,
@@ -395,23 +363,18 @@ class Practitioner extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       active: active ?? this.active,
-      activeElement: activeElement ?? this.activeElement,
       name: name ?? this.name,
       telecom: telecom ?? this.telecom,
       address: address ?? this.address,
       gender: gender ?? this.gender,
-      genderElement: genderElement ?? this.genderElement,
       birthDate: birthDate ?? this.birthDate,
-      birthDateElement: birthDateElement ?? this.birthDateElement,
       photo: photo ?? this.photo,
       qualification: qualification ?? this.qualification,
       communication: communication ?? this.communication,
@@ -435,7 +398,7 @@ class PractitionerQualification extends BackboneElement {
 
   PractitionerQualification({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     required this.code,
@@ -452,11 +415,15 @@ class PractitionerQualification extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PractitionerQualification.fromJson(Map<String, dynamic> json) {
     return PractitionerQualification(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -465,7 +432,7 @@ class PractitionerQualification extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -474,7 +441,7 @@ class PractitionerQualification extends BackboneElement {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -496,7 +463,8 @@ class PractitionerQualification extends BackboneElement {
     );
   }
 
-  /// Deserialize [PractitionerQualification] from a [String] or [YamlMap] object
+  /// Deserialize [PractitionerQualification] from a [String]
+  /// or [YamlMap] object
   factory PractitionerQualification.fromYaml(dynamic yaml) => yaml is String
       ? PractitionerQualification.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -506,10 +474,11 @@ class PractitionerQualification extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'PractitionerQualification cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'PractitionerQualification cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [PractitionerQualification] that takes in a [String]
+  /// Factory constructor for [PractitionerQualification]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory PractitionerQualification.fromJsonString(String source) {
@@ -524,6 +493,15 @@ class PractitionerQualification extends BackboneElement {
 
   @override
   String get fhirType => 'PractitionerQualification';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [identifier]
   /// An identifier that applies to this person's qualification in this role.

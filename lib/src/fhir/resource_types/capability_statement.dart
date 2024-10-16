@@ -14,90 +14,33 @@ class CapabilityStatement extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.experimental,
-
-    /// Extensions for [experimental]
-    this.experimentalElement,
     required this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.publisher,
-
-    /// Extensions for [publisher]
-    this.publisherElement,
     this.contact,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-
-    /// Extensions for [purpose]
-    this.purposeElement,
     this.copyright,
-
-    /// Extensions for [copyright]
-    this.copyrightElement,
     required this.kind,
-
-    /// Extensions for [kind]
-    this.kindElement,
     this.instantiates,
-
-    /// Extensions for [instantiates]
-    this.instantiatesElement,
     this.imports,
-
-    /// Extensions for [imports]
-    this.importsElement,
     this.software,
     this.implementation,
     required this.fhirVersion,
-
-    /// Extensions for [fhirVersion]
-    this.fhirVersionElement,
     required this.format,
-
-    /// Extensions for [format]
-    this.formatElement,
     this.patchFormat,
-
-    /// Extensions for [patchFormat]
-    this.patchFormatElement,
     this.rest,
     this.messaging,
     this.document,
@@ -114,27 +57,27 @@ class CapabilityStatement extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatement.fromJson(Map<String, dynamic> json) {
     return CapabilityStatement(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -144,7 +87,7 @@ class CapabilityStatement extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -153,7 +96,7 @@ class CapabilityStatement extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -162,86 +105,75 @@ class CapabilityStatement extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      url: json['url'] != null ? FhirUri.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
+      url: json['url'] != null
+          ? FhirUri.fromJson({
+              'value': json['url'],
+              '_value': json['_url'],
+            })
           : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: PublicationStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson(json['experimental'])
+          ? FhirBoolean.fromJson({
+              'value': json['experimental'],
+              '_value': json['_experimental'],
+            })
           : null,
-      experimentalElement: json['_experimental'] != null
-          ? Element.fromJson(
-              json['_experimental'] as Map<String, dynamic>,
-            )
-          : null,
-      date: FhirDateTime.fromJson(json['date']),
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
-          : null,
+      date: FhirDateTime.fromJson({
+        'value': json['date'],
+        '_value': json['_date'],
+      }),
       publisher: json['publisher'] != null
-          ? FhirString.fromJson(json['publisher'])
-          : null,
-      publisherElement: json['_publisher'] != null
-          ? Element.fromJson(
-              json['_publisher'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['publisher'],
+              '_value': json['_publisher'],
+            })
           : null,
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       useContext: json['useContext'] != null
           ? (json['useContext'] as List<dynamic>)
               .map<UsageContext>(
-                (dynamic v) => UsageContext.fromJson(
+                (v) => UsageContext.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -250,62 +182,35 @@ class CapabilityStatement extends DomainResource {
       jurisdiction: json['jurisdiction'] != null
           ? (json['jurisdiction'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       purpose: json['purpose'] != null
-          ? FhirMarkdown.fromJson(json['purpose'])
-          : null,
-      purposeElement: json['_purpose'] != null
-          ? Element.fromJson(
-              json['_purpose'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['purpose'],
+              '_value': json['_purpose'],
+            })
           : null,
       copyright: json['copyright'] != null
-          ? FhirMarkdown.fromJson(json['copyright'])
+          ? FhirMarkdown.fromJson({
+              'value': json['copyright'],
+              '_value': json['_copyright'],
+            })
           : null,
-      copyrightElement: json['_copyright'] != null
-          ? Element.fromJson(
-              json['_copyright'] as Map<String, dynamic>,
-            )
-          : null,
-      kind: CapabilityStatementKind.fromJson(json['kind']),
-      kindElement: json['_kind'] != null
-          ? Element.fromJson(
-              json['_kind'] as Map<String, dynamic>,
-            )
-          : null,
-      instantiates: json['instantiates'] != null
-          ? (json['instantiates'] as List<dynamic>)
-              .map<FhirCanonical>(
-                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      instantiatesElement: json['_instantiates'] != null
-          ? (json['_instantiates'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      imports: json['imports'] != null
-          ? (json['imports'] as List<dynamic>)
-              .map<FhirCanonical>(
-                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      importsElement: json['_imports'] != null
-          ? (json['_imports'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      kind: CapabilityStatementKind.fromJson({
+        'value': json['kind'],
+        '_value': json['_kind'],
+      }),
+      instantiates: parsePrimitiveList<FhirCanonical>(
+          json['instantiates'] as List<dynamic>?,
+          json['_instantiates'] as List<dynamic>?,
+          fromJson: FhirCanonical.fromJson),
+      imports: parsePrimitiveList<FhirCanonical>(
+          json['imports'] as List<dynamic>?, json['_imports'] as List<dynamic>?,
+          fromJson: FhirCanonical.fromJson),
       software: json['software'] != null
           ? CapabilityStatementSoftware.fromJson(
               json['software'] as Map<String, dynamic>,
@@ -316,40 +221,21 @@ class CapabilityStatement extends DomainResource {
               json['implementation'] as Map<String, dynamic>,
             )
           : null,
-      fhirVersion: FHIRVersion.fromJson(json['fhirVersion']),
-      fhirVersionElement: json['_fhirVersion'] != null
-          ? Element.fromJson(
-              json['_fhirVersion'] as Map<String, dynamic>,
-            )
-          : null,
-      format: (json['format'] as List<dynamic>)
-          .map<FhirCode>((dynamic v) => FhirCode.fromJson(v as dynamic))
-          .toList(),
-      formatElement: json['_format'] != null
-          ? (json['_format'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      patchFormat: json['patchFormat'] != null
-          ? (json['patchFormat'] as List<dynamic>)
-              .map<FhirCode>(
-                (dynamic v) => FhirCode.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      patchFormatElement: json['_patchFormat'] != null
-          ? (json['_patchFormat'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      fhirVersion: FHIRVersion.fromJson({
+        'value': json['fhirVersion'],
+        '_value': json['_fhirVersion'],
+      }),
+      format: ensureNonNullList(parsePrimitiveList<FhirCode>(
+          json['format'] as List<dynamic>?, json['_format'] as List<dynamic>?,
+          fromJson: FhirCode.fromJson)),
+      patchFormat: parsePrimitiveList<FhirCode>(
+          json['patchFormat'] as List<dynamic>?,
+          json['_patchFormat'] as List<dynamic>?,
+          fromJson: FhirCode.fromJson),
       rest: json['rest'] != null
           ? (json['rest'] as List<dynamic>)
               .map<CapabilityStatementRest>(
-                (dynamic v) => CapabilityStatementRest.fromJson(
+                (v) => CapabilityStatementRest.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -358,7 +244,7 @@ class CapabilityStatement extends DomainResource {
       messaging: json['messaging'] != null
           ? (json['messaging'] as List<dynamic>)
               .map<CapabilityStatementMessaging>(
-                (dynamic v) => CapabilityStatementMessaging.fromJson(
+                (v) => CapabilityStatementMessaging.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -367,7 +253,7 @@ class CapabilityStatement extends DomainResource {
       document: json['document'] != null
           ? (json['document'] as List<dynamic>)
               .map<CapabilityStatementDocument>(
-                (dynamic v) => CapabilityStatementDocument.fromJson(
+                (v) => CapabilityStatementDocument.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -376,7 +262,8 @@ class CapabilityStatement extends DomainResource {
     );
   }
 
-  /// Deserialize [CapabilityStatement] from a [String] or [YamlMap] object
+  /// Deserialize [CapabilityStatement] from a [String]
+  /// or [YamlMap] object
   factory CapabilityStatement.fromYaml(dynamic yaml) => yaml is String
       ? CapabilityStatement.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -386,10 +273,11 @@ class CapabilityStatement extends DomainResource {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'CapabilityStatement cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'CapabilityStatement cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CapabilityStatement] that takes in a [String]
+  /// Factory constructor for [CapabilityStatement]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CapabilityStatement.fromJsonString(String source) {
@@ -405,6 +293,15 @@ class CapabilityStatement extends DomainResource {
   @override
   String get fhirType => 'CapabilityStatement';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [url]
   /// An absolute URI that is used to identify this capability statement when
   /// it is referenced in a specification, model, design or an instance; also
@@ -414,9 +311,6 @@ class CapabilityStatement extends DomainResource {
   /// the target of a canonical reference. It SHALL remain the same when the
   /// capability statement is stored on different servers.
   final FhirUri? url;
-
-  /// Extensions for [url]
-  final Element? urlElement;
 
   /// [version]
   /// The identifier that is used to identify this version of the capability
@@ -428,41 +322,26 @@ class CapabilityStatement extends DomainResource {
   /// placed in a lexicographical sequence.
   final FhirString? version;
 
-  /// Extensions for [version]
-  final Element? versionElement;
-
   /// [name]
   /// A natural language name identifying the capability statement. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
   final FhirString? name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [title]
   /// A short, descriptive, user-friendly title for the capability statement.
   final FhirString? title;
-
-  /// Extensions for [title]
-  final Element? titleElement;
 
   /// [status]
   /// The status of this capability statement. Enables tracking the
   /// life-cycle of the content.
   final PublicationStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [experimental]
   /// A Boolean value to indicate that this capability statement is authored
   /// for testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
   final FhirBoolean? experimental;
-
-  /// Extensions for [experimental]
-  final Element? experimentalElement;
 
   /// [date]
   /// The date (and optionally time) when the capability statement was
@@ -472,16 +351,10 @@ class CapabilityStatement extends DomainResource {
   /// changes.
   final FhirDateTime date;
 
-  /// Extensions for [date]
-  final Element? dateElement;
-
   /// [publisher]
   /// The name of the organization or individual that published the
   /// capability statement.
   final FhirString? publisher;
-
-  /// Extensions for [publisher]
-  final Element? publisherElement;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
@@ -495,9 +368,6 @@ class CapabilityStatement extends DomainResource {
   /// solution, for example as a formal expression of requirements as part of
   /// an RFP.
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -517,17 +387,11 @@ class CapabilityStatement extends DomainResource {
   /// been designed as it has.
   final FhirMarkdown? purpose;
 
-  /// Extensions for [purpose]
-  final Element? purposeElement;
-
   /// [copyright]
   /// A copyright statement relating to the capability statement and/or its
   /// contents. Copyright statements are generally legal restrictions on the
   /// use and publishing of the capability statement.
   final FhirMarkdown? copyright;
-
-  /// Extensions for [copyright]
-  final Element? copyrightElement;
 
   /// [kind]
   /// The way that this statement is intended to be used, to describe an
@@ -535,9 +399,6 @@ class CapabilityStatement extends DomainResource {
   /// instance of software) or a class of implementation (e.g. a desired
   /// purchase).
   final CapabilityStatementKind kind;
-
-  /// Extensions for [kind]
-  final Element? kindElement;
 
   /// [instantiates]
   /// Reference to a canonical URL of another CapabilityStatement that this
@@ -548,9 +409,6 @@ class CapabilityStatement extends DomainResource {
   /// details.
   final List<FhirCanonical>? instantiates;
 
-  /// Extensions for [instantiates]
-  final List<Element>? instantiatesElement;
-
   /// [imports]
   /// Reference to a canonical URL of another CapabilityStatement that this
   /// software adds to. The capability statement automatically includes
@@ -558,9 +416,6 @@ class CapabilityStatement extends DomainResource {
   /// server may repeat the same resources, interactions and operations to
   /// add additional details to them.
   final List<FhirCanonical>? imports;
-
-  /// Extensions for [imports]
-  final List<Element>? importsElement;
 
   /// [software]
   /// Software that is covered by this capability statement. It is used when
@@ -580,24 +435,15 @@ class CapabilityStatement extends DomainResource {
   /// CapabilityStatement itself). There is no default value.
   final FHIRVersion fhirVersion;
 
-  /// Extensions for [fhirVersion]
-  final Element? fhirVersionElement;
-
   /// [format]
   /// A list of the formats supported by this implementation using their
   /// content types.
   final List<FhirCode> format;
 
-  /// Extensions for [format]
-  final List<Element>? formatElement;
-
   /// [patchFormat]
   /// A list of the patch formats supported by this implementation using
   /// their content types.
   final List<FhirCode>? patchFormat;
-
-  /// Extensions for [patchFormat]
-  final List<Element>? patchFormatElement;
 
   /// [rest]
   /// A definition of the restful capabilities of the solution, if any.
@@ -623,9 +469,6 @@ class CapabilityStatement extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -646,52 +489,28 @@ class CapabilityStatement extends DomainResource {
     if (url?.value != null) {
       json['url'] = url!.toJson();
     }
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
-    }
     if (version?.value != null) {
       json['version'] = version!.toJson();
-    }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
     }
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (title?.value != null) {
       json['title'] = title!.toJson();
-    }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
     }
     json['status'] = status.toJson();
     if (experimental?.value != null) {
       json['experimental'] = experimental!.toJson();
     }
-    if (experimentalElement != null) {
-      json['_experimental'] = experimentalElement!.toJson();
-    }
     json['date'] = date.toJson();
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (publisher?.value != null) {
       json['publisher'] = publisher!.toJson();
-    }
-    if (publisherElement != null) {
-      json['_publisher'] = publisherElement!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] =
@@ -704,30 +523,16 @@ class CapabilityStatement extends DomainResource {
     if (purpose?.value != null) {
       json['purpose'] = purpose!.toJson();
     }
-    if (purposeElement != null) {
-      json['_purpose'] = purposeElement!.toJson();
-    }
     if (copyright?.value != null) {
       json['copyright'] = copyright!.toJson();
-    }
-    if (copyrightElement != null) {
-      json['_copyright'] = copyrightElement!.toJson();
     }
     json['kind'] = kind.toJson();
     if (instantiates != null && instantiates!.isNotEmpty) {
       json['instantiates'] =
           instantiates!.map((FhirCanonical v) => v.toJson()).toList();
     }
-    if (instantiatesElement != null && instantiatesElement!.isNotEmpty) {
-      json['_instantiates'] =
-          instantiatesElement!.map((Element v) => v.toJson()).toList();
-    }
     if (imports != null && imports!.isNotEmpty) {
       json['imports'] = imports!.map((FhirCanonical v) => v.toJson()).toList();
-    }
-    if (importsElement != null && importsElement!.isNotEmpty) {
-      json['_imports'] =
-          importsElement!.map((Element v) => v.toJson()).toList();
     }
     if (software != null) {
       json['software'] = software!.toJson();
@@ -737,16 +542,9 @@ class CapabilityStatement extends DomainResource {
     }
     json['fhirVersion'] = fhirVersion.toJson();
     json['format'] = format.map((FhirCode v) => v.toJson()).toList();
-    if (formatElement != null && formatElement!.isNotEmpty) {
-      json['_format'] = formatElement!.map((Element v) => v.toJson()).toList();
-    }
     if (patchFormat != null && patchFormat!.isNotEmpty) {
       json['patchFormat'] =
           patchFormat!.map((FhirCode v) => v.toJson()).toList();
-    }
-    if (patchFormatElement != null && patchFormatElement!.isNotEmpty) {
-      json['_patchFormat'] =
-          patchFormatElement!.map((Element v) => v.toJson()).toList();
     }
     if (rest != null && rest!.isNotEmpty) {
       json['rest'] =
@@ -771,52 +569,33 @@ class CapabilityStatement extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    Element? urlElement,
     FhirString? version,
-    Element? versionElement,
     FhirString? name,
-    Element? nameElement,
     FhirString? title,
-    Element? titleElement,
     PublicationStatus? status,
-    Element? statusElement,
     FhirBoolean? experimental,
-    Element? experimentalElement,
     FhirDateTime? date,
-    Element? dateElement,
     FhirString? publisher,
-    Element? publisherElement,
     List<ContactDetail>? contact,
     FhirMarkdown? description,
-    Element? descriptionElement,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
     FhirMarkdown? purpose,
-    Element? purposeElement,
     FhirMarkdown? copyright,
-    Element? copyrightElement,
     CapabilityStatementKind? kind,
-    Element? kindElement,
     List<FhirCanonical>? instantiates,
-    List<Element>? instantiatesElement,
     List<FhirCanonical>? imports,
-    List<Element>? importsElement,
     CapabilityStatementSoftware? software,
     CapabilityStatementImplementation? implementation,
     FHIRVersion? fhirVersion,
-    Element? fhirVersionElement,
     List<FhirCode>? format,
-    List<Element>? formatElement,
     List<FhirCode>? patchFormat,
-    List<Element>? patchFormatElement,
     List<CapabilityStatementRest>? rest,
     List<CapabilityStatementMessaging>? messaging,
     List<CapabilityStatementDocument>? document,
@@ -831,52 +610,33 @@ class CapabilityStatement extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       experimental: experimental ?? this.experimental,
-      experimentalElement: experimentalElement ?? this.experimentalElement,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       publisher: publisher ?? this.publisher,
-      publisherElement: publisherElement ?? this.publisherElement,
       contact: contact ?? this.contact,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       useContext: useContext ?? this.useContext,
       jurisdiction: jurisdiction ?? this.jurisdiction,
       purpose: purpose ?? this.purpose,
-      purposeElement: purposeElement ?? this.purposeElement,
       copyright: copyright ?? this.copyright,
-      copyrightElement: copyrightElement ?? this.copyrightElement,
       kind: kind ?? this.kind,
-      kindElement: kindElement ?? this.kindElement,
       instantiates: instantiates ?? this.instantiates,
-      instantiatesElement: instantiatesElement ?? this.instantiatesElement,
       imports: imports ?? this.imports,
-      importsElement: importsElement ?? this.importsElement,
       software: software ?? this.software,
       implementation: implementation ?? this.implementation,
       fhirVersion: fhirVersion ?? this.fhirVersion,
-      fhirVersionElement: fhirVersionElement ?? this.fhirVersionElement,
       format: format ?? this.format,
-      formatElement: formatElement ?? this.formatElement,
       patchFormat: patchFormat ?? this.patchFormat,
-      patchFormatElement: patchFormatElement ?? this.patchFormatElement,
       rest: rest ?? this.rest,
       messaging: messaging ?? this.messaging,
       document: document ?? this.document,
@@ -899,20 +659,11 @@ class CapabilityStatementSoftware extends BackboneElement {
 
   CapabilityStatementSoftware({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     this.releaseDate,
-
-    /// Extensions for [releaseDate]
-    this.releaseDateElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -924,11 +675,15 @@ class CapabilityStatementSoftware extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementSoftware.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementSoftware(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -937,37 +692,33 @@ class CapabilityStatementSoftware extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: FhirString.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
-          : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      name: FhirString.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
       releaseDate: json['releaseDate'] != null
-          ? FhirDateTime.fromJson(json['releaseDate'])
-          : null,
-      releaseDateElement: json['_releaseDate'] != null
-          ? Element.fromJson(
-              json['_releaseDate'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['releaseDate'],
+              '_value': json['_releaseDate'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [CapabilityStatementSoftware] from a [String] or [YamlMap] object
+  /// Deserialize [CapabilityStatementSoftware] from a [String]
+  /// or [YamlMap] object
   factory CapabilityStatementSoftware.fromYaml(dynamic yaml) => yaml is String
       ? CapabilityStatementSoftware.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -977,10 +728,11 @@ class CapabilityStatementSoftware extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'CapabilityStatementSoftware cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'CapabilityStatementSoftware cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CapabilityStatementSoftware] that takes in a [String]
+  /// Factory constructor for [CapabilityStatementSoftware]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CapabilityStatementSoftware.fromJsonString(String source) {
@@ -996,26 +748,26 @@ class CapabilityStatementSoftware extends BackboneElement {
   @override
   String get fhirType => 'CapabilityStatementSoftware';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// Name the software is known by.
   final FhirString name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [version]
   /// The version identifier for the software covered by this statement.
   final FhirString? version;
 
-  /// Extensions for [version]
-  final Element? versionElement;
-
   /// [releaseDate]
   /// Date this version of the software was released.
   final FhirDateTime? releaseDate;
-
-  /// Extensions for [releaseDate]
-  final Element? releaseDateElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1031,20 +783,11 @@ class CapabilityStatementSoftware extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (version?.value != null) {
       json['version'] = version!.toJson();
     }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
-    }
     if (releaseDate?.value != null) {
       json['releaseDate'] = releaseDate!.toJson();
-    }
-    if (releaseDateElement != null) {
-      json['_releaseDate'] = releaseDateElement!.toJson();
     }
     return json;
   }
@@ -1057,11 +800,8 @@ class CapabilityStatementSoftware extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    Element? nameElement,
     FhirString? version,
-    Element? versionElement,
     FhirDateTime? releaseDate,
-    Element? releaseDateElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1074,11 +814,8 @@ class CapabilityStatementSoftware extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       releaseDate: releaseDate ?? this.releaseDate,
-      releaseDateElement: releaseDateElement ?? this.releaseDateElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1098,21 +835,12 @@ class CapabilityStatementImplementation extends BackboneElement {
 
   CapabilityStatementImplementation({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.custodian,
     this.implementationGuide,
-
-    /// Extensions for [implementationGuide]
-    this.implementationGuideElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1125,11 +853,15 @@ class CapabilityStatementImplementation extends BackboneElement {
   factory CapabilityStatementImplementation.fromJson(
       Map<String, dynamic> json) {
     return CapabilityStatementImplementation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1138,47 +870,36 @@ class CapabilityStatementImplementation extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      description: FhirString.fromJson(json['description']),
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
-          : null,
-      url: json['url'] != null ? FhirUrl.fromJson(json['url']) : null,
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
+      description: FhirString.fromJson({
+        'value': json['description'],
+        '_value': json['_description'],
+      }),
+      url: json['url'] != null
+          ? FhirUrl.fromJson({
+              'value': json['url'],
+              '_value': json['_url'],
+            })
           : null,
       custodian: json['custodian'] != null
           ? Reference.fromJson(
               json['custodian'] as Map<String, dynamic>,
             )
           : null,
-      implementationGuide: json['implementationGuide'] != null
-          ? (json['implementationGuide'] as List<dynamic>)
-              .map<FhirCanonical>(
-                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      implementationGuideElement: json['_implementationGuide'] != null
-          ? (json['_implementationGuide'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      implementationGuide: parsePrimitiveList<FhirCanonical>(
+          json['implementationGuide'] as List<dynamic>?,
+          json['_implementationGuide'] as List<dynamic>?,
+          fromJson: FhirCanonical.fromJson),
     );
   }
 
-  /// Deserialize [CapabilityStatementImplementation] from a [String] or [YamlMap] object
+  /// Deserialize [CapabilityStatementImplementation] from a [String]
+  /// or [YamlMap] object
   factory CapabilityStatementImplementation.fromYaml(dynamic yaml) => yaml
           is String
       ? CapabilityStatementImplementation.fromJson(
@@ -1189,10 +910,11 @@ class CapabilityStatementImplementation extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'CapabilityStatementImplementation cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'CapabilityStatementImplementation cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CapabilityStatementImplementation] that takes in a [String]
+  /// Factory constructor for [CapabilityStatementImplementation]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CapabilityStatementImplementation.fromJsonString(String source) {
@@ -1208,21 +930,24 @@ class CapabilityStatementImplementation extends BackboneElement {
   @override
   String get fhirType => 'CapabilityStatementImplementation';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [description]
   /// Information about the specific installation that this capability
   /// statement relates to.
   final FhirString description;
 
-  /// Extensions for [description]
-  final Element? descriptionElement;
-
   /// [url]
   /// An absolute base URL for the implementation. This forms the base for
   /// REST interfaces as well as the mailbox and document interfaces.
   final FhirUrl? url;
-
-  /// Extensions for [url]
-  final Element? urlElement;
 
   /// [custodian]
   /// The organization responsible for the management of the instance and
@@ -1233,9 +958,6 @@ class CapabilityStatementImplementation extends BackboneElement {
   /// A list of implementation guides that the server does (or should)
   /// support in their entirety.
   final List<FhirCanonical>? implementationGuide;
-
-  /// Extensions for [implementationGuide]
-  final List<Element>? implementationGuideElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1251,14 +973,8 @@ class CapabilityStatementImplementation extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['description'] = description.toJson();
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
-    }
     if (url?.value != null) {
       json['url'] = url!.toJson();
-    }
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
     }
     if (custodian != null) {
       json['custodian'] = custodian!.toJson();
@@ -1266,11 +982,6 @@ class CapabilityStatementImplementation extends BackboneElement {
     if (implementationGuide != null && implementationGuide!.isNotEmpty) {
       json['implementationGuide'] =
           implementationGuide!.map((FhirCanonical v) => v.toJson()).toList();
-    }
-    if (implementationGuideElement != null &&
-        implementationGuideElement!.isNotEmpty) {
-      json['_implementationGuide'] =
-          implementationGuideElement!.map((Element v) => v.toJson()).toList();
     }
     return json;
   }
@@ -1283,12 +994,9 @@ class CapabilityStatementImplementation extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? description,
-    Element? descriptionElement,
     FhirUrl? url,
-    Element? urlElement,
     Reference? custodian,
     List<FhirCanonical>? implementationGuide,
-    List<Element>? implementationGuideElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1301,13 +1009,9 @@ class CapabilityStatementImplementation extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       custodian: custodian ?? this.custodian,
       implementationGuide: implementationGuide ?? this.implementationGuide,
-      implementationGuideElement:
-          implementationGuideElement ?? this.implementationGuideElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1325,25 +1029,14 @@ class CapabilityStatementRest extends BackboneElement {
 
   CapabilityStatementRest({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.mode,
-
-    /// Extensions for [mode]
-    this.modeElement,
     this.documentation,
-
-    /// Extensions for [documentation]
-    this.documentationElement,
     this.security,
     this.resource,
     this.interaction,
-    this.searchParam,
-    this.operation,
     this.compartment,
-
-    /// Extensions for [compartment]
-    this.compartmentElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1355,11 +1048,15 @@ class CapabilityStatementRest extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementRest.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementRest(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1368,25 +1065,21 @@ class CapabilityStatementRest extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      mode: RestfulCapabilityMode.fromJson(json['mode']),
-      modeElement: json['_mode'] != null
-          ? Element.fromJson(
-              json['_mode'] as Map<String, dynamic>,
-            )
-          : null,
+      mode: RestfulCapabilityMode.fromJson({
+        'value': json['mode'],
+        '_value': json['_mode'],
+      }),
       documentation: json['documentation'] != null
-          ? FhirMarkdown.fromJson(json['documentation'])
-          : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(
-              json['_documentation'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['documentation'],
+              '_value': json['_documentation'],
+            })
           : null,
       security: json['security'] != null
           ? CapabilityStatementSecurity.fromJson(
@@ -1396,7 +1089,7 @@ class CapabilityStatementRest extends BackboneElement {
       resource: json['resource'] != null
           ? (json['resource'] as List<dynamic>)
               .map<CapabilityStatementResource>(
-                (dynamic v) => CapabilityStatementResource.fromJson(
+                (v) => CapabilityStatementResource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1405,48 +1098,21 @@ class CapabilityStatementRest extends BackboneElement {
       interaction: json['interaction'] != null
           ? (json['interaction'] as List<dynamic>)
               .map<CapabilityStatementInteraction>(
-                (dynamic v) => CapabilityStatementInteraction.fromJson(
+                (v) => CapabilityStatementInteraction.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      searchParam: json['searchParam'] != null
-          ? (json['searchParam'] as List<dynamic>)
-              .map<CapabilityStatementSearchParam>(
-                (dynamic v) => CapabilityStatementSearchParam.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      operation: json['operation'] != null
-          ? (json['operation'] as List<dynamic>)
-              .map<CapabilityStatementOperation>(
-                (dynamic v) => CapabilityStatementOperation.fromJson(
-                  v as Map<String, dynamic>,
-                ),
-              )
-              .toList()
-          : null,
-      compartment: json['compartment'] != null
-          ? (json['compartment'] as List<dynamic>)
-              .map<FhirCanonical>(
-                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      compartmentElement: json['_compartment'] != null
-          ? (json['_compartment'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      compartment: parsePrimitiveList<FhirCanonical>(
+          json['compartment'] as List<dynamic>?,
+          json['_compartment'] as List<dynamic>?,
+          fromJson: FhirCanonical.fromJson),
     );
   }
 
-  /// Deserialize [CapabilityStatementRest] from a [String] or [YamlMap] object
+  /// Deserialize [CapabilityStatementRest] from a [String]
+  /// or [YamlMap] object
   factory CapabilityStatementRest.fromYaml(dynamic yaml) => yaml is String
       ? CapabilityStatementRest.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1456,10 +1122,11 @@ class CapabilityStatementRest extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'CapabilityStatementRest cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'CapabilityStatementRest cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CapabilityStatementRest] that takes in a [String]
+  /// Factory constructor for [CapabilityStatementRest]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CapabilityStatementRest.fromJsonString(String source) {
@@ -1475,21 +1142,24 @@ class CapabilityStatementRest extends BackboneElement {
   @override
   String get fhirType => 'CapabilityStatementRest';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [mode]
   /// Identifies whether this portion of the statement is describing the
   /// ability to initiate or receive restful operations.
   final RestfulCapabilityMode mode;
 
-  /// Extensions for [mode]
-  final Element? modeElement;
-
   /// [documentation]
   /// Information about the system's restful capabilities that apply across
   /// all applications, such as security.
   final FhirMarkdown? documentation;
-
-  /// Extensions for [documentation]
-  final Element? documentationElement;
 
   /// [security]
   /// Information about security implementation from an interface perspective
@@ -1505,26 +1175,11 @@ class CapabilityStatementRest extends BackboneElement {
   /// A specification of restful operations supported by the system.
   final List<CapabilityStatementInteraction>? interaction;
 
-  /// [searchParam]
-  /// Search parameters that are supported for searching all resources for
-  /// implementations to support and/or make use of - either references to
-  /// ones defined in the specification, or additional ones defined for/by
-  /// the implementation.
-  final List<CapabilityStatementSearchParam>? searchParam;
-
-  /// [operation]
-  /// Definition of an operation or a named query together with its
-  /// parameters and their meaning and type.
-  final List<CapabilityStatementOperation>? operation;
-
   /// [compartment]
   /// An absolute URI which is a reference to the definition of a compartment
   /// that the system supports. The reference is to a CompartmentDefinition
   /// resource by its canonical URL .
   final List<FhirCanonical>? compartment;
-
-  /// Extensions for [compartment]
-  final List<Element>? compartmentElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1543,9 +1198,6 @@ class CapabilityStatementRest extends BackboneElement {
     if (documentation?.value != null) {
       json['documentation'] = documentation!.toJson();
     }
-    if (documentationElement != null) {
-      json['_documentation'] = documentationElement!.toJson();
-    }
     if (security != null) {
       json['security'] = security!.toJson();
     }
@@ -1558,23 +1210,9 @@ class CapabilityStatementRest extends BackboneElement {
           .map((CapabilityStatementInteraction v) => v.toJson())
           .toList();
     }
-    if (searchParam != null && searchParam!.isNotEmpty) {
-      json['searchParam'] = searchParam!
-          .map((CapabilityStatementSearchParam v) => v.toJson())
-          .toList();
-    }
-    if (operation != null && operation!.isNotEmpty) {
-      json['operation'] = operation!
-          .map((CapabilityStatementOperation v) => v.toJson())
-          .toList();
-    }
     if (compartment != null && compartment!.isNotEmpty) {
       json['compartment'] =
           compartment!.map((FhirCanonical v) => v.toJson()).toList();
-    }
-    if (compartmentElement != null && compartmentElement!.isNotEmpty) {
-      json['_compartment'] =
-          compartmentElement!.map((Element v) => v.toJson()).toList();
     }
     return json;
   }
@@ -1587,16 +1225,11 @@ class CapabilityStatementRest extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     RestfulCapabilityMode? mode,
-    Element? modeElement,
     FhirMarkdown? documentation,
-    Element? documentationElement,
     CapabilityStatementSecurity? security,
     List<CapabilityStatementResource>? resource,
     List<CapabilityStatementInteraction>? interaction,
-    List<CapabilityStatementSearchParam>? searchParam,
-    List<CapabilityStatementOperation>? operation,
     List<FhirCanonical>? compartment,
-    List<Element>? compartmentElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1609,16 +1242,11 @@ class CapabilityStatementRest extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       mode: mode ?? this.mode,
-      modeElement: modeElement ?? this.modeElement,
       documentation: documentation ?? this.documentation,
-      documentationElement: documentationElement ?? this.documentationElement,
       security: security ?? this.security,
       resource: resource ?? this.resource,
       interaction: interaction ?? this.interaction,
-      searchParam: searchParam ?? this.searchParam,
-      operation: operation ?? this.operation,
       compartment: compartment ?? this.compartment,
-      compartmentElement: compartmentElement ?? this.compartmentElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1637,17 +1265,11 @@ class CapabilityStatementSecurity extends BackboneElement {
 
   CapabilityStatementSecurity({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.cors,
-
-    /// Extensions for [cors]
-    this.corsElement,
     this.service,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1659,11 +1281,15 @@ class CapabilityStatementSecurity extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementSecurity.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementSecurity(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1672,39 +1298,38 @@ class CapabilityStatementSecurity extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      cors: json['cors'] != null ? FhirBoolean.fromJson(json['cors']) : null,
-      corsElement: json['_cors'] != null
-          ? Element.fromJson(
-              json['_cors'] as Map<String, dynamic>,
-            )
+      cors: json['cors'] != null
+          ? FhirBoolean.fromJson({
+              'value': json['cors'],
+              '_value': json['_cors'],
+            })
           : null,
       service: json['service'] != null
           ? (json['service'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [CapabilityStatementSecurity] from a [String] or [YamlMap] object
+  /// Deserialize [CapabilityStatementSecurity] from a [String]
+  /// or [YamlMap] object
   factory CapabilityStatementSecurity.fromYaml(dynamic yaml) => yaml is String
       ? CapabilityStatementSecurity.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1714,10 +1339,11 @@ class CapabilityStatementSecurity extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'CapabilityStatementSecurity cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'CapabilityStatementSecurity cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CapabilityStatementSecurity] that takes in a [String]
+  /// Factory constructor for [CapabilityStatementSecurity]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CapabilityStatementSecurity.fromJsonString(String source) {
@@ -1733,13 +1359,19 @@ class CapabilityStatementSecurity extends BackboneElement {
   @override
   String get fhirType => 'CapabilityStatementSecurity';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [cors]
   /// Server adds CORS headers when responding to requests - this enables
   /// Javascript applications to use the server.
   final FhirBoolean? cors;
-
-  /// Extensions for [cors]
-  final Element? corsElement;
 
   /// [service]
   /// Types of security services that are supported/required by the system.
@@ -1748,9 +1380,6 @@ class CapabilityStatementSecurity extends BackboneElement {
   /// [description]
   /// General description of how security works.
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1768,18 +1397,12 @@ class CapabilityStatementSecurity extends BackboneElement {
     if (cors?.value != null) {
       json['cors'] = cors!.toJson();
     }
-    if (corsElement != null) {
-      json['_cors'] = corsElement!.toJson();
-    }
     if (service != null && service!.isNotEmpty) {
       json['service'] =
           service!.map((CodeableConcept v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     return json;
   }
@@ -1792,10 +1415,8 @@ class CapabilityStatementSecurity extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirBoolean? cors,
-    Element? corsElement,
     List<CodeableConcept>? service,
     FhirMarkdown? description,
-    Element? descriptionElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1808,10 +1429,8 @@ class CapabilityStatementSecurity extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       cors: cors ?? this.cors,
-      corsElement: corsElement ?? this.corsElement,
       service: service ?? this.service,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1830,65 +1449,23 @@ class CapabilityStatementResource extends BackboneElement {
 
   CapabilityStatementResource({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.profile,
-
-    /// Extensions for [profile]
-    this.profileElement,
     this.supportedProfile,
-
-    /// Extensions for [supportedProfile]
-    this.supportedProfileElement,
     this.documentation,
-
-    /// Extensions for [documentation]
-    this.documentationElement,
     this.interaction,
     this.versioning,
-
-    /// Extensions for [versioning]
-    this.versioningElement,
     this.readHistory,
-
-    /// Extensions for [readHistory]
-    this.readHistoryElement,
     this.updateCreate,
-
-    /// Extensions for [updateCreate]
-    this.updateCreateElement,
     this.conditionalCreate,
-
-    /// Extensions for [conditionalCreate]
-    this.conditionalCreateElement,
     this.conditionalRead,
-
-    /// Extensions for [conditionalRead]
-    this.conditionalReadElement,
     this.conditionalUpdate,
-
-    /// Extensions for [conditionalUpdate]
-    this.conditionalUpdateElement,
     this.conditionalDelete,
-
-    /// Extensions for [conditionalDelete]
-    this.conditionalDeleteElement,
     this.referencePolicy,
-
-    /// Extensions for [referencePolicy]
-    this.referencePolicyElement,
     this.searchInclude,
-
-    /// Extensions for [searchInclude]
-    this.searchIncludeElement,
     this.searchRevInclude,
-
-    /// Extensions for [searchRevInclude]
-    this.searchRevIncludeElement,
     this.searchParam,
     this.operation,
     super.userData,
@@ -1902,11 +1479,15 @@ class CapabilityStatementResource extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementResource.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementResource(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1915,159 +1496,99 @@ class CapabilityStatementResource extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      type: FhirCode.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
+      type: FhirCode.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
       profile: json['profile'] != null
-          ? FhirCanonical.fromJson(json['profile'])
+          ? FhirCanonical.fromJson({
+              'value': json['profile'],
+              '_value': json['_profile'],
+            })
           : null,
-      profileElement: json['_profile'] != null
-          ? Element.fromJson(
-              json['_profile'] as Map<String, dynamic>,
-            )
-          : null,
-      supportedProfile: json['supportedProfile'] != null
-          ? (json['supportedProfile'] as List<dynamic>)
-              .map<FhirCanonical>(
-                (dynamic v) => FhirCanonical.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      supportedProfileElement: json['_supportedProfile'] != null
-          ? (json['_supportedProfile'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      supportedProfile: parsePrimitiveList<FhirCanonical>(
+          json['supportedProfile'] as List<dynamic>?,
+          json['_supportedProfile'] as List<dynamic>?,
+          fromJson: FhirCanonical.fromJson),
       documentation: json['documentation'] != null
-          ? FhirMarkdown.fromJson(json['documentation'])
-          : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(
-              json['_documentation'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['documentation'],
+              '_value': json['_documentation'],
+            })
           : null,
       interaction: json['interaction'] != null
           ? (json['interaction'] as List<dynamic>)
               .map<CapabilityStatementInteraction>(
-                (dynamic v) => CapabilityStatementInteraction.fromJson(
+                (v) => CapabilityStatementInteraction.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       versioning: json['versioning'] != null
-          ? ResourceVersionPolicy.fromJson(json['versioning'])
-          : null,
-      versioningElement: json['_versioning'] != null
-          ? Element.fromJson(
-              json['_versioning'] as Map<String, dynamic>,
-            )
+          ? ResourceVersionPolicy.fromJson({
+              'value': json['versioning'],
+              '_value': json['_versioning'],
+            })
           : null,
       readHistory: json['readHistory'] != null
-          ? FhirBoolean.fromJson(json['readHistory'])
-          : null,
-      readHistoryElement: json['_readHistory'] != null
-          ? Element.fromJson(
-              json['_readHistory'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['readHistory'],
+              '_value': json['_readHistory'],
+            })
           : null,
       updateCreate: json['updateCreate'] != null
-          ? FhirBoolean.fromJson(json['updateCreate'])
-          : null,
-      updateCreateElement: json['_updateCreate'] != null
-          ? Element.fromJson(
-              json['_updateCreate'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['updateCreate'],
+              '_value': json['_updateCreate'],
+            })
           : null,
       conditionalCreate: json['conditionalCreate'] != null
-          ? FhirBoolean.fromJson(json['conditionalCreate'])
-          : null,
-      conditionalCreateElement: json['_conditionalCreate'] != null
-          ? Element.fromJson(
-              json['_conditionalCreate'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['conditionalCreate'],
+              '_value': json['_conditionalCreate'],
+            })
           : null,
       conditionalRead: json['conditionalRead'] != null
-          ? ConditionalReadStatus.fromJson(json['conditionalRead'])
-          : null,
-      conditionalReadElement: json['_conditionalRead'] != null
-          ? Element.fromJson(
-              json['_conditionalRead'] as Map<String, dynamic>,
-            )
+          ? ConditionalReadStatus.fromJson({
+              'value': json['conditionalRead'],
+              '_value': json['_conditionalRead'],
+            })
           : null,
       conditionalUpdate: json['conditionalUpdate'] != null
-          ? FhirBoolean.fromJson(json['conditionalUpdate'])
-          : null,
-      conditionalUpdateElement: json['_conditionalUpdate'] != null
-          ? Element.fromJson(
-              json['_conditionalUpdate'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['conditionalUpdate'],
+              '_value': json['_conditionalUpdate'],
+            })
           : null,
       conditionalDelete: json['conditionalDelete'] != null
-          ? ConditionalDeleteStatus.fromJson(json['conditionalDelete'])
+          ? ConditionalDeleteStatus.fromJson({
+              'value': json['conditionalDelete'],
+              '_value': json['_conditionalDelete'],
+            })
           : null,
-      conditionalDeleteElement: json['_conditionalDelete'] != null
-          ? Element.fromJson(
-              json['_conditionalDelete'] as Map<String, dynamic>,
-            )
-          : null,
-      referencePolicy: json['referencePolicy'] != null
-          ? (json['referencePolicy'] as List<dynamic>)
-              .map<ReferenceHandlingPolicy>(
-                (dynamic v) => ReferenceHandlingPolicy.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      referencePolicyElement: json['_referencePolicy'] != null
-          ? (json['_referencePolicy'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      searchInclude: json['searchInclude'] != null
-          ? (json['searchInclude'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      searchIncludeElement: json['_searchInclude'] != null
-          ? (json['_searchInclude'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
-      searchRevInclude: json['searchRevInclude'] != null
-          ? (json['searchRevInclude'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      searchRevIncludeElement: json['_searchRevInclude'] != null
-          ? (json['_searchRevInclude'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      referencePolicy: parsePrimitiveList<ReferenceHandlingPolicy>(
+          json['referencePolicy'] as List<dynamic>?,
+          json['_referencePolicy'] as List<dynamic>?,
+          fromJson: ReferenceHandlingPolicy.fromJson),
+      searchInclude: parsePrimitiveList<FhirString>(
+          json['searchInclude'] as List<dynamic>?,
+          json['_searchInclude'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
+      searchRevInclude: parsePrimitiveList<FhirString>(
+          json['searchRevInclude'] as List<dynamic>?,
+          json['_searchRevInclude'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
       searchParam: json['searchParam'] != null
           ? (json['searchParam'] as List<dynamic>)
               .map<CapabilityStatementSearchParam>(
-                (dynamic v) => CapabilityStatementSearchParam.fromJson(
+                (v) => CapabilityStatementSearchParam.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2076,7 +1597,7 @@ class CapabilityStatementResource extends BackboneElement {
       operation: json['operation'] != null
           ? (json['operation'] as List<dynamic>)
               .map<CapabilityStatementOperation>(
-                (dynamic v) => CapabilityStatementOperation.fromJson(
+                (v) => CapabilityStatementOperation.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2085,7 +1606,8 @@ class CapabilityStatementResource extends BackboneElement {
     );
   }
 
-  /// Deserialize [CapabilityStatementResource] from a [String] or [YamlMap] object
+  /// Deserialize [CapabilityStatementResource] from a [String]
+  /// or [YamlMap] object
   factory CapabilityStatementResource.fromYaml(dynamic yaml) => yaml is String
       ? CapabilityStatementResource.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2095,10 +1617,11 @@ class CapabilityStatementResource extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'CapabilityStatementResource cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'CapabilityStatementResource cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CapabilityStatementResource] that takes in a [String]
+  /// Factory constructor for [CapabilityStatementResource]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CapabilityStatementResource.fromJsonString(String source) {
@@ -2114,12 +1637,18 @@ class CapabilityStatementResource extends BackboneElement {
   @override
   String get fhirType => 'CapabilityStatementResource';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// A type of resource exposed via the restful interface.
   final FhirCode type;
-
-  /// Extensions for [type]
-  final Element? typeElement;
 
   /// [profile]
   /// A specification of the profile that describes the solution's overall
@@ -2127,9 +1656,6 @@ class CapabilityStatementResource extends BackboneElement {
   /// bindings, lengths or other limitations. See further discussion in
   /// [Using Profiles](profiling.html#profile-uses).
   final FhirCanonical? profile;
-
-  /// Extensions for [profile]
-  final Element? profileElement;
 
   /// [supportedProfile]
   /// A list of profiles that represent different use cases supported by the
@@ -2142,15 +1668,9 @@ class CapabilityStatementResource extends BackboneElement {
   /// Profiles](profiling.html#profile-uses).
   final List<FhirCanonical>? supportedProfile;
 
-  /// Extensions for [supportedProfile]
-  final List<Element>? supportedProfileElement;
-
   /// [documentation]
   /// Additional information about the resource type used by the system.
   final FhirMarkdown? documentation;
-
-  /// Extensions for [documentation]
-  final Element? documentationElement;
 
   /// [interaction]
   /// Identifies a restful operation supported by the solution.
@@ -2165,16 +1685,10 @@ class CapabilityStatementResource extends BackboneElement {
   /// features, including using e-tags for version integrity in the API.
   final ResourceVersionPolicy? versioning;
 
-  /// Extensions for [versioning]
-  final Element? versioningElement;
-
   /// [readHistory]
   /// A flag for whether the server is able to return past versions as part
   /// of the vRead operation.
   final FhirBoolean? readHistory;
-
-  /// Extensions for [readHistory]
-  final Element? readHistoryElement;
 
   /// [updateCreate]
   /// A flag to indicate that the server allows or needs to allow the client
@@ -2184,57 +1698,33 @@ class CapabilityStatementResource extends BackboneElement {
   /// server.
   final FhirBoolean? updateCreate;
 
-  /// Extensions for [updateCreate]
-  final Element? updateCreateElement;
-
   /// [conditionalCreate]
   /// A flag that indicates that the server supports conditional create.
   final FhirBoolean? conditionalCreate;
-
-  /// Extensions for [conditionalCreate]
-  final Element? conditionalCreateElement;
 
   /// [conditionalRead]
   /// A code that indicates how the server supports conditional read.
   final ConditionalReadStatus? conditionalRead;
 
-  /// Extensions for [conditionalRead]
-  final Element? conditionalReadElement;
-
   /// [conditionalUpdate]
   /// A flag that indicates that the server supports conditional update.
   final FhirBoolean? conditionalUpdate;
-
-  /// Extensions for [conditionalUpdate]
-  final Element? conditionalUpdateElement;
 
   /// [conditionalDelete]
   /// A code that indicates how the server supports conditional delete.
   final ConditionalDeleteStatus? conditionalDelete;
 
-  /// Extensions for [conditionalDelete]
-  final Element? conditionalDeleteElement;
-
   /// [referencePolicy]
   /// A set of flags that defines how references are supported.
   final List<ReferenceHandlingPolicy>? referencePolicy;
-
-  /// Extensions for [referencePolicy]
-  final List<Element>? referencePolicyElement;
 
   /// [searchInclude]
   /// A list of _include values supported by the server.
   final List<FhirString>? searchInclude;
 
-  /// Extensions for [searchInclude]
-  final List<Element>? searchIncludeElement;
-
   /// [searchRevInclude]
   /// A list of _revinclude (reverse include) values supported by the server.
   final List<FhirString>? searchRevInclude;
-
-  /// Extensions for [searchRevInclude]
-  final List<Element>? searchRevIncludeElement;
 
   /// [searchParam]
   /// Search parameters for implementations to support and/or make use of -
@@ -2263,29 +1753,15 @@ class CapabilityStatementResource extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['type'] = type.toJson();
-    if (typeElement != null) {
-      json['_type'] = typeElement!.toJson();
-    }
     if (profile?.value != null) {
       json['profile'] = profile!.toJson();
-    }
-    if (profileElement != null) {
-      json['_profile'] = profileElement!.toJson();
     }
     if (supportedProfile != null && supportedProfile!.isNotEmpty) {
       json['supportedProfile'] =
           supportedProfile!.map((FhirCanonical v) => v.toJson()).toList();
     }
-    if (supportedProfileElement != null &&
-        supportedProfileElement!.isNotEmpty) {
-      json['_supportedProfile'] =
-          supportedProfileElement!.map((Element v) => v.toJson()).toList();
-    }
     if (documentation?.value != null) {
       json['documentation'] = documentation!.toJson();
-    }
-    if (documentationElement != null) {
-      json['_documentation'] = documentationElement!.toJson();
     }
     if (interaction != null && interaction!.isNotEmpty) {
       json['interaction'] = interaction!
@@ -2298,29 +1774,17 @@ class CapabilityStatementResource extends BackboneElement {
     if (readHistory?.value != null) {
       json['readHistory'] = readHistory!.toJson();
     }
-    if (readHistoryElement != null) {
-      json['_readHistory'] = readHistoryElement!.toJson();
-    }
     if (updateCreate?.value != null) {
       json['updateCreate'] = updateCreate!.toJson();
     }
-    if (updateCreateElement != null) {
-      json['_updateCreate'] = updateCreateElement!.toJson();
-    }
     if (conditionalCreate?.value != null) {
       json['conditionalCreate'] = conditionalCreate!.toJson();
-    }
-    if (conditionalCreateElement != null) {
-      json['_conditionalCreate'] = conditionalCreateElement!.toJson();
     }
     if (conditionalRead != null) {
       json['conditionalRead'] = conditionalRead!.toJson();
     }
     if (conditionalUpdate?.value != null) {
       json['conditionalUpdate'] = conditionalUpdate!.toJson();
-    }
-    if (conditionalUpdateElement != null) {
-      json['_conditionalUpdate'] = conditionalUpdateElement!.toJson();
     }
     if (conditionalDelete != null) {
       json['conditionalDelete'] = conditionalDelete!.toJson();
@@ -2334,18 +1798,9 @@ class CapabilityStatementResource extends BackboneElement {
       json['searchInclude'] =
           searchInclude!.map((FhirString v) => v.toJson()).toList();
     }
-    if (searchIncludeElement != null && searchIncludeElement!.isNotEmpty) {
-      json['_searchInclude'] =
-          searchIncludeElement!.map((Element v) => v.toJson()).toList();
-    }
     if (searchRevInclude != null && searchRevInclude!.isNotEmpty) {
       json['searchRevInclude'] =
           searchRevInclude!.map((FhirString v) => v.toJson()).toList();
-    }
-    if (searchRevIncludeElement != null &&
-        searchRevIncludeElement!.isNotEmpty) {
-      json['_searchRevInclude'] =
-          searchRevIncludeElement!.map((Element v) => v.toJson()).toList();
     }
     if (searchParam != null && searchParam!.isNotEmpty) {
       json['searchParam'] = searchParam!
@@ -2368,34 +1823,20 @@ class CapabilityStatementResource extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirCode? type,
-    Element? typeElement,
     FhirCanonical? profile,
-    Element? profileElement,
     List<FhirCanonical>? supportedProfile,
-    List<Element>? supportedProfileElement,
     FhirMarkdown? documentation,
-    Element? documentationElement,
     List<CapabilityStatementInteraction>? interaction,
     ResourceVersionPolicy? versioning,
-    Element? versioningElement,
     FhirBoolean? readHistory,
-    Element? readHistoryElement,
     FhirBoolean? updateCreate,
-    Element? updateCreateElement,
     FhirBoolean? conditionalCreate,
-    Element? conditionalCreateElement,
     ConditionalReadStatus? conditionalRead,
-    Element? conditionalReadElement,
     FhirBoolean? conditionalUpdate,
-    Element? conditionalUpdateElement,
     ConditionalDeleteStatus? conditionalDelete,
-    Element? conditionalDeleteElement,
     List<ReferenceHandlingPolicy>? referencePolicy,
-    List<Element>? referencePolicyElement,
     List<FhirString>? searchInclude,
-    List<Element>? searchIncludeElement,
     List<FhirString>? searchRevInclude,
-    List<Element>? searchRevIncludeElement,
     List<CapabilityStatementSearchParam>? searchParam,
     List<CapabilityStatementOperation>? operation,
     Map<String, Object?>? userData,
@@ -2410,41 +1851,20 @@ class CapabilityStatementResource extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       profile: profile ?? this.profile,
-      profileElement: profileElement ?? this.profileElement,
       supportedProfile: supportedProfile ?? this.supportedProfile,
-      supportedProfileElement:
-          supportedProfileElement ?? this.supportedProfileElement,
       documentation: documentation ?? this.documentation,
-      documentationElement: documentationElement ?? this.documentationElement,
       interaction: interaction ?? this.interaction,
       versioning: versioning ?? this.versioning,
-      versioningElement: versioningElement ?? this.versioningElement,
       readHistory: readHistory ?? this.readHistory,
-      readHistoryElement: readHistoryElement ?? this.readHistoryElement,
       updateCreate: updateCreate ?? this.updateCreate,
-      updateCreateElement: updateCreateElement ?? this.updateCreateElement,
       conditionalCreate: conditionalCreate ?? this.conditionalCreate,
-      conditionalCreateElement:
-          conditionalCreateElement ?? this.conditionalCreateElement,
       conditionalRead: conditionalRead ?? this.conditionalRead,
-      conditionalReadElement:
-          conditionalReadElement ?? this.conditionalReadElement,
       conditionalUpdate: conditionalUpdate ?? this.conditionalUpdate,
-      conditionalUpdateElement:
-          conditionalUpdateElement ?? this.conditionalUpdateElement,
       conditionalDelete: conditionalDelete ?? this.conditionalDelete,
-      conditionalDeleteElement:
-          conditionalDeleteElement ?? this.conditionalDeleteElement,
       referencePolicy: referencePolicy ?? this.referencePolicy,
-      referencePolicyElement:
-          referencePolicyElement ?? this.referencePolicyElement,
       searchInclude: searchInclude ?? this.searchInclude,
-      searchIncludeElement: searchIncludeElement ?? this.searchIncludeElement,
       searchRevInclude: searchRevInclude ?? this.searchRevInclude,
-      searchRevIncludeElement:
-          searchRevIncludeElement ?? this.searchRevIncludeElement,
       searchParam: searchParam ?? this.searchParam,
       operation: operation ?? this.operation,
       userData: userData ?? this.userData,
@@ -2464,16 +1884,10 @@ class CapabilityStatementInteraction extends BackboneElement {
 
   CapabilityStatementInteraction({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.code,
-
-    /// Extensions for [code]
-    this.codeElement,
     this.documentation,
-
-    /// Extensions for [documentation]
-    this.documentationElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2485,11 +1899,15 @@ class CapabilityStatementInteraction extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementInteraction.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementInteraction(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2498,30 +1916,27 @@ class CapabilityStatementInteraction extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      code: TypeRestfulInteraction.fromJson(json['code']),
-      codeElement: json['_code'] != null
-          ? Element.fromJson(
-              json['_code'] as Map<String, dynamic>,
-            )
-          : null,
+      code: TypeRestfulInteraction.fromJson({
+        'value': json['code'],
+        '_value': json['_code'],
+      }),
       documentation: json['documentation'] != null
-          ? FhirMarkdown.fromJson(json['documentation'])
-          : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(
-              json['_documentation'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['documentation'],
+              '_value': json['_documentation'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [CapabilityStatementInteraction] from a [String] or [YamlMap] object
+  /// Deserialize [CapabilityStatementInteraction] from a [String]
+  /// or [YamlMap] object
   factory CapabilityStatementInteraction.fromYaml(dynamic yaml) => yaml
           is String
       ? CapabilityStatementInteraction.fromJson(
@@ -2532,10 +1947,11 @@ class CapabilityStatementInteraction extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'CapabilityStatementInteraction cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'CapabilityStatementInteraction cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CapabilityStatementInteraction] that takes in a [String]
+  /// Factory constructor for [CapabilityStatementInteraction]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CapabilityStatementInteraction.fromJsonString(String source) {
@@ -2551,21 +1967,24 @@ class CapabilityStatementInteraction extends BackboneElement {
   @override
   String get fhirType => 'CapabilityStatementInteraction';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [code]
   /// Coded identifier of the operation, supported by the system resource.
   final TypeRestfulInteraction code;
-
-  /// Extensions for [code]
-  final Element? codeElement;
 
   /// [documentation]
   /// Guidance specific to the implementation of this operation, such as
   /// 'delete is a logical delete' or 'updates are only allowed with version
   /// id' or 'creates permitted from pre-authorized certificates only'.
   final FhirMarkdown? documentation;
-
-  /// Extensions for [documentation]
-  final Element? documentationElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2584,9 +2003,6 @@ class CapabilityStatementInteraction extends BackboneElement {
     if (documentation?.value != null) {
       json['documentation'] = documentation!.toJson();
     }
-    if (documentationElement != null) {
-      json['_documentation'] = documentationElement!.toJson();
-    }
     return json;
   }
 
@@ -2598,9 +2014,7 @@ class CapabilityStatementInteraction extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     TypeRestfulInteraction? code,
-    Element? codeElement,
     FhirMarkdown? documentation,
-    Element? documentationElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2613,9 +2027,7 @@ class CapabilityStatementInteraction extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      codeElement: codeElement ?? this.codeElement,
       documentation: documentation ?? this.documentation,
-      documentationElement: documentationElement ?? this.documentationElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2635,24 +2047,12 @@ class CapabilityStatementSearchParam extends BackboneElement {
 
   CapabilityStatementSearchParam({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.definition,
-
-    /// Extensions for [definition]
-    this.definitionElement,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.documentation,
-
-    /// Extensions for [documentation]
-    this.documentationElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2664,11 +2064,15 @@ class CapabilityStatementSearchParam extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementSearchParam.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementSearchParam(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2677,44 +2081,37 @@ class CapabilityStatementSearchParam extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: FhirString.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
-          : null,
+      name: FhirString.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
       definition: json['definition'] != null
-          ? FhirCanonical.fromJson(json['definition'])
+          ? FhirCanonical.fromJson({
+              'value': json['definition'],
+              '_value': json['_definition'],
+            })
           : null,
-      definitionElement: json['_definition'] != null
-          ? Element.fromJson(
-              json['_definition'] as Map<String, dynamic>,
-            )
-          : null,
-      type: SearchParamType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
+      type: SearchParamType.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
       documentation: json['documentation'] != null
-          ? FhirMarkdown.fromJson(json['documentation'])
-          : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(
-              json['_documentation'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['documentation'],
+              '_value': json['_documentation'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [CapabilityStatementSearchParam] from a [String] or [YamlMap] object
+  /// Deserialize [CapabilityStatementSearchParam] from a [String]
+  /// or [YamlMap] object
   factory CapabilityStatementSearchParam.fromYaml(dynamic yaml) => yaml
           is String
       ? CapabilityStatementSearchParam.fromJson(
@@ -2725,10 +2122,11 @@ class CapabilityStatementSearchParam extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'CapabilityStatementSearchParam cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'CapabilityStatementSearchParam cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CapabilityStatementSearchParam] that takes in a [String]
+  /// Factory constructor for [CapabilityStatementSearchParam]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CapabilityStatementSearchParam.fromJsonString(String source) {
@@ -2744,12 +2142,18 @@ class CapabilityStatementSearchParam extends BackboneElement {
   @override
   String get fhirType => 'CapabilityStatementSearchParam';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// The name of the search parameter used in the interface.
   final FhirString name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [definition]
   /// An absolute URI that is a formal reference to where this parameter was
@@ -2761,24 +2165,15 @@ class CapabilityStatementSearchParam extends BackboneElement {
   /// defined IGs.
   final FhirCanonical? definition;
 
-  /// Extensions for [definition]
-  final Element? definitionElement;
-
   /// [type]
   /// The type of value a search parameter refers to, and how the content is
   /// interpreted.
   final SearchParamType type;
 
-  /// Extensions for [type]
-  final Element? typeElement;
-
   /// [documentation]
   /// This allows documentation of any distinct behaviors about how the
   /// search parameter is used. For example, text matching algorithms.
   final FhirMarkdown? documentation;
-
-  /// Extensions for [documentation]
-  final Element? documentationElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -2794,21 +2189,12 @@ class CapabilityStatementSearchParam extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (definition?.value != null) {
       json['definition'] = definition!.toJson();
-    }
-    if (definitionElement != null) {
-      json['_definition'] = definitionElement!.toJson();
     }
     json['type'] = type.toJson();
     if (documentation?.value != null) {
       json['documentation'] = documentation!.toJson();
-    }
-    if (documentationElement != null) {
-      json['_documentation'] = documentationElement!.toJson();
     }
     return json;
   }
@@ -2821,13 +2207,9 @@ class CapabilityStatementSearchParam extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    Element? nameElement,
     FhirCanonical? definition,
-    Element? definitionElement,
     SearchParamType? type,
-    Element? typeElement,
     FhirMarkdown? documentation,
-    Element? documentationElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -2840,13 +2222,9 @@ class CapabilityStatementSearchParam extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       definition: definition ?? this.definition,
-      definitionElement: definitionElement ?? this.definitionElement,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       documentation: documentation ?? this.documentation,
-      documentationElement: documentationElement ?? this.documentationElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -2867,20 +2245,11 @@ class CapabilityStatementOperation extends BackboneElement {
 
   CapabilityStatementOperation({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     required this.definition,
-
-    /// Extensions for [definition]
-    this.definitionElement,
     this.documentation,
-
-    /// Extensions for [documentation]
-    this.documentationElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -2892,11 +2261,15 @@ class CapabilityStatementOperation extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementOperation.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementOperation(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -2905,36 +2278,31 @@ class CapabilityStatementOperation extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      name: FhirString.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
-          : null,
-      definition: FhirCanonical.fromJson(json['definition']),
-      definitionElement: json['_definition'] != null
-          ? Element.fromJson(
-              json['_definition'] as Map<String, dynamic>,
-            )
-          : null,
+      name: FhirString.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
+      definition: FhirCanonical.fromJson({
+        'value': json['definition'],
+        '_value': json['_definition'],
+      }),
       documentation: json['documentation'] != null
-          ? FhirMarkdown.fromJson(json['documentation'])
-          : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(
-              json['_documentation'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['documentation'],
+              '_value': json['_documentation'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [CapabilityStatementOperation] from a [String] or [YamlMap] object
+  /// Deserialize [CapabilityStatementOperation] from a [String]
+  /// or [YamlMap] object
   factory CapabilityStatementOperation.fromYaml(dynamic yaml) => yaml is String
       ? CapabilityStatementOperation.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -2944,10 +2312,11 @@ class CapabilityStatementOperation extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'CapabilityStatementOperation cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'CapabilityStatementOperation cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CapabilityStatementOperation] that takes in a [String]
+  /// Factory constructor for [CapabilityStatementOperation]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CapabilityStatementOperation.fromJsonString(String source) {
@@ -2963,14 +2332,20 @@ class CapabilityStatementOperation extends BackboneElement {
   @override
   String get fhirType => 'CapabilityStatementOperation';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [name]
   /// The name of the operation or query. For an operation, this is the name
   /// prefixed with $ and used in the URL. For a query, this is the name used
   /// in the _query parameter when the query is called.
   final FhirString name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [definition]
   /// Where the formal definition can be found. If a server references the
@@ -2984,17 +2359,11 @@ class CapabilityStatementOperation extends BackboneElement {
   /// supported.
   final FhirCanonical definition;
 
-  /// Extensions for [definition]
-  final Element? definitionElement;
-
   /// [documentation]
   /// Documentation that describes anything special about the operation
   /// behavior, possibly detailing different behavior for system, type and
   /// instance-level invocation of the operation.
   final FhirMarkdown? documentation;
-
-  /// Extensions for [documentation]
-  final Element? documentationElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3010,18 +2379,9 @@ class CapabilityStatementOperation extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     json['definition'] = definition.toJson();
-    if (definitionElement != null) {
-      json['_definition'] = definitionElement!.toJson();
-    }
     if (documentation?.value != null) {
       json['documentation'] = documentation!.toJson();
-    }
-    if (documentationElement != null) {
-      json['_documentation'] = documentationElement!.toJson();
     }
     return json;
   }
@@ -3034,11 +2394,8 @@ class CapabilityStatementOperation extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirString? name,
-    Element? nameElement,
     FhirCanonical? definition,
-    Element? definitionElement,
     FhirMarkdown? documentation,
-    Element? documentationElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3051,11 +2408,8 @@ class CapabilityStatementOperation extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       definition: definition ?? this.definition,
-      definitionElement: definitionElement ?? this.definitionElement,
       documentation: documentation ?? this.documentation,
-      documentationElement: documentationElement ?? this.documentationElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -3073,16 +2427,10 @@ class CapabilityStatementInteraction1 extends BackboneElement {
 
   CapabilityStatementInteraction1({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.code,
-
-    /// Extensions for [code]
-    this.codeElement,
     this.documentation,
-
-    /// Extensions for [documentation]
-    this.documentationElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -3094,11 +2442,15 @@ class CapabilityStatementInteraction1 extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementInteraction1.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementInteraction1(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3107,30 +2459,27 @@ class CapabilityStatementInteraction1 extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      code: SystemRestfulInteraction.fromJson(json['code']),
-      codeElement: json['_code'] != null
-          ? Element.fromJson(
-              json['_code'] as Map<String, dynamic>,
-            )
-          : null,
+      code: SystemRestfulInteraction.fromJson({
+        'value': json['code'],
+        '_value': json['_code'],
+      }),
       documentation: json['documentation'] != null
-          ? FhirMarkdown.fromJson(json['documentation'])
-          : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(
-              json['_documentation'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['documentation'],
+              '_value': json['_documentation'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [CapabilityStatementInteraction1] from a [String] or [YamlMap] object
+  /// Deserialize [CapabilityStatementInteraction1] from a [String]
+  /// or [YamlMap] object
   factory CapabilityStatementInteraction1.fromYaml(dynamic yaml) => yaml
           is String
       ? CapabilityStatementInteraction1.fromJson(
@@ -3141,10 +2490,11 @@ class CapabilityStatementInteraction1 extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'CapabilityStatementInteraction1 cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'CapabilityStatementInteraction1 cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CapabilityStatementInteraction1] that takes in a [String]
+  /// Factory constructor for [CapabilityStatementInteraction1]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CapabilityStatementInteraction1.fromJsonString(String source) {
@@ -3160,21 +2510,24 @@ class CapabilityStatementInteraction1 extends BackboneElement {
   @override
   String get fhirType => 'CapabilityStatementInteraction1';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [code]
   /// A coded identifier of the operation, supported by the system.
   final SystemRestfulInteraction code;
-
-  /// Extensions for [code]
-  final Element? codeElement;
 
   /// [documentation]
   /// Guidance specific to the implementation of this operation, such as
   /// limitations on the kind of transactions allowed, or information about
   /// system wide search is implemented.
   final FhirMarkdown? documentation;
-
-  /// Extensions for [documentation]
-  final Element? documentationElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3193,9 +2546,6 @@ class CapabilityStatementInteraction1 extends BackboneElement {
     if (documentation?.value != null) {
       json['documentation'] = documentation!.toJson();
     }
-    if (documentationElement != null) {
-      json['_documentation'] = documentationElement!.toJson();
-    }
     return json;
   }
 
@@ -3207,9 +2557,7 @@ class CapabilityStatementInteraction1 extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     SystemRestfulInteraction? code,
-    Element? codeElement,
     FhirMarkdown? documentation,
-    Element? documentationElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3222,9 +2570,7 @@ class CapabilityStatementInteraction1 extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       code: code ?? this.code,
-      codeElement: codeElement ?? this.codeElement,
       documentation: documentation ?? this.documentation,
-      documentationElement: documentationElement ?? this.documentationElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -3242,17 +2588,11 @@ class CapabilityStatementMessaging extends BackboneElement {
 
   CapabilityStatementMessaging({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.endpoint,
     this.reliableCache,
-
-    /// Extensions for [reliableCache]
-    this.reliableCacheElement,
     this.documentation,
-
-    /// Extensions for [documentation]
-    this.documentationElement,
     this.supportedMessage,
     super.userData,
     super.formatCommentsPre,
@@ -3265,11 +2605,15 @@ class CapabilityStatementMessaging extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementMessaging.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementMessaging(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3278,7 +2622,7 @@ class CapabilityStatementMessaging extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3287,32 +2631,28 @@ class CapabilityStatementMessaging extends BackboneElement {
       endpoint: json['endpoint'] != null
           ? (json['endpoint'] as List<dynamic>)
               .map<CapabilityStatementEndpoint>(
-                (dynamic v) => CapabilityStatementEndpoint.fromJson(
+                (v) => CapabilityStatementEndpoint.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       reliableCache: json['reliableCache'] != null
-          ? FhirUnsignedInt.fromJson(json['reliableCache'])
-          : null,
-      reliableCacheElement: json['_reliableCache'] != null
-          ? Element.fromJson(
-              json['_reliableCache'] as Map<String, dynamic>,
-            )
+          ? FhirUnsignedInt.fromJson({
+              'value': json['reliableCache'],
+              '_value': json['_reliableCache'],
+            })
           : null,
       documentation: json['documentation'] != null
-          ? FhirMarkdown.fromJson(json['documentation'])
-          : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(
-              json['_documentation'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['documentation'],
+              '_value': json['_documentation'],
+            })
           : null,
       supportedMessage: json['supportedMessage'] != null
           ? (json['supportedMessage'] as List<dynamic>)
               .map<CapabilityStatementSupportedMessage>(
-                (dynamic v) => CapabilityStatementSupportedMessage.fromJson(
+                (v) => CapabilityStatementSupportedMessage.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3321,7 +2661,8 @@ class CapabilityStatementMessaging extends BackboneElement {
     );
   }
 
-  /// Deserialize [CapabilityStatementMessaging] from a [String] or [YamlMap] object
+  /// Deserialize [CapabilityStatementMessaging] from a [String]
+  /// or [YamlMap] object
   factory CapabilityStatementMessaging.fromYaml(dynamic yaml) => yaml is String
       ? CapabilityStatementMessaging.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -3331,10 +2672,11 @@ class CapabilityStatementMessaging extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'CapabilityStatementMessaging cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'CapabilityStatementMessaging cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CapabilityStatementMessaging] that takes in a [String]
+  /// Factory constructor for [CapabilityStatementMessaging]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CapabilityStatementMessaging.fromJsonString(String source) {
@@ -3350,6 +2692,15 @@ class CapabilityStatementMessaging extends BackboneElement {
   @override
   String get fhirType => 'CapabilityStatementMessaging';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [endpoint]
   /// An endpoint (network accessible address) to which messages and/or
   /// replies are to be sent.
@@ -3361,18 +2712,12 @@ class CapabilityStatementMessaging extends BackboneElement {
   /// sender).
   final FhirUnsignedInt? reliableCache;
 
-  /// Extensions for [reliableCache]
-  final Element? reliableCacheElement;
-
   /// [documentation]
   /// Documentation about the system's messaging capabilities for this
   /// endpoint not otherwise documented by the capability statement. For
   /// example, the process for becoming an authorized messaging exchange
   /// partner.
   final FhirMarkdown? documentation;
-
-  /// Extensions for [documentation]
-  final Element? documentationElement;
 
   /// [supportedMessage]
   /// References to message definitions for messages this system can send or
@@ -3399,14 +2744,8 @@ class CapabilityStatementMessaging extends BackboneElement {
     if (reliableCache?.value != null) {
       json['reliableCache'] = reliableCache!.toJson();
     }
-    if (reliableCacheElement != null) {
-      json['_reliableCache'] = reliableCacheElement!.toJson();
-    }
     if (documentation?.value != null) {
       json['documentation'] = documentation!.toJson();
-    }
-    if (documentationElement != null) {
-      json['_documentation'] = documentationElement!.toJson();
     }
     if (supportedMessage != null && supportedMessage!.isNotEmpty) {
       json['supportedMessage'] = supportedMessage!
@@ -3425,9 +2764,7 @@ class CapabilityStatementMessaging extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     List<CapabilityStatementEndpoint>? endpoint,
     FhirUnsignedInt? reliableCache,
-    Element? reliableCacheElement,
     FhirMarkdown? documentation,
-    Element? documentationElement,
     List<CapabilityStatementSupportedMessage>? supportedMessage,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
@@ -3442,9 +2779,7 @@ class CapabilityStatementMessaging extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       endpoint: endpoint ?? this.endpoint,
       reliableCache: reliableCache ?? this.reliableCache,
-      reliableCacheElement: reliableCacheElement ?? this.reliableCacheElement,
       documentation: documentation ?? this.documentation,
-      documentationElement: documentationElement ?? this.documentationElement,
       supportedMessage: supportedMessage ?? this.supportedMessage,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
@@ -3464,13 +2799,10 @@ class CapabilityStatementEndpoint extends BackboneElement {
 
   CapabilityStatementEndpoint({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.protocol,
     required this.address,
-
-    /// Extensions for [address]
-    this.addressElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -3482,11 +2814,15 @@ class CapabilityStatementEndpoint extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementEndpoint.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementEndpoint(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3495,7 +2831,7 @@ class CapabilityStatementEndpoint extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3504,16 +2840,15 @@ class CapabilityStatementEndpoint extends BackboneElement {
       protocol: Coding.fromJson(
         json['protocol'] as Map<String, dynamic>,
       ),
-      address: FhirUrl.fromJson(json['address']),
-      addressElement: json['_address'] != null
-          ? Element.fromJson(
-              json['_address'] as Map<String, dynamic>,
-            )
-          : null,
+      address: FhirUrl.fromJson({
+        'value': json['address'],
+        '_value': json['_address'],
+      }),
     );
   }
 
-  /// Deserialize [CapabilityStatementEndpoint] from a [String] or [YamlMap] object
+  /// Deserialize [CapabilityStatementEndpoint] from a [String]
+  /// or [YamlMap] object
   factory CapabilityStatementEndpoint.fromYaml(dynamic yaml) => yaml is String
       ? CapabilityStatementEndpoint.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -3523,10 +2858,11 @@ class CapabilityStatementEndpoint extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'CapabilityStatementEndpoint cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'CapabilityStatementEndpoint cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CapabilityStatementEndpoint] that takes in a [String]
+  /// Factory constructor for [CapabilityStatementEndpoint]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CapabilityStatementEndpoint.fromJsonString(String source) {
@@ -3542,6 +2878,15 @@ class CapabilityStatementEndpoint extends BackboneElement {
   @override
   String get fhirType => 'CapabilityStatementEndpoint';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [protocol]
   /// A list of the messaging transport protocol(s) identifiers, supported by
   /// this endpoint.
@@ -3551,9 +2896,6 @@ class CapabilityStatementEndpoint extends BackboneElement {
   /// The network address of the endpoint. For solutions that do not use
   /// network addresses for routing, it can be just an identifier.
   final FhirUrl address;
-
-  /// Extensions for [address]
-  final Element? addressElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3570,9 +2912,6 @@ class CapabilityStatementEndpoint extends BackboneElement {
     }
     json['protocol'] = protocol.toJson();
     json['address'] = address.toJson();
-    if (addressElement != null) {
-      json['_address'] = addressElement!.toJson();
-    }
     return json;
   }
 
@@ -3585,7 +2924,6 @@ class CapabilityStatementEndpoint extends BackboneElement {
     List<FhirExtension>? modifierExtension,
     Coding? protocol,
     FhirUrl? address,
-    Element? addressElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3599,7 +2937,6 @@ class CapabilityStatementEndpoint extends BackboneElement {
       modifierExtension: modifierExtension ?? this.modifierExtension,
       protocol: protocol ?? this.protocol,
       address: address ?? this.address,
-      addressElement: addressElement ?? this.addressElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -3618,16 +2955,10 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
 
   CapabilityStatementSupportedMessage({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.mode,
-
-    /// Extensions for [mode]
-    this.modeElement,
     required this.definition,
-
-    /// Extensions for [definition]
-    this.definitionElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -3640,11 +2971,15 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
   factory CapabilityStatementSupportedMessage.fromJson(
       Map<String, dynamic> json) {
     return CapabilityStatementSupportedMessage(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3653,28 +2988,25 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      mode: EventCapabilityMode.fromJson(json['mode']),
-      modeElement: json['_mode'] != null
-          ? Element.fromJson(
-              json['_mode'] as Map<String, dynamic>,
-            )
-          : null,
-      definition: FhirCanonical.fromJson(json['definition']),
-      definitionElement: json['_definition'] != null
-          ? Element.fromJson(
-              json['_definition'] as Map<String, dynamic>,
-            )
-          : null,
+      mode: EventCapabilityMode.fromJson({
+        'value': json['mode'],
+        '_value': json['_mode'],
+      }),
+      definition: FhirCanonical.fromJson({
+        'value': json['definition'],
+        '_value': json['_definition'],
+      }),
     );
   }
 
-  /// Deserialize [CapabilityStatementSupportedMessage] from a [String] or [YamlMap] object
+  /// Deserialize [CapabilityStatementSupportedMessage] from a [String]
+  /// or [YamlMap] object
   factory CapabilityStatementSupportedMessage.fromYaml(dynamic yaml) => yaml
           is String
       ? CapabilityStatementSupportedMessage.fromJson(
@@ -3685,10 +3017,11 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'CapabilityStatementSupportedMessage cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'CapabilityStatementSupportedMessage cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CapabilityStatementSupportedMessage] that takes in a [String]
+  /// Factory constructor for [CapabilityStatementSupportedMessage]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CapabilityStatementSupportedMessage.fromJsonString(String source) {
@@ -3704,21 +3037,24 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
   @override
   String get fhirType => 'CapabilityStatementSupportedMessage';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [mode]
   /// The mode of this event declaration - whether application is sender or
   /// receiver.
   final EventCapabilityMode mode;
 
-  /// Extensions for [mode]
-  final Element? modeElement;
-
   /// [definition]
   /// Points to a message definition that identifies the messaging event,
   /// message structure, allowed responses, etc.
   final FhirCanonical definition;
-
-  /// Extensions for [definition]
-  final Element? definitionElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3735,9 +3071,6 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
     }
     json['mode'] = mode.toJson();
     json['definition'] = definition.toJson();
-    if (definitionElement != null) {
-      json['_definition'] = definitionElement!.toJson();
-    }
     return json;
   }
 
@@ -3749,9 +3082,7 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     EventCapabilityMode? mode,
-    Element? modeElement,
     FhirCanonical? definition,
-    Element? definitionElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3764,9 +3095,7 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       mode: mode ?? this.mode,
-      modeElement: modeElement ?? this.modeElement,
       definition: definition ?? this.definition,
-      definitionElement: definitionElement ?? this.definitionElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -3784,20 +3113,11 @@ class CapabilityStatementDocument extends BackboneElement {
 
   CapabilityStatementDocument({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.mode,
-
-    /// Extensions for [mode]
-    this.modeElement,
     this.documentation,
-
-    /// Extensions for [documentation]
-    this.documentationElement,
     required this.profile,
-
-    /// Extensions for [profile]
-    this.profileElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -3809,11 +3129,15 @@ class CapabilityStatementDocument extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementDocument.fromJson(Map<String, dynamic> json) {
     return CapabilityStatementDocument(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -3822,36 +3146,31 @@ class CapabilityStatementDocument extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      mode: DocumentMode.fromJson(json['mode']),
-      modeElement: json['_mode'] != null
-          ? Element.fromJson(
-              json['_mode'] as Map<String, dynamic>,
-            )
-          : null,
+      mode: DocumentMode.fromJson({
+        'value': json['mode'],
+        '_value': json['_mode'],
+      }),
       documentation: json['documentation'] != null
-          ? FhirMarkdown.fromJson(json['documentation'])
+          ? FhirMarkdown.fromJson({
+              'value': json['documentation'],
+              '_value': json['_documentation'],
+            })
           : null,
-      documentationElement: json['_documentation'] != null
-          ? Element.fromJson(
-              json['_documentation'] as Map<String, dynamic>,
-            )
-          : null,
-      profile: FhirCanonical.fromJson(json['profile']),
-      profileElement: json['_profile'] != null
-          ? Element.fromJson(
-              json['_profile'] as Map<String, dynamic>,
-            )
-          : null,
+      profile: FhirCanonical.fromJson({
+        'value': json['profile'],
+        '_value': json['_profile'],
+      }),
     );
   }
 
-  /// Deserialize [CapabilityStatementDocument] from a [String] or [YamlMap] object
+  /// Deserialize [CapabilityStatementDocument] from a [String]
+  /// or [YamlMap] object
   factory CapabilityStatementDocument.fromYaml(dynamic yaml) => yaml is String
       ? CapabilityStatementDocument.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -3861,10 +3180,11 @@ class CapabilityStatementDocument extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'CapabilityStatementDocument cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'CapabilityStatementDocument cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [CapabilityStatementDocument] that takes in a [String]
+  /// Factory constructor for [CapabilityStatementDocument]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory CapabilityStatementDocument.fromJsonString(String source) {
@@ -3880,13 +3200,19 @@ class CapabilityStatementDocument extends BackboneElement {
   @override
   String get fhirType => 'CapabilityStatementDocument';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [mode]
   /// Mode of this document declaration - whether an application is a
   /// producer or consumer.
   final DocumentMode mode;
-
-  /// Extensions for [mode]
-  final Element? modeElement;
 
   /// [documentation]
   /// A description of how the application supports or uses the specified
@@ -3894,16 +3220,10 @@ class CapabilityStatementDocument extends BackboneElement {
   /// is taken with consumed documents, etc.
   final FhirMarkdown? documentation;
 
-  /// Extensions for [documentation]
-  final Element? documentationElement;
-
   /// [profile]
   /// A profile on the document Bundle that constrains which resources are
   /// present, and their contents.
   final FhirCanonical profile;
-
-  /// Extensions for [profile]
-  final Element? profileElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -3922,13 +3242,7 @@ class CapabilityStatementDocument extends BackboneElement {
     if (documentation?.value != null) {
       json['documentation'] = documentation!.toJson();
     }
-    if (documentationElement != null) {
-      json['_documentation'] = documentationElement!.toJson();
-    }
     json['profile'] = profile.toJson();
-    if (profileElement != null) {
-      json['_profile'] = profileElement!.toJson();
-    }
     return json;
   }
 
@@ -3940,11 +3254,8 @@ class CapabilityStatementDocument extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     DocumentMode? mode,
-    Element? modeElement,
     FhirMarkdown? documentation,
-    Element? documentationElement,
     FhirCanonical? profile,
-    Element? profileElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -3957,11 +3268,8 @@ class CapabilityStatementDocument extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       mode: mode ?? this.mode,
-      modeElement: modeElement ?? this.modeElement,
       documentation: documentation ?? this.documentation,
-      documentationElement: documentationElement ?? this.documentationElement,
       profile: profile ?? this.profile,
-      profileElement: profileElement ?? this.profileElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

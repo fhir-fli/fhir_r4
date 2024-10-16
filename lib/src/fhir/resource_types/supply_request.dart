@@ -12,41 +12,23 @@ class SupplyRequest extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.identifier,
     this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.category,
     this.priority,
-
-    /// Extensions for [priority]
-    this.priorityElement,
     this.itemCodeableConcept,
     this.itemReference,
     required this.quantity,
     this.parameter,
     this.occurrenceDateTime,
-
-    /// Extensions for [occurrenceDateTime]
-    this.occurrenceDateTimeElement,
     this.occurrencePeriod,
     this.occurrenceTiming,
     this.authoredOn,
-
-    /// Extensions for [authoredOn]
-    this.authoredOnElement,
     this.requester,
     this.supplier,
     this.reasonCode,
@@ -66,27 +48,27 @@ class SupplyRequest extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SupplyRequest.fromJson(Map<String, dynamic> json) {
     return SupplyRequest(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -96,7 +78,7 @@ class SupplyRequest extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -105,7 +87,7 @@ class SupplyRequest extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -114,7 +96,7 @@ class SupplyRequest extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -123,19 +105,17 @@ class SupplyRequest extends DomainResource {
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       status: json['status'] != null
-          ? SupplyRequestStatus.fromJson(json['status'])
-          : null,
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
+          ? SupplyRequestStatus.fromJson({
+              'value': json['status'],
+              '_value': json['_status'],
+            })
           : null,
       category: json['category'] != null
           ? CodeableConcept.fromJson(
@@ -143,12 +123,10 @@ class SupplyRequest extends DomainResource {
             )
           : null,
       priority: json['priority'] != null
-          ? RequestPriority.fromJson(json['priority'])
-          : null,
-      priorityElement: json['_priority'] != null
-          ? Element.fromJson(
-              json['_priority'] as Map<String, dynamic>,
-            )
+          ? RequestPriority.fromJson({
+              'value': json['priority'],
+              '_value': json['_priority'],
+            })
           : null,
       itemCodeableConcept: json['itemCodeableConcept'] != null
           ? CodeableConcept.fromJson(
@@ -166,19 +144,17 @@ class SupplyRequest extends DomainResource {
       parameter: json['parameter'] != null
           ? (json['parameter'] as List<dynamic>)
               .map<SupplyRequestParameter>(
-                (dynamic v) => SupplyRequestParameter.fromJson(
+                (v) => SupplyRequestParameter.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       occurrenceDateTime: json['occurrenceDateTime'] != null
-          ? FhirDateTime.fromJson(json['occurrenceDateTime'])
-          : null,
-      occurrenceDateTimeElement: json['_occurrenceDateTime'] != null
-          ? Element.fromJson(
-              json['_occurrenceDateTime'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['occurrenceDateTime'],
+              '_value': json['_occurrenceDateTime'],
+            })
           : null,
       occurrencePeriod: json['occurrencePeriod'] != null
           ? Period.fromJson(
@@ -191,12 +167,10 @@ class SupplyRequest extends DomainResource {
             )
           : null,
       authoredOn: json['authoredOn'] != null
-          ? FhirDateTime.fromJson(json['authoredOn'])
-          : null,
-      authoredOnElement: json['_authoredOn'] != null
-          ? Element.fromJson(
-              json['_authoredOn'] as Map<String, dynamic>,
-            )
+          ? FhirDateTime.fromJson({
+              'value': json['authoredOn'],
+              '_value': json['_authoredOn'],
+            })
           : null,
       requester: json['requester'] != null
           ? Reference.fromJson(
@@ -206,7 +180,7 @@ class SupplyRequest extends DomainResource {
       supplier: json['supplier'] != null
           ? (json['supplier'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -215,7 +189,7 @@ class SupplyRequest extends DomainResource {
       reasonCode: json['reasonCode'] != null
           ? (json['reasonCode'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -224,7 +198,7 @@ class SupplyRequest extends DomainResource {
       reasonReference: json['reasonReference'] != null
           ? (json['reasonReference'] as List<dynamic>)
               .map<Reference>(
-                (dynamic v) => Reference.fromJson(
+                (v) => Reference.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -243,7 +217,8 @@ class SupplyRequest extends DomainResource {
     );
   }
 
-  /// Deserialize [SupplyRequest] from a [String] or [YamlMap] object
+  /// Deserialize [SupplyRequest] from a [String]
+  /// or [YamlMap] object
   factory SupplyRequest.fromYaml(dynamic yaml) => yaml is String
       ? SupplyRequest.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -252,11 +227,11 @@ class SupplyRequest extends DomainResource {
           ? SupplyRequest.fromJson(
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
-          : throw ArgumentError(
-              'SupplyRequest cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+          : throw ArgumentError('SupplyRequest cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SupplyRequest] that takes in a [String]
+  /// Factory constructor for [SupplyRequest]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SupplyRequest.fromJsonString(String source) {
@@ -272,6 +247,15 @@ class SupplyRequest extends DomainResource {
   @override
   String get fhirType => 'SupplyRequest';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identifier]
   /// Business identifiers assigned to this SupplyRequest by the author
   /// and/or other systems. These identifiers remain constant as the resource
@@ -282,9 +266,6 @@ class SupplyRequest extends DomainResource {
   /// Status of the supply request.
   final SupplyRequestStatus? status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [category]
   /// Category of supply, e.g. central, non-stock, etc. This is used to
   /// support work flows associated with the supply process.
@@ -294,9 +275,6 @@ class SupplyRequest extends DomainResource {
   /// Indicates how quickly this SupplyRequest should be addressed with
   /// respect to other requests.
   final RequestPriority? priority;
-
-  /// Extensions for [priority]
-  final Element? priorityElement;
 
   /// [itemCodeableConcept]
   /// The item that is requested to be supplied. This is either a link to a
@@ -323,9 +301,6 @@ class SupplyRequest extends DomainResource {
   /// When the request should be fulfilled.
   final FhirDateTime? occurrenceDateTime;
 
-  /// Extensions for [occurrenceDateTime]
-  final Element? occurrenceDateTimeElement;
-
   /// [occurrencePeriod]
   /// When the request should be fulfilled.
   final Period? occurrencePeriod;
@@ -337,9 +312,6 @@ class SupplyRequest extends DomainResource {
   /// [authoredOn]
   /// When the request was made.
   final FhirDateTime? authoredOn;
-
-  /// Extensions for [authoredOn]
-  final Element? authoredOnElement;
 
   /// [requester]
   /// The device, practitioner, etc. who initiated the request.
@@ -376,9 +348,6 @@ class SupplyRequest extends DomainResource {
     }
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
-    }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
     }
     if (language != null) {
       json['language'] = language!.toJson();
@@ -424,9 +393,6 @@ class SupplyRequest extends DomainResource {
     if (occurrenceDateTime?.value != null) {
       json['occurrenceDateTime'] = occurrenceDateTime!.toJson();
     }
-    if (occurrenceDateTimeElement != null) {
-      json['_occurrenceDateTime'] = occurrenceDateTimeElement!.toJson();
-    }
     if (occurrencePeriod != null) {
       json['occurrencePeriod'] = occurrencePeriod!.toJson();
     }
@@ -435,9 +401,6 @@ class SupplyRequest extends DomainResource {
     }
     if (authoredOn?.value != null) {
       json['authoredOn'] = authoredOn!.toJson();
-    }
-    if (authoredOnElement != null) {
-      json['_authoredOn'] = authoredOnElement!.toJson();
     }
     if (requester != null) {
       json['requester'] = requester!.toJson();
@@ -469,29 +432,23 @@ class SupplyRequest extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     List<Identifier>? identifier,
     SupplyRequestStatus? status,
-    Element? statusElement,
     CodeableConcept? category,
     RequestPriority? priority,
-    Element? priorityElement,
     CodeableConcept? itemCodeableConcept,
     Reference? itemReference,
     Quantity? quantity,
     List<SupplyRequestParameter>? parameter,
     FhirDateTime? occurrenceDateTime,
-    Element? occurrenceDateTimeElement,
     Period? occurrencePeriod,
     Timing? occurrenceTiming,
     FhirDateTime? authoredOn,
-    Element? authoredOnElement,
     Reference? requester,
     List<Reference>? supplier,
     List<CodeableConcept>? reasonCode,
@@ -509,30 +466,23 @@ class SupplyRequest extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identifier: identifier ?? this.identifier,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       category: category ?? this.category,
       priority: priority ?? this.priority,
-      priorityElement: priorityElement ?? this.priorityElement,
       itemCodeableConcept: itemCodeableConcept ?? this.itemCodeableConcept,
       itemReference: itemReference ?? this.itemReference,
       quantity: quantity ?? this.quantity,
       parameter: parameter ?? this.parameter,
       occurrenceDateTime: occurrenceDateTime ?? this.occurrenceDateTime,
-      occurrenceDateTimeElement:
-          occurrenceDateTimeElement ?? this.occurrenceDateTimeElement,
       occurrencePeriod: occurrencePeriod ?? this.occurrencePeriod,
       occurrenceTiming: occurrenceTiming ?? this.occurrenceTiming,
       authoredOn: authoredOn ?? this.authoredOn,
-      authoredOnElement: authoredOnElement ?? this.authoredOnElement,
       requester: requester ?? this.requester,
       supplier: supplier ?? this.supplier,
       reasonCode: reasonCode ?? this.reasonCode,
@@ -557,16 +507,13 @@ class SupplyRequestParameter extends BackboneElement {
 
   SupplyRequestParameter({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     this.code,
     this.valueCodeableConcept,
     this.valueQuantity,
     this.valueRange,
     this.valueBoolean,
-
-    /// Extensions for [valueBoolean]
-    this.valueBooleanElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -578,11 +525,15 @@ class SupplyRequestParameter extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SupplyRequestParameter.fromJson(Map<String, dynamic> json) {
     return SupplyRequestParameter(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -591,7 +542,7 @@ class SupplyRequestParameter extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -618,17 +569,16 @@ class SupplyRequestParameter extends BackboneElement {
             )
           : null,
       valueBoolean: json['valueBoolean'] != null
-          ? FhirBoolean.fromJson(json['valueBoolean'])
-          : null,
-      valueBooleanElement: json['_valueBoolean'] != null
-          ? Element.fromJson(
-              json['_valueBoolean'] as Map<String, dynamic>,
-            )
+          ? FhirBoolean.fromJson({
+              'value': json['valueBoolean'],
+              '_value': json['_valueBoolean'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [SupplyRequestParameter] from a [String] or [YamlMap] object
+  /// Deserialize [SupplyRequestParameter] from a [String]
+  /// or [YamlMap] object
   factory SupplyRequestParameter.fromYaml(dynamic yaml) => yaml is String
       ? SupplyRequestParameter.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -638,10 +588,11 @@ class SupplyRequestParameter extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'SupplyRequestParameter cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'SupplyRequestParameter cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [SupplyRequestParameter] that takes in a [String]
+  /// Factory constructor for [SupplyRequestParameter]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory SupplyRequestParameter.fromJsonString(String source) {
@@ -656,6 +607,15 @@ class SupplyRequestParameter extends BackboneElement {
 
   @override
   String get fhirType => 'SupplyRequestParameter';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [code]
   /// A code or string that identifies the device detail being asserted.
@@ -676,9 +636,6 @@ class SupplyRequestParameter extends BackboneElement {
   /// [valueBoolean]
   /// The value of the device detail.
   final FhirBoolean? valueBoolean;
-
-  /// Extensions for [valueBoolean]
-  final Element? valueBooleanElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -708,9 +665,6 @@ class SupplyRequestParameter extends BackboneElement {
     if (valueBoolean?.value != null) {
       json['valueBoolean'] = valueBoolean!.toJson();
     }
-    if (valueBooleanElement != null) {
-      json['_valueBoolean'] = valueBooleanElement!.toJson();
-    }
     return json;
   }
 
@@ -726,7 +680,6 @@ class SupplyRequestParameter extends BackboneElement {
     Quantity? valueQuantity,
     Range? valueRange,
     FhirBoolean? valueBoolean,
-    Element? valueBooleanElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -743,7 +696,6 @@ class SupplyRequestParameter extends BackboneElement {
       valueQuantity: valueQuantity ?? this.valueQuantity,
       valueRange: valueRange ?? this.valueRange,
       valueBoolean: valueBoolean ?? this.valueBoolean,
-      valueBooleanElement: valueBooleanElement ?? this.valueBooleanElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,

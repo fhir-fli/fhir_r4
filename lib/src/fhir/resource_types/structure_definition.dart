@@ -13,92 +13,35 @@ class StructureDefinition extends DomainResource {
     super.id,
     super.meta,
     super.implicitRules,
-
-    /// Extensions for [implicitRules]
-    super.implicitRulesElement,
     super.language,
-
-    /// Extensions for [language]
-    super.languageElement,
     super.text,
     super.contained,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.url,
-
-    /// Extensions for [url]
-    this.urlElement,
     this.identifier,
     this.version,
-
-    /// Extensions for [version]
-    this.versionElement,
     required this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.title,
-
-    /// Extensions for [title]
-    this.titleElement,
     required this.status,
-
-    /// Extensions for [status]
-    this.statusElement,
     this.experimental,
-
-    /// Extensions for [experimental]
-    this.experimentalElement,
     this.date,
-
-    /// Extensions for [date]
-    this.dateElement,
     this.publisher,
-
-    /// Extensions for [publisher]
-    this.publisherElement,
     this.contact,
     this.description,
-
-    /// Extensions for [description]
-    this.descriptionElement,
     this.useContext,
     this.jurisdiction,
     this.purpose,
-
-    /// Extensions for [purpose]
-    this.purposeElement,
     this.copyright,
-
-    /// Extensions for [copyright]
-    this.copyrightElement,
     this.keyword,
     this.fhirVersion,
-
-    /// Extensions for [fhirVersion]
-    this.fhirVersionElement,
     this.mapping,
     required this.kind,
-
-    /// Extensions for [kind]
-    this.kindElement,
     required this.abstract_,
-
-    /// Extensions for [abstract]
-    this.abstractElement,
     this.context,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     this.baseDefinition,
-
-    /// Extensions for [baseDefinition]
-    this.baseDefinitionElement,
     this.derivation,
-
-    /// Extensions for [derivation]
-    this.derivationElement,
     this.snapshot,
     this.differential,
     super.userData,
@@ -114,27 +57,27 @@ class StructureDefinition extends DomainResource {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureDefinition.fromJson(Map<String, dynamic> json) {
     return StructureDefinition(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       meta: json['meta'] != null
           ? FhirMeta.fromJson(
               json['meta'] as Map<String, dynamic>,
             )
           : null,
       implicitRules: json['implicitRules'] != null
-          ? FhirUri.fromJson(json['implicitRules'])
-          : null,
-      implicitRulesElement: json['_implicitRules'] != null
-          ? Element.fromJson(
-              json['_implicitRules'] as Map<String, dynamic>,
-            )
+          ? FhirUri.fromJson({
+              'value': json['implicitRules'],
+              '_value': json['_implicitRules'],
+            })
           : null,
       language: json['language'] != null
-          ? CommonLanguages.fromJson(json['language'])
-          : null,
-      languageElement: json['_language'] != null
-          ? Element.fromJson(
-              json['_language'] as Map<String, dynamic>,
-            )
+          ? CommonLanguages.fromJson({
+              'value': json['language'],
+              '_value': json['_language'],
+            })
           : null,
       text: json['text'] != null
           ? Narrative.fromJson(
@@ -144,7 +87,7 @@ class StructureDefinition extends DomainResource {
       contained: json['contained'] != null
           ? (json['contained'] as List<dynamic>)
               .map<Resource>(
-                (dynamic v) => Resource.fromJson(
+                (v) => Resource.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -153,7 +96,7 @@ class StructureDefinition extends DomainResource {
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -162,95 +105,82 @@ class StructureDefinition extends DomainResource {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      url: FhirUri.fromJson(json['url']),
-      urlElement: json['_url'] != null
-          ? Element.fromJson(
-              json['_url'] as Map<String, dynamic>,
-            )
-          : null,
+      url: FhirUri.fromJson({
+        'value': json['url'],
+        '_value': json['_url'],
+      }),
       identifier: json['identifier'] != null
           ? (json['identifier'] as List<dynamic>)
               .map<Identifier>(
-                (dynamic v) => Identifier.fromJson(
+                (v) => Identifier.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      version:
-          json['version'] != null ? FhirString.fromJson(json['version']) : null,
-      versionElement: json['_version'] != null
-          ? Element.fromJson(
-              json['_version'] as Map<String, dynamic>,
-            )
+      version: json['version'] != null
+          ? FhirString.fromJson({
+              'value': json['version'],
+              '_value': json['_version'],
+            })
           : null,
-      name: FhirString.fromJson(json['name']),
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
+      name: FhirString.fromJson({
+        'value': json['name'],
+        '_value': json['_name'],
+      }),
+      title: json['title'] != null
+          ? FhirString.fromJson({
+              'value': json['title'],
+              '_value': json['_title'],
+            })
           : null,
-      title: json['title'] != null ? FhirString.fromJson(json['title']) : null,
-      titleElement: json['_title'] != null
-          ? Element.fromJson(
-              json['_title'] as Map<String, dynamic>,
-            )
-          : null,
-      status: PublicationStatus.fromJson(json['status']),
-      statusElement: json['_status'] != null
-          ? Element.fromJson(
-              json['_status'] as Map<String, dynamic>,
-            )
-          : null,
+      status: PublicationStatus.fromJson({
+        'value': json['status'],
+        '_value': json['_status'],
+      }),
       experimental: json['experimental'] != null
-          ? FhirBoolean.fromJson(json['experimental'])
+          ? FhirBoolean.fromJson({
+              'value': json['experimental'],
+              '_value': json['_experimental'],
+            })
           : null,
-      experimentalElement: json['_experimental'] != null
-          ? Element.fromJson(
-              json['_experimental'] as Map<String, dynamic>,
-            )
-          : null,
-      date: json['date'] != null ? FhirDateTime.fromJson(json['date']) : null,
-      dateElement: json['_date'] != null
-          ? Element.fromJson(
-              json['_date'] as Map<String, dynamic>,
-            )
+      date: json['date'] != null
+          ? FhirDateTime.fromJson({
+              'value': json['date'],
+              '_value': json['_date'],
+            })
           : null,
       publisher: json['publisher'] != null
-          ? FhirString.fromJson(json['publisher'])
-          : null,
-      publisherElement: json['_publisher'] != null
-          ? Element.fromJson(
-              json['_publisher'] as Map<String, dynamic>,
-            )
+          ? FhirString.fromJson({
+              'value': json['publisher'],
+              '_value': json['_publisher'],
+            })
           : null,
       contact: json['contact'] != null
           ? (json['contact'] as List<dynamic>)
               .map<ContactDetail>(
-                (dynamic v) => ContactDetail.fromJson(
+                (v) => ContactDetail.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       description: json['description'] != null
-          ? FhirMarkdown.fromJson(json['description'])
-          : null,
-      descriptionElement: json['_description'] != null
-          ? Element.fromJson(
-              json['_description'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['description'],
+              '_value': json['_description'],
+            })
           : null,
       useContext: json['useContext'] != null
           ? (json['useContext'] as List<dynamic>)
               .map<UsageContext>(
-                (dynamic v) => UsageContext.fromJson(
+                (v) => UsageContext.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -259,96 +189,80 @@ class StructureDefinition extends DomainResource {
       jurisdiction: json['jurisdiction'] != null
           ? (json['jurisdiction'] as List<dynamic>)
               .map<CodeableConcept>(
-                (dynamic v) => CodeableConcept.fromJson(
+                (v) => CodeableConcept.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       purpose: json['purpose'] != null
-          ? FhirMarkdown.fromJson(json['purpose'])
-          : null,
-      purposeElement: json['_purpose'] != null
-          ? Element.fromJson(
-              json['_purpose'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['purpose'],
+              '_value': json['_purpose'],
+            })
           : null,
       copyright: json['copyright'] != null
-          ? FhirMarkdown.fromJson(json['copyright'])
-          : null,
-      copyrightElement: json['_copyright'] != null
-          ? Element.fromJson(
-              json['_copyright'] as Map<String, dynamic>,
-            )
+          ? FhirMarkdown.fromJson({
+              'value': json['copyright'],
+              '_value': json['_copyright'],
+            })
           : null,
       keyword: json['keyword'] != null
           ? (json['keyword'] as List<dynamic>)
               .map<Coding>(
-                (dynamic v) => Coding.fromJson(
+                (v) => Coding.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
       fhirVersion: json['fhirVersion'] != null
-          ? FHIRVersion.fromJson(json['fhirVersion'])
-          : null,
-      fhirVersionElement: json['_fhirVersion'] != null
-          ? Element.fromJson(
-              json['_fhirVersion'] as Map<String, dynamic>,
-            )
+          ? FHIRVersion.fromJson({
+              'value': json['fhirVersion'],
+              '_value': json['_fhirVersion'],
+            })
           : null,
       mapping: json['mapping'] != null
           ? (json['mapping'] as List<dynamic>)
               .map<StructureDefinitionMapping>(
-                (dynamic v) => StructureDefinitionMapping.fromJson(
+                (v) => StructureDefinitionMapping.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      kind: StructureDefinitionKind.fromJson(json['kind']),
-      kindElement: json['_kind'] != null
-          ? Element.fromJson(
-              json['_kind'] as Map<String, dynamic>,
-            )
-          : null,
-      abstract_: FhirBoolean.fromJson(json['abstract']),
-      abstractElement: json['_abstract'] != null
-          ? Element.fromJson(
-              json['_abstract'] as Map<String, dynamic>,
-            )
-          : null,
+      kind: StructureDefinitionKind.fromJson({
+        'value': json['kind'],
+        '_value': json['_kind'],
+      }),
+      abstract_: FhirBoolean.fromJson({
+        'value': json['abstract'],
+        '_value': json['_abstract'],
+      }),
       context: json['context'] != null
           ? (json['context'] as List<dynamic>)
               .map<StructureDefinitionContext>(
-                (dynamic v) => StructureDefinitionContext.fromJson(
+                (v) => StructureDefinitionContext.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      type: FHIRDefinedType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
+      type: FHIRDefinedType.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
       baseDefinition: json['baseDefinition'] != null
-          ? FhirCanonical.fromJson(json['baseDefinition'])
-          : null,
-      baseDefinitionElement: json['_baseDefinition'] != null
-          ? Element.fromJson(
-              json['_baseDefinition'] as Map<String, dynamic>,
-            )
+          ? FhirCanonical.fromJson({
+              'value': json['baseDefinition'],
+              '_value': json['_baseDefinition'],
+            })
           : null,
       derivation: json['derivation'] != null
-          ? TypeDerivationRule.fromJson(json['derivation'])
-          : null,
-      derivationElement: json['_derivation'] != null
-          ? Element.fromJson(
-              json['_derivation'] as Map<String, dynamic>,
-            )
+          ? TypeDerivationRule.fromJson({
+              'value': json['derivation'],
+              '_value': json['_derivation'],
+            })
           : null,
       snapshot: json['snapshot'] != null
           ? StructureDefinitionSnapshot.fromJson(
@@ -363,7 +277,8 @@ class StructureDefinition extends DomainResource {
     );
   }
 
-  /// Deserialize [StructureDefinition] from a [String] or [YamlMap] object
+  /// Deserialize [StructureDefinition] from a [String]
+  /// or [YamlMap] object
   factory StructureDefinition.fromYaml(dynamic yaml) => yaml is String
       ? StructureDefinition.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -373,10 +288,11 @@ class StructureDefinition extends DomainResource {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'StructureDefinition cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'StructureDefinition cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [StructureDefinition] that takes in a [String]
+  /// Factory constructor for [StructureDefinition]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory StructureDefinition.fromJsonString(String source) {
@@ -392,6 +308,15 @@ class StructureDefinition extends DomainResource {
   @override
   String get fhirType => 'StructureDefinition';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the resource. To make the use of extensions safe
+  /// and manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [url]
   /// An absolute URI that is used to identify this structure definition when
   /// it is referenced in a specification, model, design or an instance; also
@@ -401,9 +326,6 @@ class StructureDefinition extends DomainResource {
   /// the target of a canonical reference. It SHALL remain the same when the
   /// structure definition is stored on different servers.
   final FhirUri url;
-
-  /// Extensions for [url]
-  final Element? urlElement;
 
   /// [identifier]
   /// A formal identifier that is used to identify this structure definition
@@ -421,41 +343,26 @@ class StructureDefinition extends DomainResource {
   /// placed in a lexicographical sequence.
   final FhirString? version;
 
-  /// Extensions for [version]
-  final Element? versionElement;
-
   /// [name]
   /// A natural language name identifying the structure definition. This name
   /// should be usable as an identifier for the module by machine processing
   /// applications such as code generation.
   final FhirString name;
 
-  /// Extensions for [name]
-  final Element? nameElement;
-
   /// [title]
   /// A short, descriptive, user-friendly title for the structure definition.
   final FhirString? title;
-
-  /// Extensions for [title]
-  final Element? titleElement;
 
   /// [status]
   /// The status of this structure definition. Enables tracking the
   /// life-cycle of the content.
   final PublicationStatus status;
 
-  /// Extensions for [status]
-  final Element? statusElement;
-
   /// [experimental]
   /// A Boolean value to indicate that this structure definition is authored
   /// for testing purposes (or education/evaluation/marketing) and is not
   /// intended to be used for genuine usage.
   final FhirBoolean? experimental;
-
-  /// Extensions for [experimental]
-  final Element? experimentalElement;
 
   /// [date]
   /// The date (and optionally time) when the structure definition was
@@ -465,16 +372,10 @@ class StructureDefinition extends DomainResource {
   /// changes.
   final FhirDateTime? date;
 
-  /// Extensions for [date]
-  final Element? dateElement;
-
   /// [publisher]
   /// The name of the organization or individual that published the structure
   /// definition.
   final FhirString? publisher;
-
-  /// Extensions for [publisher]
-  final Element? publisherElement;
 
   /// [contact]
   /// Contact details to assist a user in finding and communicating with the
@@ -485,9 +386,6 @@ class StructureDefinition extends DomainResource {
   /// A free text natural language description of the structure definition
   /// from a consumer's perspective.
   final FhirMarkdown? description;
-
-  /// Extensions for [description]
-  final Element? descriptionElement;
 
   /// [useContext]
   /// The content was developed with a focus and intent of supporting the
@@ -507,17 +405,11 @@ class StructureDefinition extends DomainResource {
   /// been designed as it has.
   final FhirMarkdown? purpose;
 
-  /// Extensions for [purpose]
-  final Element? purposeElement;
-
   /// [copyright]
   /// A copyright statement relating to the structure definition and/or its
   /// contents. Copyright statements are generally legal restrictions on the
   /// use and publishing of the structure definition.
   final FhirMarkdown? copyright;
-
-  /// Extensions for [copyright]
-  final Element? copyrightElement;
 
   /// [keyword]
   /// A set of key words or terms from external terminologies that may be
@@ -532,9 +424,6 @@ class StructureDefinition extends DomainResource {
   /// this version.
   final FHIRVersion? fhirVersion;
 
-  /// Extensions for [fhirVersion]
-  final Element? fhirVersionElement;
-
   /// [mapping]
   /// An external specification that the content is mapped to.
   final List<StructureDefinitionMapping>? mapping;
@@ -543,18 +432,12 @@ class StructureDefinition extends DomainResource {
   /// Defines the kind of structure that this definition is describing.
   final StructureDefinitionKind kind;
 
-  /// Extensions for [kind]
-  final Element? kindElement;
-
   /// [abstract_]
   /// Whether structure this definition describes is abstract or not - that
   /// is, whether the structure is not intended to be instantiated. For
   /// Resources and Data types, abstract types will never be exchanged
   /// between systems.
   final FhirBoolean abstract_;
-
-  /// Extensions for [abstract]
-  final Element? abstractElement;
 
   /// [context]
   /// Identifies the types of resource or data type elements to which the
@@ -573,23 +456,14 @@ class StructureDefinition extends DomainResource {
   /// allowed in logical models.
   final FHIRDefinedType type;
 
-  /// Extensions for [type]
-  final Element? typeElement;
-
   /// [baseDefinition]
   /// An absolute URI that is the base structure from which this type is
   /// derived, either by specialization or constraint.
   final FhirCanonical? baseDefinition;
 
-  /// Extensions for [baseDefinition]
-  final Element? baseDefinitionElement;
-
   /// [derivation]
   /// How the type relates to the baseDefinition.
   final TypeDerivationRule? derivation;
-
-  /// Extensions for [derivation]
-  final Element? derivationElement;
 
   /// [snapshot]
   /// A snapshot view is expressed in a standalone form that can be used and
@@ -613,9 +487,6 @@ class StructureDefinition extends DomainResource {
     if (implicitRules?.value != null) {
       json['implicitRules'] = implicitRules!.toJson();
     }
-    if (implicitRulesElement != null) {
-      json['_implicitRules'] = implicitRulesElement!.toJson();
-    }
     if (language != null) {
       json['language'] = language!.toJson();
     }
@@ -634,9 +505,6 @@ class StructureDefinition extends DomainResource {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['url'] = url.toJson();
-    if (urlElement != null) {
-      json['_url'] = urlElement!.toJson();
-    }
     if (identifier != null && identifier!.isNotEmpty) {
       json['identifier'] =
           identifier!.map((Identifier v) => v.toJson()).toList();
@@ -644,46 +512,25 @@ class StructureDefinition extends DomainResource {
     if (version?.value != null) {
       json['version'] = version!.toJson();
     }
-    if (versionElement != null) {
-      json['_version'] = versionElement!.toJson();
-    }
     json['name'] = name.toJson();
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (title?.value != null) {
       json['title'] = title!.toJson();
-    }
-    if (titleElement != null) {
-      json['_title'] = titleElement!.toJson();
     }
     json['status'] = status.toJson();
     if (experimental?.value != null) {
       json['experimental'] = experimental!.toJson();
     }
-    if (experimentalElement != null) {
-      json['_experimental'] = experimentalElement!.toJson();
-    }
     if (date?.value != null) {
       json['date'] = date!.toJson();
     }
-    if (dateElement != null) {
-      json['_date'] = dateElement!.toJson();
-    }
     if (publisher?.value != null) {
       json['publisher'] = publisher!.toJson();
-    }
-    if (publisherElement != null) {
-      json['_publisher'] = publisherElement!.toJson();
     }
     if (contact != null && contact!.isNotEmpty) {
       json['contact'] = contact!.map((ContactDetail v) => v.toJson()).toList();
     }
     if (description?.value != null) {
       json['description'] = description!.toJson();
-    }
-    if (descriptionElement != null) {
-      json['_description'] = descriptionElement!.toJson();
     }
     if (useContext != null && useContext!.isNotEmpty) {
       json['useContext'] =
@@ -696,14 +543,8 @@ class StructureDefinition extends DomainResource {
     if (purpose?.value != null) {
       json['purpose'] = purpose!.toJson();
     }
-    if (purposeElement != null) {
-      json['_purpose'] = purposeElement!.toJson();
-    }
     if (copyright?.value != null) {
       json['copyright'] = copyright!.toJson();
-    }
-    if (copyrightElement != null) {
-      json['_copyright'] = copyrightElement!.toJson();
     }
     if (keyword != null && keyword!.isNotEmpty) {
       json['keyword'] = keyword!.map((Coding v) => v.toJson()).toList();
@@ -717,9 +558,6 @@ class StructureDefinition extends DomainResource {
     }
     json['kind'] = kind.toJson();
     json['abstract'] = abstract_.toJson();
-    if (abstractElement != null) {
-      json['_abstract'] = abstractElement!.toJson();
-    }
     if (context != null && context!.isNotEmpty) {
       json['context'] =
           context!.map((StructureDefinitionContext v) => v.toJson()).toList();
@@ -727,9 +565,6 @@ class StructureDefinition extends DomainResource {
     json['type'] = type.toJson();
     if (baseDefinition?.value != null) {
       json['baseDefinition'] = baseDefinition!.toJson();
-    }
-    if (baseDefinitionElement != null) {
-      json['_baseDefinition'] = baseDefinitionElement!.toJson();
     }
     if (derivation != null) {
       json['derivation'] = derivation!.toJson();
@@ -750,54 +585,35 @@ class StructureDefinition extends DomainResource {
     FhirString? id,
     FhirMeta? meta,
     FhirUri? implicitRules,
-    Element? implicitRulesElement,
     CommonLanguages? language,
-    Element? languageElement,
     Narrative? text,
     List<Resource>? contained,
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirUri? url,
-    Element? urlElement,
     List<Identifier>? identifier,
     FhirString? version,
-    Element? versionElement,
     FhirString? name,
-    Element? nameElement,
     FhirString? title,
-    Element? titleElement,
     PublicationStatus? status,
-    Element? statusElement,
     FhirBoolean? experimental,
-    Element? experimentalElement,
     FhirDateTime? date,
-    Element? dateElement,
     FhirString? publisher,
-    Element? publisherElement,
     List<ContactDetail>? contact,
     FhirMarkdown? description,
-    Element? descriptionElement,
     List<UsageContext>? useContext,
     List<CodeableConcept>? jurisdiction,
     FhirMarkdown? purpose,
-    Element? purposeElement,
     FhirMarkdown? copyright,
-    Element? copyrightElement,
     List<Coding>? keyword,
     FHIRVersion? fhirVersion,
-    Element? fhirVersionElement,
     List<StructureDefinitionMapping>? mapping,
     StructureDefinitionKind? kind,
-    Element? kindElement,
     FhirBoolean? abstract_,
-    Element? abstractElement,
     List<StructureDefinitionContext>? context,
     FHIRDefinedType? type,
-    Element? typeElement,
     FhirCanonical? baseDefinition,
-    Element? baseDefinitionElement,
     TypeDerivationRule? derivation,
-    Element? derivationElement,
     StructureDefinitionSnapshot? snapshot,
     StructureDefinitionDifferential? differential,
     Map<String, Object?>? userData,
@@ -811,55 +627,35 @@ class StructureDefinition extends DomainResource {
       id: id ?? this.id,
       meta: meta ?? this.meta,
       implicitRules: implicitRules ?? this.implicitRules,
-      implicitRulesElement: implicitRulesElement ?? this.implicitRulesElement,
       language: language ?? this.language,
-      languageElement: languageElement ?? this.languageElement,
       text: text ?? this.text,
       contained: contained ?? this.contained,
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       url: url ?? this.url,
-      urlElement: urlElement ?? this.urlElement,
       identifier: identifier ?? this.identifier,
       version: version ?? this.version,
-      versionElement: versionElement ?? this.versionElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       title: title ?? this.title,
-      titleElement: titleElement ?? this.titleElement,
       status: status ?? this.status,
-      statusElement: statusElement ?? this.statusElement,
       experimental: experimental ?? this.experimental,
-      experimentalElement: experimentalElement ?? this.experimentalElement,
       date: date ?? this.date,
-      dateElement: dateElement ?? this.dateElement,
       publisher: publisher ?? this.publisher,
-      publisherElement: publisherElement ?? this.publisherElement,
       contact: contact ?? this.contact,
       description: description ?? this.description,
-      descriptionElement: descriptionElement ?? this.descriptionElement,
       useContext: useContext ?? this.useContext,
       jurisdiction: jurisdiction ?? this.jurisdiction,
       purpose: purpose ?? this.purpose,
-      purposeElement: purposeElement ?? this.purposeElement,
       copyright: copyright ?? this.copyright,
-      copyrightElement: copyrightElement ?? this.copyrightElement,
       keyword: keyword ?? this.keyword,
       fhirVersion: fhirVersion ?? this.fhirVersion,
-      fhirVersionElement: fhirVersionElement ?? this.fhirVersionElement,
       mapping: mapping ?? this.mapping,
       kind: kind ?? this.kind,
-      kindElement: kindElement ?? this.kindElement,
       abstract_: abstract_ ?? this.abstract_,
-      abstractElement: abstractElement ?? this.abstractElement,
       context: context ?? this.context,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       baseDefinition: baseDefinition ?? this.baseDefinition,
-      baseDefinitionElement:
-          baseDefinitionElement ?? this.baseDefinitionElement,
       derivation: derivation ?? this.derivation,
-      derivationElement: derivationElement ?? this.derivationElement,
       snapshot: snapshot ?? this.snapshot,
       differential: differential ?? this.differential,
       userData: userData ?? this.userData,
@@ -879,24 +675,12 @@ class StructureDefinitionMapping extends BackboneElement {
 
   StructureDefinitionMapping({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.identity,
-
-    /// Extensions for [identity]
-    this.identityElement,
     this.uri,
-
-    /// Extensions for [uri]
-    this.uriElement,
     this.name,
-
-    /// Extensions for [name]
-    this.nameElement,
     this.comment,
-
-    /// Extensions for [comment]
-    this.commentElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -908,11 +692,15 @@ class StructureDefinitionMapping extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureDefinitionMapping.fromJson(Map<String, dynamic> json) {
     return StructureDefinitionMapping(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -921,41 +709,39 @@ class StructureDefinitionMapping extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      identity: FhirId.fromJson(json['identity']),
-      identityElement: json['_identity'] != null
-          ? Element.fromJson(
-              json['_identity'] as Map<String, dynamic>,
-            )
+      identity: FhirId.fromJson({
+        'value': json['identity'],
+        '_value': json['_identity'],
+      }),
+      uri: json['uri'] != null
+          ? FhirUri.fromJson({
+              'value': json['uri'],
+              '_value': json['_uri'],
+            })
           : null,
-      uri: json['uri'] != null ? FhirUri.fromJson(json['uri']) : null,
-      uriElement: json['_uri'] != null
-          ? Element.fromJson(
-              json['_uri'] as Map<String, dynamic>,
-            )
+      name: json['name'] != null
+          ? FhirString.fromJson({
+              'value': json['name'],
+              '_value': json['_name'],
+            })
           : null,
-      name: json['name'] != null ? FhirString.fromJson(json['name']) : null,
-      nameElement: json['_name'] != null
-          ? Element.fromJson(
-              json['_name'] as Map<String, dynamic>,
-            )
-          : null,
-      comment:
-          json['comment'] != null ? FhirString.fromJson(json['comment']) : null,
-      commentElement: json['_comment'] != null
-          ? Element.fromJson(
-              json['_comment'] as Map<String, dynamic>,
-            )
+      comment: json['comment'] != null
+          ? FhirString.fromJson({
+              'value': json['comment'],
+              '_value': json['_comment'],
+            })
           : null,
     );
   }
 
-  /// Deserialize [StructureDefinitionMapping] from a [String] or [YamlMap] object
+  /// Deserialize [StructureDefinitionMapping] from a [String]
+  /// or [YamlMap] object
   factory StructureDefinitionMapping.fromYaml(dynamic yaml) => yaml is String
       ? StructureDefinitionMapping.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -965,10 +751,11 @@ class StructureDefinitionMapping extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'StructureDefinitionMapping cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'StructureDefinitionMapping cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [StructureDefinitionMapping] that takes in a [String]
+  /// Factory constructor for [StructureDefinitionMapping]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory StructureDefinitionMapping.fromJsonString(String source) {
@@ -984,36 +771,33 @@ class StructureDefinitionMapping extends BackboneElement {
   @override
   String get fhirType => 'StructureDefinitionMapping';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [identity]
   /// An Internal id that is used to identify this mapping set when specific
   /// mappings are made.
   final FhirId identity;
-
-  /// Extensions for [identity]
-  final Element? identityElement;
 
   /// [uri]
   /// An absolute URI that identifies the specification that this mapping is
   /// expressed to.
   final FhirUri? uri;
 
-  /// Extensions for [uri]
-  final Element? uriElement;
-
   /// [name]
   /// A name for the specification that is being mapped to.
   final FhirString? name;
-
-  /// Extensions for [name]
-  final Element? nameElement;
 
   /// [comment]
   /// Comments about this mapping, including version notes, issues, scope
   /// limitations, and other important notes for usage.
   final FhirString? comment;
-
-  /// Extensions for [comment]
-  final Element? commentElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1029,26 +813,14 @@ class StructureDefinitionMapping extends BackboneElement {
           modifierExtension!.map((FhirExtension v) => v.toJson()).toList();
     }
     json['identity'] = identity.toJson();
-    if (identityElement != null) {
-      json['_identity'] = identityElement!.toJson();
-    }
     if (uri?.value != null) {
       json['uri'] = uri!.toJson();
-    }
-    if (uriElement != null) {
-      json['_uri'] = uriElement!.toJson();
     }
     if (name?.value != null) {
       json['name'] = name!.toJson();
     }
-    if (nameElement != null) {
-      json['_name'] = nameElement!.toJson();
-    }
     if (comment?.value != null) {
       json['comment'] = comment!.toJson();
-    }
-    if (commentElement != null) {
-      json['_comment'] = commentElement!.toJson();
     }
     return json;
   }
@@ -1061,13 +833,9 @@ class StructureDefinitionMapping extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     FhirId? identity,
-    Element? identityElement,
     FhirUri? uri,
-    Element? uriElement,
     FhirString? name,
-    Element? nameElement,
     FhirString? comment,
-    Element? commentElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1080,13 +848,9 @@ class StructureDefinitionMapping extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       identity: identity ?? this.identity,
-      identityElement: identityElement ?? this.identityElement,
       uri: uri ?? this.uri,
-      uriElement: uriElement ?? this.uriElement,
       name: name ?? this.name,
-      nameElement: nameElement ?? this.nameElement,
       comment: comment ?? this.comment,
-      commentElement: commentElement ?? this.commentElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1105,20 +869,11 @@ class StructureDefinitionContext extends BackboneElement {
 
   StructureDefinitionContext({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.type,
-
-    /// Extensions for [type]
-    this.typeElement,
     required this.expression,
-
-    /// Extensions for [expression]
-    this.expressionElement,
     this.contextInvariant,
-
-    /// Extensions for [contextInvariant]
-    this.contextInvariantElement,
     super.userData,
     super.formatCommentsPre,
     super.formatCommentsPost,
@@ -1130,11 +885,15 @@ class StructureDefinitionContext extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureDefinitionContext.fromJson(Map<String, dynamic> json) {
     return StructureDefinitionContext(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1143,42 +902,29 @@ class StructureDefinitionContext extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      type: ExtensionContextType.fromJson(json['type']),
-      typeElement: json['_type'] != null
-          ? Element.fromJson(
-              json['_type'] as Map<String, dynamic>,
-            )
-          : null,
-      expression: FhirString.fromJson(json['expression']),
-      expressionElement: json['_expression'] != null
-          ? Element.fromJson(
-              json['_expression'] as Map<String, dynamic>,
-            )
-          : null,
-      contextInvariant: json['contextInvariant'] != null
-          ? (json['contextInvariant'] as List<dynamic>)
-              .map<FhirString>(
-                (dynamic v) => FhirString.fromJson(v as dynamic),
-              )
-              .toList()
-          : null,
-      contextInvariantElement: json['_contextInvariant'] != null
-          ? (json['_contextInvariant'] as List<dynamic>)
-              .map<Element>(
-                (dynamic v) => Element.fromJson(v as Map<String, dynamic>),
-              )
-              .toList()
-          : null,
+      type: ExtensionContextType.fromJson({
+        'value': json['type'],
+        '_value': json['_type'],
+      }),
+      expression: FhirString.fromJson({
+        'value': json['expression'],
+        '_value': json['_expression'],
+      }),
+      contextInvariant: parsePrimitiveList<FhirString>(
+          json['contextInvariant'] as List<dynamic>?,
+          json['_contextInvariant'] as List<dynamic>?,
+          fromJson: FhirString.fromJson),
     );
   }
 
-  /// Deserialize [StructureDefinitionContext] from a [String] or [YamlMap] object
+  /// Deserialize [StructureDefinitionContext] from a [String]
+  /// or [YamlMap] object
   factory StructureDefinitionContext.fromYaml(dynamic yaml) => yaml is String
       ? StructureDefinitionContext.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1188,10 +934,11 @@ class StructureDefinitionContext extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'StructureDefinitionContext cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'StructureDefinitionContext cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [StructureDefinitionContext] that takes in a [String]
+  /// Factory constructor for [StructureDefinitionContext]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory StructureDefinitionContext.fromJsonString(String source) {
@@ -1207,29 +954,29 @@ class StructureDefinitionContext extends BackboneElement {
   @override
   String get fhirType => 'StructureDefinitionContext';
 
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
+
   /// [type]
   /// Defines how to interpret the expression that defines what the context
   /// of the extension is.
   final ExtensionContextType type;
 
-  /// Extensions for [type]
-  final Element? typeElement;
-
   /// [expression]
   /// An expression that defines where an extension can be used in resources.
   final FhirString expression;
-
-  /// Extensions for [expression]
-  final Element? expressionElement;
 
   /// [contextInvariant]
   /// A set of rules as FHIRPath Invariants about when the extension can be
   /// used (e.g. co-occurrence variants for the extension). All the rules
   /// must be true.
   final List<FhirString>? contextInvariant;
-
-  /// Extensions for [contextInvariant]
-  final List<Element>? contextInvariantElement;
   @override
   Map<String, dynamic> toJson() {
     final json = <String, dynamic>{};
@@ -1246,17 +993,9 @@ class StructureDefinitionContext extends BackboneElement {
     }
     json['type'] = type.toJson();
     json['expression'] = expression.toJson();
-    if (expressionElement != null) {
-      json['_expression'] = expressionElement!.toJson();
-    }
     if (contextInvariant != null && contextInvariant!.isNotEmpty) {
       json['contextInvariant'] =
           contextInvariant!.map((FhirString v) => v.toJson()).toList();
-    }
-    if (contextInvariantElement != null &&
-        contextInvariantElement!.isNotEmpty) {
-      json['_contextInvariant'] =
-          contextInvariantElement!.map((Element v) => v.toJson()).toList();
     }
     return json;
   }
@@ -1269,11 +1008,8 @@ class StructureDefinitionContext extends BackboneElement {
     List<FhirExtension>? extension_,
     List<FhirExtension>? modifierExtension,
     ExtensionContextType? type,
-    Element? typeElement,
     FhirString? expression,
-    Element? expressionElement,
     List<FhirString>? contextInvariant,
-    List<Element>? contextInvariantElement,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,
     List<String>? formatCommentsPost,
@@ -1286,12 +1022,8 @@ class StructureDefinitionContext extends BackboneElement {
       extension_: extension_ ?? this.extension_,
       modifierExtension: modifierExtension ?? this.modifierExtension,
       type: type ?? this.type,
-      typeElement: typeElement ?? this.typeElement,
       expression: expression ?? this.expression,
-      expressionElement: expressionElement ?? this.expressionElement,
       contextInvariant: contextInvariant ?? this.contextInvariant,
-      contextInvariantElement:
-          contextInvariantElement ?? this.contextInvariantElement,
       userData: userData ?? this.userData,
       formatCommentsPre: formatCommentsPre ?? this.formatCommentsPre,
       formatCommentsPost: formatCommentsPost ?? this.formatCommentsPost,
@@ -1310,7 +1042,7 @@ class StructureDefinitionSnapshot extends BackboneElement {
 
   StructureDefinitionSnapshot({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.element,
     super.userData,
@@ -1324,11 +1056,15 @@ class StructureDefinitionSnapshot extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureDefinitionSnapshot.fromJson(Map<String, dynamic> json) {
     return StructureDefinitionSnapshot(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1337,20 +1073,24 @@ class StructureDefinitionSnapshot extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      element: (json['element'] as List<dynamic>)
-          .map<ElementDefinition>((dynamic v) =>
-              ElementDefinition.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      element: ensureNonNullList((json['element'] as List<dynamic>)
+          .map<ElementDefinition>(
+            (v) => ElementDefinition.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
     );
   }
 
-  /// Deserialize [StructureDefinitionSnapshot] from a [String] or [YamlMap] object
+  /// Deserialize [StructureDefinitionSnapshot] from a [String]
+  /// or [YamlMap] object
   factory StructureDefinitionSnapshot.fromYaml(dynamic yaml) => yaml is String
       ? StructureDefinitionSnapshot.fromJson(
           jsonDecode(jsonEncode(loadYaml(yaml))) as Map<String, Object?>,
@@ -1360,10 +1100,11 @@ class StructureDefinitionSnapshot extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'StructureDefinitionSnapshot cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'StructureDefinitionSnapshot cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [StructureDefinitionSnapshot] that takes in a [String]
+  /// Factory constructor for [StructureDefinitionSnapshot]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory StructureDefinitionSnapshot.fromJsonString(String source) {
@@ -1378,6 +1119,15 @@ class StructureDefinitionSnapshot extends BackboneElement {
 
   @override
   String get fhirType => 'StructureDefinitionSnapshot';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [element]
   /// Captures constraints on each element within the resource.
@@ -1439,7 +1189,7 @@ class StructureDefinitionDifferential extends BackboneElement {
 
   StructureDefinitionDifferential({
     super.id,
-    super.extension_,
+    this.extension_,
     super.modifierExtension,
     required this.element,
     super.userData,
@@ -1453,11 +1203,15 @@ class StructureDefinitionDifferential extends BackboneElement {
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory StructureDefinitionDifferential.fromJson(Map<String, dynamic> json) {
     return StructureDefinitionDifferential(
-      id: json['id'] != null ? FhirString.fromJson(json['id']) : null,
+      id: json['id'] != null
+          ? FhirString.fromJson(
+              json['id'] as Map<String, dynamic>,
+            )
+          : null,
       extension_: json['extension'] != null
           ? (json['extension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1466,20 +1220,24 @@ class StructureDefinitionDifferential extends BackboneElement {
       modifierExtension: json['modifierExtension'] != null
           ? (json['modifierExtension'] as List<dynamic>)
               .map<FhirExtension>(
-                (dynamic v) => FhirExtension.fromJson(
+                (v) => FhirExtension.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
               .toList()
           : null,
-      element: (json['element'] as List<dynamic>)
-          .map<ElementDefinition>((dynamic v) =>
-              ElementDefinition.fromJson(v as Map<String, dynamic>))
-          .toList(),
+      element: ensureNonNullList((json['element'] as List<dynamic>)
+          .map<ElementDefinition>(
+            (v) => ElementDefinition.fromJson(
+              v as Map<String, dynamic>,
+            ),
+          )
+          .toList()),
     );
   }
 
-  /// Deserialize [StructureDefinitionDifferential] from a [String] or [YamlMap] object
+  /// Deserialize [StructureDefinitionDifferential] from a [String]
+  /// or [YamlMap] object
   factory StructureDefinitionDifferential.fromYaml(dynamic yaml) => yaml
           is String
       ? StructureDefinitionDifferential.fromJson(
@@ -1490,10 +1248,11 @@ class StructureDefinitionDifferential extends BackboneElement {
               jsonDecode(jsonEncode(yaml)) as Map<String, Object?>,
             )
           : throw ArgumentError(
-              'StructureDefinitionDifferential cannot be constructed from input '
-              'provided, it is neither a yaml string nor a yaml map.');
+              'StructureDefinitionDifferential cannot be constructed from '
+              'input provided, it is neither a yaml string nor a yaml map.');
 
-  /// Factory constructor for [StructureDefinitionDifferential] that takes in a [String]
+  /// Factory constructor for [StructureDefinitionDifferential]
+  /// that takes in a [String]
   /// Convenience method to avoid the json Encoding/Decoding normally required
   /// to get data from a [String]
   factory StructureDefinitionDifferential.fromJsonString(String source) {
@@ -1508,6 +1267,15 @@ class StructureDefinitionDifferential extends BackboneElement {
 
   @override
   String get fhirType => 'StructureDefinitionDifferential';
+
+  /// [extension_]
+  /// May be used to represent additional information that is not part of the
+  /// basic definition of the element. To make the use of extensions safe and
+  /// manageable, there is a strict set of governance applied to the
+  /// definition and use of extensions. Though any implementer can define an
+  /// extension, there is a set of requirements that SHALL be met as part of
+  /// the definition of the extension.
+  final List<FhirExtension>? extension_;
 
   /// [element]
   /// Captures constraints on each element within the resource.
