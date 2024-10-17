@@ -1264,8 +1264,8 @@ class CodeSystemConcept extends BackboneElement {
           : null,
       property: json['property'] != null
           ? (json['property'] as List<dynamic>)
-              .map<CodeSystemProperty>(
-                (v) => CodeSystemProperty.fromJson(
+              .map<CodeSystemProperty1>(
+                (v) => CodeSystemProperty1.fromJson(
                   v as Map<String, dynamic>,
                 ),
               )
@@ -1346,7 +1346,7 @@ class CodeSystemConcept extends BackboneElement {
 
   /// [property]
   /// A property value for this concept.
-  final List<CodeSystemProperty>? property;
+  final List<CodeSystemProperty1>? property;
 
   /// [concept]
   /// Defines children of a concept to produce a hierarchy of concepts. The
@@ -1417,7 +1417,7 @@ class CodeSystemConcept extends BackboneElement {
     FhirString? display,
     FhirString? definition,
     List<CodeSystemDesignation>? designation,
-    List<CodeSystemProperty>? property,
+    List<CodeSystemProperty1>? property,
     List<CodeSystemConcept>? concept,
     Map<String, Object?>? userData,
     List<String>? formatCommentsPre,

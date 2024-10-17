@@ -1770,7 +1770,7 @@ final Map<String, Map<String, FhirField>> fhirFieldMap =
     'display': const FhirField(false, 'FhirString'),
     'definition': const FhirField(false, 'FhirString'),
     'designation': const FhirField(true, 'CodeSystemDesignation'),
-    'property': const FhirField(true, 'CodeSystemProperty'),
+    'property': const FhirField(true, 'CodeSystemProperty1'),
     'concept': const FhirField(true, 'CodeSystemConcept'),
   },
   'CodeSystemDesignation': <String, FhirField>{
