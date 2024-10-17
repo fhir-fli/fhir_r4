@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:fhir_r4/fhir_r4.dart';
 import 'package:test/test.dart';
 
@@ -104,7 +106,10 @@ void main() {
     test('HashCode', () {
       const validBase64String = 'dGVzdA==';
       final base64Binary = FhirBase64Binary(validBase64String);
-      expect(base64Binary.hashCode, equals(validBase64String.hashCode));
+      expect(
+        base64Binary.hashCode,
+        equals(Object.hash(validBase64String, null)),
+      );
     });
 
     test('Clone', () {
@@ -141,52 +146,49 @@ void main() {
 
     test('FromJson - valid input', () {
       const validBase64String = 'dGVzdA==';
-      final base64Binary = FhirBase64Binary.fromJson(validBase64String);
+      final base64Binary =
+          FhirBase64Binary.fromJson({'value': validBase64String});
       expect(base64Binary.value, equals(validBase64String));
     });
 
     test('FromJson - invalid input', () {
       expect(
-        () => FhirBase64Binary.fromJson(12345),
-        throwsA(
-          isA<FormatException>().having(
-            (FormatException e) => e.message,
-            'message',
-            equals('Invalid input for FhirBase64Binary'),
-          ),
-        ),
+        () => FhirBase64Binary.fromJson({'value': 12345}),
+        throwsA(isA<TypeError>()),
       );
     });
 
     test('FromYaml - valid input', () {
       const validYamlString = 'dGVzdA==';
-      final base64Binary = FhirBase64Binary.fromYaml(validYamlString);
+      final base64Binary = FhirBase64Binary.fromYaml('value: $validYamlString');
       expect(base64Binary.value, equals(validYamlString));
     });
 
     test('FromYaml - invalid input', () {
       expect(
-        () => FhirBase64Binary.fromYaml(12345),
-        throwsA(
-          isA<FormatException>().having(
-            (FormatException e) => e.message,
-            'message',
-            equals('Invalid Yaml format for FhirBase64Binary'),
-          ),
-        ),
+        () => FhirBase64Binary.fromYaml({'value': 12345}),
+        throwsA(isA<ArgumentError>()),
       );
     });
 
     test('ToJson', () {
       const validBase64String = 'dGVzdA==';
       final base64Binary = FhirBase64Binary(validBase64String);
-      expect(base64Binary.toJson(), equals(validBase64String));
+      expect(
+        base64Binary.toJson(),
+        equals({
+          'value': validBase64String,
+        }),
+      );
     });
 
     test('ToYaml', () {
       const validBase64String = 'dGVzdA==';
       final base64Binary = FhirBase64Binary(validBase64String);
-      expect(base64Binary.toYaml(), equals(validBase64String));
+      expect(
+        base64Binary.toYaml(),
+        equals('value: "dGVzdA=="'),
+      );
     });
 
     test('ToString', () {
@@ -198,7 +200,7 @@ void main() {
     test('ToJsonString', () {
       const validBase64String = 'dGVzdA==';
       final base64Binary = FhirBase64Binary(validBase64String);
-      expect(base64Binary.toJsonString(), equals('"dGVzdA=="'));
+      expect(jsonEncode(base64Binary.value), equals('"dGVzdA=="'));
     });
   });
 }

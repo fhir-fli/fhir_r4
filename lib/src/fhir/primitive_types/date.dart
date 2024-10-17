@@ -47,11 +47,11 @@ class FhirDate extends FhirDateTimeBase {
   /// Factory constructor to create a [FhirDate] from a [String].
   ///
   /// The input must be a valid date string.
-  factory FhirDate.fromString(String inValue, [Element? element]) =>
+  factory FhirDate.fromString(String? inValue, [Element? element]) =>
       FhirDateTimeBase.constructor<FhirDate>(inValue, element) as FhirDate;
 
   /// Factory constructor to create a [FhirDate] from a [DateTime].
-  factory FhirDate.fromDateTime(DateTime inValue, [Element? element]) =>
+  factory FhirDate.fromDateTime(DateTime? inValue, [Element? element]) =>
       FhirDateTimeBase.constructor<FhirDate>(inValue, element) as FhirDate;
 
   /// Factory constructor to create a [FhirDateTime] from a JSON input.

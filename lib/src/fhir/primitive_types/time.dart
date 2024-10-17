@@ -272,8 +272,8 @@ class FhirTime extends PrimitiveType<String> implements Comparable<FhirTime> {
   @override
   Map<String, dynamic> toJson() {
     return {
-      'value': value,
-      '_value': element?.toJson(),
+      if (value != null) 'value': value,
+      if (element != null) '_value': element!.toJson(),
     };
   }
 

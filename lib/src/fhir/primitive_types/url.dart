@@ -73,8 +73,8 @@ class FhirUrl extends PrimitiveType<Uri> {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': value?.toString(),
-        '_value': element?.toJson(),
+        if (value != null) 'value': value!.toString(),
+        if (element != null) '_value': element!.toJson(),
       };
 
   /// Converts a list of JSON values to a list of [FhirUrl] instances

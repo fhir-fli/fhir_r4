@@ -76,8 +76,8 @@ class FhirCode extends PrimitiveType<String> {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': value,
-        '_value': element?.toJson(),
+        if (value != null) 'value': value,
+        if (element != null) '_value': element!.toJson(),
       };
 
   /// Converts a list of JSON values to a list of [FhirCode] instances

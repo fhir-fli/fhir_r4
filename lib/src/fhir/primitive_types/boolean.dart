@@ -40,6 +40,19 @@ class FhirBoolean extends PrimitiveType<bool> {
               'FhirBoolean cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
 
+  /// This method tries to parse a dynamic input into a FHIR boolean
+  static FhirBoolean? tryParse(dynamic input) {
+    if (input is bool) {
+      return FhirBoolean(input);
+    } else if (input is String) {
+      final lowerValue = input.toLowerCase();
+      if (lowerValue == 'true' || lowerValue == 'false') {
+        return FhirBoolean(lowerValue == 'true');
+      }
+    }
+    return null;
+  }
+
   /// Boolean getter to determine if only a value is present
   bool get valueOnly => value != null && element == null;
 
@@ -52,8 +65,8 @@ class FhirBoolean extends PrimitiveType<bool> {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': value,
-        '_value': element?.toJson(),
+        if (value != null) 'value': value,
+        if (element != null) '_value': element!.toJson(),
       };
 
   /// Converts a list of JSON values to a list of [FhirBoolean] instances

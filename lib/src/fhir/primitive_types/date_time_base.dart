@@ -19,7 +19,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   }) : super(null, element);
 
   /// Year
-  final int year;
+  final int? year;
 
   /// Month
   final int? month;
@@ -53,39 +53,44 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   String get fhirType => 'dateTimeBase';
 
   @override
-  DateTime get value => valueDateTime;
+  DateTime? get value => valueDateTime;
 
   /// Returns the value as a [DateTime] object.
-  DateTime get valueDateTime => isUtc
-      ? DateTime.utc(
-          year,
-          month ?? 1,
-          day ?? 1,
-          hour ?? 0,
-          minute ?? 0,
-          second ?? 0,
-          millisecond ?? 0,
-          microsecond ?? 0,
-        )
-      : DateTime(
-          year,
-          month ?? 1,
-          day ?? 1,
-          hour ?? 0,
-          minute ?? 0,
-          second ?? 0,
-          millisecond ?? 0,
-          microsecond ?? 0,
-        );
+  DateTime? get valueDateTime => year == null
+      ? null
+      : isUtc
+          ? DateTime.utc(
+              year!,
+              month ?? 1,
+              day ?? 1,
+              hour ?? 0,
+              minute ?? 0,
+              second ?? 0,
+              millisecond ?? 0,
+              microsecond ?? 0,
+            )
+          : DateTime(
+              year!,
+              month ?? 1,
+              day ?? 1,
+              hour ?? 0,
+              minute ?? 0,
+              second ?? 0,
+              millisecond ?? 0,
+              microsecond ?? 0,
+            );
 
   /// Returns the value as a [String].
-  String get valueString => _formattedString;
+  String get valueString => _formattedString ?? '';
 
   @override
-  String toString() => _formattedString;
+  String toString() => _formattedString ?? '';
 
   /// Formatting functions
-  String get _formattedString {
+  String? get _formattedString {
+    if (year == null) {
+      return null;
+    }
     final buffer = StringBuffer('$year');
 
     if (month != null) {
@@ -136,13 +141,13 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   }
 
   /// Serialization
-  String toIso8601String() => valueDateTime.toIso8601String();
+  String? toIso8601String() => valueDateTime?.toIso8601String();
 
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': valueString,
-        '_value': element?.toJson(),
+        if (valueString.isNotEmpty) 'value': valueString,
+        if (element != null) '_value': element?.toJson(),
       };
 
   /// Map representation
@@ -237,8 +242,13 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
   }
 
   int _compareWithPrecision(FhirDateTimeBase lhs, FhirDateTimeBase rhs) {
-    if (lhs.year != rhs.year) {
-      return lhs.year.compareTo(rhs.year);
+    if (lhs.year != null || rhs.year != null) {
+      if (lhs.year == null || rhs.year == null) {
+        return 0;
+      }
+      if (lhs.year != rhs.year) {
+        return lhs.year!.compareTo(rhs.year!);
+      }
     }
 
     if (lhs.month != null || rhs.month != null) {
@@ -349,15 +359,10 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     bool regexpValid, [
     Element? element,
   ]) {
-    /// Ensure the year is provided
-    if (dateTimeMap['year'] == null) {
-      throw ArgumentError('Year is required');
-    }
-
     /// Determine the type and construct the appropriate FhirDateTimeBase object
     if (T == FhirDateTime) {
       return FhirDateTime.fromBase(
-        year: dateTimeMap['year']!.toInt(),
+        year: dateTimeMap['year']?.toInt(),
         month: dateTimeMap['month']?.toInt(),
         day: dateTimeMap['day']?.toInt(),
         hour: dateTimeMap['hour']?.toInt(),
@@ -413,7 +418,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     ExtendedDuration o,
   ) {
     final dateTime = DateTime(
-      fhirDateTimeBase.year + o.years,
+      fhirDateTimeBase.year ?? 0 + o.years,
       fhirDateTimeBase.month ?? 0 + o.months,
       fhirDateTimeBase.day ?? 0 + o.days,
       fhirDateTimeBase.hour ?? 0 + o.hours,
@@ -431,7 +436,7 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     ExtendedDuration o,
   ) {
     final dateTime = DateTime(
-      fhirDateTimeBase.year - o.years,
+      fhirDateTimeBase.year ?? 0 - o.years,
       fhirDateTimeBase.month ?? 0 - o.months,
       fhirDateTimeBase.day ?? 0 - o.days,
       fhirDateTimeBase.hour ?? 0 - o.hours,
@@ -537,8 +542,13 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
         'FhirDateTimeBase or a Dart DateTime',
       );
     }
+
+    if (year == null) {
+      throw ArgumentError('The year must be set to calculate the difference');
+    }
+
     final thisDateTime = DateTime(
-      year,
+      year!,
       month ?? 0,
       day ?? 0,
       hour ?? 0,
@@ -550,8 +560,12 @@ abstract class FhirDateTimeBase extends PrimitiveType<DateTime>
     final dateTimeBase = other is DateTime
         ? FhirDateTime.fromDateTime(other)
         : other as FhirDateTimeBase;
+
+    if (dateTimeBase.year == null) {
+      throw ArgumentError('The year must be set to calculate the difference');
+    }
     final otherDateTime = DateTime(
-      dateTimeBase.year,
+      dateTimeBase.year!,
       dateTimeBase.month ?? 0,
       dateTimeBase.day ?? 0,
       dateTimeBase.hour ?? 0,

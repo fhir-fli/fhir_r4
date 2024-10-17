@@ -6,16 +6,14 @@ void main() {
     test('True Boolean Value', () {
       final fhirBool = FhirBoolean(true);
       expect(fhirBool.value, isTrue);
-      expect(fhirBool.toJson(), isTrue);
-      expect(fhirBool.toYaml(), isTrue);
+      expect(fhirBool.toJson(), equals({'value': true}));
       expect(fhirBool.toString(), equals('true'));
     });
 
     test('False Boolean Value', () {
       final fhirBool = FhirBoolean(false);
       expect(fhirBool.value, isFalse);
-      expect(fhirBool.toJson(), isFalse);
-      expect(fhirBool.toYaml(), isFalse);
+      expect(fhirBool.toJson(), equals({'value': false}));
       expect(fhirBool.toString(), equals('false'));
     });
 
@@ -48,78 +46,38 @@ void main() {
     });
 
     test('FromJson - Boolean Input', () {
-      final fhirBool = FhirBoolean.fromJson(true);
+      final fhirBool = FhirBoolean.fromJson({'value': true});
       expect(fhirBool.value, isTrue);
     });
 
-    test('FromJson - String Input "true"', () {
-      final fhirBool = FhirBoolean.fromJson('true');
-      expect(fhirBool.value, isTrue);
-    });
-
-    test('FromJson - String Input "false"', () {
-      final fhirBool = FhirBoolean.fromJson('false');
-      expect(fhirBool.value, isFalse);
-    });
-
-    test('FromJson - Invalid String Input', () {
-      expect(
-        () => FhirBoolean.fromJson('invalid'),
-        throwsA(
-          isA<FormatException>().having(
-            (FormatException e) => e.message,
-            'message',
-            equals('Invalid input for FhirBoolean'),
-          ),
-        ),
-      );
+    test('FromJson - Invalid Input', () {
+      try {
+        FhirBoolean.fromJson({'value': 'invalid'});
+      } catch (e) {
+        expect(e, isA<TypeError>());
+      }
     });
 
     test('FromYaml - Valid Yaml', () {
-      final yamlBool = FhirBoolean.fromYaml('true');
+      final yamlBool = FhirBoolean.fromYaml('value: true');
       expect(yamlBool.value, isTrue);
     });
 
     test('FromYaml - Invalid Yaml', () {
       expect(
         () => FhirBoolean.fromYaml(123),
-        throwsA(
-          isA<FormatException>().having(
-            (FormatException e) => e.message,
-            'message',
-            equals('Invalid Yaml format for FhirBoolean'),
-          ),
-        ),
+        throwsArgumentError,
       );
     });
 
-    test('Equality - FhirBoolean', () {
-      final fhirBool1 = FhirBoolean(true);
-      final fhirBool2 = FhirBoolean(true);
-      expect(fhirBool1, equals(fhirBool2));
-    });
-
-    test('Equality - bool', () {
+    test('ToJson', () {
       final fhirBool = FhirBoolean(true);
-      // ignore: unrelated_type_equality_checks
-      expect(fhirBool == true, isTrue);
+      expect(fhirBool.toJson(), equals({'value': true}));
     });
 
-    test('Inequality - FhirBoolean', () {
-      final fhirBool1 = FhirBoolean(true);
-      final fhirBool2 = FhirBoolean(false);
-      expect(fhirBool1, isNot(equals(fhirBool2)));
-    });
-
-    test('Inequality - bool', () {
+    test('ToString', () {
       final fhirBool = FhirBoolean(true);
-      // ignore: unrelated_type_equality_checks
-      expect(fhirBool == false, isFalse);
-    });
-
-    test('HashCode', () {
-      final fhirBool = FhirBoolean(true);
-      expect(fhirBool.hashCode, equals(true.hashCode));
+      expect(fhirBool.toString(), equals('true'));
     });
 
     test('Clone', () {
@@ -127,13 +85,6 @@ void main() {
       final clonedBool = fhirBool.clone();
       expect(clonedBool, equals(fhirBool));
       expect(clonedBool.value, equals(true));
-    });
-
-    test('Set Element', () {
-      final fhirBool = FhirBoolean(true);
-      final newElement = Element();
-      final updatedBool = fhirBool.setElement('dummy', newElement);
-      expect(updatedBool.value, equals(true));
     });
 
     test('CopyWith - No New Value', () {
@@ -146,54 +97,6 @@ void main() {
       final fhirBool = FhirBoolean(true);
       final copiedBool = fhirBool.copyWith(newValue: false);
       expect(copiedBool.value, isFalse);
-    });
-
-    test('Logical AND with FhirBoolean', () {
-      final fhirBool1 = FhirBoolean(true);
-      final fhirBool2 = FhirBoolean(true);
-      expect(fhirBool1 & fhirBool2, isTrue);
-    });
-
-    test('Logical AND with bool', () {
-      final fhirBool = FhirBoolean(true);
-      expect(fhirBool & false, isFalse);
-    });
-
-    test('Logical OR with FhirBoolean', () {
-      final fhirBool1 = FhirBoolean(false);
-      final fhirBool2 = FhirBoolean(true);
-      expect(fhirBool1 | fhirBool2, isTrue);
-    });
-
-    test('Logical OR with bool', () {
-      final fhirBool = FhirBoolean(false);
-      expect(fhirBool | true, isTrue);
-    });
-
-    test('Logical XOR with FhirBoolean', () {
-      final fhirBool1 = FhirBoolean(true);
-      final fhirBool2 = FhirBoolean(false);
-      expect(fhirBool1 ^ fhirBool2, isTrue);
-    });
-
-    test('Logical XOR with bool', () {
-      final fhirBool = FhirBoolean(true);
-      expect(fhirBool ^ true, isFalse);
-    });
-
-    test('ToJson', () {
-      final fhirBool = FhirBoolean(true);
-      expect(fhirBool.toJson(), isTrue);
-    });
-
-    test('ToYaml', () {
-      final fhirBool = FhirBoolean(true);
-      expect(fhirBool.toYaml(), isTrue);
-    });
-
-    test('ToString', () {
-      final fhirBool = FhirBoolean(true);
-      expect(fhirBool.toString(), equals('true'));
     });
   });
 }

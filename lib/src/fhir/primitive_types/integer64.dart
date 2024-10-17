@@ -75,8 +75,8 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': value?.toString(),
-        '_value': element?.toJson(),
+        if (value != null) 'value': value!.toString(),
+        if (element != null) '_value': element!.toJson(),
       };
 
   /// Converts a list of JSON values to [FhirInteger64] instances.

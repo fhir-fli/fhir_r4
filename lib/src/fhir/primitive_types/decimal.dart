@@ -81,8 +81,8 @@ class FhirDecimal extends FhirNumber {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': isInt ? value?.toInt() : value,
-        '_value': element?.toJson(),
+        if (value != null) 'value': isInt ? value?.toInt() : value,
+        if (element != null) '_value': element?.toJson(),
       };
 
   /// Converts a list of JSON values to a list of [FhirDecimal] instances.

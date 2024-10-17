@@ -7,8 +7,8 @@ void main() {
       const validCanonicalString = 'http://example.com/Patient/123';
       final canonical = FhirCanonical(validCanonicalString);
       expect(canonical.value, equals(Uri.parse(validCanonicalString)));
-      expect(canonical.toJson(), equals(validCanonicalString));
-      expect(canonical.toYaml(), equals(validCanonicalString));
+      expect(canonical.toJson(), equals({'value': validCanonicalString}));
+      expect(canonical.toYaml(), equals({'value': validCanonicalString}));
       expect(canonical.toString(), equals(validCanonicalString));
     });
 
@@ -16,16 +16,16 @@ void main() {
       const relativeCanonicalString = 'Patient/123';
       final canonical = FhirCanonical(relativeCanonicalString);
       expect(canonical.value, equals(Uri.parse(relativeCanonicalString)));
-      expect(canonical.toJson(), equals(relativeCanonicalString));
-      expect(canonical.toYaml(), equals(relativeCanonicalString));
+      expect(canonical.toJson(), equals({'value': relativeCanonicalString}));
+      expect(canonical.toYaml(), equals({'value': relativeCanonicalString}));
       expect(canonical.toString(), equals(relativeCanonicalString));
     });
 
     test('Invalid Canonical String', () {
       const invalidCanonicalString = 'invalid_uri';
       expect(
-        FhirCanonical(invalidCanonicalString).value.toString(),
-        invalidCanonicalString,
+        () => FhirCanonical(invalidCanonicalString),
+        throwsA(isA<FormatException>()),
       );
     });
 
@@ -42,14 +42,31 @@ void main() {
     });
 
     test('FromJson - Valid Canonical String', () {
-      const validCanonicalString = 'http://example.com/Patient/123';
-      final canonical = FhirCanonical.fromJson(validCanonicalString);
-      expect(canonical.value, equals(Uri.parse(validCanonicalString)));
+      final canonical =
+          FhirCanonical.fromJson({'value': 'http://example.com/Patient/123'});
+      expect(
+        canonical.value,
+        equals(Uri.parse('http://example.com/Patient/123')),
+      );
+    });
+
+    test('FromJson - Null Value Throws Exception', () {
+      expect(
+        () => FhirCanonical.fromJson({'value': null}),
+        throwsA(
+          isA<FormatException>().having(
+            (e) => e.message,
+            'message',
+            contains('Invalid input for FhirCanonical: value is null'),
+          ),
+        ),
+      );
     });
 
     test('FromYaml - Valid Yaml String', () {
       const validYamlString = 'http://example.com/Patient/123';
-      final canonical = FhirCanonical.fromYaml(validYamlString);
+      final canonical =
+          FhirCanonical.fromYaml('http://example.com/Patient/123');
       expect(canonical.value, equals(Uri.parse(validYamlString)));
     });
 
@@ -190,13 +207,13 @@ void main() {
     test('ToJson', () {
       const validCanonicalString = 'http://example.com/Patient/123';
       final canonical = FhirCanonical(validCanonicalString);
-      expect(canonical.toJson(), equals(validCanonicalString));
+      expect(canonical.toJson(), equals({'value': validCanonicalString}));
     });
 
     test('ToYaml', () {
       const validCanonicalString = 'http://example.com/Patient/123';
       final canonical = FhirCanonical(validCanonicalString);
-      expect(canonical.toYaml(), equals(validCanonicalString));
+      expect(canonical.toYaml(), equals({'value': validCanonicalString}));
     });
 
     test('ToString', () {
@@ -208,7 +225,10 @@ void main() {
     test('ToJsonString', () {
       const validCanonicalString = 'http://example.com/Patient/123';
       final canonical = FhirCanonical(validCanonicalString);
-      expect(canonical.toJsonString(), equals('"$validCanonicalString"'));
+      expect(
+        canonical.toJsonString(),
+        equals('{"value":"$validCanonicalString"}'),
+      );
     });
   });
 }

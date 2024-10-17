@@ -68,12 +68,12 @@ class FhirDateTime extends FhirDateTimeBase {
   /// Factory constructor to create a [FhirDateTime] from a [String].
   ///
   /// The input must be a valid date-time string.
-  factory FhirDateTime.fromString(String inValue, [Element? element]) =>
+  factory FhirDateTime.fromString(String? inValue, [Element? element]) =>
       FhirDateTimeBase.constructor<FhirDateTime>(inValue, element)
           as FhirDateTime;
 
   /// Factory constructor to create a [FhirDateTime] from a [DateTime].
-  factory FhirDateTime.fromDateTime(DateTime inValue, [Element? element]) =>
+  factory FhirDateTime.fromDateTime(DateTime? inValue, [Element? element]) =>
       FhirDateTimeBase.constructor<FhirDateTime>(inValue, element)
           as FhirDateTime;
 

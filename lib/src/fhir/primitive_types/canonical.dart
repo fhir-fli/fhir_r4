@@ -54,6 +54,20 @@ class FhirCanonical extends PrimitiveType<Uri> {
               'FhirCanonical cannot be constructed from the provided input,'
               ' it is neither a YAML string nor a YAML map.');
 
+  /// Attempts to parse the input as a [FhirCanonical], returns `null` if
+  /// parsing fails.
+  static FhirCanonical? tryParse(dynamic input) {
+    if (input is String) {
+      try {
+        return FhirCanonical(input);
+      } catch (e) {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+
   /// Validates the input string as a valid [Uri]
   static Uri _validateCanonical(String input) {
     final uri = Uri.tryParse(input);
@@ -73,8 +87,8 @@ class FhirCanonical extends PrimitiveType<Uri> {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': value?.toString(),
-        '_value': element?.toJson(),
+        if (value != null) 'value': value!.toString(),
+        if (element != null) '_value': element!.toJson(),
       };
 
   /// Converts a list of JSON values to a list of [FhirCanonical] instances

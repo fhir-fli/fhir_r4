@@ -38,6 +38,19 @@ class FhirBase64Binary extends PrimitiveType<String?> {
               'FhirBase64Binary cannot be constructed from input provided,'
               ' it is neither a yaml string nor a yaml map.');
 
+  /// Try to parse a dynamic input into a [FhirBase64Binary]
+  static FhirBase64Binary? tryParse(dynamic input) {
+    if (input is String) {
+      try {
+        return FhirBase64Binary(input);
+      } catch (e) {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+
   /// Boolean getter to determine if only a value is present
   bool get valueOnly => value != null && element == null;
 
@@ -50,8 +63,8 @@ class FhirBase64Binary extends PrimitiveType<String?> {
   /// Serializes the instance to JSON with standardized keys
   @override
   Map<String, dynamic> toJson() => {
-        'value': value,
-        '_value': element?.toJson(),
+        if (value != null) 'value': value,
+        if (element != null) '_value': element!.toJson(),
       };
 
   /// Converts a list of JSON values to a list of [FhirBase64Binary] instances
@@ -112,7 +125,8 @@ class FhirBase64Binary extends PrimitiveType<String?> {
       identical(this, other) ||
       (other is FhirBase64Binary &&
           other.value == value &&
-          other.element == element);
+          other.element == element) ||
+      (other is String && other == value);
 
   /// Overrides `hashCode` for use in hash-based collections
   @override
