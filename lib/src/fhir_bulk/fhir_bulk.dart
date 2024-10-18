@@ -16,9 +16,9 @@ abstract class FhirBulk {
   static String toNdJson(List<Resource> resources) {
     final buffer = StringBuffer();
     for (final resource in resources) {
-      buffer.writeln('\n${jsonEncode(resource.toJson())}');
+      buffer.writeln(jsonEncode(resource.toJson()));
     }
-    return buffer.toString().replaceFirst('\n', '');
+    return buffer.toString().substring(0, buffer.length - 1);
   }
 
   /// Accepts a String in ndJson format and converts it into a list of resources
@@ -27,9 +27,6 @@ abstract class FhirBulk {
     final resourceList = <Resource>[];
     for (final resource in resourceStrings) {
       if (resource.isNotEmpty) {
-        print(resource);
-        final map = jsonDecode(resource);
-        print(map is Map<String, dynamic>);
         resourceList.add(
           Resource.fromJson(jsonDecode(resource) as Map<String, dynamic>),
         );

@@ -1,6 +1,6 @@
 // // ignore_for_file: avoid_dynamic_calls, sort_unnamed_constructors_first
 
-// 
+//
 // import 'dart:convert';
 
 // import 'package:freezed_annotation/freezed_annotation.dart';
