@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Identifies the style of unique identifier used to identify a namespace.
@@ -17,25 +19,33 @@ enum NamingSystemIdentifierType {
   /// Display: Other
   /// Definition: Some other type of unique identifier; e.g. HL7-assigned reserved string such as LN for LOINC.
   other('other'),
-  elementOnly('', null),
-  ;
 
-  final String fhirCode;
-  final Element? element;
+  /// For instances where an Element is present but not value
+
+  elementOnly(''),
+  ;
 
   const NamingSystemIdentifierType(this.fhirCode, [this.element]);
 
+  /// The String value of this enum
+  final String fhirCode;
+
+  /// The Element value of this enum
+  final Element? element;
+
+  /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  static NamingSystemIdentifierType fromJson(Map<String, dynamic> json) {
-    final String? value = json['value'] as String?;
-    final Map<String, dynamic>? elementJson =
-        json['_value'] as Map<String, dynamic>?;
-    final Element? element =
-        elementJson != null ? Element.fromJson(elementJson) : null;
+  /// Converts a list of JSON values to a list of [NamingSystemIdentifierType] instances.
+  static NamingSystemIdentifierType fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return NamingSystemIdentifierType.elementOnly.withElement(element);
     }
@@ -44,6 +54,7 @@ enum NamingSystemIdentifierType {
     );
   }
 
+  /// Returns the enum value with an element
   NamingSystemIdentifierType withElement(Element? newElement) {
     return NamingSystemIdentifierType.fromJson({
       'value': fhirCode,

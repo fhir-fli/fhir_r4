@@ -49,7 +49,9 @@ class EvidenceReport extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EvidenceReport.fromJson(Map<String, dynamic> json) {
+  factory EvidenceReport.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return EvidenceReport(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -615,7 +617,9 @@ class EvidenceReportSubject extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EvidenceReportSubject.fromJson(Map<String, dynamic> json) {
+  factory EvidenceReportSubject.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return EvidenceReportSubject(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -793,7 +797,9 @@ class EvidenceReportCharacteristic extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EvidenceReportCharacteristic.fromJson(Map<String, dynamic> json) {
+  factory EvidenceReportCharacteristic.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return EvidenceReportCharacteristic(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1055,7 +1061,9 @@ class EvidenceReportRelatesTo extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EvidenceReportRelatesTo.fromJson(Map<String, dynamic> json) {
+  factory EvidenceReportRelatesTo.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return EvidenceReportRelatesTo(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1242,7 +1250,9 @@ class EvidenceReportSection extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EvidenceReportSection.fromJson(Map<String, dynamic> json) {
+  factory EvidenceReportSection.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return EvidenceReportSection(
       id: json['id'] != null
           ? FhirString.fromJson(

@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A statistic about a statistic, e.g. Confidence interval or p-value
@@ -45,25 +47,33 @@ enum AttributeEstimateType {
   /// Display: Variance
   /// Definition: A measure of the variability in a sample or population. It is calculated as the mean squared deviation (MSD) of the individual values from their common mean. In calculating the MSD, the divisor n is commonly used for a population variance and the divisor n-1 for a sample variance.
   C48918('C48918'),
-  elementOnly('', null),
-  ;
 
-  final String fhirCode;
-  final Element? element;
+  /// For instances where an Element is present but not value
+
+  elementOnly(''),
+  ;
 
   const AttributeEstimateType(this.fhirCode, [this.element]);
 
+  /// The String value of this enum
+  final String fhirCode;
+
+  /// The Element value of this enum
+  final Element? element;
+
+  /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  static AttributeEstimateType fromJson(Map<String, dynamic> json) {
-    final String? value = json['value'] as String?;
-    final Map<String, dynamic>? elementJson =
-        json['_value'] as Map<String, dynamic>?;
-    final Element? element =
-        elementJson != null ? Element.fromJson(elementJson) : null;
+  /// Converts a list of JSON values to a list of [AttributeEstimateType] instances.
+  static AttributeEstimateType fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return AttributeEstimateType.elementOnly.withElement(element);
     }
@@ -72,6 +82,7 @@ enum AttributeEstimateType {
     );
   }
 
+  /// Returns the enum value with an element
   AttributeEstimateType withElement(Element? newElement) {
     return AttributeEstimateType.fromJson({
       'value': fhirCode,

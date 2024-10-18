@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A coded type for an identifier that can be used to determine which identifier to use for a specific purpose.
@@ -73,25 +75,33 @@ enum IdentifierTypeCodes {
   /// Display:
   /// Definition:
   JHN('JHN'),
-  elementOnly('', null),
-  ;
 
-  final String fhirCode;
-  final Element? element;
+  /// For instances where an Element is present but not value
+
+  elementOnly(''),
+  ;
 
   const IdentifierTypeCodes(this.fhirCode, [this.element]);
 
+  /// The String value of this enum
+  final String fhirCode;
+
+  /// The Element value of this enum
+  final Element? element;
+
+  /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  static IdentifierTypeCodes fromJson(Map<String, dynamic> json) {
-    final String? value = json['value'] as String?;
-    final Map<String, dynamic>? elementJson =
-        json['_value'] as Map<String, dynamic>?;
-    final Element? element =
-        elementJson != null ? Element.fromJson(elementJson) : null;
+  /// Converts a list of JSON values to a list of [IdentifierTypeCodes] instances.
+  static IdentifierTypeCodes fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return IdentifierTypeCodes.elementOnly.withElement(element);
     }
@@ -100,6 +110,7 @@ enum IdentifierTypeCodes {
     );
   }
 
+  /// Returns the enum value with an element
   IdentifierTypeCodes withElement(Element? newElement) {
     return IdentifierTypeCodes.fromJson({
       'value': fhirCode,

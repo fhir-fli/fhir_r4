@@ -55,7 +55,9 @@ class CodeSystem extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CodeSystem.fromJson(Map<String, dynamic> json) {
+  factory CodeSystem.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CodeSystem(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -797,7 +799,9 @@ class CodeSystemFilter extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CodeSystemFilter.fromJson(Map<String, dynamic> json) {
+  factory CodeSystemFilter.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CodeSystemFilter(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -833,9 +837,10 @@ class CodeSystemFilter extends BackboneElement {
             })
           : null,
       operator_: ensureNonNullList(parsePrimitiveList<FilterOperator>(
-          json['operator'] as List<dynamic>?,
-          json['_operator'] as List<dynamic>?,
-          fromJson: FilterOperator.fromJson)),
+        json['operator'] as List<dynamic>?,
+        json['_operator'] as List<dynamic>?,
+        fromJson: FilterOperator.fromJson,
+      )),
       value: FhirString.fromJson({
         'value': json['value'],
         '_value': json['_value'],
@@ -998,7 +1003,9 @@ class CodeSystemProperty extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CodeSystemProperty.fromJson(Map<String, dynamic> json) {
+  factory CodeSystemProperty.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CodeSystemProperty(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1212,7 +1219,9 @@ class CodeSystemConcept extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CodeSystemConcept.fromJson(Map<String, dynamic> json) {
+  factory CodeSystemConcept.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CodeSystemConcept(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1468,7 +1477,9 @@ class CodeSystemDesignation extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CodeSystemDesignation.fromJson(Map<String, dynamic> json) {
+  factory CodeSystemDesignation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CodeSystemDesignation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1655,7 +1666,9 @@ class CodeSystemProperty1 extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CodeSystemProperty1.fromJson(Map<String, dynamic> json) {
+  factory CodeSystemProperty1.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CodeSystemProperty1(
       id: json['id'] != null
           ? FhirString.fromJson(

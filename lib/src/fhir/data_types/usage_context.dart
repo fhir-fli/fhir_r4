@@ -27,7 +27,9 @@ class UsageContext extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory UsageContext.fromJson(Map<String, dynamic> json) {
+  factory UsageContext.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return UsageContext(
       id: json['id'] != null
           ? FhirString.fromJson(

@@ -41,7 +41,9 @@ class InsurancePlan extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory InsurancePlan.fromJson(Map<String, dynamic> json) {
+  factory InsurancePlan.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return InsurancePlan(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -128,8 +130,10 @@ class InsurancePlan extends DomainResource {
             })
           : null,
       alias: parsePrimitiveList<FhirString>(
-          json['alias'] as List<dynamic>?, json['_alias'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['alias'] as List<dynamic>?,
+        json['_alias'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       period: json['period'] != null
           ? Period.fromJson(
               json['period'] as Map<String, dynamic>,
@@ -503,7 +507,9 @@ class InsurancePlanContact extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory InsurancePlanContact.fromJson(Map<String, dynamic> json) {
+  factory InsurancePlanContact.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return InsurancePlanContact(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -703,7 +709,9 @@ class InsurancePlanCoverage extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory InsurancePlanCoverage.fromJson(Map<String, dynamic> json) {
+  factory InsurancePlanCoverage.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return InsurancePlanCoverage(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -884,7 +892,9 @@ class InsurancePlanBenefit extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory InsurancePlanBenefit.fromJson(Map<String, dynamic> json) {
+  factory InsurancePlanBenefit.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return InsurancePlanBenefit(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1068,7 +1078,9 @@ class InsurancePlanLimit extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory InsurancePlanLimit.fromJson(Map<String, dynamic> json) {
+  factory InsurancePlanLimit.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return InsurancePlanLimit(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1236,7 +1248,9 @@ class InsurancePlanPlan extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory InsurancePlanPlan.fromJson(Map<String, dynamic> json) {
+  factory InsurancePlanPlan.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return InsurancePlanPlan(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1484,7 +1498,9 @@ class InsurancePlanGeneralCost extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory InsurancePlanGeneralCost.fromJson(Map<String, dynamic> json) {
+  factory InsurancePlanGeneralCost.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return InsurancePlanGeneralCost(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1689,7 +1705,9 @@ class InsurancePlanSpecificCost extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory InsurancePlanSpecificCost.fromJson(Map<String, dynamic> json) {
+  factory InsurancePlanSpecificCost.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return InsurancePlanSpecificCost(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1854,7 +1872,9 @@ class InsurancePlanBenefit1 extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory InsurancePlanBenefit1.fromJson(Map<String, dynamic> json) {
+  factory InsurancePlanBenefit1.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return InsurancePlanBenefit1(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2021,7 +2041,9 @@ class InsurancePlanCost extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory InsurancePlanCost.fromJson(Map<String, dynamic> json) {
+  factory InsurancePlanCost.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return InsurancePlanCost(
       id: json['id'] != null
           ? FhirString.fromJson(

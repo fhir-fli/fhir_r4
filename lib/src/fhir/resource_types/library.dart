@@ -62,7 +62,9 @@ class Library extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Library.fromJson(Map<String, dynamic> json) {
+  factory Library.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Library(
       id: json['id'] != null
           ? FhirString.fromJson(

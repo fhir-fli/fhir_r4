@@ -61,7 +61,9 @@ class Contract extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Contract.fromJson(Map<String, dynamic> json) {
+  factory Contract.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Contract(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -236,8 +238,10 @@ class Contract extends DomainResource {
             })
           : null,
       alias: parsePrimitiveList<FhirString>(
-          json['alias'] as List<dynamic>?, json['_alias'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['alias'] as List<dynamic>?,
+        json['_alias'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       author: json['author'] != null
           ? Reference.fromJson(
               json['author'] as Map<String, dynamic>,
@@ -910,7 +914,9 @@ class ContractContentDefinition extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractContentDefinition.fromJson(Map<String, dynamic> json) {
+  factory ContractContentDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ContractContentDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1159,7 +1165,9 @@ class ContractTerm extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractTerm.fromJson(Map<String, dynamic> json) {
+  factory ContractTerm.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ContractTerm(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1519,7 +1527,9 @@ class ContractSecurityLabel extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractSecurityLabel.fromJson(Map<String, dynamic> json) {
+  factory ContractSecurityLabel.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ContractSecurityLabel(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1545,8 +1555,10 @@ class ContractSecurityLabel extends BackboneElement {
               .toList()
           : null,
       number: parsePrimitiveList<FhirUnsignedInt>(
-          json['number'] as List<dynamic>?, json['_number'] as List<dynamic>?,
-          fromJson: FhirUnsignedInt.fromJson),
+        json['number'] as List<dynamic>?,
+        json['_number'] as List<dynamic>?,
+        fromJson: FhirUnsignedInt.fromJson,
+      ),
       classification: Coding.fromJson(
         json['classification'] as Map<String, dynamic>,
       ),
@@ -1731,7 +1743,9 @@ class ContractOffer extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractOffer.fromJson(Map<String, dynamic> json) {
+  factory ContractOffer.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ContractOffer(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1814,12 +1828,15 @@ class ContractOffer extends BackboneElement {
             })
           : null,
       linkId: parsePrimitiveList<FhirString>(
-          json['linkId'] as List<dynamic>?, json['_linkId'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['linkId'] as List<dynamic>?,
+        json['_linkId'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       securityLabelNumber: parsePrimitiveList<FhirUnsignedInt>(
-          json['securityLabelNumber'] as List<dynamic>?,
-          json['_securityLabelNumber'] as List<dynamic>?,
-          fromJson: FhirUnsignedInt.fromJson),
+        json['securityLabelNumber'] as List<dynamic>?,
+        json['_securityLabelNumber'] as List<dynamic>?,
+        fromJson: FhirUnsignedInt.fromJson,
+      ),
     );
   }
 
@@ -2046,7 +2063,9 @@ class ContractParty extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractParty.fromJson(Map<String, dynamic> json) {
+  factory ContractParty.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ContractParty(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2215,7 +2234,9 @@ class ContractAnswer extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractAnswer.fromJson(Map<String, dynamic> json) {
+  factory ContractAnswer.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ContractAnswer(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2616,7 +2637,9 @@ class ContractAsset extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractAsset.fromJson(Map<String, dynamic> json) {
+  factory ContractAsset.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ContractAsset(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2727,12 +2750,15 @@ class ContractAsset extends BackboneElement {
             })
           : null,
       linkId: parsePrimitiveList<FhirString>(
-          json['linkId'] as List<dynamic>?, json['_linkId'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['linkId'] as List<dynamic>?,
+        json['_linkId'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       securityLabelNumber: parsePrimitiveList<FhirUnsignedInt>(
-          json['securityLabelNumber'] as List<dynamic>?,
-          json['_securityLabelNumber'] as List<dynamic>?,
-          fromJson: FhirUnsignedInt.fromJson),
+        json['securityLabelNumber'] as List<dynamic>?,
+        json['_securityLabelNumber'] as List<dynamic>?,
+        fromJson: FhirUnsignedInt.fromJson,
+      ),
       valuedItem: json['valuedItem'] != null
           ? (json['valuedItem'] as List<dynamic>)
               .map<ContractValuedItem>(
@@ -3014,7 +3040,9 @@ class ContractContext extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractContext.fromJson(Map<String, dynamic> json) {
+  factory ContractContext.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ContractContext(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3217,7 +3245,9 @@ class ContractValuedItem extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractValuedItem.fromJson(Map<String, dynamic> json) {
+  factory ContractValuedItem.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ContractValuedItem(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3313,12 +3343,15 @@ class ContractValuedItem extends BackboneElement {
             )
           : null,
       linkId: parsePrimitiveList<FhirString>(
-          json['linkId'] as List<dynamic>?, json['_linkId'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['linkId'] as List<dynamic>?,
+        json['_linkId'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       securityLabelNumber: parsePrimitiveList<FhirUnsignedInt>(
-          json['securityLabelNumber'] as List<dynamic>?,
-          json['_securityLabelNumber'] as List<dynamic>?,
-          fromJson: FhirUnsignedInt.fromJson),
+        json['securityLabelNumber'] as List<dynamic>?,
+        json['_securityLabelNumber'] as List<dynamic>?,
+        fromJson: FhirUnsignedInt.fromJson,
+      ),
     );
   }
 
@@ -3644,7 +3677,9 @@ class ContractAction extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractAction.fromJson(Map<String, dynamic> json) {
+  factory ContractAction.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ContractAction(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3691,8 +3726,10 @@ class ContractAction extends BackboneElement {
         json['intent'] as Map<String, dynamic>,
       ),
       linkId: parsePrimitiveList<FhirString>(
-          json['linkId'] as List<dynamic>?, json['_linkId'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['linkId'] as List<dynamic>?,
+        json['_linkId'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       status: CodeableConcept.fromJson(
         json['status'] as Map<String, dynamic>,
       ),
@@ -3702,9 +3739,10 @@ class ContractAction extends BackboneElement {
             )
           : null,
       contextLinkId: parsePrimitiveList<FhirString>(
-          json['contextLinkId'] as List<dynamic>?,
-          json['_contextLinkId'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['contextLinkId'] as List<dynamic>?,
+        json['_contextLinkId'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       occurrenceDateTime: json['occurrenceDateTime'] != null
           ? FhirDateTime.fromJson({
               'value': json['occurrenceDateTime'],
@@ -3731,9 +3769,10 @@ class ContractAction extends BackboneElement {
               .toList()
           : null,
       requesterLinkId: parsePrimitiveList<FhirString>(
-          json['requesterLinkId'] as List<dynamic>?,
-          json['_requesterLinkId'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['requesterLinkId'] as List<dynamic>?,
+        json['_requesterLinkId'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       performerType: json['performerType'] != null
           ? (json['performerType'] as List<dynamic>)
               .map<CodeableConcept>(
@@ -3754,9 +3793,10 @@ class ContractAction extends BackboneElement {
             )
           : null,
       performerLinkId: parsePrimitiveList<FhirString>(
-          json['performerLinkId'] as List<dynamic>?,
-          json['_performerLinkId'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['performerLinkId'] as List<dynamic>?,
+        json['_performerLinkId'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       reasonCode: json['reasonCode'] != null
           ? (json['reasonCode'] as List<dynamic>)
               .map<CodeableConcept>(
@@ -3776,12 +3816,15 @@ class ContractAction extends BackboneElement {
               .toList()
           : null,
       reason: parsePrimitiveList<FhirString>(
-          json['reason'] as List<dynamic>?, json['_reason'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['reason'] as List<dynamic>?,
+        json['_reason'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       reasonLinkId: parsePrimitiveList<FhirString>(
-          json['reasonLinkId'] as List<dynamic>?,
-          json['_reasonLinkId'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['reasonLinkId'] as List<dynamic>?,
+        json['_reasonLinkId'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       note: json['note'] != null
           ? (json['note'] as List<dynamic>)
               .map<Annotation>(
@@ -3792,9 +3835,10 @@ class ContractAction extends BackboneElement {
               .toList()
           : null,
       securityLabelNumber: parsePrimitiveList<FhirUnsignedInt>(
-          json['securityLabelNumber'] as List<dynamic>?,
-          json['_securityLabelNumber'] as List<dynamic>?,
-          fromJson: FhirUnsignedInt.fromJson),
+        json['securityLabelNumber'] as List<dynamic>?,
+        json['_securityLabelNumber'] as List<dynamic>?,
+        fromJson: FhirUnsignedInt.fromJson,
+      ),
     );
   }
 
@@ -4184,7 +4228,9 @@ class ContractSubject extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractSubject.fromJson(Map<String, dynamic> json) {
+  factory ContractSubject.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ContractSubject(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -4351,7 +4397,9 @@ class ContractSigner extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractSigner.fromJson(Map<String, dynamic> json) {
+  factory ContractSigner.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ContractSigner(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -4527,7 +4575,9 @@ class ContractFriendly extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractFriendly.fromJson(Map<String, dynamic> json) {
+  factory ContractFriendly.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ContractFriendly(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -4696,7 +4746,9 @@ class ContractLegal extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractLegal.fromJson(Map<String, dynamic> json) {
+  factory ContractLegal.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ContractLegal(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -4898,7 +4950,9 @@ class ContractRule extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContractRule.fromJson(Map<String, dynamic> json) {
+  factory ContractRule.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ContractRule(
       id: json['id'] != null
           ? FhirString.fromJson(

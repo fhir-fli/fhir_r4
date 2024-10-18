@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A code that indicates how the server supports conditional read.
@@ -17,25 +19,33 @@ enum ConditionalReadStatus {
   /// Display: Full Support
   /// Definition: Conditional reads are supported, with both If-Modified-Since and If-None-Match HTTP Headers.
   full_support('full-support'),
-  elementOnly('', null),
-  ;
 
-  final String fhirCode;
-  final Element? element;
+  /// For instances where an Element is present but not value
+
+  elementOnly(''),
+  ;
 
   const ConditionalReadStatus(this.fhirCode, [this.element]);
 
+  /// The String value of this enum
+  final String fhirCode;
+
+  /// The Element value of this enum
+  final Element? element;
+
+  /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  static ConditionalReadStatus fromJson(Map<String, dynamic> json) {
-    final String? value = json['value'] as String?;
-    final Map<String, dynamic>? elementJson =
-        json['_value'] as Map<String, dynamic>?;
-    final Element? element =
-        elementJson != null ? Element.fromJson(elementJson) : null;
+  /// Converts a list of JSON values to a list of [ConditionalReadStatus] instances.
+  static ConditionalReadStatus fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return ConditionalReadStatus.elementOnly.withElement(element);
     }
@@ -44,6 +54,7 @@ enum ConditionalReadStatus {
     );
   }
 
+  /// Returns the enum value with an element
   ConditionalReadStatus withElement(Element? newElement) {
     return ConditionalReadStatus.fromJson({
       'value': fhirCode,

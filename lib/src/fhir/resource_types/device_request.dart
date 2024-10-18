@@ -56,7 +56,9 @@ class DeviceRequest extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceRequest.fromJson(Map<String, dynamic> json) {
+  factory DeviceRequest.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DeviceRequest(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -122,13 +124,15 @@ class DeviceRequest extends DomainResource {
               .toList()
           : null,
       instantiatesCanonical: parsePrimitiveList<FhirCanonical>(
-          json['instantiatesCanonical'] as List<dynamic>?,
-          json['_instantiatesCanonical'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['instantiatesCanonical'] as List<dynamic>?,
+        json['_instantiatesCanonical'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       instantiatesUri: parsePrimitiveList<FhirUri>(
-          json['instantiatesUri'] as List<dynamic>?,
-          json['_instantiatesUri'] as List<dynamic>?,
-          fromJson: FhirUri.fromJson),
+        json['instantiatesUri'] as List<dynamic>?,
+        json['_instantiatesUri'] as List<dynamic>?,
+        fromJson: FhirUri.fromJson,
+      ),
       basedOn: json['basedOn'] != null
           ? (json['basedOn'] as List<dynamic>)
               .map<Reference>(
@@ -746,7 +750,9 @@ class DeviceRequestParameter extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceRequestParameter.fromJson(Map<String, dynamic> json) {
+  factory DeviceRequestParameter.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DeviceRequestParameter(
       id: json['id'] != null
           ? FhirString.fromJson(

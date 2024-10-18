@@ -52,7 +52,9 @@ class TestScript extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestScript.fromJson(Map<String, dynamic> json) {
+  factory TestScript.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TestScript(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -725,7 +727,9 @@ class TestScriptOrigin extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestScriptOrigin.fromJson(Map<String, dynamic> json) {
+  factory TestScriptOrigin.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TestScriptOrigin(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -887,7 +891,9 @@ class TestScriptDestination extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestScriptDestination.fromJson(Map<String, dynamic> json) {
+  factory TestScriptDestination.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TestScriptDestination(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1050,7 +1056,9 @@ class TestScriptMetadata extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestScriptMetadata.fromJson(Map<String, dynamic> json) {
+  factory TestScriptMetadata.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TestScriptMetadata(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1218,7 +1226,9 @@ class TestScriptLink extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestScriptLink.fromJson(Map<String, dynamic> json) {
+  factory TestScriptLink.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TestScriptLink(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1394,7 +1404,9 @@ class TestScriptCapability extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestScriptCapability.fromJson(Map<String, dynamic> json) {
+  factory TestScriptCapability.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TestScriptCapability(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1434,8 +1446,10 @@ class TestScriptCapability extends BackboneElement {
             })
           : null,
       origin: parsePrimitiveList<FhirInteger>(
-          json['origin'] as List<dynamic>?, json['_origin'] as List<dynamic>?,
-          fromJson: FhirInteger.fromJson),
+        json['origin'] as List<dynamic>?,
+        json['_origin'] as List<dynamic>?,
+        fromJson: FhirInteger.fromJson,
+      ),
       destination: json['destination'] != null
           ? FhirInteger.fromJson({
               'value': json['destination'],
@@ -1443,8 +1457,10 @@ class TestScriptCapability extends BackboneElement {
             })
           : null,
       link: parsePrimitiveList<FhirUri>(
-          json['link'] as List<dynamic>?, json['_link'] as List<dynamic>?,
-          fromJson: FhirUri.fromJson),
+        json['link'] as List<dynamic>?,
+        json['_link'] as List<dynamic>?,
+        fromJson: FhirUri.fromJson,
+      ),
       capabilities: FhirCanonical.fromJson({
         'value': json['capabilities'],
         '_value': json['_capabilities'],
@@ -1658,7 +1674,9 @@ class TestScriptFixture extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestScriptFixture.fromJson(Map<String, dynamic> json) {
+  factory TestScriptFixture.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TestScriptFixture(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1852,7 +1870,9 @@ class TestScriptVariable extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestScriptVariable.fromJson(Map<String, dynamic> json) {
+  factory TestScriptVariable.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TestScriptVariable(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2148,7 +2168,9 @@ class TestScriptSetup extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestScriptSetup.fromJson(Map<String, dynamic> json) {
+  factory TestScriptSetup.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TestScriptSetup(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2296,7 +2318,9 @@ class TestScriptAction extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestScriptAction.fromJson(Map<String, dynamic> json) {
+  factory TestScriptAction.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TestScriptAction(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2475,7 +2499,9 @@ class TestScriptOperation extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestScriptOperation.fromJson(Map<String, dynamic> json) {
+  factory TestScriptOperation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TestScriptOperation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2941,7 +2967,9 @@ class TestScriptRequestHeader extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestScriptRequestHeader.fromJson(Map<String, dynamic> json) {
+  factory TestScriptRequestHeader.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TestScriptRequestHeader(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3128,7 +3156,9 @@ class TestScriptAssert extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestScriptAssert.fromJson(Map<String, dynamic> json) {
+  factory TestScriptAssert.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TestScriptAssert(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3696,7 +3726,9 @@ class TestScriptTest extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestScriptTest.fromJson(Map<String, dynamic> json) {
+  factory TestScriptTest.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TestScriptTest(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3884,7 +3916,9 @@ class TestScriptAction1 extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestScriptAction1.fromJson(Map<String, dynamic> json) {
+  factory TestScriptAction1.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TestScriptAction1(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -4017,7 +4051,9 @@ class TestScriptTeardown extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestScriptTeardown.fromJson(Map<String, dynamic> json) {
+  factory TestScriptTeardown.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TestScriptTeardown(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -4163,7 +4199,9 @@ class TestScriptAction2 extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TestScriptAction2.fromJson(Map<String, dynamic> json) {
+  factory TestScriptAction2.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TestScriptAction2(
       id: json['id'] != null
           ? FhirString.fromJson(

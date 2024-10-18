@@ -43,7 +43,9 @@ class MolecularSequence extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MolecularSequence.fromJson(Map<String, dynamic> json) {
+  factory MolecularSequence.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MolecularSequence(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -541,7 +543,9 @@ class MolecularSequenceReferenceSeq extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MolecularSequenceReferenceSeq.fromJson(Map<String, dynamic> json) {
+  factory MolecularSequenceReferenceSeq.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MolecularSequenceReferenceSeq(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -858,7 +862,9 @@ class MolecularSequenceVariant extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MolecularSequenceVariant.fromJson(Map<String, dynamic> json) {
+  factory MolecularSequenceVariant.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MolecularSequenceVariant(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1141,7 +1147,9 @@ class MolecularSequenceQuality extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MolecularSequenceQuality.fromJson(Map<String, dynamic> json) {
+  factory MolecularSequenceQuality.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MolecularSequenceQuality(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1575,7 +1583,9 @@ class MolecularSequenceRoc extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MolecularSequenceRoc.fromJson(Map<String, dynamic> json) {
+  factory MolecularSequenceRoc.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MolecularSequenceRoc(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1601,29 +1611,40 @@ class MolecularSequenceRoc extends BackboneElement {
               .toList()
           : null,
       score: parsePrimitiveList<FhirInteger>(
-          json['score'] as List<dynamic>?, json['_score'] as List<dynamic>?,
-          fromJson: FhirInteger.fromJson),
+        json['score'] as List<dynamic>?,
+        json['_score'] as List<dynamic>?,
+        fromJson: FhirInteger.fromJson,
+      ),
       numTP: parsePrimitiveList<FhirInteger>(
-          json['numTP'] as List<dynamic>?, json['_numTP'] as List<dynamic>?,
-          fromJson: FhirInteger.fromJson),
+        json['numTP'] as List<dynamic>?,
+        json['_numTP'] as List<dynamic>?,
+        fromJson: FhirInteger.fromJson,
+      ),
       numFP: parsePrimitiveList<FhirInteger>(
-          json['numFP'] as List<dynamic>?, json['_numFP'] as List<dynamic>?,
-          fromJson: FhirInteger.fromJson),
+        json['numFP'] as List<dynamic>?,
+        json['_numFP'] as List<dynamic>?,
+        fromJson: FhirInteger.fromJson,
+      ),
       numFN: parsePrimitiveList<FhirInteger>(
-          json['numFN'] as List<dynamic>?, json['_numFN'] as List<dynamic>?,
-          fromJson: FhirInteger.fromJson),
+        json['numFN'] as List<dynamic>?,
+        json['_numFN'] as List<dynamic>?,
+        fromJson: FhirInteger.fromJson,
+      ),
       precision: parsePrimitiveList<FhirDecimal>(
-          json['precision'] as List<dynamic>?,
-          json['_precision'] as List<dynamic>?,
-          fromJson: FhirDecimal.fromJson),
+        json['precision'] as List<dynamic>?,
+        json['_precision'] as List<dynamic>?,
+        fromJson: FhirDecimal.fromJson,
+      ),
       sensitivity: parsePrimitiveList<FhirDecimal>(
-          json['sensitivity'] as List<dynamic>?,
-          json['_sensitivity'] as List<dynamic>?,
-          fromJson: FhirDecimal.fromJson),
+        json['sensitivity'] as List<dynamic>?,
+        json['_sensitivity'] as List<dynamic>?,
+        fromJson: FhirDecimal.fromJson,
+      ),
       fMeasure: parsePrimitiveList<FhirDecimal>(
-          json['fMeasure'] as List<dynamic>?,
-          json['_fMeasure'] as List<dynamic>?,
-          fromJson: FhirDecimal.fromJson),
+        json['fMeasure'] as List<dynamic>?,
+        json['_fMeasure'] as List<dynamic>?,
+        fromJson: FhirDecimal.fromJson,
+      ),
     );
   }
 
@@ -1843,7 +1864,9 @@ class MolecularSequenceRepository extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MolecularSequenceRepository.fromJson(Map<String, dynamic> json) {
+  factory MolecularSequenceRepository.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MolecularSequenceRepository(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2100,7 +2123,8 @@ class MolecularSequenceStructureVariant extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MolecularSequenceStructureVariant.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return MolecularSequenceStructureVariant(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2321,7 +2345,9 @@ class MolecularSequenceOuter extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MolecularSequenceOuter.fromJson(Map<String, dynamic> json) {
+  factory MolecularSequenceOuter.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MolecularSequenceOuter(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2499,7 +2525,9 @@ class MolecularSequenceInner extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MolecularSequenceInner.fromJson(Map<String, dynamic> json) {
+  factory MolecularSequenceInner.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MolecularSequenceInner(
       id: json['id'] != null
           ? FhirString.fromJson(

@@ -21,6 +21,30 @@ abstract class FhirNumber extends PrimitiveType<num?>
         : FhirDecimal(value, element);
   }
 
+  /// Factory to create either a [FhirInteger] or [FhirDecimal] based on input.
+  factory FhirNumber.fromNumPositiveInt(num? value, [Element? element]) {
+    if (value == null) {
+      throw const FormatException(
+        'FhirNumber cannot be created with a null value',
+      );
+    }
+    return value is int
+        ? FhirPositiveInt(value, element)
+        : FhirDecimal(value, element);
+  }
+
+  /// Factory to create either a [FhirInteger] or [FhirDecimal] based on input.
+  factory FhirNumber.fromNumUnsignedInt(num? value, [Element? element]) {
+    if (value == null) {
+      throw const FormatException(
+        'FhirNumber cannot be created with a null value',
+      );
+    }
+    return value is int
+        ? FhirUnsignedInt(value, element)
+        : FhirDecimal(value, element);
+  }
+
   /// Factory constructor to create a [FhirNumber] from JSON input.
   factory FhirNumber.fromJson(Map<String, dynamic> json) {
     final value = json['value'] as num?;
@@ -159,7 +183,11 @@ abstract class FhirNumber extends PrimitiveType<num?>
   FhirNumber? _operateOrNull(Object other, num Function(num, num) operation) {
     if (!_bothNonNull(other)) return null;
     final otherValue = _extractValue(other)!;
-    return FhirNumber.fromNum(operation(value!, otherValue));
+    return this is FhirPositiveInt
+        ? FhirNumber.fromNumPositiveInt(operation(value!, otherValue))
+        : this is FhirUnsignedInt
+            ? FhirNumber.fromNumUnsignedInt(operation(value!, otherValue))
+            : FhirNumber.fromNum(operation(value!, otherValue));
   }
 
   bool _compareOrFalse(Object other, bool Function(num, num) comparison) {

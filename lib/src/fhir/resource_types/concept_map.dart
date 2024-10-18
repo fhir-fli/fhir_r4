@@ -49,7 +49,9 @@ class ConceptMap extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConceptMap.fromJson(Map<String, dynamic> json) {
+  factory ConceptMap.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ConceptMap(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -675,7 +677,9 @@ class ConceptMapGroup extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConceptMapGroup.fromJson(Map<String, dynamic> json) {
+  factory ConceptMapGroup.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ConceptMapGroup(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -927,7 +931,9 @@ class ConceptMapElement extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConceptMapElement.fromJson(Map<String, dynamic> json) {
+  factory ConceptMapElement.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ConceptMapElement(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1123,7 +1129,9 @@ class ConceptMapTarget extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConceptMapTarget.fromJson(Map<String, dynamic> json) {
+  factory ConceptMapTarget.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ConceptMapTarget(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1357,7 +1365,9 @@ class ConceptMapDependsOn extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConceptMapDependsOn.fromJson(Map<String, dynamic> json) {
+  factory ConceptMapDependsOn.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ConceptMapDependsOn(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1573,7 +1583,9 @@ class ConceptMapUnmapped extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConceptMapUnmapped.fromJson(Map<String, dynamic> json) {
+  factory ConceptMapUnmapped.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ConceptMapUnmapped(
       id: json['id'] != null
           ? FhirString.fromJson(

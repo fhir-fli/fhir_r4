@@ -61,7 +61,9 @@ class Procedure extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Procedure.fromJson(Map<String, dynamic> json) {
+  factory Procedure.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Procedure(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -127,13 +129,15 @@ class Procedure extends DomainResource {
               .toList()
           : null,
       instantiatesCanonical: parsePrimitiveList<FhirCanonical>(
-          json['instantiatesCanonical'] as List<dynamic>?,
-          json['_instantiatesCanonical'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['instantiatesCanonical'] as List<dynamic>?,
+        json['_instantiatesCanonical'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       instantiatesUri: parsePrimitiveList<FhirUri>(
-          json['instantiatesUri'] as List<dynamic>?,
-          json['_instantiatesUri'] as List<dynamic>?,
-          fromJson: FhirUri.fromJson),
+        json['instantiatesUri'] as List<dynamic>?,
+        json['_instantiatesUri'] as List<dynamic>?,
+        fromJson: FhirUri.fromJson,
+      ),
       basedOn: json['basedOn'] != null
           ? (json['basedOn'] as List<dynamic>)
               .map<Reference>(
@@ -857,7 +861,9 @@ class ProcedurePerformer extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ProcedurePerformer.fromJson(Map<String, dynamic> json) {
+  factory ProcedurePerformer.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ProcedurePerformer(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1034,7 +1040,9 @@ class ProcedureFocalDevice extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ProcedureFocalDevice.fromJson(Map<String, dynamic> json) {
+  factory ProcedureFocalDevice.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ProcedureFocalDevice(
       id: json['id'] != null
           ? FhirString.fromJson(

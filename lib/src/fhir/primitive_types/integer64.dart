@@ -136,6 +136,56 @@ class FhirInteger64 extends PrimitiveType<BigInt?>
   /// Unary negation operator.
   FhirInteger64? operator -() => value == null ? null : FhirInteger64(-value!);
 
+  /// Division operator.
+  FhirInteger64? operator /(dynamic other) =>
+      _operate(other, (a, b) => BigInt.from(a / b));
+
+  /// Power operator.
+  FhirInteger64? pow(int exponent) =>
+      value == null ? null : FhirInteger64(value!.pow(exponent));
+
+  /// Modulo inverse operator.
+  FhirInteger64? modInverse(FhirInteger64 modulus) =>
+      value == null ? null : FhirInteger64(value!.modInverse(modulus.value!));
+
+  /// Modular exponentiation.
+  FhirInteger64? modPow(FhirInteger64 exponent, FhirInteger64 modulus) =>
+      value == null
+          ? null
+          : FhirInteger64(value!.modPow(exponent.value!, modulus.value!));
+
+  /// Bitwise AND operator.
+  FhirInteger64? operator &(dynamic other) => _operate(other, (a, b) => a & b);
+
+  /// Bitwise OR operator.
+  FhirInteger64? operator |(dynamic other) => _operate(other, (a, b) => a | b);
+
+  /// Bitwise XOR operator.
+  FhirInteger64? operator ^(dynamic other) => _operate(other, (a, b) => a ^ b);
+
+  /// Bitwise NOT operator.
+  FhirInteger64? operator ~() => value == null ? null : FhirInteger64(~value!);
+
+  /// Left shift operator.
+  FhirInteger64? operator <<(int shiftAmount) =>
+      value == null ? null : FhirInteger64(value! << shiftAmount);
+
+  /// Right shift operator.
+  FhirInteger64? operator >>(int shiftAmount) =>
+      value == null ? null : FhirInteger64(value! >> shiftAmount);
+
+  /// Remainder operator.
+  FhirInteger64? remainder(dynamic other) =>
+      _operate(other, (a, b) => a.remainder(b));
+
+  /// To unsigned.
+  FhirInteger64? toUnsigned(int width) =>
+      value == null ? null : FhirInteger64(value!.toUnsigned(width));
+
+  /// To signed.
+  FhirInteger64? toSigned(int width) =>
+      value == null ? null : FhirInteger64(value!.toSigned(width));
+
   /// Comparison Operators
 
   /// Equality operator.

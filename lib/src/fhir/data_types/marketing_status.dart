@@ -27,7 +27,9 @@ class MarketingStatus extends BackboneType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MarketingStatus.fromJson(Map<String, dynamic> json) {
+  factory MarketingStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MarketingStatus(
       id: json['id'] != null
           ? FhirString.fromJson(

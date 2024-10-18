@@ -52,7 +52,9 @@ class Communication extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Communication.fromJson(Map<String, dynamic> json) {
+  factory Communication.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Communication(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -118,13 +120,15 @@ class Communication extends DomainResource {
               .toList()
           : null,
       instantiatesCanonical: parsePrimitiveList<FhirCanonical>(
-          json['instantiatesCanonical'] as List<dynamic>?,
-          json['_instantiatesCanonical'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['instantiatesCanonical'] as List<dynamic>?,
+        json['_instantiatesCanonical'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       instantiatesUri: parsePrimitiveList<FhirUri>(
-          json['instantiatesUri'] as List<dynamic>?,
-          json['_instantiatesUri'] as List<dynamic>?,
-          fromJson: FhirUri.fromJson),
+        json['instantiatesUri'] as List<dynamic>?,
+        json['_instantiatesUri'] as List<dynamic>?,
+        fromJson: FhirUri.fromJson,
+      ),
       basedOn: json['basedOn'] != null
           ? (json['basedOn'] as List<dynamic>)
               .map<Reference>(
@@ -686,7 +690,9 @@ class CommunicationPayload extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CommunicationPayload.fromJson(Map<String, dynamic> json) {
+  factory CommunicationPayload.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CommunicationPayload(
       id: json['id'] != null
           ? FhirString.fromJson(

@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The genus of an organism, typically referring to the Latin epithet of the genus element of the plant/animal scientific name.
@@ -13,25 +15,33 @@ enum SourceMaterialGenus {
   /// Display: Ginkgo
   /// Definition:
   Ginkgo('Ginkgo'),
-  elementOnly('', null),
-  ;
 
-  final String fhirCode;
-  final Element? element;
+  /// For instances where an Element is present but not value
+
+  elementOnly(''),
+  ;
 
   const SourceMaterialGenus(this.fhirCode, [this.element]);
 
+  /// The String value of this enum
+  final String fhirCode;
+
+  /// The Element value of this enum
+  final Element? element;
+
+  /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  static SourceMaterialGenus fromJson(Map<String, dynamic> json) {
-    final String? value = json['value'] as String?;
-    final Map<String, dynamic>? elementJson =
-        json['_value'] as Map<String, dynamic>?;
-    final Element? element =
-        elementJson != null ? Element.fromJson(elementJson) : null;
+  /// Converts a list of JSON values to a list of [SourceMaterialGenus] instances.
+  static SourceMaterialGenus fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return SourceMaterialGenus.elementOnly.withElement(element);
     }
@@ -40,6 +50,7 @@ enum SourceMaterialGenus {
     );
   }
 
+  /// Returns the enum value with an element
   SourceMaterialGenus withElement(Element? newElement) {
     return SourceMaterialGenus.fromJson({
       'value': fhirCode,

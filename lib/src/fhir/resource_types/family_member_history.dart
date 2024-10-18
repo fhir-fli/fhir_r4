@@ -54,7 +54,9 @@ class FamilyMemberHistory extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory FamilyMemberHistory.fromJson(Map<String, dynamic> json) {
+  factory FamilyMemberHistory.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return FamilyMemberHistory(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -120,13 +122,15 @@ class FamilyMemberHistory extends DomainResource {
               .toList()
           : null,
       instantiatesCanonical: parsePrimitiveList<FhirCanonical>(
-          json['instantiatesCanonical'] as List<dynamic>?,
-          json['_instantiatesCanonical'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['instantiatesCanonical'] as List<dynamic>?,
+        json['_instantiatesCanonical'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       instantiatesUri: parsePrimitiveList<FhirUri>(
-          json['instantiatesUri'] as List<dynamic>?,
-          json['_instantiatesUri'] as List<dynamic>?,
-          fromJson: FhirUri.fromJson),
+        json['instantiatesUri'] as List<dynamic>?,
+        json['_instantiatesUri'] as List<dynamic>?,
+        fromJson: FhirUri.fromJson,
+      ),
       status: FamilyHistoryStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],
@@ -742,7 +746,9 @@ class FamilyMemberHistoryCondition extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory FamilyMemberHistoryCondition.fromJson(Map<String, dynamic> json) {
+  factory FamilyMemberHistoryCondition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return FamilyMemberHistoryCondition(
       id: json['id'] != null
           ? FhirString.fromJson(

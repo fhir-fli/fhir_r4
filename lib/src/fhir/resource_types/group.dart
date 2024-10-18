@@ -40,7 +40,9 @@ class FhirGroup extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory FhirGroup.fromJson(Map<String, dynamic> json) {
+  factory FhirGroup.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return FhirGroup(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -428,7 +430,9 @@ class GroupCharacteristic extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory GroupCharacteristic.fromJson(Map<String, dynamic> json) {
+  factory GroupCharacteristic.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return GroupCharacteristic(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -692,7 +696,9 @@ class GroupMember extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory GroupMember.fromJson(Map<String, dynamic> json) {
+  factory GroupMember.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return GroupMember(
       id: json['id'] != null
           ? FhirString.fromJson(

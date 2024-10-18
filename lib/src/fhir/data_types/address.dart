@@ -33,7 +33,9 @@ class Address extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Address.fromJson(Map<String, dynamic> json) {
+  factory Address.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Address(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -68,8 +70,10 @@ class Address extends DataType {
             })
           : null,
       line: parsePrimitiveList<FhirString>(
-          json['line'] as List<dynamic>?, json['_line'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['line'] as List<dynamic>?,
+        json['_line'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       city: json['city'] != null
           ? FhirString.fromJson({
               'value': json['city'],

@@ -31,7 +31,9 @@ class Signature extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Signature.fromJson(Map<String, dynamic> json) {
+  factory Signature.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Signature(
       id: json['id'] != null
           ? FhirString.fromJson(

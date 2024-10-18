@@ -55,7 +55,9 @@ class ClinicalImpression extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClinicalImpression.fromJson(Map<String, dynamic> json) {
+  factory ClinicalImpression.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClinicalImpression(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -193,9 +195,11 @@ class ClinicalImpression extends DomainResource {
               )
               .toList()
           : null,
-      protocol: parsePrimitiveList<FhirUri>(json['protocol'] as List<dynamic>?,
-          json['_protocol'] as List<dynamic>?,
-          fromJson: FhirUri.fromJson),
+      protocol: parsePrimitiveList<FhirUri>(
+        json['protocol'] as List<dynamic>?,
+        json['_protocol'] as List<dynamic>?,
+        fromJson: FhirUri.fromJson,
+      ),
       summary: json['summary'] != null
           ? FhirString.fromJson({
               'value': json['summary'],
@@ -640,7 +644,9 @@ class ClinicalImpressionInvestigation extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClinicalImpressionInvestigation.fromJson(Map<String, dynamic> json) {
+  factory ClinicalImpressionInvestigation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClinicalImpressionInvestigation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -810,7 +816,9 @@ class ClinicalImpressionFinding extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClinicalImpressionFinding.fromJson(Map<String, dynamic> json) {
+  factory ClinicalImpressionFinding.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClinicalImpressionFinding(
       id: json['id'] != null
           ? FhirString.fromJson(

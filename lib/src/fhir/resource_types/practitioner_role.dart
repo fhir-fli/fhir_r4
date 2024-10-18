@@ -42,7 +42,9 @@ class PractitionerRole extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PractitionerRole.fromJson(Map<String, dynamic> json) {
+  factory PractitionerRole.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PractitionerRole(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -512,7 +514,9 @@ class PractitionerRoleAvailableTime extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PractitionerRoleAvailableTime.fromJson(Map<String, dynamic> json) {
+  factory PractitionerRoleAvailableTime.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PractitionerRoleAvailableTime(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -538,9 +542,10 @@ class PractitionerRoleAvailableTime extends BackboneElement {
               .toList()
           : null,
       daysOfWeek: parsePrimitiveList<DaysOfWeek>(
-          json['daysOfWeek'] as List<dynamic>?,
-          json['_daysOfWeek'] as List<dynamic>?,
-          fromJson: DaysOfWeek.fromJson),
+        json['daysOfWeek'] as List<dynamic>?,
+        json['_daysOfWeek'] as List<dynamic>?,
+        fromJson: DaysOfWeek.fromJson,
+      ),
       allDay: json['allDay'] != null
           ? FhirBoolean.fromJson({
               'value': json['allDay'],
@@ -725,7 +730,9 @@ class PractitionerRoleNotAvailable extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PractitionerRoleNotAvailable.fromJson(Map<String, dynamic> json) {
+  factory PractitionerRoleNotAvailable.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PractitionerRoleNotAvailable(
       id: json['id'] != null
           ? FhirString.fromJson(

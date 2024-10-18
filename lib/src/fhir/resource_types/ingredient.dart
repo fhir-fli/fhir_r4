@@ -35,7 +35,9 @@ class Ingredient extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Ingredient.fromJson(Map<String, dynamic> json) {
+  factory Ingredient.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Ingredient(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -379,7 +381,9 @@ class IngredientManufacturer extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory IngredientManufacturer.fromJson(Map<String, dynamic> json) {
+  factory IngredientManufacturer.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return IngredientManufacturer(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -543,7 +547,9 @@ class IngredientSubstance extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory IngredientSubstance.fromJson(Map<String, dynamic> json) {
+  factory IngredientSubstance.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return IngredientSubstance(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -722,7 +728,9 @@ class IngredientStrength extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory IngredientStrength.fromJson(Map<String, dynamic> json) {
+  factory IngredientStrength.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return IngredientStrength(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1048,7 +1056,9 @@ class IngredientReferenceStrength extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory IngredientReferenceStrength.fromJson(Map<String, dynamic> json) {
+  factory IngredientReferenceStrength.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return IngredientReferenceStrength(
       id: json['id'] != null
           ? FhirString.fromJson(

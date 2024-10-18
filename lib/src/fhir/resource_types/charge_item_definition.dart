@@ -54,7 +54,9 @@ class ChargeItemDefinition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ChargeItemDefinition.fromJson(Map<String, dynamic> json) {
+  factory ChargeItemDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ChargeItemDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -136,16 +138,20 @@ class ChargeItemDefinition extends DomainResource {
             })
           : null,
       derivedFromUri: parsePrimitiveList<FhirUri>(
-          json['derivedFromUri'] as List<dynamic>?,
-          json['_derivedFromUri'] as List<dynamic>?,
-          fromJson: FhirUri.fromJson),
+        json['derivedFromUri'] as List<dynamic>?,
+        json['_derivedFromUri'] as List<dynamic>?,
+        fromJson: FhirUri.fromJson,
+      ),
       partOf: parsePrimitiveList<FhirCanonical>(
-          json['partOf'] as List<dynamic>?, json['_partOf'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['partOf'] as List<dynamic>?,
+        json['_partOf'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       replaces: parsePrimitiveList<FhirCanonical>(
-          json['replaces'] as List<dynamic>?,
-          json['_replaces'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['replaces'] as List<dynamic>?,
+        json['_replaces'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       status: PublicationStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],
@@ -727,7 +733,8 @@ class ChargeItemDefinitionApplicability extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ChargeItemDefinitionApplicability.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return ChargeItemDefinitionApplicability(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -931,7 +938,8 @@ class ChargeItemDefinitionPropertyGroup extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ChargeItemDefinitionPropertyGroup.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return ChargeItemDefinitionPropertyGroup(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1118,7 +1126,8 @@ class ChargeItemDefinitionPriceComponent extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ChargeItemDefinitionPriceComponent.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return ChargeItemDefinitionPriceComponent(
       id: json['id'] != null
           ? FhirString.fromJson(

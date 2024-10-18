@@ -53,7 +53,9 @@ class CarePlan extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CarePlan.fromJson(Map<String, dynamic> json) {
+  factory CarePlan.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CarePlan(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -119,13 +121,15 @@ class CarePlan extends DomainResource {
               .toList()
           : null,
       instantiatesCanonical: parsePrimitiveList<FhirCanonical>(
-          json['instantiatesCanonical'] as List<dynamic>?,
-          json['_instantiatesCanonical'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['instantiatesCanonical'] as List<dynamic>?,
+        json['_instantiatesCanonical'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       instantiatesUri: parsePrimitiveList<FhirUri>(
-          json['instantiatesUri'] as List<dynamic>?,
-          json['_instantiatesUri'] as List<dynamic>?,
-          fromJson: FhirUri.fromJson),
+        json['instantiatesUri'] as List<dynamic>?,
+        json['_instantiatesUri'] as List<dynamic>?,
+        fromJson: FhirUri.fromJson,
+      ),
       basedOn: json['basedOn'] != null
           ? (json['basedOn'] as List<dynamic>)
               .map<Reference>(
@@ -688,7 +692,9 @@ class CarePlanActivity extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CarePlanActivity.fromJson(Map<String, dynamic> json) {
+  factory CarePlanActivity.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CarePlanActivity(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -940,7 +946,9 @@ class CarePlanDetail extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CarePlanDetail.fromJson(Map<String, dynamic> json) {
+  factory CarePlanDetail.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CarePlanDetail(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -972,13 +980,15 @@ class CarePlanDetail extends BackboneElement {
             })
           : null,
       instantiatesCanonical: parsePrimitiveList<FhirCanonical>(
-          json['instantiatesCanonical'] as List<dynamic>?,
-          json['_instantiatesCanonical'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['instantiatesCanonical'] as List<dynamic>?,
+        json['_instantiatesCanonical'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       instantiatesUri: parsePrimitiveList<FhirUri>(
-          json['instantiatesUri'] as List<dynamic>?,
-          json['_instantiatesUri'] as List<dynamic>?,
-          fromJson: FhirUri.fromJson),
+        json['instantiatesUri'] as List<dynamic>?,
+        json['_instantiatesUri'] as List<dynamic>?,
+        fromJson: FhirUri.fromJson,
+      ),
       code: json['code'] != null
           ? CodeableConcept.fromJson(
               json['code'] as Map<String, dynamic>,

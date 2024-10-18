@@ -65,7 +65,9 @@ class ResearchDefinition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ResearchDefinition.fromJson(Map<String, dynamic> json) {
+  factory ResearchDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ResearchDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -214,8 +216,10 @@ class ResearchDefinition extends DomainResource {
             })
           : null,
       comment: parsePrimitiveList<FhirString>(
-          json['comment'] as List<dynamic>?, json['_comment'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['comment'] as List<dynamic>?,
+        json['_comment'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       useContext: json['useContext'] != null
           ? (json['useContext'] as List<dynamic>)
               .map<UsageContext>(
@@ -324,8 +328,10 @@ class ResearchDefinition extends DomainResource {
               .toList()
           : null,
       library_: parsePrimitiveList<FhirCanonical>(
-          json['library'] as List<dynamic>?, json['_library'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['library'] as List<dynamic>?,
+        json['_library'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       population: Reference.fromJson(
         json['population'] as Map<String, dynamic>,
       ),

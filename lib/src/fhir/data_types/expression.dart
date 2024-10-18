@@ -27,7 +27,9 @@ class FhirExpression extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory FhirExpression.fromJson(Map<String, dynamic> json) {
+  factory FhirExpression.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return FhirExpression(
       id: json['id'] != null
           ? FhirString.fromJson(

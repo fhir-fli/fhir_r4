@@ -23,7 +23,9 @@ class RatioRange extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RatioRange.fromJson(Map<String, dynamic> json) {
+  factory RatioRange.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return RatioRange(
       id: json['id'] != null
           ? FhirString.fromJson(

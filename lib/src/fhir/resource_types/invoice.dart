@@ -43,7 +43,9 @@ class Invoice extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Invoice.fromJson(Map<String, dynamic> json) {
+  factory Invoice.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Invoice(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -504,7 +506,9 @@ class InvoiceParticipant extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory InvoiceParticipant.fromJson(Map<String, dynamic> json) {
+  factory InvoiceParticipant.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return InvoiceParticipant(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -670,7 +674,9 @@ class InvoiceLineItem extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory InvoiceLineItem.fromJson(Map<String, dynamic> json) {
+  factory InvoiceLineItem.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return InvoiceLineItem(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -891,7 +897,9 @@ class InvoicePriceComponent extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory InvoicePriceComponent.fromJson(Map<String, dynamic> json) {
+  factory InvoicePriceComponent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return InvoicePriceComponent(
       id: json['id'] != null
           ? FhirString.fromJson(

@@ -27,7 +27,9 @@ class SampledData extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SampledData.fromJson(Map<String, dynamic> json) {
+  factory SampledData.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SampledData(
       id: json['id'] != null
           ? FhirString.fromJson(

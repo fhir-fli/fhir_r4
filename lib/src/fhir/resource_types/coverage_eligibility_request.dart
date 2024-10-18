@@ -46,7 +46,9 @@ class CoverageEligibilityRequest extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CoverageEligibilityRequest.fromJson(Map<String, dynamic> json) {
+  factory CoverageEligibilityRequest.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CoverageEligibilityRequest(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -121,8 +123,10 @@ class CoverageEligibilityRequest extends DomainResource {
             )
           : null,
       purpose: ensureNonNullList(parsePrimitiveList<EligibilityRequestPurpose>(
-          json['purpose'] as List<dynamic>?, json['_purpose'] as List<dynamic>?,
-          fromJson: EligibilityRequestPurpose.fromJson)),
+        json['purpose'] as List<dynamic>?,
+        json['_purpose'] as List<dynamic>?,
+        fromJson: EligibilityRequestPurpose.fromJson,
+      )),
       patient: Reference.fromJson(
         json['patient'] as Map<String, dynamic>,
       ),
@@ -493,7 +497,8 @@ class CoverageEligibilityRequestSupportingInfo extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityRequestSupportingInfo.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return CoverageEligibilityRequestSupportingInfo(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -683,7 +688,8 @@ class CoverageEligibilityRequestInsurance extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityRequestInsurance.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return CoverageEligibilityRequestInsurance(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -884,7 +890,9 @@ class CoverageEligibilityRequestItem extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CoverageEligibilityRequestItem.fromJson(Map<String, dynamic> json) {
+  factory CoverageEligibilityRequestItem.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CoverageEligibilityRequestItem(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -910,9 +918,10 @@ class CoverageEligibilityRequestItem extends BackboneElement {
               .toList()
           : null,
       supportingInfoSequence: parsePrimitiveList<FhirPositiveInt>(
-          json['supportingInfoSequence'] as List<dynamic>?,
-          json['_supportingInfoSequence'] as List<dynamic>?,
-          fromJson: FhirPositiveInt.fromJson),
+        json['supportingInfoSequence'] as List<dynamic>?,
+        json['_supportingInfoSequence'] as List<dynamic>?,
+        fromJson: FhirPositiveInt.fromJson,
+      ),
       category: json['category'] != null
           ? CodeableConcept.fromJson(
               json['category'] as Map<String, dynamic>,
@@ -1194,7 +1203,8 @@ class CoverageEligibilityRequestDiagnosis extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityRequestDiagnosis.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return CoverageEligibilityRequestDiagnosis(
       id: json['id'] != null
           ? FhirString.fromJson(

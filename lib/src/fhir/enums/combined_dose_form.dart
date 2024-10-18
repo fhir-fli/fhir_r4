@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// Dose forms for a product as a whole, considering all individual parts, but before any mixing
@@ -309,25 +311,33 @@ enum CombinedDoseForm {
   /// Display: Lyophilisate and solvent for suspension for nasal spray or injection
   /// Definition:
   value200000010382('200000010382'),
-  elementOnly('', null),
-  ;
 
-  final String fhirCode;
-  final Element? element;
+  /// For instances where an Element is present but not value
+
+  elementOnly(''),
+  ;
 
   const CombinedDoseForm(this.fhirCode, [this.element]);
 
+  /// The String value of this enum
+  final String fhirCode;
+
+  /// The Element value of this enum
+  final Element? element;
+
+  /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  static CombinedDoseForm fromJson(Map<String, dynamic> json) {
-    final String? value = json['value'] as String?;
-    final Map<String, dynamic>? elementJson =
-        json['_value'] as Map<String, dynamic>?;
-    final Element? element =
-        elementJson != null ? Element.fromJson(elementJson) : null;
+  /// Converts a list of JSON values to a list of [CombinedDoseForm] instances.
+  static CombinedDoseForm fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CombinedDoseForm.elementOnly.withElement(element);
     }
@@ -336,6 +346,7 @@ enum CombinedDoseForm {
     );
   }
 
+  /// Returns the enum value with an element
   CombinedDoseForm withElement(Element? newElement) {
     return CombinedDoseForm.fromJson({
       'value': fhirCode,

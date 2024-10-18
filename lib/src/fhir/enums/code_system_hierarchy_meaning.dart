@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The meaning of the hierarchy of concepts in a code system.
@@ -17,25 +19,33 @@ enum CodeSystemHierarchyMeaning {
   /// Display: Classified With
   /// Definition: Child concepts in the hierarchy may have only one parent, and there is a presumption that the code system is a "closed world" meaning all things must be in the hierarchy. This results in concepts such as "not otherwise classified.".
   classified_with('classified-with'),
-  elementOnly('', null),
-  ;
 
-  final String fhirCode;
-  final Element? element;
+  /// For instances where an Element is present but not value
+
+  elementOnly(''),
+  ;
 
   const CodeSystemHierarchyMeaning(this.fhirCode, [this.element]);
 
+  /// The String value of this enum
+  final String fhirCode;
+
+  /// The Element value of this enum
+  final Element? element;
+
+  /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  static CodeSystemHierarchyMeaning fromJson(Map<String, dynamic> json) {
-    final String? value = json['value'] as String?;
-    final Map<String, dynamic>? elementJson =
-        json['_value'] as Map<String, dynamic>?;
-    final Element? element =
-        elementJson != null ? Element.fromJson(elementJson) : null;
+  /// Converts a list of JSON values to a list of [CodeSystemHierarchyMeaning] instances.
+  static CodeSystemHierarchyMeaning fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return CodeSystemHierarchyMeaning.elementOnly.withElement(element);
     }
@@ -44,6 +54,7 @@ enum CodeSystemHierarchyMeaning {
     );
   }
 
+  /// Returns the enum value with an element
   CodeSystemHierarchyMeaning withElement(Element? newElement) {
     return CodeSystemHierarchyMeaning.fromJson({
       'value': fhirCode,

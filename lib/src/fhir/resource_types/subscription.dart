@@ -39,7 +39,9 @@ class Subscription extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Subscription.fromJson(Map<String, dynamic> json) {
+  factory Subscription.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Subscription(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -360,7 +362,9 @@ class SubscriptionChannel extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubscriptionChannel.fromJson(Map<String, dynamic> json) {
+  factory SubscriptionChannel.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SubscriptionChannel(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -402,8 +406,10 @@ class SubscriptionChannel extends BackboneElement {
             })
           : null,
       header: parsePrimitiveList<FhirString>(
-          json['header'] as List<dynamic>?, json['_header'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['header'] as List<dynamic>?,
+        json['_header'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
     );
   }
 

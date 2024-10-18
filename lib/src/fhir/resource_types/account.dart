@@ -40,7 +40,9 @@ class Account extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Account.fromJson(Map<String, dynamic> json) {
+  factory Account.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Account(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -436,7 +438,9 @@ class AccountCoverage extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AccountCoverage.fromJson(Map<String, dynamic> json) {
+  factory AccountCoverage.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return AccountCoverage(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -607,7 +611,9 @@ class AccountGuarantor extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AccountGuarantor.fromJson(Map<String, dynamic> json) {
+  factory AccountGuarantor.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return AccountGuarantor(
       id: json['id'] != null
           ? FhirString.fromJson(

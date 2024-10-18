@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// The presentation type in which an administrable medicinal product is given to a patient.
@@ -225,25 +227,33 @@ enum UnitOfPresentation {
   /// Display: Bag
   /// Definition:
   value200000002166('200000002166'),
-  elementOnly('', null),
-  ;
 
-  final String fhirCode;
-  final Element? element;
+  /// For instances where an Element is present but not value
+
+  elementOnly(''),
+  ;
 
   const UnitOfPresentation(this.fhirCode, [this.element]);
 
+  /// The String value of this enum
+  final String fhirCode;
+
+  /// The Element value of this enum
+  final Element? element;
+
+  /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  static UnitOfPresentation fromJson(Map<String, dynamic> json) {
-    final String? value = json['value'] as String?;
-    final Map<String, dynamic>? elementJson =
-        json['_value'] as Map<String, dynamic>?;
-    final Element? element =
-        elementJson != null ? Element.fromJson(elementJson) : null;
+  /// Converts a list of JSON values to a list of [UnitOfPresentation] instances.
+  static UnitOfPresentation fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return UnitOfPresentation.elementOnly.withElement(element);
     }
@@ -252,6 +262,7 @@ enum UnitOfPresentation {
     );
   }
 
+  /// Returns the enum value with an element
   UnitOfPresentation withElement(Element? newElement) {
     return UnitOfPresentation.fromJson({
       'value': fhirCode,

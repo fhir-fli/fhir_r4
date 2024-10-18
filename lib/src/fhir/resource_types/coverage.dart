@@ -45,7 +45,9 @@ class Coverage extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Coverage.fromJson(Map<String, dynamic> json) {
+  factory Coverage.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Coverage(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -553,7 +555,9 @@ class CoverageClass extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CoverageClass.fromJson(Map<String, dynamic> json) {
+  factory CoverageClass.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CoverageClass(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -739,7 +743,9 @@ class CoverageCostToBeneficiary extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CoverageCostToBeneficiary.fromJson(Map<String, dynamic> json) {
+  factory CoverageCostToBeneficiary.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CoverageCostToBeneficiary(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -939,7 +945,9 @@ class CoverageException extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CoverageException.fromJson(Map<String, dynamic> json) {
+  factory CoverageException.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CoverageException(
       id: json['id'] != null
           ? FhirString.fromJson(

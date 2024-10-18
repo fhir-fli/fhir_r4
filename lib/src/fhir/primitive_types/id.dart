@@ -57,7 +57,7 @@ class FhirId extends PrimitiveType<String> {
 
   /// Ensures the input is a valid FHIR ID.
   static String _validateId(String input) {
-    final regex = RegExp(r'^[A-Za-z0-9\-\.]{1,64}$');
+    final regex = RegExp(r'^[A-Za-z0-9\-\.][A-Za-z0-9\-._]{0,63}$');
     if (regex.hasMatch(input)) return input;
     throw FormatException('Invalid FhirId: "$input"');
   }

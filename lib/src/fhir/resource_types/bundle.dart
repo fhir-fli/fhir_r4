@@ -30,7 +30,9 @@ class Bundle extends Resource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Bundle.fromJson(Map<String, dynamic> json) {
+  factory Bundle.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Bundle(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -289,7 +291,9 @@ class BundleLink extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory BundleLink.fromJson(Map<String, dynamic> json) {
+  factory BundleLink.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return BundleLink(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -460,7 +464,9 @@ class BundleEntry extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory BundleEntry.fromJson(Map<String, dynamic> json) {
+  factory BundleEntry.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return BundleEntry(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -707,7 +713,9 @@ class BundleSearch extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory BundleSearch.fromJson(Map<String, dynamic> json) {
+  factory BundleSearch.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return BundleSearch(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -884,7 +892,9 @@ class BundleRequest extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory BundleRequest.fromJson(Map<String, dynamic> json) {
+  factory BundleRequest.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return BundleRequest(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1140,7 +1150,9 @@ class BundleResponse extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory BundleResponse.fromJson(Map<String, dynamic> json) {
+  factory BundleResponse.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return BundleResponse(
       id: json['id'] != null
           ? FhirString.fromJson(

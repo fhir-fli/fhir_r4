@@ -40,7 +40,9 @@ class Specimen extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Specimen.fromJson(Map<String, dynamic> json) {
+  factory Specimen.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Specimen(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -484,7 +486,9 @@ class SpecimenCollection extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SpecimenCollection.fromJson(Map<String, dynamic> json) {
+  factory SpecimenCollection.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SpecimenCollection(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -771,7 +775,9 @@ class SpecimenProcessing extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SpecimenProcessing.fromJson(Map<String, dynamic> json) {
+  factory SpecimenProcessing.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SpecimenProcessing(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1003,7 +1009,9 @@ class SpecimenContainer extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SpecimenContainer.fromJson(Map<String, dynamic> json) {
+  factory SpecimenContainer.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SpecimenContainer(
       id: json['id'] != null
           ? FhirString.fromJson(

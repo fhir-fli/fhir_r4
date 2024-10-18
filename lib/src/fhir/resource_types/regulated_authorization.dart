@@ -44,7 +44,9 @@ class RegulatedAuthorization extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RegulatedAuthorization.fromJson(Map<String, dynamic> json) {
+  factory RegulatedAuthorization.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return RegulatedAuthorization(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -507,7 +509,9 @@ class RegulatedAuthorizationCase extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RegulatedAuthorizationCase.fromJson(Map<String, dynamic> json) {
+  factory RegulatedAuthorizationCase.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return RegulatedAuthorizationCase(
       id: json['id'] != null
           ? FhirString.fromJson(

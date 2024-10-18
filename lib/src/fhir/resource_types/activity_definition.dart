@@ -83,7 +83,9 @@ class ActivityDefinition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ActivityDefinition.fromJson(Map<String, dynamic> json) {
+  factory ActivityDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ActivityDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -339,8 +341,10 @@ class ActivityDefinition extends DomainResource {
               .toList()
           : null,
       library_: parsePrimitiveList<FhirCanonical>(
-          json['library'] as List<dynamic>?, json['_library'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['library'] as List<dynamic>?,
+        json['_library'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       kind: json['kind'] != null
           ? RequestResourceType.fromJson({
               'value': json['kind'],
@@ -1364,7 +1368,9 @@ class ActivityDefinitionParticipant extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ActivityDefinitionParticipant.fromJson(Map<String, dynamic> json) {
+  factory ActivityDefinitionParticipant.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ActivityDefinitionParticipant(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1530,7 +1536,9 @@ class ActivityDefinitionDynamicValue extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ActivityDefinitionDynamicValue.fromJson(Map<String, dynamic> json) {
+  factory ActivityDefinitionDynamicValue.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ActivityDefinitionDynamicValue(
       id: json['id'] != null
           ? FhirString.fromJson(

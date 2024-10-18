@@ -42,7 +42,9 @@ class VerificationResult extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory VerificationResult.fromJson(Map<String, dynamic> json) {
+  factory VerificationResult.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return VerificationResult(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -108,9 +110,10 @@ class VerificationResult extends DomainResource {
               .toList()
           : null,
       targetLocation: parsePrimitiveList<FhirString>(
-          json['targetLocation'] as List<dynamic>?,
-          json['_targetLocation'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['targetLocation'] as List<dynamic>?,
+        json['_targetLocation'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       need: json['need'] != null
           ? CodeableConcept.fromJson(
               json['need'] as Map<String, dynamic>,
@@ -493,7 +496,9 @@ class VerificationResultPrimarySource extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory VerificationResultPrimarySource.fromJson(Map<String, dynamic> json) {
+  factory VerificationResultPrimarySource.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return VerificationResultPrimarySource(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -763,7 +768,9 @@ class VerificationResultAttestation extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory VerificationResultAttestation.fromJson(Map<String, dynamic> json) {
+  factory VerificationResultAttestation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return VerificationResultAttestation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1041,7 +1048,9 @@ class VerificationResultValidator extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory VerificationResultValidator.fromJson(Map<String, dynamic> json) {
+  factory VerificationResultValidator.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return VerificationResultValidator(
       id: json['id'] != null
           ? FhirString.fromJson(

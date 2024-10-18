@@ -36,7 +36,9 @@ class ManufacturedItemDefinition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ManufacturedItemDefinition.fromJson(Map<String, dynamic> json) {
+  factory ManufacturedItemDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ManufacturedItemDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -361,7 +363,8 @@ class ManufacturedItemDefinitionProperty extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ManufacturedItemDefinitionProperty.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return ManufacturedItemDefinitionProperty(
       id: json['id'] != null
           ? FhirString.fromJson(

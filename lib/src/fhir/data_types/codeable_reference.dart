@@ -22,7 +22,9 @@ class CodeableReference extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CodeableReference.fromJson(Map<String, dynamic> json) {
+  factory CodeableReference.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CodeableReference(
       id: json['id'] != null
           ? FhirString.fromJson(

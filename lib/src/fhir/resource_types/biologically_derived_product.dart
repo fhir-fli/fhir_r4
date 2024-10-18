@@ -40,7 +40,9 @@ class BiologicallyDerivedProduct extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory BiologicallyDerivedProduct.fromJson(Map<String, dynamic> json) {
+  factory BiologicallyDerivedProduct.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return BiologicallyDerivedProduct(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -444,7 +446,8 @@ class BiologicallyDerivedProductCollection extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductCollection.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return BiologicallyDerivedProductCollection(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -651,7 +654,8 @@ class BiologicallyDerivedProductProcessing extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductProcessing.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return BiologicallyDerivedProductProcessing(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -875,7 +879,8 @@ class BiologicallyDerivedProductManipulation extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductManipulation.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return BiologicallyDerivedProductManipulation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1068,7 +1073,8 @@ class BiologicallyDerivedProductStorage extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory BiologicallyDerivedProductStorage.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return BiologicallyDerivedProductStorage(
       id: json['id'] != null
           ? FhirString.fromJson(

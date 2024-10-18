@@ -24,7 +24,9 @@ class FhirDuration extends Quantity {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory FhirDuration.fromJson(Map<String, dynamic> json) {
+  factory FhirDuration.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return FhirDuration(
       id: json['id'] != null
           ? FhirString.fromJson(

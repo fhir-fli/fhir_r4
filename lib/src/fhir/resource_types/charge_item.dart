@@ -61,7 +61,9 @@ class ChargeItem extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ChargeItem.fromJson(Map<String, dynamic> json) {
+  factory ChargeItem.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ChargeItem(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -127,13 +129,15 @@ class ChargeItem extends DomainResource {
               .toList()
           : null,
       definitionUri: parsePrimitiveList<FhirUri>(
-          json['definitionUri'] as List<dynamic>?,
-          json['_definitionUri'] as List<dynamic>?,
-          fromJson: FhirUri.fromJson),
+        json['definitionUri'] as List<dynamic>?,
+        json['_definitionUri'] as List<dynamic>?,
+        fromJson: FhirUri.fromJson,
+      ),
       definitionCanonical: parsePrimitiveList<FhirCanonical>(
-          json['definitionCanonical'] as List<dynamic>?,
-          json['_definitionCanonical'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['definitionCanonical'] as List<dynamic>?,
+        json['_definitionCanonical'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       status: ChargeItemStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],
@@ -764,7 +768,9 @@ class ChargeItemPerformer extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ChargeItemPerformer.fromJson(Map<String, dynamic> json) {
+  factory ChargeItemPerformer.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ChargeItemPerformer(
       id: json['id'] != null
           ? FhirString.fromJson(

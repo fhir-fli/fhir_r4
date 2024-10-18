@@ -54,7 +54,9 @@ class OperationDefinition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory OperationDefinition.fromJson(Map<String, dynamic> json) {
+  factory OperationDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return OperationDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -219,9 +221,11 @@ class OperationDefinition extends DomainResource {
               '_value': json['_base'],
             })
           : null,
-      resource: parsePrimitiveList<FhirCode>(json['resource'] as List<dynamic>?,
-          json['_resource'] as List<dynamic>?,
-          fromJson: FhirCode.fromJson),
+      resource: parsePrimitiveList<FhirCode>(
+        json['resource'] as List<dynamic>?,
+        json['_resource'] as List<dynamic>?,
+        fromJson: FhirCode.fromJson,
+      ),
       system: FhirBoolean.fromJson({
         'value': json['system'],
         '_value': json['_system'],
@@ -782,7 +786,9 @@ class OperationDefinitionParameter extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory OperationDefinitionParameter.fromJson(Map<String, dynamic> json) {
+  factory OperationDefinitionParameter.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return OperationDefinitionParameter(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -836,9 +842,10 @@ class OperationDefinitionParameter extends BackboneElement {
             })
           : null,
       targetProfile: parsePrimitiveList<FhirCanonical>(
-          json['targetProfile'] as List<dynamic>?,
-          json['_targetProfile'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['targetProfile'] as List<dynamic>?,
+        json['_targetProfile'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       searchType: json['searchType'] != null
           ? SearchParamType.fromJson({
               'value': json['searchType'],
@@ -1112,7 +1119,9 @@ class OperationDefinitionBinding extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory OperationDefinitionBinding.fromJson(Map<String, dynamic> json) {
+  factory OperationDefinitionBinding.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return OperationDefinitionBinding(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1279,7 +1288,8 @@ class OperationDefinitionReferencedFrom extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory OperationDefinitionReferencedFrom.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return OperationDefinitionReferencedFrom(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1455,7 +1465,9 @@ class OperationDefinitionOverload extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory OperationDefinitionOverload.fromJson(Map<String, dynamic> json) {
+  factory OperationDefinitionOverload.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return OperationDefinitionOverload(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1481,9 +1493,10 @@ class OperationDefinitionOverload extends BackboneElement {
               .toList()
           : null,
       parameterName: parsePrimitiveList<FhirString>(
-          json['parameterName'] as List<dynamic>?,
-          json['_parameterName'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['parameterName'] as List<dynamic>?,
+        json['_parameterName'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       comment: json['comment'] != null
           ? FhirString.fromJson({
               'value': json['comment'],

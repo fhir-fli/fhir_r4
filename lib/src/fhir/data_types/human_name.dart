@@ -26,7 +26,9 @@ class HumanName extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory HumanName.fromJson(Map<String, dynamic> json) {
+  factory HumanName.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return HumanName(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -61,14 +63,20 @@ class HumanName extends DataType {
             })
           : null,
       given: parsePrimitiveList<FhirString>(
-          json['given'] as List<dynamic>?, json['_given'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['given'] as List<dynamic>?,
+        json['_given'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       prefix: parsePrimitiveList<FhirString>(
-          json['prefix'] as List<dynamic>?, json['_prefix'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['prefix'] as List<dynamic>?,
+        json['_prefix'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       suffix: parsePrimitiveList<FhirString>(
-          json['suffix'] as List<dynamic>?, json['_suffix'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['suffix'] as List<dynamic>?,
+        json['_suffix'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       period: json['period'] != null
           ? Period.fromJson(
               json['period'] as Map<String, dynamic>,

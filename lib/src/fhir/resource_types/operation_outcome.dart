@@ -29,7 +29,9 @@ class OperationOutcome extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory OperationOutcome.fromJson(Map<String, dynamic> json) {
+  factory OperationOutcome.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return OperationOutcome(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -249,7 +251,9 @@ class OperationOutcomeIssue extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory OperationOutcomeIssue.fromJson(Map<String, dynamic> json) {
+  factory OperationOutcomeIssue.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return OperationOutcomeIssue(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -294,13 +298,15 @@ class OperationOutcomeIssue extends BackboneElement {
             })
           : null,
       location: parsePrimitiveList<FhirString>(
-          json['location'] as List<dynamic>?,
-          json['_location'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['location'] as List<dynamic>?,
+        json['_location'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       expression: parsePrimitiveList<FhirString>(
-          json['expression'] as List<dynamic>?,
-          json['_expression'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['expression'] as List<dynamic>?,
+        json['_expression'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
     );
   }
 

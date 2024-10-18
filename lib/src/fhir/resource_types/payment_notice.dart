@@ -40,7 +40,9 @@ class PaymentNotice extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PaymentNotice.fromJson(Map<String, dynamic> json) {
+  factory PaymentNotice.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PaymentNotice(
       id: json['id'] != null
           ? FhirString.fromJson(

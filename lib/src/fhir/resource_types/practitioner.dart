@@ -38,7 +38,9 @@ class Practitioner extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Practitioner.fromJson(Map<String, dynamic> json) {
+  factory Practitioner.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Practitioner(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -438,7 +440,9 @@ class PractitionerQualification extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PractitionerQualification.fromJson(Map<String, dynamic> json) {
+  factory PractitionerQualification.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PractitionerQualification(
       id: json['id'] != null
           ? FhirString.fromJson(

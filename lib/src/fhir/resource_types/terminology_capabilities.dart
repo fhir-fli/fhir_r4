@@ -54,7 +54,9 @@ class TerminologyCapabilities extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TerminologyCapabilities.fromJson(Map<String, dynamic> json) {
+  factory TerminologyCapabilities.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TerminologyCapabilities(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -729,7 +731,9 @@ class TerminologyCapabilitiesSoftware extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TerminologyCapabilitiesSoftware.fromJson(Map<String, dynamic> json) {
+  factory TerminologyCapabilitiesSoftware.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TerminologyCapabilitiesSoftware(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -903,7 +907,8 @@ class TerminologyCapabilitiesImplementation extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesImplementation.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return TerminologyCapabilitiesImplementation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1079,7 +1084,8 @@ class TerminologyCapabilitiesCodeSystem extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesCodeSystem.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return TerminologyCapabilitiesCodeSystem(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1279,7 +1285,9 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TerminologyCapabilitiesVersion.fromJson(Map<String, dynamic> json) {
+  factory TerminologyCapabilitiesVersion.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TerminologyCapabilitiesVersion(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1322,9 +1330,11 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
               '_value': json['_compositional'],
             })
           : null,
-      language: parsePrimitiveList<FhirCode>(json['language'] as List<dynamic>?,
-          json['_language'] as List<dynamic>?,
-          fromJson: FhirCode.fromJson),
+      language: parsePrimitiveList<FhirCode>(
+        json['language'] as List<dynamic>?,
+        json['_language'] as List<dynamic>?,
+        fromJson: FhirCode.fromJson,
+      ),
       filter: json['filter'] != null
           ? (json['filter'] as List<dynamic>)
               .map<TerminologyCapabilitiesFilter>(
@@ -1334,9 +1344,11 @@ class TerminologyCapabilitiesVersion extends BackboneElement {
               )
               .toList()
           : null,
-      property: parsePrimitiveList<FhirCode>(json['property'] as List<dynamic>?,
-          json['_property'] as List<dynamic>?,
-          fromJson: FhirCode.fromJson),
+      property: parsePrimitiveList<FhirCode>(
+        json['property'] as List<dynamic>?,
+        json['_property'] as List<dynamic>?,
+        fromJson: FhirCode.fromJson,
+      ),
     );
   }
 
@@ -1528,7 +1540,9 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TerminologyCapabilitiesFilter.fromJson(Map<String, dynamic> json) {
+  factory TerminologyCapabilitiesFilter.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TerminologyCapabilitiesFilter(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1558,8 +1572,10 @@ class TerminologyCapabilitiesFilter extends BackboneElement {
         '_value': json['_code'],
       }),
       op: ensureNonNullList(parsePrimitiveList<FhirCode>(
-          json['op'] as List<dynamic>?, json['_op'] as List<dynamic>?,
-          fromJson: FhirCode.fromJson)),
+        json['op'] as List<dynamic>?,
+        json['_op'] as List<dynamic>?,
+        fromJson: FhirCode.fromJson,
+      )),
     );
   }
 
@@ -1697,7 +1713,9 @@ class TerminologyCapabilitiesExpansion extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TerminologyCapabilitiesExpansion.fromJson(Map<String, dynamic> json) {
+  factory TerminologyCapabilitiesExpansion.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TerminologyCapabilitiesExpansion(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1931,7 +1949,9 @@ class TerminologyCapabilitiesParameter extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TerminologyCapabilitiesParameter.fromJson(Map<String, dynamic> json) {
+  factory TerminologyCapabilitiesParameter.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TerminologyCapabilitiesParameter(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2104,7 +2124,8 @@ class TerminologyCapabilitiesValidateCode extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesValidateCode.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return TerminologyCapabilitiesValidateCode(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2256,7 +2277,8 @@ class TerminologyCapabilitiesTranslation extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory TerminologyCapabilitiesTranslation.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return TerminologyCapabilitiesTranslation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2406,7 +2428,9 @@ class TerminologyCapabilitiesClosure extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TerminologyCapabilitiesClosure.fromJson(Map<String, dynamic> json) {
+  factory TerminologyCapabilitiesClosure.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TerminologyCapabilitiesClosure(
       id: json['id'] != null
           ? FhirString.fromJson(

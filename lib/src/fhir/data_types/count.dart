@@ -27,7 +27,9 @@ class Count extends Quantity {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Count.fromJson(Map<String, dynamic> json) {
+  factory Count.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Count(
       id: json['id'] != null
           ? FhirString.fromJson(

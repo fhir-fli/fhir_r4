@@ -41,7 +41,9 @@ class CatalogEntry extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CatalogEntry.fromJson(Map<String, dynamic> json) {
+  factory CatalogEntry.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CatalogEntry(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -479,7 +481,9 @@ class CatalogEntryRelatedEntry extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CatalogEntryRelatedEntry.fromJson(Map<String, dynamic> json) {
+  factory CatalogEntryRelatedEntry.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CatalogEntryRelatedEntry(
       id: json['id'] != null
           ? FhirString.fromJson(

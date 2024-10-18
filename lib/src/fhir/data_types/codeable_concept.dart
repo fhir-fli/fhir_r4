@@ -22,7 +22,9 @@ class CodeableConcept extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CodeableConcept.fromJson(Map<String, dynamic> json) {
+  factory CodeableConcept.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CodeableConcept(
       id: json['id'] != null
           ? FhirString.fromJson(

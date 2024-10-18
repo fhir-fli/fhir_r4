@@ -21,7 +21,9 @@ class Period extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Period.fromJson(Map<String, dynamic> json) {
+  factory Period.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Period(
       id: json['id'] != null
           ? FhirString.fromJson(

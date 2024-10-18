@@ -41,7 +41,9 @@ class OrganizationAffiliation extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory OrganizationAffiliation.fromJson(Map<String, dynamic> json) {
+  factory OrganizationAffiliation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return OrganizationAffiliation(
       id: json['id'] != null
           ? FhirString.fromJson(

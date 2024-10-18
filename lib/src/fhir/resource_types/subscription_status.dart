@@ -35,7 +35,9 @@ class SubscriptionStatus extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubscriptionStatus.fromJson(Map<String, dynamic> json) {
+  factory SubscriptionStatus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SubscriptionStatus(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -364,7 +366,8 @@ class SubscriptionStatusNotificationEvent extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionStatusNotificationEvent.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return SubscriptionStatusNotificationEvent(
       id: json['id'] != null
           ? FhirString.fromJson(

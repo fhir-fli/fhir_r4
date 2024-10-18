@@ -55,7 +55,9 @@ class CapabilityStatement extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CapabilityStatement.fromJson(Map<String, dynamic> json) {
+  factory CapabilityStatement.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CapabilityStatement(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -205,12 +207,15 @@ class CapabilityStatement extends DomainResource {
         '_value': json['_kind'],
       }),
       instantiates: parsePrimitiveList<FhirCanonical>(
-          json['instantiates'] as List<dynamic>?,
-          json['_instantiates'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['instantiates'] as List<dynamic>?,
+        json['_instantiates'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       imports: parsePrimitiveList<FhirCanonical>(
-          json['imports'] as List<dynamic>?, json['_imports'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['imports'] as List<dynamic>?,
+        json['_imports'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       software: json['software'] != null
           ? CapabilityStatementSoftware.fromJson(
               json['software'] as Map<String, dynamic>,
@@ -226,12 +231,15 @@ class CapabilityStatement extends DomainResource {
         '_value': json['_fhirVersion'],
       }),
       format: ensureNonNullList(parsePrimitiveList<FhirCode>(
-          json['format'] as List<dynamic>?, json['_format'] as List<dynamic>?,
-          fromJson: FhirCode.fromJson)),
+        json['format'] as List<dynamic>?,
+        json['_format'] as List<dynamic>?,
+        fromJson: FhirCode.fromJson,
+      )),
       patchFormat: parsePrimitiveList<FhirCode>(
-          json['patchFormat'] as List<dynamic>?,
-          json['_patchFormat'] as List<dynamic>?,
-          fromJson: FhirCode.fromJson),
+        json['patchFormat'] as List<dynamic>?,
+        json['_patchFormat'] as List<dynamic>?,
+        fromJson: FhirCode.fromJson,
+      ),
       rest: json['rest'] != null
           ? (json['rest'] as List<dynamic>)
               .map<CapabilityStatementRest>(
@@ -757,7 +765,9 @@ class CapabilityStatementSoftware extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CapabilityStatementSoftware.fromJson(Map<String, dynamic> json) {
+  factory CapabilityStatementSoftware.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CapabilityStatementSoftware(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -952,7 +962,8 @@ class CapabilityStatementImplementation extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementImplementation.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return CapabilityStatementImplementation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -993,9 +1004,10 @@ class CapabilityStatementImplementation extends BackboneElement {
             )
           : null,
       implementationGuide: parsePrimitiveList<FhirCanonical>(
-          json['implementationGuide'] as List<dynamic>?,
-          json['_implementationGuide'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['implementationGuide'] as List<dynamic>?,
+        json['_implementationGuide'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
     );
   }
 
@@ -1165,7 +1177,9 @@ class CapabilityStatementRest extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CapabilityStatementRest.fromJson(Map<String, dynamic> json) {
+  factory CapabilityStatementRest.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CapabilityStatementRest(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1224,9 +1238,10 @@ class CapabilityStatementRest extends BackboneElement {
               .toList()
           : null,
       compartment: parsePrimitiveList<FhirCanonical>(
-          json['compartment'] as List<dynamic>?,
-          json['_compartment'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['compartment'] as List<dynamic>?,
+        json['_compartment'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
     );
   }
 
@@ -1410,7 +1425,9 @@ class CapabilityStatementSecurity extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CapabilityStatementSecurity.fromJson(Map<String, dynamic> json) {
+  factory CapabilityStatementSecurity.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CapabilityStatementSecurity(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1620,7 +1637,9 @@ class CapabilityStatementResource extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CapabilityStatementResource.fromJson(Map<String, dynamic> json) {
+  factory CapabilityStatementResource.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CapabilityStatementResource(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1656,9 +1675,10 @@ class CapabilityStatementResource extends BackboneElement {
             })
           : null,
       supportedProfile: parsePrimitiveList<FhirCanonical>(
-          json['supportedProfile'] as List<dynamic>?,
-          json['_supportedProfile'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['supportedProfile'] as List<dynamic>?,
+        json['_supportedProfile'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       documentation: json['documentation'] != null
           ? FhirMarkdown.fromJson({
               'value': json['documentation'],
@@ -1717,17 +1737,20 @@ class CapabilityStatementResource extends BackboneElement {
             })
           : null,
       referencePolicy: parsePrimitiveList<ReferenceHandlingPolicy>(
-          json['referencePolicy'] as List<dynamic>?,
-          json['_referencePolicy'] as List<dynamic>?,
-          fromJson: ReferenceHandlingPolicy.fromJson),
+        json['referencePolicy'] as List<dynamic>?,
+        json['_referencePolicy'] as List<dynamic>?,
+        fromJson: ReferenceHandlingPolicy.fromJson,
+      ),
       searchInclude: parsePrimitiveList<FhirString>(
-          json['searchInclude'] as List<dynamic>?,
-          json['_searchInclude'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['searchInclude'] as List<dynamic>?,
+        json['_searchInclude'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       searchRevInclude: parsePrimitiveList<FhirString>(
-          json['searchRevInclude'] as List<dynamic>?,
-          json['_searchRevInclude'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['searchRevInclude'] as List<dynamic>?,
+        json['_searchRevInclude'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       searchParam: json['searchParam'] != null
           ? (json['searchParam'] as List<dynamic>)
               .map<CapabilityStatementSearchParam>(
@@ -2090,7 +2113,9 @@ class CapabilityStatementInteraction extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CapabilityStatementInteraction.fromJson(Map<String, dynamic> json) {
+  factory CapabilityStatementInteraction.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CapabilityStatementInteraction(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2263,7 +2288,9 @@ class CapabilityStatementSearchParam extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CapabilityStatementSearchParam.fromJson(Map<String, dynamic> json) {
+  factory CapabilityStatementSearchParam.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CapabilityStatementSearchParam(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2478,7 +2505,9 @@ class CapabilityStatementOperation extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CapabilityStatementOperation.fromJson(Map<String, dynamic> json) {
+  factory CapabilityStatementOperation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CapabilityStatementOperation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2676,7 +2705,9 @@ class CapabilityStatementInteraction1 extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CapabilityStatementInteraction1.fromJson(Map<String, dynamic> json) {
+  factory CapabilityStatementInteraction1.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CapabilityStatementInteraction1(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2847,7 +2878,9 @@ class CapabilityStatementMessaging extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CapabilityStatementMessaging.fromJson(Map<String, dynamic> json) {
+  factory CapabilityStatementMessaging.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CapabilityStatementMessaging(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3068,7 +3101,9 @@ class CapabilityStatementEndpoint extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CapabilityStatementEndpoint.fromJson(Map<String, dynamic> json) {
+  factory CapabilityStatementEndpoint.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CapabilityStatementEndpoint(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3233,7 +3268,8 @@ class CapabilityStatementSupportedMessage extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CapabilityStatementSupportedMessage.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return CapabilityStatementSupportedMessage(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3399,7 +3435,9 @@ class CapabilityStatementDocument extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CapabilityStatementDocument.fromJson(Map<String, dynamic> json) {
+  factory CapabilityStatementDocument.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CapabilityStatementDocument(
       id: json['id'] != null
           ? FhirString.fromJson(

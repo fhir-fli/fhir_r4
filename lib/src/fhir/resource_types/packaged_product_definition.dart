@@ -41,7 +41,9 @@ class PackagedProductDefinition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PackagedProductDefinition.fromJson(Map<String, dynamic> json) {
+  factory PackagedProductDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PackagedProductDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -532,7 +534,8 @@ class PackagedProductDefinitionLegalStatusOfSupply extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionLegalStatusOfSupply.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return PackagedProductDefinitionLegalStatusOfSupply(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -711,7 +714,9 @@ class PackagedProductDefinitionPackage extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PackagedProductDefinitionPackage.fromJson(Map<String, dynamic> json) {
+  factory PackagedProductDefinitionPackage.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PackagedProductDefinitionPackage(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1045,7 +1050,8 @@ class PackagedProductDefinitionShelfLifeStorage extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionShelfLifeStorage.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return PackagedProductDefinitionShelfLifeStorage(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1274,7 +1280,8 @@ class PackagedProductDefinitionProperty extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionProperty.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return PackagedProductDefinitionProperty(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1506,7 +1513,8 @@ class PackagedProductDefinitionContainedItem extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory PackagedProductDefinitionContainedItem.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return PackagedProductDefinitionContainedItem(
       id: json['id'] != null
           ? FhirString.fromJson(

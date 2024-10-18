@@ -61,7 +61,9 @@ class MedicinalProductDefinition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MedicinalProductDefinition.fromJson(Map<String, dynamic> json) {
+  factory MedicinalProductDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MedicinalProductDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -832,7 +834,8 @@ class MedicinalProductDefinitionContact extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicinalProductDefinitionContact.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return MedicinalProductDefinitionContact(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -996,7 +999,9 @@ class MedicinalProductDefinitionName extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MedicinalProductDefinitionName.fromJson(Map<String, dynamic> json) {
+  factory MedicinalProductDefinitionName.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MedicinalProductDefinitionName(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1203,7 +1208,8 @@ class MedicinalProductDefinitionNamePart extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicinalProductDefinitionNamePart.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return MedicinalProductDefinitionNamePart(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1368,7 +1374,8 @@ class MedicinalProductDefinitionCountryLanguage extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicinalProductDefinitionCountryLanguage.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return MedicinalProductDefinitionCountryLanguage(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1545,7 +1552,8 @@ class MedicinalProductDefinitionCrossReference extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicinalProductDefinitionCrossReference.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return MedicinalProductDefinitionCrossReference(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1715,7 +1723,8 @@ class MedicinalProductDefinitionOperation extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicinalProductDefinitionOperation.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return MedicinalProductDefinitionOperation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1926,7 +1935,8 @@ class MedicinalProductDefinitionCharacteristic extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicinalProductDefinitionCharacteristic.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return MedicinalProductDefinitionCharacteristic(
       id: json['id'] != null
           ? FhirString.fromJson(

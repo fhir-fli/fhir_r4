@@ -36,7 +36,9 @@ class VisionPrescription extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory VisionPrescription.fromJson(Map<String, dynamic> json) {
+  factory VisionPrescription.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return VisionPrescription(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -371,7 +373,8 @@ class VisionPrescriptionLensSpecification extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory VisionPrescriptionLensSpecification.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return VisionPrescriptionLensSpecification(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -764,7 +767,9 @@ class VisionPrescriptionPrism extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory VisionPrescriptionPrism.fromJson(Map<String, dynamic> json) {
+  factory VisionPrescriptionPrism.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return VisionPrescriptionPrism(
       id: json['id'] != null
           ? FhirString.fromJson(

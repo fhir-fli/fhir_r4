@@ -58,7 +58,9 @@ class Immunization extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Immunization.fromJson(Map<String, dynamic> json) {
+  factory Immunization.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Immunization(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -776,7 +778,9 @@ class ImmunizationPerformer extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImmunizationPerformer.fromJson(Map<String, dynamic> json) {
+  factory ImmunizationPerformer.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImmunizationPerformer(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -940,7 +944,9 @@ class ImmunizationEducation extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImmunizationEducation.fromJson(Map<String, dynamic> json) {
+  factory ImmunizationEducation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImmunizationEducation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1157,7 +1163,9 @@ class ImmunizationReaction extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImmunizationReaction.fromJson(Map<String, dynamic> json) {
+  factory ImmunizationReaction.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImmunizationReaction(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1352,7 +1360,9 @@ class ImmunizationProtocolApplied extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImmunizationProtocolApplied.fromJson(Map<String, dynamic> json) {
+  factory ImmunizationProtocolApplied.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImmunizationProtocolApplied(
       id: json['id'] != null
           ? FhirString.fromJson(

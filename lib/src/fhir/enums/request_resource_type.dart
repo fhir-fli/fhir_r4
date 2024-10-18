@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A list of all the request resource types defined in this version of the FHIR specification.
@@ -61,25 +63,33 @@ enum RequestResourceType {
   /// Display: VisionPrescription
   /// Definition: Prescription for vision correction products for a patient.
   VisionPrescription('VisionPrescription'),
-  elementOnly('', null),
-  ;
 
-  final String fhirCode;
-  final Element? element;
+  /// For instances where an Element is present but not value
+
+  elementOnly(''),
+  ;
 
   const RequestResourceType(this.fhirCode, [this.element]);
 
+  /// The String value of this enum
+  final String fhirCode;
+
+  /// The Element value of this enum
+  final Element? element;
+
+  /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  static RequestResourceType fromJson(Map<String, dynamic> json) {
-    final String? value = json['value'] as String?;
-    final Map<String, dynamic>? elementJson =
-        json['_value'] as Map<String, dynamic>?;
-    final Element? element =
-        elementJson != null ? Element.fromJson(elementJson) : null;
+  /// Converts a list of JSON values to a list of [RequestResourceType] instances.
+  static RequestResourceType fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return RequestResourceType.elementOnly.withElement(element);
     }
@@ -88,6 +98,7 @@ enum RequestResourceType {
     );
   }
 
+  /// Returns the enum value with an element
   RequestResourceType withElement(Element? newElement) {
     return RequestResourceType.fromJson({
       'value': fhirCode,

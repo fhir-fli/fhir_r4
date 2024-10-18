@@ -46,7 +46,9 @@ class RiskAssessment extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RiskAssessment.fromJson(Map<String, dynamic> json) {
+  factory RiskAssessment.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return RiskAssessment(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -554,7 +556,9 @@ class RiskAssessmentPrediction extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RiskAssessmentPrediction.fromJson(Map<String, dynamic> json) {
+  factory RiskAssessmentPrediction.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return RiskAssessmentPrediction(
       id: json['id'] != null
           ? FhirString.fromJson(

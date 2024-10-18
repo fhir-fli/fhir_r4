@@ -24,7 +24,9 @@ class Age extends Quantity {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Age.fromJson(Map<String, dynamic> json) {
+  factory Age.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Age(
       id: json['id'] != null
           ? FhirString.fromJson(

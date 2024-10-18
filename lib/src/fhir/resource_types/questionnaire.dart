@@ -52,7 +52,9 @@ class Questionnaire extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Questionnaire.fromJson(Map<String, dynamic> json) {
+  factory Questionnaire.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Questionnaire(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -142,9 +144,10 @@ class Questionnaire extends DomainResource {
             })
           : null,
       derivedFrom: parsePrimitiveList<FhirCanonical>(
-          json['derivedFrom'] as List<dynamic>?,
-          json['_derivedFrom'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['derivedFrom'] as List<dynamic>?,
+        json['_derivedFrom'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       status: PublicationStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],
@@ -156,9 +159,10 @@ class Questionnaire extends DomainResource {
             })
           : null,
       subjectType: parsePrimitiveList<FhirCode>(
-          json['subjectType'] as List<dynamic>?,
-          json['_subjectType'] as List<dynamic>?,
-          fromJson: FhirCode.fromJson),
+        json['subjectType'] as List<dynamic>?,
+        json['_subjectType'] as List<dynamic>?,
+        fromJson: FhirCode.fromJson,
+      ),
       date: json['date'] != null
           ? FhirDateTime.fromJson({
               'value': json['date'],
@@ -724,7 +728,9 @@ class QuestionnaireItem extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory QuestionnaireItem.fromJson(Map<String, dynamic> json) {
+  factory QuestionnaireItem.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return QuestionnaireItem(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1202,7 +1208,9 @@ class QuestionnaireEnableWhen extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory QuestionnaireEnableWhen.fromJson(Map<String, dynamic> json) {
+  factory QuestionnaireEnableWhen.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return QuestionnaireEnableWhen(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1565,7 +1573,9 @@ class QuestionnaireAnswerOption extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory QuestionnaireAnswerOption.fromJson(Map<String, dynamic> json) {
+  factory QuestionnaireAnswerOption.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return QuestionnaireAnswerOption(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1841,7 +1851,9 @@ class QuestionnaireInitial extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory QuestionnaireInitial.fromJson(Map<String, dynamic> json) {
+  factory QuestionnaireInitial.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return QuestionnaireInitial(
       id: json['id'] != null
           ? FhirString.fromJson(

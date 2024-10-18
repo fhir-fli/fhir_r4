@@ -51,7 +51,9 @@ class DiagnosticReport extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DiagnosticReport.fromJson(Map<String, dynamic> json) {
+  factory DiagnosticReport.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DiagnosticReport(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -614,7 +616,9 @@ class DiagnosticReportMedia extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DiagnosticReportMedia.fromJson(Map<String, dynamic> json) {
+  factory DiagnosticReportMedia.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DiagnosticReportMedia(
       id: json['id'] != null
           ? FhirString.fromJson(

@@ -221,7 +221,9 @@ class ElementDefinition extends BackboneType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ElementDefinition.fromJson(Map<String, dynamic> json) {
+  factory ElementDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ElementDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -251,9 +253,10 @@ class ElementDefinition extends BackboneType {
         '_value': json['_path'],
       }),
       representation: parsePrimitiveList<PropertyRepresentation>(
-          json['representation'] as List<dynamic>?,
-          json['_representation'] as List<dynamic>?,
-          fromJson: PropertyRepresentation.fromJson),
+        json['representation'] as List<dynamic>?,
+        json['_representation'] as List<dynamic>?,
+        fromJson: PropertyRepresentation.fromJson,
+      ),
       sliceName: json['sliceName'] != null
           ? FhirString.fromJson({
               'value': json['sliceName'],
@@ -311,8 +314,10 @@ class ElementDefinition extends BackboneType {
             })
           : null,
       alias: parsePrimitiveList<FhirString>(
-          json['alias'] as List<dynamic>?, json['_alias'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['alias'] as List<dynamic>?,
+        json['_alias'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       min: json['min'] != null
           ? FhirUnsignedInt.fromJson({
               'value': json['min'],
@@ -1304,9 +1309,11 @@ class ElementDefinition extends BackboneType {
               '_value': json['_maxLength'],
             })
           : null,
-      condition: parsePrimitiveList<FhirId>(json['condition'] as List<dynamic>?,
-          json['_condition'] as List<dynamic>?,
-          fromJson: FhirId.fromJson),
+      condition: parsePrimitiveList<FhirId>(
+        json['condition'] as List<dynamic>?,
+        json['_condition'] as List<dynamic>?,
+        fromJson: FhirId.fromJson,
+      ),
       constraint: json['constraint'] != null
           ? (json['constraint'] as List<dynamic>)
               .map<ElementDefinitionConstraint>(
@@ -5102,7 +5109,9 @@ class ElementDefinitionSlicing extends Element {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ElementDefinitionSlicing.fromJson(Map<String, dynamic> json) {
+  factory ElementDefinitionSlicing.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ElementDefinitionSlicing(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -5303,7 +5312,9 @@ class ElementDefinitionDiscriminator extends Element {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ElementDefinitionDiscriminator.fromJson(Map<String, dynamic> json) {
+  factory ElementDefinitionDiscriminator.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ElementDefinitionDiscriminator(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -5459,7 +5470,9 @@ class ElementDefinitionBase extends Element {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ElementDefinitionBase.fromJson(Map<String, dynamic> json) {
+  factory ElementDefinitionBase.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ElementDefinitionBase(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -5632,7 +5645,9 @@ class ElementDefinitionType extends Element {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ElementDefinitionType.fromJson(Map<String, dynamic> json) {
+  factory ElementDefinitionType.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ElementDefinitionType(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -5653,16 +5668,20 @@ class ElementDefinitionType extends Element {
         '_value': json['_code'],
       }),
       profile: parsePrimitiveList<FhirCanonical>(
-          json['profile'] as List<dynamic>?, json['_profile'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['profile'] as List<dynamic>?,
+        json['_profile'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       targetProfile: parsePrimitiveList<FhirCanonical>(
-          json['targetProfile'] as List<dynamic>?,
-          json['_targetProfile'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['targetProfile'] as List<dynamic>?,
+        json['_targetProfile'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       aggregation: parsePrimitiveList<AggregationMode>(
-          json['aggregation'] as List<dynamic>?,
-          json['_aggregation'] as List<dynamic>?,
-          fromJson: AggregationMode.fromJson),
+        json['aggregation'] as List<dynamic>?,
+        json['_aggregation'] as List<dynamic>?,
+        fromJson: AggregationMode.fromJson,
+      ),
       versioning: json['versioning'] != null
           ? ReferenceVersionRules.fromJson({
               'value': json['versioning'],
@@ -5901,7 +5920,9 @@ class ElementDefinitionExample extends Element {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ElementDefinitionExample.fromJson(Map<String, dynamic> json) {
+  factory ElementDefinitionExample.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ElementDefinitionExample(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -6954,7 +6975,9 @@ class ElementDefinitionConstraint extends Element {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ElementDefinitionConstraint.fromJson(Map<String, dynamic> json) {
+  factory ElementDefinitionConstraint.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ElementDefinitionConstraint(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -7204,7 +7227,9 @@ class ElementDefinitionBinding extends Element {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ElementDefinitionBinding.fromJson(Map<String, dynamic> json) {
+  factory ElementDefinitionBinding.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ElementDefinitionBinding(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -7379,7 +7404,9 @@ class ElementDefinitionMapping extends Element {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ElementDefinitionMapping.fromJson(Map<String, dynamic> json) {
+  factory ElementDefinitionMapping.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ElementDefinitionMapping(
       id: json['id'] != null
           ? FhirString.fromJson(

@@ -35,7 +35,9 @@ class Basic extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Basic.fromJson(Map<String, dynamic> json) {
+  factory Basic.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Basic(
       id: json['id'] != null
           ? FhirString.fromJson(

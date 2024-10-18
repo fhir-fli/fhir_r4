@@ -53,7 +53,9 @@ class Condition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Condition.fromJson(Map<String, dynamic> json) {
+  factory Condition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Condition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -707,7 +709,9 @@ class ConditionStage extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConditionStage.fromJson(Map<String, dynamic> json) {
+  factory ConditionStage.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ConditionStage(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -893,7 +897,9 @@ class ConditionEvidence extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConditionEvidence.fromJson(Map<String, dynamic> json) {
+  factory ConditionEvidence.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ConditionEvidence(
       id: json['id'] != null
           ? FhirString.fromJson(

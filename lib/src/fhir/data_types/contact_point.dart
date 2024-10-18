@@ -25,7 +25,9 @@ class ContactPoint extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ContactPoint.fromJson(Map<String, dynamic> json) {
+  factory ContactPoint.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ContactPoint(
       id: json['id'] != null
           ? FhirString.fromJson(

@@ -46,7 +46,9 @@ class Location extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Location.fromJson(Map<String, dynamic> json) {
+  factory Location.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Location(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -129,8 +131,10 @@ class Location extends DomainResource {
             })
           : null,
       alias: parsePrimitiveList<FhirString>(
-          json['alias'] as List<dynamic>?, json['_alias'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['alias'] as List<dynamic>?,
+        json['_alias'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       description: json['description'] != null
           ? FhirString.fromJson({
               'value': json['description'],
@@ -559,7 +563,9 @@ class LocationPosition extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory LocationPosition.fromJson(Map<String, dynamic> json) {
+  factory LocationPosition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return LocationPosition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -749,7 +755,9 @@ class LocationHoursOfOperation extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory LocationHoursOfOperation.fromJson(Map<String, dynamic> json) {
+  factory LocationHoursOfOperation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return LocationHoursOfOperation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -775,9 +783,10 @@ class LocationHoursOfOperation extends BackboneElement {
               .toList()
           : null,
       daysOfWeek: parsePrimitiveList<DaysOfWeek>(
-          json['daysOfWeek'] as List<dynamic>?,
-          json['_daysOfWeek'] as List<dynamic>?,
-          fromJson: DaysOfWeek.fromJson),
+        json['daysOfWeek'] as List<dynamic>?,
+        json['_daysOfWeek'] as List<dynamic>?,
+        fromJson: DaysOfWeek.fromJson,
+      ),
       allDay: json['allDay'] != null
           ? FhirBoolean.fromJson({
               'value': json['allDay'],

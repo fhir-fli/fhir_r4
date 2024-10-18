@@ -42,7 +42,9 @@ class NamingSystem extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory NamingSystem.fromJson(Map<String, dynamic> json) {
+  factory NamingSystem.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return NamingSystem(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -489,7 +491,9 @@ class NamingSystemUniqueId extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory NamingSystemUniqueId.fromJson(Map<String, dynamic> json) {
+  factory NamingSystemUniqueId.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return NamingSystemUniqueId(
       id: json['id'] != null
           ? FhirString.fromJson(

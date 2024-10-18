@@ -29,7 +29,9 @@ class DataRequirement extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DataRequirement.fromJson(Map<String, dynamic> json) {
+  factory DataRequirement.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DataRequirement(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -50,8 +52,10 @@ class DataRequirement extends DataType {
         '_value': json['_type'],
       }),
       profile: parsePrimitiveList<FhirCanonical>(
-          json['profile'] as List<dynamic>?, json['_profile'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['profile'] as List<dynamic>?,
+        json['_profile'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       subjectCodeableConcept: json['subjectCodeableConcept'] != null
           ? CodeableConcept.fromJson(
               json['subjectCodeableConcept'] as Map<String, dynamic>,
@@ -63,9 +67,10 @@ class DataRequirement extends DataType {
             )
           : null,
       mustSupport: parsePrimitiveList<FhirString>(
-          json['mustSupport'] as List<dynamic>?,
-          json['_mustSupport'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['mustSupport'] as List<dynamic>?,
+        json['_mustSupport'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       codeFilter: json['codeFilter'] != null
           ? (json['codeFilter'] as List<dynamic>)
               .map<DataRequirementCodeFilter>(
@@ -327,7 +332,9 @@ class DataRequirementCodeFilter extends Element {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DataRequirementCodeFilter.fromJson(Map<String, dynamic> json) {
+  factory DataRequirementCodeFilter.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DataRequirementCodeFilter(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -545,7 +552,9 @@ class DataRequirementDateFilter extends Element {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DataRequirementDateFilter.fromJson(Map<String, dynamic> json) {
+  factory DataRequirementDateFilter.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DataRequirementDateFilter(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -777,7 +786,9 @@ class DataRequirementSort extends Element {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DataRequirementSort.fromJson(Map<String, dynamic> json) {
+  factory DataRequirementSort.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DataRequirementSort(
       id: json['id'] != null
           ? FhirString.fromJson(

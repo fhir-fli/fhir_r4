@@ -58,7 +58,9 @@ class Task extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Task.fromJson(Map<String, dynamic> json) {
+  factory Task.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Task(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -808,7 +810,9 @@ class TaskRestriction extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TaskRestriction.fromJson(Map<String, dynamic> json) {
+  factory TaskRestriction.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TaskRestriction(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1045,7 +1049,9 @@ class TaskInput extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TaskInput.fromJson(Map<String, dynamic> json) {
+  factory TaskInput.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TaskInput(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2086,7 +2092,9 @@ class TaskOutput extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TaskOutput.fromJson(Map<String, dynamic> json) {
+  factory TaskOutput.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TaskOutput(
       id: json['id'] != null
           ? FhirString.fromJson(

@@ -37,7 +37,9 @@ class BodyStructure extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory BodyStructure.fromJson(Map<String, dynamic> json) {
+  factory BodyStructure.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return BodyStructure(
       id: json['id'] != null
           ? FhirString.fromJson(

@@ -46,7 +46,9 @@ class StructureMap extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureMap.fromJson(Map<String, dynamic> json) {
+  factory StructureMap.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return StructureMap(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -208,8 +210,10 @@ class StructureMap extends DomainResource {
               .toList()
           : null,
       import_: parsePrimitiveList<FhirCanonical>(
-          json['import'] as List<dynamic>?, json['_import'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['import'] as List<dynamic>?,
+        json['_import'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       group: ensureNonNullList((json['group'] as List<dynamic>)
           .map<StructureMapGroup>(
             (v) => StructureMapGroup.fromJson(
@@ -616,7 +620,9 @@ class StructureMapStructure extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureMapStructure.fromJson(Map<String, dynamic> json) {
+  factory StructureMapStructure.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return StructureMapStructure(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -823,7 +829,9 @@ class StructureMapGroup extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureMapGroup.fromJson(Map<String, dynamic> json) {
+  factory StructureMapGroup.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return StructureMapGroup(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1060,7 +1068,9 @@ class StructureMapInput extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureMapInput.fromJson(Map<String, dynamic> json) {
+  factory StructureMapInput.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return StructureMapInput(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1264,7 +1274,9 @@ class StructureMapRule extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureMapRule.fromJson(Map<String, dynamic> json) {
+  factory StructureMapRule.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return StructureMapRule(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1544,7 +1556,9 @@ class StructureMapSource extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureMapSource.fromJson(Map<String, dynamic> json) {
+  factory StructureMapSource.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return StructureMapSource(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2755,7 +2769,9 @@ class StructureMapTarget extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureMapTarget.fromJson(Map<String, dynamic> json) {
+  factory StructureMapTarget.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return StructureMapTarget(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2805,9 +2821,10 @@ class StructureMapTarget extends BackboneElement {
             })
           : null,
       listMode: parsePrimitiveList<StructureMapTargetListMode>(
-          json['listMode'] as List<dynamic>?,
-          json['_listMode'] as List<dynamic>?,
-          fromJson: StructureMapTargetListMode.fromJson),
+        json['listMode'] as List<dynamic>?,
+        json['_listMode'] as List<dynamic>?,
+        fromJson: StructureMapTargetListMode.fromJson,
+      ),
       listRuleId: json['listRuleId'] != null
           ? FhirId.fromJson({
               'value': json['listRuleId'],
@@ -3036,7 +3053,9 @@ class StructureMapParameter extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureMapParameter.fromJson(Map<String, dynamic> json) {
+  factory StructureMapParameter.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return StructureMapParameter(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3270,7 +3289,9 @@ class StructureMapDependent extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureMapDependent.fromJson(Map<String, dynamic> json) {
+  factory StructureMapDependent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return StructureMapDependent(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3300,9 +3321,10 @@ class StructureMapDependent extends BackboneElement {
         '_value': json['_name'],
       }),
       variable: ensureNonNullList(parsePrimitiveList<FhirString>(
-          json['variable'] as List<dynamic>?,
-          json['_variable'] as List<dynamic>?,
-          fromJson: FhirString.fromJson)),
+        json['variable'] as List<dynamic>?,
+        json['_variable'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      )),
     );
   }
 

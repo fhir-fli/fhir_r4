@@ -23,7 +23,9 @@ class Contributor extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Contributor.fromJson(Map<String, dynamic> json) {
+  factory Contributor.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Contributor(
       id: json['id'] != null
           ? FhirString.fromJson(

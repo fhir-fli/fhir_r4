@@ -51,7 +51,9 @@ class DeviceDefinition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceDefinition.fromJson(Map<String, dynamic> json) {
+  factory DeviceDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DeviceDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -166,8 +168,10 @@ class DeviceDefinition extends DomainResource {
               .toList()
           : null,
       version: parsePrimitiveList<FhirString>(
-          json['version'] as List<dynamic>?, json['_version'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['version'] as List<dynamic>?,
+        json['_version'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       safety: json['safety'] != null
           ? (json['safety'] as List<dynamic>)
               .map<CodeableConcept>(
@@ -687,7 +691,8 @@ class DeviceDefinitionUdiDeviceIdentifier extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory DeviceDefinitionUdiDeviceIdentifier.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return DeviceDefinitionUdiDeviceIdentifier(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -872,7 +877,9 @@ class DeviceDefinitionDeviceName extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceDefinitionDeviceName.fromJson(Map<String, dynamic> json) {
+  factory DeviceDefinitionDeviceName.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DeviceDefinitionDeviceName(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1038,7 +1045,9 @@ class DeviceDefinitionSpecialization extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceDefinitionSpecialization.fromJson(Map<String, dynamic> json) {
+  factory DeviceDefinitionSpecialization.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DeviceDefinitionSpecialization(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1209,7 +1218,9 @@ class DeviceDefinitionCapability extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceDefinitionCapability.fromJson(Map<String, dynamic> json) {
+  factory DeviceDefinitionCapability.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DeviceDefinitionCapability(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1375,7 +1386,9 @@ class DeviceDefinitionProperty extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceDefinitionProperty.fromJson(Map<String, dynamic> json) {
+  factory DeviceDefinitionProperty.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DeviceDefinitionProperty(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1560,7 +1573,9 @@ class DeviceDefinitionMaterial extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceDefinitionMaterial.fromJson(Map<String, dynamic> json) {
+  factory DeviceDefinitionMaterial.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DeviceDefinitionMaterial(
       id: json['id'] != null
           ? FhirString.fromJson(

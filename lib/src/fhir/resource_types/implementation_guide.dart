@@ -51,7 +51,9 @@ class ImplementationGuide extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImplementationGuide.fromJson(Map<String, dynamic> json) {
+  factory ImplementationGuide.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImplementationGuide(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -199,9 +201,10 @@ class ImplementationGuide extends DomainResource {
             })
           : null,
       fhirVersion: ensureNonNullList(parsePrimitiveList<FHIRVersion>(
-          json['fhirVersion'] as List<dynamic>?,
-          json['_fhirVersion'] as List<dynamic>?,
-          fromJson: FHIRVersion.fromJson)),
+        json['fhirVersion'] as List<dynamic>?,
+        json['_fhirVersion'] as List<dynamic>?,
+        fromJson: FHIRVersion.fromJson,
+      )),
       dependsOn: json['dependsOn'] != null
           ? (json['dependsOn'] as List<dynamic>)
               .map<ImplementationGuideDependsOn>(
@@ -650,7 +653,9 @@ class ImplementationGuideDependsOn extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImplementationGuideDependsOn.fromJson(Map<String, dynamic> json) {
+  factory ImplementationGuideDependsOn.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImplementationGuideDependsOn(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -843,7 +848,9 @@ class ImplementationGuideGlobal extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImplementationGuideGlobal.fromJson(Map<String, dynamic> json) {
+  factory ImplementationGuideGlobal.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImplementationGuideGlobal(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1013,7 +1020,9 @@ class ImplementationGuideDefinition extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImplementationGuideDefinition.fromJson(Map<String, dynamic> json) {
+  factory ImplementationGuideDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImplementationGuideDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1240,7 +1249,9 @@ class ImplementationGuideGrouping extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImplementationGuideGrouping.fromJson(Map<String, dynamic> json) {
+  factory ImplementationGuideGrouping.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImplementationGuideGrouping(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1419,7 +1430,9 @@ class ImplementationGuideResource extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImplementationGuideResource.fromJson(Map<String, dynamic> json) {
+  factory ImplementationGuideResource.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImplementationGuideResource(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1448,9 +1461,10 @@ class ImplementationGuideResource extends BackboneElement {
         json['reference'] as Map<String, dynamic>,
       ),
       fhirVersion: parsePrimitiveList<FHIRVersion>(
-          json['fhirVersion'] as List<dynamic>?,
-          json['_fhirVersion'] as List<dynamic>?,
-          fromJson: FHIRVersion.fromJson),
+        json['fhirVersion'] as List<dynamic>?,
+        json['_fhirVersion'] as List<dynamic>?,
+        fromJson: FHIRVersion.fromJson,
+      ),
       name: json['name'] != null
           ? FhirString.fromJson({
               'value': json['name'],
@@ -1690,7 +1704,9 @@ class ImplementationGuidePage extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImplementationGuidePage.fromJson(Map<String, dynamic> json) {
+  factory ImplementationGuidePage.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImplementationGuidePage(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1888,7 +1904,9 @@ class ImplementationGuideParameter extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImplementationGuideParameter.fromJson(Map<String, dynamic> json) {
+  factory ImplementationGuideParameter.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImplementationGuideParameter(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2053,7 +2071,9 @@ class ImplementationGuideTemplate extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImplementationGuideTemplate.fromJson(Map<String, dynamic> json) {
+  factory ImplementationGuideTemplate.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImplementationGuideTemplate(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2243,7 +2263,9 @@ class ImplementationGuideManifest extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImplementationGuideManifest.fromJson(Map<String, dynamic> json) {
+  factory ImplementationGuideManifest.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImplementationGuideManifest(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2291,11 +2313,15 @@ class ImplementationGuideManifest extends BackboneElement {
               .toList()
           : null,
       image: parsePrimitiveList<FhirString>(
-          json['image'] as List<dynamic>?, json['_image'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['image'] as List<dynamic>?,
+        json['_image'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       other: parsePrimitiveList<FhirString>(
-          json['other'] as List<dynamic>?, json['_other'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['other'] as List<dynamic>?,
+        json['_other'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
     );
   }
 
@@ -2476,7 +2502,9 @@ class ImplementationGuideResource1 extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImplementationGuideResource1.fromJson(Map<String, dynamic> json) {
+  factory ImplementationGuideResource1.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImplementationGuideResource1(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2686,7 +2714,9 @@ class ImplementationGuidePage1 extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImplementationGuidePage1.fromJson(Map<String, dynamic> json) {
+  factory ImplementationGuidePage1.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImplementationGuidePage1(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2722,8 +2752,10 @@ class ImplementationGuidePage1 extends BackboneElement {
             })
           : null,
       anchor: parsePrimitiveList<FhirString>(
-          json['anchor'] as List<dynamic>?, json['_anchor'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['anchor'] as List<dynamic>?,
+        json['_anchor'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
     );
   }
 

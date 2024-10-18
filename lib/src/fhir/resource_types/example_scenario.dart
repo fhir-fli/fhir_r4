@@ -44,7 +44,9 @@ class ExampleScenario extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ExampleScenario.fromJson(Map<String, dynamic> json) {
+  factory ExampleScenario.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ExampleScenario(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -216,9 +218,10 @@ class ExampleScenario extends DomainResource {
               .toList()
           : null,
       workflow: parsePrimitiveList<FhirCanonical>(
-          json['workflow'] as List<dynamic>?,
-          json['_workflow'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['workflow'] as List<dynamic>?,
+        json['_workflow'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
     );
   }
 
@@ -602,7 +605,9 @@ class ExampleScenarioActor extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ExampleScenarioActor.fromJson(Map<String, dynamic> json) {
+  factory ExampleScenarioActor.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ExampleScenarioActor(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -808,7 +813,9 @@ class ExampleScenarioInstance extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ExampleScenarioInstance.fromJson(Map<String, dynamic> json) {
+  factory ExampleScenarioInstance.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ExampleScenarioInstance(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1054,7 +1061,9 @@ class ExampleScenarioVersion extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ExampleScenarioVersion.fromJson(Map<String, dynamic> json) {
+  factory ExampleScenarioVersion.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ExampleScenarioVersion(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1221,7 +1230,9 @@ class ExampleScenarioContainedInstance extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ExampleScenarioContainedInstance.fromJson(Map<String, dynamic> json) {
+  factory ExampleScenarioContainedInstance.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ExampleScenarioContainedInstance(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1395,7 +1406,9 @@ class ExampleScenarioProcess extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ExampleScenarioProcess.fromJson(Map<String, dynamic> json) {
+  factory ExampleScenarioProcess.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ExampleScenarioProcess(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1626,7 +1639,9 @@ class ExampleScenarioStep extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ExampleScenarioStep.fromJson(Map<String, dynamic> json) {
+  factory ExampleScenarioStep.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ExampleScenarioStep(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1840,7 +1855,9 @@ class ExampleScenarioOperation extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ExampleScenarioOperation.fromJson(Map<String, dynamic> json) {
+  factory ExampleScenarioOperation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ExampleScenarioOperation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2131,7 +2148,9 @@ class ExampleScenarioAlternative extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ExampleScenarioAlternative.fromJson(Map<String, dynamic> json) {
+  factory ExampleScenarioAlternative.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ExampleScenarioAlternative(
       id: json['id'] != null
           ? FhirString.fromJson(

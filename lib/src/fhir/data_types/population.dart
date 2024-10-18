@@ -25,7 +25,9 @@ class Population extends BackboneType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Population.fromJson(Map<String, dynamic> json) {
+  factory Population.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Population(
       id: json['id'] != null
           ? FhirString.fromJson(

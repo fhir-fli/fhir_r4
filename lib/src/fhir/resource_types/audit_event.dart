@@ -40,7 +40,9 @@ class AuditEvent extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AuditEvent.fromJson(Map<String, dynamic> json) {
+  factory AuditEvent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return AuditEvent(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -429,7 +431,9 @@ class AuditEventAgent extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AuditEventAgent.fromJson(Map<String, dynamic> json) {
+  factory AuditEventAgent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return AuditEventAgent(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -495,8 +499,10 @@ class AuditEventAgent extends BackboneElement {
             )
           : null,
       policy: parsePrimitiveList<FhirUri>(
-          json['policy'] as List<dynamic>?, json['_policy'] as List<dynamic>?,
-          fromJson: FhirUri.fromJson),
+        json['policy'] as List<dynamic>?,
+        json['_policy'] as List<dynamic>?,
+        fromJson: FhirUri.fromJson,
+      ),
       media: json['media'] != null
           ? Coding.fromJson(
               json['media'] as Map<String, dynamic>,
@@ -762,7 +768,9 @@ class AuditEventNetwork extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AuditEventNetwork.fromJson(Map<String, dynamic> json) {
+  factory AuditEventNetwork.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return AuditEventNetwork(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -934,7 +942,9 @@ class AuditEventSource extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AuditEventSource.fromJson(Map<String, dynamic> json) {
+  factory AuditEventSource.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return AuditEventSource(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1126,7 +1136,9 @@ class AuditEventEntity extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AuditEventEntity.fromJson(Map<String, dynamic> json) {
+  factory AuditEventEntity.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return AuditEventEntity(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1422,7 +1434,9 @@ class AuditEventDetail extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AuditEventDetail.fromJson(Map<String, dynamic> json) {
+  factory AuditEventDetail.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return AuditEventDetail(
       id: json['id'] != null
           ? FhirString.fromJson(

@@ -65,7 +65,9 @@ class Observation extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Observation.fromJson(Map<String, dynamic> json) {
+  factory Observation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Observation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -967,7 +969,9 @@ class ObservationReferenceRange extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ObservationReferenceRange.fromJson(Map<String, dynamic> json) {
+  factory ObservationReferenceRange.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ObservationReferenceRange(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1233,7 +1237,9 @@ class ObservationComponent extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ObservationComponent.fromJson(Map<String, dynamic> json) {
+  factory ObservationComponent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ObservationComponent(
       id: json['id'] != null
           ? FhirString.fromJson(

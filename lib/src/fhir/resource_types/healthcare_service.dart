@@ -51,7 +51,9 @@ class HealthcareService extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory HealthcareService.fromJson(Map<String, dynamic> json) {
+  factory HealthcareService.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return HealthcareService(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -731,7 +733,9 @@ class HealthcareServiceEligibility extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory HealthcareServiceEligibility.fromJson(Map<String, dynamic> json) {
+  factory HealthcareServiceEligibility.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return HealthcareServiceEligibility(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -902,7 +906,9 @@ class HealthcareServiceAvailableTime extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory HealthcareServiceAvailableTime.fromJson(Map<String, dynamic> json) {
+  factory HealthcareServiceAvailableTime.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return HealthcareServiceAvailableTime(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -928,9 +934,10 @@ class HealthcareServiceAvailableTime extends BackboneElement {
               .toList()
           : null,
       daysOfWeek: parsePrimitiveList<DaysOfWeek>(
-          json['daysOfWeek'] as List<dynamic>?,
-          json['_daysOfWeek'] as List<dynamic>?,
-          fromJson: DaysOfWeek.fromJson),
+        json['daysOfWeek'] as List<dynamic>?,
+        json['_daysOfWeek'] as List<dynamic>?,
+        fromJson: DaysOfWeek.fromJson,
+      ),
       allDay: json['allDay'] != null
           ? FhirBoolean.fromJson({
               'value': json['allDay'],
@@ -1116,7 +1123,9 @@ class HealthcareServiceNotAvailable extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory HealthcareServiceNotAvailable.fromJson(Map<String, dynamic> json) {
+  factory HealthcareServiceNotAvailable.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return HealthcareServiceNotAvailable(
       id: json['id'] != null
           ? FhirString.fromJson(

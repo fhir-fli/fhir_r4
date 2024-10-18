@@ -47,7 +47,9 @@ class Goal extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Goal.fromJson(Map<String, dynamic> json) {
+  factory Goal.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Goal(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -548,7 +550,9 @@ class GoalTarget extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory GoalTarget.fromJson(Map<String, dynamic> json) {
+  factory GoalTarget.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return GoalTarget(
       id: json['id'] != null
           ? FhirString.fromJson(

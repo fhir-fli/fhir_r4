@@ -51,7 +51,9 @@ class Appointment extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Appointment.fromJson(Map<String, dynamic> json) {
+  factory Appointment.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Appointment(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -705,7 +707,9 @@ class AppointmentParticipant extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AppointmentParticipant.fromJson(Map<String, dynamic> json) {
+  factory AppointmentParticipant.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return AppointmentParticipant(
       id: json['id'] != null
           ? FhirString.fromJson(

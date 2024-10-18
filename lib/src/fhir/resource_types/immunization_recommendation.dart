@@ -34,7 +34,9 @@ class ImmunizationRecommendation extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImmunizationRecommendation.fromJson(Map<String, dynamic> json) {
+  factory ImmunizationRecommendation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImmunizationRecommendation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -324,7 +326,8 @@ class ImmunizationRecommendationRecommendation extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImmunizationRecommendationRecommendation.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return ImmunizationRecommendationRecommendation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -742,7 +745,8 @@ class ImmunizationRecommendationDateCriterion extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ImmunizationRecommendationDateCriterion.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return ImmunizationRecommendationDateCriterion(
       id: json['id'] != null
           ? FhirString.fromJson(

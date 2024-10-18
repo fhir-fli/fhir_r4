@@ -43,7 +43,9 @@ class DetectedIssue extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DetectedIssue.fromJson(Map<String, dynamic> json) {
+  factory DetectedIssue.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DetectedIssue(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -479,7 +481,9 @@ class DetectedIssueEvidence extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DetectedIssueEvidence.fromJson(Map<String, dynamic> json) {
+  factory DetectedIssueEvidence.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DetectedIssueEvidence(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -656,7 +660,9 @@ class DetectedIssueMitigation extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DetectedIssueMitigation.fromJson(Map<String, dynamic> json) {
+  factory DetectedIssueMitigation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DetectedIssueMitigation(
       id: json['id'] != null
           ? FhirString.fromJson(

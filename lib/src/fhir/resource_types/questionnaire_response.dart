@@ -40,7 +40,9 @@ class QuestionnaireResponse extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory QuestionnaireResponse.fromJson(Map<String, dynamic> json) {
+  factory QuestionnaireResponse.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return QuestionnaireResponse(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -441,7 +443,9 @@ class QuestionnaireResponseItem extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory QuestionnaireResponseItem.fromJson(Map<String, dynamic> json) {
+  factory QuestionnaireResponseItem.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return QuestionnaireResponseItem(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -683,7 +687,9 @@ class QuestionnaireResponseAnswer extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory QuestionnaireResponseAnswer.fromJson(Map<String, dynamic> json) {
+  factory QuestionnaireResponseAnswer.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return QuestionnaireResponseAnswer(
       id: json['id'] != null
           ? FhirString.fromJson(

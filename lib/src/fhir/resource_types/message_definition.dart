@@ -54,7 +54,9 @@ class MessageDefinition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MessageDefinition.fromJson(Map<String, dynamic> json) {
+  factory MessageDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MessageDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -144,9 +146,10 @@ class MessageDefinition extends DomainResource {
             })
           : null,
       replaces: parsePrimitiveList<FhirCanonical>(
-          json['replaces'] as List<dynamic>?,
-          json['_replaces'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['replaces'] as List<dynamic>?,
+        json['_replaces'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       status: PublicationStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],
@@ -219,8 +222,10 @@ class MessageDefinition extends DomainResource {
             })
           : null,
       parent: parsePrimitiveList<FhirCanonical>(
-          json['parent'] as List<dynamic>?, json['_parent'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['parent'] as List<dynamic>?,
+        json['_parent'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       eventCoding: json['eventCoding'] != null
           ? Coding.fromJson(
               json['eventCoding'] as Map<String, dynamic>,
@@ -263,8 +268,10 @@ class MessageDefinition extends DomainResource {
               .toList()
           : null,
       graph: parsePrimitiveList<FhirCanonical>(
-          json['graph'] as List<dynamic>?, json['_graph'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['graph'] as List<dynamic>?,
+        json['_graph'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
     );
   }
 
@@ -757,7 +764,9 @@ class MessageDefinitionFocus extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MessageDefinitionFocus.fromJson(Map<String, dynamic> json) {
+  factory MessageDefinitionFocus.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MessageDefinitionFocus(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -969,7 +978,9 @@ class MessageDefinitionAllowedResponse extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MessageDefinitionAllowedResponse.fromJson(Map<String, dynamic> json) {
+  factory MessageDefinitionAllowedResponse.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MessageDefinitionAllowedResponse(
       id: json['id'] != null
           ? FhirString.fromJson(

@@ -21,7 +21,9 @@ class Range extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Range.fromJson(Map<String, dynamic> json) {
+  factory Range.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Range(
       id: json['id'] != null
           ? FhirString.fromJson(

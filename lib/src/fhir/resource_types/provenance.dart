@@ -48,7 +48,9 @@ class Provenance extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Provenance.fromJson(Map<String, dynamic> json) {
+  factory Provenance.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Provenance(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -127,8 +129,10 @@ class Provenance extends DomainResource {
         '_value': json['_recorded'],
       }),
       policy: parsePrimitiveList<FhirUri>(
-          json['policy'] as List<dynamic>?, json['_policy'] as List<dynamic>?,
-          fromJson: FhirUri.fromJson),
+        json['policy'] as List<dynamic>?,
+        json['_policy'] as List<dynamic>?,
+        fromJson: FhirUri.fromJson,
+      ),
       location: json['location'] != null
           ? Reference.fromJson(
               json['location'] as Map<String, dynamic>,
@@ -443,7 +447,9 @@ class ProvenanceAgent extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ProvenanceAgent.fromJson(Map<String, dynamic> json) {
+  factory ProvenanceAgent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ProvenanceAgent(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -638,7 +644,9 @@ class ProvenanceEntity extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ProvenanceEntity.fromJson(Map<String, dynamic> json) {
+  factory ProvenanceEntity.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ProvenanceEntity(
       id: json['id'] != null
           ? FhirString.fromJson(

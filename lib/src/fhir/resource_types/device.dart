@@ -55,7 +55,9 @@ class Device extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Device.fromJson(Map<String, dynamic> json) {
+  factory Device.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Device(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -755,7 +757,9 @@ class DeviceUdiCarrier extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceUdiCarrier.fromJson(Map<String, dynamic> json) {
+  factory DeviceUdiCarrier.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DeviceUdiCarrier(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1026,7 +1030,9 @@ class DeviceDeviceName extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceDeviceName.fromJson(Map<String, dynamic> json) {
+  factory DeviceDeviceName.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DeviceDeviceName(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1191,7 +1197,9 @@ class DeviceSpecialization extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceSpecialization.fromJson(Map<String, dynamic> json) {
+  factory DeviceSpecialization.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DeviceSpecialization(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1358,7 +1366,9 @@ class DeviceVersion extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceVersion.fromJson(Map<String, dynamic> json) {
+  factory DeviceVersion.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DeviceVersion(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1539,7 +1549,9 @@ class DeviceProperty extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceProperty.fromJson(Map<String, dynamic> json) {
+  factory DeviceProperty.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DeviceProperty(
       id: json['id'] != null
           ? FhirString.fromJson(

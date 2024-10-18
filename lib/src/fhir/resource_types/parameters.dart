@@ -26,7 +26,9 @@ class Parameters extends Resource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Parameters.fromJson(Map<String, dynamic> json) {
+  factory Parameters.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Parameters(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -229,7 +231,9 @@ class ParametersParameter extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ParametersParameter.fromJson(Map<String, dynamic> json) {
+  factory ParametersParameter.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ParametersParameter(
       id: json['id'] != null
           ? FhirString.fromJson(

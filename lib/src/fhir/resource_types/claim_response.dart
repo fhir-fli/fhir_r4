@@ -54,7 +54,9 @@ class ClaimResponse extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClaimResponse.fromJson(Map<String, dynamic> json) {
+  factory ClaimResponse.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClaimResponse(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -687,7 +689,9 @@ class ClaimResponseItem extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClaimResponseItem.fromJson(Map<String, dynamic> json) {
+  factory ClaimResponseItem.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClaimResponseItem(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -717,9 +721,10 @@ class ClaimResponseItem extends BackboneElement {
         '_value': json['_itemSequence'],
       }),
       noteNumber: parsePrimitiveList<FhirPositiveInt>(
-          json['noteNumber'] as List<dynamic>?,
-          json['_noteNumber'] as List<dynamic>?,
-          fromJson: FhirPositiveInt.fromJson),
+        json['noteNumber'] as List<dynamic>?,
+        json['_noteNumber'] as List<dynamic>?,
+        fromJson: FhirPositiveInt.fromJson,
+      ),
       adjudication: ensureNonNullList((json['adjudication'] as List<dynamic>)
           .map<ClaimResponseAdjudication>(
             (v) => ClaimResponseAdjudication.fromJson(
@@ -896,7 +901,9 @@ class ClaimResponseAdjudication extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClaimResponseAdjudication.fromJson(Map<String, dynamic> json) {
+  factory ClaimResponseAdjudication.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClaimResponseAdjudication(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1100,7 +1107,9 @@ class ClaimResponseDetail extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClaimResponseDetail.fromJson(Map<String, dynamic> json) {
+  factory ClaimResponseDetail.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClaimResponseDetail(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1130,9 +1139,10 @@ class ClaimResponseDetail extends BackboneElement {
         '_value': json['_detailSequence'],
       }),
       noteNumber: parsePrimitiveList<FhirPositiveInt>(
-          json['noteNumber'] as List<dynamic>?,
-          json['_noteNumber'] as List<dynamic>?,
-          fromJson: FhirPositiveInt.fromJson),
+        json['noteNumber'] as List<dynamic>?,
+        json['_noteNumber'] as List<dynamic>?,
+        fromJson: FhirPositiveInt.fromJson,
+      ),
       subDetail: json['subDetail'] != null
           ? (json['subDetail'] as List<dynamic>)
               .map<ClaimResponseSubDetail>(
@@ -1288,7 +1298,9 @@ class ClaimResponseSubDetail extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClaimResponseSubDetail.fromJson(Map<String, dynamic> json) {
+  factory ClaimResponseSubDetail.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClaimResponseSubDetail(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1318,9 +1330,10 @@ class ClaimResponseSubDetail extends BackboneElement {
         '_value': json['_subDetailSequence'],
       }),
       noteNumber: parsePrimitiveList<FhirPositiveInt>(
-          json['noteNumber'] as List<dynamic>?,
-          json['_noteNumber'] as List<dynamic>?,
-          fromJson: FhirPositiveInt.fromJson),
+        json['noteNumber'] as List<dynamic>?,
+        json['_noteNumber'] as List<dynamic>?,
+        fromJson: FhirPositiveInt.fromJson,
+      ),
     );
   }
 
@@ -1476,7 +1489,9 @@ class ClaimResponseAddItem extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClaimResponseAddItem.fromJson(Map<String, dynamic> json) {
+  factory ClaimResponseAddItem.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClaimResponseAddItem(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1502,17 +1517,20 @@ class ClaimResponseAddItem extends BackboneElement {
               .toList()
           : null,
       itemSequence: parsePrimitiveList<FhirPositiveInt>(
-          json['itemSequence'] as List<dynamic>?,
-          json['_itemSequence'] as List<dynamic>?,
-          fromJson: FhirPositiveInt.fromJson),
+        json['itemSequence'] as List<dynamic>?,
+        json['_itemSequence'] as List<dynamic>?,
+        fromJson: FhirPositiveInt.fromJson,
+      ),
       detailSequence: parsePrimitiveList<FhirPositiveInt>(
-          json['detailSequence'] as List<dynamic>?,
-          json['_detailSequence'] as List<dynamic>?,
-          fromJson: FhirPositiveInt.fromJson),
+        json['detailSequence'] as List<dynamic>?,
+        json['_detailSequence'] as List<dynamic>?,
+        fromJson: FhirPositiveInt.fromJson,
+      ),
       subdetailSequence: parsePrimitiveList<FhirPositiveInt>(
-          json['subdetailSequence'] as List<dynamic>?,
-          json['_subdetailSequence'] as List<dynamic>?,
-          fromJson: FhirPositiveInt.fromJson),
+        json['subdetailSequence'] as List<dynamic>?,
+        json['_subdetailSequence'] as List<dynamic>?,
+        fromJson: FhirPositiveInt.fromJson,
+      ),
       provider: json['provider'] != null
           ? (json['provider'] as List<dynamic>)
               .map<Reference>(
@@ -1605,9 +1623,10 @@ class ClaimResponseAddItem extends BackboneElement {
               .toList()
           : null,
       noteNumber: parsePrimitiveList<FhirPositiveInt>(
-          json['noteNumber'] as List<dynamic>?,
-          json['_noteNumber'] as List<dynamic>?,
-          fromJson: FhirPositiveInt.fromJson),
+        json['noteNumber'] as List<dynamic>?,
+        json['_noteNumber'] as List<dynamic>?,
+        fromJson: FhirPositiveInt.fromJson,
+      ),
       detail: json['detail'] != null
           ? (json['detail'] as List<dynamic>)
               .map<ClaimResponseDetail>(
@@ -1972,7 +1991,9 @@ class ClaimResponseDetail1 extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClaimResponseDetail1.fromJson(Map<String, dynamic> json) {
+  factory ClaimResponseDetail1.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClaimResponseDetail1(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2031,9 +2052,10 @@ class ClaimResponseDetail1 extends BackboneElement {
             )
           : null,
       noteNumber: parsePrimitiveList<FhirPositiveInt>(
-          json['noteNumber'] as List<dynamic>?,
-          json['_noteNumber'] as List<dynamic>?,
-          fromJson: FhirPositiveInt.fromJson),
+        json['noteNumber'] as List<dynamic>?,
+        json['_noteNumber'] as List<dynamic>?,
+        fromJson: FhirPositiveInt.fromJson,
+      ),
       subDetail: json['subDetail'] != null
           ? (json['subDetail'] as List<dynamic>)
               .map<ClaimResponseSubDetail>(
@@ -2253,7 +2275,9 @@ class ClaimResponseSubDetail1 extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClaimResponseSubDetail1.fromJson(Map<String, dynamic> json) {
+  factory ClaimResponseSubDetail1.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClaimResponseSubDetail1(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2312,9 +2336,10 @@ class ClaimResponseSubDetail1 extends BackboneElement {
             )
           : null,
       noteNumber: parsePrimitiveList<FhirPositiveInt>(
-          json['noteNumber'] as List<dynamic>?,
-          json['_noteNumber'] as List<dynamic>?,
-          fromJson: FhirPositiveInt.fromJson),
+        json['noteNumber'] as List<dynamic>?,
+        json['_noteNumber'] as List<dynamic>?,
+        fromJson: FhirPositiveInt.fromJson,
+      ),
     );
   }
 
@@ -2510,7 +2535,9 @@ class ClaimResponseTotal extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClaimResponseTotal.fromJson(Map<String, dynamic> json) {
+  factory ClaimResponseTotal.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClaimResponseTotal(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2673,7 +2700,9 @@ class ClaimResponsePayment extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClaimResponsePayment.fromJson(Map<String, dynamic> json) {
+  factory ClaimResponsePayment.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClaimResponsePayment(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2900,7 +2929,9 @@ class ClaimResponseProcessNote extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClaimResponseProcessNote.fromJson(Map<String, dynamic> json) {
+  factory ClaimResponseProcessNote.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClaimResponseProcessNote(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3105,7 +3136,9 @@ class ClaimResponseInsurance extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClaimResponseInsurance.fromJson(Map<String, dynamic> json) {
+  factory ClaimResponseInsurance.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClaimResponseInsurance(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3326,7 +3359,9 @@ class ClaimResponseError extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClaimResponseError.fromJson(Map<String, dynamic> json) {
+  factory ClaimResponseError.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClaimResponseError(
       id: json['id'] != null
           ? FhirString.fromJson(

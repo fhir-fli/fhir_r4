@@ -51,7 +51,9 @@ class Composition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Composition.fromJson(Map<String, dynamic> json) {
+  factory Composition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Composition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -513,7 +515,9 @@ class CompositionAttester extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CompositionAttester.fromJson(Map<String, dynamic> json) {
+  factory CompositionAttester.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CompositionAttester(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -696,7 +700,9 @@ class CompositionRelatesTo extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CompositionRelatesTo.fromJson(Map<String, dynamic> json) {
+  factory CompositionRelatesTo.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CompositionRelatesTo(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -875,7 +881,9 @@ class CompositionEvent extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CompositionEvent.fromJson(Map<String, dynamic> json) {
+  factory CompositionEvent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CompositionEvent(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1077,7 +1085,9 @@ class CompositionSection extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CompositionSection.fromJson(Map<String, dynamic> json) {
+  factory CompositionSection.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CompositionSection(
       id: json['id'] != null
           ? FhirString.fromJson(

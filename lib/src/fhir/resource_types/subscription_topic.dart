@@ -50,7 +50,9 @@ class SubscriptionTopic extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubscriptionTopic.fromJson(Map<String, dynamic> json) {
+  factory SubscriptionTopic.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SubscriptionTopic(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -132,9 +134,10 @@ class SubscriptionTopic extends DomainResource {
             })
           : null,
       derivedFrom: parsePrimitiveList<FhirCanonical>(
-          json['derivedFrom'] as List<dynamic>?,
-          json['_derivedFrom'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['derivedFrom'] as List<dynamic>?,
+        json['_derivedFrom'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       status: PublicationStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],
@@ -712,7 +715,9 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubscriptionTopicResourceTrigger.fromJson(Map<String, dynamic> json) {
+  factory SubscriptionTopicResourceTrigger.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SubscriptionTopicResourceTrigger(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -748,9 +753,10 @@ class SubscriptionTopicResourceTrigger extends BackboneElement {
         '_value': json['_resource'],
       }),
       supportedInteraction: parsePrimitiveList<InteractionTrigger>(
-          json['supportedInteraction'] as List<dynamic>?,
-          json['_supportedInteraction'] as List<dynamic>?,
-          fromJson: InteractionTrigger.fromJson),
+        json['supportedInteraction'] as List<dynamic>?,
+        json['_supportedInteraction'] as List<dynamic>?,
+        fromJson: InteractionTrigger.fromJson,
+      ),
       queryCriteria: json['queryCriteria'] != null
           ? SubscriptionTopicQueryCriteria.fromJson(
               json['queryCriteria'] as Map<String, dynamic>,
@@ -945,7 +951,9 @@ class SubscriptionTopicQueryCriteria extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubscriptionTopicQueryCriteria.fromJson(Map<String, dynamic> json) {
+  factory SubscriptionTopicQueryCriteria.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SubscriptionTopicQueryCriteria(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1179,7 +1187,9 @@ class SubscriptionTopicEventTrigger extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubscriptionTopicEventTrigger.fromJson(Map<String, dynamic> json) {
+  factory SubscriptionTopicEventTrigger.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SubscriptionTopicEventTrigger(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1372,7 +1382,9 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubscriptionTopicCanFilterBy.fromJson(Map<String, dynamic> json) {
+  factory SubscriptionTopicCanFilterBy.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SubscriptionTopicCanFilterBy(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1420,9 +1432,10 @@ class SubscriptionTopicCanFilterBy extends BackboneElement {
             })
           : null,
       modifier: parsePrimitiveList<SubscriptionSearchModifier>(
-          json['modifier'] as List<dynamic>?,
-          json['_modifier'] as List<dynamic>?,
-          fromJson: SubscriptionSearchModifier.fromJson),
+        json['modifier'] as List<dynamic>?,
+        json['_modifier'] as List<dynamic>?,
+        fromJson: SubscriptionSearchModifier.fromJson,
+      ),
     );
   }
 
@@ -1608,7 +1621,8 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubscriptionTopicNotificationShape.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return SubscriptionTopicNotificationShape(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1638,12 +1652,15 @@ class SubscriptionTopicNotificationShape extends BackboneElement {
         '_value': json['_resource'],
       }),
       include: parsePrimitiveList<FhirString>(
-          json['include'] as List<dynamic>?, json['_include'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['include'] as List<dynamic>?,
+        json['_include'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       revInclude: parsePrimitiveList<FhirString>(
-          json['revInclude'] as List<dynamic>?,
-          json['_revInclude'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['revInclude'] as List<dynamic>?,
+        json['_revInclude'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
     );
   }
 

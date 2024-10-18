@@ -27,7 +27,9 @@ class FhirMeta extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory FhirMeta.fromJson(Map<String, dynamic> json) {
+  factory FhirMeta.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return FhirMeta(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -62,8 +64,10 @@ class FhirMeta extends DataType {
             })
           : null,
       profile: parsePrimitiveList<FhirCanonical>(
-          json['profile'] as List<dynamic>?, json['_profile'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['profile'] as List<dynamic>?,
+        json['_profile'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       security: json['security'] != null
           ? (json['security'] as List<dynamic>)
               .map<Coding>(

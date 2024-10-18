@@ -54,7 +54,9 @@ class SearchParameter extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SearchParameter.fromJson(Map<String, dynamic> json) {
+  factory SearchParameter.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SearchParameter(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -194,8 +196,10 @@ class SearchParameter extends DomainResource {
         '_value': json['_code'],
       }),
       base: ensureNonNullList(parsePrimitiveList<FhirCode>(
-          json['base'] as List<dynamic>?, json['_base'] as List<dynamic>?,
-          fromJson: FhirCode.fromJson)),
+        json['base'] as List<dynamic>?,
+        json['_base'] as List<dynamic>?,
+        fromJson: FhirCode.fromJson,
+      )),
       type: SearchParamType.fromJson({
         'value': json['type'],
         '_value': json['_type'],
@@ -219,8 +223,10 @@ class SearchParameter extends DomainResource {
             })
           : null,
       target: parsePrimitiveList<FhirCode>(
-          json['target'] as List<dynamic>?, json['_target'] as List<dynamic>?,
-          fromJson: FhirCode.fromJson),
+        json['target'] as List<dynamic>?,
+        json['_target'] as List<dynamic>?,
+        fromJson: FhirCode.fromJson,
+      ),
       multipleOr: json['multipleOr'] != null
           ? FhirBoolean.fromJson({
               'value': json['multipleOr'],
@@ -234,16 +240,20 @@ class SearchParameter extends DomainResource {
             })
           : null,
       comparator: parsePrimitiveList<SearchComparator>(
-          json['comparator'] as List<dynamic>?,
-          json['_comparator'] as List<dynamic>?,
-          fromJson: SearchComparator.fromJson),
+        json['comparator'] as List<dynamic>?,
+        json['_comparator'] as List<dynamic>?,
+        fromJson: SearchComparator.fromJson,
+      ),
       modifier: parsePrimitiveList<SearchModifierCode>(
-          json['modifier'] as List<dynamic>?,
-          json['_modifier'] as List<dynamic>?,
-          fromJson: SearchModifierCode.fromJson),
+        json['modifier'] as List<dynamic>?,
+        json['_modifier'] as List<dynamic>?,
+        fromJson: SearchModifierCode.fromJson,
+      ),
       chain: parsePrimitiveList<FhirString>(
-          json['chain'] as List<dynamic>?, json['_chain'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['chain'] as List<dynamic>?,
+        json['_chain'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       component: json['component'] != null
           ? (json['component'] as List<dynamic>)
               .map<SearchParameterComponent>(
@@ -756,7 +766,9 @@ class SearchParameterComponent extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SearchParameterComponent.fromJson(Map<String, dynamic> json) {
+  factory SearchParameterComponent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SearchParameterComponent(
       id: json['id'] != null
           ? FhirString.fromJson(

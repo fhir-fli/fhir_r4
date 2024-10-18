@@ -41,7 +41,9 @@ class ObservationDefinition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ObservationDefinition.fromJson(Map<String, dynamic> json) {
+  factory ObservationDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ObservationDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -119,9 +121,10 @@ class ObservationDefinition extends DomainResource {
               .toList()
           : null,
       permittedDataType: parsePrimitiveList<ObservationDataType>(
-          json['permittedDataType'] as List<dynamic>?,
-          json['_permittedDataType'] as List<dynamic>?,
-          fromJson: ObservationDataType.fromJson),
+        json['permittedDataType'] as List<dynamic>?,
+        json['_permittedDataType'] as List<dynamic>?,
+        fromJson: ObservationDataType.fromJson,
+      ),
       multipleResultsAllowed: json['multipleResultsAllowed'] != null
           ? FhirBoolean.fromJson({
               'value': json['multipleResultsAllowed'],
@@ -470,7 +473,8 @@ class ObservationDefinitionQuantitativeDetails extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationDefinitionQuantitativeDetails.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return ObservationDefinitionQuantitativeDetails(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -689,7 +693,8 @@ class ObservationDefinitionQualifiedInterval extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ObservationDefinitionQualifiedInterval.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return ObservationDefinitionQualifiedInterval(
       id: json['id'] != null
           ? FhirString.fromJson(

@@ -41,7 +41,9 @@ class RelatedPerson extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RelatedPerson.fromJson(Map<String, dynamic> json) {
+  factory RelatedPerson.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return RelatedPerson(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -461,7 +463,9 @@ class RelatedPersonCommunication extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RelatedPersonCommunication.fromJson(Map<String, dynamic> json) {
+  factory RelatedPersonCommunication.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return RelatedPersonCommunication(
       id: json['id'] != null
           ? FhirString.fromJson(

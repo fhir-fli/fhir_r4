@@ -47,7 +47,9 @@ class RequestGroup extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RequestGroup.fromJson(Map<String, dynamic> json) {
+  factory RequestGroup.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return RequestGroup(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -113,13 +115,15 @@ class RequestGroup extends DomainResource {
               .toList()
           : null,
       instantiatesCanonical: parsePrimitiveList<FhirCanonical>(
-          json['instantiatesCanonical'] as List<dynamic>?,
-          json['_instantiatesCanonical'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['instantiatesCanonical'] as List<dynamic>?,
+        json['_instantiatesCanonical'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       instantiatesUri: parsePrimitiveList<FhirUri>(
-          json['instantiatesUri'] as List<dynamic>?,
-          json['_instantiatesUri'] as List<dynamic>?,
-          fromJson: FhirUri.fromJson),
+        json['instantiatesUri'] as List<dynamic>?,
+        json['_instantiatesUri'] as List<dynamic>?,
+        fromJson: FhirUri.fromJson,
+      ),
       basedOn: json['basedOn'] != null
           ? (json['basedOn'] as List<dynamic>)
               .map<Reference>(
@@ -590,7 +594,9 @@ class RequestGroupAction extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RequestGroupAction.fromJson(Map<String, dynamic> json) {
+  factory RequestGroupAction.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return RequestGroupAction(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1151,7 +1157,9 @@ class RequestGroupCondition extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RequestGroupCondition.fromJson(Map<String, dynamic> json) {
+  factory RequestGroupCondition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return RequestGroupCondition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1316,7 +1324,9 @@ class RequestGroupRelatedAction extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RequestGroupRelatedAction.fromJson(Map<String, dynamic> json) {
+  factory RequestGroupRelatedAction.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return RequestGroupRelatedAction(
       id: json['id'] != null
           ? FhirString.fromJson(

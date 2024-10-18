@@ -33,7 +33,9 @@ class ProdCharacteristic extends BackboneType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ProdCharacteristic.fromJson(Map<String, dynamic> json) {
+  factory ProdCharacteristic.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ProdCharacteristic(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -95,11 +97,15 @@ class ProdCharacteristic extends BackboneType {
             })
           : null,
       color: parsePrimitiveList<FhirString>(
-          json['color'] as List<dynamic>?, json['_color'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['color'] as List<dynamic>?,
+        json['_color'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       imprint: parsePrimitiveList<FhirString>(
-          json['imprint'] as List<dynamic>?, json['_imprint'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['imprint'] as List<dynamic>?,
+        json['_imprint'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       image: json['image'] != null
           ? (json['image'] as List<dynamic>)
               .map<Attachment>(

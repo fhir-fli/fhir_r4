@@ -22,7 +22,9 @@ class Narrative extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Narrative.fromJson(Map<String, dynamic> json) {
+  factory Narrative.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Narrative(
       id: json['id'] != null
           ? FhirString.fromJson(

@@ -35,7 +35,9 @@ class EnrollmentRequest extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EnrollmentRequest.fromJson(Map<String, dynamic> json) {
+  factory EnrollmentRequest.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return EnrollmentRequest(
       id: json['id'] != null
           ? FhirString.fromJson(

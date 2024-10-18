@@ -35,7 +35,9 @@ class Dosage extends BackboneType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Dosage.fromJson(Map<String, dynamic> json) {
+  factory Dosage.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Dosage(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -421,7 +423,9 @@ class DosageDoseAndRate extends Element {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DosageDoseAndRate.fromJson(Map<String, dynamic> json) {
+  factory DosageDoseAndRate.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DosageDoseAndRate(
       id: json['id'] != null
           ? FhirString.fromJson(

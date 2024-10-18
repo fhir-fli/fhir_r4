@@ -31,7 +31,9 @@ class Linkage extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Linkage.fromJson(Map<String, dynamic> json) {
+  factory Linkage.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Linkage(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -287,7 +289,9 @@ class LinkageItem extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory LinkageItem.fromJson(Map<String, dynamic> json) {
+  factory LinkageItem.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return LinkageItem(
       id: json['id'] != null
           ? FhirString.fromJson(

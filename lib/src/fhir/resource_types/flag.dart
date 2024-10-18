@@ -36,7 +36,9 @@ class Flag extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Flag.fromJson(Map<String, dynamic> json) {
+  factory Flag.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Flag(
       id: json['id'] != null
           ? FhirString.fromJson(

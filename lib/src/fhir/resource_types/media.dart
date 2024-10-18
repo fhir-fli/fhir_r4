@@ -51,7 +51,9 @@ class Media extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Media.fromJson(Map<String, dynamic> json) {
+  factory Media.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Media(
       id: json['id'] != null
           ? FhirString.fromJson(

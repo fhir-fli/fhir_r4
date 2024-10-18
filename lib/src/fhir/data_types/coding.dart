@@ -24,7 +24,9 @@ class Coding extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Coding.fromJson(Map<String, dynamic> json) {
+  factory Coding.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Coding(
       id: json['id'] != null
           ? FhirString.fromJson(

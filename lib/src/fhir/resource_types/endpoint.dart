@@ -41,7 +41,9 @@ class FhirEndpoint extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory FhirEndpoint.fromJson(Map<String, dynamic> json) {
+  factory FhirEndpoint.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return FhirEndpoint(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -146,16 +148,19 @@ class FhirEndpoint extends DomainResource {
           )
           .toList()),
       payloadMimeType: parsePrimitiveList<FhirCode>(
-          json['payloadMimeType'] as List<dynamic>?,
-          json['_payloadMimeType'] as List<dynamic>?,
-          fromJson: FhirCode.fromJson),
+        json['payloadMimeType'] as List<dynamic>?,
+        json['_payloadMimeType'] as List<dynamic>?,
+        fromJson: FhirCode.fromJson,
+      ),
       address: FhirUrl.fromJson({
         'value': json['address'],
         '_value': json['_address'],
       }),
       header: parsePrimitiveList<FhirString>(
-          json['header'] as List<dynamic>?, json['_header'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['header'] as List<dynamic>?,
+        json['_header'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
     );
   }
 

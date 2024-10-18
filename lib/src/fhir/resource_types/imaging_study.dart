@@ -52,7 +52,9 @@ class ImagingStudy extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImagingStudy.fromJson(Map<String, dynamic> json) {
+  factory ImagingStudy.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImagingStudy(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -635,7 +637,9 @@ class ImagingStudySeries extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImagingStudySeries.fromJson(Map<String, dynamic> json) {
+  factory ImagingStudySeries.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImagingStudySeries(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -995,7 +999,9 @@ class ImagingStudyPerformer extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImagingStudyPerformer.fromJson(Map<String, dynamic> json) {
+  factory ImagingStudyPerformer.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImagingStudyPerformer(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1158,7 +1164,9 @@ class ImagingStudyInstance extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ImagingStudyInstance.fromJson(Map<String, dynamic> json) {
+  factory ImagingStudyInstance.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ImagingStudyInstance(
       id: json['id'] != null
           ? FhirString.fromJson(

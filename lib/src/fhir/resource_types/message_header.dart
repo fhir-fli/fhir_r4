@@ -43,7 +43,9 @@ class MessageHeader extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MessageHeader.fromJson(Map<String, dynamic> json) {
+  factory MessageHeader.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MessageHeader(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -456,7 +458,9 @@ class MessageHeaderDestination extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MessageHeaderDestination.fromJson(Map<String, dynamic> json) {
+  factory MessageHeaderDestination.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MessageHeaderDestination(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -662,7 +666,9 @@ class MessageHeaderSource extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MessageHeaderSource.fromJson(Map<String, dynamic> json) {
+  factory MessageHeaderSource.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MessageHeaderSource(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -891,7 +897,9 @@ class MessageHeaderResponse extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MessageHeaderResponse.fromJson(Map<String, dynamic> json) {
+  factory MessageHeaderResponse.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MessageHeaderResponse(
       id: json['id'] != null
           ? FhirString.fromJson(

@@ -48,7 +48,9 @@ class DocumentReference extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DocumentReference.fromJson(Map<String, dynamic> json) {
+  factory DocumentReference.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DocumentReference(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -535,7 +537,9 @@ class DocumentReferenceRelatesTo extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DocumentReferenceRelatesTo.fromJson(Map<String, dynamic> json) {
+  factory DocumentReferenceRelatesTo.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DocumentReferenceRelatesTo(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -693,7 +697,9 @@ class DocumentReferenceContent extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DocumentReferenceContent.fromJson(Map<String, dynamic> json) {
+  factory DocumentReferenceContent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DocumentReferenceContent(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -861,7 +867,9 @@ class DocumentReferenceContext extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DocumentReferenceContext.fromJson(Map<String, dynamic> json) {
+  factory DocumentReferenceContext.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DocumentReferenceContext(
       id: json['id'] != null
           ? FhirString.fromJson(

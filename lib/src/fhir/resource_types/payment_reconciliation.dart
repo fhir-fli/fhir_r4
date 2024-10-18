@@ -43,7 +43,9 @@ class PaymentReconciliation extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PaymentReconciliation.fromJson(Map<String, dynamic> json) {
+  factory PaymentReconciliation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PaymentReconciliation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -495,7 +497,9 @@ class PaymentReconciliationDetail extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PaymentReconciliationDetail.fromJson(Map<String, dynamic> json) {
+  factory PaymentReconciliationDetail.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PaymentReconciliationDetail(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -786,7 +790,9 @@ class PaymentReconciliationProcessNote extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PaymentReconciliationProcessNote.fromJson(Map<String, dynamic> json) {
+  factory PaymentReconciliationProcessNote.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PaymentReconciliationProcessNote(
       id: json['id'] != null
           ? FhirString.fromJson(

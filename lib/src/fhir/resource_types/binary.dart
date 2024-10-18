@@ -28,7 +28,9 @@ class Binary extends Resource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Binary.fromJson(Map<String, dynamic> json) {
+  factory Binary.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Binary(
       id: json['id'] != null
           ? FhirString.fromJson(

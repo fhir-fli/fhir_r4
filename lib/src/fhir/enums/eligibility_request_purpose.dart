@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names, lines_longer_than_80_chars, unused_element, flutter_style_todos
+
 import 'package:fhir_r4/fhir_r4.dart';
 
 /// A code specifying the types of information being requested.
@@ -17,25 +19,33 @@ enum EligibilityRequestPurpose {
   /// Display: Coverage Validation
   /// Definition: A check that the specified coverages are in-force is requested.
   validation('validation'),
-  elementOnly('', null),
-  ;
 
-  final String fhirCode;
-  final Element? element;
+  /// For instances where an Element is present but not value
+
+  elementOnly(''),
+  ;
 
   const EligibilityRequestPurpose(this.fhirCode, [this.element]);
 
+  /// The String value of this enum
+  final String fhirCode;
+
+  /// The Element value of this enum
+  final Element? element;
+
+  /// Serializes the instance to JSON with standardized keys
   Map<String, dynamic> toJson() => {
         'value': fhirCode.isEmpty ? null : fhirCode,
         if (element != null) '_value': element!.toJson(),
       };
 
-  static EligibilityRequestPurpose fromJson(Map<String, dynamic> json) {
-    final String? value = json['value'] as String?;
-    final Map<String, dynamic>? elementJson =
-        json['_value'] as Map<String, dynamic>?;
-    final Element? element =
-        elementJson != null ? Element.fromJson(elementJson) : null;
+  /// Converts a list of JSON values to a list of [EligibilityRequestPurpose] instances.
+  static EligibilityRequestPurpose fromJson(
+    Map<String, dynamic> json,
+  ) {
+    final value = json['value'] as String?;
+    final elementJson = json['_value'] as Map<String, dynamic>?;
+    final element = elementJson != null ? Element.fromJson(elementJson) : null;
     if (value == null && element != null) {
       return EligibilityRequestPurpose.elementOnly.withElement(element);
     }
@@ -44,6 +54,7 @@ enum EligibilityRequestPurpose {
     );
   }
 
+  /// Returns the enum value with an element
   EligibilityRequestPurpose withElement(Element? newElement) {
     return EligibilityRequestPurpose.fromJson({
       'value': fhirCode,

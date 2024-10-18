@@ -28,7 +28,9 @@ class TriggerDefinition extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TriggerDefinition.fromJson(Map<String, dynamic> json) {
+  factory TriggerDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TriggerDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(

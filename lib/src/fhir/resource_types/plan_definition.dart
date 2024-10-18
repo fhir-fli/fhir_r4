@@ -64,7 +64,9 @@ class PlanDefinition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PlanDefinition.fromJson(Map<String, dynamic> json) {
+  factory PlanDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PlanDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -325,8 +327,10 @@ class PlanDefinition extends DomainResource {
               .toList()
           : null,
       library_: parsePrimitiveList<FhirCanonical>(
-          json['library'] as List<dynamic>?, json['_library'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['library'] as List<dynamic>?,
+        json['_library'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       goal: json['goal'] != null
           ? (json['goal'] as List<dynamic>)
               .map<PlanDefinitionGoal>(
@@ -966,7 +970,9 @@ class PlanDefinitionGoal extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PlanDefinitionGoal.fromJson(Map<String, dynamic> json) {
+  factory PlanDefinitionGoal.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PlanDefinitionGoal(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1222,7 +1228,9 @@ class PlanDefinitionTarget extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PlanDefinitionTarget.fromJson(Map<String, dynamic> json) {
+  factory PlanDefinitionTarget.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PlanDefinitionTarget(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1489,7 +1497,9 @@ class PlanDefinitionAction extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PlanDefinitionAction.fromJson(Map<String, dynamic> json) {
+  factory PlanDefinitionAction.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PlanDefinitionAction(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1572,8 +1582,10 @@ class PlanDefinitionAction extends BackboneElement {
               .toList()
           : null,
       goalId: parsePrimitiveList<FhirId>(
-          json['goalId'] as List<dynamic>?, json['_goalId'] as List<dynamic>?,
-          fromJson: FhirId.fromJson),
+        json['goalId'] as List<dynamic>?,
+        json['_goalId'] as List<dynamic>?,
+        fromJson: FhirId.fromJson,
+      ),
       subjectCodeableConcept: json['subjectCodeableConcept'] != null
           ? CodeableConcept.fromJson(
               json['subjectCodeableConcept'] as Map<String, dynamic>,
@@ -2292,7 +2304,9 @@ class PlanDefinitionCondition extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PlanDefinitionCondition.fromJson(Map<String, dynamic> json) {
+  factory PlanDefinitionCondition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PlanDefinitionCondition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2457,7 +2471,9 @@ class PlanDefinitionRelatedAction extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PlanDefinitionRelatedAction.fromJson(Map<String, dynamic> json) {
+  factory PlanDefinitionRelatedAction.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PlanDefinitionRelatedAction(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2651,7 +2667,9 @@ class PlanDefinitionParticipant extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PlanDefinitionParticipant.fromJson(Map<String, dynamic> json) {
+  factory PlanDefinitionParticipant.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PlanDefinitionParticipant(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2817,7 +2835,9 @@ class PlanDefinitionDynamicValue extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PlanDefinitionDynamicValue.fromJson(Map<String, dynamic> json) {
+  factory PlanDefinitionDynamicValue.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PlanDefinitionDynamicValue(
       id: json['id'] != null
           ? FhirString.fromJson(

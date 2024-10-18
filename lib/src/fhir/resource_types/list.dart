@@ -40,7 +40,9 @@ class FhirList extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory FhirList.fromJson(Map<String, dynamic> json) {
+  factory FhirList.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return FhirList(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -459,7 +461,9 @@ class ListEntry extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ListEntry.fromJson(Map<String, dynamic> json) {
+  factory ListEntry.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ListEntry(
       id: json['id'] != null
           ? FhirString.fromJson(

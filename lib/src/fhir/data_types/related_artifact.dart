@@ -27,7 +27,9 @@ class RelatedArtifact extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory RelatedArtifact.fromJson(Map<String, dynamic> json) {
+  factory RelatedArtifact.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return RelatedArtifact(
       id: json['id'] != null
           ? FhirString.fromJson(

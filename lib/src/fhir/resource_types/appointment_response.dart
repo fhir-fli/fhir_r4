@@ -36,7 +36,9 @@ class AppointmentResponse extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AppointmentResponse.fromJson(Map<String, dynamic> json) {
+  factory AppointmentResponse.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return AppointmentResponse(
       id: json['id'] != null
           ? FhirString.fromJson(

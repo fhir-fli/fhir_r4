@@ -22,7 +22,9 @@ class Ratio extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Ratio.fromJson(Map<String, dynamic> json) {
+  factory Ratio.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Ratio(
       id: json['id'] != null
           ? FhirString.fromJson(

@@ -40,7 +40,9 @@ class SupplyDelivery extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SupplyDelivery.fromJson(Map<String, dynamic> json) {
+  factory SupplyDelivery.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SupplyDelivery(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -464,7 +466,9 @@ class SupplyDeliverySuppliedItem extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SupplyDeliverySuppliedItem.fromJson(Map<String, dynamic> json) {
+  factory SupplyDeliverySuppliedItem.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SupplyDeliverySuppliedItem(
       id: json['id'] != null
           ? FhirString.fromJson(

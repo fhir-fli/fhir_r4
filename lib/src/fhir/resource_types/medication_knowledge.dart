@@ -49,7 +49,9 @@ class MedicationKnowledge extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MedicationKnowledge.fromJson(Map<String, dynamic> json) {
+  factory MedicationKnowledge.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MedicationKnowledge(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -132,8 +134,10 @@ class MedicationKnowledge extends DomainResource {
             )
           : null,
       synonym: parsePrimitiveList<FhirString>(
-          json['synonym'] as List<dynamic>?, json['_synonym'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['synonym'] as List<dynamic>?,
+        json['_synonym'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       relatedMedicationKnowledge: json['relatedMedicationKnowledge'] != null
           ? (json['relatedMedicationKnowledge'] as List<dynamic>)
               .map<MedicationKnowledgeRelatedMedicationKnowledge>(
@@ -683,7 +687,8 @@ class MedicationKnowledgeRelatedMedicationKnowledge extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationKnowledgeRelatedMedicationKnowledge.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return MedicationKnowledgeRelatedMedicationKnowledge(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -847,7 +852,9 @@ class MedicationKnowledgeMonograph extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MedicationKnowledgeMonograph.fromJson(Map<String, dynamic> json) {
+  factory MedicationKnowledgeMonograph.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MedicationKnowledgeMonograph(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1014,7 +1021,9 @@ class MedicationKnowledgeIngredient extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MedicationKnowledgeIngredient.fromJson(Map<String, dynamic> json) {
+  factory MedicationKnowledgeIngredient.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MedicationKnowledgeIngredient(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1219,7 +1228,9 @@ class MedicationKnowledgeCost extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MedicationKnowledgeCost.fromJson(Map<String, dynamic> json) {
+  factory MedicationKnowledgeCost.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MedicationKnowledgeCost(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1397,7 +1408,8 @@ class MedicationKnowledgeMonitoringProgram extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationKnowledgeMonitoringProgram.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return MedicationKnowledgeMonitoringProgram(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1570,7 +1582,8 @@ class MedicationKnowledgeAdministrationGuidelines extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationKnowledgeAdministrationGuidelines.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return MedicationKnowledgeAdministrationGuidelines(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1781,7 +1794,9 @@ class MedicationKnowledgeDosage extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MedicationKnowledgeDosage.fromJson(Map<String, dynamic> json) {
+  factory MedicationKnowledgeDosage.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MedicationKnowledgeDosage(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1945,7 +1960,8 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationKnowledgePatientCharacteristics.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return MedicationKnowledgePatientCharacteristics(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1982,8 +1998,10 @@ class MedicationKnowledgePatientCharacteristics extends BackboneElement {
             )
           : null,
       value: parsePrimitiveList<FhirString>(
-          json['value'] as List<dynamic>?, json['_value'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['value'] as List<dynamic>?,
+        json['_value'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
     );
   }
 
@@ -2137,7 +2155,8 @@ class MedicationKnowledgeMedicineClassification extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationKnowledgeMedicineClassification.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return MedicationKnowledgeMedicineClassification(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2306,7 +2325,9 @@ class MedicationKnowledgePackaging extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MedicationKnowledgePackaging.fromJson(Map<String, dynamic> json) {
+  factory MedicationKnowledgePackaging.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MedicationKnowledgePackaging(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2476,7 +2497,8 @@ class MedicationKnowledgeDrugCharacteristic extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory MedicationKnowledgeDrugCharacteristic.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return MedicationKnowledgeDrugCharacteristic(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2699,7 +2721,9 @@ class MedicationKnowledgeRegulatory extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MedicationKnowledgeRegulatory.fromJson(Map<String, dynamic> json) {
+  factory MedicationKnowledgeRegulatory.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MedicationKnowledgeRegulatory(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2900,7 +2924,9 @@ class MedicationKnowledgeSubstitution extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MedicationKnowledgeSubstitution.fromJson(Map<String, dynamic> json) {
+  factory MedicationKnowledgeSubstitution.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MedicationKnowledgeSubstitution(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3062,7 +3088,9 @@ class MedicationKnowledgeSchedule extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MedicationKnowledgeSchedule.fromJson(Map<String, dynamic> json) {
+  factory MedicationKnowledgeSchedule.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MedicationKnowledgeSchedule(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3208,7 +3236,9 @@ class MedicationKnowledgeMaxDispense extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MedicationKnowledgeMaxDispense.fromJson(Map<String, dynamic> json) {
+  factory MedicationKnowledgeMaxDispense.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MedicationKnowledgeMaxDispense(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3371,7 +3401,9 @@ class MedicationKnowledgeKinetics extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MedicationKnowledgeKinetics.fromJson(Map<String, dynamic> json) {
+  factory MedicationKnowledgeKinetics.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MedicationKnowledgeKinetics(
       id: json['id'] != null
           ? FhirString.fromJson(

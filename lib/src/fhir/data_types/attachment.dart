@@ -27,7 +27,9 @@ class Attachment extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Attachment.fromJson(Map<String, dynamic> json) {
+  factory Attachment.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Attachment(
       id: json['id'] != null
           ? FhirString.fromJson(

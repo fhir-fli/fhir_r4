@@ -24,7 +24,9 @@ class Distance extends Quantity {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Distance.fromJson(Map<String, dynamic> json) {
+  factory Distance.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Distance(
       id: json['id'] != null
           ? FhirString.fromJson(

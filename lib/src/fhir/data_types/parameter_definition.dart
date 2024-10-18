@@ -29,7 +29,9 @@ class ParameterDefinition extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ParameterDefinition.fromJson(Map<String, dynamic> json) {
+  factory ParameterDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ParameterDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(

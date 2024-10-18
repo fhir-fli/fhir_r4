@@ -47,7 +47,9 @@ class SubstanceDefinition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceDefinition.fromJson(Map<String, dynamic> json) {
+  factory SubstanceDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SubstanceDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -612,7 +614,9 @@ class SubstanceDefinitionMoiety extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceDefinitionMoiety.fromJson(Map<String, dynamic> json) {
+  factory SubstanceDefinitionMoiety.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SubstanceDefinitionMoiety(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -904,7 +908,9 @@ class SubstanceDefinitionProperty extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceDefinitionProperty.fromJson(Map<String, dynamic> json) {
+  factory SubstanceDefinitionProperty.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SubstanceDefinitionProperty(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1137,7 +1143,8 @@ class SubstanceDefinitionMolecularWeight extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionMolecularWeight.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return SubstanceDefinitionMolecularWeight(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1323,7 +1330,9 @@ class SubstanceDefinitionStructure extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceDefinitionStructure.fromJson(Map<String, dynamic> json) {
+  factory SubstanceDefinitionStructure.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SubstanceDefinitionStructure(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1607,7 +1616,8 @@ class SubstanceDefinitionRepresentation extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionRepresentation.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return SubstanceDefinitionRepresentation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1815,7 +1825,9 @@ class SubstanceDefinitionCode extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceDefinitionCode.fromJson(Map<String, dynamic> json) {
+  factory SubstanceDefinitionCode.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SubstanceDefinitionCode(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2047,7 +2059,9 @@ class SubstanceDefinitionName extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceDefinitionName.fromJson(Map<String, dynamic> json) {
+  factory SubstanceDefinitionName.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SubstanceDefinitionName(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2383,7 +2397,9 @@ class SubstanceDefinitionOfficial extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceDefinitionOfficial.fromJson(Map<String, dynamic> json) {
+  factory SubstanceDefinitionOfficial.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SubstanceDefinitionOfficial(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2577,7 +2593,9 @@ class SubstanceDefinitionRelationship extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceDefinitionRelationship.fromJson(Map<String, dynamic> json) {
+  factory SubstanceDefinitionRelationship.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SubstanceDefinitionRelationship(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2894,7 +2912,8 @@ class SubstanceDefinitionSourceMaterial extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory SubstanceDefinitionSourceMaterial.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return SubstanceDefinitionSourceMaterial(
       id: json['id'] != null
           ? FhirString.fromJson(

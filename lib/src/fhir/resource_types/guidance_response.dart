@@ -46,7 +46,9 @@ class GuidanceResponse extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory GuidanceResponse.fromJson(Map<String, dynamic> json) {
+  factory GuidanceResponse.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return GuidanceResponse(
       id: json['id'] != null
           ? FhirString.fromJson(

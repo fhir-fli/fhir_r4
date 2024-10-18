@@ -36,7 +36,9 @@ class ResearchSubject extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ResearchSubject.fromJson(Map<String, dynamic> json) {
+  factory ResearchSubject.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ResearchSubject(
       id: json['id'] != null
           ? FhirString.fromJson(

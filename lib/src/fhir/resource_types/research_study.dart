@@ -57,7 +57,9 @@ class ResearchStudy extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ResearchStudy.fromJson(Map<String, dynamic> json) {
+  factory ResearchStudy.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ResearchStudy(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -715,7 +717,9 @@ class ResearchStudyArm extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ResearchStudyArm.fromJson(Map<String, dynamic> json) {
+  factory ResearchStudyArm.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ResearchStudyArm(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -903,7 +907,9 @@ class ResearchStudyObjective extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ResearchStudyObjective.fromJson(Map<String, dynamic> json) {
+  factory ResearchStudyObjective.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ResearchStudyObjective(
       id: json['id'] != null
           ? FhirString.fromJson(

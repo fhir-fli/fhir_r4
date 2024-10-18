@@ -39,7 +39,9 @@ class AdministrableProductDefinition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AdministrableProductDefinition.fromJson(Map<String, dynamic> json) {
+  factory AdministrableProductDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return AdministrableProductDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -452,7 +454,8 @@ class AdministrableProductDefinitionProperty extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdministrableProductDefinitionProperty.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return AdministrableProductDefinitionProperty(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -708,7 +711,8 @@ class AdministrableProductDefinitionRouteOfAdministration
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdministrableProductDefinitionRouteOfAdministration.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return AdministrableProductDefinitionRouteOfAdministration(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -957,7 +961,8 @@ class AdministrableProductDefinitionTargetSpecies extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdministrableProductDefinitionTargetSpecies.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return AdministrableProductDefinitionTargetSpecies(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1129,7 +1134,8 @@ class AdministrableProductDefinitionWithdrawalPeriod extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory AdministrableProductDefinitionWithdrawalPeriod.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return AdministrableProductDefinitionWithdrawalPeriod(
       id: json['id'] != null
           ? FhirString.fromJson(

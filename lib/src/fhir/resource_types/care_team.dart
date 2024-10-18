@@ -41,7 +41,9 @@ class CareTeam extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CareTeam.fromJson(Map<String, dynamic> json) {
+  factory CareTeam.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CareTeam(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -488,7 +490,9 @@ class CareTeamParticipant extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CareTeamParticipant.fromJson(Map<String, dynamic> json) {
+  factory CareTeamParticipant.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CareTeamParticipant(
       id: json['id'] != null
           ? FhirString.fromJson(

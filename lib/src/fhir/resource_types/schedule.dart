@@ -36,7 +36,9 @@ class Schedule extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Schedule.fromJson(Map<String, dynamic> json) {
+  factory Schedule.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Schedule(
       id: json['id'] != null
           ? FhirString.fromJson(

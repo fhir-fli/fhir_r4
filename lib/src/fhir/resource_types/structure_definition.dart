@@ -55,7 +55,9 @@ class StructureDefinition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureDefinition.fromJson(Map<String, dynamic> json) {
+  factory StructureDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return StructureDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -770,7 +772,9 @@ class StructureDefinitionMapping extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureDefinitionMapping.fromJson(Map<String, dynamic> json) {
+  factory StructureDefinitionMapping.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return StructureDefinitionMapping(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -985,7 +989,9 @@ class StructureDefinitionContext extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureDefinitionContext.fromJson(Map<String, dynamic> json) {
+  factory StructureDefinitionContext.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return StructureDefinitionContext(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1019,9 +1025,10 @@ class StructureDefinitionContext extends BackboneElement {
         '_value': json['_expression'],
       }),
       contextInvariant: parsePrimitiveList<FhirString>(
-          json['contextInvariant'] as List<dynamic>?,
-          json['_contextInvariant'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['contextInvariant'] as List<dynamic>?,
+        json['_contextInvariant'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
     );
   }
 
@@ -1168,7 +1175,9 @@ class StructureDefinitionSnapshot extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureDefinitionSnapshot.fromJson(Map<String, dynamic> json) {
+  factory StructureDefinitionSnapshot.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return StructureDefinitionSnapshot(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1317,7 +1326,9 @@ class StructureDefinitionDifferential extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory StructureDefinitionDifferential.fromJson(Map<String, dynamic> json) {
+  factory StructureDefinitionDifferential.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return StructureDefinitionDifferential(
       id: json['id'] != null
           ? FhirString.fromJson(

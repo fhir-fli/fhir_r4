@@ -43,7 +43,9 @@ class DeviceUseStatement extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceUseStatement.fromJson(Map<String, dynamic> json) {
+  factory DeviceUseStatement.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DeviceUseStatement(
       id: json['id'] != null
           ? FhirString.fromJson(

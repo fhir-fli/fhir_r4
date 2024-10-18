@@ -28,7 +28,9 @@ class Timing extends BackboneType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Timing.fromJson(Map<String, dynamic> json) {
+  factory Timing.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Timing(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -54,8 +56,10 @@ class Timing extends BackboneType {
               .toList()
           : null,
       event: parsePrimitiveList<FhirDateTime>(
-          json['event'] as List<dynamic>?, json['_event'] as List<dynamic>?,
-          fromJson: FhirDateTime.fromJson),
+        json['event'] as List<dynamic>?,
+        json['_event'] as List<dynamic>?,
+        fromJson: FhirDateTime.fromJson,
+      ),
       repeat: json['repeat'] != null
           ? TimingRepeat.fromJson(
               json['repeat'] as Map<String, dynamic>,
@@ -228,7 +232,9 @@ class TimingRepeat extends Element {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory TimingRepeat.fromJson(Map<String, dynamic> json) {
+  factory TimingRepeat.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return TimingRepeat(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -320,16 +326,20 @@ class TimingRepeat extends Element {
             })
           : null,
       dayOfWeek: parsePrimitiveList<DaysOfWeek>(
-          json['dayOfWeek'] as List<dynamic>?,
-          json['_dayOfWeek'] as List<dynamic>?,
-          fromJson: DaysOfWeek.fromJson),
+        json['dayOfWeek'] as List<dynamic>?,
+        json['_dayOfWeek'] as List<dynamic>?,
+        fromJson: DaysOfWeek.fromJson,
+      ),
       timeOfDay: parsePrimitiveList<FhirTime>(
-          json['timeOfDay'] as List<dynamic>?,
-          json['_timeOfDay'] as List<dynamic>?,
-          fromJson: FhirTime.fromJson),
+        json['timeOfDay'] as List<dynamic>?,
+        json['_timeOfDay'] as List<dynamic>?,
+        fromJson: FhirTime.fromJson,
+      ),
       when: parsePrimitiveList<EventTiming>(
-          json['when'] as List<dynamic>?, json['_when'] as List<dynamic>?,
-          fromJson: EventTiming.fromJson),
+        json['when'] as List<dynamic>?,
+        json['_when'] as List<dynamic>?,
+        fromJson: EventTiming.fromJson,
+      ),
       offset: json['offset'] != null
           ? FhirUnsignedInt.fromJson({
               'value': json['offset'],

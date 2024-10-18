@@ -60,7 +60,9 @@ class Citation extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Citation.fromJson(Map<String, dynamic> json) {
+  factory Citation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Citation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -842,7 +844,9 @@ class CitationSummary extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationSummary.fromJson(Map<String, dynamic> json) {
+  factory CitationSummary.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationSummary(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1006,7 +1010,9 @@ class CitationClassification extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationClassification.fromJson(Map<String, dynamic> json) {
+  factory CitationClassification.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationClassification(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1175,7 +1181,9 @@ class CitationStatusDate extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationStatusDate.fromJson(Map<String, dynamic> json) {
+  factory CitationStatusDate.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationStatusDate(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1354,7 +1362,9 @@ class CitationRelatesTo extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationRelatesTo.fromJson(Map<String, dynamic> json) {
+  factory CitationRelatesTo.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationRelatesTo(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1596,7 +1606,9 @@ class CitationCitedArtifact extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationCitedArtifact.fromJson(Map<String, dynamic> json) {
+  factory CitationCitedArtifact.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationCitedArtifact(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2011,7 +2023,9 @@ class CitationVersion extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationVersion.fromJson(Map<String, dynamic> json) {
+  factory CitationVersion.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationVersion(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2176,7 +2190,9 @@ class CitationStatusDate1 extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationStatusDate1.fromJson(Map<String, dynamic> json) {
+  factory CitationStatusDate1.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationStatusDate1(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2353,7 +2369,9 @@ class CitationTitle extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationTitle.fromJson(Map<String, dynamic> json) {
+  factory CitationTitle.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationTitle(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2538,7 +2556,9 @@ class CitationAbstract extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationAbstract.fromJson(Map<String, dynamic> json) {
+  factory CitationAbstract.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationAbstract(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2738,7 +2758,9 @@ class CitationPart extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationPart.fromJson(Map<String, dynamic> json) {
+  factory CitationPart.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationPart(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2925,7 +2947,9 @@ class CitationRelatesTo1 extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationRelatesTo1.fromJson(Map<String, dynamic> json) {
+  factory CitationRelatesTo1.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationRelatesTo1(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3164,7 +3188,9 @@ class CitationPublicationForm extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationPublicationForm.fromJson(Map<String, dynamic> json) {
+  factory CitationPublicationForm.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationPublicationForm(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3512,7 +3538,9 @@ class CitationPublishedIn extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationPublishedIn.fromJson(Map<String, dynamic> json) {
+  factory CitationPublishedIn.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationPublishedIn(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3738,7 +3766,9 @@ class CitationPeriodicRelease extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationPeriodicRelease.fromJson(Map<String, dynamic> json) {
+  factory CitationPeriodicRelease.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationPeriodicRelease(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -3947,7 +3977,9 @@ class CitationDateOfPublication extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationDateOfPublication.fromJson(Map<String, dynamic> json) {
+  factory CitationDateOfPublication.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationDateOfPublication(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -4202,7 +4234,9 @@ class CitationWebLocation extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationWebLocation.fromJson(Map<String, dynamic> json) {
+  factory CitationWebLocation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationWebLocation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -4372,7 +4406,9 @@ class CitationClassification1 extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationClassification1.fromJson(Map<String, dynamic> json) {
+  factory CitationClassification1.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationClassification1(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -4558,7 +4594,9 @@ class CitationWhoClassified extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationWhoClassified.fromJson(Map<String, dynamic> json) {
+  factory CitationWhoClassified.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationWhoClassified(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -4780,7 +4818,9 @@ class CitationContributorship extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationContributorship.fromJson(Map<String, dynamic> json) {
+  factory CitationContributorship.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationContributorship(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -4983,7 +5023,9 @@ class CitationEntry extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationEntry.fromJson(Map<String, dynamic> json) {
+  factory CitationEntry.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationEntry(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -5346,7 +5388,9 @@ class CitationAffiliationInfo extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationAffiliationInfo.fromJson(Map<String, dynamic> json) {
+  factory CitationAffiliationInfo.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationAffiliationInfo(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -5539,7 +5583,9 @@ class CitationContributionInstance extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationContributionInstance.fromJson(Map<String, dynamic> json) {
+  factory CitationContributionInstance.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationContributionInstance(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -5707,7 +5753,9 @@ class CitationSummary1 extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CitationSummary1.fromJson(Map<String, dynamic> json) {
+  factory CitationSummary1.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CitationSummary1(
       id: json['id'] != null
           ? FhirString.fromJson(

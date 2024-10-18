@@ -52,7 +52,9 @@ class CommunicationRequest extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CommunicationRequest.fromJson(Map<String, dynamic> json) {
+  factory CommunicationRequest.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CommunicationRequest(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -675,7 +677,9 @@ class CommunicationRequestPayload extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CommunicationRequestPayload.fromJson(Map<String, dynamic> json) {
+  factory CommunicationRequestPayload.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CommunicationRequestPayload(
       id: json['id'] != null
           ? FhirString.fromJson(

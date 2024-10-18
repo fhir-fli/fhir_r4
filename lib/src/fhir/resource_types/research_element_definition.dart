@@ -62,7 +62,9 @@ class ResearchElementDefinition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ResearchElementDefinition.fromJson(Map<String, dynamic> json) {
+  factory ResearchElementDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ResearchElementDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -211,8 +213,10 @@ class ResearchElementDefinition extends DomainResource {
             })
           : null,
       comment: parsePrimitiveList<FhirString>(
-          json['comment'] as List<dynamic>?, json['_comment'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['comment'] as List<dynamic>?,
+        json['_comment'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       useContext: json['useContext'] != null
           ? (json['useContext'] as List<dynamic>)
               .map<UsageContext>(
@@ -321,8 +325,10 @@ class ResearchElementDefinition extends DomainResource {
               .toList()
           : null,
       library_: parsePrimitiveList<FhirCanonical>(
-          json['library'] as List<dynamic>?, json['_library'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['library'] as List<dynamic>?,
+        json['_library'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       type: ResearchElementType.fromJson({
         'value': json['type'],
         '_value': json['_type'],
@@ -975,7 +981,8 @@ class ResearchElementDefinitionCharacteristic extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ResearchElementDefinitionCharacteristic.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return ResearchElementDefinitionCharacteristic(
       id: json['id'] != null
           ? FhirString.fromJson(

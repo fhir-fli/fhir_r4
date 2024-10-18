@@ -40,7 +40,9 @@ class DocumentManifest extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DocumentManifest.fromJson(Map<String, dynamic> json) {
+  factory DocumentManifest.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DocumentManifest(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -461,7 +463,9 @@ class DocumentManifestRelated extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DocumentManifestRelated.fromJson(Map<String, dynamic> json) {
+  factory DocumentManifestRelated.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DocumentManifestRelated(
       id: json['id'] != null
           ? FhirString.fromJson(

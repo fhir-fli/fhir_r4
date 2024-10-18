@@ -44,7 +44,9 @@ class CoverageEligibilityResponse extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CoverageEligibilityResponse.fromJson(Map<String, dynamic> json) {
+  factory CoverageEligibilityResponse.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CoverageEligibilityResponse(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -114,8 +116,10 @@ class CoverageEligibilityResponse extends DomainResource {
         '_value': json['_status'],
       }),
       purpose: ensureNonNullList(parsePrimitiveList<EligibilityResponsePurpose>(
-          json['purpose'] as List<dynamic>?, json['_purpose'] as List<dynamic>?,
-          fromJson: EligibilityResponsePurpose.fromJson)),
+        json['purpose'] as List<dynamic>?,
+        json['_purpose'] as List<dynamic>?,
+        fromJson: EligibilityResponsePurpose.fromJson,
+      )),
       patient: Reference.fromJson(
         json['patient'] as Map<String, dynamic>,
       ),
@@ -504,7 +508,8 @@ class CoverageEligibilityResponseInsurance extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityResponseInsurance.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return CoverageEligibilityResponseInsurance(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -723,7 +728,9 @@ class CoverageEligibilityResponseItem extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CoverageEligibilityResponseItem.fromJson(Map<String, dynamic> json) {
+  factory CoverageEligibilityResponseItem.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CoverageEligibilityResponseItem(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1126,7 +1133,8 @@ class CoverageEligibilityResponseBenefit extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory CoverageEligibilityResponseBenefit.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return CoverageEligibilityResponseBenefit(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1381,7 +1389,9 @@ class CoverageEligibilityResponseError extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CoverageEligibilityResponseError.fromJson(Map<String, dynamic> json) {
+  factory CoverageEligibilityResponseError.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CoverageEligibilityResponseError(
       id: json['id'] != null
           ? FhirString.fromJson(

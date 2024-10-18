@@ -46,7 +46,9 @@ class Patient extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Patient.fromJson(Map<String, dynamic> json) {
+  factory Patient.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Patient(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -601,7 +603,9 @@ class PatientContact extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PatientContact.fromJson(Map<String, dynamic> json) {
+  factory PatientContact.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PatientContact(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -854,7 +858,9 @@ class PatientCommunication extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PatientCommunication.fromJson(Map<String, dynamic> json) {
+  factory PatientCommunication.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PatientCommunication(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1023,7 +1029,9 @@ class PatientLink extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory PatientLink.fromJson(Map<String, dynamic> json) {
+  factory PatientLink.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return PatientLink(
       id: json['id'] != null
           ? FhirString.fromJson(

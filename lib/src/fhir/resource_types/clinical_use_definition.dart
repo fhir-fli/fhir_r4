@@ -40,7 +40,9 @@ class ClinicalUseDefinition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClinicalUseDefinition.fromJson(Map<String, dynamic> json) {
+  factory ClinicalUseDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClinicalUseDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -429,7 +431,8 @@ class ClinicalUseDefinitionContraindication extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionContraindication.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return ClinicalUseDefinitionContraindication(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -657,7 +660,8 @@ class ClinicalUseDefinitionOtherTherapy extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionOtherTherapy.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return ClinicalUseDefinitionOtherTherapy(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -821,7 +825,9 @@ class ClinicalUseDefinitionIndication extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClinicalUseDefinitionIndication.fromJson(Map<String, dynamic> json) {
+  factory ClinicalUseDefinitionIndication.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClinicalUseDefinitionIndication(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1088,7 +1094,9 @@ class ClinicalUseDefinitionInteraction extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClinicalUseDefinitionInteraction.fromJson(Map<String, dynamic> json) {
+  factory ClinicalUseDefinitionInteraction.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClinicalUseDefinitionInteraction(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1310,7 +1318,9 @@ class ClinicalUseDefinitionInteractant extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClinicalUseDefinitionInteractant.fromJson(Map<String, dynamic> json) {
+  factory ClinicalUseDefinitionInteractant.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClinicalUseDefinitionInteractant(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1478,7 +1488,8 @@ class ClinicalUseDefinitionUndesirableEffect extends BackboneElement {
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
   factory ClinicalUseDefinitionUndesirableEffect.fromJson(
-      Map<String, dynamic> json) {
+    Map<String, dynamic> json,
+  ) {
     return ClinicalUseDefinitionUndesirableEffect(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1663,7 +1674,9 @@ class ClinicalUseDefinitionWarning extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ClinicalUseDefinitionWarning.fromJson(Map<String, dynamic> json) {
+  factory ClinicalUseDefinitionWarning.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ClinicalUseDefinitionWarning(
       id: json['id'] != null
           ? FhirString.fromJson(

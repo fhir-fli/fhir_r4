@@ -39,7 +39,9 @@ class Slot extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Slot.fromJson(Map<String, dynamic> json) {
+  factory Slot.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Slot(
       id: json['id'] != null
           ? FhirString.fromJson(

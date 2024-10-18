@@ -40,7 +40,9 @@ class Organization extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Organization.fromJson(Map<String, dynamic> json) {
+  factory Organization.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Organization(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -127,8 +129,10 @@ class Organization extends DomainResource {
             })
           : null,
       alias: parsePrimitiveList<FhirString>(
-          json['alias'] as List<dynamic>?, json['_alias'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['alias'] as List<dynamic>?,
+        json['_alias'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       telecom: json['telecom'] != null
           ? (json['telecom'] as List<dynamic>)
               .map<ContactPoint>(
@@ -430,7 +434,9 @@ class OrganizationContact extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory OrganizationContact.fromJson(Map<String, dynamic> json) {
+  factory OrganizationContact.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return OrganizationContact(
       id: json['id'] != null
           ? FhirString.fromJson(

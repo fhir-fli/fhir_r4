@@ -23,7 +23,9 @@ class Reference extends DataType {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Reference.fromJson(Map<String, dynamic> json) {
+  factory Reference.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Reference(
       id: json['id'] != null
           ? FhirString.fromJson(

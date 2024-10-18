@@ -52,7 +52,9 @@ class EvidenceVariable extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EvidenceVariable.fromJson(Map<String, dynamic> json) {
+  factory EvidenceVariable.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return EvidenceVariable(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -758,7 +760,9 @@ class EvidenceVariableCharacteristic extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EvidenceVariableCharacteristic.fromJson(Map<String, dynamic> json) {
+  factory EvidenceVariableCharacteristic.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return EvidenceVariableCharacteristic(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1079,7 +1083,9 @@ class EvidenceVariableTimeFromStart extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EvidenceVariableTimeFromStart.fromJson(Map<String, dynamic> json) {
+  factory EvidenceVariableTimeFromStart.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return EvidenceVariableTimeFromStart(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1287,7 +1293,9 @@ class EvidenceVariableCategory extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EvidenceVariableCategory.fromJson(Map<String, dynamic> json) {
+  factory EvidenceVariableCategory.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return EvidenceVariableCategory(
       id: json['id'] != null
           ? FhirString.fromJson(

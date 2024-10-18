@@ -48,7 +48,9 @@ class AllergyIntolerance extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AllergyIntolerance.fromJson(Map<String, dynamic> json) {
+  factory AllergyIntolerance.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return AllergyIntolerance(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -130,9 +132,10 @@ class AllergyIntolerance extends DomainResource {
             })
           : null,
       category: parsePrimitiveList<AllergyIntoleranceCategory>(
-          json['category'] as List<dynamic>?,
-          json['_category'] as List<dynamic>?,
-          fromJson: AllergyIntoleranceCategory.fromJson),
+        json['category'] as List<dynamic>?,
+        json['_category'] as List<dynamic>?,
+        fromJson: AllergyIntoleranceCategory.fromJson,
+      ),
       criticality: json['criticality'] != null
           ? AllergyIntoleranceCriticality.fromJson({
               'value': json['criticality'],
@@ -614,7 +617,9 @@ class AllergyIntoleranceReaction extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AllergyIntoleranceReaction.fromJson(Map<String, dynamic> json) {
+  factory AllergyIntoleranceReaction.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return AllergyIntoleranceReaction(
       id: json['id'] != null
           ? FhirString.fromJson(

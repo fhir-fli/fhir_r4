@@ -38,7 +38,9 @@ class DeviceMetric extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceMetric.fromJson(Map<String, dynamic> json) {
+  factory DeviceMetric.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DeviceMetric(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -418,7 +420,9 @@ class DeviceMetricCalibration extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory DeviceMetricCalibration.fromJson(Map<String, dynamic> json) {
+  factory DeviceMetricCalibration.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return DeviceMetricCalibration(
       id: json['id'] != null
           ? FhirString.fromJson(

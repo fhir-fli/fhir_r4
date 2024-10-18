@@ -50,7 +50,9 @@ class AdverseEvent extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AdverseEvent.fromJson(Map<String, dynamic> json) {
+  factory AdverseEvent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return AdverseEvent(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -608,7 +610,9 @@ class AdverseEventSuspectEntity extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AdverseEventSuspectEntity.fromJson(Map<String, dynamic> json) {
+  factory AdverseEventSuspectEntity.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return AdverseEventSuspectEntity(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -776,7 +780,9 @@ class AdverseEventCausality extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory AdverseEventCausality.fromJson(Map<String, dynamic> json) {
+  factory AdverseEventCausality.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return AdverseEventCausality(
       id: json['id'] != null
           ? FhirString.fromJson(

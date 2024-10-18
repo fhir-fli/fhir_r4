@@ -69,7 +69,9 @@ class Measure extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Measure.fromJson(Map<String, dynamic> json) {
+  factory Measure.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Measure(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -319,8 +321,10 @@ class Measure extends DomainResource {
               .toList()
           : null,
       library_: parsePrimitiveList<FhirCanonical>(
-          json['library'] as List<dynamic>?, json['_library'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['library'] as List<dynamic>?,
+        json['_library'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       disclaimer: json['disclaimer'] != null
           ? FhirMarkdown.fromJson({
               'value': json['disclaimer'],
@@ -377,9 +381,10 @@ class Measure extends DomainResource {
             )
           : null,
       definition: parsePrimitiveList<FhirMarkdown>(
-          json['definition'] as List<dynamic>?,
-          json['_definition'] as List<dynamic>?,
-          fromJson: FhirMarkdown.fromJson),
+        json['definition'] as List<dynamic>?,
+        json['_definition'] as List<dynamic>?,
+        fromJson: FhirMarkdown.fromJson,
+      ),
       guidance: json['guidance'] != null
           ? FhirMarkdown.fromJson({
               'value': json['guidance'],
@@ -1132,7 +1137,9 @@ class MeasureGroup extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MeasureGroup.fromJson(Map<String, dynamic> json) {
+  factory MeasureGroup.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MeasureGroup(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1343,7 +1350,9 @@ class MeasurePopulation extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MeasurePopulation.fromJson(Map<String, dynamic> json) {
+  factory MeasurePopulation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MeasurePopulation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1527,7 +1536,9 @@ class MeasureStratifier extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MeasureStratifier.fromJson(Map<String, dynamic> json) {
+  factory MeasureStratifier.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MeasureStratifier(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1739,7 +1750,9 @@ class MeasureComponent extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MeasureComponent.fromJson(Map<String, dynamic> json) {
+  factory MeasureComponent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MeasureComponent(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1928,7 +1941,9 @@ class MeasureSupplementalData extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MeasureSupplementalData.fromJson(Map<String, dynamic> json) {
+  factory MeasureSupplementalData.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MeasureSupplementalData(
       id: json['id'] != null
           ? FhirString.fromJson(

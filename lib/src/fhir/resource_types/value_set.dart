@@ -48,7 +48,9 @@ class ValueSet extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ValueSet.fromJson(Map<String, dynamic> json) {
+  factory ValueSet.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ValueSet(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -629,7 +631,9 @@ class ValueSetCompose extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ValueSetCompose.fromJson(Map<String, dynamic> json) {
+  factory ValueSetCompose.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ValueSetCompose(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -828,7 +832,9 @@ class ValueSetInclude extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ValueSetInclude.fromJson(Map<String, dynamic> json) {
+  factory ValueSetInclude.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ValueSetInclude(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -884,9 +890,10 @@ class ValueSetInclude extends BackboneElement {
               .toList()
           : null,
       valueSet: parsePrimitiveList<FhirCanonical>(
-          json['valueSet'] as List<dynamic>?,
-          json['_valueSet'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['valueSet'] as List<dynamic>?,
+        json['_valueSet'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
     );
   }
 
@@ -1066,7 +1073,9 @@ class ValueSetConcept extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ValueSetConcept.fromJson(Map<String, dynamic> json) {
+  factory ValueSetConcept.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ValueSetConcept(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1261,7 +1270,9 @@ class ValueSetDesignation extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ValueSetDesignation.fromJson(Map<String, dynamic> json) {
+  factory ValueSetDesignation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ValueSetDesignation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1446,7 +1457,9 @@ class ValueSetFilter extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ValueSetFilter.fromJson(Map<String, dynamic> json) {
+  factory ValueSetFilter.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ValueSetFilter(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1635,7 +1648,9 @@ class ValueSetExpansion extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ValueSetExpansion.fromJson(Map<String, dynamic> json) {
+  factory ValueSetExpansion.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ValueSetExpansion(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1901,7 +1916,9 @@ class ValueSetParameter extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ValueSetParameter.fromJson(Map<String, dynamic> json) {
+  factory ValueSetParameter.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ValueSetParameter(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -2196,7 +2213,9 @@ class ValueSetContains extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ValueSetContains.fromJson(Map<String, dynamic> json) {
+  factory ValueSetContains.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ValueSetContains(
       id: json['id'] != null
           ? FhirString.fromJson(

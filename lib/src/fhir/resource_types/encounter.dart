@@ -52,7 +52,9 @@ class Encounter extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Encounter.fromJson(Map<String, dynamic> json) {
+  factory Encounter.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Encounter(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -674,7 +676,9 @@ class EncounterStatusHistory extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EncounterStatusHistory.fromJson(Map<String, dynamic> json) {
+  factory EncounterStatusHistory.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return EncounterStatusHistory(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -838,7 +842,9 @@ class EncounterClassHistory extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EncounterClassHistory.fromJson(Map<String, dynamic> json) {
+  factory EncounterClassHistory.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return EncounterClassHistory(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -995,7 +1001,9 @@ class EncounterParticipant extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EncounterParticipant.fromJson(Map<String, dynamic> json) {
+  factory EncounterParticipant.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return EncounterParticipant(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1181,7 +1189,9 @@ class EncounterDiagnosis extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EncounterDiagnosis.fromJson(Map<String, dynamic> json) {
+  factory EncounterDiagnosis.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return EncounterDiagnosis(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1371,7 +1381,9 @@ class EncounterHospitalization extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EncounterHospitalization.fromJson(Map<String, dynamic> json) {
+  factory EncounterHospitalization.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return EncounterHospitalization(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1658,7 +1670,9 @@ class EncounterLocation extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory EncounterLocation.fromJson(Map<String, dynamic> json) {
+  factory EncounterLocation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return EncounterLocation(
       id: json['id'] != null
           ? FhirString.fromJson(

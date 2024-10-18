@@ -43,7 +43,9 @@ class Consent extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Consent.fromJson(Map<String, dynamic> json) {
+  factory Consent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Consent(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -476,7 +478,9 @@ class ConsentPolicy extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConsentPolicy.fromJson(Map<String, dynamic> json) {
+  factory ConsentPolicy.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ConsentPolicy(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -670,7 +674,9 @@ class ConsentVerification extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConsentVerification.fromJson(Map<String, dynamic> json) {
+  factory ConsentVerification.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ConsentVerification(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -866,7 +872,9 @@ class ConsentProvision extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConsentProvision.fromJson(Map<String, dynamic> json) {
+  factory ConsentProvision.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ConsentProvision(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1206,7 +1214,9 @@ class ConsentActor extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConsentActor.fromJson(Map<String, dynamic> json) {
+  factory ConsentActor.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ConsentActor(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1365,7 +1375,9 @@ class ConsentData extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory ConsentData.fromJson(Map<String, dynamic> json) {
+  factory ConsentData.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return ConsentData(
       id: json['id'] != null
           ? FhirString.fromJson(

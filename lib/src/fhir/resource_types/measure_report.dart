@@ -40,7 +40,9 @@ class MeasureReport extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MeasureReport.fromJson(Map<String, dynamic> json) {
+  factory MeasureReport.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MeasureReport(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -429,7 +431,9 @@ class MeasureReportGroup extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MeasureReportGroup.fromJson(Map<String, dynamic> json) {
+  factory MeasureReportGroup.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MeasureReportGroup(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -637,7 +641,9 @@ class MeasureReportPopulation extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MeasureReportPopulation.fromJson(Map<String, dynamic> json) {
+  factory MeasureReportPopulation.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MeasureReportPopulation(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -823,7 +829,9 @@ class MeasureReportStratifier extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MeasureReportStratifier.fromJson(Map<String, dynamic> json) {
+  factory MeasureReportStratifier.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MeasureReportStratifier(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1001,7 +1009,9 @@ class MeasureReportStratum extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MeasureReportStratum.fromJson(Map<String, dynamic> json) {
+  factory MeasureReportStratum.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MeasureReportStratum(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1208,7 +1218,9 @@ class MeasureReportComponent extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MeasureReportComponent.fromJson(Map<String, dynamic> json) {
+  factory MeasureReportComponent.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MeasureReportComponent(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1366,7 +1378,9 @@ class MeasureReportPopulation1 extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MeasureReportPopulation1.fromJson(Map<String, dynamic> json) {
+  factory MeasureReportPopulation1.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MeasureReportPopulation1(
       id: json['id'] != null
           ? FhirString.fromJson(

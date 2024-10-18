@@ -42,7 +42,9 @@ class CompartmentDefinition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CompartmentDefinition.fromJson(Map<String, dynamic> json) {
+  factory CompartmentDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CompartmentDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -521,7 +523,9 @@ class CompartmentDefinitionResource extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory CompartmentDefinitionResource.fromJson(Map<String, dynamic> json) {
+  factory CompartmentDefinitionResource.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return CompartmentDefinitionResource(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -551,8 +555,10 @@ class CompartmentDefinitionResource extends BackboneElement {
         '_value': json['_code'],
       }),
       param: parsePrimitiveList<FhirString>(
-          json['param'] as List<dynamic>?, json['_param'] as List<dynamic>?,
-          fromJson: FhirString.fromJson),
+        json['param'] as List<dynamic>?,
+        json['_param'] as List<dynamic>?,
+        fromJson: FhirString.fromJson,
+      ),
       documentation: json['documentation'] != null
           ? FhirString.fromJson({
               'value': json['documentation'],

@@ -45,7 +45,9 @@ class GraphDefinition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory GraphDefinition.fromJson(Map<String, dynamic> json) {
+  factory GraphDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return GraphDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -557,7 +559,9 @@ class GraphDefinitionLink extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory GraphDefinitionLink.fromJson(Map<String, dynamic> json) {
+  factory GraphDefinitionLink.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return GraphDefinitionLink(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -815,7 +819,9 @@ class GraphDefinitionTarget extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory GraphDefinitionTarget.fromJson(Map<String, dynamic> json) {
+  factory GraphDefinitionTarget.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return GraphDefinitionTarget(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1046,7 +1052,9 @@ class GraphDefinitionCompartment extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory GraphDefinitionCompartment.fromJson(Map<String, dynamic> json) {
+  factory GraphDefinitionCompartment.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return GraphDefinitionCompartment(
       id: json['id'] != null
           ? FhirString.fromJson(

@@ -45,7 +45,9 @@ class NutritionOrder extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory NutritionOrder.fromJson(Map<String, dynamic> json) {
+  factory NutritionOrder.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return NutritionOrder(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -111,17 +113,20 @@ class NutritionOrder extends DomainResource {
               .toList()
           : null,
       instantiatesCanonical: parsePrimitiveList<FhirCanonical>(
-          json['instantiatesCanonical'] as List<dynamic>?,
-          json['_instantiatesCanonical'] as List<dynamic>?,
-          fromJson: FhirCanonical.fromJson),
+        json['instantiatesCanonical'] as List<dynamic>?,
+        json['_instantiatesCanonical'] as List<dynamic>?,
+        fromJson: FhirCanonical.fromJson,
+      ),
       instantiatesUri: parsePrimitiveList<FhirUri>(
-          json['instantiatesUri'] as List<dynamic>?,
-          json['_instantiatesUri'] as List<dynamic>?,
-          fromJson: FhirUri.fromJson),
+        json['instantiatesUri'] as List<dynamic>?,
+        json['_instantiatesUri'] as List<dynamic>?,
+        fromJson: FhirUri.fromJson,
+      ),
       instantiates: parsePrimitiveList<FhirUri>(
-          json['instantiates'] as List<dynamic>?,
-          json['_instantiates'] as List<dynamic>?,
-          fromJson: FhirUri.fromJson),
+        json['instantiates'] as List<dynamic>?,
+        json['_instantiates'] as List<dynamic>?,
+        fromJson: FhirUri.fromJson,
+      ),
       status: RequestStatus.fromJson({
         'value': json['status'],
         '_value': json['_status'],
@@ -561,7 +566,9 @@ class NutritionOrderOralDiet extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory NutritionOrderOralDiet.fromJson(Map<String, dynamic> json) {
+  factory NutritionOrderOralDiet.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return NutritionOrderOralDiet(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -819,7 +826,9 @@ class NutritionOrderNutrient extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory NutritionOrderNutrient.fromJson(Map<String, dynamic> json) {
+  factory NutritionOrderNutrient.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return NutritionOrderNutrient(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -984,7 +993,9 @@ class NutritionOrderTexture extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory NutritionOrderTexture.fromJson(Map<String, dynamic> json) {
+  factory NutritionOrderTexture.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return NutritionOrderTexture(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1154,7 +1165,9 @@ class NutritionOrderSupplement extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory NutritionOrderSupplement.fromJson(Map<String, dynamic> json) {
+  factory NutritionOrderSupplement.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return NutritionOrderSupplement(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1389,7 +1402,9 @@ class NutritionOrderEnteralFormula extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory NutritionOrderEnteralFormula.fromJson(Map<String, dynamic> json) {
+  factory NutritionOrderEnteralFormula.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return NutritionOrderEnteralFormula(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1681,7 +1696,9 @@ class NutritionOrderAdministration extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory NutritionOrderAdministration.fromJson(Map<String, dynamic> json) {
+  factory NutritionOrderAdministration.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return NutritionOrderAdministration(
       id: json['id'] != null
           ? FhirString.fromJson(

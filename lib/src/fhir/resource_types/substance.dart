@@ -34,7 +34,9 @@ class Substance extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory Substance.fromJson(Map<String, dynamic> json) {
+  factory Substance.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return Substance(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -361,7 +363,9 @@ class SubstanceInstance extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceInstance.fromJson(Map<String, dynamic> json) {
+  factory SubstanceInstance.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SubstanceInstance(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -547,7 +551,9 @@ class SubstanceIngredient extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SubstanceIngredient.fromJson(Map<String, dynamic> json) {
+  factory SubstanceIngredient.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SubstanceIngredient(
       id: json['id'] != null
           ? FhirString.fromJson(

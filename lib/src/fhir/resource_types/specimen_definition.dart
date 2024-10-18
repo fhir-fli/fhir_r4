@@ -33,7 +33,9 @@ class SpecimenDefinition extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SpecimenDefinition.fromJson(Map<String, dynamic> json) {
+  factory SpecimenDefinition.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SpecimenDefinition(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -348,7 +350,9 @@ class SpecimenDefinitionTypeTested extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SpecimenDefinitionTypeTested.fromJson(Map<String, dynamic> json) {
+  factory SpecimenDefinitionTypeTested.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SpecimenDefinitionTypeTested(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -629,7 +633,9 @@ class SpecimenDefinitionContainer extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SpecimenDefinitionContainer.fromJson(Map<String, dynamic> json) {
+  factory SpecimenDefinitionContainer.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SpecimenDefinitionContainer(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -921,7 +927,9 @@ class SpecimenDefinitionAdditive extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SpecimenDefinitionAdditive.fromJson(Map<String, dynamic> json) {
+  factory SpecimenDefinitionAdditive.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SpecimenDefinitionAdditive(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -1091,7 +1099,9 @@ class SpecimenDefinitionHandling extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory SpecimenDefinitionHandling.fromJson(Map<String, dynamic> json) {
+  factory SpecimenDefinitionHandling.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return SpecimenDefinitionHandling(
       id: json['id'] != null
           ? FhirString.fromJson(

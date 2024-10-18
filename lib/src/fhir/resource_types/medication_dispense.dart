@@ -57,7 +57,9 @@ class MedicationDispense extends DomainResource {
         );
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MedicationDispense.fromJson(Map<String, dynamic> json) {
+  factory MedicationDispense.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MedicationDispense(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -733,7 +735,9 @@ class MedicationDispensePerformer extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MedicationDispensePerformer.fromJson(Map<String, dynamic> json) {
+  factory MedicationDispensePerformer.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MedicationDispensePerformer(
       id: json['id'] != null
           ? FhirString.fromJson(
@@ -901,7 +905,9 @@ class MedicationDispenseSubstitution extends BackboneElement {
   });
 
   /// Factory constructor that accepts [Map<String, dynamic>] as an argument
-  factory MedicationDispenseSubstitution.fromJson(Map<String, dynamic> json) {
+  factory MedicationDispenseSubstitution.fromJson(
+    Map<String, dynamic> json,
+  ) {
     return MedicationDispenseSubstitution(
       id: json['id'] != null
           ? FhirString.fromJson(
