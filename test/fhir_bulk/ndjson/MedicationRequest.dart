@@ -1,4 +1,5 @@
-// ignore_for_file: leading_newlines_in_multiline_strings, unnecessary_string_escapes, file_names
+// ignore_for_file: leading_newlines_in_multiline_strings,
+// ignore_for_file: unnecessary_string_escapes, file_names
 
 const String medicationRequest =
     '''{"resourceType":"MedicationRequest","id":"3123","text":{"status":"generated","div":"\u003cdiv xmlns\u003d\\\"http://www.w3.org/1999/xhtml\\\"\u003e\u003cp\u003e\u003cb\u003eGenerated Narrative with Details\u003c/b\u003e\u003c/p\u003e\u003cp\u003e\u003cb\u003eid\u003c/b\u003e: 3123\u003c/p\u003e\u003cp\u003e\u003cb\u003estatus\u003c/b\u003e: unknown\u003c/p\u003e\u003cp\u003e\u003cb\u003eintent\u003c/b\u003e: order\u003c/p\u003e\u003cp\u003e\u003cb\u003emedication\u003c/b\u003e: \u003ca\u003eMedication/example\u003c/a\u003e\u003c/p\u003e\u003cp\u003e\u003cb\u003esubject\u003c/b\u003e: \u003ca\u003ePatient/347\u003c/a\u003e\u003c/p\u003e\u003c/div\u003e"},"status":"unknown","intent":"order","medicationReference":{"reference":"Medication/example"},"subject":{"reference":"Patient/347"}}

@@ -1,6 +1,5 @@
 // ignore_for_file: invalid_annotation_target
 
-// Dart imports:
 import 'dart:convert';
 
 import 'package:fhir_r4/fhir_r4.dart';
